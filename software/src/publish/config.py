@@ -10,7 +10,8 @@ PUBLISH_ROOT_NAME = "PUBLISHED"
 # Value: Dict with 'module_source_dir' and 'syllabus_source_dir'
 COURSE_CONFIGS = {
     "biol-1": {
-        "module_source_dir": "for_upload",
+        "module_source_dir": "output",
+        "additional_module_dirs": ["slides"],
         "syllabus_source_dir": "output",
         "include_syllabus": True,
     },

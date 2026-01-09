@@ -1,0 +1,37 @@
+Module 2: Basic Chemistry
+Keys to Success & Study Guide
+
+Learning Objectives
+By the end of this module, you should be able to:
+Describe the structure of an atom and the properties of its subatomic particles.
+Compar and contrast ionic, covalent, and hydrogen bonds.
+Explain the unique life-supporting properties of water resulting from its polarity.
+Interpret the pH scale and explain the importance of buffers in homeostasis.
+
+Key Terminology Checklist
+Define these terms in your own words to ensure mastery.
+[ ] Matter: Anything that has mass and takes up space.
+[ ] Isotope: Atoms of the same element with different numbers of neutrons.
+[ ] Valence Shell: The outermost electron shell; determines reactivity.
+[ ] Cation vs. Anion: Positively charged ion vs. negatively charged ion.
+[ ] Electronegativity: A measure of an atom's ability to attract shared electrons.
+[ ] Solute vs. Solvent: The substance being dissolved vs. the dissolving medium (usually water).
+[ ] Hydrophilic vs. Hydrophobic: Water-loving vs. water-fearing.
+
+Concept Check
+Atomic Math
+   Question: How are Atomic Number and Atomic Mass calculated?
+   Deep Dive: If an atom has an Atomic Number of 6 and a Mass Number of 12, how many neutrons does it have? What if the Mass Number is 14? (Hint: This is an isotope).
+
+Bonding Basics
+   Question: How do ionic and covalent bonds differ?
+   Deep Dive: Why is Sodium Chloride (NaCl) an ionic bond, while Water (H2O) is a covalent bond? Think about what the electrons are doing (transferred vs. shared).
+
+The Power of pH
+   Question: What regions of the pH scale relate to acids, bases, and neutral substances?
+   Deep Dive: Why is "acid rain" harmful to forests and lakes? Connect this back to the sensitivity of biological molecules to pH changes.
+
+Study Tips
+   CHNOPS: Remember the six most common elements in life: Carbon, Hydrogen, Nitrogen, Oxygen, Phosphorus, Sulfur.
+   Draw it out: Sketch a water molecule. Label the Oxygen (delta negative) and Hydrogen (delta positive) and draw dotted lines to neighboring water molecules to represent Hydrogen bonds. Visualizing this makes "polarity" makes sense.
+The "Shell" Game: When looking at the Periodic Table, look at the columns (Groups). Group 1 atoms have 1 valence electron (highly reactive). Group 8 (Noble gases) have full shells (inert).

@@ -1,0 +1,35 @@
+Module 17: Speciation and Macroevolution
+Comprehension & Critical Thinking Questions
+
+Part 1: Understanding Core Concepts
+Species Concepts
+       Define the Biological Species Concept. What is the key criterion? (Reproduction).
+       Why is this concept hard to apply to fossils or asexual bacteria? What is the Morphological Species Concept?
+
+Reproductive Barriers
+       Barriers prevent species from mixing. Classify the following as Pre-zygotic or Post-zygotic:
+           Two birds reproduce at different times of year (Temporal).
+           Sperm cannot fertilize egg (Gametic).
+           Hybrid offspring is frail or sterile (Mule).
+
+Modes of Speciation
+       Compare Allopatric Speciation (Other Country) and Sympatric Speciation (Same Country).
+       Which one requires a physical geographic barrier?
+
+Part 2: Applying Biological Principles
+Adaptive Radiation
+       Scenario: A few finches are blown to a volcanic archipelago (Galapagos) with many empty habitats.
+       Apply: Explain how this single species can rapidly diverge into many new species.
+
+Convergent Evolution
+       Sharks (Fish) and Dolphins (Mammals) look very similar (Torpedo shape, fins).
+       Apply: Did they inherit this shape from a common torpedo-ancestor, or did they evolve it independently? What environmental pressure caused this?
+
+Part 3: Analyzing & Evaluating
+Macroevolutionary Pacing
+       Contrast Gradualism (Slow, steady change) with Punctuated Equilibrium (Long statis, sudden change).
+       Which model is better supported by the fossil record? (Hint: It's often a mix, but Punctuated explains gaps well).
+
+The Goal of Evolution
+       Critique: "Evolution drives organisms to become perfect."
+       Is evolution goal-oriented? Or does it just respond to the immediate environment? (Think about "Good enough" vs "Perfect").

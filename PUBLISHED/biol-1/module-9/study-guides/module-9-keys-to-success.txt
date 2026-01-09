@@ -1,0 +1,46 @@
+Module 9: Cell Division and Mitosis
+Keys to Success & Study Guide
+
+Learning Objectives
+By the end of this module, you should be able to:
+Sequence the phases of the eukaryotic cell cycle and mitosis.
+Differentiate between chromatin, chromosomes, and sister chromatids.
+Compare cytokinesis in plant and animal cells.
+Explain the genetic basis of cancer (oncogenes vs. tumor suppressors).
+
+Key Terminology Checklist
+Define these terms in your own words to ensure mastery.
+[ ] Somatic Cell: Body cells (Diploid).
+[ ] Gamete: Sex cells (Haploid).
+[ ] Sister Chromatids: Identical copies of a chromosome rejoined at the centromere.
+[ ] Centromere: The waist where chromatids are attached.
+[ ] Metastasis: The spread of cancer cells to different parts of the body.
+[ ] Genome: The total genetic information of an organism.
+
+Concept Check
+Timing is Everything
+   Question: Which phase takes up the bulk of the cell cycle?
+   Deep Dive: Interphase takes up ~90% of the time. Mitosis is very short. Why? (Think about preparations vs. the actual act of splitting).
+
+The Guardian of the Genome
+   Question: What is the role of p53?
+   Deep Dive: p53 is a Tumor Suppressor. If DNA is damaged, p53 halts division to repair it. If it can't be repaired, p53 triggers Apoptosis. If p53 is mutated/broken, what happens? (Cancer often follows).
+
+Bad Brakes and Stuck Gas
+   Question: What kinds of genes are involved in cancer?
+   Deep Dive:
+       Proto-oncogenes: Enhance division (Gas pedal). Mutate to become Oncogenes (Gas stuck down).
+       Tumor Suppressors: Stop division (Brake pedal). Mutate to break (Brakes cut).
+
+Prokaryote Comparison
+   Question: Through what process do prokaryotes replicate?
+   Deep Dive: Binary Fission. They have a single circular chromosome. They replicate it and pull apart. Simplistic compared to the dance of 46 chromosomes in humans.
+
+Study Tips
+   Hand Signals: Use your hands to model mitosis phases.
+       Prophase: Fingers spread (chromosomes condense).
+       Metaphase: Hands together (align middle).
+       Anaphase: Hands pull apart.
+       Telophase: Two fists (two nuclei).
+   Chromosome Math: Confused by "46 chromosomes vs 92 chromatids"?
+    *   Count the Centromeres. If there is one waist, it is ONE chromosome (even if it has two legs/chromatids).

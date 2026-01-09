@@ -1,0 +1,33 @@
+Module 4: Cells
+Comprehension & Critical Thinking Questions
+
+Part 1: Understanding Core Concepts
+Cell Theory
+       State the three fundamental tenets of Cell Theory.
+       Why is the cell considered the basic unit of life?
+
+Cell Types
+       Create a Venn Diagram comparing Prokaryotic and Eukaryotic cells.
+       Which domains of life are Prokaryotic? Which are Eukaryotic?
+
+The Endomembrane System
+       Trace the path of a protein from its production to its export from the cell. In your answer, include the roles of: Nucleus, Ribosome, Rough ER, Transport Vesicle, Golgi Apparatus, and Cell Membrane.
+
+Part 2: Applying Biological Principles
+Organelle Function
+       Analogy: If a cell were a factory, what "job" corresponds to each organelle?
+           Mitochondria (Power Plant?)
+           Lysosome (Recycling Center?)
+           Nucleus (CEO?)
+       Explain the biological justification for each analogy.
+
+Plant vs. Animal Cells
+       You are looking at a cell under a microscope. You see a rigid cell wall and green variety of organelles. Is this a plant or animal cell? Explain.
+       Why do plants need a Central Vacuole while animals generally do not?
+
+Part 3: Analyzing & Evaluating
+Surface Area to Volume Ratio
+       Why are cells microscopic? Analyze what happens to a cell's ability to transport nutrients and waste as it gets larger. (Hint: Volume increases faster than Surface Area).
+
+Origins of Complexity
+       Explain the Endosymbiotic Theory. What evidence suggests that Mitochondria and Chloroplasts were once independent bacterial cells? (Think about their DNA and membranes).

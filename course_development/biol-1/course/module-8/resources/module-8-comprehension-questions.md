@@ -1,47 +1,35 @@
-# Comprehension Questions - Module 8: Cellular Respiration
+# Module 8: Cellular Respiration
+## Comprehension & Critical Thinking Questions
 
-## Overview of Cellular Respiration
+### Part 1: Understanding Core Concepts
+1.  **The Overview**
+    *   Write the balanced chemical equation for Cellular Respiration.
+    *   Name the four main stages of aerobic respiration: **Glycolysis**, **Prep Reaction**, **Citric Acid (Krebs) Cycle**, **Electron Transport Chain**.
 
-1. Explain the overall equation for cellular respiration and compare it to photosynthesis.
+2.  **Locations**
+    *   Where in the cell does Glycolysis occur?
+    *   Where do the Citric Acid Cycle and ETC occur? (Be specific about mitochondrial compartments).
 
-2. Describe the three main stages of aerobic cellular respiration and where each occurs.
+3.  **The Players**
+    *   What are **chemico-osmosis** and **oxidative phosphorylation**?
+    *   What is the role of Oxygen? Why do we die without it? (Hint: It's the "Final Electron Acceptor").
 
-3. How do cells extract energy from glucose through cellular respiration?
+### Part 2: Applying Biological Principles
+4.  **Tracking the Math**
+    *   Start with one Glucose molecule.
+    *   How many ATP are made in Glycolysis? (Net)
+    *   How many ATP are made in Krebs?
+    *   How many ATP are made in the ETC?
+    *   Why is the "Total ATP" usually a range (30-32 or 36-38) rather than a fixed number?
 
-## Glycolysis
+5.  **Anaerobic Options**
+    *   If no Oxygen is available, cells switch to **Fermentation**.
+    *   Compare **Lactic Acid Fermentation** (Humans/Bacteria) vs. **Alcohol Fermentation** (Yeast).
+    *   Does fermentation produce any *new* ATP? If not, why do cells do it? (Hint: Regenerating NAD+).
 
-4. Describe the process of glycolysis, including inputs, outputs, and energy production.
+### Part 3: Analyzing & Evaluating
+6.  **Efficiency Analysis**
+    *   Automobiles are about 25% efficient (converting gas to movement). Cellular respiration is about 34% efficient. Where does the rest of the energy go? (Refer back to thermodynamics/body heat).
 
-5. Explain why glycolysis is considered an ancient metabolic pathway.
-
-6. How is glycolysis regulated, and why is this regulation important?
-
-## Citric Acid Cycle (Krebs Cycle)
-
-7. Describe the citric acid cycle and explain how it completes the oxidation of glucose.
-
-8. What happens to pyruvate before it enters the citric acid cycle?
-
-9. Explain how the citric acid cycle generates ATP, NADH, and FADH2.
-
-## Electron Transport Chain and Oxidative Phosphorylation
-
-10. Describe how the electron transport chain creates a proton gradient across the mitochondrial membrane.
-
-11. Explain how ATP is synthesized through chemiosmosis.
-
-12. Compare and contrast the electron transport chains in cellular respiration and photosynthesis.
-
-## Anaerobic Respiration and Fermentation
-
-13. Compare and contrast aerobic respiration, anaerobic respiration, and fermentation.
-
-14. Explain why fermentation is less efficient than aerobic respiration but still important for some organisms.
-
-15. Describe the different types of fermentation and their products.
-
-## Energy Yield and Efficiency
-
-16. Calculate the total ATP yield from one molecule of glucose through aerobic respiration.
-
-17. Explain how cells can use other molecules besides glucose as fuel for cellular respiration.
+7.  **Metabolic Crossroads**
+    *   We don't just eat sugar. Explain how proteins and fats enter the cellular respiration pathway. Where do fats enter? Where do amino acids enter? (Deamination).

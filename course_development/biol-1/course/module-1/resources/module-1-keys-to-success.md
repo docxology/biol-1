@@ -1,21 +1,46 @@
-Chapter 1 Keys to Success
+# Module 1: Biology - The Study of Life
+## Keys to Success & Study Guide
 
-What are the 6 characteristics of life as outlined in your textbook?
+### Learning Objectives
+By the end of this module, you should be able to:
+1.  **Identify** and explain the six fundamental characteristics shared by all living organisms.
+2.  **Order** the levels of biological organization from atom to biosphere.
+3.  **Differentiate** between the three domains of life and the kingdoms within Eukarya.
+4.  **Apply** the scientific method to hypothetical scenarios, distinguishing between hypothesis, theory, and law.
+5.  **Explain** the flow of energy and cycling of nutrients in various ecosystems.
 
-What are all the different levels of biological organization, going from smallest to largest? Define the terms in these levels. 
+### Key Terminology Checklist
+*Define these terms in your own words to ensure mastery.*
+- [ ] **Homeostasis**: Maintenance of stable internal conditions.
+- [ ] **Metabolism**: All chemical reactions involved in maintaining the living state of the cells and the organism.
+- [ ] **Binomial Nomenclature**: The two-part naming system (Genus species).
+- [ ] **Prokaryote vs. Eukaryote**: Cells without a nucleus vs. cells with a nucleus.
+- [ ] **Autotroph vs. Heterotroph**: Self-feeders vs. other-feeders.
+- [ ] **Natural Selection**: The process by which organisms better adapted to their environment tend to survive and produce more offspring.
 
-Energy is very important for life. What is energy and what forms does this energy take in the world of biology?
+### Concept Check
+#### 1. The Nature of Life
+*   **Question**: What are the 6 characteristics of life?
+*   **Deep Dive**: If you found a mysterious slime on a rock, what tests would you run to determine if it is "alive" according to biological standards? (Think: reproduction, energy use, response to stimuli, etc.)
 
-How does homeostasis apply to life?
+#### 2. The Hierarchy of Life
+*   **Question**: What are the levels of biological organization?
+*   **Deep Dive**: How does a **Community** differ from an **Ecosystem**? (Hint: Does one include non-living factors like rain and rocks?)
 
-How can deer shape the natural selection of plant leaves?
+#### 3. Energy & Evolution
+*   **Question**: How can deer shape the natural selection of plant leaves?
+*   **Deep Dive**: This is an example of an evolutionary pressure. Explain how the deer acting as a predator causes the plant population to change over generations. Is this change intentional by the plant?
 
-What are the categories in the levels of classification, from largest to smallest?
+#### 4. The Science of Biology
+*   **Question**: What is the difference between a scientific theory and a scientific law?
+*   **Deep Dive**: A **Law** predicts *what* happens (descriptive). A **Theory** proposes *why* it happens (explanatory). Gravity is a law (things fall). Gravity is also a theory (curvature of spacetime). In Biology, Evolution is a **Theory** because it provides a comprehensive explanation for the diversity of life, supported by massive evidence.
 
-How does binomial nomenclature work? How does the formatting of these names work?
-
-What are the three domains and four kingdoms of life?
-
-Briefly, what is the sequence of the scientific process?
-
-What is the difference between a scientific theory and a scientific law?
+### Study Tips
+*   **Mnemonics work!** Create a sentence to remember the classification order (Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species).
+    *   *Example*: "Dear King Philip Came Over For Good Soup."
+*   **Visualize the Ladder**: When studying biological organization, draw it out as a ladder or a pyramid. Visuals help cement the hierarchy better than lists.
+*   **Latin Roots**: Many biological terms come from Latin/Greek.
+    *   *Bio* = Life
+    *   *Logy* = Study of
+    *   *Homeo* = Same/Steady
+    *   *Stasis* = State

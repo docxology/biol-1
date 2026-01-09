@@ -1,0 +1,45 @@
+Module 5: Membranes
+Keys to Success & Study Guide
+
+Learning Objectives
+By the end of this module, you should be able to:
+Diagram the structure of the plasma membrane (Fluid Mosaic Model).
+Predict the movement of water and solutes across a membrane in various osmotic conditions.
+Compare and contrast passive and active transport mechanisms.
+Explain how large molecules traverse the membrane via bulk transport.
+
+Key Terminology Checklist
+Define these terms in your own words to ensure mastery.
+[ ] Amphipathic: Having both hydrophilic and hydrophobic parts.
+[ ] Concentration Gradient: The difference in concentration of a substance across a space.
+[ ] Aquaporin: A channel protein specifically for rapid water transport.
+[ ] Turgor Pressure: The pressure of water pushing the plasma membrane against the cell wall of a plant cell.
+[ ] Ligand: A molecule that binds specifically to a receptor site.
+
+Concept Check
+The Gatekeeper
+   Question: What are the three main components in a cell membrane?
+   Deep Dive: Phospholipids (barrier), Proteins (doors/workers), and Cholesterol (stabilizer). How does Cholesterol prevent the membrane from freezing in the cold or melting in the heat?
+
+Just Passing Through
+   Question: When would active transport be necessary?
+   Deep Dive: Usually things flow "downhill" (high to low). If you need to pump water "uphill," you need a pump and electricity. In cells, if you need to gather specific nutrients against their gradient, you need a Protein Pump and ATP.
+
+Water Wars
+   Question: What is the meaning of isotonic, hypertonic and hypotonic solutions?
+   Deep Dive: Remember, water chases the solute.
+       Hyper (High solute) -> Water leaves cell (Shrivel).
+       Hypo (Low solute) -> Water enters cell (Burst/Turgid).
+       Iso (Equal) -> Equilibrium.
+       Tip: Freshwater fish live in a Hypotonic environment. Why don't they explode? (Kidneys/Gills).
+
+Big Gulp
+   Question: How are very large substances brought into and pushed out of cells?
+   Deep Dive: Phagocytosis ("Cell Eating"). White blood cells use this to devour bacteria. It involves the membrane wrapping around the target and pinching off a vesicle.
+
+Study Tips
+   Draw the Diagram: Seriously, draw the Fluid Mosaic Model. Label the Heads, Tails, Integral Proteins, Peripheral Proteins, Carbohydrate chains.
+   Scenario Practice: Don't just memorize "Hypertonic = Shrivel." Visualize a slug with salt on it. The salt is Hypertonic. The water leaves the slug's cells to dilute the salt. result: Slug shrivels.
+   Gradient Gravity: Think of Concentration Gradients like Gravity.
+       Passive Transport = Rolling a ball down a hill (Easy, no energy).
+    *   Active Transport = Pushing a ball up a hill (Hard, requires energy/ATP).

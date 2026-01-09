@@ -122,7 +122,7 @@ def get_courses_to_process(course_arg: str) -> List[tuple]:
     if course_arg == "all":
         return all_courses
 
-    return [(c, n) for c, n in all_courses if c == course_arg]
+    return [(c, n) for c, n in all_courses if c.endswith(course_arg)]
 
 
 def get_formats_to_process(formats_arg: str) -> List[str]:

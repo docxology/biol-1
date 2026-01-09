@@ -1,49 +1,34 @@
-# Comprehension Questions - Module 16: Evolution & Populations
+# Module 16: Evolution of Populations (Microevolution)
+## Comprehension & Critical Thinking Questions
 
-## Mechanisms of Evolution
+### Part 1: Understanding Core Concepts
+1.  **Defining Microevolution**
+    *   Evolution is "change in allele frequency." If a population is 50% Brown Eye Alleles and 50% Blue Eye Alleles, and 100 years later it is 90% Brown/10% Blue, has evolution occurred?
 
-1. Compare and contrast the five mechanisms of evolution: mutation, genetic drift, gene flow, natural selection, and non-random mating.
+2.  **Hardy-Weinberg Equilibrium**
+    *   What does the Hardy-Weinberg principle state?
+    *   List the **Five Conditions** required for a population NOT to evolve (No mutation, No gene flow, etc.). Are these conditions common in nature?
 
-2. Explain how genetic drift affects small populations differently than large populations.
+3.  **Genetic Drift**
+    *   Define **Genetic Drift**. Does it have a stronger effect on Large or Small populations?
+    *   Distinguish between the **Bottleneck Effect** (disaster) and the **Founder Effect** (colonization).
 
-3. Describe how gene flow can affect genetic variation within and between populations.
+### Part 2: Applying Biological Principles
+4.  **Types of Selection**
+    *   Draw three graphs representing:
+        *   **Directional Selection** (Shift to one extreme).
+        *   **Stabilizing Selection** (Average is favored).
+        *   **Disruptive Selection** (Both extremes favored).
+    *   Give a real-world example of each (e.g., Birth weight, Beak size).
 
-## Natural Selection
+5.  **Heterozygote Advantage**
+    *   Sickle Cell Anemia is a deadly recessive disease. Why is the allele so common in parts of Africa?
+    *   **Apply**: How does this demonstrate that "Fitness" depends on the environment? (Malaria presence).
 
-4. Explain the three types of natural selection (directional, stabilizing, disruptive) and give examples of each.
+### Part 3: Analyzing & Evaluating
+6.  **Sexual Selection**
+    *   Peacocks have giant tails that make them slow and visible to predators. **Analyze**: How can Natural Selection (survival) allow this trait to exist? (Hint: Reproduction vs Survival).
 
-5. Describe how natural selection can lead to adaptation over time.
-
-6. Explain how sexual selection differs from natural selection and give examples.
-
-## Population Genetics
-
-7. Explain the Hardy-Weinberg equilibrium and the conditions required for it.
-
-8. Describe how to use the Hardy-Weinberg equation to calculate allele and genotype frequencies.
-
-9. Explain how deviations from Hardy-Weinberg equilibrium indicate evolutionary change.
-
-## Genetic Variation
-
-10. Explain the sources of genetic variation in populations.
-
-11. Describe how mutation contributes to evolution over long time periods.
-
-12. Explain how genetic variation is maintained in populations despite natural selection.
-
-## Speciation
-
-13. Compare and contrast allopatric and sympatric speciation.
-
-14. Explain how reproductive isolation can lead to speciation.
-
-15. Describe the different types of reproductive barriers and how they prevent gene flow.
-
-## Evolutionary Patterns
-
-16. Explain the difference between gradualism and punctuated equilibrium.
-
-17. Describe how convergent evolution and divergent evolution produce different patterns of similarity.
-
-18. Explain how coevolution can shape the evolution of interacting species.
+7.  **Gene Flow**
+    *   Two populations of deer are separated by a mountain. A tunnel is built, allowing them to mix.
+    *   **Analyze**: Will the two populations become more similar or more different genetically? Does this increase or decrease the chance of them becoming separate species?

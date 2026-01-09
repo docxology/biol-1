@@ -1,47 +1,37 @@
-# Comprehension Questions - Module 10: Cell Cycle
+# Module 10: Meiosis and Sexual Reproduction
+## Comprehension & Critical Thinking Questions
 
-## Cell Division Overview
+### Part 1: Understanding Core Concepts
+1.  **Sexual Reproduction Basics**
+    *   Define **Gametes** and **Zygotes**.
+    *   Why must gametes be **Haploid** (n) while body cells are **Diploid** (2n)? What would happen to the chromosome number in the offspring if gametes were diploid?
 
-1. Explain why cell division is essential for life and describe its roles in growth, repair, and reproduction.
+2.  **Meiosis Phases**
+    *   Meiosis involves two rounds of division (Meiosis I and II). What is being separated in **Anaphase I**? (Homologous Pairs).
+    *   What is being separated in **Anaphase II**? (Sister Chromatids).
 
-2. Compare and contrast cell division in prokaryotes and eukaryotes.
+3.  **Key Events**
+    *   Describe **Crossing Over (Synapsis)**. When does it happen? Why is it crucial for evolution?
+    *   Describe **Independent Assortment**. How does the random alignment of chromosomes create unique gametes?
 
-3. What is the relationship between cell division and the cell cycle?
+### Part 2: Applying Biological Principles
+4.  **Mitosis vs. Meiosis**
+    *   Create a comparison table:
+        *   **End Product**: (2 Identical cells vs 4 Unique cells).
+        *   **Purpose**: (Growth/Repair vs Reproduction).
+        *   **Divisions**: (1 vs 2).
 
-## Cell Cycle Phases
+5.  **Human Genetics**
+    *   Humans have 46 chromosomes.
+        *   How many pairs are **Autosomes**?
+        *   How many pairs are **Sex Chromosomes**?
+    *   What determines biological maleness in humans? (The Y chromosome).
 
-4. Describe the phases of the cell cycle (G1, S, G2, M) and what happens in each phase.
+### Part 3: Analyzing & Evaluating
+6.  **When Things Go Wrong**
+    *   Define **Nondisjunction**.
+    *   **Analyze**: If a Nondisjunction event happens in Meiosis I, how many gametes will be abnormal? What if it happens in Meiosis II?
+    *   Explain the genetic cause of **Down Syndrome** (Trisomy 21).
 
-5. Explain the difference between interphase and mitosis.
-
-6. How do cells prepare for division during interphase?
-
-## Chromosomes and Chromatin
-
-7. Compare and contrast chromosomes, chromatin, and chromatids.
-
-8. Explain how DNA is packaged in eukaryotic cells and why this packaging is important.
-
-9. Describe the structure of a chromosome and identify its key components.
-
-## Mitosis
-
-10. Describe the phases of mitosis and the key events that occur in each phase.
-
-11. Explain how mitosis ensures that each daughter cell receives an identical set of chromosomes.
-
-12. Compare and contrast mitosis in plant and animal cells.
-
-## Cell Cycle Regulation
-
-13. Explain how the cell cycle is regulated and why this regulation is critical.
-
-14. Describe the role of checkpoints in the cell cycle and what happens if they fail.
-
-15. How do growth factors and other signals control cell division?
-
-## Cancer and Cell Division
-
-16. Explain how cancer relates to uncontrolled cell division.
-
-17. Describe how understanding the cell cycle helps in cancer treatment.
+7.  **The Cost of Sex**
+    *   Asexual reproduction is fast and efficient. Sexual reproduction is slow and costly (finding a mate). **Evaluate**: Why is sexual reproduction so common? What is the biological payoff? (Answer: Genetic Diversity).

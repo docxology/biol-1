@@ -1,47 +1,36 @@
-# Comprehension Questions - Module 13: Molecular Biology
+# Module 13: Regulation of Gene Expression
+## Comprehension & Critical Thinking Questions
 
-## DNA Structure and Replication
+### Part 1: Understanding Core Concepts
+1.  **Prokaryotic Regulation**
+    *   Define **Operon**.
+    *   Compare an **Inducible Operon** (like *lac*) vs. a **Repressible Operon** (like *trp*). Which one is normally "OFF" and needs to be turned on? Which is normally "ON"?
 
-1. Explain how the structure of DNA enables it to store and transmit genetic information.
+2.  **Eukaryotic Regulation**
+    *   Gene expression isn't just ON/OFF; it's a dimmer switch controlled at many levels. Briefly explain:
+        *   **Chromatin Remodeling** (Histone acetylation).
+        *   **Transcriptional Control** (Transcription factors).
+        *   **Post-Translational Control** (Protein folding/degradation).
 
-2. Describe the process of DNA replication, including the enzymes involved and their functions.
+3.  **Mutations**
+    *   Define **Point Mutation** (Substitution) vs. **Frameshift Mutation** (Insertion/Deletion).
+    *   Why is a frameshift usually much more damaging?
 
-3. Explain how DNA replication ensures accuracy and what happens when errors occur.
+### Part 2: Applying Biological Principles
+4.  **The Lac Operon**
+    *   **Scenario**: E. coli bacteria are living for weeks in a petri dish with ample Glucose and NO Lactose.
+    *   **Apply**: Is the *lac* operon on or off? Is the Repressor protein bound to the operator?
+    *   **Change**: You suddenly add Lactose. What happens to the repressor? What happens to transcription?
 
-4. Compare and contrast the leading and lagging strands in DNA replication.
+5.  **X-Inactivation**
+    *   Female mammals have two X chromosomes, but males survive with only one. Explain **Dosage Compensation** and **Barr Bodies**.
+    *   How does this explain the patchy color of a Tortoiseshell/Calico cat?
 
-## RNA Structure and Types
+### Part 3: Analyzing & Evaluating
+6.  **Cancer and Regulation**
+    *   Cancer is essentially a disease of gene regulation.
+    *   **Analyze**: How might a mutation in a **Tumor Suppressor Gene** (which normally stops division) lead to cancer?
+    *   How might a mutation in a **Proto-Oncogene** (which normally promotes division) lead to cancer?
 
-5. Compare and contrast the structure and function of DNA and RNA.
-
-6. Describe the different types of RNA (mRNA, tRNA, rRNA) and their roles in protein synthesis.
-
-7. Explain how RNA differs from DNA in structure and function.
-
-## Transcription
-
-8. Describe the process of transcription, including initiation, elongation, and termination.
-
-9. Explain how RNA polymerase recognizes where to start transcription.
-
-10. Compare and contrast transcription in prokaryotes and eukaryotes.
-
-11. Describe RNA processing in eukaryotes (capping, splicing, polyadenylation).
-
-## Translation
-
-12. Explain how the genetic code translates nucleotide sequences into amino acid sequences.
-
-13. Describe the process of translation, including the roles of mRNA, tRNA, and ribosomes.
-
-14. Explain how the structure of tRNA enables it to carry out its function.
-
-15. Describe the three stages of translation (initiation, elongation, termination).
-
-## Gene Expression Regulation
-
-16. Explain how gene expression is regulated at different levels.
-
-17. Describe how operons control gene expression in prokaryotes.
-
-18. Compare and contrast gene regulation in prokaryotes and eukaryotes.
+7.  **Epigenetics**
+    *   "Inheritance above the genes." Explain how environmental factors (diet, stress) might modify chemical tags on DNA (Methylation) without changing the sequence itself. Can these changes be passed to offspring?

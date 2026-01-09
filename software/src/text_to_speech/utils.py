@@ -1,11 +1,11 @@
 """Utility functions for text-to-speech generation."""
 
 import re
+import subprocess
+import os
+import shutil
 from pathlib import Path
 from typing import Optional
-
-import markdown
-from gtts import gTTS
 
 
 def read_text_file(file_path: Path) -> str:
@@ -69,22 +69,46 @@ def text_to_speech_audio(
     lang: str = "en",
     slow: bool = False,
 ) -> None:
-    """Generate speech audio from text using gTTS.
-
+    """Generate speech audio from text using macOS 'say' and 'ffmpeg'.
+    
     Args:
         text: Text content to convert
         output_path: Path for output audio file
-        lang: Language code (default: "en")
-        slow: Whether to speak slowly (default: False)
+        lang: Language code (default: "en") (Ignored for local say, uses system default)
+        slow: Whether to speak slowly (default: False) (Ignored for local say)
 
     Raises:
         OSError: If audio generation fails
     """
+    tmp_aiff = output_path.with_suffix(".aiff")
+    tmp_txt = output_path.with_suffix(".tmp.txt")
+    
     try:
-        tts = gTTS(text=text, lang=lang, slow=slow)
-        tts.save(str(output_path))
-    except Exception as e:
-        raise OSError(f"Failed to generate speech audio: {e}") from e
+        # Write text to temp file to handle large content/special chars
+        tmp_txt.write_text(text, encoding='utf-8')
+        
+        # 1. Generate AIFF using 'say'
+        # -v Alex is a good default, or system default
+        subprocess.run(["say", "--input-file", str(tmp_txt), "--output-file", str(tmp_aiff)], check=True)
+        
+        # 2. Convert to MP3 using ffmpeg
+        # -y to overwrite, -acodec libmp3lame, -q:a 2 (high quality)
+        subprocess.run([
+            "ffmpeg", "-y", 
+            "-i", str(tmp_aiff),
+            "-acodec", "libmp3lame",
+            "-q:a", "2",
+            str(output_path)
+        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        
+    except subprocess.CalledProcessError as e:
+        raise OSError(f"Local TTS generation failed: {e}") from e
+    finally:
+        # Cleanup temp files
+        if tmp_aiff.exists():
+            tmp_aiff.unlink()
+        if tmp_txt.exists():
+            tmp_txt.unlink()
 
 
 def ensure_output_directory(output_path: Path) -> None:

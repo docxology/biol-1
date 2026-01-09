@@ -1,35 +1,46 @@
-Chapter 09 Keys to Success
+# Module 9: Cell Division and Mitosis
+## Keys to Success & Study Guide
 
-What phases occur in a diagram of the cell cycle? Which phase takes up the bulk?
+### Learning Objectives
+By the end of this module, you should be able to:
+1.  **Sequence** the phases of the eukaryotic cell cycle and mitosis.
+2.  **Differentiate** between chromatin, chromosomes, and sister chromatids.
+3.  **Compare** cytokinesis in plant and animal cells.
+4.  **Explain** the genetic basis of cancer (oncogenes vs. tumor suppressors).
 
-What sub-phases occur in interphase? What occurs in each of those sub-phases?
+### Key Terminology Checklist
+*Define these terms in your own words to ensure mastery.*
+- [ ] **Somatic Cell**: Body cells (Diploid).
+- [ ] **Gamete**: Sex cells (Haploid).
+- [ ] **Sister Chromatids**: Identical copies of a chromosome rejoined at the centromere.
+- [ ] **Centromere**: The waist where chromatids are attached.
+- [ ] **Metastasis**: The spread of cancer cells to different parts of the body.
+- [ ] **Genome**: The total genetic information of an organism.
 
-What is apoptosis and how does it occur?
+### Concept Check
+#### 1. Timing is Everything
+*   **Question**: Which phase takes up the bulk of the cell cycle?
+*   **Deep Dive**: Interphase takes up ~90% of the time. Mitosis is very short. Why? (Think about preparations vs. the actual act of splitting).
 
-What is the role of p53 in the cell cycle?
+#### 2. The Guardian of the Genome
+*   **Question**: What is the role of p53?
+*   **Deep Dive**: p53 is a Tumor Suppressor. If DNA is damaged, p53 halts division to repair it. If it can't be repaired, p53 triggers Apoptosis. If p53 is mutated/broken, what happens? (Cancer often follows).
 
-What are the various levels of structure in chromosomes? What structures are involved?
+#### 3. Bad Brakes and Stuck Gas
+*   **Question**: What kinds of genes are involved in cancer?
+*   **Deep Dive**:
+    *   **Proto-oncogenes**: Enhance division (Gas pedal). Mutate to become Oncogenes (Gas stuck down).
+    *   **Tumor Suppressors**: Stop division (Brake pedal). Mutate to break (Brakes cut).
 
-In what forms is DNA accessible/inaccessible to transcription?
+#### 4. Prokaryote Comparison
+*   **Question**: Through what process do prokaryotes replicate?
+*   **Deep Dive**: **Binary Fission**. They have a single circular chromosome. They replicate it and pull apart. Simplistic compared to the dance of 46 chromosomes in humans.
 
-What are sister chromatids and when are they made and split?
-
-What do diploid and haploid mean? How does this apply to humans?
-
-What is the role of centrosomes in mitosis?
-
-What are the 5 phases of mitosis and what happens in each?
-
-How does cytokinesis differ in plant and animal cells?
-
-What is the purpose of mitosis?
-
-What is a tumor? What is the difference between benign and malignant tumors?
-
-What are main characteristic of cancer cells?
-
-What kinds of genes are involved in the development of cancer? What do they do and how do they change?
-
-What are telomeres and what is their role in cell longevity?
-
-Through what process do prokaryotes replicate?
+### Study Tips
+*   **Hand Signals**: Use your hands to model mitosis phases.
+    *   **P**rophase: Fingers spread (chromosomes condense).
+    *   **M**etaphase: Hands together (align middle).
+    *   **A**naphase: Hands pull apart.
+    *   **T**elophase: Two fists (two nuclei).
+*   **Chromosome Math**: Confused by "46 chromosomes vs 92 chromatids"?
+    *   Count the **Centromeres**. If there is one waist, it is ONE chromosome (even if it has two legs/chromatids).

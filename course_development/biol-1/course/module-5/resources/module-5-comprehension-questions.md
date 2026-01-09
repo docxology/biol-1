@@ -1,41 +1,34 @@
-# Comprehension Questions - Module 5: Membranes
+# Module 5: Membranes
+## Comprehension & Critical Thinking Questions
 
-## Membrane Structure
+### Part 1: Understanding Core Concepts
+1.  **Membrane Architecture**
+    *   Describe the **Fluid Mosaic Model**. Why is the membrane described as "fluid"? What makes up the "mosaic"?
+    *   Sketch a **Phospholipid**. Label the hydrophilic head and hydrophobic tail. Explain how this structure naturally forms a bilayer in water.
 
-1. Explain how the phospholipid bilayer forms a barrier while allowing selective transport.
+2.  **Permeability**
+    *   Membranes are **Selectively Permeable**. What types of molecules can pass through freely? What types need help (transport proteins)? giving examples of each.
 
-2. Describe the fluid mosaic model and how it explains membrane properties.
+3.  **Transport Mechanisms**
+    *   Define **Diffusion**. Does it require energy?
+    *   Define **Osmosis**. In which direction does water move? (Towards high solute or low solute?)
 
-3. How do membrane proteins contribute to membrane function, and what are the different types?
+### Part 2: Applying Biological Principles
+4.  **Tonicity**
+    *   **Scenario**: Red blood cells are placed in three beakers:
+        *   Beaker A: Pure distilled water.
+        *   Beaker B: A salt solution matching the blood.
+        *   Beaker C: A very salty syrup.
+    *   **Apply**: Predict what happens to the cells in each beaker (Swell/Burst, Stay the same, Shrivel). Identify which solution is **Hypotonic**, **Isotonic**, and **Hypertonic**.
 
-## Passive Transport
+5.  **Active Transport**
+    *   Contrast **Passive Transport** (Diffusion/Facilitated Diffusion) with **Active Transport**.
+    *   The **Sodium-Potassium Pump** is a classic example of active transport. What is being moved? Is it moving with or against the gradient? Why does this cost ATP?
 
-4. Compare and contrast diffusion, facilitated diffusion, and osmosis.
+### Part 3: Analyzing & Evaluating
+6.  **Bulk Transport**
+    *   Some molecules are too big for protein channels. Describe **Endocytosis** (Phagocytosis/Pinocytosis) and **Exocytosis**.
+    *   **Analysis**: How do these processes rely on the "fluidity" of the membrane you described in Question 1?
 
-5. Explain how concentration gradients drive passive transport processes.
-
-6. What factors affect the rate of diffusion across membranes?
-
-7. Describe how osmosis affects cells in different osmotic environments (isotonic, hypotonic, hypertonic).
-
-## Active Transport
-
-8. Compare and contrast active transport and passive transport, including energy requirements and direction of movement.
-
-9. Explain how the sodium-potassium pump works and why it is important for cell function.
-
-10. Describe endocytosis and exocytosis, and give examples of their importance in cells.
-
-## Membrane Potential
-
-11. Explain how ion gradients across membranes create membrane potential.
-
-12. How do cells use membrane potential for communication and function?
-
-## Membrane Dynamics
-
-13. How do cells maintain membrane fluidity under different conditions?
-
-14. Explain the role of cholesterol in animal cell membranes.
-
-15. Describe how membrane composition can vary between different cell types and organelles.
+7.  **Cell Signaling**
+    *   Membranes are not just barriers; they are communication hubs. Explain the role of **Receptor Proteins** and **Glycoproteins** (ID tags). How does a cell "know" a hormone is outside?

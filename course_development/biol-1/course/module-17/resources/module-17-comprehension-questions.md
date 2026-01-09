@@ -1,49 +1,35 @@
-# Comprehension Questions - Module 17: Populations & Speciation
+# Module 17: Speciation and Macroevolution
+## Comprehension & Critical Thinking Questions
 
-## Population Ecology
+### Part 1: Understanding Core Concepts
+1.  **Species Concepts**
+    *   Define the **Biological Species Concept**. What is the key criterion? (Reproduction).
+    *   Why is this concept hard to apply to fossils or asexual bacteria? What is the **Morphological Species Concept**?
 
-1. Explain how population size, density, and distribution are measured and why they matter.
+2.  **Reproductive Barriers**
+    *   Barriers prevent species from mixing. Classify the following as **Pre-zygotic** or **Post-zygotic**:
+        *   Two birds reproduce at different times of year (Temporal).
+        *   Sperm cannot fertilize egg (Gametic).
+        *   Hybrid offspring is frail or sterile (Mule).
 
-2. Compare and contrast exponential and logistic population growth models.
+3.  **Modes of Speciation**
+    *   Compare **Allopatric Speciation** (Other Country) and **Sympatric Speciation** (Same Country).
+    *   Which one requires a physical geographic barrier?
 
-3. Explain how carrying capacity limits population growth and what factors determine it.
+### Part 2: Applying Biological Principles
+4.  **Adaptive Radiation**
+    *   **Scenario**: A few finches are blown to a volcanic archipelago (Galapagos) with many empty habitats.
+    *   **Apply**: Explain how this single species can rapidly diverge into many new species.
 
-4. Describe how density-dependent and density-independent factors affect population growth.
+5.  **Convergent Evolution**
+    *   Sharks (Fish) and Dolphins (Mammals) look very similar (Torpedo shape, fins).
+    *   **Apply**: Did they inherit this shape from a common torpedo-ancestor, or did they evolve it independently? What environmental pressure caused this?
 
-## Population Dynamics
+### Part 3: Analyzing & Evaluating
+6.  **Macroevolutionary Pacing**
+    *   Contrast **Gradualism** (Slow, steady change) with **Punctuated Equilibrium** (Long statis, sudden change).
+    *   Which model is better supported by the fossil record? (Hint: It's often a mix, but Punctuated explains gaps well).
 
-5. Explain how age structure affects population growth and future trends.
-
-6. Compare and contrast Type I, Type II, and Type III survivorship curves.
-
-7. Describe how life history traits (fecundity, age at first reproduction, lifespan) affect population dynamics.
-
-## Speciation Mechanisms
-
-8. Compare and contrast allopatric, sympatric, and parapatric speciation.
-
-9. Explain how geographic isolation can lead to speciation.
-
-10. Describe how polyploidy can lead to sympatric speciation in plants.
-
-## Reproductive Isolation
-
-11. Compare and contrast prezygotic and postzygotic reproductive barriers.
-
-12. Explain how different types of reproductive isolation can prevent gene flow between populations.
-
-13. Describe how reproductive isolation can evolve and lead to speciation.
-
-## Species Concepts
-
-14. Compare and contrast the biological species concept, morphological species concept, and phylogenetic species concept.
-
-15. Explain the challenges in defining species and why different concepts are useful in different contexts.
-
-## Macroevolution
-
-16. Explain how microevolution (changes within populations) relates to macroevolution (patterns above the species level).
-
-17. Describe how mass extinctions have shaped the history of life on Earth.
-
-18. Explain how understanding speciation helps us understand biodiversity.
+7.  **The Goal of Evolution**
+    *   **Critique**: "Evolution drives organisms to become perfect."
+    *   Is evolution goal-oriented? Or does it just respond to the immediate environment? (Think about "Good enough" vs "Perfect").

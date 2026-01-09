@@ -1,47 +1,38 @@
-# Comprehension Questions - Module 12: Patterns of Inheritance
+# Module 12: Gene Expression (DNA to Protein)
+## Comprehension & Critical Thinking Questions
 
-## Mendelian Genetics
+### Part 1: Understanding Core Concepts
+1.  **DNA Structure**
+    *   Describe the **Double Helix**. What forms the "backbone"? What forms the "rungs"?
+    *   Explain **Antiparallel** orientation (5' to 3').
+    *   State **Chargaff's Rule**. If a DNA sample is 20% Adenine, what % is Cytosine?
 
-1. Explain Mendel's principles of segregation and independent assortment.
+2.  **The Central Dogma**
+    *   Draw the flow of information: **DNA -> RNA -> Protein**.
+    *   Where does **Transcription** happen in a eukaryotic cell? Where does **Translation** happen?
 
-2. Compare and contrast genotype and phenotype, and explain how they relate.
+3.  **The Machinery**
+    *   What is the role of **DNA Polymerase**?
+    *   What is the role of **RNA Polymerase**?
+    *   What is the role of the **Ribosome**?
 
-3. Describe how to use Punnett squares to predict offspring genotypes and phenotypes.
+### Part 2: Applying Biological Principles
+4.  **Replication**
+    *   DNA Replication is **Semi-Conservative**. Explain what this means.
+    *   Why is there a **Leading Strand** (continuous) and a **Lagging Strand** (Okazaki fragments)? (Hint: Directionality of the enzyme).
 
-## Dominance and Recessiveness
+5.  **Translation Practice**
+    *   **Scenario**: You have a DNA template strand: **3' - TAC GGG AAA ACT - 5'**.
+    *   **Apply**:
+        *   Transcribe it to mRNA (Remember U replaces T, and 5'/3' flip).
+        *   Translate it to Amino Acids (using a codon chart).
 
-4. Explain the difference between dominant and recessive alleles.
+### Part 3: Analyzing & Evaluating
+6.  **RNA Processing**
+    *   In eukaryotes, the mRNA is "edited" before leaving the nucleus. Explain the purpose of:
+        *   **Introns** vs **Exons**.
+        *   The **5' Cap** and **Poly-A Tail**.
+    *   **Critique**: Why might "Alternative Splicing" be useful? (Can one gene make more than one protein?).
 
-5. Compare and contrast complete dominance, incomplete dominance, and codominance.
-
-6. How do multiple alleles contribute to genetic diversity (e.g., blood types)?
-
-## Genetic Crosses
-
-7. Explain the difference between monohybrid and dihybrid crosses.
-
-8. Describe how to determine the genotype of an individual with a dominant phenotype.
-
-9. Explain how test crosses are used to determine genotypes.
-
-## Sex-Linked Inheritance
-
-10. Explain why sex-linked traits show different inheritance patterns than autosomal traits.
-
-11. Describe how X-linked traits are inherited and why they affect males and females differently.
-
-12. Give examples of sex-linked genetic disorders and explain their inheritance patterns.
-
-## Pedigrees and Human Genetics
-
-13. Explain how pedigrees are used to trace inheritance patterns in families.
-
-14. Describe how genetic disorders can be inherited and give examples of different inheritance patterns.
-
-15. How do genetic counselors use inheritance patterns to predict the probability of genetic disorders?
-
-## Beyond Mendelian Genetics
-
-16. Explain how polygenic inheritance differs from simple Mendelian inheritance.
-
-17. Describe how environmental factors can influence gene expression.
+7.  **Universal Code**
+    *   The Genetic Code is universal (bacteria use the same codons as humans). **Analyze**: How does this fact support the theory of evolution? How does it make biotechnology (like making insulin in bacteria) possible?
