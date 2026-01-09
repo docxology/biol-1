@@ -1,39 +1,45 @@
-Chapter 5 Keys to Success
+# Module 5: Membranes
+## Keys to Success & Study Guide
 
-If you can demonstrate understanding regarding the following questions, you will be successful with this chapter:
+### Learning Objectives
+By the end of this module, you should be able to:
+1.  **Diagram** the structure of the plasma membrane (Fluid Mosaic Model).
+2.  **Predict** the movement of water and solutes across a membrane in various osmotic conditions.
+3.  **Compare** and **contrast** passive and active transport mechanisms.
+4.  **Explain** how large molecules traverse the membrane via bulk transport.
 
-What is the purpose of membranes surrounding cells and within cells?
+### Key Terminology Checklist
+*Define these terms in your own words to ensure mastery.*
+- [ ] **Amphipathic**: Having both hydrophilic and hydrophobic parts.
+- [ ] **Concentration Gradient**: The difference in concentration of a substance across a space.
+- [ ] **Aquaporin**: A channel protein specifically for rapid water transport.
+- [ ] **Turgor Pressure**: The pressure of water pushing the plasma membrane against the cell wall of a plant cell.
+- [ ] **Ligand**: A molecule that binds specifically to a receptor site.
 
-What are the three main components in a cell membrane? What are their functions?
+### Concept Check
+#### 1. The Gatekeeper
+*   **Question**: What are the three main components in a cell membrane?
+*   **Deep Dive**: Phospholipids (barrier), Proteins (doors/workers), and Cholesterol (stabilizer). How does Cholesterol prevent the membrane from freezing in the cold or melting in the heat?
 
-Why does a cell have glycoproteins and glycolipids?
+#### 2. Just Passing Through
+*   **Question**: When would active transport be necessary?
+*   **Deep Dive**: Usually things flow "downhill" (high to low). If you need to pump water "uphill," you need a pump and electricity. In cells, if you need to gather specific nutrients *against* their gradient, you need a Protein Pump and ATP.
 
-What are the six classes of proteins found in membranes and what do they do?
+#### 3. Water Wars
+*   **Question**: What is the meaning of isotonic, hypertonic and hypotonic solutions?
+*   **Deep Dive**: Remember, water chases the solute.
+    *   **Hyper** (High solute) -> Water leaves cell (Shrivel).
+    *   **Hypo** (Low solute) -> Water enters cell (Burst/Turgid).
+    *   **Iso** (Equal) -> Equilibrium.
+    *   *Tip*: Freshwater fish live in a Hypotonic environment. Why don't they explode? (Kidneys/Gills).
 
-What is signal transduction?
+#### 4. Big Gulp
+*   **Question**: How are very large substances brought into and pushed out of cells?
+*   **Deep Dive**: **Phagocytosis** ("Cell Eating"). White blood cells use this to devour bacteria. It involves the membrane wrapping around the target and pinching off a vesicle.
 
-Membranes are selectively permeable. What can and what cannot freely pass?
-
-How are very large substances brought into and pushed out of cells?
-
-What are the components of a solution?
-
-How does diffusion work?
-
-What is osmosis and what role do solutes play in this type of transport?
-
-What is the meaning of isotonic, hypertonic and hypotonic solutions? How would cells react with each of these?
-
-How does facilitated transport work and why is it necessary as opposed to simple diffusion?
-
-When would active transport be necessary?
-
-How does the sodium-potassium pump work?
-
-What are the three types of endocytosis?
-
-Collagen and elastin are found in the extra cellular matrix. What are each of their jobs?
-
-What are the types and functions of the three major cell junctions?
-
-How do adjacent plant cells share nutrients?
+### Study Tips
+*   **Draw the Diagram**: Seriously, draw the Fluid Mosaic Model. Label the Heads, Tails, Integral Proteins, Peripheral Proteins, Carbohydrate chains.
+*   **Scenario Practice**: Don't just memorize "Hypertonic = Shrivel." Visualize a slug with salt on it. The salt is Hypertonic. The water leaves the slug's cells to dilute the salt. result: Slug shrivels.
+*   **Gradient Gravity**: Think of Concentration Gradients like Gravity.
+    *   Passive Transport = Rolling a ball down a hill (Easy, no energy).
+    *   Active Transport = Pushing a ball up a hill (Hard, requires energy/ATP).

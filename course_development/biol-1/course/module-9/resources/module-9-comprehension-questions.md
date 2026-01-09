@@ -1,33 +1,33 @@
-# Comprehension Questions - Module 9: Flexible Week
+# Module 9: Cell Division and Mitosis
+## Comprehension & Critical Thinking Questions
 
-## Review and Integration
+### Part 1: Understanding Core Concepts
+1.  **The DNA Blueprint**
+    *   Define **Genome**, **Chromosome**, **Chromatin**, and **Gene**.
+    *   Differentiate between **Haploid (n)** and **Diploid (2n)** cells. What are the numbers for humans?
 
-1. How do the processes of photosynthesis and cellular respiration work together in the biosphere?
+2.  **The Cell Cycle**
+    *   List the phases of the Cell Cycle (**Interphase** + **Mitotic Phase**).
+    *   What happens during **G1**, **S**, and **G2** phases of Interphase? Which phase involves DNA replication?
 
-2. Explain how energy flows through biological systems while matter cycles.
+3.  **Mitosis Phases**
+    *   Describe the major events of **Prophase**, **Metaphase**, **Anaphase**, and **Telophase**.
+    *   What is the role of the **Spindle Fibers** and **Centrosomes**?
 
-3. Compare and contrast the structure and function of plant and animal cells.
+### Part 2: Applying Biological Principles
+4.  **Cytokinesis**
+    *   Mitosis divides the nucleus; Cytokinesis divides the cytoplasm. Compare how this process looks in **Animal Cells** (Cleavage Furrow) vs. **Plant Cells** (Cell Plate).
+    *   Why can't plant cells just pinch in two like animal cells?
 
-## Critical Thinking
+5.  **Control and Regulation**
+    *   The cell cycle has "Checkpoints" (G1, G2, M). What is the cell checking for at each point?
+    *   Explain the role of **Apoptosis** (Programmed Cell Death). Why would a cell voluntarily kill itself?
 
-4. How would life on Earth be different if photosynthesis had never evolved?
+### Part 3: Analyzing & Evaluating
+6.  **Cancer Biology**
+    *   Defined Cancer in terms of the cell cycle.
+    *   Differentiate between **Proto-oncogenes** and **Tumor Suppressor Genes** (like p53). Analogy: Which is the gas pedal and which is the brake?
+    *   What is the difference between a **Benign** and **Malignant** tumor?
 
-5. Explain how the properties of water make it essential for life as we know it.
-
-6. Describe how the structure of biological molecules enables their diverse functions.
-
-## Application
-
-7. How do cells maintain homeostasis despite constant changes in their environment?
-
-8. Explain how understanding cellular processes helps us understand organismal function.
-
-9. Describe how metabolic pathways are interconnected and regulated.
-
-## Synthesis
-
-10. How do the concepts from Modules 1-8 relate to each other in understanding life?
-
-11. What are the key principles that unify all biological systems?
-
-12. How does studying biology at the cellular and molecular level help us understand larger biological systems?
+7.  **Prokaryotic Division**
+    *   Bacteria do not do Mitosis. Describe **Binary Fission**. Why is it simpler?

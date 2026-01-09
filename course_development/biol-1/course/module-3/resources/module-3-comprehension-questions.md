@@ -1,41 +1,36 @@
-# Comprehension Questions - Module 3: Organic Molecules
+# Module 3: Organic Molecules
+## Comprehension & Critical Thinking Questions
 
-## Carbohydrates
+### Part 1: Understanding Core Concepts
+1.  **The Nature of Organic Molecules**
+    *   What does it mean for a molecule to be "organic"? Why is Carbon considered the "backbone" of life?
+    *   Define **Functional Group**. Give one example (e.g., Hydroxyl, Amino) and explain how it changes a molecule's properties.
 
-1. Compare and contrast monosaccharides, disaccharides, and polysaccharides in terms of structure and function.
+2.  **Building Blocks**
+    *   Explain the relationship between **Monomers** and **Polymers**.
+    *   Describe the reactions involved in building polymers (**Dehydration Synthesis**) and breaking them down (**Hydrolysis**). Which one requires water? Which one releases water?
 
-2. Explain how the structure of starch, glycogen, and cellulose relates to their different functions in organisms.
+3.  **The Four Classes of Biomolecules**
+    *   Create a summary table comparing **Carbohydrates**, **Lipids**, **Proteins**, and **Nucleic Acids**. Include:
+        *   Monomer name
+        *   Key function(s)
+        *   Example molecule
 
-3. How do organisms use carbohydrates for energy storage and structural support?
+### Part 2: Applying Biological Principles
+4.  **Protein Folding**
+    *   Protein function is entirely dependent on shape. Explain the four levels of protein structure:
+        *   **Primary**: Sequence of amino acids.
+        *   **Secondary**: Alpha helices and Beta sheets.
+        *   **Tertiary**: 3D folding (R-group interactions).
+        *   **Quaternary**: Multiple polypeptide chains.
+    *   **Apply**: What happens during **denaturation**? Does a cooked egg turn back into a raw egg when cooled? Why?
 
-## Lipids
+5.  **Lipids and Diet**
+    *   Distinguish between **Saturated** and **Unsaturated** fatty acids. How does the double bond in unsaturated fats affect their physical state at room temperature (solid vs. liquid)?
 
-4. Compare and contrast the different types of lipids (fats, phospholipids, steroids) in terms of structure and function.
+### Part 3: Analyzing & Evaluating
+6.  **Structure Determines Function**
+    *   Cellulose (in plants) and Starch (in potatoes) are both made of glucose. Why can we digest starch but not cellulose (fiber)? Analyze how the bonding structure affects enzymatic breakdown.
 
-5. Explain how the structure of phospholipids makes them ideal for forming cell membranes.
-
-6. How do saturated and unsaturated fats differ, and what are the biological implications of these differences?
-
-## Proteins
-
-7. Explain how the four levels of protein structure (primary, secondary, tertiary, quaternary) contribute to protein function.
-
-8. Describe how amino acid sequence determines protein structure and function.
-
-9. What factors can cause protein denaturation, and why is this important in biological systems?
-
-10. Give examples of different protein functions and explain how structure enables each function.
-
-## Nucleic Acids
-
-11. Compare and contrast the structure and function of DNA and RNA.
-
-12. Explain how the structure of nucleotides allows for information storage and transfer.
-
-13. How does the complementary base pairing in DNA contribute to its role in heredity?
-
-## Biological Molecules Integration
-
-14. Explain how the different classes of organic molecules work together in living organisms.
-
-15. How do organisms obtain and use organic molecules for energy and building materials?
+7.  **ATP as Energy**
+    *   ATP (Adenosine Triphosphate) is a nucleic acid derivative. Analyze its structure. Where is the "energy" actually stored? Why is it considered the "energy currency" of the cell?

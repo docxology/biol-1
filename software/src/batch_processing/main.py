@@ -13,6 +13,7 @@ from .utils import (
     get_relative_output_path,
     should_process_file,
 )
+import time
 
 logger = get_logger()
 
@@ -292,15 +293,21 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
 
     # Find all sample markdown files
     markdown_files = find_markdown_files(module_dir)
-    sample_files = [f for f in markdown_files if f.name.startswith("sample_")]
+    files_to_process = [f for f in markdown_files if f.name.startswith("sample_")]
     
-    # Also process assignment files
+    # Process assignment files
     assignments_dir = module_dir / "assignments"
     if assignments_dir.exists():
         assignment_files = list(assignments_dir.glob("*.md"))
-        sample_files.extend(assignment_files)
+        files_to_process.extend(assignment_files)
 
-    logger.debug(f"Found {len(sample_files)} markdown files to process")
+    # Process resource files
+    resources_dir = module_dir / "resources"
+    if resources_dir.exists():
+        resource_files = list(resources_dir.glob("*.md"))
+        files_to_process.extend(resource_files)
+
+    logger.debug(f"Found {len(files_to_process)} markdown files to process")
 
     results = {
         "by_type": {t: [] for t in type_mapping.values()},
@@ -308,7 +315,7 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
         "errors": [],
     }
 
-    for md_file in sample_files:
+    for md_file in files_to_process:
         try:
             # Detect curriculum element type from filename
             file_type = None
@@ -324,6 +331,12 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
                 file_type = "lecture-content"
                 output_subdir = "lecture-content"
             elif "study-guide" in md_file.name:
+                file_type = "study-guide"
+                output_subdir = "study-guides"
+            elif "keys-to-success" in md_file.name:
+                file_type = "study-guide"
+                output_subdir = "study-guides"
+            elif "comprehension-questions" in md_file.name:
                 file_type = "study-guide"
                 output_subdir = "study-guides"
             elif "assignment" in md_file.name or md_file.parent.name == "assignments":
@@ -364,11 +377,12 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
                     read_text_file,
                 )
                 from ..text_to_speech.main import generate_speech
-
+            
                 logger.debug(f"Generating MP3: {audio_file.name}")
                 content = read_text_file(md_file)
                 text_content = extract_text_from_markdown(content)
                 generate_speech(text_content, str(audio_file))
+                time.sleep(2)  # Add delay to avoid 429 errors
                 results["by_type"][output_subdir].append(str(audio_file))
                 results["summary"]["mp3"] += 1
             except Exception as e:
@@ -427,7 +441,7 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
             results["errors"].append(f"Processing failed for {md_file.name}: {e}")
 
     total_outputs = sum(results["summary"].values())
-    logger.info(f"Processed module {module_dir.name}: {len(sample_files)} files, {total_outputs} outputs generated")
+    logger.info(f"Processed module {module_dir.name}: {len(files_to_process)} files, {total_outputs} outputs generated")
     if results["errors"]:
         logger.warning(f"Module processing completed with {len(results['errors'])} errors")
 
@@ -501,11 +515,12 @@ def process_syllabus(syllabus_path: str, output_dir: str) -> Dict[str, Any]:
                     read_text_file,
                 )
                 from ..text_to_speech.main import generate_speech
-
+            
                 logger.debug(f"Generating MP3: {audio_file.name}")
                 content = read_text_file(md_file)
                 text_content = extract_text_from_markdown(content)
                 generate_speech(text_content, str(audio_file))
+                time.sleep(2)  # Add delay to avoid 429 errors
                 results["by_format"]["mp3"].append(str(audio_file))
                 results["summary"]["mp3"] += 1
             except Exception as e:

@@ -1,39 +1,31 @@
-# Comprehension Questions - Module 2: Basic Chemistry
+# Module 2: Basic Chemistry
+## Comprehension & Critical Thinking Questions
 
-## Atomic Structure
+### Part 1: Understanding Core Concepts
+1.  **Atomic Structure**
+    *   Identify the three subatomic particles (protons, neutrons, electrons). Describe their location within the atom, relative mass, and electrical charge.
+    *   What determines the "identity" of an atom (i.e., which element it is)?
 
-1. Explain how the structure of an atom determines its chemical properties.
+2.  **Chemical Bonding**
+    *   Define the **Octet Rule**. Why do atoms form bonds?
+    *   Differentiate between the three major types of bonds in biological systems: **Ionic**, **Covalent** (polar and non-polar), and **Hydrogen** bonds.
 
-2. Compare and contrast protons, neutrons, and electrons in terms of their location, charge, and role in chemical bonding.
+3.  **Properties of Water**
+    *   Explain why water is considered a "polar" molecule. How does this polarity lead to hydrogen bonding?
+    *   List four distinct properties of water that are critical for life (e.g., cohesion, high specific heat).
 
-3. How do isotopes of the same element differ, and why are some isotopes useful in biological research?
+### Part 2: Applying Biological Principles
+4.  **pH and Buffers**
+    *   The pH scale is logarithmic. Mathematically, how much more acidic is a solution with pH 3 compared to pH 6?
+    *   Explain the role of **buffers** in biological systems (like human blood). What happens if a biological system's pH shifts too drastically?
 
-## Chemical Bonds
+5.  **Isotopes in Biology**
+    *   **Scenario**: A paleontologist finds a fossil and wants to know its age.
+    *   **Apply**: How can **radioactive isotopes** (like Carbon-14) be used to solve this problem? What is "half-life"?
 
-4. Describe the differences between ionic, covalent, and hydrogen bonds, and give examples of each in biological systems.
+### Part 3: Analyzing & Evaluating
+6.  **Reactivity and Stability**
+    *   Analyze the relationship between an atom's electron shell configuration and its chemical reactivity. Why are "Noble Gases" (like Helium or Neon) generally unreactive?
 
-5. Explain how the polarity of water molecules contributes to its unique properties.
-
-6. How do chemical bonds store energy, and how is this energy released in biological processes?
-
-## Water and Solutions
-
-7. Explain how water's properties (cohesion, adhesion, surface tension, specific heat) are important for life.
-
-8. Compare and contrast acids, bases, and buffers, and explain their importance in biological systems.
-
-9. How does pH affect biological molecules and processes?
-
-## Chemical Reactions
-
-10. Explain the difference between endergonic and exergonic reactions, and give examples of each in living organisms.
-
-11. How do enzymes catalyze chemical reactions, and why are they essential for life?
-
-12. Describe the relationship between reactants, products, and activation energy in chemical reactions.
-
-## Biological Molecules Overview
-
-13. How do the four major classes of biological molecules (carbohydrates, lipids, proteins, nucleic acids) differ in structure and function?
-
-14. Explain how the structure of biological molecules relates to their function.
+7.  **Water in Ecosystems**
+    *   Water becomes less dense when it freezes (ice floats). Analyze how this specific property affects aquatic life in a lake during winter. What would happen if ice sank?

@@ -1,51 +1,31 @@
-# Comprehension Questions - Module 15: Biotechnology & Evolution
+# Module 15: Darwin and Evolution
+## Comprehension & Critical Thinking Questions
 
-## DNA Technology
+### Part 1: Understanding Core Concepts
+1.  **Darwin's Big Idea**
+    *   Define **Natural Selection**.
+    *   What is "Descent with Modification"?
+    *   Does an *individual* evolve, or does a *population* evolve?
 
-1. Explain how restriction enzymes and DNA ligase are used in recombinant DNA technology.
+2.  **The Requirements**
+    *   Natural selection isn't magic; it requires specific conditions. Explain why **Heritable Variation**, **Competition/Overproduction**, and **Differential Survival** are necessary for evolution to occur.
 
-2. Describe the process of polymerase chain reaction (PCR) and its applications.
+3.  **Fitness**
+    *   In evolutionary biology, "Survival of the Fittest" doesn't mean the strongest. What does **Fitness** actually mean? (Hint: Offspring).
 
-3. Explain how gel electrophoresis separates DNA fragments and how it is used in genetic analysis.
+### Part 2: Applying Biological Principles
+4.  **Evidence: Anatomy**
+    *   Differentiate between **Homologous Structures** (e.g., human arm vs bat wing) and **Analogous Structures** (e.g., bird wing vs insect wing). Which one suggests a common ancestor?
+    *   What is a **Vestigial Structure**? Give a human example (Appendix? Tailbone?).
 
-4. Describe how DNA sequencing works and why it is important.
+5.  **Evidence: Biochemical**
+    *   All life on Earth uses DNA and the same 20 amino acids. How is this strong evidence for a universal common ancestor?
+    *   If Human hemoglobin is more similar to Chimpanzee hemoglobin than to Dog hemoglobin, what does that imply about our evolutionary history?
 
-## Genetic Engineering
+### Part 3: Analyzing & Evaluating
+6.  **Mechanisms of Change**
+    *   **Scenario**: A farmer sprays a pesticide on his corn. 99% of the bugs die. Next year, he sprays again, but only 50% die.
+    *   **Analysis**: Did the bugs "learn" to survive? Did the pesticide cause mutations? Explain how **Natural Selection** created this resistant population.
 
-5. Explain how genetic engineering can be used to produce useful products (e.g., insulin, growth hormone).
-
-6. Describe the process of creating transgenic organisms and discuss potential benefits and concerns.
-
-7. How is CRISPR-Cas9 used for gene editing, and what are its potential applications?
-
-## Genomics and Bioinformatics
-
-8. Explain what genomics is and how it differs from traditional genetics.
-
-9. Describe how bioinformatics tools are used to analyze genetic data.
-
-10. How has the Human Genome Project contributed to our understanding of biology and medicine?
-
-## Evolution Overview
-
-11. Explain the theory of evolution by natural selection and its key components.
-
-12. Compare and contrast the ideas of Lamarck and Darwin regarding evolution.
-
-13. Describe the evidence for evolution from different fields of biology.
-
-## Natural Selection
-
-14. Explain how natural selection acts on variation in populations.
-
-15. Describe how natural selection can lead to adaptation and speciation.
-
-16. Give examples of natural selection in action and explain how it works.
-
-## Population Genetics
-
-17. Explain how genetic variation is maintained in populations.
-
-18. Describe how the Hardy-Weinberg principle relates to evolution.
-
-19. Explain how mutation, genetic drift, gene flow, and natural selection affect allele frequencies.
+7.  **Artificial Selection**
+    *   Humans bred wolves into Chihuahuas and Great Danes. How is **Artificial Selection** similar to Natural Selection? How is it different?

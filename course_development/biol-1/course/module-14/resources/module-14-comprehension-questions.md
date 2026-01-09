@@ -1,49 +1,32 @@
-# Comprehension Questions - Module 14: Gene Expression
+# Module 14: Biotechnology and Genomics
+## Comprehension & Critical Thinking Questions
 
-## Gene Regulation Overview
+### Part 1: Understanding Core Concepts
+1.  **The Toolbox**
+    *   What is a **Restriction Enzyme**? How do "sticky ends" help connect two different pieces of DNA?
+    *   What is a **Vector** (e.g., a plasmid)? How is it used to get foreign DNA into a bacterium?
 
-1. Explain why gene regulation is essential for cell function and development.
+2.  **PCR (Polymerase Chain Reaction)**
+    *   Describe the three steps of PCR: **Denaturation**, **Annealing**, and **Extension**.
+    *   Why is PCR often called "Molecular photocopying"? Why is it useful at a crime scene with a tiny blood sample?
 
-2. Compare and contrast the different levels at which gene expression can be controlled.
+3.  **Visualizing DNA**
+    *   Explain how **Gel Electrophoresis** separates DNA fragments.
+    *   Do smaller fragments move faster or slower? Why? (Think about moving through a thick jungle).
 
-3. How do cells express different genes to become different cell types?
+### Part 2: Applying Biological Principles
+4.  **Genetic Engineering**
+    *   Define **Transgenic Organism** (GMO).
+    *   **Scenario**: You want to make bacteria that produce human insulin. Outline the steps you would take. (Cut gene, cut plasmid, glue together, insert into bacteria).
 
-## Prokaryotic Gene Regulation
+5.  **DNA Fingerprinting**
+    *   **Application**: You are looking at a DNA gel from a paternity test. The Child has bands at position A and B. The Mother has a band at A.
+    *   Does the Father *have* to have a band at B? Explain your reasoning.
 
-4. Explain how the lac operon works and why it is an example of inducible gene expression.
+### Part 3: Analyzing & Evaluating
+6.  **Gene Therapy**
+    *   Differentiate between **Ex Vivo** (cells treated outside body) and **In Vivo** (treated inside body) gene therapy.
+    *   **Evaluate**: What are the biggest challenges in gene therapy? (Hint: Delivery and Immune response).
 
-5. Describe how repressors and activators control gene expression in prokaryotes.
-
-6. Compare and contrast inducible and repressible operons.
-
-## Eukaryotic Gene Regulation
-
-7. Explain how chromatin structure affects gene expression in eukaryotes.
-
-8. Describe the role of transcription factors in controlling gene expression.
-
-9. Explain how alternative RNA splicing increases protein diversity.
-
-10. How do enhancers and silencers regulate gene expression?
-
-## Post-Transcriptional Regulation
-
-11. Explain how mRNA stability affects gene expression.
-
-12. Describe mechanisms of post-translational regulation of gene expression.
-
-13. How do microRNAs regulate gene expression?
-
-## Development and Gene Expression
-
-14. Explain how gene expression patterns control development and cell differentiation.
-
-15. Describe how homeotic genes control body plan development.
-
-16. How do cells maintain their identity through gene expression patterns?
-
-## Epigenetics
-
-17. Explain what epigenetics is and how it differs from genetic changes.
-
-18. Describe how environmental factors can influence gene expression through epigenetic mechanisms.
+7.  **Genomics**
+    *   We have sequenced the entire human genome. **Analyze**: Why does knowing the sequence of letters (A,C,T,G) not immediately tell us what every gene does? What is distinct about **Functional Genomics**?

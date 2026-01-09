@@ -1,27 +1,37 @@
-Chapter 2 Keys to Success
+# Module 2: Basic Chemistry
+## Keys to Success & Study Guide
 
-What is matter? What are the more common elements used in biology?
+### Learning Objectives
+By the end of this module, you should be able to:
+1.  **Describe** the structure of an atom and the properties of its subatomic particles.
+2.  **Compar** and **contrast** ionic, covalent, and hydrogen bonds.
+3.  **Explain** the unique life-supporting properties of water resulting from its polarity.
+4.  **Interpret** the pH scale and explain the importance of buffers in homeostasis.
 
-What are the locations, masses and charges of the three subatomic particles?
+### Key Terminology Checklist
+*Define these terms in your own words to ensure mastery.*
+- [ ] **Matter**: Anything that has mass and takes up space.
+- [ ] **Isotope**: Atoms of the same element with different numbers of neutrons.
+- [ ] **Valence Shell**: The outermost electron shell; determines reactivity.
+- [ ] **Cation vs. Anion**: Positively charged ion vs. negatively charged ion.
+- [ ] **Electronegativity**: A measure of an atom's ability to attract shared electrons.
+- [ ] **Solute vs. Solvent**: The substance being dissolved vs. the dissolving medium (usually water).
+- [ ] **Hydrophilic vs. Hydrophobic**: Water-loving vs. water-fearing.
 
-How are the atomic number and mass calculated?
+### Concept Check
+#### 1. Atomic Math
+*   **Question**: How are Atomic Number and Atomic Mass calculated?
+*   **Deep Dive**: If an atom has an Atomic Number of 6 and a Mass Number of 12, how many neutrons does it have? What if the Mass Number is 14? (Hint: This is an isotope).
 
-What are isotopes?  What is the name for an unstable isotope? How does the atomic number change among isotopes?
+#### 2. Bonding Basics
+*   **Question**: How do ionic and covalent bonds differ?
+*   **Deep Dive**: Why is Sodium Chloride (NaCl) an ionic bond, while Water (H2O) is a covalent bond? Think about what the electrons are doing (transferred vs. shared).
 
-What does the octet rule mean?
+#### 3. The Power of pH
+*   **Question**: What regions of the pH scale relate to acids, bases, and neutral substances?
+*   **Deep Dive**: Why is "acid rain" harmful to forests and lakes? Connect this back to the sensitivity of biological molecules to pH changes.
 
-What are molecules and compounds? Explain what the chemical formula for glucose means.
-
-How do ionic bonds form and what is their relative strength in biology.
-
-How do covalent bonds form and what is their relative strength in biology. What does the covalent bond in water look like?
-
-How do hydrogen bonds form and what is their relative strength in biology.
-
-Describe the special chemical properties of water that make it biologically important?
-
-How are acids and bases most easily defined in biology?
-
-How does the pH scale work? What regions of the scale relate to acids, bases and neutral substances?
-
-If we move from pH 3 to pH 6, quantify how much the acidity has changed.
+### Study Tips
+*   **CHNOPS**: Remember the six most common elements in life: Carbon, Hydrogen, Nitrogen, Oxygen, Phosphorus, Sulfur.
+*   **Draw it out**: Sketch a water molecule. Label the Oxygen (delta negative) and Hydrogen (delta positive) and draw dotted lines to neighboring water molecules to represent Hydrogen bonds. Visualizing this makes "polarity" makes sense.
+*   **The "Shell" Game**: When looking at the Periodic Table, look at the columns (Groups). Group 1 atoms have 1 valence electron (highly reactive). Group 8 (Noble gases) have full shells (inert).

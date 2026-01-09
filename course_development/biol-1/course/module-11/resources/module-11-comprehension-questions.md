@@ -1,47 +1,31 @@
-# Comprehension Questions - Module 11: Meiosis
+# Module 11: Mendelian Genetics
+## Comprehension & Critical Thinking Questions
 
-## Sexual vs. Asexual Reproduction
+### Part 1: Understanding Core Concepts
+1.  **Mendel's Laws**
+    *   Define the **Law of Segregation**. (Hint: How many alleles for a trait does a gamete receive?).
+    *   Define the **Law of Independent Assortment**. (Hint: Do hair color genes affect eye color genes?).
 
-1. Compare and contrast sexual and asexual reproduction, including advantages and disadvantages of each.
+2.  **Genotype vs. Phenotype**
+    *   Explain the difference between **Homozygous Dominant** (AA), **Heterozygous** (Aa), and **Homozygous Recessive** (aa).
+    *   If "A" is Tall and "a" is Short, what is the phenotype of "Aa"?
 
-2. Explain why sexual reproduction increases genetic diversity.
+3.  **Complex Patterns**
+    *   Differentiate between **Incomplete Dominance** (Red x White = Pink) and **Codominance** (Red x White = Red & White Spots).
+    *   Explain **Polygenic Inheritance** using human skin color or height as an example.
 
-3. How do gametes differ from somatic cells in terms of chromosome number and function?
+### Part 2: Applying Biological Principles
+4.  **The Monohybrid Cross**
+    *   **Scenario**: In peas, Purple flowers (P) are dominant to White flowers (p).
+    *   **Apply**: Perform a cross between two Heterozygotes (Pp x Pp). What is the expected Genotypic ratio? What is the expected Phenotypic ratio?
 
-## Meiosis Overview
+5.  **Blood Typing**
+    *   Human blood type is determined by multiple alleles (IA, IB, i).
+    *   **Apply**: Can a mother with Type A blood and a father with Type B blood have a Type O child? Show the Punnett square.
 
-4. Compare and contrast mitosis and meiosis in terms of purpose, number of divisions, and outcomes.
+### Part 3: Analyzing & Evaluating
+6.  **Pedigree Analysis**
+    *   You are tracing a disease in a family tree. Two healthy parents have an affected child. Is the disease likely Dominant or Recessive? Explain your logic.
 
-5. Explain why meiosis is necessary for sexual reproduction.
-
-6. Describe the overall process of meiosis and its two divisions.
-
-## Meiosis I
-
-7. Describe the phases of Meiosis I and explain how it differs from mitosis.
-
-8. Explain what happens during crossing over and why it is important.
-
-9. How does independent assortment contribute to genetic diversity?
-
-10. Describe how homologous chromosomes pair and separate during Meiosis I.
-
-## Meiosis II
-
-11. Compare and contrast Meiosis II and mitosis.
-
-12. Explain how Meiosis II produces haploid gametes from the products of Meiosis I.
-
-13. What is the final outcome of meiosis in terms of chromosome number and genetic diversity?
-
-## Genetic Variation
-
-14. Explain the three mechanisms that contribute to genetic variation during meiosis (crossing over, independent assortment, random fertilization).
-
-15. Calculate the number of possible genetic combinations that can result from meiosis and fertilization.
-
-## Errors in Meiosis
-
-16. Explain how errors in meiosis can lead to chromosomal abnormalities.
-
-17. Describe nondisjunction and its consequences.
+7.  **Nature vs. Nurture**
+    *   Hydrangea flowers change color based on soil pH. Analyzing this in the context of genetics: Does Genotype *always* strictly determine Phenotype? How does the environment modify gene expression?

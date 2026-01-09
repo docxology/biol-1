@@ -1,29 +1,46 @@
-Chapter 11 Keys to Success
+# Module 11: Mendelian Genetics
+## Keys to Success & Study Guide
 
-Why are pea plants such a useful species for studying genetics?
+### Learning Objectives
+By the end of this module, you should be able to:
+1.  **Predict** the outcomes of monohybrid and dihybrid crosses using Punnett Squares.
+2.  **Differentiate** between dominant, recessive, incomplete dominant, and codominant traits.
+3.  **Analyze** pedigrees to determine inheritance patterns (Autosomal vs Sex-linked).
+4.  **Explain** how multiple alleles and polygenic traits result in non-binary phenotypes.
 
-What do homozygous and heterozygous mean? True-breeding?
+### Key Terminology Checklist
+*Define these terms in your own words to ensure mastery.*
+- [ ] **Locus**: The specific physical location of a gene on a chromosome.
+- [ ] **True-Breeding**: An organism that always passes down certain phenotypic traits (Always Homozygous).
+- [ ] **F1 Generation**: The first filial generation (offspring of the parents).
+- [ ] **Carrier**: An individual who has a recessive allele for a disease but does not show symptoms (Heterozygote).
+- [ ] **Pleiotropy**: One gene affecting multiple seemingly unrelated traits (e.g., Marfan Syndrome).
 
-How are dominant alleles identified using a letter? Recessive?
+### Concept Check
+#### 1. The Ratios
+*   **Question**: What would be the resultant phenotype ratio for a monohybrid cross between two heterozygotes?
+*   **Deep Dive**: The Golden Ratio of Genetics is **3:1**.
+    *   AA (Dom)
+    *   Aa (Dom)
+    *   Aa (Dom)
+    *   aa (Rec)
+    *   3 Dominant phenotypes : 1 Recessive phenotype.
 
-How do dominant and recessive alleles interact in a heterozygote?
+#### 2. Dihybrid Madness
+*   **Question**: What is the ratio for a dihybrid cross (AaBb x AaBb)?
+*   **Deep Dive**: **9:3:3:1**.
+    *   9 Dom/Dom
+    *   3 Dom/Rec
+    *   3 Rec/Dom
+    *   1 Rec/Rec.
 
-How are the P. F1 and F2 generations formed?
+#### 3. Sex-Linked traits
+*   **Question**: Do males or females get sex-linked disease more?
+*   **Deep Dive**: Males. Why? Because males are **XY**. If they get a bad gene on their single X, they have no backup. Females are **XX**, so a healthy X can mask a bad one (making them a Carrier).
 
-What would be the resultant phenotype ratio for a monohybrid cross between two heterozygotes?
-
-What would be the resultant phenotype ratio for a dihybrid cross between two double heterozygotes?
-
-Can genotype and phenotype ratios differ in the same cross? Explain.
-
-What are autosomal chromosomes? Sex chromosomes?
-
-How does codominance work and what is an example?
-
-How does incomplete dominance work and what is an example?
-
-What goes polygenic inheritance mean and what are some examples? What type of variations would you expect to see in human populations regarding their phenotypes?
-
-What are some common sex-linked diseases?
-
-Do males or females get sex-linked disease more? Explain why.
+### Study Tips
+*   **Letter Logic**: Always use the letter of the Dominant trait. If Tall is dominant, use T/t. Don't use S for short. It gets confusing.
+*   **The "And" Rule**: If you want the probability of This AND That happen (e.g., Tall AND Purple), multiply the individual probabilities.
+    *   Prob(Tall) = 3/4.
+    *   Prob(Purple) = 3/4.
+    *   Prob(Tall and Purple) = 3/4 * 3/4 = 9/16.

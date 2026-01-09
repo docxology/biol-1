@@ -1,0 +1,37 @@
+Module 10: Meiosis and Sexual Reproduction
+Comprehension & Critical Thinking Questions
+
+Part 1: Understanding Core Concepts
+Sexual Reproduction Basics
+       Define Gametes and Zygotes.
+       Why must gametes be Haploid (n) while body cells are Diploid (2n)? What would happen to the chromosome number in the offspring if gametes were diploid?
+
+Meiosis Phases
+       Meiosis involves two rounds of division (Meiosis I and II). What is being separated in Anaphase I? (Homologous Pairs).
+       What is being separated in Anaphase II? (Sister Chromatids).
+
+Key Events
+       Describe Crossing Over (Synapsis). When does it happen? Why is it crucial for evolution?
+       Describe Independent Assortment. How does the random alignment of chromosomes create unique gametes?
+
+Part 2: Applying Biological Principles
+Mitosis vs. Meiosis
+       Create a comparison table:
+           End Product: (2 Identical cells vs 4 Unique cells).
+           Purpose: (Growth/Repair vs Reproduction).
+           Divisions: (1 vs 2).
+
+Human Genetics
+       Humans have 46 chromosomes.
+           How many pairs are Autosomes?
+           How many pairs are Sex Chromosomes?
+       What determines biological maleness in humans? (The Y chromosome).
+
+Part 3: Analyzing & Evaluating
+When Things Go Wrong
+       Define Nondisjunction.
+       Analyze: If a Nondisjunction event happens in Meiosis I, how many gametes will be abnormal? What if it happens in Meiosis II?
+       Explain the genetic cause of Down Syndrome (Trisomy 21).
+
+The Cost of Sex
+       Asexual reproduction is fast and efficient. Sexual reproduction is slow and costly (finding a mate). Evaluate: Why is sexual reproduction so common? What is the biological payoff? (Answer: Genetic Diversity).

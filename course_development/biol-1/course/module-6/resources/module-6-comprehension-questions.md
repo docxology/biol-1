@@ -1,41 +1,30 @@
-# Comprehension Questions - Module 6: Metabolism
+# Module 6: Metabolism
+## Comprehension & Critical Thinking Questions
 
-## Energy and Enzymes
+### Part 1: Understanding Core Concepts
+1.  **Energy Basics**
+    *   Differentiate between **Kinetic** and **Potential** energy using biological examples (e.g., a concentration gradient vs. muscle movement).
+    *   State the **First and Second Laws of Thermodynamics**. How do living things obey the second law (entropy) while creating ordered structures?
 
-1. Explain the relationship between energy, work, and metabolism in living organisms.
+2.  **Enzymes**
+    *   What is **Activation Energy**? How do enzymes lower it?
+    *   Explain the difference between **Competitive** and **Non-competitive** inhibition. Where does the inhibitor bind in each case?
 
-2. Compare and contrast potential energy and kinetic energy, and give biological examples of each.
+3.  **ATP Structure**
+    *   Draw or describe the structure of ATP (Adenosine Triphosphate). Which bond is the "high energy" bond that is broken to release energy?
 
-3. Describe how enzymes lower activation energy and increase reaction rates.
+### Part 2: Applying Biological Principles
+4.  **Metabolic Pathways**
+    *   Compare **Anabolic** (building up) and **Catabolic** (breaking down) pathways.
+    *   **Application**: Is photosynthesis anabolic or catabolic? Is cellular respiration anabolic or catabolic? Explain your reasoning.
 
-4. Explain how factors such as temperature, pH, and substrate concentration affect enzyme activity.
+5.  **Enzyme Regulation**
+    *   **Scenario**: You have an enzyme that functions best in the human stomach (pH 2).
+    *   **Apply**: What happens to this enzyme's activity if it is moved to the blood (pH 7.4)? Explain *why* in terms of protein structure (denaturation).
 
-## ATP and Energy Coupling
+### Part 3: Analyzing & Evaluating
+6.  **Redox Reactions**
+    *   "OIL RIG" stands for *Oxidation Is Loss, Reduction Is Gain* (of electrons). Analyze the following generic reaction: A- + B -> A + B-. Which molecule was oxidized? Which was reduced?
 
-5. Explain the structure of ATP and why it is called the "energy currency" of the cell.
-
-6. Describe how ATP is synthesized and how it drives cellular work.
-
-7. How do cells couple exergonic and endergonic reactions to drive metabolic processes?
-
-## Metabolic Pathways
-
-8. Compare and contrast anabolic and catabolic pathways, and explain how they are interconnected.
-
-9. Explain how feedback inhibition regulates metabolic pathways.
-
-10. Describe how metabolic pathways are organized and controlled in cells.
-
-## Cellular Respiration Overview
-
-11. Explain the overall equation for cellular respiration and identify the inputs and outputs.
-
-12. Compare and contrast aerobic and anaerobic respiration in terms of efficiency and products.
-
-13. How do cells extract energy from glucose through different metabolic pathways?
-
-## Regulation of Metabolism
-
-14. Explain how cells regulate metabolic activity to maintain homeostasis.
-
-15. Describe how different cell types can have different metabolic needs and pathways.
+7.  **Feedback Loops**
+    *   Explain the concept of **Feedback Inhibition**. Why is it efficient for the end-product of a pathway to shut down the first enzyme in that pathway?
