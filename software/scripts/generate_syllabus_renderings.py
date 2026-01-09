@@ -1,6 +1,22 @@
 #!/usr/bin/env python3
-"""Script to generate all renderings for syllabus files."""
+"""Script to generate all renderings for syllabus files.
 
+Usage:
+    uv run python scripts/generate_syllabus_renderings.py [OPTIONS]
+
+Options:
+    --course COURSE    Course: biol-1 or biol-8 (default: biol-1)
+    --help             Show this help message
+
+Examples:
+    # Generate syllabus renderings for biol-1 (default)
+    uv run python scripts/generate_syllabus_renderings.py
+
+    # Generate syllabus renderings for biol-8
+    uv run python scripts/generate_syllabus_renderings.py --course biol-8
+"""
+
+import argparse
 import sys
 from pathlib import Path
 
@@ -10,17 +26,42 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.batch_processing.main import process_syllabus
 
 
-def main():
+def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Generate all renderings for syllabus files.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  %(prog)s                         Generate for biol-1 syllabus (default)
+  %(prog)s --course biol-8         Generate for biol-8 syllabus
+        """,
+    )
+
+    parser.add_argument(
+        "--course",
+        choices=["biol-1", "biol-8"],
+        default="biol-1",
+        help="Course to process (default: biol-1)",
+    )
+
+    return parser.parse_args()
+
+
+def main() -> int:
     """Generate all renderings for syllabus files."""
+    args = parse_args()
+
     # Paths
-    syllabus_path = Path(__file__).parent.parent.parent / "biol-1" / "syllabus"
+    repo_root = Path(__file__).parent.parent.parent
+    syllabus_path = repo_root / "course_development" / args.course / "syllabus"
     output_dir = syllabus_path / "output"
 
     if not syllabus_path.exists():
         print(f"Error: Syllabus path does not exist: {syllabus_path}")
         return 1
 
-    print(f"Processing syllabus: {syllabus_path}")
+    print(f"Processing: {args.course}/syllabus")
     print(f"Output directory: {output_dir}")
 
     try:
@@ -57,3 +98,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

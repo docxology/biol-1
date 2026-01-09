@@ -195,6 +195,107 @@ def convert_markdown_to_docx(input_path: Path, output_path: Path) -> None:
     doc.save(str(output_path))
 
 
+def convert_docx_to_markdown(input_path: Path) -> str:
+    """Convert DOCX file to Markdown format.
+
+    Args:
+        input_path: Path to input DOCX file
+
+    Returns:
+        Markdown content as string
+    """
+    from docx import Document
+
+    doc = Document(str(input_path))
+    markdown_lines = []
+
+    for paragraph in doc.paragraphs:
+        if not paragraph.text.strip():
+            markdown_lines.append("")
+            continue
+
+        # Check if paragraph is a heading
+        style_name = paragraph.style.name.lower()
+        if "heading" in style_name:
+            level = 1
+            if "heading 1" in style_name or "title" in style_name:
+                level = 1
+            elif "heading 2" in style_name or "subtitle" in style_name:
+                level = 2
+            elif "heading 3" in style_name:
+                level = 3
+            elif "heading 4" in style_name:
+                level = 4
+            elif "heading 5" in style_name:
+                level = 5
+            elif "heading 6" in style_name:
+                level = 6
+
+            text = _extract_formatted_text(paragraph)
+            markdown_lines.append(f"{'#' * level} {text}")
+        else:
+            # Regular paragraph - extract formatted text
+            text = _extract_formatted_text(paragraph)
+            if text.strip():
+                markdown_lines.append(text)
+
+        # Add blank line after paragraph
+        markdown_lines.append("")
+
+    # Process tables
+    for table in doc.tables:
+        markdown_lines.append("")
+        # Extract table header
+        if table.rows:
+            header_row = table.rows[0]
+            header_cells = [
+                _extract_formatted_text(cell) for cell in header_row.cells
+            ]
+            markdown_lines.append("| " + " | ".join(header_cells) + " |")
+            markdown_lines.append("| " + " | ".join(["---"] * len(header_cells)) + " |")
+
+            # Extract data rows
+            for row in table.rows[1:]:
+                cells = [_extract_formatted_text(cell) for cell in row.cells]
+                markdown_lines.append("| " + " | ".join(cells) + " |")
+        markdown_lines.append("")
+
+    # Remove trailing blank lines
+    while markdown_lines and not markdown_lines[-1].strip():
+        markdown_lines.pop()
+
+    return "\n".join(markdown_lines)
+
+
+def _extract_formatted_text(paragraph) -> str:
+    """Extract text from paragraph with formatting preserved as Markdown.
+
+    Args:
+        paragraph: docx paragraph object
+
+    Returns:
+        Formatted text string
+    """
+    text_parts = []
+
+    for run in paragraph.runs:
+        text = run.text
+        if not text:
+            continue
+
+        # Apply formatting
+        if run.bold:
+            text = f"**{text}**"
+        if run.italic:
+            text = f"*{text}*"
+        if run.underline:
+            text = f"<u>{text}</u>"
+
+        text_parts.append(text)
+
+    return "".join(text_parts)
+
+
 def convert_pdf_to_text(input_path: Path, output_path: Path) -> None:
     """Convert PDF file to text.
 

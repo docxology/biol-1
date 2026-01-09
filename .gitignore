@@ -1,1 +1,39 @@
-biol-8/resources/ConceptsofBiology-WEB.pdf
+# Git Ignore Rules
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Mac
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+
+# Project Specific
+# We ignore the intermediate output directories in course_development
+# to keep the repo clean, only committing source markdown.
+course_development/**/output/
+course_development/**/website/index.html
+
+# PUBLISHED contains final deliverables.
+# We do not ignore it by default.
+
+# Temporary
+test_output.txt
+course_development/biol-8/resources/ConceptsofBiology-WEB.pdf

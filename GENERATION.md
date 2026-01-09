@@ -13,11 +13,32 @@ cd software
 uv run python scripts/generate_all_outputs.py
 ```
 
+For a specific course or module:
+
+```bash
+# BIOL-1 only
+uv run python scripts/generate_all_outputs.py --course biol-1
+
+# Specific module
+uv run python scripts/generate_all_outputs.py --course biol-8 --module 2
+
+# Preview what would be generated
+uv run python scripts/generate_all_outputs.py --dry-run
+```
+
 This will:
-- Process all modules (1-3) for both BIOL-1 and BIOL-8
+- Process all modules for both courses in `course_development/`
 - Generate all format outputs (PDF, MP3, DOCX, HTML, TXT)
 - Generate HTML websites for each module
-- Process syllabi for both courses
+- Process syllabi
+- Clear outputs in `PUBLISHED/`? No, outputs are generated in place first, then published.
+- Actually, the scripts generate to `course_development/.../output`, then `publish_course.py` moves them.
+  - Wait, `generate_all_outputs.py` clears outputs in `course_development`? Yes, `clear_all_outputs(repo_root)`.
+
+**Note**: To push changes to the public folder, run:
+```bash
+uv run python software/scripts/publish_course.py --course all
+```
 
 ## Generation Methods
 
@@ -36,8 +57,17 @@ Each module is processed to generate multiple output formats:
 HTML websites are generated for each module containing:
 - All module content (lecture, lab, study guide, assignments)
 - Embedded audio players
-- Interactive quizzes extracted from study guides
-- Simple grayscale design
+- Interactive quizzes (multiple choice, true/false, matching, free response)
+- Progress tracking for completed questions
+
+**Website Features**:
+- 🗂️ **Sidebar Navigation** - Collapsible sidebar with quick links to all sections
+- ↔️ **Resizable Split-View** - Draggable handle to adjust sidebar/content width
+- 🌙 **Dark Mode** - Toggle persists via localStorage
+- ⬆️ **Back to Top** - Button appears when scrolling
+- 📱 **Mobile Responsive** - Works on phones and tablets (with toggleable menu)
+- 🖨️ **Print Friendly** - Clean output for printing
+- ♿ **Accessibility** - Skip navigation, high contrast mode
 
 ### Syllabus Processing
 

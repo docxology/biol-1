@@ -13,24 +13,44 @@ Comprehensive script to generate all outputs for all modules and courses.
 **Usage**:
 ```bash
 cd software
+uv run python scripts/generate_all_outputs.py [OPTIONS]
+```
+
+**Options**:
+| Option | Description |
+|--------|-------------|
+| `--course {biol-1,biol-8,all}` | Course to process (default: all) |
+| `--module MODULE` | Specific module number to process |
+| `--formats FORMATS` | Comma-separated formats: pdf,mp3,docx,html,txt (default: all) |
+| `--dry-run` | Show what would be generated without generating |
+| `--skip-clear` | Skip clearing existing outputs before generation |
+| `--no-website` | Skip website generation |
+
+**Examples**:
+```bash
+# Generate all outputs for all courses
 uv run python scripts/generate_all_outputs.py
+
+# Generate only for BIOL-1
+uv run python scripts/generate_all_outputs.py --course biol-1
+
+# Generate only module 2 for BIOL-8
+uv run python scripts/generate_all_outputs.py --course biol-8 --module 2
+
+# Generate only MP3 and TXT formats (works without system dependencies)
+uv run python scripts/generate_all_outputs.py --formats mp3,txt
+
+# Preview what would be generated
+uv run python scripts/generate_all_outputs.py --dry-run
 ```
 
 **What it does**:
-- Clears all existing output directories before regeneration
-- Processes all modules for both BIOL-1 and BIOL-8
-- Generates all format outputs (PDF, MP3, DOCX, HTML, TXT)
-- Generates HTML websites for each module
-- Processes syllabi for both courses
-- Provides comprehensive summary of all processing with timing information
-
-**Logging**:
-- Logs to both console (INFO level) and file (DEBUG level)
-- Log files are stored in `software/logs/generation_YYYY-MM-DD_HH-MM-SS.log`
-- Console shows progress and summary information
-- File contains detailed debugging information including stack traces
-- All operations are timestamped and logged with appropriate severity levels
-- Logs include timing information for performance monitoring
+- Clears all existing output directories before regeneration (unless `--skip-clear`)
+- Processes modules for selected courses
+- Generates all format outputs (PDF, MP3, DOCX, HTML, TXT) or selected formats
+- Generates HTML websites for each module (unless `--no-website`)
+- Processes syllabi for selected courses
+- Provides comprehensive summary with timing information
 
 **Output**:
 - Module outputs in `[course]/course/module-[N]/output/`
@@ -44,10 +64,23 @@ Generate all renderings for a specific module.
 **Usage**:
 ```bash
 cd software
-uv run python scripts/generate_module_renderings.py
+uv run python scripts/generate_module_renderings.py [OPTIONS]
 ```
 
-**Configuration**: Currently configured for `biol-1/course/module-1`
+**Options**:
+| Option | Description |
+|--------|-------------|
+| `--course {biol-1,biol-8}` | Course to process (default: biol-1) |
+| `--module MODULE` | Module number to process (default: 1) |
+
+**Examples**:
+```bash
+# Generate for biol-1/module-1 (default)
+uv run python scripts/generate_module_renderings.py
+
+# Generate for biol-8/module-3
+uv run python scripts/generate_module_renderings.py --course biol-8 --module 3
+```
 
 **Output**: All format renderings organized by curriculum element type
 
@@ -58,12 +91,33 @@ Generate HTML website for a specific module.
 **Usage**:
 ```bash
 cd software
-uv run python scripts/generate_module_website.py
+uv run python scripts/generate_module_website.py [OPTIONS]
 ```
 
-**Configuration**: Currently configured for `biol-1/course/module-1`
+**Options**:
+| Option | Description |
+|--------|-------------|
+| `--course {biol-1,biol-8}` | Course to process (default: biol-1) |
+| `--module MODULE` | Module number to process (default: 1) |
+
+**Examples**:
+```bash
+# Generate website for biol-1/module-1 (default)
+uv run python scripts/generate_module_website.py
+
+# Generate website for biol-8/module-2
+uv run python scripts/generate_module_website.py --course biol-8 --module 2
+```
 
 **Output**: Single HTML file with all module content, audio, and interactive quizzes
+
+**Website Features**:
+- 🌙 **Dark Mode Toggle** - Persists via localStorage
+- ⬆️ **Back to Top Button** - Appears when scrolling
+- 📱 **Mobile Responsive** - Works on phones and tablets
+- 🖨️ **Print Friendly** - Clean output for Cmd+P
+- ♿ **Accessibility** - Skip link, high contrast mode
+- 📝 **Interactive Quizzes** - Multiple choice, true/false, matching, free response
 
 ### `generate_syllabus_renderings.py`
 
@@ -72,30 +126,112 @@ Generate all renderings for syllabus files.
 **Usage**:
 ```bash
 cd software
-uv run python scripts/generate_syllabus_renderings.py
+uv run python scripts/generate_syllabus_renderings.py [OPTIONS]
 ```
 
-**Configuration**: Currently configured for `biol-1/syllabus`
+**Options**:
+| Option | Description |
+|--------|-------------|
+| `--course {biol-1,biol-8}` | Course to process (default: biol-1) |
+
+**Examples**:
+```bash
+# Generate syllabus for biol-1 (default)
+uv run python scripts/generate_syllabus_renderings.py
+
+# Generate syllabus for biol-8
+uv run python scripts/generate_syllabus_renderings.py --course biol-8
+```
 
 **Output**: All format renderings organized by format type
+
+### `import_legacy_materials.py`
+
+Import legacy materials from `bio_1_2025` directory to the structured course format.
+
+**Usage**:
+```bash
+cd software
+uv run python scripts/import_legacy_materials.py [OPTIONS]
+```
+
+**Options**:
+| Option | Description |
+|--------|-------------|
+| `--course {biol-1,biol-8}` | Course to process (default: biol-1) |
+| `--dry-run` | Show what would be imported without importing |
+| `--skip-questions` | Skip importing chapter questions |
+| `--skip-slides` | Skip importing slides |
+
+**Examples**:
+```bash
+# Import all materials for biol-1 (default)
+uv run python scripts/import_legacy_materials.py
+
+# Dry run to preview what would be imported
+uv run python scripts/import_legacy_materials.py --dry-run
+
+# Import only slides, skip questions
+uv run python scripts/import_legacy_materials.py --skip-questions
+
+# Import only chapter questions, skip slides
+uv run python scripts/import_legacy_materials.py --skip-slides
+```
+
+**What it does**:
+- Converts Chapter Questions DOCX files to Markdown format
+- Maps chapters to modules based on course schedule
+- Saves chapter questions as assignment files in module `assignments/` directories
+- Copies PDF slides (full and notes versions) to `resources/slides/` directory
+- Organizes files with consistent naming conventions
+
+**Chapter to Module Mapping**:
+- Modules 1-8: Map to Chapters 1-8 (one-to-one)
+- Module 9: Flexible Week (skipped - no chapter questions)
+- Modules 10-14: Map to Chapters 9-13 (one-to-one)
+- Module 15: Maps to Chapter 14
+- Module 16: Maps to Chapters 16-17 (combined)
+
+**Output**:
+- Chapter questions: `[course]/course/module-[N]/assignments/module-[N]-chapter-questions.md`
+- Full slides: `[course]/resources/slides/module-[N]-slides-full.pdf`
+- Notes slides: `[course]/resources/slides/module-[N]-slides-notes.pdf`
+
+**Source Files**:
+- Chapter Questions: `bio_1_2025/files/Chapter Questions/Chapter [NN] Keys to Success.docx`
+- Full Slides: `bio_1_2025/files/Slides/Slides_Full/General Biology Chapter [NN] Slides.pdf`
+- Notes Slides: `bio_1_2025/files/Slides/Slides_Notes/Chapter [NN] - 3 Note.pdf`
+
+## Logging
+
+All scripts provide comprehensive logging:
+- Console: INFO level (progress and summaries)
+- File: DEBUG level (detailed information and stack traces)
+- Log files: `software/logs/generation_YYYY-MM-DD_HH-MM-SS.log`
+- All operations are timestamped with timing information
 
 ## Known Limitations
 
 ### System Dependencies
 
-Some output formats require system libraries that may not be available:
+Some output formats require system libraries:
 
-- **PDF Generation**: Requires WeasyPrint system libraries (libgobject, etc.)
-  - MP3 and TXT formats work without these dependencies
-  - PDF/DOCX/HTML may fail if system libraries are not installed
+- **PDF/DOCX/HTML Generation**: Requires WeasyPrint system libraries
+  ```bash
+  # macOS
+  brew install cairo pango gdk-pixbuf glib
+  export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+  ```
 
-- **HTML Generation**: May fail if format conversion dependencies are missing
+- **MP3/TXT Generation**: Works without system dependencies
 
 ### Workarounds
 
-- MP3 and TXT generation work reliably on all systems
-- PDF/DOCX/HTML generation requires proper system library installation
-- See WeasyPrint documentation for installation instructions
+If system libraries are not available:
+```bash
+# Generate only formats that work without dependencies
+uv run python scripts/generate_all_outputs.py --formats mp3,txt
+```
 
 ## Testing
 
@@ -109,3 +245,5 @@ After running scripts, verify outputs:
 2. Review error messages for any failed generations
 3. Test HTML websites in a browser
 4. Verify audio files play correctly
+5. Test interactive quizzes (multiple choice, true/false, matching, free response)
+

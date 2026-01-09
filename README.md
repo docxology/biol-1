@@ -2,120 +2,84 @@
 
 This is a private repository for Biology courses at College of the Redwoods (Del Norte, CA), organized by Dr. Daniel Ari Friedman ([@docxology](https://github.com/docxology) on GitHub).
 
-## Courses
-
-This repository contains materials for two courses in Spring 2026:
-
-- **[BIOL-1](biol-1/)**: Biology 1 at Pelican Bay Prison
-- **[BIOL-8](biol-8/)**: Biology 8 at College of the Redwoods, Del Norte campus
-
 ## Repository Structure
+
+The repository is organized into three main areas:
+
+1.  **`course_development/`**: The "Back Office" for private curriculum development.
+2.  **`PUBLISHED/`**: Public, ready-to-upload course materials.
+3.  **`software/`**: Automation tools and documentation.
 
 ```mermaid
 graph TD
-    Root[cr-bio/] --> Biol1[biol-1/]
-    Root --> Biol8[biol-8/]
+    Root[cr-bio/] --> Dev[course_development/]
+    Root --> Pub[PUBLISHED/]
     Root --> Software[software/]
-    Root --> Docs[Documentation Files]
     
-    Biol1 --> Biol1Course[course/]
-    Biol1 --> Biol1Private[private/]
-    Biol1 --> Biol1Resources[resources/]
+    Dev --> Biol1[biol-1/]
+    Dev --> Biol8[biol-8/]
     
-    Biol1Course --> Biol1Modules[module-1/, module-2/, ...]
-    Biol1Modules --> Biol1Assignments[assignments/]
-    Biol1Modules --> Biol1Materials[Lecture Slides, Lab Protocols, Study Guides, Quizzes]
+    Pub --> PubBiol1[biol-1/]
+    Pub --> PubBiol8[biol-8/]
     
-    Biol1Private --> Biol1Tests[Tests and Answers]
-    Biol1Private --> Biol1Access[Accessibility Accommodations]
+    Biol1 --> Biol1Source[Source Markdown & Private Files]
+    Biol8 --> Biol8Source[Source Markdown & Private Files]
     
-    Biol1Resources --> Biol1Ref[Reference Materials]
-    Biol1Resources --> Biol1Media[Media Resources]
-    Biol1Resources --> Biol1Links[External Links]
-    Biol1Resources --> Biol1Templates[Templates]
-    
-    Biol8 --> Biol8Course[course/]
-    Biol8 --> Biol8Private[private/]
-    Biol8 --> Biol8Resources[resources/]
-    
-    Biol8Course --> Biol8Modules[module-1/, module-2/, ...]
-    Biol8Modules --> Biol8Assignments[assignments/]
-    Biol8Modules --> Biol8Materials[Lecture Slides, Lab Protocols, Study Guides, Quizzes]
-    
-    Biol8Private --> Biol8Tests[Tests and Answers]
-    Biol8Private --> Biol8Access[Accessibility Accommodations]
-    
-    Biol8Resources --> Biol8Ref[Reference Materials]
-    Biol8Resources --> Biol8Media[Media Resources]
-    Biol8Resources --> Biol8Links[External Links]
-    Biol8Resources --> Biol8Templates[Templates]
-    
-    Software --> SoftwareSrc[src/]
-    Software --> SoftwareTests[tests/]
-    Software --> SoftwareDocs[docs/]
+    PubBiol1 --> PubBiol1M[Generated Output: PDF, MP3, HTML]
+    PubBiol8 --> PubBiol8M[Generated Output: PDF, MP3, HTML]
     
     style Root fill:#e1f5ff
-    style Biol1 fill:#fff4e1
-    style Biol8 fill:#fff4e1
+    style Dev fill:#fff9c4
+    style Pub fill:#c8e6c9
     style Software fill:#e8f5e9
 ```
 
-## Course Folder Structure
+---
 
-Each course folder (`biol-1/` and `biol-8/`) contains:
+## 🏗️ Course Development (`course_development/`)
 
-### `course/` Directory
-Public course materials organized by modules. Each module folder contains:
-- **`assignments/`**: Assignment files for the module
-- **Lecture Slides**: Presentation materials
-- **Lab Protocols and Notes**: Laboratory instructions and documentation
-- **Study Guides**: Student study materials
-- **Quizzes**: Assessment materials
-- **Other Materials**: Additional course resources
+This is the working directory for instructors. It contains the source of truth for all course content.
 
-Module folders are uploaded to the course Canvas site.
+### Courses
+- **[BIOL-1](course_development/biol-1/)**: Biology 1 at Pelican Bay Prison
+- **[BIOL-8](course_development/biol-8/)**: Biology 8 at College of the Redwoods
 
-### `private/` Directory
-Private instructor materials not shared with students:
-- **Tests and Answers**: Assessment materials with answer keys
-- **Accessibility Accommodations**: Student accommodation documentation
-- **Other Materials**: Additional private resources
+### Structure
+Each course folder contains:
+- **`course/`**: Working modules with source Markdown files
+- **`syllabus/`**: Syllabus source files
+- **`private/`**: Instructor-only materials (Tests, Accommodations)
+- **`resources/`**: References, Templates, Media
 
-### `resources/` Directory
-Supplementary resources that support course instruction and student learning:
-- **Reference Materials**: Textbooks, scientific papers, and reference documents
-- **Media Resources**: Videos, animations, interactive content, and multimedia resources
-- **External Links**: Curated links to external websites, databases, and educational resources
-- **Templates**: Document templates, formatting guides, and reusable materials
+---
 
-## Software Utilities
+## 📤 Published Outputs (`PUBLISHED/`)
 
-The [`software/`](software/) folder contains executable code for course management, including:
-- **`src/`**: Source code for utilities
-- **`scripts/`**: Generation scripts for processing course materials
-- **`tests/`**: Test files
-- **`docs/`**: Software documentation
+This directory contains the final, generated files ready for upload to Canvas. `software/scripts/publish_course.py` manages the export from `course_development/` to here.
 
-Utilities include modules for:
-- Markdown to PDF rendering
-- Text-to-speech generation (MP3 audio)
-- Format conversion (DOCX, HTML, TXT)
-- HTML website generation with interactive quizzes
-- Batch processing for entire modules
-- Syllabus processing
+### Structure
+- **`biol-1/`**: Contains `module-*/` folders with Slides, Notes, etc.
+- **`biol-8/`**: Contains `module-*/` folders with PDF, MP3, HTML, DOCX, etc.
 
-### Generation Scripts
+**Note**: Do not edit files here directly. Edit the source in `course_development/` and regenerate.
 
-Comprehensive scripts are available in [`software/scripts/`](software/scripts/) to generate all course material outputs:
+---
 
-- **`generate_all_outputs.py`**: Process all modules and syllabi for both courses
-- **`generate_module_renderings.py`**: Process a specific module
-- **`generate_module_website.py`**: Generate HTML website for a module
-- **`generate_syllabus_renderings.py`**: Process syllabus files
+## 🛠️ Software Utilities (`software/`)
 
-See [`software/scripts/README.md`](software/scripts/README.md) for detailed usage instructions.
+The automation engine for the repository.
 
-## Documentation
+- **`src/`**: Python modules (markdown_to_pdf, text_to_speech, etc.)
+- **`scripts/`**: CLI tools (generate_all_outputs.py, publish_course.py)
+- **`docs/`**: [Documentation](software/docs/README.md) for the software system
 
-- **[AGENTS.md](AGENTS.md)**: Technical documentation for repository structure, conventions, and automation processes
-- Course-specific documentation is available in each course folder's README.md and AGENTS.md files
+### Key Scripts
+```bash
+# Generate outputs for a course
+uv run python software/scripts/generate_all_outputs.py --course biol-8
+
+# Publish generated outputs to PUBLISHED/
+uv run python software/scripts/publish_course.py --course all
+```
+
+See [software/docs/README.md](software/docs/README.md) for comprehensive documentation.

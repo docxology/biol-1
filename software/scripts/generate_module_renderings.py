@@ -1,6 +1,23 @@
 #!/usr/bin/env python3
-"""Script to generate all renderings for module 1 curriculum files."""
+"""Script to generate all renderings for a specific module.
 
+Usage:
+    uv run python scripts/generate_module_renderings.py [OPTIONS]
+
+Options:
+    --course COURSE    Course: biol-1 or biol-8 (default: biol-1)
+    --module MODULE    Module number to process (default: 1)
+    --help             Show this help message
+
+Examples:
+    # Generate renderings for biol-1 module-1 (default)
+    uv run python scripts/generate_module_renderings.py
+
+    # Generate renderings for biol-8 module-2
+    uv run python scripts/generate_module_renderings.py --course biol-8 --module 2
+"""
+
+import argparse
 import sys
 from pathlib import Path
 
@@ -10,17 +27,58 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.batch_processing.main import process_module_by_type
 
 
-def main():
-    """Generate all renderings for module 1."""
+def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Generate all renderings for a specific module.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  %(prog)s                         Generate for biol-1/module-1 (default)
+  %(prog)s --course biol-8         Generate for biol-8/module-1
+  %(prog)s --module 2              Generate for biol-1/module-2
+  %(prog)s --course biol-8 --module 3   Generate for biol-8/module-3
+        """,
+    )
+
+    parser.add_argument(
+        "--course",
+        choices=["biol-1", "biol-8"],
+        default="biol-1",
+        help="Course to process (default: biol-1)",
+    )
+
+    parser.add_argument(
+        "--module",
+        type=int,
+        default=1,
+        help="Module number to process (default: 1)",
+    )
+
+    return parser.parse_args()
+
+
+def main() -> int:
+    """Generate all renderings for a module."""
+    args = parse_args()
+
     # Paths
-    module_path = Path(__file__).parent.parent.parent / "biol-1" / "course" / "module-1"
+    repo_root = Path(__file__).parent.parent.parent
+    module_path = repo_root / args.course / "course" / f"module-{args.module}"
     output_dir = module_path / "output"
 
     if not module_path.exists():
         print(f"Error: Module path does not exist: {module_path}")
+        print(f"  Available modules in {args.course}:")
+        course_dir = repo_root / args.course / "course"
+        if course_dir.exists():
+            modules = sorted([d.name for d in course_dir.iterdir() 
+                             if d.is_dir() and d.name.startswith("module-")])
+            for m in modules:
+                print(f"    - {m}")
         return 1
 
-    print(f"Processing module: {module_path}")
+    print(f"Processing: {args.course}/course/module-{args.module}")
     print(f"Output directory: {output_dir}")
 
     try:
@@ -57,3 +115,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
