@@ -1,34 +1,34 @@
 # Module 16: Evolution of Populations (Microevolution)
 ## Comprehension & Critical Thinking Questions
 
-### Part 1: Understanding Core Concepts
-1.  **Defining Microevolution**
-    *   Evolution is "change in allele frequency." If a population is 50% Brown Eye Alleles and 50% Blue Eye Alleles, and 100 years later it is 90% Brown/10% Blue, has evolution occurred?
+### Part 1: Core Concepts
+1.  **Defining Evolution**
+    *   If a population's allele frequencies change from 50% A / 50% a to 90% A / 10% a, has evolution occurred?
 
 2.  **Hardy-Weinberg Equilibrium**
-    *   What does the Hardy-Weinberg principle state?
-    *   List the **Five Conditions** required for a population NOT to evolve (No mutation, No gene flow, etc.). Are these conditions common in nature?
+    *   What does the Hardy-Weinberg principle describe?
+    *   List the five conditions required for equilibrium. Are these conditions common in nature?
 
 3.  **Genetic Drift**
-    *   Define **Genetic Drift**. Does it have a stronger effect on Large or Small populations?
-    *   Distinguish between the **Bottleneck Effect** (disaster) and the **Founder Effect** (colonization).
+    *   Define genetic drift. Does it affect large or small populations more strongly?
+    *   Distinguish the Bottleneck Effect from the Founder Effect.
 
-### Part 2: Applying Biological Principles
+### Part 2: Application
 4.  **Types of Selection**
-    *   Draw three graphs representing:
-        *   **Directional Selection** (Shift to one extreme).
-        *   **Stabilizing Selection** (Average is favored).
-        *   **Disruptive Selection** (Both extremes favored).
-    *   Give a real-world example of each (e.g., Birth weight, Beak size).
+    *   Sketch graphs representing:
+        *   Directional selection
+        *   Stabilizing selection
+        *   Disruptive selection
+    *   Provide a real-world example of each.
 
 5.  **Heterozygote Advantage**
-    *   Sickle Cell Anemia is a deadly recessive disease. Why is the allele so common in parts of Africa?
-    *   **Apply**: How does this demonstrate that "Fitness" depends on the environment? (Malaria presence).
+    *   Sickle cell disease is recessive and often lethal. Why is the allele common in malaria-endemic regions?
+    *   How does this demonstrate that fitness is environment-dependent?
 
-### Part 3: Analyzing & Evaluating
+### Part 3: Analysis & Evaluation
 6.  **Sexual Selection**
-    *   Peacocks have giant tails that make them slow and visible to predators. **Analyze**: How can Natural Selection (survival) allow this trait to exist? (Hint: Reproduction vs Survival).
+    *   Peacocks have elaborate tails that increase predation risk. How can natural selection permit this trait?
 
 7.  **Gene Flow**
-    *   Two populations of deer are separated by a mountain. A tunnel is built, allowing them to mix.
-    *   **Analyze**: Will the two populations become more similar or more different genetically? Does this increase or decrease the chance of them becoming separate species?
+    *   Two deer populations are separated by a mountain. A tunnel allows interbreeding.
+    *   Will the populations become more similar or more different? What is the effect on speciation potential?

@@ -3,6 +3,7 @@
 
 ### Learning Objectives
 By the end of this module, you should be able to:
+
 1.  **Sequence** the phases of the eukaryotic cell cycle and mitosis.
 2.  **Differentiate** between chromatin, chromosomes, and sister chromatids.
 3.  **Compare** cytokinesis in plant and animal cells.
@@ -10,37 +11,29 @@ By the end of this module, you should be able to:
 
 ### Key Terminology Checklist
 *Define these terms in your own words to ensure mastery.*
-- [ ] **Somatic Cell**: Body cells (Diploid).
-- [ ] **Gamete**: Sex cells (Haploid).
-- [ ] **Sister Chromatids**: Identical copies of a chromosome rejoined at the centromere.
-- [ ] **Centromere**: The waist where chromatids are attached.
-- [ ] **Metastasis**: The spread of cancer cells to different parts of the body.
-- [ ] **Genome**: The total genetic information of an organism.
+
+- [ ] **Somatic Cell**: Any body cell (diploid, 2n).
+- [ ] **Gamete**: A reproductive cell (haploid, n).
+- [ ] **Sister Chromatids**: Identical copies of a replicated chromosome, joined at the centromere.
+- [ ] **Centromere**: The region where sister chromatids are attached.
+- [ ] **Metastasis**: The spread of cancer cells from the primary tumor to other body sites.
+- [ ] **Genome**: The complete set of genetic information in an organism.
 
 ### Concept Check
-#### 1. Timing is Everything
-*   **Question**: Which phase takes up the bulk of the cell cycle?
-*   **Deep Dive**: Interphase takes up ~90% of the time. Mitosis is very short. Why? (Think about preparations vs. the actual act of splitting).
+#### 1. The Cell Cycle
+*   **Question**: Which phase occupies the majority of the cell cycle?
+*   **Key Answer**: Interphase (G₁, S, G₂) comprises approximately 90% of the cycle. Mitosis and cytokinesis are relatively brief.
 
-#### 2. The Guardian of the Genome
+#### 2. Tumor Suppressors
 *   **Question**: What is the role of p53?
-*   **Deep Dive**: p53 is a Tumor Suppressor. If DNA is damaged, p53 halts division to repair it. If it can't be repaired, p53 triggers Apoptosis. If p53 is mutated/broken, what happens? (Cancer often follows).
+*   **Key Answer**: p53 is a tumor suppressor that monitors DNA integrity. If DNA damage is detected, p53 halts the cell cycle for repair or triggers apoptosis. Mutations in p53 are found in over 50% of human cancers.
 
-#### 3. Bad Brakes and Stuck Gas
-*   **Question**: What kinds of genes are involved in cancer?
-*   **Deep Dive**:
-    *   **Proto-oncogenes**: Enhance division (Gas pedal). Mutate to become Oncogenes (Gas stuck down).
-    *   **Tumor Suppressors**: Stop division (Brake pedal). Mutate to break (Brakes cut).
+#### 3. Oncogenes
+*   **Question**: What types of genes are implicated in cancer?
+*   **Key Answer**:
+    *   **Proto-oncogenes**: Normal genes that promote cell division. Mutations convert them to oncogenes (constitutively active).
+    *   **Tumor Suppressors**: Genes that inhibit division. Loss-of-function mutations lead to uncontrolled proliferation.
 
-#### 4. Prokaryote Comparison
-*   **Question**: Through what process do prokaryotes replicate?
-*   **Deep Dive**: **Binary Fission**. They have a single circular chromosome. They replicate it and pull apart. Simplistic compared to the dance of 46 chromosomes in humans.
-
-### Study Tips
-*   **Hand Signals**: Use your hands to model mitosis phases.
-    *   **P**rophase: Fingers spread (chromosomes condense).
-    *   **M**etaphase: Hands together (align middle).
-    *   **A**naphase: Hands pull apart.
-    *   **T**elophase: Two fists (two nuclei).
-*   **Chromosome Math**: Confused by "46 chromosomes vs 92 chromatids"?
-    *   Count the **Centromeres**. If there is one waist, it is ONE chromosome (even if it has two legs/chromatids).
+#### 4. Prokaryotic Division
+*   **Question**: How do prokaryotes replicate?
+*   **Key Answer**: Binary fission—the circular chromosome replicates, and the cell divides into two identical daughter cells. This is simpler and faster than mitotic division.

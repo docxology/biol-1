@@ -1,31 +1,31 @@
 # Module 11: Mendelian Genetics
 ## Comprehension & Critical Thinking Questions
 
-### Part 1: Understanding Core Concepts
+### Part 1: Core Concepts
 1.  **Mendel's Laws**
-    *   Define the **Law of Segregation**. (Hint: How many alleles for a trait does a gamete receive?).
-    *   Define the **Law of Independent Assortment**. (Hint: Do hair color genes affect eye color genes?).
+    *   Define the Law of Segregation.
+    *   Define the Law of Independent Assortment. Does the inheritance of one trait affect another?
 
 2.  **Genotype vs. Phenotype**
-    *   Explain the difference between **Homozygous Dominant** (AA), **Heterozygous** (Aa), and **Homozygous Recessive** (aa).
-    *   If "A" is Tall and "a" is Short, what is the phenotype of "Aa"?
+    *   Explain the difference between homozygous dominant (AA), heterozygous (Aa), and homozygous recessive (aa).
+    *   If "A" = Tall and "a" = Short, what is the phenotype of "Aa"?
 
 3.  **Complex Patterns**
-    *   Differentiate between **Incomplete Dominance** (Red x White = Pink) and **Codominance** (Red x White = Red & White Spots).
-    *   Explain **Polygenic Inheritance** using human skin color or height as an example.
+    *   Differentiate between incomplete dominance and codominance.
+    *   Explain polygenic inheritance using human height or skin color as an example.
 
-### Part 2: Applying Biological Principles
-4.  **The Monohybrid Cross**
-    *   **Scenario**: In peas, Purple flowers (P) are dominant to White flowers (p).
-    *   **Apply**: Perform a cross between two Heterozygotes (Pp x Pp). What is the expected Genotypic ratio? What is the expected Phenotypic ratio?
+### Part 2: Application
+4.  **Monohybrid Cross**
+    *   In peas, Purple flowers (P) are dominant to White flowers (p).
+    *   Perform a cross: Pp × Pp. What are the expected genotypic and phenotypic ratios?
 
 5.  **Blood Typing**
-    *   Human blood type is determined by multiple alleles (IA, IB, i).
-    *   **Apply**: Can a mother with Type A blood and a father with Type B blood have a Type O child? Show the Punnett square.
+    *   Human blood type involves multiple alleles (Iᴬ, Iᴮ, i) and codominance.
+    *   Can a Type A mother and Type B father have a Type O child? Show the Punnett square.
 
-### Part 3: Analyzing & Evaluating
+### Part 3: Analysis & Evaluation
 6.  **Pedigree Analysis**
-    *   You are tracing a disease in a family tree. Two healthy parents have an affected child. Is the disease likely Dominant or Recessive? Explain your logic.
+    *   Two unaffected parents have an affected child. Is the trait likely dominant or recessive?
 
 7.  **Nature vs. Nurture**
-    *   Hydrangea flowers change color based on soil pH. Analyzing this in the context of genetics: Does Genotype *always* strictly determine Phenotype? How does the environment modify gene expression?
+    *   Hydrangea flower color changes with soil pH. Does genotype always strictly determine phenotype? How does the environment modify gene expression?

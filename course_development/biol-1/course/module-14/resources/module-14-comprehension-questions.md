@@ -1,32 +1,33 @@
 # Module 14: Biotechnology and Genomics
 ## Comprehension & Critical Thinking Questions
 
-### Part 1: Understanding Core Concepts
+### Part 1: Core Concepts
 1.  **The Toolbox**
-    *   What is a **Restriction Enzyme**? How do "sticky ends" help connect two different pieces of DNA?
-    *   What is a **Vector** (e.g., a plasmid)? How is it used to get foreign DNA into a bacterium?
+    *   What is a restriction enzyme? How do "sticky ends" facilitate ligation?
+    *   What is a vector (e.g., plasmid)? How is it used to introduce foreign DNA into bacteria?
 
 2.  **PCR (Polymerase Chain Reaction)**
-    *   Describe the three steps of PCR: **Denaturation**, **Annealing**, and **Extension**.
-    *   Why is PCR often called "Molecular photocopying"? Why is it useful at a crime scene with a tiny blood sample?
+    *   Describe the three steps of PCR: Denaturation, Annealing, Extension.
+    *   Why is PCR called "molecular photocopying"? Why is it useful for forensics?
 
 3.  **Visualizing DNA**
-    *   Explain how **Gel Electrophoresis** separates DNA fragments.
-    *   Do smaller fragments move faster or slower? Why? (Think about moving through a thick jungle).
+    *   Explain how gel electrophoresis separates DNA fragments.
+    *   Do smaller fragments migrate faster or slower? Why?
 
-### Part 2: Applying Biological Principles
+### Part 2: Application
 4.  **Genetic Engineering**
-    *   Define **Transgenic Organism** (GMO).
-    *   **Scenario**: You want to make bacteria that produce human insulin. Outline the steps you would take. (Cut gene, cut plasmid, glue together, insert into bacteria).
+    *   Define transgenic organism (GMO).
+    *   Outline the steps to produce insulin-secreting bacteria.
 
 5.  **DNA Fingerprinting**
-    *   **Application**: You are looking at a DNA gel from a paternity test. The Child has bands at position A and B. The Mother has a band at A.
-    *   Does the Father *have* to have a band at B? Explain your reasoning.
+    *   In a paternity test, a child has bands at positions A and B. The mother has band A.
+    *   Must the biological father have band B? Explain.
 
-### Part 3: Analyzing & Evaluating
+### Part 3: Analysis & Evaluation
 6.  **Gene Therapy**
-    *   Differentiate between **Ex Vivo** (cells treated outside body) and **In Vivo** (treated inside body) gene therapy.
-    *   **Evaluate**: What are the biggest challenges in gene therapy? (Hint: Delivery and Immune response).
+    *   Differentiate ex vivo (cells treated outside the body) and in vivo (treatment inside the body) gene therapy.
+    *   What are the major challenges? (Delivery, immune response, targeting)
 
 7.  **Genomics**
-    *   We have sequenced the entire human genome. **Analyze**: Why does knowing the sequence of letters (A,C,T,G) not immediately tell us what every gene does? What is distinct about **Functional Genomics**?
+    *   We have sequenced the human genome. Why doesn't knowing the sequence immediately reveal gene function?
+    *   What is functional genomics?

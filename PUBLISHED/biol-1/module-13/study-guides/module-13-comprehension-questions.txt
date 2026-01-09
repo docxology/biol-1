@@ -1,36 +1,36 @@
 Module 13: Regulation of Gene Expression
 Comprehension & Critical Thinking Questions
 
-Part 1: Understanding Core Concepts
+Part 1: Core Concepts
 Prokaryotic Regulation
-       Define Operon.
-       Compare an Inducible Operon (like lac) vs. a Repressible Operon (like trp). Which one is normally "OFF" and needs to be turned on? Which is normally "ON"?
+       Define operon.
+       Compare inducible operons (lac) vs. repressible operons (trp).
 
 Eukaryotic Regulation
-       Gene expression isn't just ON/OFF; it's a dimmer switch controlled at many levels. Briefly explain:
-           Chromatin Remodeling (Histone acetylation).
-           Transcriptional Control (Transcription factors).
-           Post-Translational Control (Protein folding/degradation).
+       Gene expression is controlled at multiple levels. Briefly explain:
+           Chromatin remodeling (histone modification)
+           Transcriptional control (transcription factors)
+           Post-translational control (protein modification/degradation)
 
 Mutations
-       Define Point Mutation (Substitution) vs. Frameshift Mutation (Insertion/Deletion).
-       Why is a frameshift usually much more damaging?
+       Define point mutation vs. frameshift mutation.
+       Why are frameshift mutations typically more damaging?
 
-Part 2: Applying Biological Principles
+Part 2: Application
 The Lac Operon
-       Scenario: E. coli bacteria are living for weeks in a petri dish with ample Glucose and NO Lactose.
-       Apply: Is the lac operon on or off? Is the Repressor protein bound to the operator?
-       Change: You suddenly add Lactose. What happens to the repressor? What happens to transcription?
+       Scenario: E. coli are growing in glucose-only medium.
+       Is the lac operon on or off? Is the repressor bound?
+       What happens when lactose is added?
 
 X-Inactivation
-       Female mammals have two X chromosomes, but males survive with only one. Explain Dosage Compensation and Barr Bodies.
-       How does this explain the patchy color of a Tortoiseshell/Calico cat?
+       Explain dosage compensation and Barr body formation.
+       How does X-inactivation explain calico cat coat patterns?
 
-Part 3: Analyzing & Evaluating
-Cancer and Regulation
-       Cancer is essentially a disease of gene regulation.
-       Analyze: How might a mutation in a Tumor Suppressor Gene (which normally stops division) lead to cancer?
-       How might a mutation in a Proto-Oncogene (which normally promotes division) lead to cancer?
+Part 3: Analysis & Evaluation
+Cancer and Gene Regulation
+       Cancer results from dysregulated gene expression.
+       Analyze how mutations in tumor suppressor genes or proto-oncogenes lead to uncontrolled cell division.
 
 Epigenetics
-    *   "Inheritance above the genes." Explain how environmental factors (diet, stress) might modify chemical tags on DNA (Methylation) without changing the sequence itself. Can these changes be passed to offspring?
+       Environmental factors (diet, stress) can modify DNA methylation without changing the sequence.
+    *   Can these modifications be inherited? Discuss evidence.

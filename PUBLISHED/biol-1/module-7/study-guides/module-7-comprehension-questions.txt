@@ -1,33 +1,33 @@
 Module 7: Photosynthesis
 Comprehension & Critical Thinking Questions
 
-Part 1: Understanding Core Concepts
+Part 1: Core Concepts
 The Big Picture
-       Write the balanced chemical equation for Photosynthesis. Identify which reactant is "reduced" to make sugar and which is "oxidized" to make oxygen.
-       Compare Autotrophs (producers) and Heterotrophs (consumers).
+       Write the balanced equation for photosynthesis: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂.
+       Identify which molecule is reduced (CO₂ → glucose) and which is oxidized (H₂O → O₂).
 
-Anatomy of a Chloroplast
-       Define Thylakoid, Granum, and Stroma.
-       Where exactly do the Light Reactions take place? Where does the Calvin Cycle take place?
+Chloroplast Anatomy
+       Define thylakoid, granum, and stroma.
+       Where do the Light Reactions occur? Where does the Calvin Cycle occur?
 
 Pigments
-       Why are plants green? Explain in terms of absorption and reflection of light wavelengths.
-       What is the role of an Antenna Complex in a photosystem?
+       Why are most plants green? Explain in terms of light absorption and reflection.
+       What is the role of the antenna complex in photosystems?
 
-Part 2: Applying Biological Principles
+Part 2: Application
 The Light Reactions
-       Trace the path of an electron from Water to NADPH.
-       Crucial Concept: Why is water split (Photolysis) at Photosystem II? What waste product is produced?
-       How is ATP generated during the light reactions? (Hint: Proton gradient).
+       Trace the path of an electron from water to NADPH.
+       Why is water split at Photosystem II? What byproduct is released?
+       How is ATP generated? (Chemiosmosis driven by H⁺ gradient)
 
-The Calvin Cycle (Dark Reactions)
-       The Calvin Cycle builds sugar (G3P) from CO2. What two energy molecules from the Light Reactions are required to power this?
-       What is Rubisco and why is it possibly the most important protein on Earth?
+The Calvin Cycle
+       The Calvin Cycle produces G3P from CO₂. What two products from the Light Reactions are required?
+       What is RuBisCO, and why is it considered the most abundant and important enzyme on Earth?
 
-Part 3: Analyzing & Evaluating
+Part 3: Analysis & Evaluation
 Evolutionary Adaptations
-       In hot, dry climates, plants must close their stomata to save water, which leads to photorespiration (wasteful). Analyze how C4 and CAM plants solve this problem.
-       Compare: Corn (C4) vs. a Cactus (CAM). How do they differ in when or where they fix carbon?
+       In hot, dry climates, stomatal closure leads to photorespiration. Analyze how C₄ and CAM plants solve this problem.
+       Compare corn (C₄) and cactus (CAM) in terms of spatial vs. temporal separation of carbon fixation.
 
 Global Impact
-       Photosynthesis removed massive amounts of CO2 from the ancient atmosphere and filled it with O2. Analyze how this event shaped the evolution of life (i.e., aerobic respiration).
+       Photosynthesis removed CO₂ and added O₂ to Earth's early atmosphere. Analyze how this enabled the evolution of aerobic respiration.

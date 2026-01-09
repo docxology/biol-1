@@ -3,38 +3,31 @@ Keys to Success & Study Guide
 
 Learning Objectives
 By the end of this module, you should be able to:
-Map the stages of cellular respiration to their location in the cell/mitochondria.
-Calculate the inputs and outputs (ATP, NADH, FADH2) for each stage of respiration.
-Explain the function of the Electron Transport Chain and Chemiosmosis.
+
+Map the stages of cellular respiration to their locations in the cell.
+Calculate the inputs and outputs (ATP, NADH, FADH₂) for each stage.
+Explain the function of the Electron Transport Chain and chemiosmosis.
 Compare aerobic respiration, anaerobic respiration, and fermentation.
 
 Key Terminology Checklist
 Define these terms in your own words to ensure mastery.
-[ ] Aerobic vs. Anaerobic: With Oxygen vs. Without Oxygen.
-[ ] Oxidation: Loss of electrons (Glucose is oxidized).
-[ ] Reduction: Gain of electrons (Oxygen is reduced).
-[ ] Chemiosmosis: Using a proton (H+) gradient to drive ATP synthesis.
-[ ] ATP Synthase: The molecular machine/turbine that makes ATP.
-[ ] Cristae: The folds of the inner mitochondrial membrane (increases surface area for ETC).
+
+[ ] Aerobic vs. Anaerobic: Requiring oxygen vs. not requiring oxygen.
+[ ] Oxidation: Loss of electrons (glucose is oxidized during respiration).
+[ ] Reduction: Gain of electrons (oxygen is reduced to water).
+[ ] Chemiosmosis: ATP synthesis driven by the flow of H⁺ ions down their electrochemical gradient through ATP synthase.
+[ ] ATP Synthase: The enzyme complex that synthesizes ATP from ADP and Pᵢ.
+[ ] Cristae: Inner mitochondrial membrane folds that increase surface area for the ETC.
 
 Concept Check
-The Main Event
-   Question: What is the role of the Electron Transport Chain (ETC)?
-   Deep Dive: The ETC doesn't make ATP directly. It pumps protons (H+) to create a "dam" (gradient). It is the flow of protons back through the "turbine" (ATP Synthase) that actually creates the ATP.
+The Electron Transport Chain
+   Question: What is the role of the ETC?
+   Key Answer: The ETC transfers electrons through protein complexes, using the released energy to pump H⁺ ions across the inner membrane. The resulting proton gradient drives ATP synthesis via ATP synthase (oxidative phosphorylation).
 
-Oxygen's Job
-   Question: Why do we breathe?
-   Deep Dive: We need Oxygen to sit at the end of the chain and catch the tired electrons. If Oxygen isn't there, the chain backs up, the gradient dies, ATP stops, and the cell dies. Oxygen turns into Water (H2O) when it catches electrons.
+Oxygen's Role
+   Question: Why is oxygen essential for aerobic respiration?
+   Key Answer: Oxygen is the final electron acceptor in the ETC. Without it, electrons cannot flow, the proton gradient collapses, and ATP production ceases. Oxygen is reduced to water.
 
-Backup Plan
-   Question: Why is pyruvate essentially wasted in fermentation?
-   Deep Dive: In fermentation, we don't fully break down glucose (lots of energy left in alcohol/lactic acid). We dump pyruvate just to clear the "traffic jam" on NAD+ so Glycolysis can keep running and making a tiny bit of ATP (2 vs 30+).
-
-Study Tips
-   The Bank Analogy:
-       Glucose: $100 bill (Too big to spend).
-       ATP: $1 bill (Spendable cash).
-       NADH/FADH2: Checks (Valuable, but need to go to the bank/ETC to cash them out).
-   Inputs/Outputs Table: Make a big table.
-       Rows: Glycolysis, Prep, Krebs, ETC.
-    *   Cols: Location, Reactants, Products, ATP Yield.
+Fermentation
+   Question: Why do cells perform fermentation?
+   Key Answer: Fermentation regenerates NAD⁺ from NADH, allowing glycolysis to continue producing 2 ATP per glucose in the absence of oxygen. The carbon in pyruvate is converted to ethanol (yeast) or lactate (muscle) rather than fully oxidized.
