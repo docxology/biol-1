@@ -64,13 +64,13 @@ def main() -> int:
 
     # Paths
     repo_root = Path(__file__).parent.parent.parent
-    module_path = repo_root / args.course / "course" / f"module-{args.module}"
+    module_path = repo_root / "course_development" / args.course / "course" / f"module-{args.module}"
     output_dir = module_path / "output"
 
     if not module_path.exists():
         print(f"Error: Module path does not exist: {module_path}")
         print(f"  Available modules in {args.course}:")
-        course_dir = repo_root / args.course / "course"
+        course_dir = repo_root / "course_development" / args.course / "course"
         if course_dir.exists():
             modules = sorted([d.name for d in course_dir.iterdir() 
                              if d.is_dir() and d.name.startswith("module-")])

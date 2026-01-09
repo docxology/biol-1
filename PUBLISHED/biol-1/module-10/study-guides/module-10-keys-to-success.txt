@@ -3,49 +3,37 @@ Keys to Success & Study Guide
 
 Learning Objectives
 By the end of this module, you should be able to:
-Contrast the outcomes of Asexual and Sexual reproduction.
-Distinguish between Homologous Chromosomes and Sister Chromatids.
-Diagram the phases of Meiosis I and II.
-Explain the three sources of genetic variation: Crossing Over, Independent Assortment, and Random Fertilization.
+
+Contrast the outcomes of asexual and sexual reproduction.
+Distinguish between homologous chromosomes and sister chromatids.
+Diagram the phases of Meiosis I and Meiosis II.
+Explain the three sources of genetic variation: crossing over, independent assortment, and random fertilization.
 
 Key Terminology Checklist
 Define these terms in your own words to ensure mastery.
-[ ] Allele: Alternative forms of a gene (e.g., Blue eye gene vs. Brown eye gene).
-[ ] Karyotype: A visual display of an individual's chromosomes arranged in pairs.
-[ ] Synapsis: The fussing of homologous chromosomes during Prophase I.
-[ ] Tetrad: The structure formed by two homologous chromosomes (4 chromatids).
-[ ] Euploidy: The correct number of chromosomes.
-[ ] Aneuploidy: An abnormal number of chromosomes (+1 or -1).
+
+[ ] Allele: An alternative form of a gene at a specific locus.
+[ ] Karyotype: A display of an individual's chromosomes arranged by size and banding pattern.
+[ ] Synapsis: The pairing of homologous chromosomes during Prophase I.
+[ ] Tetrad (Bivalent): The structure formed by two synapsed homologous chromosomes (four chromatids).
+[ ] Euploidy: Having the correct number of chromosomes.
+[ ] Aneuploidy: An abnormal chromosome number (e.g., trisomy, monosomy).
 
 Concept Check
-The Reductive Division
-   Question: What separates during meiosis I? Meiosis II?
-   Deep Dive: This is the most common exam mistake.
-       Meiosis I: Homologous Pairs separate from each other. (Diploid -> Haploid).
-       Meiosis II: Sister Chromatids separate. (Haploid -> Haploid).
+Meiosis I vs. Meiosis II
+   Question: What separates in Meiosis I? In Meiosis II?
+   Key Answer:
+       Meiosis I: Homologous chromosomes separate (reductional division: 2n → n).
+       Meiosis II: Sister chromatids separate (equational division: n → n).
 
-The Variation Machine
-   Question: Why is genetic variation so important?
-   Deep Dive: Variation is the raw material for adaptation. If a population is identical (clones) and a new disease arrives, it kills everyone. If there is variation, some might survive.
+Genetic Variation
+   Question: Why is genetic variation important?
+   Key Answer: Variation provides raw material for natural selection. Genetically diverse populations are more resilient to environmental change and disease.
 
-Counting Chromosomes
+Human Chromosomes
    Question: How many chromosomes do humans have?
-   Deep Dive: 46 total.
-       22 Pairs of Autosomes (Instructions for body).
-       1 Pair of Sex Chromosomes (XX or XY).
-       Gametes (Sperm/Egg) have 23 total chromosomes (no pairs).
+   Key Answer: 46 total (23 pairs): 22 pairs of autosomes + 1 pair of sex chromosomes (XX or XY). Gametes contain 23 chromosomes.
 
-Errors
-   Question: What is a nondisjunction?
-   Deep Dive: Failure to separate. It leads to gametes with n+1 or n-1 chromosomes.
-       n+1 sperm + n egg = 2n+1 (Trisomy).
-       n-1 sperm + n egg = 2n-1 (Monosomy).
-
-Study Tips
-   Dance of the Chromosomes:
-       Imagine two pairs of shoes (Dad's boots, Mom's heels).
-       Replication: Photocopy each shoe. Now you have two boots tied together (Sisters) and two heels tied together (Sisters).
-       Metaphase I: The Boots pair up with the Heels. (Homologous pair).
-       Anaphase I: Boots go left, Heels go right.
-       Metaphase II: The tie snaps. Single shoes separate.
-   Focus on Prophase I: This is where the magic happens (Crossing Over). It's the longest phase.
+Nondisjunction
+   Question: What is nondisjunction?
+   Key Answer: The failure of chromosomes or chromatids to separate properly during cell division, resulting in aneuploid gametes.

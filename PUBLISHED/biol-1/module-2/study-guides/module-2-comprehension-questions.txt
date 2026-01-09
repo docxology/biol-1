@@ -1,31 +1,33 @@
 Module 2: Basic Chemistry
 Comprehension & Critical Thinking Questions
 
-Part 1: Understanding Core Concepts
+Part 1: Core Concepts
 Atomic Structure
-       Identify the three subatomic particles (protons, neutrons, electrons). Describe their location within the atom, relative mass, and electrical charge.
-       What determines the "identity" of an atom (i.e., which element it is)?
+       Identify the three subatomic particles (protons, neutrons, electrons). Describe their location, relative mass, and charge.
+       What determines the identity of an element?
 
 Chemical Bonding
        Define the Octet Rule. Why do atoms form bonds?
-       Differentiate between the three major types of bonds in biological systems: Ionic, Covalent (polar and non-polar), and Hydrogen bonds.
+       Differentiate between ionic bonds, covalent bonds (polar and non-polar), and hydrogen bonds.
 
 Properties of Water
-       Explain why water is considered a "polar" molecule. How does this polarity lead to hydrogen bonding?
-       List four distinct properties of water that are critical for life (e.g., cohesion, high specific heat).
+       Explain why water is a polar molecule. How does polarity lead to hydrogen bonding?
+       List four properties of water critical for life: cohesion, adhesion, high specific heat, solvent properties.
 
-Part 2: Applying Biological Principles
+Part 2: Application
 pH and Buffers
-       The pH scale is logarithmic. Mathematically, how much more acidic is a solution with pH 3 compared to pH 6?
-       Explain the role of buffers in biological systems (like human blood). What happens if a biological system's pH shifts too drastically?
+       The pH scale is logarithmic. How much more acidic is a solution with pH 3 compared to pH 6?
+       Explain the role of buffers in biological systems. What happens if blood pH shifts from 7.4 to 6.8?
 
 Isotopes in Biology
-       Scenario: A paleontologist finds a fossil and wants to know its age.
-       Apply: How can radioactive isotopes (like Carbon-14) be used to solve this problem? What is "half-life"?
+       Scenario: A paleontologist discovers a fossil and wants to determine its age.
+       Apply: Explain how radioactive isotopes (e.g., Carbon-14) and half-life calculations are used in radiometric dating.
 
-Part 3: Analyzing & Evaluating
+Part 3: Analysis & Evaluation
 Reactivity and Stability
-       Analyze the relationship between an atom's electron shell configuration and its chemical reactivity. Why are "Noble Gases" (like Helium or Neon) generally unreactive?
+       Analyze the relationship between electron configuration and chemical reactivity.
+       Why are noble gases (He, Ne, Ar) largely unreactive?
 
 Water in Ecosystems
-       Water becomes less dense when it freezes (ice floats). Analyze how this specific property affects aquatic life in a lake during winter. What would happen if ice sank?
+       Ice floats because solid water is less dense than liquid water.
+       Analyze how this property affects aquatic ecosystems in winter. What would happen if ice sank?

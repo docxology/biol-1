@@ -1,33 +1,30 @@
 # Module 9: Cell Division and Mitosis
 ## Comprehension & Critical Thinking Questions
 
-### Part 1: Understanding Core Concepts
-1.  **The DNA Blueprint**
-    *   Define **Genome**, **Chromosome**, **Chromatin**, and **Gene**.
-    *   Differentiate between **Haploid (n)** and **Diploid (2n)** cells. What are the numbers for humans?
+### Part 1: Core Concepts
+1.  **The Cell Cycle**
+    *   Name the three stages of interphase (G₁, S, G₂) and describe what occurs in each.
+    *   List the four phases of mitosis in order: Prophase, Metaphase, Anaphase, Telophase.
 
-2.  **The Cell Cycle**
-    *   List the phases of the Cell Cycle (**Interphase** + **Mitotic Phase**).
-    *   What happens during **G1**, **S**, and **G2** phases of Interphase? Which phase involves DNA replication?
+2.  **Chromosome Structure**
+    *   Distinguish between chromatin and chromosomes.
+    *   After DNA replication, what are sister chromatids? When do they separate?
 
-3.  **Mitosis Phases**
-    *   Describe the major events of **Prophase**, **Metaphase**, **Anaphase**, and **Telophase**.
-    *   What is the role of the **Spindle Fibers** and **Centrosomes**?
+3.  **Cytokinesis**
+    *   Compare cytokinesis in animal cells (cleavage furrow) and plant cells (cell plate).
 
-### Part 2: Applying Biological Principles
-4.  **Cytokinesis**
-    *   Mitosis divides the nucleus; Cytokinesis divides the cytoplasm. Compare how this process looks in **Animal Cells** (Cleavage Furrow) vs. **Plant Cells** (Cell Plate).
-    *   Why can't plant cells just pinch in two like animal cells?
+### Part 2: Application
+4.  **Cell Cycle Checkpoints**
+    *   What are the three main checkpoints (G₁, G₂, M)? What is evaluated at each?
+    *   Why are checkpoints critical for preventing cancer?
 
-5.  **Control and Regulation**
-    *   The cell cycle has "Checkpoints" (G1, G2, M). What is the cell checking for at each point?
-    *   Explain the role of **Apoptosis** (Programmed Cell Death). Why would a cell voluntarily kill itself?
+5.  **Cancer Biology**
+    *   **Scenario**: A mutation inactivates the Rb (retinoblastoma) protein, a tumor suppressor.
+    *   **Apply**: Predict the effect on cell division.
 
-### Part 3: Analyzing & Evaluating
-6.  **Cancer Biology**
-    *   Defined Cancer in terms of the cell cycle.
-    *   Differentiate between **Proto-oncogenes** and **Tumor Suppressor Genes** (like p53). Analogy: Which is the gas pedal and which is the brake?
-    *   What is the difference between a **Benign** and **Malignant** tumor?
+### Part 3: Analysis & Evaluation
+6.  **Mitosis vs. Cancer**
+    *   Normal cells divide approximately 50 times before senescence (Hayflick limit). Cancer cells are "immortal." Analyze how telomerase reactivation contributes to this.
 
-7.  **Prokaryotic Division**
-    *   Bacteria do not do Mitosis. Describe **Binary Fission**. Why is it simpler?
+7.  **Binary Fission**
+    *   Compare mitosis in eukaryotes with binary fission in prokaryotes. Which is faster? Why?

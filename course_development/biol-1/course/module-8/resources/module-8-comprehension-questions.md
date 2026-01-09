@@ -1,35 +1,35 @@
 # Module 8: Cellular Respiration
 ## Comprehension & Critical Thinking Questions
 
-### Part 1: Understanding Core Concepts
+### Part 1: Core Concepts
 1.  **The Overview**
-    *   Write the balanced chemical equation for Cellular Respiration.
-    *   Name the four main stages of aerobic respiration: **Glycolysis**, **Prep Reaction**, **Citric Acid (Krebs) Cycle**, **Electron Transport Chain**.
+    *   Write the balanced equation for cellular respiration: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP.
+    *   Name the four stages: Glycolysis, Pyruvate Oxidation, Citric Acid (Krebs) Cycle, Electron Transport Chain/Oxidative Phosphorylation.
 
 2.  **Locations**
-    *   Where in the cell does Glycolysis occur?
-    *   Where do the Citric Acid Cycle and ETC occur? (Be specific about mitochondrial compartments).
+    *   Where does glycolysis occur?
+    *   Where do pyruvate oxidation, the Citric Acid Cycle, and the ETC occur? (Be specific about mitochondrial compartments.)
 
-3.  **The Players**
-    *   What are **chemico-osmosis** and **oxidative phosphorylation**?
-    *   What is the role of Oxygen? Why do we die without it? (Hint: It's the "Final Electron Acceptor").
+3.  **Key Concepts**
+    *   Define chemiosmosis and oxidative phosphorylation.
+    *   What is the role of oxygen? Why is it called the "final electron acceptor"?
 
-### Part 2: Applying Biological Principles
-4.  **Tracking the Math**
-    *   Start with one Glucose molecule.
-    *   How many ATP are made in Glycolysis? (Net)
-    *   How many ATP are made in Krebs?
-    *   How many ATP are made in the ETC?
-    *   Why is the "Total ATP" usually a range (30-32 or 36-38) rather than a fixed number?
+### Part 2: Application
+4.  **ATP Accounting**
+    *   Starting with one glucose molecule:
+        *   Net ATP from glycolysis: 2
+        *   ATP from Citric Acid Cycle: 2
+        *   ATP from ETC/Oxidative Phosphorylation: 26-28
+    *   Why is the total ATP yield a range (30-32) rather than a fixed number?
 
 5.  **Anaerobic Options**
-    *   If no Oxygen is available, cells switch to **Fermentation**.
-    *   Compare **Lactic Acid Fermentation** (Humans/Bacteria) vs. **Alcohol Fermentation** (Yeast).
-    *   Does fermentation produce any *new* ATP? If not, why do cells do it? (Hint: Regenerating NAD+).
+    *   If oxygen is unavailable, cells perform fermentation.
+    *   Compare lactic acid fermentation (animals, bacteria) and alcohol fermentation (yeast).
+    *   Does fermentation produce new ATP? What is its primary purpose?
 
-### Part 3: Analyzing & Evaluating
+### Part 3: Analysis & Evaluation
 6.  **Efficiency Analysis**
-    *   Automobiles are about 25% efficient (converting gas to movement). Cellular respiration is about 34% efficient. Where does the rest of the energy go? (Refer back to thermodynamics/body heat).
+    *   Cellular respiration captures approximately 34% of glucose's energy in ATP. Where does the remaining energy go? (Heat, entropy)
 
-7.  **Metabolic Crossroads**
-    *   We don't just eat sugar. Explain how proteins and fats enter the cellular respiration pathway. Where do fats enter? Where do amino acids enter? (Deamination).
+7.  **Metabolic Integration**
+    *   Proteins and fats can enter the respiratory pathway. Where do fatty acids enter? Where do amino acids enter after deamination?

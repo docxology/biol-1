@@ -3,43 +3,37 @@
 
 ### Learning Objectives
 By the end of this module, you should be able to:
-1.  **Diagram** the structure of the plasma membrane (Fluid Mosaic Model).
-2.  **Predict** the movement of water and solutes across a membrane in various osmotic conditions.
+
+1.  **Diagram** the structure of the plasma membrane according to the Fluid Mosaic Model.
+2.  **Predict** the movement of water and solutes across a membrane under various osmotic conditions.
 3.  **Compare** and **contrast** passive and active transport mechanisms.
-4.  **Explain** how large molecules traverse the membrane via bulk transport.
+4.  **Explain** how large molecules traverse the membrane via bulk transport (endocytosis/exocytosis).
 
 ### Key Terminology Checklist
 *Define these terms in your own words to ensure mastery.*
-- [ ] **Amphipathic**: Having both hydrophilic and hydrophobic parts.
-- [ ] **Concentration Gradient**: The difference in concentration of a substance across a space.
-- [ ] **Aquaporin**: A channel protein specifically for rapid water transport.
-- [ ] **Turgor Pressure**: The pressure of water pushing the plasma membrane against the cell wall of a plant cell.
-- [ ] **Ligand**: A molecule that binds specifically to a receptor site.
+
+- [ ] **Amphipathic**: Having both hydrophilic and hydrophobic regions (characteristic of phospholipids).
+- [ ] **Concentration Gradient**: The difference in solute concentration across a distance.
+- [ ] **Aquaporin**: A channel protein that facilitates rapid water transport.
+- [ ] **Turgor Pressure**: The pressure exerted by water pushing the plasma membrane against the cell wall in plant cells.
+- [ ] **Ligand**: A molecule that binds specifically to a receptor protein.
 
 ### Concept Check
-#### 1. The Gatekeeper
-*   **Question**: What are the three main components in a cell membrane?
-*   **Deep Dive**: Phospholipids (barrier), Proteins (doors/workers), and Cholesterol (stabilizer). How does Cholesterol prevent the membrane from freezing in the cold or melting in the heat?
+#### 1. Membrane Structure
+*   **Question**: What are the three main components of the plasma membrane?
+*   **Key Answer**: Phospholipids (bilayer barrier), proteins (transport, signaling, structure), and cholesterol (membrane fluidity regulation). Cholesterol prevents membrane rigidity in cold and excess fluidity in heat.
 
-#### 2. Just Passing Through
-*   **Question**: When would active transport be necessary?
-*   **Deep Dive**: Usually things flow "downhill" (high to low). If you need to pump water "uphill," you need a pump and electricity. In cells, if you need to gather specific nutrients *against* their gradient, you need a Protein Pump and ATP.
+#### 2. Passive vs. Active Transport
+*   **Question**: When is active transport necessary?
+*   **Key Answer**: When solutes must move against their concentration gradient (low to high concentration). This requires ATP and transport proteins (e.g., Na⁺/K⁺-ATPase).
 
-#### 3. Water Wars
-*   **Question**: What is the meaning of isotonic, hypertonic and hypotonic solutions?
-*   **Deep Dive**: Remember, water chases the solute.
-    *   **Hyper** (High solute) -> Water leaves cell (Shrivel).
-    *   **Hypo** (Low solute) -> Water enters cell (Burst/Turgid).
-    *   **Iso** (Equal) -> Equilibrium.
-    *   *Tip*: Freshwater fish live in a Hypotonic environment. Why don't they explode? (Kidneys/Gills).
+#### 3. Tonicity
+*   **Question**: Define isotonic, hypertonic, and hypotonic solutions.
+*   **Key Answer**:
+    *   **Hypertonic**: Higher solute concentration outside → water exits cell → cell shrinks (crenation in animal cells, plasmolysis in plant cells).
+    *   **Hypotonic**: Lower solute concentration outside → water enters cell → cell swells (lysis in animal cells, turgidity in plant cells).
+    *   **Isotonic**: Equal solute concentration → no net water movement.
 
-#### 4. Big Gulp
-*   **Question**: How are very large substances brought into and pushed out of cells?
-*   **Deep Dive**: **Phagocytosis** ("Cell Eating"). White blood cells use this to devour bacteria. It involves the membrane wrapping around the target and pinching off a vesicle.
-
-### Study Tips
-*   **Draw the Diagram**: Seriously, draw the Fluid Mosaic Model. Label the Heads, Tails, Integral Proteins, Peripheral Proteins, Carbohydrate chains.
-*   **Scenario Practice**: Don't just memorize "Hypertonic = Shrivel." Visualize a slug with salt on it. The salt is Hypertonic. The water leaves the slug's cells to dilute the salt. result: Slug shrivels.
-*   **Gradient Gravity**: Think of Concentration Gradients like Gravity.
-    *   Passive Transport = Rolling a ball down a hill (Easy, no energy).
-    *   Active Transport = Pushing a ball up a hill (Hard, requires energy/ATP).
+#### 4. Bulk Transport
+*   **Question**: How do large substances cross the membrane?
+*   **Key Answer**: Endocytosis (phagocytosis, pinocytosis) brings material in; exocytosis releases material. Both require membrane flexibility and ATP.

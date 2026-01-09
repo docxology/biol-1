@@ -3,39 +3,31 @@ Keys to Success & Study Guide
 
 Learning Objectives
 By the end of this module, you should be able to:
-Describe the chemical structure of DNA and specific base-pairing rules.
+
+Describe the chemical structure of DNA and the rules of complementary base pairing.
 Explain the semi-conservative model of DNA replication.
-Transcribe a DNA sequence into mRNA and Translate it into a polypeptide.
+Transcribe a DNA sequence into mRNA and translate it into a polypeptide.
 Differentiate between the functions of mRNA, tRNA, and rRNA.
 
 Key Terminology Checklist
 Define these terms in your own words to ensure mastery.
-[ ] Nucleotide: Sugar + Phosphate + Nitrogen Base.
-[ ] Purine vs. Pyrimidine: Double ring (A, G) vs Single ring (C, T, U).
-[ ] Codon: A 3-letter "word" in mRNA that codes for one amino acid.
-[ ] Anticodon: The matching 3-letter sequence on tRNA.
-[ ] Promoter: The "Start Here" signal on DNA for transcription.
-[ ] Helicase: The enzyme that "unzips" the genes.
+
+[ ] Nucleotide: The monomer of nucleic acids (sugar + phosphate + nitrogenous base).
+[ ] Purine vs. Pyrimidine: Double-ring bases (A, G) vs. single-ring bases (C, T, U).
+[ ] Codon: A three-nucleotide sequence in mRNA that specifies an amino acid.
+[ ] Anticodon: The complementary three-nucleotide sequence on tRNA.
+[ ] Promoter: A DNA sequence where RNA polymerase binds to initiate transcription.
+[ ] Helicase: The enzyme that unwinds the DNA double helix.
 
 Concept Check
-The Blueprint
-   Question: DNA is antiparallel. What does this mean?
-   Deep Dive: One strand runs 5' -> 3', the other runs 3' -> 5'. It's like a two-way street. Enzymes can usually only drive in one direction (5' -> 3'), which makes replication complicated on the backward strand.
+DNA Structure
+   Question: What does "antiparallel" mean in DNA?
+   Key Answer: The two DNA strands run in opposite directions: one 5′→3′, the other 3′→5′. This orientation affects replication (leading vs. lagging strand).
 
-Reading the Code
-   Question: How many codons are there?
-   Deep Dive: There are 64 possible codons (4x4x4), but only 20 amino acids. This means the code is Redundant (multiple codons mean the same thing). Why is this a safety feature against mutation?
+The Genetic Code
+   Question: How many codons exist?
+   Key Answer: 64 codons (4³), but only 20 amino acids. The code is degenerate (redundant)—multiple codons specify the same amino acid, providing a buffer against point mutations.
 
-The Editors
-   Question: How are transcripts processed in eukaryotes?
-   Deep Dive: Pre-mRNA has junk in it (Introns). The cell splices them out and keeps the good parts (Exons). It's like editing raw film footage to make the final movie.
-
-Study Tips
-   A-T / G-C:
-       Apples in the Tree.
-       Cars in the Garage.
-       (Remember: In RNA, Apple goes Under (Uracil) the tree).
-   3 Types of RNA:
-       mRNA (Messenger): The script/recipe.
-       tRNA (Transfer): The truck bringing ingredients (amino acids).
-       rRNA (Ribosomal): The kitchen/factory where it happens.
+RNA Processing
+   Question: How is pre-mRNA processed in eukaryotes?
+   Key Answer: Introns (non-coding) are spliced out; exons (coding) are joined. A 5′ cap and poly-A tail are added for stability and export.

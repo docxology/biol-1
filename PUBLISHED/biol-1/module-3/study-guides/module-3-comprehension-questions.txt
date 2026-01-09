@@ -1,36 +1,33 @@
 Module 3: Organic Molecules
 Comprehension & Critical Thinking Questions
 
-Part 1: Understanding Core Concepts
+Part 1: Core Concepts
 The Nature of Organic Molecules
-       What does it mean for a molecule to be "organic"? Why is Carbon considered the "backbone" of life?
-       Define Functional Group. Give one example (e.g., Hydroxyl, Amino) and explain how it changes a molecule's properties.
+       What makes a molecule "organic"? Why is carbon the "backbone" of life?
+       Define functional group and provide an example (e.g., hydroxyl, amino, carboxyl).
 
 Building Blocks
-       Explain the relationship between Monomers and Polymers.
-       Describe the reactions involved in building polymers (Dehydration Synthesis) and breaking them down (Hydrolysis). Which one requires water? Which one releases water?
+       Explain the relationship between monomers and polymers.
+       Describe dehydration synthesis (releases water, builds polymers) and hydrolysis (uses water, breaks polymers).
 
 The Four Classes of Biomolecules
-       Create a summary table comparing Carbohydrates, Lipids, Proteins, and Nucleic Acids. Include:
-           Monomer name
-           Key function(s)
-           Example molecule
+       Create a summary table comparing Carbohydrates, Lipids, Proteins, and Nucleic Acids. Include monomer names, key functions, and example molecules.
 
-Part 2: Applying Biological Principles
+Part 2: Application
 Protein Folding
-       Protein function is entirely dependent on shape. Explain the four levels of protein structure:
-           Primary: Sequence of amino acids.
-           Secondary: Alpha helices and Beta sheets.
-           Tertiary: 3D folding (R-group interactions).
-           Quaternary: Multiple polypeptide chains.
-       Apply: What happens during denaturation? Does a cooked egg turn back into a raw egg when cooled? Why?
+       Protein function depends on its three-dimensional shape. Explain the four levels of protein structure:
+           Primary: Linear amino acid sequence.
+           Secondary: Alpha helices and beta pleated sheets (hydrogen bonding).
+           Tertiary: 3D folding (R-group interactions, disulfide bridges).
+           Quaternary: Multiple polypeptide subunits.
+       Apply: What is denaturation? Why doesn't a cooked egg unfold when cooled?
 
-Lipids and Diet
-       Distinguish between Saturated and Unsaturated fatty acids. How does the double bond in unsaturated fats affect their physical state at room temperature (solid vs. liquid)?
+Lipids and Health
+       Distinguish between saturated and unsaturated fatty acids in terms of structure and physical state at room temperature.
 
-Part 3: Analyzing & Evaluating
+Part 3: Analysis & Evaluation
 Structure Determines Function
-       Cellulose (in plants) and Starch (in potatoes) are both made of glucose. Why can we digest starch but not cellulose (fiber)? Analyze how the bonding structure affects enzymatic breakdown.
+       Cellulose and starch are both glucose polymers. Why can humans digest starch but not cellulose? Analyze the role of glycosidic linkage orientation.
 
-ATP as Energy
-    *   ATP (Adenosine Triphosphate) is a nucleic acid derivative. Analyze its structure. Where is the "energy" actually stored? Why is it considered the "energy currency" of the cell?
+ATP as Energy Currency
+       ATP is derived from a nucleotide. Explain where the energy is stored (phosphoanhydride bonds) and why ATP is called the "energy currency" of the cell.

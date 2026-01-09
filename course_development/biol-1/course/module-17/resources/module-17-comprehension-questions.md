@@ -1,35 +1,34 @@
 # Module 17: Speciation and Macroevolution
 ## Comprehension & Critical Thinking Questions
 
-### Part 1: Understanding Core Concepts
+### Part 1: Core Concepts
 1.  **Species Concepts**
-    *   Define the **Biological Species Concept**. What is the key criterion? (Reproduction).
-    *   Why is this concept hard to apply to fossils or asexual bacteria? What is the **Morphological Species Concept**?
+    *   Define the Biological Species Concept. What is the key criterion?
+    *   Why is this concept difficult to apply to fossils or asexual organisms? What is the Morphological Species Concept?
 
 2.  **Reproductive Barriers**
-    *   Barriers prevent species from mixing. Classify the following as **Pre-zygotic** or **Post-zygotic**:
-        *   Two birds reproduce at different times of year (Temporal).
-        *   Sperm cannot fertilize egg (Gametic).
-        *   Hybrid offspring is frail or sterile (Mule).
+    *   Classify the following as pre-zygotic or post-zygotic:
+        *   Temporal isolation (different mating seasons)
+        *   Gametic isolation (sperm cannot fertilize egg)
+        *   Hybrid sterility (mule)
 
 3.  **Modes of Speciation**
-    *   Compare **Allopatric Speciation** (Other Country) and **Sympatric Speciation** (Same Country).
-    *   Which one requires a physical geographic barrier?
+    *   Compare allopatric and sympatric speciation. Which requires a geographic barrier?
 
-### Part 2: Applying Biological Principles
+### Part 2: Application
 4.  **Adaptive Radiation**
-    *   **Scenario**: A few finches are blown to a volcanic archipelago (Galapagos) with many empty habitats.
-    *   **Apply**: Explain how this single species can rapidly diverge into many new species.
+    *   **Scenario**: Finches colonize a volcanic archipelago with many unoccupied niches.
+    *   Explain how one ancestral species can rapidly diversify into many species.
 
 5.  **Convergent Evolution**
-    *   Sharks (Fish) and Dolphins (Mammals) look very similar (Torpedo shape, fins).
-    *   **Apply**: Did they inherit this shape from a common torpedo-ancestor, or did they evolve it independently? What environmental pressure caused this?
+    *   Sharks (fish) and dolphins (mammals) have similar body shapes.
+    *   Did they inherit this shape from a common ancestor, or evolve it independently? What selective pressure drove this?
 
-### Part 3: Analyzing & Evaluating
+### Part 3: Analysis & Evaluation
 6.  **Macroevolutionary Pacing**
-    *   Contrast **Gradualism** (Slow, steady change) with **Punctuated Equilibrium** (Long statis, sudden change).
-    *   Which model is better supported by the fossil record? (Hint: It's often a mix, but Punctuated explains gaps well).
+    *   Contrast gradualism (slow, steady change) with punctuated equilibrium (stasis interrupted by rapid change).
+    *   Which model better explains gaps in the fossil record?
 
-7.  **The Goal of Evolution**
-    *   **Critique**: "Evolution drives organisms to become perfect."
-    *   Is evolution goal-oriented? Or does it just respond to the immediate environment? (Think about "Good enough" vs "Perfect").
+7.  **Evolution Has No Goal**
+    *   Critique the statement: "Evolution drives organisms toward perfection."
+    *   Is evolution goal-directed, or does it respond to immediate environmental pressures?
