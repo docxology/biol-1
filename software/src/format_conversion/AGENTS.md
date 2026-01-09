@@ -115,6 +115,25 @@ Transcribe audio file to text.
 **Dependencies**:
 - `speech_to_text.main.transcribe_audio`
 
+#### `convert_docx_to_markdown(input_path: Path) -> str`
+
+Convert DOCX file to Markdown format.
+
+**Args**:
+- `input_path`: Path to input DOCX file
+
+**Returns**:
+- Markdown content as string
+
+**Features**:
+- Preserves headings (H1-H6) based on paragraph styles
+- Converts bold and italic formatting to Markdown
+- Handles tables and converts to Markdown table format
+- Preserves paragraph structure
+
+**Dependencies**:
+- `python-docx` library
+
 #### `get_file_extension(file_path: Path) -> str`
 
 Get file extension (lowercase, with dot).

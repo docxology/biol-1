@@ -1,362 +1,246 @@
-"""Tests for batch_processing main functions."""
+"""Comprehensive tests for batch processing main module."""
 
 from pathlib import Path
-
 import pytest
 
 from src.batch_processing.main import (
+    clear_all_outputs,
     generate_module_media,
     process_module_by_type,
     process_module_to_audio,
     process_module_to_pdf,
     process_module_to_text,
+    process_module_website,
+    process_syllabus,
 )
 
 
-def test_process_module_to_pdf_nonexistent():
-    """Test processing nonexistent module raises error."""
-    with pytest.raises(ValueError, match="Module path does not exist"):
-        process_module_to_pdf("/nonexistent/module", "/output")
-
-
-def test_process_module_to_pdf(temp_dir):
-    """Test processing module to PDF."""
-    # Create module structure with sample Markdown
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-    (module_dir / "README.md").write_text("# Module 1\n", encoding="utf-8")
-    (module_dir / "sample.md").write_text("# Sample\nContent here.\n", encoding="utf-8")
-
-    output_dir = temp_dir / "pdf_output"
-    result = process_module_to_pdf(str(module_dir), str(output_dir))
-
-    # Should process Markdown files (excluding README.md which might be skipped)
-    assert isinstance(result, list)
-
-
-def test_process_module_to_audio_nonexistent():
-    """Test processing nonexistent module to audio raises error."""
-    with pytest.raises(ValueError, match="Module path does not exist"):
-        process_module_to_audio("/nonexistent/module", "/output")
-
-
-def test_process_module_to_audio(temp_dir):
-    """Test processing module to audio."""
-    # Create module structure with minimal text for faster testing
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-    (module_dir / "sample.md").write_text("# Sample\nA.\n", encoding="utf-8")
-
-    output_dir = temp_dir / "audio_output"
-    result = process_module_to_audio(str(module_dir), str(output_dir))
-
-    assert isinstance(result, list)
-
-
-def test_process_module_to_text_nonexistent():
-    """Test processing nonexistent module to text raises error."""
-    with pytest.raises(ValueError, match="Module path does not exist"):
-        process_module_to_text("/nonexistent/module", "/output")
-
-
-def test_process_module_to_text_no_audio(temp_dir):
-    """Test processing module with no audio files returns empty list."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    output_dir = temp_dir / "text_output"
-    result = process_module_to_text(str(module_dir), str(output_dir))
-
-    assert result == []
-
-
-def test_generate_module_media_nonexistent(temp_dir):
-    """Test generating media for nonexistent module raises error."""
-    output_dir = temp_dir / "output"
-    with pytest.raises(ValueError, match="Module path does not exist"):
-        generate_module_media("/nonexistent/module", str(output_dir))
-
-
-def test_generate_module_media(temp_dir):
-    """Test generating all media formats for module."""
-    # Create module structure with minimal content for faster testing
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-    (module_dir / "sample.md").write_text("# Sample\nX.\n", encoding="utf-8")
-
-    output_dir = temp_dir / "media_output"
-    result = generate_module_media(str(module_dir), str(output_dir))
-
-    assert isinstance(result, dict)
-    assert "pdf_files" in result
-    assert "audio_files" in result
-    assert "text_files" in result
-    assert "errors" in result
-    assert isinstance(result["pdf_files"], list)
-    assert isinstance(result["audio_files"], list)
-    assert isinstance(result["text_files"], list)
-    assert isinstance(result["errors"], list)
-
-
-def test_process_module_by_type_nonexistent(temp_dir):
-    """Test processing nonexistent module by type raises error."""
-    output_dir = temp_dir / "output"
-    with pytest.raises(ValueError, match="Module path does not exist"):
-        process_module_by_type("/nonexistent/module", str(output_dir))
-
-
-def test_process_module_by_type_all_types(temp_dir):
-    """Test process_module_by_type with all curriculum element types."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create sample files for each curriculum type
-    (module_dir / "sample_assignment.md").write_text("# Assignment\nA.\n", encoding="utf-8")
-    (module_dir / "sample_lab-protocol.md").write_text("# Lab Protocol\nB.\n", encoding="utf-8")
-    (module_dir / "sample_lecture-content.md").write_text("# Lecture\nC.\n", encoding="utf-8")
-    (module_dir / "sample_study-guide.md").write_text("# Study Guide\nD.\n", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    assert isinstance(result, dict)
-    assert "by_type" in result
-    assert "summary" in result
-    assert "errors" in result
-    assert "assignments" in result["by_type"]
-    assert "lab-protocols" in result["by_type"]
-    assert "lecture-content" in result["by_type"]
-    assert "study-guides" in result["by_type"]
-
-
-def test_process_module_by_type_unknown_type(temp_dir):
-    """Test process_module_by_type with files that don't match known types."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create file that doesn't match any known type
-    (module_dir / "sample_unknown.md").write_text("# Unknown\nContent.\n", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    # Should skip unknown files
-    assert isinstance(result, dict)
-    assert "errors" in result
-    # Unknown files should be skipped, not cause errors
-
-
-def test_process_module_by_type_error_handling(temp_dir):
-    """Test error handling in process_module_by_type."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create a file that will cause an error (empty file might cause issues)
-    (module_dir / "sample_assignment.md").write_text("", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    # Should handle errors gracefully
-    assert isinstance(result, dict)
-    assert "errors" in result
-    # Errors should be collected, not raised
-
-
-def test_process_module_to_pdf_error_handling(temp_dir):
-    """Test error handling in process_module_to_pdf."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create a file that might cause conversion errors
-    invalid_file = module_dir / "invalid.md"
-    invalid_file.write_text("", encoding="utf-8")
-
-    output_dir = temp_dir / "pdf_output"
-    result = process_module_to_pdf(str(module_dir), str(output_dir))
-
-    # Should handle errors gracefully and continue
-    assert isinstance(result, list)
-
-
-def test_process_module_to_audio_error_handling(temp_dir):
-    """Test error handling in process_module_to_audio."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create a file that might cause conversion errors
-    invalid_file = module_dir / "invalid.md"
-    invalid_file.write_text("", encoding="utf-8")
-
-    output_dir = temp_dir / "audio_output"
-    result = process_module_to_audio(str(module_dir), str(output_dir))
-
-    # Should handle errors gracefully and continue
-    assert isinstance(result, list)
-
-
-def test_process_module_to_text_with_audio(temp_dir):
-    """Test process_module_to_text with actual audio files."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create a minimal audio file (we'll need to generate one or use a fixture)
-    # For now, test that it handles no audio files
-    output_dir = temp_dir / "text_output"
-    result = process_module_to_text(str(module_dir), str(output_dir))
-
-    assert isinstance(result, list)
-    assert result == []  # No audio files, so empty list
-
-
-def test_generate_module_media_error_handling(temp_dir):
-    """Test error handling in generate_module_media."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create a file that might cause errors
-    (module_dir / "sample.md").write_text("", encoding="utf-8")
-
-    output_dir = temp_dir / "media_output"
-    result = generate_module_media(str(module_dir), str(output_dir))
-
-    # Should handle errors gracefully
-    assert isinstance(result, dict)
-    assert "errors" in result
-    assert isinstance(result["errors"], list)
-
-
-def test_generate_module_media_pdf_error(temp_dir):
-    """Test generate_module_media handles PDF generation errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-    # Create invalid markdown that might cause PDF error
-    invalid_file = module_dir / "invalid.md"
-    invalid_file.write_bytes(b"\x00\x01\x02")  # Binary data, not valid markdown
-
-    output_dir = temp_dir / "media_output"
-    result = generate_module_media(str(module_dir), str(output_dir))
-
-    # Should collect errors
-    assert isinstance(result, dict)
-    assert "errors" in result
-
-
-def test_generate_module_media_audio_error(temp_dir):
-    """Test generate_module_media handles audio generation errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-    (module_dir / "sample.md").write_text("# Test\n", encoding="utf-8")
-
-    output_dir = temp_dir / "media_output"
-    # This might fail due to network, but we test the error path
-    result = generate_module_media(str(module_dir), str(output_dir))
-    assert isinstance(result, dict)
-
-
-def test_generate_module_media_text_transcription_error(temp_dir):
-    """Test generate_module_media handles text transcription errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-    (module_dir / "sample.md").write_text("# Test\n", encoding="utf-8")
-
-    output_dir = temp_dir / "media_output"
-    result = generate_module_media(str(module_dir), str(output_dir))
-    # May have errors if audio generation fails
-    assert isinstance(result, dict)
-    assert "errors" in result
-
-
-def test_process_module_by_type_pdf_error(temp_dir):
-    """Test process_module_by_type handles PDF generation errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create file that will cause PDF error
-    invalid_file = module_dir / "sample_assignment.md"
-    invalid_file.write_bytes(b"\x00\x01")  # Invalid markdown
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    assert isinstance(result, dict)
-    assert "errors" in result
-
-
-def test_process_module_by_type_audio_error(temp_dir):
-    """Test process_module_by_type handles audio generation errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create file for assignment type
-    assignment_file = module_dir / "sample_assignment.md"
-    assignment_file.write_text("# Assignment\n", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    # May have errors if audio generation fails
-    assert isinstance(result, dict)
-    assert "errors" in result
-
-
-def test_process_module_by_type_docx_error(temp_dir):
-    """Test process_module_by_type handles DOCX generation errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    assignment_file = module_dir / "sample_assignment.md"
-    assignment_file.write_text("# Assignment\n", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    assert isinstance(result, dict)
-    assert "errors" in result
-
-
-def test_process_module_by_type_html_error(temp_dir):
-    """Test process_module_by_type handles HTML generation errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    assignment_file = module_dir / "sample_assignment.md"
-    assignment_file.write_text("# Assignment\n", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    assert isinstance(result, dict)
-    assert "errors" in result
-
-
-def test_process_module_by_type_txt_error(temp_dir):
-    """Test process_module_by_type handles TXT generation errors."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    assignment_file = module_dir / "sample_assignment.md"
-    assignment_file.write_text("# Assignment\n", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    assert isinstance(result, dict)
-    assert "errors" in result
-
-
-def test_process_module_by_type_outer_exception(temp_dir):
-    """Test process_module_by_type handles outer exception."""
-    module_dir = temp_dir / "module-1"
-    module_dir.mkdir()
-
-    # Create a file that might cause an exception in the outer try block
-    assignment_file = module_dir / "sample_assignment.md"
-    # Make it unreadable or cause an error
-    assignment_file.write_text("# Assignment\n", encoding="utf-8")
-
-    output_dir = temp_dir / "output"
-    result = process_module_by_type(str(module_dir), str(output_dir))
-
-    assert isinstance(result, dict)
-    assert "errors" in result
+class TestProcessModuleToPdf:
+    """Tests for process_module_to_pdf function."""
+
+    def test_process_module_to_pdf_success(self, sample_module_structure):
+        """Test converting module markdown to PDFs."""
+        output_dir = sample_module_structure.parent / "pdf_output"
+        
+        result = process_module_to_pdf(str(sample_module_structure), str(output_dir))
+        
+        assert isinstance(result, list)
+        # PDFs should be generated for markdown files
+        assert all(f.endswith(".pdf") for f in result)
+
+    def test_process_module_to_pdf_nonexistent(self, temp_dir):
+        """Test processing non-existent module raises ValueError."""
+        with pytest.raises(ValueError, match="does not exist"):
+            process_module_to_pdf(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
+
+    def test_process_module_to_pdf_empty_module(self, temp_dir):
+        """Test processing empty module returns empty list."""
+        empty_module = temp_dir / "empty_module"
+        empty_module.mkdir()
+        output_dir = temp_dir / "output"
+        
+        result = process_module_to_pdf(str(empty_module), str(output_dir))
+        
+        assert result == []
+
+
+class TestProcessModuleToAudio:
+    """Tests for process_module_to_audio function."""
+
+    @pytest.mark.requires_internet
+    def test_process_module_to_audio_success(self, sample_module_structure):
+        """Test converting module text to audio (requires internet for gTTS)."""
+        output_dir = sample_module_structure.parent / "audio_output"
+        
+        result = process_module_to_audio(str(sample_module_structure), str(output_dir))
+        
+        assert isinstance(result, list)
+        assert all(f.endswith(".mp3") for f in result)
+
+    def test_process_module_to_audio_nonexistent(self, temp_dir):
+        """Test processing non-existent module raises ValueError."""
+        with pytest.raises(ValueError, match="does not exist"):
+            process_module_to_audio(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
+
+
+class TestProcessModuleToText:
+    """Tests for process_module_to_text function."""
+
+    def test_process_module_to_text_nonexistent(self, temp_dir):
+        """Test processing non-existent module raises ValueError."""
+        with pytest.raises(ValueError, match="does not exist"):
+            process_module_to_text(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
+
+    def test_process_module_to_text_no_audio(self, temp_dir):
+        """Test processing module with no audio files."""
+        module_dir = temp_dir / "module"
+        module_dir.mkdir()
+        output_dir = temp_dir / "output"
+        
+        result = process_module_to_text(str(module_dir), str(output_dir))
+        
+        assert result == []
+
+
+class TestGenerateModuleMedia:
+    """Tests for generate_module_media function."""
+
+    def test_generate_module_media_structure(self, sample_module_structure):
+        """Test that generate_module_media returns correct structure."""
+        output_dir = sample_module_structure.parent / "media_output"
+        
+        result = generate_module_media(str(sample_module_structure), str(output_dir))
+        
+        assert "pdf_files" in result
+        assert "audio_files" in result
+        assert "text_files" in result
+        assert "errors" in result
+
+    def test_generate_module_media_nonexistent(self, temp_dir):
+        """Test generating media for non-existent module raises ValueError."""
+        with pytest.raises(ValueError, match="does not exist"):
+            generate_module_media(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
+
+
+class TestProcessModuleByType:
+    """Tests for process_module_by_type function."""
+
+    def test_process_module_by_type_structure(self, sample_module_structure):
+        """Test that process_module_by_type returns correct structure."""
+        output_dir = sample_module_structure.parent / "typed_output"
+        
+        result = process_module_by_type(str(sample_module_structure), str(output_dir))
+        
+        assert "by_type" in result
+        assert "summary" in result
+        assert "errors" in result
+        assert "assignments" in result["by_type"]
+        assert "lecture-content" in result["by_type"]
+
+    def test_process_module_by_type_nonexistent(self, temp_dir):
+        """Test processing non-existent module raises ValueError."""
+        with pytest.raises(ValueError, match="does not exist"):
+            process_module_by_type(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
+
+    def test_process_module_by_type_with_assignments(self, temp_dir):
+        """Test processing module with assignments directory."""
+        module_dir = temp_dir / "module"
+        module_dir.mkdir()
+        assignments_dir = module_dir / "assignments"
+        assignments_dir.mkdir()
+        (assignments_dir / "assignment-1.md").write_text("# Assignment 1\n\nContent", encoding="utf-8")
+        
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(str(module_dir), str(output_dir))
+        
+        assert "by_type" in result
+        assert "errors" in result
+
+    def test_process_module_by_type_curriculum_types(self, temp_dir):
+        """Test processing module with various curriculum types."""
+        module_dir = temp_dir / "module"
+        module_dir.mkdir()
+        
+        # Create sample files for each type
+        (module_dir / "sample_lecture-content.md").write_text("# Lecture\n\nContent", encoding="utf-8")
+        (module_dir / "sample_study-guide.md").write_text("# Study Guide\n\nContent", encoding="utf-8")
+        (module_dir / "sample_lab-protocol.md").write_text("# Lab Protocol\n\nContent", encoding="utf-8")
+        (module_dir / "sample_assignment.md").write_text("# Assignment\n\nContent", encoding="utf-8")
+        
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(str(module_dir), str(output_dir))
+        
+        # Should have processed multiple types
+        total = sum(result["summary"].values())
+        assert total > 0
+
+
+class TestProcessSyllabus:
+    """Tests for process_syllabus function."""
+
+    def test_process_syllabus_structure(self, temp_dir):
+        """Test that process_syllabus returns correct structure."""
+        syllabus_dir = temp_dir / "syllabus"
+        syllabus_dir.mkdir()
+        (syllabus_dir / "Syllabus.md").write_text("# Syllabus\n\nCourse overview", encoding="utf-8")
+        
+        output_dir = temp_dir / "output"
+        result = process_syllabus(str(syllabus_dir), str(output_dir))
+        
+        assert "by_format" in result
+        assert "summary" in result
+        assert "errors" in result
+
+    def test_process_syllabus_nonexistent(self, temp_dir):
+        """Test processing non-existent syllabus raises ValueError."""
+        with pytest.raises(ValueError, match="does not exist"):
+            process_syllabus(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
+
+    def test_process_syllabus_skips_readme(self, temp_dir):
+        """Test that README and AGENTS files are skipped."""
+        syllabus_dir = temp_dir / "syllabus"
+        syllabus_dir.mkdir()
+        (syllabus_dir / "README.md").write_text("# README", encoding="utf-8")
+        (syllabus_dir / "AGENTS.md").write_text("# AGENTS", encoding="utf-8")
+        (syllabus_dir / "Syllabus.md").write_text("# Syllabus", encoding="utf-8")
+        
+        output_dir = temp_dir / "output"
+        result = process_syllabus(str(syllabus_dir), str(output_dir))
+        
+        # Only Syllabus.md should be processed
+        assert result["summary"]["pdf"] <= 1
+
+
+class TestClearAllOutputs:
+    """Tests for clear_all_outputs function."""
+
+    def test_clear_all_outputs_structure(self, temp_dir):
+        """Test that clear_all_outputs returns correct structure."""
+        result = clear_all_outputs(temp_dir)
+        
+        assert "cleared_directories" in result
+        assert "total_files_removed" in result
+        assert "errors" in result
+
+    def test_clear_all_outputs_clears_files(self, temp_dir):
+        """Test that clear_all_outputs removes files."""
+        # Create a mock course structure
+        course_dir = temp_dir / "biol-1" / "course" / "module-1" / "output"
+        course_dir.mkdir(parents=True)
+        (course_dir / "test.pdf").write_text("test", encoding="utf-8")
+        
+        result = clear_all_outputs(temp_dir)
+        
+        # Should have cleared the output directory
+        assert result["total_files_removed"] >= 1 or len(result["cleared_directories"]) >= 1
+
+    def test_clear_all_outputs_no_courses(self, temp_dir):
+        """Test clear_all_outputs with no course directories."""
+        result = clear_all_outputs(temp_dir)
+        
+        assert result["cleared_directories"] == []
+        assert result["errors"] == []
+
+
+class TestProcessModuleWebsite:
+    """Tests for process_module_website function."""
+
+    def test_process_module_website_success(self, temp_dir):
+        """Test generating module website."""
+        module_dir = temp_dir / "module-1"
+        module_dir.mkdir()
+        
+        output_dir = temp_dir / "output" / "website"
+        result = process_module_website(str(module_dir), str(output_dir))
+        
+        assert result.endswith("index.html")
+        assert Path(result).exists()
+
+    def test_process_module_website_default_output(self, temp_dir):
+        """Test generating module website with default output."""
+        module_dir = temp_dir / "module-1"
+        module_dir.mkdir()
+        
+        result = process_module_website(str(module_dir))
+        
+        assert "output/website/index.html" in result

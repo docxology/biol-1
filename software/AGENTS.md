@@ -126,8 +126,58 @@ Technical documentation for course management software utilities, including func
 - `process_module_to_text(module_path: str, output_dir: str) -> List[str]`
 - `generate_module_media(module_path: str, output_dir: str) -> dict`
 - `process_module_by_type(module_path: str, output_dir: str) -> dict` - Process by curriculum element type
+- `process_syllabus(syllabus_path: str, output_dir: str) -> dict` - Process syllabus files
+- `clear_all_outputs(repo_root: Path) -> dict` - Clear all output directories
+- `process_module_website(module_path: str, output_dir: Optional[str] = None) -> str` - Generate module website
 
 **Dependencies**: All conversion modules
+
+### HTML Website Generation
+
+**Purpose**: Generate comprehensive HTML websites for modules with audio, quizzes, and interactive features
+
+**Location**: `src/html_website/`
+
+**Key Functions**:
+- `generate_module_website(module_path: str, output_dir: Optional[str] = None, course_name: Optional[str] = None) -> str`
+
+**Features**:
+- Dark mode toggle with localStorage persistence
+- Back to top button
+- Collapsible sections
+- Interactive quizzes (multiple choice, true/false, matching, free response)
+- Embedded audio players
+- Print-friendly layout
+- Mobile responsive design
+
+**Dependencies**: markdown2, batch_processing
+
+### Schedule Processing
+
+**Purpose**: Parse schedule markdown files and generate outputs in multiple formats
+
+**Location**: `src/schedule/`
+
+**Key Functions**:
+- `parse_schedule_markdown(schedule_path: str) -> Dict[str, Any]`
+- `process_schedule(schedule_path: str, output_dir: str, formats: Optional[List[str]] = None) -> Dict[str, Any]`
+- `generate_schedule_outputs(schedule_data: Dict[str, Any], output_dir: Path, base_name: str, formats: List[str]) -> Dict[str, List[str]]`
+- `batch_process_schedules(directory: str, output_dir: str, formats: Optional[List[str]] = None) -> Dict[str, Any]`
+
+**Dependencies**: markdown_to_pdf, text_to_speech, format_conversion
+
+### Publish Module
+
+**Purpose**: Export finalized course materials to the public `PUBLISHED/` directory
+
+**Location**: `src/publish/`
+
+**Key Functions**:
+- `publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]` - Main publishing logic
+- `get_course_config(course_name: str) -> Dict[str, str]` - Get course-specific configuration
+- `copy_directory_contents(src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None) -> int` - Intelligent copy
+
+**Dependencies**: shutil, path operations
 
 ## Code Organization
 
@@ -136,14 +186,19 @@ Technical documentation for course management software utilities, including func
 ```
 software/
 ├── src/              # Source code
-│   ├── markdown_to_pdf/
-│   ├── text_to_speech/
-│   ├── format_conversion/
-│   ├── module_organization/
+│   ├── batch_processing/
 │   ├── canvas_integration/
-│   └── file_validation/
+│   ├── file_validation/
+│   ├── format_conversion/
+│   ├── html_website/
+│   ├── markdown_to_pdf/
+│   ├── module_organization/
+│   ├── schedule/
+│   ├── speech_to_text/
+│   └── text_to_speech/
 ├── tests/            # Test files
 │   └── [mirrors src/ structure]
+├── scripts/          # Generation scripts
 └── docs/             # Documentation
     └── [module-specific docs]
 ```

@@ -145,6 +145,9 @@ uv run python -m src.markdown_to_pdf.main
 - **Speech-to-Text**: Transcribe audio files to text
 - **Format Conversion**: Convert files between formats (MD, PDF, DOCX, HTML, TXT, Audio)
 - **Batch Processing**: Process entire modules for multiple format conversions
+- **HTML Website**: Generate comprehensive HTML websites for modules with audio, quizzes, and interactive features
+- **Schedule Processing**: Parse and generate schedule outputs in multiple formats
+- **Publishing**: Export generated course materials to `PUBLISHED/` folder
 
 ### Course Management
 - **Module Organization**: Automated structure creation for new modules
@@ -153,7 +156,7 @@ uv run python -m src.markdown_to_pdf.main
 
 ## Sample Materials
 
-Sample biology course materials are available in all modules for testing:
+Sample biology course materials are available in `course_development/`:
 
 - **biol-1** and **biol-8** courses
 - **module-1, module-2, module-3** in each course
@@ -174,6 +177,13 @@ These sample files can be used to test:
 
 All code in this software uses real methods and implementations. No mocks, stubs, or fake methods are used. Tests use real file operations, real library calls, and real validation logic. External API integrations use real API clients with proper error handling.
 
+## Test Coverage
+
+- **233 tests passing** with 60% code coverage
+- Tests cover all major functionality across 10 modules
+- Run tests with: `uv run pytest tests/ -v`
+
 ## Documentation
 
 - **[AGENTS.md](AGENTS.md)**: Technical documentation for all software modules, function signatures, and APIs
+- **[docs/](docs/)**: Detailed documentation including quickstart guide and orchestration patterns

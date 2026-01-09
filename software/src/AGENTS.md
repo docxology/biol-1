@@ -640,6 +640,77 @@ def generate_module_website(module_path: str, output_dir: Optional[str] = None, 
     pass
 ```
 
+#### Schedule Processing Module
+
+**File**: `src/schedule/main.py`
+
+```python
+def parse_schedule_markdown(schedule_path: str) -> Dict[str, Any]:
+    """
+    Parse schedule markdown file and extract structured data.
+    
+    Args:
+        schedule_path: Path to schedule markdown file
+    
+    Returns:
+        Dictionary with parsed schedule data:
+        - entries: List of schedule entry dictionaries
+        - sections: Dictionary with additional sections
+        - metadata: Dictionary with file metadata
+    """
+    pass
+
+def process_schedule(schedule_path: str, output_dir: str, formats: Optional[List[str]] = None) -> Dict[str, Any]:
+    """
+    Process schedule file and generate outputs in specified formats.
+    
+    Args:
+        schedule_path: Path to schedule markdown file
+        output_dir: Output directory for generated files
+        formats: List of output formats (default: all supported formats)
+    
+    Returns:
+        Dictionary with results:
+        - outputs: Dictionary mapping format to list of output file paths
+        - summary: Dictionary with counts of generated files by format
+        - errors: List of errors encountered
+    """
+    pass
+
+def generate_schedule_outputs(schedule_data: Dict[str, Any], output_dir: Path, base_name: str, formats: List[str]) -> Dict[str, List[str]]:
+    """
+    Generate schedule outputs in specified formats.
+    
+    Args:
+        schedule_data: Parsed schedule data dictionary
+        output_dir: Output directory
+        base_name: Base name for output files
+        formats: List of output formats to generate
+    
+    Returns:
+        Dictionary mapping format to list of output file paths
+    """
+    pass
+
+def batch_process_schedules(directory: str, output_dir: str, formats: Optional[List[str]] = None) -> Dict[str, Any]:
+    """
+    Batch process all schedule files in a directory.
+    
+    Args:
+        directory: Directory containing schedule files
+        output_dir: Output directory for generated files
+        formats: List of output formats (default: all supported formats)
+    
+    Returns:
+        Dictionary with results:
+        - processed_files: List of processed schedule file paths
+        - outputs: Dictionary mapping format to list of output file paths
+        - summary: Dictionary with counts of generated files by format
+        - errors: List of errors encountered
+    """
+    pass
+```
+
 ## Code Organization Principles
 
 ### Modularity

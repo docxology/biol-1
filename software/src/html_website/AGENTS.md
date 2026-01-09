@@ -164,20 +164,26 @@ Ensure output directory exists.
 ### Design Features
 
 - **Grayscale color scheme**: Simple, professional design
-- **Responsive layout**: Works on desktop and mobile devices
+- **Responsive layout**: Flexbox-based split view with sidebar
 - **Audio integration**: Embedded HTML5 audio players
 - **Text accessibility**: Plain text versions available
-- **Resizable components**: Horizontal and vertical sliders for each section
+- **Resizable Layout**: Draggable handle between sidebar and content
 - **Collapsible sections**: Toggle buttons to expand/collapse sections
 - **State persistence**: Preferences saved in localStorage
 
 ### Interactive Features
 
-**Resizable Components**:
-- Each section has individual width and height sliders
-- Range: Width 300-1000px, Height 200-800px
-- Preferences persist across sessions
-- Visual feedback with current dimensions
+**Sidebar Navigation**:
+- Auto-generated links for all module sections
+- Active state highlighting based on scroll position (ScrollSpy)
+- Mobile-friendly toggle menu
+- Fixed position with scrollable content
+
+**Resizable Layout**:
+- Global resize handle between sidebar and main content
+- Drag to adjust width (min/max constraints applied)
+- Double-click to reset defaults
+- Width preference persists across sessions
 
 **Collapsible Sections**:
 - Toggle buttons in section headers

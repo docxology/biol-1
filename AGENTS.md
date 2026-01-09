@@ -8,18 +8,23 @@ This document provides technical documentation for the Biology courses repositor
 
 ### Directory Conventions
 
-- **Naming**: All directories use kebab-case (lowercase with hyphens)
-- **Course folders**: `biol-1/`, `biol-8/`
-- **Module folders**: `module-1/`, `module-2/`, etc.
-- **Standard folders**: `course/`, `private/`, `resources/`, `assignments/`, `src/`, `tests/`, `docs/`
+### Directory Conventions
+
+- **Root Folders**:
+  - `course_development/`: "Back Office" for private curriculum work
+  - `PUBLISHED/`: Public, ready-to-upload output files
+  - `software/`: Automation tools and documentation
 
 ### File Organization
 
-#### Course Materials
-- **Public materials** (`course/`): Organized by module, uploaded to Canvas
-- **Private materials** (`private/`): Instructor-only, not shared publicly
-- **Resources** (`resources/`): Supplementary resources including reference materials, media, external links, and templates
-- **Module structure**: Each module contains assignments, lecture materials, lab protocols, study guides, and quizzes
+#### Course Development (`course_development/`)
+- **Structure**: `biol-1/`, `biol-8/`
+- **Course folders**: Contains `course/` (source), `syllabus/`, `private/`
+- **Source of Truth**: All edits happen here.
+
+#### Published Materials (`PUBLISHED/`)
+- **Generated Outputs**: PDF, MP3, HTML, DOCX
+- **Organization**: Mirror of course structure, but only final files.
 
 #### Software Structure
 - **Source code** (`software/src/`): Modular utilities organized by function
