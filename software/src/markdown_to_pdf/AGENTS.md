@@ -8,6 +8,81 @@ Markdown to PDF conversion utilities using WeasyPrint for rendering.
 
 Convert Markdown course materials to PDF format with customizable styling and batch processing support.
 
+## Module Boundaries
+
+**What this module does:**
+- Converts Markdown files to PDF format
+- Provides batch processing for multiple Markdown files
+- Supports custom CSS styling for PDF output
+- Configures PDF rendering options
+
+**What this module does NOT do:**
+- Does not convert other formats to PDF (use `format_conversion` module)
+- Does not process entire modules (use `batch_processing` module)
+- Does not validate Markdown structure (use `file_validation` module)
+- Does not handle file organization (use `module_organization` module)
+
+## Dependencies
+
+### Internal Dependencies (Other Modules)
+- None (standalone module, Layer 1)
+
+### External Dependencies (Libraries)
+- `weasyprint`: HTML/CSS to PDF rendering
+- `markdown`: Markdown to HTML conversion
+
+### System Dependencies
+- System libraries for WeasyPrint (cairo, pango, gdk-pixbuf, glib on macOS/Linux)
+
+## Independent Usage
+
+**Can be used standalone**: Yes
+
+**Standalone Example:**
+```python
+from src.markdown_to_pdf.main import render_markdown_to_pdf
+render_markdown_to_pdf("input.md", "output.pdf")
+```
+
+**Requirements for standalone use:**
+- WeasyPrint library installed
+- System dependencies for WeasyPrint (see installation docs)
+- Markdown file as input
+
+## Integration Points
+
+**Used by:**
+- `format_conversion`: Uses `render_markdown_to_pdf()` for Markdown to PDF conversion
+- `batch_processing`: Uses `render_markdown_to_pdf()` for batch PDF generation
+- `schedule`: Uses `render_markdown_to_pdf()` for schedule PDF generation
+
+**Integration Pattern:**
+- Sequential composition: This module is called by other modules to generate PDFs
+- Interface: Other modules import and call `render_markdown_to_pdf()` from `main.py`
+
+## Interface Contract
+
+**Public API:**
+- `render_markdown_to_pdf(input_path, output_path, css_content=None, pdf_options=None) -> None`
+- `batch_render_markdown(directory, output_dir) -> List[str]`
+- `configure_pdf_options(template, options) -> Dict[str, Any]`
+
+**Return Value Guarantees:**
+- `render_markdown_to_pdf()`: Returns None, creates PDF file at output_path
+- `batch_render_markdown()`: Returns list of output file paths (strings)
+- `configure_pdf_options()`: Returns dictionary with configured options
+
+**Error Handling:**
+- Raises `FileNotFoundError` if input file doesn't exist
+- Raises `ValueError` for invalid inputs
+- Raises `OSError` if PDF generation fails
+
+**Side Effects:**
+- Creates PDF files at specified output paths
+- Creates output directories if they don't exist
+- No modification of input files
+- No external API calls
+
 ## Function Signatures
 
 ### Main Functions

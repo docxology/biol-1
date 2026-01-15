@@ -732,3 +732,83 @@ def batch_process_schedules(directory: str, output_dir: str, formats: Optional[L
 - Unit tests for each function
 - Integration tests for module interactions
 - Test coverage targets maintained
+- Modules can be tested in isolation
+
+---
+
+## Module Interface Contracts
+
+When modules interact, they do so through well-defined interface contracts.
+
+### Public API Contract
+
+Functions in `main.py` define the public interface:
+
+- **Function Signatures**: Complete type hints for all parameters and return values
+- **Documentation**: Docstrings explain purpose, parameters, return values, and exceptions
+- **Consistency**: Similar functions across modules follow similar patterns
+- **Stability**: Public API changes require careful consideration
+
+### Return Value Contracts
+
+Modules return consistent data structures:
+
+- **Success Cases**: Return dictionaries with predictable keys
+- **Error Cases**: Raise exceptions or return error dictionaries
+- **Type Guarantees**: Return types match type hints exactly
+
+Example:
+```python
+# Consistent return pattern
+{
+    "valid": bool,
+    "errors": List[str],
+    "summary": Dict[str, int]
+}
+```
+
+### Error Handling Contracts
+
+Modules handle errors predictably:
+
+- **Input Validation**: Validate inputs and raise `ValueError` for invalid inputs
+- **File Operations**: Raise `FileNotFoundError` for missing files
+- **External Services**: Handle network errors gracefully
+- **Documentation**: All possible exceptions are documented
+
+### Side Effect Contracts
+
+Modules document side effects explicitly:
+
+- **File Operations**: Functions that create, modify, or delete files document this
+- **External API Calls**: Functions that make network requests document this
+- **State Changes**: Functions that modify global state document this
+- **No Hidden Side Effects**: All side effects are explicit in documentation
+
+### Dependency Contracts
+
+When modules depend on others:
+
+- **Explicit Dependencies**: All inter-module dependencies are documented
+- **Interface Only**: Modules interact only through public APIs (`main.py`)
+- **No Internal Access**: Modules never import from `utils.py` of other modules
+- **Version Compatibility**: Dependencies on external libraries are versioned
+
+### Thread Safety Contracts
+
+Modules document thread safety:
+
+- **Stateless Functions**: Most functions are stateless and thread-safe
+- **File Operations**: File operations are generally not thread-safe for same files
+- **External Services**: Network calls may have rate limits
+
+### Interface Evolution
+
+Public interfaces evolve carefully:
+
+- **Backward Compatibility**: Changes maintain compatibility when possible
+- **Deprecation**: Breaking changes are deprecated before removal
+- **Documentation**: All interface changes are documented
+- **Versioning**: Major interface changes may require versioning
+
+See each module's `AGENTS.md` for specific interface contracts.

@@ -2,7 +2,7 @@
 
 > **Navigation**: [← README](README.md) | [Architecture](ARCHITECTURE.md) | [Orchestration →](ORCHESTRATION.md) | [API Reference](../AGENTS.md)
 
-Get started with cr-bio course management software in minutes.
+Get started with cr-bio course management software.
 
 ---
 
@@ -50,9 +50,48 @@ uv run python -c "from src.format_conversion.main import convert_file; print('�
 
 ---
 
-## ⚡ Quick Commands
+## Using Modules Independently
+
+All modules can be imported and used independently. Each module has a self-contained public API in its `main.py` file.
+
+### Standalone Module Usage
+
+Each module can be used without importing other modules:
+
+```python
+# Use markdown_to_pdf independently
+from src.markdown_to_pdf.main import render_markdown_to_pdf
+render_markdown_to_pdf("input.md", "output.pdf")
+
+# Use text_to_speech independently
+from src.text_to_speech.main import generate_speech
+generate_speech("Hello world", "output.mp3")
+
+# Use file_validation independently
+from src.file_validation.main import validate_module_files
+result = validate_module_files("/path/to/module")
+```
+
+### Module Import Pattern
+
+All modules follow the same import pattern:
+
+```python
+from src.module_name.main import function_name
+```
+
+### No Orchestration Required
+
+The quick commands below use single modules. No orchestration or composition is required for basic usage. See [ORCHESTRATION.md](ORCHESTRATION.md) for combining modules.
+
+---
+
+## Quick Commands
 
 ### Convert Markdown to PDF {#convert-markdown-to-pdf}
+
+**Module**: `markdown_to_pdf` (standalone, no dependencies)
+
 ```bash
 uv run python -c "
 from src.markdown_to_pdf.main import render_markdown_to_pdf
@@ -61,6 +100,9 @@ render_markdown_to_pdf('input.md', 'output.pdf')
 ```
 
 ### Generate Audio from Text {#generate-audio}
+
+**Module**: `text_to_speech` (standalone, requires internet for gTTS)
+
 ```bash
 uv run python -c "
 from src.text_to_speech.main import generate_speech
@@ -86,6 +128,9 @@ generate_module_website('/path/to/module', './output/website', course_name='BIOL
 ```
 
 ### Validate Module Structure
+
+**Module**: `file_validation` (standalone, no dependencies)
+
 ```bash
 uv run python -c "
 from src.file_validation.main import validate_module_files
@@ -107,7 +152,7 @@ convert_file('input.md', 'html', 'output.html')
 
 ---
 
-## 🔧 Generation Scripts
+## Generation Scripts
 
 ### Generate All Course Outputs
 ```bash
@@ -142,7 +187,7 @@ uv run python scripts/generate_syllabus_renderings.py /path/to/syllabus.md
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 ### Run All Tests
 ```bash
@@ -170,12 +215,12 @@ uv run pytest tests/test_schedule_main.py::TestProcessSchedule::test_process_sch
 ```
 
 ### Current Statistics
-- **Tests**: 334 passed, 6 skipped
-- **Coverage**: 87%
+- **Tests**: 325 collected (verify with `uv run pytest --collect-only`)
+- **Coverage**: Measure with `uv run pytest --cov=src --cov-report=html`
 
 ---
 
-## 📁 Expected Output Structure
+## Expected Output Structure
 
 After running `generate_all_outputs.py`:
 
@@ -200,7 +245,7 @@ module-1/
 
 ---
 
-## 🔥 Troubleshooting
+## Troubleshooting
 
 ### PDF Generation Fails
 
@@ -240,7 +285,7 @@ uv run python scripts/generate_all_outputs.py
 
 ---
 
-## 📖 Next Steps
+## Next Steps
 
 | I want to... | Go to... |
 |--------------|----------|
@@ -252,7 +297,7 @@ uv run python scripts/generate_all_outputs.py
 
 ---
 
-## 📋 Quick Reference Card
+## Quick Reference Card
 
 | Task | Function |
 |------|----------|

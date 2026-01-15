@@ -6,18 +6,13 @@ This document defines documentation standards for the cr-bio software project.
 
 ---
 
-## 📊 Project Statistics
+## Project Statistics
 
-| Metric | Value | Last Updated |
-|--------|-------|--------------|
-| **Total Tests** | 334 | 2026-01-09 |
-| **Pass Rate** | 100% | 2026-01-09 |
-| **Code Coverage** | 87% | 2026-01-09 |
-| **Modules** | 10 | - |
+Statistics are maintained in [README.md](README.md). This document focuses on documentation standards and processes.
 
 ---
 
-## 📚 Documentation Map
+## Documentation Map
 
 ### Root Level (`software/`)
 | File | Purpose | Audience |
@@ -48,7 +43,7 @@ This document defines documentation standards for the cr-bio software project.
 
 ---
 
-## 📝 Required Elements
+## Required Elements
 
 ### Every Document Must Include
 
@@ -75,7 +70,7 @@ This document defines documentation standards for the cr-bio software project.
 
 ---
 
-## 📋 Formatting Standards
+## Formatting Standards
 
 ### Headers
 
@@ -148,7 +143,122 @@ Use sparingly for visual hierarchy:
 
 ---
 
-## 🔧 Module Documentation Format
+## Modular Documentation Standards
+
+Every module's `AGENTS.md` file must document modularity aspects to enable maximum modular functionality.
+
+### Required Sections
+
+Each module `AGENTS.md` must include:
+
+#### 1. Module Boundaries
+
+Clearly define what the module does and does not do:
+
+```markdown
+## Module Boundaries
+
+**What this module does:**
+- Primary responsibility
+- Core functionality
+- Scope of operations
+
+**What this module does NOT do:**
+- Responsibilities handled by other modules
+- Out-of-scope functionality
+- Dependencies on other modules for these features
+```
+
+#### 2. Dependencies
+
+Explicitly list all dependencies:
+
+```markdown
+## Dependencies
+
+### Internal Dependencies (Other Modules)
+- `module_name`: Purpose of dependency
+- `another_module`: Purpose of dependency
+
+### External Dependencies (Libraries)
+- `library_name`: Purpose and version requirements
+
+### System Dependencies
+- System tools or libraries required
+```
+
+#### 3. Independent Usage
+
+Document whether and how the module can be used standalone:
+
+```markdown
+## Independent Usage
+
+**Can be used standalone**: Yes/No
+
+**Standalone Example:**
+```python
+from src.module_name.main import primary_function
+result = primary_function(arg1, arg2)
+```
+
+**Requirements for standalone use:**
+- List any prerequisites
+- External dependencies needed
+- System requirements
+```
+
+#### 4. Integration Points
+
+Document how other modules use this one:
+
+```markdown
+## Integration Points
+
+**Used by:**
+- `module_name`: How it uses this module
+- `another_module`: How it uses this module
+
+**Integration Pattern:**
+- Sequential, parallel, or conditional composition
+- Interface contract
+```
+
+#### 5. Interface Contract
+
+Document the public API guarantees:
+
+```markdown
+## Interface Contract
+
+**Public API:**
+- Function signatures
+- Return value guarantees
+- Error handling behavior
+
+**Side Effects:**
+- File operations
+- External API calls
+- State changes
+
+**Thread Safety:**
+- Safe for concurrent use (if applicable)
+```
+
+### Documentation Checklist
+
+When documenting a module, ensure:
+
+- [ ] Module boundaries are clearly defined
+- [ ] All dependencies are explicitly listed
+- [ ] Independent usage is documented with examples
+- [ ] Integration points with other modules are documented
+- [ ] Interface contract is specified
+- [ ] Public vs internal functions are clearly distinguished
+
+---
+
+## Module Documentation Format
 
 ### API Reference Format
 
@@ -186,19 +296,19 @@ def function_name(
 
 ### Module Table Format
 
-| Module | Key Function | Description |
-|--------|--------------|-------------|
-| module_name | `primary_function()` | Brief description |
+| Module | Key Function | Description | Standalone | Dependencies |
+|--------|--------------|-------------|------------|--------------|
+| module_name | `primary_function()` | Brief description | Yes/No | List dependencies |
 
 ---
 
-## ✅ Quality Standards
+## Quality Standards
 
 ### Accuracy
 
 - [ ] All code examples are tested and working
 - [ ] Function signatures match actual implementation
-- [ ] Statistics (test count, coverage) are current
+- [ ] Statistics are verified before inclusion
 - [ ] Links are valid and not broken
 
 ### Completeness
@@ -224,19 +334,19 @@ def function_name(
 
 ---
 
-## 🔄 Maintenance Process
+## Maintenance Process
 
 ### When Code Changes
 
 1. Update affected API documentation in `AGENTS.md`
 2. Update examples if signatures change
-3. Update test counts and coverage in `README.md`
+3. Verify and update statistics in `README.md` if changed
 4. Review cross-references for accuracy
 
 ### Periodic Review
 
 1. Verify all links still work
-2. Update statistics (tests, coverage)
+2. Measure and update statistics if changed
 3. Check for outdated information
 4. Review for clarity improvements
 
@@ -244,12 +354,12 @@ def function_name(
 
 1. Full documentation review
 2. All examples tested
-3. Statistics updated
+3. Statistics verified and updated
 4. Version history updated
 
 ---
 
-## 📖 Related Documentation
+## Related Documentation
 
 | Document | Description |
 |----------|-------------|
@@ -261,10 +371,11 @@ def function_name(
 
 ---
 
-## 🔄 Version History
+## Version History
 
 | Date | Changes |
 |------|---------|
+| 2026-01-15 | Removed unverified statistics, focused on documentation standards |
 | 2026-01-09 | Complete rewrite with comprehensive standards |
 | 2026-01-08 | Added navigation headers |
 | 2026-01-01 | Initial documentation standards |

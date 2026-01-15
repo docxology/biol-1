@@ -137,6 +137,37 @@ uv run python -m src.markdown_to_pdf.main
 - **[tests/](tests/)**: Test files for software validation
 - **[docs/](docs/)**: Technical documentation for software modules
 
+## Modular Design
+
+The software follows a modular architecture where each module is:
+
+- **Self-contained**: Each module contains all code, configuration, and logic needed for its purpose
+- **Independently usable**: Modules can be imported and used without other modules
+- **Clearly bounded**: Public API (`main.py`) is separate from internal implementation (`utils.py`)
+- **Minimally dependent**: Only essential inter-module dependencies exist
+- **Composable**: Modules can be combined in various workflows
+
+### Module Structure
+
+Every module follows a consistent structure:
+- `main.py`: Public API (imported by users and other modules)
+- `utils.py`: Internal helper functions (private to module)
+- `config.py`: Constants and configuration
+- `__init__.py`: Exports public functions
+
+### Using Modules Independently
+
+All modules can be used independently:
+
+```python
+# Use any module independently
+from src.markdown_to_pdf.main import render_markdown_to_pdf
+from src.text_to_speech.main import generate_speech
+from src.file_validation.main import validate_module_files
+```
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for design principles and [docs/ORCHESTRATION.md](docs/ORCHESTRATION.md) for composition patterns.
+
 ## Utilities
 
 ### Content Generation
@@ -179,9 +210,10 @@ All code in this software uses real methods and implementations. No mocks, stubs
 
 ## Test Coverage
 
-- **233 tests passing** with 60% code coverage
-- Tests cover all major functionality across 10 modules
+- **325 tests collected** (verify with `uv run pytest --collect-only`)
+- Tests cover all major functionality across 11 modules
 - Run tests with: `uv run pytest tests/ -v`
+- Measure coverage with: `uv run pytest --cov=src --cov-report=html`
 
 ## Documentation
 

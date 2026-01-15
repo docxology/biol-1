@@ -8,6 +8,88 @@ Batch processing utilities for converting entire course modules to multiple medi
 
 Process entire modules for multiple format conversions, maintaining directory structure and organizing outputs by curriculum element type.
 
+## Module Boundaries
+
+**What this module does:**
+- Processes entire modules for format conversion
+- Organizes outputs by curriculum element type
+- Coordinates multiple conversion modules
+- Generates comprehensive output summaries
+- Clears output directories
+
+**What this module does NOT do:**
+- Does not perform individual file conversions (uses conversion modules)
+- Does not validate module structure (uses `file_validation` module)
+- Does not create module structures (uses `module_organization` module)
+- Does not generate websites (uses `html_website` module, though it can trigger it)
+
+## Dependencies
+
+### Internal Dependencies (Other Modules)
+- `markdown_to_pdf`: For PDF generation
+- `text_to_speech`: For audio generation
+- `format_conversion`: For multi-format conversions
+- `file_validation`: For module validation (optional, used in some workflows)
+
+### External Dependencies (Libraries)
+- Standard library only (pathlib, os, logging)
+
+### System Dependencies
+- Dependencies of the conversion modules it uses
+
+## Independent Usage
+
+**Can be used standalone**: Yes (if dependencies are available)
+
+**Standalone Example:**
+```python
+from src.batch_processing.main import process_module_by_type
+results = process_module_by_type("/path/to/module", "/path/to/output")
+print(f"Generated: {results['summary']}")
+```
+
+**Requirements for standalone use:**
+- Module directory path
+- Core conversion modules available (`markdown_to_pdf`, `text_to_speech`, `format_conversion`)
+- System dependencies for conversion modules
+
+## Integration Points
+
+**Used by:**
+- `html_website`: Uses `process_module_by_type()` to generate content before website creation
+- Generation scripts: Use batch processing functions for course-wide generation
+
+**Integration Pattern:**
+- Orchestration: This module orchestrates multiple conversion modules
+- Sequential composition: Other modules call this after validation
+- Interface: Other modules import and call functions from `main.py`
+
+## Interface Contract
+
+**Public API:**
+- `process_module_by_type(module_path, output_dir) -> Dict[str, Any]`
+- `process_module_to_pdf(module_path, output_dir) -> List[str]`
+- `process_module_to_audio(module_path, output_dir) -> List[str]`
+- `process_syllabus(syllabus_path, output_dir) -> Dict[str, Any]`
+- `clear_all_outputs(repo_root) -> Dict[str, Any]`
+
+**Return Value Guarantees:**
+- `process_module_by_type()`: Returns dict with `summary` (format counts) and `errors`
+- `process_module_to_*()`: Returns list of output file paths
+- `clear_all_outputs()`: Returns dict with `total_files_removed` and `errors`
+- All functions return consistent dictionary structures
+
+**Error Handling:**
+- Raises `ValueError` for invalid inputs
+- Returns errors in result dictionaries (continues processing on individual file errors)
+- Logs errors for debugging
+
+**Side Effects:**
+- Creates output files and directories
+- Modifies file system (creates files, may clear directories)
+- No external API calls (delegates to conversion modules)
+- Uses logging for operation tracking
+
 ## Function Signatures
 
 ### Output Management

@@ -8,6 +8,87 @@ File and structure validation utilities for course modules, including naming con
 
 Validate course module structure, file naming conventions, extensions, and provide detailed validation reports for module quality assurance.
 
+## Module Boundaries
+
+**What this module does:**
+- Validates module file structure and organization
+- Checks file naming conventions
+- Verifies required files and directories exist
+- Provides detailed validation reports
+- Checks file sizes and extensions
+
+**What this module does NOT do:**
+- Does not create module structures (use `module_organization` module)
+- Does not process or convert files (use conversion modules)
+- Does not generate content (use content generation modules)
+- Does not upload to external systems (use `canvas_integration` module)
+
+## Dependencies
+
+### Internal Dependencies (Other Modules)
+- None (standalone module, Layer 0)
+
+### External Dependencies (Libraries)
+- None (uses only standard library: pathlib, os)
+
+### System Dependencies
+- None
+
+## Independent Usage
+
+**Can be used standalone**: Yes
+
+**Standalone Example:**
+```python
+from src.file_validation.main import validate_module_files
+result = validate_module_files("/path/to/module")
+if result["valid"]:
+    print("Module is valid")
+else:
+    print(f"Errors: {result.get('errors', [])}")
+```
+
+**Requirements for standalone use:**
+- Module directory path
+- No external dependencies required
+
+## Integration Points
+
+**Used by:**
+- `batch_processing`: Validates modules before processing
+- `canvas_integration`: Validates modules before Canvas upload
+
+**Integration Pattern:**
+- Conditional composition: Other modules call validation before proceeding
+- Interface: Other modules import and call `validate_module_files()` from `main.py`
+
+## Interface Contract
+
+**Public API:**
+- `validate_module_files(module_path) -> Dict[str, Any]`
+- `check_naming_conventions(directory) -> List[str]`
+- `verify_required_structure(module_path) -> bool`
+- `validate_course_structure(course_path) -> Dict[str, Any]`
+- `get_validation_report(module_path) -> Dict[str, Any]`
+- `find_missing_materials(module_path) -> Dict[str, Any]`
+- `check_file_sizes(module_path, max_size) -> List[str]`
+
+**Return Value Guarantees:**
+- `validate_module_files()`: Returns dict with `valid` (bool) and error details
+- `check_naming_conventions()`: Returns list of file paths with violations
+- `verify_required_structure()`: Returns bool indicating structure validity
+- All functions return consistent dictionary structures
+
+**Error Handling:**
+- Returns error information in result dictionaries
+- Does not raise exceptions for validation failures (returns `valid: False`)
+- Raises exceptions only for invalid inputs (e.g., non-existent paths)
+
+**Side Effects:**
+- Read-only operations (no file modifications)
+- No external API calls
+- No file creation or deletion
+
 ## Function Signatures
 
 ### Main Functions

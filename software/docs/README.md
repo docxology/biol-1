@@ -4,19 +4,17 @@
 
 ## Overview
 
-Comprehensive documentation for the **cr-bio course management software**. This software automates the generation of educational materials in multiple formats (PDF, MP3, HTML, DOCX, TXT) from Markdown source files.
+Documentation for cr-bio course management software. Generates educational materials in multiple formats (PDF, MP3, HTML, DOCX, TXT) from Markdown source files.
 
 ---
 
-## 📊 Project Statistics
+## Project Statistics
 
 | Metric | Value | Last Updated |
 |--------|-------|--------------|
-| **Total Tests** | 334 | 2026-01-09 |
-| **Pass Rate** | 100% | 2026-01-09 |
-| **Code Coverage** | 87% | 2026-01-09 |
-| **Modules** | 10 | - |
-| **Skipped Tests** | 6 | - |
+| **Total Tests** | 325 | 2026-01-15 |
+| **Modules** | 11 | 2026-01-15 |
+| **Code Coverage** | Measured via `uv run pytest --cov=src` | - |
 
 ### Supported Courses
 - **BIOL-1**: 17 modules (Spring 2026)
@@ -24,7 +22,7 @@ Comprehensive documentation for the **cr-bio course management software**. This 
 
 ---
 
-## 📚 Documentation Index
+## Documentation Index
 
 ### Getting Started
 | Document | Description | Audience |
@@ -50,31 +48,44 @@ Comprehensive documentation for the **cr-bio course management software**. This 
 
 ---
 
-## 🔧 Module Reference
+## Modular Architecture
 
-### Content Generation (7 modules)
+The software is built on a modular architecture where each module is:
 
-| Module | Purpose | Key Function | Coverage |
-|--------|---------|--------------|----------|
-| [markdown_to_pdf](../src/markdown_to_pdf/) | Markdown → PDF via WeasyPrint | `render_markdown_to_pdf()` | 92% |
-| [text_to_speech](../src/text_to_speech/) | Text → MP3 via gTTS | `generate_speech()` | 97% |
-| [speech_to_text](../src/speech_to_text/) | Audio → Text transcription | `transcribe_audio()` | 98% |
-| [format_conversion](../src/format_conversion/) | Multi-format conversion | `convert_file()` | 85% |
-| [batch_processing](../src/batch_processing/) | Batch module processing | `process_module_by_type()` | 75% |
-| [html_website](../src/html_website/) | Interactive HTML websites | `generate_module_website()` | 92% |
-| [schedule](../src/schedule/) | Schedule file processing | `process_schedule()` | 93% |
+- **Self-contained**: Contains all code, configuration, and logic needed for its purpose
+- **Independently usable**: Can be imported and used without other modules
+- **Clearly bounded**: Public API (`main.py`) vs internal implementation (`utils.py`)
+- **Minimally dependent**: Only essential inter-module dependencies
+- **Composable**: Modules can be combined in various workflows
 
-### Course Management (3 modules)
+See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHESTRATION.md](ORCHESTRATION.md) for composition patterns.
 
-| Module | Purpose | Key Function | Coverage |
-|--------|---------|--------------|----------|
-| [module_organization](../src/module_organization/) | Create module structures | `create_module_structure()` | 93% |
-| [file_validation](../src/file_validation/) | Validate content | `validate_module_files()` | 92% |
-| [canvas_integration](../src/canvas_integration/) | Upload to Canvas LMS | `upload_module_to_canvas()` | 73% |
+## Module Reference
+
+### Content Generation
+
+| Module | Purpose | Key Function | Standalone | Dependencies |
+|--------|---------|--------------|------------|--------------|
+| [markdown_to_pdf](../src/markdown_to_pdf/) | Markdown → PDF via WeasyPrint | `render_markdown_to_pdf()` | Yes | WeasyPrint only |
+| [text_to_speech](../src/text_to_speech/) | Text → MP3 via gTTS | `generate_speech()` | Yes | gTTS only |
+| [speech_to_text](../src/speech_to_text/) | Audio → Text transcription | `transcribe_audio()` | Yes | SpeechRecognition only |
+| [format_conversion](../src/format_conversion/) | Multi-format conversion | `convert_file()` | Yes | Core converters |
+| [batch_processing](../src/batch_processing/) | Batch module processing | `process_module_by_type()` | Yes | Core/format modules |
+| [html_website](../src/html_website/) | Interactive HTML websites | `generate_module_website()` | Yes | batch_processing, format_conversion |
+| [schedule](../src/schedule/) | Schedule file processing | `process_schedule()` | Yes | Core/format modules |
+
+### Course Management
+
+| Module | Purpose | Key Function | Standalone | Dependencies |
+|--------|---------|--------------|------------|--------------|
+| [module_organization](../src/module_organization/) | Create module structures | `create_module_structure()` | Yes | None |
+| [file_validation](../src/file_validation/) | Validate content | `validate_module_files()` | Yes | None |
+| [canvas_integration](../src/canvas_integration/) | Upload to Canvas LMS | `upload_module_to_canvas()` | Yes | file_validation |
+| [publish](../src/publish/) | Export to PUBLISHED directory | `publish_course()` | Yes | None |
 
 ---
 
-## 🗺️ Documentation Map
+## Documentation Map
 
 ```
 software/
@@ -99,7 +110,7 @@ software/
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 ### By Task
 
@@ -128,7 +139,7 @@ software/
 
 ---
 
-## 📋 Documentation Standards
+## Documentation Standards
 
 1. **Navigation Headers**: Every doc links to related docs
 2. **Consistent Structure**: Standardized sections across all docs
@@ -140,10 +151,11 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 ---
 
-## 🔄 Version History
+## Version History
 
 | Date | Changes |
 |------|---------|
-| 2026-01-09 | Updated to 334 tests, 87% coverage, removed bio_1_2025 legacy |
+| 2026-01-15 | Updated statistics, corrected module count, removed unverified coverage claims |
+| 2026-01-09 | Updated test counts and coverage |
 | 2026-01-08 | Enhanced documentation modularity and signposting |
 | 2026-01-01 | Initial comprehensive documentation |

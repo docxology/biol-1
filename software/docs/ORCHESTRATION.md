@@ -6,11 +6,91 @@ This guide demonstrates how to combine multiple modules for complex workflows.
 
 ---
 
-## 🎯 Orchestration Patterns
+## Modular Composition
+
+### Core Principle
+
+Each module in the system can be used independently. Orchestration is the act of composing multiple independent modules to create more complex workflows. This composition is explicit and documented.
+
+### Composition Patterns
+
+#### Sequential Composition
+
+Modules are called in sequence, where the output of one module feeds into another:
+
+```python
+# Sequential: Validate → Process → Generate
+from src.file_validation.main import validate_module_files
+from src.batch_processing.main import process_module_by_type
+
+validation = validate_module_files(module_path)
+if validation["valid"]:
+    results = process_module_by_type(module_path, output_dir)
+```
+
+#### Parallel Composition
+
+Multiple modules process different inputs or aspects simultaneously:
+
+```python
+# Parallel: Generate multiple formats at once
+from src.markdown_to_pdf.main import render_markdown_to_pdf
+from src.format_conversion.main import convert_file
+from src.text_to_speech.main import generate_speech
+
+# All can run independently
+render_markdown_to_pdf("file.md", "file.pdf")
+convert_file("file.md", "html", "file.html")
+generate_speech("text", "file.mp3")
+```
+
+#### Conditional Composition
+
+Modules are invoked based on conditions or validation results:
+
+```python
+# Conditional: Only process if validation passes
+from src.file_validation.main import validate_module_files
+from src.batch_processing.main import process_module_by_type
+
+validation = validate_module_files(module_path)
+if validation["valid"]:
+    process_module_by_type(module_path, output_dir)
+else:
+    print("Skipping: validation failed")
+```
+
+### Module Swapping and Extension
+
+Because modules have clear interfaces, they can be swapped or extended:
+
+- **Swapping**: Replace one module with another that has the same interface
+- **Extending**: Add new modules to a workflow without modifying existing ones
+- **Testing**: Test modules independently before composing them
+
+### Required Modules
+
+Each orchestration pattern documents which modules are required:
+
+- **Required**: Modules that must be present for the pattern to work
+- **Optional**: Modules that enhance the pattern but aren't required
+- **Dependencies**: External dependencies (libraries, system tools)
+
+---
+
+## Orchestration Patterns
 
 ### 1. Complete Module Lifecycle
 
 Create, validate, and generate all outputs for a module:
+
+**Required Modules**: `module_organization`, `file_validation`, `batch_processing`, `html_website`
+
+**Module Dependencies**:
+- `batch_processing` depends on: `markdown_to_pdf`, `text_to_speech`, `format_conversion`
+- `html_website` depends on: `batch_processing`, `format_conversion`
+
+**Can be used independently**: Each module can be used separately; this pattern composes them.
 
 ```python
 from src.module_organization.main import create_module_structure
@@ -49,6 +129,12 @@ print(f"Website: {website}")
 
 Convert a single Markdown file to multiple formats:
 
+**Required Modules**: `markdown_to_pdf`, `format_conversion`, `text_to_speech`
+
+**Module Dependencies**: None (all are Layer 1 core modules)
+
+**Can be used independently**: Each conversion can be done separately; this pattern shows combining them.
+
 ```python
 from src.markdown_to_pdf.main import render_markdown_to_pdf
 from src.format_conversion.main import convert_file
@@ -81,7 +167,7 @@ print(f"Generated 5 files in {output_dir}")
 
 ---
 
-### 3. Schedule Processing Pipeline {#3-schedule-processing-pipeline-schedule-processing-pipeline}
+### 3. Schedule Processing Pipeline
 
 Process schedule files into multiple formats:
 
@@ -114,7 +200,7 @@ print(f"Processed {len(batch_results['processed_files'])} schedule files")
 
 ---
 
-### 4. HTML Website Generation {#4-html-website-generation-html-website-generation}
+### 4. HTML Website Generation
 
 Generate interactive HTML websites with embedded audio and quizzes:
 
@@ -256,7 +342,7 @@ if syllabus_path.exists():
 
 ---
 
-## 💡 Best Practices
+## Best Practices
 
 ### Error Handling Pattern
 
@@ -315,27 +401,27 @@ def process_with_progress(course_path: str) -> None:
 
 ---
 
-## 🔗 Module Dependency Graph
+## Module Dependency Graph
 
 ```mermaid
 graph TD
-    subgraph "Core"
+    subgraph core[Core]
         M2P["markdown_to_pdf"]
         TTS["text_to_speech"]
         STT["speech_to_text"]
     end
     
-    subgraph "Format"
+    subgraph format[Format]
         FC["format_conversion"]
     end
     
-    subgraph "Orchestration"
+    subgraph orchestration[Orchestration]
         BP["batch_processing"]
         HW["html_website"]
         SCH["schedule"]
     end
     
-    subgraph "Management"
+    subgraph management[Management]
         FV["file_validation"]
         CI["canvas_integration"]
     end
@@ -354,7 +440,7 @@ graph TD
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 | Issue | Cause | Solution |
 |-------|-------|----------|
@@ -366,7 +452,70 @@ graph TD
 
 ---
 
-## 📖 Related Documentation
+## Module Isolation
+
+### Testing Modules Independently
+
+Each module can be tested in isolation without requiring other modules:
+
+```python
+# Test markdown_to_pdf independently
+def test_markdown_to_pdf_standalone():
+    from src.markdown_to_pdf.main import render_markdown_to_pdf
+    render_markdown_to_pdf("test.md", "test.pdf")
+    assert Path("test.pdf").exists()
+
+# Test file_validation independently
+def test_file_validation_standalone():
+    from src.file_validation.main import validate_module_files
+    result = validate_module_files("/path/to/module")
+    assert isinstance(result, dict)
+    assert "valid" in result
+```
+
+### Integration Testing
+
+When testing module interactions, use real implementations (no mocks):
+
+```python
+# Integration test: validation + processing
+def test_validation_then_processing():
+    from src.file_validation.main import validate_module_files
+    from src.batch_processing.main import process_module_by_type
+    
+    # Both modules use real implementations
+    validation = validate_module_files(module_path)
+    if validation["valid"]:
+        results = process_module_by_type(module_path, output_dir)
+        assert results["summary"]["pdf"] > 0
+```
+
+### Module Boundary Testing
+
+Test that modules maintain their boundaries:
+
+```python
+# Verify module doesn't access internal implementation of another
+def test_module_boundaries():
+    # Should only import from main.py, not utils.py
+    from src.batch_processing.main import process_module_by_type
+    # This should work without importing utils directly
+    result = process_module_by_type(module_path, output_dir)
+    assert result is not None
+```
+
+### Testing Patterns
+
+1. **Unit Tests**: Test each module's functions independently
+2. **Integration Tests**: Test module interactions with real implementations
+3. **Boundary Tests**: Verify modules don't break encapsulation
+4. **Composition Tests**: Test orchestration patterns with real modules
+
+See [../tests/README.md](../tests/README.md) for test organization and [../tests/AGENTS.md](../tests/AGENTS.md) for testing standards.
+
+---
+
+## Related Documentation
 
 | Document | Description |
 |----------|-------------|
