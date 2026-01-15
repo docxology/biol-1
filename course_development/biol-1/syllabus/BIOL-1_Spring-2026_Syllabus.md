@@ -7,12 +7,12 @@
 - **Semester & Year**: Spring 2026
 - **Course ID and Section number**: BIOL-1-D8901 (058901)
 - **Instructor's name**: Daniel Friedman
-- **Email**: [daniel-friedman@redwoods.edu](mailto:daniel-friedman@redwoods.edu)
+- **Contact**: Contact the instructor through Canvas.
 - **Day and time of required meetings**: 
   - Lecture – Monday 05:30PM - 08:40PM
   - Lab - Wednesday 05:30PM - 08:40PM
 - **Location**: Pelican Bay D Yard
-- **Number of proctored exams**: 6
+- **Number of exams**: 4
 - **Course units**: 4
 
 ## Catalog Description

@@ -6,9 +6,8 @@ This directory contains test files for validating software functionality. Test s
 
 ## Test Statistics
 
-- **260+ tests** covering all modules
-- **70%+ code coverage** target
-- Zero test failures on CI
+- **325 tests collected** (verify with `uv run pytest --collect-only`)
+- Coverage measured via `uv run pytest --cov=src --cov-report=html`
 
 ## Test Organization
 

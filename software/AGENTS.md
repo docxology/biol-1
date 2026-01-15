@@ -4,6 +4,60 @@
 
 Technical documentation for course management software utilities, including function signatures, module APIs, and code organization.
 
+## Modular Architecture
+
+The software follows a modular architecture where each module is self-contained and can be used independently.
+
+### Module Structure Standards
+
+Every module follows a consistent structure:
+
+```
+module_name/
+├── __init__.py      # Exports public functions from main.py
+├── main.py          # Public API (only way other modules should interact)
+├── utils.py         # Internal helper functions (private to module)
+└── config.py        # Constants and configuration
+```
+
+### Dependency Rules
+
+Modules are organized in layers to minimize dependencies:
+
+- **Layer 0 (Independent)**: No dependencies on other modules
+  - `module_organization`, `file_validation`
+
+- **Layer 1 (Core)**: Depend only on external libraries
+  - `markdown_to_pdf`, `text_to_speech`, `speech_to_text`
+
+- **Layer 2 (Format)**: Depend on Layer 1 modules
+  - `format_conversion`
+
+- **Layer 3 (Orchestration)**: Compose lower-layer modules
+  - `batch_processing`, `html_website`, `schedule`
+
+- **Layer 4 (Integration)**: Use validation and external services
+  - `canvas_integration`, `publish`
+
+### Interface Contracts
+
+When modules interact, they do so through well-defined interfaces:
+
+- **Public API**: Functions in `main.py` are the public interface
+- **Type Hints**: All functions have complete type annotations
+- **Return Values**: Consistent return types (dicts with known keys)
+- **Error Handling**: Exceptions are documented and predictable
+- **Side Effects**: File operations and external calls are explicit
+
+### Module Independence
+
+Each module entry below indicates:
+- **Standalone**: Can be used without other modules (Yes/No)
+- **Dependencies**: Required modules or libraries
+- **Interface**: How other modules interact with it
+
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
+
 ## Software Modules
 
 ### Markdown to PDF Rendering
@@ -12,12 +66,16 @@ Technical documentation for course management software utilities, including func
 
 **Location**: `src/markdown_to_pdf/`
 
+**Standalone**: Yes - can be used independently
+
+**Dependencies**: WeasyPrint (external library), Markdown parser
+
 **Key Functions**:
 - `render_markdown_to_pdf(input_path: str, output_path: str, css_content: Optional[str] = None, pdf_options: Optional[Dict[str, Any]] = None) -> None`
 - `batch_render_markdown(directory: str, output_dir: str) -> List[str]`
 - `configure_pdf_options(template: str, options: dict) -> dict`
 
-**Dependencies**: WeasyPrint (PDF generation), Markdown parser
+**Used by**: `format_conversion`, `batch_processing`, `schedule`, `html_website`
 
 ### Text-to-Speech Generation
 
@@ -25,12 +83,16 @@ Technical documentation for course management software utilities, including func
 
 **Location**: `src/text_to_speech/`
 
+**Standalone**: Yes - can be used independently (requires internet for gTTS)
+
+**Dependencies**: gTTS (external library), audio file handling
+
 **Key Functions**:
 - `generate_speech(text: str, output_path: str, voice: str = "default", lang: Optional[str] = None, slow: bool = False) -> None`
 - `batch_generate_speech(input_dir: str, output_dir: str) -> List[str]`
 - `configure_voice_settings(voice: str, speed: float, pitch: float) -> dict`
 
-**Dependencies**: gTTS (Google Text-to-Speech), audio file handling
+**Used by**: `format_conversion`, `batch_processing`, `schedule`
 
 ### Format Conversion
 
@@ -38,18 +100,26 @@ Technical documentation for course management software utilities, including func
 
 **Location**: `src/format_conversion/`
 
+**Standalone**: Yes - can be used independently (requires core converters)
+
+**Dependencies**: Core converters (`markdown_to_pdf`, `text_to_speech`), python-docx, pypdf
+
 **Key Functions**:
 - `convert_file(input_path: str, output_format: str, output_path: str) -> None`
 - `batch_convert(directory: str, input_format: str, output_format: str) -> List[str]`
 - `get_supported_formats() -> dict`
 
-**Dependencies**: File format conversion libraries
+**Used by**: `batch_processing`, `html_website`, `schedule`
 
 ### Module Organization
 
 **Purpose**: Automated structure creation for new modules
 
 **Location**: `src/module_organization/`
+
+**Standalone**: Yes - no dependencies on other modules
+
+**Dependencies**: None (file system operations only)
 
 **Key Functions**:
 - `create_module_structure(course_path: str, module_number: int) -> str`
@@ -64,7 +134,7 @@ Technical documentation for course management software utilities, including func
 - `list_all_modules(course_path: Path) -> List[Path]` - List all module directories
 - `get_next_module_number(course_path: Path) -> int` - Get next available module number
 
-**Dependencies**: File system operations, template engine
+**Used by**: Test orchestration, module creation scripts
 
 ### Canvas Integration
 
@@ -72,18 +142,26 @@ Technical documentation for course management software utilities, including func
 
 **Location**: `src/canvas_integration/`
 
+**Standalone**: Yes - can be used independently (requires file_validation)
+
+**Dependencies**: `file_validation` (for validation), Canvas API client, requests library
+
 **Key Functions**:
 - `upload_module_to_canvas(module_path: str, course_id: str, api_key: str, domain: str = "canvas.instructure.com") -> dict`
 - `validate_upload_readiness(module_path: str) -> List[str]`
 - `sync_module_structure(module_path: str, canvas_course_id: str, api_key: str, domain: str = "canvas.instructure.com") -> dict`
 
-**Dependencies**: Canvas API client, authentication handling, requests library
+**Used by**: Canvas upload scripts
 
 ### File Validation
 
 **Purpose**: Checks for required files in each module
 
 **Location**: `src/file_validation/`
+
+**Standalone**: Yes - no dependencies on other modules
+
+**Dependencies**: None (file system operations only)
 
 **Key Functions**:
 - `validate_module_files(module_path: str) -> dict`
@@ -99,7 +177,7 @@ Technical documentation for course management software utilities, including func
 - `extract_module_number_from_filename(file_name: str) -> int` - Extract module number from filename
 - `validate_file_name_structure(file_name: str) -> dict` - Comprehensive file name validation
 
-**Dependencies**: File system operations, validation rules
+**Used by**: `batch_processing`, `canvas_integration`
 
 ### Speech-to-Text
 
@@ -107,18 +185,26 @@ Technical documentation for course management software utilities, including func
 
 **Location**: `src/speech_to_text/`
 
+**Standalone**: Yes - can be used independently
+
+**Dependencies**: SpeechRecognition (external library), pydub
+
 **Key Functions**:
 - `transcribe_audio(audio_path: str, output_path: str, language: str = "en") -> str`
 - `batch_transcribe_audio(input_dir: str, output_dir: str) -> List[str]`
 - `transcribe_from_markdown(markdown_path: str, output_path: str) -> str`
 
-**Dependencies**: speech_recognition, pydub
+**Used by**: Format conversion workflows
 
 ### Batch Processing
 
 **Purpose**: Process entire modules for multiple format conversions
 
 **Location**: `src/batch_processing/`
+
+**Standalone**: Yes - can be used independently (requires core/format modules)
+
+**Dependencies**: `markdown_to_pdf`, `text_to_speech`, `format_conversion`, `file_validation`
 
 **Key Functions**:
 - `process_module_to_pdf(module_path: str, output_dir: str) -> List[str]`
@@ -130,13 +216,17 @@ Technical documentation for course management software utilities, including func
 - `clear_all_outputs(repo_root: Path) -> dict` - Clear all output directories
 - `process_module_website(module_path: str, output_dir: Optional[str] = None) -> str` - Generate module website
 
-**Dependencies**: All conversion modules
+**Used by**: `html_website`, generation scripts
 
 ### HTML Website Generation
 
-**Purpose**: Generate comprehensive HTML websites for modules with audio, quizzes, and interactive features
+**Purpose**: Generate HTML websites for modules with audio, quizzes, and interactive features
 
 **Location**: `src/html_website/`
+
+**Standalone**: Yes - can be used independently (requires batch_processing, format_conversion)
+
+**Dependencies**: `batch_processing`, `format_conversion`, markdown2
 
 **Key Functions**:
 - `generate_module_website(module_path: str, output_dir: Optional[str] = None, course_name: Optional[str] = None) -> str`
@@ -150,7 +240,7 @@ Technical documentation for course management software utilities, including func
 - Print-friendly layout
 - Mobile responsive design
 
-**Dependencies**: markdown2, batch_processing
+**Used by**: Website generation scripts
 
 ### Schedule Processing
 
@@ -158,13 +248,17 @@ Technical documentation for course management software utilities, including func
 
 **Location**: `src/schedule/`
 
+**Standalone**: Yes - can be used independently (requires core/format modules)
+
+**Dependencies**: `markdown_to_pdf`, `text_to_speech`, `format_conversion`
+
 **Key Functions**:
 - `parse_schedule_markdown(schedule_path: str) -> Dict[str, Any]`
 - `process_schedule(schedule_path: str, output_dir: str, formats: Optional[List[str]] = None) -> Dict[str, Any]`
 - `generate_schedule_outputs(schedule_data: Dict[str, Any], output_dir: Path, base_name: str, formats: List[str]) -> Dict[str, List[str]]`
 - `batch_process_schedules(directory: str, output_dir: str, formats: Optional[List[str]] = None) -> Dict[str, Any]`
 
-**Dependencies**: markdown_to_pdf, text_to_speech, format_conversion
+**Used by**: Schedule generation scripts
 
 ### Publish Module
 
@@ -172,12 +266,16 @@ Technical documentation for course management software utilities, including func
 
 **Location**: `src/publish/`
 
+**Standalone**: Yes - no dependencies on other modules
+
+**Dependencies**: None (shutil, pathlib only)
+
 **Key Functions**:
 - `publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]` - Main publishing logic
 - `get_course_config(course_name: str) -> Dict[str, str]` - Get course-specific configuration
 - `copy_directory_contents(src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None) -> int` - Intelligent copy
 
-**Dependencies**: shutil, path operations
+**Used by**: Publishing scripts
 
 ## Code Organization
 
