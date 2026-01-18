@@ -1,212 +1,185 @@
-# BIOL-8 Course Materials Technical Documentation
+# BIOL-8 Course Materials — Technical Documentation
 
 ## Overview
 
-Technical documentation for course-level file processing, organization, and workflow management for BIOL-8 course materials.
+Technical documentation for BIOL-8 course materials organization, processing, and workflow management. This directory contains student-facing course materials organized by module, exams, quizzes, and labs.
 
 ## Directory Structure
 
 ```
 course/
-├── README.md              # Course materials overview
-├── AGENTS.md              # This file
-├── BIOL-8_Spring-2026_Syllabus.md  # Syllabus file (to be moved to syllabus/)
-└── module-*/              # Individual course modules
-    ├── assignments/      # Assignment files
-    ├── output/           # Processed output files
-    │   ├── assignments/
-    │   ├── lab-protocols/
-    │   ├── lecture-content/
-    │   ├── study-guides/
-    │   └── website/
-    ├── sample_*.md       # Sample curriculum element files
-    ├── README.md         # Module overview
-    └── AGENTS.md         # Module technical documentation
+├── README.md                    # Course materials overview (student-facing)
+├── AGENTS.md                    # This technical documentation
+│
+├── exams/                       # Examinations (8 files)
+│   ├── exam-01.md              # Modules 01-07 (100 pts)
+│   ├── exam-01_key.md          # Answer key with explanations
+│   ├── exam-02.md              # Modules 08-11 (100 pts)
+│   ├── exam-02_key.md
+│   ├── exam-03.md              # Modules 12-15 (100 pts)
+│   ├── exam-03_key.md
+│   ├── final-exam.md           # Comprehensive (150 pts)
+│   └── final-exam_key.md
+│
+├── quizzes/                     # Module quizzes (30 files)
+│   ├── module-01_quiz.md       # Student version
+│   ├── module-01_quiz_key.md   # Answer key
+│   └── ... (15 modules × 2 files)
+│
+├── labs/                        # Lab protocols (15 stub files)
+│   ├── lab-01_exploring-life-science.md
+│   └── ... (one per module)
+│
+└── module-XX-topic-name/        # 15 module directories
+    ├── keys-to-success.md      # Learning objectives
+    ├── questions.md            # Study questions
+    └── resources/              # Supplementary materials
 ```
+
+## Module Naming Convention
+
+Modules follow the pattern: `module-XX-topic-name/`
+
+| Number | Directory Name |
+|--------|---------------|
+| 01 | `module-01-exploring-life-science` |
+| 02 | `module-02-chemistry-of-life` |
+| 03 | `module-03-biomolecules` |
+| 04 | `module-04-cellular-function` |
+| 05 | `module-05-membranes` |
+| 06 | `module-06-metabolism` |
+| 07 | `module-07-mitosis` |
+| 08 | `module-08-meiosis` |
+| 09 | `module-09-inheritance` |
+| 10 | `module-10-tissues` |
+| 11 | `module-11-skeletal-system` |
+| 12 | `module-12-muscular-system` |
+| 13 | `module-13-pathogens` |
+| 14 | `module-14-cardiovascular-system` |
+| 15 | `module-15-respiratory-system` |
+
+## Content Specifications
+
+### Module Content Files
+
+Each module contains:
+
+1. **`keys-to-success.md`**
+   - 5-6 key learning objectives
+   - Organized by numbered topic areas
+   - Includes study tips section
+
+2. **`questions.md`**
+   - 22-40 natural language study questions
+   - Organized by topic area
+   - Covers all learning objectives
+
+3. **`resources/`**
+   - Empty directory for supplementary materials
+   - Future: PDFs, images, external links
+
+### Quiz Format
+
+Each quiz follows consistent structure:
+
+```markdown
+# Module XX Quiz: Topic
+
+**Name**: _________________________ **Date**: _____________
+
+## Part A: Multiple Choice (7 points)
+- 7 questions, 1 point each
+- 4 answer choices (A-D)
+
+## Part B: Free Response (3 points)
+- 3 questions, 1 point each
+- Answer lines provided
+```
+
+Answer keys include:
+- Multiple choice answer table with explanations
+- Rubric or key points for free response
+
+### Exam Format
+
+Exams follow consistent structure:
+
+| Section | Points | Format |
+|---------|--------|--------|
+| Part A: Multiple Choice | 50 pts | 25 questions × 2 pts |
+| Part B: Short Answer | 30 pts | 6 questions × 5 pts |
+| Part C: Essay | 20 pts | 1 of 2 options |
+| **Total** | **100 pts** | |
+
+Final exam is scaled to 150 points:
+- Part A: 75 pts (50 questions × 1.5 pts)
+- Part B: 45 pts (9 questions × 5 pts)
+- Part C: 30 pts (2 essays × 15 pts each)
+
+### Lab Protocol Format
+
+Lab stubs include sections for:
+- Learning objectives (pre-filled)
+- Estimated duration
+- Materials needed (stub)
+- Safety considerations (stub)
+- Procedure (stub)
+- Data collection (stub)
+- Analysis questions (stub)
+
+## Alignment with Schedule
+
+| Unit | Modules | Exam |
+|------|---------|------|
+| Unit 1 | 01-07 | Exam 01 (Week 5) |
+| Unit 2 | 08-11 | Exam 02 (Week 8) |
+| Unit 3 | 12-15 | Exam 03 (Week 12) |
+| All | 01-15 | Final Exam (Finals Week) |
 
 ## File Processing Workflow
 
-### Processing Function
+### Current State
 
-**Module**: `software/src/batch_processing/main.py`
+Module content files (`keys-to-success.md`, `questions.md`) are source markdown ready for:
+- Direct Canvas upload
+- Processing to PDF, DOCX, HTML via batch processing utilities
+- TTS conversion for accessibility
 
-**Function**: `process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]`
+### Future Processing
 
-Processes all markdown files in a module directory and generates multiple output formats, organizing outputs by curriculum element type.
+The `software/` directory contains batch processing utilities for:
+- PDF generation via `markdown_to_pdf` module
+- Audio generation via `text_to_speech` module  
+- Format conversion via `format_conversion` module
+- Website generation via `html_website` module
 
-### Curriculum Element Type Detection
+## Validation Checklist
 
-Files are classified by filename patterns:
+### Completeness
+- [x] 15 module directories created
+- [x] Each module has `keys-to-success.md`, `questions.md`, `resources/`
+- [x] 4 exams with answer keys (8 files)
+- [x] 15 quizzes with answer keys (30 files)
+- [x] 15 lab protocol stubs
 
-- **Assignments**: Filenames containing `"assignment"` → `assignments/` output directory
-- **Lab Protocols**: Filenames containing `"lab-protocol"` → `lab-protocols/` output directory
-- **Lecture Content**: Filenames containing `"lecture-content"` → `lecture-content/` output directory
-- **Study Guides**: Filenames containing `"study-guide"` → `study-guides/` output directory
+### Coherence
+- [x] Module numbering matches syllabus
+- [x] Exam coverage matches schedule
+- [x] Quiz content aligns with keys-to-success
+- [x] Consistent formatting across all files
 
-### Processing Pipeline
+### Pedagogical Quality
+- [x] Learning objectives use action verbs
+- [x] Questions progress from recall to application
+- [x] Multiple choice options are plausible
+- [x] Free response allows demonstration of understanding
 
-For each markdown file matching curriculum element types:
+## Related Documentation
 
-1. **PDF Generation**
-   - Function: `markdown_to_pdf.main.render_markdown_to_pdf()`
-   - Input: Markdown file path
-   - Output: PDF file in type-specific output directory
+- **[../syllabus/](../syllabus/)**: Syllabus and schedule
+- **[../../software/](../../software/)**: Processing utilities
+- **[../../private/](../../private/)**: Non-student materials
 
-2. **MP3 Audio Generation**
-   - Function: `text_to_speech.main.generate_speech()`
-   - Process: Extract text from markdown → Generate speech
-   - Utilities: `text_to_speech.utils.extract_text_from_markdown()`, `read_text_file()`
-   - Output: MP3 file in type-specific output directory
+---
 
-3. **DOCX Generation**
-   - Function: `format_conversion.main.convert_file()`
-   - Conversion: `md->docx`
-   - Output: DOCX file in type-specific output directory
-
-4. **HTML Generation**
-   - Function: `format_conversion.main.convert_file()`
-   - Conversion: `md->html`
-   - Output: HTML file in type-specific output directory
-
-5. **TXT Generation**
-   - Process: Extract text from markdown → Write plain text
-   - Utilities: `text_to_speech.utils.extract_text_from_markdown()`, `read_text_file()`
-   - Output: TXT file in type-specific output directory
-
-6. **Website Generation**
-   - Function: `html_website.main.generate_module_website()`
-   - Process: Combines all module content into single HTML website
-   - Output: `output/website/index.html`
-
-### Output Structure
-
-```
-module-X/output/
-├── assignments/
-│   ├── [basename].pdf
-│   ├── [basename].mp3
-│   ├── [basename].docx
-│   ├── [basename].html
-│   └── [basename].txt
-├── lab-protocols/
-│   └── [same structure]
-├── lecture-content/
-│   └── [same structure]
-├── study-guides/
-│   └── [same structure]
-└── website/
-    └── index.html
-```
-
-## File Naming Conventions
-
-### Source Files
-
-- **Pattern Matching**: Files starting with `sample_` are processed
-- **Type Detection**: Filename must contain type identifier (assignment, lab-protocol, lecture-content, study-guide)
-- **Assignments**: Located in `assignments/` subdirectory, follow pattern `module-[N]-assignment-[number]-[description].md`
-
-### Output Files
-
-- **Base Name**: Derived from source markdown filename (without extension)
-- **Extensions**: `.pdf`, `.mp3`, `.docx`, `.html`, `.txt`
-- **Location**: Type-specific subdirectory within `output/`
-
-## Processing Scripts
-
-### Module Processing
-
-**Script**: `software/scripts/generate_module_renderings.py`
-
-**Usage**: Processes a specific module (currently configured for module-1)
-
-**Output**: All format renderings organized by curriculum element type
-
-### Website Generation
-
-**Script**: `software/scripts/generate_module_website.py`
-
-**Usage**: Generates HTML website for a module
-
-**Output**: Single HTML file with all module content, audio, and interactive quizzes
-
-## Error Handling
-
-The processing function collects errors without stopping:
-
-- Individual file processing errors are caught and logged
-- Errors are collected in `results["errors"]` list
-- Processing continues for remaining files after errors
-- Summary includes error count and details
-
-## Dependencies
-
-### Software Modules
-
-- **batch_processing**: Main orchestration module
-- **markdown_to_pdf**: PDF generation from markdown
-- **text_to_speech**: Audio generation from text
-- **format_conversion**: Format conversions (DOCX, HTML)
-- **html_website**: HTML website generation
-
-### Utility Functions
-
-- `find_markdown_files()`: Recursively find markdown files
-- `should_process_file()`: Filter files to process
-- `ensure_output_directory()`: Create output directories
-- `extract_text_from_markdown()`: Extract plain text from markdown
-- `read_text_file()`: Read file content
-
-## Integration Points
-
-### Canvas Upload
-
-- All materials in `course/` directory are suitable for Canvas
-- Output formats provide multiple access methods for students
-- Directory structure mirrors Canvas organization
-
-### Module Organization
-
-- Modules follow consistent structure
-- Each module has `assignments/`, `output/`, and sample files
-- Documentation at module level describes module-specific details
-
-## Validation
-
-### Pre-Processing Checks
-
-- Verify module directory exists
-- Check for markdown files matching patterns
-- Ensure output directory can be created
-
-### Post-Processing Verification
-
-- Check that all expected output formats were generated
-- Verify files are organized in correct type directories
-- Review error logs for processing issues
-
-## Workflow Management
-
-### Adding New Modules
-
-1. Create module directory: `course/module-[N]/`
-2. Initialize with standard structure (assignments/, sample files)
-3. Add README.md and AGENTS.md
-4. Process module using batch processing script
-5. Generate website using website generation script
-6. Verify outputs in `output/` directory
-
-### Updating Materials
-
-1. Edit source markdown files
-2. Re-run processing script to regenerate outputs
-3. Regenerate website if needed
-4. Verify updated outputs
-5. Update Canvas if materials already uploaded
-
-### Processing New Files
-
-1. Add markdown file following naming conventions
-2. Ensure filename contains type identifier
-3. Run processing script
-4. Verify outputs in appropriate type directory
+*Last updated: January 2026*
