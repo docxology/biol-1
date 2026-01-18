@@ -2,144 +2,109 @@
 
 ## Overview
 
-This directory contains all public course materials for BIOL-8 (Biology 8 at College of the Redwoods, Del Norte Campus, Spring 2026), organized by module. All materials in this directory are suitable for upload to Canvas and distribution to students.
+This directory contains all public course materials for **BIOL-8: Human Biology** (College of the Redwoods, Del Norte Campus, Spring 2026), organized by module. All materials in this directory are suitable for upload to Canvas and distribution to students.
 
 ## Course Structure
 
-The course is organized into modules, each containing assignments, lecture materials, lab protocols, and study guides.
+The course covers 15 modules progressing from foundational life science concepts to human body systems:
 
 ### Modules
 
-- [Module 1](module-1/) - Course modules as they are developed
-- [Module 2](module-2/) - Additional modules
-- [Module 3](module-3/) - Additional modules as they are added
+| Module | Topic | Key Concepts |
+|--------|-------|--------------|
+| [01](module-01-exploring-life-science/) | Exploring Life Science | Scientific method, characteristics of life, levels of organization |
+| [02](module-02-chemistry-of-life/) | Chemistry of Life | Atoms, bonds, water properties, pH |
+| [03](module-03-biomolecules/) | Biomolecules | Carbohydrates, lipids, proteins, nucleic acids |
+| [04](module-04-cellular-function/) | Cellular Function | Cell theory, organelles, prokaryotes vs. eukaryotes |
+| [05](module-05-membranes/) | Membranes | Fluid mosaic model, transport mechanisms, osmosis |
+| [06](module-06-metabolism/) | Metabolism | ATP, enzymes, cellular respiration, fermentation |
+| [07](module-07-mitosis/) | Mitosis | Cell cycle, DNA replication, mitotic phases |
+| [08](module-08-meiosis/) | Meiosis | Gamete formation, crossing over, genetic variation |
+| [09](module-09-inheritance/) | Inheritance | Mendelian genetics, Punnett squares, pedigrees |
+| [10](module-10-tissues/) | Tissues | Epithelial, connective, muscle, nervous tissue |
+| [11](module-11-skeletal-system/) | Skeletal System | Bone structure, bone cells, joints |
+| [12](module-12-muscular-system/) | Muscular System | Muscle types, sliding filament theory, contraction |
+| [13](module-13-pathogens/) | Pathogens | Bacteria, viruses, fungi, immune defenses |
+| [14](module-14-cardiovascular-system/) | Cardiovascular System | Heart anatomy, blood flow, blood vessels |
+| [15](module-15-respiratory-system/) | Respiratory System | Breathing mechanics, gas exchange, transport |
 
-## File Organization
-
-### Curriculum Element Types
-
-Course materials are organized by curriculum element type:
-
-1. **Assignments** (`assignments/` directory)
-   - Located in each module's `assignments/` subdirectory
-   - Markdown files with assignment instructions
-   - Processed to PDF, MP3, DOCX, HTML, and TXT formats
-
-2. **Lab Protocols** (`sample_lab-protocol.md`)
-   - Laboratory instructions and procedures
-   - Markdown format for easy editing
-   - Processed to all export formats
-
-3. **Lecture Content** (`sample_lecture-content.md`)
-   - Lecture materials and presentation content
-   - Markdown format
-   - Processed to all export formats
-
-4. **Study Guides** (`sample_study-guide.md`)
-   - Student study materials and review guides
-   - Markdown format
-   - Processed to all export formats
-
-### File Processing Workflow
-
-All markdown files in module directories are processed through an automated pipeline that generates multiple output formats:
-
-```mermaid
-graph LR
-    Source[Markdown Source Files] --> Process[Processing Pipeline]
-    Process --> PDF[PDF Output]
-    Process --> MP3[MP3 Audio]
-    Process --> DOCX[DOCX Document]
-    Process --> HTML[HTML Web]
-    Process --> TXT[Plain Text]
-    
-    PDF --> Output[output/ Directory]
-    MP3 --> Output
-    DOCX --> Output
-    HTML --> Output
-    TXT --> Output
-    
-    Output --> Organized[Organized by Type]
-    Organized --> Assignments[assignments/]
-    Organized --> Labs[lab-protocols/]
-    Organized --> Lectures[lecture-content/]
-    Organized --> Guides[study-guides/]
-```
-
-### Output Organization
-
-Processed files are organized in the `output/` directory within each module:
+## Directory Organization
 
 ```
-module-X/output/
-├── assignments/
-│   ├── [file].pdf
-│   ├── [file].mp3
-│   ├── [file].docx
-│   ├── [file].html
-│   └── [file].txt
-├── lab-protocols/
-│   └── [same format structure]
-├── lecture-content/
-│   └── [same format structure]
-├── study-guides/
-│   └── [same format structure]
-└── website/
-    └── index.html
+course/
+├── README.md                    # This file
+├── AGENTS.md                    # Technical documentation
+│
+├── exams/                       # Course examinations
+│   ├── exam-01.md              # Exam 01: Modules 01-07
+│   ├── exam-01_key.md
+│   ├── exam-02.md              # Exam 02: Modules 08-11
+│   ├── exam-02_key.md
+│   ├── exam-03.md              # Exam 03: Modules 12-15
+│   ├── exam-03_key.md
+│   ├── final-exam.md           # Comprehensive final
+│   └── final-exam_key.md
+│
+├── quizzes/                     # Module quizzes (7 MC + 3 FR each)
+│   ├── module-01_quiz.md
+│   ├── module-01_quiz_key.md
+│   └── ... (30 files total)
+│
+├── labs/                        # Laboratory protocols
+│   ├── lab-01_exploring-life-science.md
+│   └── ... (15 protocol stubs)
+│
+└── module-XX-topic-name/        # 15 module directories
+    ├── keys-to-success.md      # Learning objectives and study tips
+    ├── questions.md            # 22-40 study questions
+    └── resources/              # Supplementary materials
 ```
 
-## File Naming Conventions
+## Assessment Structure
 
-### Source Files
+### Exams
 
-- **Assignments**: `module-[N]-assignment-[number]-[description].md`
-  - Example: `module-1-assignment-1-introduction.md`
-- **Lab Protocols**: `sample_lab-protocol.md` (or `module-[N]-lab-[number]-[topic].md`)
-- **Lecture Content**: `sample_lecture-content.md` (or `module-[N]-lecture-[topic].md`)
-- **Study Guides**: `sample_study-guide.md` (or `module-[N]-study-guide.md`)
+| Exam | Date | Coverage | Format |
+|------|------|----------|--------|
+| Exam 01 | Feb 17, 2026 | Modules 01-07 | 50 MC + 30 SA + 20 Essay = 100 pts |
+| Exam 02 | Mar 10, 2026 | Modules 08-11 | 50 MC + 30 SA + 20 Essay = 100 pts |
+| Exam 03 | Apr 7, 2026 | Modules 12-15 | 50 MC + 30 SA + 20 Essay = 100 pts |
+| Final | May 12, 2026 | Comprehensive | 75 MC + 45 SA + 30 Essay = 150 pts |
 
-### Output Files
+### Quizzes
 
-Output files maintain the base filename with format-specific extensions:
-- PDF: `[basename].pdf`
-- Audio: `[basename].mp3`
-- Document: `[basename].docx`
-- Web: `[basename].html`
-- Text: `[basename].txt`
+Each module has a quiz with:
+- **7 multiple choice questions** (1 point each)
+- **3 free response questions** (1 point each)
+- **Total**: 10 points per quiz
 
-## Processing
+Answer keys include explanations for all questions.
 
-### Automated Processing
+### Labs
 
-Module materials are processed using the batch processing utilities in the `software/` directory:
+15 laboratory protocols (currently as stubs) covering hands-on experiments and activities aligned with each module topic.
 
-- **Script**: `software/scripts/generate_module_renderings.py`
-- **Function**: `process_module_by_type()` from `batch_processing` module
-- **Outputs**: All files processed to PDF, MP3, DOCX, HTML, and TXT formats
+## Module Contents
 
-### Processing Pipeline
+Each module folder contains:
 
-1. **Source Detection**: Markdown files are identified in module directories
-2. **Type Classification**: Files are classified by curriculum element type (assignment, lab-protocol, lecture-content, study-guide)
-3. **Format Generation**: Each file is processed to generate:
-   - PDF via `markdown_to_pdf` module
-   - MP3 via `text_to_speech` module
-   - DOCX via `format_conversion` module
-   - HTML via `format_conversion` module
-   - TXT via text extraction from markdown
-4. **Output Organization**: Generated files are organized by type in the `output/` directory
-5. **Website Generation**: HTML websites are generated with all module content, audio, and interactive quizzes
+1. **`keys-to-success.md`**: 5-6 key learning objectives organized by topic, plus study tips
+2. **`questions.md`**: 22-40 natural language study questions covering all module topics
+3. **`resources/`**: Empty directory for supplementary materials
+
+## Related Documents
+
+- **[Syllabus](../syllabus/BIOL-8_Spring-2026_Syllabus.md)**: Complete course syllabus
+- **[Schedule](../syllabus/Schedule.md)**: Weekly schedule with exam dates
+- **[AGENTS.md](AGENTS.md)**: Technical documentation for file processing
 
 ## Canvas Upload
 
-All materials in this directory are suitable for Canvas upload:
+All materials are designed for Canvas LMS:
+1. Module folders can be uploaded maintaining structure
+2. Quiz files are formatted for easy transfer to Canvas Quizzes
+3. Exam files can be used for in-class paper exams or adapted for Canvas
 
-1. Verify all required files are present
-2. Check that output formats have been generated
-3. Upload module folders maintaining directory structure
-4. Update Canvas links after upload
+---
 
-## Documentation
-
-- **[AGENTS.md](AGENTS.md)**: Technical documentation for course-level file processing and workflows
-- Module-specific documentation available in each module's `README.md` and `AGENTS.md`
+*BIOL-8: Human Biology — Spring 2026 — College of the Redwoods, Del Norte Campus*
