@@ -14,7 +14,7 @@
 
 ## Instructor Information
 **Instructor**: Dr. Daniel Ari Friedman  
-**Email**: Daniel.Friedman@redwoods.edu  
+**Email**: Daniel-Friedman@redwoods.edu  
 **Office Hours**: By appointment. Please email me to schedule a time.  
 
 ---
@@ -78,10 +78,9 @@ Each module contains:
 
 Grading will be based on:
 
-- Exams (60%)
+- Exams (65%)
 - Laboratory work and reports (20%)
-- Assignments (10%)
-- Attendance and Participation (10%)
+- Assignments (15%)
 
 ## Course Policies
 
