@@ -52,6 +52,7 @@ When modules interact, they do so through well-defined interfaces:
 ### Module Independence
 
 Each module entry below indicates:
+
 - **Standalone**: Can be used without other modules (Yes/No)
 - **Dependencies**: Required modules or libraries
 - **Interface**: How other modules interact with it
@@ -71,6 +72,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: WeasyPrint (external library), Markdown parser
 
 **Key Functions**:
+
 - `render_markdown_to_pdf(input_path: str, output_path: str, css_content: Optional[str] = None, pdf_options: Optional[Dict[str, Any]] = None) -> None`
 - `batch_render_markdown(directory: str, output_dir: str) -> List[str]`
 - `configure_pdf_options(template: str, options: dict) -> dict`
@@ -88,6 +90,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: gTTS (external library), audio file handling
 
 **Key Functions**:
+
 - `generate_speech(text: str, output_path: str, voice: str = "default", lang: Optional[str] = None, slow: bool = False) -> None`
 - `batch_generate_speech(input_dir: str, output_dir: str) -> List[str]`
 - `configure_voice_settings(voice: str, speed: float, pitch: float) -> dict`
@@ -105,6 +108,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: Core converters (`markdown_to_pdf`, `text_to_speech`), python-docx, pypdf
 
 **Key Functions**:
+
 - `convert_file(input_path: str, output_format: str, output_path: str) -> None`
 - `batch_convert(directory: str, input_format: str, output_format: str) -> List[str]`
 - `get_supported_formats() -> dict`
@@ -122,6 +126,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: None (file system operations only)
 
 **Key Functions**:
+
 - `create_module_structure(course_path: str, module_number: int) -> str`
 - `create_next_module(course_path: str) -> str` - Create next module in sequence
 - `validate_module_structure(module_path: str) -> bool`
@@ -130,6 +135,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 - `get_module_statistics(module_path: str) -> dict` - Get module statistics
 
 **Utility Functions**:
+
 - `get_module_number_from_path(module_path: Path) -> int` - Extract module number
 - `list_all_modules(course_path: Path) -> List[Path]` - List all module directories
 - `get_next_module_number(course_path: Path) -> int` - Get next available module number
@@ -147,6 +153,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: `file_validation` (for validation), Canvas API client, requests library
 
 **Key Functions**:
+
 - `upload_module_to_canvas(module_path: str, course_id: str, api_key: str, domain: str = "canvas.instructure.com") -> dict`
 - `validate_upload_readiness(module_path: str) -> List[str]`
 - `sync_module_structure(module_path: str, canvas_course_id: str, api_key: str, domain: str = "canvas.instructure.com") -> dict`
@@ -164,6 +171,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: None (file system operations only)
 
 **Key Functions**:
+
 - `validate_module_files(module_path: str) -> dict`
 - `check_naming_conventions(directory: str) -> List[str]`
 - `verify_required_structure(module_path: str) -> bool`
@@ -173,6 +181,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 - `check_file_sizes(module_path: str, max_size: int) -> List[str]` - Check file sizes
 
 **Utility Functions**:
+
 - `get_file_type(file_name: str) -> str` - Determine file type (assignment, lecture, etc.)
 - `extract_module_number_from_filename(file_name: str) -> int` - Extract module number from filename
 - `validate_file_name_structure(file_name: str) -> dict` - Comprehensive file name validation
@@ -190,6 +199,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: SpeechRecognition (external library), pydub
 
 **Key Functions**:
+
 - `transcribe_audio(audio_path: str, output_path: str, language: str = "en") -> str`
 - `batch_transcribe_audio(input_dir: str, output_dir: str) -> List[str]`
 - `transcribe_from_markdown(markdown_path: str, output_path: str) -> str`
@@ -207,6 +217,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: `markdown_to_pdf`, `text_to_speech`, `format_conversion`, `file_validation`
 
 **Key Functions**:
+
 - `process_module_to_pdf(module_path: str, output_dir: str) -> List[str]`
 - `process_module_to_audio(module_path: str, output_dir: str) -> List[str]`
 - `process_module_to_text(module_path: str, output_dir: str) -> List[str]`
@@ -229,9 +240,11 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: `batch_processing`, `format_conversion`, markdown2
 
 **Key Functions**:
+
 - `generate_module_website(module_path: str, output_dir: Optional[str] = None, course_name: Optional[str] = None) -> str`
 
 **Features**:
+
 - Dark mode toggle with localStorage persistence
 - Back to top button
 - Collapsible sections
@@ -241,6 +254,40 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 - Mobile responsive design
 
 **Used by**: Website generation scripts
+
+### Lab Manual Rendering
+
+**Purpose**: Render rich lab manuals from Markdown with data tables, measurement exercises, and fillable worksheets
+
+**Location**: `src/lab_manual/`
+
+**Standalone**: Yes - can be used independently
+
+**Dependencies**: `markdown`, `weasyprint`
+
+**Key Functions**:
+
+- `render_lab_manual(input_path: str, output_path: str, output_format: str = "pdf", lab_title: Optional[str] = None, course_name: Optional[str] = None) -> str`
+- `parse_lab_elements(markdown_content: str) -> List[LabElement]`
+- `generate_data_table(rows: int = 5, columns: Optional[List[str]] = None, title: Optional[str] = None) -> str`
+- `generate_measurement_table(rows: int = 5, aspects: Optional[List[str]] = None, include_device: bool = True, include_unit: bool = True) -> str`
+- `batch_render_lab_manuals(directory: str, output_dir: str, output_format: str = "pdf") -> List[str]`
+- `get_lab_template(template_name: str = "basic") -> str`
+
+**Lab Directive Syntax**:
+
+- `<!-- lab:data-table rows=N title="Title" -->` - Fillable data tables
+- `<!-- lab:object-selection -->` - Object selection fields
+- `<!-- lab:measurement-feasibility -->` - Feasibility analysis sections
+- `<!-- lab:reflection -->` - Reflection boxes
+
+**Fillable Fields**:
+
+- `{fill}` - Basic fillable cell
+- `{fill:text}` - Inline text input
+- `{fill:textarea rows=N}` - Multi-line text area
+
+**Used by**: Lab generation scripts
 
 ### Schedule Processing
 
@@ -253,6 +300,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: `markdown_to_pdf`, `text_to_speech`, `format_conversion`
 
 **Key Functions**:
+
 - `parse_schedule_markdown(schedule_path: str) -> Dict[str, Any]`
 - `process_schedule(schedule_path: str, output_dir: str, formats: Optional[List[str]] = None) -> Dict[str, Any]`
 - `generate_schedule_outputs(schedule_data: Dict[str, Any], output_dir: Path, base_name: str, formats: List[str]) -> Dict[str, List[str]]`
@@ -271,6 +319,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Dependencies**: None (shutil, pathlib only)
 
 **Key Functions**:
+
 - `publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]` - Main publishing logic
 - `get_course_config(course_name: str) -> Dict[str, str]` - Get course-specific configuration
 - `copy_directory_contents(src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None) -> int` - Intelligent copy
@@ -304,6 +353,7 @@ software/
 ### Module Structure
 
 Each module in `src/` follows this structure:
+
 - `__init__.py`: Module initialization and exports
 - `main.py` or `[module_name].py`: Core functionality
 - `utils.py`: Utility functions
@@ -312,6 +362,7 @@ Each module in `src/` follows this structure:
 ### Testing Structure
 
 Test files in `tests/` mirror the source structure:
+
 - `test_[module_name].py`: Unit tests for each module
 - `test_integration.py`: Integration tests
 - `test_utils.py`: Utility function tests
@@ -319,21 +370,25 @@ Test files in `tests/` mirror the source structure:
 ## Real Methods Policy
 
 ### Core Principle
+
 **All code uses real methods and implementations - no mocks, stubs, or fake methods.**
 
 ### Implementation Standards
+
 - All functions use real library implementations (weasyprint, gTTS, requests, etc.)
 - All file operations use real file system operations
 - All validation uses real validation logic
 - All API integrations use real API clients (with proper error handling)
 
 ### Testing Standards
+
 - Tests use real file operations and real library calls
 - No mocks or stubs in test code
 - External API tests validate structure/logic, not actual API calls
 - Integration tests that require external services are clearly marked
 
 ### External Dependencies
+
 - Real library calls for all functionality
 - Proper error handling for network operations
 - Graceful degradation when external services are unavailable
@@ -365,6 +420,7 @@ Test files in `tests/` mirror the source structure:
 ## Dependencies
 
 ### Core Dependencies
+
 - Python 3.x
 - Markdown parser
 - PDF generation library
@@ -372,6 +428,7 @@ Test files in `tests/` mirror the source structure:
 - Canvas API client
 
 ### Development Dependencies
+
 - pytest: Testing framework
 - pytest-cov: Code coverage
 - black: Code formatting
@@ -380,11 +437,13 @@ Test files in `tests/` mirror the source structure:
 ## Build and Deployment
 
 ### Build Process
+
 - Automated compilation and packaging
 - Dependency management
 - Version control
 
 ### Deployment
+
 - Package distribution
 - Installation scripts
 - Configuration management

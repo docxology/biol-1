@@ -27,11 +27,26 @@ Supplementary resources including reference materials, media, external links, an
 ## Modules
 
 Course modules are located in the `course/` directory:
-- [Module 1](course/module-1/)
-- [Module 2](course/module-2/)
-- [Module 3](course/module-3/)
 
-Additional modules will be added as the course progresses.
+| Module | Link |
+|--------|------|
+| 1 | [Module 1](course/module-1/) |
+| 2 | [Module 2](course/module-2/) |
+| 3 | [Module 3](course/module-3/) |
+| 4 | [Module 4](course/module-4/) |
+| 5 | [Module 5](course/module-5/) |
+| 6 | [Module 6](course/module-6/) |
+| 7 | [Module 7](course/module-7/) |
+| 8 | [Module 8](course/module-8/) |
+| 9 | [Module 9](course/module-9/) |
+| 10 | [Module 10](course/module-10/) |
+| 11 | [Module 11](course/module-11/) |
+| 12 | [Module 12](course/module-12/) |
+| 13 | [Module 13](course/module-13/) |
+| 14 | [Module 14](course/module-14/) |
+| 15 | [Module 15](course/module-15/) |
+| 16 | [Module 16](course/module-16/) |
+| 17 | [Module 17](course/module-17/) |
 
 ## Documentation
 
