@@ -1,39 +1,42 @@
-# Module 5: Membranes
-## Keys to Success & Study Guide
+# Module 5: Membranes — Keys to Success
 
-### Learning Objectives
+## Learning Objectives
+
 By the end of this module, you should be able to:
 
-1.  **Diagram** the structure of the plasma membrane according to the Fluid Mosaic Model.
-2.  **Predict** the movement of water and solutes across a membrane under various osmotic conditions.
-3.  **Compare** and **contrast** passive and active transport mechanisms.
-4.  **Explain** how large molecules traverse the membrane via bulk transport (endocytosis/exocytosis).
+1. Describe the fluid mosaic model
+2. Explain the structure and function of phospholipids
+3. Distinguish passive from active transport
+4. Predict osmosis in different solutions
+5. Compare types of bulk transport
 
-### Key Terminology Checklist
-*Define these terms in your own words to ensure mastery.*
+## Key Terms to Know
 
-- [ ] **Amphipathic**: Having both hydrophilic and hydrophobic regions (characteristic of phospholipids).
-- [ ] **Concentration Gradient**: The difference in solute concentration across a distance.
-- [ ] **Aquaporin**: A channel protein that facilitates rapid water transport.
-- [ ] **Turgor Pressure**: The pressure exerted by water pushing the plasma membrane against the cell wall in plant cells.
-- [ ] **Ligand**: A molecule that binds specifically to a receptor protein.
+- **Fluid Mosaic Model** — Membrane with floating proteins in a phospholipid bilayer
+- **Phospholipid** — Molecule with hydrophilic head and hydrophobic tails
+- **Selective Permeability** — Membrane controls what enters and exits
+- **Diffusion** — Movement from high to low concentration
+- **Osmosis** — Diffusion of water across a membrane
+- **Facilitated Diffusion** — Diffusion with help of proteins
+- **Active Transport** — Uses ATP to move against gradient
+- **Isotonic** — Equal solute concentration inside and outside
+- **Hypertonic** — Higher solute concentration outside
+- **Hypotonic** — Lower solute concentration outside
+- **Endocytosis** — Bringing materials into cell
+- **Exocytosis** — Releasing materials from cell
 
-### Concept Check
-#### 1. Membrane Structure
-*   **Question**: What are the three main components of the plasma membrane?
-*   **Key Answer**: Phospholipids (bilayer barrier), proteins (transport, signaling, structure), and cholesterol (membrane fluidity regulation). Cholesterol prevents membrane rigidity in cold and excess fluidity in heat.
+## Key Concepts
 
-#### 2. Passive vs. Active Transport
-*   **Question**: When is active transport necessary?
-*   **Key Answer**: When solutes must move against their concentration gradient (low to high concentration). This requires ATP and transport proteins (e.g., Na⁺/K⁺-ATPase).
+| Transport Type | Energy? | Direction | Example |
+|---------------|---------|-----------|---------|
+| Simple Diffusion | No | High → Low | O₂, CO₂ |
+| Facilitated Diffusion | No | High → Low | Glucose |
+| Active Transport | Yes | Low → High | Na⁺/K⁺ pump |
+| Endocytosis | Yes | Into cell | Phagocytosis |
+| Exocytosis | Yes | Out of cell | Secretion |
 
-#### 3. Tonicity
-*   **Question**: Define isotonic, hypertonic, and hypotonic solutions.
-*   **Key Answer**:
-    *   **Hypertonic**: Higher solute concentration outside → water exits cell → cell shrinks (crenation in animal cells, plasmolysis in plant cells).
-    *   **Hypotonic**: Lower solute concentration outside → water enters cell → cell swells (lysis in animal cells, turgidity in plant cells).
-    *   **Isotonic**: Equal solute concentration → no net water movement.
+## Study Tips
 
-#### 4. Bulk Transport
-*   **Question**: How do large substances cross the membrane?
-*   **Key Answer**: Endocytosis (phagocytosis, pinocytosis) brings material in; exocytosis releases material. Both require membrane flexibility and ATP.
+1. **Draw the phospholipid bilayer** — Label heads and tails
+2. **Memorize tonicity effects** — Hypo = swell; Hyper = shrink
+3. **Know the Na⁺/K⁺ pump** — 3 Na⁺ out, 2 K⁺ in, uses ATP

@@ -1,32 +1,49 @@
-# Module 6: Metabolism
-## Keys to Success & Study Guide
+# Module 6: Metabolism — Keys to Success
 
-### Learning Objectives
+## Learning Objectives
+
 By the end of this module, you should be able to:
 
-1.  **Differentiate** between kinetic/potential energy and exergonic/endergonic reactions.
-2.  **Explain** how enzymes catalyze reactions and how they are regulated by environmental factors.
-3.  **Describe** the ATP cycle and its role in energy coupling.
-4.  **Analyze** metabolic control via feedback inhibition and redox reactions.
+1. Apply the laws of thermodynamics to living systems
+2. Explain how enzymes function
+3. Describe the structure and role of ATP
+4. Distinguish anabolic from catabolic pathways
+5. Explain redox reactions and feedback inhibition
 
-### Key Terminology Checklist
-*Define these terms in your own words to ensure mastery.*
+## Key Terms to Know
 
-- [ ] **Entropy**: A measure of disorder or randomness in a system.
-- [ ] **Substrate**: The specific reactant on which an enzyme acts.
-- [ ] **Active Site**: The region of an enzyme where the substrate binds.
-- [ ] **Allosteric Regulation**: Regulation of enzyme activity by binding of an effector molecule at a site other than the active site.
-- [ ] **Phosphorylation**: The addition of a phosphate group to a molecule, often transferring energy.
+- **Metabolism** — All chemical reactions in an organism
+- **Anabolic** — Building reactions (require energy)
+- **Catabolic** — Breakdown reactions (release energy)
+- **Enzyme** — Protein that speeds up chemical reactions
+- **Substrate** — Molecule that binds to enzyme active site
+- **Active Site** — Region where substrate binds to enzyme
+- **Activation Energy** — Energy needed to start a reaction
+- **ATP** — Adenosine triphosphate; energy currency
+- **Oxidation** — Losing electrons (OIL)
+- **Reduction** — Gaining electrons (RIG)
+- **Feedback Inhibition** — End product inhibits first enzyme
 
-### Concept Check
-#### 1. Thermodynamics and Life
-*   **Question**: How can complex, ordered life exist in a universe tending toward entropy?
-*   **Key Answer**: Living organisms are open systems that maintain order by increasing entropy elsewhere. Metabolism releases heat, which increases overall entropy. Life obeys the Second Law of Thermodynamics.
+## Key Concepts
 
-#### 2. Enzyme Mechanism
-*   **Question**: How do enzymes work?
-*   **Key Answer**: Enzymes lower activation energy by stabilizing the transition state. The Induced Fit Model describes how the enzyme active site conforms to the substrate upon binding.
+**Laws of Thermodynamics:**
 
-#### 3. Energy Coupling
-*   **Question**: How is ATP used to power cellular processes?
-*   **Key Answer**: ATP hydrolysis is exergonic (ΔG < 0). This energy is coupled to endergonic reactions (ΔG > 0) through phosphate transfer or conformational changes in proteins.
+1. Energy cannot be created or destroyed (conservation)
+2. Every transfer increases entropy (disorder)
+
+**ATP Structure:**
+
+- Adenine + ribose + 3 phosphate groups
+- Energy stored in phosphate bonds
+
+**Enzyme Function:**
+
+- Lower activation energy
+- Not consumed in reaction
+- Specific to substrate (lock and key)
+
+## Study Tips
+
+1. **Remember OIL RIG** — Oxidation Is Loss, Reduction Is Gain
+2. **Know enzyme factors** — Temperature, pH, concentration
+3. **Draw ATP → ADP** — Show phosphate release

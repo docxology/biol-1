@@ -1,12 +1,14 @@
 # Source Code Technical Documentation
 
+**Test Coverage: 87%** (401 tests, 395 passed, 6 skipped)
+
 ## Code Structure
 
 ### Module Organization
 
 Each module follows a consistent structure:
 
-```
+```text
 [module_name]/
 ├── __init__.py          # Module initialization and exports
 ├── main.py              # Core functionality (or [module_name].py)
@@ -620,6 +622,51 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
     """
     pass
 
+def process_syllabus(syllabus_path: str, output_dir: str) -> Dict[str, Any]:
+    """
+    Process syllabus files and generate all format renderings.
+    
+    Args:
+        syllabus_path: Path to syllabus directory or file
+        output_dir: Output directory for generated files
+    
+    Returns:
+        Dictionary with results:
+        - files: Dict mapping format to list of generated files
+        - summary: Dict with counts of generated files by format
+        - errors: List of errors encountered
+    """
+    pass
+
+def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
+    """
+    Clear all output directories before regeneration.
+    
+    Args:
+        repo_root: Root path of the repository
+    
+    Returns:
+        Dictionary with summary:
+        - cleared_directories: List of cleared directory paths
+        - total_files_removed: Total count of files removed
+        - errors: List of errors encountered
+    """
+    pass
+
+def process_module_website(module_path: str, output_dir: Optional[str] = None) -> str:
+    """
+    Generate HTML website for a module.
+    
+    Args:
+        module_path: Path to module directory
+        output_dir: Optional output directory (defaults to module_path/output/website)
+    
+    Returns:
+        Path to generated HTML file
+    """
+    pass
+```
+
 #### HTML Website Generation Module
 
 **File**: `src/html_website/main.py`
@@ -711,24 +758,203 @@ def batch_process_schedules(directory: str, output_dir: str, formats: Optional[L
     pass
 ```
 
+#### Lab Manual Module
+
+**File**: `src/lab_manual/main.py`
+
+```python
+def render_lab_manual(
+    input_path: str,
+    output_path: str,
+    output_format: str = "pdf",
+    lab_title: Optional[str] = None,
+    course_name: Optional[str] = None,
+    include_header: bool = True,
+) -> str:
+    """
+    Render a lab manual from Markdown to PDF or HTML.
+    
+    Args:
+        input_path: Path to input Markdown file
+        output_path: Path for output file
+        output_format: Output format ("pdf" or "html")
+        lab_title: Optional lab title (extracted from content if not provided)
+        course_name: Optional course name for header
+        include_header: Whether to include student info header (default: True)
+    
+    Returns:
+        Path to generated file
+    """
+    pass
+
+def parse_lab_elements(markdown_content: str) -> List[LabElement]:
+    """
+    Parse lab-specific elements from Markdown content.
+    
+    Args:
+        markdown_content: Raw Markdown content
+    
+    Returns:
+        List of LabElement objects found in the content
+    """
+    pass
+
+def generate_data_table(
+    rows: int = 5,
+    columns: Optional[List[str]] = None,
+    title: Optional[str] = None,
+    fillable: bool = True,
+) -> str:
+    """
+    Generate HTML for a data table.
+    
+    Args:
+        rows: Number of rows in the table
+        columns: List of column headers
+        title: Optional table title
+        fillable: Whether cells should be fillable
+    
+    Returns:
+        HTML string for the table
+    """
+    pass
+
+def generate_measurement_table(
+    rows: int = 5,
+    aspects: Optional[List[str]] = None,
+    include_device: bool = True,
+    include_unit: bool = True,
+    include_value: bool = False,
+) -> str:
+    """
+    Generate HTML for a measurement table.
+    
+    Args:
+        rows: Number of rows
+        aspects: Optional list of pre-filled physical aspects
+        include_device: Include measurement device column
+        include_unit: Include unit column
+        include_value: Include value column
+    
+    Returns:
+        HTML string for the measurement table
+    """
+    pass
+
+def batch_render_lab_manuals(
+    directory: str,
+    output_dir: str,
+    output_format: str = "pdf",
+    course_name: Optional[str] = None,
+) -> List[str]:
+    """
+    Batch render lab manuals from a directory.
+    
+    Args:
+        directory: Directory containing Markdown lab files
+        output_dir: Output directory for rendered files
+        output_format: Output format ("pdf" or "html")
+        course_name: Optional course name for headers
+    
+    Returns:
+        List of generated file paths
+    """
+    pass
+
+def get_lab_template(template_name: str = "basic") -> str:
+    """
+    Get a lab manual Markdown template.
+    
+    Args:
+        template_name: Name of template ("basic", "measurement", "observation")
+    
+    Returns:
+        Markdown template string
+    """
+    pass
+```
+
+#### Publish Module
+
+**File**: `src/publish/main.py`
+
+```python
+def publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]:
+    """
+    Publish course materials to the published directory.
+    
+    Args:
+        course_path: Path to the course directory (e.g., 'biol-1')
+        publish_root: Root directory for publishing (default: PUBLISHED in repo root)
+    
+    Returns:
+        Dictionary with publishing results:
+        - course: Course name
+        - modules_published: Number of modules published
+        - syllabus_files: Number of syllabus files
+        - total_files: Total files copied
+        - modules: List of module results
+        - errors: List of errors
+    """
+    pass
+```
+
+**File**: `src/publish/utils.py`
+
+```python
+def get_course_config(course_name: str) -> Dict[str, str]:
+    """
+    Get configuration for a specific course.
+    
+    Args:
+        course_name: Name of the course directory (e.g., 'biol-1')
+    
+    Returns:
+        Dictionary with configuration options
+    """
+    pass
+
+def copy_directory_contents(
+    src: Path,
+    dst: Path,
+    exclude_patterns: Optional[List[str]] = None
+) -> int:
+    """
+    Copy contents of source directory to destination.
+    
+    Args:
+        src: Source directory path
+        dst: Destination directory path
+        exclude_patterns: List of glob patterns to exclude
+    
+    Returns:
+        Number of files copied
+    """
+    pass
+```
+
 ## Code Organization Principles
 
 ### Modularity
+
 - Each module is self-contained with clear boundaries
 - Minimal dependencies between modules
 - Shared utilities in common utility modules
 
 ### Reusability
+
 - Functions designed for reuse across different contexts
 - Configuration-driven behavior where appropriate
 - Clear interfaces and abstractions
 
 ### Maintainability
+
 - Consistent code structure across modules
 - Comprehensive documentation
 - Type hints for better IDE support and error detection
 
 ### Testing
+
 - Unit tests for each function
 - Integration tests for module interactions
 - Test coverage targets maintained
@@ -758,6 +984,7 @@ Modules return consistent data structures:
 - **Type Guarantees**: Return types match type hints exactly
 
 Example:
+
 ```python
 # Consistent return pattern
 {

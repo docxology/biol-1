@@ -1,33 +1,41 @@
-# Module 7: Photosynthesis
-## Comprehension & Critical Thinking Questions
+# Module 7: Photosynthesis — Study Questions
 
-### Part 1: Core Concepts
-1.  **The Big Picture**
-    *   Write the balanced equation for photosynthesis: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂.
-    *   Identify which molecule is reduced (CO₂ → glucose) and which is oxidized (H₂O → O₂).
+1. Write the balanced equation for photosynthesis.
 
-2.  **Chloroplast Anatomy**
-    *   Define thylakoid, granum, and stroma.
-    *   Where do the Light Reactions occur? Where does the Calvin Cycle occur?
+2. What are the reactants and products of photosynthesis?
 
-3.  **Pigments**
-    *   Why are most plants green? Explain in terms of light absorption and reflection.
-    *   What is the role of the antenna complex in photosystems?
+3. Where does photosynthesis occur? What organelle?
 
-### Part 2: Application
-4.  **The Light Reactions**
-    *   Trace the path of an electron from water to NADPH.
-    *   Why is water split at Photosystem II? What byproduct is released?
-    *   How is ATP generated? (Chemiosmosis driven by H⁺ gradient)
+4. What is a chloroplast? Describe its structure.
 
-5.  **The Calvin Cycle**
-    *   The Calvin Cycle produces G3P from CO₂. What two products from the Light Reactions are required?
-    *   What is RuBisCO, and why is it considered the most abundant and important enzyme on Earth?
+5. Define thylakoid, granum, and stroma.
 
-### Part 3: Analysis & Evaluation
-6.  **Evolutionary Adaptations**
-    *   In hot, dry climates, stomatal closure leads to photorespiration. Analyze how C₄ and CAM plants solve this problem.
-    *   Compare corn (C₄) and cactus (CAM) in terms of spatial vs. temporal separation of carbon fixation.
+6. Where do the light-dependent reactions occur?
 
-7.  **Global Impact**
-    *   Photosynthesis removed CO₂ and added O₂ to Earth's early atmosphere. Analyze how this enabled the evolution of aerobic respiration.
+7. Where does the Calvin Cycle occur?
+
+8. Why are most plants green?
+
+9. What is chlorophyll and what does it do?
+
+10. What is the role of the antenna complex in photosystems?
+
+11. Trace the path of an electron from water to NADPH.
+
+12. Why is water split at Photosystem II? What byproduct is released?
+
+13. How is ATP generated during the light reactions (chemiosmosis)?
+
+14. What are the products of the light-dependent reactions?
+
+15. What does the Calvin Cycle produce?
+
+16. What two products from the light reactions does the Calvin Cycle require?
+
+17. What is RuBisCO? Why is it important?
+
+18. What is photorespiration? Why is it a problem?
+
+19. How do C₄ plants avoid photorespiration?
+
+20. How do CAM plants (like cacti) conserve water while performing photosynthesis?

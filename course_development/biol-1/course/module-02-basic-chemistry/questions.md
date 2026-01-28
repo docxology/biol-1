@@ -1,33 +1,41 @@
-# Module 2: Basic Chemistry
-## Comprehension & Critical Thinking Questions
+# Module 2: Basic Chemistry — Study Questions
 
-### Part 1: Core Concepts
-1.  **Atomic Structure**
-    *   Identify the three subatomic particles (protons, neutrons, electrons). Describe their location, relative mass, and charge.
-    *   What determines the identity of an element?
+1. What are the three subatomic particles? Describe their location, mass, and charge.
 
-2.  **Chemical Bonding**
-    *   Define the Octet Rule. Why do atoms form bonds?
-    *   Differentiate between ionic bonds, covalent bonds (polar and non-polar), and hydrogen bonds.
+2. What determines the identity of an element (atomic number)?
 
-3.  **Properties of Water**
-    *   Explain why water is a polar molecule. How does polarity lead to hydrogen bonding?
-    *   List four properties of water critical for life: cohesion, adhesion, high specific heat, solvent properties.
+3. What is an isotope? How are isotopes used in biology?
 
-### Part 2: Application
-4.  **pH and Buffers**
-    *   The pH scale is logarithmic. How much more acidic is a solution with pH 3 compared to pH 6?
-    *   Explain the role of buffers in biological systems. What happens if blood pH shifts from 7.4 to 6.8?
+4. Explain the Octet Rule. Why do atoms form bonds?
 
-5.  **Isotopes in Biology**
-    *   **Scenario**: A paleontologist discovers a fossil and wants to determine its age.
-    *   **Apply**: Explain how radioactive isotopes (e.g., Carbon-14) and half-life calculations are used in radiometric dating.
+5. What is the difference between an ionic bond and a covalent bond?
 
-### Part 3: Analysis & Evaluation
-6.  **Reactivity and Stability**
-    *   Analyze the relationship between electron configuration and chemical reactivity.
-    *   Why are noble gases (He, Ne, Ar) largely unreactive?
+6. What is the difference between polar and non-polar covalent bonds?
 
-7.  **Water in Ecosystems**
-    *   Ice floats because solid water is less dense than liquid water.
-    *   Analyze how this property affects aquatic ecosystems in winter. What would happen if ice sank?
+7. What are hydrogen bonds? Why are they important in biology?
+
+8. Why is water a polar molecule?
+
+9. How does hydrogen bonding give water its unique properties?
+
+10. Define cohesion, adhesion, and surface tension.
+
+11. What is specific heat? Why does water have a high specific heat?
+
+12. Why is water called the "universal solvent"?
+
+13. What is the difference between hydrophilic and hydrophobic molecules?
+
+14. What is pH? What is the pH scale?
+
+15. What is the difference between an acid and a base?
+
+16. A solution with pH 3 is how many times more acidic than a solution with pH 6?
+
+17. What are buffers? Why are they important in biological systems?
+
+18. What would happen if blood pH dropped from 7.4 to 6.8?
+
+19. Why are noble gases largely unreactive?
+
+20. How does ice floating affect aquatic ecosystems?

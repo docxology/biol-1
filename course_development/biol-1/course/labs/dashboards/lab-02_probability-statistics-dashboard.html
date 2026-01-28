@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 2 Dashboard: Probability &amp; Statistics | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DATA GRID (recording grid)
+   ═══════════════════════════════════════════════════════════════════════ */
+.data-grid {
+  display: grid; gap: 3px; margin: 10px 0; font-family: var(--mono); font-size: 14px;
+}
+.data-grid .cell {
+  display: flex; align-items: center; justify-content: center;
+  height: 38px; border-radius: 4px; font-weight: 700; transition: all 0.2s;
+}
+.data-grid .cell-header { background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 600; }
+.data-grid .cell-label { background: #f1f5f9; color: var(--text); font-size: 12px; font-weight: 600; }
+.data-grid .cell-empty { background: #fafafa; border: 1px dashed #d1d5db; color: #d1d5db; }
+.data-grid .cell-h { background: #fef2f2; color: var(--accent); border: 1px solid #fecaca; }
+.data-grid .cell-t { background: #eff6ff; color: var(--blue); border: 1px solid #bfdbfe; }
+.data-grid .cell-die { border: 1px solid #e5e7eb; }
+.data-grid .cell-die-1 { background: #fef2f2; color: #dc2626; }
+.data-grid .cell-die-2 { background: #fff7ed; color: #ea580c; }
+.data-grid .cell-die-3 { background: #fefce8; color: #ca8a04; }
+.data-grid .cell-die-4 { background: #f0fdf4; color: #16a34a; }
+.data-grid .cell-die-5 { background: #eff6ff; color: #2563eb; }
+.data-grid .cell-die-6 { background: #f5f3ff; color: #7c3aed; }
+.data-grid .cell-new { animation: cellPop 0.3s ease; }
+@keyframes cellPop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PUNNETT SQUARE
+   ═══════════════════════════════════════════════════════════════════════ */
+.punnett { display: grid; grid-template-columns: 60px 1fr 1fr; grid-template-rows: 50px 1fr 1fr; gap: 3px; max-width: 300px; margin: 12px auto; }
+.punnett .p-cell {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; font-weight: 700; font-size: 18px; min-height: 60px;
+}
+.punnett .p-corner { background: transparent; }
+.punnett .p-header { background: #1a1a1a; color: #fff; }
+.punnett .p-aa { background: #dbeafe; color: #1e40af; border: 2px solid #93c5fd; }
+.punnett .p-Aa { background: #fef3c7; color: #92400e; border: 2px solid #fcd34d; }
+.punnett .p-AA { background: #fce7f3; color: #9d174d; border: 2px solid #f9a8d4; }
+.punnett .p-highlight { box-shadow: 0 0 0 3px var(--accent), 0 0 12px rgba(196,30,58,0.3); z-index: 1; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SAMPLE SPACE GRID
+   ═══════════════════════════════════════════════════════════════════════ */
+.ss-grid { display: grid; grid-template-columns: 50px repeat(6, 1fr); gap: 3px; max-width: 500px; margin: 12px 0; }
+.ss-cell {
+  display: flex; align-items: center; justify-content: center;
+  height: 42px; border-radius: 4px; font-size: 13px; font-weight: 600; transition: all 0.2s;
+}
+.ss-header { background: #1a1a1a; color: #fff; }
+.ss-row-header { background: #374151; color: #fff; }
+.ss-body { background: #f8fafc; border: 1px solid var(--border); }
+.ss-hit { background: #fef2f2; border-color: var(--accent); color: var(--accent); font-weight: 800; }
+.ss-hit-new { animation: cellPop 0.3s ease; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 2 &mdash; Probability &amp; Statistics</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Coin Flips</a>
+    <a href="#part2"><span class="nav-num">2</span> Die Draws</a>
+    <a href="#part3"><span class="nav-num">3</span> Theory vs. Experiment</a>
+    <a href="#part4"><span class="nav-num">4</span> Combined Events</a>
+    <a href="#part5"><span class="nav-num">5</span> Law of Large Numbers</a>
+    <a href="#part6"><span class="nav-num">6</span> Prediction</a>
+    <a href="#part7"><span class="nav-num">7</span> Genetics Simulator</a>
+    <a href="#analysis"><span class="nav-num">&Sigma;</span> Statistical Analysis</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Probability &amp; Statistics</h2>
+  <p>Interactive simulations for every section of Lab 2. Run experiments, visualize data in real time, and explore the statistics that underpin biological variation.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Biological Organization</span>
+    <span class="bio-tag">Science as Method</span>
+    <span class="bio-tag">Evolution &amp; Variation</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: COIN FLIPS ════════════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Coin Flips &mdash; Two Outcomes</div>
+    <div class="section-subtitle">Understand random events with two equally likely outcomes</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Simulator</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="coinFlip()">Flip Coin</button>
+      <button class="btn btn-secondary" onclick="coinBatch(20)">Flip 20</button>
+      <button class="btn btn-outline" onclick="coinReset()">Reset</button>
+    </div>
+    <div class="stat-grid" id="coin-stats">
+      <div class="stat-box stat-accent"><div class="stat-val" id="coin-h">0</div><div class="stat-label">Heads</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="coin-t">0</div><div class="stat-label">Tails</div></div>
+      <div class="stat-box"><div class="stat-val" id="coin-total">0</div><div class="stat-label">Total</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="coin-prop">-</div><div class="stat-label">P(Heads)</div></div>
+    </div>
+    <div class="data-grid" id="coin-grid" style="grid-template-columns: 60px repeat(5, 1fr);"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Proportion of Heads Over Time</div>
+    <div class="chart-wrap"><canvas id="coin-chart" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Heads / Tails Balance</div>
+    <div class="chart-wrap"><canvas id="coin-balance-chart" height="60"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: DIE DRAWS ═════════════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Die Draws &mdash; Six Outcomes</div>
+    <div class="section-subtitle">Explore probability with a larger sample space</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Simulator</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="dieRoll()">Roll Die</button>
+      <button class="btn btn-secondary" onclick="dieBatch(30)">Roll 30</button>
+      <button class="btn btn-outline" onclick="dieReset()">Reset</button>
+    </div>
+    <div class="stat-grid" id="die-stats">
+      <div class="stat-box stat-accent"><div class="stat-val" id="die-total">0</div><div class="stat-label">Total Rolls</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="die-most">-</div><div class="stat-label">Most Frequent</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="die-least">-</div><div class="stat-label">Least Frequent</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="die-chi">-</div><div class="stat-label">&chi;&sup2; Stat</div></div>
+    </div>
+    <div class="data-grid" id="die-grid" style="grid-template-columns: 60px repeat(6, 1fr);"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Observed vs. Expected Frequency</div>
+    <div class="chart-wrap"><canvas id="die-chart" height="240"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Running Probability per Face</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:#dc2626;"></span> Face 1</span>
+      <span><span class="ci-dot" style="background:#ea580c;"></span> Face 2</span>
+      <span><span class="ci-dot" style="background:#ca8a04;"></span> Face 3</span>
+      <span><span class="ci-dot" style="background:#16a34a;"></span> Face 4</span>
+      <span><span class="ci-dot" style="background:#2563eb;"></span> Face 5</span>
+      <span><span class="ci-dot" style="background:#7c3aed;"></span> Face 6</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> 1/6 theoretical</span>
+    </div>
+    <div class="chart-wrap"><canvas id="die-convergence-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: THEORY vs EXPERIMENT ══════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Theoretical vs. Experimental Probability</div>
+    <div class="section-subtitle">Distinguish between what should happen and what did happen</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Comparison &mdash; Auto-populated from Parts 1 &amp; 2</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Run the simulators above, then see how your experimental results compare to theory.</p>
+    <div class="chart-wrap"><canvas id="theory-chart" height="280"></canvas></div>
+    <div id="theory-details" style="margin-top:12px;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: COMBINED EVENTS ═══════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Combined Events</div>
+    <div class="section-subtitle">Combining random events creates larger sample spaces</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Sample Space (2 &times; 6 = 12 outcomes)</div>
+    <div class="ss-grid" id="ss-grid"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="combinedDraw()">Draw Both</button>
+      <button class="btn btn-secondary" onclick="combinedBatch(12)">Draw 12</button>
+      <button class="btn btn-outline" onclick="combinedReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="comb-total">0</div><div class="stat-label">Total Draws</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="comb-heven">0</div><div class="stat-label">H + Even</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="comb-t1">0</div><div class="stat-label">T + 1</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="comb-unique">0</div><div class="stat-label">Unique Combos</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Combination Heatmap</div>
+    <div class="chart-wrap"><canvas id="comb-chart" height="180"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Experimental vs. Theoretical &mdash; P(H+Even) and P(T+1)</div>
+    <div class="chart-wrap"><canvas id="comb-comparison-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: LAW OF LARGE NUMBERS ══════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">The Law of Large Numbers</div>
+    <div class="section-subtitle">Larger samples produce more stable results</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Convergence Simulator</div>
+    <div class="slider-group">
+      <label>Flips per group</label>
+      <input type="range" id="lln-flips" min="10" max="200" value="20" oninput="llnUpdateLabel()">
+      <span class="slider-val" id="lln-flips-val">20</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="llnAddGroup()">Add Group</button>
+      <button class="btn btn-secondary" onclick="llnAdd6()">Add 6 Groups</button>
+      <button class="btn btn-outline" onclick="llnReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="lln-groups">0</div><div class="stat-label">Groups</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="lln-totalflips">0</div><div class="stat-label">Total Flips</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="lln-classpct">-</div><div class="stat-label">Class % Heads</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="lln-range">-</div><div class="stat-label">Group Range</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Convergence to 50%</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Individual groups</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> Cumulative proportion</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> Theoretical (0.50)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="lln-chart" height="280"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Group Spread &mdash; % Heads per Group</div>
+    <div class="chart-wrap"><canvas id="lln-group-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: PREDICTION ════════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Probability and Prediction</div>
+    <div class="section-subtitle">Use probability to make predictions about future events</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Prediction Simulator</div>
+    <div class="slider-group">
+      <label>Future flips</label>
+      <input type="range" id="pred-n" min="10" max="1000" value="100" step="10" oninput="predUpdate()">
+      <span class="slider-val" id="pred-n-val">100</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="predRun()">Run Simulation</button>
+      <button class="btn btn-secondary" onclick="predRun100()">Run 100 Simulations</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="pred-expected">-</div><div class="stat-label">Expected Heads</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="pred-actual">-</div><div class="stat-label">Last Simulated</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="pred-within">-</div><div class="stat-label">Within &plusmn;5%</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="pred-sd">-</div><div class="stat-label">Std. Deviation</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Distribution of Simulated Outcomes</div>
+    <div class="chart-wrap"><canvas id="pred-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 7: GENETICS ══════════════════════════ -->
+<div class="section" id="part7">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div><div class="section-title">Probability in the Living World</div>
+    <div class="section-subtitle">Genetic inheritance follows probability rules</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Punnett Square (Aa &times; Aa)</div>
+      <div class="punnett" id="punnett">
+        <div class="p-cell p-corner"></div>
+        <div class="p-cell p-header">A</div>
+        <div class="p-cell p-header">a</div>
+        <div class="p-cell p-header">A</div>
+        <div class="p-cell p-AA" id="pq-AA">AA</div>
+        <div class="p-cell p-Aa" id="pq-Aa1">Aa</div>
+        <div class="p-cell p-header">a</div>
+        <div class="p-cell p-Aa" id="pq-Aa2">aA</div>
+        <div class="p-cell p-aa" id="pq-aa">aa</div>
+      </div>
+      <div style="text-align:center;margin-top:8px;">
+        <span class="badge badge-red">1/4 AA</span>
+        <span class="badge badge-blue">2/4 Aa</span>
+        <span class="badge badge-green">1/4 aa</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Simulator</div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="genCross()">Cross Once</button>
+        <button class="btn btn-secondary" onclick="genBatch(12)">Cross 12</button>
+        <button class="btn btn-secondary" onclick="genBatch(100)">Cross 100</button>
+        <button class="btn btn-outline" onclick="genReset()">Reset</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="gen-AA">0</div><div class="stat-label">AA</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="gen-Aa">0</div><div class="stat-label">Aa</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="gen-aa">0</div><div class="stat-label">aa</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="gen-total">0</div><div class="stat-label">Total</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Genotype Frequencies &mdash; Observed vs. Expected (1:2:1)</div>
+    <div class="chart-wrap"><canvas id="gen-chart" height="260"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Genotype Ratio Convergence Over Crosses</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:#be185d;"></span> %AA (exp. 25%)</span>
+      <span><span class="ci-dot" style="background:#d97706;"></span> %Aa (exp. 50%)</span>
+      <span><span class="ci-dot" style="background:#2563eb;"></span> %aa (exp. 25%)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="gen-convergence-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ STATISTICAL ANALYSIS ══════════════════════ -->
+<div class="section" id="analysis">
+  <div class="section-header">
+    <div class="section-num">&Sigma;</div>
+    <div><div class="section-title">Extended Statistical Analysis</div>
+    <div class="section-subtitle">Chi-square tests, distributions, confidence intervals</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Chi-Square Goodness of Fit</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Tests whether observed frequencies differ significantly from expected. Uses data from your die rolls (Part 2) and genetics crosses (Part 7).</p>
+    <div id="chi-results"></div>
+    <div class="btn-group"><button class="btn btn-primary" onclick="runChiSquare()">Run Chi-Square Tests</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Binomial Distribution &mdash; Coin Flips</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">The theoretical distribution of heads in n flips, overlaid with your simulation results.</p>
+    <div class="slider-group">
+      <label>n flips</label>
+      <input type="range" id="binom-n" min="5" max="100" value="20" oninput="binomUpdate()">
+      <span class="slider-val" id="binom-n-val">20</span>
+    </div>
+    <div class="chart-wrap"><canvas id="binom-chart" height="280"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="binomSimulate(1000)">Simulate 1000 Experiments</button>
+      <button class="btn btn-outline" onclick="binomReset()">Reset</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Deviation from Expected &mdash; All Experiments</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Horizontal bars showing % deviation of experimental results from theoretical values across all experiments.</p>
+    <div class="chart-wrap"><canvas id="deviation-chart" height="260"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Confidence Interval Explorer</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">How sample size affects the width of a 95% confidence interval for P(Heads) = 0.50.</p>
+    <div class="chart-wrap"><canvas id="ci-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: COIN FLIPS
+// ══════════════════════════════════════════════════════════════════════════
+let coinData = { results: [], h: 0, t: 0, proportions: [] };
+
+function coinBuildGrid() {
+  const g = $('coin-grid'); g.innerHTML = '';
+  // header
+  ['Draws','1st','2nd','3rd','4th','5th'].forEach(t => {
+    const d = document.createElement('div'); d.className = 'cell cell-header'; d.textContent = t; g.appendChild(d);
+  });
+  const rowLabels = ['1-5','6-10','11-15','16-20'];
+  for (let r = 0; r < 4; r++) {
+    const lbl = document.createElement('div'); lbl.className = 'cell cell-label'; lbl.textContent = rowLabels[r]; g.appendChild(lbl);
+    for (let c = 0; c < 5; c++) {
+      const idx = r * 5 + c;
+      const d = document.createElement('div'); d.id = 'coin-cell-' + idx;
+      d.className = 'cell cell-empty'; d.textContent = '\u00B7'; g.appendChild(d);
+    }
+  }
+}
+
+function coinUpdateUI() {
+  $('coin-h').textContent = coinData.h;
+  $('coin-t').textContent = coinData.t;
+  $('coin-total').textContent = coinData.results.length;
+  $('coin-prop').textContent = coinData.results.length ? (coinData.h / coinData.results.length).toFixed(3) : '-';
+  drawCoinChart();
+  drawCoinBalance();
+  updateTheoryChart();
+  drawDeviationChart();
+}
+
+function coinFlip() {
+  const r = Math.random() < 0.5 ? 'H' : 'T';
+  coinData.results.push(r);
+  if (r === 'H') coinData.h++; else coinData.t++;
+  coinData.proportions.push(coinData.h / coinData.results.length);
+  const idx = coinData.results.length - 1;
+  if (idx < 20) {
+    const cell = $('coin-cell-' + idx);
+    if (cell) { cell.className = 'cell cell-' + r.toLowerCase() + ' cell-new'; cell.textContent = r; }
+  }
+  coinUpdateUI();
+}
+
+function coinBatch(n) { for (let i = 0; i < n; i++) coinFlip(); }
+function coinReset() { coinData = { results: [], h: 0, t: 0, proportions: [] }; coinBuildGrid(); coinUpdateUI(); }
+
+function drawCoinChart() {
+  if (!coinData.proportions.length) return;
+  const ctx = getCtx('coin-chart');
+  drawLineChart(ctx, [
+    { data: coinData.proportions, color: '#c41e3a', width: 2, dots: true }
+  ], { yMin: 0, yMax: 1, refLine: 0.5 });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: DIE DRAWS
+// ══════════════════════════════════════════════════════════════════════════
+let dieData = { results: [], freq: [0,0,0,0,0,0], proportions: [] };
+const dieColors = ['#dc2626','#ea580c','#ca8a04','#16a34a','#2563eb','#7c3aed'];
+
+function dieBuildGrid() {
+  const g = $('die-grid'); g.innerHTML = '';
+  ['Draws','1st','2nd','3rd','4th','5th','6th'].forEach(t => {
+    const d = document.createElement('div'); d.className = 'cell cell-header'; d.textContent = t; g.appendChild(d);
+  });
+  const rowLabels = ['1-6','7-12','13-18','19-24','25-30'];
+  for (let r = 0; r < 5; r++) {
+    const lbl = document.createElement('div'); lbl.className = 'cell cell-label'; lbl.textContent = rowLabels[r]; g.appendChild(lbl);
+    for (let c = 0; c < 6; c++) {
+      const idx = r * 6 + c;
+      const d = document.createElement('div'); d.id = 'die-cell-' + idx;
+      d.className = 'cell cell-empty'; d.textContent = '\u00B7'; g.appendChild(d);
+    }
+  }
+}
+
+function dieUpdateUI() {
+  const total = dieData.results.length;
+  $('die-total').textContent = total;
+  if (total > 0) {
+    let maxI = 0, minI = 0;
+    dieData.freq.forEach((f, i) => { if (f > dieData.freq[maxI]) maxI = i; if (f < dieData.freq[minI]) minI = i; });
+    $('die-most').textContent = (maxI+1) + ' (' + dieData.freq[maxI] + ')';
+    $('die-least').textContent = (minI+1) + ' (' + dieData.freq[minI] + ')';
+    const exp = total / 6;
+    const chi = dieData.freq.reduce((s, f) => s + Math.pow(f - exp, 2) / exp, 0);
+    $('die-chi').textContent = chi.toFixed(2);
+  }
+  drawDieChart();
+  drawDieConvergence();
+  updateTheoryChart();
+  drawDeviationChart();
+}
+
+function dieRoll() {
+  const r = rand(1, 6);
+  dieData.results.push(r);
+  dieData.freq[r-1]++;
+  const total = dieData.results.length;
+  dieData.proportions.push(dieData.freq.map(f => f / total));
+  const idx = total - 1;
+  if (idx < 30) {
+    const cell = $('die-cell-' + idx);
+    if (cell) { cell.className = 'cell cell-die cell-die-' + r + ' cell-new'; cell.textContent = r; }
+  }
+  dieUpdateUI();
+}
+
+function dieBatch(n) { for (let i = 0; i < n; i++) dieRoll(); }
+function dieReset() { dieData = { results: [], freq: [0,0,0,0,0,0], proportions: [] }; dieBuildGrid(); dieUpdateUI(); }
+
+function drawDieChart() {
+  const ctx = getCtx('die-chart');
+  const total = dieData.results.length;
+  const exp = total / 6;
+  drawBarChart(ctx, {
+    labels: ['1','2','3','4','5','6'],
+    values: dieData.freq,
+    expected: [exp,exp,exp,exp,exp,exp],
+    colors: dieColors,
+    maxVal: Math.max(...dieData.freq, exp) * 1.3 || 10
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: THEORY vs EXPERIMENT
+// ══════════════════════════════════════════════════════════════════════════
+function updateTheoryChart() {
+  const ctx = getCtx('theory-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const items = [
+    { label: 'P(Heads)', theo: 0.5, exp: coinData.results.length ? coinData.h / coinData.results.length : null },
+    { label: 'P(Roll 3)', theo: 1/6, exp: dieData.results.length ? dieData.freq[2] / dieData.results.length : null },
+    { label: 'P(Even)', theo: 0.5, exp: dieData.results.length ? (dieData.freq[1]+dieData.freq[3]+dieData.freq[5]) / dieData.results.length : null },
+  ];
+
+  const n = items.length, groupW = plotW / n, barW = groupW * 0.3;
+
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = pad.top + plotH * (1 - i/5);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((i * 0.2).toFixed(1), pad.left - 6, y + 4);
+  }
+
+  items.forEach((it, i) => {
+    const cx = pad.left + groupW * i + groupW / 2;
+    // theoretical
+    const th = (it.theo) * plotH;
+    ctx.fillStyle = '#2563eb';
+    ctx.fillRect(cx - barW - 2, pad.top + plotH - th, barW, th);
+    // experimental
+    if (it.exp !== null) {
+      const eh = clamp(it.exp, 0, 1) * plotH;
+      ctx.fillStyle = '#c41e3a';
+      ctx.fillRect(cx + 2, pad.top + plotH - eh, barW, eh);
+      // value
+      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(it.exp.toFixed(3), cx + 2 + barW/2, pad.top + plotH - eh - 6);
+    }
+    // theo value
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(it.theo.toFixed(3), cx - barW/2 - 2, pad.top + plotH - th - 6);
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText(it.label, cx, H - pad.bottom + 18);
+  });
+
+  // legend
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Theoretical', pad.left + 18, 16);
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 100, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('Experimental', pad.left + 118, 16);
+
+  // details
+  let html = '';
+  items.forEach(it => {
+    if (it.exp !== null) {
+      const diff = Math.abs(it.exp - it.theo);
+      const pct = (diff / it.theo * 100).toFixed(1);
+      html += `<span style="margin-right:20px;font-size:13px;"><strong>${it.label}:</strong> off by ${pct}%</span>`;
+    }
+  });
+  $('theory-details').innerHTML = html || '<span style="font-size:13px;color:#9ca3af;">Run Parts 1 and 2 to see comparisons.</span>';
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: COMBINED EVENTS
+// ══════════════════════════════════════════════════════════════════════════
+let combData = { results: [], freq: {}, hEven: 0, t1: 0 };
+
+function combBuildGrid() {
+  const g = $('ss-grid'); g.innerHTML = '';
+  // header row
+  const corner = document.createElement('div'); corner.className = 'ss-cell ss-header'; g.appendChild(corner);
+  for (let d = 1; d <= 6; d++) {
+    const h = document.createElement('div'); h.className = 'ss-cell ss-header'; h.textContent = d; g.appendChild(h);
+  }
+  ['H','T'].forEach(coin => {
+    const rh = document.createElement('div'); rh.className = 'ss-cell ss-row-header'; rh.textContent = coin; g.appendChild(rh);
+    for (let d = 1; d <= 6; d++) {
+      const c = document.createElement('div'); c.className = 'ss-cell ss-body';
+      c.id = 'ss-' + coin + d; c.textContent = coin + d; g.appendChild(c);
+    }
+  });
+}
+
+function combinedDraw() {
+  const coin = Math.random() < 0.5 ? 'H' : 'T';
+  const die = rand(1, 6);
+  const combo = coin + die;
+  combData.results.push(combo);
+  combData.freq[combo] = (combData.freq[combo] || 0) + 1;
+  if (coin === 'H' && die % 2 === 0) combData.hEven++;
+  if (coin === 'T' && die === 1) combData.t1++;
+  // highlight
+  document.querySelectorAll('.ss-hit-new').forEach(e => e.classList.remove('ss-hit-new'));
+  const cell = $('ss-' + combo);
+  if (cell) { cell.className = 'ss-cell ss-hit ss-hit-new'; cell.textContent = combo + ' (' + combData.freq[combo] + ')'; }
+  combUpdateUI();
+}
+
+function combinedBatch(n) { for (let i = 0; i < n; i++) combinedDraw(); }
+function combinedReset() { combData = { results: [], freq: {}, hEven: 0, t1: 0 }; combBuildGrid(); combUpdateUI(); }
+
+function combUpdateUI() {
+  $('comb-total').textContent = combData.results.length;
+  $('comb-heven').textContent = combData.hEven;
+  $('comb-t1').textContent = combData.t1;
+  $('comb-unique').textContent = Object.keys(combData.freq).length;
+  drawCombChart();
+  drawCombComparison();
+  drawDeviationChart();
+}
+
+function drawCombChart() {
+  const ctx = getCtx('comb-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 10, right: 10, bottom: 30, left: 50 };
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const coins = ['H','T'];
+  const cellW = (W - pad.left - pad.right) / 6, cellH = (H - pad.top - pad.bottom) / 2;
+  const maxF = Math.max(1, ...Object.values(combData.freq));
+
+  coins.forEach((coin, ci) => {
+    // row label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(coin, pad.left - 8, pad.top + cellH * ci + cellH / 2 + 5);
+    for (let d = 1; d <= 6; d++) {
+      const f = combData.freq[coin + d] || 0;
+      const x = pad.left + (d-1) * cellW, y = pad.top + ci * cellH;
+      const intensity = f / maxF;
+      const r = Math.round(196 + (255-196) * (1-intensity));
+      const g = Math.round(30 + (245-30) * (1-intensity));
+      const b = Math.round(58 + (245-58) * (1-intensity));
+      ctx.fillStyle = f > 0 ? `rgb(${r},${g},${b})` : '#f1f5f9';
+      ctx.fillRect(x + 2, y + 2, cellW - 4, cellH - 4);
+      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1; ctx.strokeRect(x + 2, y + 2, cellW - 4, cellH - 4);
+      ctx.fillStyle = f > 0 ? '#fff' : '#cbd5e1'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(f || '-', x + cellW/2, y + cellH/2 + 5);
+    }
+  });
+  // column labels
+  for (let d = 1; d <= 6; d++) {
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(d, pad.left + (d-1) * cellW + cellW/2, H - 6);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: LAW OF LARGE NUMBERS
+// ══════════════════════════════════════════════════════════════════════════
+let llnData = { groups: [], cumHeads: 0, cumTotal: 0, cumProp: [] };
+
+function llnUpdateLabel() { $('lln-flips-val').textContent = $('lln-flips').value; }
+
+function llnAddGroup() {
+  const n = parseInt($('lln-flips').value);
+  let h = 0;
+  for (let i = 0; i < n; i++) if (Math.random() < 0.5) h++;
+  const pct = h / n;
+  llnData.groups.push({ n, h, pct });
+  llnData.cumHeads += h;
+  llnData.cumTotal += n;
+  llnData.cumProp.push(llnData.cumHeads / llnData.cumTotal);
+  llnUpdateUI();
+}
+
+function llnAdd6() { for (let i = 0; i < 6; i++) llnAddGroup(); }
+function llnReset() { llnData = { groups: [], cumHeads: 0, cumTotal: 0, cumProp: [] }; llnUpdateUI(); }
+
+function llnUpdateUI() {
+  const g = llnData.groups;
+  $('lln-groups').textContent = g.length;
+  $('lln-totalflips').textContent = llnData.cumTotal;
+  $('lln-classpct').textContent = llnData.cumTotal ? (llnData.cumHeads / llnData.cumTotal * 100).toFixed(1) + '%' : '-';
+  if (g.length >= 2) {
+    const pcts = g.map(x => x.pct);
+    const range = (Math.max(...pcts) - Math.min(...pcts)) * 100;
+    $('lln-range').textContent = range.toFixed(1) + '%';
+  } else { $('lln-range').textContent = '-'; }
+  drawLlnChart();
+  drawLlnGroupChart();
+}
+
+function drawLlnChart() {
+  if (!llnData.groups.length) return;
+  const ctx = getCtx('lln-chart');
+  const groupPcts = llnData.groups.map(g => g.pct);
+  drawLineChart(ctx, [
+    { data: groupPcts, color: '#c41e3a', width: 0, dots: true },
+    { data: llnData.cumProp, color: '#2563eb', width: 2.5, dots: true }
+  ], { yMin: 0, yMax: 1, refLine: 0.5 });
+  // re-draw group dots as scatter (line already draws them, but let's make them bigger)
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = groupPcts.length;
+  groupPcts.forEach((v, i) => {
+    const x = pad.left + (i / Math.max(n-1, 1)) * plotW;
+    const y = pad.top + plotH * (1 - v);
+    ctx.fillStyle = 'rgba(196,30,58,0.3)'; ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#c41e3a'; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: PREDICTION
+// ══════════════════════════════════════════════════════════════════════════
+let predData = { results: [], n: 100 };
+
+function predUpdate() {
+  const n = parseInt($('pred-n').value);
+  $('pred-n-val').textContent = n;
+  predData.n = n;
+  $('pred-expected').textContent = (n * 0.5).toFixed(0);
+}
+
+function predSimOnce() {
+  let h = 0;
+  for (let i = 0; i < predData.n; i++) if (Math.random() < 0.5) h++;
+  return h;
+}
+
+function predRun() {
+  const h = predSimOnce();
+  predData.results.push(h);
+  predUpdateUI(h);
+}
+
+function predRun100() {
+  for (let i = 0; i < 100; i++) predData.results.push(predSimOnce());
+  predUpdateUI(predData.results[predData.results.length - 1]);
+}
+
+function predUpdateUI(lastH) {
+  const n = predData.n, exp = n * 0.5;
+  $('pred-expected').textContent = exp.toFixed(0);
+  $('pred-actual').textContent = lastH;
+  const within5 = predData.results.filter(h => Math.abs(h/n - 0.5) <= 0.05).length;
+  $('pred-within').textContent = predData.results.length ? ((within5 / predData.results.length) * 100).toFixed(0) + '%' : '-';
+  if (predData.results.length >= 2) {
+    const mean = predData.results.reduce((a,b) => a+b, 0) / predData.results.length;
+    const variance = predData.results.reduce((s, h) => s + Math.pow(h - mean, 2), 0) / predData.results.length;
+    $('pred-sd').textContent = Math.sqrt(variance).toFixed(2);
+  }
+  drawPredChart();
+}
+
+function drawPredChart() {
+  const ctx = getCtx('pred-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!predData.results.length) return;
+  const n = predData.n;
+  // bin
+  const bins = {};
+  predData.results.forEach(h => { bins[h] = (bins[h] || 0) + 1; });
+  const minK = Math.min(...predData.results), maxK = Math.max(...predData.results);
+  const range = maxK - minK + 1;
+  const maxFreq = Math.max(...Object.values(bins));
+
+  // bars
+  const barW = Math.max(2, Math.min(20, plotW / range - 1));
+  for (let k = minK; k <= maxK; k++) {
+    const f = bins[k] || 0;
+    const x = pad.left + ((k - minK) / range) * plotW;
+    const h = (f / maxFreq) * plotH;
+    ctx.fillStyle = Math.abs(k/n - 0.5) <= 0.05 ? '#16a34a' : '#c41e3a';
+    ctx.fillRect(x, pad.top + plotH - h, barW, h);
+  }
+
+  // expected line
+  const expX = pad.left + ((n * 0.5 - minK) / range) * plotW;
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
+  ctx.beginPath(); ctx.moveTo(expX, pad.top); ctx.lineTo(expX, pad.top + plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Expected: ' + (n*0.5).toFixed(0), expX, pad.top - 4);
+
+  // axis labels
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  const step = Math.max(1, Math.floor(range / 10));
+  for (let k = minK; k <= maxK; k += step) {
+    const x = pad.left + ((k - minK) / range) * plotW + barW/2;
+    ctx.fillText(k, x, H - pad.bottom + 16);
+  }
+  ctx.fillText('Number of Heads', pad.left + plotW/2, H - 4);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 7: GENETICS
+// ══════════════════════════════════════════════════════════════════════════
+let genData = { AA: 0, Aa: 0, aa: 0, history: [] };
+
+function genCross() {
+  const p1 = Math.random() < 0.5 ? 'A' : 'a';
+  const p2 = Math.random() < 0.5 ? 'A' : 'a';
+  const geno = [p1, p2].sort().join('');
+  // highlight punnett
+  document.querySelectorAll('.p-highlight').forEach(e => e.classList.remove('p-highlight'));
+  if (geno === 'AA') { $('pq-AA').classList.add('p-highlight'); genData.AA++; }
+  else if (geno === 'aa') { $('pq-aa').classList.add('p-highlight'); genData.aa++; }
+  else { // Aa
+    genData.Aa++;
+    if (p1 === 'A') $('pq-Aa1').classList.add('p-highlight');
+    else $('pq-Aa2').classList.add('p-highlight');
+  }
+  const gt = genData.AA + genData.Aa + genData.aa;
+  genData.history.push({ pctAA: genData.AA / gt * 100, pctAa: genData.Aa / gt * 100, pctaa: genData.aa / gt * 100 });
+  genUpdateUI();
+}
+
+function genBatch(n) {
+  for (let i = 0; i < n; i++) {
+    const p1 = Math.random() < 0.5 ? 'A' : 'a';
+    const p2 = Math.random() < 0.5 ? 'A' : 'a';
+    const geno = [p1, p2].sort().join('');
+    if (geno === 'AA') genData.AA++;
+    else if (geno === 'aa') genData.aa++;
+    else genData.Aa++;
+    const gt = genData.AA + genData.Aa + genData.aa;
+    genData.history.push({ pctAA: genData.AA / gt * 100, pctAa: genData.Aa / gt * 100, pctaa: genData.aa / gt * 100 });
+  }
+  genUpdateUI();
+}
+
+function genReset() { genData = { AA: 0, Aa: 0, aa: 0, history: [] }; document.querySelectorAll('.p-highlight').forEach(e => e.classList.remove('p-highlight')); genUpdateUI(); }
+
+function genUpdateUI() {
+  $('gen-AA').textContent = genData.AA;
+  $('gen-Aa').textContent = genData.Aa;
+  $('gen-aa').textContent = genData.aa;
+  const total = genData.AA + genData.Aa + genData.aa;
+  $('gen-total').textContent = total;
+  drawGenChart();
+  drawGenConvergence();
+  drawDeviationChart();
+}
+
+function drawGenChart() {
+  const total = genData.AA + genData.Aa + genData.aa;
+  const ctx = getCtx('gen-chart');
+  if (!total) { ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H); return; }
+  const expAA = total * 0.25, expAa = total * 0.5, expaa = total * 0.25;
+  drawBarChart(ctx, {
+    labels: ['AA', 'Aa', 'aa'],
+    values: [genData.AA, genData.Aa, genData.aa],
+    expected: [expAA, expAa, expaa],
+    colors: ['#be185d', '#d97706', '#2563eb'],
+    maxVal: Math.max(genData.AA, genData.Aa, genData.aa, expAa) * 1.3 || 10
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// ANALYSIS: CHI-SQUARE
+// ══════════════════════════════════════════════════════════════════════════
+function chiSquare(observed, expected) {
+  return observed.reduce((s, o, i) => s + Math.pow(o - expected[i], 2) / expected[i], 0);
+}
+
+function chiPValue(x2, df) {
+  // approximate p-value using incomplete gamma (Wilson-Hilferty)
+  if (x2 <= 0) return 1;
+  const k = df / 2;
+  // simple approximation for chi-square p-value
+  const z = Math.pow(x2 / df, 1/3) - (1 - 2/(9*df));
+  const se = Math.sqrt(2/(9*df));
+  const zScore = z / se;
+  // normal CDF approximation
+  const p = 0.5 * (1 + erf(zScore / Math.sqrt(2)));
+  return clamp(1 - p, 0, 1);
+}
+
+function erf(x) {
+  const t = 1 / (1 + 0.3275911 * Math.abs(x));
+  const poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
+  const val = 1 - poly * Math.exp(-x * x);
+  return x >= 0 ? val : -val;
+}
+
+function runChiSquare() {
+  let html = '';
+
+  // Die test
+  const dieTotal = dieData.results.length;
+  if (dieTotal > 0) {
+    const exp = dieTotal / 6;
+    const x2 = chiSquare(dieData.freq, Array(6).fill(exp));
+    const p = chiPValue(x2, 5);
+    const pass = p > 0.05;
+    html += `<div class="analysis-result ${pass ? 'ar-pass' : 'ar-fail'}">
+      <div class="ar-title">Die Rolls (Part 2) &mdash; ${dieTotal} trials</div>
+      <p>Observed: [${dieData.freq.join(', ')}] &nbsp; Expected: [${Array(6).fill(exp.toFixed(1)).join(', ')}]</p>
+      <p>&chi;&sup2; = <code>${x2.toFixed(3)}</code> &nbsp; df = 5 &nbsp; p &asymp; <code>${p.toFixed(4)}</code></p>
+      <p><strong>${pass ? 'Fail to reject H\u2080' : 'Reject H\u2080'}</strong> at &alpha; = 0.05 &mdash; ${pass ? 'No significant deviation from uniform distribution.' : 'Significant deviation detected! (This can happen by chance ~5% of the time.)'}</p>
+    </div>`;
+  } else {
+    html += `<div class="analysis-result"><div class="ar-title">Die Rolls</div><p>No data yet. Run Part 2 first.</p></div>`;
+  }
+
+  // Genetics test
+  const genTotal = genData.AA + genData.Aa + genData.aa;
+  if (genTotal > 0) {
+    const obs = [genData.AA, genData.Aa, genData.aa];
+    const exp = [genTotal * 0.25, genTotal * 0.5, genTotal * 0.25];
+    const x2 = chiSquare(obs, exp);
+    const p = chiPValue(x2, 2);
+    const pass = p > 0.05;
+    html += `<div class="analysis-result ${pass ? 'ar-pass' : 'ar-fail'}">
+      <div class="ar-title">Genetics Cross (Part 7) &mdash; ${genTotal} trials</div>
+      <p>Observed: AA=${genData.AA}, Aa=${genData.Aa}, aa=${genData.aa} &nbsp; Expected: ${(genTotal*0.25).toFixed(1)}, ${(genTotal*0.5).toFixed(1)}, ${(genTotal*0.25).toFixed(1)}</p>
+      <p>&chi;&sup2; = <code>${x2.toFixed(3)}</code> &nbsp; df = 2 &nbsp; p &asymp; <code>${p.toFixed(4)}</code></p>
+      <p><strong>${pass ? 'Fail to reject H\u2080' : 'Reject H\u2080'}</strong> at &alpha; = 0.05 &mdash; ${pass ? 'Data is consistent with 1:2:1 Mendelian ratio.' : 'Significant deviation from 1:2:1! (Can happen by chance ~5% of the time.)'}</p>
+    </div>`;
+  } else {
+    html += `<div class="analysis-result"><div class="ar-title">Genetics Cross</div><p>No data yet. Run Part 7 first.</p></div>`;
+  }
+
+  $('chi-results').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// ANALYSIS: BINOMIAL DISTRIBUTION
+// ══════════════════════════════════════════════════════════════════════════
+let binomSims = [];
+
+function binomUpdate() { $('binom-n-val').textContent = $('binom-n').value; }
+
+function binomC(n, k) {
+  if (k > n) return 0; if (k === 0 || k === n) return 1;
+  let c = 1;
+  for (let i = 0; i < k; i++) c = c * (n - i) / (i + 1);
+  return c;
+}
+
+function binomPmf(n, k, p) { return binomC(n, k) * Math.pow(p, k) * Math.pow(1-p, n-k); }
+
+function binomSimulate(count) {
+  const n = parseInt($('binom-n').value);
+  binomSims = [];
+  for (let s = 0; s < count; s++) {
+    let h = 0;
+    for (let i = 0; i < n; i++) if (Math.random() < 0.5) h++;
+    binomSims.push(h);
+  }
+  drawBinomChart();
+}
+
+function binomReset() { binomSims = []; drawBinomChart(); }
+
+function drawBinomChart() {
+  const n = parseInt($('binom-n').value);
+  const ctx = getCtx('binom-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // theoretical PMF
+  const pmf = [];
+  let maxPmf = 0;
+  for (let k = 0; k <= n; k++) {
+    const p = binomPmf(n, k, 0.5);
+    pmf.push(p);
+    if (p > maxPmf) maxPmf = p;
+  }
+
+  // sim histogram
+  const simBins = Array(n + 1).fill(0);
+  binomSims.forEach(h => { if (h >= 0 && h <= n) simBins[h]++; });
+  const maxSim = Math.max(...simBins);
+  const simTotal = binomSims.length || 1;
+
+  const yMax = Math.max(maxPmf, maxSim / simTotal) * 1.2;
+  const barW = Math.max(2, plotW / (n + 1) - 1);
+
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMax * i/4).toFixed(3), pad.left - 6, y + 4);
+  }
+
+  // sim bars
+  if (binomSims.length) {
+    for (let k = 0; k <= n; k++) {
+      const freq = simBins[k] / simTotal;
+      const x = pad.left + (k / (n + 1)) * plotW;
+      const h = (freq / yMax) * plotH;
+      ctx.fillStyle = 'rgba(196,30,58,0.4)';
+      ctx.fillRect(x, pad.top + plotH - h, barW, h);
+    }
+  }
+
+  // theoretical line
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let k = 0; k <= n; k++) {
+    const x = pad.left + (k / (n + 1)) * plotW + barW / 2;
+    const y = pad.top + plotH - (pmf[k] / yMax) * plotH;
+    k === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  // dots
+  for (let k = 0; k <= n; k++) {
+    const x = pad.left + (k / (n + 1)) * plotW + barW / 2;
+    const y = pad.top + plotH - (pmf[k] / yMax) * plotH;
+    ctx.fillStyle = '#2563eb'; ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI*2); ctx.fill();
+  }
+
+  // axis
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  const step = Math.max(1, Math.floor(n / 10));
+  for (let k = 0; k <= n; k += step) {
+    ctx.fillText(k, pad.left + (k / (n+1)) * plotW + barW/2, H - pad.bottom + 16);
+  }
+  ctx.fillText('Number of Heads (k)', pad.left + plotW/2, H - 4);
+
+  // legend
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left, 4, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Theoretical B(n, 0.5)', pad.left + 18, 10);
+  if (binomSims.length) {
+    ctx.fillStyle = 'rgba(196,30,58,0.5)'; ctx.fillRect(pad.left + 160, 2, 12, 8);
+    ctx.fillStyle = '#374151'; ctx.fillText('Simulated (' + binomSims.length + ' runs)', pad.left + 178, 10);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// ANALYSIS: CONFIDENCE INTERVAL
+// ══════════════════════════════════════════════════════════════════════════
+function drawCIChart() {
+  const ctx = getCtx('ci-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const samples = [10, 20, 30, 50, 100, 200, 500, 1000];
+  const p = 0.5, z = 1.96;
+
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((i * 0.25).toFixed(2), pad.left - 6, y + 4);
+  }
+
+  // ref line at 0.5
+  const refY = pad.top + plotH * 0.5;
+  ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+  ctx.beginPath(); ctx.moveTo(pad.left, refY); ctx.lineTo(W - pad.right, refY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // CI bars
+  const barW = plotW / samples.length;
+  samples.forEach((n, i) => {
+    const se = Math.sqrt(p * (1-p) / n);
+    const lo = p - z * se, hi = p + z * se;
+    const cx = pad.left + barW * i + barW / 2;
+    const yLo = pad.top + plotH * (1 - lo);
+    const yHi = pad.top + plotH * (1 - hi);
+    const yMid = pad.top + plotH * (1 - p);
+
+    // CI band
+    ctx.fillStyle = 'rgba(37,99,235,0.15)';
+    ctx.fillRect(cx - 12, yHi, 24, yLo - yHi);
+    // CI line
+    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, yLo); ctx.lineTo(cx, yHi); ctx.stroke();
+    // caps
+    ctx.beginPath(); ctx.moveTo(cx - 6, yLo); ctx.lineTo(cx + 6, yLo); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx - 6, yHi); ctx.lineTo(cx + 6, yHi); ctx.stroke();
+    // center dot
+    ctx.fillStyle = '#c41e3a'; ctx.beginPath(); ctx.arc(cx, yMid, 4, 0, Math.PI*2); ctx.fill();
+
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('n=' + n, cx, H - pad.bottom + 16);
+    // width label
+    ctx.fillStyle = '#2563eb'; ctx.font = '10px system-ui';
+    ctx.fillText('\u00B1' + (z * se * 100).toFixed(1) + '%', cx, yHi - 8);
+  });
+
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Sample Size', pad.left + plotW/2, H - 4);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// NEW VISUALIZATION: COIN BALANCE BAR
+// ══════════════════════════════════════════════════════════════════════════
+function drawCoinBalance() {
+  const ctx = getCtx('coin-balance-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const total = coinData.results.length;
+  if (!total) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Flip coins to see the balance bar', W / 2, H / 2 + 4);
+    return;
+  }
+  const pad = { left: 50, right: 50, top: 10, bottom: 10 };
+  const barH = H - pad.top - pad.bottom;
+  const barW = W - pad.left - pad.right;
+  const hProp = coinData.h / total;
+  const hW = barW * hProp;
+  // Heads portion
+  ctx.fillStyle = '#c41e3a';
+  ctx.beginPath();
+  ctx.roundRect(pad.left, pad.top, hW, barH, hW > 6 ? [6, 0, 0, 6] : 0);
+  ctx.fill();
+  // Tails portion
+  ctx.fillStyle = '#2563eb';
+  ctx.beginPath();
+  ctx.roundRect(pad.left + hW, pad.top, barW - hW, barH, (barW - hW) > 6 ? [0, 6, 6, 0] : 0);
+  ctx.fill();
+  // Labels
+  ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  if (hProp > 0.12) {
+    ctx.fillStyle = '#fff';
+    ctx.fillText('H ' + (hProp * 100).toFixed(1) + '%', pad.left + hW / 2, H / 2 + 5);
+  }
+  if ((1 - hProp) > 0.12) {
+    ctx.fillStyle = '#fff';
+    ctx.fillText('T ' + ((1 - hProp) * 100).toFixed(1) + '%', pad.left + hW + (barW - hW) / 2, H / 2 + 5);
+  }
+  // 50% mark
+  const midX = pad.left + barW * 0.5;
+  ctx.strokeStyle = 'rgba(255,255,255,0.6)'; ctx.lineWidth = 1; ctx.setLineDash([4, 3]);
+  ctx.beginPath(); ctx.moveTo(midX, pad.top); ctx.lineTo(midX, pad.top + barH); ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// NEW VISUALIZATION: DIE CONVERGENCE
+// ══════════════════════════════════════════════════════════════════════════
+function drawDieConvergence() {
+  if (!dieData.proportions.length) return;
+  const ctx = getCtx('die-convergence-chart');
+  // Build 6 series — one per face
+  const seriesData = [];
+  for (let f = 0; f < 6; f++) {
+    seriesData.push({
+      data: dieData.proportions.map(snap => snap[f]),
+      color: dieColors[f],
+      width: 1.5,
+      dots: dieData.proportions.length < 60
+    });
+  }
+  drawLineChart(ctx, seriesData, { yMin: 0, yMax: 0.6, refLine: 1/6 });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// NEW VISUALIZATION: COMBINED COMPARISON
+// ══════════════════════════════════════════════════════════════════════════
+function drawCombComparison() {
+  const ctx = getCtx('comb-comparison-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const total = combData.results.length;
+  if (!total) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Draw combined events to see comparison', W / 2, H / 2);
+    return;
+  }
+
+  const items = [
+    { label: 'P(H+Even)', theo: 3/12, exp: combData.hEven / total },
+    { label: 'P(T+1)', theo: 1/12, exp: combData.t1 / total }
+  ];
+
+  const n = items.length, groupW = plotW / n, barW = groupW * 0.25;
+  const yMax = 0.5;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = pad.top + plotH * (1 - i / 5);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMax * i / 5).toFixed(2), pad.left - 6, y + 4);
+  }
+
+  items.forEach((it, i) => {
+    const cx = pad.left + groupW * i + groupW / 2;
+    // Theoretical bar
+    const th = (it.theo / yMax) * plotH;
+    ctx.fillStyle = '#2563eb';
+    ctx.fillRect(cx - barW - 2, pad.top + plotH - th, barW, th);
+    // Experimental bar
+    const eh = (clamp(it.exp, 0, yMax) / yMax) * plotH;
+    ctx.fillStyle = '#c41e3a';
+    ctx.fillRect(cx + 2, pad.top + plotH - eh, barW, eh);
+    // Values
+    ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#2563eb'; ctx.fillText(it.theo.toFixed(3), cx - barW / 2 - 2, pad.top + plotH - th - 6);
+    ctx.fillStyle = '#c41e3a'; ctx.fillText(it.exp.toFixed(3), cx + 2 + barW / 2, pad.top + plotH - eh - 6);
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText(it.label, cx, H - pad.bottom + 18);
+  });
+
+  // Legend
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left, 8, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Theoretical', pad.left + 18, 18);
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 100, 8, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('Experimental', pad.left + 118, 18);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// NEW VISUALIZATION: LLN GROUP SPREAD
+// ══════════════════════════════════════════════════════════════════════════
+function drawLlnGroupChart() {
+  const ctx = getCtx('lln-group-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const groups = llnData.groups;
+  if (!groups.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Add groups to see spread chart', W / 2, H / 2);
+    return;
+  }
+
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = groups.length;
+  const barW = Math.max(4, Math.min(40, plotW / n * 0.7));
+  const gap = (plotW - barW * n) / Math.max(n, 1);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((i * 25) + '%', pad.left - 6, y + 4);
+  }
+
+  // 50% reference
+  const refY = pad.top + plotH * 0.5;
+  ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(pad.left, refY); ctx.lineTo(W - pad.right, refY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Bars
+  groups.forEach((g, i) => {
+    const pctHeads = g.pct * 100;
+    const deviation = Math.abs(pctHeads - 50);
+    // Color: green if close to 50%, yellow if moderate, red if far
+    let color;
+    if (deviation < 5) color = '#16a34a';
+    else if (deviation < 15) color = '#d97706';
+    else color = '#c41e3a';
+
+    const x = pad.left + i * (barW + gap) + gap / 2;
+    const h = (g.pct) * plotH;
+    ctx.fillStyle = color;
+    ctx.fillRect(x, pad.top + plotH - h, barW, h);
+
+    // Value on top
+    if (barW > 14) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText((pctHeads).toFixed(0) + '%', x + barW / 2, pad.top + plotH - h - 4);
+    }
+    // Group label
+    if (n <= 30 && barW > 10) {
+      ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('G' + (i + 1), x + barW / 2, H - pad.bottom + 14);
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// NEW VISUALIZATION: GENOTYPE CONVERGENCE
+// ══════════════════════════════════════════════════════════════════════════
+function drawGenConvergence() {
+  if (!genData.history.length) return;
+  const ctx = getCtx('gen-convergence-chart');
+  const hist = genData.history;
+  drawLineChart(ctx, [
+    { data: hist.map(h => h.pctAA), color: '#be185d', width: 2, dots: hist.length < 60 },
+    { data: hist.map(h => h.pctAa), color: '#d97706', width: 2, dots: hist.length < 60 },
+    { data: hist.map(h => h.pctaa), color: '#2563eb', width: 2, dots: hist.length < 60 }
+  ], { yMin: 0, yMax: 100, refLine: 25 });
+  // Also draw the 50% reference for Aa
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotH = H - pad.top - pad.bottom;
+  const ry50 = pad.top + plotH * (1 - 50 / 100);
+  ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1; ctx.setLineDash([4, 4]); ctx.globalAlpha = 0.4;
+  ctx.beginPath(); ctx.moveTo(pad.left, ry50); ctx.lineTo(W - pad.right, ry50); ctx.stroke();
+  ctx.setLineDash([]); ctx.globalAlpha = 1;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// NEW VISUALIZATION: DEVIATION CHART (Analysis)
+// ══════════════════════════════════════════════════════════════════════════
+function drawDeviationChart() {
+  const ctx = getCtx('deviation-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Collect all experiments with deviation data
+  const items = [];
+  const coinTotal = coinData.results.length;
+  if (coinTotal > 0) {
+    const exp = coinData.h / coinTotal;
+    items.push({ label: 'P(Heads)', dev: ((exp - 0.5) / 0.5) * 100 });
+  }
+  const dieTotal = dieData.results.length;
+  if (dieTotal > 0) {
+    for (let f = 0; f < 6; f++) {
+      const exp = dieData.freq[f] / dieTotal;
+      const theo = 1 / 6;
+      items.push({ label: 'Die ' + (f + 1), dev: ((exp - theo) / theo) * 100 });
+    }
+  }
+  const combTotal = combData.results.length;
+  if (combTotal > 0) {
+    items.push({ label: 'H+Even', dev: ((combData.hEven / combTotal - 3 / 12) / (3 / 12)) * 100 });
+    items.push({ label: 'T+1', dev: ((combData.t1 / combTotal - 1 / 12) / (1 / 12)) * 100 });
+  }
+  const genTotal = genData.AA + genData.Aa + genData.aa;
+  if (genTotal > 0) {
+    items.push({ label: 'AA', dev: ((genData.AA / genTotal - 0.25) / 0.25) * 100 });
+    items.push({ label: 'Aa', dev: ((genData.Aa / genTotal - 0.5) / 0.5) * 100 });
+    items.push({ label: 'aa', dev: ((genData.aa / genTotal - 0.25) / 0.25) * 100 });
+  }
+
+  if (!items.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Run experiments to see deviations from expected values', W / 2, H / 2);
+    return;
+  }
+
+  const pad = { top: 20, right: 30, bottom: 20, left: 80 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = items.length;
+  const barH = Math.min(20, plotH / n * 0.7);
+  const gap = (plotH - barH * n) / Math.max(n + 1, 1);
+  const maxDev = Math.max(10, ...items.map(it => Math.abs(it.dev))) * 1.2;
+  const centerX = pad.left + plotW / 2;
+
+  // Center line (0% deviation)
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(centerX, pad.top); ctx.lineTo(centerX, H - pad.bottom); ctx.stroke();
+
+  // Grid lines
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  [-50, -25, 25, 50].forEach(pct => {
+    if (Math.abs(pct) <= maxDev) {
+      const x = centerX + (pct / maxDev) * (plotW / 2);
+      ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom); ctx.stroke();
+      ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText((pct > 0 ? '+' : '') + pct + '%', x, pad.top - 4);
+    }
+  });
+  // 0% label
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('0%', centerX, pad.top - 4);
+
+  // Bars
+  items.forEach((it, i) => {
+    const y = pad.top + gap + i * (barH + gap);
+    const w = (it.dev / maxDev) * (plotW / 2);
+    const x = it.dev >= 0 ? centerX : centerX + w;
+    const absW = Math.abs(w);
+
+    // Color based on magnitude
+    const absDev = Math.abs(it.dev);
+    ctx.fillStyle = absDev < 10 ? '#16a34a' : absDev < 30 ? '#d97706' : '#c41e3a';
+    ctx.fillRect(x, y, absW, barH);
+
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(it.label, pad.left - 6, y + barH / 2 + 4);
+
+    // Value at end of bar
+    const valX = it.dev >= 0 ? centerX + w + 4 : centerX + w - 4;
+    ctx.fillStyle = '#1a1a1a'; ctx.font = '10px system-ui';
+    ctx.textAlign = it.dev >= 0 ? 'left' : 'right';
+    ctx.fillText((it.dev >= 0 ? '+' : '') + it.dev.toFixed(1) + '%', valX, y + barH / 2 + 4);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  coinBuildGrid();
+  dieBuildGrid();
+  combBuildGrid();
+  predUpdate();
+  drawBinomChart();
+  drawCIChart();
+  updateTheoryChart();
+  drawDeviationChart();
+  drawCoinBalance();
+  drawLlnGroupChart();
+});
+
+window.addEventListener('resize', () => {
+  drawCoinChart(); drawCoinBalance(); drawDieChart(); drawDieConvergence();
+  updateTheoryChart(); drawCombChart(); drawCombComparison();
+  drawLlnChart(); drawLlnGroupChart(); drawPredChart();
+  drawGenChart(); drawGenConvergence(); drawBinomChart(); drawCIChart();
+  drawDeviationChart();
+});
+</script>
+</body>
+</html>
