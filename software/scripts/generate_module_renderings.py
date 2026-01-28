@@ -25,6 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.batch_processing.main import process_module_by_type
+from src.module_organization.utils import find_module_path
 
 
 def parse_args() -> argparse.Namespace:
@@ -64,21 +65,25 @@ def main() -> int:
 
     # Paths
     repo_root = Path(__file__).parent.parent.parent
-    module_path = repo_root / "course_development" / args.course / "course" / f"module-{args.module}"
-    output_dir = module_path / "output"
+    course_path = repo_root / "course_development" / args.course
 
-    if not module_path.exists():
-        print(f"Error: Module path does not exist: {module_path}")
+    # Find module path (supports both module-N and module-NN-topic patterns)
+    module_path = find_module_path(course_path, args.module)
+
+    if module_path is None:
+        print(f"Error: Module {args.module} not found in {args.course}")
         print(f"  Available modules in {args.course}:")
-        course_dir = repo_root / "course_development" / args.course / "course"
+        course_dir = course_path / "course"
         if course_dir.exists():
-            modules = sorted([d.name for d in course_dir.iterdir() 
+            modules = sorted([d.name for d in course_dir.iterdir()
                              if d.is_dir() and d.name.startswith("module-")])
             for m in modules:
                 print(f"    - {m}")
         return 1
 
-    print(f"Processing: {args.course}/course/module-{args.module}")
+    output_dir = module_path / "output"
+
+    print(f"Processing: {args.course}/course/{module_path.name}")
     print(f"Output directory: {output_dir}")
 
     try:

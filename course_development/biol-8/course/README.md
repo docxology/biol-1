@@ -51,12 +51,15 @@ course/
 │   └── ... (30 files total)
 │
 ├── labs/                        # Laboratory protocols
-│   ├── lab-01_exploring-life-science.md
-│   └── ... (15 protocol stubs)
+│   ├── README.md               # Labs documentation
+│   ├── lab-01_measurement-methods.md  # Full interactive lab
+│   ├── lab-02_chemistry-of-life.md    # Stub (to be developed)
+│   ├── ... (15 labs total)
+│   └── output/                 # Generated lab outputs (PDF, HTML)
 │
 └── module-XX-topic-name/        # 15 module directories
     ├── keys-to-success.md      # Learning objectives and study tips
-    ├── questions.md            # 22-40 study questions
+    ├── questions.md            # 18-20 study questions
     └── resources/              # Supplementary materials
 ```
 
@@ -74,6 +77,7 @@ course/
 ### Quizzes
 
 Each module has a quiz with:
+
 - **7 multiple choice questions** (1 point each)
 - **3 free response questions** (1 point each)
 - **Total**: 10 points per quiz
@@ -89,7 +93,7 @@ Answer keys include explanations for all questions.
 Each module folder contains:
 
 1. **`keys-to-success.md`**: 5-6 key learning objectives organized by topic, plus study tips
-2. **`questions.md`**: 22-40 natural language study questions covering all module topics
+2. **`questions.md`**: 18-20 natural language study questions covering all module topics
 3. **`resources/`**: Empty directory for supplementary materials
 
 ## Related Documents
@@ -101,6 +105,7 @@ Each module folder contains:
 ## Canvas Upload
 
 All materials are designed for Canvas LMS:
+
 1. Module folders can be uploaded maintaining structure
 2. Quiz files are formatted for easy transfer to Canvas Quizzes
 3. Exam files can be used for in-class paper exams or adapted for Canvas

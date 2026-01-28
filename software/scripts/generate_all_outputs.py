@@ -47,6 +47,7 @@ from src.batch_processing.main import (
     process_module_website,
     process_syllabus,
 )
+from src.module_organization.utils import matches_module_number
 
 # Setup logging
 logger = setup_logging()
@@ -169,11 +170,11 @@ def process_course_modules(
     # Find all modules
     modules = sorted([d for d in course_dir.iterdir() if d.is_dir() and d.name.startswith("module-")])
 
-    # Filter by module number if specified
+    # Filter by module number if specified (supports both module-N and module-NN-topic patterns)
     if module_filter is not None:
-        modules = [m for m in modules if m.name == f"module-{module_filter}"]
+        modules = [m for m in modules if matches_module_number(m.name, module_filter)]
         if not modules:
-            logger.warning(f"Module module-{module_filter} not found in {course_name}")
+            logger.warning(f"Module {module_filter} not found in {course_name}")
             return results
 
     for module_dir in modules:
@@ -327,9 +328,9 @@ def main() -> int:
                 modules = sorted([d for d in course_dir_path.iterdir() 
                                   if d.is_dir() and d.name.startswith("module-")])
                 
-                # Filter by module number if specified
+                # Filter by module number if specified (supports both module-N and module-NN-topic patterns)
                 if args.module:
-                    modules = [m for m in modules if m.name == f"module-{args.module}"]
+                    modules = [m for m in modules if matches_module_number(m.name, args.module)]
                 
                 for module_dir in modules:
                     md_files = list(module_dir.glob("*.md"))

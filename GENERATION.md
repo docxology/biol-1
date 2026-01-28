@@ -27,6 +27,7 @@ uv run python scripts/generate_all_outputs.py --dry-run
 ```
 
 This will:
+
 - Process all modules for both courses in `course_development/`
 - Generate all format outputs (PDF, MP3, DOCX, HTML, TXT)
 - Generate HTML websites for each module
@@ -36,6 +37,7 @@ This will:
   - Wait, `generate_all_outputs.py` clears outputs in `course_development`? Yes, `clear_all_outputs(repo_root)`.
 
 **Note**: To push changes to the public folder, run:
+
 ```bash
 uv run python software/scripts/publish_course.py --course all
 ```
@@ -55,12 +57,14 @@ Each module is processed to generate multiple output formats:
 ### Website Generation
 
 HTML websites are generated for each module containing:
+
 - All module content (lecture, lab, study guide, assignments)
 - Embedded audio players
 - Interactive quizzes (multiple choice, true/false, matching, free response)
 - Progress tracking for completed questions
 
 **Website Features**:
+
 - 🗂️ **Sidebar Navigation** - Collapsible sidebar with quick links to all sections
 - ↔️ **Resizable Split-View** - Draggable handle to adjust sidebar/content width
 - 🌙 **Dark Mode** - Toggle persists via localStorage
@@ -109,6 +113,7 @@ uv run python scripts/generate_all_outputs.py
 ```
 
 **Features**:
+
 - Processes all modules for both courses
 - Generates all format outputs
 - Generates HTML websites
@@ -124,6 +129,71 @@ For processing specific components:
 - `generate_syllabus_renderings.py` - Process syllabus files
 
 See [`software/scripts/README.md`](software/scripts/README.md) for details.
+
+## Lab Manual Generation
+
+Labs are processed separately using the `lab_manual` module, which supports interactive elements and fillable fields.
+
+### Location
+
+Labs are stored in standalone `labs/` directories for each course:
+
+- `course_development/biol-1/course/labs/`
+- `course_development/biol-8/course/labs/`
+
+### Generation Commands
+
+```bash
+cd software
+
+# Generate single lab (PDF)
+uv run python -c "
+from src.lab_manual.main import render_lab_manual
+render_lab_manual(
+    '../course_development/biol-8/course/labs/lab-01_measurement-methods.md',
+    '../course_development/biol-8/course/labs/output/lab-01_measurement-methods.pdf',
+    'pdf',
+    course_name='BIOL-8: Human Biology'
+)
+"
+
+# Generate single lab (HTML with interactive fields)
+uv run python -c "
+from src.lab_manual.main import render_lab_manual
+render_lab_manual(
+    '../course_development/biol-8/course/labs/lab-01_measurement-methods.md',
+    '../course_development/biol-8/course/labs/output/lab-01_measurement-methods.html',
+    'html',
+    course_name='BIOL-8: Human Biology'
+)
+"
+
+# Batch render all labs in a directory
+uv run python -c "
+from src.lab_manual.main import batch_render_lab_manuals
+batch_render_lab_manuals(
+    '../course_development/biol-8/course/labs',
+    '../course_development/biol-8/course/labs/output',
+    'pdf',
+    course_name='BIOL-8: Human Biology'
+)
+"
+```
+
+### Lab Directive Syntax
+
+Labs use special markdown directives for interactive elements:
+
+| Directive | Purpose |
+|-----------|---------|
+| `<!-- lab:data-table rows=N -->` | Fillable data tables |
+| `<!-- lab:object-selection -->` | Object selection fields |
+| `<!-- lab:measurement-feasibility -->` | Feasibility analysis sections |
+| `<!-- lab:reflection -->` | Reflection/response boxes |
+| `{fill:text}` | Inline text input |
+| `{fill:textarea rows=N}` | Multi-line text area |
+
+See [`software/src/lab_manual/README.md`](software/src/lab_manual/README.md) for complete documentation.
 
 ## Known Limitations
 

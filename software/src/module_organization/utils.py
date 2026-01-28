@@ -1,7 +1,8 @@
 """Utility functions for module organization."""
 
+import re
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 
 def ensure_directory_exists(directory: Path) -> None:
@@ -101,6 +102,10 @@ def list_missing_directories(module_path: Path, required_dirs: List[str]) -> Lis
 def get_module_number_from_path(module_path: Path) -> int:
     """Extract module number from module directory path.
 
+    Handles both naming conventions:
+    - BIOL-1 style: module-1, module-2, module-10
+    - BIOL-8 style: module-01-topic-name, module-02-chemistry-of-life
+
     Args:
         module_path: Path to module directory
 
@@ -115,10 +120,57 @@ def get_module_number_from_path(module_path: Path) -> int:
         raise ValueError(f"Invalid module directory name: {module_name}")
 
     try:
+        # Extract the number part after "module-"
+        # Works for both "module-1" and "module-01-topic-name"
         module_number = int(module_name.split("-")[1])
         return module_number
     except (IndexError, ValueError) as e:
         raise ValueError(f"Could not extract module number from: {module_name}") from e
+
+
+def matches_module_number(dirname: str, target: int) -> bool:
+    """Check if a directory name matches a target module number.
+
+    Handles both naming conventions:
+    - BIOL-1 style: module-1, module-2, module-10
+    - BIOL-8 style: module-01-topic-name, module-02-chemistry-of-life
+
+    Args:
+        dirname: Directory name (e.g., "module-1" or "module-01-topic-name")
+        target: Target module number to match
+
+    Returns:
+        True if the directory matches the target module number
+    """
+    # Pattern matches "module-" followed by the number (with optional leading zeros)
+    # and then either end of string or a hyphen (for topic suffix)
+    pattern = rf"^module-0*{target}(?:-|$)"
+    return bool(re.match(pattern, dirname))
+
+
+def find_module_path(course_path: Path, module_number: int) -> Optional[Path]:
+    """Find the module directory for a given module number.
+
+    Searches for module directories matching the module number,
+    supporting both naming conventions (module-N and module-NN-topic-name).
+
+    Args:
+        course_path: Path to course directory
+        module_number: Module number to find
+
+    Returns:
+        Path to module directory if found, None otherwise
+    """
+    course_dir = course_path / "course"
+    if not course_dir.exists():
+        return None
+
+    for item in course_dir.iterdir():
+        if item.is_dir() and item.name.startswith("module-"):
+            if matches_module_number(item.name, module_number):
+                return item
+
+    return None
 
 
 def list_all_modules(course_path: Path) -> List[Path]:
