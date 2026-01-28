@@ -39,9 +39,9 @@
 
 ## Publication Statistics
 
-- **Modules processed**: 0
-- **Total files**: 110
-- **Slide PDFs copied**: 0
+- **Modules processed**: 15
+- **Total files**: 248
+- **Slide PDFs copied**: 15
 
 ---
 

@@ -284,7 +284,7 @@ def render_lab_manual(
             course_name=course_name or "",
             include_name=True,
             include_date=True,
-            include_section=True,
+            include_section=False,
         )
     
     # Combine header and content

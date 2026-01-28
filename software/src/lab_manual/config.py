@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 
 # Lab manual-specific CSS for print-friendly, fillable worksheets
 LAB_MANUAL_CSS = """
-/* Lab Manual Worksheet Styles */
+/* Lab Manual Worksheet Styles - Black/White/Gray with Red Accents */
 @page {
     size: letter;
     margin: 0.75in;
@@ -15,6 +15,7 @@ body {
     font-size: 11pt;
     line-height: 1.5;
     color: #1a1a1a;
+    background-color: #ffffff;
 }
 
 h1 {
@@ -22,8 +23,9 @@ h1 {
     font-weight: bold;
     text-align: center;
     margin-bottom: 0.5em;
-    border-bottom: 2px solid #333;
+    border-bottom: 3px solid #c41e3a;
     padding-bottom: 0.3em;
+    color: #1a1a1a;
 }
 
 h2 {
@@ -31,7 +33,9 @@ h2 {
     font-weight: bold;
     margin-top: 1.5em;
     margin-bottom: 0.5em;
-    color: #2c5aa0;
+    color: #c41e3a;
+    border-left: 4px solid #c41e3a;
+    padding-left: 0.5em;
 }
 
 h3 {
@@ -39,6 +43,14 @@ h3 {
     font-weight: bold;
     margin-top: 1em;
     margin-bottom: 0.3em;
+    color: #333333;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 1.5em 0;
 }
 
 /* Lab Header Info */
@@ -48,8 +60,8 @@ h3 {
     gap: 1em;
     margin-bottom: 1.5em;
     padding: 1em;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    border: 1px solid #333333;
+    background-color: #f5f5f5;
 }
 
 .lab-header-field {
@@ -61,11 +73,12 @@ h3 {
 .lab-header-label {
     font-weight: bold;
     white-space: nowrap;
+    color: #1a1a1a;
 }
 
 .lab-header-value {
     flex: 1;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #333333;
     min-height: 1.5em;
 }
 
@@ -77,46 +90,47 @@ h3 {
 }
 
 .lab-table th {
-    background-color: #e8e8e8;
+    background-color: #333333;
+    color: #ffffff;
     font-weight: bold;
     text-align: left;
     padding: 8px 12px;
-    border: 1px solid #333;
+    border: 1px solid #1a1a1a;
 }
 
 .lab-table td {
     padding: 8px 12px;
-    border: 1px solid #333;
+    border: 1px solid #333333;
     min-height: 2em;
     vertical-align: top;
 }
 
 .lab-table td.fillable {
-    background-color: #fffef0;
+    background-color: #fafafa;
     min-height: 2.5em;
 }
 
 .lab-table tr:nth-child(even) {
-    background-color: #f5f5f5;
+    background-color: #f0f0f0;
 }
 
 /* Fillable Fields */
 .fill-text {
     display: inline-block;
     min-width: 200px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #333333;
     padding: 2px 4px;
-    background-color: #fffef0;
+    background-color: #fafafa;
 }
 
 .fill-textarea {
     display: block;
     width: 100%;
     min-height: 3em;
-    border: 1px solid #333;
+    border: 1px solid #333333;
     padding: 8px;
     margin: 0.5em 0;
-    background-color: #fffef0;
+    background-color: #fafafa;
 }
 
 .fill-checkbox {
@@ -130,6 +144,7 @@ h3 {
     width: 1em;
     height: 1em;
     margin-top: 0.25em;
+    accent-color: #c41e3a;
 }
 
 /* Measurement Table */
@@ -140,43 +155,45 @@ h3 {
 }
 
 .measurement-table th {
-    background-color: #2c5aa0;
-    color: white;
+    background-color: #1a1a1a;
+    color: #ffffff;
     font-weight: bold;
     text-align: center;
     padding: 10px 12px;
-    border: 1px solid #1a3d6d;
+    border: 1px solid #000000;
 }
 
 .measurement-table td {
     padding: 12px;
-    border: 1px solid #333;
+    border: 1px solid #333333;
     text-align: center;
 }
 
 .measurement-table td.fillable {
-    background-color: #fffef0;
+    background-color: #fafafa;
     min-height: 3em;
 }
 
 .measurement-table .row-number {
     width: 40px;
-    background-color: #e8e8e8;
+    background-color: #e0e0e0;
     font-weight: bold;
+    color: #333333;
 }
 
 /* Object Selection Section */
 .object-selection {
     margin: 1em 0;
     padding: 1em;
-    border: 2px solid #2c5aa0;
-    border-radius: 8px;
-    background-color: #f0f5ff;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-left: 5px solid #c41e3a;
 }
 
 .object-selection h3 {
     margin-top: 0;
-    color: #2c5aa0;
+    color: #1a1a1a;
 }
 
 .object-field {
@@ -189,13 +206,14 @@ h3 {
 .object-label {
     font-weight: bold;
     min-width: 150px;
+    color: #333333;
 }
 
 .object-input {
     flex: 1;
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid #333333;
     min-height: 1.5em;
-    background-color: #fffef0;
+    background-color: #ffffff;
     padding: 4px;
 }
 
@@ -203,13 +221,15 @@ h3 {
 .feasibility-section {
     margin: 1em 0;
     padding: 1em;
-    border: 1px solid #ccc;
+    border: 1px solid #999999;
     border-radius: 4px;
+    background-color: #fafafa;
 }
 
 .feasibility-question {
     font-weight: bold;
     margin-bottom: 0.5em;
+    color: #1a1a1a;
 }
 
 .feasibility-options {
@@ -220,9 +240,49 @@ h3 {
 .reflection-box {
     margin: 1em 0;
     padding: 1em;
-    border: 2px dashed #666;
+    border: 2px solid #666666;
+    border-left: 4px solid #c41e3a;
     background-color: #fafafa;
     min-height: 100px;
+}
+
+/* Blockquotes (Learning Goals) */
+blockquote {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid #c41e3a;
+    background-color: #f9f9f9;
+    font-style: italic;
+    color: #333333;
+}
+
+blockquote strong {
+    color: #c41e3a;
+}
+
+/* Strong emphasis */
+strong {
+    color: #1a1a1a;
+}
+
+/* Emphasis within reflection */
+em {
+    color: #555555;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5em;
+}
+
+li {
+    margin: 0.3em 0;
+}
+
+/* Summary table */
+.summary-table th {
+    background-color: #c41e3a;
+    color: #ffffff;
 }
 
 /* Print Styles */
@@ -244,6 +304,10 @@ h3 {
     
     .lab-table, .measurement-table {
         page-break-inside: avoid;
+    }
+    
+    blockquote {
+        background-color: white !important;
     }
 }
 """
@@ -344,7 +408,7 @@ function showSaveNotification() {
     if (!notification) {
         notification = document.createElement('div');
         notification.id = 'save-notification';
-        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #2c5aa0; color: white; padding: 10px 20px; border-radius: 4px; opacity: 0; transition: opacity 0.3s;';
+        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #c41e3a; color: white; padding: 10px 20px; border-radius: 4px; opacity: 0; transition: opacity 0.3s;';
         document.body.appendChild(notification);
     }
     notification.textContent = 'Progress saved!';

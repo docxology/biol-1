@@ -37,6 +37,10 @@ course/
 ├── README.md                    # This file
 ├── AGENTS.md                    # Technical documentation
 │
+├── labs/                        # Laboratory protocols
+│   ├── lab-01_measurement-methods.md
+│   └── output/                  # Generated lab outputs
+│
 └── module-X/                    # 17 module directories
     ├── for_upload/              # Materials ready for distribution
     ├── output/                  # Generated outputs (PDF, MP3, etc.)

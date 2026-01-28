@@ -148,11 +148,55 @@ List required directories that are missing.
 
 Extract module number from module directory path.
 
+Handles both naming conventions:
+- BIOL-1 style: `module-1`, `module-2`, `module-10`
+- BIOL-8 style: `module-01-topic-name`, `module-02-chemistry-of-life`
+
 **Returns**:
 - Module number
 
 **Raises**:
 - `ValueError`: If module number cannot be extracted
+
+#### `matches_module_number(dirname: str, target: int) -> bool`
+
+Check if a directory name matches a target module number.
+
+Handles both naming conventions:
+- BIOL-1 style: `module-1`, `module-2`, `module-10`
+- BIOL-8 style: `module-01-topic-name`, `module-02-chemistry-of-life`
+
+**Args**:
+- `dirname`: Directory name (e.g., "module-1" or "module-01-topic-name")
+- `target`: Target module number to match
+
+**Returns**:
+- True if the directory matches the target module number
+
+**Examples**:
+```python
+matches_module_number("module-1", 1)  # True
+matches_module_number("module-01-exploring-life-science", 1)  # True
+matches_module_number("module-10", 1)  # False
+matches_module_number("module-1", 10)  # False
+```
+
+#### `find_module_path(course_path: Path, module_number: int) -> Optional[Path]`
+
+Find the module directory for a given module number.
+
+Searches for module directories matching the module number,
+supporting both naming conventions (`module-N` and `module-NN-topic-name`).
+
+**Args**:
+- `course_path`: Path to course directory
+- `module_number`: Module number to find
+
+**Returns**:
+- Path to module directory if found, None otherwise
+
+**Note**: Use this function when you need to find an existing module.
+Use `get_module_path()` when constructing a path for a new module.
 
 #### `list_all_modules(course_path: Path) -> List[Path]`
 

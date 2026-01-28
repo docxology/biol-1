@@ -70,8 +70,8 @@ Each module contains:
    - Includes study tips section
 
 2. **`questions.md`**
-   - 22-40 natural language study questions
-   - Organized by topic area
+   - 18-20 natural language study questions
+   - Continuous numbering (1 through 18-20)
    - Covers all learning objectives
 
 3. **`resources/`**
@@ -97,6 +97,7 @@ Each quiz follows consistent structure:
 ```
 
 Answer keys include:
+
 - Multiple choice answer table with explanations
 - Rubric or key points for free response
 
@@ -112,6 +113,7 @@ Exams follow consistent structure:
 | **Total** | **100 pts** | |
 
 Final exam is scaled to 150 points:
+
 - Part A: 75 pts (50 questions × 1.5 pts)
 - Part B: 45 pts (9 questions × 5 pts)
 - Part C: 30 pts (2 essays × 15 pts each)
@@ -119,6 +121,7 @@ Final exam is scaled to 150 points:
 ### Lab Protocol Format
 
 Lab stubs include sections for:
+
 - Learning objectives (pre-filled)
 - Estimated duration
 - Materials needed (stub)
@@ -141,6 +144,7 @@ Lab stubs include sections for:
 ### Current State
 
 Module content files (`keys-to-success.md`, `questions.md`) are source markdown ready for:
+
 - Direct Canvas upload
 - Processing to PDF, DOCX, HTML via batch processing utilities
 - TTS conversion for accessibility
@@ -148,6 +152,7 @@ Module content files (`keys-to-success.md`, `questions.md`) are source markdown 
 ### Future Processing
 
 The `software/` directory contains batch processing utilities for:
+
 - PDF generation via `markdown_to_pdf` module
 - Audio generation via `text_to_speech` module  
 - Format conversion via `format_conversion` module
@@ -156,6 +161,7 @@ The `software/` directory contains batch processing utilities for:
 ## Validation Checklist
 
 ### Completeness
+
 - [x] 15 module directories created
 - [x] Each module has `keys-to-success.md`, `questions.md`, `resources/`
 - [x] 4 exams with answer keys (8 files)
@@ -163,12 +169,14 @@ The `software/` directory contains batch processing utilities for:
 - [x] 15 lab protocol stubs
 
 ### Coherence
+
 - [x] Module numbering matches syllabus
 - [x] Exam coverage matches schedule
 - [x] Quiz content aligns with keys-to-success
 - [x] Consistent formatting across all files
 
 ### Pedagogical Quality
+
 - [x] Learning objectives use action verbs
 - [x] Questions progress from recall to application
 - [x] Multiple choice options are plausible
