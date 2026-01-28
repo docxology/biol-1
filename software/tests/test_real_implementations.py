@@ -27,10 +27,12 @@ def test_text_to_speech_uses_real_gtts():
     assert inspect.isclass(gTTS)
     assert hasattr(gTTS, "__init__")
 
-    # Check that text_to_speech_audio would use gTTS (by inspecting source if possible)
+    # Check that text_to_speech_audio would use gTTS or macOS say command (by inspecting source if possible)
     try:
         source = inspect.getsource(text_to_speech_audio)
-        assert "gTTS" in source or "gtts" in source
+        # Accept either gTTS (cross-platform) or say command (macOS native)
+        assert "gTTS" in source or "gtts" in source or "say" in source, \
+            "text_to_speech_audio should use gTTS or macOS say command"
     except OSError:
         # Source not available, but we verified gTTS is imported
         pass

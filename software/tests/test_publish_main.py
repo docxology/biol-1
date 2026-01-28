@@ -13,11 +13,11 @@ class TestPublishCourse:
         course_dir = temp_dir / "biol-1"
         course_dir.mkdir()
         
-        # Setup module with for_upload
+        # Setup module with output
         mod1 = course_dir / "course" / "module-1"
         mod1.mkdir(parents=True)
-        (mod1 / "for_upload").mkdir()
-        (mod1 / "for_upload" / "test.pdf").write_text("content")
+        (mod1 / "output").mkdir()
+        (mod1 / "output" / "test.pdf").write_text("content")
         
         # Setup syllabus with output
         syl = course_dir / "syllabus"
@@ -63,7 +63,7 @@ class TestPublishCourse:
         """Test that destination is cleaned before publishing."""
         course_dir = temp_dir / "biol-1"
         course_dir.mkdir()
-        mod1 = course_dir / "course" / "module-1" / "for_upload"
+        mod1 = course_dir / "course" / "module-1" / "output"
         mod1.mkdir(parents=True)
         (mod1 / "new.pdf").write_text("new")
         

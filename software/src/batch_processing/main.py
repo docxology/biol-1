@@ -295,6 +295,11 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
     markdown_files = find_markdown_files(module_dir)
     files_to_process = [f for f in markdown_files if f.name.startswith("sample_")]
     
+    # Process root-level source files (keys-to-success.md, questions.md)
+    root_md_files = [f for f in module_dir.glob("*.md") 
+                     if not f.name.startswith("README") and not f.name.startswith("AGENTS")]
+    files_to_process.extend(root_md_files)
+    
     # Process assignment files
     assignments_dir = module_dir / "assignments"
     if assignments_dir.exists():
@@ -336,7 +341,7 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
             elif "keys-to-success" in md_file.name:
                 file_type = "study-guide"
                 output_subdir = "study-guides"
-            elif "comprehension-questions" in md_file.name:
+            elif "comprehension-questions" in md_file.name or md_file.name == "questions.md":
                 file_type = "study-guide"
                 output_subdir = "study-guides"
             elif "assignment" in md_file.name or md_file.parent.name == "assignments":

@@ -20,27 +20,27 @@ course/
 
 ## Module Naming Convention
 
-Modules follow the pattern: `module-X/` where X is the module number (1-17).
+Modules follow the pattern: `module-NN-topic-name/` where NN is the zero-padded module number.
 
 | Number | Directory Name |
 |--------|----------------|
-| 1 | `module-1` |
-| 2 | `module-2` |
-| 3 | `module-3` |
-| 4 | `module-4` |
-| 5 | `module-5` |
-| 6 | `module-6` |
-| 7 | `module-7` |
-| 8 | `module-8` |
-| 9 | `module-9` |
-| 10 | `module-10` |
-| 11 | `module-11` |
-| 12 | `module-12` |
-| 13 | `module-13` |
-| 14 | `module-14` |
-| 15 | `module-15` |
-| 16 | `module-16` |
-| 17 | `module-17` |
+| 01 | `module-01-study-of-life` |
+| 02 | `module-02-basic-chemistry` |
+| 03 | `module-03-organic-molecules` |
+| 04 | `module-04-cells` |
+| 05 | `module-05-membranes` |
+| 06 | `module-06-metabolism` |
+| 07 | `module-07-photosynthesis` |
+| 08 | `module-08-cellular-respiration` |
+| 09 | `module-09-cell-division-mitosis` |
+| 10 | `module-10-meiosis-reproduction` |
+| 11 | `module-11-mendelian-genetics` |
+| 12 | `module-12-gene-expression` |
+| 13 | `module-13-gene-regulation` |
+| 14 | `module-14-biotechnology-genomics` |
+| 15 | `module-15-darwin-evolution` |
+| 16 | `module-16-microevolution` |
+| 17 | `module-17-speciation-macroevolution` |
 
 ## Module Content Specifications
 
