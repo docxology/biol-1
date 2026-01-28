@@ -4,6 +4,25 @@
 
 Technical documentation for course management software utilities, including function signatures, module APIs, and code organization.
 
+## Test Coverage
+
+**Overall: 87%** (401 tests, 395 passed, 6 skipped)
+
+| Module | Coverage | Notes |
+| ------ | -------- | ----- |
+| `batch_processing` | 78% | Main processing functions |
+| `canvas_integration` | 45% | External API (mocked in tests) |
+| `file_validation` | 91-92% | Validation utilities |
+| `format_conversion` | 80-98% | Format-specific converters |
+| `html_website` | 92-100% | Website generation |
+| `lab_manual` | 90-95% | Lab rendering |
+| `markdown_to_pdf` | 90-92% | PDF generation |
+| `module_organization` | 78-93% | Module structure |
+| `publish` | 80-84% | Course publishing |
+| `schedule` | 93% | Schedule processing |
+| `speech_to_text` | 88-98% | Audio transcription |
+| `text_to_speech` | 89-91% | Audio generation |
+
 ## Modular Architecture
 
 The software follows a modular architecture where each module is self-contained and can be used independently.
@@ -12,7 +31,7 @@ The software follows a modular architecture where each module is self-contained 
 
 Every module follows a consistent structure:
 
-```
+```text
 module_name/
 ├── __init__.py      # Exports public functions from main.py
 ├── main.py          # Public API (only way other modules should interact)
@@ -267,11 +286,11 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 **Key Functions**:
 
-- `render_lab_manual(input_path: str, output_path: str, output_format: str = "pdf", lab_title: Optional[str] = None, course_name: Optional[str] = None) -> str`
+- `render_lab_manual(input_path: str, output_path: str, output_format: str = "pdf", lab_title: Optional[str] = None, course_name: Optional[str] = None, include_header: bool = True) -> str`
 - `parse_lab_elements(markdown_content: str) -> List[LabElement]`
 - `generate_data_table(rows: int = 5, columns: Optional[List[str]] = None, title: Optional[str] = None) -> str`
-- `generate_measurement_table(rows: int = 5, aspects: Optional[List[str]] = None, include_device: bool = True, include_unit: bool = True) -> str`
-- `batch_render_lab_manuals(directory: str, output_dir: str, output_format: str = "pdf") -> List[str]`
+- `generate_measurement_table(rows: int = 5, aspects: Optional[List[str]] = None, include_device: bool = True, include_unit: bool = True, include_value: bool = False) -> str`
+- `batch_render_lab_manuals(directory: str, output_dir: str, output_format: str = "pdf", course_name: Optional[str] = None) -> List[str]`
 - `get_lab_template(template_name: str = "basic") -> str`
 
 **Lab Directive Syntax**:
@@ -330,7 +349,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 ### Directory Structure
 
-```
+```text
 software/
 ├── src/              # Source code
 │   ├── batch_processing/

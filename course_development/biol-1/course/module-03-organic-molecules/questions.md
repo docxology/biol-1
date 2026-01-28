@@ -1,33 +1,41 @@
-# Module 3: Organic Molecules
-## Comprehension & Critical Thinking Questions
+# Module 3: Organic Molecules — Study Questions
 
-### Part 1: Core Concepts
-1.  **The Nature of Organic Molecules**
-    *   What makes a molecule "organic"? Why is carbon the "backbone" of life?
-    *   Define functional group and provide an example (e.g., hydroxyl, amino, carboxyl).
+1. What makes a molecule "organic"?
 
-2.  **Building Blocks**
-    *   Explain the relationship between monomers and polymers.
-    *   Describe dehydration synthesis (releases water, builds polymers) and hydrolysis (uses water, breaks polymers).
+2. Why is carbon called the "backbone" of life?
 
-3.  **The Four Classes of Biomolecules**
-    *   Create a summary table comparing Carbohydrates, Lipids, Proteins, and Nucleic Acids. Include monomer names, key functions, and example molecules.
+3. What is a functional group? Give three examples.
 
-### Part 2: Application
-4.  **Protein Folding**
-    *   Protein function depends on its three-dimensional shape. Explain the four levels of protein structure:
-        *   **Primary**: Linear amino acid sequence.
-        *   **Secondary**: Alpha helices and beta pleated sheets (hydrogen bonding).
-        *   **Tertiary**: 3D folding (R-group interactions, disulfide bridges).
-        *   **Quaternary**: Multiple polypeptide subunits.
-    *   **Apply**: What is denaturation? Why doesn't a cooked egg unfold when cooled?
+4. What is the difference between a monomer and a polymer?
 
-5.  **Lipids and Health**
-    *   Distinguish between saturated and unsaturated fatty acids in terms of structure and physical state at room temperature.
+5. What is dehydration synthesis? What does it produce?
 
-### Part 3: Analysis & Evaluation
-6.  **Structure Determines Function**
-    *   Cellulose and starch are both glucose polymers. Why can humans digest starch but not cellulose? Analyze the role of glycosidic linkage orientation.
+6. What is hydrolysis? What does it break down?
 
-7.  **ATP as Energy Currency**
-    *   ATP is derived from a nucleotide. Explain where the energy is stored (phosphoanhydride bonds) and why ATP is called the "energy currency" of the cell.
+7. What are carbohydrates made of? What is their main function?
+
+8. What is the difference between monosaccharides, disaccharides, and polysaccharides?
+
+9. Give examples of storage polysaccharides (starch, glycogen) and structural polysaccharides (cellulose, chitin).
+
+10. What are the main functions of lipids?
+
+11. What is the difference between saturated and unsaturated fatty acids?
+
+12. Why are trans fats considered unhealthy?
+
+13. What are amino acids? How many are there?
+
+14. What type of bond links amino acids together?
+
+15. Describe the four levels of protein structure (primary, secondary, tertiary, quaternary).
+
+16. What is denaturation? What causes it?
+
+17. What are nucleic acids? What are the two types?
+
+18. What are the components of a nucleotide?
+
+19. Why can humans digest starch but not cellulose?
+
+20. Why is ATP called the "energy currency" of the cell?

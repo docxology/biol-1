@@ -1,38 +1,44 @@
-# Module 3: Organic Molecules
-## Keys to Success & Study Guide
+# Module 3: Organic Molecules — Keys to Success
 
-### Learning Objectives
+## Learning Objectives
+
 By the end of this module, you should be able to:
 
-1.  **Classify** the four major groups of biological macromolecules and identify their constituent monomers.
-2.  **Explain** the chemical reactions (dehydration synthesis and hydrolysis) that build and break polymers.
-3.  **Correlate** the structural levels of proteins with their specific functions and vulnerability to denaturation.
-4.  **Differentiate** between DNA, RNA, and ATP in terms of structure and function.
+1. Explain why carbon is central to organic chemistry
+2. Distinguish between monomers and polymers
+3. Describe dehydration synthesis and hydrolysis
+4. Compare the four classes of biomolecules
+5. Explain protein structure and denaturation
 
-### Key Terminology Checklist
-*Define these terms in your own words to ensure mastery.*
+## Key Terms to Know
 
-- [ ] **Macromolecule**: A large organic molecule formed by the polymerization of smaller subunits (monomers).
-- [ ] **Hydrophobic**: Repelling water; characteristic of non-polar molecules like lipids.
-- [ ] **Peptide Bond**: The covalent bond linking two amino acids together.
-- [ ] **Nucleotide**: The monomer of nucleic acids, composed of a sugar, phosphate group, and nitrogenous base.
-- [ ] **Enzyme**: A protein catalyst that accelerates biochemical reactions.
-- [ ] **Phospholipid**: An amphipathic lipid with hydrophilic heads and hydrophobic tails; the structural basis of cell membranes.
+- **Organic Molecule** — Carbon-based molecule
+- **Functional Group** — Chemical group that determines molecule properties
+- **Monomer** — Single building block unit
+- **Polymer** — Chain of monomers
+- **Dehydration Synthesis** — Building polymers by removing water
+- **Hydrolysis** — Breaking polymers by adding water
+- **Carbohydrate** — Sugars and starches; quick energy source
+- **Lipid** — Fats, oils, waxes; long-term energy storage
+- **Protein** — Amino acid polymers; structure, enzymes, transport
+- **Nucleic Acid** — DNA and RNA; genetic information
+- **Amino Acid** — Monomer of proteins (20 types)
+- **Peptide Bond** — Bond between amino acids
+- **Denaturation** — Loss of protein shape and function
+- **ATP** — Adenosine triphosphate; energy currency
 
-### Concept Check
-#### 1. Carbohydrates
-*   **Question**: What is the primary function of carbohydrates?
-*   **Key Answer**: Energy storage (starch, glycogen) and structural support (cellulose, chitin).
-*   **Distinction**: Storage polysaccharides (glycogen) are branched for rapid glucose release; structural polysaccharides (cellulose) form linear, rigid fibers.
+## Key Comparisons
 
-#### 2. Lipids
-*   **Question**: What defines a lipid?
-*   **Key Answer**: Lipids are hydrophobic or amphipathic molecules including fats, phospholipids, and steroids. They share insolubility in water, not structural similarity.
+| Biomolecule | Monomer | Function | Example |
+|-------------|---------|----------|---------|
+| Carbohydrate | Monosaccharide | Energy | Glucose, starch |
+| Lipid | Fatty acid + glycerol | Energy storage | Fat, oil |
+| Protein | Amino acid | Structure, enzymes | Hemoglobin |
+| Nucleic Acid | Nucleotide | Genetic info | DNA, RNA |
 
-#### 3. Proteins
-*   **Question**: What roles do proteins serve?
-*   **Key Answer**: Enzymes, structural components, transport carriers, antibodies, hormones, and motor proteins. A single amino acid change (e.g., sickle cell mutation) can disrupt protein folding and function.
+## Study Tips
 
-#### 4. Nucleic Acids
-*   **Question**: How do the two strands of DNA remain associated?
-*   **Key Answer**: Complementary base pairing via hydrogen bonds: Adenine-Thymine (2 bonds) and Guanine-Cytosine (3 bonds). This follows Chargaff's Rules: %A = %T and %G = %C.
+1. **Know the monomers** — Monosaccharide, amino acid, nucleotide
+2. **Understand the reactions** — Dehydration = build; Hydrolysis = break
+3. **Draw protein structure levels** — Primary through quaternary
+4. **Compare starch vs. cellulose** — Same monomer, different linkage

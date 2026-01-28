@@ -1,34 +1,44 @@
-# Module 7: Photosynthesis
-## Keys to Success & Study Guide
+# Module 7: Photosynthesis — Keys to Success
 
-### Learning Objectives
+## Learning Objectives
+
 By the end of this module, you should be able to:
 
-1.  **Trace** the flow of energy from sunlight to chemical bonds in glucose.
-2.  **Locate** the reactions of photosynthesis within the chloroplast structure.
-3.  **Explain** the inputs and outputs of the Light Reactions and the Calvin Cycle.
-4.  **Differentiate** between C₃, C₄, and CAM photosynthetic strategies.
+1. Write and explain the photosynthesis equation
+2. Describe chloroplast structure
+3. Compare light-dependent and light-independent reactions
+4. Trace electron flow through photosystems
+5. Explain adaptations in C₄ and CAM plants
 
-### Key Terminology Checklist
-*Define these terms in your own words to ensure mastery.*
+## Key Terms to Know
 
-- [ ] **Photon**: A discrete packet of light energy.
-- [ ] **Stomata**: Pores in leaves for gas exchange (CO₂ in, O₂ out).
-- [ ] **Carbon Fixation**: The incorporation of atmospheric CO₂ into organic molecules.
-- [ ] **NADP⁺/NADPH**: An electron carrier that transfers high-energy electrons in photosynthesis.
-- [ ] **G3P (Glyceraldehyde-3-Phosphate)**: The direct product of the Calvin Cycle; precursor to glucose.
+- **Photosynthesis** — Converting light energy to chemical energy (glucose)
+- **Chloroplast** — Organelle where photosynthesis occurs
+- **Thylakoid** — Membrane sacs inside chloroplast
+- **Granum** — Stack of thylakoids
+- **Stroma** — Fluid surrounding thylakoids
+- **Chlorophyll** — Green pigment that absorbs light
+- **Light-Dependent Reactions** — In thylakoid; produce ATP and NADPH
+- **Calvin Cycle** — In stroma; uses ATP and NADPH to make G3P
+- **Photosystem I and II** — Protein complexes that capture light
+- **RuBisCO** — Enzyme that fixes CO₂ in Calvin Cycle
+- **C₄ Plants** — Separate carbon fixation spatially (corn, sugarcane)
+- **CAM Plants** — Separate carbon fixation temporally (cacti, succulents)
 
-### Concept Check
-#### 1. Photolysis
-*   **Question**: What happens in Photosystem II?
-*   **Key Answer**: Water is split (photolysis), releasing electrons to the photosystem, H⁺ ions to the thylakoid lumen, and O₂ as a byproduct. This is the source of atmospheric oxygen.
+## Photosynthesis Equation
 
-#### 2. Carbon Fixation
-*   **Question**: What does it mean to "fix" carbon?
-*   **Key Answer**: Carbon fixation converts gaseous CO₂ into stable organic molecules. RuBisCO catalyzes the first step of the Calvin Cycle, attaching CO₂ to RuBP.
+**6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂**
 
-#### 3. C₃, C₄, and CAM Plants
-*   **Question**: Why did C₄ and CAM pathways evolve?
-*   **Key Answer**: In hot, dry conditions, C₃ plants lose efficiency due to photorespiration (RuBisCO binds O₂ instead of CO₂).
-    *   **C₄ plants**: Spatially separate initial CO₂ capture (mesophyll) from Calvin Cycle (bundle sheath).
-    *   **CAM plants**: Temporally separate CO₂ capture (stomata open at night) from fixation (day).
+## Key Comparisons
+
+| Stage | Location | Input | Output |
+|-------|----------|-------|--------|
+| Light Reactions | Thylakoid | H₂O, light | ATP, NADPH, O₂ |
+| Calvin Cycle | Stroma | CO₂, ATP, NADPH | G3P (sugar) |
+
+## Study Tips
+
+1. **Know the equation** — CO₂ + H₂O + light → glucose + O₂
+2. **Trace electron flow** — Water → PSII → PSI → NADPH
+3. **Understand chemiosmosis** — H⁺ gradient drives ATP synthesis
+4. **Compare C₃, C₄, CAM** — How each handles hot/dry conditions

@@ -1,34 +1,41 @@
-# Module 5: Membranes
-## Comprehension & Critical Thinking Questions
+# Module 5: Membranes — Study Questions
 
-### Part 1: Core Concepts
-1.  **Membrane Architecture**
-    *   Describe the Fluid Mosaic Model. Why is the membrane described as "fluid"? What constitutes the "mosaic"?
-    *   Sketch a phospholipid. Label the hydrophilic head and hydrophobic tails. Explain why phospholipids self-assemble into a bilayer in aqueous environments.
+1. Describe the fluid mosaic model of the cell membrane.
 
-2.  **Permeability**
-    *   Membranes are selectively permeable. List molecules that pass freely (small, nonpolar) and those that require transport proteins (large, polar, ions).
+2. Why is the membrane called "fluid"? What is the "mosaic"?
 
-3.  **Transport Mechanisms**
-    *   Define diffusion. Does it require energy?
-    *   Define osmosis. In which direction does water move relative to solute concentration?
+3. What is a phospholipid? Draw and label its structure.
 
-### Part 2: Application
-4.  **Tonicity**
-    *   **Scenario**: Red blood cells are placed in three beakers:
-        *   Beaker A: Pure distilled water.
-        *   Beaker B: 0.9% saline (matches blood).
-        *   Beaker C: 10% saline solution.
-    *   **Apply**: Predict the outcome for cells in each beaker. Identify which solution is hypotonic, isotonic, and hypertonic.
+4. Why do phospholipids spontaneously form a bilayer in water?
 
-5.  **Active Transport**
-    *   Contrast passive transport (diffusion, facilitated diffusion) with active transport.
-    *   The Na⁺/K⁺-ATPase pumps 3 Na⁺ out and 2 K⁺ in per ATP hydrolyzed. Why does this require energy?
+5. What is the role of cholesterol in the membrane?
 
-### Part 3: Analysis & Evaluation
-6.  **Bulk Transport**
-    *   Distinguish endocytosis (phagocytosis, pinocytosis, receptor-mediated) from exocytosis.
-    *   How do these processes depend on membrane fluidity?
+6. What is the difference between integral and peripheral proteins?
 
-7.  **Cell Signaling**
-    *   Explain the role of receptor proteins and glycoproteins in cell communication. How does a cell "know" a hormone is present in the extracellular fluid?
+7. Name three functions that membrane proteins can perform.
+
+8. What are glycoproteins and glycolipids? What is their function?
+
+9. Why is the plasma membrane called "selectively permeable"?
+
+10. What is passive transport? Does it require energy?
+
+11. Define diffusion. What determines which direction molecules move?
+
+12. What is the difference between simple diffusion and facilitated diffusion?
+
+13. What is osmosis? How is it different from other types of diffusion?
+
+14. Define isotonic, hypertonic, and hypotonic solutions.
+
+15. What happens to a red blood cell placed in distilled water?
+
+16. What happens to a plant cell placed in a hypertonic solution?
+
+17. How does active transport differ from passive transport?
+
+18. Describe how the sodium-potassium pump works.
+
+19. What is the difference between endocytosis and exocytosis?
+
+20. Compare phagocytosis, pinocytosis, and receptor-mediated endocytosis.

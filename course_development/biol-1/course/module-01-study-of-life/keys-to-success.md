@@ -1,39 +1,37 @@
-# Module 1: Biology - The Study of Life
-## Keys to Success & Study Guide
+# Module 1: Biology — The Study of Life — Keys to Success
 
-### Learning Objectives
+## Learning Objectives
+
 By the end of this module, you should be able to:
 
-1.  **Identify** and explain the seven fundamental characteristics shared by all living organisms.
-2.  **Order** the levels of biological organization from atom to biosphere.
-3.  **Differentiate** between the three domains of life (Bacteria, Archaea, Eukarya) and the kingdoms within Eukarya.
-4.  **Apply** the scientific method to hypothetical scenarios, distinguishing between hypothesis, theory, and law.
-5.  **Explain** the flow of energy and cycling of nutrients in ecosystems.
+1. List the seven characteristics of life
+2. Describe the levels of biological organization
+3. Use the taxonomic classification system
+4. Apply the scientific method
+5. Define homeostasis and explain its importance
+6. Distinguish between autotrophs and heterotrophs
+7. Compare the three domains of life
 
-### Key Terminology Checklist
-*Define these terms in your own words to ensure mastery.*
+## Key Terms to Know
 
-- [ ] **Homeostasis**: The maintenance of stable internal conditions despite external changes.
-- [ ] **Metabolism**: The sum of all chemical reactions in an organism, including anabolism (building) and catabolism (breaking down).
-- [ ] **Binomial Nomenclature**: The two-part naming system for species (*Genus species*).
-- [ ] **Prokaryote vs. Eukaryote**: Cells lacking a membrane-bound nucleus vs. cells with a true nucleus.
-- [ ] **Autotroph vs. Heterotroph**: Organisms that produce their own food vs. organisms that consume others.
-- [ ] **Natural Selection**: The differential survival and reproduction of individuals due to heritable variation.
+- **Biology** — The study of life
+- **Cell** — The basic unit of life
+- **Homeostasis** — Maintaining internal balance
+- **Metabolism** — All chemical reactions in an organism
+- **Taxonomy** — The science of classifying organisms
+- **Binomial Nomenclature** — Two-name scientific naming system (Genus species)
+- **Hypothesis** — Testable explanation for an observation
+- **Theory** — Well-supported explanation based on repeated testing
+- **Scientific Law** — Description of a consistent pattern in nature
+- **Independent Variable** — What the experimenter changes
+- **Dependent Variable** — What is measured in response
+- **Control Group** — The group not receiving treatment
+- **Autotroph** — Makes its own food (producers)
+- **Heterotroph** — Consumes other organisms (consumers)
 
-### Concept Check
-#### 1. The Characteristics of Life
-*   **Question**: What are the 7 characteristics shared by all living organisms?
-*   **Key Answer**: Organization, metabolism, homeostasis, growth and development, reproduction, response to stimuli, and evolution/adaptation.
+## Study Tips
 
-#### 2. The Hierarchy of Life
-*   **Question**: What are the levels of biological organization, from smallest to largest?
-*   **Key Answer**: Atom → Molecule → Organelle → Cell → Tissue → Organ → Organ System → Organism → Population → Community → Ecosystem → Biosphere.
-*   **Distinction**: A **Community** includes only the living organisms in an area, while an **Ecosystem** includes both living (biotic) and non-living (abiotic) factors.
-
-#### 3. Energy Flow and Nutrient Cycling
-*   **Question**: How does energy flow through an ecosystem differ from nutrient cycling?
-*   **Key Answer**: Energy flows one-way (Sun → Producers → Consumers → Heat). Nutrients cycle (Carbon, Nitrogen move between organisms and environment repeatedly).
-
-#### 4. The Science of Biology
-*   **Question**: What is the difference between a scientific theory and a scientific law?
-*   **Key Answer**: A **Law** describes *what* happens under certain conditions (e.g., Law of Gravity). A **Theory** explains *why* phenomena occur, supported by extensive evidence (e.g., Theory of Evolution). Theories do not become laws; they serve different purposes.
+1. **Memorize the levels of organization** — Atom, molecule, organelle, cell, tissue, organ, organ system, organism, population, community, ecosystem, biosphere
+2. **Use a mnemonic for taxonomy** — Dear King Philip Came Over For Good Soup (Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species)
+3. **Practice designing experiments** — Identify variables and controls
+4. **Know the characteristics of life** — Growth, reproduction, response to stimuli, energy use, homeostasis, cells, adaptation

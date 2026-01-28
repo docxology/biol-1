@@ -1,39 +1,35 @@
-# Module 2: Basic Chemistry
-## Keys to Success & Study Guide
+# Module 2: Basic Chemistry — Keys to Success
 
-### Learning Objectives
+## Learning Objectives
+
 By the end of this module, you should be able to:
 
-1.  **Describe** the structure of an atom and the properties of its subatomic particles.
-2.  **Compare** and **contrast** ionic, covalent, and hydrogen bonds.
-3.  **Explain** the unique life-supporting properties of water resulting from its polarity.
-4.  **Interpret** the pH scale and explain the importance of buffers in maintaining homeostasis.
+1. Describe atomic structure and subatomic particles
+2. Explain how atoms form bonds (ionic, covalent, hydrogen)
+3. Distinguish between polar and non-polar molecules
+4. Explain water's properties and their importance for life
+5. Use the pH scale and explain buffers
 
-### Key Terminology Checklist
-*Define these terms in your own words to ensure mastery.*
+## Key Terms to Know
 
-- [ ] **Matter**: Anything that has mass and occupies space.
-- [ ] **Isotope**: Atoms of the same element with different numbers of neutrons.
-- [ ] **Valence Shell**: The outermost electron shell, which determines an atom's reactivity.
-- [ ] **Cation vs. Anion**: A positively charged ion (lost electrons) vs. a negatively charged ion (gained electrons).
-- [ ] **Electronegativity**: A measure of an atom's ability to attract shared electrons in a bond.
-- [ ] **Solute vs. Solvent**: The substance being dissolved vs. the dissolving medium.
-- [ ] **Hydrophilic vs. Hydrophobic**: Water-attracting vs. water-repelling.
+- **Atom** — Smallest unit of matter retaining element properties
+- **Proton** — Positive charge, in nucleus, determines atomic number
+- **Neutron** — No charge, in nucleus, determines isotope
+- **Electron** — Negative charge, orbits nucleus, determines bonding
+- **Ionic Bond** — Transfer of electrons between atoms
+- **Covalent Bond** — Sharing of electrons between atoms
+- **Polar Molecule** — Unequal sharing of electrons (e.g., water)
+- **Hydrogen Bond** — Weak attraction between H and electronegative atoms
+- **Cohesion** — Water molecules sticking to each other
+- **Adhesion** — Water sticking to other surfaces
+- **Specific Heat** — Energy to raise temperature; water's is high
+- **Solvent** — Substance that dissolves others; water is universal solvent
+- **pH Scale** — Measures acidity/alkalinity (0-14)
+- **Buffer** — Substance that resists pH changes
 
-### Concept Check
-#### 1. Atomic Structure
-*   **Question**: How are Atomic Number and Mass Number determined?
-*   **Key Answer**: Atomic Number = number of protons (defines the element). Mass Number = protons + neutrons.
-*   **Application**: Carbon-12 has 6 protons and 6 neutrons. Carbon-14 (an isotope) has 6 protons and 8 neutrons.
+## Study Tips
 
-#### 2. Chemical Bonding
-*   **Question**: How do ionic and covalent bonds differ?
-*   **Key Answer**: In **ionic bonds**, electrons are transferred (e.g., NaCl). In **covalent bonds**, electrons are shared (e.g., H₂O). Hydrogen bonds are weak attractions between polar molecules.
-
-#### 3. Properties of Water
-*   **Question**: Why is water essential for life?
-*   **Key Answer**: Water's polarity leads to hydrogen bonding, which gives it high specific heat, cohesion, adhesion, and solvent properties. Ice floats because water expands upon freezing.
-
-#### 4. pH and Buffers
-*   **Question**: What is the pH scale and why do buffers matter?
-*   **Key Answer**: pH measures hydrogen ion concentration (0-14 scale; 7 is neutral). Buffers resist pH changes by absorbing or releasing H⁺ ions, critical for enzyme function.
+1. **Remember COHN** — Carbon, Oxygen, Hydrogen, Nitrogen are the four most common elements in living things
+2. **Draw water molecules** — Show hydrogen bonds between them
+3. **Use the pH scale** — 7 is neutral, <7 is acidic, >7 is basic
+4. **Know that pH is logarithmic** — Each number is 10× change
