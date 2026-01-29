@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 5 Dashboard: Membranes | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+select.select-input {
+  padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: 2px solid var(--border); font-family: var(--font); cursor: pointer;
+  background: #fff; color: var(--text); transition: border-color 0.15s;
+}
+select.select-input:focus { outline: none; border-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INFO PANEL (for membrane explorer)
+   ═══════════════════════════════════════════════════════════════════════ */
+.info-panel {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--purple); font-size: 14px; min-height: 80px;
+}
+.info-panel .info-title { font-weight: 700; margin-bottom: 6px; color: var(--purple); }
+.info-panel .info-desc { color: var(--text-muted); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   QUIZ FEEDBACK
+   ═══════════════════════════════════════════════════════════════════════ */
+.quiz-feedback {
+  padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  margin: 10px 0; display: none;
+}
+.quiz-feedback.correct { display: block; background: #f0fdf4; color: var(--green); border: 1px solid #bbf7d0; }
+.quiz-feedback.incorrect { display: block; background: #fef2f2; color: var(--accent); border: 1px solid #fecaca; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 5 &mdash; Membranes</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Diffusion Simulator</a>
+    <a href="#part2"><span class="nav-num">2</span> Osmosis Chamber</a>
+    <a href="#part3"><span class="nav-num">3</span> Tonicity Predictor</a>
+    <a href="#part4"><span class="nav-num">4</span> Concentration Gradient</a>
+    <a href="#part5"><span class="nav-num">5</span> Membrane Structure</a>
+    <a href="#part6"><span class="nav-num">6</span> Transport Comparison</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Membranes</h2>
+  <p>Explore the fluid mosaic model, simulate diffusion and osmosis, predict cell behavior in different solutions, and discover how selective permeability governs cellular transport.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Cell Membrane</span>
+    <span class="bio-tag">Transport</span>
+    <span class="bio-tag">Osmosis</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: DIFFUSION SIMULATOR ════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Diffusion Simulator</div>
+    <div class="section-subtitle">Watch particles spread from high to low concentration via Brownian motion</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Particle Chamber</div>
+    <div class="slider-group">
+      <label>Speed</label>
+      <input type="range" id="diff-speed" min="1" max="10" value="4" oninput="$('diff-speed-val').textContent=this.value">
+      <span class="slider-val" id="diff-speed-val">4</span>
+    </div>
+    <div class="slider-group">
+      <label>Particles</label>
+      <input type="range" id="diff-count" min="50" max="500" value="200" step="50" oninput="$('diff-count-val').textContent=this.value">
+      <span class="slider-val" id="diff-count-val">200</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="diffToggle()">Play</button>
+      <button class="btn btn-outline" onclick="diffReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="diff-canvas" height="300"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="diff-left">-</div><div class="stat-label">Left Side</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="diff-right">-</div><div class="stat-label">Right Side</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="diff-elapsed">0s</div><div class="stat-label">Elapsed</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="diff-equil">No</div><div class="stat-label">Equilibrium</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Concentration Over Time</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Left side</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> Right side</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> Equilibrium (50%)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="diff-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: OSMOSIS CHAMBER ═══════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Osmosis Chamber</div>
+    <div class="section-subtitle">Observe water movement across a semipermeable membrane</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Two-Compartment Chamber</div>
+    <div class="slider-group">
+      <label>Left solute</label>
+      <input type="range" id="osmo-left" min="0" max="100" value="20" oninput="osmoUpdate()">
+      <span class="slider-val" id="osmo-left-val">20%</span>
+    </div>
+    <div class="slider-group">
+      <label>Right solute</label>
+      <input type="range" id="osmo-right" min="0" max="100" value="60" oninput="osmoUpdate()">
+      <span class="slider-val" id="osmo-right-val">60%</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="osmoToggle()">Play</button>
+      <button class="btn btn-outline" onclick="osmoReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="osmo-canvas" height="320"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="osmo-left-conc">20%</div><div class="stat-label">Left Solute</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="osmo-right-conc">60%</div><div class="stat-label">Right Solute</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="osmo-water-dir">--&gt;</div><div class="stat-label">Water Flow</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="osmo-relation">-</div><div class="stat-label">Left is...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: TONICITY PREDICTOR ════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Tonicity Predictor</div>
+    <div class="section-subtitle">Predict cell behavior in hypertonic, hypotonic, and isotonic solutions</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Cell Response Simulator</div>
+      <div class="slider-group">
+        <label>Cell type</label>
+        <select class="select-input" id="ton-cell" onchange="tonUpdate()">
+          <option value="animal">Animal Cell</option>
+          <option value="plant">Plant Cell</option>
+        </select>
+      </div>
+      <div class="slider-group">
+        <label>Solution</label>
+        <select class="select-input" id="ton-solution" onchange="tonUpdate()">
+          <option value="isotonic">Isotonic</option>
+          <option value="hypotonic">Hypotonic</option>
+          <option value="hypertonic">Hypertonic</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="tonAnimate()">Animate Response</button>
+        <button class="btn btn-outline" onclick="tonReset()">Reset</button>
+      </div>
+      <div class="chart-wrap"><canvas id="ton-canvas" height="280"></canvas></div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="ton-result">-</div><div class="stat-label">Cell Response</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="ton-water">-</div><div class="stat-label">Water Movement</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Prediction Quiz</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">A red blood cell is placed in distilled water (pure H<sub>2</sub>O). What happens?</p>
+      <div id="quiz-q" style="font-size:14px;font-weight:600;margin-bottom:8px;"></div>
+      <div class="btn-group" id="quiz-btns"></div>
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+      <div class="stat-grid">
+        <div class="stat-box stat-green"><div class="stat-val" id="quiz-score">0</div><div class="stat-label">Correct</div></div>
+        <div class="stat-box stat-accent"><div class="stat-val" id="quiz-total">0</div><div class="stat-label">Attempted</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="quiz-pct">-</div><div class="stat-label">Accuracy</div></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="quizNext()">Next Question</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: CONCENTRATION GRADIENT ═════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Concentration Gradient Visualizer</div>
+    <div class="section-subtitle">Explore how concentration differences, temperature, molecule size, and distance affect diffusion rate</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Gradient Field</div>
+    <div class="slider-group">
+      <label>Conc. Diff.</label>
+      <input type="range" id="grad-conc" min="10" max="100" value="80" oninput="gradUpdate()">
+      <span class="slider-val" id="grad-conc-val">80%</span>
+    </div>
+    <div class="slider-group">
+      <label>Temperature</label>
+      <input type="range" id="grad-temp" min="0" max="100" value="37" oninput="gradUpdate()">
+      <span class="slider-val" id="grad-temp-val">37 C</span>
+    </div>
+    <div class="slider-group">
+      <label>Mol. Size</label>
+      <input type="range" id="grad-size" min="1" max="10" value="3" oninput="gradUpdate()">
+      <span class="slider-val" id="grad-size-val">3</span>
+    </div>
+    <div class="slider-group">
+      <label>Distance</label>
+      <input type="range" id="grad-dist" min="1" max="10" value="5" oninput="gradUpdate()">
+      <span class="slider-val" id="grad-dist-val">5</span>
+    </div>
+    <div class="chart-wrap"><canvas id="grad-canvas" height="240"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="grad-rate">-</div><div class="stat-label">Diffusion Rate</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="grad-dir">-</div><div class="stat-label">Net Direction</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="grad-equil">No</div><div class="stat-label">At Equilibrium</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Diffusion Rate vs. Parameters</div>
+    <div class="chart-wrap"><canvas id="grad-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: MEMBRANE STRUCTURE ════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Membrane Structure Explorer</div>
+    <div class="section-subtitle">Explore the phospholipid bilayer and test selective permeability</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Phospholipid Bilayer Cross-Section</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Click on membrane components to learn about them. Drag molecules from the top to test permeability.</p>
+    <div class="chart-wrap"><canvas id="membrane-canvas" height="420"></canvas></div>
+    <div class="info-panel" id="membrane-info">
+      <div class="info-title">Select a Component</div>
+      <div class="info-desc">Click on any membrane component (phospholipids, proteins, cholesterol) to see details. Drag molecules from the top panel to test which ones can cross the membrane.</div>
+    </div>
+    <div class="card-title" style="margin-top:16px;">Molecule Permeability Results</div>
+    <div class="stat-grid" id="perm-results">
+      <div class="stat-box"><div class="stat-val" style="font-size:16px;" id="perm-o2">?</div><div class="stat-label">O<sub>2</sub></div></div>
+      <div class="stat-box"><div class="stat-val" style="font-size:16px;" id="perm-co2">?</div><div class="stat-label">CO<sub>2</sub></div></div>
+      <div class="stat-box"><div class="stat-val" style="font-size:16px;" id="perm-h2o">?</div><div class="stat-label">H<sub>2</sub>O</div></div>
+      <div class="stat-box"><div class="stat-val" style="font-size:16px;" id="perm-glucose">?</div><div class="stat-label">Glucose</div></div>
+      <div class="stat-box"><div class="stat-val" style="font-size:16px;" id="perm-na">?</div><div class="stat-label">Na<sup>+</sup></div></div>
+      <div class="stat-box"><div class="stat-val" style="font-size:16px;" id="perm-protein">?</div><div class="stat-label">Protein</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: TRANSPORT COMPARISON ══════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Transport Type Comparison</div>
+    <div class="section-subtitle">Compare passive and active transport mechanisms</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Transport Mechanisms Overview</div>
+    <div class="chart-wrap"><canvas id="transport-chart" height="340"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Transport Classification Quiz</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Classify each transport scenario as passive or active transport.</p>
+    <div id="transport-quiz-q" style="font-size:14px;font-weight:600;margin-bottom:8px;"></div>
+    <div class="btn-group" id="transport-quiz-btns"></div>
+    <div class="quiz-feedback" id="transport-quiz-feedback"></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="tq-score">0</div><div class="stat-label">Correct</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="tq-total">0</div><div class="stat-label">Attempted</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="tq-pct">-</div><div class="stat-label">Accuracy</div></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="tqNext()">Next Question</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Energy Usage Comparison</div>
+    <div class="chart-wrap"><canvas id="energy-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: DIFFUSION SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+let diffState = { particles: [], running: false, animId: null, history: [], startTime: 0, elapsed: 0 };
+
+function diffInit() {
+  const count = parseInt($('diff-count').value);
+  const c = $('diff-canvas');
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 300;
+  diffState.particles = [];
+  for (let i = 0; i < count; i++) {
+    diffState.particles.push({
+      x: Math.random() * W * 0.25 + W * 0.05,
+      y: Math.random() * (H - 20) + 10,
+      color: `hsl(${rand(0, 40)}, 80%, 50%)`
+    });
+  }
+  diffState.history = [];
+  diffState.elapsed = 0;
+  diffDraw();
+  diffUpdateStats();
+  diffDrawChart();
+}
+
+function diffDraw() {
+  const c = $('diff-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 300;
+  c.width = W * dpr; c.height = H * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // background
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // divider line (dashed - not a wall, just visual reference)
+  ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1; ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, H); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // labels
+  ctx.fillStyle = '#9ca3af'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('LEFT', W * 0.25, 16);
+  ctx.fillText('RIGHT', W * 0.75, 16);
+
+  // particles
+  diffState.particles.forEach(p => {
+    ctx.fillStyle = p.color;
+    ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill();
+  });
+}
+
+function diffStep() {
+  const c = $('diff-canvas');
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 300;
+  const speed = parseInt($('diff-speed').value);
+
+  diffState.particles.forEach(p => {
+    p.x += (Math.random() - 0.5) * speed * 3;
+    p.y += (Math.random() - 0.5) * speed * 3;
+    p.x = clamp(p.x, 4, W - 4);
+    p.y = clamp(p.y, 4, H - 4);
+  });
+
+  diffState.elapsed += 1 / 60;
+
+  // record history every ~0.5s
+  if (diffState.history.length === 0 || diffState.elapsed - (diffState.history.length * 0.5) >= 0.5) {
+    const left = diffState.particles.filter(p => p.x < (W / 2)).length;
+    const total = diffState.particles.length;
+    diffState.history.push({ left: left / total, right: (total - left) / total });
+  }
+
+  diffDraw();
+  diffUpdateStats();
+  if (diffState.history.length % 3 === 0) diffDrawChart();
+
+  if (diffState.running) diffState.animId = requestAnimationFrame(diffStep);
+}
+
+function diffToggle() {
+  if (diffState.running) {
+    diffState.running = false;
+    cancelAnimationFrame(diffState.animId);
+  } else {
+    if (!diffState.particles.length) diffInit();
+    diffState.running = true;
+    diffStep();
+  }
+}
+
+function diffReset() {
+  diffState.running = false;
+  cancelAnimationFrame(diffState.animId);
+  diffInit();
+}
+
+function diffUpdateStats() {
+  const c = $('diff-canvas');
+  const W = c.offsetWidth || 600;
+  const left = diffState.particles.filter(p => p.x < W / 2).length;
+  const right = diffState.particles.length - left;
+  const total = diffState.particles.length;
+  $('diff-left').textContent = left;
+  $('diff-right').textContent = right;
+  $('diff-elapsed').textContent = diffState.elapsed.toFixed(1) + 's';
+  const ratio = total > 0 ? Math.abs(left - right) / total : 1;
+  $('diff-equil').textContent = ratio < 0.1 ? 'Yes' : 'No';
+  $('diff-equil').style.color = ratio < 0.1 ? 'var(--green)' : 'var(--amber)';
+}
+
+function diffDrawChart() {
+  if (!diffState.history.length) {
+    const ctx = getCtx('diff-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Press Play to see concentration over time', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+  const ctx = getCtx('diff-chart');
+  drawLineChart(ctx, [
+    { data: diffState.history.map(h => h.left), color: '#c41e3a', width: 2, dots: diffState.history.length < 60 },
+    { data: diffState.history.map(h => h.right), color: '#2563eb', width: 2, dots: diffState.history.length < 60 }
+  ], { yMin: 0, yMax: 1, refLine: 0.5 });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: OSMOSIS CHAMBER
+// ══════════════════════════════════════════════════════════════════════════
+let osmoState = {
+  running: false, animId: null,
+  leftSolute: 20, rightSolute: 60,
+  leftVolume: 50, rightVolume: 50,
+  waterParticles: [], soluteParticlesL: [], soluteParticlesR: [],
+  time: 0
+};
+
+function osmoInit() {
+  const c = $('osmo-canvas');
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 320;
+  osmoState.leftSolute = parseInt($('osmo-left').value);
+  osmoState.rightSolute = parseInt($('osmo-right').value);
+  osmoState.leftVolume = 50;
+  osmoState.rightVolume = 50;
+  osmoState.time = 0;
+
+  // Create solute particles
+  osmoState.soluteParticlesL = [];
+  osmoState.soluteParticlesR = [];
+  const leftCount = Math.floor(osmoState.leftSolute / 5);
+  const rightCount = Math.floor(osmoState.rightSolute / 5);
+  for (let i = 0; i < leftCount; i++) {
+    osmoState.soluteParticlesL.push({
+      x: rand(30, W / 2 - 30), y: rand(80, H - 30),
+      vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5
+    });
+  }
+  for (let i = 0; i < rightCount; i++) {
+    osmoState.soluteParticlesR.push({
+      x: rand(W / 2 + 30, W - 30), y: rand(80, H - 30),
+      vx: (Math.random() - 0.5) * 1.5, vy: (Math.random() - 0.5) * 1.5
+    });
+  }
+
+  // Water particles
+  osmoState.waterParticles = [];
+  for (let i = 0; i < 40; i++) {
+    const side = i < 20 ? 'left' : 'right';
+    osmoState.waterParticles.push({
+      x: side === 'left' ? rand(20, W / 2 - 20) : rand(W / 2 + 20, W - 20),
+      y: rand(80, H - 30),
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2,
+      side: side
+    });
+  }
+
+  osmoDraw();
+  osmoUpdateUI();
+}
+
+function osmoDraw() {
+  const c = $('osmo-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 320;
+  c.width = W * dpr; c.height = H * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // background
+  const leftAlpha = 0.05 + osmoState.leftSolute * 0.003;
+  const rightAlpha = 0.05 + osmoState.rightSolute * 0.003;
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // water level effect based on volume
+  const leftH = H * 0.7 * (osmoState.leftVolume / 50);
+  const rightH = H * 0.7 * (osmoState.rightVolume / 50);
+  const baseY = H - 10;
+
+  // Left compartment water
+  ctx.fillStyle = `rgba(37, 99, 235, ${0.08 + (1 - osmoState.leftSolute / 100) * 0.12})`;
+  ctx.fillRect(10, baseY - leftH, W / 2 - 15, leftH);
+
+  // Right compartment water
+  ctx.fillStyle = `rgba(37, 99, 235, ${0.08 + (1 - osmoState.rightSolute / 100) * 0.12})`;
+  ctx.fillRect(W / 2 + 5, baseY - rightH, W / 2 - 15, rightH);
+
+  // Solute color overlay
+  ctx.fillStyle = `rgba(196, 30, 58, ${leftAlpha})`;
+  ctx.fillRect(10, baseY - leftH, W / 2 - 15, leftH);
+  ctx.fillStyle = `rgba(196, 30, 58, ${rightAlpha})`;
+  ctx.fillRect(W / 2 + 5, baseY - rightH, W / 2 - 15, rightH);
+
+  // Membrane (center)
+  ctx.fillStyle = '#fbbf24';
+  ctx.fillRect(W / 2 - 4, 50, 8, H - 60);
+  // Pores
+  for (let py = 80; py < H - 40; py += 30) {
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillRect(W / 2 - 3, py, 6, 8);
+  }
+
+  // Membrane label
+  ctx.fillStyle = '#92400e'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('MEMBRANE', W / 2, 45);
+
+  // Solute particles (orange dots - cannot cross)
+  osmoState.soluteParticlesL.forEach(p => {
+    ctx.fillStyle = '#ea580c'; ctx.beginPath();
+    ctx.arc(p.x, p.y, 5, 0, Math.PI * 2); ctx.fill();
+  });
+  osmoState.soluteParticlesR.forEach(p => {
+    ctx.fillStyle = '#ea580c'; ctx.beginPath();
+    ctx.arc(p.x, p.y, 5, 0, Math.PI * 2); ctx.fill();
+  });
+
+  // Water particles (blue dots - can cross membrane)
+  osmoState.waterParticles.forEach(p => {
+    ctx.fillStyle = '#3b82f6'; ctx.beginPath();
+    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fill();
+  });
+
+  // Labels
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Left Side', W * 0.25, 25);
+  ctx.fillText('Right Side', W * 0.75, 25);
+
+  // Water direction arrow
+  if (Math.abs(osmoState.leftSolute - osmoState.rightSolute) > 2) {
+    const arrowDir = osmoState.rightSolute > osmoState.leftSolute ? 1 : -1;
+    const ax = W / 2;
+    const ay = H / 2;
+    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(ax - 40 * arrowDir, ay);
+    ctx.lineTo(ax + 40 * arrowDir, ay);
+    ctx.lineTo(ax + 30 * arrowDir, ay - 10);
+    ctx.moveTo(ax + 40 * arrowDir, ay);
+    ctx.lineTo(ax + 30 * arrowDir, ay + 10);
+    ctx.stroke();
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui';
+    ctx.fillText('H\u2082O', ax, ay - 16);
+  }
+}
+
+function osmoStep() {
+  const c = $('osmo-canvas');
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 320;
+
+  // Move solute particles (bounce within their side)
+  osmoState.soluteParticlesL.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 15 || p.x > W / 2 - 15) p.vx *= -1;
+    if (p.y < 80 || p.y > H - 20) p.vy *= -1;
+    p.x = clamp(p.x, 15, W / 2 - 15);
+    p.y = clamp(p.y, 80, H - 20);
+  });
+  osmoState.soluteParticlesR.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < W / 2 + 15 || p.x > W - 15) p.vx *= -1;
+    if (p.y < 80 || p.y > H - 20) p.vy *= -1;
+    p.x = clamp(p.x, W / 2 + 15, W - 15);
+    p.y = clamp(p.y, 80, H - 20);
+  });
+
+  // Move water particles (can cross membrane, biased toward higher solute)
+  const soluteDiff = osmoState.rightSolute - osmoState.leftSolute;
+  const bias = soluteDiff * 0.002; // water moves toward higher solute
+
+  osmoState.waterParticles.forEach(p => {
+    p.x += p.vx + bias;
+    p.y += p.vy;
+    if (p.y < 80 || p.y > H - 20) p.vy *= -1;
+    if (p.x < 15) { p.vx *= -1; p.x = 15; }
+    if (p.x > W - 15) { p.vx *= -1; p.x = W - 15; }
+    p.y = clamp(p.y, 80, H - 20);
+
+    // Track which side
+    p.side = p.x < W / 2 ? 'left' : 'right';
+  });
+
+  // Update volumes based on water distribution
+  const leftWater = osmoState.waterParticles.filter(p => p.side === 'left').length;
+  const rightWater = osmoState.waterParticles.length - leftWater;
+  osmoState.leftVolume = lerp(osmoState.leftVolume, 25 + leftWater * 1.25, 0.05);
+  osmoState.rightVolume = lerp(osmoState.rightVolume, 25 + rightWater * 1.25, 0.05);
+
+  osmoState.time += 1 / 60;
+
+  osmoDraw();
+  osmoUpdateUI();
+
+  if (osmoState.running) osmoState.animId = requestAnimationFrame(osmoStep);
+}
+
+function osmoToggle() {
+  if (osmoState.running) {
+    osmoState.running = false;
+    cancelAnimationFrame(osmoState.animId);
+  } else {
+    if (!osmoState.waterParticles.length) osmoInit();
+    osmoState.running = true;
+    osmoStep();
+  }
+}
+
+function osmoReset() {
+  osmoState.running = false;
+  cancelAnimationFrame(osmoState.animId);
+  osmoInit();
+}
+
+function osmoUpdate() {
+  $('osmo-left-val').textContent = $('osmo-left').value + '%';
+  $('osmo-right-val').textContent = $('osmo-right').value + '%';
+  osmoState.leftSolute = parseInt($('osmo-left').value);
+  osmoState.rightSolute = parseInt($('osmo-right').value);
+  osmoReset();
+}
+
+function osmoUpdateUI() {
+  $('osmo-left-conc').textContent = osmoState.leftSolute + '%';
+  $('osmo-right-conc').textContent = osmoState.rightSolute + '%';
+
+  const diff = osmoState.rightSolute - osmoState.leftSolute;
+  if (diff > 2) {
+    $('osmo-water-dir').innerHTML = '&rarr;';
+    $('osmo-relation').textContent = 'Hypotonic';
+  } else if (diff < -2) {
+    $('osmo-water-dir').innerHTML = '&larr;';
+    $('osmo-relation').textContent = 'Hypertonic';
+  } else {
+    $('osmo-water-dir').innerHTML = '&harr;';
+    $('osmo-relation').textContent = 'Isotonic';
+  }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: TONICITY PREDICTOR
+// ══════════════════════════════════════════════════════════════════════════
+let tonState = { animProgress: 0, animId: null, animating: false };
+
+function tonUpdate() { tonReset(); }
+
+function tonReset() {
+  tonState.animProgress = 0;
+  tonState.animating = false;
+  cancelAnimationFrame(tonState.animId);
+  tonDrawCell(0);
+  $('ton-result').textContent = '-';
+  $('ton-water').textContent = '-';
+}
+
+function tonAnimate() {
+  if (tonState.animating) return;
+  tonState.animating = true;
+  tonState.animProgress = 0;
+  tonAnimStep();
+}
+
+function tonAnimStep() {
+  tonState.animProgress += 0.012;
+  if (tonState.animProgress > 1) tonState.animProgress = 1;
+
+  tonDrawCell(tonState.animProgress);
+
+  const cellType = $('ton-cell').value;
+  const solution = $('ton-solution').value;
+
+  if (cellType === 'animal') {
+    if (solution === 'hypotonic') {
+      $('ton-result').textContent = 'Cytolysis';
+      $('ton-water').textContent = 'Into cell';
+    } else if (solution === 'hypertonic') {
+      $('ton-result').textContent = 'Crenation';
+      $('ton-water').textContent = 'Out of cell';
+    } else {
+      $('ton-result').textContent = 'Normal';
+      $('ton-water').textContent = 'Balanced';
+    }
+  } else {
+    if (solution === 'hypotonic') {
+      $('ton-result').textContent = 'Turgid';
+      $('ton-water').textContent = 'Into cell';
+    } else if (solution === 'hypertonic') {
+      $('ton-result').textContent = 'Plasmolysis';
+      $('ton-water').textContent = 'Out of cell';
+    } else {
+      $('ton-result').textContent = 'Flaccid';
+      $('ton-water').textContent = 'Balanced';
+    }
+  }
+
+  if (tonState.animProgress < 1) {
+    tonState.animId = requestAnimationFrame(tonAnimStep);
+  } else {
+    tonState.animating = false;
+  }
+}
+
+function tonDrawCell(progress) {
+  const c = $('ton-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.offsetWidth || 400;
+  const H = c.offsetHeight || 280;
+  c.width = W * dpr; c.height = H * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const cellType = $('ton-cell').value;
+  const solution = $('ton-solution').value;
+  const cx = W / 2, cy = H / 2;
+  const baseR = 70;
+
+  // Background solution
+  ctx.fillStyle = '#f0f9ff'; ctx.fillRect(0, 0, W, H);
+
+  // Solution dots (outside cell)
+  ctx.fillStyle = solution === 'hypertonic' ? 'rgba(196,30,58,0.3)' : solution === 'hypotonic' ? 'rgba(37,99,235,0.15)' : 'rgba(100,100,100,0.15)';
+  const dotCount = solution === 'hypertonic' ? 60 : solution === 'hypotonic' ? 10 : 30;
+  const seed = 42;
+  for (let i = 0; i < dotCount; i++) {
+    const a = (seed + i * 137.508) * Math.PI / 180;
+    const r = 100 + (i * 7) % 80;
+    const dx = cx + Math.cos(a) * r;
+    const dy = cy + Math.sin(a) * r;
+    if (dx > 10 && dx < W - 10 && dy > 10 && dy < H - 10) {
+      ctx.beginPath(); ctx.arc(dx, dy, 3, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  // Water arrows showing direction
+  if (progress > 0.1 && solution !== 'isotonic') {
+    const arrowCount = 6;
+    const inward = solution === 'hypotonic';
+    ctx.strokeStyle = 'rgba(37,99,235,0.6)'; ctx.lineWidth = 2;
+    for (let i = 0; i < arrowCount; i++) {
+      const angle = (i / arrowCount) * Math.PI * 2;
+      const startR = inward ? baseR + 40 : baseR - 20;
+      const endR = inward ? baseR + 10 : baseR + 20;
+      const sx = cx + Math.cos(angle) * startR;
+      const sy = cy + Math.sin(angle) * startR;
+      const ex = cx + Math.cos(angle) * endR;
+      const ey = cy + Math.sin(angle) * endR;
+      ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ex, ey); ctx.stroke();
+      // arrowhead
+      const headLen = 8;
+      const aAngle = Math.atan2(ey - sy, ex - sx);
+      ctx.beginPath();
+      ctx.moveTo(ex, ey);
+      ctx.lineTo(ex - headLen * Math.cos(aAngle - 0.4), ey - headLen * Math.sin(aAngle - 0.4));
+      ctx.moveTo(ex, ey);
+      ctx.lineTo(ex - headLen * Math.cos(aAngle + 0.4), ey - headLen * Math.sin(aAngle + 0.4));
+      ctx.stroke();
+    }
+  }
+
+  if (cellType === 'plant') {
+    // Cell wall (always same size)
+    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.roundRect(cx - baseR - 10, cy - baseR - 10, (baseR + 10) * 2, (baseR + 10) * 2, 8);
+    ctx.stroke();
+    ctx.fillStyle = '#f0fdf4';
+    ctx.fill();
+  }
+
+  // Calculate cell size based on solution and progress
+  let cellR = baseR;
+  if (solution === 'hypotonic') {
+    cellR = baseR + progress * (cellType === 'animal' ? 35 : 12);
+  } else if (solution === 'hypertonic') {
+    cellR = baseR - progress * 25;
+  }
+
+  // Cell membrane
+  if (cellType === 'animal') {
+    ctx.fillStyle = 'rgba(251, 191, 36, 0.2)';
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3;
+
+    if (solution === 'hypertonic' && progress > 0.5) {
+      // Crenation - spiky edges
+      ctx.beginPath();
+      const spikes = 12;
+      for (let i = 0; i <= spikes * 2; i++) {
+        const angle = (i / (spikes * 2)) * Math.PI * 2;
+        const r = i % 2 === 0 ? cellR : cellR - 8 * progress;
+        const px = cx + Math.cos(angle) * r;
+        const py = cy + Math.sin(angle) * r;
+        i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else if (solution === 'hypotonic' && progress > 0.85) {
+      // Bursting - broken membrane
+      ctx.globalAlpha = 1 - (progress - 0.85) * 5;
+      ctx.beginPath(); ctx.arc(cx, cy, cellR, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.globalAlpha = 1;
+      // Burst particles
+      ctx.fillStyle = 'rgba(251, 191, 36, 0.5)';
+      for (let i = 0; i < 15; i++) {
+        const a = (i * 137.508) * Math.PI / 180;
+        const r = cellR + (progress - 0.85) * 200 * (i % 3 + 1);
+        ctx.beginPath(); ctx.arc(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 3, 0, Math.PI * 2); ctx.fill();
+      }
+    } else {
+      ctx.beginPath(); ctx.arc(cx, cy, cellR, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
+  } else {
+    // Plant cell - membrane inside cell wall
+    ctx.fillStyle = 'rgba(251, 191, 36, 0.2)';
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2;
+
+    if (solution === 'hypertonic' && progress > 0.3) {
+      // Plasmolysis - membrane pulls away from wall
+      const pullback = progress * 15;
+      ctx.beginPath(); ctx.arc(cx, cy, cellR - pullback * 0.3, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.arc(cx, cy, cellR, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
+  }
+
+  // Nucleus
+  const nucleusR = cellR * 0.25;
+  ctx.fillStyle = 'rgba(124, 58, 237, 0.3)';
+  ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(cx, cy, nucleusR, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  const label = cellType === 'animal' ? 'Animal Cell' : 'Plant Cell';
+  ctx.fillText(label, cx, H - 15);
+  ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui';
+  ctx.fillText(solution.charAt(0).toUpperCase() + solution.slice(1) + ' Solution', cx, H - 35);
+}
+
+
+// ── Quiz ──
+const quizQuestions = [
+  { q: 'A red blood cell is placed in distilled water (pure H\u2082O). What happens?', a: 'Cytolysis (bursts)', opts: ['Crenation (shrinks)', 'Cytolysis (bursts)', 'Nothing', 'Plasmolysis'] },
+  { q: 'A plant cell is placed in a concentrated salt solution. What happens?', a: 'Plasmolysis', opts: ['Becomes turgid', 'Cytolysis', 'Plasmolysis', 'Nothing'] },
+  { q: 'An animal cell is placed in 0.9% saline (isotonic). What happens?', a: 'Stays normal', opts: ['Stays normal', 'Shrinks', 'Bursts', 'Plasmolysis'] },
+  { q: 'What happens to a plant cell in pure water?', a: 'Becomes turgid', opts: ['Cytolysis', 'Becomes turgid', 'Plasmolysis', 'Nothing'] },
+  { q: 'An RBC is placed in 10% NaCl solution. What happens?', a: 'Crenation (shrinks)', opts: ['Stays normal', 'Cytolysis', 'Crenation (shrinks)', 'Becomes turgid'] },
+  { q: 'Why don\'t plant cells burst in hypotonic solutions?', a: 'Cell wall prevents it', opts: ['No nucleus', 'Cell wall prevents it', 'They are waterproof', 'They have no vacuole'] },
+  { q: 'In which direction does water move during osmosis?', a: 'Low to high solute concentration', opts: ['High to low solute', 'Low to high solute concentration', 'Randomly', 'It does not move'] },
+  { q: 'A wilted lettuce leaf is placed in cold water. What happens?', a: 'It becomes crisp (turgid)', opts: ['It wilts more', 'It becomes crisp (turgid)', 'Nothing', 'It dissolves'] }
+];
+let quizIdx = 0, quizScore = 0, quizTotal = 0;
+
+function quizNext() {
+  quizIdx = (quizIdx + 1) % quizQuestions.length;
+  quizRender();
+}
+
+function quizRender() {
+  const q = quizQuestions[quizIdx];
+  $('quiz-q').textContent = q.q;
+  const btnsDiv = $('quiz-btns');
+  btnsDiv.innerHTML = '';
+  q.opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-outline btn-sm';
+    btn.textContent = opt;
+    btn.onclick = () => quizAnswer(opt, q.a);
+    btnsDiv.appendChild(btn);
+  });
+  $('quiz-feedback').className = 'quiz-feedback';
+  $('quiz-feedback').textContent = '';
+}
+
+function quizAnswer(selected, correct) {
+  quizTotal++;
+  const fb = $('quiz-feedback');
+  if (selected === correct) {
+    quizScore++;
+    fb.className = 'quiz-feedback correct';
+    fb.textContent = 'Correct! ' + correct;
+  } else {
+    fb.className = 'quiz-feedback incorrect';
+    fb.textContent = 'Incorrect. The answer is: ' + correct;
+  }
+  $('quiz-score').textContent = quizScore;
+  $('quiz-total').textContent = quizTotal;
+  $('quiz-pct').textContent = quizTotal > 0 ? (quizScore / quizTotal * 100).toFixed(0) + '%' : '-';
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: CONCENTRATION GRADIENT VISUALIZER
+// ══════════════════════════════════════════════════════════════════════════
+
+function gradUpdate() {
+  const conc = parseInt($('grad-conc').value);
+  const temp = parseInt($('grad-temp').value);
+  const size = parseInt($('grad-size').value);
+  const dist = parseInt($('grad-dist').value);
+  $('grad-conc-val').textContent = conc + '%';
+  $('grad-temp-val').textContent = temp + ' C';
+  $('grad-size-val').textContent = size;
+  $('grad-dist-val').textContent = dist;
+
+  // Fick's law approximation: rate ~ (conc_diff * temp) / (size * distance)
+  const rate = (conc * (temp + 273)) / (size * dist * 100);
+
+  $('grad-rate').textContent = rate.toFixed(1);
+  $('grad-dir').innerHTML = conc > 5 ? 'High &rarr; Low' : 'Equilibrium';
+  $('grad-equil').textContent = conc <= 5 ? 'Yes' : 'No';
+  $('grad-equil').style.color = conc <= 5 ? 'var(--green)' : 'var(--amber)';
+
+  gradDrawCanvas();
+  gradDrawChart();
+}
+
+function gradDrawCanvas() {
+  const c = $('grad-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 240;
+  c.width = W * dpr; c.height = H * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const conc = parseInt($('grad-conc').value);
+  const pad = { left: 40, right: 40, top: 30, bottom: 40 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Draw gradient background
+  const steps = 50;
+  for (let i = 0; i < steps; i++) {
+    const x = pad.left + (i / steps) * plotW;
+    const w = plotW / steps + 1;
+    const intensity = 1 - (i / steps);
+    const alpha = 0.05 + intensity * conc / 100 * 0.4;
+    ctx.fillStyle = `rgba(196, 30, 58, ${alpha})`;
+    ctx.fillRect(x, pad.top, w, plotH);
+  }
+
+  // Concentration curve
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+  ctx.beginPath();
+  for (let i = 0; i <= 100; i++) {
+    const x = pad.left + (i / 100) * plotW;
+    const concAtPoint = conc * (1 - i / 100);
+    const y = pad.top + plotH - (concAtPoint / 100) * plotH;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Direction arrows
+  if (conc > 5) {
+    const arrowY = pad.top + plotH / 2;
+    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+    const arrowCount = Math.min(5, Math.ceil(conc / 20));
+    for (let a = 0; a < arrowCount; a++) {
+      const ax = pad.left + plotW * 0.2 + (a / arrowCount) * plotW * 0.5;
+      const arrowLen = 20 + (conc / 100) * 15;
+      ctx.beginPath();
+      ctx.moveTo(ax, arrowY);
+      ctx.lineTo(ax + arrowLen, arrowY);
+      ctx.lineTo(ax + arrowLen - 6, arrowY - 6);
+      ctx.moveTo(ax + arrowLen, arrowY);
+      ctx.lineTo(ax + arrowLen - 6, arrowY + 6);
+      ctx.stroke();
+    }
+  }
+
+  // Labels
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('HIGH', pad.left + 30, H - 10);
+  ctx.fillText('LOW', W - pad.right - 30, H - 10);
+  ctx.fillText('Concentration Gradient', W / 2, H - 10);
+
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+  ctx.textAlign = 'left'; ctx.fillText('Concentration', 5, pad.top - 5);
+
+  // Particle dots along gradient
+  const particleCount = Math.floor(conc / 3);
+  for (let i = 0; i < particleCount; i++) {
+    // More particles on the left (high concentration)
+    const bias = Math.pow(Math.random(), 1.5); // bias toward 0 (left)
+    const px = pad.left + bias * plotW;
+    const py = pad.top + Math.random() * plotH;
+    ctx.fillStyle = 'rgba(196, 30, 58, 0.6)';
+    ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI * 2); ctx.fill();
+  }
+}
+
+function gradDrawChart() {
+  const ctx = getCtx('grad-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Calculate rates for different parameter values
+  const temp = parseInt($('grad-temp').value);
+  const size = parseInt($('grad-size').value);
+  const dist = parseInt($('grad-dist').value);
+
+  const params = [
+    { label: 'Conc. Diff.', values: [10, 30, 50, 70, 100], color: '#c41e3a', calc: v => (v * (temp + 273)) / (size * dist * 100) },
+    { label: 'Temperature', values: [0, 20, 37, 60, 100], color: '#2563eb', calc: v => (80 * (v + 273)) / (size * dist * 100) },
+  ];
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  const maxRate = 20;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxRate * i / 4).toFixed(0), pad.left - 6, y + 4);
+  }
+
+  // Draw each parameter series
+  params.forEach((param, pi) => {
+    ctx.strokeStyle = param.color; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    param.values.forEach((v, i) => {
+      const rate = param.calc(v);
+      const x = pad.left + (i / (param.values.length - 1)) * plotW;
+      const y = pad.top + plotH * (1 - clamp(rate, 0, maxRate) / maxRate);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Dots
+    param.values.forEach((v, i) => {
+      const rate = param.calc(v);
+      const x = pad.left + (i / (param.values.length - 1)) * plotW;
+      const y = pad.top + plotH * (1 - clamp(rate, 0, maxRate) / maxRate);
+      ctx.fillStyle = param.color;
+      ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+    });
+  });
+
+  // Legend
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left, 8, 16, 3);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Rate vs Concentration', pad.left + 22, 13);
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left + 170, 8, 16, 3);
+  ctx.fillStyle = '#374151'; ctx.fillText('Rate vs Temperature', pad.left + 192, 13);
+
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Parameter Value', pad.left + plotW / 2, H - 8);
+
+  ctx.save();
+  ctx.translate(12, pad.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('Diffusion Rate', 0, 0);
+  ctx.restore();
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: MEMBRANE STRUCTURE EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+let memState = {
+  hoveredComponent: null,
+  dragging: null, dragX: 0, dragY: 0,
+  tested: {}
+};
+
+const memComponents = {
+  phospholipid: {
+    name: 'Phospholipid',
+    desc: 'The primary structural component of the membrane. Each has a hydrophilic (water-loving) phosphate head and two hydrophobic (water-fearing) fatty acid tails. They arrange in a bilayer with tails facing inward, creating a selectively permeable barrier.',
+    color: '#f59e0b'
+  },
+  cholesterol: {
+    name: 'Cholesterol',
+    desc: 'Embedded between phospholipids, cholesterol helps regulate membrane fluidity. At high temperatures it stabilizes the membrane; at low temperatures it prevents tight packing and maintains fluidity. It is crucial for the "fluid" in the fluid mosaic model.',
+    color: '#ef4444'
+  },
+  integral: {
+    name: 'Integral (Transmembrane) Protein',
+    desc: 'Proteins that span the entire membrane. They serve as channels, carriers, receptors, and enzymes. Channel proteins form hydrophilic tunnels for specific ions and polar molecules. Carrier proteins change shape to shuttle molecules across.',
+    color: '#7c3aed'
+  },
+  peripheral: {
+    name: 'Peripheral Protein',
+    desc: 'Proteins attached to the membrane surface (not embedded through it). They serve as enzymes, structural anchors for the cytoskeleton, and cell signaling components. They can be on either the extracellular or cytoplasmic side.',
+    color: '#2563eb'
+  },
+  glycoprotein: {
+    name: 'Glycoprotein',
+    desc: 'Proteins with carbohydrate chains attached on the extracellular surface. They function in cell recognition, immune response (identifying self vs. non-self), and cell signaling. The carbohydrate "sugar coat" is part of the glycocalyx.',
+    color: '#16a34a'
+  },
+  channel: {
+    name: 'Channel Protein',
+    desc: 'A type of integral protein that forms a water-filled pore through the membrane. Allows specific ions (Na+, K+, Ca2+, Cl-) or water (aquaporins) to pass through by facilitated diffusion. Some channels are gated (open/close in response to signals).',
+    color: '#0891b2'
+  }
+};
+
+const molecules = [
+  { id: 'o2', label: 'O\u2082', color: '#ef4444', canPass: true, method: 'Direct diffusion', x: 0, y: 0 },
+  { id: 'co2', label: 'CO\u2082', color: '#6b7280', canPass: true, method: 'Direct diffusion', x: 0, y: 0 },
+  { id: 'h2o', label: 'H\u2082O', color: '#3b82f6', canPass: true, method: 'Aquaporin channels', x: 0, y: 0 },
+  { id: 'glucose', label: 'Glucose', color: '#f59e0b', canPass: false, method: 'Needs carrier protein', x: 0, y: 0 },
+  { id: 'na', label: 'Na\u207A', color: '#8b5cf6', canPass: false, method: 'Needs channel/pump', x: 0, y: 0 },
+  { id: 'protein', label: 'Protein', color: '#374151', canPass: false, method: 'Too large - endocytosis', x: 0, y: 0 }
+];
+
+function memDraw() {
+  const c = $('membrane-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 420;
+  c.width = W * dpr; c.height = H * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Extracellular label
+  ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('EXTRACELLULAR SPACE', W / 2, 55);
+
+  // Molecule tray at top
+  ctx.fillStyle = '#f1f5f9'; ctx.fillRect(0, 0, W, 40);
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, 40); ctx.lineTo(W, 40); ctx.stroke();
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Drag molecules to membrane:', 10, 14);
+
+  // Draw molecule buttons in tray
+  const molSpacing = W / (molecules.length + 1);
+  molecules.forEach((mol, i) => {
+    mol.x = molSpacing * (i + 1);
+    mol.y = 28;
+    ctx.fillStyle = mol.color;
+    ctx.beginPath(); ctx.arc(mol.x, mol.y, 10, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 8px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(mol.label, mol.x, mol.y + 3);
+  });
+
+  const memY = H / 2 + 20; // membrane center Y
+  const memH = 80; // membrane thickness
+
+  // Phospholipid bilayer background
+  ctx.fillStyle = '#fef3c7';
+  ctx.fillRect(0, memY - memH / 2, W, memH);
+
+  // Draw phospholipids
+  const lipidSpacing = 18;
+  const lipidCount = Math.floor(W / lipidSpacing);
+  for (let i = 0; i < lipidCount; i++) {
+    const lx = i * lipidSpacing + lipidSpacing / 2;
+
+    // Skip areas where proteins are
+    const proteinZones = [
+      { x: W * 0.25, w: 40 }, // integral protein
+      { x: W * 0.55, w: 35 }, // channel protein
+      { x: W * 0.8, w: 30 }   // glycoprotein
+    ];
+    let inProtein = false;
+    proteinZones.forEach(pz => { if (Math.abs(lx - pz.x) < pz.w) inProtein = true; });
+    if (inProtein) continue;
+
+    // Top layer (heads up)
+    ctx.fillStyle = '#f59e0b';
+    ctx.beginPath(); ctx.arc(lx, memY - memH / 2 + 8, 6, 0, Math.PI * 2); ctx.fill();
+    // Tails down
+    ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(lx - 2, memY - memH / 2 + 14); ctx.lineTo(lx - 2, memY - 4); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(lx + 2, memY - memH / 2 + 14); ctx.lineTo(lx + 2, memY - 4); ctx.stroke();
+
+    // Bottom layer (heads down)
+    ctx.fillStyle = '#f59e0b';
+    ctx.beginPath(); ctx.arc(lx, memY + memH / 2 - 8, 6, 0, Math.PI * 2); ctx.fill();
+    // Tails up
+    ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(lx - 2, memY + memH / 2 - 14); ctx.lineTo(lx - 2, memY + 4); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(lx + 2, memY + memH / 2 - 14); ctx.lineTo(lx + 2, memY + 4); ctx.stroke();
+  }
+
+  // Cholesterol (small red wedges between phospholipids)
+  const cholPositions = [W * 0.12, W * 0.35, W * 0.65, W * 0.9];
+  cholPositions.forEach(cx => {
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.moveTo(cx, memY - 15);
+    ctx.lineTo(cx - 5, memY + 10);
+    ctx.lineTo(cx + 5, memY + 10);
+    ctx.closePath(); ctx.fill();
+    // Small circle head
+    ctx.beginPath(); ctx.arc(cx, memY - 18, 4, 0, Math.PI * 2); ctx.fill();
+  });
+
+  // Integral protein
+  const ipx = W * 0.25;
+  ctx.fillStyle = '#7c3aed';
+  ctx.beginPath();
+  ctx.roundRect(ipx - 18, memY - memH / 2 - 5, 36, memH + 10, 12);
+  ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Carrier', ipx, memY + 3);
+
+  // Channel protein (with pore)
+  const cpx = W * 0.55;
+  ctx.fillStyle = '#0891b2';
+  ctx.beginPath();
+  ctx.roundRect(cpx - 16, memY - memH / 2 - 5, 14, memH + 10, 6);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.roundRect(cpx + 2, memY - memH / 2 - 5, 14, memH + 10, 6);
+  ctx.fill();
+  // Pore center
+  ctx.fillStyle = '#e0f2fe';
+  ctx.fillRect(cpx - 2, memY - memH / 2, 4, memH);
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 8px system-ui';
+  ctx.fillText('Ch.', cpx, memY - memH / 2 - 10);
+
+  // Glycoprotein
+  const gpx = W * 0.8;
+  ctx.fillStyle = '#16a34a';
+  ctx.beginPath();
+  ctx.roundRect(gpx - 14, memY - memH / 2 - 5, 28, memH * 0.7, 8);
+  ctx.fill();
+  // Carbohydrate chains (branching)
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
+  for (let b = 0; b < 3; b++) {
+    const bx = gpx - 8 + b * 8;
+    const by = memY - memH / 2 - 5;
+    ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(bx, by - 15);
+    ctx.lineTo(bx - 5, by - 25); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(bx, by - 15); ctx.lineTo(bx + 5, by - 25); ctx.stroke();
+    ctx.fillStyle = '#16a34a';
+    ctx.beginPath(); ctx.arc(bx - 5, by - 25, 3, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(bx + 5, by - 25, 3, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // Peripheral protein (attached to surface)
+  const ppx = W * 0.42;
+  ctx.fillStyle = '#2563eb';
+  ctx.beginPath();
+  ctx.roundRect(ppx - 15, memY + memH / 2 + 2, 30, 14, 6);
+  ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui';
+  ctx.fillText('Periph.', ppx, memY + memH / 2 + 12);
+
+  // Intracellular label
+  ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('INTRACELLULAR (CYTOPLASM)', W / 2, H - 15);
+
+  // Component labels with click targets
+  ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  const labelData = [
+    { key: 'phospholipid', x: W * 0.05, y: memY + memH / 2 + 30 },
+    { key: 'cholesterol', x: W * 0.12, y: memY - memH / 2 - 30 },
+    { key: 'integral', x: W * 0.25, y: memY + memH / 2 + 30 },
+    { key: 'peripheral', x: W * 0.42, y: memY + memH / 2 + 35 },
+    { key: 'channel', x: W * 0.55, y: memY + memH / 2 + 30 },
+    { key: 'glycoprotein', x: W * 0.8, y: memY + memH / 2 + 30 },
+  ];
+  labelData.forEach(ld => {
+    const comp = memComponents[ld.key];
+    ctx.fillStyle = comp.color;
+    ctx.fillText(comp.name, ld.x, ld.y);
+  });
+
+  // Draw dragged molecule
+  if (memState.dragging) {
+    const mol = molecules.find(m => m.id === memState.dragging);
+    if (mol) {
+      ctx.fillStyle = mol.color; ctx.globalAlpha = 0.7;
+      ctx.beginPath(); ctx.arc(memState.dragX, memState.dragY, 12, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(mol.label, memState.dragX, memState.dragY + 3);
+      ctx.globalAlpha = 1;
+    }
+  }
+}
+
+function memHandleClick(e) {
+  const c = $('membrane-canvas');
+  const rect = c.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const W = c.offsetWidth || 600;
+  const H = c.offsetHeight || 420;
+  const memY = H / 2 + 20;
+  const memH = 80;
+
+  // Check if clicking on a component
+  const clickZones = [
+    { key: 'phospholipid', x1: 0, x2: W * 0.15, y1: memY - memH, y2: memY + memH },
+    { key: 'cholesterol', x1: W * 0.08, x2: W * 0.16, y1: memY - 25, y2: memY + 15 },
+    { key: 'integral', x1: W * 0.2, x2: W * 0.3, y1: memY - memH / 2 - 10, y2: memY + memH / 2 + 15 },
+    { key: 'peripheral', x1: W * 0.37, x2: W * 0.47, y1: memY + memH / 2, y2: memY + memH / 2 + 20 },
+    { key: 'channel', x1: W * 0.5, x2: W * 0.6, y1: memY - memH / 2 - 10, y2: memY + memH / 2 + 15 },
+    { key: 'glycoprotein', x1: W * 0.73, x2: W * 0.87, y1: memY - memH, y2: memY + memH / 2 + 10 },
+  ];
+
+  for (const zone of clickZones) {
+    if (x >= zone.x1 && x <= zone.x2 && y >= zone.y1 && y <= zone.y2) {
+      const comp = memComponents[zone.key];
+      $('membrane-info').innerHTML = `<div class="info-title" style="color:${comp.color}">${comp.name}</div><div class="info-desc">${comp.desc}</div>`;
+      return;
+    }
+  }
+}
+
+function memHandleMouseDown(e) {
+  const c = $('membrane-canvas');
+  const rect = c.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  // Check if clicking a molecule in the tray
+  for (const mol of molecules) {
+    const dist = Math.sqrt((x - mol.x) ** 2 + (y - mol.y) ** 2);
+    if (dist < 15) {
+      memState.dragging = mol.id;
+      memState.dragX = x;
+      memState.dragY = y;
+      return;
+    }
+  }
+
+  // Otherwise treat as component click
+  memHandleClick(e);
+}
+
+function memHandleMouseMove(e) {
+  if (!memState.dragging) return;
+  const c = $('membrane-canvas');
+  const rect = c.getBoundingClientRect();
+  memState.dragX = e.clientX - rect.left;
+  memState.dragY = e.clientY - rect.top;
+  memDraw();
+}
+
+function memHandleMouseUp(e) {
+  if (!memState.dragging) return;
+  const c = $('membrane-canvas');
+  const H = c.offsetHeight || 420;
+  const memY = H / 2 + 20;
+
+  const mol = molecules.find(m => m.id === memState.dragging);
+  if (mol && memState.dragY > memY - 60 && memState.dragY < memY + 60) {
+    // Dropped on membrane
+    memState.tested[mol.id] = true;
+    const resultEl = $('perm-' + mol.id);
+    if (mol.canPass) {
+      resultEl.textContent = 'PASS';
+      resultEl.style.color = 'var(--green)';
+    } else {
+      resultEl.textContent = 'BLOCK';
+      resultEl.style.color = 'var(--accent)';
+    }
+    // Show info
+    $('membrane-info').innerHTML = `<div class="info-title" style="color:${mol.color}">${mol.label} - ${mol.canPass ? 'Passes Through' : 'Blocked'}</div><div class="info-desc">${mol.method}. ${mol.canPass ? 'Small nonpolar molecules and water (via aquaporins) can pass through the membrane.' : 'This molecule cannot freely cross the phospholipid bilayer. It requires specialized transport proteins or vesicle-mediated transport.'}</div>`;
+  }
+
+  memState.dragging = null;
+  memDraw();
+}
+
+// Touch support for membrane
+function memHandleTouchStart(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  memHandleMouseDown({ clientX: touch.clientX, clientY: touch.clientY });
+}
+function memHandleTouchMove(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  memHandleMouseMove({ clientX: touch.clientX, clientY: touch.clientY });
+}
+function memHandleTouchEnd(e) {
+  e.preventDefault();
+  memHandleMouseUp(e);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: TRANSPORT COMPARISON
+// ══════════════════════════════════════════════════════════════════════════
+
+function drawTransportChart() {
+  const ctx = getCtx('transport-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 40, right: 20, bottom: 30, left: 20 };
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const colW = (W - pad.left - pad.right) / 2;
+  const leftX = pad.left;
+  const rightX = pad.left + colW;
+
+  // Headers
+  ctx.fillStyle = '#16a34a';
+  ctx.beginPath(); ctx.roundRect(leftX, pad.top, colW - 8, 36, 8); ctx.fill();
+  ctx.fillStyle = '#c41e3a';
+  ctx.beginPath(); ctx.roundRect(rightX + 8, pad.top, colW - 8, 36, 8); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('PASSIVE TRANSPORT', leftX + colW / 2 - 4, pad.top + 22);
+  ctx.fillText('ACTIVE TRANSPORT', rightX + colW / 2 + 4, pad.top + 22);
+
+  // Passive transport items
+  const passiveItems = [
+    { name: 'Simple Diffusion', desc: 'Small nonpolar molecules (O\u2082, CO\u2082)', energy: 'None', dir: 'Down gradient' },
+    { name: 'Osmosis', desc: 'Water across semipermeable membrane', energy: 'None', dir: 'Down gradient' },
+    { name: 'Facilitated Diffusion', desc: 'Polar molecules via channel/carrier proteins', energy: 'None', dir: 'Down gradient' },
+  ];
+
+  const activeItems = [
+    { name: 'Protein Pumps', desc: 'Na\u207A/K\u207A-ATPase, Ca\u00B2\u207A pump', energy: 'ATP', dir: 'Against gradient' },
+    { name: 'Endocytosis', desc: 'Cell engulfs material (phago/pinocytosis)', energy: 'ATP', dir: 'Into cell' },
+    { name: 'Exocytosis', desc: 'Vesicle fuses with membrane, releases contents', energy: 'ATP', dir: 'Out of cell' },
+  ];
+
+  const cardH = 72;
+  const startY = pad.top + 50;
+
+  // Draw passive items
+  passiveItems.forEach((item, i) => {
+    const y = startY + i * (cardH + 10);
+    ctx.fillStyle = '#f0fdf4'; ctx.strokeStyle = '#86efac'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect(leftX + 4, y, colW - 16, cardH, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(item.name, leftX + 14, y + 18);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
+    ctx.fillText(item.desc, leftX + 14, y + 34);
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 11px system-ui';
+    ctx.fillText('Energy: ' + item.energy, leftX + 14, y + 52);
+    ctx.fillStyle = '#374151';
+    ctx.fillText('Direction: ' + item.dir, leftX + 14 + 110, y + 52);
+  });
+
+  // Draw active items
+  activeItems.forEach((item, i) => {
+    const y = startY + i * (cardH + 10);
+    ctx.fillStyle = '#fef2f2'; ctx.strokeStyle = '#fca5a5'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect(rightX + 12, y, colW - 16, cardH, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(item.name, rightX + 22, y + 18);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
+    ctx.fillText(item.desc, rightX + 22, y + 34);
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 11px system-ui';
+    ctx.fillText('Energy: ' + item.energy, rightX + 22, y + 52);
+    ctx.fillStyle = '#374151';
+    ctx.fillText('Direction: ' + item.dir, rightX + 22 + 100, y + 52);
+  });
+
+  // Key difference arrow
+  const arrowY = startY + 3 * (cardH + 10) + 10;
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('KEY DIFFERENCE', W / 2, arrowY);
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
+  ctx.fillText('Passive = No energy, moves WITH gradient  |  Active = Requires ATP, moves AGAINST gradient', W / 2, arrowY + 18);
+}
+
+// Transport quiz
+const transportQuizData = [
+  { q: 'Oxygen moves from lungs into blood.', a: 'Passive', type: 'Simple Diffusion' },
+  { q: 'A white blood cell engulfs a bacterium.', a: 'Active', type: 'Phagocytosis (Endocytosis)' },
+  { q: 'Na+/K+ pump moves 3 Na+ out and 2 K+ in.', a: 'Active', type: 'Protein Pump' },
+  { q: 'Water moves into a cell placed in pure water.', a: 'Passive', type: 'Osmosis' },
+  { q: 'Glucose enters a cell through a carrier protein, moving down its gradient.', a: 'Passive', type: 'Facilitated Diffusion' },
+  { q: 'A neuron releases neurotransmitters from vesicles.', a: 'Active', type: 'Exocytosis' },
+  { q: 'CO\u2082 diffuses out of a cell into blood.', a: 'Passive', type: 'Simple Diffusion' },
+  { q: 'Iodine is concentrated 30x inside thyroid cells.', a: 'Active', type: 'Active Transport (against gradient)' },
+  { q: 'Potassium ions leak out through K+ channels.', a: 'Passive', type: 'Facilitated Diffusion' },
+  { q: 'A cell brings in a droplet of extracellular fluid.', a: 'Active', type: 'Pinocytosis (Endocytosis)' }
+];
+let tqIdx = 0, tqScore = 0, tqTotal = 0;
+
+function tqNext() {
+  tqIdx = (tqIdx + 1) % transportQuizData.length;
+  tqRender();
+}
+
+function tqRender() {
+  const q = transportQuizData[tqIdx];
+  $('transport-quiz-q').textContent = q.q;
+  const btnsDiv = $('transport-quiz-btns');
+  btnsDiv.innerHTML = '';
+  ['Passive', 'Active'].forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'btn ' + (opt === 'Passive' ? 'btn-secondary' : 'btn-primary') + ' btn-sm';
+    btn.textContent = opt + ' Transport';
+    btn.onclick = () => tqAnswer(opt, q.a, q.type);
+    btnsDiv.appendChild(btn);
+  });
+  $('transport-quiz-feedback').className = 'quiz-feedback';
+  $('transport-quiz-feedback').textContent = '';
+}
+
+function tqAnswer(selected, correct, type) {
+  tqTotal++;
+  const fb = $('transport-quiz-feedback');
+  if (selected === correct) {
+    tqScore++;
+    fb.className = 'quiz-feedback correct';
+    fb.textContent = 'Correct! This is ' + correct + ' Transport (' + type + ').';
+  } else {
+    fb.className = 'quiz-feedback incorrect';
+    fb.textContent = 'Incorrect. This is ' + correct + ' Transport (' + type + ').';
+  }
+  $('tq-score').textContent = tqScore;
+  $('tq-total').textContent = tqTotal;
+  $('tq-pct').textContent = tqTotal > 0 ? (tqScore / tqTotal * 100).toFixed(0) + '%' : '-';
+}
+
+function drawEnergyChart() {
+  const ctx = getCtx('energy-chart');
+  const labels = ['Simple\nDiffusion', 'Osmosis', 'Facilitated\nDiffusion', 'Protein\nPumps', 'Endocytosis', 'Exocytosis'];
+  const values = [0, 0, 0, 1, 1, 1];
+  const colors = ['#16a34a', '#16a34a', '#16a34a', '#c41e3a', '#c41e3a', '#c41e3a'];
+
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 60, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = labels.length;
+  const barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Y-axis labels
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('No ATP', pad.left - 6, pad.top + plotH + 4);
+  ctx.fillText('ATP Required', pad.left - 6, pad.top + 4);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.left, pad.top + plotH / 2); ctx.lineTo(W - pad.right, pad.top + plotH / 2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(W - pad.right, pad.top); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(pad.left, pad.top + plotH); ctx.lineTo(W - pad.right, pad.top + plotH); ctx.stroke();
+
+  // Passive zone
+  ctx.fillStyle = 'rgba(22, 163, 74, 0.05)';
+  ctx.fillRect(pad.left, pad.top, plotW / 2, plotH);
+  // Active zone
+  ctx.fillStyle = 'rgba(196, 30, 58, 0.05)';
+  ctx.fillRect(pad.left + plotW / 2, pad.top, plotW / 2, plotH);
+
+  // Zone labels
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('PASSIVE', pad.left + plotW * 0.25, pad.top + 16);
+  ctx.fillStyle = '#c41e3a';
+  ctx.fillText('ACTIVE', pad.left + plotW * 0.75, pad.top + 16);
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap / 2;
+    const h = v * plotH * 0.7;
+    const barY = pad.top + plotH - h - plotH * 0.1;
+    ctx.fillStyle = colors[i];
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, barY + r);
+    ctx.quadraticCurveTo(x, barY, x + r, barY);
+    ctx.lineTo(x + barW - r, barY);
+    ctx.quadraticCurveTo(x + barW, barY, x + barW, barY + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+
+    // Value label
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    if (h > 20) {
+      ctx.fillText(v ? 'ATP' : 'Free', x + barW / 2, barY + h / 2 + 5);
+    }
+
+    // Bottom label (multi-line)
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui';
+    const lines = labels[i].split('\n');
+    lines.forEach((line, li) => {
+      ctx.fillText(line, x + barW / 2, H - pad.bottom + 16 + li * 14);
+    });
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  // Part 1: Diffusion
+  diffInit();
+
+  // Part 2: Osmosis
+  osmoInit();
+
+  // Part 3: Tonicity
+  tonDrawCell(0);
+  quizRender();
+
+  // Part 4: Concentration Gradient
+  gradUpdate();
+
+  // Part 5: Membrane Structure
+  memDraw();
+  const memCanvas = $('membrane-canvas');
+  memCanvas.addEventListener('mousedown', memHandleMouseDown);
+  memCanvas.addEventListener('mousemove', memHandleMouseMove);
+  memCanvas.addEventListener('mouseup', memHandleMouseUp);
+  memCanvas.addEventListener('mouseleave', memHandleMouseUp);
+  memCanvas.addEventListener('touchstart', memHandleTouchStart, { passive: false });
+  memCanvas.addEventListener('touchmove', memHandleTouchMove, { passive: false });
+  memCanvas.addEventListener('touchend', memHandleTouchEnd, { passive: false });
+
+  // Part 6: Transport
+  drawTransportChart();
+  tqRender();
+  drawEnergyChart();
+});
+
+window.addEventListener('resize', () => {
+  diffDraw(); diffDrawChart();
+  osmoDraw();
+  tonDrawCell(tonState.animProgress);
+  gradDrawCanvas(); gradDrawChart();
+  memDraw();
+  drawTransportChart(); drawEnergyChart();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,2350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 17 Dashboard: Speciation &amp; Macroevolution | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ISOLATION CARDS
+   ═══════════════════════════════════════════════════════════════════════ */
+.iso-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 12px 0; }
+.iso-card {
+  background: #f8fafc; border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px; cursor: pointer; transition: all 0.2s; text-align: center;
+}
+.iso-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.iso-card.active { border-color: var(--accent); background: #fef2f2; }
+.iso-card .iso-type { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 4px; }
+.iso-card .iso-name { font-size: 14px; font-weight: 700; }
+.iso-card .iso-desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SPECIES TRAIT CARDS (for phylogenetic builder)
+   ═══════════════════════════════════════════════════════════════════════ */
+.species-tray { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; min-height: 60px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px dashed var(--border); }
+.species-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
+  background: var(--card); border: 2px solid var(--border); border-radius: 8px;
+  font-size: 13px; font-weight: 600; cursor: grab; user-select: none; transition: all 0.15s;
+}
+.species-chip:hover { border-color: var(--blue); }
+.species-chip.placed { opacity: 0.4; cursor: default; }
+.species-chip .sp-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TREE SLOTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.tree-slots { display: flex; gap: 8px; justify-content: center; margin: 12px 0; flex-wrap: wrap; }
+.tree-slot {
+  width: 90px; height: 50px; border: 2px dashed var(--border); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 12px;
+  color: var(--text-muted); transition: all 0.15s; cursor: pointer;
+}
+.tree-slot:hover { border-color: var(--blue); background: #eff6ff; }
+.tree-slot.filled { border-style: solid; border-color: var(--green); background: #f0fdf4; color: var(--text); font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   QUIZ
+   ═══════════════════════════════════════════════════════════════════════ */
+.quiz-box { background: #f8fafc; border-radius: 8px; padding: 16px; margin: 12px 0; border: 1px solid var(--border); }
+.quiz-box .quiz-q { font-weight: 700; margin-bottom: 10px; }
+.quiz-option {
+  display: block; padding: 10px 14px; margin: 4px 0; border-radius: 6px;
+  background: var(--card); border: 1px solid var(--border); cursor: pointer;
+  font-size: 13px; transition: all 0.15s;
+}
+.quiz-option:hover { border-color: var(--blue); }
+.quiz-option.correct { background: #f0fdf4; border-color: var(--green); color: var(--green); font-weight: 700; }
+.quiz-option.wrong { background: #fef2f2; border-color: var(--accent); color: var(--accent); }
+.quiz-feedback { font-size: 13px; margin-top: 8px; font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 17 &mdash; Speciation &amp; Macroevolution</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Allopatric Speciation</a>
+    <a href="#part2"><span class="nav-num">2</span> Sympatric Speciation</a>
+    <a href="#part3"><span class="nav-num">3</span> Phylogenetic Trees</a>
+    <a href="#part4"><span class="nav-num">4</span> Reproductive Isolation</a>
+    <a href="#part5"><span class="nav-num">5</span> Mass Extinctions</a>
+    <a href="#part6"><span class="nav-num">6</span> Micro to Macro</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Speciation &amp; Macroevolution</h2>
+  <p>Explore how new species arise through geographic isolation and ecological divergence. Build phylogenetic trees, investigate reproductive barriers, and trace the grand sweep of life through mass extinctions and recoveries.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Speciation</span>
+    <span class="bio-tag">Phylogenetics</span>
+    <span class="bio-tag">Macroevolution</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 1: ALLOPATRIC SPECIATION ═══════════════════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Allopatric Speciation Simulator</div>
+    <div class="section-subtitle">Geographic barriers split populations, leading to independent evolution and new species</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Landscape &amp; Population</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on the map to place a geographic barrier (mountain range or river). The population will split and each sub-population will drift independently. Watch genetic distance grow until speciation occurs.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="alloRun()">Run Generations</button>
+      <button class="btn btn-secondary" onclick="alloRunFast()">Fast-Forward 50</button>
+      <button class="btn btn-outline" onclick="alloReset()">Reset</button>
+      <button class="btn btn-sm btn-outline" onclick="alloBarrierMode('mountain')">Mountain Barrier</button>
+      <button class="btn btn-sm btn-outline" onclick="alloBarrierMode('river')">River Barrier</button>
+    </div>
+    <div class="chart-wrap"><canvas id="allo-canvas" height="340"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="allo-gen">0</div><div class="stat-label">Generation</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="allo-pop-a">50</div><div class="stat-label">Pop A Size</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="allo-pop-b">-</div><div class="stat-label">Pop B Size</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="allo-dist">0.00</div><div class="stat-label">Genetic Distance</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="allo-status">Unified</div><div class="stat-label">Status</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Genetic Distance Over Time</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Genetic distance</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> Speciation threshold (0.80)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="allo-distance-chart" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Reproductive Isolation Test</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Once genetic distance exceeds the threshold, test if the populations can still interbreed. Hybrid viability decreases with genetic distance.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="alloTestHybrid()">Test Interbreeding</button>
+    </div>
+    <div id="allo-hybrid-result"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 2: SYMPATRIC SPECIATION ═══════════════════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Sympatric Speciation Model</div>
+    <div class="section-subtitle">Speciation without geographic barriers through disruptive selection and reproductive isolation</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Disruptive Selection Simulator</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">A single population with a continuous trait (beak size). Two food sources favor extreme phenotypes. Watch the distribution shift from unimodal to bimodal as specialists emerge.</p>
+    <div class="slider-group">
+      <label>Selection Strength</label>
+      <input type="range" id="sym-strength" min="1" max="10" value="5" oninput="$('sym-strength-val').textContent=this.value">
+      <span class="slider-val" id="sym-strength-val">5</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="symRun()">Run Generation</button>
+      <button class="btn btn-secondary" onclick="symRunFast()">Fast-Forward 20</button>
+      <button class="btn btn-outline" onclick="symReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="sym-dist-chart" height="260"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="sym-gen">0</div><div class="stat-label">Generation</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="sym-mean">5.0</div><div class="stat-label">Mean Trait</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="sym-variance">-</div><div class="stat-label">Variance</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="sym-bimodal">No</div><div class="stat-label">Bimodal?</div></div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Assortative Mating</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Toggle assortative mating: individuals prefer mates with similar trait values, accelerating divergence.</p>
+      <div class="btn-group">
+        <button class="btn btn-sm" id="sym-assort-btn" onclick="symToggleAssort()">Enable Assortative Mating</button>
+      </div>
+      <div class="stat-box" style="margin-top:8px;">
+        <div class="stat-val" id="sym-assort-status" style="font-size:16px;">OFF</div>
+        <div class="stat-label">Assortative Mating</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Polyploidy (Plant Speciation)</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Instant speciation through genome duplication. Common in plants. The polyploid cannot cross with the parent species.</p>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="symPolyploidy()">Trigger Polyploidy Event</button>
+      </div>
+      <div id="sym-poly-result"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 3: PHYLOGENETIC TREE BUILDER ═══════════════════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Phylogenetic Tree Builder</div>
+    <div class="section-subtitle">Arrange species by shared derived characters to build a cladogram</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Species &amp; Trait Matrix</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Each species has morphological and molecular traits. Shared derived characters (synapomorphies) indicate close relationships. Study the trait matrix, then place species on the tree below.</p>
+    <div class="chart-wrap"><canvas id="phylo-matrix" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Build Your Cladogram</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click species chips, then click a tree slot to place them. Arrange from most ancestral (left) to most derived (right).</p>
+    <div class="species-tray" id="phylo-tray"></div>
+    <div class="tree-slots" id="phylo-slots"></div>
+    <div class="chart-wrap"><canvas id="phylo-tree" height="280"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="phyloCheck()">Check My Tree</button>
+      <button class="btn btn-secondary" onclick="phyloShowAnswer()">Show Correct Tree</button>
+      <button class="btn btn-outline" onclick="phyloReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="phylo-score">-</div><div class="stat-label">Parsimony Score</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="phylo-correct">-</div><div class="stat-label">Correct Nodes</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="phylo-bootstrap">-</div><div class="stat-label">Bootstrap %</div></div>
+    </div>
+    <div id="phylo-feedback"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 4: REPRODUCTIVE ISOLATION ═══════════════════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Reproductive Isolation Mechanisms</div>
+    <div class="section-subtitle">Barriers that prevent gene flow between species &mdash; prezygotic and postzygotic</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Prezygotic Barriers</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">These barriers prevent the formation of a zygote. Click each card to see an example and illustration.</p>
+    <div class="iso-cards" id="pre-cards"></div>
+    <div class="chart-wrap"><canvas id="pre-canvas" height="200"></canvas></div>
+    <div id="pre-detail"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Postzygotic Barriers</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">These barriers act after a hybrid zygote is formed, reducing hybrid fitness.</p>
+    <div class="iso-cards" id="post-cards"></div>
+    <div class="chart-wrap"><canvas id="post-canvas" height="200"></canvas></div>
+    <div id="post-detail"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Identify the Barrier &mdash; Quiz</div>
+    <div id="iso-quiz"></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="quiz-score">0</div><div class="stat-label">Score</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="quiz-total">0</div><div class="stat-label">Attempted</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="quiz-pct">-</div><div class="stat-label">Accuracy</div></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="isoNextQuiz()">Next Question</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 5: MASS EXTINCTIONS ═══════════════════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Mass Extinction Timeline</div>
+    <div class="section-subtitle">Five major extinction events shaped the history of life on Earth</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Geological Timeline &mdash; Cambrian to Present</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on an extinction event to explore its cause, survivors, and recovery. The red bars show the percentage of species lost.</p>
+    <div class="chart-wrap"><canvas id="ext-timeline" height="340"></canvas></div>
+  </div>
+  <div class="card" id="ext-detail-card" style="display:none;">
+    <div class="card-title" id="ext-detail-title">Extinction Details</div>
+    <div id="ext-detail-body"></div>
+    <div class="stat-grid" id="ext-detail-stats"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Biodiversity Through Time</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--green);"></span> Marine families</span>
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Extinction events</span>
+    </div>
+    <div class="chart-wrap"><canvas id="ext-diversity-chart" height="260"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Recovery Time Comparison</div>
+    <div class="chart-wrap"><canvas id="ext-recovery-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 6: MICRO TO MACRO ═══════════════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Microevolution to Macroevolution</div>
+    <div class="section-subtitle">How small genetic changes accumulate over deep time to produce the tree of life</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Scale Slider &mdash; From Gene to Tree of Life</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Drag the slider to zoom from a single mutation all the way out to the entire tree of life. Watch how microevolutionary processes connect to macroevolutionary patterns.</p>
+    <div class="slider-group">
+      <label>Scale</label>
+      <input type="range" id="macro-scale" min="1" max="7" value="1" oninput="macroUpdateScale()">
+      <span class="slider-val" id="macro-scale-val">Gene</span>
+    </div>
+    <div class="chart-wrap"><canvas id="macro-canvas" height="400"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Deep Time Accumulation</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Watch mutations accumulate over millions of years. Each tick adds a generation. Small changes are nearly invisible individually but transform lineages over deep time.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="macroAccumRun()">Add 1 Million Years</button>
+      <button class="btn btn-secondary" onclick="macroAccumFast()">Add 100 Million Years</button>
+      <button class="btn btn-outline" onclick="macroAccumReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="macro-accum-chart" height="260"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="macro-mya">0</div><div class="stat-label">Million Years</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="macro-mutations">0</div><div class="stat-label">Mutations Fixed</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="macro-species">1</div><div class="stat-label">Species</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="macro-genera">1</div><div class="stat-label">Genera</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="macro-families">1</div><div class="stat-label">Families</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const randGauss = () => { let u=0,v=0; while(!u) u=Math.random(); while(!v) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); };
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: ALLOPATRIC SPECIATION
+// ══════════════════════════════════════════════════════════════════════════
+let allo = {
+  generation: 0, barrier: null, barrierType: 'mountain', barrierMode: 'mountain',
+  popA: [], popB: [], distHistory: [], speciated: false
+};
+
+function alloInitPop(n) {
+  const pop = [];
+  for (let i = 0; i < n; i++) {
+    pop.push({
+      x: 0.2 + Math.random() * 0.6,
+      y: 0.2 + Math.random() * 0.6,
+      color: [80 + rand(-20,20), 140 + rand(-20,20), 80 + rand(-20,20)],
+      genes: Array.from({length: 10}, () => Math.random())
+    });
+  }
+  return pop;
+}
+
+function alloReset() {
+  allo = {
+    generation: 0, barrier: null, barrierType: 'mountain', barrierMode: allo.barrierMode || 'mountain',
+    popA: alloInitPop(50), popB: [], distHistory: [], speciated: false
+  };
+  $('allo-gen').textContent = '0';
+  $('allo-pop-a').textContent = '50';
+  $('allo-pop-b').textContent = '-';
+  $('allo-dist').textContent = '0.00';
+  $('allo-status').textContent = 'Unified';
+  $('allo-hybrid-result').innerHTML = '';
+  drawAlloCanvas();
+  drawAlloDistChart();
+}
+
+function alloBarrierMode(type) {
+  allo.barrierMode = type;
+}
+
+function alloPlaceBarrier(e) {
+  const c = $('allo-canvas');
+  const rect = c.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const x = (e.clientX - rect.left) / rect.width;
+  const y = (e.clientY - rect.top) / rect.height;
+
+  if (allo.barrier) return;
+
+  allo.barrier = { x, y, type: allo.barrierMode };
+  allo.barrierType = allo.barrierMode;
+
+  // Split population
+  allo.popB = [];
+  const newA = [];
+  allo.popA.forEach(ind => {
+    if (allo.barrierType === 'mountain') {
+      if (ind.x > x) allo.popB.push({...ind, genes: [...ind.genes], color: [...ind.color]});
+      else newA.push(ind);
+    } else {
+      if (ind.y > y) allo.popB.push({...ind, genes: [...ind.genes], color: [...ind.color]});
+      else newA.push(ind);
+    }
+  });
+  allo.popA = newA;
+  if (allo.popB.length === 0) {
+    allo.popB = alloInitPop(10);
+    allo.popB.forEach(ind => {
+      if (allo.barrierType === 'mountain') ind.x = x + 0.05 + Math.random() * (0.9 - x - 0.05);
+      else ind.y = y + 0.05 + Math.random() * (0.9 - y - 0.05);
+    });
+  }
+  if (allo.popA.length === 0) {
+    allo.popA = alloInitPop(10);
+    allo.popA.forEach(ind => {
+      if (allo.barrierType === 'mountain') ind.x = 0.05 + Math.random() * (x - 0.1);
+      else ind.y = 0.05 + Math.random() * (y - 0.1);
+    });
+  }
+  $('allo-pop-a').textContent = allo.popA.length;
+  $('allo-pop-b').textContent = allo.popB.length;
+  $('allo-status').textContent = 'Separated';
+  drawAlloCanvas();
+}
+
+function alloDriftPop(pop, driftMag) {
+  pop.forEach(ind => {
+    ind.genes = ind.genes.map(g => clamp(g + (Math.random() - 0.5) * driftMag, 0, 1));
+    ind.color = ind.color.map(c => clamp(c + rand(-3,3), 0, 255));
+  });
+  // Small reproduction: occasional growth
+  if (pop.length < 80 && Math.random() < 0.3) {
+    const parent = pop[rand(0, pop.length-1)];
+    pop.push({
+      x: clamp(parent.x + (Math.random()-0.5)*0.05, 0.05, 0.95),
+      y: clamp(parent.y + (Math.random()-0.5)*0.05, 0.05, 0.95),
+      color: parent.color.map(c => clamp(c + rand(-5,5), 0, 255)),
+      genes: parent.genes.map(g => clamp(g + (Math.random()-0.5)*0.02, 0, 1))
+    });
+  }
+}
+
+function alloCalcDist() {
+  if (!allo.popA.length || !allo.popB.length) return 0;
+  const avgA = allo.popA[0].genes.map((_, i) => allo.popA.reduce((s, ind) => s + ind.genes[i], 0) / allo.popA.length);
+  const avgB = allo.popB[0].genes.map((_, i) => allo.popB.reduce((s, ind) => s + ind.genes[i], 0) / allo.popB.length);
+  const dist = Math.sqrt(avgA.reduce((s, a, i) => s + Math.pow(a - avgB[i], 2), 0)) / Math.sqrt(avgA.length);
+  return dist;
+}
+
+function alloStep() {
+  allo.generation++;
+  const drift = 0.06;
+  alloDriftPop(allo.popA, drift);
+  if (allo.barrier && allo.popB.length) {
+    alloDriftPop(allo.popB, drift);
+    // Different selection pressures
+    allo.popA.forEach(ind => { ind.color[1] = clamp(ind.color[1] + rand(-1,3), 0, 255); }); // greener
+    allo.popB.forEach(ind => { ind.color[0] = clamp(ind.color[0] + rand(-1,3), 0, 255); ind.color[2] = clamp(ind.color[2] + rand(-1,3), 0, 255); }); // more red/blue
+  }
+
+  const dist = alloCalcDist();
+  allo.distHistory.push(dist);
+  $('allo-gen').textContent = allo.generation;
+  $('allo-pop-a').textContent = allo.popA.length;
+  $('allo-pop-b').textContent = allo.popB.length || '-';
+  $('allo-dist').textContent = dist.toFixed(3);
+
+  if (dist >= 0.80 && !allo.speciated) {
+    allo.speciated = true;
+    $('allo-status').textContent = 'SPECIATED!';
+  }
+}
+
+function alloRun() { alloStep(); drawAlloCanvas(); drawAlloDistChart(); }
+function alloRunFast() { for (let i = 0; i < 50; i++) alloStep(); drawAlloCanvas(); drawAlloDistChart(); }
+
+function alloTestHybrid() {
+  const dist = alloCalcDist();
+  const viability = Math.max(0, 1 - dist * 1.2);
+  const fertile = viability > 0.4;
+  const html = `<div class="analysis-result ${fertile ? 'ar-pass' : 'ar-fail'}">
+    <div class="ar-title">Hybridization Test Result</div>
+    <p>Genetic distance: <code>${dist.toFixed(3)}</code></p>
+    <p>Hybrid viability: <code>${(viability * 100).toFixed(1)}%</code></p>
+    <p><strong>${fertile ? 'Hybrids are viable and fertile' : dist >= 0.8 ? 'Reproductive isolation confirmed &mdash; new species!' : 'Hybrids have reduced fitness &mdash; partial isolation'}</strong></p>
+  </div>`;
+  $('allo-hybrid-result').innerHTML = html;
+}
+
+function drawAlloCanvas() {
+  const ctx = getCtx('allo-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background landscape
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, '#87CEEB');
+  grad.addColorStop(0.3, '#87CEEB');
+  grad.addColorStop(0.35, '#228B22');
+  grad.addColorStop(1, '#2d5016');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw some basic terrain features
+  ctx.fillStyle = '#3a7d0a';
+  for (let i = 0; i < 8; i++) {
+    const tx = (i * 0.13 + 0.02) * W;
+    const ty = H * 0.5 + Math.sin(i*1.3) * 30;
+    ctx.beginPath(); ctx.arc(tx, ty, 15 + rand(0,10), 0, Math.PI*2); ctx.fill();
+  }
+
+  // Barrier
+  if (allo.barrier) {
+    if (allo.barrierType === 'mountain') {
+      const bx = allo.barrier.x * W;
+      ctx.fillStyle = '#8B7355';
+      ctx.beginPath();
+      ctx.moveTo(bx - 30, H);
+      ctx.lineTo(bx, H * 0.1);
+      ctx.lineTo(bx + 30, H);
+      ctx.closePath();
+      ctx.fill();
+      // Snow cap
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.moveTo(bx - 8, H * 0.2);
+      ctx.lineTo(bx, H * 0.1);
+      ctx.lineTo(bx + 8, H * 0.2);
+      ctx.closePath();
+      ctx.fill();
+      // Mountain range effect
+      ctx.fillStyle = '#7a6548';
+      ctx.beginPath();
+      ctx.moveTo(bx - 50, H);
+      ctx.lineTo(bx - 20, H * 0.25);
+      ctx.lineTo(bx + 10, H);
+      ctx.closePath();
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(bx + 10, H);
+      ctx.lineTo(bx + 25, H * 0.2);
+      ctx.lineTo(bx + 55, H);
+      ctx.closePath();
+      ctx.fill();
+    } else {
+      const by = allo.barrier.y * H;
+      ctx.strokeStyle = '#1e90ff'; ctx.lineWidth = 8;
+      ctx.beginPath();
+      for (let x = 0; x <= W; x += 5) {
+        const y = by + Math.sin(x * 0.03) * 8;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      // Water fill
+      ctx.strokeStyle = '#4db8ff'; ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (let x = 0; x <= W; x += 5) {
+        const y = by + Math.sin(x * 0.03 + 1) * 5;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+  }
+
+  // Population A
+  allo.popA.forEach(ind => {
+    const x = ind.x * W, y = ind.y * H;
+    ctx.fillStyle = `rgb(${ind.color[0]},${ind.color[1]},${ind.color[2]})`;
+    ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)'; ctx.lineWidth = 1; ctx.stroke();
+  });
+
+  // Population B
+  allo.popB.forEach(ind => {
+    const x = ind.x * W, y = ind.y * H;
+    ctx.fillStyle = `rgb(${ind.color[0]},${ind.color[1]},${ind.color[2]})`;
+    ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)'; ctx.lineWidth = 1; ctx.stroke();
+  });
+
+  // Labels
+  ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  if (allo.barrier) {
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.fillText('Population A', W * 0.2, 25);
+    ctx.fillText('Population B', W * 0.8, 25);
+  } else {
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.fillText('Click to place barrier', W * 0.5, 25);
+  }
+
+  if (allo.speciated) {
+    ctx.fillStyle = 'rgba(196,30,58,0.85)';
+    ctx.font = 'bold 20px system-ui';
+    ctx.fillText('SPECIATION EVENT!', W/2, H - 20);
+  }
+}
+
+function drawAlloDistChart() {
+  if (!allo.distHistory.length) {
+    const ctx = getCtx('allo-distance-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Place a barrier and run generations to track genetic divergence', ctx.W/2, ctx.H/2);
+    return;
+  }
+  const ctx = getCtx('allo-distance-chart');
+  drawLineChart(ctx, [
+    { data: allo.distHistory, color: '#c41e3a', width: 2.5, dots: allo.distHistory.length < 60 }
+  ], { yMin: 0, yMax: 1, refLine: 0.80 });
+}
+
+$('allo-canvas').addEventListener('click', alloPlaceBarrier);
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: SYMPATRIC SPECIATION
+// ══════════════════════════════════════════════════════════════════════════
+let sym = {
+  generation: 0, population: [], assortative: false
+};
+
+function symInitPop() {
+  const pop = [];
+  for (let i = 0; i < 200; i++) {
+    pop.push(5 + randGauss() * 1.2);
+  }
+  return pop.map(v => clamp(v, 0, 10));
+}
+
+function symReset() {
+  sym = { generation: 0, population: symInitPop(), assortative: false };
+  $('sym-gen').textContent = '0';
+  $('sym-mean').textContent = '5.0';
+  $('sym-variance').textContent = '-';
+  $('sym-bimodal').textContent = 'No';
+  $('sym-assort-status').textContent = 'OFF';
+  $('sym-assort-btn').textContent = 'Enable Assortative Mating';
+  $('sym-assort-btn').className = 'btn btn-sm';
+  $('sym-poly-result').innerHTML = '';
+  drawSymChart();
+}
+
+function symStep() {
+  sym.generation++;
+  const strength = parseInt($('sym-strength').value) / 10;
+  const pop = sym.population;
+  const newPop = [];
+
+  // Disruptive selection: favor extremes
+  const fitnesses = pop.map(v => {
+    const distFromCenter = Math.abs(v - 5);
+    return 0.3 + distFromCenter * strength * 0.15;
+  });
+
+  // Selection + reproduction
+  const totalFit = fitnesses.reduce((a,b) => a+b, 0);
+  for (let i = 0; i < pop.length; i++) {
+    // Weighted selection of parent
+    let r = Math.random() * totalFit, cumul = 0, p1 = 0;
+    for (let j = 0; j < pop.length; j++) {
+      cumul += fitnesses[j];
+      if (cumul >= r) { p1 = j; break; }
+    }
+
+    let p2;
+    if (sym.assortative) {
+      // Prefer mates with similar trait values
+      const candidates = pop.map((v, idx) => ({ idx, dist: Math.abs(v - pop[p1]) }))
+        .sort((a, b) => a.dist - b.dist);
+      const topN = Math.max(5, Math.floor(pop.length * 0.1));
+      p2 = candidates[rand(0, topN - 1)].idx;
+    } else {
+      r = Math.random() * totalFit; cumul = 0; p2 = 0;
+      for (let j = 0; j < pop.length; j++) {
+        cumul += fitnesses[j];
+        if (cumul >= r) { p2 = j; break; }
+      }
+    }
+
+    const child = (pop[p1] + pop[p2]) / 2 + randGauss() * 0.3;
+    newPop.push(clamp(child, 0, 10));
+  }
+
+  sym.population = newPop;
+  const mean = newPop.reduce((a,b) => a+b, 0) / newPop.length;
+  const variance = newPop.reduce((s, v) => s + Math.pow(v - mean, 2), 0) / newPop.length;
+
+  $('sym-gen').textContent = sym.generation;
+  $('sym-mean').textContent = mean.toFixed(2);
+  $('sym-variance').textContent = variance.toFixed(2);
+
+  // Simple bimodality test: check if distribution has a valley in the middle
+  const bins = Array(20).fill(0);
+  newPop.forEach(v => { const b = Math.min(19, Math.floor(v / 10 * 20)); bins[b]++; });
+  const leftPeak = Math.max(...bins.slice(0, 8));
+  const rightPeak = Math.max(...bins.slice(12, 20));
+  const valley = Math.min(...bins.slice(7, 13));
+  const isBimodal = leftPeak > 5 && rightPeak > 5 && valley < Math.min(leftPeak, rightPeak) * 0.5;
+  $('sym-bimodal').textContent = isBimodal ? 'Yes' : 'No';
+  $('sym-bimodal').style.color = isBimodal ? 'var(--green)' : '';
+}
+
+function symRun() { symStep(); drawSymChart(); }
+function symRunFast() { for (let i = 0; i < 20; i++) symStep(); drawSymChart(); }
+
+function symToggleAssort() {
+  sym.assortative = !sym.assortative;
+  $('sym-assort-status').textContent = sym.assortative ? 'ON' : 'OFF';
+  $('sym-assort-status').style.color = sym.assortative ? 'var(--green)' : '';
+  $('sym-assort-btn').textContent = sym.assortative ? 'Disable Assortative Mating' : 'Enable Assortative Mating';
+  $('sym-assort-btn').className = sym.assortative ? 'btn btn-sm btn-primary' : 'btn btn-sm';
+}
+
+function symPolyploidy() {
+  const html = `<div class="analysis-result ar-pass" style="margin-top:8px;">
+    <div class="ar-title">Polyploidy Event!</div>
+    <p>A genome duplication event has occurred in a plant individual.</p>
+    <p>Parent species: diploid (2n = 14) &rarr; Offspring: tetraploid (4n = 28)</p>
+    <p>The tetraploid <strong>cannot produce viable offspring</strong> with the diploid parent due to unbalanced chromosome pairing during meiosis.</p>
+    <p><strong>Instant speciation!</strong> If the polyploid can self-fertilize or mate with other polyploids, a new species is established in a single generation.</p>
+    <p style="margin-top:6px;font-size:12px;color:var(--text-muted);">Examples: wheat (Triticum aestivum, 6n), cotton, tobacco, many ferns</p>
+  </div>`;
+  $('sym-poly-result').innerHTML = html;
+}
+
+function drawSymChart() {
+  const ctx = getCtx('sym-dist-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!sym.population.length) return;
+
+  // Histogram
+  const numBins = 30;
+  const bins = Array(numBins).fill(0);
+  sym.population.forEach(v => {
+    const b = Math.min(numBins - 1, Math.floor(v / 10 * numBins));
+    bins[b]++;
+  });
+  const maxBin = Math.max(...bins);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxBin * i/4), pad.left - 6, y + 4);
+  }
+
+  const barW = plotW / numBins;
+  bins.forEach((count, i) => {
+    const x = pad.left + i * barW;
+    const h = maxBin > 0 ? (count / maxBin) * plotH : 0;
+    const traitVal = (i + 0.5) / numBins * 10;
+    // Color: small beak (blue) to large beak (red)
+    const r = Math.round(30 + traitVal / 10 * 200);
+    const g = Math.round(80 + (1 - Math.abs(traitVal - 5) / 5) * 100);
+    const b = Math.round(200 - traitVal / 10 * 170);
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fillRect(x, pad.top + plotH - h, barW - 1, h);
+  });
+
+  // Food source indicators
+  ctx.fillStyle = 'rgba(37,99,235,0.8)'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Small seeds', pad.left + plotW * 0.15, pad.top + 14);
+  ctx.fillStyle = 'rgba(196,30,58,0.8)';
+  ctx.fillText('Large seeds', pad.left + plotW * 0.85, pad.top + 14);
+
+  // Axis labels
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  for (let i = 0; i <= 10; i += 2) {
+    const x = pad.left + (i / 10) * plotW;
+    ctx.fillText(i, x, H - pad.bottom + 16);
+  }
+  ctx.fillText('Beak Size (trait value)', pad.left + plotW/2, H - 4);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: PHYLOGENETIC TREE BUILDER
+// ══════════════════════════════════════════════════════════════════════════
+const phyloSpecies = [
+  { id: 'A', name: 'Shark', color: '#64748b', traits: [0,0,0,0,0,0,1] },
+  { id: 'B', name: 'Frog', color: '#16a34a', traits: [1,0,0,0,0,1,1] },
+  { id: 'C', name: 'Lizard', color: '#d97706', traits: [1,1,0,0,0,1,1] },
+  { id: 'D', name: 'Pigeon', color: '#2563eb', traits: [1,1,1,0,0,1,1] },
+  { id: 'E', name: 'Mouse', color: '#c41e3a', traits: [1,1,0,1,0,1,1] },
+  { id: 'F', name: 'Human', color: '#7c3aed', traits: [1,1,0,1,1,1,1] },
+];
+const phyloTraitNames = ['4 limbs','Amniotic egg','Feathers','Hair','Bipedal (primate)','Lungs','Vertebrae'];
+const phyloCorrectOrder = ['A','B','C','D','E','F']; // outgroup to most derived
+let phyloSlots = Array(6).fill(null);
+let phyloSelected = null;
+
+function phyloBuildUI() {
+  // Tray
+  const tray = $('phylo-tray');
+  tray.innerHTML = '';
+  phyloSpecies.forEach(sp => {
+    const chip = document.createElement('span');
+    chip.className = 'species-chip';
+    chip.id = 'phylo-chip-' + sp.id;
+    chip.innerHTML = `<span class="sp-dot" style="background:${sp.color}"></span>${sp.name}`;
+    chip.onclick = () => phyloSelectSpecies(sp.id);
+    tray.appendChild(chip);
+  });
+  // Slots
+  const slots = $('phylo-slots');
+  slots.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const slot = document.createElement('div');
+    slot.className = 'tree-slot';
+    slot.id = 'phylo-slot-' + i;
+    slot.textContent = (i + 1);
+    slot.onclick = () => phyloPlaceSpecies(i);
+    slots.appendChild(slot);
+  }
+  phyloSlots = Array(6).fill(null);
+  phyloSelected = null;
+  drawPhyloMatrix();
+  drawPhyloTree();
+}
+
+function phyloSelectSpecies(id) {
+  phyloSelected = id;
+  document.querySelectorAll('.species-chip').forEach(c => c.style.borderColor = '');
+  const chip = $('phylo-chip-' + id);
+  if (chip && !chip.classList.contains('placed')) {
+    chip.style.borderColor = 'var(--accent)';
+  }
+}
+
+function phyloPlaceSpecies(slotIdx) {
+  if (!phyloSelected) return;
+  // If slot already filled, free it
+  if (phyloSlots[slotIdx]) {
+    const oldChip = $('phylo-chip-' + phyloSlots[slotIdx]);
+    if (oldChip) oldChip.classList.remove('placed');
+  }
+  // If species already placed elsewhere, free that slot
+  const existingSlot = phyloSlots.indexOf(phyloSelected);
+  if (existingSlot >= 0) {
+    phyloSlots[existingSlot] = null;
+    const s = $('phylo-slot-' + existingSlot);
+    s.className = 'tree-slot'; s.textContent = (existingSlot + 1);
+  }
+
+  phyloSlots[slotIdx] = phyloSelected;
+  const sp = phyloSpecies.find(s => s.id === phyloSelected);
+  const slot = $('phylo-slot-' + slotIdx);
+  slot.className = 'tree-slot filled';
+  slot.textContent = sp.name;
+
+  const chip = $('phylo-chip-' + phyloSelected);
+  if (chip) chip.classList.add('placed');
+
+  phyloSelected = null;
+  document.querySelectorAll('.species-chip').forEach(c => c.style.borderColor = '');
+  drawPhyloTree();
+}
+
+function phyloCheck() {
+  let correct = 0;
+  for (let i = 0; i < 6; i++) {
+    if (phyloSlots[i] === phyloCorrectOrder[i]) correct++;
+  }
+
+  // Parsimony score - count total trait changes needed
+  const placed = phyloSlots.filter(s => s !== null);
+  let changes = 0;
+  if (placed.length >= 2) {
+    for (let i = 1; i < placed.length; i++) {
+      const sp1 = phyloSpecies.find(s => s.id === placed[i-1]);
+      const sp2 = phyloSpecies.find(s => s.id === placed[i]);
+      if (sp1 && sp2) {
+        changes += sp1.traits.reduce((s, t, j) => s + (t !== sp2.traits[j] ? 1 : 0), 0);
+      }
+    }
+  }
+
+  $('phylo-score').textContent = changes || '-';
+  $('phylo-correct').textContent = correct + '/6';
+  $('phylo-bootstrap').textContent = Math.round(correct / 6 * 100) + '%';
+
+  const isCorrect = correct === 6;
+  $('phylo-feedback').innerHTML = `<div class="analysis-result ${isCorrect ? 'ar-pass' : 'ar-fail'}">
+    <div class="ar-title">${isCorrect ? 'Perfect cladogram!' : 'Not quite right'}</div>
+    <p>${isCorrect ? 'You correctly arranged all species by shared derived characters. The parsimony score of ' + changes + ' represents the minimum number of evolutionary changes.' : 'You got ' + correct + ' out of 6 positions correct. Try studying the trait matrix more carefully. Remember: species sharing more derived traits are more closely related.'}</p>
+  </div>`;
+}
+
+function phyloShowAnswer() {
+  for (let i = 0; i < 6; i++) {
+    phyloSlots[i] = phyloCorrectOrder[i];
+    const sp = phyloSpecies.find(s => s.id === phyloCorrectOrder[i]);
+    const slot = $('phylo-slot-' + i);
+    slot.className = 'tree-slot filled';
+    slot.textContent = sp.name;
+    const chip = $('phylo-chip-' + sp.id);
+    if (chip) chip.classList.add('placed');
+  }
+  drawPhyloTree();
+  phyloCheck();
+}
+
+function phyloReset() {
+  phyloBuildUI();
+  $('phylo-score').textContent = '-';
+  $('phylo-correct').textContent = '-';
+  $('phylo-bootstrap').textContent = '-';
+  $('phylo-feedback').innerHTML = '';
+}
+
+function drawPhyloMatrix() {
+  const ctx = getCtx('phylo-matrix');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 30, left: 90, right: 20, bottom: 10 };
+  const cols = phyloTraitNames.length;
+  const rows = phyloSpecies.length;
+  const cellW = (W - pad.left - pad.right) / cols;
+  const cellH = (H - pad.top - pad.bottom) / rows;
+
+  // Header row - trait names (rotated text)
+  ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  phyloTraitNames.forEach((t, i) => {
+    const x = pad.left + i * cellW + cellW / 2;
+    ctx.save();
+    ctx.translate(x, pad.top - 5);
+    ctx.rotate(-0.4);
+    ctx.fillStyle = '#374151';
+    ctx.fillText(t, 0, 0);
+    ctx.restore();
+  });
+
+  // Species rows
+  phyloSpecies.forEach((sp, r) => {
+    const y = pad.top + r * cellH;
+    // Species label
+    ctx.fillStyle = sp.color; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(sp.name, pad.left - 8, y + cellH / 2 + 4);
+
+    // Trait cells
+    sp.traits.forEach((t, c) => {
+      const x = pad.left + c * cellW;
+      ctx.fillStyle = t ? '#16a34a' : '#fee2e2';
+      ctx.fillRect(x + 2, y + 2, cellW - 4, cellH - 4);
+      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeRect(x + 2, y + 2, cellW - 4, cellH - 4);
+      ctx.fillStyle = t ? '#fff' : '#fca5a5';
+      ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(t ? '\u2713' : '\u2717', x + cellW/2, y + cellH/2 + 5);
+    });
+  });
+}
+
+function drawPhyloTree() {
+  const ctx = getCtx('phylo-tree');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const placed = phyloSlots.filter(s => s !== null);
+  if (placed.length < 2) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Place at least 2 species in the slots above to see the cladogram', W/2, H/2);
+    return;
+  }
+
+  const pad = { top: 20, right: 40, bottom: 50, left: 40 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+  const n = placed.length;
+  const spacing = plotW / (n);
+
+  // Draw cladogram (simple ladder/pectinate tree)
+  const tipY = pad.top + plotH * 0.7;
+  const rootX = pad.left + spacing * 0.5;
+  const rootY = pad.top + plotH;
+
+  // Draw branches
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2.5;
+
+  let prevX = rootX;
+  let prevY = rootY;
+
+  placed.forEach((spId, i) => {
+    const sp = phyloSpecies.find(s => s.id === spId);
+    const tipX = pad.left + spacing * i + spacing * 0.5;
+
+    // Node position on the main trunk
+    const nodeY = rootY - (i + 1) * (plotH * 0.7 / n);
+    const nodeX = rootX;
+
+    // Vertical line on trunk
+    ctx.beginPath();
+    ctx.moveTo(nodeX, prevY);
+    ctx.lineTo(nodeX, nodeY);
+    ctx.stroke();
+
+    // Horizontal line to tip
+    ctx.beginPath();
+    ctx.moveTo(nodeX, nodeY);
+    ctx.lineTo(tipX, nodeY);
+    ctx.stroke();
+
+    // Vertical line down to tip
+    ctx.beginPath();
+    ctx.moveTo(tipX, nodeY);
+    ctx.lineTo(tipX, tipY);
+    ctx.stroke();
+
+    // Species label
+    ctx.fillStyle = sp.color;
+    ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(sp.name, tipX, tipY + 16);
+
+    // Dot at tip
+    ctx.beginPath(); ctx.arc(tipX, tipY, 5, 0, Math.PI*2); ctx.fill();
+
+    // Node dot
+    ctx.fillStyle = '#374151';
+    ctx.beginPath(); ctx.arc(nodeX, nodeY, 4, 0, Math.PI*2); ctx.fill();
+
+    prevY = nodeY;
+  });
+
+  // Root label
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Root (ancestor)', rootX, rootY + 16);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: REPRODUCTIVE ISOLATION
+// ══════════════════════════════════════════════════════════════════════════
+const preBarriers = [
+  { name: 'Temporal', desc: 'Species breed at different times of day or year', example: 'Eastern spotted skunk breeds in late winter; western spotted skunk breeds in early fall.', color: '#d97706' },
+  { name: 'Habitat', desc: 'Species live in different habitats within the same area', example: 'Two species of garter snake: one lives in water, the other on land, despite overlapping ranges.', color: '#16a34a' },
+  { name: 'Behavioral', desc: 'Species have different courtship rituals or signals', example: 'Blue-footed boobies perform an elaborate foot-lifting dance. Similar species have different dances.', color: '#2563eb' },
+  { name: 'Mechanical', desc: 'Reproductive organs are physically incompatible', example: 'Different species of snail shells coil in opposite directions, preventing mating.', color: '#7c3aed' },
+  { name: 'Gametic', desc: 'Sperm and egg are chemically incompatible', example: 'Sea urchin sperm binds to species-specific receptor proteins on the egg surface.', color: '#c41e3a' }
+];
+
+const postBarriers = [
+  { name: 'Hybrid Inviability', desc: 'Hybrid embryos fail to develop or die before reproduction', example: 'Sheep-goat hybrids: embryos fail to develop past early stages.', color: '#dc2626' },
+  { name: 'Hybrid Infertility', desc: 'Hybrids are viable but cannot reproduce', example: 'Mule (horse x donkey): healthy but sterile due to odd chromosome number (63).', color: '#ea580c' },
+  { name: 'Hybrid Breakdown', desc: 'First-generation hybrids are fertile but later generations have reduced fitness', example: 'Some rice cultivar hybrids: F1 is vigorous, but F2 plants are weak and sterile.', color: '#7c3aed' }
+];
+
+const isoQuizzes = [
+  { scenario: 'Two bird species live in the same forest. Species A sings at dawn; Species B sings at dusk. They never encounter each other during mating.', answer: 'Temporal', type: 'pre' },
+  { scenario: 'A horse and donkey mate and produce a mule. The mule is healthy but cannot produce offspring.', answer: 'Hybrid Infertility', type: 'post' },
+  { scenario: 'Two species of firefly flash different patterns. Females only respond to their own species\' pattern.', answer: 'Behavioral', type: 'pre' },
+  { scenario: 'Two frog species live in the same pond. Species A breeds in shallow water; Species B breeds in deep water.', answer: 'Habitat', type: 'pre' },
+  { scenario: 'Cross-pollination between two plant species produces seeds, but the seedlings all die within days.', answer: 'Hybrid Inviability', type: 'post' },
+  { scenario: 'Two snail species have shells that coil in opposite directions, making physical mating impossible.', answer: 'Mechanical', type: 'pre' },
+  { scenario: 'Sea urchin eggs have surface proteins that only allow sperm from the same species to bind.', answer: 'Gametic', type: 'pre' },
+  { scenario: 'F1 hybrid rice plants grow well, but when F1 hybrids are crossed, the F2 generation shows severe defects.', answer: 'Hybrid Breakdown', type: 'post' },
+];
+let quizState = { current: 0, score: 0, total: 0, answered: false };
+
+function isoBuildCards() {
+  // Pre cards
+  const pre = $('pre-cards');
+  pre.innerHTML = '';
+  preBarriers.forEach((b, i) => {
+    const card = document.createElement('div');
+    card.className = 'iso-card';
+    card.innerHTML = `<div class="iso-type">Prezygotic</div><div class="iso-name" style="color:${b.color}">${b.name}</div><div class="iso-desc">${b.desc}</div>`;
+    card.onclick = () => isoShowPre(i);
+    pre.appendChild(card);
+  });
+  // Post cards
+  const post = $('post-cards');
+  post.innerHTML = '';
+  postBarriers.forEach((b, i) => {
+    const card = document.createElement('div');
+    card.className = 'iso-card';
+    card.innerHTML = `<div class="iso-type">Postzygotic</div><div class="iso-name" style="color:${b.color}">${b.name}</div><div class="iso-desc">${b.desc}</div>`;
+    card.onclick = () => isoShowPost(i);
+    post.appendChild(card);
+  });
+}
+
+function isoShowPre(idx) {
+  const b = preBarriers[idx];
+  document.querySelectorAll('#pre-cards .iso-card').forEach((c, i) => c.classList.toggle('active', i === idx));
+  $('pre-detail').innerHTML = `<div class="analysis-result" style="border-left-color:${b.color}">
+    <div class="ar-title">${b.name} Isolation</div>
+    <p>${b.example}</p>
+  </div>`;
+  drawPreCanvas(idx);
+}
+
+function isoShowPost(idx) {
+  const b = postBarriers[idx];
+  document.querySelectorAll('#post-cards .iso-card').forEach((c, i) => c.classList.toggle('active', i === idx));
+  $('post-detail').innerHTML = `<div class="analysis-result" style="border-left-color:${b.color}">
+    <div class="ar-title">${b.name}</div>
+    <p>${b.example}</p>
+  </div>`;
+  drawPostCanvas(idx);
+}
+
+function drawPreCanvas(idx) {
+  const ctx = getCtx('pre-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+
+  if (idx === 0) { // Temporal
+    // Day/night cycle
+    ctx.fillStyle = '#fef3c7'; ctx.fillRect(0, 0, W/2, H);
+    ctx.fillStyle = '#1e293b'; ctx.fillRect(W/2, 0, W/2, H);
+    // Sun
+    ctx.fillStyle = '#f59e0b'; ctx.beginPath(); ctx.arc(W*0.25, 50, 30, 0, Math.PI*2); ctx.fill();
+    // Moon
+    ctx.fillStyle = '#e2e8f0'; ctx.beginPath(); ctx.arc(W*0.75, 50, 25, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#1e293b'; ctx.beginPath(); ctx.arc(W*0.75 + 10, 45, 22, 0, Math.PI*2); ctx.fill();
+    // Species
+    ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#92400e'; ctx.fillText('Species A breeds', W*0.25, H-40);
+    ctx.fillStyle = '#e2e8f0'; ctx.fillText('Species B breeds', W*0.75, H-40);
+    // Animals
+    drawSimpleAnimal(ctx, W*0.25, cy + 20, '#d97706', 15);
+    drawSimpleAnimal(ctx, W*0.75, cy + 20, '#64748b', 15);
+  } else if (idx === 1) { // Habitat
+    // Water and land
+    ctx.fillStyle = '#bfdbfe'; ctx.fillRect(0, H*0.5, W/2, H*0.5);
+    ctx.fillStyle = '#86efac'; ctx.fillRect(W/2, 0, W/2, H);
+    ctx.fillStyle = '#3b82f6'; ctx.fillRect(0, H*0.5, W/2, H*0.1);
+    ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#1e40af'; ctx.fillText('Aquatic habitat', W*0.25, 30);
+    ctx.fillStyle = '#166534'; ctx.fillText('Terrestrial habitat', W*0.75, 30);
+    drawSimpleAnimal(ctx, W*0.25, cy + 20, '#2563eb', 12);
+    drawSimpleAnimal(ctx, W*0.75, cy + 20, '#16a34a', 12);
+  } else if (idx === 2) { // Behavioral
+    // Two birds with different displays
+    ctx.fillStyle = '#e0f2fe'; ctx.fillRect(0, 0, W, H);
+    // Bird A - wings up
+    drawBird(ctx, W*0.3, cy, '#2563eb', 'up');
+    drawBird(ctx, W*0.7, cy, '#c41e3a', 'down');
+    ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#2563eb'; ctx.fillText('Dance pattern A', W*0.3, H-20);
+    ctx.fillStyle = '#c41e3a'; ctx.fillText('Dance pattern B', W*0.7, H-20);
+    // Musical notes
+    ctx.font = '20px system-ui';
+    ctx.fillText('\u266A', W*0.35, cy-40);
+    ctx.fillStyle = '#c41e3a';
+    ctx.fillText('\u266B', W*0.65, cy-35);
+  } else if (idx === 3) { // Mechanical
+    // Two snail shells
+    ctx.fillStyle = '#f0fdf4';
+    ctx.fillRect(0, 0, W, H);
+    drawSnail(ctx, W*0.3, cy, 1);
+    drawSnail(ctx, W*0.7, cy, -1);
+    ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#374151';
+    ctx.fillText('Right-coiling', W*0.3, H-20);
+    ctx.fillText('Left-coiling', W*0.7, H-20);
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 16px system-ui';
+    ctx.fillText('\u2717 Incompatible', cx, 25);
+  } else if (idx === 4) { // Gametic
+    // Egg and sperm
+    ctx.fillStyle = '#eff6ff'; ctx.fillRect(0, 0, W, H);
+    // Egg
+    ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(cx, cy, 35, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; ctx.stroke();
+    // Receptor proteins
+    for (let a = 0; a < Math.PI*2; a += Math.PI/4) {
+      const rx = cx + Math.cos(a) * 35, ry = cy + Math.sin(a) * 35;
+      ctx.fillStyle = '#16a34a'; ctx.beginPath(); ctx.arc(rx, ry, 5, 0, Math.PI*2); ctx.fill();
+    }
+    // Matching sperm
+    drawSperm(ctx, cx - 80, cy - 30, '#16a34a');
+    ctx.fillStyle = '#16a34a'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Match!', cx - 80, cy - 50);
+    // Non-matching sperm
+    drawSperm(ctx, cx + 80, cy + 30, '#c41e3a');
+    ctx.fillStyle = '#c41e3a'; ctx.font = '11px system-ui';
+    ctx.fillText('No match', cx + 80, cy + 10);
+    ctx.font = 'bold 11px system-ui'; ctx.fillStyle = '#374151';
+    ctx.fillText('Species-specific receptor proteins', cx, H - 15);
+  }
+}
+
+function drawPostCanvas(idx) {
+  const ctx = getCtx('post-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const cx = W/2, cy = H/2;
+
+  if (idx === 0) { // Hybrid Inviability
+    // Parent species -> hybrid fails
+    drawSimpleAnimal(ctx, W*0.2, cy-20, '#2563eb', 18);
+    ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center'; ctx.fillStyle = '#374151';
+    ctx.fillText('\u00D7', W*0.35, cy-15);
+    drawSimpleAnimal(ctx, W*0.5, cy-20, '#c41e3a', 18);
+    // Arrow down
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy+10); ctx.lineTo(cx, cy+50); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-6, cy+44); ctx.lineTo(cx, cy+50); ctx.lineTo(cx+6, cy+44); ctx.stroke();
+    // Dead embryo
+    ctx.fillStyle = '#fca5a5';
+    ctx.beginPath(); ctx.arc(cx, cy+70, 15, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(cx-10, cy+60); ctx.lineTo(cx+10, cy+80); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx+10, cy+60); ctx.lineTo(cx-10, cy+80); ctx.stroke();
+    ctx.font = 'bold 12px system-ui'; ctx.fillStyle = '#dc2626';
+    ctx.fillText('Embryo fails to develop', cx, H-15);
+  } else if (idx === 1) { // Hybrid Infertility
+    // Horse x Donkey = Mule
+    drawSimpleAnimal(ctx, W*0.15, cy-10, '#8B4513', 18);
+    ctx.font = '11px system-ui'; ctx.textAlign = 'center'; ctx.fillStyle = '#374151';
+    ctx.fillText('Horse (2n=64)', W*0.15, cy+25);
+    ctx.font = 'bold 16px system-ui';
+    ctx.fillText('\u00D7', W*0.3, cy-5);
+    drawSimpleAnimal(ctx, W*0.45, cy-10, '#808080', 15);
+    ctx.font = '11px system-ui';
+    ctx.fillText('Donkey (2n=62)', W*0.45, cy+25);
+    ctx.font = 'bold 16px system-ui';
+    ctx.fillText('\u2192', W*0.6, cy-5);
+    drawSimpleAnimal(ctx, W*0.78, cy-10, '#A0826B', 17);
+    ctx.font = '11px system-ui'; ctx.fillStyle = '#c41e3a';
+    ctx.fillText('Mule (2n=63)', W*0.78, cy+25);
+    ctx.fillText('Healthy but STERILE', W*0.78, cy+40);
+  } else if (idx === 2) { // Hybrid Breakdown
+    // F1 good, F2 bad
+    ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#16a34a';
+    ctx.fillText('F1 Generation: Vigorous', W*0.3, 25);
+    drawSimpleAnimal(ctx, W*0.2, 60, '#16a34a', 14);
+    drawSimpleAnimal(ctx, W*0.35, 60, '#16a34a', 14);
+
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, 85); ctx.lineTo(cx, 110); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx-5, 105); ctx.lineTo(cx, 110); ctx.lineTo(cx+5, 105); ctx.stroke();
+
+    ctx.fillStyle = '#c41e3a';
+    ctx.fillText('F2 Generation: Weak/Sterile', W*0.7, 25);
+    drawSimpleAnimal(ctx, W*0.6, 130, '#fca5a5', 10);
+    drawSimpleAnimal(ctx, W*0.7, 140, '#fca5a5', 8);
+    drawSimpleAnimal(ctx, W*0.8, 135, '#fca5a5', 9);
+    ctx.fillStyle = '#dc2626'; ctx.font = '11px system-ui';
+    ctx.fillText('Reduced fitness in later generations', cx, H-15);
+  }
+}
+
+// Simple drawing helpers for illustration
+function drawSimpleAnimal(ctx, x, y, color, size) {
+  ctx.fillStyle = color;
+  // Body
+  ctx.beginPath(); ctx.ellipse(x, y, size, size*0.7, 0, 0, Math.PI*2); ctx.fill();
+  // Head
+  ctx.beginPath(); ctx.arc(x + size*0.7, y - size*0.3, size*0.45, 0, Math.PI*2); ctx.fill();
+  // Eye
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(x + size*0.85, y - size*0.4, size*0.12, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#000';
+  ctx.beginPath(); ctx.arc(x + size*0.88, y - size*0.4, size*0.06, 0, Math.PI*2); ctx.fill();
+}
+
+function drawBird(ctx, x, y, color, wingDir) {
+  ctx.fillStyle = color;
+  // Body
+  ctx.beginPath(); ctx.ellipse(x, y, 20, 15, 0, 0, Math.PI*2); ctx.fill();
+  // Head
+  ctx.beginPath(); ctx.arc(x + 15, y - 12, 10, 0, Math.PI*2); ctx.fill();
+  // Beak
+  ctx.fillStyle = '#f59e0b';
+  ctx.beginPath(); ctx.moveTo(x+25, y-12); ctx.lineTo(x+35, y-10); ctx.lineTo(x+25, y-8); ctx.closePath(); ctx.fill();
+  // Wing
+  ctx.fillStyle = color;
+  if (wingDir === 'up') {
+    ctx.beginPath(); ctx.moveTo(x-5, y); ctx.lineTo(x-20, y-35); ctx.lineTo(x+10, y-5); ctx.closePath(); ctx.fill();
+  } else {
+    ctx.beginPath(); ctx.moveTo(x-5, y); ctx.lineTo(x-20, y+30); ctx.lineTo(x+10, y+5); ctx.closePath(); ctx.fill();
+  }
+  // Eye
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(x+18, y-14, 3, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#000';
+  ctx.beginPath(); ctx.arc(x+19, y-14, 1.5, 0, Math.PI*2); ctx.fill();
+}
+
+function drawSnail(ctx, x, y, dir) {
+  ctx.fillStyle = '#8B7355';
+  // Shell (spiral)
+  ctx.beginPath();
+  for (let a = 0; a < Math.PI * 4; a += 0.1) {
+    const r = 8 + a * 4;
+    const sx = x + Math.cos(a * dir) * r * 0.3;
+    const sy = y - 10 + Math.sin(a) * r * 0.3;
+    a === 0 ? ctx.moveTo(sx, sy) : ctx.lineTo(sx, sy);
+  }
+  ctx.strokeStyle = '#8B7355'; ctx.lineWidth = 3; ctx.stroke();
+  // Body
+  ctx.fillStyle = '#d4a574';
+  ctx.beginPath(); ctx.ellipse(x, y + 15, 25, 8, 0, 0, Math.PI*2); ctx.fill();
+  // Eye stalks
+  ctx.strokeStyle = '#d4a574'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(x + dir*15, y+8); ctx.lineTo(x + dir*22, y-5); ctx.stroke();
+  ctx.fillStyle = '#000'; ctx.beginPath(); ctx.arc(x + dir*22, y-5, 2, 0, Math.PI*2); ctx.fill();
+}
+
+function drawSperm(ctx, x, y, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle = color; ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x - 6, y);
+  ctx.quadraticCurveTo(x - 15, y - 8, x - 25, y);
+  ctx.quadraticCurveTo(x - 35, y + 8, x - 45, y);
+  ctx.stroke();
+}
+
+// Quiz
+function isoNextQuiz() {
+  quizState.current = rand(0, isoQuizzes.length - 1);
+  quizState.answered = false;
+  const q = isoQuizzes[quizState.current];
+  const allOptions = [...preBarriers, ...postBarriers].map(b => b.name);
+  // Shuffle
+  const shuffled = allOptions.sort(() => Math.random() - 0.5);
+  let html = `<div class="quiz-box"><div class="quiz-q">${q.scenario}</div>`;
+  shuffled.forEach(opt => {
+    html += `<div class="quiz-option" onclick="isoAnswer(this, '${opt}', '${q.answer}')">${opt}</div>`;
+  });
+  html += `<div class="quiz-feedback" id="quiz-fb"></div></div>`;
+  $('iso-quiz').innerHTML = html;
+}
+
+function isoAnswer(el, chosen, correct) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  quizState.total++;
+
+  if (chosen === correct) {
+    el.classList.add('correct');
+    $('quiz-fb').textContent = 'Correct!';
+    $('quiz-fb').style.color = 'var(--green)';
+    quizState.score++;
+  } else {
+    el.classList.add('wrong');
+    // Highlight correct
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+      if (opt.textContent === correct) opt.classList.add('correct');
+    });
+    $('quiz-fb').textContent = 'Incorrect. The answer is: ' + correct;
+    $('quiz-fb').style.color = 'var(--accent)';
+  }
+
+  $('quiz-score').textContent = quizState.score;
+  $('quiz-total').textContent = quizState.total;
+  $('quiz-pct').textContent = quizState.total ? Math.round(quizState.score / quizState.total * 100) + '%' : '-';
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: MASS EXTINCTIONS
+// ══════════════════════════════════════════════════════════════════════════
+const extinctions = [
+  {
+    name: 'End-Ordovician', mya: 445, pctLost: 86,
+    cause: 'Glaciation and sea level drop. Gondwana drifted over the South Pole, triggering massive ice sheets.',
+    survivors: 'Many brachiopods, some trilobites, early fish, and graptolites survived and radiated.',
+    recovery: 'Approximately 5-10 million years for biodiversity to rebound.',
+    recoveryMy: 8, period: 'Ordovician', color: '#16a34a'
+  },
+  {
+    name: 'Late Devonian', mya: 375, pctLost: 75,
+    cause: 'Multiple pulses of extinction, likely from ocean anoxia, volcanic activity, and possibly asteroid impacts.',
+    survivors: 'Sharks, ray-finned fish, early tetrapods. Many reef organisms went extinct.',
+    recovery: 'About 15 million years. Reefs did not fully recover for 100+ million years.',
+    recoveryMy: 15, period: 'Devonian', color: '#2563eb'
+  },
+  {
+    name: 'End-Permian', mya: 252, pctLost: 96,
+    cause: 'The "Great Dying." Siberian Traps volcanic eruptions released massive CO2 and SO2, causing extreme global warming, ocean acidification, and anoxia.',
+    survivors: 'Lystrosaurus (synapsid), some insects, a few brachiopods. Only ~4% of marine species survived.',
+    recovery: 'About 10 million years. The slowest recovery of any mass extinction.',
+    recoveryMy: 10, period: 'Permian', color: '#c41e3a'
+  },
+  {
+    name: 'End-Triassic', mya: 201, pctLost: 80,
+    cause: 'Central Atlantic Magmatic Province (CAMP) volcanism, releasing greenhouse gases. Opening of the Atlantic Ocean.',
+    survivors: 'Dinosaurs, mammals (small), crocodylomorphs, pterosaurs. Dinosaurs rose to dominance afterward.',
+    recovery: 'Approximately 5-10 million years.',
+    recoveryMy: 7, period: 'Triassic', color: '#d97706'
+  },
+  {
+    name: 'End-Cretaceous', mya: 66, pctLost: 76,
+    cause: 'Chicxulub asteroid impact (Yucatan Peninsula) + Deccan Traps volcanism. Impact winter, acid rain, global firestorms.',
+    survivors: 'Mammals, birds, crocodilians, turtles, frogs. All non-avian dinosaurs went extinct.',
+    recovery: 'About 5-10 million years for full diversity recovery. Mammals rapidly diversified.',
+    recoveryMy: 6, period: 'Cretaceous', color: '#7c3aed'
+  }
+];
+
+// Diversity data (approximate marine family counts over time, simplified)
+const diversityData = [
+  { mya: 540, families: 100 }, { mya: 500, families: 400 }, { mya: 445, families: 200 },
+  { mya: 430, families: 350 }, { mya: 400, families: 500 }, { mya: 375, families: 350 },
+  { mya: 350, families: 450 }, { mya: 300, families: 550 }, { mya: 252, families: 100 },
+  { mya: 240, families: 250 }, { mya: 201, families: 200 }, { mya: 180, families: 500 },
+  { mya: 150, families: 600 }, { mya: 100, families: 700 }, { mya: 66, families: 500 },
+  { mya: 50, families: 700 }, { mya: 25, families: 800 }, { mya: 0, families: 900 }
+];
+
+let selectedExtinction = null;
+
+function drawExtTimeline() {
+  const ctx = getCtx('ext-timeline');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 60, right: 30, bottom: 80, left: 60 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+  const timeStart = 540, timeEnd = 0;
+  const timeRange = timeStart - timeEnd;
+
+  const timeToX = mya => pad.left + ((timeStart - mya) / timeRange) * plotW;
+
+  // Geological periods
+  const periods = [
+    { name: 'Cambrian', start: 540, end: 485, color: '#a3d9a5' },
+    { name: 'Ordovician', start: 485, end: 444, color: '#b8d4e3' },
+    { name: 'Silurian', start: 444, end: 419, color: '#c9e4ca' },
+    { name: 'Devonian', start: 419, end: 359, color: '#f0d9a8' },
+    { name: 'Carboniferous', start: 359, end: 299, color: '#d4e5d4' },
+    { name: 'Permian', start: 299, end: 252, color: '#f5c6a0' },
+    { name: 'Triassic', start: 252, end: 201, color: '#d6a0d6' },
+    { name: 'Jurassic', start: 201, end: 145, color: '#a0c4e8' },
+    { name: 'Cretaceous', start: 145, end: 66, color: '#b8e6b8' },
+    { name: 'Cenozoic', start: 66, end: 0, color: '#f5e6a0' }
+  ];
+
+  // Draw period bands
+  periods.forEach(p => {
+    const x1 = timeToX(p.start), x2 = timeToX(p.end);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(x1, pad.top, x2 - x1, plotH);
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 1;
+    ctx.strokeRect(x1, pad.top, x2 - x1, plotH);
+    // Label
+    if (x2 - x1 > 35) {
+      ctx.save();
+      ctx.translate((x1 + x2) / 2, pad.top + plotH + 15);
+      ctx.rotate(-0.5);
+      ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(p.name, 0, 0);
+      ctx.restore();
+    }
+  });
+
+  // Timeline axis
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(pad.left, pad.top + plotH); ctx.lineTo(pad.left + plotW, pad.top + plotH); ctx.stroke();
+  // Tick marks
+  for (let mya = 500; mya >= 0; mya -= 100) {
+    const x = timeToX(mya);
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, pad.top + plotH); ctx.lineTo(x, pad.top + plotH + 8); ctx.stroke();
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(mya + ' Mya', x, pad.top + plotH + 22);
+  }
+
+  // Extinction events - bars showing severity
+  extinctions.forEach((ext, i) => {
+    const x = timeToX(ext.mya);
+    const barH = (ext.pctLost / 100) * plotH;
+    const isSelected = selectedExtinction === i;
+
+    // Severity bar
+    ctx.fillStyle = isSelected ? 'rgba(196,30,58,0.7)' : 'rgba(196,30,58,0.4)';
+    ctx.fillRect(x - 8, pad.top + plotH - barH, 16, barH);
+
+    // Border for selected
+    if (isSelected) {
+      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+      ctx.strokeRect(x - 9, pad.top + plotH - barH - 1, 18, barH + 2);
+    }
+
+    // Percentage label
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(ext.pctLost + '%', x, pad.top + plotH - barH - 8);
+
+    // Name label
+    ctx.save();
+    ctx.translate(x, pad.top - 5);
+    ctx.rotate(-0.6);
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(ext.name, 0, 0);
+    ctx.restore();
+  });
+
+  // Title
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Millions of Years Ago (Mya)', pad.left, H - 10);
+
+  // Y-axis label
+  ctx.save();
+  ctx.translate(15, pad.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('% Species Lost', 0, 0);
+  ctx.restore();
+
+  // Current crisis note
+  ctx.fillStyle = 'rgba(196,30,58,0.6)'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('6th extinction?', pad.left + plotW - 5, pad.top + 15);
+  ctx.fillText('(ongoing)', pad.left + plotW - 5, pad.top + 27);
+}
+
+function extHandleClick(e) {
+  const c = $('ext-timeline');
+  const rect = c.getBoundingClientRect();
+  const clickX = (e.clientX - rect.left) / rect.width;
+
+  const pad = { left: 60, right: 30 };
+  const W = c.offsetWidth || 300;
+  const plotW = W - pad.left - pad.right;
+  const timeStart = 540;
+  const timeRange = 540;
+
+  // Find closest extinction
+  let closest = -1, minDist = Infinity;
+  extinctions.forEach((ext, i) => {
+    const extX = (pad.left + ((timeStart - ext.mya) / timeRange) * plotW) / W;
+    const dist = Math.abs(clickX - extX);
+    if (dist < minDist) { minDist = dist; closest = i; }
+  });
+
+  if (closest >= 0 && minDist < 0.05) {
+    selectedExtinction = closest;
+    const ext = extinctions[closest];
+    $('ext-detail-card').style.display = '';
+    $('ext-detail-title').textContent = ext.name + ' Extinction (' + ext.mya + ' Mya)';
+    $('ext-detail-body').innerHTML = `
+      <div class="analysis-result" style="border-left-color:${ext.color}">
+        <div class="ar-title">Cause</div><p>${ext.cause}</p>
+      </div>
+      <div class="analysis-result ar-pass">
+        <div class="ar-title">Survivors</div><p>${ext.survivors}</p>
+      </div>
+      <div class="analysis-result" style="border-left-color:var(--amber)">
+        <div class="ar-title">Recovery</div><p>${ext.recovery}</p>
+      </div>`;
+    $('ext-detail-stats').innerHTML = `
+      <div class="stat-box stat-accent"><div class="stat-val">${ext.pctLost}%</div><div class="stat-label">Species Lost</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val">${ext.mya}</div><div class="stat-label">Mya</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val">~${ext.recoveryMy} My</div><div class="stat-label">Recovery Time</div></div>
+      <div class="stat-box stat-green"><div class="stat-val">${ext.period}</div><div class="stat-label">Period</div></div>`;
+    drawExtTimeline();
+  }
+}
+$('ext-timeline').addEventListener('click', extHandleClick);
+
+function drawExtDiversityChart() {
+  const ctx = getCtx('ext-diversity-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 60 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const maxFam = 1000;
+  const timeStart = 540;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxFam * i/4), pad.left - 6, y + 4);
+  }
+
+  // Diversity curve (area fill)
+  ctx.beginPath();
+  ctx.moveTo(pad.left, pad.top + plotH);
+  diversityData.forEach(d => {
+    const x = pad.left + ((timeStart - d.mya) / timeStart) * plotW;
+    const y = pad.top + plotH * (1 - d.families / maxFam);
+    ctx.lineTo(x, y);
+  });
+  ctx.lineTo(pad.left + plotW, pad.top + plotH);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(22,163,74,0.15)';
+  ctx.fill();
+
+  // Diversity line
+  ctx.beginPath();
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2.5;
+  diversityData.forEach((d, i) => {
+    const x = pad.left + ((timeStart - d.mya) / timeStart) * plotW;
+    const y = pad.top + plotH * (1 - d.families / maxFam);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  // Dots
+  diversityData.forEach(d => {
+    const x = pad.left + ((timeStart - d.mya) / timeStart) * plotW;
+    const y = pad.top + plotH * (1 - d.families / maxFam);
+    ctx.fillStyle = '#16a34a'; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+  });
+
+  // Extinction markers
+  extinctions.forEach(ext => {
+    const x = pad.left + ((timeStart - ext.mya) / timeStart) * plotW;
+    ctx.strokeStyle = 'rgba(196,30,58,0.5)'; ctx.lineWidth = 1.5; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, pad.top + plotH); ctx.stroke();
+    ctx.setLineDash([]);
+  });
+
+  // Axis
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  for (let mya = 500; mya >= 0; mya -= 100) {
+    const x = pad.left + ((timeStart - mya) / timeStart) * plotW;
+    ctx.fillText(mya, x, H - pad.bottom + 16);
+  }
+  ctx.fillText('Millions of Years Ago', pad.left + plotW/2, H - 4);
+
+  // Y label
+  ctx.save();
+  ctx.translate(14, pad.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Marine Families', 0, 0);
+  ctx.restore();
+}
+
+function drawExtRecoveryChart() {
+  const ctx = getCtx('ext-recovery-chart');
+  drawBarChart(ctx, {
+    labels: extinctions.map(e => e.name.replace('End-', '')),
+    values: extinctions.map(e => e.recoveryMy),
+    colors: extinctions.map(e => e.color),
+    maxVal: 20
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: MICRO TO MACRO
+// ══════════════════════════════════════════════════════════════════════════
+const macroScaleLabels = ['Gene', 'Population', 'Species', 'Genus', 'Family', 'Order', 'Tree of Life'];
+const macroScaleDescriptions = [
+  'A single point mutation in a gene. This is the smallest unit of evolutionary change.',
+  'Allele frequency changes within a population over generations (microevolution).',
+  'Two populations diverge enough to become separate species (speciation).',
+  'Multiple related species form a genus. Divergence over ~5-20 million years.',
+  'Multiple genera grouped by shared ancestry. Divergence over ~50-100 million years.',
+  'Families united by deep homology. Divergence over ~100-300 million years.',
+  'All life connected through 3.8 billion years of evolution. From bacteria to humans.'
+];
+
+let macroAccum = { mya: 0, mutations: 0, species: 1, genera: 1, families: 1, history: [] };
+
+function macroUpdateScale() {
+  const val = parseInt($('macro-scale').value);
+  $('macro-scale-val').textContent = macroScaleLabels[val - 1];
+  drawMacroCanvas();
+}
+
+function drawMacroCanvas() {
+  const ctx = getCtx('macro-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  const scale = parseInt($('macro-scale').value);
+  const desc = macroScaleDescriptions[scale - 1];
+
+  // Background gradient based on scale
+  const bgColors = [
+    ['#1e3a5f', '#0f172a'], // Gene - deep blue
+    ['#1a3a2e', '#0f172a'], // Population - green-dark
+    ['#2d1b3d', '#1a1a2e'], // Species - purple
+    ['#3b2d1b', '#1a1a2e'], // Genus - amber
+    ['#3b1a2e', '#1a1a2e'], // Family - red
+    ['#1b2d3b', '#0f172a'], // Order - teal
+    ['#1a1a2e', '#000000'], // Tree of life - cosmic
+  ];
+  const [c1, c2] = bgColors[scale - 1];
+  const grad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W*0.7);
+  grad.addColorStop(0, c1);
+  grad.addColorStop(1, c2);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Scale label
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 24px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(macroScaleLabels[scale - 1], W/2, 40);
+
+  // Description
+  ctx.fillStyle = '#cbd5e1'; ctx.font = '13px system-ui';
+  ctx.fillText(desc, W/2, 65);
+
+  // Time scale bar
+  const timeScales = ['1 generation', '100 generations', '1 My', '10 My', '100 My', '300 My', '3.8 By'];
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui';
+  ctx.fillText('Time scale: ' + timeScales[scale - 1], W/2, 85);
+
+  const cx = W / 2, cy = H / 2 + 20;
+
+  if (scale === 1) {
+    // Single gene - DNA strand
+    drawDNAStrand(ctx, cx, cy, W * 0.6);
+    // Highlight mutation
+    ctx.fillStyle = '#c41e3a';
+    ctx.beginPath(); ctx.arc(cx, cy - 5, 8, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('A\u2192G', cx, cy - 1);
+    ctx.fillStyle = '#fbbf24'; ctx.font = '12px system-ui';
+    ctx.fillText('Point mutation', cx, cy + 30);
+  } else if (scale === 2) {
+    // Population - show allele frequency pie charts
+    drawPopulationDrift(ctx, cx, cy, W);
+  } else if (scale === 3) {
+    // Species - two diverging populations
+    drawSpeciationDiagram(ctx, cx, cy, W, H);
+  } else if (scale === 4) {
+    // Genus - small tree with 4-5 species
+    drawSmallTree(ctx, cx, cy, W, 5, 'Genus');
+  } else if (scale === 5) {
+    // Family - larger tree
+    drawSmallTree(ctx, cx, cy, W, 8, 'Family');
+  } else if (scale === 6) {
+    // Order - even larger
+    drawSmallTree(ctx, cx, cy, W, 12, 'Order');
+  } else if (scale === 7) {
+    // Tree of life
+    drawTreeOfLife(ctx, cx, cy, W, H);
+  }
+}
+
+function drawDNAStrand(ctx, cx, cy, width) {
+  const startX = cx - width/2;
+  for (let x = 0; x < width; x += 3) {
+    const px = startX + x;
+    const y1 = cy + Math.sin(x * 0.05) * 25;
+    const y2 = cy - Math.sin(x * 0.05) * 25;
+
+    // Backbone
+    ctx.strokeStyle = 'rgba(59,130,246,0.6)'; ctx.lineWidth = 2;
+    if (x > 0) {
+      ctx.beginPath();
+      ctx.moveTo(px - 3, cy + Math.sin((x-3) * 0.05) * 25);
+      ctx.lineTo(px, y1);
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(196,30,58,0.6)';
+      ctx.beginPath();
+      ctx.moveTo(px - 3, cy - Math.sin((x-3) * 0.05) * 25);
+      ctx.lineTo(px, y2);
+      ctx.stroke();
+    }
+
+    // Base pairs (rungs)
+    if (x % 15 === 0) {
+      ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(px, y1); ctx.lineTo(px, y2); ctx.stroke();
+    }
+  }
+}
+
+function drawPopulationDrift(ctx, cx, cy, W) {
+  // Show 3 generations of a population
+  const gens = ['Gen 0', 'Gen 50', 'Gen 100'];
+  const freqs = [0.5, 0.62, 0.78]; // allele A frequency
+  const spacing = W * 0.25;
+
+  gens.forEach((gen, i) => {
+    const x = cx - spacing + i * spacing;
+    const y = cy;
+    const r = 35;
+
+    // Pie chart for allele frequency
+    const freqA = freqs[i];
+    // Allele A (blue)
+    ctx.fillStyle = '#3b82f6';
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, r, -Math.PI/2, -Math.PI/2 + freqA * Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+    // Allele a (amber)
+    ctx.fillStyle = '#d97706';
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, r, -Math.PI/2 + freqA * Math.PI * 2, -Math.PI/2 + Math.PI * 2);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.stroke();
+
+    // Labels
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(gen, x, y + r + 20);
+    ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui';
+    ctx.fillText('A: ' + (freqA * 100).toFixed(0) + '%', x, y + r + 35);
+
+    // Arrow to next
+    if (i < 2) {
+      ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(x + r + 8, y); ctx.lineTo(x + spacing - r - 8, y); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x + spacing - r - 14, y - 5);
+      ctx.lineTo(x + spacing - r - 8, y);
+      ctx.lineTo(x + spacing - r - 14, y + 5);
+      ctx.stroke();
+    }
+  });
+
+  ctx.fillStyle = '#fbbf24'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Genetic drift changes allele frequencies over generations', cx, cy + 80);
+}
+
+function drawSpeciationDiagram(ctx, cx, cy, W, H) {
+  // Y-shaped split
+  ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
+  // Trunk
+  ctx.beginPath(); ctx.moveTo(cx, cy + 80); ctx.lineTo(cx, cy); ctx.stroke();
+  // Left branch
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.quadraticCurveTo(cx - 40, cy - 30, cx - 80, cy - 70); ctx.stroke();
+  // Right branch
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.quadraticCurveTo(cx + 40, cy - 30, cx + 80, cy - 70); ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Species A', cx - 80, cy - 80);
+  ctx.fillStyle = '#c41e3a';
+  ctx.fillText('Species B', cx + 80, cy - 80);
+  ctx.fillStyle = '#3b82f6';
+  ctx.fillText('Ancestor', cx, cy + 95);
+  ctx.fillStyle = '#fbbf24'; ctx.font = '11px system-ui';
+  ctx.fillText('Geographic or reproductive barrier', cx, cy + 10);
+
+  // Barrier symbol
+  ctx.fillStyle = 'rgba(251,191,36,0.3)';
+  ctx.fillRect(cx - 3, cy - 60, 6, 60);
+}
+
+function drawSmallTree(ctx, cx, cy, W, tips, label) {
+  const tipSpacing = Math.min(50, (W - 100) / tips);
+  const startX = cx - (tips - 1) * tipSpacing / 2;
+  const tipY = cy - 60;
+  const rootY = cy + 60;
+
+  // Draw a balanced-ish tree
+  const colors = ['#3b82f6', '#16a34a', '#c41e3a', '#d97706', '#7c3aed', '#ec4899', '#06b6d4', '#84cc16', '#f97316', '#8b5cf6', '#14b8a6', '#f43f5e'];
+
+  // Root
+  ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(cx, rootY, 5, 0, Math.PI*2); ctx.fill();
+
+  for (let i = 0; i < tips; i++) {
+    const tipX = startX + i * tipSpacing;
+    const nodeY = lerp(rootY, tipY, (i % 2 === 0 ? 0.4 : 0.6) + Math.random() * 0.2);
+
+    ctx.strokeStyle = colors[i % colors.length]; ctx.lineWidth = 2;
+    // Branch from somewhere on trunk to tip
+    const branchFromY = lerp(rootY, tipY, (i + 0.5) / tips);
+    ctx.beginPath();
+    ctx.moveTo(cx, branchFromY);
+    ctx.lineTo(tipX, tipY);
+    ctx.stroke();
+
+    // Tip dot
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.beginPath(); ctx.arc(tipX, tipY, 4, 0, Math.PI*2); ctx.fill();
+  }
+
+  // Trunk
+  ctx.strokeStyle = 'rgba(255,255,255,0.5)'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(cx, rootY); ctx.lineTo(cx, tipY + 10); ctx.stroke();
+
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(tips + ' species in this ' + label.toLowerCase(), cx, rootY + 25);
+}
+
+function drawTreeOfLife(ctx, cx, cy, W, H) {
+  // Three domains
+  const domains = [
+    { name: 'Bacteria', color: '#16a34a', x: cx - W*0.3 },
+    { name: 'Archaea', color: '#d97706', x: cx },
+    { name: 'Eukarya', color: '#2563eb', x: cx + W*0.3 }
+  ];
+
+  const rootY = cy + 100;
+  const tipY = cy - 100;
+
+  // Root (LUCA)
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(cx, rootY, 6, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('LUCA (~3.8 Bya)', cx, rootY + 20);
+
+  domains.forEach(d => {
+    // Main branch
+    ctx.strokeStyle = d.color; ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(cx, rootY);
+    ctx.quadraticCurveTo(d.x * 0.5 + cx * 0.5, cy, d.x, tipY + 30);
+    ctx.stroke();
+
+    // Sub-branches
+    for (let i = 0; i < 5; i++) {
+      const subX = d.x + (Math.random() - 0.5) * 60;
+      const subY = tipY + Math.random() * 40;
+      ctx.strokeStyle = d.color; ctx.lineWidth = 1; ctx.globalAlpha = 0.5;
+      ctx.beginPath();
+      ctx.moveTo(d.x, tipY + 30);
+      ctx.lineTo(subX, subY);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = d.color;
+      ctx.beginPath(); ctx.arc(subX, subY, 3, 0, Math.PI*2); ctx.fill();
+    }
+
+    // Label
+    ctx.fillStyle = d.color; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(d.name, d.x, tipY - 10);
+  });
+
+  // Time arrow
+  ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(W - 30, rootY); ctx.lineTo(W - 30, tipY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Time', W - 30, tipY - 8);
+  ctx.beginPath(); ctx.moveTo(W - 34, tipY + 6); ctx.lineTo(W - 30, tipY); ctx.lineTo(W - 26, tipY + 6); ctx.stroke();
+}
+
+// Deep time accumulation simulator
+function macroAccumRun() { macroAccumStep(1); }
+function macroAccumFast() { macroAccumStep(100); }
+
+function macroAccumStep(myToAdd) {
+  macroAccum.mya += myToAdd;
+  // Mutations accumulate roughly linearly
+  macroAccum.mutations += Math.round(myToAdd * 2.5 + Math.random() * myToAdd);
+
+  // Speciation events every ~2-10 My
+  const speciationRate = myToAdd / 5;
+  macroAccum.species += Math.floor(speciationRate + Math.random());
+  macroAccum.species = Math.max(macroAccum.species, 1);
+
+  // Genera form every ~20 My
+  macroAccum.genera = Math.max(1, Math.floor(macroAccum.species / 5));
+
+  // Families form every ~50 My
+  macroAccum.families = Math.max(1, Math.floor(macroAccum.genera / 4));
+
+  macroAccum.history.push({
+    mya: macroAccum.mya,
+    mutations: macroAccum.mutations,
+    species: macroAccum.species
+  });
+
+  $('macro-mya').textContent = macroAccum.mya;
+  $('macro-mutations').textContent = macroAccum.mutations;
+  $('macro-species').textContent = macroAccum.species;
+  $('macro-genera').textContent = macroAccum.genera;
+  $('macro-families').textContent = macroAccum.families;
+
+  drawMacroAccumChart();
+}
+
+function macroAccumReset() {
+  macroAccum = { mya: 0, mutations: 0, species: 1, genera: 1, families: 1, history: [] };
+  $('macro-mya').textContent = '0';
+  $('macro-mutations').textContent = '0';
+  $('macro-species').textContent = '1';
+  $('macro-genera').textContent = '1';
+  $('macro-families').textContent = '1';
+  drawMacroAccumChart();
+}
+
+function drawMacroAccumChart() {
+  if (!macroAccum.history.length) {
+    const ctx = getCtx('macro-accum-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Add time to see mutations and species accumulate', ctx.W/2, ctx.H/2);
+    return;
+  }
+
+  const ctx = getCtx('macro-accum-chart');
+  const maxSpecies = Math.max(...macroAccum.history.map(h => h.species), 10);
+
+  drawLineChart(ctx, [
+    { data: macroAccum.history.map(h => h.species), color: '#16a34a', width: 2.5, dots: macroAccum.history.length < 60 }
+  ], { yMin: 0, yMax: maxSpecies * 1.2 });
+
+  // Add label
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Species count over deep time', ctx.W / 2, ctx.H - 5);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  alloReset();
+  symReset();
+  phyloBuildUI();
+  isoBuildCards();
+  isoNextQuiz();
+  drawExtTimeline();
+  drawExtDiversityChart();
+  drawExtRecoveryChart();
+  macroUpdateScale();
+  drawMacroAccumChart();
+});
+
+window.addEventListener('resize', () => {
+  drawAlloCanvas();
+  drawAlloDistChart();
+  drawSymChart();
+  drawPhyloMatrix();
+  drawPhyloTree();
+  drawExtTimeline();
+  drawExtDiversityChart();
+  drawExtRecoveryChart();
+  drawMacroCanvas();
+  drawMacroAccumChart();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 10 Dashboard: Tissues | BIOL-8</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.card-row-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3, .card-row-4 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TISSUE EXPLORER CARDS
+   ═══════════════════════════════════════════════════════════════════════ */
+.tissue-card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 20px; border: 2px solid var(--border); cursor: pointer;
+  transition: all 0.2s;
+}
+.tissue-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.tissue-card.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(196,30,58,0.15); }
+.tissue-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.tissue-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MATRIX GRID (Epithelial)
+   ═══════════════════════════════════════════════════════════════════════ */
+.matrix-grid {
+  display: grid; grid-template-columns: 120px 1fr 1fr 1fr; gap: 3px; margin: 12px 0;
+}
+.matrix-cell {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 60px; border-radius: 6px; font-size: 12px; font-weight: 600;
+  padding: 8px; cursor: pointer; transition: all 0.2s;
+}
+.matrix-header { background: #1a1a1a; color: #fff; cursor: default; }
+.matrix-row-header { background: #374151; color: #fff; cursor: default; }
+.matrix-body { background: #f8fafc; border: 2px solid var(--border); }
+.matrix-body:hover { border-color: var(--blue); background: #eff6ff; }
+.matrix-body.active { border-color: var(--accent); background: #fef2f2; font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GALLERY NAVIGATION
+   ═══════════════════════════════════════════════════════════════════════ */
+.gallery-nav {
+  display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0;
+}
+.gallery-nav button {
+  padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 600;
+  border: 2px solid var(--border); background: #f8fafc; cursor: pointer;
+  transition: all 0.15s; font-family: var(--font);
+}
+.gallery-nav button:hover { border-color: var(--blue); color: var(--blue); }
+.gallery-nav button.active { border-color: var(--accent); background: #fef2f2; color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPARISON TABLE
+   ═══════════════════════════════════════════════════════════════════════ */
+.comp-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0;
+}
+.comp-table th, .comp-table td {
+  padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border);
+}
+.comp-table th { background: #f8fafc; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+.comp-table td { vertical-align: top; }
+.comp-table tr:hover td { background: #fafafa; }
+.comp-table .check { color: var(--green); font-weight: 700; }
+.comp-table .cross { color: var(--accent); font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   QUIZ STYLES
+   ═══════════════════════════════════════════════════════════════════════ */
+.quiz-option {
+  display: block; width: 100%; padding: 12px 16px; margin: 6px 0; border-radius: 8px;
+  border: 2px solid var(--border); background: #fff; cursor: pointer;
+  font-size: 14px; font-weight: 500; text-align: left; transition: all 0.15s;
+  font-family: var(--font);
+}
+.quiz-option:hover { border-color: var(--blue); background: #eff6ff; }
+.quiz-option.correct { border-color: var(--green); background: #f0fdf4; color: var(--green); }
+.quiz-option.incorrect { border-color: var(--accent); background: #fef2f2; color: var(--accent); }
+.quiz-option:disabled { cursor: default; opacity: 0.7; }
+
+.quiz-feedback {
+  padding: 12px 16px; border-radius: 8px; margin: 8px 0; font-size: 13px; font-weight: 500;
+}
+.quiz-feedback.correct { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+.quiz-feedback.incorrect { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BODY MAP
+   ═══════════════════════════════════════════════════════════════════════ */
+.body-map-container { display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+@media (max-width: 900px) { .body-map-container { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DETAIL PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.detail-panel {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.detail-panel .dp-title { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
+.detail-panel .dp-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; }
+.detail-panel .dp-text { font-size: 13px; line-height: 1.6; margin-top: 2px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MICROSCOPE CANVAS
+   ═══════════════════════════════════════════════════════════════════════ */
+.microscope-wrap {
+  background: #fafafa; border: 2px solid var(--border); border-radius: 8px;
+  padding: 4px; position: relative;
+}
+.microscope-wrap canvas { width: 100% !important; display: block; border-radius: 4px; }
+.microscope-label {
+  position: absolute; top: 8px; left: 8px; background: rgba(26,26,26,0.8);
+  color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-8: Human Biology</h1>
+    <p>Lab 10 &mdash; Tissues</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Tissue Type Explorer</a>
+    <a href="#part2"><span class="nav-num">2</span> Epithelial Matrix</a>
+    <a href="#part3"><span class="nav-num">3</span> Connective Gallery</a>
+    <a href="#part4"><span class="nav-num">4</span> Muscle Comparison</a>
+    <a href="#part5"><span class="nav-num">5</span> Virtual Histology</a>
+    <a href="#part6"><span class="nav-num">6</span> Body Tissue Map</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Tissues</h2>
+  <p>Explore the four major tissue types, classify epithelial and connective tissues, compare muscle fiber types, and test your histology skills with virtual microscope slides.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Histology</span>
+    <span class="bio-tag">Four Tissue Types</span>
+    <span class="bio-tag">Structure &amp; Function</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: TISSUE TYPE EXPLORER ═══════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Tissue Type Explorer</div>
+    <div class="section-subtitle">Discover the four major tissue types and their roles in the body</div></div>
+  </div>
+
+  <div class="card-row-4" id="tissue-cards">
+    <div class="tissue-card active" onclick="selectTissueType(0)">
+      <h3>Epithelial</h3>
+      <p>Covers body surfaces, lines cavities and organs, forms glands</p>
+    </div>
+    <div class="tissue-card" onclick="selectTissueType(1)">
+      <h3>Connective</h3>
+      <p>Supports, connects, and separates different types of tissues and organs</p>
+    </div>
+    <div class="tissue-card" onclick="selectTissueType(2)">
+      <h3>Muscle</h3>
+      <p>Produces movement through contraction of specialized cells</p>
+    </div>
+    <div class="tissue-card" onclick="selectTissueType(3)">
+      <h3>Nervous</h3>
+      <p>Detects stimuli and transmits electrical signals throughout the body</p>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title" id="tissue-view-title">Microscope View: Epithelial Tissue</div>
+      <div class="microscope-wrap">
+        <canvas id="tissue-canvas" height="280"></canvas>
+        <div class="microscope-label">400x</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Tissue Details</div>
+      <div id="tissue-detail-panel">
+        <div class="detail-panel">
+          <div class="dp-title" id="tissue-detail-name">Epithelial Tissue</div>
+          <div class="dp-label">Key Features</div>
+          <div class="dp-text" id="tissue-detail-features">Tightly packed cells, minimal extracellular matrix, avascular, basement membrane attachment, high regeneration rate</div>
+          <div class="dp-label">Functions</div>
+          <div class="dp-text" id="tissue-detail-function">Protection, absorption, secretion, filtration, sensory reception</div>
+          <div class="dp-label">Body Locations</div>
+          <div class="dp-text" id="tissue-detail-location">Skin surface, lining of digestive tract, respiratory passages, blood vessels, glands</div>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="tissue-stat1">~8%</div><div class="stat-label" id="tissue-stat1-label">Body Weight</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="tissue-stat2">~2m&sup2;</div><div class="stat-label" id="tissue-stat2-label">Skin Coverage</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: EPITHELIAL MATRIX ══════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Epithelial Classification Matrix</div>
+    <div class="section-subtitle">Classify epithelial tissue by cell shape and number of layers</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Shape x Layers Classification</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click any cell to see its microscope view, body location, and function.</p>
+    <div class="matrix-grid" id="epi-matrix">
+      <div class="matrix-cell matrix-header"></div>
+      <div class="matrix-cell matrix-header">Squamous</div>
+      <div class="matrix-cell matrix-header">Cuboidal</div>
+      <div class="matrix-cell matrix-header">Columnar</div>
+      <div class="matrix-cell matrix-row-header">Simple<br>(one layer)</div>
+      <div class="matrix-cell matrix-body" onclick="selectEpiType(0,0)">Simple<br>Squamous</div>
+      <div class="matrix-cell matrix-body" onclick="selectEpiType(0,1)">Simple<br>Cuboidal</div>
+      <div class="matrix-cell matrix-body" onclick="selectEpiType(0,2)">Simple<br>Columnar</div>
+      <div class="matrix-cell matrix-row-header">Stratified<br>(multi-layer)</div>
+      <div class="matrix-cell matrix-body" onclick="selectEpiType(1,0)">Stratified<br>Squamous</div>
+      <div class="matrix-cell matrix-body" onclick="selectEpiType(1,1)">Stratified<br>Cuboidal</div>
+      <div class="matrix-cell matrix-body" onclick="selectEpiType(1,2)">Stratified<br>Columnar</div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-outline btn-sm" onclick="selectEpiType(2,0)">Pseudostratified Columnar</button>
+      <button class="btn btn-outline btn-sm" onclick="selectEpiType(3,0)">Transitional</button>
+      <button class="btn btn-secondary btn-sm" onclick="startEpiQuiz()">Classification Quiz</button>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title" id="epi-view-title">Select a tissue type above</div>
+      <div class="microscope-wrap">
+        <canvas id="epi-canvas" height="260"></canvas>
+        <div class="microscope-label">400x</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Classification Details</div>
+      <div id="epi-detail">
+        <div class="detail-panel">
+          <div class="dp-title" id="epi-detail-name">Click a cell to explore</div>
+          <div class="dp-label">Location</div>
+          <div class="dp-text" id="epi-detail-location">---</div>
+          <div class="dp-label">Function</div>
+          <div class="dp-text" id="epi-detail-function">---</div>
+          <div class="dp-label">Distinguishing Feature</div>
+          <div class="dp-text" id="epi-detail-feature">---</div>
+        </div>
+      </div>
+      <div id="epi-quiz-area"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: CONNECTIVE GALLERY ═════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Connective Tissue Gallery</div>
+    <div class="section-subtitle">Explore the diverse family of connective tissues and their matrix compositions</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Select a Connective Tissue Subtype</div>
+    <div class="gallery-nav" id="ct-nav"></div>
+  </div>
+
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title" id="ct-view-title">Areolar Connective Tissue</div>
+      <div class="microscope-wrap">
+        <canvas id="ct-canvas" height="280"></canvas>
+        <div class="microscope-label">400x</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Tissue Details</div>
+      <div class="detail-panel">
+        <div class="dp-title" id="ct-detail-name">Areolar</div>
+        <div class="dp-label">Category</div>
+        <div class="dp-text" id="ct-detail-category">---</div>
+        <div class="dp-label">Matrix Composition</div>
+        <div class="dp-text" id="ct-detail-matrix">---</div>
+        <div class="dp-label">Function</div>
+        <div class="dp-text" id="ct-detail-function">---</div>
+        <div class="dp-label">Location</div>
+        <div class="dp-text" id="ct-detail-location">---</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Matrix Composition Comparison</div>
+    <div class="chart-wrap"><canvas id="ct-matrix-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: MUSCLE COMPARISON ══════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Muscle Tissue Comparison</div>
+    <div class="section-subtitle">Compare the three types of muscle tissue: skeletal, cardiac, and smooth</div></div>
+  </div>
+
+  <div class="card-row-3">
+    <div class="card" style="text-align:center;">
+      <div class="card-title" style="justify-content:center;">Skeletal Muscle</div>
+      <div class="microscope-wrap">
+        <canvas id="muscle-skel-canvas" height="180"></canvas>
+        <div class="microscope-label">400x</div>
+      </div>
+      <div style="margin-top:12px;">
+        <span class="badge badge-red">Striated</span>
+        <span class="badge badge-blue">Voluntary</span>
+        <span class="badge badge-green">Multinucleated</span>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Long, cylindrical fibers attached to bones. Conscious control of movement.</p>
+      <button class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="animateMuscle('skeletal')">Animate Contraction</button>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="card-title" style="justify-content:center;">Cardiac Muscle</div>
+      <div class="microscope-wrap">
+        <canvas id="muscle-card-canvas" height="180"></canvas>
+        <div class="microscope-label">400x</div>
+      </div>
+      <div style="margin-top:12px;">
+        <span class="badge badge-red">Striated</span>
+        <span class="badge badge-purple">Involuntary</span>
+        <span class="badge badge-amber">Branched</span>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Branching fibers with intercalated discs. Found only in the heart wall.</p>
+      <button class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="animateMuscle('cardiac')">Animate Contraction</button>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="card-title" style="justify-content:center;">Smooth Muscle</div>
+      <div class="microscope-wrap">
+        <canvas id="muscle-smooth-canvas" height="180"></canvas>
+        <div class="microscope-label">400x</div>
+      </div>
+      <div style="margin-top:12px;">
+        <span class="badge badge-blue">Non-striated</span>
+        <span class="badge badge-purple">Involuntary</span>
+        <span class="badge badge-green">Spindle-shaped</span>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Spindle-shaped cells with single nucleus. Walls of hollow organs and vessels.</p>
+      <button class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="animateMuscle('smooth')">Animate Contraction</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Comparison Table</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Explore each muscle type above to auto-populate this comparison.</p>
+    <table class="comp-table" id="muscle-comp-table">
+      <thead>
+        <tr><th>Feature</th><th>Skeletal</th><th>Cardiac</th><th>Smooth</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Striations</strong></td><td id="mc-skel-stri">---</td><td id="mc-card-stri">---</td><td id="mc-smooth-stri">---</td></tr>
+        <tr><td><strong>Control</strong></td><td id="mc-skel-ctrl">---</td><td id="mc-card-ctrl">---</td><td id="mc-smooth-ctrl">---</td></tr>
+        <tr><td><strong>Nuclei</strong></td><td id="mc-skel-nuc">---</td><td id="mc-card-nuc">---</td><td id="mc-smooth-nuc">---</td></tr>
+        <tr><td><strong>Cell Shape</strong></td><td id="mc-skel-shape">---</td><td id="mc-card-shape">---</td><td id="mc-smooth-shape">---</td></tr>
+        <tr><td><strong>Location</strong></td><td id="mc-skel-loc">---</td><td id="mc-card-loc">---</td><td id="mc-smooth-loc">---</td></tr>
+        <tr><td><strong>Special Feature</strong></td><td id="mc-skel-spec">---</td><td id="mc-card-spec">---</td><td id="mc-smooth-spec">---</td></tr>
+        <tr><td><strong>Contraction Speed</strong></td><td id="mc-skel-speed">---</td><td id="mc-card-speed">---</td><td id="mc-smooth-speed">---</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: VIRTUAL HISTOLOGY ══════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Virtual Histology Lab</div>
+    <div class="section-subtitle">Identify tissue types from simulated microscope slides</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tissue Identification Challenge</div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="histo-correct">0</div><div class="stat-label">Correct</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="histo-incorrect">0</div><div class="stat-label">Incorrect</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="histo-total">0</div><div class="stat-label">Total</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="histo-pct">-</div><div class="stat-label">Accuracy</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="histo-level">1</div><div class="stat-label">Level</div></div>
+    </div>
+  </div>
+
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Mystery Slide <span id="histo-slide-num">#1</span></div>
+      <div class="microscope-wrap">
+        <canvas id="histo-canvas" height="300"></canvas>
+        <div class="microscope-label">400x</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" id="histo-question">What tissue type is this?</div>
+      <div id="histo-options"></div>
+      <div id="histo-feedback"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="histo-next-btn" onclick="histoNextSlide()" disabled>Next Slide</button>
+        <button class="btn btn-outline" onclick="histoReset()">Reset Score</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: BODY TISSUE MAP ════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Body Tissue Map</div>
+    <div class="section-subtitle">Click body regions to discover which tissues are found where</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Interactive Body Map</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on highlighted body regions to see the tissue types present and their functions.</p>
+    <div class="body-map-container">
+      <div>
+        <canvas id="body-canvas" width="280" height="520" style="cursor:pointer; border-radius:8px; border:2px solid var(--border);"></canvas>
+      </div>
+      <div>
+        <div class="detail-panel" id="body-detail">
+          <div class="dp-title" id="body-detail-name">Click a body region</div>
+          <div class="dp-label">Primary Tissue</div>
+          <div class="dp-text" id="body-detail-tissue">---</div>
+          <div class="dp-label">Function</div>
+          <div class="dp-text" id="body-detail-function">---</div>
+          <div class="dp-label">Additional Tissues Present</div>
+          <div class="dp-text" id="body-detail-additional">---</div>
+        </div>
+        <div class="microscope-wrap" style="margin-top:12px;">
+          <canvas id="body-tissue-canvas" height="220"></canvas>
+          <div class="microscope-label">400x</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// ── Chart helpers (from reference dashboard) ────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// MICROSCOPE DRAWING ENGINE
+// ══════════════════════════════════════════════════════════════════════════
+function drawMicroscopeBackground(ctx) {
+  const W = ctx.W, H = ctx.H;
+  // Pale background simulating a microscope field
+  ctx.fillStyle = '#fefdf8'; ctx.fillRect(0, 0, W, H);
+  // Subtle vignette
+  const grd = ctx.createRadialGradient(W/2, H/2, W*0.2, W/2, H/2, W*0.6);
+  grd.addColorStop(0, 'rgba(255,255,255,0)');
+  grd.addColorStop(1, 'rgba(200,195,180,0.15)');
+  ctx.fillStyle = grd; ctx.fillRect(0, 0, W, H);
+}
+
+function drawBasementMembrane(ctx, y, W) {
+  ctx.strokeStyle = '#8b6914'; ctx.lineWidth = 2.5; ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  ctx.strokeStyle = '#a07d1a'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(0, y+3); ctx.lineTo(W, y+3); ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function drawNucleus(ctx, cx, cy, rx, ry, color) {
+  ctx.fillStyle = color || '#3b1a6e';
+  ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle = '#2a1050'; ctx.lineWidth = 0.8;
+  ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI*2); ctx.stroke();
+  // nucleolus
+  ctx.fillStyle = '#1a0a30';
+  ctx.beginPath(); ctx.arc(cx + rx*0.2, cy - ry*0.1, Math.min(rx, ry)*0.3, 0, Math.PI*2); ctx.fill();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// TISSUE DRAWING FUNCTIONS
+// ══════════════════════════════════════════════════════════════════════════
+
+function drawSimpleSquamous(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.55;
+  drawBasementMembrane(ctx, bmY, W);
+  // Flat cells on top
+  const cellCount = 8;
+  const cellW = W / cellCount;
+  for (let i = 0; i < cellCount; i++) {
+    const x = i * cellW;
+    ctx.fillStyle = 'rgba(219,175,210,0.4)';
+    ctx.fillRect(x + 2, bmY - 18, cellW - 4, 16);
+    ctx.strokeStyle = '#9b5890'; ctx.lineWidth = 1;
+    ctx.strokeRect(x + 2, bmY - 18, cellW - 4, 16);
+    drawNucleus(ctx, x + cellW/2, bmY - 10, 8, 4, '#5b2d8e');
+  }
+  // Connective tissue below
+  for (let i = 0; i < 30; i++) {
+    const x = rand(10, W-10), y = rand(bmY+15, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,8), 0, Math.PI*2); ctx.fill();
+  }
+  // Label
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Simple Squamous Epithelium', W/2, 18);
+}
+
+function drawSimpleCuboidal(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.6;
+  drawBasementMembrane(ctx, bmY, W);
+  const cellCount = 7;
+  const cellW = W / cellCount;
+  const cellH = 40;
+  for (let i = 0; i < cellCount; i++) {
+    const x = i * cellW;
+    ctx.fillStyle = 'rgba(180,210,230,0.4)';
+    ctx.fillRect(x + 2, bmY - cellH, cellW - 4, cellH - 2);
+    ctx.strokeStyle = '#5a8aae'; ctx.lineWidth = 1;
+    ctx.strokeRect(x + 2, bmY - cellH, cellW - 4, cellH - 2);
+    drawNucleus(ctx, x + cellW/2, bmY - cellH/2, 7, 7, '#2d5a8e');
+  }
+  for (let i = 0; i < 20; i++) {
+    const x = rand(10, W-10), y = rand(bmY+15, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,6), 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Simple Cuboidal Epithelium', W/2, 18);
+}
+
+function drawSimpleColumnar(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.7;
+  drawBasementMembrane(ctx, bmY, W);
+  const cellCount = 8;
+  const cellW = W / cellCount;
+  const cellH = 70;
+  for (let i = 0; i < cellCount; i++) {
+    const x = i * cellW;
+    ctx.fillStyle = 'rgba(200,220,240,0.4)';
+    ctx.fillRect(x + 2, bmY - cellH, cellW - 4, cellH - 2);
+    ctx.strokeStyle = '#5a7dae'; ctx.lineWidth = 1;
+    ctx.strokeRect(x + 2, bmY - cellH, cellW - 4, cellH - 2);
+    drawNucleus(ctx, x + cellW/2, bmY - 20, 6, 8, '#2d4a8e');
+    // Goblet cell occasionally
+    if (i % 3 === 1) {
+      ctx.fillStyle = 'rgba(170,130,200,0.5)';
+      ctx.beginPath();
+      ctx.ellipse(x + cellW/2, bmY - cellH/2 - 5, cellW/2 - 6, 18, 0, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+  // Microvilli at top
+  ctx.strokeStyle = '#7a9dbe'; ctx.lineWidth = 0.7;
+  for (let x = 5; x < W; x += 4) {
+    ctx.beginPath(); ctx.moveTo(x, bmY - cellH); ctx.lineTo(x, bmY - cellH - 8); ctx.stroke();
+  }
+  for (let i = 0; i < 20; i++) {
+    const x = rand(10, W-10), y = rand(bmY+15, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,6), 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Simple Columnar Epithelium', W/2, 18);
+}
+
+function drawStratifiedSquamous(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.75;
+  drawBasementMembrane(ctx, bmY, W);
+  // Multiple layers
+  const layers = 5;
+  const layerH = (bmY - 30) / layers;
+  for (let layer = 0; layer < layers; layer++) {
+    const y = 30 + layer * layerH;
+    const cellCount = 7 + layer;
+    const cellW = W / cellCount;
+    const h = layer < 2 ? 8 : layerH * 0.8;
+    for (let i = 0; i < cellCount; i++) {
+      const x = i * cellW + rand(-2, 2);
+      const alpha = 0.3 + (layer / layers) * 0.2;
+      ctx.fillStyle = `rgba(219,175,210,${alpha})`;
+      if (layer < 2) {
+        // Flattened squamous at surface
+        ctx.fillRect(x + 1, y, cellW - 2, h);
+        ctx.strokeStyle = '#9b5890'; ctx.lineWidth = 0.5;
+        ctx.strokeRect(x + 1, y, cellW - 2, h);
+        drawNucleus(ctx, x + cellW/2, y + h/2, 6, 3, '#5b2d8e');
+      } else {
+        // Rounder cells deeper
+        ctx.fillRect(x + 1, y, cellW - 2, layerH - 3);
+        ctx.strokeStyle = '#9b5890'; ctx.lineWidth = 0.5;
+        ctx.strokeRect(x + 1, y, cellW - 2, layerH - 3);
+        drawNucleus(ctx, x + cellW/2, y + layerH/2, 5, 5, '#5b2d8e');
+      }
+    }
+  }
+  for (let i = 0; i < 15; i++) {
+    const x = rand(10, W-10), y = rand(bmY+12, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,6), 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Stratified Squamous Epithelium', W/2, 18);
+}
+
+function drawStratifiedCuboidal(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.65;
+  drawBasementMembrane(ctx, bmY, W);
+  // Two layers of cuboidal cells
+  const cellW = W / 7, cellH = 32;
+  for (let layer = 0; layer < 2; layer++) {
+    const y = bmY - cellH * (layer + 1);
+    for (let i = 0; i < 7; i++) {
+      const x = i * cellW + (layer % 2 ? cellW/4 : 0);
+      ctx.fillStyle = layer === 0 ? 'rgba(180,210,230,0.45)' : 'rgba(200,220,235,0.35)';
+      ctx.fillRect(x + 2, y + 2, cellW - 4, cellH - 4);
+      ctx.strokeStyle = '#5a8aae'; ctx.lineWidth = 0.8;
+      ctx.strokeRect(x + 2, y + 2, cellW - 4, cellH - 4);
+      drawNucleus(ctx, x + cellW/2, y + cellH/2, 6, 6, '#2d5a8e');
+    }
+  }
+  for (let i = 0; i < 15; i++) {
+    const x = rand(10, W-10), y = rand(bmY+15, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,6), 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Stratified Cuboidal Epithelium', W/2, 18);
+}
+
+function drawStratifiedColumnar(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.75;
+  drawBasementMembrane(ctx, bmY, W);
+  const cellW = W / 7;
+  // Bottom layer: shorter cuboidal
+  for (let i = 0; i < 8; i++) {
+    const x = i * cellW;
+    ctx.fillStyle = 'rgba(200,220,240,0.35)';
+    ctx.fillRect(x + 1, bmY - 30, cellW - 2, 28);
+    ctx.strokeStyle = '#5a7dae'; ctx.lineWidth = 0.5;
+    ctx.strokeRect(x + 1, bmY - 30, cellW - 2, 28);
+    drawNucleus(ctx, x + cellW/2, bmY - 16, 4, 4, '#2d4a8e');
+  }
+  // Top layer: tall columnar
+  for (let i = 0; i < 7; i++) {
+    const x = i * cellW + cellW/4;
+    ctx.fillStyle = 'rgba(200,220,240,0.4)';
+    ctx.fillRect(x + 1, bmY - 80, cellW - 2, 50);
+    ctx.strokeStyle = '#5a7dae'; ctx.lineWidth = 0.7;
+    ctx.strokeRect(x + 1, bmY - 80, cellW - 2, 50);
+    drawNucleus(ctx, x + cellW/2, bmY - 55, 5, 7, '#2d4a8e');
+  }
+  for (let i = 0; i < 15; i++) {
+    const x = rand(10, W-10), y = rand(bmY+15, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,6), 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Stratified Columnar Epithelium', W/2, 18);
+}
+
+function drawPseudostratified(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.72;
+  drawBasementMembrane(ctx, bmY, W);
+  const cellCount = 12;
+  const cellW = W / cellCount;
+  for (let i = 0; i < cellCount; i++) {
+    const x = i * cellW;
+    const h = rand(45, 75);
+    ctx.fillStyle = 'rgba(200,210,230,0.35)';
+    ctx.fillRect(x + 1, bmY - h, cellW - 2, h - 2);
+    ctx.strokeStyle = '#5a7dae'; ctx.lineWidth = 0.5;
+    ctx.strokeRect(x + 1, bmY - h, cellW - 2, h - 2);
+    // Nuclei at varying heights (key feature)
+    const nucY = bmY - rand(15, h - 10);
+    drawNucleus(ctx, x + cellW/2, nucY, 4, 5, '#2d4a8e');
+  }
+  // Cilia on top
+  ctx.strokeStyle = '#6a8dae'; ctx.lineWidth = 0.8;
+  for (let x = 3; x < W; x += 5) {
+    const h = rand(8, 14);
+    ctx.beginPath();
+    ctx.moveTo(x, bmY - 75);
+    ctx.quadraticCurveTo(x + 3, bmY - 75 - h, x + 1, bmY - 75 - h - 4);
+    ctx.stroke();
+  }
+  for (let i = 0; i < 15; i++) {
+    const x = rand(10, W-10), y = rand(bmY+15, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,6), 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Pseudostratified Columnar Epithelium', W/2, 18);
+}
+
+function drawTransitional(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const bmY = H * 0.72;
+  drawBasementMembrane(ctx, bmY, W);
+  // Multiple layers with dome-shaped surface cells
+  const layers = 4;
+  const layerH = 18;
+  for (let layer = 0; layer < layers; layer++) {
+    const y = bmY - (layer + 1) * layerH;
+    const cellCount = 6 + (layers - layer);
+    const cellW = W / cellCount;
+    for (let i = 0; i < cellCount; i++) {
+      const x = i * cellW + rand(-2, 2);
+      if (layer === layers - 1) {
+        // Surface cells: large, dome-shaped
+        ctx.fillStyle = 'rgba(220,190,210,0.5)';
+        ctx.beginPath();
+        ctx.ellipse(x + cellW/2, y + layerH/2, cellW/2 - 2, layerH/2 + 4, 0, 0, Math.PI*2);
+        ctx.fill();
+        ctx.strokeStyle = '#9b5890'; ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.ellipse(x + cellW/2, y + layerH/2, cellW/2 - 2, layerH/2 + 4, 0, 0, Math.PI*2);
+        ctx.stroke();
+        // Binucleate sometimes
+        if (i % 2 === 0) {
+          drawNucleus(ctx, x + cellW/2 - 4, y + layerH/2, 3, 3, '#5b2d8e');
+          drawNucleus(ctx, x + cellW/2 + 4, y + layerH/2, 3, 3, '#5b2d8e');
+        } else {
+          drawNucleus(ctx, x + cellW/2, y + layerH/2, 4, 4, '#5b2d8e');
+        }
+      } else {
+        ctx.fillStyle = `rgba(200,180,210,${0.3 + layer * 0.05})`;
+        ctx.fillRect(x + 1, y, cellW - 2, layerH - 2);
+        ctx.strokeStyle = '#9b5890'; ctx.lineWidth = 0.5;
+        ctx.strokeRect(x + 1, y, cellW - 2, layerH - 2);
+        drawNucleus(ctx, x + cellW/2, y + layerH/2, 4, 4, '#5b2d8e');
+      }
+    }
+  }
+  for (let i = 0; i < 15; i++) {
+    const x = rand(10, W-10), y = rand(bmY+15, H-10);
+    ctx.fillStyle = 'rgba(180,140,100,0.2)';
+    ctx.beginPath(); ctx.arc(x, y, rand(3,6), 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Transitional Epithelium', W/2, 18);
+}
+
+// CONNECTIVE TISSUE DRAWINGS
+function drawAreolar(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Loose fibers
+  ctx.strokeStyle = 'rgba(180,140,100,0.6)'; ctx.lineWidth = 1.5;
+  for (let i = 0; i < 15; i++) {
+    ctx.beginPath();
+    const x1 = rand(10, W-10), y1 = rand(30, H-10);
+    ctx.moveTo(x1, y1);
+    ctx.bezierCurveTo(x1+rand(-60,60), y1+rand(-40,40), x1+rand(-60,60), y1+rand(-40,40), x1+rand(-80,80), y1+rand(-30,30));
+    ctx.stroke();
+  }
+  // Elastic fibers (darker, thinner)
+  ctx.strokeStyle = 'rgba(80,60,120,0.4)'; ctx.lineWidth = 0.8;
+  for (let i = 0; i < 8; i++) {
+    ctx.beginPath();
+    const x1 = rand(10, W-10), y1 = rand(30, H-10);
+    ctx.moveTo(x1, y1);
+    ctx.bezierCurveTo(x1+rand(-50,50), y1+rand(-30,30), x1+rand(-50,50), y1+rand(-30,30), x1+rand(-70,70), y1+rand(-25,25));
+    ctx.stroke();
+  }
+  // Fibroblasts
+  for (let i = 0; i < 8; i++) {
+    const x = rand(30, W-30), y = rand(40, H-20);
+    ctx.fillStyle = 'rgba(200,180,160,0.5)';
+    ctx.beginPath(); ctx.ellipse(x, y, 12, 6, rand(0,3), 0, Math.PI*2); ctx.fill();
+    drawNucleus(ctx, x, y, 5, 4, '#4a3a2a');
+  }
+  // Mast cells
+  for (let i = 0; i < 3; i++) {
+    const x = rand(30, W-30), y = rand(40, H-20);
+    ctx.fillStyle = 'rgba(200,100,150,0.4)';
+    ctx.beginPath(); ctx.arc(x, y, 8, 0, Math.PI*2); ctx.fill();
+    // Granules
+    for (let g = 0; g < 6; g++) {
+      ctx.fillStyle = 'rgba(180,60,120,0.6)';
+      ctx.beginPath(); ctx.arc(x + rand(-5,5), y + rand(-5,5), 1.5, 0, Math.PI*2); ctx.fill();
+    }
+    drawNucleus(ctx, x, y, 3, 3, '#6a2050');
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Areolar Connective Tissue', W/2, 18);
+}
+
+function drawAdipose(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Fat cells - large white spaces with thin rim of cytoplasm
+  const cells = [];
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 5; c++) {
+      cells.push({ x: c * W/5 + W/10 + rand(-8,8), y: r * H/4 + H/8 + rand(-8,8), radius: rand(22, 32) });
+    }
+  }
+  cells.forEach(cell => {
+    // Lipid droplet (white)
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.radius, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#d4a574'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.radius, 0, Math.PI*2); ctx.stroke();
+    // Nucleus pushed to edge
+    drawNucleus(ctx, cell.x + cell.radius * 0.7, cell.y - cell.radius * 0.5, 4, 3, '#4a3a2a');
+  });
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Adipose Tissue', W/2, 18);
+}
+
+function drawReticular(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Reticular fiber network
+  ctx.strokeStyle = 'rgba(60,60,60,0.5)'; ctx.lineWidth = 1;
+  for (let i = 0; i < 30; i++) {
+    ctx.beginPath();
+    const x1 = rand(5, W-5), y1 = rand(25, H-5);
+    const x2 = x1 + rand(-60,60), y2 = y1 + rand(-50,50);
+    ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  }
+  // Reticular cells
+  for (let i = 0; i < 10; i++) {
+    const x = rand(30, W-30), y = rand(40, H-20);
+    ctx.fillStyle = 'rgba(180,190,200,0.4)';
+    ctx.beginPath(); ctx.ellipse(x, y, 10, 7, rand(0,3), 0, Math.PI*2); ctx.fill();
+    drawNucleus(ctx, x, y, 4, 3, '#2a3a5a');
+  }
+  // White blood cells
+  for (let i = 0; i < 6; i++) {
+    const x = rand(30, W-30), y = rand(40, H-20);
+    ctx.fillStyle = 'rgba(160,180,220,0.4)';
+    ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI*2); ctx.fill();
+    drawNucleus(ctx, x, y, 4, 3, '#1a2a5e');
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Reticular Connective Tissue', W/2, 18);
+}
+
+function drawDenseRegular(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Parallel collagen bundles
+  for (let y = 25; y < H - 5; y += 12) {
+    ctx.strokeStyle = `rgba(200,170,130,${0.3 + Math.random()*0.3})`; ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    for (let x = 0; x < W; x += 20) {
+      ctx.lineTo(x, y + rand(-2, 2));
+    }
+    ctx.stroke();
+  }
+  // Fibroblast nuclei between fibers
+  for (let i = 0; i < 12; i++) {
+    const x = rand(20, W-20), y = rand(30, H-15);
+    drawNucleus(ctx, x, y, 8, 3, '#3a2a1a');
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Dense Regular Connective Tissue', W/2, 18);
+}
+
+function drawDenseIrregular(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Collagen fibers in many directions
+  for (let i = 0; i < 35; i++) {
+    const angle = Math.random() * Math.PI;
+    const cx = rand(20, W-20), cy = rand(30, H-10);
+    const len = rand(40, 100);
+    ctx.strokeStyle = `rgba(200,170,130,${0.3 + Math.random()*0.3})`; ctx.lineWidth = rand(3,7);
+    ctx.beginPath();
+    ctx.moveTo(cx - Math.cos(angle)*len/2, cy - Math.sin(angle)*len/2);
+    ctx.lineTo(cx + Math.cos(angle)*len/2, cy + Math.sin(angle)*len/2);
+    ctx.stroke();
+  }
+  for (let i = 0; i < 8; i++) {
+    const x = rand(20, W-20), y = rand(30, H-15);
+    drawNucleus(ctx, x, y, 6, 4, '#3a2a1a');
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Dense Irregular Connective Tissue', W/2, 18);
+}
+
+function drawHyalineCartilage(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Glassy matrix
+  ctx.fillStyle = 'rgba(180,210,230,0.25)'; ctx.fillRect(0, 20, W, H-20);
+  // Chondrocytes in lacunae
+  const positions = [[W*0.2,H*0.3],[W*0.5,H*0.25],[W*0.75,H*0.35],[W*0.3,H*0.55],[W*0.6,H*0.5],[W*0.8,H*0.6],[W*0.15,H*0.75],[W*0.45,H*0.7],[W*0.7,H*0.8]];
+  positions.forEach(([cx,cy]) => {
+    // Lacuna
+    ctx.fillStyle = 'rgba(220,235,245,0.6)';
+    ctx.beginPath(); ctx.ellipse(cx, cy, 18, 14, 0, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#7aaabe'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.ellipse(cx, cy, 18, 14, 0, 0, Math.PI*2); ctx.stroke();
+    // Chondrocyte
+    ctx.fillStyle = 'rgba(160,190,220,0.6)';
+    ctx.beginPath(); ctx.ellipse(cx, cy, 12, 9, 0, 0, Math.PI*2); ctx.fill();
+    drawNucleus(ctx, cx, cy, 5, 4, '#2a4a7e');
+  });
+  // Perichondrium at top
+  ctx.fillStyle = 'rgba(200,180,160,0.3)';
+  ctx.fillRect(0, 20, W, 15);
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Hyaline Cartilage', W/2, 18);
+}
+
+function drawElasticCartilage(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  ctx.fillStyle = 'rgba(200,190,220,0.2)'; ctx.fillRect(0, 20, W, H-20);
+  // Elastic fibers (dark, branching)
+  ctx.strokeStyle = 'rgba(80,50,100,0.3)'; ctx.lineWidth = 0.8;
+  for (let i = 0; i < 40; i++) {
+    ctx.beginPath();
+    const x1 = rand(5, W-5), y1 = rand(25, H-5);
+    ctx.moveTo(x1, y1);
+    ctx.bezierCurveTo(x1+rand(-30,30), y1+rand(-20,20), x1+rand(-30,30), y1+rand(-20,20), x1+rand(-40,40), y1+rand(-30,30));
+    ctx.stroke();
+  }
+  // Chondrocytes
+  const positions = [[W*0.25,H*0.35],[W*0.55,H*0.3],[W*0.8,H*0.4],[W*0.2,H*0.6],[W*0.5,H*0.65],[W*0.75,H*0.55],[W*0.35,H*0.8]];
+  positions.forEach(([cx,cy]) => {
+    ctx.fillStyle = 'rgba(210,200,230,0.5)';
+    ctx.beginPath(); ctx.ellipse(cx, cy, 15, 12, 0, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#7a6aae'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.ellipse(cx, cy, 15, 12, 0, 0, Math.PI*2); ctx.stroke();
+    ctx.fillStyle = 'rgba(180,170,210,0.5)';
+    ctx.beginPath(); ctx.ellipse(cx, cy, 10, 8, 0, 0, Math.PI*2); ctx.fill();
+    drawNucleus(ctx, cx, cy, 4, 3, '#3a2a6e');
+  });
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Elastic Cartilage', W/2, 18);
+}
+
+function drawFibrocartilage(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Heavy collagen bundles
+  for (let y = 22; y < H - 5; y += 16) {
+    ctx.strokeStyle = `rgba(200,170,130,${0.25 + Math.random()*0.2})`; ctx.lineWidth = 12;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    for (let x = 0; x < W; x += 25) ctx.lineTo(x, y + rand(-3, 3));
+    ctx.stroke();
+  }
+  // Chondrocytes in rows
+  const positions = [[W*0.2,H*0.3],[W*0.5,H*0.28],[W*0.8,H*0.32],[W*0.15,H*0.55],[W*0.45,H*0.58],[W*0.75,H*0.53],[W*0.3,H*0.78],[W*0.65,H*0.8]];
+  positions.forEach(([cx,cy]) => {
+    ctx.fillStyle = 'rgba(200,215,235,0.5)';
+    ctx.beginPath(); ctx.ellipse(cx, cy, 12, 10, 0, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#7a9abe'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.ellipse(cx, cy, 12, 10, 0, 0, Math.PI*2); ctx.stroke();
+    drawNucleus(ctx, cx, cy, 4, 3, '#2a4a7e');
+  });
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Fibrocartilage', W/2, 18);
+}
+
+function drawCompactBone(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  ctx.fillStyle = 'rgba(220,210,190,0.3)'; ctx.fillRect(0, 20, W, H-20);
+  // Osteons (Haversian systems)
+  const osteons = [[W*0.3, H*0.4, 55],[W*0.7, H*0.35, 50],[W*0.5, H*0.7, 48]];
+  osteons.forEach(([cx,cy,r]) => {
+    // Concentric lamellae
+    for (let ring = r; ring > 5; ring -= 10) {
+      ctx.strokeStyle = `rgba(170,150,120,${0.3 + (r-ring)/r*0.3})`; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, ring, 0, Math.PI*2); ctx.stroke();
+    }
+    // Central canal
+    ctx.fillStyle = 'rgba(255,200,200,0.3)';
+    ctx.beginPath(); ctx.arc(cx, cy, 8, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#8a5a5a'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx, cy, 8, 0, Math.PI*2); ctx.stroke();
+    // Lacunae with osteocytes
+    for (let a = 0; a < Math.PI*2; a += Math.PI/4) {
+      for (let ring = 18; ring < r; ring += 14) {
+        const lx = cx + Math.cos(a + ring*0.05) * ring;
+        const ly = cy + Math.sin(a + ring*0.05) * ring;
+        ctx.fillStyle = '#2a2a2a';
+        ctx.beginPath(); ctx.ellipse(lx, ly, 4, 2.5, a, 0, Math.PI*2); ctx.fill();
+        // Canaliculi
+        ctx.strokeStyle = 'rgba(40,40,40,0.3)'; ctx.lineWidth = 0.5;
+        for (let ca = 0; ca < Math.PI*2; ca += Math.PI/3) {
+          ctx.beginPath();
+          ctx.moveTo(lx, ly);
+          ctx.lineTo(lx + Math.cos(ca)*8, ly + Math.sin(ca)*8);
+          ctx.stroke();
+        }
+      }
+    }
+  });
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Compact (Cortical) Bone', W/2, 18);
+}
+
+function drawSpongyBone(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Trabeculae (bony spicules)
+  const spicules = [
+    [20,60,W*0.4,H*0.3], [W*0.3,30,W*0.7,H*0.35], [W*0.5,H*0.3,W*0.9,H*0.5],
+    [10,H*0.5,W*0.35,H*0.65], [W*0.25,H*0.55,W*0.6,H*0.7], [W*0.5,H*0.6,W-10,H*0.75],
+    [30,H*0.7,W*0.4,H*0.9], [W*0.35,H*0.8,W*0.7,H-10]
+  ];
+  spicules.forEach(([x1,y1,x2,y2]) => {
+    ctx.strokeStyle = 'rgba(200,180,150,0.6)'; ctx.lineWidth = rand(10,18);
+    ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+    // Osteocytes
+    const mx = (x1+x2)/2, my = (y1+y2)/2;
+    ctx.fillStyle = '#3a3020';
+    ctx.beginPath(); ctx.ellipse(mx, my, 3, 2, 0, 0, Math.PI*2); ctx.fill();
+  });
+  // Marrow spaces (red)
+  ctx.fillStyle = 'rgba(220,160,160,0.15)';
+  ctx.fillRect(0, 20, W, H-20);
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Spongy (Cancellous) Bone', W/2, 18);
+}
+
+function drawBlood(ctx) {
+  const W = ctx.W, H = ctx.H;
+  // Plasma background
+  ctx.fillStyle = '#fef5e5'; ctx.fillRect(0, 0, W, H);
+  // Red blood cells (biconcave discs shown as circles)
+  for (let i = 0; i < 45; i++) {
+    const x = rand(15, W-15), y = rand(30, H-15);
+    const r = rand(8, 11);
+    ctx.fillStyle = 'rgba(210,60,50,0.5)';
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = 'rgba(180,40,30,0.5)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.stroke();
+    // Central pallor
+    ctx.fillStyle = 'rgba(230,120,100,0.4)';
+    ctx.beginPath(); ctx.arc(x, y, r*0.4, 0, Math.PI*2); ctx.fill();
+  }
+  // White blood cells
+  for (let i = 0; i < 3; i++) {
+    const x = rand(25, W-25), y = rand(35, H-20);
+    ctx.fillStyle = 'rgba(200,200,230,0.6)';
+    ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#8080b0'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI*2); ctx.stroke();
+    // Multi-lobed nucleus
+    for (let l = 0; l < 3; l++) {
+      drawNucleus(ctx, x + (l-1)*6, y + rand(-3,3), 5, 4, '#2a2a6e');
+    }
+  }
+  // Platelets
+  for (let i = 0; i < 8; i++) {
+    const x = rand(10, W-10), y = rand(30, H-10);
+    ctx.fillStyle = 'rgba(180,140,200,0.5)';
+    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Blood', W/2, 18);
+}
+
+// MUSCLE TISSUE DRAWINGS
+function drawSkeletalMuscle(ctx, contractPhase) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const phase = contractPhase || 0;
+  const fiberCount = 5;
+  const fiberH = (H - 30) / fiberCount;
+  for (let f = 0; f < fiberCount; f++) {
+    const y = 25 + f * fiberH;
+    // Fiber outline
+    ctx.fillStyle = 'rgba(220,180,180,0.3)';
+    ctx.fillRect(5, y + 2, W - 10, fiberH - 6);
+    ctx.strokeStyle = '#b08080'; ctx.lineWidth = 1;
+    ctx.strokeRect(5, y + 2, W - 10, fiberH - 6);
+    // Striations
+    const stripeW = 12 - phase * 3;
+    for (let x = 8; x < W - 8; x += stripeW) {
+      ctx.fillStyle = (Math.floor(x / stripeW) % 2 === 0) ? 'rgba(150,80,80,0.3)' : 'rgba(200,160,160,0.15)';
+      ctx.fillRect(x, y + 3, stripeW / 2, fiberH - 8);
+    }
+    // Multiple peripheral nuclei
+    for (let n = 0; n < 3; n++) {
+      const nx = rand(30, W - 30);
+      drawNucleus(ctx, nx, y + 5, 7, 3, '#4a2040');
+    }
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Skeletal Muscle', W/2, 16);
+}
+
+function drawCardiacMuscle(ctx, contractPhase) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const phase = contractPhase || 0;
+  // Branching fibers
+  const fibers = [
+    {y: H*0.2, branch: H*0.15}, {y: H*0.4, branch: H*0.35},
+    {y: H*0.6, branch: H*0.55}, {y: H*0.8, branch: H*0.75}
+  ];
+  fibers.forEach((fib, fi) => {
+    const fiberH = 22;
+    ctx.fillStyle = 'rgba(220,180,190,0.35)';
+    ctx.fillRect(5, fib.y, W - 10, fiberH);
+    // Striations
+    const stripeW = 10 - phase * 2;
+    for (let x = 8; x < W - 8; x += stripeW) {
+      ctx.fillStyle = (Math.floor(x / stripeW) % 2 === 0) ? 'rgba(160,80,100,0.25)' : 'rgba(210,170,180,0.1)';
+      ctx.fillRect(x, fib.y + 1, stripeW / 2, fiberH - 2);
+    }
+    // Branch
+    if (fi < 3) {
+      const bx = W * (0.3 + fi * 0.2);
+      ctx.fillStyle = 'rgba(220,180,190,0.3)';
+      ctx.beginPath();
+      ctx.moveTo(bx, fib.y + fiberH);
+      ctx.lineTo(bx - 12, fib.y + fiberH + 30);
+      ctx.lineTo(bx + 12, fib.y + fiberH + 30);
+      ctx.closePath(); ctx.fill();
+    }
+    // Intercalated discs
+    for (let x = 50; x < W - 20; x += rand(60, 90)) {
+      ctx.strokeStyle = '#6a3050'; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(x, fib.y); ctx.lineTo(x, fib.y + fiberH); ctx.stroke();
+      // Steps in the disc
+      ctx.beginPath(); ctx.moveTo(x-2, fib.y + fiberH/3); ctx.lineTo(x+2, fib.y + fiberH/3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x-2, fib.y + 2*fiberH/3); ctx.lineTo(x+2, fib.y + 2*fiberH/3); ctx.stroke();
+    }
+    // Central single nucleus
+    drawNucleus(ctx, W/2 + rand(-20,20), fib.y + fiberH/2, 6, 4, '#4a2040');
+  });
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Cardiac Muscle', W/2, 14);
+}
+
+function drawSmoothMuscle(ctx, contractPhase) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  const phase = contractPhase || 0;
+  // Spindle-shaped cells
+  for (let row = 0; row < 5; row++) {
+    for (let col = 0; col < 4; col++) {
+      const cx = col * W/4 + W/8 + rand(-10,10);
+      const cy = row * (H-30)/5 + (H-30)/10 + 25 + rand(-5,5);
+      const rw = 30 - phase * 8;
+      const rh = 10 + phase * 3;
+      ctx.fillStyle = 'rgba(200,210,220,0.4)';
+      ctx.beginPath(); ctx.ellipse(cx, cy, rw, rh, 0, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle = '#7a8a9a'; ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.ellipse(cx, cy, rw, rh, 0, 0, Math.PI*2); ctx.stroke();
+      // Central elongated nucleus
+      drawNucleus(ctx, cx, cy, 8 - phase*2, 3, '#2a3a5a');
+    }
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Smooth Muscle', W/2, 16);
+}
+
+// NERVOUS TISSUE DRAWING
+function drawNervousTissue(ctx) {
+  const W = ctx.W, H = ctx.H;
+  drawMicroscopeBackground(ctx);
+  // Neuron cell bodies and processes
+  const neurons = [[W*0.3, H*0.4],[W*0.65, H*0.35],[W*0.5, H*0.7]];
+  neurons.forEach(([cx, cy]) => {
+    // Cell body (soma)
+    ctx.fillStyle = 'rgba(200,180,220,0.5)';
+    ctx.beginPath(); ctx.arc(cx, cy, 20, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#6a5a8a'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(cx, cy, 20, 0, Math.PI*2); ctx.stroke();
+    drawNucleus(ctx, cx, cy, 8, 8, '#3a2a6e');
+    // Dendrites
+    for (let d = 0; d < 5; d++) {
+      const angle = (d / 5) * Math.PI * 2 + rand(0,1) * 0.3;
+      if (d === 0) continue; // skip one for axon
+      ctx.strokeStyle = '#7a6a9a'; ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(angle)*20, cy + Math.sin(angle)*20);
+      const ex = cx + Math.cos(angle)*55;
+      const ey = cy + Math.sin(angle)*55;
+      ctx.bezierCurveTo(
+        cx + Math.cos(angle)*35 + rand(-10,10), cy + Math.sin(angle)*35 + rand(-10,10),
+        ex + rand(-8,8), ey + rand(-8,8), ex, ey
+      );
+      ctx.stroke();
+      // Branches
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.moveTo(ex, ey);
+      ctx.lineTo(ex + rand(-15,15), ey + rand(-15,15));
+      ctx.stroke();
+    }
+    // Axon (longer)
+    const axAngle = Math.PI * 0.5;
+    ctx.strokeStyle = '#5a4a7a'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(axAngle)*20, cy + Math.sin(axAngle)*20);
+    ctx.lineTo(cx + Math.cos(axAngle)*80, cy + Math.sin(axAngle)*80);
+    ctx.stroke();
+  });
+  // Glial cells (smaller, supporting)
+  for (let i = 0; i < 8; i++) {
+    const x = rand(20, W-20), y = rand(30, H-15);
+    ctx.fillStyle = 'rgba(180,200,190,0.3)';
+    ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI*2); ctx.fill();
+    drawNucleus(ctx, x, y, 3, 3, '#2a4a3a');
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Nervous Tissue', W/2, 18);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: TISSUE TYPE EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+const tissueTypes = [
+  {
+    name: 'Epithelial Tissue',
+    features: 'Tightly packed cells, minimal extracellular matrix, avascular, basement membrane attachment, high regeneration rate',
+    functions: 'Protection, absorption, secretion, filtration, sensory reception',
+    locations: 'Skin surface, lining of digestive tract, respiratory passages, blood vessels, glands',
+    stat1: '~8%', stat1Label: 'Body Weight', stat2: '~2m\u00B2', stat2Label: 'Skin Coverage',
+    draw: drawSimpleColumnar
+  },
+  {
+    name: 'Connective Tissue',
+    features: 'Abundant extracellular matrix (fibers + ground substance), cells widely spaced, vascular (except cartilage), diverse cell types',
+    functions: 'Support, protection, binding, insulation, transport (blood), energy storage (fat)',
+    locations: 'Tendons, ligaments, bone, cartilage, blood, fat deposits, dermis of skin',
+    stat1: '~45%', stat1Label: 'Body Weight', stat2: '206', stat2Label: 'Bones in Body',
+    draw: drawAreolar
+  },
+  {
+    name: 'Muscle Tissue',
+    features: 'Elongated cells (fibers), contractile proteins (actin/myosin), high energy demand, highly vascular',
+    functions: 'Body movement, posture, joint stabilization, heat generation, propulsion of substances',
+    locations: 'Skeletal muscles, heart wall, walls of hollow organs (stomach, intestines, bladder, blood vessels)',
+    stat1: '~40%', stat1Label: 'Body Weight', stat2: '~600', stat2Label: 'Muscles in Body',
+    draw: (ctx) => drawSkeletalMuscle(ctx, 0)
+  },
+  {
+    name: 'Nervous Tissue',
+    features: 'Neurons (signal transmission) and neuroglia (support cells), long cellular extensions, electrochemical signaling',
+    functions: 'Detect stimuli, generate/transmit nerve impulses, integrate information, coordinate body functions',
+    locations: 'Brain, spinal cord, peripheral nerves, ganglia, sensory receptors',
+    stat1: '~2%', stat1Label: 'Body Weight', stat2: '~86B', stat2Label: 'Neurons in Brain',
+    draw: drawNervousTissue
+  }
+];
+
+function selectTissueType(idx) {
+  const cards = document.querySelectorAll('#tissue-cards .tissue-card');
+  cards.forEach((c, i) => c.classList.toggle('active', i === idx));
+  const t = tissueTypes[idx];
+  $('tissue-view-title').textContent = 'Microscope View: ' + t.name;
+  $('tissue-detail-name').textContent = t.name;
+  $('tissue-detail-features').textContent = t.features;
+  $('tissue-detail-function').textContent = t.functions;
+  $('tissue-detail-location').textContent = t.locations;
+  $('tissue-stat1').textContent = t.stat1;
+  $('tissue-stat1-label').textContent = t.stat1Label;
+  $('tissue-stat2').textContent = t.stat2;
+  $('tissue-stat2-label').textContent = t.stat2Label;
+  const ctx = getCtx('tissue-canvas');
+  t.draw(ctx);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: EPITHELIAL CLASSIFICATION
+// ══════════════════════════════════════════════════════════════════════════
+const epiTypes = [
+  // [layer, shape] => data
+  // Simple (0): squamous(0), cuboidal(1), columnar(2)
+  // Stratified (1): squamous(0), cuboidal(1), columnar(2)
+  // Pseudo (2,0), Transitional (3,0)
+];
+
+const epiData = {
+  '0,0': { name: 'Simple Squamous', location: 'Air sacs of lungs (alveoli), lining of heart, blood and lymphatic vessels (endothelium), serous membranes (mesothelium)', func: 'Allows diffusion and filtration; secretes lubricating serous fluid', feature: 'Single layer of flat, scale-like cells; allows rapid passage of substances', draw: drawSimpleSquamous },
+  '0,1': { name: 'Simple Cuboidal', location: 'Kidney tubules, ducts of small glands, ovary surface', func: 'Secretion and absorption', feature: 'Single layer of cube-shaped cells with centrally placed round nuclei', draw: drawSimpleCuboidal },
+  '0,2': { name: 'Simple Columnar', location: 'Lines most of digestive tract (stomach to anal canal), gallbladder, uterine tubes', func: 'Absorption, secretion of mucus, enzymes, and other substances; ciliated types propel mucus or reproductive cells', feature: 'Single layer of tall cells with oval nuclei near base; may have microvilli or cilia; often contains goblet cells', draw: drawSimpleColumnar },
+  '1,0': { name: 'Stratified Squamous', location: 'Lines esophagus, mouth, vagina; forms epidermis of skin (keratinized)', func: 'Protects underlying tissues in areas subjected to abrasion', feature: 'Multiple layers; surface cells are flat (squamous); deepest cells are cuboidal or columnar and actively dividing', draw: drawStratifiedSquamous },
+  '1,1': { name: 'Stratified Cuboidal', location: 'Largest ducts of sweat glands, mammary glands, salivary glands', func: 'Protection', feature: 'Typically two layers of cuboidal cells; relatively rare tissue type', draw: drawStratifiedCuboidal },
+  '1,2': { name: 'Stratified Columnar', location: 'Small areas of pharynx, male urethra, lining of some glandular ducts', func: 'Protection and secretion', feature: 'Several cell layers; only surface cells are columnar; rare tissue type', draw: drawStratifiedColumnar },
+  '2,0': { name: 'Pseudostratified Columnar', location: 'Lines most of upper respiratory tract (trachea, bronchi); portions of male reproductive tract', func: 'Secretion of mucus; propulsion of mucus by ciliary action', feature: 'Single layer but appears stratified because nuclei are at different heights; all cells touch basement membrane; often ciliated with goblet cells', draw: drawPseudostratified },
+  '3,0': { name: 'Transitional', location: 'Lines ureters, urinary bladder, part of urethra', func: 'Stretches to permit distension of urinary organs', feature: 'Multiple layers; surface cells change shape (dome to flat) when organ stretches; cells may be binucleate', draw: drawTransitional }
+};
+
+let epiQuizActive = false;
+
+function selectEpiType(layer, shape) {
+  const key = layer + ',' + shape;
+  const d = epiData[key];
+  if (!d) return;
+  // Update matrix active states
+  document.querySelectorAll('.matrix-body').forEach(c => c.classList.remove('active'));
+  if (layer <= 1 && shape <= 2) {
+    const cells = document.querySelectorAll('.matrix-body');
+    const idx = layer * 3 + shape;
+    if (cells[idx]) cells[idx].classList.add('active');
+  }
+  $('epi-view-title').textContent = d.name;
+  $('epi-detail-name').textContent = d.name;
+  $('epi-detail-location').textContent = d.location;
+  $('epi-detail-function').textContent = d.func;
+  $('epi-detail-feature').textContent = d.feature;
+  const ctx = getCtx('epi-canvas');
+  d.draw(ctx);
+}
+
+function startEpiQuiz() {
+  epiQuizActive = true;
+  showEpiQuizQuestion();
+}
+
+function showEpiQuizQuestion() {
+  const keys = Object.keys(epiData);
+  const correctKey = keys[rand(0, keys.length - 1)];
+  const correct = epiData[correctKey];
+  // Draw the tissue
+  const ctx = getCtx('epi-canvas');
+  correct.draw(ctx);
+  $('epi-view-title').textContent = 'Identify this tissue';
+  // Build options
+  const options = [correct.name];
+  while (options.length < 4) {
+    const rk = keys[rand(0, keys.length - 1)];
+    const name = epiData[rk].name;
+    if (!options.includes(name)) options.push(name);
+  }
+  // Shuffle
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = rand(0, i);
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  let html = '';
+  options.forEach(opt => {
+    html += `<button class="quiz-option" onclick="checkEpiAnswer(this, '${opt}', '${correct.name}')">${opt}</button>`;
+  });
+  $('epi-quiz-area').innerHTML = html;
+  $('epi-detail-name').textContent = '???';
+  $('epi-detail-location').textContent = 'Identify the tissue to reveal';
+  $('epi-detail-function').textContent = 'Identify the tissue to reveal';
+  $('epi-detail-feature').textContent = 'Identify the tissue to reveal';
+}
+
+function checkEpiAnswer(btn, selected, correct) {
+  const buttons = document.querySelectorAll('#epi-quiz-area .quiz-option');
+  buttons.forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correct) b.classList.add('correct');
+    if (b.textContent === selected && selected !== correct) b.classList.add('incorrect');
+  });
+  // Reveal details
+  const entry = Object.values(epiData).find(d => d.name === correct);
+  if (entry) {
+    $('epi-detail-name').textContent = entry.name;
+    $('epi-detail-location').textContent = entry.location;
+    $('epi-detail-function').textContent = entry.func;
+    $('epi-detail-feature').textContent = entry.feature;
+  }
+  // Add next button
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'btn btn-primary btn-sm';
+  nextBtn.style.marginTop = '10px';
+  nextBtn.textContent = 'Next Question';
+  nextBtn.onclick = showEpiQuizQuestion;
+  $('epi-quiz-area').appendChild(nextBtn);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: CONNECTIVE TISSUE GALLERY
+// ══════════════════════════════════════════════════════════════════════════
+const ctTypes = [
+  { name: 'Areolar', category: 'Connective Tissue Proper - Loose', matrix: 'Gel-like ground substance with collagen and elastic fibers', func: 'Wraps and cushions organs; macrophages phagocytize bacteria; important role in inflammation', location: 'Widely distributed; under epithelia, surrounds capillaries', draw: drawAreolar, fibers: 3, ground: 5, cells: 4 },
+  { name: 'Adipose', category: 'Connective Tissue Proper - Loose', matrix: 'Sparse matrix; cells closely packed with large lipid droplet', func: 'Energy storage, insulation, cushioning, hormone production', location: 'Under skin, around kidneys, behind eyeballs, in breast', draw: drawAdipose, fibers: 1, ground: 2, cells: 5 },
+  { name: 'Reticular', category: 'Connective Tissue Proper - Loose', matrix: 'Network of reticular fibers in loose ground substance', func: 'Forms soft internal skeleton (stroma) that supports other cell types', location: 'Lymph nodes, spleen, bone marrow, liver', draw: drawReticular, fibers: 4, ground: 3, cells: 3 },
+  { name: 'Dense Regular', category: 'Connective Tissue Proper - Dense', matrix: 'Parallel collagen fibers; few cells; minimal ground substance', func: 'Attaches muscles to bones (tendons) or bones to bones (ligaments); withstands great tensile stress in one direction', location: 'Tendons, ligaments, aponeuroses', draw: drawDenseRegular, fibers: 5, ground: 1, cells: 2 },
+  { name: 'Dense Irregular', category: 'Connective Tissue Proper - Dense', matrix: 'Collagen fibers arranged in many directions; some elastic fibers', func: 'Withstands tension in multiple directions; structural strength', location: 'Dermis of skin, fibrous joint capsules, organ capsules', draw: drawDenseIrregular, fibers: 5, ground: 1, cells: 2 },
+  { name: 'Hyaline Cartilage', category: 'Cartilage', matrix: 'Firm, glassy ground substance with fine collagen fibers (not visible); chondrocytes in lacunae', func: 'Supports, reinforces, cushions; resists compressive stress; forms embryonic skeleton', location: 'Nose, trachea, larynx, ends of long bones, fetal skeleton', draw: drawHyalineCartilage, fibers: 2, ground: 5, cells: 3 },
+  { name: 'Elastic Cartilage', category: 'Cartilage', matrix: 'Similar to hyaline but with abundant elastic fibers', func: 'Maintains shape while allowing flexibility', location: 'External ear (pinna), epiglottis', draw: drawElasticCartilage, fibers: 4, ground: 4, cells: 3 },
+  { name: 'Fibrocartilage', category: 'Cartilage', matrix: 'Thick collagen fibers predominate; intermediate between hyaline cartilage and dense regular connective', func: 'Tensile strength and ability to absorb compressive shock', location: 'Intervertebral discs, pubic symphysis, menisci of knee', draw: drawFibrocartilage, fibers: 5, ground: 2, cells: 2 },
+  { name: 'Compact Bone', category: 'Bone (Osseous)', matrix: 'Calcified matrix with Haversian systems (osteons); osteocytes in lacunae connected by canaliculi', func: 'Support, protection, mineral storage, blood cell formation', location: 'Outer layer of all bones; shaft of long bones', draw: drawCompactBone, fibers: 3, ground: 5, cells: 3 },
+  { name: 'Spongy Bone', category: 'Bone (Osseous)', matrix: 'Trabeculae (bony spicules); spaces filled with red or yellow marrow', func: 'Provides strength with light weight; site of blood cell production', location: 'Interior of flat bones, epiphyses of long bones', draw: drawSpongyBone, fibers: 3, ground: 5, cells: 2 },
+  { name: 'Blood', category: 'Fluid Connective', matrix: 'Plasma (liquid matrix); no fibers in circulating blood', func: 'Transport of oxygen, carbon dioxide, nutrients, wastes, hormones; immune defense', location: 'Within blood vessels (cardiovascular system)', draw: drawBlood, fibers: 0, ground: 5, cells: 5 }
+];
+
+let currentCT = 0;
+
+function buildCTNav() {
+  const nav = $('ct-nav');
+  ctTypes.forEach((ct, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = ct.name;
+    btn.className = i === 0 ? 'active' : '';
+    btn.onclick = () => selectCT(i);
+    nav.appendChild(btn);
+  });
+}
+
+function selectCT(idx) {
+  currentCT = idx;
+  const ct = ctTypes[idx];
+  // Update nav
+  document.querySelectorAll('#ct-nav button').forEach((b, i) => b.classList.toggle('active', i === idx));
+  $('ct-view-title').textContent = ct.name;
+  $('ct-detail-name').textContent = ct.name;
+  $('ct-detail-category').textContent = ct.category;
+  $('ct-detail-matrix').textContent = ct.matrix;
+  $('ct-detail-function').textContent = ct.func;
+  $('ct-detail-location').textContent = ct.location;
+  const ctx = getCtx('ct-canvas');
+  ct.draw(ctx);
+  drawCTMatrixChart();
+}
+
+function drawCTMatrixChart() {
+  const ctx = getCtx('ct-matrix-chart');
+  const ct = ctTypes[currentCT];
+  drawBarChart(ctx, {
+    labels: ['Fibers', 'Ground Substance', 'Cells'],
+    values: [ct.fibers, ct.ground, ct.cells],
+    colors: ['#c41e3a', '#2563eb', '#16a34a'],
+    maxVal: 6
+  });
+  // Add current tissue name as subtitle
+  ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Relative proportions for: ' + ct.name, ctx.W / 2, ctx.H - 4);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: MUSCLE COMPARISON
+// ══════════════════════════════════════════════════════════════════════════
+const muscleData = {
+  skeletal: { stri: 'Yes (prominent)', ctrl: 'Voluntary', nuc: 'Multiple, peripheral', shape: 'Long, cylindrical', loc: 'Attached to bones', spec: 'T-tubules, sarcomeres', speed: 'Fast' },
+  cardiac: { stri: 'Yes (less prominent)', ctrl: 'Involuntary', nuc: 'Usually 1-2, central', shape: 'Short, branching', loc: 'Heart wall only', spec: 'Intercalated discs', speed: 'Moderate (rhythmic)' },
+  smooth: { stri: 'No', ctrl: 'Involuntary', nuc: 'Single, central', shape: 'Spindle-shaped (fusiform)', loc: 'Walls of hollow organs', spec: 'Gap junctions, dense bodies', speed: 'Slow, sustained' }
+};
+
+let muscleExplored = { skeletal: false, cardiac: false, smooth: false };
+let muscleAnimations = {};
+
+function revealMuscleData(type) {
+  muscleExplored[type] = true;
+  const d = muscleData[type];
+  const prefix = type === 'skeletal' ? 'skel' : type === 'cardiac' ? 'card' : 'smooth';
+  $('mc-' + prefix + '-stri').innerHTML = d.stri.includes('Yes') ? '<span class="check">' + d.stri + '</span>' : '<span class="cross">' + d.stri + '</span>';
+  $('mc-' + prefix + '-ctrl').textContent = d.ctrl;
+  $('mc-' + prefix + '-nuc').textContent = d.nuc;
+  $('mc-' + prefix + '-shape').textContent = d.shape;
+  $('mc-' + prefix + '-loc').textContent = d.loc;
+  $('mc-' + prefix + '-spec').textContent = d.spec;
+  $('mc-' + prefix + '-speed').textContent = d.speed;
+}
+
+function animateMuscle(type) {
+  revealMuscleData(type);
+  if (muscleAnimations[type]) return; // already animating
+  let phase = 0;
+  let direction = 1;
+  const canvasId = type === 'skeletal' ? 'muscle-skel-canvas' : type === 'cardiac' ? 'muscle-card-canvas' : 'muscle-smooth-canvas';
+  const drawFn = type === 'skeletal' ? drawSkeletalMuscle : type === 'cardiac' ? drawCardiacMuscle : drawSmoothMuscle;
+  let frames = 0;
+  muscleAnimations[type] = setInterval(() => {
+    phase += direction * 0.05;
+    if (phase >= 1) direction = -1;
+    if (phase <= 0) direction = 1;
+    const ctx = getCtx(canvasId);
+    drawFn(ctx, phase);
+    frames++;
+    if (frames > 120) { // ~2 seconds at 60fps
+      clearInterval(muscleAnimations[type]);
+      muscleAnimations[type] = null;
+      const ctx2 = getCtx(canvasId);
+      drawFn(ctx2, 0);
+    }
+  }, 33);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: VIRTUAL HISTOLOGY LAB
+// ══════════════════════════════════════════════════════════════════════════
+const histoSlides = [
+  // Level 1: Basic types
+  { draw: drawSimpleColumnar, type: 'Epithelial', subtype: 'Simple Columnar', location: 'Digestive tract', level: 1 },
+  { draw: drawSkeletalMuscleFn, type: 'Muscle', subtype: 'Skeletal', location: 'Attached to bones', level: 1 },
+  { draw: drawAreolar, type: 'Connective', subtype: 'Areolar', location: 'Under epithelia', level: 1 },
+  { draw: drawNervousTissue, type: 'Nervous', subtype: 'Nervous', location: 'Brain and spinal cord', level: 1 },
+  // Level 2: Specific subtypes
+  { draw: drawStratifiedSquamous, type: 'Epithelial', subtype: 'Stratified Squamous', location: 'Skin, esophagus', level: 2 },
+  { draw: drawCardiacMuscleFn, type: 'Muscle', subtype: 'Cardiac', location: 'Heart wall', level: 2 },
+  { draw: drawAdipose, type: 'Connective', subtype: 'Adipose', location: 'Under skin', level: 2 },
+  { draw: drawHyalineCartilage, type: 'Connective', subtype: 'Hyaline Cartilage', location: 'Trachea, nose', level: 2 },
+  // Level 3: Advanced
+  { draw: drawPseudostratified, type: 'Epithelial', subtype: 'Pseudostratified Columnar', location: 'Trachea', level: 3 },
+  { draw: drawSmoothMuscleFn, type: 'Muscle', subtype: 'Smooth', location: 'Hollow organ walls', level: 3 },
+  { draw: drawCompactBone, type: 'Connective', subtype: 'Compact Bone', location: 'Bone shafts', level: 3 },
+  { draw: drawBlood, type: 'Connective', subtype: 'Blood', location: 'Blood vessels', level: 3 }
+];
+
+function drawSkeletalMuscleFn(ctx) { drawSkeletalMuscle(ctx, 0); }
+function drawCardiacMuscleFn(ctx) { drawCardiacMuscle(ctx, 0); }
+function drawSmoothMuscleFn(ctx) { drawSmoothMuscle(ctx, 0); }
+
+let histoState = { correct: 0, incorrect: 0, total: 0, currentSlide: null, level: 1, slideNum: 1 };
+
+function histoGetAvailableSlides() {
+  return histoSlides.filter(s => s.level <= histoState.level);
+}
+
+function histoNextSlide() {
+  $('histo-next-btn').disabled = true;
+  $('histo-feedback').innerHTML = '';
+  const available = histoGetAvailableSlides();
+  const slide = available[rand(0, available.length - 1)];
+  histoState.currentSlide = slide;
+  $('histo-slide-num').textContent = '#' + histoState.slideNum;
+  // Draw the slide
+  const ctx = getCtx('histo-canvas');
+  slide.draw(ctx);
+  // Build question based on level
+  let question, options, correctAnswer;
+  if (histoState.level === 1) {
+    question = 'What tissue TYPE is this?';
+    correctAnswer = slide.type;
+    options = ['Epithelial', 'Connective', 'Muscle', 'Nervous'];
+  } else if (histoState.level === 2) {
+    question = 'What specific tissue SUBTYPE is this?';
+    correctAnswer = slide.subtype;
+    const allSubtypes = available.map(s => s.subtype);
+    options = [correctAnswer];
+    while (options.length < 4) {
+      const r = allSubtypes[rand(0, allSubtypes.length - 1)];
+      if (!options.includes(r)) options.push(r);
+    }
+  } else {
+    question = 'Identify the tissue and its typical body LOCATION.';
+    correctAnswer = slide.subtype + ' (' + slide.location + ')';
+    options = [correctAnswer];
+    const others = available.filter(s => s.subtype !== slide.subtype);
+    while (options.length < 4 && others.length > 0) {
+      const idx = rand(0, others.length - 1);
+      const o = others.splice(idx, 1)[0];
+      options.push(o.subtype + ' (' + o.location + ')');
+    }
+  }
+  $('histo-question').textContent = question;
+  // Shuffle options
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = rand(0, i);
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  let html = '';
+  options.forEach(opt => {
+    html += `<button class="quiz-option" onclick="histoCheckAnswer(this, '${opt.replace(/'/g, "\\'")}', '${correctAnswer.replace(/'/g, "\\'")}')">${opt}</button>`;
+  });
+  $('histo-options').innerHTML = html;
+}
+
+function histoCheckAnswer(btn, selected, correct) {
+  histoState.total++;
+  histoState.slideNum++;
+  const isCorrect = selected === correct;
+  if (isCorrect) {
+    histoState.correct++;
+    $('histo-feedback').innerHTML = '<div class="quiz-feedback correct">Correct! This is indeed ' + correct + '.</div>';
+  } else {
+    histoState.incorrect++;
+    $('histo-feedback').innerHTML = '<div class="quiz-feedback incorrect">Not quite. The correct answer is: ' + correct + '</div>';
+  }
+  // Disable all options
+  document.querySelectorAll('#histo-options .quiz-option').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === correct) b.classList.add('correct');
+    if (b === btn && !isCorrect) b.classList.add('incorrect');
+  });
+  // Update stats
+  $('histo-correct').textContent = histoState.correct;
+  $('histo-incorrect').textContent = histoState.incorrect;
+  $('histo-total').textContent = histoState.total;
+  $('histo-pct').textContent = histoState.total ? Math.round(histoState.correct / histoState.total * 100) + '%' : '-';
+  // Level progression
+  if (histoState.correct >= 4 && histoState.level < 2) { histoState.level = 2; }
+  if (histoState.correct >= 8 && histoState.level < 3) { histoState.level = 3; }
+  $('histo-level').textContent = histoState.level;
+  $('histo-next-btn').disabled = false;
+}
+
+function histoReset() {
+  histoState = { correct: 0, incorrect: 0, total: 0, currentSlide: null, level: 1, slideNum: 1 };
+  $('histo-correct').textContent = '0';
+  $('histo-incorrect').textContent = '0';
+  $('histo-total').textContent = '0';
+  $('histo-pct').textContent = '-';
+  $('histo-level').textContent = '1';
+  $('histo-options').innerHTML = '';
+  $('histo-feedback').innerHTML = '';
+  histoNextSlide();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: BODY TISSUE MAP
+// ══════════════════════════════════════════════════════════════════════════
+const bodyRegions = [
+  { name: 'Brain', x: 140, y: 35, w: 50, h: 35, tissue: 'Nervous Tissue', func: 'Integration and processing of sensory information; motor control; higher cognition', additional: 'Connective tissue (meninges), blood vessels lined with endothelium', draw: drawNervousTissue },
+  { name: 'Skin', x: 50, y: 120, w: 55, h: 40, tissue: 'Stratified Squamous Epithelium', func: 'Protection against abrasion, pathogens, UV light; waterproofing; sensation', additional: 'Dense irregular connective tissue (dermis), adipose (hypodermis), smooth muscle (arrector pili), nervous tissue (sensory receptors)', draw: drawStratifiedSquamous },
+  { name: 'Heart', x: 120, y: 155, w: 50, h: 45, tissue: 'Cardiac Muscle', func: 'Rhythmic, involuntary contractions pump blood through circulatory system', additional: 'Endothelium (endocardium), connective tissue (pericardium), nervous tissue (conduction system)', draw: drawCardiacMuscleFn },
+  { name: 'Lungs', x: 185, y: 150, w: 55, h: 50, tissue: 'Simple Squamous Epithelium', func: 'Gas exchange: O2 into blood, CO2 out; thin cells allow rapid diffusion', additional: 'Elastic connective tissue, smooth muscle in bronchioles, pseudostratified ciliated epithelium in bronchi', draw: drawSimpleSquamous },
+  { name: 'Bones', x: 45, y: 260, w: 50, h: 55, tissue: 'Bone (Osseous) Connective', func: 'Structural support, protection of organs, mineral storage, blood cell production', additional: 'Hyaline cartilage at joints, dense regular connective tissue (periosteum), nervous tissue, blood vessels', draw: drawCompactBone },
+  { name: 'Stomach', x: 140, y: 230, w: 55, h: 45, tissue: 'Simple Columnar Epithelium', func: 'Secretion of mucus, enzymes, and HCl; absorption of some substances', additional: 'Smooth muscle (three layers), connective tissue, nervous tissue (enteric plexus)', draw: drawSimpleColumnar },
+  { name: 'Blood Vessels', x: 200, y: 240, w: 55, h: 40, tissue: 'Smooth Muscle + Endothelium', func: 'Regulate blood flow and blood pressure; endothelium provides smooth, low-friction surface', additional: 'Simple squamous epithelium (endothelium), elastic connective tissue, collagen fibers', draw: drawSmoothMuscleFn },
+  { name: 'Tendons', x: 55, y: 370, w: 50, h: 40, tissue: 'Dense Regular Connective', func: 'Transmit force from muscle to bone; withstand strong pulling forces in one direction', additional: 'Loose connective tissue (epitenon sheath)', draw: drawDenseRegular },
+  { name: 'Skeletal Muscle', x: 145, y: 340, w: 55, h: 55, tissue: 'Skeletal Muscle', func: 'Voluntary movement, posture maintenance, heat generation', additional: 'Connective tissue (fascia, epimysium), nervous tissue (motor neurons), blood vessels', draw: drawSkeletalMuscleFn },
+  { name: 'Trachea', x: 195, y: 110, w: 50, h: 35, tissue: 'Pseudostratified Columnar Epithelium', func: 'Mucus traps particles; cilia sweep mucus toward throat for removal', additional: 'Hyaline cartilage (C-shaped rings), smooth muscle, loose connective tissue', draw: drawPseudostratified }
+];
+
+let selectedBodyRegion = -1;
+
+function drawBodyMap() {
+  const canvas = $('body-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, 0, W, H);
+
+  // Simple body outline
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.fillStyle = 'rgba(200,210,220,0.2)';
+
+  // Head
+  ctx.beginPath(); ctx.ellipse(140, 40, 28, 32, 0, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+  // Neck
+  ctx.fillRect(130, 70, 20, 20);
+  ctx.strokeRect(130, 70, 20, 20);
+  // Torso
+  ctx.beginPath();
+  ctx.moveTo(100, 90); ctx.lineTo(85, 300); ctx.lineTo(120, 310); ctx.lineTo(140, 310);
+  ctx.lineTo(160, 310); ctx.lineTo(195, 300); ctx.lineTo(180, 90); ctx.closePath();
+  ctx.fill(); ctx.stroke();
+  // Arms
+  ctx.beginPath(); ctx.moveTo(100, 95); ctx.lineTo(40, 220); ctx.lineTo(55, 225);
+  ctx.lineTo(105, 115); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(180, 95); ctx.lineTo(240, 220); ctx.lineTo(225, 225);
+  ctx.lineTo(175, 115); ctx.closePath(); ctx.fill(); ctx.stroke();
+  // Legs
+  ctx.beginPath(); ctx.moveTo(100, 305); ctx.lineTo(80, 490); ctx.lineTo(105, 495);
+  ctx.lineTo(135, 310); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(180, 305); ctx.lineTo(200, 490); ctx.lineTo(175, 495);
+  ctx.lineTo(145, 310); ctx.closePath(); ctx.fill(); ctx.stroke();
+
+  // Draw clickable regions
+  bodyRegions.forEach((r, i) => {
+    const isSelected = i === selectedBodyRegion;
+    ctx.fillStyle = isSelected ? 'rgba(196,30,58,0.3)' : 'rgba(37,99,235,0.15)';
+    ctx.strokeStyle = isSelected ? '#c41e3a' : '#2563eb';
+    ctx.lineWidth = isSelected ? 2.5 : 1.5;
+    ctx.beginPath();
+    ctx.roundRect(r.x, r.y, r.w, r.h, 6);
+    ctx.fill(); ctx.stroke();
+    // Label
+    ctx.fillStyle = isSelected ? '#c41e3a' : '#1e40af';
+    ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(r.name, r.x + r.w/2, r.y + r.h/2 + 4);
+  });
+}
+
+function handleBodyClick(e) {
+  const canvas = $('body-canvas');
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const mx = (e.clientX - rect.left) * scaleX;
+  const my = (e.clientY - rect.top) * scaleY;
+
+  for (let i = 0; i < bodyRegions.length; i++) {
+    const r = bodyRegions[i];
+    if (mx >= r.x && mx <= r.x + r.w && my >= r.y && my <= r.y + r.h) {
+      selectedBodyRegion = i;
+      drawBodyMap();
+      $('body-detail-name').textContent = r.name;
+      $('body-detail-tissue').textContent = r.tissue;
+      $('body-detail-function').textContent = r.func;
+      $('body-detail-additional').textContent = r.additional;
+      const ctx = getCtx('body-tissue-canvas');
+      r.draw(ctx);
+      return;
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR NAVIGATION HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebarNav() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let activeIdx = 0;
+  sections.forEach((sec, i) => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top < 200) activeIdx = i;
+  });
+  links.forEach((l, i) => l.classList.toggle('active', i === activeIdx));
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ══════════════════════════════════════════════════════════════════════════
+function init() {
+  // Part 1
+  selectTissueType(0);
+  // Part 2
+  selectEpiType(0, 0);
+  // Part 3
+  buildCTNav();
+  selectCT(0);
+  // Part 4
+  const skelCtx = getCtx('muscle-skel-canvas');
+  drawSkeletalMuscle(skelCtx, 0);
+  const cardCtx = getCtx('muscle-card-canvas');
+  drawCardiacMuscle(cardCtx, 0);
+  const smoothCtx = getCtx('muscle-smooth-canvas');
+  drawSmoothMuscle(smoothCtx, 0);
+  // Part 5
+  histoNextSlide();
+  // Part 6
+  drawBodyMap();
+  $('body-canvas').addEventListener('click', handleBodyClick);
+  // Draw blank body tissue canvas
+  const btCtx = getCtx('body-tissue-canvas');
+  btCtx.fillStyle = '#f8fafc'; btCtx.fillRect(0, 0, btCtx.W, btCtx.H);
+  btCtx.fillStyle = '#9ca3af'; btCtx.font = '13px system-ui'; btCtx.textAlign = 'center';
+  btCtx.fillText('Click a body region to see its tissue', btCtx.W/2, btCtx.H/2);
+  // Sidebar nav scroll tracking
+  window.addEventListener('scroll', updateSidebarNav);
+}
+
+window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('resize', () => {
+  // Redraw current views on resize
+  if (typeof selectTissueType === 'function') {
+    const activeCard = document.querySelector('#tissue-cards .tissue-card.active');
+    if (activeCard) {
+      const idx = Array.from(document.querySelectorAll('#tissue-cards .tissue-card')).indexOf(activeCard);
+      selectTissueType(idx);
+    }
+  }
+  drawBodyMap();
+  if (currentCT >= 0) selectCT(currentCT);
+  const skelCtx = getCtx('muscle-skel-canvas');
+  drawSkeletalMuscle(skelCtx, 0);
+  const cardCtx = getCtx('muscle-card-canvas');
+  drawCardiacMuscle(cardCtx, 0);
+  const smoothCtx = getCtx('muscle-smooth-canvas');
+  drawSmoothMuscle(smoothCtx, 0);
+});
+</script>
+</body>
+</html>
