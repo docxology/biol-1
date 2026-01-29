@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 8 Dashboard: Cellular Respiration | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+select.select-input {
+  padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: 2px solid var(--border); font-family: var(--font); cursor: pointer;
+  background: #fff; color: var(--text); outline: none; transition: border-color 0.15s;
+}
+select.select-input:focus { border-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PATHWAY VISUALIZATION
+   ═══════════════════════════════════════════════════════════════════════ */
+.pathway-stage {
+  display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+  border-radius: 8px; margin: 6px 0; font-size: 14px; transition: all 0.3s;
+  border: 2px solid var(--border); background: #f8fafc;
+}
+.pathway-stage.active { border-color: var(--accent); background: #fef2f2; box-shadow: 0 0 0 3px rgba(196,30,58,0.15); }
+.pathway-stage.complete { border-color: var(--green); background: #f0fdf4; }
+.pathway-stage .stage-num {
+  width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 13px; background: var(--border); color: var(--text-muted); flex-shrink: 0;
+}
+.pathway-stage.active .stage-num { background: var(--accent); color: #fff; }
+.pathway-stage.complete .stage-num { background: var(--green); color: #fff; }
+.pathway-stage .stage-info { flex: 1; }
+.pathway-stage .stage-name { font-weight: 700; font-size: 14px; }
+.pathway-stage .stage-detail { font-size: 12px; color: var(--text-muted); }
+.pathway-stage .stage-yields { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.pathway-arrow { text-align: center; color: var(--text-muted); font-size: 18px; margin: 2px 0; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CYCLE DIAGRAM
+   ═══════════════════════════════════════════════════════════════════════ */
+.cycle-container { position: relative; width: 100%; max-width: 420px; margin: 16px auto; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 8 &mdash; Cellular Respiration</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Respiration Rate</a>
+    <a href="#part2"><span class="nav-num">2</span> Metabolic Pathway</a>
+    <a href="#part3"><span class="nav-num">3</span> Aerobic vs Fermentation</a>
+    <a href="#part4"><span class="nav-num">4</span> Substrate Comparison</a>
+    <a href="#part5"><span class="nav-num">5</span> Respiration &harr; Photosynthesis</a>
+    <a href="#part6"><span class="nav-num">6</span> Metabolic Rate Lab</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Cellular Respiration</h2>
+  <p>Interactive simulations exploring how cells harvest energy from glucose. Measure CO&#8322; production, trace metabolic pathways, compare aerobic and anaerobic processes, and connect respiration to photosynthesis.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">ATP Production</span>
+    <span class="bio-tag">Metabolic Pathways</span>
+    <span class="bio-tag">Energy Release</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: RESPIRATION RATE SIMULATOR ════════════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Respiration Rate Simulator</div>
+    <div class="section-subtitle">Measure CO&#8322; production from germinating seeds at different temperatures</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Respirometer</div>
+    <div class="slider-group">
+      <label>Temperature</label>
+      <input type="range" id="resp-temp" min="5" max="45" value="25" oninput="respUpdateTemp()">
+      <span class="slider-val" id="resp-temp-val">25&deg;C</span>
+    </div>
+    <div class="chart-wrap"><canvas id="resp-canvas" height="280"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="resp-temp-stat">25&deg;C</div><div class="stat-label">Temperature</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="resp-rate">0.0</div><div class="stat-label">Bubbles/min</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="resp-co2">0</div><div class="stat-label">Total CO&#8322;</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="resp-q10">-</div><div class="stat-label">Q&#8321;&#8320;</div></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="respStart()">Start</button>
+      <button class="btn btn-outline" onclick="respStop()">Stop</button>
+      <button class="btn btn-outline" onclick="respReset()">Reset</button>
+      <button class="btn btn-secondary" onclick="respCollectPoint()">Record Data Point</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Rate vs Temperature</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Click "Record Data Point" at different temperatures to build the curve. Shows Q&#8321;&#8320; relationship.</p>
+    <div class="chart-wrap"><canvas id="resp-rate-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: METABOLIC PATHWAY ════════════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Glycolysis &rarr; Krebs &rarr; ETC Pathway</div>
+    <div class="section-subtitle">Trace glucose through the three stages of cellular respiration</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Step-Through Pathway</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="pw-play-btn" onclick="pwTogglePlay()">Play</button>
+      <button class="btn btn-secondary" onclick="pwNextStep()">Next Step</button>
+      <button class="btn btn-outline" onclick="pwReset()">Reset</button>
+    </div>
+
+    <div id="pw-stages">
+      <div class="pathway-stage" id="pw-stage-0">
+        <div class="stage-num">0</div>
+        <div class="stage-info">
+          <div class="stage-name">Glucose Input</div>
+          <div class="stage-detail">C&#8326;H&#8321;&#8322;O&#8326; enters the cell</div>
+          <div class="stage-yields">
+            <span class="badge badge-blue">1 Glucose</span>
+          </div>
+        </div>
+      </div>
+      <div class="pathway-arrow">&darr;</div>
+      <div class="pathway-stage" id="pw-stage-1">
+        <div class="stage-num">1</div>
+        <div class="stage-info">
+          <div class="stage-name">Glycolysis</div>
+          <div class="stage-detail">Glucose &rarr; 2 Pyruvate (cytoplasm, no O&#8322; needed)</div>
+          <div class="stage-yields">
+            <span class="badge badge-red" id="pw-atp-1">+2 ATP</span>
+            <span class="badge badge-blue" id="pw-nadh-1">+2 NADH</span>
+          </div>
+        </div>
+      </div>
+      <div class="pathway-arrow">&darr;</div>
+      <div class="pathway-stage" id="pw-stage-2">
+        <div class="stage-num">2</div>
+        <div class="stage-info">
+          <div class="stage-name">Pyruvate Oxidation</div>
+          <div class="stage-detail">2 Pyruvate &rarr; 2 Acetyl CoA (mitochondrial matrix)</div>
+          <div class="stage-yields">
+            <span class="badge badge-blue" id="pw-nadh-2">+2 NADH</span>
+            <span class="badge badge-green" id="pw-co2-2">+2 CO&#8322;</span>
+          </div>
+        </div>
+      </div>
+      <div class="pathway-arrow">&darr;</div>
+      <div class="pathway-stage" id="pw-stage-3">
+        <div class="stage-num">3</div>
+        <div class="stage-info">
+          <div class="stage-name">Krebs Cycle (Citric Acid Cycle)</div>
+          <div class="stage-detail">2 Acetyl CoA &rarr; 2 turns of the cycle (mitochondrial matrix)</div>
+          <div class="stage-yields">
+            <span class="badge badge-red" id="pw-atp-3">+2 ATP</span>
+            <span class="badge badge-blue" id="pw-nadh-3">+6 NADH</span>
+            <span class="badge badge-green" id="pw-fadh-3">+2 FADH&#8322;</span>
+            <span class="badge badge-green" id="pw-co2-3">+4 CO&#8322;</span>
+          </div>
+        </div>
+      </div>
+      <div class="pathway-arrow">&darr;</div>
+      <div class="pathway-stage" id="pw-stage-4">
+        <div class="stage-num">4</div>
+        <div class="stage-info">
+          <div class="stage-name">Electron Transport Chain &amp; Oxidative Phosphorylation</div>
+          <div class="stage-detail">NADH &amp; FADH&#8322; donate electrons &rarr; O&#8322; is final acceptor &rarr; H&#8322;O formed (inner membrane)</div>
+          <div class="stage-yields">
+            <span class="badge badge-red" id="pw-atp-4">+32-34 ATP</span>
+            <span class="badge badge-blue" id="pw-h2o-4">+6 H&#8322;O</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div class="card-title">Running Totals</div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="pw-total-atp">0</div><div class="stat-label">ATP</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="pw-total-nadh">0</div><div class="stat-label">NADH</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="pw-total-fadh">0</div><div class="stat-label">FADH&#8322;</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="pw-total-co2">0</div><div class="stat-label">CO&#8322;</div></div>
+        <div class="stat-box stat-purple"><div class="stat-val" id="pw-total-h2o">0</div><div class="stat-label">H&#8322;O</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">ATP Production by Stage</div>
+    <div class="chart-wrap"><canvas id="pw-chart" height="240"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="analysis-result ar-pass">
+      <div class="ar-title">Overall Equation</div>
+      <p>C&#8326;H&#8321;&#8322;O&#8326; + 6O&#8322; &rarr; 6CO&#8322; + 6H&#8322;O + <strong>36&ndash;38 ATP</strong></p>
+      <p style="margin-top:6px;color:var(--text-muted);font-size:13px;">Glucose + Oxygen &rarr; Carbon Dioxide + Water + Energy (ATP + heat)</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: AEROBIC vs FERMENTATION ══════════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Aerobic vs Fermentation Comparison</div>
+    <div class="section-subtitle">Side-by-side animated pathways with and without oxygen</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Environment &amp; Fermentation Type</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ferm-o2-btn" onclick="fermToggleO2()">O&#8322;: Present</button>
+      <button class="btn btn-secondary" id="ferm-alc-btn" onclick="fermSetType('alcohol')">Alcohol Fermentation</button>
+      <button class="btn btn-secondary" id="ferm-lac-btn" onclick="fermSetType('lactic')">Lactic Acid Fermentation</button>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Aerobic Respiration</div>
+      <div class="chart-wrap"><canvas id="ferm-aerobic-canvas" height="320"></canvas></div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="ferm-aero-atp">36-38</div><div class="stat-label">ATP</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="ferm-aero-co2">6</div><div class="stat-label">CO&#8322;</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="ferm-aero-h2o">6</div><div class="stat-label">H&#8322;O</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" id="ferm-anaero-title">Alcohol Fermentation</div>
+      <div class="chart-wrap"><canvas id="ferm-anaero-canvas" height="320"></canvas></div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="ferm-anaero-atp">2</div><div class="stat-label">ATP</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="ferm-anaero-co2">2</div><div class="stat-label">CO&#8322;</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="ferm-anaero-product">Ethanol</div><div class="stat-label">Byproduct</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">ATP Yield Comparison</div>
+    <div class="chart-wrap"><canvas id="ferm-comparison-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: SUBSTRATE COMPARISON ════════════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Substrate Comparison</div>
+    <div class="section-subtitle">Compare energy yield from different fuel molecules</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select Substrate</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="sub-glucose-btn" onclick="subSelect('glucose')">Glucose</button>
+      <button class="btn btn-outline" id="sub-lipid-btn" onclick="subSelect('lipid')">Lipid (Palmitic Acid)</button>
+      <button class="btn btn-outline" id="sub-protein-btn" onclick="subSelect('protein')">Protein (Alanine)</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="sub-cal">4.0</div><div class="stat-label">kcal / gram</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="sub-atp">36-38</div><div class="stat-label">ATP / molecule</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="sub-co2">6</div><div class="stat-label">CO&#8322; produced</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="sub-o2">6</div><div class="stat-label">O&#8322; required</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="sub-rq">1.00</div><div class="stat-label">RQ</div></div>
+    </div>
+    <div id="sub-explanation" class="analysis-result" style="margin-top:12px;">
+      <div class="ar-title">Respiratory Quotient (RQ) = CO&#8322; produced / O&#8322; consumed</div>
+      <p>RQ = 1.0 for carbohydrates, ~0.7 for fats, ~0.8 for proteins. RQ indicates which fuel is being metabolized.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Substrate Comparison Charts</div>
+    <div class="chart-wrap"><canvas id="sub-chart" height="280"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: RESPIRATION-PHOTOSYNTHESIS ═══════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Respiration &harr; Photosynthesis Connection</div>
+    <div class="section-subtitle">Two complementary processes forming a cycle of matter and energy</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Day / Night Toggle</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="cycle-day-btn" onclick="cycleSetTime('day')">Daytime (Both Active)</button>
+      <button class="btn btn-outline" id="cycle-night-btn" onclick="cycleSetTime('night')">Night (Respiration Only)</button>
+    </div>
+    <div class="chart-wrap"><canvas id="cycle-canvas" height="380"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="cycle-photo">Active</div><div class="stat-label">Photosynthesis</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="cycle-resp">Active</div><div class="stat-label">Respiration</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="cycle-net-o2">Net +</div><div class="stat-label">Net O&#8322;</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="cycle-net-co2">Net -</div><div class="stat-label">Net CO&#8322;</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="analysis-result ar-pass">
+      <div class="ar-title">Combined View</div>
+      <p><strong>Photosynthesis:</strong> 6CO&#8322; + 6H&#8322;O + light energy &rarr; C&#8326;H&#8321;&#8322;O&#8326; + 6O&#8322;</p>
+      <p><strong>Respiration:</strong> C&#8326;H&#8321;&#8322;O&#8326; + 6O&#8322; &rarr; 6CO&#8322; + 6H&#8322;O + ATP</p>
+      <p style="margin-top:8px;color:var(--text-muted);font-size:13px;">The products of one process are the reactants of the other &mdash; a biogeochemical cycle of carbon and oxygen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: METABOLIC RATE EXPERIMENT ═══════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Metabolic Rate Experiment</div>
+    <div class="section-subtitle">Virtual respirometer &mdash; measure O&#8322; consumption in different organisms</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Experiment Setup</div>
+    <div class="slider-group">
+      <label>Organism</label>
+      <select class="select-input" id="met-organism" onchange="metUpdateSetup()">
+        <option value="seeds">Germinating Seeds</option>
+        <option value="crickets">Crickets</option>
+        <option value="yeast">Yeast</option>
+      </select>
+    </div>
+    <div class="slider-group">
+      <label>Temperature</label>
+      <input type="range" id="met-temp" min="5" max="45" value="25" oninput="metUpdateTemp()">
+      <span class="slider-val" id="met-temp-val">25&deg;C</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="metStart()">Start Experiment</button>
+      <button class="btn btn-outline" onclick="metStop()">Stop</button>
+      <button class="btn btn-outline" onclick="metReset()">Reset</button>
+      <button class="btn btn-secondary" onclick="metAddControl()">Add Control (Dead/Boiled)</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="met-time">0s</div><div class="stat-label">Elapsed</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="met-o2">0.0</div><div class="stat-label">O&#8322; consumed (mL)</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="met-rate">0.00</div><div class="stat-label">Rate (mL/min)</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="met-organism-label">Seeds</div><div class="stat-label">Organism</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">O&#8322; Consumption Over Time</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Experimental</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> Control (dead)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="met-chart" height="280"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Organism Comparison</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Run experiments with different organisms to compare metabolic rates.</p>
+    <div class="chart-wrap"><canvas id="met-compare-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(yRange > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    if (s.dash) ctx.setLineDash(s.dash);
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    ctx.setLineDash([]);
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: RESPIRATION RATE SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+let respState = {
+  temp: 25, running: false, animFrame: null,
+  bubbles: [], totalCO2: 0, lastBubbleTime: 0,
+  dataPoints: [], startTime: 0
+};
+
+function respGetRate(temp) {
+  // Bell curve peaking around 37C, drops sharply above 42C (enzyme denaturation)
+  if (temp <= 0) return 0;
+  if (temp >= 48) return 0;
+  // Q10 relationship with denaturation
+  const base = 2.0;
+  const q10Rate = base * Math.pow(2.1, (temp - 15) / 10);
+  // Denaturation factor
+  const denature = temp > 38 ? Math.exp(-0.5 * Math.pow((temp - 38) / 4, 2)) : 1;
+  // Cold suppression
+  const cold = temp < 10 ? temp / 10 : 1;
+  return Math.max(0, q10Rate * denature * cold);
+}
+
+function respUpdateTemp() {
+  respState.temp = parseInt($('resp-temp').value);
+  $('resp-temp-val').textContent = respState.temp + '\u00B0C';
+  $('resp-temp-stat').textContent = respState.temp + '\u00B0C';
+  const rate = respGetRate(respState.temp);
+  $('resp-rate').textContent = rate.toFixed(1);
+}
+
+function respStart() {
+  if (respState.running) return;
+  respState.running = true;
+  respState.startTime = performance.now();
+  respState.lastBubbleTime = respState.startTime;
+  respAnimate();
+}
+
+function respStop() {
+  respState.running = false;
+  if (respState.animFrame) cancelAnimationFrame(respState.animFrame);
+}
+
+function respReset() {
+  respStop();
+  respState.bubbles = [];
+  respState.totalCO2 = 0;
+  respState.dataPoints = [];
+  $('resp-co2').textContent = '0';
+  $('resp-q10').textContent = '-';
+  drawRespCanvas();
+  drawRespRateChart();
+}
+
+function respCollectPoint() {
+  const temp = respState.temp;
+  const rate = respGetRate(temp);
+  // Check if we already have a point at this temp
+  const existing = respState.dataPoints.findIndex(p => p.temp === temp);
+  if (existing >= 0) {
+    respState.dataPoints[existing].rate = rate;
+  } else {
+    respState.dataPoints.push({ temp, rate });
+    respState.dataPoints.sort((a, b) => a.temp - b.temp);
+  }
+  // Calculate Q10 if we have enough data
+  if (respState.dataPoints.length >= 2) {
+    const pts = respState.dataPoints;
+    let bestQ10 = null;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const dt = pts[i+1].temp - pts[i].temp;
+      if (dt >= 5 && pts[i].rate > 0 && pts[i+1].rate > 0 && pts[i+1].temp <= 38) {
+        bestQ10 = Math.pow(pts[i+1].rate / pts[i].rate, 10 / dt);
+      }
+    }
+    if (bestQ10) $('resp-q10').textContent = bestQ10.toFixed(2);
+  }
+  drawRespRateChart();
+}
+
+function respAnimate() {
+  if (!respState.running) return;
+  const now = performance.now();
+  const rate = respGetRate(respState.temp);
+  const interval = rate > 0.1 ? (60000 / rate) : 99999;
+
+  // Add bubble if enough time passed
+  if (now - respState.lastBubbleTime > interval) {
+    respState.bubbles.push({
+      x: 0.35 + Math.random() * 0.12,
+      y: 0.78,
+      r: 2 + Math.random() * 3,
+      speed: 0.003 + Math.random() * 0.002,
+      wobble: Math.random() * Math.PI * 2
+    });
+    respState.totalCO2++;
+    respState.lastBubbleTime = now;
+    $('resp-co2').textContent = respState.totalCO2;
+    $('resp-rate').textContent = rate.toFixed(1);
+  }
+
+  // Update bubbles
+  respState.bubbles = respState.bubbles.filter(b => {
+    b.y -= b.speed;
+    b.wobble += 0.05;
+    b.x += Math.sin(b.wobble) * 0.001;
+    return b.y > 0.05;
+  });
+
+  drawRespCanvas();
+  respState.animFrame = requestAnimationFrame(respAnimate);
+}
+
+function drawRespCanvas() {
+  const ctx = getCtx('resp-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#f0f7ff';
+  ctx.fillRect(0, 0, W, H);
+
+  // Respirometer tube
+  const tubeX = W * 0.28, tubeW = W * 0.18;
+  const tubeY = H * 0.1, tubeH = H * 0.75;
+
+  // Water in tube
+  ctx.fillStyle = '#dbeafe';
+  ctx.fillRect(tubeX, tubeY, tubeW, tubeH);
+  ctx.strokeStyle = '#93c5fd';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(tubeX, tubeY, tubeW, tubeH);
+
+  // Seeds at bottom
+  const seedY = tubeY + tubeH - 40;
+  ctx.fillStyle = '#8B6914';
+  for (let i = 0; i < 7; i++) {
+    const sx = tubeX + 8 + (i % 4) * (tubeW / 4 - 2);
+    const sy = seedY + (i < 4 ? 10 : 25);
+    ctx.beginPath();
+    ctx.ellipse(sx + 8, sy, 9, 7, Math.random() * 0.3, 0, Math.PI * 2);
+    ctx.fill();
+    // Seed dark spot
+    ctx.fillStyle = '#6B4D12';
+    ctx.beginPath();
+    ctx.arc(sx + 6, sy - 1, 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#8B6914';
+  }
+
+  // Seed sprouts
+  ctx.strokeStyle = '#16a34a';
+  ctx.lineWidth = 1.5;
+  for (let i = 0; i < 4; i++) {
+    const sx = tubeX + 12 + i * (tubeW / 4 - 2);
+    const sy = seedY + 8;
+    ctx.beginPath();
+    ctx.moveTo(sx + 8, sy);
+    ctx.quadraticCurveTo(sx + 8 + (i % 2 ? 3 : -3), sy - 12, sx + 8 + (i % 2 ? 5 : -5), sy - 18);
+    ctx.stroke();
+  }
+
+  // CO2 bubbles
+  ctx.fillStyle = 'rgba(196, 30, 58, 0.25)';
+  ctx.strokeStyle = 'rgba(196, 30, 58, 0.5)';
+  ctx.lineWidth = 1;
+  respState.bubbles.forEach(b => {
+    const bx = tubeX + b.x * tubeW * 1.8;
+    const by = tubeY + b.y * tubeH;
+    ctx.beginPath();
+    ctx.arc(bx, by, b.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  });
+
+  // Labels
+  ctx.fillStyle = '#374151';
+  ctx.font = 'bold 13px system-ui';
+  ctx.textAlign = 'center';
+  ctx.fillText('Respirometer', tubeX + tubeW / 2, tubeY - 8);
+
+  // Temperature indicator
+  const thermX = W * 0.65, thermY = H * 0.15, thermH = H * 0.5;
+  ctx.fillStyle = '#f1f5f9';
+  ctx.strokeStyle = '#e5e7eb';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(thermX, thermY, 24, thermH, 12);
+  ctx.fill(); ctx.stroke();
+
+  // Mercury level
+  const tempFrac = (respState.temp - 5) / 40;
+  const mercH = tempFrac * (thermH - 20);
+  ctx.fillStyle = '#c41e3a';
+  ctx.beginPath();
+  ctx.roundRect(thermX + 4, thermY + thermH - 10 - mercH, 16, mercH + 6, 8);
+  ctx.fill();
+
+  // Bulb
+  ctx.beginPath();
+  ctx.arc(thermX + 12, thermY + thermH + 8, 14, 0, Math.PI * 2);
+  ctx.fillStyle = '#c41e3a'; ctx.fill();
+  ctx.strokeStyle = '#e5e7eb'; ctx.stroke();
+
+  ctx.fillStyle = '#374151';
+  ctx.font = 'bold 14px system-ui';
+  ctx.textAlign = 'left';
+  ctx.fillText(respState.temp + '\u00B0C', thermX + 34, thermY + thermH / 2);
+
+  // Temperature scale marks
+  ctx.font = '10px system-ui';
+  ctx.textAlign = 'right';
+  ctx.fillStyle = '#9ca3af';
+  [5, 15, 25, 35, 45].forEach(t => {
+    const frac = (t - 5) / 40;
+    const my = thermY + thermH - 10 - frac * (thermH - 20);
+    ctx.fillText(t + '\u00B0', thermX - 4, my + 3);
+    ctx.beginPath();
+    ctx.moveTo(thermX, my);
+    ctx.lineTo(thermX + 6, my);
+    ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Rate display on right
+  const rate = respGetRate(respState.temp);
+  ctx.fillStyle = '#1a1a2e';
+  ctx.font = 'bold 16px system-ui';
+  ctx.textAlign = 'center';
+  ctx.fillText('Rate: ' + rate.toFixed(1), W * 0.78, H * 0.85);
+  ctx.font = '12px system-ui';
+  ctx.fillStyle = '#6b7280';
+  ctx.fillText('bubbles / min', W * 0.78, H * 0.9);
+
+  // CO2 label on bubbles
+  if (respState.bubbles.length > 0) {
+    ctx.fillStyle = 'rgba(196,30,58,0.8)';
+    ctx.font = 'bold 11px system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillText('CO\u2082', tubeX + tubeW / 2, tubeY + tubeH * 0.3);
+  }
+}
+
+function drawRespRateChart() {
+  const ctx = getCtx('resp-rate-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Theoretical curve
+  const theoreticalPts = [];
+  let maxRate = 0;
+  for (let t = 5; t <= 45; t++) {
+    const r = respGetRate(t);
+    theoreticalPts.push({ t, r });
+    if (r > maxRate) maxRate = r;
+  }
+  // Also check collected data for maxRate
+  respState.dataPoints.forEach(p => { if (p.rate > maxRate) maxRate = p.rate; });
+  maxRate = maxRate * 1.2 || 10;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxRate * i / 4).toFixed(1), pad.left - 6, y + 4);
+  }
+
+  // X axis labels
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  for (let t = 5; t <= 45; t += 5) {
+    const x = pad.left + ((t - 5) / 40) * plotW;
+    ctx.fillText(t + '\u00B0', x, H - pad.bottom + 16);
+  }
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui';
+  ctx.fillText('Temperature (\u00B0C)', pad.left + plotW / 2, H - 4);
+
+  // Draw theoretical curve (faded)
+  ctx.strokeStyle = 'rgba(37,99,235,0.3)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  theoreticalPts.forEach((p, i) => {
+    const x = pad.left + ((p.t - 5) / 40) * plotW;
+    const y = pad.top + plotH * (1 - p.r / maxRate);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Draw collected data points
+  if (respState.dataPoints.length > 0) {
+    // Connect with line
+    ctx.strokeStyle = '#c41e3a';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    respState.dataPoints.forEach((p, i) => {
+      const x = pad.left + ((p.temp - 5) / 40) * plotW;
+      const y = pad.top + plotH * (1 - p.rate / maxRate);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Draw points
+    respState.dataPoints.forEach(p => {
+      const x = pad.left + ((p.temp - 5) / 40) * plotW;
+      const y = pad.top + plotH * (1 - p.rate / maxRate);
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#c41e3a';
+      ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+      // Value label
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(p.rate.toFixed(1), x, y - 10);
+    });
+  }
+
+  // Denaturation zone
+  ctx.fillStyle = 'rgba(196,30,58,0.08)';
+  const denX = pad.left + ((40 - 5) / 40) * plotW;
+  ctx.fillRect(denX, pad.top, W - pad.right - denX, plotH);
+  ctx.fillStyle = '#c41e3a'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Denaturation', (denX + W - pad.right) / 2, pad.top + 14);
+
+  // Legend
+  ctx.fillStyle = 'rgba(37,99,235,0.3)'; ctx.fillRect(pad.left, 4, 20, 3);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Theoretical', pad.left + 26, 10);
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 110, 4, 20, 3);
+  ctx.fillStyle = '#374151'; ctx.fillText('Your Data', pad.left + 136, 10);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: METABOLIC PATHWAY STEP-THROUGH
+// ══════════════════════════════════════════════════════════════════════════
+let pwState = {
+  step: -1, // -1 = not started, 0-4 = stages
+  playing: false, playInterval: null,
+  stageData: [
+    // Stage 0: Glucose input
+    { atp: 0, nadh: 0, fadh: 0, co2: 0, h2o: 0 },
+    // Stage 1: Glycolysis
+    { atp: 2, nadh: 2, fadh: 0, co2: 0, h2o: 0 },
+    // Stage 2: Pyruvate oxidation
+    { atp: 0, nadh: 2, fadh: 0, co2: 2, h2o: 0 },
+    // Stage 3: Krebs cycle
+    { atp: 2, nadh: 6, fadh: 2, co2: 4, h2o: 0 },
+    // Stage 4: ETC
+    { atp: 34, nadh: 0, fadh: 0, co2: 0, h2o: 6 }
+  ]
+};
+
+function pwTogglePlay() {
+  if (pwState.playing) {
+    pwState.playing = false;
+    clearInterval(pwState.playInterval);
+    $('pw-play-btn').textContent = 'Play';
+  } else {
+    pwState.playing = true;
+    $('pw-play-btn').textContent = 'Pause';
+    if (pwState.step >= 4) pwReset();
+    pwState.playInterval = setInterval(() => {
+      if (pwState.step >= 4) {
+        pwTogglePlay();
+        return;
+      }
+      pwNextStep();
+    }, 1500);
+  }
+}
+
+function pwNextStep() {
+  if (pwState.step >= 4) return;
+  pwState.step++;
+  pwUpdateUI();
+}
+
+function pwReset() {
+  pwState.step = -1;
+  if (pwState.playing) pwTogglePlay();
+  pwUpdateUI();
+}
+
+function pwUpdateUI() {
+  // Update stage highlighting
+  for (let i = 0; i <= 4; i++) {
+    const el = $('pw-stage-' + i);
+    el.classList.remove('active', 'complete');
+    if (i < pwState.step) el.classList.add('complete');
+    else if (i === pwState.step) el.classList.add('active');
+  }
+
+  // Calculate running totals
+  let totalAtp = 0, totalNadh = 0, totalFadh = 0, totalCo2 = 0, totalH2o = 0;
+  for (let i = 0; i <= Math.max(0, pwState.step); i++) {
+    if (i <= pwState.step && pwState.step >= 0) {
+      totalAtp += pwState.stageData[i].atp;
+      totalNadh += pwState.stageData[i].nadh;
+      totalFadh += pwState.stageData[i].fadh;
+      totalCo2 += pwState.stageData[i].co2;
+      totalH2o += pwState.stageData[i].h2o;
+    }
+  }
+
+  // At ETC stage, NADH and FADH2 are consumed
+  let displayNadh = totalNadh;
+  let displayFadh = totalFadh;
+  if (pwState.step >= 4) {
+    displayNadh = 0;  // All consumed by ETC
+    displayFadh = 0;
+  }
+
+  $('pw-total-atp').textContent = pwState.step < 0 ? '0' : totalAtp;
+  $('pw-total-nadh').textContent = pwState.step < 0 ? '0' : displayNadh;
+  $('pw-total-fadh').textContent = pwState.step < 0 ? '0' : displayFadh;
+  $('pw-total-co2').textContent = pwState.step < 0 ? '0' : totalCo2;
+  $('pw-total-h2o').textContent = pwState.step < 0 ? '0' : totalH2o;
+
+  drawPwChart();
+}
+
+function drawPwChart() {
+  const ctx = getCtx('pw-chart');
+  const labels = ['Glycolysis', 'Pyruvate Ox.', 'Krebs Cycle', 'ETC'];
+  const atpValues = [2, 0, 2, 34];
+  const activeValues = pwState.step < 0 ? [0, 0, 0, 0] :
+    atpValues.map((v, i) => i <= pwState.step - 1 ? v : 0);
+
+  const colors = activeValues.map((v, i) =>
+    i <= pwState.step - 1 ? ['#c41e3a', '#d97706', '#2563eb', '#7c3aed'][i] : '#e5e7eb'
+  );
+
+  drawBarChart(ctx, {
+    labels: labels,
+    values: activeValues,
+    expected: atpValues,
+    colors: colors,
+    maxVal: 40
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: AEROBIC vs FERMENTATION
+// ══════════════════════════════════════════════════════════════════════════
+let fermState = {
+  o2Present: true,
+  fermType: 'alcohol', // 'alcohol' or 'lactic'
+  animFrame: null,
+  particles: { aerobic: [], anaerobic: [] },
+  time: 0
+};
+
+function fermToggleO2() {
+  fermState.o2Present = !fermState.o2Present;
+  $('ferm-o2-btn').textContent = 'O\u2082: ' + (fermState.o2Present ? 'Present' : 'Absent');
+  $('ferm-o2-btn').className = fermState.o2Present ? 'btn btn-primary' : 'btn btn-outline';
+  fermUpdateDisplay();
+}
+
+function fermSetType(type) {
+  fermState.fermType = type;
+  $('ferm-alc-btn').className = type === 'alcohol' ? 'btn btn-primary' : 'btn btn-secondary';
+  $('ferm-lac-btn').className = type === 'lactic' ? 'btn btn-primary' : 'btn btn-secondary';
+  fermUpdateDisplay();
+}
+
+function fermUpdateDisplay() {
+  const type = fermState.fermType;
+  $('ferm-anaero-title').textContent = type === 'alcohol' ? 'Alcohol Fermentation' : 'Lactic Acid Fermentation';
+  $('ferm-anaero-co2').textContent = type === 'alcohol' ? '2' : '0';
+  $('ferm-anaero-product').textContent = type === 'alcohol' ? 'Ethanol' : 'Lactate';
+
+  drawFermAerobicCanvas();
+  drawFermAnaeroCanvas();
+  drawFermComparisonChart();
+}
+
+function drawFermAerobicCanvas() {
+  const ctx = getCtx('ferm-aerobic-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f0fdf4'; ctx.fillRect(0, 0, W, H);
+
+  // Title
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('WITH OXYGEN', W / 2, 24);
+
+  const cx = W / 2, startY = 50;
+
+  // Glucose box
+  drawMoleculeBox(ctx, cx, startY, 'Glucose', '#2563eb', 'C\u2086H\u2081\u2082O\u2086');
+  drawArrow(ctx, cx, startY + 28, cx, startY + 52);
+
+  // Glycolysis
+  drawProcessBox(ctx, cx, startY + 60, 'Glycolysis', '#c41e3a');
+  ctx.fillStyle = '#c41e3a'; ctx.font = '10px system-ui';
+  ctx.fillText('+2 ATP, +2 NADH', cx, startY + 80);
+  drawArrow(ctx, cx, startY + 88, cx, startY + 108);
+
+  // Pyruvate
+  drawMoleculeBox(ctx, cx, startY + 116, '2 Pyruvate', '#d97706', '');
+  drawArrow(ctx, cx, startY + 140, cx, startY + 160);
+
+  // Krebs
+  drawProcessBox(ctx, cx, startY + 168, 'Krebs Cycle', '#7c3aed');
+  ctx.fillStyle = '#7c3aed'; ctx.font = '10px system-ui';
+  ctx.fillText('+2 ATP, +8 NADH, +2 FADH\u2082', cx, startY + 188);
+  drawArrow(ctx, cx, startY + 196, cx, startY + 216);
+
+  // ETC
+  drawProcessBox(ctx, cx, startY + 224, 'ETC', '#2563eb');
+  ctx.fillStyle = '#2563eb'; ctx.font = '10px system-ui';
+  ctx.fillText('+32-34 ATP', cx, startY + 244);
+
+  // O2 indicator
+  if (fermState.o2Present) {
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText('O\u2082 \u2713', W - 12, startY + 234);
+  } else {
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText('O\u2082 \u2717', W - 12, startY + 234);
+    // X over ETC
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(cx - 50, startY + 218); ctx.lineTo(cx + 50, startY + 250); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx + 50, startY + 218); ctx.lineTo(cx - 50, startY + 250); ctx.stroke();
+  }
+
+  // Final output
+  ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(fermState.o2Present ? '36-38 ATP Total' : '4 ATP (blocked)', cx, H - 16);
+}
+
+function drawFermAnaeroCanvas() {
+  const ctx = getCtx('ferm-anaero-canvas');
+  const W = ctx.W, H = ctx.H;
+  const type = fermState.fermType;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#fef2f2'; ctx.fillRect(0, 0, W, H);
+
+  // Title
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('WITHOUT OXYGEN', W / 2, 24);
+
+  const cx = W / 2, startY = 50;
+
+  // Glucose
+  drawMoleculeBox(ctx, cx, startY, 'Glucose', '#2563eb', 'C\u2086H\u2081\u2082O\u2086');
+  drawArrow(ctx, cx, startY + 28, cx, startY + 52);
+
+  // Glycolysis
+  drawProcessBox(ctx, cx, startY + 60, 'Glycolysis', '#c41e3a');
+  ctx.fillStyle = '#c41e3a'; ctx.font = '10px system-ui';
+  ctx.fillText('+2 ATP, +2 NADH', cx, startY + 80);
+  drawArrow(ctx, cx, startY + 88, cx, startY + 108);
+
+  // Pyruvate
+  drawMoleculeBox(ctx, cx, startY + 116, '2 Pyruvate', '#d97706', '');
+  drawArrow(ctx, cx, startY + 140, cx, startY + 160);
+
+  // Fermentation step
+  if (type === 'alcohol') {
+    drawProcessBox(ctx, cx, startY + 168, 'Alcohol Ferm.', '#d97706');
+    ctx.fillStyle = '#d97706'; ctx.font = '10px system-ui';
+    ctx.fillText('NAD+ recycled', cx, startY + 188);
+    drawArrow(ctx, cx, startY + 196, cx, startY + 216);
+    // Products
+    drawMoleculeBox(ctx, cx - 40, startY + 224, 'Ethanol', '#d97706', 'C\u2082H\u2085OH');
+    drawMoleculeBox(ctx, cx + 40, startY + 224, 'CO\u2082', '#16a34a', '');
+  } else {
+    drawProcessBox(ctx, cx, startY + 168, 'Lactic Acid Ferm.', '#d97706');
+    ctx.fillStyle = '#d97706'; ctx.font = '10px system-ui';
+    ctx.fillText('NAD+ recycled', cx, startY + 188);
+    drawArrow(ctx, cx, startY + 196, cx, startY + 216);
+    // Product
+    drawMoleculeBox(ctx, cx, startY + 224, 'Lactate', '#d97706', 'C\u2083H\u2086O\u2083');
+  }
+
+  // Final output
+  ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('2 ATP Total', cx, H - 16);
+}
+
+function drawMoleculeBox(ctx, cx, y, name, color, formula) {
+  const w = 80, h = 24;
+  ctx.fillStyle = color + '15';
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(cx - w/2, y, w, h, 6);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.font = 'bold 11px system-ui';
+  ctx.textAlign = 'center';
+  ctx.fillText(name, cx, y + 10);
+  if (formula) {
+    ctx.font = '9px system-ui';
+    ctx.fillText(formula, cx, y + 20);
+  }
+}
+
+function drawProcessBox(ctx, cx, y, name, color) {
+  const w = 100, h = 20;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.roundRect(cx - w/2, y, w, h, 6);
+  ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 11px system-ui';
+  ctx.textAlign = 'center';
+  ctx.fillText(name, cx, y + 14);
+}
+
+function drawArrow(ctx, x1, y1, x2, y2) {
+  ctx.strokeStyle = '#9ca3af';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  // Arrowhead
+  const sz = 5;
+  ctx.fillStyle = '#9ca3af';
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - sz, y2 - sz);
+  ctx.lineTo(x2 + sz, y2 - sz);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawFermComparisonChart() {
+  const ctx = getCtx('ferm-comparison-chart');
+  const type = fermState.fermType;
+  const labels = ['Aerobic', type === 'alcohol' ? 'Alcohol Ferm.' : 'Lactic Acid Ferm.'];
+  const atpValues = [37, 2];
+  const co2Values = [6, type === 'alcohol' ? 2 : 0];
+
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const maxVal = 42;
+  const groupW = plotW / 2;
+  const barW = groupW * 0.25;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxVal * i / 4).toFixed(0), pad.left - 6, y + 4);
+  }
+
+  // Bars
+  labels.forEach((label, i) => {
+    const cx = pad.left + groupW * i + groupW / 2;
+    // ATP bar
+    const atpH = (atpValues[i] / maxVal) * plotH;
+    ctx.fillStyle = '#c41e3a';
+    ctx.fillRect(cx - barW - 4, pad.top + plotH - atpH, barW, atpH);
+    // CO2 bar
+    const co2H = (co2Values[i] / maxVal) * plotH;
+    ctx.fillStyle = '#16a34a';
+    ctx.fillRect(cx + 4, pad.top + plotH - co2H, barW, co2H);
+    // Values
+    ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#c41e3a';
+    ctx.fillText(atpValues[i], cx - barW / 2 - 4, pad.top + plotH - atpH - 6);
+    ctx.fillStyle = '#16a34a';
+    if (co2Values[i] > 0) ctx.fillText(co2Values[i], cx + barW / 2 + 4, pad.top + plotH - co2H - 6);
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText(label, cx, H - pad.bottom + 18);
+  });
+
+  // Efficiency note
+  const efficiency = ((2 / 37) * 100).toFixed(1);
+  ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Fermentation captures only ' + efficiency + '% of aerobic ATP yield', W / 2, H - 4);
+
+  // Legend
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('ATP', pad.left + 18, 16);
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left + 60, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('CO\u2082', pad.left + 78, 16);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: SUBSTRATE COMPARISON
+// ══════════════════════════════════════════════════════════════════════════
+const substrateData = {
+  glucose: {
+    name: 'Glucose', formula: 'C\u2086H\u2081\u2082O\u2086',
+    cal: 4.0, atp: '36-38', atpNum: 37,
+    co2: 6, o2: 6, rq: 1.00,
+    explain: 'Glucose (a carbohydrate) has an RQ of 1.0 because the number of CO\u2082 produced equals the O\u2082 consumed. Carbohydrates are already partially oxidized, so they require proportionally less oxygen.'
+  },
+  lipid: {
+    name: 'Palmitic Acid', formula: 'C\u2081\u2086H\u2083\u2082O\u2082',
+    cal: 9.0, atp: '~129', atpNum: 129,
+    co2: 16, o2: 23, rq: 0.70,
+    explain: 'Fats have an RQ of ~0.7 because they are highly reduced (many C-H bonds) and require more O\u2082 to oxidize relative to CO\u2082 produced. Fats yield more ATP per molecule because they contain more energy-rich C-H bonds and far more carbons per molecule.'
+  },
+  protein: {
+    name: 'Alanine', formula: 'C\u2083H\u2087NO\u2082',
+    cal: 4.0, atp: '~15', atpNum: 15,
+    co2: 3, o2: 3.75, rq: 0.80,
+    explain: 'Proteins have an intermediate RQ of ~0.8. Amino acids must first be deaminated (NH\u2082 group removed), then the carbon skeleton enters the Krebs cycle. Protein is not a preferred fuel &mdash; the body uses it mainly when carbs and fats are depleted.'
+  }
+};
+
+let currentSubstrate = 'glucose';
+
+function subSelect(type) {
+  currentSubstrate = type;
+  ['glucose', 'lipid', 'protein'].forEach(t => {
+    $('sub-' + t + '-btn').className = t === type ? 'btn btn-primary' : 'btn btn-outline';
+  });
+  const d = substrateData[type];
+  $('sub-cal').textContent = d.cal.toFixed(1);
+  $('sub-atp').textContent = d.atp;
+  $('sub-co2').textContent = d.co2;
+  $('sub-o2').textContent = d.o2;
+  $('sub-rq').textContent = d.rq.toFixed(2);
+  $('sub-explanation').innerHTML =
+    '<div class="ar-title">' + d.name + ' (' + d.formula + ') &mdash; RQ = ' + d.rq.toFixed(2) + '</div><p>' + d.explain + '</p>';
+
+  drawSubChart();
+}
+
+function drawSubChart() {
+  const ctx = getCtx('sub-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const metrics = ['kcal/g', 'ATP', 'CO\u2082', 'O\u2082', 'RQ'];
+  const subs = ['glucose', 'lipid', 'protein'];
+  const subColors = ['#c41e3a', '#2563eb', '#7c3aed'];
+  const subLabels = ['Glucose', 'Palmitic Acid', 'Alanine'];
+
+  // Normalize each metric to max across substrates for chart display
+  const rawVals = metrics.map(m => {
+    return subs.map(s => {
+      const d = substrateData[s];
+      if (m === 'kcal/g') return d.cal;
+      if (m === 'ATP') return d.atpNum;
+      if (m === 'CO\u2082') return d.co2;
+      if (m === 'O\u2082') return d.o2;
+      if (m === 'RQ') return d.rq;
+      return 0;
+    });
+  });
+
+  const maxPerMetric = rawVals.map(vals => Math.max(...vals));
+
+  const groupW = plotW / metrics.length;
+  const barW = groupW / (subs.length + 1);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+  }
+  // Normalized axis label
+  ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('Relative', pad.left - 6, pad.top + 4);
+
+  metrics.forEach((metric, mi) => {
+    const gcx = pad.left + groupW * mi + groupW / 2;
+    subs.forEach((sub, si) => {
+      const val = rawVals[mi][si];
+      const normalized = val / maxPerMetric[mi];
+      const barH = normalized * plotH;
+      const x = gcx - (subs.length * barW) / 2 + si * barW;
+      const color = subColors[si];
+
+      // Highlight current
+      const alpha = sub === currentSubstrate ? '' : '80';
+      ctx.fillStyle = color + alpha;
+      ctx.beginPath();
+      const r = 3;
+      ctx.moveTo(x, pad.top + plotH);
+      ctx.lineTo(x, pad.top + plotH - barH + r);
+      ctx.quadraticCurveTo(x, pad.top + plotH - barH, x + r, pad.top + plotH - barH);
+      ctx.lineTo(x + barW - 2 - r, pad.top + plotH - barH);
+      ctx.quadraticCurveTo(x + barW - 2, pad.top + plotH - barH, x + barW - 2, pad.top + plotH - barH + r);
+      ctx.lineTo(x + barW - 2, pad.top + plotH);
+      ctx.closePath();
+      ctx.fill();
+
+      // Value on top
+      if (sub === currentSubstrate) {
+        ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+        const label = metric === 'RQ' ? val.toFixed(2) : (metric === 'kcal/g' ? val.toFixed(1) : val.toString());
+        ctx.fillText(label, x + (barW - 2) / 2, pad.top + plotH - barH - 6);
+      }
+    });
+
+    // Metric label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(metric, gcx, H - pad.bottom + 18);
+  });
+
+  // Legend
+  subs.forEach((sub, i) => {
+    const lx = pad.left + i * 120;
+    ctx.fillStyle = subColors[i]; ctx.fillRect(lx, 6, 12, 12);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(subLabels[i], lx + 18, 16);
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: RESPIRATION-PHOTOSYNTHESIS CONNECTION
+// ══════════════════════════════════════════════════════════════════════════
+let cycleState = {
+  time: 'day', // 'day' or 'night'
+  animFrame: null,
+  animT: 0
+};
+
+function cycleSetTime(t) {
+  cycleState.time = t;
+  $('cycle-day-btn').className = t === 'day' ? 'btn btn-primary' : 'btn btn-outline';
+  $('cycle-night-btn').className = t === 'night' ? 'btn btn-primary' : 'btn btn-outline';
+
+  if (t === 'day') {
+    $('cycle-photo').textContent = 'Active';
+    $('cycle-resp').textContent = 'Active';
+    $('cycle-net-o2').textContent = 'Net +';
+    $('cycle-net-co2').textContent = 'Net -';
+    $('cycle-photo').parentElement.style.background = '#f0fdf4';
+  } else {
+    $('cycle-photo').textContent = 'Inactive';
+    $('cycle-resp').textContent = 'Active';
+    $('cycle-net-o2').textContent = 'Net -';
+    $('cycle-net-co2').textContent = 'Net +';
+    $('cycle-photo').parentElement.style.background = '#fef2f2';
+  }
+  drawCycleCanvas();
+}
+
+function drawCycleCanvas() {
+  const ctx = getCtx('cycle-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  const isDay = cycleState.time === 'day';
+
+  // Background
+  if (isDay) {
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, '#e0f2fe');
+    grad.addColorStop(1, '#f0fdf4');
+    ctx.fillStyle = grad;
+  } else {
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, '#1e293b');
+    grad.addColorStop(1, '#1a1a2e');
+    ctx.fillStyle = grad;
+  }
+  ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+  const radius = Math.min(W, H) * 0.3;
+
+  // Draw cycle circle
+  ctx.strokeStyle = isDay ? '#d1d5db' : '#475569';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Photosynthesis (top)
+  const photoActive = isDay;
+  const photoX = cx, photoY = cy - radius - 10;
+  ctx.fillStyle = photoActive ? '#16a34a' : '#4b5563';
+  ctx.beginPath();
+  ctx.roundRect(photoX - 70, photoY - 18, 140, 36, 10);
+  ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Photosynthesis', photoX, photoY + 5);
+
+  // Respiration (bottom)
+  const respX = cx, respY = cy + radius + 10;
+  ctx.fillStyle = '#c41e3a';
+  ctx.beginPath();
+  ctx.roundRect(respX - 70, respY - 18, 140, 36, 10);
+  ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Respiration', respX, respY + 5);
+
+  // Molecules on the cycle
+  const textColor = isDay ? '#374151' : '#e2e8f0';
+
+  // Right side: Glucose + O2 flowing down (from photo to resp)
+  const rAngle1 = -Math.PI / 6;
+  const rx1 = cx + Math.cos(rAngle1) * radius + 20;
+  const ry1 = cy + Math.sin(rAngle1) * radius;
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('C\u2086H\u2081\u2082O\u2086', rx1, ry1);
+  ctx.font = '11px system-ui'; ctx.fillStyle = textColor;
+  ctx.fillText('(glucose)', rx1, ry1 + 16);
+
+  const rAngle2 = Math.PI / 6;
+  const rx2 = cx + Math.cos(rAngle2) * radius + 20;
+  const ry2 = cy + Math.sin(rAngle2) * radius;
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('O\u2082', rx2, ry2);
+  ctx.font = '11px system-ui'; ctx.fillStyle = textColor;
+  ctx.fillText('(oxygen)', rx2 + 24, ry2);
+
+  // Right arrow (down)
+  const arrowRx = cx + radius + 8;
+  ctx.strokeStyle = photoActive ? '#16a34a' : '#4b5563';
+  ctx.lineWidth = photoActive ? 3 : 1.5;
+  ctx.beginPath();
+  ctx.moveTo(arrowRx, cy - radius / 2);
+  ctx.lineTo(arrowRx, cy + radius / 2);
+  ctx.stroke();
+  ctx.fillStyle = ctx.strokeStyle;
+  ctx.beginPath();
+  ctx.moveTo(arrowRx, cy + radius / 2 + 6);
+  ctx.lineTo(arrowRx - 6, cy + radius / 2 - 2);
+  ctx.lineTo(arrowRx + 6, cy + radius / 2 - 2);
+  ctx.closePath();
+  ctx.fill();
+
+  // Left side: CO2 + H2O flowing up (from resp to photo)
+  const lAngle1 = Math.PI + Math.PI / 6;
+  const lx1 = cx + Math.cos(lAngle1) * radius - 70;
+  const ly1 = cy + Math.sin(lAngle1) * radius;
+  ctx.fillStyle = '#d97706'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('CO\u2082', lx1, ly1);
+  ctx.font = '11px system-ui'; ctx.fillStyle = textColor;
+  ctx.fillText('(carbon dioxide)', lx1 + 34, ly1);
+
+  const lAngle2 = Math.PI - Math.PI / 6;
+  const lx2 = cx + Math.cos(lAngle2) * radius - 70;
+  const ly2 = cy + Math.sin(lAngle2) * radius;
+  ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('H\u2082O', lx2, ly2);
+  ctx.font = '11px system-ui'; ctx.fillStyle = textColor;
+  ctx.fillText('(water)', lx2 + 36, ly2);
+
+  // Left arrow (up)
+  const arrowLx = cx - radius - 8;
+  ctx.strokeStyle = '#c41e3a';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(arrowLx, cy + radius / 2);
+  ctx.lineTo(arrowLx, cy - radius / 2);
+  ctx.stroke();
+  ctx.fillStyle = '#c41e3a';
+  ctx.beginPath();
+  ctx.moveTo(arrowLx, cy - radius / 2 - 6);
+  ctx.lineTo(arrowLx - 6, cy - radius / 2 + 2);
+  ctx.lineTo(arrowLx + 6, cy - radius / 2 + 2);
+  ctx.closePath();
+  ctx.fill();
+
+  // Energy labels
+  if (photoActive) {
+    // Sun
+    ctx.fillStyle = '#fbbf24'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Light Energy', cx, photoY - 28);
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath(); ctx.arc(cx, photoY - 46, 10, 0, Math.PI * 2); ctx.fill();
+    // Sun rays
+    for (let a = 0; a < 8; a++) {
+      const angle = (a / 8) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(cx + Math.cos(angle) * 13, photoY - 46 + Math.sin(angle) * 13);
+      ctx.lineTo(cx + Math.cos(angle) * 20, photoY - 46 + Math.sin(angle) * 20);
+      ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 2; ctx.stroke();
+    }
+  } else {
+    ctx.fillStyle = '#94a3b8'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('No Light', cx, photoY - 28);
+    // Moon
+    ctx.fillStyle = '#e2e8f0';
+    ctx.beginPath(); ctx.arc(cx, photoY - 46, 10, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = isDay ? '#e0f2fe' : '#1e293b';
+    ctx.beginPath(); ctx.arc(cx + 4, photoY - 48, 8, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // ATP label at bottom
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('ATP + Heat', cx, respY + 32);
+
+  // Day/Night label
+  ctx.fillStyle = isDay ? '#0369a1' : '#94a3b8';
+  ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(isDay ? 'DAYTIME' : 'NIGHTTIME', cx, H - 12);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: METABOLIC RATE EXPERIMENT
+// ══════════════════════════════════════════════════════════════════════════
+let metState = {
+  running: false, animFrame: null,
+  organism: 'seeds', temp: 25,
+  elapsed: 0, startTime: 0,
+  data: [], controlData: [],
+  hasControl: false,
+  results: [], // stored results for comparison
+  lastTick: 0
+};
+
+const organismRates = {
+  seeds: { name: 'Germinating Seeds', baseRate: 0.008, tempSensitivity: 1.8 },
+  crickets: { name: 'Crickets', baseRate: 0.025, tempSensitivity: 2.2 },
+  yeast: { name: 'Yeast', baseRate: 0.012, tempSensitivity: 2.0 }
+};
+
+function metGetRate(organism, temp) {
+  const info = organismRates[organism];
+  const base = info.baseRate;
+  const q10 = info.tempSensitivity;
+  let rate = base * Math.pow(q10, (temp - 20) / 10);
+  // Denaturation
+  if (temp > 38) rate *= Math.exp(-0.3 * Math.pow((temp - 38) / 5, 2));
+  if (temp < 10) rate *= temp / 10;
+  return Math.max(0, rate);
+}
+
+function metUpdateSetup() {
+  metState.organism = $('met-organism').value;
+  const info = organismRates[metState.organism];
+  $('met-organism-label').textContent = info.name.split(' ')[0];
+}
+
+function metUpdateTemp() {
+  metState.temp = parseInt($('met-temp').value);
+  $('met-temp-val').textContent = metState.temp + '\u00B0C';
+}
+
+function metStart() {
+  if (metState.running) return;
+  metState.running = true;
+  metState.startTime = performance.now();
+  metState.lastTick = metState.startTime;
+  metState.data = [];
+  metState.controlData = [];
+  metState.elapsed = 0;
+  metAnimate();
+}
+
+function metStop() {
+  metState.running = false;
+  if (metState.animFrame) cancelAnimationFrame(metState.animFrame);
+  // Save result for comparison
+  if (metState.data.length > 5) {
+    const totalO2 = metState.data[metState.data.length - 1];
+    const elapsed = metState.elapsed;
+    const rate = elapsed > 0 ? (totalO2 / (elapsed / 60)).toFixed(3) : '0';
+    const info = organismRates[metState.organism];
+    // Check if organism already recorded
+    const existing = metState.results.findIndex(r => r.organism === metState.organism);
+    const result = { organism: metState.organism, name: info.name, rate: parseFloat(rate), temp: metState.temp };
+    if (existing >= 0) metState.results[existing] = result;
+    else metState.results.push(result);
+    drawMetCompareChart();
+  }
+}
+
+function metReset() {
+  metStop();
+  metState.data = [];
+  metState.controlData = [];
+  metState.elapsed = 0;
+  metState.hasControl = false;
+  $('met-time').textContent = '0s';
+  $('met-o2').textContent = '0.0';
+  $('met-rate').textContent = '0.00';
+  drawMetChart();
+}
+
+function metAddControl() {
+  metState.hasControl = true;
+}
+
+function metAnimate() {
+  if (!metState.running) return;
+  const now = performance.now();
+  const dt = (now - metState.lastTick) / 1000; // seconds elapsed since last tick
+  metState.lastTick = now;
+
+  // Accelerate time: 1 real second = 10 experiment seconds
+  metState.elapsed += dt * 10;
+
+  const rate = metGetRate(metState.organism, metState.temp);
+  const totalO2 = rate * metState.elapsed;
+  metState.data.push(totalO2);
+
+  // Control (dead organism - near zero)
+  if (metState.hasControl) {
+    const controlO2 = 0.0005 * metState.elapsed; // tiny drift
+    metState.controlData.push(controlO2);
+  }
+
+  // Update display
+  $('met-time').textContent = Math.floor(metState.elapsed) + 's';
+  $('met-o2').textContent = totalO2.toFixed(2);
+  const ratePerMin = metState.elapsed > 0 ? (totalO2 / (metState.elapsed / 60)) : 0;
+  $('met-rate').textContent = ratePerMin.toFixed(3);
+
+  drawMetChart();
+
+  // Stop after 5 min (300 experiment seconds)
+  if (metState.elapsed >= 300) {
+    metStop();
+    return;
+  }
+
+  metState.animFrame = requestAnimationFrame(metAnimate);
+}
+
+function drawMetChart() {
+  if (!metState.data.length) {
+    const ctx = getCtx('met-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Start an experiment to see O\u2082 consumption over time', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+
+  const maxO2 = Math.max(0.5, ...metState.data) * 1.2;
+  const maxPts = Math.max(metState.data.length, 50);
+
+  const series = [
+    { data: metState.data, color: '#c41e3a', width: 2.5, dots: metState.data.length < 60 }
+  ];
+  if (metState.hasControl && metState.controlData.length) {
+    series.push({ data: metState.controlData, color: '#9ca3af', width: 1.5, dash: [4, 3], dots: false });
+  }
+
+  const ctx = getCtx('met-chart');
+  drawLineChart(ctx, series, { yMin: 0, yMax: maxO2, xMax: maxPts });
+
+  // X axis label
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Time (data points ~ seconds x10)', ctx.W / 2, ctx.H - 4);
+}
+
+function drawMetCompareChart() {
+  const ctx = getCtx('met-compare-chart');
+  if (!metState.results.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Run experiments with different organisms to compare', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+
+  const labels = metState.results.map(r => r.name.split(' ')[0]);
+  const values = metState.results.map(r => r.rate);
+  const colors = metState.results.map(r => {
+    if (r.organism === 'seeds') return '#16a34a';
+    if (r.organism === 'crickets') return '#c41e3a';
+    return '#d97706';
+  });
+
+  drawBarChart(ctx, {
+    labels: labels,
+    values: values,
+    colors: colors,
+    maxVal: Math.max(...values) * 1.3 || 1
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  respUpdateTemp();
+  drawRespCanvas();
+  drawRespRateChart();
+  pwUpdateUI();
+  fermUpdateDisplay();
+  subSelect('glucose');
+  drawCycleCanvas();
+  metUpdateSetup();
+  drawMetChart();
+  drawMetCompareChart();
+});
+
+window.addEventListener('resize', () => {
+  drawRespCanvas();
+  drawRespRateChart();
+  drawPwChart();
+  drawFermAerobicCanvas();
+  drawFermAnaeroCanvas();
+  drawFermComparisonChart();
+  drawSubChart();
+  drawCycleCanvas();
+  drawMetChart();
+  drawMetCompareChart();
+});
+</script>
+</body>
+</html>

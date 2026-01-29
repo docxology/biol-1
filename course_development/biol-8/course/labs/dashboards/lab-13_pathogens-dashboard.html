@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 13 Dashboard: Pathogens | BIOL-8</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PATHOGEN-SPECIFIC STYLES
+   ═══════════════════════════════════════════════════════════════════════ */
+.tab-bar { display: flex; gap: 4px; flex-wrap: wrap; margin: 12px 0; }
+.tab-btn {
+  padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  border: 2px solid var(--border); background: transparent; cursor: pointer;
+  transition: all 0.15s; font-family: var(--font); color: var(--text-muted);
+}
+.tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+.tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.info-panel {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border: 1px solid var(--border); font-size: 14px; line-height: 1.7;
+}
+.info-panel h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.info-panel .detail-row { display: flex; gap: 8px; margin: 4px 0; }
+.info-panel .detail-label { font-weight: 600; min-width: 120px; color: var(--text-muted); font-size: 13px; }
+
+.stain-step {
+  display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+  border-radius: 8px; margin: 6px 0; background: #f8fafc; border: 1px solid var(--border);
+  cursor: pointer; transition: all 0.2s;
+}
+.stain-step:hover { border-color: var(--accent); }
+.stain-step.active-step { background: #fef2f2; border-color: var(--accent); }
+.stain-step .step-num {
+  width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-weight: 800; font-size: 13px; background: var(--border); color: var(--text);
+  flex-shrink: 0;
+}
+.stain-step.active-step .step-num { background: var(--accent); color: #fff; }
+.stain-step .step-text { font-size: 13px; font-weight: 600; }
+.stain-step .step-detail { font-size: 12px; color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-8: Human Biology</h1>
+    <p>Lab 13 &mdash; Pathogens</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Bacterial Morphology</a>
+    <a href="#part2"><span class="nav-num">2</span> Gram Stain Lab</a>
+    <a href="#part3"><span class="nav-num">3</span> Infection Spread</a>
+    <a href="#part4"><span class="nav-num">4</span> Pathogen Types</a>
+    <a href="#part5"><span class="nav-num">5</span> Environmental Micro</a>
+    <a href="#part6"><span class="nav-num">6</span> Immune Response</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Pathogens</h2>
+  <p>Explore bacterial morphology, practice virtual Gram staining, simulate infection spread through populations, compare pathogen types, investigate environmental microbiology, and understand how the immune system defends against disease.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Microbiology</span>
+    <span class="bio-tag">Infection</span>
+    <span class="bio-tag">Immunity</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: BACTERIAL MORPHOLOGY ════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Bacterial Morphology Explorer</div>
+    <div class="section-subtitle">Identify basic shapes, arrangement patterns, and size comparisons</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Shape &amp; Arrangement Viewer</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click a shape to see its arrangement patterns. Click an arrangement to view a real-world bacterial example.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="morphSelect('cocci')">Cocci (Spheres)</button>
+      <button class="btn btn-secondary" onclick="morphSelect('bacilli')">Bacilli (Rods)</button>
+      <button class="btn btn-outline" onclick="morphSelect('spirilla')">Spirilla (Spirals)</button>
+    </div>
+    <div class="card-row">
+      <div>
+        <div class="chart-wrap"><canvas id="morph-canvas" height="320"></canvas></div>
+      </div>
+      <div>
+        <div id="morph-info" class="info-panel">
+          <h4>Select a Shape</h4>
+          <p>Click one of the shape buttons above to explore bacterial morphology. You will see the basic cell shape, common arrangement patterns, and real-world examples of pathogenic bacteria.</p>
+        </div>
+        <div class="tab-bar" id="morph-arrange-tabs"></div>
+        <div id="morph-example-info" class="info-panel" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Size Scale Comparison</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Relative sizes of different cell types and pathogens. Bacteria are typically 1-10 &micro;m; human cells are 10-100 &micro;m.</p>
+    <div class="chart-wrap"><canvas id="size-chart" height="200"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: GRAM STAIN ══════════════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Gram Stain Virtual Lab</div>
+    <div class="section-subtitle">Step through the staining procedure and observe differential results</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Staining Procedure</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click each step to apply it to both bacterial samples. Observe how Gram-positive and Gram-negative bacteria respond differently.</p>
+    <div class="card-row">
+      <div>
+        <div class="stain-step active-step" id="stain-step-0" onclick="gramStep(0)">
+          <div class="step-num">0</div>
+          <div><div class="step-text">Heat-Fix Smear</div><div class="step-detail">Bacteria fixed to slide, no stain applied</div></div>
+        </div>
+        <div class="stain-step" id="stain-step-1" onclick="gramStep(1)">
+          <div class="step-num">1</div>
+          <div><div class="step-text">Crystal Violet (1 min)</div><div class="step-detail">Primary stain &mdash; all bacteria turn purple</div></div>
+        </div>
+        <div class="stain-step" id="stain-step-2" onclick="gramStep(2)">
+          <div class="step-num">2</div>
+          <div><div class="step-text">Iodine Mordant (1 min)</div><div class="step-detail">Forms CV-I complex &mdash; all remain purple</div></div>
+        </div>
+        <div class="stain-step" id="stain-step-3" onclick="gramStep(3)">
+          <div class="step-num">3</div>
+          <div><div class="step-text">Alcohol Decolorizer (10-15 sec)</div><div class="step-detail">Dissolves outer membrane &mdash; Gram-negative lose stain</div></div>
+        </div>
+        <div class="stain-step" id="stain-step-4" onclick="gramStep(4)">
+          <div class="step-num">4</div>
+          <div><div class="step-text">Safranin Counterstain (1 min)</div><div class="step-detail">Gram-negative take up pink counterstain</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="chart-wrap"><canvas id="gram-canvas" height="300"></canvas></div>
+        <div class="stat-grid">
+          <div class="stat-box stat-purple"><div class="stat-val" id="gram-pos-label">---</div><div class="stat-label">Gram-Positive</div></div>
+          <div class="stat-box stat-accent"><div class="stat-val" id="gram-neg-label">---</div><div class="stat-label">Gram-Negative</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Cell Wall Structure Comparison</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">The difference in Gram staining is due to cell wall architecture. Gram-positive bacteria have a thick peptidoglycan layer that retains crystal violet. Gram-negative bacteria have a thin peptidoglycan layer and an outer membrane.</p>
+    <div class="chart-wrap"><canvas id="wall-canvas" height="280"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: INFECTION SPREAD ════════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Infection Spread Simulator</div>
+    <div class="section-subtitle">SIR model: watch disease spread through a population in real time</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Population Grid</div>
+    <div class="slider-group">
+      <label>Transmission</label>
+      <input type="range" id="sir-trans" min="0" max="100" value="40" oninput="sirTransLabel()">
+      <span class="slider-val" id="sir-trans-val">40%</span>
+    </div>
+    <div class="slider-group">
+      <label>Vaccination</label>
+      <input type="range" id="sir-vax" min="0" max="100" value="0" oninput="sirVaxLabel()">
+      <span class="slider-val" id="sir-vax-val">0%</span>
+    </div>
+    <div class="slider-group">
+      <label>Recovery (days)</label>
+      <input type="range" id="sir-recov" min="3" max="20" value="7" oninput="sirRecovLabel()">
+      <span class="slider-val" id="sir-recov-val">7</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="sirStart()">Start Simulation</button>
+      <button class="btn btn-secondary" onclick="sirStep()">Step Once</button>
+      <button class="btn btn-outline" onclick="sirReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="sir-grid-canvas" height="340"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-blue"><div class="stat-val" id="sir-s">400</div><div class="stat-label">Susceptible</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="sir-i">0</div><div class="stat-label">Infected</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="sir-r">0</div><div class="stat-label">Recovered</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="sir-r0">-</div><div class="stat-label">R0 Estimate</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="sir-day">0</div><div class="stat-label">Day</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">SIR Curves Over Time</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--blue);"></span> Susceptible</span>
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Infected</span>
+      <span><span class="ci-dot" style="background:var(--green);"></span> Recovered</span>
+    </div>
+    <div class="chart-wrap"><canvas id="sir-chart" height="280"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: PATHOGEN TYPES ══════════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Pathogen Type Comparison</div>
+    <div class="section-subtitle">Compare bacteria, viruses, fungi, protists, and prions</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select a Pathogen Type</div>
+    <div class="tab-bar" id="pathogen-tabs">
+      <button class="tab-btn active" onclick="pathogenSelect('bacteria')">Bacteria</button>
+      <button class="tab-btn" onclick="pathogenSelect('virus')">Viruses</button>
+      <button class="tab-btn" onclick="pathogenSelect('fungi')">Fungi</button>
+      <button class="tab-btn" onclick="pathogenSelect('protist')">Protists</button>
+      <button class="tab-btn" onclick="pathogenSelect('prion')">Prions</button>
+    </div>
+    <div class="card-row">
+      <div>
+        <div class="chart-wrap"><canvas id="pathogen-canvas" height="260"></canvas></div>
+      </div>
+      <div id="pathogen-info" class="info-panel"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Size Comparison Across Pathogen Types</div>
+    <div class="chart-wrap"><canvas id="pathogen-size-chart" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Global Disease Burden by Pathogen Type</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Approximate annual deaths worldwide attributed to each pathogen class (millions).</p>
+    <div class="chart-wrap"><canvas id="burden-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: ENVIRONMENTAL MICRO ═════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Environmental Microbiology Lab</div>
+    <div class="section-subtitle">Swab surfaces, culture on agar, count colonies, and compare contamination levels</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Virtual Surface Sampling</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Select a surface to swab. After swabbing, the sample is streaked on an agar plate and incubated for 48 hours. Watch colonies appear over time.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="envSwab('doorknob')">Swab Doorknob</button>
+      <button class="btn btn-secondary" onclick="envSwab('phone')">Swab Phone</button>
+      <button class="btn btn-outline" onclick="envSwab('desk')">Swab Desk</button>
+      <button class="btn btn-outline" onclick="envSwab('hand')">Swab Hand</button>
+    </div>
+    <div class="card-row">
+      <div>
+        <div class="chart-wrap"><canvas id="agar-canvas" height="300"></canvas></div>
+        <div id="agar-status" style="text-align:center;font-size:13px;color:var(--text-muted);margin-top:8px;">Select a surface to begin</div>
+      </div>
+      <div>
+        <div class="stat-grid">
+          <div class="stat-box stat-accent"><div class="stat-val" id="env-colonies">0</div><div class="stat-label">Colonies</div></div>
+          <div class="stat-box stat-blue"><div class="stat-val" id="env-cfu">-</div><div class="stat-label">CFU/mL</div></div>
+          <div class="stat-box stat-green"><div class="stat-val" id="env-hours">0</div><div class="stat-label">Hours Incubated</div></div>
+          <div class="stat-box stat-amber"><div class="stat-val" id="env-surface">-</div><div class="stat-label">Surface</div></div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-sm btn-primary" onclick="envIncubate()">Incubate (+6 hrs)</button>
+          <button class="btn btn-sm btn-secondary" onclick="envIncubateFull()">Full 48 hrs</button>
+          <button class="btn btn-sm btn-outline" onclick="envReset()">Clear Plate</button>
+        </div>
+        <div id="env-hygiene" class="info-panel" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Contamination Comparison</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Swab multiple surfaces to compare bacterial loads. Colony counts are plotted automatically.</p>
+    <div class="chart-wrap"><canvas id="env-compare-chart" height="260"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Hygiene Intervention Effect</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Estimated colony reduction with proper hygiene practices (handwashing, disinfection).</p>
+    <div class="chart-wrap"><canvas id="env-hygiene-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: IMMUNE RESPONSE ════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Immune Response Overview</div>
+    <div class="section-subtitle">Innate and adaptive immunity, primary vs. secondary response, vaccination</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Immune Defense Timeline</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click "Start Infection" to watch the immune system respond. The timeline shows pathogen entry, innate immune activation, and adaptive immune response.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="immuneStart()">Start Infection</button>
+      <button class="btn btn-secondary" onclick="immuneStep()">Advance (+1 day)</button>
+      <button class="btn btn-outline" onclick="immuneReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="immune-canvas" height="320"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="imm-pathogen">0</div><div class="stat-label">Pathogen Load</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="imm-innate">0</div><div class="stat-label">Innate Activity</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="imm-adaptive">0</div><div class="stat-label">Adaptive Activity</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="imm-day">0</div><div class="stat-label">Day</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Primary vs. Secondary Immune Response</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Antibody concentration over time for a first exposure vs. re-exposure. The secondary response is faster, stronger, and longer-lasting due to memory cells.</p>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--blue);"></span> Primary (1st exposure)</span>
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Secondary (2nd exposure)</span>
+      <span><span class="ci-dot" style="background:var(--green);"></span> Vaccination primes secondary</span>
+    </div>
+    <div class="chart-wrap"><canvas id="antibody-chart" height="280"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Immune Components</div>
+    <div class="card-row">
+      <div class="info-panel">
+        <h4>Innate Immunity (Non-specific)</h4>
+        <div class="detail-row"><span class="detail-label">Physical barriers</span><span>Skin, mucous membranes, cilia</span></div>
+        <div class="detail-row"><span class="detail-label">Chemical barriers</span><span>Stomach acid, lysozyme, antimicrobial peptides</span></div>
+        <div class="detail-row"><span class="detail-label">Cellular</span><span>Phagocytes (macrophages, neutrophils), NK cells</span></div>
+        <div class="detail-row"><span class="detail-label">Inflammation</span><span>Redness, swelling, heat, pain &mdash; recruits immune cells</span></div>
+        <div class="detail-row"><span class="detail-label">Fever</span><span>Elevates body temperature to inhibit pathogen growth</span></div>
+      </div>
+      <div class="info-panel">
+        <h4>Adaptive Immunity (Specific)</h4>
+        <div class="detail-row"><span class="detail-label">B cells</span><span>Produce antibodies that neutralize pathogens</span></div>
+        <div class="detail-row"><span class="detail-label">T helper cells</span><span>Coordinate immune response (CD4+)</span></div>
+        <div class="detail-row"><span class="detail-label">T killer cells</span><span>Destroy infected cells (CD8+ cytotoxic)</span></div>
+        <div class="detail-row"><span class="detail-label">Memory cells</span><span>Long-lived B and T cells for rapid secondary response</span></div>
+        <div class="detail-row"><span class="detail-label">Vaccination</span><span>Introduces antigen to prime memory without disease</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: BACTERIAL MORPHOLOGY
+// ══════════════════════════════════════════════════════════════════════════
+const morphData = {
+  cocci: {
+    name: 'Cocci (Spheres)',
+    desc: 'Spherical or nearly spherical bacteria. Approximately 0.5-1.5 micrometers in diameter.',
+    arrangements: {
+      'mono': { name: 'Monococcus', desc: 'Single spherical cells', example: 'Micrococcus luteus', disease: 'Rarely pathogenic; found on skin' },
+      'diplo': { name: 'Diplococci', desc: 'Pairs of spherical cells', example: 'Streptococcus pneumoniae', disease: 'Pneumonia, meningitis, otitis media' },
+      'strepto': { name: 'Streptococci', desc: 'Chains of spherical cells', example: 'Streptococcus pyogenes', disease: 'Strep throat, scarlet fever, necrotizing fasciitis' },
+      'staphylo': { name: 'Staphylococci', desc: 'Grape-like clusters of spheres', example: 'Staphylococcus aureus', disease: 'MRSA, skin infections, food poisoning, toxic shock' },
+      'tetrad': { name: 'Tetrads', desc: 'Groups of four cells', example: 'Micrococcus sp.', disease: 'Rarely pathogenic' }
+    }
+  },
+  bacilli: {
+    name: 'Bacilli (Rods)',
+    desc: 'Rod-shaped or cylindrical bacteria. Typically 1-10 micrometers long and 0.5-1 micrometer wide.',
+    arrangements: {
+      'mono': { name: 'Single Bacillus', desc: 'Individual rod-shaped cells', example: 'Escherichia coli', disease: 'UTIs, gastroenteritis, hemolytic uremic syndrome' },
+      'diplo': { name: 'Diplobacilli', desc: 'Pairs of rod-shaped cells', example: 'Klebsiella pneumoniae', disease: 'Pneumonia, bloodstream infections' },
+      'strepto': { name: 'Streptobacilli', desc: 'Chains of rod-shaped cells', example: 'Bacillus anthracis', disease: 'Anthrax (cutaneous, inhalation, GI)' },
+      'palisade': { name: 'Palisade', desc: 'Side-by-side like a picket fence', example: 'Corynebacterium diphtheriae', disease: 'Diphtheria' }
+    }
+  },
+  spirilla: {
+    name: 'Spirilla (Spirals)',
+    desc: 'Spiral or helical bacteria. Range from slight curves to tightly coiled helices, 5-500 micrometers long.',
+    arrangements: {
+      'vibrio': { name: 'Vibrio (Comma)', desc: 'Slightly curved, comma-shaped', example: 'Vibrio cholerae', disease: 'Cholera' },
+      'spirillum': { name: 'Spirillum (Rigid helix)', desc: 'Rigid helical shape with flagella', example: 'Spirillum minus', disease: 'Rat-bite fever' },
+      'spirochete': { name: 'Spirochete (Flexible helix)', desc: 'Flexible, tightly coiled with axial filaments', example: 'Treponema pallidum', disease: 'Syphilis' }
+    }
+  }
+};
+
+let currentMorph = null;
+let currentArrange = null;
+
+function morphSelect(shape) {
+  currentMorph = shape;
+  currentArrange = null;
+  const data = morphData[shape];
+
+  // Update buttons
+  document.querySelectorAll('.btn-group .btn').forEach(b => {
+    b.classList.remove('btn-primary', 'btn-secondary');
+    b.classList.add('btn-outline');
+  });
+
+  // Info panel
+  $('morph-info').innerHTML = `<h4>${data.name}</h4><p>${data.desc}</p>`;
+
+  // Arrangement tabs
+  const tabsDiv = $('morph-arrange-tabs');
+  tabsDiv.innerHTML = '';
+  Object.entries(data.arrangements).forEach(([key, arr]) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn';
+    btn.textContent = arr.name;
+    btn.onclick = () => morphArrange(shape, key);
+    tabsDiv.appendChild(btn);
+  });
+
+  $('morph-example-info').style.display = 'none';
+  drawMorphCanvas(shape, null);
+}
+
+function morphArrange(shape, arrange) {
+  currentArrange = arrange;
+  const arr = morphData[shape].arrangements[arrange];
+
+  // Highlight tab
+  document.querySelectorAll('#morph-arrange-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const info = $('morph-example-info');
+  info.style.display = 'block';
+  info.innerHTML = `<h4>${arr.name}</h4>
+    <div class="detail-row"><span class="detail-label">Pattern</span><span>${arr.desc}</span></div>
+    <div class="detail-row"><span class="detail-label">Example</span><span><em>${arr.example}</em></span></div>
+    <div class="detail-row"><span class="detail-label">Disease(s)</span><span>${arr.disease}</span></div>`;
+
+  drawMorphCanvas(shape, arrange);
+}
+
+function drawMorphCanvas(shape, arrange) {
+  const ctx = getCtx('morph-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Microscope viewport circle
+  const cx = W / 2, cy = H / 2, viewR = Math.min(W, H) * 0.42;
+  ctx.save();
+  ctx.beginPath(); ctx.arc(cx, cy, viewR, 0, Math.PI * 2); ctx.clip();
+  ctx.fillStyle = '#fefefe'; ctx.fillRect(0, 0, W, H);
+
+  // Light blue microscope tint
+  const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, viewR);
+  grad.addColorStop(0, 'rgba(220,235,255,0.3)');
+  grad.addColorStop(1, 'rgba(180,210,245,0.5)');
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+
+  if (shape === 'cocci') {
+    drawCocciShape(ctx, cx, cy, arrange);
+  } else if (shape === 'bacilli') {
+    drawBacilliShape(ctx, cx, cy, arrange);
+  } else if (shape === 'spirilla') {
+    drawSpirillaShape(ctx, cx, cy, arrange);
+  } else {
+    // Default - draw all three basic shapes
+    ctx.fillStyle = '#6366f1';
+    ctx.beginPath(); ctx.arc(cx - 80, cy, 20, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Coccus', cx - 80, cy + 40);
+
+    ctx.fillStyle = '#059669';
+    roundRect(ctx, cx - 15, cy - 8, 40, 16, 8); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.fillText('Bacillus', cx + 5, cy + 40);
+
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+    drawSpiral(ctx, cx + 80, cy, 25, 3); ctx.stroke();
+    ctx.fillStyle = '#374151'; ctx.fillText('Spirillum', cx + 80, cy + 40);
+  }
+
+  ctx.restore();
+
+  // Viewport border
+  ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(cx, cy, viewR, 0, Math.PI * 2); ctx.stroke();
+
+  // Label
+  if (shape) {
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    const label = arrange ? morphData[shape].arrangements[arrange].name : morphData[shape].name;
+    ctx.fillText(label, cx, H - 8);
+  }
+}
+
+function drawCocciShape(ctx, cx, cy, arrange) {
+  const r = 14;
+  ctx.fillStyle = '#6366f1';
+  ctx.strokeStyle = '#4338ca'; ctx.lineWidth = 1.5;
+
+  if (!arrange || arrange === 'mono') {
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+  } else if (arrange === 'diplo') {
+    ctx.beginPath(); ctx.arc(cx - r - 2, cy, r, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx + r + 2, cy, r, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+  } else if (arrange === 'strepto') {
+    for (let i = -3; i <= 3; i++) {
+      ctx.beginPath(); ctx.arc(cx + i * (r*2 + 3), cy, r, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    }
+  } else if (arrange === 'staphylo') {
+    const positions = [
+      [0, 0], [-r*1.5, -r*1.2], [r*1.5, -r*1.2], [-r*0.8, r*1.4], [r*0.8, r*1.4],
+      [-r*2.3, 0], [r*2.3, 0], [0, -r*2.4], [0, r*2.6],
+      [-r*1.8, r*1.8], [r*1.8, r*1.8], [-r*1.5, -r*2.5], [r*1.5, -r*2.5]
+    ];
+    positions.forEach(([dx, dy]) => {
+      ctx.beginPath(); ctx.arc(cx + dx, cy + dy, r * 0.85, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    });
+  } else if (arrange === 'tetrad') {
+    const off = r + 2;
+    [[-off, -off], [off, -off], [-off, off], [off, off]].forEach(([dx, dy]) => {
+      ctx.beginPath(); ctx.arc(cx + dx, cy + dy, r, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    });
+  }
+}
+
+function drawBacilliShape(ctx, cx, cy, arrange) {
+  const w = 38, h = 14, rr = 7;
+  ctx.fillStyle = '#059669';
+  ctx.strokeStyle = '#047857'; ctx.lineWidth = 1.5;
+
+  if (!arrange || arrange === 'mono') {
+    roundRect(ctx, cx - w/2, cy - h/2, w, h, rr); ctx.fill(); ctx.stroke();
+  } else if (arrange === 'diplo') {
+    roundRect(ctx, cx - w - 4, cy - h/2, w, h, rr); ctx.fill(); ctx.stroke();
+    roundRect(ctx, cx + 4, cy - h/2, w, h, rr); ctx.fill(); ctx.stroke();
+  } else if (arrange === 'strepto') {
+    for (let i = -2; i <= 2; i++) {
+      roundRect(ctx, cx + i * (w + 5) - w/2, cy - h/2, w, h, rr); ctx.fill(); ctx.stroke();
+    }
+  } else if (arrange === 'palisade') {
+    for (let i = -3; i <= 3; i++) {
+      const angle = (Math.random() - 0.5) * 0.2;
+      ctx.save();
+      ctx.translate(cx + i * (h + 4), cy);
+      ctx.rotate(Math.PI/2 + angle);
+      roundRect(ctx, -w/2, -h/2, w, h, rr); ctx.fill(); ctx.stroke();
+      ctx.restore();
+    }
+  }
+}
+
+function drawSpirillaShape(ctx, cx, cy, arrange) {
+  ctx.lineWidth = 3;
+
+  if (!arrange || arrange === 'spirillum') {
+    ctx.strokeStyle = '#c41e3a';
+    drawSpiral(ctx, cx, cy, 40, 4); ctx.stroke();
+  } else if (arrange === 'vibrio') {
+    ctx.strokeStyle = '#ea580c'; ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 25, Math.PI * 0.3, Math.PI * 1.2);
+    ctx.stroke();
+  } else if (arrange === 'spirochete') {
+    ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2.5;
+    drawTightSpiral(ctx, cx, cy, 60, 8);
+    ctx.stroke();
+  }
+}
+
+function drawSpiral(ctx, cx, cy, amplitude, coils) {
+  ctx.beginPath();
+  for (let t = 0; t <= coils * Math.PI * 2; t += 0.1) {
+    const x = cx - amplitude + (t / (coils * Math.PI * 2)) * amplitude * 2;
+    const y = cy + Math.sin(t) * 12;
+    t === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+}
+
+function drawTightSpiral(ctx, cx, cy, length, coils) {
+  ctx.beginPath();
+  for (let t = 0; t <= coils * Math.PI * 2; t += 0.05) {
+    const x = cx - length + (t / (coils * Math.PI * 2)) * length * 2;
+    const y = cy + Math.sin(t) * 8;
+    t === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function drawSizeChart() {
+  const ctx = getCtx('size-chart');
+  const items = [
+    { label: 'Prion', size: 0.01, color: '#374151' },
+    { label: 'Virus', size: 0.1, color: '#7c3aed' },
+    { label: 'Bacterium', size: 2, color: '#c41e3a' },
+    { label: 'Fungal spore', size: 5, color: '#d97706' },
+    { label: 'Red blood cell', size: 8, color: '#dc2626' },
+    { label: 'White blood cell', size: 15, color: '#2563eb' },
+    { label: 'Human cell (avg)', size: 30, color: '#16a34a' }
+  ];
+
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 30, bottom: 40, left: 120 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const maxSize = 30;
+  const barH = Math.min(18, plotH / items.length * 0.7);
+  const gap = (plotH - barH * items.length) / (items.length + 1);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const x = pad.left + (i / 5) * plotW;
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText((maxSize * i / 5).toFixed(0) + ' um', x, H - pad.bottom + 16);
+  }
+
+  items.forEach((it, i) => {
+    const y = pad.top + gap + i * (barH + gap);
+    const w = (Math.log10(it.size + 0.01) + 2) / (Math.log10(maxSize) + 2) * plotW;
+    ctx.fillStyle = it.color;
+    roundRect(ctx, pad.left, y, Math.max(w, 4), barH, 4); ctx.fill();
+
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(it.label, pad.left - 8, y + barH / 2 + 4);
+
+    ctx.fillStyle = '#1a1a1a'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(it.size < 1 ? it.size + ' um' : it.size + ' um', pad.left + Math.max(w, 4) + 6, y + barH / 2 + 4);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: GRAM STAIN
+// ══════════════════════════════════════════════════════════════════════════
+let gramCurrentStep = 0;
+
+const gramSteps = [
+  { posColor: '#e5e7eb', negColor: '#e5e7eb', posLabel: 'Unstained', negLabel: 'Unstained', bg: '#fefefe' },
+  { posColor: '#6d28d9', negColor: '#6d28d9', posLabel: 'Purple', negLabel: 'Purple', bg: '#f3e8ff' },
+  { posColor: '#5b21b6', negColor: '#5b21b6', posLabel: 'Purple (CV-I)', negLabel: 'Purple (CV-I)', bg: '#ede9fe' },
+  { posColor: '#5b21b6', negColor: '#fce7f3', posLabel: 'Purple (retained)', negLabel: 'Colorless', bg: '#fefefe' },
+  { posColor: '#5b21b6', negColor: '#f472b6', posLabel: 'Purple (Gram+)', negLabel: 'Pink (Gram-)', bg: '#fefefe' }
+];
+
+function gramStep(step) {
+  gramCurrentStep = step;
+  // Update step UI
+  for (let i = 0; i <= 4; i++) {
+    const el = $('stain-step-' + i);
+    el.classList.toggle('active-step', i <= step);
+  }
+  drawGramCanvas();
+
+  const s = gramSteps[step];
+  $('gram-pos-label').textContent = s.posLabel;
+  $('gram-neg-label').textContent = s.negLabel;
+}
+
+function drawGramCanvas() {
+  const ctx = getCtx('gram-canvas');
+  const W = ctx.W, H = ctx.H;
+  const s = gramSteps[gramCurrentStep];
+  ctx.clearRect(0, 0, W, H);
+
+  // Two microscope views side by side
+  const viewR = Math.min(W / 4 - 10, H / 2 - 30);
+  const leftCx = W * 0.28, rightCx = W * 0.72, viewCy = H * 0.45;
+
+  // Labels
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Gram-Positive', leftCx, 18);
+  ctx.fillText('Gram-Negative', rightCx, 18);
+  ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui';
+  ctx.fillText('(S. aureus)', leftCx, 34);
+  ctx.fillText('(E. coli)', rightCx, 34);
+
+  // Draw each view
+  [{ cx: leftCx, color: s.posColor, shape: 'cocci' }, { cx: rightCx, color: s.negColor, shape: 'bacilli' }].forEach(view => {
+    ctx.save();
+    ctx.beginPath(); ctx.arc(view.cx, viewCy, viewR, 0, Math.PI * 2); ctx.clip();
+
+    // Background
+    ctx.fillStyle = s.bg; ctx.fillRect(view.cx - viewR, viewCy - viewR, viewR * 2, viewR * 2);
+    const grad = ctx.createRadialGradient(view.cx, viewCy, 0, view.cx, viewCy, viewR);
+    grad.addColorStop(0, 'rgba(220,235,255,0.2)');
+    grad.addColorStop(1, 'rgba(180,210,245,0.4)');
+    ctx.fillStyle = grad; ctx.fillRect(view.cx - viewR, viewCy - viewR, viewR * 2, viewR * 2);
+
+    // Draw bacteria
+    ctx.fillStyle = view.color;
+    ctx.strokeStyle = view.color === '#e5e7eb' ? '#cbd5e1' : view.color === '#fce7f3' ? '#f9a8d4' : '#374151';
+    ctx.lineWidth = 1;
+
+    if (view.shape === 'cocci') {
+      // Staphylococcus cluster
+      const positions = [
+        [0,0],[-12,-10],[12,-10],[-8,12],[8,12],[-18,2],[18,2],[0,-18],[0,20],
+        [-14,16],[14,16],[-6,-22],[6,-22],[20,-12],[-20,-12]
+      ];
+      positions.forEach(([dx, dy]) => {
+        ctx.beginPath();
+        ctx.arc(view.cx + dx, viewCy + dy, 6, 0, Math.PI*2);
+        ctx.fill(); ctx.stroke();
+      });
+    } else {
+      // E. coli rods
+      const rods = [
+        [0, 0, 0], [-20, -15, 0.3], [18, -12, -0.2], [-12, 18, 0.5], [15, 20, -0.4],
+        [-25, 5, 0.1], [25, 5, -0.1], [0, -25, 0.4], [8, 28, -0.3], [-18, -25, 0.2],
+        [28, -20, 0.6], [-30, 15, -0.5]
+      ];
+      rods.forEach(([dx, dy, angle]) => {
+        ctx.save();
+        ctx.translate(view.cx + dx, viewCy + dy);
+        ctx.rotate(angle);
+        roundRect(ctx, -10, -4, 20, 8, 4);
+        ctx.fill(); ctx.stroke();
+        ctx.restore();
+      });
+    }
+    ctx.restore();
+
+    // Border
+    ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(view.cx, viewCy, viewR, 0, Math.PI * 2); ctx.stroke();
+  });
+
+  // Step indicator
+  ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Step ' + gramCurrentStep + ' of 4', W / 2, H - 10);
+}
+
+function drawWallCanvas() {
+  const ctx = getCtx('wall-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const midX = W / 2;
+
+  // Gram-positive (left)
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Gram-Positive', midX * 0.5, 24);
+
+  const lx = midX * 0.5 - 80, ly = 40;
+
+  // Thick peptidoglycan
+  ctx.fillStyle = '#ddd6fe'; ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 1.5;
+  ctx.fillRect(lx, ly + 20, 160, 80);
+  ctx.strokeRect(lx, ly + 20, 160, 80);
+  // Cross-hatching for peptidoglycan
+  ctx.strokeStyle = 'rgba(124,58,237,0.3)'; ctx.lineWidth = 1;
+  for (let i = 0; i < 160; i += 12) {
+    ctx.beginPath(); ctx.moveTo(lx + i, ly + 20); ctx.lineTo(lx + i, ly + 100); ctx.stroke();
+  }
+  for (let j = 0; j < 80; j += 10) {
+    ctx.beginPath(); ctx.moveTo(lx, ly + 20 + j); ctx.lineTo(lx + 160, ly + 20 + j); ctx.stroke();
+  }
+
+  // Cell membrane
+  ctx.fillStyle = '#bfdbfe'; ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5;
+  ctx.fillRect(lx, ly + 105, 160, 15);
+  ctx.strokeRect(lx, ly + 105, 160, 15);
+
+  // Cytoplasm
+  ctx.fillStyle = '#ecfdf5'; ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1;
+  ctx.fillRect(lx, ly + 125, 160, 50);
+  ctx.strokeRect(lx, ly + 125, 160, 50);
+
+  // Labels
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Thick peptidoglycan', lx + 165, ly + 60);
+  ctx.fillText('(20-80 nm)', lx + 165, ly + 75);
+  ctx.fillText('Cell membrane', lx + 165, ly + 115);
+  ctx.fillText('Cytoplasm', lx + 165, ly + 150);
+
+  // Teichoic acids
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2;
+  for (let i = 0; i < 5; i++) {
+    const tx = lx + 20 + i * 32;
+    ctx.beginPath(); ctx.moveTo(tx, ly + 20); ctx.lineTo(tx, ly + 5); ctx.stroke();
+    ctx.fillStyle = '#f59e0b'; ctx.beginPath(); ctx.arc(tx, ly + 4, 3, 0, Math.PI*2); ctx.fill();
+  }
+  ctx.fillStyle = '#374151'; ctx.font = '10px system-ui';
+  ctx.fillText('Teichoic acids', lx + 165, ly + 10);
+
+  // Gram-negative (right)
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Gram-Negative', midX * 1.5, 24);
+
+  const rx = midX * 1.5 - 80, ry = 40;
+
+  // Outer membrane
+  ctx.fillStyle = '#fecaca'; ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5;
+  ctx.fillRect(rx, ry + 20, 160, 18);
+  ctx.strokeRect(rx, ry + 20, 160, 18);
+
+  // LPS
+  ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5;
+  for (let i = 0; i < 8; i++) {
+    const lsx = rx + 10 + i * 20;
+    ctx.beginPath(); ctx.moveTo(lsx, ry + 20); ctx.lineTo(lsx, ry + 6); ctx.stroke();
+    ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(lsx, ry + 5, 3, 0, Math.PI*2); ctx.fill();
+  }
+
+  // Periplasmic space
+  ctx.fillStyle = '#fef9c3'; ctx.strokeStyle = '#ca8a04'; ctx.lineWidth = 1;
+  ctx.fillRect(rx, ry + 42, 160, 20);
+  ctx.strokeRect(rx, ry + 42, 160, 20);
+
+  // Thin peptidoglycan
+  ctx.fillStyle = '#ddd6fe'; ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 1.5;
+  ctx.fillRect(rx, ry + 66, 160, 15);
+  ctx.strokeRect(rx, ry + 66, 160, 15);
+
+  // Inner cell membrane
+  ctx.fillStyle = '#bfdbfe'; ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5;
+  ctx.fillRect(rx, ry + 85, 160, 15);
+  ctx.strokeRect(rx, ry + 85, 160, 15);
+
+  // Cytoplasm
+  ctx.fillStyle = '#ecfdf5'; ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1;
+  ctx.fillRect(rx, ry + 105, 160, 50);
+  ctx.strokeRect(rx, ry + 105, 160, 50);
+
+  // Labels right side
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  const rlx = rx - 130;
+  ctx.textAlign = 'right';
+  ctx.fillText('LPS + Outer membrane', rx - 5, ry + 32);
+  ctx.fillText('Periplasmic space', rx - 5, ry + 56);
+  ctx.fillText('Thin peptidoglycan', rx - 5, ry + 76);
+  ctx.fillText('(1-3 nm)', rx - 5, ry + 88);
+  ctx.fillText('Inner membrane', rx - 5, ry + 96);
+  ctx.fillText('Cytoplasm', rx - 5, ry + 132);
+
+  // Arrow showing crystal violet retention
+  ctx.fillStyle = '#5b21b6'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Retains CV (purple)', midX * 0.5, H - 20);
+  ctx.fillStyle = '#ec4899';
+  ctx.fillText('Loses CV, takes safranin (pink)', midX * 1.5, H - 20);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: INFECTION SPREAD SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+const SIR_GRID = 20;
+const SIR_POP = SIR_GRID * SIR_GRID;
+let sirState = [];
+let sirHistory = { s: [], i: [], r: [] };
+let sirDay = 0;
+let sirTimer = null;
+let sirInfectedDays = [];
+
+function sirTransLabel() { $('sir-trans-val').textContent = $('sir-trans').value + '%'; }
+function sirVaxLabel() { $('sir-vax-val').textContent = $('sir-vax').value + '%'; }
+function sirRecovLabel() { $('sir-recov-val').textContent = $('sir-recov').value; }
+
+function sirInit() {
+  sirState = new Array(SIR_POP).fill(0); // 0=susceptible, 1=infected, 2=recovered, 3=vaccinated
+  sirInfectedDays = new Array(SIR_POP).fill(0);
+  sirDay = 0;
+  sirHistory = { s: [], i: [], r: [] };
+
+  // Apply vaccination
+  const vaxRate = parseInt($('sir-vax').value) / 100;
+  const vaxCount = Math.floor(SIR_POP * vaxRate);
+  const indices = Array.from({length: SIR_POP}, (_, i) => i);
+  // Shuffle
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  for (let i = 0; i < vaxCount; i++) {
+    sirState[indices[i]] = 3; // vaccinated = immune
+  }
+
+  // Infect center cell
+  const center = Math.floor(SIR_GRID / 2) * SIR_GRID + Math.floor(SIR_GRID / 2);
+  if (sirState[center] === 3) {
+    // Find nearest non-vaccinated
+    for (let d = 1; d < SIR_POP; d++) {
+      if (center + d < SIR_POP && sirState[center + d] === 0) { sirState[center + d] = 1; sirInfectedDays[center + d] = 1; break; }
+      if (center - d >= 0 && sirState[center - d] === 0) { sirState[center - d] = 1; sirInfectedDays[center - d] = 1; break; }
+    }
+  } else {
+    sirState[center] = 1;
+    sirInfectedDays[center] = 1;
+  }
+
+  sirRecordHistory();
+  sirUpdateUI();
+  drawSIRGrid();
+  drawSIRChart();
+}
+
+function sirRecordHistory() {
+  let s = 0, i = 0, r = 0;
+  sirState.forEach(v => {
+    if (v === 0) s++;
+    else if (v === 1) i++;
+    else r++; // 2 and 3 both count as immune/recovered
+  });
+  sirHistory.s.push(s);
+  sirHistory.i.push(i);
+  sirHistory.r.push(r);
+}
+
+function sirStep() {
+  if (sirState.length === 0) sirInit();
+
+  const transRate = parseInt($('sir-trans').value) / 100;
+  const recovDays = parseInt($('sir-recov').value);
+  const newState = [...sirState];
+  const newDays = [...sirInfectedDays];
+
+  for (let idx = 0; idx < SIR_POP; idx++) {
+    if (sirState[idx] !== 1) continue;
+
+    // Try to infect neighbors
+    const row = Math.floor(idx / SIR_GRID);
+    const col = idx % SIR_GRID;
+    const neighbors = [];
+    if (row > 0) neighbors.push(idx - SIR_GRID);
+    if (row < SIR_GRID - 1) neighbors.push(idx + SIR_GRID);
+    if (col > 0) neighbors.push(idx - 1);
+    if (col < SIR_GRID - 1) neighbors.push(idx + 1);
+    // Diagonal
+    if (row > 0 && col > 0) neighbors.push(idx - SIR_GRID - 1);
+    if (row > 0 && col < SIR_GRID - 1) neighbors.push(idx - SIR_GRID + 1);
+    if (row < SIR_GRID - 1 && col > 0) neighbors.push(idx + SIR_GRID - 1);
+    if (row < SIR_GRID - 1 && col < SIR_GRID - 1) neighbors.push(idx + SIR_GRID + 1);
+
+    neighbors.forEach(ni => {
+      if (newState[ni] === 0 && Math.random() < transRate) {
+        newState[ni] = 1;
+        newDays[ni] = 1;
+      }
+    });
+
+    // Recovery check
+    newDays[idx]++;
+    if (newDays[idx] > recovDays) {
+      newState[idx] = 2;
+    }
+  }
+
+  sirState = newState;
+  sirInfectedDays = newDays;
+  sirDay++;
+
+  sirRecordHistory();
+  sirUpdateUI();
+  drawSIRGrid();
+  drawSIRChart();
+}
+
+function sirStart() {
+  if (sirState.length === 0) sirInit();
+  if (sirTimer) { clearInterval(sirTimer); sirTimer = null; return; }
+  sirTimer = setInterval(() => {
+    const infected = sirState.filter(v => v === 1).length;
+    if (infected === 0) { clearInterval(sirTimer); sirTimer = null; return; }
+    sirStep();
+  }, 200);
+}
+
+function sirReset() {
+  if (sirTimer) { clearInterval(sirTimer); sirTimer = null; }
+  sirInit();
+}
+
+function sirUpdateUI() {
+  let s = 0, i = 0, r = 0;
+  sirState.forEach(v => {
+    if (v === 0) s++;
+    else if (v === 1) i++;
+    else r++;
+  });
+  $('sir-s').textContent = s;
+  $('sir-i').textContent = i;
+  $('sir-r').textContent = r;
+  $('sir-day').textContent = sirDay;
+
+  // R0 estimate
+  const transRate = parseInt($('sir-trans').value) / 100;
+  const recovDays = parseInt($('sir-recov').value);
+  const avgContacts = 8; // 8 neighbors in grid
+  const vaxRate = parseInt($('sir-vax').value) / 100;
+  const r0 = (transRate * avgContacts * recovDays * (1 - vaxRate)).toFixed(1);
+  $('sir-r0').textContent = r0;
+}
+
+function drawSIRGrid() {
+  const ctx = getCtx('sir-grid-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cellSize = Math.min((W - 20) / SIR_GRID, (H - 20) / SIR_GRID);
+  const offsetX = (W - cellSize * SIR_GRID) / 2;
+  const offsetY = (H - cellSize * SIR_GRID) / 2;
+
+  const colors = ['#93c5fd', '#ef4444', '#4ade80', '#d1d5db'];
+  // 0=susceptible(blue), 1=infected(red), 2=recovered(green), 3=vaccinated(gray)
+
+  for (let i = 0; i < SIR_POP; i++) {
+    const row = Math.floor(i / SIR_GRID);
+    const col = i % SIR_GRID;
+    const x = offsetX + col * cellSize;
+    const y = offsetY + row * cellSize;
+    const r = cellSize * 0.38;
+
+    ctx.fillStyle = colors[sirState[i]];
+    ctx.beginPath();
+    ctx.arc(x + cellSize / 2, y + cellSize / 2, r, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Pulse effect for infected
+    if (sirState[i] === 1) {
+      ctx.strokeStyle = 'rgba(239,68,68,0.4)'; ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(x + cellSize / 2, y + cellSize / 2, r + 2, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  }
+
+  // Legend
+  ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  const legendY = H - 8;
+  [['#93c5fd','Susceptible',0],['#ef4444','Infected',110],['#4ade80','Recovered',210],['#d1d5db','Vaccinated',320]].forEach(([c,l,x]) => {
+    ctx.fillStyle = c; ctx.beginPath(); ctx.arc(offsetX + x + 5, legendY - 3, 5, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.fillText(l, offsetX + x + 14, legendY);
+  });
+}
+
+function drawSIRChart() {
+  if (!sirHistory.s.length) return;
+  const maxPop = SIR_POP;
+  const ctx = getCtx('sir-chart');
+  drawLineChart(ctx, [
+    { data: sirHistory.s.map(v => v / maxPop), color: '#2563eb', width: 2.5 },
+    { data: sirHistory.i.map(v => v / maxPop), color: '#c41e3a', width: 2.5 },
+    { data: sirHistory.r.map(v => v / maxPop), color: '#16a34a', width: 2.5 }
+  ], { yMin: 0, yMax: 1 });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: PATHOGEN TYPES
+// ══════════════════════════════════════════════════════════════════════════
+const pathogenInfo = {
+  bacteria: {
+    name: 'Bacteria',
+    size: '0.5 - 10 um',
+    sizeVal: 5,
+    structure: 'Prokaryotic single cell; cell wall, membrane, ribosomes, circular DNA, no nucleus',
+    reproduction: 'Binary fission (asexual); some conjugation for gene transfer',
+    examples: 'Tuberculosis (M. tuberculosis), Strep throat (S. pyogenes), Cholera (V. cholerae), MRSA (S. aureus)',
+    treatment: 'Antibiotics (penicillin, tetracycline, fluoroquinolones); resistance is a growing concern',
+    color: '#c41e3a'
+  },
+  virus: {
+    name: 'Viruses',
+    size: '20 - 300 nm',
+    sizeVal: 0.15,
+    structure: 'Not truly alive; protein capsid enclosing nucleic acid (DNA or RNA); some have lipid envelope',
+    reproduction: 'Hijack host cell machinery; lytic or lysogenic cycle; cannot reproduce independently',
+    examples: 'Influenza, HIV/AIDS, COVID-19 (SARS-CoV-2), Ebola, Measles, Rabies',
+    treatment: 'Antivirals (oseltamivir, acyclovir); vaccines are primary prevention; antibiotics ineffective',
+    color: '#7c3aed'
+  },
+  fungi: {
+    name: 'Fungi',
+    size: '2 - 20 um (yeast); hyphae much larger',
+    sizeVal: 10,
+    structure: 'Eukaryotic; chitin cell wall; can be unicellular (yeast) or multicellular (molds, mushrooms)',
+    reproduction: 'Spores (sexual and asexual); budding in yeasts',
+    examples: 'Athlete\'s foot (Trichophyton), Candidiasis (Candida), Ringworm, Aspergillosis, Valley fever',
+    treatment: 'Antifungals (fluconazole, amphotericin B); difficult to treat due to eukaryotic similarity to human cells',
+    color: '#d97706'
+  },
+  protist: {
+    name: 'Protists',
+    size: '10 - 200 um',
+    sizeVal: 50,
+    structure: 'Eukaryotic single-celled organisms; complex internal structures (nucleus, organelles)',
+    reproduction: 'Binary fission, multiple fission, or sexual reproduction depending on species',
+    examples: 'Malaria (Plasmodium), Amoebic dysentery (Entamoeba), Giardiasis (Giardia), Sleeping sickness (Trypanosoma)',
+    treatment: 'Antiparasitic drugs (chloroquine, metronidazole); prevention via vector control (mosquito nets)',
+    color: '#16a34a'
+  },
+  prion: {
+    name: 'Prions',
+    size: '< 10 nm',
+    sizeVal: 0.01,
+    structure: 'Misfolded protein (PrPSc); no nucleic acid at all; induces normal proteins to misfold',
+    reproduction: 'Converts normal PrPC protein to abnormal PrPSc form in a chain reaction; not alive',
+    examples: 'Creutzfeldt-Jakob disease (CJD), Mad cow disease (BSE), Kuru, Fatal familial insomnia',
+    treatment: 'No treatment or cure; always fatal; extremely resistant to sterilization (heat, chemicals, radiation)',
+    color: '#374151'
+  }
+};
+
+let currentPathogen = 'bacteria';
+
+function pathogenSelect(type) {
+  currentPathogen = type;
+  document.querySelectorAll('#pathogen-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const info = pathogenInfo[type];
+  $('pathogen-info').innerHTML = `
+    <h4>${info.name}</h4>
+    <div class="detail-row"><span class="detail-label">Size</span><span>${info.size}</span></div>
+    <div class="detail-row"><span class="detail-label">Structure</span><span>${info.structure}</span></div>
+    <div class="detail-row"><span class="detail-label">Reproduction</span><span>${info.reproduction}</span></div>
+    <div class="detail-row"><span class="detail-label">Example diseases</span><span>${info.examples}</span></div>
+    <div class="detail-row"><span class="detail-label">Treatment</span><span>${info.treatment}</span></div>
+  `;
+
+  drawPathogenCanvas(type);
+}
+
+function drawPathogenCanvas(type) {
+  const ctx = getCtx('pathogen-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+  const info = pathogenInfo[type];
+
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(info.name, cx, 20);
+
+  if (type === 'bacteria') {
+    // Draw a typical bacterium
+    ctx.fillStyle = '#fecaca'; ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+    // Cell body
+    roundRect(ctx, cx - 50, cy - 25, 100, 50, 25); ctx.fill(); ctx.stroke();
+    // Cell membrane (inner)
+    ctx.strokeStyle = 'rgba(196,30,58,0.4)'; ctx.lineWidth = 1;
+    roundRect(ctx, cx - 45, cy - 20, 90, 40, 20); ctx.stroke();
+    // DNA region
+    ctx.fillStyle = 'rgba(37,99,235,0.3)';
+    ctx.beginPath(); ctx.arc(cx - 10, cy, 12, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx - 10, cy, 12, 0, Math.PI * 2); ctx.stroke();
+    // Ribosomes
+    ctx.fillStyle = '#16a34a';
+    [[15,8],[20,-5],[25,12],[10,-12],[30,0]].forEach(([dx,dy]) => {
+      ctx.beginPath(); ctx.arc(cx + dx, cy + dy, 2, 0, Math.PI*2); ctx.fill();
+    });
+    // Flagellum
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for (let t = 0; t < Math.PI * 4; t += 0.1) {
+      const x = cx + 50 + t * 6;
+      const y = cy + Math.sin(t) * 6;
+      t === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    // Labels
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+    ctx.fillText('Cell wall', cx, cy + 42);
+    ctx.fillText('DNA (nucleoid)', cx - 10, cy + 25);
+    ctx.fillText('Flagellum', cx + 75, cy + 18);
+  } else if (type === 'virus') {
+    // Draw icosahedral virus
+    ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+    ctx.fillStyle = '#ede9fe';
+    // Capsid (hexagonal)
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const angle = i * Math.PI / 3 - Math.PI / 6;
+      const x = cx + Math.cos(angle) * 35;
+      const y = cy + Math.sin(angle) * 35;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    // Internal DNA/RNA
+    ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for (let t = 0; t < Math.PI * 6; t += 0.1) {
+      const x = cx + Math.cos(t * 1.3) * (15 - t * 0.5);
+      const y = cy + Math.sin(t) * (12 - t * 0.4);
+      t === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    // Spikes (envelope proteins)
+    ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 1.5;
+    for (let i = 0; i < 12; i++) {
+      const angle = i * Math.PI / 6;
+      const x1 = cx + Math.cos(angle) * 35;
+      const y1 = cy + Math.sin(angle) * 35;
+      const x2 = cx + Math.cos(angle) * 48;
+      const y2 = cy + Math.sin(angle) * 48;
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      ctx.fillStyle = '#a78bfa'; ctx.beginPath(); ctx.arc(x2, y2, 3, 0, Math.PI*2); ctx.fill();
+    }
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+    ctx.fillText('Protein capsid', cx, cy + 60);
+    ctx.fillText('Genetic material (RNA/DNA)', cx, cy + 74);
+    ctx.fillText('Surface proteins', cx + 50, cy - 40);
+  } else if (type === 'fungi') {
+    // Draw yeast and hyphae
+    ctx.fillStyle = '#fef3c7'; ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2;
+    // Yeast cell
+    ctx.beginPath(); ctx.ellipse(cx - 40, cy - 20, 22, 18, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // Bud
+    ctx.beginPath(); ctx.ellipse(cx - 20, cy - 30, 12, 10, 0.3, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // Nucleus
+    ctx.fillStyle = '#92400e'; ctx.beginPath(); ctx.arc(cx - 40, cy - 20, 6, 0, Math.PI*2); ctx.fill();
+    // Hyphae
+    ctx.strokeStyle = '#d97706'; ctx.lineWidth = 6;
+    ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(cx + 20, cy + 20); ctx.lineTo(cx + 80, cy + 20); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx + 50, cy + 20); ctx.lineTo(cx + 70, cy - 10); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx + 60, cy + 20); ctx.lineTo(cx + 80, cy + 45); ctx.stroke();
+    // Septae
+    ctx.strokeStyle = '#92400e'; ctx.lineWidth = 1;
+    [35, 50, 65].forEach(x => {
+      ctx.beginPath(); ctx.moveTo(cx + x, cy + 17); ctx.lineTo(cx + x, cy + 23); ctx.stroke();
+    });
+    ctx.lineCap = 'butt';
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+    ctx.fillText('Yeast cell', cx - 40, cy + 12);
+    ctx.fillText('Hyphae', cx + 60, cy + 58);
+    ctx.fillText('Nucleus', cx - 40, cy - 42);
+  } else if (type === 'protist') {
+    // Amoeba-like
+    ctx.fillStyle = 'rgba(22,163,74,0.2)'; ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx - 40, cy);
+    ctx.bezierCurveTo(cx - 50, cy - 30, cx - 20, cy - 45, cx, cy - 35);
+    ctx.bezierCurveTo(cx + 25, cy - 50, cx + 55, cy - 20, cx + 45, cy);
+    ctx.bezierCurveTo(cx + 60, cy + 15, cx + 40, cy + 40, cx + 10, cy + 35);
+    ctx.bezierCurveTo(cx - 15, cy + 45, cx - 45, cy + 30, cx - 40, cy);
+    ctx.fill(); ctx.stroke();
+    // Pseudopod
+    ctx.beginPath();
+    ctx.moveTo(cx + 45, cy);
+    ctx.bezierCurveTo(cx + 60, cy - 5, cx + 75, cy + 5, cx + 70, cy + 15);
+    ctx.bezierCurveTo(cx + 65, cy + 20, cx + 55, cy + 15, cx + 45, cy + 10);
+    ctx.fill(); ctx.stroke();
+    // Nucleus
+    ctx.fillStyle = 'rgba(37,99,235,0.4)'; ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.ellipse(cx - 5, cy - 5, 14, 10, 0, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    // Vacuoles
+    ctx.fillStyle = 'rgba(196,30,58,0.15)'; ctx.strokeStyle = 'rgba(196,30,58,0.5)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx + 20, cy + 10, 7, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx - 25, cy + 12, 5, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+    ctx.fillText('Nucleus', cx - 5, cy + 52);
+    ctx.fillText('Pseudopod', cx + 65, cy + 32);
+    ctx.fillText('Food vacuole', cx + 20, cy + 28);
+  } else if (type === 'prion') {
+    // Normal vs misfolded protein
+    // Normal (alpha helix)
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Normal PrPC', cx - 55, cy - 50);
+    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    for (let t = 0; t < Math.PI * 6; t += 0.1) {
+      const x = cx - 55 + Math.cos(t) * 12;
+      const y = cy - 30 + t * 5;
+      t === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.fillStyle = '#16a34a'; ctx.font = '10px system-ui';
+    ctx.fillText('Alpha helices', cx - 55, cy + 70);
+
+    // Arrow
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 16px system-ui';
+    ctx.fillText('-->', cx, cy);
+    ctx.fillStyle = '#c41e3a'; ctx.font = '10px system-ui';
+    ctx.fillText('Misfolding', cx, cy + 15);
+
+    // Misfolded (beta sheets)
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText('Misfolded PrPSc', cx + 55, cy - 50);
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    const sx = cx + 55;
+    for (let i = 0; i < 6; i++) {
+      const y = cy - 30 + i * 15;
+      const dir = i % 2 === 0 ? 1 : -1;
+      ctx.moveTo(sx - 20, y);
+      ctx.lineTo(sx + 20, y);
+      if (i < 5) {
+        ctx.moveTo(sx + 20 * dir, y);
+        ctx.lineTo(sx + 20 * dir, y + 15);
+      }
+    }
+    ctx.stroke();
+    ctx.fillStyle = '#c41e3a'; ctx.font = '10px system-ui';
+    ctx.fillText('Beta sheets', cx + 55, cy + 70);
+  }
+}
+
+function drawPathogenSizeChart() {
+  const ctx = getCtx('pathogen-size-chart');
+  const types = ['prion', 'virus', 'bacteria', 'fungi', 'protist'];
+  const labels = ['Prion', 'Virus', 'Bacterium', 'Fungus', 'Protist'];
+  const sizes = [0.01, 0.15, 5, 10, 50]; // in um
+  const colors = ['#374151', '#7c3aed', '#c41e3a', '#d97706', '#16a34a'];
+
+  // Log scale bar chart
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 30, bottom: 40, left: 80 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Size (micrometers, log scale)', W / 2, H - 6);
+
+  const logMin = -2, logMax = 2; // 0.01 to 100 um
+  const logRange = logMax - logMin;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  [-2, -1, 0, 1, 2].forEach(lv => {
+    const x = pad.left + ((lv - logMin) / logRange) * plotW;
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    const label = Math.pow(10, lv);
+    ctx.fillText(label < 1 ? label.toFixed(2) : label.toFixed(0), x, H - pad.bottom + 16);
+  });
+
+  const barH = Math.min(24, plotH / types.length * 0.7);
+  const gap = (plotH - barH * types.length) / (types.length + 1);
+
+  types.forEach((t, i) => {
+    const logSize = Math.log10(sizes[i]);
+    const w = ((logSize - logMin) / logRange) * plotW;
+    const y = pad.top + gap + i * (barH + gap);
+
+    ctx.fillStyle = colors[i];
+    roundRect(ctx, pad.left, y, Math.max(w, 4), barH, 4); ctx.fill();
+
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(labels[i], pad.left - 8, y + barH / 2 + 4);
+
+    ctx.fillStyle = '#1a1a1a'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(sizes[i] < 1 ? sizes[i] * 1000 + ' nm' : sizes[i] + ' um', pad.left + Math.max(w, 4) + 6, y + barH / 2 + 4);
+  });
+}
+
+function drawBurdenChart() {
+  const ctx = getCtx('burden-chart');
+  drawBarChart(ctx, {
+    labels: ['Bacteria', 'Viruses', 'Fungi', 'Protists', 'Prions'],
+    values: [4.0, 3.5, 1.5, 1.2, 0.001],
+    colors: ['#c41e3a', '#7c3aed', '#d97706', '#16a34a', '#374151'],
+    maxVal: 5.5
+  });
+  // Add "millions" label
+  const W = ctx.W;
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Deaths (millions/year, approximate)', 55, 14);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: ENVIRONMENTAL MICROBIOLOGY
+// ══════════════════════════════════════════════════════════════════════════
+const envSurfaces = {
+  doorknob: { name: 'Doorknob', baseColonies: 120, maxColonies: 180, color: '#c41e3a', hygieneReduction: 0.85 },
+  phone: { name: 'Phone', baseColonies: 200, maxColonies: 320, color: '#7c3aed', hygieneReduction: 0.90 },
+  desk: { name: 'Desk', baseColonies: 80, maxColonies: 140, color: '#2563eb', hygieneReduction: 0.75 },
+  hand: { name: 'Hand (unwashed)', baseColonies: 300, maxColonies: 450, color: '#d97706', hygieneReduction: 0.95 }
+};
+
+let envData = {
+  currentSurface: null,
+  hours: 0,
+  colonies: [],
+  colonyPositions: [],
+  results: {} // surface -> colony count at 48hrs
+};
+
+function envSwab(surface) {
+  envData.currentSurface = surface;
+  envData.hours = 0;
+  envData.colonies = [];
+  envData.colonyPositions = [];
+
+  const info = envSurfaces[surface];
+  $('env-surface').textContent = info.name;
+  $('env-colonies').textContent = '0';
+  $('env-cfu').textContent = '-';
+  $('env-hours').textContent = '0';
+  $('agar-status').textContent = 'Sample collected from ' + info.name + '. Begin incubation.';
+
+  // Pre-generate colony positions
+  const targetMax = info.maxColonies;
+  for (let i = 0; i < targetMax; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const r = Math.random() * 0.85;
+    envData.colonyPositions.push({
+      x: 0.5 + r * 0.4 * Math.cos(angle),
+      y: 0.5 + r * 0.4 * Math.sin(angle),
+      size: 1 + Math.random() * 3,
+      appearHour: Math.random() * 40 + 4,
+      color: `hsl(${rand(20, 50)}, ${rand(50, 80)}%, ${rand(55, 75)}%)`
+    });
+  }
+
+  drawAgarPlate();
+  $('env-hygiene').style.display = 'none';
+}
+
+function envIncubate() {
+  if (!envData.currentSurface) return;
+  envData.hours = Math.min(envData.hours + 6, 48);
+  envUpdateColonies();
+  drawAgarPlate();
+  envUpdateUI();
+}
+
+function envIncubateFull() {
+  if (!envData.currentSurface) return;
+  envData.hours = 48;
+  envUpdateColonies();
+  drawAgarPlate();
+  envUpdateUI();
+
+  // Record final result
+  const surface = envData.currentSurface;
+  envData.results[surface] = envData.colonies.length;
+  drawEnvCompareChart();
+  drawEnvHygieneChart();
+
+  // Show hygiene info
+  const info = envSurfaces[surface];
+  const reduction = info.hygieneReduction;
+  const reduced = Math.round(envData.colonies.length * (1 - reduction));
+  $('env-hygiene').style.display = 'block';
+  $('env-hygiene').innerHTML = `<h4>Hygiene Intervention for ${info.name}</h4>
+    <div class="detail-row"><span class="detail-label">Colonies found</span><span>${envData.colonies.length}</span></div>
+    <div class="detail-row"><span class="detail-label">After disinfection</span><span>~${reduced} colonies (${(reduction * 100).toFixed(0)}% reduction)</span></div>
+    <div class="detail-row"><span class="detail-label">CFU/mL estimate</span><span>${(envData.colonies.length * 100).toLocaleString()}</span></div>`;
+}
+
+function envUpdateColonies() {
+  envData.colonies = envData.colonyPositions.filter(c => c.appearHour <= envData.hours);
+}
+
+function envUpdateUI() {
+  $('env-colonies').textContent = envData.colonies.length;
+  $('env-hours').textContent = envData.hours;
+  $('env-cfu').textContent = (envData.colonies.length * 100).toLocaleString();
+  $('agar-status').textContent = envData.hours >= 48
+    ? 'Incubation complete (48 hrs). Count colonies above.'
+    : 'Incubating... ' + envData.hours + ' hrs elapsed.';
+}
+
+function envReset() {
+  envData.currentSurface = null;
+  envData.hours = 0;
+  envData.colonies = [];
+  envData.colonyPositions = [];
+  $('env-surface').textContent = '-';
+  $('env-colonies').textContent = '0';
+  $('env-cfu').textContent = '-';
+  $('env-hours').textContent = '0';
+  $('agar-status').textContent = 'Select a surface to begin';
+  $('env-hygiene').style.display = 'none';
+  drawAgarPlate();
+}
+
+function drawAgarPlate() {
+  const ctx = getCtx('agar-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+  const plateR = Math.min(W, H) * 0.42;
+
+  // Plate (agar)
+  ctx.fillStyle = '#fef9c3';
+  ctx.strokeStyle = '#d4d4d8'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(cx, cy, plateR, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+  // Agar gradient
+  const grad = ctx.createRadialGradient(cx - plateR * 0.2, cy - plateR * 0.2, 0, cx, cy, plateR);
+  grad.addColorStop(0, 'rgba(254,249,195,0.8)');
+  grad.addColorStop(1, 'rgba(253,230,138,0.9)');
+  ctx.fillStyle = grad;
+  ctx.beginPath(); ctx.arc(cx, cy, plateR, 0, Math.PI * 2); ctx.fill();
+
+  // Colonies
+  ctx.save();
+  ctx.beginPath(); ctx.arc(cx, cy, plateR - 2, 0, Math.PI * 2); ctx.clip();
+  envData.colonies.forEach(col => {
+    const x = cx + (col.x - 0.5) * plateR * 2;
+    const y = cy + (col.y - 0.5) * plateR * 2;
+    const growthFactor = Math.min(1, (envData.hours - col.appearHour) / 12 + 0.3);
+    const size = col.size * growthFactor;
+    ctx.fillStyle = col.color;
+    ctx.beginPath(); ctx.arc(x, y, size, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.arc(x, y, size, 0, Math.PI * 2); ctx.stroke();
+  });
+  ctx.restore();
+
+  // Plate label
+  if (envData.currentSurface) {
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(envSurfaces[envData.currentSurface].name + ' - ' + envData.hours + 'h', cx, H - 8);
+  }
+}
+
+function drawEnvCompareChart() {
+  const ctx = getCtx('env-compare-chart');
+  const surfaces = Object.keys(envData.results);
+  if (!surfaces.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Complete incubation on surfaces to compare', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+
+  const labels = surfaces.map(s => envSurfaces[s].name);
+  const values = surfaces.map(s => envData.results[s]);
+  const colors = surfaces.map(s => envSurfaces[s].color);
+
+  drawBarChart(ctx, {
+    labels, values, colors,
+    maxVal: Math.max(...values) * 1.3
+  });
+}
+
+function drawEnvHygieneChart() {
+  const ctx = getCtx('env-hygiene-chart');
+  const surfaces = Object.keys(envData.results);
+  if (!surfaces.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Complete incubation to see hygiene comparison', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = surfaces.length;
+  const groupW = plotW / n;
+  const barW = groupW * 0.3;
+
+  const maxVal = Math.max(...surfaces.map(s => envData.results[s])) * 1.3;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxVal * i/4), pad.left - 6, y + 4);
+  }
+
+  surfaces.forEach((s, i) => {
+    const before = envData.results[s];
+    const after = Math.round(before * (1 - envSurfaces[s].hygieneReduction));
+    const cx = pad.left + groupW * i + groupW / 2;
+
+    // Before bar
+    const bh = (before / maxVal) * plotH;
+    ctx.fillStyle = envSurfaces[s].color;
+    ctx.fillRect(cx - barW - 2, pad.top + plotH - bh, barW, bh);
+
+    // After bar
+    const ah = (after / maxVal) * plotH;
+    ctx.fillStyle = '#16a34a';
+    ctx.fillRect(cx + 2, pad.top + plotH - ah, barW, ah);
+
+    // Values
+    ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = envSurfaces[s].color;
+    ctx.fillText(before, cx - barW/2 - 2, pad.top + plotH - bh - 6);
+    ctx.fillStyle = '#16a34a';
+    ctx.fillText(after, cx + barW/2 + 2, pad.top + plotH - ah - 6);
+
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui';
+    ctx.fillText(envSurfaces[s].name, cx, H - pad.bottom + 16);
+  });
+
+  // Legend
+  ctx.fillStyle = '#6b7280'; ctx.fillRect(pad.left, 8, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Before hygiene', pad.left + 18, 18);
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left + 120, 8, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('After hygiene', pad.left + 138, 18);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: IMMUNE RESPONSE
+// ══════════════════════════════════════════════════════════════════════════
+let immuneState = {
+  day: 0,
+  pathogen: [],
+  innate: [],
+  adaptive: [],
+  running: false,
+  timer: null
+};
+
+function immuneStart() {
+  if (immuneState.timer) { clearInterval(immuneState.timer); immuneState.timer = null; return; }
+  if (immuneState.day === 0) {
+    immuneState.pathogen = [0];
+    immuneState.innate = [0];
+    immuneState.adaptive = [0];
+  }
+  immuneState.running = true;
+  immuneState.timer = setInterval(() => {
+    immuneStep();
+    if (immuneState.day >= 21) {
+      clearInterval(immuneState.timer);
+      immuneState.timer = null;
+      immuneState.running = false;
+    }
+  }, 400);
+}
+
+function immuneStep() {
+  if (immuneState.day >= 21) return;
+  immuneState.day++;
+  const d = immuneState.day;
+
+  // Pathogen growth and decline
+  let pathLoad;
+  if (d <= 4) pathLoad = Math.pow(2, d) * 5;
+  else if (d <= 7) pathLoad = 80 - (d - 4) * 5;
+  else if (d <= 10) pathLoad = 65 - (d - 7) * 15;
+  else pathLoad = Math.max(0, 20 - (d - 10) * 3);
+
+  // Innate response (quick, peaks early)
+  let innateLevel;
+  if (d <= 1) innateLevel = 10;
+  else if (d <= 3) innateLevel = 30 + (d - 1) * 20;
+  else if (d <= 7) innateLevel = 70 - (d - 3) * 5;
+  else innateLevel = Math.max(10, 50 - (d - 7) * 4);
+
+  // Adaptive response (slow, peaks later, stronger)
+  let adaptiveLevel;
+  if (d <= 4) adaptiveLevel = d * 3;
+  else if (d <= 8) adaptiveLevel = 12 + (d - 4) * 15;
+  else if (d <= 14) adaptiveLevel = 72 + (d - 8) * 5;
+  else adaptiveLevel = Math.max(30, 100 - (d - 14) * 5);
+
+  immuneState.pathogen.push(pathLoad);
+  immuneState.innate.push(innateLevel);
+  immuneState.adaptive.push(adaptiveLevel);
+
+  immuneUpdateUI();
+  drawImmuneCanvas();
+}
+
+function immuneReset() {
+  if (immuneState.timer) { clearInterval(immuneState.timer); immuneState.timer = null; }
+  immuneState = { day: 0, pathogen: [], innate: [], adaptive: [], running: false, timer: null };
+  immuneUpdateUI();
+  drawImmuneCanvas();
+}
+
+function immuneUpdateUI() {
+  const d = immuneState.day;
+  const p = immuneState.pathogen;
+  const i = immuneState.innate;
+  const a = immuneState.adaptive;
+  $('imm-day').textContent = d;
+  $('imm-pathogen').textContent = p.length ? Math.round(p[p.length - 1]) : 0;
+  $('imm-innate').textContent = i.length ? Math.round(i[i.length - 1]) : 0;
+  $('imm-adaptive').textContent = a.length ? Math.round(a[a.length - 1]) : 0;
+}
+
+function drawImmuneCanvas() {
+  const ctx = getCtx('immune-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!immuneState.pathogen.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Click "Start Infection" to begin the immune response simulation', W / 2, H / 2);
+    return;
+  }
+
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const maxDay = 21;
+  const maxVal = 120;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxVal * i / 4), pad.left - 6, y + 4);
+  }
+
+  // X-axis labels
+  for (let d = 0; d <= maxDay; d += 3) {
+    const x = pad.left + (d / maxDay) * plotW;
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Day ' + d, x, H - pad.bottom + 16);
+  }
+
+  // Phase labels
+  ctx.fillStyle = 'rgba(37,99,235,0.08)';
+  ctx.fillRect(pad.left, pad.top, (4/maxDay)*plotW, plotH);
+  ctx.fillStyle = 'rgba(196,30,58,0.05)';
+  ctx.fillRect(pad.left + (4/maxDay)*plotW, pad.top, (6/maxDay)*plotW, plotH);
+  ctx.fillStyle = 'rgba(22,163,74,0.05)';
+  ctx.fillRect(pad.left + (10/maxDay)*plotW, pad.top, (11/maxDay)*plotW, plotH);
+
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Innate', pad.left + (2/maxDay)*plotW, pad.top + 14);
+  ctx.fillText('Transition', pad.left + (7/maxDay)*plotW, pad.top + 14);
+  ctx.fillText('Adaptive', pad.left + (15/maxDay)*plotW, pad.top + 14);
+
+  // Draw lines
+  const drawSeries = (data, color, width) => {
+    ctx.strokeStyle = color; ctx.lineWidth = width;
+    ctx.beginPath();
+    data.forEach((v, i) => {
+      const x = pad.left + (i / maxDay) * plotW;
+      const y = pad.top + plotH * (1 - v / maxVal);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  };
+
+  // Fill under pathogen curve
+  ctx.fillStyle = 'rgba(196,30,58,0.1)';
+  ctx.beginPath();
+  immuneState.pathogen.forEach((v, i) => {
+    const x = pad.left + (i / maxDay) * plotW;
+    const y = pad.top + plotH * (1 - v / maxVal);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.lineTo(pad.left + ((immuneState.pathogen.length - 1) / maxDay) * plotW, pad.top + plotH);
+  ctx.lineTo(pad.left, pad.top + plotH);
+  ctx.fill();
+
+  drawSeries(immuneState.pathogen, '#c41e3a', 3);
+  drawSeries(immuneState.innate, '#2563eb', 2.5);
+  drawSeries(immuneState.adaptive, '#16a34a', 2.5);
+
+  // Legend
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left, H - 18, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Pathogen', pad.left + 16, H - 12);
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left + 90, H - 18, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.fillText('Innate', pad.left + 106, H - 12);
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left + 160, H - 18, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.fillText('Adaptive', pad.left + 176, H - 12);
+}
+
+function drawAntibodyChart() {
+  const ctx = getCtx('antibody-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const maxDay = 60, maxAb = 120;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxAb * i / 4), pad.left - 6, y + 4);
+  }
+
+  // X-axis
+  for (let d = 0; d <= maxDay; d += 10) {
+    const x = pad.left + (d / maxDay) * plotW;
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(d, x, H - pad.bottom + 16);
+  }
+  ctx.fillText('Days', pad.left + plotW / 2, H - 6);
+
+  // Exposure markers
+  ctx.strokeStyle = 'rgba(0,0,0,0.2)'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+  const exp1X = pad.left + (0/maxDay) * plotW;
+  const exp2X = pad.left + (30/maxDay) * plotW;
+  ctx.beginPath(); ctx.moveTo(exp1X, pad.top); ctx.lineTo(exp1X, pad.top + plotH); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(exp2X, pad.top); ctx.lineTo(exp2X, pad.top + plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('1st Exposure', exp1X + 30, pad.top + plotH + 10);
+  ctx.fillText('2nd Exposure', exp2X + 30, pad.top + plotH + 10);
+
+  // Primary response curve (IgM then IgG)
+  const primary = [];
+  for (let d = 0; d <= maxDay; d++) {
+    let ab;
+    if (d < 5) ab = 0;
+    else if (d < 10) ab = (d - 5) * 4;
+    else if (d < 18) ab = 20 + (d - 10) * 2.5;
+    else if (d < 30) ab = 40 - (d - 18) * 2;
+    else ab = Math.max(5, 16 - (d - 30) * 0.3);
+    primary.push(ab);
+  }
+
+  // Secondary response curve (faster, higher, longer)
+  const secondary = [];
+  for (let d = 0; d <= maxDay; d++) {
+    let ab;
+    if (d < 30) ab = primary[d]; // same as primary before 2nd exposure
+    else if (d < 32) ab = primary[d] + (d - 30) * 8;
+    else if (d < 36) ab = primary[d] + 16 + (d - 32) * 20;
+    else if (d < 45) ab = Math.min(110, primary[Math.min(d, primary.length-1)] + 96 + (d - 36) * 2);
+    else ab = Math.max(30, 110 - (d - 45) * 3);
+    secondary.push(ab);
+  }
+
+  // Draw primary
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  primary.forEach((v, i) => {
+    const x = pad.left + (i / maxDay) * plotW;
+    const y = pad.top + plotH * (1 - v / maxAb);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Draw secondary
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  secondary.forEach((v, i) => {
+    if (i < 30) return;
+    const x = pad.left + (i / maxDay) * plotW;
+    const y = pad.top + plotH * (1 - v / maxAb);
+    i === 30 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Fill under secondary
+  ctx.fillStyle = 'rgba(196,30,58,0.08)';
+  ctx.beginPath();
+  secondary.forEach((v, i) => {
+    if (i < 30) return;
+    const x = pad.left + (i / maxDay) * plotW;
+    const y = pad.top + plotH * (1 - v / maxAb);
+    i === 30 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.lineTo(pad.left + plotW, pad.top + plotH);
+  ctx.lineTo(pad.left + (30/maxDay) * plotW, pad.top + plotH);
+  ctx.fill();
+
+  // Annotations
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Primary: slower,', pad.left + (12/maxDay) * plotW, pad.top + plotH * 0.4);
+  ctx.fillText('lower peak', pad.left + (12/maxDay) * plotW, pad.top + plotH * 0.4 + 14);
+
+  ctx.fillStyle = '#c41e3a';
+  ctx.fillText('Secondary: faster,', pad.left + (38/maxDay) * plotW, pad.top + plotH * 0.12);
+  ctx.fillText('higher peak', pad.left + (38/maxDay) * plotW, pad.top + plotH * 0.12 + 14);
+
+  // Vaccination annotation
+  ctx.fillStyle = '#16a34a'; ctx.font = '11px system-ui';
+  ctx.fillText('Vaccination primes', pad.left + plotW * 0.55, H - pad.bottom - 30);
+  ctx.fillText('memory for secondary', pad.left + plotW * 0.55, H - pad.bottom - 16);
+  ctx.fillText('response without disease', pad.left + plotW * 0.55, H - pad.bottom - 2);
+
+  // Y-axis label
+  ctx.save();
+  ctx.translate(12, pad.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Antibody Concentration', 0, 0);
+  ctx.restore();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  drawMorphCanvas(null, null);
+  drawSizeChart();
+  gramStep(0);
+  drawWallCanvas();
+  sirInit();
+  pathogenSelect('bacteria');
+  drawPathogenSizeChart();
+  drawBurdenChart();
+  drawAgarPlate();
+  drawEnvCompareChart();
+  drawEnvHygieneChart();
+  drawImmuneCanvas();
+  drawAntibodyChart();
+});
+
+window.addEventListener('resize', () => {
+  drawMorphCanvas(currentMorph, currentArrange);
+  drawSizeChart();
+  drawGramCanvas();
+  drawWallCanvas();
+  drawSIRGrid();
+  drawSIRChart();
+  drawPathogenCanvas(currentPathogen);
+  drawPathogenSizeChart();
+  drawBurdenChart();
+  drawAgarPlate();
+  drawEnvCompareChart();
+  drawEnvHygieneChart();
+  drawImmuneCanvas();
+  drawAntibodyChart();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 16 Dashboard: Microevolution | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 120px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   POPULATION DOT CANVAS
+   ═══════════════════════════════════════════════════════════════════════ */
+.pop-canvas { border-radius: 6px; border: 1px solid var(--border); background: #f8fafc; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHECKLIST
+   ═══════════════════════════════════════════════════════════════════════ */
+.checklist { list-style: none; padding: 0; margin: 10px 0; }
+.checklist li {
+  padding: 8px 12px; font-size: 13px; border-radius: 6px; margin-bottom: 4px;
+  display: flex; align-items: center; gap: 8px; background: #f8fafc; border: 1px solid var(--border);
+}
+.checklist .check-icon { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; }
+.checklist .check-pass { background: #dcfce7; color: var(--green); }
+.checklist .check-fail { background: #fef2f2; color: var(--accent); }
+.checklist .check-text { font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TOGGLE SWITCHES
+   ═══════════════════════════════════════════════════════════════════════ */
+.toggle-group { display: flex; flex-wrap: wrap; gap: 12px; margin: 10px 0; }
+.toggle-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
+.toggle-switch {
+  width: 40px; height: 22px; border-radius: 11px; background: #d1d5db;
+  position: relative; cursor: pointer; transition: background 0.2s;
+}
+.toggle-switch.active { background: var(--accent); }
+.toggle-switch::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 50%; background: #fff;
+  transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.toggle-switch.active::after { transform: translateX(18px); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 16 &mdash; Microevolution</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Hardy-Weinberg</a>
+    <a href="#part2"><span class="nav-num">2</span> Genetic Drift</a>
+    <a href="#part3"><span class="nav-num">3</span> Natural Selection</a>
+    <a href="#part4"><span class="nav-num">4</span> Bottleneck &amp; Founder</a>
+    <a href="#part5"><span class="nav-num">5</span> Gene Flow</a>
+    <a href="#part6"><span class="nav-num">6</span> Combined Forces</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Microevolution</h2>
+  <p>Interactive simulations exploring the forces that change allele frequencies in populations. Model Hardy-Weinberg equilibrium, genetic drift, natural selection, bottleneck and founder effects, gene flow, and their combined impacts.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Hardy-Weinberg</span>
+    <span class="bio-tag">Genetic Drift</span>
+    <span class="bio-tag">Selection</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: HARDY-WEINBERG CALCULATOR ════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Hardy-Weinberg Calculator</div>
+    <div class="section-subtitle">Apply the Hardy-Weinberg equation: p&sup2; + 2pq + q&sup2; = 1</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Allele &amp; Genotype Frequencies</div>
+    <div class="slider-group">
+      <label>p (freq of A)</label>
+      <input type="range" id="hw-p" min="0" max="100" value="50" oninput="hwUpdate()">
+      <span class="slider-val" id="hw-p-val">0.50</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="hw-p2">0.25</div><div class="stat-label">p&sup2; (AA)</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="hw-2pq">0.50</div><div class="stat-label">2pq (Aa)</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="hw-q2">0.25</div><div class="stat-label">q&sup2; (aa)</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="hw-q-val">0.50</div><div class="stat-label">q (freq of a)</div></div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Population Pie Chart</div>
+      <div class="chart-wrap"><canvas id="hw-pie" height="260"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Genotype Bar Chart</div>
+      <div class="chart-wrap"><canvas id="hw-bar" height="260"></canvas></div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Expected vs Observed Comparison</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Enter observed counts from a real population to compare with H-W expectations.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+        <div style="flex:1;min-width:80px;"><label style="font-size:11px;font-weight:600;display:block;">AA count</label><input type="number" id="hw-obs-AA" value="25" min="0" style="width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;font-family:var(--mono);" oninput="hwCompare()"></div>
+        <div style="flex:1;min-width:80px;"><label style="font-size:11px;font-weight:600;display:block;">Aa count</label><input type="number" id="hw-obs-Aa" value="50" min="0" style="width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;font-family:var(--mono);" oninput="hwCompare()"></div>
+        <div style="flex:1;min-width:80px;"><label style="font-size:11px;font-weight:600;display:block;">aa count</label><input type="number" id="hw-obs-aa" value="25" min="0" style="width:100%;padding:6px;border:1px solid var(--border);border-radius:6px;font-family:var(--mono);" oninput="hwCompare()"></div>
+      </div>
+      <div class="chart-wrap"><canvas id="hw-compare" height="220"></canvas></div>
+      <div id="hw-chi-result"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Equilibrium Conditions Checklist</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">A population is in Hardy-Weinberg equilibrium only when ALL conditions are met:</p>
+      <ul class="checklist" id="hw-checklist">
+        <li><span class="check-icon check-pass">&#10003;</span><span class="check-text">No mutation</span></li>
+        <li><span class="check-icon check-pass">&#10003;</span><span class="check-text">Random mating</span></li>
+        <li><span class="check-icon check-pass">&#10003;</span><span class="check-text">No natural selection</span></li>
+        <li><span class="check-icon check-pass">&#10003;</span><span class="check-text">Extremely large population (no drift)</span></li>
+        <li><span class="check-icon check-pass">&#10003;</span><span class="check-text">No gene flow (migration)</span></li>
+      </ul>
+      <div class="analysis-result ar-pass" id="hw-equil-msg">
+        <div class="ar-title">All conditions met</div>
+        <p>When all five conditions are satisfied, allele frequencies remain constant across generations. Violating any condition causes microevolution.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: GENETIC DRIFT ═══════════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Genetic Drift Simulator</div>
+    <div class="section-subtitle">Random changes in allele frequency, especially in small populations</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Parameters</div>
+    <div class="slider-group">
+      <label>Starting p</label>
+      <input type="range" id="drift-p" min="5" max="95" value="50" oninput="driftUpdateLabel()">
+      <span class="slider-val" id="drift-p-val">0.50</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="driftNextGen()">Next Generation</button>
+      <button class="btn btn-secondary" onclick="driftRun(50)">Run 50 Generations</button>
+      <button class="btn btn-secondary" onclick="driftAddReplicate()">Add Replicate</button>
+      <button class="btn btn-outline" onclick="driftReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="drift-gen">0</div><div class="stat-label">Generation</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="drift-p-cur">0.50</div><div class="stat-label">Current p</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="drift-fixed">0</div><div class="stat-label">Fixed</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="drift-lost">0</div><div class="stat-label">Lost</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Side-by-Side: Small vs Large Population</div>
+    <div class="card-row">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="badge badge-red">N = </span>
+          <input type="range" id="drift-n1" min="10" max="100" value="20" step="5" oninput="$('drift-n1-val').textContent=this.value" style="flex:1;accent-color:var(--accent);">
+          <span class="slider-val" id="drift-n1-val">20</span>
+        </div>
+        <div class="chart-wrap"><canvas id="drift-chart1" height="280"></canvas></div>
+      </div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="badge badge-blue">N = </span>
+          <input type="range" id="drift-n2" min="100" max="1000" value="500" step="50" oninput="$('drift-n2-val').textContent=this.value" style="flex:1;accent-color:var(--blue);">
+          <span class="slider-val" id="drift-n2-val">500</span>
+        </div>
+        <div class="chart-wrap"><canvas id="drift-chart2" height="280"></canvas></div>
+      </div>
+    </div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Replicate runs (colored lines)</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> Starting frequency</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: NATURAL SELECTION ═══════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Natural Selection Pressure</div>
+    <div class="section-subtitle">Model how differential fitness changes allele frequencies</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Fitness Values &amp; Parameters</div>
+    <div class="slider-group">
+      <label>Fitness AA (w&#x2081;&#x2081;)</label>
+      <input type="range" id="sel-wAA" min="0" max="100" value="100" oninput="selUpdateLabels()">
+      <span class="slider-val" id="sel-wAA-val">1.00</span>
+    </div>
+    <div class="slider-group">
+      <label>Fitness Aa (w&#x2081;&#x2082;)</label>
+      <input type="range" id="sel-wAa" min="0" max="100" value="100" oninput="selUpdateLabels()">
+      <span class="slider-val" id="sel-wAa-val">1.00</span>
+    </div>
+    <div class="slider-group">
+      <label>Fitness aa (w&#x2082;&#x2082;)</label>
+      <input type="range" id="sel-waa" min="0" max="100" value="70" oninput="selUpdateLabels()">
+      <span class="slider-val" id="sel-waa-val">0.70</span>
+    </div>
+    <div class="slider-group">
+      <label>Starting p</label>
+      <input type="range" id="sel-p0" min="1" max="99" value="10" oninput="$('sel-p0-val').textContent=(this.value/100).toFixed(2)">
+      <span class="slider-val" id="sel-p0-val">0.10</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="selRun(100)">Run 100 Generations</button>
+      <button class="btn btn-secondary" onclick="selRun(500)">Run 500 Generations</button>
+      <button class="btn btn-outline" onclick="selReset()">Reset</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline" onclick="selPreset('directional')">Directional</button>
+      <button class="btn btn-sm btn-outline" onclick="selPreset('balancing')">Balancing (Het. Advantage)</button>
+      <button class="btn btn-sm btn-outline" onclick="selPreset('disruptive')">Disruptive</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="sel-type">-</div><div class="stat-label">Selection Type</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="sel-pfinal">-</div><div class="stat-label">Final p</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="sel-equil">-</div><div class="stat-label">Equilibrium?</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="sel-gens">0</div><div class="stat-label">Generations</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Allele Frequency Over Generations</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> p (freq of A)</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> q (freq of a)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="sel-chart" height="300"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Genotype Frequencies Over Generations</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:#be185d;"></span> AA</span>
+      <span><span class="ci-dot" style="background:#d97706;"></span> Aa</span>
+      <span><span class="ci-dot" style="background:#2563eb;"></span> aa</span>
+    </div>
+    <div class="chart-wrap"><canvas id="sel-geno-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: BOTTLENECK & FOUNDER ════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Bottleneck &amp; Founder Effect</div>
+    <div class="section-subtitle">How population crashes and colonization change genetic diversity</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Original Population (N = 1000)</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Each dot represents an individual. Colors represent 5 different alleles at one locus.</p>
+    <div class="chart-wrap"><canvas id="bn-orig-pop" height="200" class="pop-canvas"></canvas></div>
+    <div class="stat-grid" id="bn-orig-stats"></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Bottleneck Event</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">A catastrophe randomly eliminates most of the population.</p>
+      <div class="slider-group">
+        <label>Survivors</label>
+        <input type="range" id="bn-survivors" min="5" max="100" value="20" oninput="$('bn-surv-val').textContent=this.value">
+        <span class="slider-val" id="bn-surv-val">20</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="bnBottleneck()">Bottleneck!</button>
+        <button class="btn btn-secondary" onclick="bnMultiTrial(10)">10 Trials</button>
+        <button class="btn btn-outline" onclick="bnReset()">Reset</button>
+      </div>
+      <div class="chart-wrap"><canvas id="bn-after-pop" height="160" class="pop-canvas"></canvas></div>
+      <div class="chart-wrap"><canvas id="bn-compare" height="220"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Founder Effect</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">A small group colonizes a new area, carrying only a fraction of alleles.</p>
+      <div class="slider-group">
+        <label>Founders</label>
+        <input type="range" id="fn-founders" min="5" max="100" value="15" oninput="$('fn-found-val').textContent=this.value">
+        <span class="slider-val" id="fn-found-val">15</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="fnFounder()">Colonize!</button>
+        <button class="btn btn-secondary" onclick="fnMultiTrial(10)">10 Trials</button>
+        <button class="btn btn-outline" onclick="fnReset()">Reset</button>
+      </div>
+      <div class="chart-wrap"><canvas id="fn-after-pop" height="160" class="pop-canvas"></canvas></div>
+      <div class="chart-wrap"><canvas id="fn-compare" height="220"></canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Multiple Trial Results &mdash; Variation in Outcomes</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Each trial produces different surviving allele frequencies due to random sampling.</p>
+    <div class="chart-wrap"><canvas id="bn-trials-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: GENE FLOW ═══════════════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Gene Flow (Migration)</div>
+    <div class="section-subtitle">Migration homogenizes allele frequencies between populations</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Two-Population Migration Model</div>
+    <div class="slider-group">
+      <label>Pop 1 starting p</label>
+      <input type="range" id="mig-p1" min="5" max="95" value="90" oninput="$('mig-p1-val').textContent=(this.value/100).toFixed(2)">
+      <span class="slider-val" id="mig-p1-val">0.90</span>
+    </div>
+    <div class="slider-group">
+      <label>Pop 2 starting p</label>
+      <input type="range" id="mig-p2" min="5" max="95" value="10" oninput="$('mig-p2-val').textContent=(this.value/100).toFixed(2)">
+      <span class="slider-val" id="mig-p2-val">0.10</span>
+    </div>
+    <div class="slider-group">
+      <label>Migration rate</label>
+      <input type="range" id="mig-rate" min="0" max="50" value="10" oninput="$('mig-rate-val').textContent=this.value+'%'">
+      <span class="slider-val" id="mig-rate-val">10%</span>
+    </div>
+    <div class="slider-group">
+      <label>Pop size (each)</label>
+      <input type="range" id="mig-n" min="50" max="1000" value="200" step="50" oninput="$('mig-n-val').textContent=this.value">
+      <span class="slider-val" id="mig-n-val">200</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="migNextGen()">Next Generation</button>
+      <button class="btn btn-secondary" onclick="migRun(50)">Run 50 Generations</button>
+      <button class="btn btn-outline" onclick="migReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="mig-gen">0</div><div class="stat-label">Generation</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="mig-p1-cur">0.90</div><div class="stat-label">Pop 1 p</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="mig-p2-cur">0.10</div><div class="stat-label">Pop 2 p</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="mig-diff">0.80</div><div class="stat-label">|Difference|</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Allele Frequencies Converging Over Generations</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Population 1</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> Population 2</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> Expected equilibrium</span>
+    </div>
+    <div class="chart-wrap"><canvas id="mig-chart" height="300"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: COMBINED FORCES ═════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Combined Forces Simulator</div>
+    <div class="section-subtitle">Toggle multiple evolutionary forces simultaneously</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Active Forces</div>
+    <div class="toggle-group">
+      <div class="toggle-item"><div class="toggle-switch" id="cf-tog-mutation" onclick="cfToggle('mutation')"></div> Mutation</div>
+      <div class="toggle-item"><div class="toggle-switch" id="cf-tog-selection" onclick="cfToggle('selection')"></div> Selection</div>
+      <div class="toggle-item"><div class="toggle-switch active" id="cf-tog-drift" onclick="cfToggle('drift')"></div> Drift</div>
+      <div class="toggle-item"><div class="toggle-switch" id="cf-tog-migration" onclick="cfToggle('migration')"></div> Migration</div>
+    </div>
+    <div id="cf-params">
+      <div class="slider-group" id="cf-mutation-params" style="display:none;">
+        <label>Mutation rate</label>
+        <input type="range" id="cf-mu" min="0" max="100" value="1" oninput="$('cf-mu-val').textContent=(this.value/1000).toFixed(4)">
+        <span class="slider-val" id="cf-mu-val">0.0010</span>
+      </div>
+      <div id="cf-selection-params" style="display:none;">
+        <div class="slider-group">
+          <label>Fitness AA</label>
+          <input type="range" id="cf-wAA" min="0" max="100" value="100" oninput="$('cf-wAA-val').textContent=(this.value/100).toFixed(2)">
+          <span class="slider-val" id="cf-wAA-val">1.00</span>
+        </div>
+        <div class="slider-group">
+          <label>Fitness Aa</label>
+          <input type="range" id="cf-wAa" min="0" max="100" value="100" oninput="$('cf-wAa-val').textContent=(this.value/100).toFixed(2)">
+          <span class="slider-val" id="cf-wAa-val">1.00</span>
+        </div>
+        <div class="slider-group">
+          <label>Fitness aa</label>
+          <input type="range" id="cf-waa" min="0" max="100" value="80" oninput="$('cf-waa-val').textContent=(this.value/100).toFixed(2)">
+          <span class="slider-val" id="cf-waa-val">0.80</span>
+        </div>
+      </div>
+      <div class="slider-group">
+        <label>Population size</label>
+        <input type="range" id="cf-n" min="10" max="1000" value="100" step="10" oninput="$('cf-n-val').textContent=this.value">
+        <span class="slider-val" id="cf-n-val">100</span>
+      </div>
+      <div class="slider-group" id="cf-migration-params" style="display:none;">
+        <label>Migrant pool p</label>
+        <input type="range" id="cf-mig-p" min="0" max="100" value="50" oninput="$('cf-mig-p-val').textContent=(this.value/100).toFixed(2)">
+        <span class="slider-val" id="cf-mig-p-val">0.50</span>
+      </div>
+      <div class="slider-group" id="cf-migration-rate-params" style="display:none;">
+        <label>Migration rate</label>
+        <input type="range" id="cf-mig-rate" min="0" max="50" value="5" oninput="$('cf-mig-rate-val').textContent=this.value+'%'">
+        <span class="slider-val" id="cf-mig-rate-val">5%</span>
+      </div>
+      <div class="slider-group">
+        <label>Starting p</label>
+        <input type="range" id="cf-p0" min="1" max="99" value="50" oninput="$('cf-p0-val').textContent=(this.value/100).toFixed(2)">
+        <span class="slider-val" id="cf-p0-val">0.50</span>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="cfRun(100)">Run 100 Generations</button>
+      <button class="btn btn-secondary" onclick="cfRun(500)">Run 500 Generations</button>
+      <button class="btn btn-outline" onclick="cfReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="cf-gen">0</div><div class="stat-label">Generations</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="cf-pfinal">-</div><div class="stat-label">Final p</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="cf-dominant">-</div><div class="stat-label">Dominant Force</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="cf-hw-dev">-</div><div class="stat-label">H-W Deviation</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Allele Frequency Under Combined Forces</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> p (A allele)</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> q (a allele)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="cf-chart" height="300"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Hardy-Weinberg Assumption Violations</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:10px;">Shows which H-W assumptions are currently being violated and the relative magnitude of each force.</p>
+    <div class="chart-wrap"><canvas id="cf-violations" height="220"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    if (s.dash) ctx.setLineDash(s.dash);
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dash) ctx.setLineDash([]);
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+function drawPieChart(ctx, slices, labels) {
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const cx = W/2, cy = H/2 - 10, r = Math.min(W, H) * 0.35;
+  let startAngle = -Math.PI / 2;
+  slices.forEach((s, i) => {
+    if (s.value <= 0) return;
+    const endAngle = startAngle + s.value * Math.PI * 2;
+    ctx.fillStyle = s.color;
+    ctx.beginPath(); ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, startAngle, endAngle);
+    ctx.closePath(); ctx.fill();
+    // label
+    const midAngle = (startAngle + endAngle) / 2;
+    const lx = cx + Math.cos(midAngle) * (r * 0.65);
+    const ly = cy + Math.sin(midAngle) * (r * 0.65);
+    if (s.value > 0.05) {
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText((s.value * 100).toFixed(1) + '%', lx, ly + 4);
+    }
+    startAngle = endAngle;
+  });
+  // legend
+  const legendY = H - 30;
+  let lx = 20;
+  slices.forEach((s, i) => {
+    ctx.fillStyle = s.color; ctx.fillRect(lx, legendY, 12, 12);
+    ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(labels[i], lx + 16, legendY + 10);
+    lx += ctx.measureText(labels[i]).width + 32;
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: HARDY-WEINBERG CALCULATOR
+// ══════════════════════════════════════════════════════════════════════════
+function hwUpdate() {
+  const p = parseInt($('hw-p').value) / 100;
+  const q = 1 - p;
+  $('hw-p-val').textContent = p.toFixed(2);
+  $('hw-q-val').textContent = q.toFixed(2);
+  $('hw-p2').textContent = (p*p).toFixed(4);
+  $('hw-2pq').textContent = (2*p*q).toFixed(4);
+  $('hw-q2').textContent = (q*q).toFixed(4);
+  drawHWPie(p, q);
+  drawHWBar(p, q);
+  hwCompare();
+}
+
+function drawHWPie(p, q) {
+  const ctx = getCtx('hw-pie');
+  drawPieChart(ctx, [
+    { value: p*p, color: '#be185d' },
+    { value: 2*p*q, color: '#d97706' },
+    { value: q*q, color: '#2563eb' }
+  ], ['AA (p\u00B2)', 'Aa (2pq)', 'aa (q\u00B2)']);
+}
+
+function drawHWBar(p, q) {
+  const ctx = getCtx('hw-bar');
+  drawBarChart(ctx, {
+    labels: ['AA (p\u00B2)', 'Aa (2pq)', 'aa (q\u00B2)'],
+    values: [p*p, 2*p*q, q*q],
+    colors: ['#be185d', '#d97706', '#2563eb'],
+    maxVal: 1
+  });
+}
+
+function hwCompare() {
+  const obsAA = parseInt($('hw-obs-AA').value) || 0;
+  const obsAa = parseInt($('hw-obs-Aa').value) || 0;
+  const obsaa = parseInt($('hw-obs-aa').value) || 0;
+  const total = obsAA + obsAa + obsaa;
+  if (total === 0) return;
+
+  // calculate p from observed
+  const pObs = (2 * obsAA + obsAa) / (2 * total);
+  const qObs = 1 - pObs;
+  const expAA = pObs * pObs * total;
+  const expAa = 2 * pObs * qObs * total;
+  const expaa = qObs * qObs * total;
+
+  const ctx = getCtx('hw-compare');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const items = [
+    { label: 'AA', obs: obsAA, exp: expAA },
+    { label: 'Aa', obs: obsAa, exp: expAa },
+    { label: 'aa', obs: obsaa, exp: expaa }
+  ];
+  const maxV = Math.max(...items.map(it => Math.max(it.obs, it.exp))) * 1.3 || 10;
+  const n = 3, groupW = plotW / n, barW = groupW * 0.25;
+
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxV * i/4).toFixed(1), pad.left - 6, y + 4);
+  }
+
+  items.forEach((it, i) => {
+    const cx = pad.left + groupW * i + groupW / 2;
+    const eh = (it.exp / maxV) * plotH;
+    ctx.fillStyle = '#2563eb'; ctx.fillRect(cx - barW - 2, pad.top + plotH - eh, barW, eh);
+    const oh = (it.obs / maxV) * plotH;
+    ctx.fillStyle = '#c41e3a'; ctx.fillRect(cx + 2, pad.top + plotH - oh, barW, oh);
+    ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#2563eb'; ctx.fillText(it.exp.toFixed(1), cx - barW/2 - 2, pad.top + plotH - eh - 6);
+    ctx.fillStyle = '#c41e3a'; ctx.fillText(it.obs.toFixed(0), cx + 2 + barW/2, pad.top + plotH - oh - 6);
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText(it.label, cx, H - pad.bottom + 18);
+  });
+
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Expected (H-W)', pad.left + 18, 16);
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 120, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('Observed', pad.left + 138, 16);
+
+  // chi-square
+  const x2 = Math.pow(obsAA - expAA, 2) / expAA + Math.pow(obsAa - expAa, 2) / expAa + Math.pow(obsaa - expaa, 2) / expaa;
+  const pass = x2 < 3.841; // df=1 for HW (but technically df=1 since p is estimated from data)
+  $('hw-chi-result').innerHTML = `<div class="analysis-result ${pass ? 'ar-pass' : 'ar-fail'}">
+    <div class="ar-title">&chi;&sup2; Test for H-W Equilibrium</div>
+    <p>Observed p = <code>${pObs.toFixed(4)}</code>, &chi;&sup2; = <code>${x2.toFixed(3)}</code> (df = 1, critical = 3.841)</p>
+    <p><strong>${pass ? 'Population IS consistent with H-W equilibrium' : 'Population DEVIATES from H-W equilibrium'}</strong></p>
+  </div>`;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: GENETIC DRIFT SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+const driftColors = ['#c41e3a','#2563eb','#16a34a','#d97706','#7c3aed','#ec4899','#06b6d4','#f97316','#8b5cf6','#14b8a6'];
+let driftState = { replicates1: [], replicates2: [], gen: 0, currentP: 0.5, fixed: 0, lost: 0 };
+
+function driftUpdateLabel() {
+  $('drift-p-val').textContent = (parseInt($('drift-p').value) / 100).toFixed(2);
+}
+
+function driftSimGen(p, N) {
+  // binomial sampling: count A alleles in 2N draws with prob p
+  let countA = 0;
+  for (let i = 0; i < 2 * N; i++) {
+    if (Math.random() < p) countA++;
+  }
+  return countA / (2 * N);
+}
+
+function driftSimulate(N, gens, p0) {
+  const freqs = [p0];
+  let p = p0;
+  for (let g = 0; g < gens; g++) {
+    p = driftSimGen(p, N);
+    freqs.push(p);
+    if (p <= 0 || p >= 1) {
+      for (let r = g + 1; r < gens; r++) freqs.push(p);
+      break;
+    }
+  }
+  return freqs;
+}
+
+function driftNextGen() {
+  const N1 = parseInt($('drift-n1').value);
+  const N2 = parseInt($('drift-n2').value);
+  const p0 = parseInt($('drift-p').value) / 100;
+  if (driftState.replicates1.length === 0) {
+    driftState.replicates1.push([p0]);
+    driftState.replicates2.push([p0]);
+  }
+  // advance last replicate by one gen
+  const r1 = driftState.replicates1[driftState.replicates1.length - 1];
+  const r2 = driftState.replicates2[driftState.replicates2.length - 1];
+  const lastP1 = r1[r1.length - 1];
+  const lastP2 = r2[r2.length - 1];
+  r1.push(driftSimGen(lastP1, N1));
+  r2.push(driftSimGen(lastP2, N2));
+  driftState.gen = r1.length - 1;
+  driftState.currentP = r1[r1.length - 1];
+  driftUpdateStats();
+  drawDriftCharts();
+}
+
+function driftRun(gens) {
+  for (let i = 0; i < gens; i++) driftNextGen();
+}
+
+function driftAddReplicate() {
+  const N1 = parseInt($('drift-n1').value);
+  const N2 = parseInt($('drift-n2').value);
+  const p0 = parseInt($('drift-p').value) / 100;
+  const gens = Math.max(50, driftState.gen || 50);
+  driftState.replicates1.push(driftSimulate(N1, gens, p0));
+  driftState.replicates2.push(driftSimulate(N2, gens, p0));
+  driftState.gen = gens;
+  driftUpdateStats();
+  drawDriftCharts();
+}
+
+function driftReset() {
+  driftState = { replicates1: [], replicates2: [], gen: 0, currentP: 0.5, fixed: 0, lost: 0 };
+  driftUpdateStats();
+  drawDriftCharts();
+}
+
+function driftUpdateStats() {
+  $('drift-gen').textContent = driftState.gen;
+  let fixed = 0, lost = 0;
+  driftState.replicates1.forEach(r => {
+    const last = r[r.length - 1];
+    if (last >= 1) fixed++;
+    if (last <= 0) lost++;
+  });
+  driftState.fixed = fixed;
+  driftState.lost = lost;
+  $('drift-fixed').textContent = fixed;
+  $('drift-lost').textContent = lost;
+  if (driftState.replicates1.length > 0) {
+    const last = driftState.replicates1[driftState.replicates1.length - 1];
+    $('drift-p-cur').textContent = last[last.length - 1].toFixed(3);
+  }
+}
+
+function drawDriftCharts() {
+  drawDriftChart('drift-chart1', driftState.replicates1);
+  drawDriftChart('drift-chart2', driftState.replicates2);
+}
+
+function drawDriftChart(canvasId, replicates) {
+  const ctx = getCtx(canvasId);
+  if (!replicates.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Click "Next Generation" or "Add Replicate" to start', ctx.W/2, ctx.H/2);
+    return;
+  }
+  const maxLen = Math.max(...replicates.map(r => r.length));
+  const p0 = parseInt($('drift-p').value) / 100;
+  const series = replicates.map((r, i) => ({
+    data: r, color: driftColors[i % driftColors.length], width: 1.5, dots: r.length < 60
+  }));
+  drawLineChart(ctx, series, { yMin: 0, yMax: 1, refLine: p0, xMax: maxLen });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: NATURAL SELECTION PRESSURE
+// ══════════════════════════════════════════════════════════════════════════
+let selData = { pHistory: [], qHistory: [], genoHistory: [], gens: 0 };
+
+function selUpdateLabels() {
+  $('sel-wAA-val').textContent = (parseInt($('sel-wAA').value) / 100).toFixed(2);
+  $('sel-wAa-val').textContent = (parseInt($('sel-wAa').value) / 100).toFixed(2);
+  $('sel-waa-val').textContent = (parseInt($('sel-waa').value) / 100).toFixed(2);
+}
+
+function selPreset(type) {
+  if (type === 'directional') {
+    $('sel-wAA').value = 100; $('sel-wAa').value = 80; $('sel-waa').value = 60;
+  } else if (type === 'balancing') {
+    $('sel-wAA').value = 70; $('sel-wAa').value = 100; $('sel-waa').value = 70;
+  } else if (type === 'disruptive') {
+    $('sel-wAA').value = 100; $('sel-wAa').value = 60; $('sel-waa').value = 100;
+  }
+  selUpdateLabels();
+}
+
+function selRun(gens) {
+  const wAA = parseInt($('sel-wAA').value) / 100;
+  const wAa = parseInt($('sel-wAa').value) / 100;
+  const waa = parseInt($('sel-waa').value) / 100;
+  let p = selData.pHistory.length > 0 ? selData.pHistory[selData.pHistory.length - 1] : parseInt($('sel-p0').value) / 100;
+
+  if (selData.pHistory.length === 0) {
+    selData.pHistory.push(p);
+    selData.qHistory.push(1 - p);
+    selData.genoHistory.push({ AA: p*p, Aa: 2*p*(1-p), aa: (1-p)*(1-p) });
+  }
+
+  for (let g = 0; g < gens; g++) {
+    const q = 1 - p;
+    // mean fitness
+    const wBar = p*p*wAA + 2*p*q*wAa + q*q*waa;
+    if (wBar === 0) break;
+    // new p
+    const pNew = (p*p*wAA + p*q*wAa) / wBar;
+    p = clamp(pNew, 0, 1);
+    selData.pHistory.push(p);
+    selData.qHistory.push(1 - p);
+    selData.genoHistory.push({ AA: p*p, Aa: 2*p*(1-p), aa: (1-p)*(1-p) });
+    selData.gens++;
+  }
+
+  // detect type
+  let type = 'None';
+  if (wAa > wAA && wAa > waa) type = 'Balancing';
+  else if (wAa < wAA && wAa < waa) type = 'Disruptive';
+  else if (wAA > waa) type = 'Directional (A)';
+  else if (waa > wAA) type = 'Directional (a)';
+  else type = 'Neutral';
+  $('sel-type').textContent = type;
+  $('sel-type').style.fontSize = type.length > 12 ? '16px' : '28px';
+  $('sel-pfinal').textContent = p.toFixed(4);
+  $('sel-gens').textContent = selData.gens;
+
+  // equilibrium detection
+  const recent = selData.pHistory.slice(-20);
+  const isEquil = recent.length >= 20 && Math.abs(recent[recent.length-1] - recent[0]) < 0.001;
+  $('sel-equil').textContent = isEquil ? 'Yes' : 'No';
+
+  drawSelChart();
+  drawSelGenoChart();
+}
+
+function selReset() {
+  selData = { pHistory: [], qHistory: [], genoHistory: [], gens: 0 };
+  $('sel-type').textContent = '-'; $('sel-pfinal').textContent = '-';
+  $('sel-equil').textContent = '-'; $('sel-gens').textContent = '0';
+  $('sel-type').style.fontSize = '28px';
+  drawSelChart(); drawSelGenoChart();
+}
+
+function drawSelChart() {
+  const ctx = getCtx('sel-chart');
+  if (!selData.pHistory.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Set fitness values and click Run to start', ctx.W/2, ctx.H/2);
+    return;
+  }
+  drawLineChart(ctx, [
+    { data: selData.pHistory, color: '#c41e3a', width: 2.5 },
+    { data: selData.qHistory, color: '#2563eb', width: 2.5 }
+  ], { yMin: 0, yMax: 1 });
+}
+
+function drawSelGenoChart() {
+  const ctx = getCtx('sel-geno-chart');
+  if (!selData.genoHistory.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    return;
+  }
+  drawLineChart(ctx, [
+    { data: selData.genoHistory.map(g => g.AA), color: '#be185d', width: 2 },
+    { data: selData.genoHistory.map(g => g.Aa), color: '#d97706', width: 2 },
+    { data: selData.genoHistory.map(g => g.aa), color: '#2563eb', width: 2 }
+  ], { yMin: 0, yMax: 1 });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: BOTTLENECK & FOUNDER EFFECT
+// ══════════════════════════════════════════════════════════════════════════
+const alleleColors = ['#c41e3a', '#2563eb', '#16a34a', '#d97706', '#7c3aed'];
+const alleleLabels = ['A1', 'A2', 'A3', 'A4', 'A5'];
+let bnOrigPop = [];
+let bnTrials = [];
+let fnTrials = [];
+
+function bnInit() {
+  // create original population N=1000, 5 alleles with specific frequencies
+  const freqs = [0.30, 0.25, 0.20, 0.15, 0.10];
+  bnOrigPop = [];
+  for (let i = 0; i < 1000; i++) {
+    const r = Math.random();
+    let cum = 0;
+    for (let a = 0; a < 5; a++) {
+      cum += freqs[a];
+      if (r < cum) { bnOrigPop.push(a); break; }
+    }
+  }
+  drawPopDots('bn-orig-pop', bnOrigPop);
+  drawOrigStats();
+}
+
+function getAlleleFreqs(pop) {
+  const counts = [0,0,0,0,0];
+  pop.forEach(a => counts[a]++);
+  return counts.map(c => c / pop.length);
+}
+
+function drawOrigStats() {
+  const freqs = getAlleleFreqs(bnOrigPop);
+  let html = '';
+  const colorNames = ['stat-accent', 'stat-blue', 'stat-green', 'stat-amber', 'stat-purple'];
+  freqs.forEach((f, i) => {
+    html += `<div class="stat-box ${colorNames[i]}"><div class="stat-val">${(f*100).toFixed(1)}%</div><div class="stat-label">${alleleLabels[i]}</div></div>`;
+  });
+  $('bn-orig-stats').innerHTML = html;
+}
+
+function drawPopDots(canvasId, pop) {
+  const ctx = getCtx(canvasId);
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const cols = Math.ceil(Math.sqrt(pop.length * W / H));
+  const rows = Math.ceil(pop.length / cols);
+  const dotSize = Math.min(W / cols, H / rows) * 0.85;
+  const padX = (W - cols * dotSize) / 2;
+  const padY = (H - rows * dotSize) / 2;
+
+  pop.forEach((allele, i) => {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const x = padX + col * dotSize + dotSize / 2;
+    const y = padY + row * dotSize + dotSize / 2;
+    ctx.fillStyle = alleleColors[allele];
+    ctx.beginPath(); ctx.arc(x, y, dotSize * 0.4, 0, Math.PI * 2); ctx.fill();
+  });
+}
+
+function bnBottleneck() {
+  const n = parseInt($('bn-survivors').value);
+  const survivors = [];
+  const indices = Array.from({length: bnOrigPop.length}, (_, i) => i);
+  for (let i = 0; i < n && indices.length > 0; i++) {
+    const pick = rand(0, indices.length - 1);
+    survivors.push(bnOrigPop[indices[pick]]);
+    indices.splice(pick, 1);
+  }
+  drawPopDots('bn-after-pop', survivors);
+  drawBnCompare(survivors);
+  bnTrials.push(getAlleleFreqs(survivors));
+  drawBnTrialsChart();
+}
+
+function bnMultiTrial(count) {
+  for (let i = 0; i < count; i++) {
+    const n = parseInt($('bn-survivors').value);
+    const survivors = [];
+    const indices = Array.from({length: bnOrigPop.length}, (_, i) => i);
+    for (let j = 0; j < n && indices.length > 0; j++) {
+      const pick = rand(0, indices.length - 1);
+      survivors.push(bnOrigPop[indices[pick]]);
+      indices.splice(pick, 1);
+    }
+    bnTrials.push(getAlleleFreqs(survivors));
+  }
+  drawBnTrialsChart();
+}
+
+function bnReset() {
+  bnTrials = [];
+  const ctx1 = getCtx('bn-after-pop');
+  ctx1.clearRect(0, 0, ctx1.W, ctx1.H); ctx1.fillStyle = '#f8fafc'; ctx1.fillRect(0, 0, ctx1.W, ctx1.H);
+  const ctx2 = getCtx('bn-compare');
+  ctx2.clearRect(0, 0, ctx2.W, ctx2.H); ctx2.fillStyle = '#f8fafc'; ctx2.fillRect(0, 0, ctx2.W, ctx2.H);
+  drawBnTrialsChart();
+}
+
+function drawBnCompare(survivors) {
+  const origFreqs = getAlleleFreqs(bnOrigPop);
+  const survFreqs = getAlleleFreqs(survivors);
+  const ctx = getCtx('bn-compare');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = 5, groupW = plotW / n, barW = groupW * 0.3;
+  const maxV = 0.5;
+
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxV * i/4 * 100).toFixed(0) + '%', pad.left - 6, y + 4);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    const cx = pad.left + groupW * i + groupW / 2;
+    const oh = (origFreqs[i] / maxV) * plotH;
+    ctx.fillStyle = '#9ca3af'; ctx.fillRect(cx - barW - 2, pad.top + plotH - oh, barW, oh);
+    const sh = (survFreqs[i] / maxV) * plotH;
+    ctx.fillStyle = alleleColors[i]; ctx.fillRect(cx + 2, pad.top + plotH - sh, barW, sh);
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(alleleLabels[i], cx, H - pad.bottom + 16);
+  }
+
+  ctx.fillStyle = '#9ca3af'; ctx.fillRect(pad.left, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Original', pad.left + 16, 16);
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 80, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('Survivors', pad.left + 96, 16);
+}
+
+function fnFounder() {
+  const n = parseInt($('fn-founders').value);
+  const founders = [];
+  for (let i = 0; i < n; i++) {
+    founders.push(bnOrigPop[rand(0, bnOrigPop.length - 1)]);
+  }
+  drawPopDots('fn-after-pop', founders);
+  drawFnCompare(founders);
+  fnTrials.push(getAlleleFreqs(founders));
+  drawBnTrialsChart();
+}
+
+function fnMultiTrial(count) {
+  const n = parseInt($('fn-founders').value);
+  for (let i = 0; i < count; i++) {
+    const founders = [];
+    for (let j = 0; j < n; j++) {
+      founders.push(bnOrigPop[rand(0, bnOrigPop.length - 1)]);
+    }
+    fnTrials.push(getAlleleFreqs(founders));
+  }
+  drawBnTrialsChart();
+}
+
+function fnReset() {
+  fnTrials = [];
+  const ctx1 = getCtx('fn-after-pop');
+  ctx1.clearRect(0, 0, ctx1.W, ctx1.H); ctx1.fillStyle = '#f8fafc'; ctx1.fillRect(0, 0, ctx1.W, ctx1.H);
+  const ctx2 = getCtx('fn-compare');
+  ctx2.clearRect(0, 0, ctx2.W, ctx2.H); ctx2.fillStyle = '#f8fafc'; ctx2.fillRect(0, 0, ctx2.W, ctx2.H);
+  drawBnTrialsChart();
+}
+
+function drawFnCompare(founders) {
+  const origFreqs = getAlleleFreqs(bnOrigPop);
+  const fndFreqs = getAlleleFreqs(founders);
+  const ctx = getCtx('fn-compare');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = 5, groupW = plotW / n, barW = groupW * 0.3;
+  const maxV = 0.5;
+
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxV * i/4 * 100).toFixed(0) + '%', pad.left - 6, y + 4);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    const cx = pad.left + groupW * i + groupW / 2;
+    const oh = (origFreqs[i] / maxV) * plotH;
+    ctx.fillStyle = '#9ca3af'; ctx.fillRect(cx - barW - 2, pad.top + plotH - oh, barW, oh);
+    const sh = (fndFreqs[i] / maxV) * plotH;
+    ctx.fillStyle = alleleColors[i]; ctx.fillRect(cx + 2, pad.top + plotH - sh, barW, sh);
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(alleleLabels[i], cx, H - pad.bottom + 16);
+  }
+
+  ctx.fillStyle = '#9ca3af'; ctx.fillRect(pad.left, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Original', pad.left + 16, 16);
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left + 80, 6, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('Founders', pad.left + 96, 16);
+}
+
+function drawBnTrialsChart() {
+  const ctx = getCtx('bn-trials-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 50, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const allTrials = [];
+  bnTrials.forEach(t => allTrials.push({ freqs: t, type: 'B' }));
+  fnTrials.forEach(t => allTrials.push({ freqs: t, type: 'F' }));
+
+  if (!allTrials.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Run Bottleneck or Founder trials to see variation', W/2, H/2);
+    return;
+  }
+
+  const origFreqs = getAlleleFreqs(bnOrigPop);
+  const n = allTrials.length;
+  const groupW = plotW / n;
+  const barW = Math.max(2, groupW * 0.7 / 5);
+
+  // y axis
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((i * 25) + '%', pad.left - 6, y + 4);
+  }
+
+  // original reference lines
+  origFreqs.forEach((f, a) => {
+    const y = pad.top + plotH * (1 - f);
+    ctx.strokeStyle = alleleColors[a]; ctx.lineWidth = 1; ctx.setLineDash([4, 4]); ctx.globalAlpha = 0.4;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha = 1;
+  });
+
+  allTrials.forEach((trial, ti) => {
+    const cx = pad.left + groupW * ti + groupW / 2;
+    for (let a = 0; a < 5; a++) {
+      const h = trial.freqs[a] * plotH;
+      const x = cx + (a - 2) * barW;
+      ctx.fillStyle = alleleColors[a];
+      ctx.fillRect(x, pad.top + plotH - h, barW - 1, h);
+    }
+    ctx.fillStyle = trial.type === 'B' ? '#c41e3a' : '#16a34a';
+    ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(trial.type + (ti+1), cx, H - pad.bottom + 14);
+  });
+
+  // legend
+  ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  let lx = pad.left;
+  alleleLabels.forEach((l, i) => {
+    ctx.fillStyle = alleleColors[i]; ctx.fillRect(lx, 6, 10, 10);
+    ctx.fillStyle = '#374151'; ctx.fillText(l, lx + 14, 15);
+    lx += 40;
+  });
+  ctx.fillText('(dashed = original freq)', lx + 5, 15);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: GENE FLOW (MIGRATION)
+// ══════════════════════════════════════════════════════════════════════════
+let migData = { p1History: [], p2History: [], gen: 0 };
+
+function migNextGen() {
+  const N = parseInt($('mig-n').value);
+  const m = parseInt($('mig-rate').value) / 100;
+
+  if (migData.p1History.length === 0) {
+    migData.p1History.push(parseInt($('mig-p1').value) / 100);
+    migData.p2History.push(parseInt($('mig-p2').value) / 100);
+  }
+
+  let p1 = migData.p1History[migData.p1History.length - 1];
+  let p2 = migData.p2History[migData.p2History.length - 1];
+
+  // migration: fraction m of each pop is replaced by migrants from the other
+  const p1New = p1 * (1 - m) + p2 * m;
+  const p2New = p2 * (1 - m) + p1 * m;
+
+  // genetic drift on top
+  p1 = driftSimGen(p1New, N);
+  p2 = driftSimGen(p2New, N);
+
+  migData.p1History.push(clamp(p1, 0, 1));
+  migData.p2History.push(clamp(p2, 0, 1));
+  migData.gen++;
+  migUpdateUI();
+  drawMigChart();
+}
+
+function migRun(gens) {
+  for (let i = 0; i < gens; i++) migNextGen();
+}
+
+function migReset() {
+  migData = { p1History: [], p2History: [], gen: 0 };
+  $('mig-gen').textContent = '0';
+  $('mig-p1-cur').textContent = ($('mig-p1').value / 100).toFixed(2);
+  $('mig-p2-cur').textContent = ($('mig-p2').value / 100).toFixed(2);
+  $('mig-diff').textContent = Math.abs($('mig-p1').value / 100 - $('mig-p2').value / 100).toFixed(2);
+  drawMigChart();
+}
+
+function migUpdateUI() {
+  $('mig-gen').textContent = migData.gen;
+  const p1 = migData.p1History[migData.p1History.length - 1];
+  const p2 = migData.p2History[migData.p2History.length - 1];
+  $('mig-p1-cur').textContent = p1.toFixed(3);
+  $('mig-p2-cur').textContent = p2.toFixed(3);
+  $('mig-diff').textContent = Math.abs(p1 - p2).toFixed(3);
+}
+
+function drawMigChart() {
+  const ctx = getCtx('mig-chart');
+  if (!migData.p1History.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Click "Next Generation" to start migration', ctx.W/2, ctx.H/2);
+    return;
+  }
+  const p1_0 = parseInt($('mig-p1').value) / 100;
+  const p2_0 = parseInt($('mig-p2').value) / 100;
+  const expectedEquil = (p1_0 + p2_0) / 2;
+  drawLineChart(ctx, [
+    { data: migData.p1History, color: '#c41e3a', width: 2.5 },
+    { data: migData.p2History, color: '#2563eb', width: 2.5 }
+  ], { yMin: 0, yMax: 1, refLine: expectedEquil });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: COMBINED FORCES SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+let cfState = { mutation: false, selection: false, drift: true, migration: false };
+let cfData = { pHistory: [], qHistory: [], gens: 0 };
+
+function cfToggle(force) {
+  cfState[force] = !cfState[force];
+  const el = $('cf-tog-' + force);
+  el.classList.toggle('active', cfState[force]);
+  // show/hide params
+  if (force === 'mutation') $('cf-mutation-params').style.display = cfState.mutation ? 'flex' : 'none';
+  if (force === 'selection') $('cf-selection-params').style.display = cfState.selection ? 'block' : 'none';
+  if (force === 'migration') {
+    $('cf-migration-params').style.display = cfState.migration ? 'flex' : 'none';
+    $('cf-migration-rate-params').style.display = cfState.migration ? 'flex' : 'none';
+  }
+}
+
+function cfRun(gens) {
+  const N = parseInt($('cf-n').value);
+  const mu = cfState.mutation ? parseInt($('cf-mu').value) / 1000 : 0;
+  const wAA = cfState.selection ? parseInt($('cf-wAA').value) / 100 : 1;
+  const wAa = cfState.selection ? parseInt($('cf-wAa').value) / 100 : 1;
+  const waa = cfState.selection ? parseInt($('cf-waa').value) / 100 : 1;
+  const migP = cfState.migration ? parseInt($('cf-mig-p').value) / 100 : 0;
+  const migRate = cfState.migration ? parseInt($('cf-mig-rate').value) / 100 : 0;
+
+  let p = cfData.pHistory.length > 0 ? cfData.pHistory[cfData.pHistory.length - 1] : parseInt($('cf-p0').value) / 100;
+
+  if (cfData.pHistory.length === 0) {
+    cfData.pHistory.push(p);
+    cfData.qHistory.push(1 - p);
+  }
+
+  for (let g = 0; g < gens; g++) {
+    let q = 1 - p;
+
+    // 1. Mutation: p -> p*(1-mu) + q*mu  (symmetric mutation for simplicity)
+    if (cfState.mutation) {
+      const pNew = p * (1 - mu) + q * mu;
+      p = pNew;
+      q = 1 - p;
+    }
+
+    // 2. Selection
+    if (cfState.selection) {
+      const wBar = p*p*wAA + 2*p*q*wAa + q*q*waa;
+      if (wBar > 0) {
+        p = (p*p*wAA + p*q*wAa) / wBar;
+        q = 1 - p;
+      }
+    }
+
+    // 3. Migration
+    if (cfState.migration) {
+      p = p * (1 - migRate) + migP * migRate;
+      q = 1 - p;
+    }
+
+    // 4. Drift (always last - sampling)
+    if (cfState.drift) {
+      p = driftSimGen(p, N);
+      q = 1 - p;
+    }
+
+    p = clamp(p, 0, 1);
+    cfData.pHistory.push(p);
+    cfData.qHistory.push(1 - p);
+    cfData.gens++;
+  }
+
+  $('cf-gen').textContent = cfData.gens;
+  $('cf-pfinal').textContent = p.toFixed(4);
+
+  // determine dominant force
+  let forces = [];
+  if (cfState.selection) {
+    const selStrength = Math.abs(wAA - waa);
+    forces.push({ name: 'Selection', strength: selStrength });
+  }
+  if (cfState.drift) {
+    forces.push({ name: 'Drift', strength: 1 / Math.sqrt(N) });
+  }
+  if (cfState.mutation) {
+    forces.push({ name: 'Mutation', strength: mu * 10 });
+  }
+  if (cfState.migration) {
+    forces.push({ name: 'Migration', strength: migRate });
+  }
+  forces.sort((a, b) => b.strength - a.strength);
+  $('cf-dominant').textContent = forces.length ? forces[0].name : 'None';
+  $('cf-dominant').style.fontSize = '20px';
+
+  // H-W deviation
+  const finalP = cfData.pHistory[cfData.pHistory.length - 1];
+  const finalQ = 1 - finalP;
+  const expectedHet = 2 * finalP * finalQ;
+  // Without actual observed genotypes, show theoretical maximum deviation
+  const hwDev = cfState.drift ? (1 / (2 * N)) : 0;
+  $('cf-hw-dev').textContent = (hwDev * 100).toFixed(2) + '%';
+
+  drawCfChart();
+  drawCfViolations();
+}
+
+function cfReset() {
+  cfData = { pHistory: [], qHistory: [], gens: 0 };
+  $('cf-gen').textContent = '0';
+  $('cf-pfinal').textContent = '-';
+  $('cf-dominant').textContent = '-'; $('cf-dominant').style.fontSize = '28px';
+  $('cf-hw-dev').textContent = '-';
+  drawCfChart(); drawCfViolations();
+}
+
+function drawCfChart() {
+  const ctx = getCtx('cf-chart');
+  if (!cfData.pHistory.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Toggle forces and click Run to simulate', ctx.W/2, ctx.H/2);
+    return;
+  }
+  drawLineChart(ctx, [
+    { data: cfData.pHistory, color: '#c41e3a', width: 2.5 },
+    { data: cfData.qHistory, color: '#2563eb', width: 2.5 }
+  ], { yMin: 0, yMax: 1, refLine: 0.5 });
+}
+
+function drawCfViolations() {
+  const ctx = getCtx('cf-violations');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const N = parseInt($('cf-n').value);
+  const assumptions = [
+    { label: 'No Mutation', violated: cfState.mutation, strength: cfState.mutation ? parseInt($('cf-mu').value) / 1000 : 0 },
+    { label: 'No Selection', violated: cfState.selection, strength: cfState.selection ? Math.abs(parseInt($('sel-wAA').value || $('cf-wAA').value) - parseInt($('sel-waa').value || $('cf-waa').value)) / 100 : 0 },
+    { label: 'Large Pop (No Drift)', violated: cfState.drift, strength: cfState.drift ? Math.min(1, 50 / N) : 0 },
+    { label: 'No Migration', violated: cfState.migration, strength: cfState.migration ? parseInt($('cf-mig-rate').value) / 100 : 0 },
+    { label: 'Random Mating', violated: false, strength: 0 }
+  ];
+
+  const pad = { top: 20, right: 30, bottom: 20, left: 140 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const barH = Math.min(28, plotH / 5 * 0.7);
+  const gap = (plotH - barH * 5) / 6;
+
+  assumptions.forEach((a, i) => {
+    const y = pad.top + gap + i * (barH + gap);
+    const w = a.strength * plotW;
+
+    ctx.fillStyle = a.violated ? '#c41e3a' : '#d1d5db';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(pad.left, y);
+    ctx.lineTo(pad.left + w - r, y);
+    ctx.quadraticCurveTo(pad.left + w, y, pad.left + w, y + r);
+    ctx.lineTo(pad.left + w, y + barH - r);
+    ctx.quadraticCurveTo(pad.left + w, y + barH, pad.left + w - r, y + barH);
+    ctx.lineTo(pad.left, y + barH);
+    ctx.closePath(); ctx.fill();
+
+    // background track
+    ctx.fillStyle = '#f1f5f9';
+    if (w < plotW) ctx.fillRect(pad.left + w, y, plotW - w, barH);
+
+    // label
+    ctx.fillStyle = a.violated ? '#c41e3a' : '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(a.label, pad.left - 8, y + barH / 2 + 4);
+
+    // status
+    ctx.fillStyle = a.violated ? '#c41e3a' : '#16a34a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+    const status = a.violated ? 'VIOLATED' : 'MET';
+    ctx.fillText(status, pad.left + w + 8, y + barH / 2 + 4);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  hwUpdate();
+  bnInit();
+  driftReset();
+  selReset();
+  migReset();
+  cfReset();
+});
+
+window.addEventListener('resize', () => {
+  hwUpdate();
+  drawDriftCharts();
+  drawSelChart(); drawSelGenoChart();
+  drawPopDots('bn-orig-pop', bnOrigPop); drawBnTrialsChart();
+  drawMigChart();
+  drawCfChart(); drawCfViolations();
+});
+</script>
+</body>
+</html>

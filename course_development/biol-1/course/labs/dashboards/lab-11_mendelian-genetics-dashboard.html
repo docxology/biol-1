@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 11 Dashboard: Mendelian Genetics | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+select.sel {
+  padding: 8px 12px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: 2px solid var(--border); background: #fff; font-family: var(--font);
+  cursor: pointer; transition: border-color 0.15s;
+}
+select.sel:focus { border-color: var(--accent); outline: none; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PUNNETT SQUARE
+   ═══════════════════════════════════════════════════════════════════════ */
+.punnett { display: grid; gap: 3px; margin: 12px auto; }
+.punnett-2x2 { grid-template-columns: 60px 1fr 1fr; grid-template-rows: 50px 1fr 1fr; max-width: 300px; }
+.punnett-4x4 { grid-template-columns: 60px 1fr 1fr 1fr 1fr; grid-template-rows: 50px 1fr 1fr 1fr 1fr; max-width: 460px; }
+.punnett .p-cell {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; font-weight: 700; font-size: 16px; min-height: 52px;
+}
+.punnett .p-corner { background: transparent; }
+.punnett .p-header { background: #1a1a1a; color: #fff; font-size: 14px; }
+.punnett .p-dom { background: #fce7f3; color: #9d174d; border: 2px solid #f9a8d4; }
+.punnett .p-het { background: #fef3c7; color: #92400e; border: 2px solid #fcd34d; }
+.punnett .p-rec { background: #dbeafe; color: #1e40af; border: 2px solid #93c5fd; }
+.punnett .p-highlight { box-shadow: 0 0 0 3px var(--accent), 0 0 12px rgba(196,30,58,0.3); z-index: 1; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PEDIGREE
+   ═══════════════════════════════════════════════════════════════════════ */
+.pedigree-legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 10px 0; font-size: 12px; font-weight: 600; align-items: center; }
+.pedigree-legend .pl-item { display: flex; align-items: center; gap: 6px; }
+.pedigree-legend .pl-swatch { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #374151; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GENOTYPE MAP TABLE
+   ═══════════════════════════════════════════════════════════════════════ */
+.geno-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+.geno-table th { background: #1a1a1a; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+.geno-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.geno-table tr:hover td { background: #f8fafc; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 11 &mdash; Mendelian Genetics</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Monohybrid Cross</a>
+    <a href="#part2"><span class="nav-num">2</span> Dihybrid Cross</a>
+    <a href="#part3"><span class="nav-num">3</span> Pedigree Builder</a>
+    <a href="#part4"><span class="nav-num">4</span> Phenotype Explorer</a>
+    <a href="#part5"><span class="nav-num">5</span> Test Cross</a>
+    <a href="#part6"><span class="nav-num">6</span> Human Traits</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Mendelian Genetics</h2>
+  <p>Explore the fundamental laws of inheritance discovered by Gregor Mendel. Simulate crosses, build pedigrees, analyze ratios, and predict offspring genotypes using interactive tools.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Mendel's Laws</span>
+    <span class="bio-tag">Inheritance</span>
+    <span class="bio-tag">Punnett Squares</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: MONOHYBRID CROSS ═════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Monohybrid Cross Simulator</div>
+    <div class="section-subtitle">Single-trait inheritance &mdash; Law of Segregation</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Parent Genotypes</div>
+    <div class="btn-group" style="align-items:center;">
+      <label style="font-size:13px;font-weight:600;">Parent 1:</label>
+      <select class="sel" id="mono-p1" onchange="monoUpdatePunnett()">
+        <option value="AA">AA (Homozygous Dominant)</option>
+        <option value="Aa" selected>Aa (Heterozygous)</option>
+        <option value="aa">aa (Homozygous Recessive)</option>
+      </select>
+      <span style="font-size:18px;font-weight:800;color:var(--accent);">&times;</span>
+      <label style="font-size:13px;font-weight:600;">Parent 2:</label>
+      <select class="sel" id="mono-p2" onchange="monoUpdatePunnett()">
+        <option value="AA">AA (Homozygous Dominant)</option>
+        <option value="Aa" selected>Aa (Heterozygous)</option>
+        <option value="aa">aa (Homozygous Recessive)</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Punnett Square</div>
+      <div class="punnett punnett-2x2" id="mono-punnett"></div>
+      <div id="mono-ratios" style="text-align:center;margin-top:10px;"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Cross Simulator</div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="monoCross(1)">Cross 1</button>
+        <button class="btn btn-secondary" onclick="monoCross(10)">Cross 10</button>
+        <button class="btn btn-secondary" onclick="monoCross(100)">Cross 100</button>
+        <button class="btn btn-secondary" onclick="monoCross(1000)">Cross 1000</button>
+        <button class="btn btn-outline" onclick="monoReset()">Reset</button>
+      </div>
+      <div class="stat-grid" id="mono-stats">
+        <div class="stat-box stat-accent"><div class="stat-val" id="mono-dom">0</div><div class="stat-label">Dominant</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="mono-rec">0</div><div class="stat-label">Recessive</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="mono-total">0</div><div class="stat-label">Total</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="mono-ratio">-</div><div class="stat-label">Obs. Ratio</div></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-val" id="mono-gAA">0</div><div class="stat-label">AA</div></div>
+        <div class="stat-box"><div class="stat-val" id="mono-gAa">0</div><div class="stat-label">Aa</div></div>
+        <div class="stat-box"><div class="stat-val" id="mono-gaa">0</div><div class="stat-label">aa</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Observed vs. Expected Frequencies</div>
+    <div class="chart-wrap"><canvas id="mono-chart" height="260"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Chi-Square Goodness of Fit</div>
+    <div id="mono-chi" class="analysis-result"><div class="ar-title">Run crosses to perform chi-square test</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: DIHYBRID CROSS ═══════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Dihybrid Cross Simulator</div>
+    <div class="section-subtitle">Two-trait inheritance &mdash; Law of Independent Assortment</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Parent Genotypes &mdash; Seed Shape (R/r) + Seed Color (Y/y)</div>
+    <div class="btn-group" style="align-items:center;">
+      <label style="font-size:13px;font-weight:600;">Parent 1:</label>
+      <select class="sel" id="di-p1" onchange="diUpdatePunnett()">
+        <option value="RRYY">RRYY</option>
+        <option value="RrYy" selected>RrYy</option>
+        <option value="RRYy">RRYy</option>
+        <option value="RrYY">RrYY</option>
+        <option value="Rryy">Rryy</option>
+        <option value="rrYy">rrYy</option>
+        <option value="RRyy">RRyy</option>
+        <option value="rrYY">rrYY</option>
+        <option value="rryy">rryy</option>
+      </select>
+      <span style="font-size:18px;font-weight:800;color:var(--accent);">&times;</span>
+      <label style="font-size:13px;font-weight:600;">Parent 2:</label>
+      <select class="sel" id="di-p2" onchange="diUpdatePunnett()">
+        <option value="RRYY">RRYY</option>
+        <option value="RrYy" selected>RrYy</option>
+        <option value="RRYy">RRYy</option>
+        <option value="RrYY">RrYY</option>
+        <option value="Rryy">Rryy</option>
+        <option value="rrYy">rrYy</option>
+        <option value="RRyy">RRyy</option>
+        <option value="rrYY">rrYY</option>
+        <option value="rryy">rryy</option>
+      </select>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">4 &times; 4 Punnett Square</div>
+    <div class="punnett punnett-4x4" id="di-punnett"></div>
+    <div id="di-ratios" style="text-align:center;margin-top:10px;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Dihybrid Cross Simulator</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="diCross(1)">Cross 1</button>
+      <button class="btn btn-secondary" onclick="diCross(10)">Cross 10</button>
+      <button class="btn btn-secondary" onclick="diCross(100)">Cross 100</button>
+      <button class="btn btn-secondary" onclick="diCross(1000)">Cross 1000</button>
+      <button class="btn btn-outline" onclick="diReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="di-RY">0</div><div class="stat-label">Round Yellow</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="di-Ry">0</div><div class="stat-label">Round Green</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="di-rY">0</div><div class="stat-label">Wrinkled Yellow</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="di-ry">0</div><div class="stat-label">Wrinkled Green</div></div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="di-total">0</div><div class="stat-label">Total</div></div>
+      <div class="stat-box"><div class="stat-val" id="di-obs-ratio">-</div><div class="stat-label">Obs. Ratio</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Observed vs. Expected Phenotype Frequencies</div>
+    <div class="chart-wrap"><canvas id="di-chart" height="280"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Chi-Square Test &mdash; Dihybrid</div>
+    <div id="di-chi" class="analysis-result"><div class="ar-title">Run crosses to perform chi-square test</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: PEDIGREE BUILDER ═════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Multi-Generation Pedigree Builder</div>
+    <div class="section-subtitle">Track inheritance from P through F1 to F2 generation</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">P Generation Cross</div>
+    <div class="btn-group" style="align-items:center;">
+      <label style="font-size:13px;font-weight:600;">P1:</label>
+      <select class="sel" id="ped-p1" onchange="pedUpdateP()">
+        <option value="AA">AA (Dominant)</option>
+        <option value="Aa">Aa (Heterozygous)</option>
+        <option value="aa">aa (Recessive)</option>
+      </select>
+      <span style="font-size:18px;font-weight:800;color:var(--accent);">&times;</span>
+      <label style="font-size:13px;font-weight:600;">P2:</label>
+      <select class="sel" id="ped-p2" onchange="pedUpdateP()">
+        <option value="AA">AA (Dominant)</option>
+        <option value="Aa">Aa (Heterozygous)</option>
+        <option value="aa">aa (Recessive)</option>
+      </select>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="pedGenerate()">Generate F1 &amp; F2</button>
+      <button class="btn btn-secondary" onclick="pedRegenerate()">Re-roll Offspring</button>
+      <button class="btn btn-outline" onclick="pedToggleGeno()">Toggle Genotypes</button>
+      <button class="btn btn-outline" onclick="pedReset()">Reset</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Pedigree Chart</div>
+    <div class="pedigree-legend">
+      <div class="pl-item"><div class="pl-swatch" style="background:#9d174d;"></div> Dominant phenotype</div>
+      <div class="pl-item"><div class="pl-swatch" style="background:#dbeafe;"></div> Recessive phenotype</div>
+      <div class="pl-item"><div class="pl-swatch" style="background:#fef3c7;"></div> Heterozygous (when genotypes shown)</div>
+    </div>
+    <div class="chart-wrap"><canvas id="ped-canvas" height="420"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Generation Ratios</div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ped-f1-dom">-</div><div class="stat-label">F1 Dominant</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ped-f1-rec">-</div><div class="stat-label">F1 Recessive</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ped-f2-dom">-</div><div class="stat-label">F2 Dominant</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="ped-f2-rec">-</div><div class="stat-label">F2 Recessive</div></div>
+    </div>
+    <div id="ped-mendel" class="analysis-result" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: PHENOTYPE EXPLORER ═══════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Phenotype vs. Genotype Explorer</div>
+    <div class="section-subtitle">How genotypes produce phenotypes under different dominance patterns</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Dominance Type</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="dom-btn-complete" onclick="domSelect('complete')">Complete Dominance</button>
+      <button class="btn btn-outline" id="dom-btn-incomplete" onclick="domSelect('incomplete')">Incomplete Dominance</button>
+      <button class="btn btn-outline" id="dom-btn-codominance" onclick="domSelect('codominance')">Codominance</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title" id="dom-title">Complete Dominance</div>
+    <div id="dom-desc" style="font-size:13px;color:var(--text-muted);margin-bottom:12px;"></div>
+    <div class="chart-wrap"><canvas id="dom-canvas" height="300"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Genotype &rarr; Phenotype Mapping</div>
+    <table class="geno-table" id="dom-table">
+      <thead><tr><th>Genotype</th><th>Phenotype</th><th>Description</th></tr></thead>
+      <tbody id="dom-tbody"></tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-title">Interactive Cross</div>
+    <div class="btn-group" style="align-items:center;">
+      <label style="font-size:13px;font-weight:600;">Parent 1:</label>
+      <select class="sel" id="dom-p1" onchange="domCrossUpdate()">
+        <option value="AA">AA</option>
+        <option value="Aa" selected>Aa</option>
+        <option value="aa">aa</option>
+      </select>
+      <span style="font-size:18px;font-weight:800;color:var(--accent);">&times;</span>
+      <label style="font-size:13px;font-weight:600;">Parent 2:</label>
+      <select class="sel" id="dom-p2" onchange="domCrossUpdate()">
+        <option value="AA">AA</option>
+        <option value="Aa" selected>Aa</option>
+        <option value="aa">aa</option>
+      </select>
+    </div>
+    <div class="chart-wrap"><canvas id="dom-cross-canvas" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: TEST CROSS ═══════════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Test Cross Analyzer</div>
+    <div class="section-subtitle">Determine if a dominant-phenotype organism is AA or Aa</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Test Cross Setup</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">A test cross mates a dominant-phenotype organism (unknown: AA or Aa?) with a homozygous recessive (aa). If ANY recessive offspring appear, the unknown parent must be Aa.</p>
+    <div class="btn-group" style="align-items:center;">
+      <label style="font-size:13px;font-weight:600;">Hidden genotype:</label>
+      <select class="sel" id="tc-hidden">
+        <option value="random" selected>Random (mystery!)</option>
+        <option value="AA">AA (Homozygous)</option>
+        <option value="Aa">Aa (Heterozygous)</option>
+      </select>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="tcNewOrganism()">New Mystery Organism</button>
+      <button class="btn btn-secondary" onclick="tcCross(1)">Cross &times; 1</button>
+      <button class="btn btn-secondary" onclick="tcCross(5)">Cross &times; 5</button>
+      <button class="btn btn-secondary" onclick="tcCross(20)">Cross &times; 20</button>
+      <button class="btn btn-outline" onclick="tcReveal()">Reveal Answer</button>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Test Cross Results</div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="tc-dom">0</div><div class="stat-label">Dominant</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="tc-rec">0</div><div class="stat-label">Recessive</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="tc-total">0</div><div class="stat-label">Total</div></div>
+      </div>
+      <div class="chart-wrap"><canvas id="tc-chart" height="200"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Bayesian Probability Update</div>
+      <div class="stat-grid">
+        <div class="stat-box stat-amber"><div class="stat-val" id="tc-pAA">50%</div><div class="stat-label">P(AA)</div></div>
+        <div class="stat-box stat-purple"><div class="stat-val" id="tc-pAa">50%</div><div class="stat-label">P(Aa)</div></div>
+      </div>
+      <div id="tc-verdict" class="analysis-result"><div class="ar-title">Cross offspring to update probabilities</div></div>
+      <div class="chart-wrap"><canvas id="tc-bayes-chart" height="200"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: HUMAN TRAITS ═════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Human Trait Inheritance</div>
+    <div class="section-subtitle">Apply Mendelian genetics to real human traits</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select a Trait</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ht-btn-earlobes" onclick="htSelect('earlobes')">Earlobes</button>
+      <button class="btn btn-outline" id="ht-btn-widowspeak" onclick="htSelect('widowspeak')">Widow's Peak</button>
+      <button class="btn btn-outline" id="ht-btn-ptc" onclick="htSelect('ptc')">PTC Tasting</button>
+      <button class="btn btn-outline" id="ht-btn-tongue" onclick="htSelect('tongue')">Tongue Rolling</button>
+    </div>
+    <div id="ht-trait-info" style="font-size:13px;color:var(--text-muted);margin:8px 0;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Family Input</div>
+    <div class="btn-group" style="align-items:center; flex-wrap: wrap;">
+      <label style="font-size:13px;font-weight:600;">Father phenotype:</label>
+      <select class="sel" id="ht-father" onchange="htUpdate()">
+        <option value="dominant">Dominant</option>
+        <option value="recessive">Recessive</option>
+      </select>
+      <label style="font-size:13px;font-weight:600;margin-left:8px;">Mother phenotype:</label>
+      <select class="sel" id="ht-mother" onchange="htUpdate()">
+        <option value="dominant">Dominant</option>
+        <option value="recessive">Recessive</option>
+      </select>
+    </div>
+    <div class="btn-group" style="align-items:center; flex-wrap: wrap;">
+      <label style="font-size:13px;font-weight:600;">Any recessive siblings?</label>
+      <select class="sel" id="ht-recsib" onchange="htUpdate()">
+        <option value="unknown">Unknown</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <label style="font-size:13px;font-weight:600;margin-left:8px;">Number of siblings:</label>
+      <select class="sel" id="ht-numsib" onchange="htUpdate()">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Predicted Genotypes</div>
+      <div id="ht-predictions"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Family Pedigree</div>
+      <div class="chart-wrap"><canvas id="ht-pedigree" height="240"></canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Offspring Probability Calculator</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Based on inferred parental genotypes, probability of offspring phenotypes:</p>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ht-prob-dom">-</div><div class="stat-label">P(Dominant)</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ht-prob-rec">-</div><div class="stat-label">P(Recessive)</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ht-prob-carrier">-</div><div class="stat-label">P(Carrier)</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="ht-prob-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// ── Chart helpers (from reference dashboard) ────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ── Chi-square helpers ──────────────────────────────────────────────────
+function chiSquare(observed, expected) {
+  return observed.reduce((s, o, i) => s + Math.pow(o - expected[i], 2) / expected[i], 0);
+}
+
+function erf(x) {
+  const t = 1 / (1 + 0.3275911 * Math.abs(x));
+  const poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
+  const val = 1 - poly * Math.exp(-x * x);
+  return x >= 0 ? val : -val;
+}
+
+function chiPValue(x2, df) {
+  if (x2 <= 0) return 1;
+  const z = Math.pow(x2 / df, 1/3) - (1 - 2/(9*df));
+  const se = Math.sqrt(2/(9*df));
+  const zScore = z / se;
+  const p = 0.5 * (1 + erf(zScore / Math.sqrt(2)));
+  return clamp(1 - p, 0, 1);
+}
+
+// ── Genetics helpers ────────────────────────────────────────────────────
+function getGametes(genotype) {
+  // Single locus: AA -> [A], Aa -> [A, a], aa -> [a]
+  if (genotype.length === 2) {
+    const a1 = genotype[0], a2 = genotype[1];
+    if (a1 === a2) return [a1];
+    return [a1, a2];
+  }
+  return [genotype];
+}
+
+function getDihybridGametes(geno) {
+  // geno like "RrYy" -> 4 chars
+  const a1 = geno[0], a2 = geno[1], b1 = geno[2], b2 = geno[3];
+  const locus1 = (a1 === a2) ? [a1] : [a1, a2];
+  const locus2 = (b1 === b2) ? [b1] : [b1, b2];
+  const gametes = [];
+  locus1.forEach(g1 => locus2.forEach(g2 => gametes.push(g1 + g2)));
+  return gametes;
+}
+
+function normalizeGenotype(g) {
+  // Single locus: sort so uppercase first
+  if (g.length === 2) {
+    return g[0] <= g[1] ? g : g[1] + g[0];
+  }
+  return g;
+}
+
+function genoClass(g) {
+  // Returns css class for a genotype
+  const upper = g.toUpperCase();
+  if (g === upper) return 'p-dom';    // AA, RRYY etc - homozygous dominant
+  const lower = g.toLowerCase();
+  if (g === lower) return 'p-rec';    // aa, rryy etc - homozygous recessive
+  return 'p-het';                      // Aa, Rr etc - heterozygous
+}
+
+function isDominantPhenotype(geno) {
+  // Has at least one uppercase allele at each locus
+  return geno[0] === geno[0].toUpperCase() || geno[1] === geno[1].toUpperCase();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: MONOHYBRID CROSS
+// ══════════════════════════════════════════════════════════════════════════
+let monoData = { AA: 0, Aa: 0, aa: 0 };
+
+function monoGetExpected() {
+  const p1 = $('mono-p1').value, p2 = $('mono-p2').value;
+  const g1 = getGametes(p1), g2 = getGametes(p2);
+  const outcomes = {};
+  let total = 0;
+  g1.forEach(a => g2.forEach(b => {
+    const geno = normalizeGenotype(a + b);
+    outcomes[geno] = (outcomes[geno] || 0) + 1;
+    total++;
+  }));
+  const expected = { AA: 0, Aa: 0, aa: 0 };
+  Object.keys(outcomes).forEach(k => {
+    const norm = normalizeGenotype(k);
+    if (norm === 'AA') expected.AA = outcomes[k] / total;
+    else if (norm === 'aa') expected.aa = outcomes[k] / total;
+    else expected.Aa = (expected.Aa || 0) + outcomes[k] / total;
+  });
+  return expected;
+}
+
+function monoUpdatePunnett() {
+  const p1 = $('mono-p1').value, p2 = $('mono-p2').value;
+  const g1 = getGametes(p1), g2 = getGametes(p2);
+  const pDiv = $('mono-punnett');
+  pDiv.innerHTML = '';
+
+  // Ensure 2x2 grid
+  const alleles1 = g1.length === 1 ? [g1[0], g1[0]] : g1;
+  const alleles2 = g2.length === 1 ? [g2[0], g2[0]] : g2;
+
+  // Corner
+  const corner = document.createElement('div');
+  corner.className = 'p-cell p-corner'; pDiv.appendChild(corner);
+  // Column headers (Parent 2 alleles)
+  alleles2.forEach(a => {
+    const h = document.createElement('div');
+    h.className = 'p-cell p-header'; h.textContent = a; pDiv.appendChild(h);
+  });
+  // Rows
+  const outcomes = {};
+  alleles1.forEach(a1 => {
+    const rh = document.createElement('div');
+    rh.className = 'p-cell p-header'; rh.textContent = a1; pDiv.appendChild(rh);
+    alleles2.forEach(a2 => {
+      const geno = normalizeGenotype(a1 + a2);
+      outcomes[geno] = (outcomes[geno] || 0) + 1;
+      const cell = document.createElement('div');
+      cell.className = 'p-cell ' + genoClass(geno);
+      cell.textContent = geno; pDiv.appendChild(cell);
+    });
+  });
+
+  // Ratios
+  const ratioDiv = $('mono-ratios');
+  const total = 4;
+  let html = '';
+  if (outcomes['AA']) html += '<span class="badge badge-red">' + outcomes['AA'] + '/4 AA</span> ';
+  if (outcomes['Aa']) html += '<span class="badge badge-amber">' + outcomes['Aa'] + '/4 Aa</span> ';
+  if (outcomes['aa']) html += '<span class="badge badge-blue">' + outcomes['aa'] + '/4 aa</span> ';
+
+  const domCount = (outcomes['AA'] || 0) + (outcomes['Aa'] || 0);
+  const recCount = outcomes['aa'] || 0;
+  html += '<br><span style="font-size:12px;color:var(--text-muted);margin-top:6px;display:inline-block;">Phenotypic ratio: ' + domCount + ' dominant : ' + recCount + ' recessive</span>';
+  ratioDiv.innerHTML = html;
+}
+
+function monoCross(n) {
+  const exp = monoGetExpected();
+  for (let i = 0; i < n; i++) {
+    const r = Math.random();
+    if (r < exp.AA) monoData.AA++;
+    else if (r < exp.AA + exp.Aa) monoData.Aa++;
+    else monoData.aa++;
+  }
+  monoUpdateUI();
+}
+
+function monoReset() {
+  monoData = { AA: 0, Aa: 0, aa: 0 };
+  monoUpdateUI();
+}
+
+function monoUpdateUI() {
+  const total = monoData.AA + monoData.Aa + monoData.aa;
+  const dom = monoData.AA + monoData.Aa;
+  const rec = monoData.aa;
+  $('mono-dom').textContent = dom;
+  $('mono-rec').textContent = rec;
+  $('mono-total').textContent = total;
+  $('mono-gAA').textContent = monoData.AA;
+  $('mono-gAa').textContent = monoData.Aa;
+  $('mono-gaa').textContent = monoData.aa;
+
+  if (total > 0 && rec > 0) {
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+    const g = gcd(dom, rec);
+    $('mono-ratio').textContent = (dom/g).toFixed(0) + ':' + (rec/g).toFixed(0);
+  } else if (total > 0) {
+    $('mono-ratio').textContent = 'All dom';
+  } else {
+    $('mono-ratio').textContent = '-';
+  }
+
+  drawMonoChart();
+  drawMonoChi();
+}
+
+function drawMonoChart() {
+  const ctx = getCtx('mono-chart');
+  const total = monoData.AA + monoData.Aa + monoData.aa;
+  if (!total) { ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H); return; }
+  const exp = monoGetExpected();
+  drawBarChart(ctx, {
+    labels: ['AA', 'Aa', 'aa'],
+    values: [monoData.AA, monoData.Aa, monoData.aa],
+    expected: [total * exp.AA, total * exp.Aa, total * exp.aa],
+    colors: ['#be185d', '#d97706', '#2563eb'],
+    maxVal: Math.max(monoData.AA, monoData.Aa, monoData.aa, total * Math.max(exp.AA, exp.Aa, exp.aa)) * 1.3 || 10
+  });
+}
+
+function drawMonoChi() {
+  const total = monoData.AA + monoData.Aa + monoData.aa;
+  if (total < 5) {
+    $('mono-chi').innerHTML = '<div class="ar-title">Need at least 5 crosses for chi-square test</div>';
+    $('mono-chi').className = 'analysis-result';
+    return;
+  }
+  const exp = monoGetExpected();
+  const obs = [monoData.AA, monoData.Aa, monoData.aa];
+  const expVals = [total * exp.AA, total * exp.Aa, total * exp.aa];
+  // Filter out zero-expected categories
+  const filtObs = [], filtExp = [], filtLabels = [];
+  const labels = ['AA', 'Aa', 'aa'];
+  obs.forEach((o, i) => {
+    if (expVals[i] > 0) { filtObs.push(o); filtExp.push(expVals[i]); filtLabels.push(labels[i]); }
+  });
+  if (filtObs.length < 2) {
+    $('mono-chi').innerHTML = '<div class="ar-title">Not enough categories with expected values > 0</div>';
+    return;
+  }
+  const x2 = chiSquare(filtObs, filtExp);
+  const df = filtObs.length - 1;
+  const p = chiPValue(x2, df);
+  const pass = p > 0.05;
+  $('mono-chi').className = 'analysis-result ' + (pass ? 'ar-pass' : 'ar-fail');
+  $('mono-chi').innerHTML = `
+    <div class="ar-title">Chi-Square Goodness of Fit &mdash; ${total} offspring</div>
+    <p>Observed: [${filtObs.join(', ')}] &nbsp; Expected: [${filtExp.map(e => e.toFixed(1)).join(', ')}]</p>
+    <p>&chi;&sup2; = <code>${x2.toFixed(3)}</code> &nbsp; df = ${df} &nbsp; p &asymp; <code>${p.toFixed(4)}</code></p>
+    <p><strong>${pass ? 'Fail to reject H\u2080' : 'Reject H\u2080'}</strong> at &alpha; = 0.05 &mdash; ${pass ? 'Data is consistent with expected Mendelian ratios.' : 'Significant deviation from expected ratios detected.'}</p>
+  `;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: DIHYBRID CROSS
+// ══════════════════════════════════════════════════════════════════════════
+let diData = { RY: 0, Ry: 0, rY: 0, ry: 0 };
+let diExpectedRatios = {};
+
+function diUpdatePunnett() {
+  const p1 = $('di-p1').value, p2 = $('di-p2').value;
+  const g1 = getDihybridGametes(p1), g2 = getDihybridGametes(p2);
+  const pDiv = $('di-punnett');
+  pDiv.innerHTML = '';
+
+  // Corner
+  const corner = document.createElement('div');
+  corner.className = 'p-cell p-corner'; pDiv.appendChild(corner);
+  // Column headers
+  g2.forEach(g => {
+    const h = document.createElement('div');
+    h.className = 'p-cell p-header'; h.textContent = g; h.style.fontSize = '13px'; pDiv.appendChild(h);
+  });
+
+  // Count phenotype outcomes
+  const phenoCounts = { RY: 0, Ry: 0, rY: 0, ry: 0 };
+  const genoCounts = {};
+  let totalCombos = 0;
+
+  // Rows
+  g1.forEach(a1 => {
+    const rh = document.createElement('div');
+    rh.className = 'p-cell p-header'; rh.textContent = a1; rh.style.fontSize = '13px'; pDiv.appendChild(rh);
+    g2.forEach(a2 => {
+      // Combine alleles: a1[0]+a2[0] for locus 1, a1[1]+a2[1] for locus 2
+      const loc1 = normalizeGenotype(a1[0] + a2[0]);
+      const loc2 = normalizeGenotype(a1[1] + a2[1]);
+      const geno = loc1 + loc2;
+      genoCounts[geno] = (genoCounts[geno] || 0) + 1;
+      totalCombos++;
+
+      // Determine phenotype
+      const hasR = loc1[0] === 'R' || loc1[1] === 'R';
+      const hasY = loc2[0] === 'Y' || loc2[1] === 'Y';
+      const phenoKey = (hasR ? 'R' : 'r') + (hasY ? 'Y' : 'y');
+      phenoCounts[phenoKey]++;
+
+      const cell = document.createElement('div');
+      // Color by phenotype
+      let cls = 'p-het';
+      if (hasR && hasY) cls = 'p-dom';
+      else if (!hasR && !hasY) cls = 'p-rec';
+      cell.className = 'p-cell ' + cls;
+      cell.textContent = geno;
+      cell.style.fontSize = '12px';
+      pDiv.appendChild(cell);
+    });
+  });
+
+  // Store expected ratios for simulation
+  diExpectedRatios = {};
+  Object.keys(phenoCounts).forEach(k => {
+    diExpectedRatios[k] = phenoCounts[k] / totalCombos;
+  });
+
+  // Display ratio
+  const ratioDiv = $('di-ratios');
+  const phenoLabels = { RY: 'Round Yellow', Ry: 'Round Green', rY: 'Wrinkled Yellow', ry: 'Wrinkled Green' };
+  const phenoColors = { RY: 'badge-red', Ry: 'badge-blue', rY: 'badge-amber', ry: 'badge-purple' };
+  let html = '';
+  ['RY', 'Ry', 'rY', 'ry'].forEach(k => {
+    if (phenoCounts[k] > 0) {
+      html += '<span class="badge ' + phenoColors[k] + '">' + phenoCounts[k] + '/16 ' + phenoLabels[k] + '</span> ';
+    }
+  });
+  // Simplify ratio
+  const vals = ['RY', 'Ry', 'rY', 'ry'].map(k => phenoCounts[k]);
+  const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+  let g = vals[0];
+  vals.forEach(v => { if (v > 0) g = gcd(g, v); });
+  if (g > 0) {
+    const simplified = vals.map(v => v / g);
+    html += '<br><span style="font-size:12px;color:var(--text-muted);margin-top:6px;display:inline-block;">Phenotypic ratio: ' + simplified.join(':') + '</span>';
+  }
+  ratioDiv.innerHTML = html;
+}
+
+function diCross(n) {
+  for (let i = 0; i < n; i++) {
+    const r = Math.random();
+    let cum = 0;
+    for (const k of ['RY', 'Ry', 'rY', 'ry']) {
+      cum += diExpectedRatios[k] || 0;
+      if (r < cum) { diData[k]++; break; }
+    }
+  }
+  diUpdateUI();
+}
+
+function diReset() {
+  diData = { RY: 0, Ry: 0, rY: 0, ry: 0 };
+  diUpdateUI();
+}
+
+function diUpdateUI() {
+  const total = diData.RY + diData.Ry + diData.rY + diData.ry;
+  $('di-RY').textContent = diData.RY;
+  $('di-Ry').textContent = diData.Ry;
+  $('di-rY').textContent = diData.rY;
+  $('di-ry').textContent = diData.ry;
+  $('di-total').textContent = total;
+
+  if (total > 0) {
+    const vals = [diData.RY, diData.Ry, diData.rY, diData.ry];
+    const minNonZero = Math.min(...vals.filter(v => v > 0)) || 1;
+    const ratioStr = vals.map(v => (v / minNonZero).toFixed(1)).join(':');
+    $('di-obs-ratio').textContent = ratioStr;
+  } else {
+    $('di-obs-ratio').textContent = '-';
+  }
+
+  drawDiChart();
+  drawDiChi();
+}
+
+function drawDiChart() {
+  const ctx = getCtx('di-chart');
+  const total = diData.RY + diData.Ry + diData.rY + diData.ry;
+  if (!total) { ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H); return; }
+
+  const labels = ['Round\nYellow', 'Round\nGreen', 'Wrinkled\nYellow', 'Wrinkled\nGreen'];
+  const values = [diData.RY, diData.Ry, diData.rY, diData.ry];
+  const expArr = ['RY', 'Ry', 'rY', 'ry'].map(k => total * (diExpectedRatios[k] || 0));
+  drawBarChart(ctx, {
+    labels: labels,
+    values: values,
+    expected: expArr,
+    colors: ['#be185d', '#2563eb', '#d97706', '#7c3aed'],
+    maxVal: Math.max(...values, ...expArr) * 1.3 || 10
+  });
+}
+
+function drawDiChi() {
+  const total = diData.RY + diData.Ry + diData.rY + diData.ry;
+  if (total < 10) {
+    $('di-chi').innerHTML = '<div class="ar-title">Need at least 10 crosses for chi-square test</div>';
+    $('di-chi').className = 'analysis-result';
+    return;
+  }
+  const obs = [diData.RY, diData.Ry, diData.rY, diData.ry];
+  const expVals = ['RY', 'Ry', 'rY', 'ry'].map(k => total * (diExpectedRatios[k] || 0));
+  const filtObs = [], filtExp = [], filtLabels = [];
+  const labels = ['Round Yellow', 'Round Green', 'Wrinkled Yellow', 'Wrinkled Green'];
+  obs.forEach((o, i) => {
+    if (expVals[i] > 0) { filtObs.push(o); filtExp.push(expVals[i]); filtLabels.push(labels[i]); }
+  });
+  if (filtObs.length < 2) {
+    $('di-chi').innerHTML = '<div class="ar-title">Not enough phenotype categories with expected values > 0</div>';
+    return;
+  }
+  const x2 = chiSquare(filtObs, filtExp);
+  const df = filtObs.length - 1;
+  const p = chiPValue(x2, df);
+  const pass = p > 0.05;
+  $('di-chi').className = 'analysis-result ' + (pass ? 'ar-pass' : 'ar-fail');
+  $('di-chi').innerHTML = `
+    <div class="ar-title">Chi-Square &mdash; Dihybrid Cross (${total} offspring)</div>
+    <p>Observed: [${filtObs.join(', ')}] &nbsp; Expected: [${filtExp.map(e => e.toFixed(1)).join(', ')}]</p>
+    <p>&chi;&sup2; = <code>${x2.toFixed(3)}</code> &nbsp; df = ${df} &nbsp; p &asymp; <code>${p.toFixed(4)}</code></p>
+    <p><strong>${pass ? 'Fail to reject H\u2080' : 'Reject H\u2080'}</strong> at &alpha; = 0.05 &mdash; ${pass ? 'Data is consistent with expected Mendelian ratios.' : 'Significant deviation from expected ratios detected.'}</p>
+  `;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: PEDIGREE BUILDER
+// ══════════════════════════════════════════════════════════════════════════
+let pedState = {
+  p1: 'AA', p2: 'AA',
+  f1: [],     // array of genotypes
+  f2: [],     // array of genotypes
+  showGeno: true,
+  generated: false
+};
+
+function pedUpdateP() {
+  pedState.p1 = $('ped-p1').value;
+  pedState.p2 = $('ped-p2').value;
+}
+
+function pedCrossParents(g1, g2) {
+  const alleles1 = getGametes(g1);
+  const alleles2 = getGametes(g2);
+  const a1 = alleles1[rand(0, alleles1.length - 1)];
+  const a2 = alleles2[rand(0, alleles2.length - 1)];
+  return normalizeGenotype(a1 + a2);
+}
+
+function pedGenerate() {
+  pedUpdateP();
+  // Generate 4 F1 offspring
+  pedState.f1 = [];
+  for (let i = 0; i < 4; i++) {
+    pedState.f1.push(pedCrossParents(pedState.p1, pedState.p2));
+  }
+  // Cross first two F1 to produce 8 F2 offspring
+  pedState.f2 = [];
+  if (pedState.f1.length >= 2) {
+    for (let i = 0; i < 8; i++) {
+      pedState.f2.push(pedCrossParents(pedState.f1[0], pedState.f1[1]));
+    }
+  }
+  pedState.generated = true;
+  pedDraw();
+  pedUpdateStats();
+}
+
+function pedRegenerate() {
+  if (!pedState.generated) { pedGenerate(); return; }
+  // Re-roll with same P parents
+  pedGenerate();
+}
+
+function pedToggleGeno() {
+  pedState.showGeno = !pedState.showGeno;
+  pedDraw();
+}
+
+function pedReset() {
+  pedState = { p1: 'AA', p2: 'AA', f1: [], f2: [], showGeno: true, generated: false };
+  $('ped-p1').value = 'AA'; $('ped-p2').value = 'AA';
+  const ctx = getCtx('ped-canvas');
+  ctx.clearRect(0, 0, ctx.W, ctx.H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+  ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Select parents and click Generate F1 & F2', ctx.W / 2, ctx.H / 2);
+  $('ped-f1-dom').textContent = '-'; $('ped-f1-rec').textContent = '-';
+  $('ped-f2-dom').textContent = '-'; $('ped-f2-rec').textContent = '-';
+  $('ped-mendel').style.display = 'none';
+}
+
+function pedGetColor(geno) {
+  if (geno === 'aa') return '#dbeafe'; // recessive
+  if (geno === 'Aa') return '#fef3c7'; // heterozygous (only visible when showing geno)
+  return '#be185d'; // AA dominant
+}
+
+function pedGetFill(geno, showGeno) {
+  if (geno === 'aa') return '#dbeafe';
+  if (showGeno && geno === 'Aa') return '#fef3c7';
+  return '#be185d';
+}
+
+function pedDrawIndividual(ctx, x, y, geno, showGeno, isCircle) {
+  const r = 22;
+  const fill = pedGetFill(geno, showGeno);
+  const textColor = geno === 'aa' ? '#1e40af' : (geno === 'Aa' && showGeno ? '#92400e' : '#fff');
+
+  ctx.fillStyle = fill;
+  ctx.strokeStyle = '#374151';
+  ctx.lineWidth = 2;
+  if (isCircle) {
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  } else {
+    ctx.beginPath();
+    ctx.rect(x - r, y - r, r * 2, r * 2);
+    ctx.fill(); ctx.stroke();
+  }
+
+  // Label
+  if (showGeno) {
+    ctx.fillStyle = textColor; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(geno, x, y + 5);
+  }
+}
+
+function pedDrawConnection(ctx, x1, y1, x2, y2) {
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  const midY = (y1 + y2) / 2;
+  ctx.moveTo(x1, y1 + 22);
+  ctx.lineTo(x1, midY);
+  ctx.lineTo(x2, midY);
+  ctx.lineTo(x2, y2 - 22);
+  ctx.stroke();
+}
+
+function pedDrawMating(ctx, x1, y1, x2, y2) {
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(x1 + 22, y1);
+  ctx.lineTo(x2 - 22, y2);
+  ctx.stroke();
+}
+
+function pedDraw() {
+  const ctx = getCtx('ped-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!pedState.generated) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Select parents and click Generate F1 & F2', W / 2, H / 2);
+    return;
+  }
+
+  const showG = pedState.showGeno;
+  const centerX = W / 2;
+
+  // Generation labels
+  ctx.fillStyle = '#9ca3af'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('P', 10, 55);
+  ctx.fillText('F1', 10, 185);
+  ctx.fillText('F2', 10, 345);
+
+  // P generation
+  const py = 50;
+  const p1x = centerX - 60, p2x = centerX + 60;
+  pedDrawIndividual(ctx, p1x, py, pedState.p1, showG, false);   // square = male convention
+  pedDrawIndividual(ctx, p2x, py, pedState.p2, showG, true);    // circle = female convention
+  pedDrawMating(ctx, p1x, py, p2x, py);
+
+  // Connection line from P to F1
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(centerX, py + 22);
+  ctx.lineTo(centerX, 120);
+  // Horizontal bar for F1
+  const f1Count = pedState.f1.length;
+  const f1Spacing = Math.min(100, (W - 100) / f1Count);
+  const f1StartX = centerX - (f1Count - 1) * f1Spacing / 2;
+  ctx.moveTo(f1StartX, 120);
+  ctx.lineTo(f1StartX + (f1Count - 1) * f1Spacing, 120);
+  ctx.stroke();
+
+  // F1 individuals
+  const f1y = 180;
+  pedState.f1.forEach((geno, i) => {
+    const x = f1StartX + i * f1Spacing;
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(x, 120); ctx.lineTo(x, f1y - 22); ctx.stroke();
+    pedDrawIndividual(ctx, x, f1y, geno, showG, i % 2 === 1);
+  });
+
+  // Mating line between F1[0] and F1[1]
+  if (pedState.f1.length >= 2) {
+    const f1x1 = f1StartX, f1x2 = f1StartX + f1Spacing;
+    pedDrawMating(ctx, f1x1, f1y, f1x2, f1y);
+
+    // Connection from F1 pair to F2
+    const f1MidX = (f1x1 + f1x2) / 2;
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(f1MidX, f1y + 22);
+    ctx.lineTo(f1MidX, 260);
+
+    const f2Count = pedState.f2.length;
+    const f2Spacing = Math.min(80, (W - 80) / f2Count);
+    const f2StartX = centerX - (f2Count - 1) * f2Spacing / 2;
+    ctx.moveTo(f2StartX, 260);
+    ctx.lineTo(f2StartX + (f2Count - 1) * f2Spacing, 260);
+    ctx.stroke();
+
+    // F2 individuals
+    const f2y = 340;
+    pedState.f2.forEach((geno, i) => {
+      const x = f2StartX + i * f2Spacing;
+      ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(x, 260); ctx.lineTo(x, f2y - 22); ctx.stroke();
+      pedDrawIndividual(ctx, x, f2y, geno, showG, i % 2 === 1);
+    });
+  }
+
+  // Phenotype label
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('(squares = convention for male, circles = female)', centerX, H - 10);
+}
+
+function pedUpdateStats() {
+  if (!pedState.generated) return;
+  const f1Dom = pedState.f1.filter(g => g !== 'aa').length;
+  const f1Rec = pedState.f1.filter(g => g === 'aa').length;
+  const f2Dom = pedState.f2.filter(g => g !== 'aa').length;
+  const f2Rec = pedState.f2.filter(g => g === 'aa').length;
+
+  $('ped-f1-dom').textContent = f1Dom + '/' + pedState.f1.length;
+  $('ped-f1-rec').textContent = f1Rec + '/' + pedState.f1.length;
+  $('ped-f2-dom').textContent = f2Dom + '/' + pedState.f2.length;
+  $('ped-f2-rec').textContent = f2Rec + '/' + pedState.f2.length;
+
+  // Mendel comparison
+  const mendel = $('ped-mendel');
+  mendel.style.display = 'block';
+  const exp = monoGetExpectedFromParents(pedState.p1, pedState.p2);
+  const expDom = exp.AA + exp.Aa;
+  const f2ExpFromF1 = monoGetExpectedFromParents(pedState.f1[0], pedState.f1[1]);
+  const f2ExpDom = f2ExpFromF1.AA + f2ExpFromF1.Aa;
+
+  mendel.className = 'analysis-result ar-pass';
+  mendel.innerHTML = `
+    <div class="ar-title">Mendel's Predictions</div>
+    <p><strong>P cross (${pedState.p1} &times; ${pedState.p2}):</strong> Expected F1 = ${(expDom * 100).toFixed(0)}% dominant, ${((1 - expDom) * 100).toFixed(0)}% recessive.
+    Observed: ${f1Dom}/${pedState.f1.length} dominant (${(f1Dom / pedState.f1.length * 100).toFixed(0)}%).</p>
+    <p><strong>F1 cross (${pedState.f1[0]} &times; ${pedState.f1[1]}):</strong> Expected F2 = ${(f2ExpDom * 100).toFixed(0)}% dominant, ${((1 - f2ExpDom) * 100).toFixed(0)}% recessive.
+    Observed: ${f2Dom}/${pedState.f2.length} dominant (${(f2Dom / pedState.f2.length * 100).toFixed(0)}%).</p>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Note: Small sample sizes produce variable results. Click "Re-roll Offspring" to see natural variation, or increase counts in the Monohybrid simulator for statistical significance.</p>
+  `;
+}
+
+function monoGetExpectedFromParents(p1, p2) {
+  const g1 = getGametes(p1), g2 = getGametes(p2);
+  const outcomes = {};
+  let total = 0;
+  g1.forEach(a => g2.forEach(b => {
+    const geno = normalizeGenotype(a + b);
+    outcomes[geno] = (outcomes[geno] || 0) + 1;
+    total++;
+  }));
+  return {
+    AA: (outcomes['AA'] || 0) / total,
+    Aa: (outcomes['Aa'] || 0) / total,
+    aa: (outcomes['aa'] || 0) / total
+  };
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: PHENOTYPE vs GENOTYPE EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+let domMode = 'complete';
+
+const domInfo = {
+  complete: {
+    title: 'Complete Dominance',
+    desc: 'One allele completely masks the other. Heterozygotes look identical to homozygous dominant. Example: Mendel\'s pea plant flower color (Purple is dominant over white).',
+    genotypes: [
+      { geno: 'PP', pheno: 'Purple flowers', color: '#7c3aed', desc: 'Homozygous dominant - both alleles code for purple' },
+      { geno: 'Pp', pheno: 'Purple flowers', color: '#7c3aed', desc: 'Heterozygous - one purple allele is sufficient (dominant)' },
+      { geno: 'pp', pheno: 'White flowers', color: '#e2e8f0', desc: 'Homozygous recessive - no purple allele, white expressed' }
+    ]
+  },
+  incomplete: {
+    title: 'Incomplete Dominance',
+    desc: 'Neither allele is fully dominant. Heterozygotes show a blended, intermediate phenotype. Example: Snapdragon flower color (Red + White = Pink).',
+    genotypes: [
+      { geno: 'RR', pheno: 'Red flowers', color: '#dc2626', desc: 'Homozygous - full red pigment produced' },
+      { geno: 'Rr', pheno: 'Pink flowers (blended)', color: '#f472b6', desc: 'Heterozygous - intermediate pigment, blending of red and white' },
+      { geno: 'rr', pheno: 'White flowers', color: '#e2e8f0', desc: 'Homozygous - no red pigment produced' }
+    ]
+  },
+  codominance: {
+    title: 'Codominance',
+    desc: 'Both alleles are fully expressed simultaneously. Heterozygotes show BOTH phenotypes, not a blend. Example: Roan cattle (Red + White = Red AND White patches).',
+    genotypes: [
+      { geno: 'R R', pheno: 'Red coat', color: '#dc2626', desc: 'Homozygous - all red hair, uniform red coat' },
+      { geno: 'R W', pheno: 'Roan (red + white)', color: null, desc: 'Heterozygous - both red AND white hairs visible (not blended)' },
+      { geno: 'W W', pheno: 'White coat', color: '#e2e8f0', desc: 'Homozygous - all white hair, uniform white coat' }
+    ]
+  }
+};
+
+function domSelect(mode) {
+  domMode = mode;
+  ['complete', 'incomplete', 'codominance'].forEach(m => {
+    $('dom-btn-' + m).className = m === mode ? 'btn btn-primary' : 'btn btn-outline';
+  });
+  domRender();
+}
+
+function domRender() {
+  const info = domInfo[domMode];
+  $('dom-title').textContent = info.title;
+  $('dom-desc').textContent = info.desc;
+
+  // Table
+  const tbody = $('dom-tbody');
+  tbody.innerHTML = '';
+  info.genotypes.forEach(g => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><strong>${g.geno}</strong></td><td>${g.pheno}</td><td>${g.desc}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  // Canvas visualization
+  drawDomCanvas();
+  domCrossUpdate();
+}
+
+function drawDomCanvas() {
+  const ctx = getCtx('dom-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const info = domInfo[domMode];
+  const genos = info.genotypes;
+  const spacing = W / (genos.length + 1);
+
+  genos.forEach((g, i) => {
+    const x = spacing * (i + 1);
+    const y = H / 2 - 20;
+    const r = 40;
+
+    // Draw the phenotype circle
+    if (domMode === 'codominance' && g.color === null) {
+      // Draw roan pattern - half and half
+      ctx.save();
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.clip();
+      // Red half
+      ctx.fillStyle = '#dc2626';
+      ctx.fillRect(x - r, y - r, r, r * 2);
+      // White half
+      ctx.fillStyle = '#e2e8f0';
+      ctx.fillRect(x, y - r, r, r * 2);
+      // Add spots for visual effect
+      for (let s = 0; s < 8; s++) {
+        const sx = x - r + Math.random() * r * 2;
+        const sy = y - r + Math.random() * r * 2;
+        ctx.fillStyle = Math.random() > 0.5 ? '#dc2626' : '#e2e8f0';
+        ctx.beginPath(); ctx.arc(sx, sy, 5, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.restore();
+      ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke();
+    } else {
+      ctx.fillStyle = g.color || '#e2e8f0';
+      ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
+
+    // Genotype label
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(g.geno, x, y + r + 28);
+
+    // Phenotype label
+    ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui';
+    ctx.fillText(g.pheno, x, y + r + 46);
+  });
+
+  // Title
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(info.title, W / 2, 24);
+}
+
+function domCrossUpdate() {
+  const p1 = $('dom-p1').value, p2 = $('dom-p2').value;
+  const ctx = getCtx('dom-cross-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const info = domInfo[domMode];
+
+  // Get offspring ratios
+  const g1 = getGametes(p1), g2 = getGametes(p2);
+  const offspring = {};
+  let total = 0;
+  g1.forEach(a => g2.forEach(b => {
+    const geno = normalizeGenotype(a + b);
+    offspring[geno] = (offspring[geno] || 0) + 1;
+    total++;
+  }));
+
+  // Map genotypes to colors based on mode
+  function getGenoColor(geno) {
+    const idx = geno === 'AA' || geno === 'PP' || geno === 'RR' ? 0 :
+                geno === 'Aa' || geno === 'Pp' || geno === 'Rr' ? 1 : 2;
+    // For generic A/a notation, map to the mode's colors
+    if (geno === 'AA') return info.genotypes[0].color || '#7c3aed';
+    if (geno === 'Aa') return info.genotypes[1].color || '#f472b6';
+    if (geno === 'aa') return info.genotypes[2].color || '#e2e8f0';
+    return '#9ca3af';
+  }
+
+  function getGenoPheno(geno) {
+    if (geno === 'AA') return info.genotypes[0].pheno;
+    if (geno === 'Aa') return info.genotypes[1].pheno;
+    if (geno === 'aa') return info.genotypes[2].pheno;
+    return '';
+  }
+
+  // Draw parent squares
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Parents', W / 2, 18);
+
+  // P1
+  const p1Color = getGenoColor(p1);
+  const p1x = W * 0.25, py = 60;
+  if (p1Color === null && domMode === 'codominance') {
+    ctx.save();
+    ctx.beginPath(); ctx.arc(p1x, py, 24, 0, Math.PI * 2); ctx.clip();
+    ctx.fillStyle = '#dc2626'; ctx.fillRect(p1x - 24, py - 24, 24, 48);
+    ctx.fillStyle = '#e2e8f0'; ctx.fillRect(p1x, py - 24, 24, 48);
+    ctx.restore();
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(p1x, py, 24, 0, Math.PI * 2); ctx.stroke();
+  } else {
+    ctx.fillStyle = p1Color || '#e2e8f0'; ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(p1x, py, 24, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui';
+  ctx.fillText(p1, p1x, py + 42);
+
+  // Cross symbol
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 20px system-ui';
+  ctx.fillText('\u00D7', W / 2, py + 5);
+
+  // P2
+  const p2x = W * 0.75;
+  const p2Color = getGenoColor(p2);
+  if (p2Color === null && domMode === 'codominance') {
+    ctx.save();
+    ctx.beginPath(); ctx.arc(p2x, py, 24, 0, Math.PI * 2); ctx.clip();
+    ctx.fillStyle = '#dc2626'; ctx.fillRect(p2x - 24, py - 24, 24, 48);
+    ctx.fillStyle = '#e2e8f0'; ctx.fillRect(p2x, py - 24, 24, 48);
+    ctx.restore();
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(p2x, py, 24, 0, Math.PI * 2); ctx.stroke();
+  } else {
+    ctx.fillStyle = p2Color || '#e2e8f0'; ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(p2x, py, 24, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  }
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui';
+  ctx.fillText(p2, p2x, py + 42);
+
+  // Arrow
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W / 2, py + 28); ctx.lineTo(W / 2, py + 60); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W/2 - 6, py + 54); ctx.lineTo(W/2, py + 60); ctx.lineTo(W/2 + 6, py + 54); ctx.stroke();
+
+  // Offspring
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui';
+  ctx.fillText('Offspring', W / 2, py + 76);
+
+  const keys = Object.keys(offspring).sort();
+  const offSpacing = W / (keys.length + 1);
+  const offY = py + 118;
+
+  keys.forEach((geno, i) => {
+    const ox = offSpacing * (i + 1);
+    const color = getGenoColor(geno);
+    const count = offspring[geno];
+    const fraction = count + '/' + total;
+
+    if (color === null && domMode === 'codominance') {
+      ctx.save();
+      ctx.beginPath(); ctx.arc(ox, offY, 20, 0, Math.PI * 2); ctx.clip();
+      ctx.fillStyle = '#dc2626'; ctx.fillRect(ox - 20, offY - 20, 20, 40);
+      ctx.fillStyle = '#e2e8f0'; ctx.fillRect(ox, offY - 20, 20, 40);
+      ctx.restore();
+      ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(ox, offY, 20, 0, Math.PI * 2); ctx.stroke();
+    } else {
+      ctx.fillStyle = color || '#e2e8f0'; ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(ox, offY, 20, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(geno + ' (' + fraction + ')', ox, offY + 36);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
+    ctx.fillText(getGenoPheno(geno), ox, offY + 50);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: TEST CROSS ANALYZER
+// ══════════════════════════════════════════════════════════════════════════
+let tcState = {
+  hiddenGeno: null,
+  dom: 0,
+  rec: 0,
+  bayesHistory: [],   // [{pAA, pAa}]
+  revealed: false
+};
+
+function tcNewOrganism() {
+  const sel = $('tc-hidden').value;
+  if (sel === 'random') {
+    tcState.hiddenGeno = Math.random() < 0.5 ? 'AA' : 'Aa';
+  } else {
+    tcState.hiddenGeno = sel;
+  }
+  tcState.dom = 0;
+  tcState.rec = 0;
+  tcState.bayesHistory = [{ pAA: 0.5, pAa: 0.5 }];
+  tcState.revealed = false;
+  tcUpdateUI();
+}
+
+function tcCross(n) {
+  if (!tcState.hiddenGeno) { tcNewOrganism(); }
+  for (let i = 0; i < n; i++) {
+    // Cross hidden (AA or Aa) with aa
+    // AA x aa -> all Aa (dominant phenotype)
+    // Aa x aa -> 50% Aa (dominant), 50% aa (recessive)
+    if (tcState.hiddenGeno === 'AA') {
+      tcState.dom++;
+    } else {
+      // Aa x aa
+      if (Math.random() < 0.5) tcState.dom++;
+      else tcState.rec++;
+    }
+
+    // Bayesian update
+    const prev = tcState.bayesHistory[tcState.bayesHistory.length - 1];
+    let pAA = prev.pAA;
+    let pAa = prev.pAa;
+
+    if (tcState.rec > 0) {
+      // If we see ANY recessive, it MUST be Aa
+      pAA = 0;
+      pAa = 1;
+    } else {
+      // All dominant so far
+      // P(all dominant | AA) = 1
+      // P(all dominant | Aa) = (0.5)^n_total
+      const totalSoFar = tcState.dom + tcState.rec;
+      const likelihoodAA = 1;
+      const likelihoodAa = Math.pow(0.5, totalSoFar);
+      const denom = pAA * likelihoodAA + pAa * likelihoodAa;
+      // Use original priors (0.5 each)
+      pAA = (0.5 * likelihoodAA) / (0.5 * likelihoodAA + 0.5 * likelihoodAa);
+      pAa = 1 - pAA;
+    }
+    tcState.bayesHistory.push({ pAA, pAa });
+  }
+  tcUpdateUI();
+}
+
+function tcReveal() {
+  if (!tcState.hiddenGeno) return;
+  tcState.revealed = true;
+  tcUpdateUI();
+}
+
+function tcUpdateUI() {
+  const total = tcState.dom + tcState.rec;
+  $('tc-dom').textContent = tcState.dom;
+  $('tc-rec').textContent = tcState.rec;
+  $('tc-total').textContent = total;
+
+  const latest = tcState.bayesHistory.length > 0 ? tcState.bayesHistory[tcState.bayesHistory.length - 1] : { pAA: 0.5, pAa: 0.5 };
+  $('tc-pAA').textContent = (latest.pAA * 100).toFixed(1) + '%';
+  $('tc-pAa').textContent = (latest.pAa * 100).toFixed(1) + '%';
+
+  // Verdict
+  const verdict = $('tc-verdict');
+  if (tcState.revealed && tcState.hiddenGeno) {
+    verdict.className = 'analysis-result ar-pass';
+    verdict.innerHTML = `<div class="ar-title">Answer Revealed!</div>
+      <p>The mystery organism's genotype is: <code>${tcState.hiddenGeno}</code></p>
+      <p>Your Bayesian estimate: P(AA) = ${(latest.pAA * 100).toFixed(1)}%, P(Aa) = ${(latest.pAa * 100).toFixed(1)}%</p>`;
+  } else if (tcState.rec > 0) {
+    verdict.className = 'analysis-result ar-pass';
+    verdict.innerHTML = `<div class="ar-title">Conclusive Result!</div>
+      <p>Recessive offspring detected! The unknown parent <strong>must be Aa</strong> (heterozygous).</p>
+      <p>A homozygous dominant (AA) crossed with aa can NEVER produce recessive offspring.</p>`;
+  } else if (total > 0) {
+    verdict.className = 'analysis-result';
+    verdict.innerHTML = `<div class="ar-title">Inconclusive &mdash; More Crosses Needed</div>
+      <p>All ${total} offspring show dominant phenotype. This is consistent with BOTH AA and Aa.</p>
+      <p>After ${total} all-dominant offspring, P(AA) = ${(latest.pAA * 100).toFixed(1)}%</p>
+      <p style="font-size:12px;color:var(--text-muted);">Each additional dominant offspring increases the probability of AA. With Aa, the chance of ALL dominant in ${total} crosses is ${(Math.pow(0.5, total) * 100).toFixed(4)}%.</p>`;
+  } else {
+    verdict.innerHTML = '<div class="ar-title">Cross offspring to update probabilities</div>';
+  }
+
+  drawTcChart();
+  drawTcBayesChart();
+}
+
+function drawTcChart() {
+  const ctx = getCtx('tc-chart');
+  const total = tcState.dom + tcState.rec;
+  if (!total) { ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H); return; }
+  drawBarChart(ctx, {
+    labels: ['Dominant', 'Recessive'],
+    values: [tcState.dom, tcState.rec],
+    colors: ['#be185d', '#2563eb'],
+    maxVal: Math.max(tcState.dom, tcState.rec) * 1.3 || 10
+  });
+}
+
+function drawTcBayesChart() {
+  const ctx = getCtx('tc-bayes-chart');
+  if (tcState.bayesHistory.length < 2) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Bayesian probability updates will appear here', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+  drawLineChart(ctx, [
+    { data: tcState.bayesHistory.map(h => h.pAA), color: '#d97706', width: 2.5, dots: true },
+    { data: tcState.bayesHistory.map(h => h.pAa), color: '#7c3aed', width: 2.5, dots: true }
+  ], { yMin: 0, yMax: 1, refLine: 0.5 });
+
+  // Legend
+  const W = ctx.W;
+  ctx.fillStyle = '#d97706'; ctx.fillRect(60, 4, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('P(AA)', 78, 10);
+  ctx.fillStyle = '#7c3aed'; ctx.fillRect(130, 4, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.fillText('P(Aa)', 148, 10);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: HUMAN TRAIT INHERITANCE
+// ══════════════════════════════════════════════════════════════════════════
+let htTrait = 'earlobes';
+
+const htTraits = {
+  earlobes: {
+    name: 'Earlobe Attachment',
+    dominant: 'Free (unattached)',
+    recessive: 'Attached',
+    domAllele: 'E',
+    recAllele: 'e',
+    desc: 'Free earlobes (E) are dominant over attached earlobes (e). People with at least one E allele have free earlobes that hang freely from the head.'
+  },
+  widowspeak: {
+    name: "Widow's Peak",
+    dominant: "Widow's peak present",
+    recessive: 'Straight hairline',
+    domAllele: 'W',
+    recAllele: 'w',
+    desc: "A widow's peak (W) is a pointed hairline in the center of the forehead. It is dominant over a straight hairline (w)."
+  },
+  ptc: {
+    name: 'PTC Tasting',
+    dominant: 'Can taste PTC (bitter)',
+    recessive: 'Cannot taste PTC',
+    domAllele: 'T',
+    recAllele: 't',
+    desc: 'The ability to taste phenylthiocarbamide (PTC) as bitter (T) is dominant over non-tasting (t). About 70% of people can taste PTC.'
+  },
+  tongue: {
+    name: 'Tongue Rolling',
+    dominant: 'Can roll tongue',
+    recessive: 'Cannot roll tongue',
+    domAllele: 'R',
+    recAllele: 'r',
+    desc: 'The ability to roll the tongue into a tube shape (R) is often presented as dominant over inability to roll (r), though the genetics may be more complex.'
+  }
+};
+
+function htSelect(trait) {
+  htTrait = trait;
+  ['earlobes', 'widowspeak', 'ptc', 'tongue'].forEach(t => {
+    $('ht-btn-' + t).className = t === trait ? 'btn btn-primary' : 'btn btn-outline';
+  });
+  const info = htTraits[trait];
+  $('ht-trait-info').innerHTML = '<strong>' + info.name + ':</strong> ' + info.desc +
+    '<br>Dominant: ' + info.dominant + ' (' + info.domAllele + ') | Recessive: ' + info.recessive + ' (' + info.recAllele + ')';
+  htUpdate();
+}
+
+function htInferGenotypes() {
+  const trait = htTraits[htTrait];
+  const fatherPheno = $('ht-father').value;
+  const motherPheno = $('ht-mother').value;
+  const recSib = $('ht-recsib').value;
+
+  // Father genotype possibilities
+  let fatherGenos = [];
+  if (fatherPheno === 'recessive') {
+    fatherGenos = [{ geno: trait.recAllele + trait.recAllele, prob: 1 }];
+  } else {
+    // Dominant - could be AA or Aa
+    if (recSib === 'yes' || motherPheno === 'recessive') {
+      // If there are recessive children, at least one parent carrying recessive
+      if (motherPheno === 'recessive' && recSib === 'yes') {
+        // Mother is aa, recessive children exist -> father MUST be Aa
+        fatherGenos = [{ geno: trait.domAllele + trait.recAllele, prob: 1 }];
+      } else if (recSib === 'yes') {
+        // Both parents dominant but recessive child -> both must be carriers
+        fatherGenos = [{ geno: trait.domAllele + trait.recAllele, prob: 1 }];
+      } else {
+        fatherGenos = [
+          { geno: trait.domAllele + trait.domAllele, prob: 1/3 },
+          { geno: trait.domAllele + trait.recAllele, prob: 2/3 }
+        ];
+      }
+    } else if (recSib === 'no') {
+      // No recessive siblings known - slightly more likely AA
+      fatherGenos = [
+        { geno: trait.domAllele + trait.domAllele, prob: 0.5 },
+        { geno: trait.domAllele + trait.recAllele, prob: 0.5 }
+      ];
+    } else {
+      fatherGenos = [
+        { geno: trait.domAllele + trait.domAllele, prob: 1/3 },
+        { geno: trait.domAllele + trait.recAllele, prob: 2/3 }
+      ];
+    }
+  }
+
+  // Mother genotype possibilities
+  let motherGenos = [];
+  if (motherPheno === 'recessive') {
+    motherGenos = [{ geno: trait.recAllele + trait.recAllele, prob: 1 }];
+  } else {
+    if (recSib === 'yes' || fatherPheno === 'recessive') {
+      if (fatherPheno === 'recessive' && recSib === 'yes') {
+        motherGenos = [{ geno: trait.domAllele + trait.recAllele, prob: 1 }];
+      } else if (recSib === 'yes') {
+        motherGenos = [{ geno: trait.domAllele + trait.recAllele, prob: 1 }];
+      } else {
+        motherGenos = [
+          { geno: trait.domAllele + trait.domAllele, prob: 1/3 },
+          { geno: trait.domAllele + trait.recAllele, prob: 2/3 }
+        ];
+      }
+    } else if (recSib === 'no') {
+      motherGenos = [
+        { geno: trait.domAllele + trait.domAllele, prob: 0.5 },
+        { geno: trait.domAllele + trait.recAllele, prob: 0.5 }
+      ];
+    } else {
+      motherGenos = [
+        { geno: trait.domAllele + trait.domAllele, prob: 1/3 },
+        { geno: trait.domAllele + trait.recAllele, prob: 2/3 }
+      ];
+    }
+  }
+
+  return { fatherGenos, motherGenos, trait };
+}
+
+function htUpdate() {
+  const { fatherGenos, motherGenos, trait } = htInferGenotypes();
+  const numSib = parseInt($('ht-numsib').value);
+  const recSib = $('ht-recsib').value;
+
+  // Display predictions
+  const pred = $('ht-predictions');
+  let html = '<div class="analysis-result ar-pass">';
+  html += '<div class="ar-title">Inferred Genotypes</div>';
+  html += '<p><strong>Father:</strong> ';
+  fatherGenos.forEach(g => {
+    html += '<code>' + g.geno + '</code> (' + (g.prob * 100).toFixed(0) + '%) ';
+  });
+  html += '</p><p><strong>Mother:</strong> ';
+  motherGenos.forEach(g => {
+    html += '<code>' + g.geno + '</code> (' + (g.prob * 100).toFixed(0) + '%) ';
+  });
+  html += '</p>';
+
+  if (recSib === 'yes') {
+    html += '<p style="font-size:12px;color:var(--text-muted);">Recessive siblings present: both parents must carry at least one recessive allele.</p>';
+  }
+  html += '</div>';
+  pred.innerHTML = html;
+
+  // Calculate offspring probabilities
+  let pDom = 0, pRec = 0, pCarrier = 0;
+
+  fatherGenos.forEach(fg => {
+    motherGenos.forEach(mg => {
+      const jointProb = fg.prob * mg.prob;
+      const g1 = getGametes(fg.geno), g2 = getGametes(mg.geno);
+      let localAA = 0, localAa = 0, localaa = 0, total = 0;
+      g1.forEach(a => g2.forEach(b => {
+        const geno = normalizeGenotype(a + b);
+        if (geno[0] === geno[0].toUpperCase() && geno[1] === geno[1].toUpperCase()) localAA++;
+        else if (geno[0] === geno[0].toLowerCase() && geno[1] === geno[1].toLowerCase()) localaa++;
+        else localAa++;
+        total++;
+      }));
+      pDom += jointProb * (localAA + localAa) / total;
+      pRec += jointProb * localaa / total;
+      pCarrier += jointProb * localAa / total;
+    });
+  });
+
+  $('ht-prob-dom').textContent = (pDom * 100).toFixed(1) + '%';
+  $('ht-prob-rec').textContent = (pRec * 100).toFixed(1) + '%';
+  $('ht-prob-carrier').textContent = (pCarrier * 100).toFixed(1) + '%';
+
+  drawHtPedigree(fatherGenos, motherGenos, numSib, recSib, trait);
+  drawHtProbChart(pDom, pRec, pCarrier);
+}
+
+function drawHtPedigree(fatherGenos, motherGenos, numSib, recSib, trait) {
+  const ctx = getCtx('ht-pedigree');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const fatherPheno = $('ht-father').value;
+  const motherPheno = $('ht-mother').value;
+
+  // Draw father (square)
+  const fx = W * 0.35, fy = 50;
+  ctx.fillStyle = fatherPheno === 'dominant' ? '#be185d' : '#dbeafe';
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.fillRect(fx - 20, fy - 20, 40, 40);
+  ctx.strokeRect(fx - 20, fy - 20, 40, 40);
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  const fLabel = fatherGenos.length === 1 ? fatherGenos[0].geno : fatherGenos.map(g => g.geno).join('/');
+  ctx.fillText(fLabel, fx, fy + 38);
+  ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+  ctx.fillText('Father', fx, fy - 26);
+
+  // Draw mother (circle)
+  const mx = W * 0.65;
+  ctx.fillStyle = motherPheno === 'dominant' ? '#be185d' : '#dbeafe';
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(mx, fy, 20, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  const mLabel = motherGenos.length === 1 ? motherGenos[0].geno : motherGenos.map(g => g.geno).join('/');
+  ctx.fillText(mLabel, mx, fy + 38);
+  ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+  ctx.fillText('Mother', mx, fy - 26);
+
+  // Mating line
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(fx + 20, fy); ctx.lineTo(mx - 20, fy); ctx.stroke();
+
+  // Vertical line to children
+  const midX = (fx + mx) / 2;
+  ctx.beginPath(); ctx.moveTo(midX, fy + 20); ctx.lineTo(midX, 120); ctx.stroke();
+
+  // Children
+  const totalKids = numSib + 1; // siblings + "you"
+  const kidSpacing = Math.min(60, (W - 80) / Math.max(totalKids, 1));
+  const startX = midX - (totalKids - 1) * kidSpacing / 2;
+
+  // Horizontal bar
+  ctx.beginPath(); ctx.moveTo(startX, 120); ctx.lineTo(startX + (totalKids - 1) * kidSpacing, 120); ctx.stroke();
+
+  const kidY = 170;
+  for (let i = 0; i < totalKids; i++) {
+    const kx = startX + i * kidSpacing;
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(kx, 120); ctx.lineTo(kx, kidY - 20); ctx.stroke();
+
+    // Determine phenotype for display
+    let kidPheno = 'dominant';
+    if (i === 0 && recSib === 'yes') {
+      kidPheno = 'recessive'; // At least one recessive sibling
+    }
+
+    ctx.fillStyle = kidPheno === 'dominant' ? '#be185d' : '#dbeafe';
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    if (i % 2 === 0) {
+      // square
+      ctx.fillRect(kx - 16, kidY - 16, 32, 32);
+      ctx.strokeRect(kx - 16, kidY - 16, 32, 32);
+    } else {
+      // circle
+      ctx.beginPath(); ctx.arc(kx, kidY, 16, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    }
+
+    // Label
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    if (i === totalKids - 1) {
+      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui';
+      ctx.fillText('You', kx, kidY + 30);
+    } else {
+      ctx.fillText('Sib ' + (i + 1), kx, kidY + 30);
+    }
+  }
+
+  // Legend
+  ctx.fillStyle = '#be185d'; ctx.fillRect(10, H - 20, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText(trait.dominant, 26, H - 10);
+  ctx.fillStyle = '#dbeafe'; ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+  ctx.fillRect(W / 2, H - 20, 12, 12); ctx.strokeRect(W / 2, H - 20, 12, 12);
+  ctx.fillStyle = '#374151';
+  ctx.fillText(trait.recessive, W / 2 + 16, H - 10);
+}
+
+function drawHtProbChart(pDom, pRec, pCarrier) {
+  const ctx = getCtx('ht-prob-chart');
+  drawBarChart(ctx, {
+    labels: ['Dominant\nPhenotype', 'Recessive\nPhenotype', 'Carrier\n(Heterozygous)'],
+    values: [pDom * 100, pRec * 100, pCarrier * 100],
+    colors: ['#be185d', '#2563eb', '#d97706'],
+    maxVal: 110
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  monoUpdatePunnett();
+  diUpdatePunnett();
+  domSelect('complete');
+  htSelect('earlobes');
+  tcNewOrganism();
+  pedReset();
+});
+
+window.addEventListener('resize', () => {
+  drawMonoChart();
+  drawDiChart();
+  drawDomCanvas();
+  domCrossUpdate();
+  drawTcChart();
+  drawTcBayesChart();
+  pedDraw();
+  htUpdate();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 1 Dashboard: Scientific Measurement | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+input[type=number], input[type=text], select {
+  font-family: var(--font); font-size: 14px; padding: 8px 12px; border-radius: 8px;
+  border: 2px solid var(--border); outline: none; transition: border-color 0.15s;
+}
+input[type=number]:focus, input[type=text]:focus, select:focus { border-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CUSTOM: TARGET / BULLSEYE
+   ═══════════════════════════════════════════════════════════════════════ */
+.target-wrap { position: relative; display: flex; justify-content: center; margin: 12px 0; }
+.target-wrap canvas { cursor: crosshair; border-radius: 50%; }
+
+.classification-box {
+  text-align: center; padding: 16px; border-radius: 8px; margin: 12px 0;
+  font-size: 18px; font-weight: 800; letter-spacing: 0.5px;
+}
+.class-pa { background: #f0fdf4; color: var(--green); border: 2px solid #86efac; }
+.class-pi { background: #fefce8; color: #a16207; border: 2px solid #fde047; }
+.class-ia { background: #eff6ff; color: var(--blue); border: 2px solid #93c5fd; }
+.class-ii { background: #fef2f2; color: var(--accent); border: 2px solid #fca5a5; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CUSTOM: RULES PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.rules-panel {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 12px 0;
+  border: 1px solid var(--border); font-size: 13px;
+}
+.rules-panel h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.rules-panel ul { list-style: none; padding: 0; }
+.rules-panel li { padding: 4px 0; border-bottom: 1px solid var(--border); }
+.rules-panel li:last-child { border-bottom: none; }
+.rules-panel .rule-num { display: inline-block; width: 20px; font-weight: 700; color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CUSTOM: INSTRUMENT VISUAL
+   ═══════════════════════════════════════════════════════════════════════ */
+.instrument-tabs { display: flex; gap: 4px; margin: 12px 0; }
+.instrument-tab {
+  padding: 8px 16px; border-radius: 8px 8px 0 0; font-size: 13px; font-weight: 600;
+  cursor: pointer; border: 2px solid var(--border); border-bottom: none;
+  background: #f8fafc; color: var(--text-muted); transition: all 0.15s;
+}
+.instrument-tab.active { background: var(--card); color: var(--accent); border-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CUSTOM: DATA TABLE
+   ═══════════════════════════════════════════════════════════════════════ */
+.data-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0;
+}
+.data-table th {
+  background: #1a1a1a; color: #fff; padding: 10px 12px; text-align: left;
+  font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.data-table td {
+  padding: 8px 12px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 13px;
+}
+.data-table tr:nth-child(even) { background: #f8fafc; }
+.data-table tr:hover { background: #f1f5f9; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 1 &mdash; Scientific Measurement</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Unit Converter</a>
+    <a href="#part2"><span class="nav-num">2</span> Precision vs Accuracy</a>
+    <a href="#part3"><span class="nav-num">3</span> Significant Figures</a>
+    <a href="#part4"><span class="nav-num">4</span> Uncertainty</a>
+    <a href="#part5"><span class="nav-num">5</span> Instrument Resolution</a>
+    <a href="#part6"><span class="nav-num">6</span> Data &amp; Analysis</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Introduction to Scientific Measurement</h2>
+  <p>Interactive tools to master measurement skills: convert between metric units, explore precision and accuracy, practice significant figures, visualize uncertainty, and analyze real data.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Scientific Method</span>
+    <span class="bio-tag">Measurement</span>
+    <span class="bio-tag">Data Analysis</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: UNIT CONVERTER ════════════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Metric Unit Converter</div>
+    <div class="section-subtitle">Convert between metric/SI units with real-time visual scale</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Length Converter</div>
+    <div class="slider-group">
+      <label>Value</label>
+      <input type="range" id="len-slider" min="0" max="10000" value="1000" step="1" oninput="lenUpdate()">
+      <span class="slider-val" id="len-slider-val">1000</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-primary" onclick="setLenUnit('mm')">mm</button>
+      <button class="btn btn-sm btn-secondary" onclick="setLenUnit('cm')">cm</button>
+      <button class="btn btn-sm btn-outline" onclick="setLenUnit('m')">m</button>
+      <button class="btn btn-sm btn-outline" onclick="setLenUnit('km')">km</button>
+    </div>
+    <div class="stat-grid" id="len-stats">
+      <div class="stat-box stat-accent"><div class="stat-val" id="len-mm">1000</div><div class="stat-label">mm</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="len-cm">100</div><div class="stat-label">cm</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="len-m">1</div><div class="stat-label">m</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="len-km">0.001</div><div class="stat-label">km</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="len-scale-chart" height="80"></canvas></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Volume Converter</div>
+      <div class="slider-group">
+        <label>Value</label>
+        <input type="range" id="vol-slider" min="0" max="5000" value="1000" step="1" oninput="volUpdate()">
+        <span class="slider-val" id="vol-slider-val">1000</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-sm btn-primary" onclick="setVolUnit('mL')">mL</button>
+        <button class="btn btn-sm btn-secondary" onclick="setVolUnit('L')">L</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="vol-mL">1000</div><div class="stat-label">mL</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="vol-L">1</div><div class="stat-label">L</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Mass Converter</div>
+      <div class="slider-group">
+        <label>Value</label>
+        <input type="range" id="mass-slider" min="0" max="10000" value="1000" step="1" oninput="massUpdate()">
+        <span class="slider-val" id="mass-slider-val">1000</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-sm btn-primary" onclick="setMassUnit('mg')">mg</button>
+        <button class="btn btn-sm btn-secondary" onclick="setMassUnit('g')">g</button>
+        <button class="btn btn-sm btn-outline" onclick="setMassUnit('kg')">kg</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="mass-mg">1000</div><div class="stat-label">mg</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="mass-g">1</div><div class="stat-label">g</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="mass-kg">0.001</div><div class="stat-label">kg</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: PRECISION vs ACCURACY ════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Precision vs. Accuracy Target</div>
+    <div class="section-subtitle">Click the target to place "measurements" and see how precision and accuracy differ</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Bullseye Simulator</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on the target to place dots representing measurements. The center is the "true value."</p>
+      <div class="target-wrap">
+        <canvas id="target-canvas" width="300" height="300"></canvas>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="targetReset()">Reset</button>
+        <button class="btn btn-secondary" onclick="targetDemo('pa')">Demo: Precise + Accurate</button>
+        <button class="btn btn-outline btn-sm" onclick="targetDemo('pi')">Precise + Inaccurate</button>
+        <button class="btn btn-outline btn-sm" onclick="targetDemo('ia')">Imprecise + Accurate</button>
+        <button class="btn btn-outline btn-sm" onclick="targetDemo('ii')">Imprecise + Inaccurate</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Analysis</div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="tgt-n">0</div><div class="stat-label">Shots</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="tgt-mean-dist">-</div><div class="stat-label">Mean Distance</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="tgt-spread">-</div><div class="stat-label">Spread (SD)</div></div>
+      </div>
+      <div id="tgt-classification" class="classification-box" style="background:#f8fafc;color:var(--text-muted);border:2px solid var(--border);">
+        Place at least 3 dots to classify
+      </div>
+      <div class="analysis-result" style="margin-top:12px;">
+        <div class="ar-title">Understanding the Concepts</div>
+        <p><strong>Accuracy</strong> = how close measurements are to the <em>true value</em> (center).</p>
+        <p style="margin-top:4px;"><strong>Precision</strong> = how close measurements are to <em>each other</em> (clustering).</p>
+        <p style="margin-top:4px;">You can be precise without being accurate, and vice versa!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: SIGNIFICANT FIGURES ══════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Significant Figures Calculator</div>
+    <div class="section-subtitle">Learn to count sig figs and practice with random numbers</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
+        <input type="text" id="sigfig-input" placeholder="Enter a number (e.g., 0.00340)" style="flex:1;" oninput="sigfigCalc()">
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="sf-count">-</div><div class="stat-label">Sig Figs</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="sf-digits">-</div><div class="stat-label">Significant Digits</div></div>
+      </div>
+      <div id="sf-breakdown" class="analysis-result" style="display:none;"></div>
+      <div class="rules-panel">
+        <h4>Significant Figures Rules</h4>
+        <ul>
+          <li><span class="rule-num">1.</span> All non-zero digits are significant: <code>123</code> has 3 sig figs</li>
+          <li><span class="rule-num">2.</span> Zeros between non-zero digits are significant: <code>1002</code> has 4 sig figs</li>
+          <li><span class="rule-num">3.</span> Leading zeros are NOT significant: <code>0.0034</code> has 2 sig figs</li>
+          <li><span class="rule-num">4.</span> Trailing zeros after a decimal point ARE significant: <code>2.300</code> has 4 sig figs</li>
+          <li><span class="rule-num">5.</span> Trailing zeros in a whole number without a decimal are ambiguous: <code>1500</code> could be 2, 3, or 4 sig figs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Practice Mode</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">How many significant figures does this number have?</p>
+      <div style="text-align:center;margin:16px 0;">
+        <div style="font-size:36px;font-weight:800;font-family:var(--mono);color:var(--accent);" id="sf-quiz-num">-</div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;">
+        <input type="number" id="sf-quiz-answer" placeholder="# sig figs" style="width:120px;text-align:center;" min="1" max="10">
+        <button class="btn btn-primary" onclick="sfQuizCheck()">Check</button>
+      </div>
+      <div id="sf-quiz-feedback" style="text-align:center;font-size:14px;font-weight:600;min-height:24px;"></div>
+      <div class="btn-group" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="sfQuizNew()">New Number</button>
+        <button class="btn btn-outline" onclick="sfQuizReset()">Reset Score</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-green"><div class="stat-val" id="sf-correct">0</div><div class="stat-label">Correct</div></div>
+        <div class="stat-box stat-accent"><div class="stat-val" id="sf-wrong">0</div><div class="stat-label">Wrong</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="sf-streak">0</div><div class="stat-label">Streak</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="sf-pct">-</div><div class="stat-label">Accuracy</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: UNCERTAINTY ══════════════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Measurement Uncertainty Visualizer</div>
+    <div class="section-subtitle">Enter repeated measurements to see mean, range, standard deviation, and error bars</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Enter Measurements</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Measure the same object multiple times and enter each value. Use comma or space separation, or press Enter after each value.</p>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <input type="text" id="unc-input" placeholder="Enter value and press Enter (e.g., 15.2)" style="flex:1;" onkeydown="if(event.key==='Enter')uncAdd()">
+      <button class="btn btn-primary" onclick="uncAdd()">Add</button>
+      <button class="btn btn-outline" onclick="uncReset()">Reset</button>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;margin-top:8px;">
+      <input type="text" id="unc-bulk" placeholder="Or paste multiple: 15.2, 15.3, 15.1, 15.4" style="flex:1;">
+      <button class="btn btn-secondary" onclick="uncBulkAdd()">Add All</button>
+    </div>
+    <div id="unc-values-display" style="margin-top:12px;font-family:var(--mono);font-size:13px;color:var(--text-muted);min-height:24px;"></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="unc-n">0</div><div class="stat-label">Measurements</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="unc-mean">-</div><div class="stat-label">Mean</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="unc-range">-</div><div class="stat-label">Range</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="unc-sd">-</div><div class="stat-label">Std Dev</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="unc-uncertainty">-</div><div class="stat-label">Uncertainty (&plusmn;)</div></div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Error Bar Visualization</div>
+      <div class="chart-wrap"><canvas id="unc-errorbar-chart" height="260"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Measurement Histogram</div>
+      <div class="chart-wrap"><canvas id="unc-histogram" height="260"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: INSTRUMENT RESOLUTION ════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Instrument Resolution Explorer</div>
+    <div class="section-subtitle">See how instrument resolution affects the precision of measurements</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Compare Measuring Instruments</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Drag the slider to measure a virtual object. Notice how different instruments give different levels of precision.</p>
+    <div class="slider-group">
+      <label>Object size</label>
+      <input type="range" id="inst-object" min="10" max="95" value="47.3" step="0.1" oninput="instUpdate()">
+      <span class="slider-val" id="inst-object-val">47.3 mm</span>
+    </div>
+  </div>
+  <div class="card-row-3">
+    <div class="card">
+      <div class="card-title">Ruler (1 cm divisions)</div>
+      <div class="chart-wrap"><canvas id="inst-ruler-cm" height="140"></canvas></div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="inst-cm-reading">-</div><div class="stat-label">Reading</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="inst-cm-res">&plusmn;5 mm</div><div class="stat-label">Uncertainty</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Ruler (1 mm divisions)</div>
+      <div class="chart-wrap"><canvas id="inst-ruler-mm" height="140"></canvas></div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="inst-mm-reading">-</div><div class="stat-label">Reading</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="inst-mm-res">&plusmn;0.5 mm</div><div class="stat-label">Uncertainty</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Digital Caliper (0.1 mm)</div>
+      <div class="chart-wrap"><canvas id="inst-caliper" height="140"></canvas></div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="inst-cal-reading">-</div><div class="stat-label">Reading</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="inst-cal-res">&plusmn;0.05 mm</div><div class="stat-label">Uncertainty</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Resolution Comparison</div>
+    <div class="chart-wrap"><canvas id="inst-comparison-chart" height="220"></canvas></div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Reading &plusmn; uncertainty</span>
+      <span><span class="ci-dot" style="background:var(--green);"></span> True value</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: DATA RECORDING & ANALYSIS ════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Data Recording &amp; Analysis</div>
+    <div class="section-subtitle">Enter measurement data, generate summary statistics, and compare measurements visually</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Data Entry</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Add measurements for different objects or aspects. Each row represents a different measurement.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 80px 80px;gap:8px;align-items:center;">
+      <input type="text" id="data-label" placeholder="Object / Aspect name">
+      <input type="text" id="data-value" placeholder="Measured value">
+      <input type="text" id="data-unit" placeholder="Unit">
+      <button class="btn btn-primary btn-sm" onclick="dataAdd()">Add</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary btn-sm" onclick="dataLoadSample()">Load Sample Data</button>
+      <button class="btn btn-outline btn-sm" onclick="dataClear()">Clear All</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Data Table</div>
+    <div style="overflow-x:auto;">
+      <table class="data-table" id="data-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Object / Aspect</th>
+            <th>Value</th>
+            <th>Unit</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="data-tbody"></tbody>
+      </table>
+    </div>
+    <div id="data-empty" style="text-align:center;padding:24px;color:var(--text-muted);font-size:13px;">
+      No data entered yet. Add measurements above or load sample data.
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Summary Statistics</div>
+      <div id="data-summary"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Measurement Comparison</div>
+      <div class="chart-wrap"><canvas id="data-chart" height="280"></canvas></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// -- Utility ------------------------------------------------------------------
+const $ = id => document.getElementById(id);
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// -- Chart helper -------------------------------------------------------------
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i % colors.length] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v % 1 ? v.toFixed(2) : v.toString(), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: UNIT CONVERTER
+// ══════════════════════════════════════════════════════════════════════════
+let lenUnit = 'mm', volUnit = 'mL', massUnit = 'mg';
+
+function formatNum(n) {
+  if (n === 0) return '0';
+  if (Math.abs(n) >= 1000000) return n.toExponential(2);
+  if (Math.abs(n) >= 100) return n.toFixed(1);
+  if (Math.abs(n) >= 1) return n.toFixed(3);
+  if (Math.abs(n) >= 0.001) return n.toFixed(4);
+  return n.toExponential(2);
+}
+
+function setLenUnit(u) { lenUnit = u; lenUpdate(); }
+function lenUpdate() {
+  const raw = parseFloat($('len-slider').value);
+  $('len-slider-val').textContent = raw;
+  let mm;
+  if (lenUnit === 'mm') mm = raw;
+  else if (lenUnit === 'cm') mm = raw * 10;
+  else if (lenUnit === 'm') mm = raw * 1000;
+  else mm = raw * 1e6;
+  $('len-mm').textContent = formatNum(mm);
+  $('len-cm').textContent = formatNum(mm / 10);
+  $('len-m').textContent = formatNum(mm / 1000);
+  $('len-km').textContent = formatNum(mm / 1e6);
+  drawLenScale();
+}
+
+function drawLenScale() {
+  const ctx = getCtx('len-scale-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const pad = { left: 50, right: 30, top: 10, bottom: 30 };
+  const plotW = W - pad.left - pad.right;
+  const mm = parseFloat($('len-mm').textContent) || 0;
+
+  const units = [
+    { label: 'mm', val: mm, color: '#c41e3a' },
+    { label: 'cm', val: mm / 10, color: '#2563eb' },
+    { label: 'm', val: mm / 1000, color: '#16a34a' },
+    { label: 'km', val: mm / 1e6, color: '#7c3aed' },
+  ];
+
+  const barH = 10;
+  const maxVal = Math.max(...units.map(u => u.val)) || 1;
+
+  units.forEach((u, i) => {
+    const y = pad.top + i * 16;
+    const w = (u.val / maxVal) * plotW;
+    ctx.fillStyle = u.color;
+    ctx.fillRect(pad.left, y, Math.max(2, w), barH);
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(u.label, pad.left - 6, y + 9);
+    ctx.textAlign = 'left'; ctx.font = '11px system-ui';
+    ctx.fillText(formatNum(u.val), pad.left + Math.max(2, w) + 6, y + 9);
+  });
+}
+
+function setVolUnit(u) { volUnit = u; volUpdate(); }
+function volUpdate() {
+  const raw = parseFloat($('vol-slider').value);
+  $('vol-slider-val').textContent = raw;
+  let mL;
+  if (volUnit === 'mL') mL = raw;
+  else mL = raw * 1000;
+  $('vol-mL').textContent = formatNum(mL);
+  $('vol-L').textContent = formatNum(mL / 1000);
+}
+
+function setMassUnit(u) { massUnit = u; massUpdate(); }
+function massUpdate() {
+  const raw = parseFloat($('mass-slider').value);
+  $('mass-slider-val').textContent = raw;
+  let mg;
+  if (massUnit === 'mg') mg = raw;
+  else if (massUnit === 'g') mg = raw * 1000;
+  else mg = raw * 1e6;
+  $('mass-mg').textContent = formatNum(mg);
+  $('mass-g').textContent = formatNum(mg / 1000);
+  $('mass-kg').textContent = formatNum(mg / 1e6);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: PRECISION vs ACCURACY TARGET
+// ══════════════════════════════════════════════════════════════════════════
+let tgtDots = [];
+const TGT_SIZE = 300, TGT_CENTER = 150, TGT_RADIUS = 140;
+
+function drawTarget() {
+  const c = $('target-canvas');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = TGT_SIZE * dpr; c.height = TGT_SIZE * dpr;
+  c.style.width = TGT_SIZE + 'px'; c.style.height = TGT_SIZE + 'px';
+  ctx.scale(dpr, dpr);
+
+  // rings
+  const ringColors = ['#fef2f2','#fee2e2','#fecaca','#fca5a5','#f87171'];
+  for (let i = 4; i >= 0; i--) {
+    const r = TGT_RADIUS * ((i + 1) / 5);
+    ctx.fillStyle = ringColors[i];
+    ctx.beginPath(); ctx.arc(TGT_CENTER, TGT_CENTER, r, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(TGT_CENTER, TGT_CENTER, r, 0, Math.PI * 2); ctx.stroke();
+  }
+
+  // bullseye center
+  ctx.fillStyle = '#c41e3a';
+  ctx.beginPath(); ctx.arc(TGT_CENTER, TGT_CENTER, 6, 0, Math.PI * 2); ctx.fill();
+
+  // crosshair
+  ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(TGT_CENTER, 10); ctx.lineTo(TGT_CENTER, TGT_SIZE - 10); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(10, TGT_CENTER); ctx.lineTo(TGT_SIZE - 10, TGT_CENTER); ctx.stroke();
+
+  // dots
+  tgtDots.forEach((d, i) => {
+    ctx.fillStyle = 'rgba(37,99,235,0.8)';
+    ctx.strokeStyle = '#1d4ed8'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(d.x, d.y, 5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  });
+
+  // mean marker
+  if (tgtDots.length >= 2) {
+    const mx = tgtDots.reduce((s, d) => s + d.x, 0) / tgtDots.length;
+    const my = tgtDots.reduce((s, d) => s + d.y, 0) / tgtDots.length;
+    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(mx - 8, my); ctx.lineTo(mx + 8, my); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(mx, my - 8); ctx.lineTo(mx, my + 8); ctx.stroke();
+  }
+}
+
+function targetClick(e) {
+  const rect = $('target-canvas').getBoundingClientRect();
+  const scaleX = TGT_SIZE / rect.width;
+  const scaleY = TGT_SIZE / rect.height;
+  const x = (e.clientX - rect.left) * scaleX;
+  const y = (e.clientY - rect.top) * scaleY;
+  const dist = Math.sqrt((x - TGT_CENTER) ** 2 + (y - TGT_CENTER) ** 2);
+  if (dist <= TGT_RADIUS) {
+    tgtDots.push({ x, y });
+    drawTarget();
+    tgtUpdateStats();
+  }
+}
+
+function tgtUpdateStats() {
+  const n = tgtDots.length;
+  $('tgt-n').textContent = n;
+  if (n < 1) { $('tgt-mean-dist').textContent = '-'; $('tgt-spread').textContent = '-'; return; }
+
+  const dists = tgtDots.map(d => Math.sqrt((d.x - TGT_CENTER) ** 2 + (d.y - TGT_CENTER) ** 2));
+  const meanDist = dists.reduce((a, b) => a + b, 0) / n;
+  $('tgt-mean-dist').textContent = (meanDist / TGT_RADIUS * 100).toFixed(1) + '%';
+
+  if (n >= 2) {
+    const mx = tgtDots.reduce((s, d) => s + d.x, 0) / n;
+    const my = tgtDots.reduce((s, d) => s + d.y, 0) / n;
+    const spread = Math.sqrt(tgtDots.reduce((s, d) => s + (d.x - mx) ** 2 + (d.y - my) ** 2, 0) / n);
+    $('tgt-spread').textContent = (spread / TGT_RADIUS * 100).toFixed(1) + '%';
+  }
+
+  if (n >= 3) {
+    const mx = tgtDots.reduce((s, d) => s + d.x, 0) / n;
+    const my = tgtDots.reduce((s, d) => s + d.y, 0) / n;
+    const spread = Math.sqrt(tgtDots.reduce((s, d) => s + (d.x - mx) ** 2 + (d.y - my) ** 2, 0) / n);
+    const accurate = meanDist < TGT_RADIUS * 0.3;
+    const precise = spread < TGT_RADIUS * 0.2;
+
+    const box = $('tgt-classification');
+    if (precise && accurate) {
+      box.className = 'classification-box class-pa';
+      box.textContent = 'Precise + Accurate';
+    } else if (precise && !accurate) {
+      box.className = 'classification-box class-pi';
+      box.textContent = 'Precise + Inaccurate';
+    } else if (!precise && accurate) {
+      box.className = 'classification-box class-ia';
+      box.textContent = 'Imprecise + Accurate';
+    } else {
+      box.className = 'classification-box class-ii';
+      box.textContent = 'Imprecise + Inaccurate';
+    }
+  }
+}
+
+function targetReset() {
+  tgtDots = [];
+  drawTarget();
+  $('tgt-n').textContent = '0';
+  $('tgt-mean-dist').textContent = '-';
+  $('tgt-spread').textContent = '-';
+  const box = $('tgt-classification');
+  box.className = 'classification-box';
+  box.style.background = '#f8fafc'; box.style.color = 'var(--text-muted)'; box.style.border = '2px solid var(--border)';
+  box.textContent = 'Place at least 3 dots to classify';
+}
+
+function targetDemo(type) {
+  tgtDots = [];
+  const cx = TGT_CENTER, cy = TGT_CENTER;
+  for (let i = 0; i < 8; i++) {
+    let x, y;
+    const angle = Math.random() * Math.PI * 2;
+    if (type === 'pa') {
+      const r = Math.random() * 15 + 2;
+      x = cx + Math.cos(angle) * r;
+      y = cy + Math.sin(angle) * r;
+    } else if (type === 'pi') {
+      const offsetX = 60, offsetY = -40;
+      const r = Math.random() * 15 + 2;
+      x = cx + offsetX + Math.cos(angle) * r;
+      y = cy + offsetY + Math.sin(angle) * r;
+    } else if (type === 'ia') {
+      const r = Math.random() * 60 + 10;
+      x = cx + Math.cos(angle) * r;
+      y = cy + Math.sin(angle) * r;
+    } else {
+      const offsetX = 50, offsetY = 40;
+      const r = Math.random() * 55 + 15;
+      x = cx + offsetX + Math.cos(angle) * r;
+      y = cy + offsetY + Math.sin(angle) * r;
+    }
+    x = clamp(x, 10, TGT_SIZE - 10);
+    y = clamp(y, 10, TGT_SIZE - 10);
+    tgtDots.push({ x, y });
+  }
+  drawTarget();
+  tgtUpdateStats();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: SIGNIFICANT FIGURES
+// ══════════════════════════════════════════════════════════════════════════
+function countSigFigs(str) {
+  str = str.trim();
+  if (!str || isNaN(Number(str))) return { count: 0, digits: '', breakdown: 'Invalid number' };
+
+  // Remove leading sign
+  let s = str.replace(/^[+-]/, '');
+  const hasDecimal = s.includes('.');
+
+  // Remove leading zeros (but track them)
+  let stripped = s.replace(/^0+/, '') || '0';
+  if (stripped.startsWith('.')) stripped = '0' + stripped;
+
+  // Count significant digits
+  let digits = '';
+  let sigCount = 0;
+  let foundNonZero = false;
+  let breakdown = '';
+
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+    if (ch === '.') continue;
+
+    if (!foundNonZero && ch === '0') {
+      // Leading zero - not significant
+      continue;
+    }
+    foundNonZero = true;
+    digits += ch;
+    sigCount++;
+  }
+
+  // Handle trailing zeros in whole numbers without decimal
+  if (!hasDecimal && sigCount > 0) {
+    // Remove trailing zeros from count (ambiguous case)
+    let trailingZeros = 0;
+    for (let i = digits.length - 1; i >= 0; i--) {
+      if (digits[i] === '0') trailingZeros++;
+      else break;
+    }
+    // Standard convention: trailing zeros without decimal are NOT significant
+    sigCount -= trailingZeros;
+    if (trailingZeros > 0) {
+      breakdown = 'Note: ' + trailingZeros + ' trailing zero(s) in a whole number without decimal point are ambiguous. Counted as NOT significant by convention.';
+    }
+  }
+
+  if (sigCount === 0 && s !== '0') sigCount = 1;
+  if (s === '0' || s === '0.') sigCount = 1;
+
+  // For numbers like "0.0" or "0.00"
+  if (/^0\.0*$/.test(s)) {
+    sigCount = 1;
+    digits = '0';
+  }
+
+  // For numbers like "0.00340"
+  if (hasDecimal && !breakdown) {
+    const afterDot = s.split('.')[1] || '';
+    const leadingZerosAfterDot = afterDot.match(/^0*/)[0].length;
+    if (leadingZerosAfterDot > 0 && s.match(/^0\./)) {
+      breakdown = leadingZerosAfterDot + ' leading zero(s) after decimal are NOT significant. Trailing zeros after decimal ARE significant.';
+    }
+  }
+
+  return { count: sigCount, digits, breakdown };
+}
+
+function sigfigCalc() {
+  const val = $('sigfig-input').value;
+  if (!val.trim()) {
+    $('sf-count').textContent = '-';
+    $('sf-digits').textContent = '-';
+    $('sf-breakdown').style.display = 'none';
+    return;
+  }
+  const result = countSigFigs(val);
+  $('sf-count').textContent = result.count;
+  $('sf-digits').textContent = result.digits || '-';
+  if (result.breakdown) {
+    $('sf-breakdown').style.display = 'block';
+    $('sf-breakdown').innerHTML = '<div class="ar-title">Analysis</div><p>' + result.breakdown + '</p>';
+  } else {
+    $('sf-breakdown').style.display = 'none';
+  }
+}
+
+// Quiz
+let sfQuizData = { current: '', answer: 0, correct: 0, wrong: 0, streak: 0 };
+
+const sfQuizNumbers = [
+  { num: '0.00340', sf: 3 },
+  { num: '100.0', sf: 4 },
+  { num: '0.050', sf: 2 },
+  { num: '3.200', sf: 4 },
+  { num: '1500', sf: 2 },
+  { num: '0.007', sf: 1 },
+  { num: '10.00', sf: 4 },
+  { num: '2050.0', sf: 5 },
+  { num: '0.0420', sf: 3 },
+  { num: '305', sf: 3 },
+  { num: '8.0', sf: 2 },
+  { num: '1.0030', sf: 5 },
+  { num: '0.000100', sf: 3 },
+  { num: '9000', sf: 1 },
+  { num: '40.00', sf: 4 },
+  { num: '0.30', sf: 2 },
+  { num: '250.', sf: 3 },
+  { num: '6.022', sf: 4 },
+  { num: '0.00010', sf: 2 },
+  { num: '70.0', sf: 3 },
+];
+
+function sfQuizNew() {
+  const item = sfQuizNumbers[Math.floor(Math.random() * sfQuizNumbers.length)];
+  sfQuizData.current = item.num;
+  sfQuizData.answer = item.sf;
+  $('sf-quiz-num').textContent = item.num;
+  $('sf-quiz-answer').value = '';
+  $('sf-quiz-feedback').textContent = '';
+  $('sf-quiz-feedback').style.color = '';
+}
+
+function sfQuizCheck() {
+  const userAns = parseInt($('sf-quiz-answer').value);
+  if (isNaN(userAns)) { $('sf-quiz-feedback').textContent = 'Enter a number!'; $('sf-quiz-feedback').style.color = 'var(--amber)'; return; }
+  if (userAns === sfQuizData.answer) {
+    sfQuizData.correct++;
+    sfQuizData.streak++;
+    $('sf-quiz-feedback').textContent = 'Correct! ' + sfQuizData.current + ' has ' + sfQuizData.answer + ' significant figure(s).';
+    $('sf-quiz-feedback').style.color = 'var(--green)';
+  } else {
+    sfQuizData.wrong++;
+    sfQuizData.streak = 0;
+    $('sf-quiz-feedback').textContent = 'Not quite. ' + sfQuizData.current + ' has ' + sfQuizData.answer + ' sig fig(s), not ' + userAns + '.';
+    $('sf-quiz-feedback').style.color = 'var(--accent)';
+  }
+  $('sf-correct').textContent = sfQuizData.correct;
+  $('sf-wrong').textContent = sfQuizData.wrong;
+  $('sf-streak').textContent = sfQuizData.streak;
+  const total = sfQuizData.correct + sfQuizData.wrong;
+  $('sf-pct').textContent = total ? (sfQuizData.correct / total * 100).toFixed(0) + '%' : '-';
+  setTimeout(sfQuizNew, 1500);
+}
+
+function sfQuizReset() {
+  sfQuizData = { current: '', answer: 0, correct: 0, wrong: 0, streak: 0 };
+  $('sf-correct').textContent = '0';
+  $('sf-wrong').textContent = '0';
+  $('sf-streak').textContent = '0';
+  $('sf-pct').textContent = '-';
+  $('sf-quiz-feedback').textContent = '';
+  sfQuizNew();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: MEASUREMENT UNCERTAINTY
+// ══════════════════════════════════════════════════════════════════════════
+let uncData = [];
+
+function uncAdd() {
+  const val = parseFloat($('unc-input').value);
+  if (isNaN(val)) return;
+  uncData.push(val);
+  $('unc-input').value = '';
+  uncUpdateUI();
+}
+
+function uncBulkAdd() {
+  const raw = $('unc-bulk').value;
+  const nums = raw.split(/[\s,;]+/).map(Number).filter(n => !isNaN(n));
+  uncData.push(...nums);
+  $('unc-bulk').value = '';
+  uncUpdateUI();
+}
+
+function uncReset() {
+  uncData = [];
+  uncUpdateUI();
+}
+
+function uncUpdateUI() {
+  const n = uncData.length;
+  $('unc-n').textContent = n;
+  $('unc-values-display').textContent = n ? 'Values: ' + uncData.map(v => v.toFixed(2)).join(', ') : '';
+
+  if (n === 0) {
+    $('unc-mean').textContent = '-';
+    $('unc-range').textContent = '-';
+    $('unc-sd').textContent = '-';
+    $('unc-uncertainty').textContent = '-';
+    drawUncErrorBar();
+    drawUncHistogram();
+    return;
+  }
+
+  const mean = uncData.reduce((a, b) => a + b, 0) / n;
+  const min = Math.min(...uncData), max = Math.max(...uncData);
+  const range = max - min;
+
+  $('unc-mean').textContent = mean.toFixed(3);
+  $('unc-range').textContent = range.toFixed(3);
+
+  if (n >= 2) {
+    const variance = uncData.reduce((s, v) => s + (v - mean) ** 2, 0) / (n - 1);
+    const sd = Math.sqrt(variance);
+    const sem = sd / Math.sqrt(n);
+    $('unc-sd').textContent = sd.toFixed(3);
+    $('unc-uncertainty').textContent = sem.toFixed(3);
+  } else {
+    $('unc-sd').textContent = '-';
+    $('unc-uncertainty').textContent = '-';
+  }
+
+  drawUncErrorBar();
+  drawUncHistogram();
+}
+
+function drawUncErrorBar() {
+  const ctx = getCtx('unc-errorbar-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = uncData.length;
+  if (n === 0) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Enter measurements to see error bars', W / 2, H / 2);
+    return;
+  }
+
+  const pad = { top: 30, right: 30, bottom: 40, left: 60 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const mean = uncData.reduce((a, b) => a + b, 0) / n;
+  const min = Math.min(...uncData), max = Math.max(...uncData);
+  const range = max - min || 1;
+  const yMin = min - range * 0.3, yMax = max + range * 0.3;
+  const yRange = yMax - yMin;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    const val = yMin + yRange * i / 4;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(val.toFixed(2), pad.left - 6, y + 4);
+  }
+
+  // Mean line
+  const meanY = pad.top + plotH * (1 - (mean - yMin) / yRange);
+  ctx.strokeStyle = 'var(--blue)'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(pad.left, meanY); ctx.lineTo(W - pad.right, meanY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Mean: ' + mean.toFixed(3), W - pad.right + 4, meanY - 4);
+
+  // Data points
+  uncData.forEach((v, i) => {
+    const x = pad.left + (i + 0.5) / n * plotW;
+    const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+    ctx.fillStyle = '#c41e3a';
+    ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(v.toFixed(2), x, y - 10);
+  });
+
+  // Error bar (center)
+  if (n >= 2) {
+    const variance = uncData.reduce((s, v) => s + (v - mean) ** 2, 0) / (n - 1);
+    const sd = Math.sqrt(variance);
+    const cx = pad.left + plotW / 2;
+    const topY = pad.top + plotH * (1 - (mean + sd - yMin) / yRange);
+    const botY = pad.top + plotH * (1 - (mean - sd - yMin) / yRange);
+
+    ctx.fillStyle = 'rgba(37,99,235,0.15)';
+    ctx.fillRect(cx - 20, topY, 40, botY - topY);
+
+    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, topY); ctx.lineTo(cx, botY); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx - 8, topY); ctx.lineTo(cx + 8, topY); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx - 8, botY); ctx.lineTo(cx + 8, botY); ctx.stroke();
+
+    ctx.fillStyle = '#2563eb'; ctx.beginPath(); ctx.arc(cx, meanY, 5, 0, Math.PI * 2); ctx.fill();
+  }
+
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Measurement Index', pad.left + plotW / 2, H - 6);
+}
+
+function drawUncHistogram() {
+  const ctx = getCtx('unc-histogram');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = uncData.length;
+  if (n < 2) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Need 2+ measurements for histogram', W / 2, H / 2);
+    return;
+  }
+
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const min = Math.min(...uncData), max = Math.max(...uncData);
+  const range = max - min || 1;
+  const numBins = Math.min(Math.max(5, Math.ceil(Math.sqrt(n))), 15);
+  const binWidth = range / numBins;
+
+  const bins = Array(numBins).fill(0);
+  uncData.forEach(v => {
+    let bi = Math.floor((v - min) / binWidth);
+    if (bi >= numBins) bi = numBins - 1;
+    bins[bi]++;
+  });
+
+  const maxFreq = Math.max(...bins);
+  const barW = plotW / numBins;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxFreq * i / 4), pad.left - 6, y + 4);
+  }
+
+  // Bars
+  bins.forEach((f, i) => {
+    const x = pad.left + i * barW;
+    const h = (f / maxFreq) * plotH;
+    ctx.fillStyle = 'rgba(196,30,58,0.7)';
+    ctx.fillRect(x + 1, pad.top + plotH - h, barW - 2, h);
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1;
+    ctx.strokeRect(x + 1, pad.top + plotH - h, barW - 2, h);
+    if (f > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(f, x + barW / 2, pad.top + plotH - h - 4);
+    }
+  });
+
+  // Mean line
+  const mean = uncData.reduce((a, b) => a + b, 0) / n;
+  const meanX = pad.left + ((mean - min) / range) * plotW;
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([6, 3]);
+  ctx.beginPath(); ctx.moveTo(meanX, pad.top); ctx.lineTo(meanX, pad.top + plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Mean', meanX, pad.top - 4);
+
+  // X labels
+  ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  for (let i = 0; i <= numBins; i += Math.max(1, Math.floor(numBins / 5))) {
+    const val = min + i * binWidth;
+    const x = pad.left + i * barW;
+    ctx.fillText(val.toFixed(2), x, H - pad.bottom + 14);
+  }
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui';
+  ctx.fillText('Measurement Value', pad.left + plotW / 2, H - 4);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: INSTRUMENT RESOLUTION
+// ══════════════════════════════════════════════════════════════════════════
+function instUpdate() {
+  const trueVal = parseFloat($('inst-object').value);
+  $('inst-object-val').textContent = trueVal.toFixed(1) + ' mm';
+
+  // CM ruler - resolution 10mm, read to nearest cm
+  const cmReading = Math.round(trueVal / 10) * 10;
+  $('inst-cm-reading').textContent = (cmReading / 10).toFixed(0) + ' cm';
+  drawRuler('inst-ruler-cm', trueVal, 10, 'cm', cmReading);
+
+  // MM ruler - resolution 1mm, read to nearest mm
+  const mmReading = Math.round(trueVal);
+  $('inst-mm-reading').textContent = mmReading.toFixed(0) + ' mm';
+  drawRuler('inst-ruler-mm', trueVal, 1, 'mm', mmReading);
+
+  // Caliper - resolution 0.1mm
+  const calReading = Math.round(trueVal * 10) / 10;
+  $('inst-cal-reading').textContent = calReading.toFixed(1) + ' mm';
+  drawCaliper('inst-caliper', trueVal, calReading);
+
+  drawInstComparison(trueVal, cmReading, mmReading, calReading);
+}
+
+function drawRuler(canvasId, trueVal, resolution, unitLabel, reading) {
+  const ctx = getCtx(canvasId);
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#fffef5'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { left: 20, right: 20, top: 20, bottom: 40 };
+  const rulerW = W - pad.left - pad.right;
+  const maxMM = 100;
+  const scale = rulerW / maxMM;
+
+  // Ruler body
+  ctx.fillStyle = '#fef3c7'; ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2;
+  ctx.fillRect(pad.left, pad.top, rulerW, 40);
+  ctx.strokeRect(pad.left, pad.top, rulerW, 40);
+
+  // Tick marks
+  const majorInterval = resolution === 10 ? 10 : 10;
+  const minorInterval = resolution;
+  for (let mm = 0; mm <= maxMM; mm += minorInterval) {
+    const x = pad.left + mm * scale;
+    const isMajor = mm % majorInterval === 0;
+    const tickH = isMajor ? 20 : (mm % 5 === 0 ? 14 : 8);
+    ctx.strokeStyle = '#92400e'; ctx.lineWidth = isMajor ? 1.5 : 0.5;
+    ctx.beginPath(); ctx.moveTo(x, pad.top + 40); ctx.lineTo(x, pad.top + 40 - tickH); ctx.stroke();
+    if (isMajor) {
+      ctx.fillStyle = '#92400e'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+      if (unitLabel === 'cm') ctx.fillText((mm / 10).toFixed(0), x, pad.top + 40 + 14);
+      else ctx.fillText(mm, x, pad.top + 40 + 14);
+    }
+  }
+
+  // Object indicator
+  const objX = pad.left + trueVal * scale;
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(objX, pad.top - 5); ctx.lineTo(objX, pad.top + 50); ctx.stroke();
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('object', objX, pad.top - 8);
+
+  // Unit label
+  ctx.fillStyle = '#92400e'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText(unitLabel, W - pad.right + 10, pad.top + 55);
+}
+
+function drawCaliper(canvasId, trueVal, reading) {
+  const ctx = getCtx(canvasId);
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f0f4f8'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { left: 20, right: 20, top: 15, bottom: 40 };
+
+  // Digital display
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fillRect(pad.left, pad.top, W - pad.left - pad.right, 45);
+  ctx.fillStyle = '#00ff88'; ctx.font = 'bold 28px "Cascadia Code", monospace'; ctx.textAlign = 'center';
+  ctx.fillText(reading.toFixed(1) + ' mm', W / 2, pad.top + 33);
+
+  // Scale bar
+  const scaleY = pad.top + 55;
+  const maxMM = 100;
+  const scale = (W - pad.left - pad.right) / maxMM;
+  ctx.fillStyle = '#e2e8f0';
+  ctx.fillRect(pad.left, scaleY, W - pad.left - pad.right, 20);
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1;
+  ctx.strokeRect(pad.left, scaleY, W - pad.left - pad.right, 20);
+
+  for (let mm = 0; mm <= maxMM; mm += 10) {
+    const x = pad.left + mm * scale;
+    ctx.strokeStyle = '#64748b'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, scaleY); ctx.lineTo(x, scaleY + 20); ctx.stroke();
+    ctx.fillStyle = '#64748b'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(mm, x, scaleY + 32);
+  }
+
+  // Object arrow
+  const objX = pad.left + trueVal * scale;
+  ctx.fillStyle = '#c41e3a';
+  ctx.beginPath();
+  ctx.moveTo(objX - 5, scaleY - 2);
+  ctx.lineTo(objX + 5, scaleY - 2);
+  ctx.lineTo(objX, scaleY + 5);
+  ctx.closePath(); ctx.fill();
+}
+
+function drawInstComparison(trueVal, cmReading, mmReading, calReading) {
+  const ctx = getCtx('inst-comparison-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 30, right: 40, bottom: 40, left: 120 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+
+  const instruments = [
+    { label: 'CM Ruler', reading: cmReading, uncertainty: 5, color: '#c41e3a' },
+    { label: 'MM Ruler', reading: mmReading, uncertainty: 0.5, color: '#2563eb' },
+    { label: 'Digital Caliper', reading: calReading, uncertainty: 0.05, color: '#7c3aed' },
+  ];
+
+  const allVals = instruments.flatMap(inst => [inst.reading - inst.uncertainty, inst.reading + inst.uncertainty]);
+  allVals.push(trueVal);
+  const xMin = Math.min(...allVals) - 2;
+  const xMax = Math.max(...allVals) + 2;
+  const xRange = xMax - xMin;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const x = pad.left + plotW * i / 5;
+    const val = xMin + xRange * i / 5;
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(val.toFixed(1), x, H - pad.bottom + 16);
+  }
+
+  // True value line
+  const trueX = pad.left + ((trueVal - xMin) / xRange) * plotW;
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(trueX, pad.top); ctx.lineTo(trueX, H - pad.bottom); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('True: ' + trueVal.toFixed(1) + ' mm', trueX, pad.top - 8);
+
+  // Error bars for each instrument
+  const rowH = plotH / instruments.length;
+  instruments.forEach((inst, i) => {
+    const y = pad.top + rowH * i + rowH / 2;
+    const cx = pad.left + ((inst.reading - xMin) / xRange) * plotW;
+    const loX = pad.left + ((inst.reading - inst.uncertainty - xMin) / xRange) * plotW;
+    const hiX = pad.left + ((inst.reading + inst.uncertainty - xMin) / xRange) * plotW;
+
+    // Uncertainty band
+    ctx.fillStyle = inst.color + '22';
+    ctx.fillRect(loX, y - 12, hiX - loX, 24);
+
+    // Error bar
+    ctx.strokeStyle = inst.color; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(loX, y); ctx.lineTo(hiX, y); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(loX, y - 8); ctx.lineTo(loX, y + 8); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(hiX, y - 8); ctx.lineTo(hiX, y + 8); ctx.stroke();
+
+    // Center dot
+    ctx.fillStyle = inst.color; ctx.beginPath(); ctx.arc(cx, y, 5, 0, Math.PI * 2); ctx.fill();
+
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(inst.label, pad.left - 8, y + 4);
+
+    // Value
+    ctx.fillStyle = inst.color; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(inst.reading.toFixed(1) + ' +/- ' + inst.uncertainty + ' mm', hiX + 6, y + 4);
+  });
+
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Measurement (mm)', pad.left + plotW / 2, H - 4);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: DATA RECORDING & ANALYSIS
+// ══════════════════════════════════════════════════════════════════════════
+let dataEntries = [];
+
+function dataAdd() {
+  const label = $('data-label').value.trim();
+  const value = parseFloat($('data-value').value);
+  const unit = $('data-unit').value.trim();
+  if (!label || isNaN(value)) return;
+  dataEntries.push({ label, value, unit: unit || '-' });
+  $('data-label').value = '';
+  $('data-value').value = '';
+  dataUpdateUI();
+}
+
+function dataLoadSample() {
+  dataEntries = [
+    { label: 'Pencil Length', value: 18.5, unit: 'cm' },
+    { label: 'Pencil Diameter', value: 7.2, unit: 'mm' },
+    { label: 'Pencil Mass', value: 4.8, unit: 'g' },
+    { label: 'Eraser Length', value: 5.1, unit: 'cm' },
+    { label: 'Eraser Width', value: 2.0, unit: 'cm' },
+    { label: 'Eraser Mass', value: 12.3, unit: 'g' },
+    { label: 'Book Length', value: 27.9, unit: 'cm' },
+    { label: 'Book Width', value: 21.5, unit: 'cm' },
+    { label: 'Book Mass', value: 340, unit: 'g' },
+    { label: 'Water Temp', value: 22.5, unit: 'C' },
+  ];
+  dataUpdateUI();
+}
+
+function dataClear() {
+  dataEntries = [];
+  dataUpdateUI();
+}
+
+function dataRemove(idx) {
+  dataEntries.splice(idx, 1);
+  dataUpdateUI();
+}
+
+function dataUpdateUI() {
+  const tbody = $('data-tbody');
+  const empty = $('data-empty');
+
+  if (dataEntries.length === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    $('data-summary').innerHTML = '<p style="color:var(--text-muted);font-size:13px;">No data to summarize.</p>';
+    drawDataChart();
+    return;
+  }
+
+  empty.style.display = 'none';
+  tbody.innerHTML = dataEntries.map((d, i) =>
+    `<tr>
+      <td>${i + 1}</td>
+      <td style="font-family:var(--font);">${d.label}</td>
+      <td>${d.value}</td>
+      <td>${d.unit}</td>
+      <td><button class="btn btn-sm btn-outline" onclick="dataRemove(${i})" style="padding:2px 8px;font-size:11px;">Remove</button></td>
+    </tr>`
+  ).join('');
+
+  // Summary statistics by unit group
+  const groups = {};
+  dataEntries.forEach(d => {
+    const key = d.unit;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(d);
+  });
+
+  let summaryHTML = '';
+  Object.entries(groups).forEach(([unit, items]) => {
+    const vals = items.map(d => d.value);
+    const n = vals.length;
+    const mean = vals.reduce((a, b) => a + b, 0) / n;
+    const min = Math.min(...vals);
+    const max = Math.max(...vals);
+    let sd = '-';
+    if (n >= 2) {
+      const variance = vals.reduce((s, v) => s + (v - mean) ** 2, 0) / (n - 1);
+      sd = Math.sqrt(variance).toFixed(3);
+    }
+    summaryHTML += `
+      <div class="analysis-result" style="margin-bottom:8px;">
+        <div class="ar-title">Unit: ${unit} (${n} measurement${n > 1 ? 's' : ''})</div>
+        <p>Items: ${items.map(d => d.label).join(', ')}</p>
+        <p>Mean: <code>${mean.toFixed(3)}</code> | Min: <code>${min}</code> | Max: <code>${max}</code> | Range: <code>${(max - min).toFixed(3)}</code> | SD: <code>${sd}</code></p>
+      </div>
+    `;
+  });
+
+  $('data-summary').innerHTML = summaryHTML;
+  drawDataChart();
+}
+
+function drawDataChart() {
+  const ctx = getCtx('data-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (dataEntries.length === 0) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Add data to see comparison chart', W / 2, H / 2);
+    return;
+  }
+
+  // Group by unit - chart the largest group
+  const groups = {};
+  dataEntries.forEach(d => {
+    if (!groups[d.unit]) groups[d.unit] = [];
+    groups[d.unit].push(d);
+  });
+
+  // Pick the group with the most entries
+  let bestUnit = '', bestCount = 0;
+  Object.entries(groups).forEach(([unit, items]) => {
+    if (items.length > bestCount) { bestUnit = unit; bestCount = items.length; }
+  });
+
+  const items = groups[bestUnit];
+  const labels = items.map(d => d.label.length > 10 ? d.label.substring(0, 10) + '..' : d.label);
+  const values = items.map(d => d.value);
+  const chartColors = ['#c41e3a', '#2563eb', '#16a34a', '#d97706', '#7c3aed', '#ea580c', '#0891b2', '#be185d', '#4f46e5', '#059669'];
+
+  drawBarChart(ctx, {
+    labels,
+    values,
+    colors: chartColors,
+    maxVal: Math.max(...values) * 1.3
+  });
+
+  // Unit label
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Values (' + bestUnit + ')', W / 2, H - 4);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  // Unit converters
+  lenUpdate();
+  volUpdate();
+  massUpdate();
+
+  // Target
+  drawTarget();
+  $('target-canvas').addEventListener('click', targetClick);
+
+  // Sig fig quiz
+  sfQuizNew();
+
+  // Uncertainty
+  drawUncErrorBar();
+  drawUncHistogram();
+
+  // Instruments
+  instUpdate();
+
+  // Data table
+  dataUpdateUI();
+});
+
+window.addEventListener('resize', () => {
+  drawLenScale();
+  drawUncErrorBar();
+  drawUncHistogram();
+  instUpdate();
+  drawDataChart();
+});
+</script>
+</body>
+</html>

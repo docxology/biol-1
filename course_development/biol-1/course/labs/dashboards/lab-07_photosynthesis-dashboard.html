@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 7 Dashboard: Photosynthesis | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 7 &mdash; Photosynthesis</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Rate Simulator</a>
+    <a href="#part2"><span class="nav-num">2</span> Absorption Spectrum</a>
+    <a href="#part3"><span class="nav-num">3</span> Light Reactions</a>
+    <a href="#part4"><span class="nav-num">4</span> Calvin Cycle</a>
+    <a href="#part5"><span class="nav-num">5</span> Environmental Factors</a>
+    <a href="#part6"><span class="nav-num">6</span> Equation &amp; Summary</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Photosynthesis</h2>
+  <p>Interactive simulations exploring how plants convert light energy into chemical energy. Investigate pigment absorption, electron transport, carbon fixation, and the environmental factors that control photosynthetic rate.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Light Energy</span>
+    <span class="bio-tag">Carbon Fixation</span>
+    <span class="bio-tag">Chloroplasts</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: PHOTOSYNTHESIS RATE SIMULATOR ═══════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Photosynthesis Rate Simulator</div>
+    <div class="section-subtitle">Leaf disc floating assay &mdash; measure O&#8322; production as evidence of photosynthesis</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Leaf Disc Floating Assay</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Adjust light intensity to observe how discs rise as O&#8322; replaces intercellular air spaces. Higher light = faster photosynthesis = more floating discs.</p>
+    <div class="slider-group">
+      <label>Light Intensity</label>
+      <input type="range" id="rate-light" min="0" max="100" value="50" oninput="rateUpdateLight()">
+      <span class="slider-val" id="rate-light-val">50%</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="rateStart()">Start Experiment</button>
+      <button class="btn btn-outline" onclick="rateReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="rate-beaker" height="340"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="rate-floating">0</div><div class="stat-label">Discs Floating</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="rate-sunk">10</div><div class="stat-label">Discs Sunk</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="rate-time">0s</div><div class="stat-label">Time Elapsed</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="rate-o2">0</div><div class="stat-label">O&#8322; (rel. units)</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">O&#8322; Production Rate vs. Light Intensity</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Run experiments at different light intensities to build this curve. Notice the plateau at light saturation.</p>
+    <div class="chart-wrap"><canvas id="rate-chart" height="260"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="rateAutoSweep()">Auto-Sweep All Intensities</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: LIGHT ABSORPTION SPECTRUM ═══════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Light Absorption Spectrum</div>
+    <div class="section-subtitle">Chlorophyll and accessory pigments absorb specific wavelengths</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Visible Light Spectrum &amp; Pigment Absorption</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click anywhere on the spectrum to see which pigments absorb that wavelength. Notice why plants appear green &mdash; green light is reflected, not absorbed.</p>
+    <div class="chart-wrap"><canvas id="spectrum-canvas" height="360"></canvas></div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:#1a8f3c;"></span> Chlorophyll a</span>
+      <span><span class="ci-dot" style="background:#4ecb71;"></span> Chlorophyll b</span>
+      <span><span class="ci-dot" style="background:#e8a317;"></span> Carotenoids</span>
+    </div>
+    <div id="spectrum-info" class="analysis-result" style="display:none;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Why Are Plants Green?</div>
+    <div class="stat-grid">
+      <div class="stat-box stat-purple"><div class="stat-val" style="font-size:18px;">430nm</div><div class="stat-label">Chl a Peak (Blue)</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" style="font-size:18px;">660nm</div><div class="stat-label">Chl a Peak (Red)</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" style="font-size:18px;">460nm</div><div class="stat-label">Chl b Peak (Blue)</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" style="font-size:18px;">640nm</div><div class="stat-label">Chl b Peak (Red)</div></div>
+    </div>
+    <div class="analysis-result ar-pass">
+      <div class="ar-title">Key Insight</div>
+      <p>Chlorophyll absorbs blue (~430&ndash;460 nm) and red (~640&ndash;660 nm) light most strongly, but reflects green light (~500&ndash;560 nm). This reflected green light is what makes leaves appear green to our eyes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: LIGHT REACTIONS VISUALIZER ══════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Light Reactions Visualizer</div>
+    <div class="section-subtitle">Thylakoid membrane &mdash; water splitting, electron transport, ATP &amp; NADPH production</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Thylakoid Membrane &mdash; Light-Dependent Reactions</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Watch water split at Photosystem II, electrons pass down the transport chain, and energy carriers (ATP, NADPH) form. Use Play/Pause to step through.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="lr-play-btn" onclick="lrToggle()">Play</button>
+      <button class="btn btn-secondary" onclick="lrStep()">Step Forward</button>
+      <button class="btn btn-outline" onclick="lrReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="lr-canvas" height="380"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-blue"><div class="stat-val" id="lr-h2o">0</div><div class="stat-label">H&#8322;O Consumed</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="lr-o2">0</div><div class="stat-label">O&#8322; Released</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="lr-atp">0</div><div class="stat-label">ATP Produced</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="lr-nadph">0</div><div class="stat-label">NADPH Produced</div></div>
+    </div>
+    <div id="lr-step-info" class="analysis-result">
+      <div class="ar-title">Current Step</div>
+      <p>Press Play or Step Forward to begin the light reactions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: CALVIN CYCLE SIMULATOR ══════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Calvin Cycle Simulator</div>
+    <div class="section-subtitle">Carbon fixation, G3P production, and RuBP regeneration</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Calvin Cycle &mdash; Light-Independent Reactions</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">CO&#8322; enters the cycle and is fixed by RuBisCO. After 3 turns, 1 net G3P is produced. Adjust CO&#8322; input to see how it affects the cycle rate.</p>
+    <div class="slider-group">
+      <label>CO&#8322; Level</label>
+      <input type="range" id="calvin-co2" min="1" max="10" value="3" oninput="calvinUpdateCO2()">
+      <span class="slider-val" id="calvin-co2-val">3</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="calvin-play-btn" onclick="calvinToggle()">Play</button>
+      <button class="btn btn-secondary" onclick="calvinStep()">Step (1 Turn)</button>
+      <button class="btn btn-outline" onclick="calvinReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="calvin-canvas" height="420"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="calvin-turns">0</div><div class="stat-label">Turns Complete</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="calvin-co2fixed">0</div><div class="stat-label">CO&#8322; Fixed</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="calvin-g3p">0</div><div class="stat-label">Net G3P Out</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="calvin-atp-used">0</div><div class="stat-label">ATP Used</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="calvin-nadph-used">0</div><div class="stat-label">NADPH Used</div></div>
+    </div>
+    <div class="analysis-result">
+      <div class="ar-title">Rule of Three</div>
+      <p>Every <strong>3 turns</strong> of the Calvin cycle fixes 3 CO&#8322; and produces <strong>1 net G3P</strong> (out of 6 G3P total &mdash; 5 are recycled to regenerate 3 RuBP). This requires <strong>9 ATP</strong> and <strong>6 NADPH</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: ENVIRONMENTAL FACTORS ═══════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Environmental Factors</div>
+    <div class="section-subtitle">Light intensity, CO&#8322; concentration, and temperature affect photosynthetic rate</div></div>
+  </div>
+  <div class="card-row-3">
+    <div class="card">
+      <div class="card-title">Light Intensity</div>
+      <div class="slider-group">
+        <label>Level</label>
+        <input type="range" id="env-light" min="0" max="100" value="50" oninput="envUpdate()">
+        <span class="slider-val" id="env-light-val">50%</span>
+      </div>
+      <div class="chart-wrap"><canvas id="env-light-chart" height="200"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">CO&#8322; Concentration</div>
+      <div class="slider-group">
+        <label>Level</label>
+        <input type="range" id="env-co2" min="0" max="100" value="50" oninput="envUpdate()">
+        <span class="slider-val" id="env-co2-val">50%</span>
+      </div>
+      <div class="chart-wrap"><canvas id="env-co2-chart" height="200"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Temperature</div>
+      <div class="slider-group">
+        <label>Level</label>
+        <input type="range" id="env-temp" min="0" max="50" value="25" oninput="envUpdate()">
+        <span class="slider-val" id="env-temp-val">25&deg;C</span>
+      </div>
+      <div class="chart-wrap"><canvas id="env-temp-chart" height="200"></canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Combined Effect &amp; Limiting Factor</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">The overall photosynthetic rate is limited by whichever factor is most restrictive. Adjust sliders above to see which factor becomes the bottleneck.</p>
+    <div class="chart-wrap"><canvas id="env-combined-chart" height="260"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="env-rate">-</div><div class="stat-label">Combined Rate</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="env-limiting">-</div><div class="stat-label">Limiting Factor</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="env-light-contrib">-</div><div class="stat-label">Light Score</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="env-co2-contrib">-</div><div class="stat-label">CO&#8322; Score</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="env-temp-contrib">-</div><div class="stat-label">Temp Score</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: EQUATION BALANCER & SUMMARY ═════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Equation Balancer &amp; Summary</div>
+    <div class="section-subtitle">Trace atoms through the overall photosynthesis equation</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Overall Equation</div>
+    <div class="chart-wrap"><canvas id="eq-canvas" height="200"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="eqTrace('C')">Trace Carbon</button>
+      <button class="btn btn-secondary" onclick="eqTrace('O')">Trace Oxygen</button>
+      <button class="btn btn-outline" onclick="eqTrace('H')">Trace Hydrogen</button>
+      <button class="btn btn-outline" onclick="eqTrace('')">Clear</button>
+    </div>
+    <div id="eq-info" class="analysis-result" style="display:none;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Inputs &amp; Outputs Summary</div>
+    <div class="stat-grid">
+      <div class="stat-box stat-blue"><div class="stat-val">6</div><div class="stat-label">CO&#8322; In</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val">6</div><div class="stat-label">H&#8322;O In</div></div>
+      <div class="stat-box stat-green"><div class="stat-val">1</div><div class="stat-label">C&#8326;H&#8321;&#8322;O&#8326; Out</div></div>
+      <div class="stat-box stat-green"><div class="stat-val">6</div><div class="stat-label">O&#8322; Out</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val">Light</div><div class="stat-label">Energy Source</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Photosynthesis vs. Cellular Respiration</div>
+    <div class="chart-wrap"><canvas id="compare-canvas" height="220"></canvas></div>
+    <div class="analysis-result ar-pass">
+      <div class="ar-title">Key Relationship</div>
+      <p>Photosynthesis and cellular respiration are complementary processes. The products of photosynthesis (glucose + O&#8322;) are the reactants of respiration, and vice versa. Together they form a cycle that sustains life on Earth.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: PHOTOSYNTHESIS RATE SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+const DISC_COUNT = 10;
+let rateState = {
+  running: false, timer: null, elapsed: 0, light: 50,
+  discs: [], floatingCount: 0, o2: 0, dataPoints: []
+};
+
+function rateInitDiscs() {
+  rateState.discs = [];
+  for (let i = 0; i < DISC_COUNT; i++) {
+    rateState.discs.push({
+      x: 80 + Math.random() * 160,
+      y: 260 + Math.random() * 40,
+      o2: 0, floating: false, wobble: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function rateUpdateLight() {
+  rateState.light = parseInt($('rate-light').value);
+  $('rate-light-val').textContent = rateState.light + '%';
+}
+
+function rateStart() {
+  if (rateState.running) return;
+  rateState.running = true;
+  rateState.elapsed = 0;
+  rateState.floatingCount = 0;
+  rateState.o2 = 0;
+  rateInitDiscs();
+  rateState.timer = setInterval(rateTick, 100);
+}
+
+function rateReset() {
+  rateState.running = false;
+  if (rateState.timer) clearInterval(rateState.timer);
+  rateState.timer = null;
+  rateState.elapsed = 0;
+  rateState.floatingCount = 0;
+  rateState.o2 = 0;
+  rateInitDiscs();
+  $('rate-floating').textContent = '0';
+  $('rate-sunk').textContent = '10';
+  $('rate-time').textContent = '0s';
+  $('rate-o2').textContent = '0';
+  drawBeaker();
+}
+
+function rateTick() {
+  rateState.elapsed++;
+  const light = rateState.light;
+  // O2 production rate: follows Michaelis-Menten-like saturation curve
+  const ratePerTick = (light / (light + 20)) * 0.08;
+
+  rateState.discs.forEach(d => {
+    if (d.floating) return;
+    d.o2 += ratePerTick * (0.8 + Math.random() * 0.4);
+    d.wobble += 0.05;
+    if (d.o2 >= 1.0) {
+      d.floating = true;
+      d.y = 80 + Math.random() * 20;
+      rateState.floatingCount++;
+    } else {
+      // Slowly rise as O2 accumulates
+      d.y = lerp(260 + 40 * (1 - d.o2), 260, 1 - d.o2);
+    }
+  });
+
+  rateState.o2 += ratePerTick;
+
+  $('rate-floating').textContent = rateState.floatingCount;
+  $('rate-sunk').textContent = DISC_COUNT - rateState.floatingCount;
+  $('rate-time').textContent = (rateState.elapsed / 10).toFixed(1) + 's';
+  $('rate-o2').textContent = rateState.o2.toFixed(1);
+
+  drawBeaker();
+
+  if (rateState.floatingCount >= DISC_COUNT) {
+    clearInterval(rateState.timer);
+    rateState.running = false;
+    // Record data point
+    rateState.dataPoints.push({ light: light, time: rateState.elapsed / 10 });
+    drawRateChart();
+  }
+}
+
+function drawBeaker() {
+  const ctx = getCtx('rate-beaker');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Light source at top
+  const light = rateState.light;
+  const lightAlpha = light / 100;
+  ctx.fillStyle = `rgba(255, 247, 120, ${lightAlpha * 0.3})`;
+  ctx.fillRect(60, 0, 220, 50);
+  ctx.fillStyle = '#d97706'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Light: ' + light + '%', 170, 20);
+
+  // Light rays
+  if (light > 0) {
+    ctx.strokeStyle = `rgba(255, 200, 0, ${lightAlpha * 0.4})`;
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 8; i++) {
+      const x = 80 + i * 25;
+      ctx.beginPath();
+      ctx.moveTo(x, 30);
+      ctx.lineTo(x + (Math.random() - 0.5) * 10, 60);
+      ctx.stroke();
+    }
+  }
+
+  // Beaker
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(60, 55);
+  ctx.lineTo(60, 310);
+  ctx.lineTo(280, 310);
+  ctx.lineTo(280, 55);
+  ctx.stroke();
+
+  // Water in beaker
+  const waterGrad = ctx.createLinearGradient(60, 60, 60, 310);
+  waterGrad.addColorStop(0, 'rgba(147, 197, 253, 0.3)');
+  waterGrad.addColorStop(1, 'rgba(59, 130, 246, 0.2)');
+  ctx.fillStyle = waterGrad;
+  ctx.fillRect(62, 60, 216, 248);
+
+  // NaHCO3 solution label
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('NaHCO\u2083 solution', 290, 180);
+
+  // Leaf discs
+  rateState.discs.forEach((d, i) => {
+    const wobbleX = Math.sin(d.wobble + rateState.elapsed * 0.02) * 3;
+    const x = d.x + wobbleX;
+    const y = d.floating ? d.y + Math.sin(rateState.elapsed * 0.05 + i) * 3 : lerp(300 - d.o2 * 50, d.y, 0.5);
+
+    // Disc body
+    ctx.fillStyle = d.floating ? '#22c55e' : '#4ade80';
+    ctx.beginPath();
+    ctx.ellipse(x, y, 14, 8, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#15803d'; ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Bubble if accumulating O2
+    if (d.o2 > 0.3 && !d.floating) {
+      const bubbleSize = d.o2 * 4;
+      ctx.fillStyle = 'rgba(255,255,255,0.6)';
+      ctx.beginPath();
+      ctx.arc(x + 8, y - 10 - Math.random() * 3, bubbleSize, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // O2 bubbles rising from floating discs
+    if (d.floating) {
+      for (let b = 0; b < 2; b++) {
+        const bx = x + (Math.random() - 0.5) * 20;
+        const by = y - 10 - Math.random() * 30;
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.beginPath();
+        ctx.arc(bx, by, 1.5 + Math.random() * 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+  });
+
+  // Label
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Leaf Disc Floating Assay', 170, H - 8);
+}
+
+function rateAutoSweep() {
+  rateState.dataPoints = [];
+  const intensities = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  intensities.forEach(light => {
+    // Simulate: time for all 10 discs to float at this intensity
+    // Using the same saturation model
+    const ratePerTick = light === 0 ? 0 : (light / (light + 20)) * 0.08;
+    const time = ratePerTick > 0 ? (1.0 / ratePerTick) / 10 : 999;
+    rateState.dataPoints.push({ light: light, time: Math.min(time, 100) });
+  });
+  drawRateChart();
+}
+
+function drawRateChart() {
+  const ctx = getCtx('rate-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 25, right: 20, bottom: 45, left: 55 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!rateState.dataPoints.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Run experiments at different light intensities to build the rate curve', W / 2, H / 2);
+    return;
+  }
+
+  // Sort by light
+  const pts = [...rateState.dataPoints].sort((a, b) => a.light - b.light);
+  // Convert time to rate (inverse of time, higher = faster)
+  const rates = pts.map(p => p.time > 0 ? 10 / p.time : 0);
+  const maxRate = Math.max(...rates) * 1.2 || 1;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxRate * i / 4).toFixed(1), pad.left - 6, y + 4);
+  }
+
+  // X axis labels
+  for (let i = 0; i <= 10; i++) {
+    const x = pad.left + (i / 10) * plotW;
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText((i * 10) + '%', x, H - pad.bottom + 16);
+  }
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Light Intensity (%)', pad.left + plotW / 2, H - 4);
+  ctx.save(); ctx.translate(12, pad.top + plotH / 2); ctx.rotate(-Math.PI / 2);
+  ctx.fillText('Rate (rel. units)', 0, 0); ctx.restore();
+
+  // Plot line
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  pts.forEach((p, i) => {
+    const x = pad.left + (p.light / 100) * plotW;
+    const y = pad.top + plotH * (1 - rates[i] / maxRate);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Dots
+  pts.forEach((p, i) => {
+    const x = pad.left + (p.light / 100) * plotW;
+    const y = pad.top + plotH * (1 - rates[i] / maxRate);
+    ctx.fillStyle = '#16a34a'; ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
+  });
+
+  // Saturation label
+  if (pts.length > 3) {
+    const lastPts = rates.slice(-3);
+    const diff = Math.abs(lastPts[2] - lastPts[0]);
+    if (diff < maxRate * 0.05) {
+      const sx = pad.left + plotW * 0.75;
+      ctx.fillStyle = 'rgba(234,179,8,0.15)';
+      ctx.fillRect(sx, pad.top, pad.left + plotW - sx, plotH);
+      ctx.fillStyle = '#d97706'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('SATURATION', sx + (pad.left + plotW - sx) / 2, pad.top + 14);
+    }
+  }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: LIGHT ABSORPTION SPECTRUM
+// ══════════════════════════════════════════════════════════════════════════
+let spectrumSelected = -1;
+
+function wavelengthToRGB(nm) {
+  let r = 0, g = 0, b = 0;
+  if (nm >= 380 && nm < 440) { r = -(nm - 440) / (440 - 380); b = 1; }
+  else if (nm >= 440 && nm < 490) { g = (nm - 440) / (490 - 440); b = 1; }
+  else if (nm >= 490 && nm < 510) { g = 1; b = -(nm - 510) / (510 - 490); }
+  else if (nm >= 510 && nm < 580) { r = (nm - 510) / (580 - 510); g = 1; }
+  else if (nm >= 580 && nm < 645) { r = 1; g = -(nm - 645) / (645 - 580); }
+  else if (nm >= 645 && nm <= 700) { r = 1; }
+  // Intensity factor
+  let f = 1;
+  if (nm >= 380 && nm < 420) f = 0.3 + 0.7 * (nm - 380) / (420 - 380);
+  else if (nm > 680 && nm <= 700) f = 0.3 + 0.7 * (700 - nm) / (700 - 680);
+  return [Math.round(r * f * 255), Math.round(g * f * 255), Math.round(b * f * 255)];
+}
+
+// Pigment absorption modeled as sum of Gaussians
+function gaussian(x, mu, sigma, amp) {
+  return amp * Math.exp(-((x - mu) ** 2) / (2 * sigma ** 2));
+}
+
+function chlAAbsorption(nm) {
+  return gaussian(nm, 430, 18, 0.9) + gaussian(nm, 660, 20, 0.85) + gaussian(nm, 410, 30, 0.2) + gaussian(nm, 615, 25, 0.15);
+}
+
+function chlBAbsorption(nm) {
+  return gaussian(nm, 460, 20, 0.75) + gaussian(nm, 640, 22, 0.65) + gaussian(nm, 435, 25, 0.2) + gaussian(nm, 600, 20, 0.1);
+}
+
+function carotenoidAbsorption(nm) {
+  return gaussian(nm, 450, 25, 0.7) + gaussian(nm, 475, 20, 0.5) + gaussian(nm, 425, 22, 0.4);
+}
+
+function drawSpectrum() {
+  const ctx = getCtx('spectrum-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 25, right: 20, bottom: 60, left: 55 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+
+  // Draw visible light spectrum bar at bottom
+  const specH = 35;
+  const specY = H - pad.bottom + 5;
+  for (let i = 0; i < plotW; i++) {
+    const nm = 380 + (i / plotW) * 320;
+    const [r, g, b] = wavelengthToRGB(nm);
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fillRect(pad.left + i, specY, 1, specH);
+  }
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+  ctx.strokeRect(pad.left, specY, plotW, specH);
+
+  // Wavelength labels
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  for (let nm = 400; nm <= 700; nm += 50) {
+    const x = pad.left + ((nm - 380) / 320) * plotW;
+    ctx.fillText(nm + 'nm', x, specY + specH + 14);
+  }
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((i * 25) + '%', pad.left - 6, y + 4);
+  }
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('Absorbance', pad.left - 6, pad.top - 8);
+
+  // Draw absorption curves
+  const pigments = [
+    { fn: chlAAbsorption, color: '#1a8f3c', label: 'Chl a' },
+    { fn: chlBAbsorption, color: '#4ecb71', label: 'Chl b' },
+    { fn: carotenoidAbsorption, color: '#e8a317', label: 'Carotenoids' }
+  ];
+
+  pigments.forEach(pig => {
+    ctx.strokeStyle = pig.color; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    for (let i = 0; i <= plotW; i++) {
+      const nm = 380 + (i / plotW) * 320;
+      const abs = pig.fn(nm);
+      const x = pad.left + i;
+      const y = pad.top + plotH * (1 - abs);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Fill under curve
+    ctx.globalAlpha = 0.08;
+    ctx.fillStyle = pig.color;
+    ctx.lineTo(pad.left + plotW, pad.top + plotH);
+    ctx.lineTo(pad.left, pad.top + plotH);
+    ctx.closePath();
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+
+  // Selected wavelength line
+  if (spectrumSelected >= 380 && spectrumSelected <= 700) {
+    const sx = pad.left + ((spectrumSelected - 380) / 320) * plotW;
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+    ctx.beginPath(); ctx.moveTo(sx, pad.top); ctx.lineTo(sx, specY + specH); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Wavelength label
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    const [r, g, b] = wavelengthToRGB(spectrumSelected);
+    ctx.fillStyle = `rgb(${Math.min(255, r + 80)},${Math.min(255, g + 80)},${Math.min(255, b + 80)})`;
+    ctx.fillText(spectrumSelected + ' nm', sx, pad.top - 6);
+  }
+
+  // Legend (top right)
+  pigments.forEach((pig, i) => {
+    const lx = W - pad.right - 100;
+    const ly = pad.top + 10 + i * 18;
+    ctx.fillStyle = pig.color;
+    ctx.fillRect(lx, ly - 4, 12, 3);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(pig.label, lx + 18, ly);
+  });
+}
+
+// Click handler for spectrum
+function spectrumClick(e) {
+  const c = $('spectrum-canvas');
+  const rect = c.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const x = (e.clientX - rect.left);
+  const W = c.offsetWidth || c.width / dpr;
+  const pad = { left: 55, right: 20 };
+  const plotW = W - pad.left - pad.right;
+  const relX = x - pad.left;
+  if (relX < 0 || relX > plotW) return;
+  const nm = Math.round(380 + (relX / plotW) * 320);
+  spectrumSelected = nm;
+  drawSpectrum();
+
+  // Show info
+  const chlA = chlAAbsorption(nm);
+  const chlB = chlBAbsorption(nm);
+  const car = carotenoidAbsorption(nm);
+  const [r, g, b] = wavelengthToRGB(nm);
+  const colorName = nm < 450 ? 'Violet' : nm < 490 ? 'Blue' : nm < 510 ? 'Cyan' :
+    nm < 560 ? 'Green' : nm < 590 ? 'Yellow' : nm < 640 ? 'Orange' : 'Red';
+
+  let maxPig = 'None';
+  const maxAbs = Math.max(chlA, chlB, car);
+  if (maxAbs > 0.1) {
+    if (chlA >= chlB && chlA >= car) maxPig = 'Chlorophyll a';
+    else if (chlB >= chlA && chlB >= car) maxPig = 'Chlorophyll b';
+    else maxPig = 'Carotenoids';
+  }
+
+  const info = $('spectrum-info');
+  info.style.display = 'block';
+  info.className = 'analysis-result' + (maxAbs > 0.3 ? ' ar-pass' : '');
+  info.innerHTML = `
+    <div class="ar-title">${nm} nm &mdash; ${colorName} Light</div>
+    <p>Chlorophyll a absorption: <code>${(chlA * 100).toFixed(1)}%</code> &nbsp;
+    Chlorophyll b: <code>${(chlB * 100).toFixed(1)}%</code> &nbsp;
+    Carotenoids: <code>${(car * 100).toFixed(1)}%</code></p>
+    <p><strong>Primary absorber:</strong> ${maxPig} &nbsp; | &nbsp;
+    ${maxAbs > 0.3 ? 'This wavelength is well-absorbed for photosynthesis.' :
+      maxAbs > 0.1 ? 'This wavelength is weakly absorbed.' :
+      'This wavelength is mostly reflected/transmitted (low absorption).'}</p>
+  `;
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: LIGHT REACTIONS VISUALIZER
+// ══════════════════════════════════════════════════════════════════════════
+let lrState = {
+  playing: false, timer: null, step: 0, maxSteps: 7,
+  h2o: 0, o2: 0, atp: 0, nadph: 0,
+  electrons: [], particles: []
+};
+
+const LR_STEPS = [
+  { title: 'Step 1: Light hits Photosystem II',
+    desc: 'Photons of light excite electrons in the chlorophyll molecules of Photosystem II (PSII) in the thylakoid membrane.',
+    h2o: 0, o2: 0, atp: 0, nadph: 0 },
+  { title: 'Step 2: Water Splitting (Photolysis)',
+    desc: '2 H\u2082O molecules are split to replace the excited electrons. This releases O\u2082 and H\u207A ions into the thylakoid lumen.',
+    h2o: 2, o2: 1, atp: 0, nadph: 0 },
+  { title: 'Step 3: Electron Transport Chain',
+    desc: 'Excited electrons pass from PSII through plastoquinone (Pq), the cytochrome b6f complex, and plastocyanin (Pc). This pumps H\u207A ions across the membrane.',
+    h2o: 0, o2: 0, atp: 0, nadph: 0 },
+  { title: 'Step 4: ATP Synthesis (Chemiosmosis)',
+    desc: 'H\u207A ions flow back through ATP synthase, generating ATP from ADP + P\u1d62.',
+    h2o: 0, o2: 0, atp: 2, nadph: 0 },
+  { title: 'Step 5: Light hits Photosystem I',
+    desc: 'Light re-energizes electrons at Photosystem I (PSI). Electrons from PSII arrive via plastocyanin to replace them.',
+    h2o: 0, o2: 0, atp: 0, nadph: 0 },
+  { title: 'Step 6: NADPH Production',
+    desc: 'Electrons from PSI are passed through ferredoxin to NADP\u207A reductase, which combines them with H\u207A to form NADPH.',
+    h2o: 0, o2: 0, atp: 0, nadph: 1 },
+  { title: 'Cycle Complete!',
+    desc: 'One complete pass through both photosystems produces O\u2082, ATP, and NADPH. These energy carriers power the Calvin cycle.',
+    h2o: 0, o2: 0, atp: 0, nadph: 0 }
+];
+
+function lrToggle() {
+  if (lrState.playing) {
+    lrState.playing = false;
+    clearInterval(lrState.timer);
+    $('lr-play-btn').textContent = 'Play';
+  } else {
+    lrState.playing = true;
+    $('lr-play-btn').textContent = 'Pause';
+    lrState.timer = setInterval(() => {
+      lrStep();
+      if (lrState.step >= lrState.maxSteps) {
+        lrState.playing = false;
+        clearInterval(lrState.timer);
+        $('lr-play-btn').textContent = 'Play';
+      }
+    }, 1500);
+  }
+}
+
+function lrStep() {
+  if (lrState.step >= lrState.maxSteps) {
+    lrState.step = 0;
+    lrState.h2o = 0; lrState.o2 = 0; lrState.atp = 0; lrState.nadph = 0;
+  }
+  const s = LR_STEPS[lrState.step];
+  lrState.h2o += s.h2o;
+  lrState.o2 += s.o2;
+  lrState.atp += s.atp;
+  lrState.nadph += s.nadph;
+
+  $('lr-h2o').textContent = lrState.h2o;
+  $('lr-o2').textContent = lrState.o2;
+  $('lr-atp').textContent = lrState.atp;
+  $('lr-nadph').textContent = lrState.nadph;
+
+  $('lr-step-info').innerHTML = `<div class="ar-title">${s.title}</div><p>${s.desc}</p>`;
+
+  drawLightReactions();
+  lrState.step++;
+}
+
+function lrReset() {
+  lrState.playing = false;
+  if (lrState.timer) clearInterval(lrState.timer);
+  lrState.step = 0;
+  lrState.h2o = 0; lrState.o2 = 0; lrState.atp = 0; lrState.nadph = 0;
+  $('lr-h2o').textContent = '0'; $('lr-o2').textContent = '0';
+  $('lr-atp').textContent = '0'; $('lr-nadph').textContent = '0';
+  $('lr-play-btn').textContent = 'Play';
+  $('lr-step-info').innerHTML = '<div class="ar-title">Current Step</div><p>Press Play or Step Forward to begin the light reactions.</p>';
+  drawLightReactions();
+}
+
+function drawLightReactions() {
+  const ctx = getCtx('lr-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const step = lrState.step;
+  const memY = 180;
+  const memH = 60;
+
+  // Stroma label (top)
+  ctx.fillStyle = '#f0fdf4';
+  ctx.fillRect(0, 0, W, memY);
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('STROMA', 10, 20);
+
+  // Thylakoid membrane
+  const memGrad = ctx.createLinearGradient(0, memY, 0, memY + memH);
+  memGrad.addColorStop(0, '#d4a373');
+  memGrad.addColorStop(0.5, '#c68c53');
+  memGrad.addColorStop(1, '#d4a373');
+  ctx.fillStyle = memGrad;
+  ctx.fillRect(0, memY, W, memH);
+  ctx.fillStyle = '#8b5e34'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('THYLAKOID MEMBRANE', W / 2, memY + memH / 2 + 4);
+
+  // Lumen label (bottom)
+  ctx.fillStyle = '#fef3c7';
+  ctx.fillRect(0, memY + memH, W, H - memY - memH);
+  ctx.fillStyle = '#d97706'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('THYLAKOID LUMEN', 10, memY + memH + 20);
+
+  // Complexes
+  const complexes = [
+    { x: 70, label: 'PSII', color: '#7c3aed' },
+    { x: 200, label: 'Cyt b6f', color: '#2563eb' },
+    { x: 330, label: 'PSI', color: '#7c3aed' },
+    { x: 460, label: 'NADP+\nReductase', color: '#16a34a' },
+    { x: 550, label: 'ATP\nSynthase', color: '#d97706' }
+  ];
+
+  complexes.forEach((cx, ci) => {
+    const active = (step === 0 && ci === 0) || (step === 2 && ci === 1) ||
+      (step === 4 && ci === 2) || (step === 5 && ci === 3) || (step === 3 && ci === 4);
+    ctx.fillStyle = active ? cx.color : '#9ca3af';
+    ctx.globalAlpha = active ? 1 : 0.5;
+
+    // Draw as rounded rect embedded in membrane
+    const rw = 50, rh = memH + 20;
+    const rx = cx.x - rw / 2, ry = memY - 10;
+    ctx.beginPath();
+    ctx.roundRect(rx, ry, rw, rh, 8);
+    ctx.fill();
+
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    const lines = cx.label.split('\n');
+    lines.forEach((line, li) => {
+      ctx.fillText(line, cx.x, memY + memH / 2 + (li - (lines.length - 1) / 2) * 12);
+    });
+  });
+
+  // Electron flow arrows
+  if (step >= 2) {
+    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
+    ctx.setLineDash([5, 3]);
+    // PSII -> Cyt b6f
+    ctx.beginPath(); ctx.moveTo(95, memY - 15); ctx.lineTo(175, memY - 15); ctx.stroke();
+    drawArrowHead(ctx, 175, memY - 15, 0);
+    ctx.fillStyle = '#ef4444'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('e\u207B', 135, memY - 22);
+  }
+  if (step >= 4) {
+    // Cyt b6f -> PSI
+    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(225, memY - 15); ctx.lineTo(305, memY - 15); ctx.stroke();
+    drawArrowHead(ctx, 305, memY - 15, 0);
+    ctx.fillStyle = '#ef4444'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('e\u207B (via Pc)', 265, memY - 22);
+  }
+  if (step >= 5) {
+    // PSI -> NADP+ reductase
+    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(355, memY - 15); ctx.lineTo(435, memY - 15); ctx.stroke();
+    drawArrowHead(ctx, 435, memY - 15, 0);
+    ctx.fillStyle = '#ef4444'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('e\u207B (via Fd)', 395, memY - 22);
+  }
+  ctx.setLineDash([]);
+
+  // Light arrows
+  if (step >= 0) {
+    drawLightArrow(ctx, 70, memY - 50, '#f59e0b');
+    ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('LIGHT', 70, memY - 55);
+  }
+  if (step >= 4) {
+    drawLightArrow(ctx, 330, memY - 50, '#f59e0b');
+    ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('LIGHT', 330, memY - 55);
+  }
+
+  // Water splitting
+  if (step >= 1) {
+    ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('2 H\u2082O', 70, memY + memH + 45);
+    ctx.fillStyle = '#ef4444'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText('O\u2082 + 4H\u207A', 70, memY + memH + 65);
+    // Arrow from water to PSII
+    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(70, memY + memH + 35); ctx.lineTo(70, memY + memH + 12); ctx.stroke();
+    drawArrowHead(ctx, 70, memY + memH + 12, -Math.PI / 2);
+  }
+
+  // ATP synthesis
+  if (step >= 3) {
+    ctx.fillStyle = '#d97706'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('ATP', 550, memY - 30);
+    // H+ flow through ATP synthase
+    ctx.fillStyle = '#d97706'; ctx.font = '10px system-ui';
+    ctx.fillText('H\u207A flow', 550, memY + memH + 45);
+    ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(550, memY + memH + 35); ctx.lineTo(550, memY + memH + 12); ctx.stroke();
+    drawArrowHead(ctx, 550, memY + memH + 12, -Math.PI / 2);
+  }
+
+  // NADPH production
+  if (step >= 5) {
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('NADPH', 460, memY - 30);
+    ctx.fillStyle = '#16a34a'; ctx.font = '10px system-ui';
+    ctx.fillText('NADP\u207A + H\u207A', 460, memY - 42);
+  }
+
+  // Products summary box (top right)
+  if (step >= 6) {
+    ctx.fillStyle = 'rgba(240,253,244,0.9)';
+    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.roundRect(W - 180, 30, 170, 80, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#15803d'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Products:', W - 170, 50);
+    ctx.font = '11px system-ui';
+    ctx.fillText('O\u2082, ATP, NADPH', W - 170, 68);
+    ctx.fillText('Ready for Calvin Cycle!', W - 170, 84);
+  }
+
+  // Step indicator
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('Step ' + Math.min(step + 1, 7) + ' / 7', W - 10, H - 10);
+}
+
+function drawArrowHead(ctx, x, y, angle) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle);
+  ctx.fillStyle = ctx.strokeStyle;
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(-8, -4);
+  ctx.lineTo(-8, 4);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawLightArrow(ctx, x, y, color) {
+  ctx.strokeStyle = color; ctx.lineWidth = 2;
+  ctx.beginPath();
+  // Wavy line
+  for (let i = 0; i < 30; i++) {
+    const py = y - 30 + i;
+    const px = x + Math.sin(i * 0.5) * 4;
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  drawArrowHead(ctx, x, y, Math.PI / 2);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: CALVIN CYCLE SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+let calvinState = {
+  playing: false, timer: null,
+  turns: 0, co2Fixed: 0, g3pOut: 0, atpUsed: 0, nadphUsed: 0,
+  co2Level: 3, animPhase: 0, carbons: []
+};
+
+function calvinUpdateCO2() {
+  calvinState.co2Level = parseInt($('calvin-co2').value);
+  $('calvin-co2-val').textContent = calvinState.co2Level;
+}
+
+function calvinToggle() {
+  if (calvinState.playing) {
+    calvinState.playing = false;
+    clearInterval(calvinState.timer);
+    $('calvin-play-btn').textContent = 'Play';
+  } else {
+    calvinState.playing = true;
+    $('calvin-play-btn').textContent = 'Pause';
+    calvinState.timer = setInterval(() => {
+      calvinStep();
+    }, 1200);
+  }
+}
+
+function calvinStep() {
+  calvinState.turns++;
+  calvinState.co2Fixed += 1;
+  calvinState.atpUsed += 3;
+  calvinState.nadphUsed += 2;
+
+  // Every 3 turns, produce 1 net G3P
+  if (calvinState.turns % 3 === 0) {
+    calvinState.g3pOut++;
+  }
+
+  $('calvin-turns').textContent = calvinState.turns;
+  $('calvin-co2fixed').textContent = calvinState.co2Fixed;
+  $('calvin-g3p').textContent = calvinState.g3pOut;
+  $('calvin-atp-used').textContent = calvinState.atpUsed;
+  $('calvin-nadph-used').textContent = calvinState.nadphUsed;
+
+  calvinState.animPhase = (calvinState.animPhase + 1) % 4;
+  drawCalvinCycle();
+}
+
+function calvinReset() {
+  calvinState.playing = false;
+  if (calvinState.timer) clearInterval(calvinState.timer);
+  calvinState.turns = 0; calvinState.co2Fixed = 0; calvinState.g3pOut = 0;
+  calvinState.atpUsed = 0; calvinState.nadphUsed = 0; calvinState.animPhase = 0;
+  $('calvin-turns').textContent = '0'; $('calvin-co2fixed').textContent = '0';
+  $('calvin-g3p').textContent = '0'; $('calvin-atp-used').textContent = '0';
+  $('calvin-nadph-used').textContent = '0';
+  $('calvin-play-btn').textContent = 'Play';
+  drawCalvinCycle();
+}
+
+function drawCalvinCycle() {
+  const ctx = getCtx('calvin-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background - stroma
+  ctx.fillStyle = '#f0fdf4'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('STROMA (Chloroplast)', 10, 20);
+
+  const cx = W / 2, cy = H / 2 + 10;
+  const R = 140; // Main circle radius
+
+  // Draw the circular pathway
+  ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Phase positions (as angles on the circle, starting from top)
+  const phases = [
+    { angle: -Math.PI / 2, label: 'CO\u2082 Fixation', sublabel: 'RuBisCO', color: '#c41e3a' },
+    { angle: -Math.PI / 6, label: '3-PGA', sublabel: '(3C molecule)', color: '#2563eb' },
+    { angle: Math.PI / 4, label: 'Reduction', sublabel: 'ATP + NADPH', color: '#d97706' },
+    { angle: 2 * Math.PI / 3, label: 'G3P', sublabel: '(3C sugar)', color: '#16a34a' },
+    { angle: Math.PI + Math.PI / 6, label: 'RuBP\nRegeneration', sublabel: '(5C)', color: '#7c3aed' },
+  ];
+
+  phases.forEach((p, i) => {
+    const px = cx + Math.cos(p.angle) * R;
+    const py = cy + Math.sin(p.angle) * R;
+
+    // Node circle
+    const isActive = calvinState.animPhase === i % 4;
+    const nodeR = isActive ? 30 : 24;
+    ctx.fillStyle = isActive ? p.color : '#f8fafc';
+    ctx.strokeStyle = p.color; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(px, py, nodeR, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // Label
+    ctx.fillStyle = isActive ? '#fff' : p.color;
+    ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    const lines = p.label.split('\n');
+    lines.forEach((line, li) => {
+      ctx.fillText(line, px, py + (li - (lines.length - 1) / 2) * 11 - 2);
+    });
+
+    // Sublabel (outside)
+    const lx = cx + Math.cos(p.angle) * (R + 45);
+    const ly = cy + Math.sin(p.angle) * (R + 45);
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+    ctx.fillText(p.sublabel, lx, ly);
+  });
+
+  // Direction arrows along circle
+  for (let a = 0; a < Math.PI * 2; a += Math.PI / 3) {
+    const ax = cx + Math.cos(a + 0.3) * (R + 8);
+    const ay = cy + Math.sin(a + 0.3) * (R + 8);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('\u25B6', ax, ay + 4);
+  }
+
+  // CO2 input arrow (top)
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx, cy - R - 60); ctx.lineTo(cx, cy - R - 32); ctx.stroke();
+  drawArrowHead(ctx, cx, cy - R - 32, Math.PI / 2);
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('CO\u2082 IN', cx, cy - R - 68);
+
+  // Carbon atoms flowing (small circles)
+  if (calvinState.turns > 0) {
+    const phase = calvinState.animPhase;
+    for (let c = 0; c < 3; c++) {
+      const a = phases[phase].angle + (c - 1) * 0.1;
+      const ccx = cx + Math.cos(a) * (R - 8 + c * 6);
+      const ccy = cy + Math.sin(a) * (R - 8 + c * 6);
+      ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(ccx, ccy, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('C', ccx, ccy + 3);
+    }
+  }
+
+  // G3P output arrow (bottom right)
+  const g3pAngle = 2 * Math.PI / 3;
+  const g3pX = cx + Math.cos(g3pAngle) * R;
+  const g3pY = cy + Math.sin(g3pAngle) * R;
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(g3pX + 30, g3pY + 10); ctx.lineTo(g3pX + 70, g3pY + 30); ctx.stroke();
+  drawArrowHead(ctx, g3pX + 70, g3pY + 30, Math.atan2(20, 40));
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('G3P OUT', g3pX + 75, g3pY + 35);
+  ctx.font = '10px system-ui'; ctx.fillStyle = '#6b7280';
+  ctx.fillText('(1 per 3 turns)', g3pX + 75, g3pY + 50);
+
+  // ATP / NADPH input arrows
+  const redAngle = Math.PI / 4;
+  const redX = cx + Math.cos(redAngle) * R;
+  const redY = cy + Math.sin(redAngle) * R;
+  ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(redX + 60, redY - 30); ctx.lineTo(redX + 32, redY - 5); ctx.stroke();
+  drawArrowHead(ctx, redX + 32, redY - 5, Math.atan2(25, -28));
+  ctx.fillStyle = '#d97706'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('ATP + NADPH', redX + 55, redY - 38);
+  ctx.font = '10px system-ui'; ctx.fillStyle = '#6b7280';
+  ctx.fillText('(from light reactions)', redX + 55, redY - 22);
+
+  // RuBP label
+  const rubpAngle = Math.PI + Math.PI / 6;
+  const rubpX = cx + Math.cos(rubpAngle) * (R + 70);
+  const rubpY = cy + Math.sin(rubpAngle) * (R + 70);
+  ctx.fillStyle = '#7c3aed'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('5 of 6 G3P recycled', rubpX + 30, rubpY - 5);
+  ctx.fillText('to regenerate RuBP', rubpX + 30, rubpY + 10);
+
+  // Turn counter (bottom)
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Turn ' + calvinState.turns + (calvinState.turns % 3 === 0 && calvinState.turns > 0 ? ' \u2014 G3P produced!' : ''), cx, H - 15);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: ENVIRONMENTAL FACTORS
+// ══════════════════════════════════════════════════════════════════════════
+function lightResponse(intensity) {
+  // Michaelis-Menten saturation
+  return intensity / (intensity + 25);
+}
+
+function co2Response(co2) {
+  // Also saturating
+  return co2 / (co2 + 20);
+}
+
+function tempResponse(temp) {
+  // Optimum around 25-30C, drops at extremes
+  // Bell curve centered at 28
+  const opt = 28;
+  return Math.exp(-((temp - opt) ** 2) / (2 * 10 ** 2));
+}
+
+function envUpdate() {
+  const light = parseInt($('env-light').value);
+  const co2 = parseInt($('env-co2').value);
+  const temp = parseInt($('env-temp').value);
+
+  $('env-light-val').textContent = light + '%';
+  $('env-co2-val').textContent = co2 + '%';
+  $('env-temp-val').textContent = temp + '\u00B0C';
+
+  const lScore = lightResponse(light);
+  const cScore = co2Response(co2);
+  const tScore = tempResponse(temp);
+
+  // Limiting factor = minimum
+  const combined = Math.min(lScore, cScore, tScore);
+  let limiting = 'Light';
+  if (cScore <= lScore && cScore <= tScore) limiting = 'CO\u2082';
+  if (tScore <= lScore && tScore <= cScore) limiting = 'Temp';
+
+  $('env-rate').textContent = (combined * 100).toFixed(0) + '%';
+  $('env-limiting').textContent = limiting;
+  $('env-light-contrib').textContent = (lScore * 100).toFixed(0) + '%';
+  $('env-co2-contrib').textContent = (cScore * 100).toFixed(0) + '%';
+  $('env-temp-contrib').textContent = (tScore * 100).toFixed(0) + '%';
+
+  drawEnvLightChart(light);
+  drawEnvCO2Chart(co2);
+  drawEnvTempChart(temp);
+  drawEnvCombinedChart(light, co2, temp);
+}
+
+function drawEnvFactorChart(canvasId, curveFn, currentVal, maxX, xLabel, markerColor) {
+  const ctx = getCtx(canvasId);
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 15, right: 15, bottom: 30, left: 40 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 3; i++) {
+    const y = pad.top + plotH * (1 - i / 3);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+  }
+
+  // Curve
+  ctx.strokeStyle = '#6b7280'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i <= plotW; i++) {
+    const x = (i / plotW) * maxX;
+    const y = curveFn(x);
+    const px = pad.left + i;
+    const py = pad.top + plotH * (1 - y);
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Fill under curve
+  ctx.globalAlpha = 0.05; ctx.fillStyle = markerColor;
+  ctx.lineTo(pad.left + plotW, pad.top + plotH);
+  ctx.lineTo(pad.left, pad.top + plotH);
+  ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1;
+
+  // Current value marker
+  const cvX = pad.left + (currentVal / maxX) * plotW;
+  const cvY = pad.top + plotH * (1 - curveFn(currentVal));
+  ctx.fillStyle = markerColor; ctx.beginPath(); ctx.arc(cvX, cvY, 6, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(cvX, cvY, 2.5, 0, Math.PI * 2); ctx.fill();
+
+  // Value label
+  ctx.fillStyle = markerColor; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText((curveFn(currentVal) * 100).toFixed(0) + '%', cvX, cvY - 12);
+
+  // X label
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(xLabel, pad.left + plotW / 2, H - 4);
+}
+
+function drawEnvLightChart(val) {
+  drawEnvFactorChart('env-light-chart', lightResponse, val, 100, 'Light Intensity (%)', '#16a34a');
+}
+
+function drawEnvCO2Chart(val) {
+  drawEnvFactorChart('env-co2-chart', co2Response, val, 100, 'CO\u2082 Concentration (%)', '#2563eb');
+}
+
+function drawEnvTempChart(val) {
+  drawEnvFactorChart('env-temp-chart', tempResponse, val, 50, 'Temperature (\u00B0C)', '#7c3aed');
+}
+
+function drawEnvCombinedChart(light, co2, temp) {
+  const ctx = getCtx('env-combined-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 45, left: 55 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((i * 25) + '%', pad.left - 6, y + 4);
+  }
+
+  // Three factor bars + combined
+  const items = [
+    { label: 'Light', value: lightResponse(light), color: '#16a34a' },
+    { label: 'CO\u2082', value: co2Response(co2), color: '#2563eb' },
+    { label: 'Temp', value: tempResponse(temp), color: '#7c3aed' },
+    { label: 'Combined', value: Math.min(lightResponse(light), co2Response(co2), tempResponse(temp)), color: '#c41e3a' }
+  ];
+
+  const n = items.length;
+  const barW = plotW / n * 0.5;
+  const gap = plotW / n;
+
+  items.forEach((it, i) => {
+    const x = pad.left + gap * i + (gap - barW) / 2;
+    const h = it.value * plotH;
+
+    // Bar
+    ctx.fillStyle = it.color;
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+
+    // Limiting factor highlight
+    const combined = Math.min(lightResponse(light), co2Response(co2), tempResponse(temp));
+    if (i < 3 && Math.abs(it.value - combined) < 0.01) {
+      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.setLineDash([4, 2]);
+      ctx.strokeRect(x - 3, pad.top + plotH - h - 3, barW + 6, h + 3);
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('LIMITING', x + barW / 2, pad.top + plotH - h - 8);
+    }
+
+    // Value on top
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText((it.value * 100).toFixed(0) + '%', x + barW / 2, pad.top + plotH - h - 20);
+
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText(it.label, x + barW / 2, H - pad.bottom + 18);
+  });
+
+  // Title
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Photosynthetic Rate by Factor', pad.left + plotW / 2, pad.top - 8);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: EQUATION BALANCER & SUMMARY
+// ══════════════════════════════════════════════════════════════════════════
+let eqTraceAtom = '';
+
+function eqTrace(atom) {
+  eqTraceAtom = atom;
+  drawEquation();
+
+  const info = $('eq-info');
+  if (!atom) {
+    info.style.display = 'none';
+    return;
+  }
+
+  info.style.display = 'block';
+  info.className = 'analysis-result ar-pass';
+
+  const traces = {
+    C: {
+      title: 'Carbon Trace (6 C atoms)',
+      desc: '6 carbon atoms enter as CO\u2082 (6 CO\u2082 = 6 C). They are fixed by RuBisCO in the Calvin cycle and exit in glucose (C\u2086H\u2081\u2082O\u2086 = 6 C). Carbon in = Carbon out.'
+    },
+    O: {
+      title: 'Oxygen Trace (18 O atoms)',
+      desc: 'Oxygen enters from both CO\u2082 (6 CO\u2082 = 12 O) and H\u2082O (6 H\u2082O = 6 O) = 18 O total. It exits in glucose (C\u2086H\u2081\u2082O\u2086 = 6 O) and O\u2082 (6 O\u2082 = 12 O) = 18 O total. The O\u2082 released comes from water splitting, NOT from CO\u2082.'
+    },
+    H: {
+      title: 'Hydrogen Trace (12 H atoms)',
+      desc: '12 hydrogen atoms enter from water (6 H\u2082O = 12 H). They exit in glucose (C\u2086H\u2081\u2082O\u2086 = 12 H). Hydrogen in = Hydrogen out.'
+    }
+  };
+
+  const t = traces[atom];
+  info.innerHTML = `<div class="ar-title">${t.title}</div><p>${t.desc}</p>`;
+}
+
+function drawEquation() {
+  const ctx = getCtx('eq-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cy = H / 2;
+  const parts = [
+    { text: '6CO', sub: '2', x: 60, atoms: { C: 6, O: 12 } },
+    { text: '+', x: 130, special: true },
+    { text: '6H', sub: '2', text2: 'O', x: 170, atoms: { H: 12, O: 6 } },
+    { text: '\u2192', x: 260, special: true },
+    { text: 'C', sub: '6', text2: 'H', sub2: '12', text3: 'O', sub3: '6', x: 340, atoms: { C: 6, H: 12, O: 6 } },
+    { text: '+', x: 460, special: true },
+    { text: '6O', sub: '2', x: 510, atoms: { O: 12 } }
+  ];
+
+  // Light energy label above arrow
+  ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Light Energy', 260, cy - 40);
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(210, cy - 30); ctx.lineTo(310, cy - 30); ctx.stroke();
+
+  // Input/Output labels
+  ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('REACTANTS', 120, cy + 50);
+  ctx.fillStyle = '#16a34a';
+  ctx.fillText('PRODUCTS', 420, cy + 50);
+
+  // Draw equation parts
+  parts.forEach(p => {
+    if (p.special) {
+      ctx.fillStyle = '#6b7280'; ctx.font = 'bold 24px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(p.text, p.x, cy + 8);
+      return;
+    }
+
+    // Determine highlight
+    const hasAtom = eqTraceAtom && p.atoms && p.atoms[eqTraceAtom];
+    const bgColor = hasAtom ? (eqTraceAtom === 'C' ? 'rgba(196,30,58,0.15)' :
+      eqTraceAtom === 'O' ? 'rgba(37,99,235,0.15)' : 'rgba(22,163,74,0.15)') : null;
+
+    if (bgColor) {
+      ctx.fillStyle = bgColor;
+      ctx.beginPath(); ctx.roundRect(p.x - 35, cy - 22, 70, 44, 8); ctx.fill();
+      ctx.strokeStyle = eqTraceAtom === 'C' ? '#c41e3a' : eqTraceAtom === 'O' ? '#2563eb' : '#16a34a';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = hasAtom ? '#1a1a1a' : '#374151';
+    ctx.font = 'bold 22px system-ui'; ctx.textAlign = 'center';
+
+    // Build the formula string display
+    let xOff = p.x - 20;
+    ctx.textAlign = 'left';
+
+    // Simple rendering for the molecule
+    const drawMolecule = (text, sub, addText, addSub, addText2, addSub2) => {
+      let cx = xOff;
+      ctx.font = 'bold 22px system-ui';
+      ctx.fillText(text, cx, cy + 6);
+      cx += ctx.measureText(text).width;
+      if (sub) {
+        ctx.font = 'bold 14px system-ui';
+        ctx.fillText(sub, cx, cy + 12);
+        cx += ctx.measureText(sub).width;
+      }
+      if (addText) {
+        ctx.font = 'bold 22px system-ui';
+        ctx.fillText(addText, cx, cy + 6);
+        cx += ctx.measureText(addText).width;
+      }
+      if (addSub) {
+        ctx.font = 'bold 14px system-ui';
+        ctx.fillText(addSub, cx, cy + 12);
+        cx += ctx.measureText(addSub).width;
+      }
+      if (addText2) {
+        ctx.font = 'bold 22px system-ui';
+        ctx.fillText(addText2, cx, cy + 6);
+        cx += ctx.measureText(addText2).width;
+      }
+      if (addSub2) {
+        ctx.font = 'bold 14px system-ui';
+        ctx.fillText(addSub2, cx, cy + 12);
+      }
+    };
+
+    drawMolecule(p.text, p.sub, p.text2, p.sub2, p.text3, p.sub3);
+
+    // Atom count badge
+    if (hasAtom) {
+      const badgeColor = eqTraceAtom === 'C' ? '#c41e3a' : eqTraceAtom === 'O' ? '#2563eb' : '#16a34a';
+      ctx.fillStyle = badgeColor;
+      ctx.beginPath(); ctx.arc(p.x + 25, cy - 28, 12, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(p.atoms[eqTraceAtom], p.x + 25, cy - 24);
+    }
+  });
+}
+
+function drawComparison() {
+  const ctx = getCtx('compare-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const midY = H / 2;
+
+  // Photosynthesis (top)
+  ctx.fillStyle = '#f0fdf4';
+  ctx.beginPath(); ctx.roundRect(20, 20, W - 40, midY - 35, 10); ctx.fill();
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2; ctx.stroke();
+
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('PHOTOSYNTHESIS', 35, 45);
+  ctx.fillStyle = '#374151'; ctx.font = '13px system-ui';
+  ctx.fillText('6CO\u2082 + 6H\u2082O  \u2192  C\u2086H\u2081\u2082O\u2086 + 6O\u2082', 35, 70);
+  ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui';
+  ctx.fillText('Energy stored (light \u2192 chemical)', 35, 90);
+
+  // Respiration (bottom)
+  ctx.fillStyle = '#fef2f2';
+  ctx.beginPath(); ctx.roundRect(20, midY + 15, W - 40, midY - 35, 10); ctx.fill();
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.stroke();
+
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('CELLULAR RESPIRATION', 35, midY + 40);
+  ctx.fillStyle = '#374151'; ctx.font = '13px system-ui';
+  ctx.fillText('C\u2086H\u2081\u2082O\u2086 + 6O\u2082  \u2192  6CO\u2082 + 6H\u2082O', 35, midY + 65);
+  ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui';
+  ctx.fillText('Energy released (chemical \u2192 ATP)', 35, midY + 85);
+
+  // Circular arrows between them
+  ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2.5;
+  // Right arrow (down)
+  const arX = W - 80;
+  ctx.beginPath(); ctx.moveTo(arX, midY - 20); ctx.lineTo(arX, midY + 15); ctx.stroke();
+  drawArrowHead(ctx, arX, midY + 15, Math.PI / 2);
+  ctx.fillStyle = '#7c3aed'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Glucose', arX + 2, midY + 2);
+  ctx.fillText('+ O\u2082', arX + 2, midY + 12);
+
+  // Left arrow (up)
+  const alX = W - 150;
+  ctx.strokeStyle = '#7c3aed';
+  ctx.beginPath(); ctx.moveTo(alX, midY + 15); ctx.lineTo(alX, midY - 20); ctx.stroke();
+  drawArrowHead(ctx, alX, midY - 20, -Math.PI / 2);
+  ctx.fillStyle = '#7c3aed'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('CO\u2082', alX + 2, midY + 2);
+  ctx.fillText('+ H\u2082O', alX + 2, midY + 12);
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebarActive() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    const top = s.getBoundingClientRect().top;
+    if (top < 200) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebarActive);
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  // Part 1: Init beaker
+  rateInitDiscs();
+  drawBeaker();
+  drawRateChart();
+
+  // Part 2: Init spectrum
+  drawSpectrum();
+  $('spectrum-canvas').addEventListener('click', spectrumClick);
+
+  // Part 3: Init light reactions
+  drawLightReactions();
+
+  // Part 4: Init Calvin cycle
+  drawCalvinCycle();
+
+  // Part 5: Init environmental factors
+  envUpdate();
+
+  // Part 6: Init equation and comparison
+  drawEquation();
+  drawComparison();
+});
+
+// Redraw on resize
+window.addEventListener('resize', () => {
+  drawBeaker();
+  drawRateChart();
+  drawSpectrum();
+  drawLightReactions();
+  drawCalvinCycle();
+  envUpdate();
+  drawEquation();
+  drawComparison();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 1 Dashboard: Scientific Measurement | BIOL-8</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+input[type=number], select {
+  padding: 8px 12px; border: 2px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  transition: border-color 0.15s; background: #fff; width: 100%;
+}
+input[type=number]:focus, select:focus { outline: none; border-color: var(--accent); }
+
+.input-group { display: flex; flex-direction: column; gap: 4px; }
+.input-group label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+.analysis-result.ar-info { border-left-color: var(--blue); }
+.analysis-result.ar-warn { border-left-color: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MEASUREMENT-SPECIFIC
+   ═══════════════════════════════════════════════════════════════════════ */
+.body-input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 12px 0; }
+
+.converter-row { display: flex; align-items: center; gap: 12px; margin: 8px 0; flex-wrap: wrap; }
+.converter-row .arrow { font-size: 20px; color: var(--accent); font-weight: 800; }
+
+.target-container { display: flex; justify-content: center; align-items: center; padding: 20px 0; }
+
+.instrument-card {
+  background: #f8fafc; border-radius: 8px; padding: 16px; border: 1px solid var(--border);
+  margin-bottom: 12px; transition: all 0.15s;
+}
+.instrument-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.instrument-card .ic-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.instrument-card .ic-detail { font-size: 12px; color: var(--text-muted); }
+
+.drag-item {
+  display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 8px;
+  font-size: 13px; font-weight: 600; cursor: grab; transition: all 0.15s;
+  background: #fff; border: 2px solid var(--border); margin: 4px;
+  user-select: none;
+}
+.drag-item:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: var(--shadow); }
+.drag-item.placed { background: #f0fdf4; border-color: var(--green); color: var(--green); cursor: default; opacity: 0.7; }
+
+.drop-zone {
+  min-height: 48px; border: 2px dashed var(--border); border-radius: 8px;
+  padding: 8px 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  transition: all 0.15s; background: #fafafa;
+}
+.drop-zone.over { border-color: var(--accent); background: #fef2f2; }
+.drop-zone .placeholder { font-size: 12px; color: #d1d5db; font-style: italic; }
+.drop-zone .dropped-item {
+  display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 6px;
+  font-size: 12px; font-weight: 600; background: var(--accent); color: #fff; cursor: pointer;
+}
+.drop-zone .dropped-item:hover { background: var(--accent-light); }
+
+.data-entry-row { display: flex; gap: 8px; align-items: center; margin: 6px 0; }
+.data-entry-row input { max-width: 100px; }
+.data-entry-row .label { font-size: 13px; font-weight: 600; min-width: 60px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-8: Human Biology</h1>
+    <p>Lab 1 &mdash; Scientific Measurement</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Body Measurements</a>
+    <a href="#part2"><span class="nav-num">2</span> Unit Converter</a>
+    <a href="#part3"><span class="nav-num">3</span> Precision vs Accuracy</a>
+    <a href="#part4"><span class="nav-num">4</span> Instrument Resolution</a>
+    <a href="#part5"><span class="nav-num">5</span> Experimental Design</a>
+    <a href="#part6"><span class="nav-num">6</span> Data Analysis</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Introduction to Scientific Measurement</h2>
+  <p>Explore measurement in human biology through interactive tools. Measure body proportions, convert medical units, test precision vs. accuracy, and design experiments&mdash;all with real-time visualization.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Scientific Method</span>
+    <span class="bio-tag">Measurement</span>
+    <span class="bio-tag">Human Biology</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PART 1: BODY MEASUREMENT EXPLORER ═══════════════════════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Body Measurement Explorer</div>
+    <div class="section-subtitle">Measure human proportions and discover biological ratios</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Enter Your Measurements (cm)</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Measure yourself or a partner. Height and arm span are typically close to a 1:1 ratio (Vitruvian proportions). The golden ratio (1.618) appears in many body proportions.</p>
+    <div class="body-input-grid">
+      <div class="input-group">
+        <label>Height (cm)</label>
+        <input type="number" id="body-height" placeholder="170" step="0.1" oninput="bodyUpdate()">
+      </div>
+      <div class="input-group">
+        <label>Arm Span (cm)</label>
+        <input type="number" id="body-armspan" placeholder="170" step="0.1" oninput="bodyUpdate()">
+      </div>
+      <div class="input-group">
+        <label>Hand Length (cm)</label>
+        <input type="number" id="body-hand" placeholder="18" step="0.1" oninput="bodyUpdate()">
+      </div>
+      <div class="input-group">
+        <label>Head Circumference (cm)</label>
+        <input type="number" id="body-head" placeholder="56" step="0.1" oninput="bodyUpdate()">
+      </div>
+      <div class="input-group">
+        <label>Forearm Length (cm)</label>
+        <input type="number" id="body-forearm" placeholder="25" step="0.1" oninput="bodyUpdate()">
+      </div>
+      <div class="input-group">
+        <label>Foot Length (cm)</label>
+        <input type="number" id="body-foot" placeholder="26" step="0.1" oninput="bodyUpdate()">
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="bodyAddToPopulation()">Add to Population</button>
+      <button class="btn btn-secondary" onclick="bodyLoadSample()">Load Sample Data (20)</button>
+      <button class="btn btn-outline" onclick="bodyReset()">Reset All</button>
+    </div>
+    <div class="stat-grid" id="body-stats">
+      <div class="stat-box stat-accent"><div class="stat-val" id="body-ratio-as">-</div><div class="stat-label">Span : Height</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="body-ratio-hand">-</div><div class="stat-label">Height / Hand</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="body-ratio-forearm">-</div><div class="stat-label">Height / Forearm</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="body-golden">-</div><div class="stat-label">Golden Ratio?</div></div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Body Proportions Diagram</div>
+      <div class="chart-wrap"><canvas id="body-diagram" height="360"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Population Height Distribution</div>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">Add measurements to see the class histogram build up.</p>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="pop-n">0</div><div class="stat-label">Population N</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="pop-mean">-</div><div class="stat-label">Mean Height</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="pop-sd">-</div><div class="stat-label">Std Dev</div></div>
+      </div>
+      <div class="chart-wrap"><canvas id="pop-histogram" height="220"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PART 2: UNIT CONVERTER ═══════════════════════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Unit Converter with Medical Context</div>
+    <div class="section-subtitle">Conversions commonly used in healthcare and human biology</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Mass (Drug Dosages)</div>
+      <div class="converter-row">
+        <div class="input-group" style="flex:1;">
+          <label>Value</label>
+          <input type="number" id="mass-val" value="500" step="any" oninput="convertMass()">
+        </div>
+        <div class="input-group" style="flex:1;">
+          <label>From</label>
+          <select id="mass-from" onchange="convertMass()">
+            <option value="mg">mg (milligrams)</option>
+            <option value="g">g (grams)</option>
+            <option value="kg">kg (kilograms)</option>
+          </select>
+        </div>
+        <span class="arrow">&rarr;</span>
+        <div class="input-group" style="flex:1;">
+          <label>To</label>
+          <select id="mass-to" onchange="convertMass()">
+            <option value="mg">mg (milligrams)</option>
+            <option value="g" selected>g (grams)</option>
+            <option value="kg">kg (kilograms)</option>
+          </select>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="mass-result">0.5</div><div class="stat-label">Result</div></div>
+      </div>
+      <div class="analysis-result ar-info" id="mass-context">
+        <div class="ar-title">Medical Context</div>
+        <p>500 mg = standard dose of acetaminophen (Tylenol). Adult max dose: 4,000 mg/day.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Volume (IV Fluids)</div>
+      <div class="converter-row">
+        <div class="input-group" style="flex:1;">
+          <label>Value</label>
+          <input type="number" id="vol-val" value="1000" step="any" oninput="convertVol()">
+        </div>
+        <div class="input-group" style="flex:1;">
+          <label>From</label>
+          <select id="vol-from" onchange="convertVol()">
+            <option value="mL" selected>mL (milliliters)</option>
+            <option value="L">L (liters)</option>
+          </select>
+        </div>
+        <span class="arrow">&rarr;</span>
+        <div class="input-group" style="flex:1;">
+          <label>To</label>
+          <select id="vol-to" onchange="convertVol()">
+            <option value="mL">mL (milliliters)</option>
+            <option value="L" selected>L (liters)</option>
+          </select>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-blue"><div class="stat-val" id="vol-result">1</div><div class="stat-label">Result</div></div>
+      </div>
+      <div class="analysis-result ar-info" id="vol-context">
+        <div class="ar-title">Medical Context</div>
+        <p>1000 mL = 1 L = standard IV saline bag. Blood volume: ~5 L for average adult.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Temperature (Body Temp)</div>
+      <div class="converter-row">
+        <div class="input-group" style="flex:1;">
+          <label>Value</label>
+          <input type="number" id="temp-val" value="98.6" step="0.1" oninput="convertTemp()">
+        </div>
+        <div class="input-group" style="flex:1;">
+          <label>From</label>
+          <select id="temp-from" onchange="convertTemp()">
+            <option value="F" selected>&deg;F (Fahrenheit)</option>
+            <option value="C">&deg;C (Celsius)</option>
+          </select>
+        </div>
+        <span class="arrow">&rarr;</span>
+        <div class="input-group" style="flex:1;">
+          <label>To</label>
+          <select id="temp-to" onchange="convertTemp()">
+            <option value="F">&deg;F (Fahrenheit)</option>
+            <option value="C" selected>&deg;C (Celsius)</option>
+          </select>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-green"><div class="stat-val" id="temp-result">37.0</div><div class="stat-label">Result</div></div>
+      </div>
+      <div class="analysis-result ar-info" id="temp-context">
+        <div class="ar-title">Medical Context</div>
+        <p>98.6&deg;F = 37.0&deg;C = normal body temperature. Fever: &ge;100.4&deg;F (38.0&deg;C). Hypothermia: &lt;95&deg;F (35&deg;C).</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Length (Height / Wound Size)</div>
+      <div class="converter-row">
+        <div class="input-group" style="flex:1;">
+          <label>Value</label>
+          <input type="number" id="len-val" value="170" step="0.1" oninput="convertLen()">
+        </div>
+        <div class="input-group" style="flex:1;">
+          <label>From</label>
+          <select id="len-from" onchange="convertLen()">
+            <option value="cm" selected>cm (centimeters)</option>
+            <option value="in">in (inches)</option>
+            <option value="m">m (meters)</option>
+            <option value="mm">mm (millimeters)</option>
+          </select>
+        </div>
+        <span class="arrow">&rarr;</span>
+        <div class="input-group" style="flex:1;">
+          <label>To</label>
+          <select id="len-to" onchange="convertLen()">
+            <option value="cm">cm (centimeters)</option>
+            <option value="in" selected>in (inches)</option>
+            <option value="m">m (meters)</option>
+            <option value="mm">mm (millimeters)</option>
+          </select>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-amber"><div class="stat-val" id="len-result">66.9</div><div class="stat-label">Result</div></div>
+      </div>
+      <div class="analysis-result ar-info" id="len-context">
+        <div class="ar-title">Medical Context</div>
+        <p>170 cm = 5'7" = average adult height in many populations. Neonatal length: ~50 cm.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Visual Scale Comparison</div>
+    <div class="chart-wrap"><canvas id="scale-chart" height="140"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PART 3: PRECISION VS ACCURACY ═══════════════════════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Precision vs. Accuracy in Medical Measurements</div>
+    <div class="section-subtitle">Understand the difference between hitting the target and clustering together</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Bullseye Simulator</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Adjust bias (accuracy) and spread (precision), then fire shots. Each dot represents one measurement attempt.</p>
+      <div class="slider-group">
+        <label>Bias (X)</label>
+        <input type="range" id="target-bias-x" min="-40" max="40" value="0" oninput="targetUpdateLabel()">
+        <span class="slider-val" id="target-bias-x-val">0</span>
+      </div>
+      <div class="slider-group">
+        <label>Bias (Y)</label>
+        <input type="range" id="target-bias-y" min="-40" max="40" value="0" oninput="targetUpdateLabel()">
+        <span class="slider-val" id="target-bias-y-val">0</span>
+      </div>
+      <div class="slider-group">
+        <label>Spread</label>
+        <input type="range" id="target-spread" min="2" max="50" value="5" oninput="targetUpdateLabel()">
+        <span class="slider-val" id="target-spread-val">5</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="targetShoot(1)">Shoot 1</button>
+        <button class="btn btn-secondary" onclick="targetShoot(10)">Shoot 10</button>
+        <button class="btn btn-outline" onclick="targetReset()">Reset</button>
+      </div>
+      <div class="target-container">
+        <canvas id="target-canvas" width="280" height="280"></canvas>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="target-n">0</div><div class="stat-label">Shots</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="target-acc">-</div><div class="stat-label">Accuracy</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="target-prec">-</div><div class="stat-label">Precision</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Medical Measurement Trials</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Simulate repeated medical measurements. See how mean and standard deviation describe your data quality. The clinical range shows acceptable values.</p>
+      <div class="input-group" style="margin-bottom:8px;">
+        <label>Scenario</label>
+        <select id="med-scenario" onchange="medScenarioChange()">
+          <option value="glucose">Blood Glucose Meter (target: 100 mg/dL)</option>
+          <option value="bp">Blood Pressure Cuff (target: 120 mmHg systolic)</option>
+          <option value="temp">Thermometer (target: 37.0 &deg;C)</option>
+        </select>
+      </div>
+      <div class="slider-group">
+        <label>Device Error</label>
+        <input type="range" id="med-error" min="1" max="30" value="5" oninput="$('med-error-val').textContent=$('med-error').value">
+        <span class="slider-val" id="med-error-val">5</span>
+      </div>
+      <div class="slider-group">
+        <label>Device Bias</label>
+        <input type="range" id="med-bias" min="-20" max="20" value="0" oninput="$('med-bias-val').textContent=$('med-bias').value">
+        <span class="slider-val" id="med-bias-val">0</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="medMeasure(1)">Measure 1x</button>
+        <button class="btn btn-secondary" onclick="medMeasure(10)">Measure 10x</button>
+        <button class="btn btn-outline" onclick="medReset()">Reset</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="med-n">0</div><div class="stat-label">Trials</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="med-mean">-</div><div class="stat-label">Mean</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="med-sd">-</div><div class="stat-label">&plusmn; SD</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="med-clinical">-</div><div class="stat-label">In Range?</div></div>
+      </div>
+      <div class="chart-wrap"><canvas id="med-chart" height="240"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PART 4: INSTRUMENT RESOLUTION ═══════════════════════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Instrument Resolution &amp; Measurement Error</div>
+    <div class="section-subtitle">How instrument precision affects the quality of measurements</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Resolution Comparison</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Drag the slider to measure a simulated object. See how different instruments report different levels of detail based on their resolution.</p>
+    <div class="slider-group">
+      <label>True Value</label>
+      <input type="range" id="res-true" min="0" max="1000" value="547" oninput="resUpdate()">
+      <span class="slider-val" id="res-true-val">54.7</span>
+    </div>
+    <div class="card-row-3">
+      <div class="instrument-card">
+        <div class="ic-name">Bathroom Scale</div>
+        <div class="ic-detail">Resolution: 1 kg</div>
+        <div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--accent);text-align:center;margin:12px 0;" id="res-bathroom">55</div>
+        <div class="ic-detail">Reading: <span id="res-bath-detail">55 kg</span></div>
+      </div>
+      <div class="instrument-card">
+        <div class="ic-name">Lab Balance</div>
+        <div class="ic-detail">Resolution: 0.1 kg</div>
+        <div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--blue);text-align:center;margin:12px 0;" id="res-lab">54.7</div>
+        <div class="ic-detail">Reading: <span id="res-lab-detail">54.7 kg</span></div>
+      </div>
+      <div class="instrument-card">
+        <div class="ic-name">Analytical Balance</div>
+        <div class="ic-detail">Resolution: 0.01 kg</div>
+        <div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--green);text-align:center;margin:12px 0;" id="res-analytical">54.70</div>
+        <div class="ic-detail">Reading: <span id="res-anal-detail">54.70 kg</span></div>
+      </div>
+    </div>
+    <div class="chart-wrap"><canvas id="res-chart" height="160"></canvas></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Significant Figures Practice</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">How many significant figures does each measurement have? Click to check.</p>
+      <div id="sigfig-problems"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="sigfigGenerate()">New Problems</button>
+      </div>
+      <div id="sigfig-score" style="margin-top:8px;"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Error Propagation Calculator</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">When you combine measurements, errors propagate. Enter two measurements with their uncertainties.</p>
+      <div class="body-input-grid">
+        <div class="input-group">
+          <label>Value A</label>
+          <input type="number" id="err-a" value="25.3" step="any">
+        </div>
+        <div class="input-group">
+          <label>&plusmn; Error A</label>
+          <input type="number" id="err-da" value="0.2" step="any">
+        </div>
+        <div class="input-group">
+          <label>Value B</label>
+          <input type="number" id="err-b" value="12.1" step="any">
+        </div>
+        <div class="input-group">
+          <label>&plusmn; Error B</label>
+          <input type="number" id="err-db" value="0.3" step="any">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="errorCalc()">Calculate</button>
+      </div>
+      <div id="error-results"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PART 5: EXPERIMENTAL DESIGN BUILDER ═══════════════════════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Experimental Design Builder</div>
+    <div class="section-subtitle">Design a human biology experiment with proper variables and controls</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Experiment Template: "Does caffeine affect heart rate?"</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">Drag the correct items into each category. Build a properly controlled experiment. Click a placed item to remove it.</p>
+    <div style="margin-bottom:16px;">
+      <div style="font-weight:600;font-size:13px;margin-bottom:8px;">Available Variables (drag into boxes below):</div>
+      <div id="exp-bank" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
+    </div>
+    <div style="display:grid;gap:16px;">
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;color:var(--accent);">Independent Variable (what you change)</div>
+        <div class="drop-zone" id="exp-iv" ondrop="expDrop(event,'iv')" ondragover="expDragOver(event)" ondragleave="expDragLeave(event)">
+          <span class="placeholder">Drop here...</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;color:var(--blue);">Dependent Variable (what you measure)</div>
+        <div class="drop-zone" id="exp-dv" ondrop="expDrop(event,'dv')" ondragover="expDragOver(event)" ondragleave="expDragLeave(event)">
+          <span class="placeholder">Drop here...</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;color:var(--green);">Controlled Variables (keep constant)</div>
+        <div class="drop-zone" id="exp-cv" ondrop="expDrop(event,'cv')" ondragover="expDragOver(event)" ondragleave="expDragLeave(event)">
+          <span class="placeholder">Drop here...</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;margin-bottom:4px;color:var(--purple);">Control Group</div>
+        <div class="drop-zone" id="exp-cg" ondrop="expDrop(event,'cg')" ondragover="expDragOver(event)" ondragleave="expDragLeave(event)">
+          <span class="placeholder">Drop here...</span>
+        </div>
+      </div>
+    </div>
+    <div class="slider-group" style="margin-top:16px;">
+      <label>Sample Size</label>
+      <input type="range" id="exp-sample" min="5" max="200" value="30" oninput="$('exp-sample-val').textContent=$('exp-sample').value;expScore()">
+      <span class="slider-val" id="exp-sample-val">30</span>
+    </div>
+    <div class="stat-grid" style="margin-top:12px;">
+      <div class="stat-box stat-accent"><div class="stat-val" id="exp-score">0</div><div class="stat-label">Design Score</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="exp-placed">0/9</div><div class="stat-label">Items Placed</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="exp-correct">0/9</div><div class="stat-label">Correct</div></div>
+    </div>
+    <div id="exp-feedback"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="expCheck()">Check Design</button>
+      <button class="btn btn-outline" onclick="expReset()">Reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ PART 6: DATA ANALYSIS & GRAPHING ═══════════════════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Data Analysis &amp; Graphing</div>
+    <div class="section-subtitle">Enter measurement data and visualize statistical summaries</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Data Entry</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Enter comma-separated values for two groups (e.g., male vs. female heights, treatment vs. control). The dashboard auto-generates statistics and charts.</p>
+    <div class="card-row">
+      <div class="input-group">
+        <label>Group A Label</label>
+        <input type="text" id="da-label-a" value="Group A" style="border:2px solid var(--border);border-radius:8px;padding:8px 12px;font-family:var(--font);font-size:14px;">
+      </div>
+      <div class="input-group">
+        <label>Group B Label</label>
+        <input type="text" id="da-label-b" value="Group B" style="border:2px solid var(--border);border-radius:8px;padding:8px 12px;font-family:var(--font);font-size:14px;">
+      </div>
+    </div>
+    <div class="card-row" style="margin-top:12px;">
+      <div class="input-group">
+        <label>Group A Values (comma-separated)</label>
+        <textarea id="da-data-a" rows="3" style="width:100%;border:2px solid var(--border);border-radius:8px;padding:8px 12px;font-family:var(--mono);font-size:13px;resize:vertical;" placeholder="170, 175, 168, 172, 180">170, 175, 168, 172, 180, 165, 178, 174, 169, 177</textarea>
+      </div>
+      <div class="input-group">
+        <label>Group B Values (comma-separated)</label>
+        <textarea id="da-data-b" rows="3" style="width:100%;border:2px solid var(--border);border-radius:8px;padding:8px 12px;font-family:var(--mono);font-size:13px;resize:vertical;" placeholder="160, 165, 158, 162, 170">160, 165, 158, 162, 170, 155, 168, 164, 159, 167</textarea>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="daAnalyze()">Analyze Data</button>
+      <button class="btn btn-secondary" onclick="daLoadExample()">Load Height Example</button>
+      <button class="btn btn-outline" onclick="daClear()">Clear</button>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title" id="da-title-a">Group A Statistics</div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="da-mean-a">-</div><div class="stat-label">Mean</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="da-median-a">-</div><div class="stat-label">Median</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="da-range-a">-</div><div class="stat-label">Range</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="da-sd-a">-</div><div class="stat-label">Std Dev</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" id="da-title-b">Group B Statistics</div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="da-mean-b">-</div><div class="stat-label">Mean</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="da-median-b">-</div><div class="stat-label">Median</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="da-range-b">-</div><div class="stat-label">Range</div></div>
+        <div class="stat-box stat-amber"><div class="stat-val" id="da-sd-b">-</div><div class="stat-label">Std Dev</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Bar Chart with Error Bars (Mean &plusmn; SD)</div>
+    <div class="chart-wrap"><canvas id="da-bar-chart" height="280"></canvas></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Group A Histogram</div>
+      <div class="chart-wrap"><canvas id="da-hist-a" height="220"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Group B Histogram</div>
+      <div class="chart-wrap"><canvas id="da-hist-b" height="220"></canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Statistical Significance</div>
+    <div id="da-significance"></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// -- Utility ----------------------------------------------------------------
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const randn = () => { let u=0,v=0; while(u===0) u=Math.random(); while(v===0) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); };
+
+// -- Chart helpers ----------------------------------------------------------
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel, errorBars } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+    // error bars
+    if (errorBars && errorBars[i] !== undefined) {
+      const cx = x + barW/2;
+      const topY = pad.top + plotH - ((v + errorBars[i]) / mv) * plotH;
+      const botY = pad.top + plotH - ((v - errorBars[i]) / mv) * plotH;
+      ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(cx, topY); ctx.lineTo(cx, botY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx-6, topY); ctx.lineTo(cx+6, topY); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx-6, botY); ctx.lineTo(cx+6, botY); ctx.stroke();
+    }
+  });
+
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// -- Stats helpers ----------------------------------------------------------
+function mean(arr) { return arr.reduce((a,b)=>a+b,0)/arr.length; }
+function median(arr) { const s=[...arr].sort((a,b)=>a-b); const m=Math.floor(s.length/2); return s.length%2?s[m]:(s[m-1]+s[m])/2; }
+function stddev(arr) { const m=mean(arr); return Math.sqrt(arr.reduce((s,v)=>s+Math.pow(v-m,2),0)/arr.length); }
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: BODY MEASUREMENT EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+let popData = [];
+
+function bodyUpdate() {
+  const h = parseFloat($('body-height').value) || 0;
+  const as = parseFloat($('body-armspan').value) || 0;
+  const hand = parseFloat($('body-hand').value) || 0;
+  const head = parseFloat($('body-head').value) || 0;
+  const forearm = parseFloat($('body-forearm').value) || 0;
+  const foot = parseFloat($('body-foot').value) || 0;
+
+  // Ratios
+  $('body-ratio-as').textContent = (h && as) ? (as/h).toFixed(3) : '-';
+  $('body-ratio-hand').textContent = (h && hand) ? (h/hand).toFixed(2) : '-';
+  $('body-ratio-forearm').textContent = (h && forearm) ? (h/forearm).toFixed(2) : '-';
+
+  // Golden ratio check: height/navel-height ~ 1.618 or height/hand
+  let goldenCheck = '-';
+  if (h && hand) {
+    const ratio = h / hand;
+    const diff = Math.abs(ratio - 9.44); // height/hand ~ 9.44 not golden
+    // More relevant: forearm/hand
+    if (forearm && hand) {
+      const fhRatio = (forearm + hand) / forearm;
+      const gDiff = Math.abs(fhRatio - 1.618);
+      goldenCheck = gDiff < 0.15 ? 'Yes!' : 'Close';
+    }
+  }
+  $('body-golden').textContent = goldenCheck;
+
+  drawBodyDiagram();
+}
+
+function bodyAddToPopulation() {
+  const h = parseFloat($('body-height').value);
+  if (!h || h < 50 || h > 250) return;
+  const as = parseFloat($('body-armspan').value) || 0;
+  const hand = parseFloat($('body-hand').value) || 0;
+  popData.push({ height: h, armspan: as, hand: hand });
+  updatePopStats();
+}
+
+function bodyLoadSample() {
+  // Realistic sample data for adult heights (cm)
+  const sampleHeights = [162,165,168,170,172,174,175,176,178,180,155,158,160,163,167,169,171,173,177,182];
+  const sampleArmspans = [160,164,167,169,171,173,176,175,177,181,153,157,159,162,166,170,172,174,178,183];
+  const sampleHands = [17.5,18.0,18.5,18.2,18.8,19.0,19.2,18.7,19.5,20.0,16.5,17.0,17.2,17.5,17.8,18.0,18.3,18.5,19.0,19.8];
+  for (let i = 0; i < sampleHeights.length; i++) {
+    popData.push({ height: sampleHeights[i], armspan: sampleArmspans[i], hand: sampleHands[i] });
+  }
+  updatePopStats();
+}
+
+function bodyReset() {
+  popData = [];
+  ['body-height','body-armspan','body-hand','body-head','body-forearm','body-foot'].forEach(id => $(id).value = '');
+  $('body-ratio-as').textContent = '-';
+  $('body-ratio-hand').textContent = '-';
+  $('body-ratio-forearm').textContent = '-';
+  $('body-golden').textContent = '-';
+  updatePopStats();
+  drawBodyDiagram();
+}
+
+function updatePopStats() {
+  const n = popData.length;
+  $('pop-n').textContent = n;
+  if (n > 0) {
+    const heights = popData.map(p => p.height);
+    $('pop-mean').textContent = mean(heights).toFixed(1);
+    $('pop-sd').textContent = n > 1 ? stddev(heights).toFixed(1) : '-';
+  } else {
+    $('pop-mean').textContent = '-';
+    $('pop-sd').textContent = '-';
+  }
+  drawPopHistogram();
+}
+
+function drawBodyDiagram() {
+  const ctx = getCtx('body-diagram');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const h = parseFloat($('body-height').value) || 170;
+  const as = parseFloat($('body-armspan').value) || h;
+  const hand = parseFloat($('body-hand').value) || 18;
+  const head = parseFloat($('body-head').value) || 56;
+  const forearm = parseFloat($('body-forearm').value) || 25;
+
+  // Scale factor: fit 200cm into canvas height with padding
+  const scale = (H - 60) / 200;
+  const cx = W / 2;
+  const baseY = H - 20;
+
+  // Draw a simplified body figure
+  const bodyH = h * scale;
+  const headR = (head / Math.PI) * scale; // diameter from circumference
+  const armW = (as / 2) * scale;
+  const handL = hand * scale;
+  const forearmL = forearm * scale;
+
+  // Body outline
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+
+  // Head
+  const headCY = baseY - bodyH + headR;
+  ctx.beginPath(); ctx.arc(cx, headCY, headR, 0, Math.PI * 2); ctx.stroke();
+  ctx.fillStyle = 'rgba(196,30,58,0.1)'; ctx.fill();
+
+  // Torso
+  const shoulderY = headCY + headR + 5;
+  const hipY = shoulderY + bodyH * 0.35;
+  const shoulderW = bodyH * 0.12;
+  ctx.beginPath();
+  ctx.moveTo(cx - shoulderW, shoulderY);
+  ctx.lineTo(cx + shoulderW, shoulderY);
+  ctx.lineTo(cx + shoulderW * 0.8, hipY);
+  ctx.lineTo(cx - shoulderW * 0.8, hipY);
+  ctx.closePath(); ctx.stroke();
+  ctx.fillStyle = 'rgba(37,99,235,0.05)'; ctx.fill();
+
+  // Legs
+  const legLen = bodyH * 0.45;
+  ctx.beginPath();
+  ctx.moveTo(cx - shoulderW * 0.5, hipY);
+  ctx.lineTo(cx - shoulderW * 0.6, hipY + legLen);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(cx + shoulderW * 0.5, hipY);
+  ctx.lineTo(cx + shoulderW * 0.6, hipY + legLen);
+  ctx.stroke();
+
+  // Arms
+  const armY = shoulderY + 5;
+  ctx.beginPath();
+  ctx.moveTo(cx - shoulderW, armY);
+  ctx.lineTo(cx - armW, armY + bodyH * 0.15);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(cx + shoulderW, armY);
+  ctx.lineTo(cx + armW, armY + bodyH * 0.15);
+  ctx.stroke();
+
+  // Dimension labels
+  ctx.font = 'bold 11px system-ui';
+
+  // Height dimension (left side)
+  ctx.strokeStyle = 'var(--accent)'; ctx.fillStyle = 'var(--accent)';
+  const hTop = baseY - bodyH;
+  ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(cx - armW - 15, hTop); ctx.lineTo(cx - armW - 15, baseY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(cx - armW - 20, hTop); ctx.lineTo(cx - armW - 10, hTop); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx - armW - 20, baseY); ctx.lineTo(cx - armW - 10, baseY); ctx.stroke();
+  ctx.save(); ctx.translate(cx - armW - 25, (hTop + baseY) / 2);
+  ctx.rotate(-Math.PI / 2); ctx.textAlign = 'center';
+  ctx.fillText(h.toFixed(1) + ' cm', 0, 0); ctx.restore();
+
+  // Arm span dimension (top)
+  ctx.strokeStyle = 'var(--blue)'; ctx.fillStyle = 'var(--blue)';
+  const spanTop = armY - 10;
+  ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(cx - armW, spanTop); ctx.lineTo(cx + armW, spanTop); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(cx - armW, spanTop - 5); ctx.lineTo(cx - armW, spanTop + 5); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx + armW, spanTop - 5); ctx.lineTo(cx + armW, spanTop + 5); ctx.stroke();
+  ctx.textAlign = 'center';
+  ctx.fillText(as.toFixed(1) + ' cm', cx, spanTop - 6);
+
+  // Ratio badge
+  if (h > 0 && as > 0) {
+    const ratio = as / h;
+    ctx.fillStyle = Math.abs(ratio - 1.0) < 0.05 ? 'var(--green)' : 'var(--amber)';
+    ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Ratio: ' + ratio.toFixed(3), cx, H - 4);
+  }
+}
+
+function drawPopHistogram() {
+  const ctx = getCtx('pop-histogram');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!popData.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Add measurements to see distribution', W / 2, H / 2);
+    return;
+  }
+
+  const heights = popData.map(p => p.height);
+  const minH = Math.floor(Math.min(...heights) / 5) * 5;
+  const maxH = Math.ceil(Math.max(...heights) / 5) * 5;
+  const binSize = 5;
+  const bins = [];
+  const binLabels = [];
+  for (let b = minH; b < maxH; b += binSize) {
+    bins.push(heights.filter(h => h >= b && h < b + binSize).length);
+    binLabels.push(b + '-' + (b + binSize));
+  }
+
+  const pad = { top: 20, right: 20, bottom: 40, left: 40 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const maxBin = Math.max(...bins) || 1;
+  const barW = plotW / bins.length - 2;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxBin * i / 4), pad.left - 4, y + 4);
+  }
+
+  bins.forEach((b, i) => {
+    const x = pad.left + i * (barW + 2);
+    const h = (b / maxBin) * plotH;
+    ctx.fillStyle = '#c41e3a';
+    ctx.fillRect(x, pad.top + plotH - h, barW, h);
+    ctx.fillStyle = '#374151'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(binLabels[i], x + barW / 2, H - pad.bottom + 14);
+  });
+
+  // Mean line
+  const m = mean(heights);
+  const mX = pad.left + ((m - minH) / (maxH - minH)) * plotW;
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(mX, pad.top); ctx.lineTo(mX, pad.top + plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Mean: ' + m.toFixed(1), mX, pad.top - 4);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: UNIT CONVERTER
+// ══════════════════════════════════════════════════════════════════════════
+const massFactors = { mg: 1, g: 1000, kg: 1000000 };
+const volFactors = { mL: 1, L: 1000 };
+const lenFactors = { mm: 1, cm: 10, in: 25.4, m: 1000 };
+
+function convertMass() {
+  const v = parseFloat($('mass-val').value) || 0;
+  const from = $('mass-from').value, to = $('mass-to').value;
+  const mg = v * massFactors[from];
+  const result = mg / massFactors[to];
+  $('mass-result').textContent = result < 0.01 ? result.toExponential(2) : result.toFixed(result >= 100 ? 0 : 2);
+  // Context
+  const ctx = $('mass-context');
+  const mgVal = mg;
+  let context = '';
+  if (mgVal <= 1) context = mgVal.toFixed(3) + ' mg = trace amount. Vitamin B12 daily need: 0.0024 mg.';
+  else if (mgVal <= 100) context = mgVal.toFixed(1) + ' mg = small dose range. Aspirin low-dose: 81 mg.';
+  else if (mgVal <= 1000) context = mgVal.toFixed(0) + ' mg = typical tablet dose. Acetaminophen: 500 mg.';
+  else if (mgVal <= 10000) context = (mgVal/1000).toFixed(1) + ' g = multiple tablets. Max daily acetaminophen: 4 g.';
+  else context = (mgVal/1000000).toFixed(2) + ' kg = large mass. Average adult: 70 kg.';
+  ctx.innerHTML = '<div class="ar-title">Medical Context</div><p>' + context + '</p>';
+  drawScaleChart();
+}
+
+function convertVol() {
+  const v = parseFloat($('vol-val').value) || 0;
+  const from = $('vol-from').value, to = $('vol-to').value;
+  const ml = v * volFactors[from];
+  const result = ml / volFactors[to];
+  $('vol-result').textContent = result < 0.01 ? result.toExponential(2) : result.toFixed(result >= 100 ? 0 : 2);
+  const ctx = $('vol-context');
+  let context = '';
+  if (ml <= 5) context = ml.toFixed(1) + ' mL = teaspoon volume. Typical injection: 1-5 mL.';
+  else if (ml <= 250) context = ml.toFixed(0) + ' mL = cup size. Blood draw: 5-20 mL per tube.';
+  else if (ml <= 1000) context = ml.toFixed(0) + ' mL = IV bag range. Standard: 250, 500, 1000 mL bags.';
+  else context = (ml/1000).toFixed(1) + ' L = large volume. Blood volume: ~5 L. Daily urine: 1-2 L.';
+  ctx.innerHTML = '<div class="ar-title">Medical Context</div><p>' + context + '</p>';
+  drawScaleChart();
+}
+
+function convertTemp() {
+  const v = parseFloat($('temp-val').value) || 0;
+  const from = $('temp-from').value, to = $('temp-to').value;
+  let result;
+  if (from === to) result = v;
+  else if (from === 'F') result = (v - 32) * 5/9;
+  else result = v * 9/5 + 32;
+  $('temp-result').textContent = result.toFixed(1);
+  const ctx = $('temp-context');
+  const celsius = from === 'C' ? v : (v - 32) * 5/9;
+  let context = '';
+  if (celsius < 35) context = celsius.toFixed(1) + ' C = Hypothermia (< 35C). Medical emergency below 32C.';
+  else if (celsius < 37.5) context = celsius.toFixed(1) + ' C = Normal range (36.1-37.2C). Slight variation throughout day.';
+  else if (celsius < 38) context = celsius.toFixed(1) + ' C = Low-grade fever. Monitor and stay hydrated.';
+  else if (celsius < 40) context = celsius.toFixed(1) + ' C = Fever. Seek medical attention if persistent.';
+  else context = celsius.toFixed(1) + ' C = High fever (> 40C). Seek immediate medical attention.';
+  ctx.innerHTML = '<div class="ar-title">Medical Context</div><p>' + context + '</p>';
+  drawScaleChart();
+}
+
+function convertLen() {
+  const v = parseFloat($('len-val').value) || 0;
+  const from = $('len-from').value, to = $('len-to').value;
+  const mm = v * lenFactors[from];
+  const result = mm / lenFactors[to];
+  $('len-result').textContent = result < 0.01 ? result.toExponential(2) : result.toFixed(result >= 100 ? 0 : 1);
+  const ctx = $('len-context');
+  const cm = mm / 10;
+  let context = '';
+  if (cm < 1) context = cm.toFixed(2) + ' cm = microscopic range. Red blood cell: ~0.0007 cm diameter.';
+  else if (cm < 10) context = cm.toFixed(1) + ' cm = small measurement. Finger width: ~2 cm.';
+  else if (cm < 50) context = cm.toFixed(1) + ' cm = body part range. Foot length: ~26 cm. Forearm: ~25 cm.';
+  else if (cm < 200) context = cm.toFixed(0) + ' cm = body height range. Newborn: ~50 cm. Adult avg: 165-175 cm.';
+  else context = (cm/100).toFixed(2) + ' m = arm span / large measurement range.';
+  ctx.innerHTML = '<div class="ar-title">Medical Context</div><p>' + context + '</p>';
+  drawScaleChart();
+}
+
+function drawScaleChart() {
+  const ctx = getCtx('scale-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 15, right: 20, bottom: 15, left: 20 };
+  const barH = 18, gap = 8;
+  const plotW = W - pad.left - pad.right;
+
+  const scales = [
+    { label: 'Cell (10 um)', size: 0.001, color: '#7c3aed' },
+    { label: 'Finger (2 cm)', size: 2, color: '#2563eb' },
+    { label: 'Hand (18 cm)', size: 18, color: '#16a34a' },
+    { label: 'Forearm (25 cm)', size: 25, color: '#d97706' },
+    { label: 'Height (170 cm)', size: 170, color: '#c41e3a' }
+  ];
+
+  const maxSize = 170;
+
+  scales.forEach((s, i) => {
+    const y = pad.top + i * (barH + gap);
+    const w = Math.max(2, (Math.log10(s.size + 0.001) / Math.log10(maxSize + 0.001)) * plotW);
+    ctx.fillStyle = s.color;
+    ctx.fillRect(pad.left, y, Math.min(w, plotW), barH);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(s.label, pad.left + Math.min(w, plotW) + 8, y + barH / 2 + 4);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: PRECISION VS ACCURACY
+// ══════════════════════════════════════════════════════════════════════════
+let targetData = { shots: [] };
+
+function targetUpdateLabel() {
+  $('target-bias-x-val').textContent = $('target-bias-x').value;
+  $('target-bias-y-val').textContent = $('target-bias-y').value;
+  $('target-spread-val').textContent = $('target-spread').value;
+}
+
+function targetShoot(n) {
+  const biasX = parseInt($('target-bias-x').value);
+  const biasY = parseInt($('target-bias-y').value);
+  const spread = parseInt($('target-spread').value);
+  for (let i = 0; i < n; i++) {
+    const x = biasX + randn() * spread;
+    const y = biasY + randn() * spread;
+    targetData.shots.push({ x, y });
+  }
+  drawTarget();
+  targetUpdateStats();
+}
+
+function targetReset() {
+  targetData.shots = [];
+  drawTarget();
+  targetUpdateStats();
+}
+
+function targetUpdateStats() {
+  const s = targetData.shots;
+  $('target-n').textContent = s.length;
+  if (s.length > 0) {
+    const avgDist = mean(s.map(p => Math.sqrt(p.x * p.x + p.y * p.y)));
+    $('target-acc').textContent = avgDist < 10 ? 'High' : avgDist < 25 ? 'Medium' : 'Low';
+    if (s.length > 1) {
+      const mx = mean(s.map(p => p.x)), my = mean(s.map(p => p.y));
+      const spread = Math.sqrt(mean(s.map(p => Math.pow(p.x - mx, 2) + Math.pow(p.y - my, 2))));
+      $('target-prec').textContent = spread < 8 ? 'High' : spread < 20 ? 'Medium' : 'Low';
+    }
+  } else {
+    $('target-acc').textContent = '-';
+    $('target-prec').textContent = '-';
+  }
+}
+
+function drawTarget() {
+  const c = $('target-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 280 * dpr; c.height = 280 * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const W = 280, H = 280;
+  const cx = W / 2, cy = H / 2;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Rings
+  const ringColors = ['#fef2f2','#fee2e2','#fecaca','#fca5a5','#c41e3a'];
+  const rings = [120, 96, 72, 48, 24];
+  rings.forEach((r, i) => {
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fillStyle = ringColors[i]; ctx.fill();
+    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1; ctx.stroke();
+  });
+
+  // Crosshair
+  ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 0.5;
+  ctx.beginPath(); ctx.moveTo(cx, cy - 120); ctx.lineTo(cx, cy + 120); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx - 120, cy); ctx.lineTo(cx + 120, cy); ctx.stroke();
+
+  // Shots
+  targetData.shots.forEach(p => {
+    const x = cx + p.x, y = cy + p.y;
+    if (x >= 0 && x <= W && y >= 0 && y <= H) {
+      ctx.fillStyle = 'rgba(37,99,235,0.7)'; ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.stroke();
+    }
+  });
+
+  // Center dot
+  ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI * 2); ctx.fill();
+}
+
+// Medical measurement trials
+const medScenarios = {
+  glucose: { target: 100, unit: 'mg/dL', rangeL: 70, rangeH: 130, name: 'Blood Glucose' },
+  bp:      { target: 120, unit: 'mmHg', rangeL: 90, rangeH: 140, name: 'Systolic BP' },
+  temp:    { target: 37.0, unit: 'C', rangeL: 36.1, rangeH: 37.5, name: 'Body Temp' }
+};
+let medData = { readings: [] };
+
+function medScenarioChange() { medReset(); }
+
+function medMeasure(n) {
+  const sc = medScenarios[$('med-scenario').value];
+  const error = parseInt($('med-error').value);
+  const bias = parseInt($('med-bias').value);
+  const scale = sc.target > 50 ? 1 : 0.1;
+  for (let i = 0; i < n; i++) {
+    const reading = sc.target + (bias * scale) + randn() * error * scale;
+    medData.readings.push(reading);
+  }
+  medUpdateUI();
+}
+
+function medReset() {
+  medData.readings = [];
+  medUpdateUI();
+}
+
+function medUpdateUI() {
+  const r = medData.readings;
+  const sc = medScenarios[$('med-scenario').value];
+  $('med-n').textContent = r.length;
+  if (r.length > 0) {
+    const m = mean(r);
+    $('med-mean').textContent = m.toFixed(1);
+    $('med-sd').textContent = r.length > 1 ? stddev(r).toFixed(1) : '-';
+    $('med-clinical').textContent = (m >= sc.rangeL && m <= sc.rangeH) ? 'Yes' : 'No';
+  } else {
+    $('med-mean').textContent = '-';
+    $('med-sd').textContent = '-';
+    $('med-clinical').textContent = '-';
+  }
+  drawMedChart();
+}
+
+function drawMedChart() {
+  const ctx = getCtx('med-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const r = medData.readings;
+  if (!r.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Take measurements to see results', W / 2, H / 2);
+    return;
+  }
+
+  const sc = medScenarios[$('med-scenario').value];
+  const pad = { top: 30, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+
+  const allVals = [...r, sc.target, sc.rangeL, sc.rangeH];
+  const minV = Math.min(...allVals) - 5;
+  const maxV = Math.max(...allVals) + 5;
+  const range = maxV - minV;
+
+  // Clinical range band
+  const rangeTopY = pad.top + plotH * (1 - (sc.rangeH - minV) / range);
+  const rangeBotY = pad.top + plotH * (1 - (sc.rangeL - minV) / range);
+  ctx.fillStyle = 'rgba(22,163,74,0.1)';
+  ctx.fillRect(pad.left, rangeTopY, plotW, rangeBotY - rangeTopY);
+  ctx.strokeStyle = 'rgba(22,163,74,0.4)'; ctx.lineWidth = 1; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(pad.left, rangeTopY); ctx.lineTo(W - pad.right, rangeTopY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(pad.left, rangeBotY); ctx.lineTo(W - pad.right, rangeBotY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = 'rgba(22,163,74,0.6)'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('High: ' + sc.rangeH, W - pad.right, rangeTopY - 3);
+  ctx.fillText('Low: ' + sc.rangeL, W - pad.right, rangeBotY + 12);
+
+  // Target line
+  const targetY = pad.top + plotH * (1 - (sc.target - minV) / range);
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
+  ctx.beginPath(); ctx.moveTo(pad.left, targetY); ctx.lineTo(W - pad.right, targetY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Target: ' + sc.target, pad.left + 4, targetY - 4);
+
+  // Y-axis grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    const v = minV + range * i / 4;
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(v.toFixed(1), pad.left - 4, y + 4);
+  }
+
+  // Data points
+  r.forEach((v, i) => {
+    const x = pad.left + (i / Math.max(r.length - 1, 1)) * plotW;
+    const y = pad.top + plotH * (1 - (v - minV) / range);
+    const inRange = v >= sc.rangeL && v <= sc.rangeH;
+    ctx.fillStyle = inRange ? '#2563eb' : '#c41e3a';
+    ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+  });
+
+  // Mean line
+  if (r.length > 1) {
+    const m = mean(r);
+    const my = pad.top + plotH * (1 - (m - minV) / range);
+    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(pad.left, my); ctx.lineTo(W - pad.right, my); ctx.stroke();
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Mean: ' + m.toFixed(1), pad.left + plotW * 0.6, my - 6);
+
+    // SD band
+    const sd = stddev(r);
+    const sdTop = pad.top + plotH * (1 - (m + sd - minV) / range);
+    const sdBot = pad.top + plotH * (1 - (m - sd - minV) / range);
+    ctx.fillStyle = 'rgba(37,99,235,0.08)';
+    ctx.fillRect(pad.left, sdTop, plotW, sdBot - sdTop);
+  }
+
+  // X-axis label
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Trial Number', pad.left + plotW / 2, H - 6);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: INSTRUMENT RESOLUTION
+// ══════════════════════════════════════════════════════════════════════════
+function resUpdate() {
+  const raw = parseInt($('res-true').value);
+  const trueVal = raw / 10; // 0-100.0 range
+  $('res-true-val').textContent = trueVal.toFixed(1);
+
+  const bathroom = Math.round(trueVal);
+  const lab = Math.round(trueVal * 10) / 10;
+  const analytical = Math.round(trueVal * 100) / 100;
+
+  $('res-bathroom').textContent = bathroom;
+  $('res-lab').textContent = lab.toFixed(1);
+  $('res-analytical').textContent = analytical.toFixed(2);
+  $('res-bath-detail').textContent = bathroom + ' kg';
+  $('res-lab-detail').textContent = lab.toFixed(1) + ' kg';
+  $('res-anal-detail').textContent = analytical.toFixed(2) + ' kg';
+
+  drawResChart(trueVal, bathroom, lab, analytical);
+}
+
+function drawResChart(trueVal, bath, lab, anal) {
+  const ctx = getCtx('res-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 20, right: 20, bottom: 20, left: 100 };
+  const plotW = W - pad.left - pad.right;
+
+  // Scale: center on true value, range +/- 2
+  const center = trueVal;
+  const range = 4;
+  const minV = center - range / 2;
+  const maxV = center + range / 2;
+  const toX = v => pad.left + ((v - minV) / range) * plotW;
+
+  // True value line
+  const trueX = toX(trueVal);
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(trueX, pad.top); ctx.lineTo(trueX, H - pad.bottom); ctx.stroke();
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('True: ' + trueVal.toFixed(1), trueX, pad.top - 4);
+
+  const instruments = [
+    { name: 'Bathroom Scale', val: bath, color: '#c41e3a', y: pad.top + 15 },
+    { name: 'Lab Balance', val: lab, color: '#2563eb', y: pad.top + 50 },
+    { name: 'Analytical', val: anal, color: '#16a34a', y: pad.top + 85 }
+  ];
+
+  instruments.forEach(inst => {
+    const x = toX(inst.val);
+    // Error range bar
+    ctx.fillStyle = inst.color + '20';
+    ctx.fillRect(Math.min(x, trueX), inst.y, Math.abs(x - trueX), 20);
+    // Point
+    ctx.fillStyle = inst.color;
+    ctx.beginPath(); ctx.arc(x, inst.y + 10, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(inst.name, pad.left - 8, inst.y + 14);
+    // Error value
+    const error = Math.abs(inst.val - trueVal);
+    ctx.fillStyle = inst.color; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Error: ' + error.toFixed(2) + ' kg', x + 10, inst.y + 14);
+  });
+}
+
+// Significant figures
+let sigfigData = { problems: [], correct: 0, total: 0 };
+
+function sigfigGenerate() {
+  const measurements = [
+    { val: '0.0045', sf: 2, hint: 'Leading zeros are not significant' },
+    { val: '100.0', sf: 4, hint: 'Trailing zero after decimal IS significant' },
+    { val: '2500', sf: 2, hint: 'Trailing zeros without decimal are ambiguous (assume 2)' },
+    { val: '3.040', sf: 4, hint: 'Captive and trailing zeros after decimal are significant' },
+    { val: '0.0100', sf: 3, hint: 'Trailing zeros after decimal in a small number' },
+    { val: '1.00', sf: 3, hint: 'Trailing zeros after decimal are significant' },
+    { val: '50.', sf: 2, hint: 'The decimal point makes the trailing zero significant' },
+    { val: '6.022e23', sf: 4, hint: 'Scientific notation: count all digits shown' },
+    { val: '0.500', sf: 3, hint: 'Trailing zeros after decimal are significant' },
+    { val: '10200', sf: 3, hint: 'Trailing zeros ambiguous, assume minimum' }
+  ];
+
+  // Pick 5 random
+  const picked = [];
+  const indices = [...Array(measurements.length).keys()];
+  for (let i = 0; i < 5; i++) {
+    const idx = indices.splice(rand(0, indices.length - 1), 1)[0];
+    picked.push(measurements[idx]);
+  }
+  sigfigData.problems = picked;
+  sigfigData.correct = 0;
+  sigfigData.total = 0;
+
+  let html = '';
+  picked.forEach((p, i) => {
+    html += `<div style="display:flex;align-items:center;gap:12px;margin:8px 0;">
+      <code style="font-size:18px;font-weight:700;min-width:100px;">${p.val}</code>
+      <div style="display:flex;gap:4px;">`;
+    for (let sf = 1; sf <= 6; sf++) {
+      html += `<button class="btn btn-sm btn-outline" id="sf-${i}-${sf}" onclick="sigfigCheck(${i},${sf})">${sf}</button>`;
+    }
+    html += `</div><span id="sf-result-${i}" style="font-size:12px;font-weight:600;"></span></div>`;
+  });
+  $('sigfig-problems').innerHTML = html;
+  $('sigfig-score').innerHTML = '';
+}
+
+function sigfigCheck(probIdx, answer) {
+  const p = sigfigData.problems[probIdx];
+  const resultEl = $('sf-result-' + probIdx);
+  if (resultEl.textContent) return; // already answered
+
+  sigfigData.total++;
+  if (answer === p.sf) {
+    sigfigData.correct++;
+    resultEl.style.color = 'var(--green)';
+    resultEl.textContent = 'Correct! ' + p.hint;
+    $('sf-' + probIdx + '-' + answer).style.background = 'var(--green)';
+    $('sf-' + probIdx + '-' + answer).style.color = '#fff';
+  } else {
+    resultEl.style.color = 'var(--accent)';
+    resultEl.textContent = 'Answer: ' + p.sf + '. ' + p.hint;
+    $('sf-' + probIdx + '-' + answer).style.background = 'var(--accent)';
+    $('sf-' + probIdx + '-' + answer).style.color = '#fff';
+    $('sf-' + probIdx + '-' + p.sf).style.background = 'var(--green)';
+    $('sf-' + probIdx + '-' + p.sf).style.color = '#fff';
+  }
+  $('sigfig-score').innerHTML = `<span class="badge ${sigfigData.correct === sigfigData.total ? 'badge-green' : 'badge-red'}">${sigfigData.correct}/${sigfigData.total} correct</span>`;
+}
+
+// Error propagation
+function errorCalc() {
+  const a = parseFloat($('err-a').value) || 0;
+  const da = parseFloat($('err-da').value) || 0;
+  const b = parseFloat($('err-b').value) || 0;
+  const db = parseFloat($('err-db').value) || 0;
+
+  const sum = a + b;
+  const diff = a - b;
+  const dAdd = Math.sqrt(da * da + db * db);
+
+  const prod = a * b;
+  const dProd = prod * Math.sqrt(Math.pow(da / a, 2) + Math.pow(db / b, 2));
+
+  let html = `
+    <div class="analysis-result ar-info">
+      <div class="ar-title">Addition / Subtraction</div>
+      <p>A + B = <code>${sum.toFixed(2)} +/- ${dAdd.toFixed(3)}</code></p>
+      <p>A - B = <code>${diff.toFixed(2)} +/- ${dAdd.toFixed(3)}</code></p>
+      <p style="font-size:12px;color:var(--text-muted);">Rule: Add uncertainties in quadrature (sqrt of sum of squares)</p>
+    </div>
+    <div class="analysis-result ar-info">
+      <div class="ar-title">Multiplication / Division</div>
+      <p>A x B = <code>${prod.toFixed(2)} +/- ${dProd.toFixed(3)}</code></p>
+      <p>A / B = <code>${(a/b).toFixed(4)} +/- ${((a/b)*Math.sqrt(Math.pow(da/a,2)+Math.pow(db/b,2))).toFixed(4)}</code></p>
+      <p style="font-size:12px;color:var(--text-muted);">Rule: Add relative (%) uncertainties in quadrature</p>
+    </div>`;
+  $('error-results').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: EXPERIMENTAL DESIGN BUILDER
+// ══════════════════════════════════════════════════════════════════════════
+const expItems = [
+  { id: 'caffeine-dose', text: 'Caffeine dose (mg)', correct: 'iv' },
+  { id: 'heart-rate', text: 'Heart rate (bpm)', correct: 'dv' },
+  { id: 'age', text: 'Age of participants', correct: 'cv' },
+  { id: 'time-of-day', text: 'Time of measurement', correct: 'cv' },
+  { id: 'body-weight', text: 'Body weight', correct: 'cv' },
+  { id: 'no-caffeine', text: 'No caffeine group (0 mg)', correct: 'cg' },
+  { id: 'hydration', text: 'Hydration level', correct: 'cv' },
+  { id: 'activity-level', text: 'Prior physical activity', correct: 'cv' },
+  { id: 'rest-period', text: 'Rest period before test', correct: 'cv' }
+];
+
+let expState = { placements: {} }; // { itemId: zone }
+
+function expBuildBank() {
+  const bank = $('exp-bank');
+  bank.innerHTML = '';
+  expItems.forEach(item => {
+    if (expState.placements[item.id]) return;
+    const el = document.createElement('div');
+    el.className = 'drag-item';
+    el.draggable = true;
+    el.textContent = item.text;
+    el.dataset.itemId = item.id;
+    el.ondragstart = e => { e.dataTransfer.setData('text/plain', item.id); };
+    bank.appendChild(el);
+  });
+}
+
+function expBuildZones() {
+  ['iv','dv','cv','cg'].forEach(zone => {
+    const el = $('exp-' + zone);
+    el.innerHTML = '';
+    const items = Object.entries(expState.placements).filter(([_, z]) => z === zone);
+    if (!items.length) {
+      el.innerHTML = '<span class="placeholder">Drop here...</span>';
+    } else {
+      items.forEach(([itemId]) => {
+        const item = expItems.find(i => i.id === itemId);
+        const tag = document.createElement('span');
+        tag.className = 'dropped-item';
+        tag.textContent = item.text + ' x';
+        tag.onclick = () => { delete expState.placements[itemId]; expBuildBank(); expBuildZones(); expScore(); };
+        el.appendChild(tag);
+      });
+    }
+  });
+}
+
+function expDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('over'); }
+function expDragLeave(e) { e.currentTarget.classList.remove('over'); }
+function expDrop(e, zone) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('over');
+  const itemId = e.dataTransfer.getData('text/plain');
+  if (itemId) {
+    expState.placements[itemId] = zone;
+    expBuildBank();
+    expBuildZones();
+    expScore();
+  }
+}
+
+function expScore() {
+  const placed = Object.keys(expState.placements).length;
+  let correct = 0;
+  Object.entries(expState.placements).forEach(([itemId, zone]) => {
+    const item = expItems.find(i => i.id === itemId);
+    if (item && item.correct === zone) correct++;
+  });
+
+  $('exp-placed').textContent = placed + '/' + expItems.length;
+  $('exp-correct').textContent = correct + '/' + expItems.length;
+
+  // Score: correctness + sample size bonus
+  let score = Math.round((correct / expItems.length) * 80);
+  const sampleSize = parseInt($('exp-sample').value);
+  if (sampleSize >= 30) score += 20;
+  else if (sampleSize >= 15) score += 10;
+  else score += 5;
+  $('exp-score').textContent = Math.min(100, score);
+}
+
+function expCheck() {
+  let html = '';
+  let allCorrect = true;
+  expItems.forEach(item => {
+    const placed = expState.placements[item.id];
+    const zoneNames = { iv: 'Independent Variable', dv: 'Dependent Variable', cv: 'Controlled Variable', cg: 'Control Group' };
+    if (!placed) {
+      html += `<div class="analysis-result ar-fail"><div class="ar-title">${item.text}</div><p>Not placed. Should be: <strong>${zoneNames[item.correct]}</strong></p></div>`;
+      allCorrect = false;
+    } else if (placed !== item.correct) {
+      html += `<div class="analysis-result ar-fail"><div class="ar-title">${item.text}</div><p>Placed in ${zoneNames[placed]}, but should be <strong>${zoneNames[item.correct]}</strong></p></div>`;
+      allCorrect = false;
+    } else {
+      html += `<div class="analysis-result ar-pass"><div class="ar-title">${item.text}</div><p>Correctly placed in ${zoneNames[placed]}</p></div>`;
+    }
+  });
+
+  const sampleSize = parseInt($('exp-sample').value);
+  if (sampleSize < 30) {
+    html += `<div class="analysis-result ar-warn"><div class="ar-title">Sample Size: ${sampleSize}</div><p>Consider increasing to at least 30 for statistical power.</p></div>`;
+  } else {
+    html += `<div class="analysis-result ar-pass"><div class="ar-title">Sample Size: ${sampleSize}</div><p>Good sample size for detecting moderate effects.</p></div>`;
+  }
+
+  if (allCorrect && sampleSize >= 30) {
+    html = `<div class="analysis-result ar-pass"><div class="ar-title">Excellent Experimental Design!</div><p>All variables correctly categorized with adequate sample size. This experiment would be well-controlled and able to test the hypothesis that caffeine affects heart rate.</p></div>` + html;
+  }
+
+  $('exp-feedback').innerHTML = html;
+  expScore();
+}
+
+function expReset() {
+  expState = { placements: {} };
+  $('exp-sample').value = 30;
+  $('exp-sample-val').textContent = '30';
+  $('exp-feedback').innerHTML = '';
+  expBuildBank();
+  expBuildZones();
+  expScore();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: DATA ANALYSIS & GRAPHING
+// ══════════════════════════════════════════════════════════════════════════
+function parseData(str) {
+  return str.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+}
+
+function daAnalyze() {
+  const a = parseData($('da-data-a').value);
+  const b = parseData($('da-data-b').value);
+  const labelA = $('da-label-a').value || 'Group A';
+  const labelB = $('da-label-b').value || 'Group B';
+
+  $('da-title-a').textContent = labelA + ' Statistics';
+  $('da-title-b').textContent = labelB + ' Statistics';
+
+  if (a.length > 0) {
+    $('da-mean-a').textContent = mean(a).toFixed(2);
+    $('da-median-a').textContent = median(a).toFixed(2);
+    $('da-range-a').textContent = (Math.max(...a) - Math.min(...a)).toFixed(2);
+    $('da-sd-a').textContent = a.length > 1 ? stddev(a).toFixed(2) : '-';
+  }
+  if (b.length > 0) {
+    $('da-mean-b').textContent = mean(b).toFixed(2);
+    $('da-median-b').textContent = median(b).toFixed(2);
+    $('da-range-b').textContent = (Math.max(...b) - Math.min(...b)).toFixed(2);
+    $('da-sd-b').textContent = b.length > 1 ? stddev(b).toFixed(2) : '-';
+  }
+
+  drawDABarChart(a, b, labelA, labelB);
+  drawDAHistogram('da-hist-a', a, labelA, '#c41e3a');
+  drawDAHistogram('da-hist-b', b, labelB, '#2563eb');
+  daSignificance(a, b, labelA, labelB);
+}
+
+function drawDABarChart(a, b, labelA, labelB) {
+  const ctx = getCtx('da-bar-chart');
+  if (!a.length && !b.length) return;
+
+  const meanA = a.length ? mean(a) : 0;
+  const meanB = b.length ? mean(b) : 0;
+  const sdA = a.length > 1 ? stddev(a) : 0;
+  const sdB = b.length > 1 ? stddev(b) : 0;
+
+  const maxVal = Math.max(meanA + sdA, meanB + sdB) * 1.3 || 10;
+
+  drawBarChart(ctx, {
+    labels: [labelA, labelB],
+    values: [meanA, meanB],
+    colors: ['#c41e3a', '#2563eb'],
+    maxVal: maxVal,
+    errorBars: [sdA, sdB]
+  });
+}
+
+function drawDAHistogram(canvasId, data, label, color) {
+  const ctx = getCtx(canvasId);
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!data.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('No data', W / 2, H / 2);
+    return;
+  }
+
+  const minV = Math.floor(Math.min(...data));
+  const maxV = Math.ceil(Math.max(...data));
+  const range = maxV - minV || 1;
+  const nBins = Math.min(Math.max(5, Math.ceil(Math.sqrt(data.length))), 15);
+  const binSize = range / nBins;
+
+  const bins = Array(nBins).fill(0);
+  data.forEach(v => {
+    let idx = Math.floor((v - minV) / binSize);
+    if (idx >= nBins) idx = nBins - 1;
+    bins[idx]++;
+  });
+
+  const maxBin = Math.max(...bins) || 1;
+  const pad = { top: 20, right: 20, bottom: 40, left: 40 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const barW = plotW / nBins - 1;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxBin * i / 4), pad.left - 4, y + 4);
+  }
+
+  bins.forEach((b, i) => {
+    const x = pad.left + i * (barW + 1);
+    const h = (b / maxBin) * plotH;
+    ctx.fillStyle = color;
+    ctx.fillRect(x, pad.top + plotH - h, barW, h);
+  });
+
+  // X-axis labels
+  ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  for (let i = 0; i <= nBins; i += Math.max(1, Math.floor(nBins / 5))) {
+    const val = minV + i * binSize;
+    const x = pad.left + i * (barW + 1);
+    ctx.fillText(val.toFixed(1), x, H - pad.bottom + 14);
+  }
+
+  // Mean line
+  const m = mean(data);
+  const mX = pad.left + ((m - minV) / range) * plotW;
+  ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+  ctx.beginPath(); ctx.moveTo(mX, pad.top); ctx.lineTo(mX, pad.top + plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 10px system-ui';
+  ctx.fillText('Mean: ' + m.toFixed(1), mX, pad.top - 4);
+}
+
+function daSignificance(a, b, labelA, labelB) {
+  const el = $('da-significance');
+  if (a.length < 2 || b.length < 2) {
+    el.innerHTML = '<div class="analysis-result"><div class="ar-title">Insufficient Data</div><p>Need at least 2 values in each group for comparison.</p></div>';
+    return;
+  }
+
+  const meanA = mean(a), meanB = mean(b);
+  const sdA = stddev(a), sdB = stddev(b);
+  const nA = a.length, nB = b.length;
+
+  // Welch's t-test
+  const se = Math.sqrt((sdA * sdA) / nA + (sdB * sdB) / nB);
+  const tStat = (meanA - meanB) / se;
+
+  // Approximate df (Welch-Satterthwaite)
+  const v1 = (sdA * sdA) / nA, v2 = (sdB * sdB) / nB;
+  const df = Math.pow(v1 + v2, 2) / (Math.pow(v1, 2) / (nA - 1) + Math.pow(v2, 2) / (nB - 1));
+
+  // p-value approximation (two-tailed)
+  const absT = Math.abs(tStat);
+  let pApprox;
+  if (df > 100) pApprox = 2 * (1 - normalCDF(absT));
+  else pApprox = 2 * (1 - normalCDF(absT * Math.sqrt(1 - 1 / (4 * df))));
+  pApprox = clamp(pApprox, 0, 1);
+
+  const significant = pApprox < 0.05;
+  const effectSize = Math.abs(meanA - meanB) / Math.sqrt((sdA * sdA + sdB * sdB) / 2);
+
+  let html = `
+    <div class="analysis-result ${significant ? 'ar-pass' : 'ar-info'}">
+      <div class="ar-title">Welch's t-test: ${labelA} vs. ${labelB}</div>
+      <p>${labelA}: mean = <code>${meanA.toFixed(2)}</code>, SD = <code>${sdA.toFixed(2)}</code>, n = ${nA}</p>
+      <p>${labelB}: mean = <code>${meanB.toFixed(2)}</code>, SD = <code>${sdB.toFixed(2)}</code>, n = ${nB}</p>
+      <p>t = <code>${tStat.toFixed(3)}</code>, df = <code>${df.toFixed(1)}</code>, p approx. <code>${pApprox.toFixed(4)}</code></p>
+      <p>Cohen's d (effect size) = <code>${effectSize.toFixed(3)}</code> (${effectSize < 0.2 ? 'negligible' : effectSize < 0.5 ? 'small' : effectSize < 0.8 ? 'medium' : 'large'})</p>
+      <p><strong>${significant ? 'Statistically significant difference detected (p < 0.05).' : 'No statistically significant difference (p >= 0.05).'}</strong></p>
+      <p style="font-size:12px;color:var(--text-muted);">Note: This is an approximate calculation for educational purposes. With small samples, use a formal statistical table or software.</p>
+    </div>`;
+  el.innerHTML = html;
+}
+
+function normalCDF(x) {
+  const t = 1 / (1 + 0.2316419 * Math.abs(x));
+  const d = 0.3989422804014327;
+  const p = d * Math.exp(-x * x / 2) * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+  return x > 0 ? 1 - p : p;
+}
+
+function daLoadExample() {
+  $('da-label-a').value = 'Male Heights (cm)';
+  $('da-label-b').value = 'Female Heights (cm)';
+  $('da-data-a').value = '175, 180, 172, 178, 170, 183, 176, 179, 174, 177, 181, 173, 176, 182, 175';
+  $('da-data-b').value = '162, 165, 158, 168, 160, 170, 163, 166, 159, 164, 167, 161, 165, 169, 163';
+  daAnalyze();
+}
+
+function daClear() {
+  $('da-label-a').value = 'Group A';
+  $('da-label-b').value = 'Group B';
+  $('da-data-a').value = '';
+  $('da-data-b').value = '';
+  ['da-mean-a','da-median-a','da-range-a','da-sd-a','da-mean-b','da-median-b','da-range-b','da-sd-b'].forEach(id => $(id).textContent = '-');
+  $('da-title-a').textContent = 'Group A Statistics';
+  $('da-title-b').textContent = 'Group B Statistics';
+  $('da-significance').innerHTML = '';
+  const ctx1 = getCtx('da-bar-chart'); ctx1.clearRect(0, 0, ctx1.W, ctx1.H); ctx1.fillStyle = '#f8fafc'; ctx1.fillRect(0, 0, ctx1.W, ctx1.H);
+  const ctx2 = getCtx('da-hist-a'); ctx2.clearRect(0, 0, ctx2.W, ctx2.H); ctx2.fillStyle = '#f8fafc'; ctx2.fillRect(0, 0, ctx2.W, ctx2.H);
+  const ctx3 = getCtx('da-hist-b'); ctx3.clearRect(0, 0, ctx3.W, ctx3.H); ctx3.fillStyle = '#f8fafc'; ctx3.fillRect(0, 0, ctx3.W, ctx3.H);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  // Part 1
+  drawBodyDiagram();
+  drawPopHistogram();
+
+  // Part 2
+  convertMass();
+  convertVol();
+  convertTemp();
+  convertLen();
+  drawScaleChart();
+
+  // Part 3
+  drawTarget();
+
+  // Part 4
+  resUpdate();
+  sigfigGenerate();
+
+  // Part 5
+  expBuildBank();
+  expBuildZones();
+  expScore();
+});
+
+window.addEventListener('resize', () => {
+  drawBodyDiagram();
+  drawPopHistogram();
+  drawScaleChart();
+  drawTarget();
+  drawMedChart();
+  resUpdate();
+  // Data analysis charts if populated
+  const a = parseData($('da-data-a').value);
+  const b = parseData($('da-data-b').value);
+  if (a.length || b.length) daAnalyze();
+});
+</script>
+</body>
+</html>

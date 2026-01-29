@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 12 Dashboard: Gene Expression | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SEQUENCE DISPLAY
+   ═══════════════════════════════════════════════════════════════════════ */
+.seq-display {
+  font-family: var(--mono); font-size: 14px; line-height: 2;
+  padding: 12px 16px; background: #f8fafc; border-radius: 8px;
+  border: 1px solid var(--border); margin: 8px 0; overflow-x: auto;
+  white-space: nowrap; letter-spacing: 2px;
+}
+.seq-display .base-A { color: #16a34a; font-weight: 700; }
+.seq-display .base-T, .seq-display .base-U { color: #c41e3a; font-weight: 700; }
+.seq-display .base-G { color: #2563eb; font-weight: 700; }
+.seq-display .base-C { color: #d97706; font-weight: 700; }
+.seq-display .codon-start { background: #dcfce7; border-radius: 3px; padding: 1px 2px; }
+.seq-display .codon-stop { background: #fef2f2; border-radius: 3px; padding: 1px 2px; }
+.seq-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+.seq-input {
+  font-family: var(--mono); font-size: 14px; padding: 10px 14px;
+  border: 2px solid var(--border); border-radius: 8px; width: 100%;
+  letter-spacing: 2px; text-transform: uppercase; outline: none;
+  transition: border-color 0.2s;
+}
+.seq-input:focus { border-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CODON TABLE
+   ═══════════════════════════════════════════════════════════════════════ */
+.codon-grid {
+  display: grid; grid-template-columns: repeat(16, 1fr); gap: 2px;
+  font-family: var(--mono); font-size: 10px; margin: 8px 0;
+}
+.codon-cell {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 4px 2px; border-radius: 4px; cursor: pointer; transition: all 0.15s;
+  border: 1px solid transparent; min-height: 44px;
+}
+.codon-cell:hover { transform: scale(1.1); z-index: 2; box-shadow: var(--shadow-lg); }
+.codon-cell .cc-codon { font-size: 9px; font-weight: 600; color: var(--text-muted); }
+.codon-cell .cc-aa { font-size: 11px; font-weight: 800; }
+.codon-cell.cc-start { background: #dcfce7; border-color: #86efac; }
+.codon-cell.cc-stop { background: #fef2f2; border-color: #fecaca; }
+.codon-cell.cc-highlight { box-shadow: 0 0 0 3px var(--accent), 0 0 12px rgba(196,30,58,0.3); z-index: 3; transform: scale(1.15); }
+.codon-cell.cc-search-hit { box-shadow: 0 0 0 2px var(--blue); z-index: 2; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MUTATION COMPARISON
+   ═══════════════════════════════════════════════════════════════════════ */
+.comparison-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+.compare-side { padding: 16px; border-radius: 8px; border: 2px solid var(--border); }
+.compare-side.original { border-color: #86efac; background: #f0fdf4; }
+.compare-side.mutated { border-color: #fecaca; background: #fef2f2; }
+.compare-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+@media (max-width: 900px) { .comparison-panel { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PATHWAY DISPLAY
+   ═══════════════════════════════════════════════════════════════════════ */
+.pathway-steps {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin: 12px 0; padding: 16px; background: #f8fafc; border-radius: 8px;
+}
+.pathway-step {
+  padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  text-align: center; min-width: 80px;
+}
+.pathway-arrow { font-size: 18px; color: var(--text-muted); font-weight: 700; }
+.pathway-step.ps-dna { background: #dbeafe; color: #1e40af; }
+.pathway-step.ps-mrna { background: #fef3c7; color: #92400e; }
+.pathway-step.ps-protein { background: #fce7f3; color: #9d174d; }
+.pathway-step.ps-function { background: #dcfce7; color: #166534; }
+.pathway-step.ps-trait { background: #f3e8ff; color: #6b21a8; }
+.pathway-step.ps-process { background: #f1f5f9; color: #475569; font-size: 11px; font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+.analysis-result.ar-warn { border-left-color: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 12 &mdash; Gene Expression</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Central Dogma</a>
+    <a href="#part2"><span class="nav-num">2</span> Transcription</a>
+    <a href="#part3"><span class="nav-num">3</span> Translation</a>
+    <a href="#part4"><span class="nav-num">4</span> Codon Table</a>
+    <a href="#part5"><span class="nav-num">5</span> Mutation Effects</a>
+    <a href="#part6"><span class="nav-num">6</span> Gene to Trait</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Gene Expression</h2>
+  <p>Interactive simulations for Lab 12. Explore the central dogma, simulate transcription and translation, decode codons, analyze mutations, and connect genes to traits.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Central Dogma</span>
+    <span class="bio-tag">Transcription</span>
+    <span class="bio-tag">Translation</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: CENTRAL DOGMA FLOW ════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Central Dogma Flow</div>
+    <div class="section-subtitle">DNA &rarr; mRNA &rarr; Protein: the information highway of life</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Animated Central Dogma Pathway</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Watch the flow of genetic information from DNA through mRNA to protein. Step through each phase or play the full animation.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="dogmaPlay()">Play Animation</button>
+      <button class="btn btn-secondary" onclick="dogmaStep()">Step Forward</button>
+      <button class="btn btn-outline" onclick="dogmaReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="dogma-canvas" height="380"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-blue"><div class="stat-val" id="dogma-phase">-</div><div class="stat-label">Current Phase</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="dogma-step">0</div><div class="stat-label">Step</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="dogma-mol">-</div><div class="stat-label">Active Molecule</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">The Central Dogma Summary</div>
+    <div class="pathway-steps">
+      <div class="pathway-step ps-dna">DNA</div>
+      <div class="pathway-arrow">&rarr;</div>
+      <div class="pathway-step ps-process">Transcription</div>
+      <div class="pathway-arrow">&rarr;</div>
+      <div class="pathway-step ps-mrna">mRNA</div>
+      <div class="pathway-arrow">&rarr;</div>
+      <div class="pathway-step ps-process">Translation</div>
+      <div class="pathway-arrow">&rarr;</div>
+      <div class="pathway-step ps-protein">Protein</div>
+    </div>
+    <div class="analysis-result ar-pass">
+      <div class="ar-title">Key Rules</div>
+      <p><strong>Transcription:</strong> DNA template strand is read 3'&rarr;5'; mRNA is built 5'&rarr;3'. Base pairing: A&rarr;U, T&rarr;A, G&rarr;C, C&rarr;G.</p>
+      <p style="margin-top:6px;"><strong>Translation:</strong> mRNA is read 5'&rarr;3' in triplet codons starting at AUG. tRNA anticodons deliver amino acids. Stops at UAA, UAG, or UGA.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: TRANSCRIPTION SIMULATOR ═══════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Transcription Simulator</div>
+    <div class="section-subtitle">RNA polymerase reads DNA and builds complementary mRNA</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">DNA Template Strand Input</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Enter a DNA template strand (3'&rarr;5') or generate a random one. Only A, T, G, C allowed.</p>
+    <input type="text" class="seq-input" id="txn-dna-input" placeholder="e.g. TACATGAAACCCGGGTTTATC" maxlength="60" value="TACATGAAACCCGGGTTTATC">
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="txnStart()">Start Transcription</button>
+      <button class="btn btn-secondary" onclick="txnRandomDNA()">Random DNA</button>
+      <button class="btn btn-outline" onclick="txnReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-blue"><div class="stat-val" id="txn-pos">0</div><div class="stat-label">Position</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="txn-len">0</div><div class="stat-label">mRNA Length</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="txn-status">Ready</div><div class="stat-label">Status</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="txn-gc">-</div><div class="stat-label">GC Content</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Transcription Animation</div>
+    <div class="chart-wrap"><canvas id="txn-canvas" height="300"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Resulting Sequences</div>
+    <div class="seq-label">DNA Template Strand (3'&rarr;5')</div>
+    <div class="seq-display" id="txn-dna-display">-</div>
+    <div class="seq-label" style="margin-top:12px;">DNA Coding Strand (5'&rarr;3')</div>
+    <div class="seq-display" id="txn-coding-display">-</div>
+    <div class="seq-label" style="margin-top:12px;">mRNA (5'&rarr;3')</div>
+    <div class="seq-display" id="txn-mrna-display">-</div>
+    <div class="analysis-result" id="txn-rules" style="margin-top:12px;">
+      <div class="ar-title">Base Pairing Rules (DNA &rarr; mRNA)</div>
+      <p><code>A</code> &rarr; <code>U</code> &nbsp; <code>T</code> &rarr; <code>A</code> &nbsp; <code>G</code> &rarr; <code>C</code> &nbsp; <code>C</code> &rarr; <code>G</code></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: TRANSLATION SIMULATOR ═════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Translation Simulator</div>
+    <div class="section-subtitle">Ribosomes decode mRNA into polypeptide chains</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">mRNA Sequence Input</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Enter an mRNA sequence (5'&rarr;3') or use the output from transcription. Only A, U, G, C allowed.</p>
+    <input type="text" class="seq-input" id="tln-mrna-input" placeholder="e.g. AUGUACUUUGGGCCCAAAUAG" maxlength="90" value="AUGUACUUUGGGCCCAAAUAG">
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="tlnStart()">Start Translation</button>
+      <button class="btn btn-secondary" onclick="tlnUseTranscription()">Use Transcription Output</button>
+      <button class="btn btn-outline" onclick="tlnReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-blue"><div class="stat-val" id="tln-codon-num">0</div><div class="stat-label">Codons Read</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="tln-aa-count">0</div><div class="stat-label">Amino Acids</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="tln-status">Ready</div><div class="stat-label">Status</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="tln-current-codon">-</div><div class="stat-label">Current Codon</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Translation Animation</div>
+    <div class="chart-wrap"><canvas id="tln-canvas" height="340"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Translation Results</div>
+    <div class="seq-label">mRNA Codons</div>
+    <div class="seq-display" id="tln-codons-display">-</div>
+    <div class="seq-label" style="margin-top:12px;">Polypeptide Chain</div>
+    <div class="seq-display" id="tln-protein-display">-</div>
+    <div id="tln-codon-detail" style="margin-top:12px;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: CODON TABLE EXPLORER ══════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Codon Table Explorer</div>
+    <div class="section-subtitle">All 64 codons and their amino acids &mdash; explore redundancy</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Interactive Codon Table</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Click any codon to highlight its amino acid. Search by amino acid name to see all codons that encode it (degeneracy).</p>
+    <div class="btn-group">
+      <label style="font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;">
+        Search amino acid:
+        <input type="text" class="seq-input" id="codon-search" placeholder="e.g. Leu or L" style="width:120px;letter-spacing:0;">
+      </label>
+      <button class="btn btn-primary btn-sm" onclick="codonSearch()">Search</button>
+      <button class="btn btn-outline btn-sm" onclick="codonClearSearch()">Clear</button>
+    </div>
+    <div id="codon-table-container"></div>
+    <div class="stat-grid" style="margin-top:12px;">
+      <div class="stat-box stat-accent"><div class="stat-val" id="codon-selected">-</div><div class="stat-label">Selected Codon</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="codon-aa-name">-</div><div class="stat-label">Amino Acid</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="codon-degeneracy">-</div><div class="stat-label">Degeneracy</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val">64</div><div class="stat-label">Total Codons</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Amino Acid Frequency in the Genetic Code</div>
+    <div class="chart-wrap"><canvas id="codon-freq-chart" height="280"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: MUTATION EFFECTS LAB ══════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Mutation Effects Lab</div>
+    <div class="section-subtitle">See how DNA changes cascade through to protein</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Original DNA Sequence</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Enter a DNA template strand or use the default. Then apply mutations to see their effects.</p>
+    <input type="text" class="seq-input" id="mut-dna-input" placeholder="e.g. TACATGAAACCCTTTATC" maxlength="60" value="TACATGAAACCCGGGTTTATC">
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="mutSubstitution()">Point Mutation</button>
+      <button class="btn btn-secondary" onclick="mutInsertion()">Insertion</button>
+      <button class="btn btn-secondary" onclick="mutDeletion()">Deletion</button>
+      <button class="btn btn-outline" onclick="mutReset()">Reset</button>
+    </div>
+    <div class="slider-group">
+      <label>Position</label>
+      <input type="range" id="mut-pos" min="0" max="20" value="6" oninput="mutUpdatePosLabel()">
+      <span class="slider-val" id="mut-pos-val">6</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="mut-type">-</div><div class="stat-label">Mutation Type</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="mut-category">-</div><div class="stat-label">Category</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="mut-severity">-</div><div class="stat-label">Severity</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="mut-position">-</div><div class="stat-label">Position</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Mutation Comparison</div>
+    <div class="comparison-panel" id="mut-comparison">
+      <div class="compare-side original">
+        <div class="compare-label" style="color:#166534;">Original</div>
+        <div class="seq-label">DNA Template</div>
+        <div class="seq-display" id="mut-orig-dna">-</div>
+        <div class="seq-label">mRNA</div>
+        <div class="seq-display" id="mut-orig-mrna">-</div>
+        <div class="seq-label">Protein</div>
+        <div class="seq-display" id="mut-orig-protein">-</div>
+      </div>
+      <div class="compare-side mutated">
+        <div class="compare-label" style="color:#991b1b;">Mutated</div>
+        <div class="seq-label">DNA Template</div>
+        <div class="seq-display" id="mut-new-dna">-</div>
+        <div class="seq-label">mRNA</div>
+        <div class="seq-display" id="mut-new-mrna">-</div>
+        <div class="seq-label">Protein</div>
+        <div class="seq-display" id="mut-new-protein">-</div>
+      </div>
+    </div>
+    <div id="mut-analysis"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Mutation Impact Visualization</div>
+    <div class="chart-wrap"><canvas id="mut-chart" height="260"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: GENE TO TRAIT ═════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Gene to Trait Connection</div>
+    <div class="section-subtitle">Follow the path from DNA sequence to observable characteristics</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select a Gene</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Choose a gene to trace the pathway from DNA to observable trait. See how a single base change can alter everything.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="traitSelect('hemoglobin')">Hemoglobin (HBB)</button>
+      <button class="btn btn-secondary" onclick="traitSelect('melanin')">Melanin (TYR)</button>
+      <button class="btn btn-secondary" onclick="traitSelect('lactase')">Lactase (LCT)</button>
+    </div>
+  </div>
+  <div class="card" id="trait-detail-card" style="display:none;">
+    <div class="card-title" id="trait-gene-title">-</div>
+    <div class="pathway-steps" id="trait-pathway"></div>
+    <div class="card-row" style="margin-top:16px;">
+      <div>
+        <div class="seq-label">Normal DNA Sequence (partial)</div>
+        <div class="seq-display" id="trait-normal-dna">-</div>
+        <div class="seq-label" style="margin-top:8px;">Normal mRNA</div>
+        <div class="seq-display" id="trait-normal-mrna">-</div>
+        <div class="seq-label" style="margin-top:8px;">Normal Protein (partial)</div>
+        <div class="seq-display" id="trait-normal-protein">-</div>
+      </div>
+      <div>
+        <div class="seq-label">Variant DNA Sequence</div>
+        <div class="seq-display" id="trait-variant-dna">-</div>
+        <div class="seq-label" style="margin-top:8px;">Variant mRNA</div>
+        <div class="seq-display" id="trait-variant-mrna">-</div>
+        <div class="seq-label" style="margin-top:8px;">Variant Protein</div>
+        <div class="seq-display" id="trait-variant-protein">-</div>
+      </div>
+    </div>
+    <div id="trait-analysis" style="margin-top:16px;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Gene Expression Pathway Visualization</div>
+    <div class="chart-wrap"><canvas id="trait-canvas" height="320"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const pick = arr => arr[rand(0, arr.length - 1)];
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// GENETIC CODE TABLE
+// ══════════════════════════════════════════════════════════════════════════
+const CODON_TABLE = {
+  'UUU':'Phe','UUC':'Phe','UUA':'Leu','UUG':'Leu',
+  'CUU':'Leu','CUC':'Leu','CUA':'Leu','CUG':'Leu',
+  'AUU':'Ile','AUC':'Ile','AUA':'Ile','AUG':'Met',
+  'GUU':'Val','GUC':'Val','GUA':'Val','GUG':'Val',
+  'UCU':'Ser','UCC':'Ser','UCA':'Ser','UCG':'Ser',
+  'CCU':'Pro','CCC':'Pro','CCA':'Pro','CCG':'Pro',
+  'ACU':'Thr','ACC':'Thr','ACA':'Thr','ACG':'Thr',
+  'GCU':'Ala','GCC':'Ala','GCA':'Ala','GCG':'Ala',
+  'UAU':'Tyr','UAC':'Tyr','UAA':'Stop','UAG':'Stop',
+  'CAU':'His','CAC':'His','CAA':'Gln','CAG':'Gln',
+  'AAU':'Asn','AAC':'Asn','AAA':'Lys','AAG':'Lys',
+  'GAU':'Asp','GAC':'Asp','GAA':'Glu','GAG':'Glu',
+  'UGU':'Cys','UGC':'Cys','UGA':'Stop','UGG':'Trp',
+  'CGU':'Arg','CGC':'Arg','CGA':'Arg','CGG':'Arg',
+  'AGU':'Ser','AGC':'Ser','AGA':'Arg','AGG':'Arg',
+  'GGU':'Gly','GGC':'Gly','GGA':'Gly','GGG':'Gly'
+};
+
+const AA_SINGLE = {
+  'Ala':'A','Arg':'R','Asn':'N','Asp':'D','Cys':'C','Gln':'Q','Glu':'E',
+  'Gly':'G','His':'H','Ile':'I','Leu':'L','Lys':'K','Met':'M','Phe':'F',
+  'Pro':'P','Ser':'S','Thr':'T','Trp':'W','Tyr':'Y','Val':'V','Stop':'*'
+};
+
+const AA_FULLNAME = {
+  'Ala':'Alanine','Arg':'Arginine','Asn':'Asparagine','Asp':'Aspartic acid',
+  'Cys':'Cysteine','Gln':'Glutamine','Glu':'Glutamic acid','Gly':'Glycine',
+  'His':'Histidine','Ile':'Isoleucine','Leu':'Leucine','Lys':'Lysine',
+  'Met':'Methionine','Phe':'Phenylalanine','Pro':'Proline','Ser':'Serine',
+  'Thr':'Threonine','Trp':'Tryptophan','Tyr':'Tyrosine','Val':'Valine','Stop':'Stop'
+};
+
+const AA_COLORS = {
+  'Phe':'#dc2626','Leu':'#ea580c','Ile':'#f59e0b','Met':'#16a34a',
+  'Val':'#0d9488','Ser':'#0ea5e9','Pro':'#6366f1','Thr':'#8b5cf6',
+  'Ala':'#a855f7','Tyr':'#d946ef','His':'#ec4899','Gln':'#f43f5e',
+  'Asn':'#ef4444','Lys':'#f97316','Asp':'#eab308','Glu':'#84cc16',
+  'Cys':'#22c55e','Trp':'#14b8a6','Arg':'#06b6d4','Gly':'#3b82f6',
+  'Stop':'#6b7280'
+};
+
+function dnaToMRNA(dna) {
+  return dna.split('').map(b => {
+    switch(b) {
+      case 'A': return 'U'; case 'T': return 'A';
+      case 'G': return 'C'; case 'C': return 'G';
+      default: return '?';
+    }
+  }).join('');
+}
+
+function mrnaToCodons(mrna) {
+  const codons = [];
+  for (let i = 0; i <= mrna.length - 3; i += 3) {
+    codons.push(mrna.substring(i, i + 3));
+  }
+  return codons;
+}
+
+function codonsToProtein(codons) {
+  const protein = [];
+  for (const c of codons) {
+    const aa = CODON_TABLE[c];
+    if (!aa) break;
+    if (aa === 'Stop') { protein.push('Stop'); break; }
+    protein.push(aa);
+  }
+  return protein;
+}
+
+function translateFromStart(mrna) {
+  // Find first AUG
+  const startIdx = mrna.indexOf('AUG');
+  if (startIdx === -1) return { codons: [], protein: [], startIdx: -1 };
+  const sub = mrna.substring(startIdx);
+  const codons = mrnaToCodons(sub);
+  const protein = codonsToProtein(codons);
+  return { codons, protein, startIdx };
+}
+
+function colorBase(base) {
+  const cls = 'base-' + base;
+  return `<span class="${cls}">${base}</span>`;
+}
+
+function colorSeq(seq) {
+  return seq.split('').map(colorBase).join('');
+}
+
+function colorCodons(codons, protein) {
+  let html = '';
+  codons.forEach((c, i) => {
+    const aa = CODON_TABLE[c] || '?';
+    let cls = '';
+    if (c === 'AUG' && i === 0) cls = 'codon-start';
+    else if (aa === 'Stop') cls = 'codon-stop';
+    const colored = c.split('').map(colorBase).join('');
+    html += `<span class="${cls}" title="${aa}">${colored}</span>`;
+    if (i < codons.length - 1) html += ' ';
+  });
+  return html;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: CENTRAL DOGMA FLOW
+// ══════════════════════════════════════════════════════════════════════════
+let dogmaState = { step: 0, playing: false, timer: null, maxSteps: 60 };
+const DOGMA_DNA = 'TACATGAAACCCGGG';
+const DOGMA_MRNA = dnaToMRNA(DOGMA_DNA);
+
+function dogmaPlay() {
+  if (dogmaState.playing) { dogmaPause(); return; }
+  dogmaState.playing = true;
+  dogmaState.timer = setInterval(() => {
+    dogmaState.step++;
+    if (dogmaState.step >= dogmaState.maxSteps) { dogmaPause(); }
+    drawDogma();
+    dogmaUpdateUI();
+  }, 120);
+}
+
+function dogmaPause() {
+  dogmaState.playing = false;
+  if (dogmaState.timer) clearInterval(dogmaState.timer);
+  dogmaState.timer = null;
+}
+
+function dogmaStep() {
+  dogmaPause();
+  dogmaState.step = Math.min(dogmaState.step + 1, dogmaState.maxSteps);
+  drawDogma();
+  dogmaUpdateUI();
+}
+
+function dogmaReset() {
+  dogmaPause();
+  dogmaState.step = 0;
+  drawDogma();
+  dogmaUpdateUI();
+}
+
+function dogmaUpdateUI() {
+  const s = dogmaState.step;
+  $('dogma-step').textContent = s;
+  if (s === 0) {
+    $('dogma-phase').textContent = '-';
+    $('dogma-mol').textContent = '-';
+  } else if (s <= 20) {
+    $('dogma-phase').textContent = 'TXN';
+    $('dogma-mol').textContent = 'RNA Pol';
+  } else if (s <= 25) {
+    $('dogma-phase').textContent = 'Transit';
+    $('dogma-mol').textContent = 'mRNA';
+  } else if (s <= 55) {
+    $('dogma-phase').textContent = 'TLN';
+    $('dogma-mol').textContent = 'Ribosome';
+  } else {
+    $('dogma-phase').textContent = 'Done';
+    $('dogma-mol').textContent = 'Protein';
+  }
+}
+
+function drawDogma() {
+  const ctx = getCtx('dogma-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const s = dogmaState.step;
+  const dna = DOGMA_DNA;
+  const mrna = DOGMA_MRNA;
+
+  // Layout zones
+  const nucY = 30, nucH = 120;   // Nucleus zone
+  const cytoY = 180, cytoH = 180; // Cytoplasm zone
+
+  // Nucleus boundary
+  ctx.fillStyle = '#eff6ff';
+  ctx.beginPath();
+  ctx.ellipse(W/2, nucY + nucH/2 + 20, W * 0.42, nucH * 0.8, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#93c5fd'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  ctx.ellipse(W/2, nucY + nucH/2 + 20, W * 0.42, nucH * 0.8, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('NUCLEUS', W/2 - W * 0.38, nucY + 16);
+
+  // Cytoplasm label
+  ctx.fillStyle = '#f0fdf4';
+  ctx.fillRect(10, cytoY - 10, W - 20, cytoH + 20);
+  ctx.strokeStyle = '#86efac'; ctx.lineWidth = 1;
+  ctx.strokeRect(10, cytoY - 10, W - 20, cytoH + 20);
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 11px system-ui';
+  ctx.fillText('CYTOPLASM', 20, cytoY + 6);
+
+  // DNA double helix representation
+  const dnaStartX = W * 0.12, dnaEndX = W * 0.88;
+  const dnaY = nucY + 55;
+  const baseSpacing = (dnaEndX - dnaStartX) / dna.length;
+
+  // Draw DNA bases
+  const dnaColors = { 'A': '#16a34a', 'T': '#c41e3a', 'G': '#2563eb', 'C': '#d97706' };
+  const compBase = { 'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G' };
+
+  // Template strand (bottom)
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText("3'", dnaStartX - 20, dnaY + 22);
+  ctx.fillText("5'", dnaEndX + 5, dnaY + 22);
+
+  for (let i = 0; i < dna.length; i++) {
+    const x = dnaStartX + i * baseSpacing;
+    const base = dna[i];
+    const comp = compBase[base];
+
+    // Template strand (bottom)
+    ctx.fillStyle = dnaColors[base];
+    ctx.font = 'bold 13px ' + 'SF Mono, Consolas, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(base, x + baseSpacing / 2, dnaY + 20);
+
+    // Coding strand (top)
+    ctx.fillStyle = dnaColors[comp];
+    ctx.fillText(comp, x + baseSpacing / 2, dnaY - 8);
+
+    // Hydrogen bonds
+    ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x + baseSpacing / 2, dnaY - 2);
+    ctx.lineTo(x + baseSpacing / 2, dnaY + 8);
+    ctx.stroke();
+
+    // Transcription progress
+    if (s > 0 && s <= 20) {
+      const progress = Math.min(i, Math.floor(s / 20 * dna.length));
+      if (i <= progress) {
+        // RNA polymerase unwinding effect
+        ctx.fillStyle = 'rgba(196,30,58,0.1)';
+        ctx.fillRect(x, dnaY - 15, baseSpacing, 42);
+      }
+      // mRNA being built
+      if (i < progress) {
+        const rnaBase = dnaToMRNA(base);
+        ctx.fillStyle = '#c41e3a';
+        ctx.font = 'bold 12px ' + 'SF Mono, Consolas, monospace';
+        ctx.fillText(rnaBase, x + baseSpacing / 2, dnaY + 46);
+      }
+      // RNA Polymerase position
+      if (i === progress) {
+        ctx.fillStyle = '#7c3aed';
+        ctx.beginPath();
+        ctx.arc(x + baseSpacing / 2, dnaY + 5, 14, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 8px system-ui';
+        ctx.fillText('RNAP', x + baseSpacing / 2, dnaY + 8);
+      }
+    }
+  }
+
+  // Coding strand direction labels
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText("5'", dnaStartX - 20, dnaY - 8);
+  ctx.fillText("3'", dnaEndX + 5, dnaY - 8);
+
+  // mRNA label when being built
+  if (s > 0 && s <= 20) {
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText("5' mRNA", dnaStartX - 20, dnaY + 48);
+  }
+
+  // Phase 2: mRNA transit (steps 21-25)
+  if (s > 20 && s <= 25) {
+    const transitProgress = (s - 20) / 5;
+    const mrnaY = dnaY + 46 + transitProgress * (cytoY + 30 - dnaY - 46);
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px ' + 'SF Mono, Consolas, monospace';
+    ctx.textAlign = 'center';
+    for (let i = 0; i < mrna.length; i++) {
+      const x = dnaStartX + i * baseSpacing;
+      ctx.fillText(mrna[i], x + baseSpacing / 2, mrnaY);
+    }
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText("5' mRNA 3'", dnaStartX - 20, mrnaY + 2);
+  }
+
+  // Phase 3: Translation (steps 26-55)
+  if (s > 25) {
+    const mrnaY2 = cytoY + 40;
+
+    // mRNA in cytoplasm
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText("5'", dnaStartX - 16, mrnaY2 + 4);
+
+    for (let i = 0; i < mrna.length; i++) {
+      const x = dnaStartX + i * baseSpacing;
+      ctx.fillStyle = dnaColors[mrna[i] === 'U' ? 'T' : mrna[i]] || '#374151';
+      ctx.font = 'bold 12px ' + 'SF Mono, Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(mrna[i], x + baseSpacing / 2, mrnaY2);
+    }
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText("3'", dnaEndX + 5, mrnaY2 + 4);
+
+    // Translation progress
+    const tlnProgress = Math.min(Math.floor((s - 25) / 30 * Math.floor(mrna.length / 3)), Math.floor(mrna.length / 3));
+    const codons = mrnaToCodons(mrna);
+
+    // Codon brackets
+    for (let ci = 0; ci < Math.min(tlnProgress, codons.length); ci++) {
+      const cx = dnaStartX + ci * 3 * baseSpacing;
+      const cw = 3 * baseSpacing;
+      ctx.strokeStyle = ci < tlnProgress ? '#16a34a' : '#d1d5db';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cx, mrnaY2 + 6);
+      ctx.lineTo(cx, mrnaY2 + 12);
+      ctx.lineTo(cx + cw, mrnaY2 + 12);
+      ctx.lineTo(cx + cw, mrnaY2 + 6);
+      ctx.stroke();
+
+      // Amino acid below
+      const aa = CODON_TABLE[codons[ci]];
+      if (aa) {
+        ctx.fillStyle = AA_COLORS[aa] || '#374151';
+        ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText(AA_SINGLE[aa] || '?', cx + cw / 2, mrnaY2 + 26);
+      }
+    }
+
+    // Ribosome
+    if (tlnProgress < codons.length) {
+      const ribX = dnaStartX + tlnProgress * 3 * baseSpacing + 1.5 * baseSpacing;
+      ctx.fillStyle = 'rgba(124,58,237,0.2)';
+      ctx.beginPath();
+      ctx.ellipse(ribX, mrnaY2, 22, 28, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(ribX, mrnaY2 - 8, 18, 12, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.ellipse(ribX, mrnaY2 + 10, 22, 14, 0, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fillStyle = '#7c3aed'; ctx.font = 'bold 8px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('Ribosome', ribX, mrnaY2 + 3);
+    }
+
+    // Growing polypeptide chain
+    if (tlnProgress > 0) {
+      const pepY = mrnaY2 + 55;
+      ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+      ctx.fillText('Polypeptide:', dnaStartX - 10, pepY - 6);
+      const protein = codonsToProtein(codons.slice(0, tlnProgress));
+      let pepX = dnaStartX;
+      protein.forEach((aa, i) => {
+        if (aa === 'Stop') return;
+        const color = AA_COLORS[aa] || '#6b7280';
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.roundRect(pepX, pepY, 28, 22, 4);
+        ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText(AA_SINGLE[aa], pepX + 14, pepY + 15);
+        pepX += 32;
+      });
+    }
+  }
+
+  // Step label
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+  let phaseLabel = 'Ready';
+  if (s > 0 && s <= 20) phaseLabel = 'Transcription';
+  else if (s > 20 && s <= 25) phaseLabel = 'mRNA Export';
+  else if (s > 25 && s <= 55) phaseLabel = 'Translation';
+  else if (s > 55) phaseLabel = 'Complete';
+  ctx.fillText(phaseLabel, W - 20, H - 10);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: TRANSCRIPTION SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+let txnState = { dna: '', mrna: '', pos: 0, running: false, timer: null, complete: false };
+
+function txnRandomDNA() {
+  const bases = ['A', 'T', 'G', 'C'];
+  // Start with TAC (makes AUG start codon in mRNA)
+  let dna = 'TAC';
+  const len = rand(15, 30);
+  for (let i = 3; i < len; i++) dna += pick(bases);
+  // Add a stop codon equivalent near the end
+  const stops = ['ATT', 'ATC', 'ACT']; // template for UAA, UAG, UGA
+  dna = dna.substring(0, len - 3) + pick(stops);
+  $('txn-dna-input').value = dna;
+}
+
+function txnStart() {
+  const raw = $('txn-dna-input').value.toUpperCase().replace(/[^ATGC]/g, '');
+  if (raw.length < 3) return;
+  $('txn-dna-input').value = raw;
+  txnState.dna = raw;
+  txnState.mrna = '';
+  txnState.pos = 0;
+  txnState.complete = false;
+  $('txn-status').textContent = 'Running';
+
+  if (txnState.timer) clearInterval(txnState.timer);
+  txnState.running = true;
+  txnState.timer = setInterval(() => {
+    if (txnState.pos >= txnState.dna.length) {
+      clearInterval(txnState.timer);
+      txnState.running = false;
+      txnState.complete = true;
+      $('txn-status').textContent = 'Done';
+      txnUpdateUI();
+      return;
+    }
+    const base = txnState.dna[txnState.pos];
+    const rnaBase = { 'A': 'U', 'T': 'A', 'G': 'C', 'C': 'G' }[base] || '?';
+    txnState.mrna += rnaBase;
+    txnState.pos++;
+    txnUpdateUI();
+    drawTxn();
+  }, 200);
+}
+
+function txnReset() {
+  if (txnState.timer) clearInterval(txnState.timer);
+  txnState = { dna: '', mrna: '', pos: 0, running: false, timer: null, complete: false };
+  $('txn-status').textContent = 'Ready';
+  $('txn-pos').textContent = '0';
+  $('txn-len').textContent = '0';
+  $('txn-gc').textContent = '-';
+  $('txn-dna-display').innerHTML = '-';
+  $('txn-coding-display').innerHTML = '-';
+  $('txn-mrna-display').innerHTML = '-';
+  const ctx = getCtx('txn-canvas');
+  ctx.clearRect(0, 0, ctx.W, ctx.H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+  ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Enter a DNA sequence and click Start Transcription', ctx.W / 2, ctx.H / 2);
+}
+
+function txnUpdateUI() {
+  $('txn-pos').textContent = txnState.pos;
+  $('txn-len').textContent = txnState.mrna.length;
+
+  // GC content
+  if (txnState.dna.length > 0) {
+    const gc = (txnState.dna.split('').filter(b => b === 'G' || b === 'C').length / txnState.dna.length * 100).toFixed(0);
+    $('txn-gc').textContent = gc + '%';
+  }
+
+  // Update sequence displays
+  $('txn-dna-display').innerHTML = "3'-" + colorSeq(txnState.dna) + "-5'";
+
+  // Coding strand
+  const coding = txnState.dna.split('').map(b => ({ 'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G' }[b])).join('');
+  $('txn-coding-display').innerHTML = "5'-" + colorSeq(coding) + "-3'";
+
+  // mRNA with codon highlighting
+  let mrnaHtml = "5'-";
+  const mrna = txnState.mrna;
+  for (let i = 0; i < mrna.length; i++) {
+    const codon3 = mrna.substring(i - (i % 3), i - (i % 3) + 3);
+    let cls = 'base-' + mrna[i];
+    if (codon3 === 'AUG' && i % 3 === 0 && mrna.indexOf('AUG') === i - (i % 3)) {
+      // Near start codon
+    }
+    mrnaHtml += colorBase(mrna[i]);
+  }
+  mrnaHtml += "-3'";
+  $('txn-mrna-display').innerHTML = mrnaHtml;
+
+  // Update position slider max
+  $('mut-pos').max = Math.max(txnState.dna.length - 1, 20);
+}
+
+function drawTxn() {
+  const ctx = getCtx('txn-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const dna = txnState.dna;
+  const mrna = txnState.mrna;
+  const pos = txnState.pos;
+  if (!dna.length) return;
+
+  const maxVisible = Math.min(dna.length, 30);
+  const startBase = Math.max(0, pos - 15);
+  const endBase = Math.min(dna.length, startBase + maxVisible);
+  const baseW = (W - 100) / maxVisible;
+  const startX = 50;
+  const dnaY = 80, mrnaY = 200;
+
+  // Direction labels
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui';
+  ctx.textAlign = 'left';
+  ctx.fillText("3'", startX - 30, dnaY + 5);
+  ctx.fillText("5'", startX - 30, mrnaY + 5);
+  ctx.textAlign = 'right';
+  ctx.fillText("5'", W - 15, dnaY + 5);
+  ctx.fillText("3'", W - 15, mrnaY + 5);
+
+  // Labels
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('DNA Template', startX, dnaY - 40);
+  ctx.fillStyle = '#c41e3a';
+  ctx.fillText('mRNA', startX, mrnaY - 25);
+
+  // Coding strand
+  ctx.fillStyle = '#9ca3af'; ctx.font = 'bold 11px system-ui';
+  ctx.fillText('DNA Coding', startX, dnaY - 55);
+
+  const dnaColors = { 'A': '#16a34a', 'T': '#c41e3a', 'G': '#2563eb', 'C': '#d97706' };
+  const compBase = { 'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G' };
+
+  for (let i = startBase; i < endBase; i++) {
+    const x = startX + (i - startBase) * baseW;
+    const base = dna[i];
+    const comp = compBase[base];
+
+    // Coding strand (above template)
+    ctx.fillStyle = dnaColors[comp] || '#374151';
+    ctx.font = 'bold 14px ' + 'SF Mono, Consolas, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(comp, x + baseW / 2, dnaY - 20);
+
+    // Hydrogen bonds between coding and template
+    if (i >= pos) {
+      ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x + baseW / 2, dnaY - 14);
+      ctx.lineTo(x + baseW / 2, dnaY - 6);
+      ctx.stroke();
+    }
+
+    // Template base
+    ctx.fillStyle = i < pos ? 'rgba(0,0,0,0.3)' : (dnaColors[base] || '#374151');
+    ctx.font = 'bold 14px ' + 'SF Mono, Consolas, monospace';
+    ctx.fillText(base, x + baseW / 2, dnaY + 5);
+
+    // mRNA base (if transcribed)
+    if (i < mrna.length) {
+      const rBase = mrna[i];
+      const rColor = rBase === 'U' ? '#c41e3a' : (dnaColors[rBase] || '#374151');
+      ctx.fillStyle = rColor;
+      ctx.font = 'bold 14px ' + 'SF Mono, Consolas, monospace';
+      ctx.fillText(rBase, x + baseW / 2, mrnaY + 5);
+
+      // New base pairing line
+      if (i === pos - 1) {
+        ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.setLineDash([3, 2]);
+        ctx.beginPath();
+        ctx.moveTo(x + baseW / 2, dnaY + 12);
+        ctx.lineTo(x + baseW / 2, mrnaY - 10);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+
+    // Position indicator
+    ctx.fillStyle = '#9ca3af'; ctx.font = '9px system-ui';
+    ctx.fillText(i + 1, x + baseW / 2, H - 10);
+  }
+
+  // RNA Polymerase
+  if (pos > 0 && pos <= dna.length) {
+    const rpX = startX + (Math.min(pos, endBase) - startBase - 0.5) * baseW;
+    const rpY = (dnaY + mrnaY) / 2;
+    ctx.fillStyle = '#7c3aed';
+    ctx.beginPath();
+    ctx.ellipse(rpX, rpY, 25, 18, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('RNA Pol', rpX, rpY + 3);
+
+    // Arrow showing direction
+    ctx.fillStyle = '#7c3aed';
+    ctx.beginPath();
+    ctx.moveTo(rpX + 28, rpY);
+    ctx.lineTo(rpX + 22, rpY - 5);
+    ctx.lineTo(rpX + 22, rpY + 5);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  // Progress bar
+  const pbY = H - 30;
+  const pbW = W - 100;
+  ctx.fillStyle = '#e5e7eb';
+  ctx.fillRect(startX, pbY, pbW, 8);
+  ctx.fillStyle = '#c41e3a';
+  ctx.fillRect(startX, pbY, pbW * (pos / dna.length), 8);
+  ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText(pos + '/' + dna.length, W - 15, pbY + 7);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: TRANSLATION SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+let tlnState = { mrna: '', codons: [], protein: [], pos: 0, running: false, timer: null, complete: false };
+
+function tlnUseTranscription() {
+  if (txnState.mrna) {
+    $('tln-mrna-input').value = txnState.mrna;
+  }
+}
+
+function tlnStart() {
+  const raw = $('tln-mrna-input').value.toUpperCase().replace(/[^AUGC]/g, '');
+  if (raw.length < 3) return;
+  $('tln-mrna-input').value = raw;
+
+  // Find start codon
+  const startIdx = raw.indexOf('AUG');
+  if (startIdx === -1) {
+    $('tln-status').textContent = 'No AUG';
+    return;
+  }
+
+  const sub = raw.substring(startIdx);
+  tlnState.mrna = sub;
+  tlnState.codons = mrnaToCodons(sub);
+  tlnState.protein = [];
+  tlnState.pos = 0;
+  tlnState.complete = false;
+  $('tln-status').textContent = 'Running';
+
+  if (tlnState.timer) clearInterval(tlnState.timer);
+  tlnState.running = true;
+  tlnState.timer = setInterval(() => {
+    if (tlnState.pos >= tlnState.codons.length) {
+      clearInterval(tlnState.timer);
+      tlnState.running = false;
+      tlnState.complete = true;
+      $('tln-status').textContent = 'Done';
+      tlnUpdateUI();
+      return;
+    }
+    const codon = tlnState.codons[tlnState.pos];
+    const aa = CODON_TABLE[codon];
+    if (aa === 'Stop') {
+      tlnState.protein.push('Stop');
+      tlnState.pos++;
+      clearInterval(tlnState.timer);
+      tlnState.running = false;
+      tlnState.complete = true;
+      $('tln-status').textContent = 'Stop!';
+      tlnUpdateUI();
+      return;
+    }
+    tlnState.protein.push(aa);
+    tlnState.pos++;
+    tlnUpdateUI();
+    drawTln();
+  }, 500);
+}
+
+function tlnReset() {
+  if (tlnState.timer) clearInterval(tlnState.timer);
+  tlnState = { mrna: '', codons: [], protein: [], pos: 0, running: false, timer: null, complete: false };
+  $('tln-status').textContent = 'Ready';
+  $('tln-codon-num').textContent = '0';
+  $('tln-aa-count').textContent = '0';
+  $('tln-current-codon').textContent = '-';
+  $('tln-codons-display').innerHTML = '-';
+  $('tln-protein-display').innerHTML = '-';
+  $('tln-codon-detail').innerHTML = '';
+  const ctx = getCtx('tln-canvas');
+  ctx.clearRect(0, 0, ctx.W, ctx.H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+  ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Enter an mRNA sequence and click Start Translation', ctx.W / 2, ctx.H / 2);
+}
+
+function tlnUpdateUI() {
+  $('tln-codon-num').textContent = tlnState.pos;
+  const aaCount = tlnState.protein.filter(a => a !== 'Stop').length;
+  $('tln-aa-count').textContent = aaCount;
+  if (tlnState.pos > 0 && tlnState.pos <= tlnState.codons.length) {
+    $('tln-current-codon').textContent = tlnState.codons[tlnState.pos - 1];
+  }
+
+  // Codons display
+  let codonsHtml = "5'-";
+  tlnState.codons.forEach((c, i) => {
+    const aa = CODON_TABLE[c] || '?';
+    let style = '';
+    if (i < tlnState.pos) {
+      if (c === 'AUG' && i === 0) style = 'background:#dcfce7;padding:2px 4px;border-radius:3px;';
+      else if (aa === 'Stop') style = 'background:#fef2f2;padding:2px 4px;border-radius:3px;';
+      else style = 'background:#eff6ff;padding:2px 4px;border-radius:3px;';
+    }
+    codonsHtml += `<span style="${style}" title="${aa}">${colorSeq(c)}</span> `;
+  });
+  codonsHtml += "-3'";
+  $('tln-codons-display').innerHTML = codonsHtml;
+
+  // Protein display
+  let protHtml = '';
+  tlnState.protein.forEach((aa, i) => {
+    const color = AA_COLORS[aa] || '#6b7280';
+    const single = AA_SINGLE[aa] || '?';
+    const full = AA_FULLNAME[aa] || aa;
+    if (aa === 'Stop') {
+      protHtml += `<span style="background:#fef2f2;color:#991b1b;padding:2px 6px;border-radius:3px;font-weight:700;">STOP</span>`;
+    } else {
+      protHtml += `<span style="background:${color};color:#fff;padding:2px 6px;border-radius:3px;font-weight:700;margin-right:2px;" title="${full}">${aa} (${single})</span> `;
+    }
+  });
+  $('tln-protein-display').innerHTML = protHtml || '-';
+
+  // Codon detail table
+  let detailHtml = '<div class="analysis-result ar-pass"><div class="ar-title">Translation Summary</div><table style="width:100%;font-size:13px;border-collapse:collapse;margin-top:8px;">';
+  detailHtml += '<tr style="border-bottom:2px solid #e5e7eb;"><th style="text-align:left;padding:4px;">Codon</th><th style="text-align:left;padding:4px;">Amino Acid</th><th style="text-align:left;padding:4px;">3-Letter</th><th style="text-align:left;padding:4px;">1-Letter</th></tr>';
+  tlnState.codons.slice(0, tlnState.pos).forEach((c, i) => {
+    const aa = CODON_TABLE[c] || '?';
+    const single = AA_SINGLE[aa] || '?';
+    const full = AA_FULLNAME[aa] || aa;
+    detailHtml += `<tr style="border-bottom:1px solid #f1f5f9;"><td style="padding:4px;font-family:var(--mono);">${c}</td><td style="padding:4px;">${full}</td><td style="padding:4px;font-weight:700;">${aa}</td><td style="padding:4px;font-weight:700;">${single}</td></tr>`;
+  });
+  detailHtml += '</table></div>';
+  if (tlnState.pos > 0) $('tln-codon-detail').innerHTML = detailHtml;
+
+  drawTln();
+}
+
+function drawTln() {
+  const ctx = getCtx('tln-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!tlnState.codons.length) return;
+
+  const codons = tlnState.codons;
+  const protein = tlnState.protein;
+  const pos = tlnState.pos;
+
+  // mRNA strand
+  const mrnaY = 60;
+  const startX = 40;
+  const codonW = Math.min(60, (W - 80) / Math.min(codons.length, 12));
+  const maxVisible = Math.floor((W - 80) / codonW);
+  const visStart = Math.max(0, pos - Math.floor(maxVisible / 2));
+  const visEnd = Math.min(codons.length, visStart + maxVisible);
+
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText("5' mRNA", 5, mrnaY - 20);
+
+  for (let ci = visStart; ci < visEnd; ci++) {
+    const x = startX + (ci - visStart) * codonW;
+    const codon = codons[ci];
+    const aa = CODON_TABLE[codon] || '?';
+
+    // Codon background
+    let bgColor = '#f1f5f9';
+    if (ci < pos) {
+      if (codon === 'AUG' && ci === 0) bgColor = '#dcfce7';
+      else if (aa === 'Stop') bgColor = '#fef2f2';
+      else bgColor = '#eff6ff';
+    }
+    if (ci === pos && !tlnState.complete) bgColor = '#fef3c7';
+
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(x, mrnaY - 12, codonW - 2, 28);
+    ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+    ctx.strokeRect(x, mrnaY - 12, codonW - 2, 28);
+
+    // Codon letters
+    for (let b = 0; b < 3; b++) {
+      const base = codon[b];
+      const bColor = base === 'A' ? '#16a34a' : base === 'U' ? '#c41e3a' : base === 'G' ? '#2563eb' : '#d97706';
+      ctx.fillStyle = bColor;
+      ctx.font = 'bold 12px ' + 'SF Mono, Consolas, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(base, x + (b + 0.5) * (codonW - 2) / 3, mrnaY + 6);
+    }
+
+    // Codon number
+    ctx.fillStyle = '#9ca3af'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(ci + 1, x + (codonW - 2) / 2, mrnaY - 18);
+  }
+
+  // Ribosome
+  if (pos < codons.length && !tlnState.complete) {
+    const ribCI = pos - visStart;
+    if (ribCI >= 0 && ribCI < maxVisible) {
+      const ribX = startX + ribCI * codonW + codonW / 2;
+      // Large subunit
+      ctx.fillStyle = 'rgba(124,58,237,0.15)';
+      ctx.beginPath();
+      ctx.ellipse(ribX, mrnaY + 40, codonW * 0.8, 20, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+      ctx.stroke();
+      // Small subunit
+      ctx.fillStyle = 'rgba(124,58,237,0.1)';
+      ctx.beginPath();
+      ctx.ellipse(ribX, mrnaY - 28, codonW * 0.6, 14, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.fillStyle = '#7c3aed'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('Ribosome', ribX, mrnaY + 43);
+
+      // tRNA delivering amino acid
+      if (pos < codons.length) {
+        const currentAA = CODON_TABLE[codons[pos]];
+        if (currentAA && currentAA !== 'Stop') {
+          ctx.fillStyle = '#d97706'; ctx.font = 'bold 10px system-ui';
+          ctx.fillText('tRNA', ribX + codonW * 0.8, mrnaY - 40);
+          // Anticodon
+          const anticodon = codons[pos].split('').map(b => {
+            return b === 'A' ? 'U' : b === 'U' ? 'A' : b === 'G' ? 'C' : 'G';
+          }).join('');
+          ctx.fillStyle = '#92400e'; ctx.font = '9px ' + 'SF Mono, Consolas, monospace';
+          ctx.fillText(anticodon, ribX + codonW * 0.8, mrnaY - 52);
+        }
+      }
+    }
+  }
+
+  // Polypeptide chain
+  const pepY = mrnaY + 90;
+  if (protein.length > 0) {
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Growing Polypeptide Chain:', startX, pepY - 10);
+
+    let pepX = startX;
+    const aaW = Math.min(36, (W - 80) / Math.max(protein.length, 1));
+    protein.forEach((aa, i) => {
+      if (aa === 'Stop') return;
+      const color = AA_COLORS[aa] || '#6b7280';
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.roundRect(pepX, pepY, aaW - 2, 28, 4);
+      ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(AA_SINGLE[aa], pepX + (aaW - 2) / 2, pepY + 18);
+      // Peptide bond
+      if (i < protein.length - 1 && protein[i + 1] !== 'Stop') {
+        ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(pepX + aaW - 2, pepY + 14);
+        ctx.lineTo(pepX + aaW + 1, pepY + 14);
+        ctx.stroke();
+      }
+      pepX += aaW;
+    });
+
+    // N-terminus and C-terminus labels
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText('N', startX - 6, pepY + 18);
+    const actualAAs = protein.filter(a => a !== 'Stop');
+    if (tlnState.complete && actualAAs.length > 0) {
+      ctx.textAlign = 'left';
+      ctx.fillText('C', startX + actualAAs.length * aaW + 4, pepY + 18);
+    }
+  }
+
+  // Amino acid legend at bottom
+  const legY = H - 40;
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Amino Acids:', startX, legY);
+  const uniqueAAs = [...new Set(protein.filter(a => a !== 'Stop'))];
+  let legX = startX + 80;
+  uniqueAAs.slice(0, 10).forEach(aa => {
+    ctx.fillStyle = AA_COLORS[aa] || '#6b7280';
+    ctx.fillRect(legX, legY - 8, 10, 10);
+    ctx.fillStyle = '#374151'; ctx.font = '10px system-ui';
+    ctx.fillText(aa, legX + 14, legY);
+    legX += 50;
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: CODON TABLE EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+function buildCodonTable() {
+  const container = $('codon-table-container');
+  const bases1 = ['U', 'C', 'A', 'G'];
+  const bases2 = ['U', 'C', 'A', 'G'];
+  const bases3 = ['U', 'C', 'A', 'G'];
+
+  let html = '<div class="codon-grid">';
+
+  // Header row: empty corner + 4 second-position headers (each spanning 4 cols)
+  // Actually build as 4x4x4 = 64 cells with labels
+  // Layout: rows by first base x third base, columns by second base
+  // Standard codon table: first position (left), second position (top), third position (right)
+
+  // Top header row
+  html += '<div style="display:grid;grid-template-columns:40px repeat(4, 1fr);gap:0;margin-bottom:4px;">';
+  html += '<div style="font-size:10px;font-weight:700;color:var(--text-muted);text-align:center;padding:4px;">1st \\ 2nd</div>';
+  bases2.forEach(b2 => {
+    html += `<div style="text-align:center;font-weight:800;font-size:14px;padding:4px;color:${b2==='A'?'#16a34a':b2==='U'?'#c41e3a':b2==='G'?'#2563eb':'#d97706'}">${b2}</div>`;
+  });
+  html += '</div>';
+
+  // Build table body
+  html += '<div style="display:grid;grid-template-columns:40px repeat(4, 1fr);gap:2px;">';
+
+  bases1.forEach((b1, ri) => {
+    // 4 rows per first-position base (one per third-position base)
+    bases3.forEach((b3, ci) => {
+      // Row header (only on first of 4)
+      if (ci === 0) {
+        html += `<div style="grid-row:span 4;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:${b1==='A'?'#16a34a':b1==='U'?'#c41e3a':b1==='G'?'#2563eb':'#d97706'};writing-mode:vertical-lr;text-orientation:mixed;">${b1}</div>`;
+      }
+
+      // 4 cells (one per second-position base)
+      bases2.forEach(b2 => {
+        const codon = b1 + b2 + b3;
+        const aa = CODON_TABLE[codon];
+        const color = AA_COLORS[aa] || '#e5e7eb';
+        const isStart = codon === 'AUG';
+        const isStop = aa === 'Stop';
+        let cellClass = 'codon-cell';
+        if (isStart) cellClass += ' cc-start';
+        if (isStop) cellClass += ' cc-stop';
+
+        const bgColor = isStop ? '#fef2f2' : isStart ? '#dcfce7' : `${color}18`;
+        html += `<div class="${cellClass}" id="cc-${codon}" onclick="codonClick('${codon}')" style="background:${bgColor};">`;
+        html += `<div class="cc-codon">${codon}</div>`;
+        html += `<div class="cc-aa" style="color:${color}">${aa}</div>`;
+        html += '</div>';
+      });
+    });
+  });
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function codonClick(codon) {
+  // Clear previous highlights
+  document.querySelectorAll('.cc-highlight').forEach(el => el.classList.remove('cc-highlight'));
+
+  const aa = CODON_TABLE[codon];
+  $('codon-selected').textContent = codon;
+  $('codon-aa-name').textContent = AA_FULLNAME[aa] || aa;
+
+  // Find all codons for this AA (degeneracy)
+  let count = 0;
+  Object.entries(CODON_TABLE).forEach(([c, a]) => {
+    if (a === aa) {
+      count++;
+      const el = $('cc-' + c);
+      if (el) el.classList.add('cc-highlight');
+    }
+  });
+  $('codon-degeneracy').textContent = count;
+}
+
+function codonSearch() {
+  const query = $('codon-search').value.trim().toLowerCase();
+  if (!query) return;
+
+  // Clear previous
+  document.querySelectorAll('.cc-highlight, .cc-search-hit').forEach(el => {
+    el.classList.remove('cc-highlight');
+    el.classList.remove('cc-search-hit');
+  });
+
+  let foundAA = null;
+  let count = 0;
+
+  // Search by 3-letter, 1-letter, or full name
+  Object.entries(CODON_TABLE).forEach(([codon, aa]) => {
+    const single = AA_SINGLE[aa] || '';
+    const full = AA_FULLNAME[aa] || '';
+    if (aa.toLowerCase() === query || single.toLowerCase() === query || full.toLowerCase() === query) {
+      foundAA = aa;
+      count++;
+      const el = $('cc-' + codon);
+      if (el) el.classList.add('cc-search-hit');
+    }
+  });
+
+  if (foundAA) {
+    $('codon-aa-name').textContent = AA_FULLNAME[foundAA] || foundAA;
+    $('codon-degeneracy').textContent = count;
+    $('codon-selected').textContent = foundAA;
+  }
+}
+
+function codonClearSearch() {
+  $('codon-search').value = '';
+  document.querySelectorAll('.cc-highlight, .cc-search-hit').forEach(el => {
+    el.classList.remove('cc-highlight');
+    el.classList.remove('cc-search-hit');
+  });
+  $('codon-selected').textContent = '-';
+  $('codon-aa-name').textContent = '-';
+  $('codon-degeneracy').textContent = '-';
+}
+
+function drawCodonFreqChart() {
+  const ctx = getCtx('codon-freq-chart');
+  // Count codons per amino acid
+  const aaCounts = {};
+  Object.values(CODON_TABLE).forEach(aa => {
+    aaCounts[aa] = (aaCounts[aa] || 0) + 1;
+  });
+  // Sort by count descending
+  const sorted = Object.entries(aaCounts).sort((a, b) => b[1] - a[1]);
+  const labels = sorted.map(e => e[0]);
+  const values = sorted.map(e => e[1]);
+  const colors = sorted.map(e => AA_COLORS[e[0]] || '#6b7280');
+
+  drawBarChart(ctx, {
+    labels, values, colors,
+    maxVal: 7
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: MUTATION EFFECTS LAB
+// ══════════════════════════════════════════════════════════════════════════
+let mutState = { originalDNA: '', mutatedDNA: '', mutationType: '', mutPos: 0 };
+
+function mutUpdatePosLabel() {
+  $('mut-pos-val').textContent = $('mut-pos').value;
+}
+
+function getOriginalDNA() {
+  return $('mut-dna-input').value.toUpperCase().replace(/[^ATGC]/g, '');
+}
+
+function mutSubstitution() {
+  const dna = getOriginalDNA();
+  if (dna.length < 3) return;
+  const pos = parseInt($('mut-pos').value);
+  const clamped = clamp(pos, 0, dna.length - 1);
+  const bases = ['A', 'T', 'G', 'C'].filter(b => b !== dna[clamped]);
+  const newBase = pick(bases);
+  const mutated = dna.substring(0, clamped) + newBase + dna.substring(clamped + 1);
+
+  mutState.originalDNA = dna;
+  mutState.mutatedDNA = mutated;
+  mutState.mutationType = 'Substitution';
+  mutState.mutPos = clamped;
+  $('mut-type').textContent = 'Sub';
+  $('mut-position').textContent = clamped + 1;
+  mutAnalyze();
+}
+
+function mutInsertion() {
+  const dna = getOriginalDNA();
+  if (dna.length < 3) return;
+  const pos = parseInt($('mut-pos').value);
+  const clamped = clamp(pos, 0, dna.length);
+  const newBase = pick(['A', 'T', 'G', 'C']);
+  const mutated = dna.substring(0, clamped) + newBase + dna.substring(clamped);
+
+  mutState.originalDNA = dna;
+  mutState.mutatedDNA = mutated;
+  mutState.mutationType = 'Insertion';
+  mutState.mutPos = clamped;
+  $('mut-type').textContent = 'Ins';
+  $('mut-position').textContent = clamped + 1;
+  mutAnalyze();
+}
+
+function mutDeletion() {
+  const dna = getOriginalDNA();
+  if (dna.length < 4) return;
+  const pos = parseInt($('mut-pos').value);
+  const clamped = clamp(pos, 0, dna.length - 1);
+  const mutated = dna.substring(0, clamped) + dna.substring(clamped + 1);
+
+  mutState.originalDNA = dna;
+  mutState.mutatedDNA = mutated;
+  mutState.mutationType = 'Deletion';
+  mutState.mutPos = clamped;
+  $('mut-type').textContent = 'Del';
+  $('mut-position').textContent = clamped + 1;
+  mutAnalyze();
+}
+
+function mutReset() {
+  mutState = { originalDNA: '', mutatedDNA: '', mutationType: '', mutPos: 0 };
+  $('mut-type').textContent = '-';
+  $('mut-category').textContent = '-';
+  $('mut-severity').textContent = '-';
+  $('mut-position').textContent = '-';
+  $('mut-orig-dna').innerHTML = '-';
+  $('mut-orig-mrna').innerHTML = '-';
+  $('mut-orig-protein').innerHTML = '-';
+  $('mut-new-dna').innerHTML = '-';
+  $('mut-new-mrna').innerHTML = '-';
+  $('mut-new-protein').innerHTML = '-';
+  $('mut-analysis').innerHTML = '';
+  drawMutChart();
+}
+
+function mutAnalyze() {
+  const origDNA = mutState.originalDNA;
+  const mutDNA = mutState.mutatedDNA;
+
+  const origMRNA = dnaToMRNA(origDNA);
+  const mutMRNA = dnaToMRNA(mutDNA);
+
+  const origResult = translateFromStart(origMRNA);
+  const mutResult = translateFromStart(mutMRNA);
+
+  // Display sequences with differences highlighted
+  // Original DNA
+  let origDnaHtml = "3'-";
+  for (let i = 0; i < origDNA.length; i++) {
+    const highlight = (mutState.mutationType === 'Substitution' && i === mutState.mutPos) ||
+                      (mutState.mutationType === 'Deletion' && i === mutState.mutPos);
+    if (highlight) {
+      origDnaHtml += `<span style="background:#fef3c7;border-radius:2px;padding:0 2px;">${colorBase(origDNA[i])}</span>`;
+    } else {
+      origDnaHtml += colorBase(origDNA[i]);
+    }
+  }
+  origDnaHtml += "-5'";
+  $('mut-orig-dna').innerHTML = origDnaHtml;
+
+  // Mutated DNA
+  let mutDnaHtml = "3'-";
+  for (let i = 0; i < mutDNA.length; i++) {
+    const highlight = i === mutState.mutPos;
+    if (highlight) {
+      mutDnaHtml += `<span style="background:#fecaca;border-radius:2px;padding:0 2px;border:1px solid #f87171;">${colorBase(mutDNA[i])}</span>`;
+    } else {
+      mutDnaHtml += colorBase(mutDNA[i]);
+    }
+  }
+  mutDnaHtml += "-5'";
+  $('mut-new-dna').innerHTML = mutDnaHtml;
+
+  // mRNA
+  $('mut-orig-mrna').innerHTML = "5'-" + colorSeq(origMRNA) + "-3'";
+  $('mut-new-mrna').innerHTML = "5'-" + colorSeq(mutMRNA) + "-3'";
+
+  // Proteins
+  const origProtein = origResult.protein.filter(a => a !== 'Stop');
+  const mutProtein = mutResult.protein.filter(a => a !== 'Stop');
+
+  let origProtHtml = origProtein.map(aa => {
+    const color = AA_COLORS[aa] || '#6b7280';
+    return `<span style="background:${color};color:#fff;padding:2px 5px;border-radius:3px;font-weight:700;margin-right:1px;">${AA_SINGLE[aa]}</span>`;
+  }).join('');
+  if (origResult.protein.includes('Stop')) origProtHtml += ' <span style="color:#991b1b;font-weight:700;">[STOP]</span>';
+
+  let mutProtHtml = mutProtein.map((aa, i) => {
+    const color = AA_COLORS[aa] || '#6b7280';
+    const changed = i >= origProtein.length || origProtein[i] !== aa;
+    const border = changed ? 'border:2px solid #ef4444;' : '';
+    return `<span style="background:${color};color:#fff;padding:2px 5px;border-radius:3px;font-weight:700;margin-right:1px;${border}">${AA_SINGLE[aa]}</span>`;
+  }).join('');
+  if (mutResult.protein.includes('Stop')) mutProtHtml += ' <span style="color:#991b1b;font-weight:700;">[STOP]</span>';
+
+  $('mut-orig-protein').innerHTML = origProtHtml || '<span style="color:#9ca3af;">No start codon found</span>';
+  $('mut-new-protein').innerHTML = mutProtHtml || '<span style="color:#9ca3af;">No start codon found</span>';
+
+  // Classify mutation
+  let category = 'Unknown';
+  let severity = 'Unknown';
+  let explanation = '';
+
+  if (mutState.mutationType === 'Insertion' || mutState.mutationType === 'Deletion') {
+    category = 'Frameshift';
+    severity = 'High';
+    explanation = `<strong>Frameshift mutation:</strong> The ${mutState.mutationType.toLowerCase()} shifts the reading frame, changing all downstream codons. This typically produces a completely different protein, often with a premature stop codon.`;
+  } else {
+    // Substitution - compare proteins
+    const origProtStr = origProtein.map(a => AA_SINGLE[a]).join('');
+    const mutProtStr = mutProtein.map(a => AA_SINGLE[a]).join('');
+
+    if (origProtStr === mutProtStr) {
+      category = 'Silent';
+      severity = 'None';
+      explanation = '<strong>Silent (synonymous) mutation:</strong> The base change does not alter the amino acid sequence. This is possible because of the degeneracy (redundancy) of the genetic code, where multiple codons encode the same amino acid.';
+    } else if (mutResult.protein.includes('Stop') && !origResult.protein.includes('Stop')) {
+      category = 'Nonsense';
+      severity = 'High';
+      explanation = '<strong>Nonsense mutation:</strong> The base change creates a premature stop codon, resulting in a truncated (shortened) protein. This usually produces a non-functional protein.';
+    } else if (mutProtein.length < origProtein.length && mutResult.protein.includes('Stop')) {
+      category = 'Nonsense';
+      severity = 'High';
+      explanation = '<strong>Nonsense mutation:</strong> An early stop codon was introduced, cutting the protein short.';
+    } else {
+      category = 'Missense';
+      // Count changed amino acids
+      const changes = origProtein.reduce((count, aa, i) => {
+        return count + (i < mutProtein.length && mutProtein[i] !== aa ? 1 : 0);
+      }, 0);
+      severity = changes > 1 ? 'High' : 'Moderate';
+      explanation = `<strong>Missense mutation:</strong> The base change alters ${changes} amino acid(s) in the protein. The impact depends on whether the new amino acid has similar chemical properties to the original.`;
+    }
+  }
+
+  $('mut-category').textContent = category;
+  $('mut-severity').textContent = severity;
+
+  const severityClass = severity === 'None' ? 'ar-pass' : severity === 'Moderate' ? 'ar-warn' : 'ar-fail';
+  $('mut-analysis').innerHTML = `
+    <div class="analysis-result ${severityClass}">
+      <div class="ar-title">${mutState.mutationType} at position ${mutState.mutPos + 1} &mdash; ${category}</div>
+      <p>${explanation}</p>
+      <p style="margin-top:8px;"><strong>Original protein:</strong> ${origProtein.map(a => AA_SINGLE[a]).join('-') || 'none'} (${origProtein.length} aa)</p>
+      <p><strong>Mutated protein:</strong> ${mutProtein.map(a => AA_SINGLE[a]).join('-') || 'none'} (${mutProtein.length} aa)</p>
+    </div>
+  `;
+
+  drawMutChart();
+}
+
+function drawMutChart() {
+  const ctx = getCtx('mut-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!mutState.originalDNA) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Apply a mutation to see the impact visualization', W / 2, H / 2);
+    return;
+  }
+
+  const origMRNA = dnaToMRNA(mutState.originalDNA);
+  const mutMRNA = dnaToMRNA(mutState.mutatedDNA);
+  const origResult = translateFromStart(origMRNA);
+  const mutResult = translateFromStart(mutMRNA);
+  const origProt = origResult.protein.filter(a => a !== 'Stop');
+  const mutProt = mutResult.protein.filter(a => a !== 'Stop');
+
+  const pad = { top: 30, right: 20, bottom: 40, left: 60 };
+  const plotW = W - pad.left - pad.right;
+  const rowH = 40;
+
+  // Title
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Protein Comparison (amino acid by amino acid)', pad.left, 20);
+
+  const maxLen = Math.max(origProt.length, mutProt.length, 1);
+  const aaW = Math.min(40, plotW / maxLen);
+
+  // Original protein row
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('Original', pad.left - 6, pad.top + rowH / 2 + 4);
+  origProt.forEach((aa, i) => {
+    const x = pad.left + i * aaW;
+    ctx.fillStyle = AA_COLORS[aa] || '#6b7280';
+    ctx.beginPath();
+    ctx.roundRect(x, pad.top, aaW - 2, rowH - 4, 4);
+    ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(AA_SINGLE[aa], x + (aaW - 2) / 2, pad.top + rowH / 2 + 2);
+  });
+
+  // Mutated protein row
+  const mutRowY = pad.top + rowH + 20;
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('Mutated', pad.left - 6, mutRowY + rowH / 2 + 4);
+  mutProt.forEach((aa, i) => {
+    const x = pad.left + i * aaW;
+    const changed = i >= origProt.length || origProt[i] !== aa;
+    ctx.fillStyle = AA_COLORS[aa] || '#6b7280';
+    ctx.beginPath();
+    ctx.roundRect(x, mutRowY, aaW - 2, rowH - 4, 4);
+    ctx.fill();
+    if (changed) {
+      ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.roundRect(x, mutRowY, aaW - 2, rowH - 4, 4);
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(AA_SINGLE[aa], x + (aaW - 2) / 2, mutRowY + rowH / 2 + 2);
+  });
+
+  // Comparison arrows/indicators between rows
+  const maxCompare = Math.max(origProt.length, mutProt.length);
+  for (let i = 0; i < maxCompare; i++) {
+    const x = pad.left + i * aaW + (aaW - 2) / 2;
+    const arrowY1 = pad.top + rowH;
+    const arrowY2 = mutRowY;
+    const same = i < origProt.length && i < mutProt.length && origProt[i] === mutProt[i];
+    ctx.strokeStyle = same ? '#86efac' : '#ef4444';
+    ctx.lineWidth = same ? 1 : 2;
+    ctx.setLineDash(same ? [4, 3] : []);
+    ctx.beginPath();
+    ctx.moveTo(x, arrowY1 + 2);
+    ctx.lineTo(x, arrowY2 - 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // Indicator symbol
+    ctx.fillStyle = same ? '#16a34a' : '#ef4444';
+    ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(same ? '=' : '!', x, (arrowY1 + arrowY2) / 2 + 4);
+  }
+
+  // Legend
+  const legY = H - 20;
+  ctx.fillStyle = '#16a34a'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('= Same', pad.left, legY);
+  ctx.fillStyle = '#ef4444';
+  ctx.fillText('! Changed', pad.left + 80, legY);
+
+  // Mutation summary
+  const changes = origProt.reduce((count, aa, i) => {
+    return count + (i < mutProt.length && mutProt[i] !== aa ? 1 : 0);
+  }, 0) + Math.abs(origProt.length - mutProt.length);
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText(`${changes} position(s) affected`, W - pad.right, legY);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: GENE TO TRAIT CONNECTION
+// ══════════════════════════════════════════════════════════════════════════
+const GENE_DATA = {
+  hemoglobin: {
+    name: 'Hemoglobin Beta (HBB)',
+    normalDNA: 'TACGTGCTGACTCCTGAGGAG',
+    variantDNA: 'TACGTGCTGACTCCTGTGGAG',
+    variantName: 'Sickle Cell (HbS)',
+    normalProtein: 'Carries oxygen in red blood cells',
+    variantEffect: 'Single amino acid change (Glu->Val) causes hemoglobin to polymerize under low oxygen, distorting red blood cells into sickle shape',
+    trait: 'Normal red blood cells, oxygen transport',
+    variantTrait: 'Sickle-shaped cells, anemia, pain crises',
+    function: 'O2 Transport',
+    pathwayColor: '#dc2626'
+  },
+  melanin: {
+    name: 'Tyrosinase (TYR)',
+    normalDNA: 'TACATGGGCACCTTTGCCTAC',
+    variantDNA: 'TACATGGGCACCATTGCCTAC',
+    variantName: 'Albinism variant',
+    normalProtein: 'Enzyme that catalyzes melanin production',
+    variantEffect: 'Amino acid change reduces enzyme activity, decreasing melanin production',
+    trait: 'Normal skin, hair, eye pigmentation',
+    variantTrait: 'Reduced or absent pigmentation',
+    function: 'Melanin synthesis',
+    pathwayColor: '#7c3aed'
+  },
+  lactase: {
+    name: 'Lactase (LCT)',
+    normalDNA: 'TACATGCCCAAAGGGCCTTTC',
+    variantDNA: 'TACATGCCCAAAGGGCCTACT',
+    variantName: 'Lactase persistence',
+    normalProtein: 'Enzyme that breaks down lactose (milk sugar)',
+    variantEffect: 'Regulatory mutation keeps lactase gene active into adulthood, allowing continued milk digestion',
+    trait: 'Lactose intolerance after childhood',
+    variantTrait: 'Lactose tolerance throughout life',
+    function: 'Lactose digestion',
+    pathwayColor: '#16a34a'
+  }
+};
+
+let currentGene = null;
+
+function traitSelect(gene) {
+  currentGene = gene;
+  const data = GENE_DATA[gene];
+  $('trait-detail-card').style.display = 'block';
+  $('trait-gene-title').textContent = data.name + (data.variantName ? ' / ' + data.variantName : '');
+
+  // Pathway
+  $('trait-pathway').innerHTML = `
+    <div class="pathway-step ps-dna">${data.name.split('(')[0].trim()}<br><small>Gene</small></div>
+    <div class="pathway-arrow">&rarr;</div>
+    <div class="pathway-step ps-process">Transcription</div>
+    <div class="pathway-arrow">&rarr;</div>
+    <div class="pathway-step ps-mrna">mRNA</div>
+    <div class="pathway-arrow">&rarr;</div>
+    <div class="pathway-step ps-process">Translation</div>
+    <div class="pathway-arrow">&rarr;</div>
+    <div class="pathway-step ps-protein">Protein<br><small>${data.function}</small></div>
+    <div class="pathway-arrow">&rarr;</div>
+    <div class="pathway-step ps-function">${data.function}</div>
+    <div class="pathway-arrow">&rarr;</div>
+    <div class="pathway-step ps-trait">Trait</div>
+  `;
+
+  // Normal sequences
+  const normalMRNA = dnaToMRNA(data.normalDNA);
+  const normalResult = translateFromStart(normalMRNA);
+  $('trait-normal-dna').innerHTML = "3'-" + colorSeq(data.normalDNA) + "-5'";
+  $('trait-normal-mrna').innerHTML = "5'-" + colorSeq(normalMRNA) + "-3'";
+
+  let normalProtHtml = normalResult.protein.filter(a => a !== 'Stop').map(aa => {
+    const color = AA_COLORS[aa] || '#6b7280';
+    return `<span style="background:${color};color:#fff;padding:2px 5px;border-radius:3px;font-weight:700;margin-right:1px;">${aa}</span>`;
+  }).join(' ');
+  $('trait-normal-protein').innerHTML = normalProtHtml;
+
+  // Variant sequences
+  const variantMRNA = dnaToMRNA(data.variantDNA);
+  const variantResult = translateFromStart(variantMRNA);
+
+  // Highlight differences in DNA
+  let varDnaHtml = "3'-";
+  for (let i = 0; i < data.variantDNA.length; i++) {
+    const diff = i < data.normalDNA.length && data.variantDNA[i] !== data.normalDNA[i];
+    if (diff) {
+      varDnaHtml += `<span style="background:#fecaca;border:2px solid #ef4444;border-radius:3px;padding:0 2px;">${colorBase(data.variantDNA[i])}</span>`;
+    } else {
+      varDnaHtml += colorBase(data.variantDNA[i]);
+    }
+  }
+  varDnaHtml += "-5'";
+  $('trait-variant-dna').innerHTML = varDnaHtml;
+
+  // Highlight differences in mRNA
+  let varMrnaHtml = "5'-";
+  for (let i = 0; i < variantMRNA.length; i++) {
+    const diff = i < normalMRNA.length && variantMRNA[i] !== normalMRNA[i];
+    if (diff) {
+      varMrnaHtml += `<span style="background:#fecaca;border:2px solid #ef4444;border-radius:3px;padding:0 2px;">${colorBase(variantMRNA[i])}</span>`;
+    } else {
+      varMrnaHtml += colorBase(variantMRNA[i]);
+    }
+  }
+  varMrnaHtml += "-3'";
+  $('trait-variant-mrna').innerHTML = varMrnaHtml;
+
+  // Variant protein with changes highlighted
+  const normalProt = normalResult.protein.filter(a => a !== 'Stop');
+  const variantProt = variantResult.protein.filter(a => a !== 'Stop');
+  let varProtHtml = variantProt.map((aa, i) => {
+    const color = AA_COLORS[aa] || '#6b7280';
+    const changed = i >= normalProt.length || normalProt[i] !== aa;
+    const border = changed ? 'border:2px solid #ef4444;' : '';
+    return `<span style="background:${color};color:#fff;padding:2px 5px;border-radius:3px;font-weight:700;margin-right:1px;${border}">${aa}</span>`;
+  }).join(' ');
+  $('trait-variant-protein').innerHTML = varProtHtml;
+
+  // Analysis
+  $('trait-analysis').innerHTML = `
+    <div class="analysis-result ar-warn">
+      <div class="ar-title">${data.variantName}</div>
+      <p><strong>Normal function:</strong> ${data.normalProtein}</p>
+      <p style="margin-top:6px;"><strong>Variant effect:</strong> ${data.variantEffect}</p>
+      <p style="margin-top:6px;"><strong>Normal trait:</strong> ${data.trait}</p>
+      <p style="margin-top:6px;"><strong>Variant trait:</strong> ${data.variantTrait}</p>
+    </div>
+  `;
+
+  drawTraitCanvas();
+}
+
+function drawTraitCanvas() {
+  const ctx = getCtx('trait-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  if (!currentGene) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Select a gene above to see the pathway visualization', W / 2, H / 2);
+    return;
+  }
+
+  const data = GENE_DATA[currentGene];
+  const normalMRNA = dnaToMRNA(data.normalDNA);
+  const variantMRNA = dnaToMRNA(data.variantDNA);
+  const normalResult = translateFromStart(normalMRNA);
+  const variantResult = translateFromStart(variantMRNA);
+
+  const normalProt = normalResult.protein.filter(a => a !== 'Stop');
+  const variantProt = variantResult.protein.filter(a => a !== 'Stop');
+
+  // Draw two rows: Normal pathway (top), Variant pathway (bottom)
+  const rowH = 120;
+  const pad = { left: 20, right: 20, top: 20 };
+  const stageW = (W - pad.left - pad.right) / 5;
+
+  const stages = ['DNA', 'mRNA', 'Protein', 'Function', 'Trait'];
+  const stageColors = ['#dbeafe', '#fef3c7', '#fce7f3', '#dcfce7', '#f3e8ff'];
+  const stageFg = ['#1e40af', '#92400e', '#9d174d', '#166534', '#6b21a8'];
+
+  // Column headers
+  stages.forEach((stage, i) => {
+    const x = pad.left + i * stageW + stageW / 2;
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(stage, x, pad.top + 12);
+  });
+
+  // Arrows between columns
+  for (let i = 0; i < 4; i++) {
+    const x1 = pad.left + (i + 1) * stageW - 5;
+    const x2 = pad.left + (i + 1) * stageW + 5;
+    const y = pad.top + 8;
+    ctx.fillStyle = '#9ca3af';
+    ctx.beginPath();
+    ctx.moveTo(x1, y); ctx.lineTo(x2, y - 4); ctx.lineTo(x2, y + 4);
+    ctx.closePath(); ctx.fill();
+  }
+
+  // Normal row
+  const normalY = pad.top + 35;
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Normal', 5, normalY + 30);
+
+  stages.forEach((stage, i) => {
+    const x = pad.left + i * stageW + 8;
+    const w = stageW - 16;
+    ctx.fillStyle = stageColors[i];
+    ctx.beginPath();
+    ctx.roundRect(x, normalY, w, rowH - 20, 8);
+    ctx.fill();
+    ctx.strokeStyle = stageFg[i] + '40'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(x, normalY, w, rowH - 20, 8);
+    ctx.stroke();
+  });
+
+  // Normal stage content
+  // DNA
+  ctx.fillStyle = '#1e40af'; ctx.font = '9px ' + 'SF Mono, Consolas, monospace'; ctx.textAlign = 'center';
+  const dnaShort = data.normalDNA.substring(0, 12) + '...';
+  ctx.fillText(dnaShort, pad.left + stageW / 2, normalY + 35);
+
+  // mRNA
+  ctx.fillStyle = '#92400e';
+  const mrnaShort = normalMRNA.substring(0, 12) + '...';
+  ctx.fillText(mrnaShort, pad.left + stageW + stageW / 2, normalY + 35);
+
+  // Protein
+  ctx.fillStyle = '#9d174d'; ctx.font = 'bold 10px system-ui';
+  const protStr = normalProt.slice(0, 5).map(a => AA_SINGLE[a]).join('-');
+  ctx.fillText(protStr + '...', pad.left + 2 * stageW + stageW / 2, normalY + 35);
+
+  // Function
+  ctx.fillStyle = '#166534'; ctx.font = '10px system-ui';
+  ctx.fillText(data.function, pad.left + 3 * stageW + stageW / 2, normalY + 35);
+
+  // Trait
+  ctx.fillStyle = '#6b21a8'; ctx.font = '10px system-ui';
+  wrapText(ctx, data.trait, pad.left + 4 * stageW + 12, normalY + 25, stageW - 28, 14);
+
+  // Variant row
+  const variantY = normalY + rowH + 10;
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Variant', 5, variantY + 30);
+
+  stages.forEach((stage, i) => {
+    const x = pad.left + i * stageW + 8;
+    const w = stageW - 16;
+    ctx.fillStyle = i === 0 ? '#fef2f2' : stageColors[i];
+    ctx.beginPath();
+    ctx.roundRect(x, variantY, w, rowH - 20, 8);
+    ctx.fill();
+    ctx.strokeStyle = '#ef444440'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.roundRect(x, variantY, w, rowH - 20, 8);
+    ctx.stroke();
+  });
+
+  // Variant content
+  ctx.fillStyle = '#991b1b'; ctx.font = '9px ' + 'SF Mono, Consolas, monospace'; ctx.textAlign = 'center';
+  const vDnaShort = data.variantDNA.substring(0, 12) + '...';
+  ctx.fillText(vDnaShort, pad.left + stageW / 2, variantY + 35);
+
+  ctx.fillStyle = '#92400e';
+  const vMrnaShort = variantMRNA.substring(0, 12) + '...';
+  ctx.fillText(vMrnaShort, pad.left + stageW + stageW / 2, variantY + 35);
+
+  ctx.fillStyle = '#9d174d'; ctx.font = 'bold 10px system-ui';
+  const vProtStr = variantProt.slice(0, 5).map(a => AA_SINGLE[a]).join('-');
+  ctx.fillText(vProtStr + '...', pad.left + 2 * stageW + stageW / 2, variantY + 35);
+
+  ctx.fillStyle = '#991b1b'; ctx.font = '10px system-ui';
+  ctx.fillText(data.function + '*', pad.left + 3 * stageW + stageW / 2, variantY + 35);
+
+  ctx.fillStyle = '#6b21a8'; ctx.font = '10px system-ui';
+  wrapText(ctx, data.variantTrait, pad.left + 4 * stageW + 12, variantY + 25, stageW - 28, 14);
+
+  // Highlight the change point with arrow
+  // Find first DNA difference
+  let diffIdx = -1;
+  for (let i = 0; i < data.normalDNA.length; i++) {
+    if (data.normalDNA[i] !== data.variantDNA[i]) { diffIdx = i; break; }
+  }
+  if (diffIdx >= 0) {
+    const changeX = pad.left + stageW / 2;
+    const changeY = normalY + rowH - 5;
+    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2;
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.moveTo(changeX, changeY);
+    ctx.lineTo(changeX, variantY + 5);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // Change annotation
+    ctx.fillStyle = '#ef4444'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Base #' + (diffIdx + 1) + ' changed', changeX, (changeY + variantY) / 2 + 4);
+  }
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let ty = y;
+  ctx.textAlign = 'left';
+  for (const word of words) {
+    const testLine = line + word + ' ';
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxWidth && line !== '') {
+      ctx.fillText(line.trim(), x, ty);
+      line = word + ' ';
+      ty += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line.trim(), x, ty);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  drawDogma();
+  dogmaUpdateUI();
+  txnReset();
+  tlnReset();
+  buildCodonTable();
+  drawCodonFreqChart();
+  mutReset();
+  drawMutChart();
+  drawTraitCanvas();
+
+  // Set mutation position slider max
+  const mutInput = $('mut-dna-input').value;
+  $('mut-pos').max = Math.max(mutInput.length - 1, 0);
+});
+
+window.addEventListener('resize', () => {
+  drawDogma();
+  if (txnState.dna) drawTxn();
+  if (tlnState.codons.length) drawTln();
+  drawCodonFreqChart();
+  drawMutChart();
+  drawTraitCanvas();
+});
+</script>
+</body>
+</html>
