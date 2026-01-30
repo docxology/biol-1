@@ -1,36 +1,35 @@
 # Module 13: Regulation of Gene Expression
-## Comprehension & Critical Thinking Questions
 
-### Part 1: Core Concepts
-1.  **Prokaryotic Regulation**
-    *   Define operon.
-    *   Compare inducible operons (lac) vs. repressible operons (trp).
+1. Define operon.
 
-2.  **Eukaryotic Regulation**
-    *   Gene expression is controlled at multiple levels. Briefly explain:
-        *   Chromatin remodeling (histone modification)
-        *   Transcriptional control (transcription factors)
-        *   Post-translational control (protein modification/degradation)
+2. Compare inducible operons (lac) vs. repressible operons (trp).
 
-3.  **Mutations**
-    *   Define point mutation vs. frameshift mutation.
-    *   Why are frameshift mutations typically more damaging?
+3. Gene expression is controlled at multiple levels. Briefly explain:
 
-### Part 2: Application
-4.  **The Lac Operon**
-    *   **Scenario**: E. coli are growing in glucose-only medium.
-    *   Is the lac operon on or off? Is the repressor bound?
-    *   What happens when lactose is added?
+4. Chromatin remodeling (histone modification)
 
-5.  **X-Inactivation**
-    *   Explain dosage compensation and Barr body formation.
-    *   How does X-inactivation explain calico cat coat patterns?
+5. Transcriptional control (transcription factors)
 
-### Part 3: Analysis & Evaluation
-6.  **Cancer and Gene Regulation**
-    *   Cancer results from dysregulated gene expression.
-    *   Analyze how mutations in tumor suppressor genes or proto-oncogenes lead to uncontrolled cell division.
+6. Post-translational control (protein modification/degradation)
 
-7.  **Epigenetics**
-    *   Environmental factors (diet, stress) can modify DNA methylation without changing the sequence.
-    *   Can these modifications be inherited? Discuss evidence.
+7. Define point mutation vs. frameshift mutation.
+
+8. Why are frameshift mutations typically more damaging?
+
+9. Scenario**: E. coli are growing in glucose-only medium.
+
+10. Is the lac operon on or off? Is the repressor bound?
+
+11. What happens when lactose is added?
+
+12. Explain dosage compensation and Barr body formation.
+
+13. How does X-inactivation explain calico cat coat patterns?
+
+14. Cancer results from dysregulated gene expression.
+
+15. Analyze how mutations in tumor suppressor genes or proto-oncogenes lead to uncontrolled cell division.
+
+16. Environmental factors (diet, stress) can modify DNA methylation without changing the sequence.
+
+17. Can these modifications be inherited? Discuss evidence.

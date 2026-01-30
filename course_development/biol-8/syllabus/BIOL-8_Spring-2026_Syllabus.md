@@ -1,5 +1,7 @@
 # BIOL-8: Human Biology
+
 ## Spring 2026
+
 ### College of the Redwoods, Del Norte Campus
 
 ---
@@ -13,8 +15,9 @@
 **Meeting Time**: Tuesdays and Thursdays, 5:30 PM - 8:40 PM  
 
 ## Instructor Information
+
 **Instructor**: Dr. Daniel Ari Friedman  
-**Email**: Daniel-Friedman@redwoods.edu  
+**Email**: <Daniel-Friedman@redwoods.edu>  
 **Office Hours**: By appointment. Please email me to schedule a time.  
 
 ---
@@ -25,8 +28,8 @@ A survey of human biology focusing on concepts in cell biology, genetics, anatom
 
 ## Materials
 
-- Concepts of Biology by OpenStax. https://openstax.org/details/books/concepts-biology
-- Other materials will be provided through Canvas. https://redwoods.instructure.com/ 
+- Concepts of Biology by OpenStax. <https://openstax.org/details/books/concepts-biology>
+- Other materials will be provided through Canvas. <https://redwoods.instructure.com/>
 
 ## Course Objectives
 
@@ -78,9 +81,9 @@ Each module contains:
 
 Grading will be based on:
 
-- Exams (65%)
+- Exams (60%)
 - Laboratory work and reports (20%)
-- Assignments (15%)
+- Assignments (20%)
 
 ## Course Policies
 
@@ -106,10 +109,10 @@ All work must be original. Plagiarism and academic dishonesty will not be tolera
 
 ### Artificial Intelligence (AI) policy
 
-- It is 2026. AI is a tool that can be used to enhance learning. 
-- You may use AI to help you understand concepts, generate ideas, or improve your writing. We can discuss in class, various ways to use AI as a tool for learning. 
+- It is 2026. AI is a tool that can be used to enhance learning.
+- You may use AI to help you understand concepts, generate ideas, or improve your writing. We can discuss in class, various ways to use AI as a tool for learning.
 - Where you do use AI, for assignments or otherwise, you must share how you used it. For example include the prompts that you used, the responses that you received, and subsequent edits you made -- not just a copied output. Showing the honest process of your work and learning will be recognized and rewarded. Merely copying outputs of AI without attribution is plagiarism and will be treated as such.
-- Keep in mind that Exams in class will be pen-and-paper, without any computer or AI assistance. 
+- Keep in mind that Exams in class will be pen-and-paper, without any computer or AI assistance.
 
 ## Module Schedule
 
@@ -135,7 +138,7 @@ College of the Redwoods is committed to providing reasonable accommodations for 
 
 **Available Services:** Extended test time, quiet testing environments, academic assistance and tutoring through the [LIGHT Center](https://www.redwoods.edu/services/sass/light.php), counseling and advising, alternate formats of course materials (e.g., audio books, braille, E-texts), assistive technology, learning disability assessments, approval for personal attendants, interpreters, priority registration, on-campus transportation, adaptive physical education and living skills courses, and more.
 
-**Contact:** If you believe you might benefit from disability- or health-related services and accommodations, please contact [Student Accessibility Support Services (SASS)](https://www.redwoods.edu/services/sass/index.php). If you are unsure whether you qualify, please reach out for a consultation: **sass@redwoods.edu** 
+**Contact:** If you believe you might benefit from disability- or health-related services and accommodations, please contact [Student Accessibility Support Services (SASS)](https://www.redwoods.edu/services/sass/index.php). If you are unsure whether you qualify, please reach out for a consultation: **<sass@redwoods.edu>**
 
 ## Additional Resources
 

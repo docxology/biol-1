@@ -137,6 +137,18 @@ Get relative path from base to target.
 **Returns**:
 - Relative path string
 
+#### `extract_quiz_questions(markdown_content: str) -> List[dict]`
+
+Extract quiz questions from markdown content.
+
+Looks for sections with "Review Questions" or "Practice Problems".
+
+**Args**:
+- `markdown_content`: Markdown content to parse
+
+**Returns**:
+- List of question dictionaries with 'question' and 'options' keys
+
 #### `ensure_output_directory(directory: Path) -> None`
 
 Ensure output directory exists.

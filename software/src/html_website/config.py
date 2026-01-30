@@ -1,5 +1,8 @@
 """Configuration for HTML website generation."""
 
+# Default course name used when none is specified
+DEFAULT_COURSE_NAME: str = "BIOL-1"
+
 # Default CSS for grayscale website with sidebar
 DEFAULT_CSS = """
 :root {

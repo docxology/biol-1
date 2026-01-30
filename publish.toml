@@ -1,0 +1,35 @@
+[publish]
+clean = true
+verbose = false
+
+[publish.formats]
+pdf  = true
+docx = true
+html = true
+txt  = true
+mp3  = false
+
+[publish.courses.biol-1]
+enabled = true
+modules = 17
+path = "course_development/biol-1"
+input_types = ["keys-to-success", "questions"]
+include_syllabus = true
+include_labs = true
+include_dashboards = true
+
+[publish.courses.biol-8]
+enabled = true
+modules = 15
+path = "course_development/biol-8"
+input_types = ["keys-to-success", "questions"]
+include_syllabus = true
+include_labs = true
+include_dashboards = true
+
+[publish.pipeline]
+generate  = true
+publish   = true
+copy_extras = true
+flatten   = true
+validate  = true

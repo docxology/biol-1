@@ -41,7 +41,7 @@ def generate_module_website(
 
     module_name = module_dir.name
     if not course_name:
-        course_name = "BIOL-1"
+        course_name = config.DEFAULT_COURSE_NAME
 
     # Curriculum elements configuration
     curriculum_elements = {

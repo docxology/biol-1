@@ -354,7 +354,7 @@ course_development/
 │   │   ├── Schedule.md
 │   │   └── output/                      # PDF, DOCX, HTML, TXT, MP3
 │   ├── resources/
-│   │   └── slides/                      # 32 PDFs
+│   │   └── slides/                      # 30 PDFs
 │   └── private/                         # Facility-specific
 │
 ├── biol-8/

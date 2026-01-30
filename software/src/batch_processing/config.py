@@ -16,3 +16,13 @@ OUTPUT_DIRECTORIES: Dict[str, str] = {
     "text": "text_output",
     "media": "media_output",
 }
+
+# Supported course directory names
+SUPPORTED_COURSES: List[str] = ["biol-1", "biol-8"]
+
+# File selection patterns for batch processing
+SAMPLE_FILE_PREFIX: str = "sample_"
+
+# Content type patterns that map filenames to study-guide output subdirectory
+CONTENT_TYPE_PATTERNS: List[str] = ["keys-to-success", "comprehension-questions"]
+QUESTIONS_FILENAME: str = "questions.md"
