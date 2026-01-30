@@ -23,17 +23,41 @@ Publishes course materials to the published directory.
 
 ### Utility Functions
 
+**File**: `src/publish/utils.py`
+
 #### `get_course_config(course_name: str) -> Dict[str, str]`
 
-Get course-specific configuration (source directories, included content).
+Get configuration for a specific course.
+
+**Args:**
+
+- `course_name`: Name of the course directory (e.g., 'biol-1')
+
+**Returns:**
+
+- Dictionary with configuration options
 
 #### `clean_directory(path: Path) -> None`
 
-Remove all contents from a directory or create if doesn't exist.
+Clean a directory (remove all contents) or create if doesn't exist.
 
-#### `copy_directory_contents(src: Path, dst: Path, exclude_patterns: List[str] = None) -> int`
+**Args:**
 
-Copy contents of source directory to destination, with exclusion patterns.
+- `path`: Path to the directory to clean
+
+#### `copy_directory_contents(src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None) -> int`
+
+Copy contents of source directory to destination.
+
+**Args:**
+
+- `src`: Source directory path
+- `dst`: Destination directory path
+- `exclude_patterns`: List of glob patterns to exclude
+
+**Returns:**
+
+- Number of files copied
 
 ## Configuration
 

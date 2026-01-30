@@ -12,13 +12,13 @@ Documentation for cr-bio course management software. Generates educational mater
 
 | Metric | Value | Last Updated |
 |--------|-------|--------------|
-| **Total Tests** | 325 | 2026-01-15 |
-| **Modules** | 11 | 2026-01-15 |
+| **Total Tests** | 262 (26 test files, 7 with collection errors) | 2026-01-15 |
+| **Modules** | 13 | 2026-01-15 |
 | **Code Coverage** | Measured via `uv run pytest --cov=src` | - |
 
 ### Supported Courses
 - **BIOL-1**: 17 modules (Spring 2026)
-- **BIOL-8**: 3 modules (Spring 2026)
+- **BIOL-8**: 15 modules (Spring 2026)
 
 ---
 

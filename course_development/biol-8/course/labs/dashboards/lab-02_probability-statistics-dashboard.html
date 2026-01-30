@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2 Dashboard: Probability & Statistics | BIOL-8</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --sidebar: #1a1a2e;
+            --sidebar-hover: #252545;
+            --accent: #c41e3a;
+            --accent-light: #e8354f;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --green: #16a34a;
+            --amber: #d97706;
+            --purple: #7c3aed;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --radius: 10px;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar);
+            color: #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 12px 0;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.15s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--sidebar-hover);
+            color: #e2e8f0;
+        }
+
+        .sidebar-nav a.active {
+            color: #fff;
+            background: var(--sidebar-hover);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav .nav-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav a.active .nav-num {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .main {
+            margin-left: 260px;
+            flex: 1;
+            padding: 32px;
+            max-width: 1200px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .card-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+        }
+
+        .slider-group label {
+            font-size: 13px;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .slider-group input[type=range] {
+            flex: 1;
+            accent-color: var(--accent);
+        }
+
+        .slider-val {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            min-width: 50px;
+            text-align: right;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 14px 8px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+        }
+
+        .stat-box .stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: var(--mono);
+        }
+
+        .stat-box .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-accent .stat-val {
+            color: var(--accent);
+        }
+
+        .stat-blue .stat-val {
+            color: var(--blue);
+        }
+
+        .stat-green .stat-val {
+            color: var(--green);
+        }
+
+        .stat-amber .stat-val {
+            color: var(--amber);
+        }
+
+        .stat-purple .stat-val {
+            color: var(--purple);
+        }
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .chart-wrap canvas {
+            width: 100% !important;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .analysis-result {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px 0;
+            border-left: 4px solid var(--blue);
+            font-size: 14px;
+        }
+
+        .analysis-result .ar-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .analysis-result code {
+            font-family: var(--mono);
+            background: #e2e8f0;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .analysis-result.ar-pass {
+            border-left-color: var(--green);
+        }
+
+        .analysis-result.ar-info {
+            border-left-color: var(--blue);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 36px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .hero .bio-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero .bio-tag {
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .coin {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 800;
+            transition: transform 0.6s;
+            cursor: pointer;
+            border: 4px solid;
+        }
+
+        .coin.heads {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-color: #d97706;
+            color: #78350f;
+        }
+
+        .coin.tails {
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            border-color: #475569;
+            color: #1e293b;
+        }
+
+        .coin.flipping {
+            animation: coinFlip 0.6s ease-in-out;
+        }
+
+        @keyframes coinFlip {
+
+            0%,
+            100% {
+                transform: rotateY(0)
+            }
+
+            50% {
+                transform: rotateY(180deg)
+            }
+        }
+
+        .die {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            border: 3px solid var(--text);
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .die:hover {
+            transform: scale(1.05);
+        }
+
+        .die.rolling {
+            animation: dieRoll 0.4s ease-in-out;
+        }
+
+        @keyframes dieRoll {
+
+            0%,
+            100% {
+                transform: rotate(0)
+            }
+
+            25% {
+                transform: rotate(15deg)
+            }
+
+            75% {
+                transform: rotate(-15deg)
+            }
+        }
+
+        .history-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 2px;
+        }
+
+        .history-item.h {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #fbbf24;
+        }
+
+        .history-item.t {
+            background: #f1f5f9;
+            color: #475569;
+            border: 2px solid #94a3b8;
+        }
+
+        .convergence-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+
+        .convergence-info .ci-dot {
+            width: 12px;
+            height: 3px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>BIOL-8: Human Biology</h1>
+                <p>Lab 2 &mdash; Probability & Statistics</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+                <a href="#part1"><span class="nav-num">1</span> Coin Flipping</a>
+                <a href="#part2"><span class="nav-num">2</span> Sample Size Effect</a>
+                <a href="#part3"><span class="nav-num">3</span> Die Rolling</a>
+                <a href="#part4"><span class="nav-num">4</span> Two Dice</a>
+                <a href="#part5"><span class="nav-num">5</span> Biology Application</a>
+            </nav>
+            <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+        </aside>
+        <div class="main">
+            <div class="hero" id="hero">
+                <h2>Probability & Statistics</h2>
+                <p>Explore fundamental probability concepts through interactive coin and dice simulations. Observe how
+                    sample size affects experimental outcomes and apply these principles to biological phenomena like
+                    genetics.</p>
+                <div class="bio-tags">
+                    <span class="bio-tag">Probability</span>
+                    <span class="bio-tag">Statistics</span>
+                    <span class="bio-tag">Sample Size</span>
+                </div>
+            </div>
+
+            <!-- PART 1: COIN FLIPPING -->
+            <div class="section" id="part1">
+                <div class="section-header">
+                    <div class="section-num">1</div>
+                    <div>
+                        <div class="section-title">Coin Flipping Simulator</div>
+                        <div class="section-subtitle">Explore the 50/50 probability of a fair coin</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Single Coin Experiment</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">A fair coin has a theoretical
+                        probability of 0.50 (50%) for heads. Click to flip and observe how experimental results compare
+                        to theory.</p>
+                    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin:16px 0;">
+                        <div class="coin heads" id="coin1" onclick="flipCoin()">H</div>
+                        <div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" onclick="flipCoin()">Flip 1</button>
+                                <button class="btn btn-secondary" onclick="flipMany(10)">Flip 10</button>
+                                <button class="btn btn-secondary" onclick="flipMany(100)">Flip 100</button>
+                                <button class="btn btn-outline" onclick="resetCoin()">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="coin-total">0</div>
+                            <div class="stat-label">Total Flips</div>
+                        </div>
+                        <div class="stat-box stat-amber">
+                            <div class="stat-val" id="coin-heads">0</div>
+                            <div class="stat-label">Heads</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="coin-tails">0</div>
+                            <div class="stat-label">Tails</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="coin-pct">0%</div>
+                            <div class="stat-label">Heads %</div>
+                        </div>
+                    </div>
+                    <div class="card-title" style="margin-top:16px;">Flip History (last 50)</div>
+                    <div id="coin-history" style="max-height:80px;overflow-y:auto;"></div>
+                </div>
+                <div class="card-row">
+                    <div class="card">
+                        <div class="card-title">Heads vs Tails Distribution</div>
+                        <div class="chart-wrap"><canvas id="coin-bar-chart" height="240"></canvas></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Heads % Over Time (Convergence)</div>
+                        <div class="chart-wrap"><canvas id="coin-line-chart" height="240"></canvas></div>
+                        <div class="convergence-info">
+                            <span><span class="ci-dot" style="background:var(--accent);"></span> Your Data</span>
+                            <span><span class="ci-dot" style="background:var(--green);"></span> Expected (50%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2: SAMPLE SIZE EFFECT -->
+            <div class="section" id="part2">
+                <div class="section-header">
+                    <div class="section-num">2</div>
+                    <div>
+                        <div class="section-title">Effect of Sample Size</div>
+                        <div class="section-subtitle">Compare how results vary with different sample sizes</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Multi-Trial Comparison</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Run multiple independent
+                        experiments with different sample sizes. Observe how larger samples produce more consistent
+                        results closer to the expected 50%.</p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="runSampleComparison()">Run All Trials</button>
+                        <button class="btn btn-outline" onclick="resetSampleComparison()">Reset</button>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-val" id="sample-10">-</div>
+                            <div class="stat-label">10 Flips</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="sample-50">-</div>
+                            <div class="stat-label">50 Flips</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="sample-100">-</div>
+                            <div class="stat-label">100 Flips</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="sample-500">-</div>
+                            <div class="stat-label">500 Flips</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="sample-1000">-</div>
+                            <div class="stat-label">1000 Flips</div>
+                        </div>
+                    </div>
+                    <div id="sample-analysis" class="analysis-result ar-info" style="display:none;"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Deviation from Expected (50%)</div>
+                    <div class="chart-wrap"><canvas id="sample-deviation-chart" height="280"></canvas></div>
+                    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">The Law of Large Numbers: as
+                        sample size increases, the experimental probability approaches the theoretical probability.</p>
+                </div>
+            </div>
+
+            <!-- PART 3: DIE ROLLING -->
+            <div class="section" id="part3">
+                <div class="section-header">
+                    <div class="section-num">3</div>
+                    <div>
+                        <div class="section-title">Single Die Rolling</div>
+                        <div class="section-subtitle">Each face has a 1/6 (16.67%) probability</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Roll a Six-Sided Die</div>
+                    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin:16px 0;">
+                        <div class="die" id="die1" onclick="rollDie()">?</div>
+                        <div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" onclick="rollDie()">Roll 1</button>
+                                <button class="btn btn-secondary" onclick="rollDieMany(10)">Roll 10</button>
+                                <button class="btn btn-secondary" onclick="rollDieMany(100)">Roll 100</button>
+                                <button class="btn btn-outline" onclick="resetDie()">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="die-total">0</div>
+                            <div class="stat-label">Total Rolls</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="die-1">0</div>
+                            <div class="stat-label">Ones</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="die-2">0</div>
+                            <div class="stat-label">Twos</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="die-3">0</div>
+                            <div class="stat-label">Threes</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="die-4">0</div>
+                            <div class="stat-label">Fours</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="die-5">0</div>
+                            <div class="stat-label">Fives</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="die-6">0</div>
+                            <div class="stat-label">Sixes</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Frequency Distribution</div>
+                    <div class="chart-wrap"><canvas id="die-bar-chart" height="280"></canvas></div>
+                    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Expected frequency for each face =
+                        16.67% (dashed line)</p>
+                </div>
+            </div>
+
+            <!-- PART 4: TWO DICE -->
+            <div class="section" id="part4">
+                <div class="section-header">
+                    <div class="section-num">4</div>
+                    <div>
+                        <div class="section-title">Two Dice — Combined Probabilities</div>
+                        <div class="section-subtitle">Sum of two dice creates a non-uniform distribution</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Roll Two Dice</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">When rolling two dice, sums
+                        near 7 are most probable because there are more combinations that produce them.</p>
+                    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:16px 0;">
+                        <div class="die" id="die2a" onclick="rollTwoDice()">?</div>
+                        <span style="font-size:24px;font-weight:800;">+</span>
+                        <div class="die" id="die2b" onclick="rollTwoDice()">?</div>
+                        <span style="font-size:24px;font-weight:800;">=</span>
+                        <div class="stat-box stat-accent" style="padding:8px 20px;">
+                            <div class="stat-val" id="dice-sum">?</div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="rollTwoDice()">Roll</button>
+                        <button class="btn btn-secondary" onclick="rollTwoDiceMany(50)">Roll 50</button>
+                        <button class="btn btn-secondary" onclick="rollTwoDiceMany(200)">Roll 200</button>
+                        <button class="btn btn-outline" onclick="resetTwoDice()">Reset</button>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="dice-rolls">0</div>
+                            <div class="stat-label">Total Rolls</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="dice-avg">-</div>
+                            <div class="stat-label">Average Sum</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="dice-mode">-</div>
+                            <div class="stat-label">Most Common</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Sum Distribution (2-12)</div>
+                    <div class="chart-wrap"><canvas id="dice-sum-chart" height="300"></canvas></div>
+                    <div class="convergence-info">
+                        <span><span class="ci-dot" style="background:var(--accent);"></span> Your Data</span>
+                        <span><span class="ci-dot" style="background:var(--green);"></span> Theoretical
+                            Probability</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 5: BIOLOGY APPLICATION -->
+            <div class="section" id="part5">
+                <div class="section-header">
+                    <div class="section-num">5</div>
+                    <div>
+                        <div class="section-title">Application to Biology</div>
+                        <div class="section-subtitle">Mendelian inheritance follows probability rules</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Genetic Cross Simulator (Monohybrid)</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Simulate a Bb × Bb cross. Each
+                        parent contributes one allele randomly. Expected ratio: 25% BB, 50% Bb, 25% bb (3:1 phenotype
+                        ratio).</p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="runGeneticCross(1)">Cross 1</button>
+                        <button class="btn btn-secondary" onclick="runGeneticCross(10)">Cross 10</button>
+                        <button class="btn btn-secondary" onclick="runGeneticCross(100)">Cross 100</button>
+                        <button class="btn btn-outline" onclick="resetGeneticCross()">Reset</button>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="gen-total">0</div>
+                            <div class="stat-label">Total Offspring</div>
+                        </div>
+                        <div class="stat-box stat-purple">
+                            <div class="stat-val" id="gen-BB">0</div>
+                            <div class="stat-label">BB (25%)</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="gen-Bb">0</div>
+                            <div class="stat-label">Bb (50%)</div>
+                        </div>
+                        <div class="stat-box stat-amber">
+                            <div class="stat-val" id="gen-bb">0</div>
+                            <div class="stat-label">bb (25%)</div>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="gen-dom">0</div>
+                            <div class="stat-label">Dominant Phenotype</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-val" id="gen-rec">0</div>
+                            <div class="stat-label">Recessive Phenotype</div>
+                        </div>
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="gen-ratio">-</div>
+                            <div class="stat-label">Observed Ratio</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Genotype Distribution</div>
+                    <div class="chart-wrap"><canvas id="genetic-chart" height="280"></canvas></div>
+                    <div class="analysis-result ar-info" id="genetic-analysis">
+                        <div class="ar-title">Mendelian Genetics</div>
+                        <p>In a Bb × Bb cross, probability works like coin flips: each parent "flips" to decide which
+                            allele to pass. This produces the classic 1:2:1 genotype ratio.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /main -->
+    </div><!-- /layout -->
+
+    <script>
+        const $ = id => document.getElementById(id);
+        const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+        function getCtx(id) {
+            const c = $(id); const dpr = window.devicePixelRatio || 1;
+            const w = c.offsetWidth || c.width || 300;
+            const h = c.offsetHeight || c.height || 150;
+            c.width = w * dpr; c.height = h * dpr;
+            const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+            ctx.W = w; ctx.H = h;
+            return ctx;
+        }
+
+        function drawBarChart(ctx, opts) {
+            const { labels, values, expected, colors, maxVal } = opts;
+            const W = ctx.W, H = ctx.H;
+            const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+            const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+            const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+            const mv = maxVal || Math.max(...values, ...(expected || [0])) * 1.2 || 10;
+            ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+            for (let i = 0; i <= 4; i++) {
+                const y = pad.top + plotH * (1 - i / 4);
+                ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+                ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+                ctx.textAlign = 'right'; ctx.fillText((mv * i / 4).toFixed(0), pad.left - 6, y + 4);
+            }
+            values.forEach((v, i) => {
+                const x = pad.left + (plotW / n) * i + gap / 2;
+                const h = (v / mv) * plotH;
+                ctx.fillStyle = colors ? colors[i % colors.length] : '#c41e3a';
+                ctx.beginPath();
+                const r = 4;
+                ctx.moveTo(x, pad.top + plotH);
+                ctx.lineTo(x, pad.top + plotH - h + r);
+                ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+                ctx.lineTo(x + barW - r, pad.top + plotH - h);
+                ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+                ctx.lineTo(x + barW, pad.top + plotH);
+                ctx.closePath(); ctx.fill();
+                ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+                ctx.fillText(labels[i], x + barW / 2, H - pad.bottom + 16);
+                if (v > 0) {
+                    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui';
+                    ctx.fillText(v, x + barW / 2, pad.top + plotH - h - 6);
+                }
+            });
+            if (expected) {
+                expected.forEach((ev, i) => {
+                    const x = pad.left + (plotW / n) * i + gap / 2;
+                    const y = pad.top + plotH - (ev / mv) * plotH;
+                    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+                    ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+                    ctx.setLineDash([]);
+                });
+            }
+        }
+
+        function drawLineChart(ctx, series, opts) {
+            const W = ctx.W, H = ctx.H;
+            const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+            const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+            const { yMin = 0, yMax = 1, refLine } = opts;
+            const yRange = yMax - yMin;
+            ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+            for (let i = 0; i <= 4; i++) {
+                const y = pad.top + plotH * (1 - i / 4);
+                ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+                ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+                ctx.fillText((yMin + yRange * i / 4).toFixed(0) + '%', pad.left - 6, y + 4);
+            }
+            if (refLine !== undefined) {
+                const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+                ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2; ctx.setLineDash([6, 4]);
+                ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+                ctx.setLineDash([]);
+            }
+            series.forEach(s => {
+                if (!s.data.length) return;
+                const xMax = opts.xMax || s.data.length;
+                ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+                ctx.beginPath();
+                s.data.forEach((v, i) => {
+                    const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+                    const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                });
+                ctx.stroke();
+            });
+        }
+
+        // COIN FLIPPING
+        let coinData = { heads: 0, tails: 0, history: [], pctHistory: [] };
+
+        function flipCoin() {
+            const coin = $('coin1');
+            coin.classList.add('flipping');
+            setTimeout(() => {
+                const isHeads = Math.random() < 0.5;
+                if (isHeads) { coinData.heads++; } else { coinData.tails++; }
+                coinData.history.push(isHeads ? 'H' : 'T');
+                const total = coinData.heads + coinData.tails;
+                coinData.pctHistory.push((coinData.heads / total) * 100);
+                coin.className = 'coin ' + (isHeads ? 'heads' : 'tails');
+                coin.textContent = isHeads ? 'H' : 'T';
+                updateCoinUI();
+                coin.classList.remove('flipping');
+            }, 300);
+        }
+
+        function flipMany(n) {
+            for (let i = 0; i < n; i++) {
+                const isHeads = Math.random() < 0.5;
+                if (isHeads) { coinData.heads++; } else { coinData.tails++; }
+                coinData.history.push(isHeads ? 'H' : 'T');
+                const total = coinData.heads + coinData.tails;
+                coinData.pctHistory.push((coinData.heads / total) * 100);
+            }
+            $('coin1').className = 'coin ' + (coinData.history[coinData.history.length - 1] === 'H' ? 'heads' : 'tails');
+            $('coin1').textContent = coinData.history[coinData.history.length - 1];
+            updateCoinUI();
+        }
+
+        function resetCoin() {
+            coinData = { heads: 0, tails: 0, history: [], pctHistory: [] };
+            $('coin1').className = 'coin heads';
+            $('coin1').textContent = 'H';
+            updateCoinUI();
+        }
+
+        function updateCoinUI() {
+            const total = coinData.heads + coinData.tails;
+            $('coin-total').textContent = total;
+            $('coin-heads').textContent = coinData.heads;
+            $('coin-tails').textContent = coinData.tails;
+            $('coin-pct').textContent = total ? ((coinData.heads / total) * 100).toFixed(1) + '%' : '0%';
+            const hist = coinData.history.slice(-50);
+            $('coin-history').innerHTML = hist.map(h => `<span class="history-item ${h.toLowerCase()}">${h}</span>`).join('');
+            const ctx1 = getCtx('coin-bar-chart');
+            drawBarChart(ctx1, { labels: ['Heads', 'Tails'], values: [coinData.heads, coinData.tails], colors: ['#f59e0b', '#64748b'], expected: total ? [total / 2, total / 2] : null });
+            const ctx2 = getCtx('coin-line-chart');
+            drawLineChart(ctx2, [{ data: coinData.pctHistory, color: '#c41e3a', width: 2 }], { yMin: 0, yMax: 100, refLine: 50 });
+        }
+
+        // SAMPLE SIZE COMPARISON
+        let sampleResults = {};
+
+        function runSampleComparison() {
+            [10, 50, 100, 500, 1000].forEach(n => {
+                let heads = 0;
+                for (let i = 0; i < n; i++) { if (Math.random() < 0.5) heads++; }
+                const pct = ((heads / n) * 100).toFixed(1);
+                sampleResults[n] = { heads, pct: parseFloat(pct), deviation: Math.abs(parseFloat(pct) - 50) };
+                $('sample-' + n).textContent = pct + '%';
+            });
+            const ctx = getCtx('sample-deviation-chart');
+            const labels = ['10', '50', '100', '500', '1000'];
+            const devs = labels.map(l => sampleResults[parseInt(l)]?.deviation || 0);
+            drawBarChart(ctx, { labels, values: devs, colors: ['#c41e3a', '#2563eb', '#16a34a', '#d97706', '#7c3aed'], maxVal: 30 });
+            $('sample-analysis').style.display = 'block';
+            $('sample-analysis').innerHTML = '<div class="ar-title">Analysis</div><p>Notice how the deviation from 50% generally decreases as sample size increases. With only 10 flips, results can vary wildly. With 1000 flips, results typically stay within a few percent of the expected 50%.</p>';
+        }
+
+        function resetSampleComparison() {
+            sampleResults = {};
+            [10, 50, 100, 500, 1000].forEach(n => $('sample-' + n).textContent = '-');
+            $('sample-analysis').style.display = 'none';
+            const ctx = getCtx('sample-deviation-chart');
+            ctx.clearRect(0, 0, ctx.W, ctx.H);
+            ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+        }
+
+        // DIE ROLLING
+        let dieData = { total: 0, counts: [0, 0, 0, 0, 0, 0] };
+
+        function rollDie() {
+            const die = $('die1');
+            die.classList.add('rolling');
+            setTimeout(() => {
+                const result = rand(1, 6);
+                dieData.total++;
+                dieData.counts[result - 1]++;
+                die.textContent = result;
+                die.classList.remove('rolling');
+                updateDieUI();
+            }, 200);
+        }
+
+        function rollDieMany(n) {
+            for (let i = 0; i < n; i++) {
+                const result = rand(1, 6);
+                dieData.total++;
+                dieData.counts[result - 1]++;
+            }
+            $('die1').textContent = rand(1, 6);
+            updateDieUI();
+        }
+
+        function resetDie() {
+            dieData = { total: 0, counts: [0, 0, 0, 0, 0, 0] };
+            $('die1').textContent = '?';
+            updateDieUI();
+        }
+
+        function updateDieUI() {
+            $('die-total').textContent = dieData.total;
+            for (let i = 1; i <= 6; i++) $('die-' + i).textContent = dieData.counts[i - 1];
+            const ctx = getCtx('die-bar-chart');
+            const expected = dieData.total ? Array(6).fill(dieData.total / 6) : null;
+            drawBarChart(ctx, { labels: ['1', '2', '3', '4', '5', '6'], values: dieData.counts, colors: ['#c41e3a', '#2563eb', '#16a34a', '#d97706', '#7c3aed', '#64748b'], expected });
+        }
+
+        // TWO DICE
+        let twoDiceData = { total: 0, sums: Array(11).fill(0) };
+        const theoreticalProb = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1].map(x => x / 36);
+
+        function rollTwoDice() {
+            const d1 = rand(1, 6), d2 = rand(1, 6);
+            twoDiceData.total++;
+            twoDiceData.sums[d1 + d2 - 2]++;
+            $('die2a').textContent = d1;
+            $('die2b').textContent = d2;
+            $('dice-sum').textContent = d1 + d2;
+            updateTwoDiceUI();
+        }
+
+        function rollTwoDiceMany(n) {
+            for (let i = 0; i < n; i++) {
+                const d1 = rand(1, 6), d2 = rand(1, 6);
+                twoDiceData.total++;
+                twoDiceData.sums[d1 + d2 - 2]++;
+            }
+            $('die2a').textContent = rand(1, 6);
+            $('die2b').textContent = rand(1, 6);
+            $('dice-sum').textContent = '?';
+            updateTwoDiceUI();
+        }
+
+        function resetTwoDice() {
+            twoDiceData = { total: 0, sums: Array(11).fill(0) };
+            $('die2a').textContent = '?';
+            $('die2b').textContent = '?';
+            $('dice-sum').textContent = '?';
+            updateTwoDiceUI();
+        }
+
+        function updateTwoDiceUI() {
+            $('dice-rolls').textContent = twoDiceData.total;
+            if (twoDiceData.total > 0) {
+                let sumTotal = 0, maxCount = 0, mode = 0;
+                twoDiceData.sums.forEach((c, i) => { sumTotal += c * (i + 2); if (c > maxCount) { maxCount = c; mode = i + 2; } });
+                $('dice-avg').textContent = (sumTotal / twoDiceData.total).toFixed(2);
+                $('dice-mode').textContent = mode;
+            } else {
+                $('dice-avg').textContent = '-';
+                $('dice-mode').textContent = '-';
+            }
+            const ctx = getCtx('dice-sum-chart');
+            const expected = twoDiceData.total ? theoreticalProb.map(p => p * twoDiceData.total) : null;
+            drawBarChart(ctx, { labels: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], values: twoDiceData.sums, colors: ['#c41e3a'], expected });
+        }
+
+        // GENETIC CROSS
+        let genData = { total: 0, BB: 0, Bb: 0, bb: 0 };
+
+        function runGeneticCross(n) {
+            for (let i = 0; i < n; i++) {
+                const a1 = Math.random() < 0.5 ? 'B' : 'b';
+                const a2 = Math.random() < 0.5 ? 'B' : 'b';
+                const geno = [a1, a2].sort().reverse().join('');
+                genData.total++;
+                if (geno === 'BB') genData.BB++;
+                else if (geno === 'Bb') genData.Bb++;
+                else genData.bb++;
+            }
+            updateGeneticUI();
+        }
+
+        function resetGeneticCross() {
+            genData = { total: 0, BB: 0, Bb: 0, bb: 0 };
+            updateGeneticUI();
+        }
+
+        function updateGeneticUI() {
+            $('gen-total').textContent = genData.total;
+            $('gen-BB').textContent = genData.BB;
+            $('gen-Bb').textContent = genData.Bb;
+            $('gen-bb').textContent = genData.bb;
+            const dom = genData.BB + genData.Bb;
+            const rec = genData.bb;
+            $('gen-dom').textContent = dom;
+            $('gen-rec').textContent = rec;
+            $('gen-ratio').textContent = rec > 0 ? (dom / rec).toFixed(2) + ':1' : '-';
+            const ctx = getCtx('genetic-chart');
+            const expected = genData.total ? [genData.total * 0.25, genData.total * 0.5, genData.total * 0.25] : null;
+            drawBarChart(ctx, { labels: ['BB', 'Bb', 'bb'], values: [genData.BB, genData.Bb, genData.bb], colors: ['#7c3aed', '#2563eb', '#d97706'], expected });
+        }
+
+        // INIT
+        updateCoinUI();
+        updateDieUI();
+        updateTwoDiceUI();
+        updateGeneticUI();
+    </script>
+</body>
+
+</html>

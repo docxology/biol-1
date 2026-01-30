@@ -293,7 +293,7 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
 
     # Find all sample markdown files
     markdown_files = find_markdown_files(module_dir)
-    files_to_process = [f for f in markdown_files if f.name.startswith("sample_")]
+    files_to_process = [f for f in markdown_files if f.name.startswith(config.SAMPLE_FILE_PREFIX)]
     
     # Process root-level source files (keys-to-success.md, questions.md)
     root_md_files = [f for f in module_dir.glob("*.md") 
@@ -338,10 +338,10 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
             elif "study-guide" in md_file.name:
                 file_type = "study-guide"
                 output_subdir = "study-guides"
-            elif "keys-to-success" in md_file.name:
+            elif any(pattern in md_file.name for pattern in config.CONTENT_TYPE_PATTERNS):
                 file_type = "study-guide"
                 output_subdir = "study-guides"
-            elif "comprehension-questions" in md_file.name or md_file.name == "questions.md":
+            elif md_file.name == config.QUESTIONS_FILENAME:
                 file_type = "study-guide"
                 output_subdir = "study-guides"
             elif "assignment" in md_file.name or md_file.parent.name == "assignments":
@@ -357,8 +357,13 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
             ensure_output_directory(type_output_dir)
             logger.debug(f"Processing {file_type}: {md_file.name} -> {output_subdir}/")
 
-            # Base filename without extension
+            # Base filename without extension - prefix with module name for unique identification
             base_name = md_file.stem
+            # Extract module name (e.g., "module-01-topic" or "module-01")
+            module_name = module_dir.name
+            # Only add prefix if file is not already prefixed with module name
+            if not base_name.startswith(module_name) and not base_name.startswith("module-"):
+                base_name = f"{module_name}-{base_name}"
 
             # Generate PDF
             try:
@@ -614,7 +619,7 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
 
     # Find all output directories
     output_dirs = []
-    for course_dir in ["biol-1", "biol-8"]:
+    for course_dir in config.SUPPORTED_COURSES:
         course_path = repo_root / course_dir
         if not course_path.exists():
             logger.debug(f"Course directory not found: {course_path}")
