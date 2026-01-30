@@ -6,9 +6,9 @@ This is a private repository for Biology courses at College of the Redwoods (Del
 
 The repository is organized into three main areas:
 
-1.  **`course_development/`**: The "Back Office" for private curriculum development.
-2.  **`PUBLISHED/`**: Public, ready-to-upload course materials.
-3.  **`software/`**: Automation tools and documentation.
+1. **`course_development/`**: The "Back Office" for private curriculum development.
+2. **`PUBLISHED/`**: Public, ready-to-upload course materials.
+3. **`software/`**: Automation tools and documentation.
 
 ```mermaid
 graph TD
@@ -41,11 +41,14 @@ graph TD
 This is the working directory for instructors. It contains the source of truth for all course content.
 
 ### Courses
+
 - **[BIOL-1](course_development/biol-1/)**: Biology 1 at Pelican Bay Prison
 - **[BIOL-8](course_development/biol-8/)**: Biology 8 at College of the Redwoods
 
 ### Structure
+
 Each course folder contains:
+
 - **`course/`**: Working modules with source Markdown files
 - **`syllabus/`**: Syllabus source files
 - **`private/`**: Instructor-only materials (Tests, Accommodations)
@@ -55,13 +58,21 @@ Each course folder contains:
 
 ## 📤 Published Outputs (`PUBLISHED/`)
 
-This directory contains the final, generated files ready for upload to Canvas. `software/scripts/publish_course.py` manages the export from `course_development/` to here.
+Final rendered materials for public distribution. **Each course is a separate public GitHub repository:**
 
-### Structure
-- **`biol-1/`**: Contains `module-*/` folders with Slides, Notes, etc.
-- **`biol-8/`**: Contains `module-*/` folders with PDF, MP3, HTML, DOCX, etc.
+| Course | Public Repository | Description |
+|--------|-------------------|-------------|
+| BIOL-1 | [github.com/docxology/biol-1](https://github.com/docxology/biol-1) | General Biology - Pelican Bay Prison |
+| BIOL-8 | [github.com/docxology/biol-8](https://github.com/docxology/biol-8) | Human Anatomy & Physiology - CR Del Norte |
 
-**Note**: Do not edit files here directly. Edit the source in `course_development/` and regenerate.
+### Architecture
+
+- `PUBLISHED/` is **excluded from cr-bio** (via `.gitignore`)
+- Each subfolder (`biol-1/`, `biol-8/`) is an independent git repo
+- Use `software/scripts/publish_all.py` to generate and validate outputs
+- Use `git push` within each subfolder to update the public repos
+
+**Note**: Do not edit files here directly. Edit source in `course_development/` and regenerate.
 
 ---
 
@@ -74,6 +85,7 @@ The automation engine for the repository.
 - **`docs/`**: [Documentation](software/docs/README.md) for the software system
 
 ### Key Scripts
+
 ```bash
 # Generate outputs for a course
 uv run python software/scripts/generate_all_outputs.py --course biol-8
