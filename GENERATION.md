@@ -26,6 +26,20 @@ uv run python scripts/generate_all_outputs.py --course biol-8 --module 2
 uv run python scripts/generate_all_outputs.py --dry-run
 ```
 
+### Recommended: Top-Level Publish Command
+
+For the full publish pipeline with configuration:
+
+```bash
+# From repository root (not software/)
+cd /path/to/cr-bio
+python publish.py                        # Full pipeline
+python publish.py --dry-run               # Preview
+python publish.py --override-formats pdf  # Override formats
+```
+
+See `publish.toml` for configuration options.
+
 This will:
 
 - Process all modules for both courses in `course_development/`
@@ -94,12 +108,17 @@ Syllabi are processed to all export formats, organized by format type rather tha
 
 ```
 [course]/syllabus/output/
-├── pdf/
-├── mp3/
-├── docx/
-├── html/
-└── txt/
+├── BIOL-X_Spring-2026_Syllabus.pdf
+├── BIOL-X_Spring-2026_Syllabus.docx
+├── BIOL-X_Spring-2026_Syllabus.html
+├── BIOL-X_Spring-2026_Syllabus.txt
+├── Schedule.pdf
+├── Schedule.docx
+├── Schedule.html
+└── Schedule.txt
 ```
+
+**Note:** Syllabus outputs use a flat structure (files directly in output/, not subdirectories).
 
 ## Scripts
 

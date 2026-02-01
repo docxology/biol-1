@@ -252,8 +252,8 @@ generate_module_website("course/module-01", output_dir="output/website", course_
 |---------------|--------|--------|--------|
 | **keys-to-success.md** | 17 | 15 | ✅ Complete |
 | **questions.md** | 17 | 15 | ✅ Complete |
-| **Labs (complete)** | 1 | 1 | ✅ Lab 01 only |
-| **Labs (stubs)** | 16 | 14 | ✅ Both have stubs |
+| **Labs (complete)** | 1 | 4 | ✅ Labs 1-4 implemented for BIOL-8 |
+| **Labs (stubs)** | 16 | 11 | ✅ Both have stubs |
 | **Exams** | Templates | 4 + keys | ❌ BIOL-1 needs content |
 | **Quizzes** | Templates | 15 + keys | ❌ BIOL-1 needs content |
 | **Syllabus** | 2 files | 2 files | ✅ Complete |
@@ -266,7 +266,7 @@ generate_module_website("course/module-01", output_dir="output/website", course_
 
 1. **CRITICAL:** Create BIOL-1 exams (5 exams + 5 keys)
 2. **CRITICAL:** Create BIOL-1 quizzes (17 quizzes + 17 keys)
-3. **HIGH:** Develop all lab stubs into complete protocols (30 total)
+3. **HIGH:** Develop remaining lab stubs into complete protocols
 4. **MEDIUM:** Add BIOL-1 slides for modules 9 and 17
 5. **LOW:** Populate BIOL-1 module resource directories
 
@@ -413,4 +413,4 @@ uv run pytest tests/ -v
 
 ---
 
-*Last Updated: 2026-01-28*
+*Last Updated: 2026-02-01*
