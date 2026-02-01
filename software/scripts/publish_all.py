@@ -323,10 +323,18 @@ def main():
     
     total_files = sum(1 for _ in published_dir.rglob('*') if _.is_file())
     
+    # Calculate per-course breakdown
+    course_counts = {}
+    for course_dir in sorted(published_dir.iterdir()):
+        if course_dir.is_dir() and not course_dir.name.startswith('.'):
+            course_counts[course_dir.name] = sum(1 for _ in course_dir.rglob('*') if _.is_file())
+    
     print("\n" + "=" * 70)
     print("  PUBLISH COMPLETE")
     print("=" * 70)
     print(f"  Total files in PUBLISHED: {total_files}")
+    for course, count in course_counts.items():
+        print(f"    {course}: {count} files")
     print(f"  Duration: {duration:.1f}s")
     print("=" * 70 + "\n")
     

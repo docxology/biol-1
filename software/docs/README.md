@@ -84,7 +84,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHE
 |--------|---------|--------------|------------|--------------|
 | [module_organization](../src/module_organization/) | Create module structures | `create_module_structure()` | Yes | None |
 | [file_validation](../src/file_validation/) | Validate content | `validate_module_files()` | Yes | None |
-| [validation](../src/validation/) | Validate published outputs | `run_validation()` | Yes | None |
+| [validation](../src/validation/) | Validate published outputs | `validate_outputs()` | Yes | None |
 | [canvas_integration](../src/canvas_integration/) | Upload to Canvas LMS | `upload_module_to_canvas()` | Yes | file_validation |
 | [publish](../src/publish/) | Export to PUBLISHED directory | `publish_course()` | Yes | None |
 

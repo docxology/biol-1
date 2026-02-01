@@ -215,10 +215,11 @@ uv run python scripts/generate_all_outputs.py --course all
 |--------|-------------|
 | `--course` | Course: `biol-1`, `biol-8`, or `all` |
 | `--module` | Specific module number (optional) |
-| `--formats` | Output formats: pdf, html, docx, mp3 |
+| `--formats` | Output formats: pdf, mp3, docx, html, txt (default: all) |
 | `--dry-run` | Preview without generating files |
 | `--skip-clear` | Don't clear existing outputs |
 | `--no-website` | Skip website generation |
+| `--skip-labs` | Skip lab manual rendering |
 
 ### Generate Module Website
 

@@ -118,12 +118,15 @@ def check_website_files(module_path: Path) -> Dict[str, bool]:
         Dictionary mapping expected filename to existence
     """
     website_path = module_path / "output" / config.OUTPUT_DIRS["website"]
-    
+
+    if not website_path.exists():
+        return {f: False for f in config.EXPECTED_WEBSITE_FILES}
+
     result = {}
     for expected_file in config.EXPECTED_WEBSITE_FILES:
         file_path = website_path / expected_file
         result[expected_file] = file_path.exists()
-        
+
     return result
 
 

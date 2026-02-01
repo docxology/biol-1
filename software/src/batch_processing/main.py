@@ -354,7 +354,7 @@ def process_module_by_type(
             elif md_file.name == config.QUESTIONS_FILENAME:
                 file_type = "study-guide"
                 output_subdir = "study-guides"
-            elif "assignment" in md_file.name or md_file.parent.name == "assignments":
+            elif md_file.parent.name == "assignments":
                 file_type = "assignment"
                 output_subdir = "assignments"
 
@@ -696,13 +696,18 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
             results["cleared_directories"].append(str(output_dir))
             results["total_files_removed"] += file_count
 
-            logger.info(f"Cleared {file_count} files and {dir_count} directories from {output_dir.relative_to(repo_root)}")
+            # Use DEBUG for per-directory details to reduce console verbosity
+            logger.debug(f"Cleared {file_count} files and {dir_count} directories from {output_dir.relative_to(repo_root)}")
 
         except Exception as e:
             error_msg = f"Failed to clear {output_dir}: {e}"
             logger.error(error_msg, exc_info=True)
             results["errors"].append(error_msg)
 
+    # Compact course-level summary
+    biol1_count = sum(1 for d in results["cleared_directories"] if "biol-1" in d)
+    biol8_count = sum(1 for d in results["cleared_directories"] if "biol-8" in d)
+    logger.info(f"  BIOL-1: {biol1_count} directories | BIOL-8: {biol8_count} directories")
     logger.info(f"Output clearing completed: {len(results['cleared_directories'])} directories, {results['total_files_removed']} files removed")
     if results["errors"]:
         logger.warning(f"Output clearing completed with {len(results['errors'])} errors")

@@ -9,6 +9,7 @@ from .main import (
     batch_render_lab_manuals,
     generate_data_table,
     generate_measurement_table,
+    get_lab_template,
     parse_lab_elements,
     render_lab_manual,
 )
@@ -19,4 +20,5 @@ __all__ = [
     "generate_data_table",
     "generate_measurement_table",
     "batch_render_lab_manuals",
+    "get_lab_template",
 ]

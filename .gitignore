@@ -41,3 +41,8 @@ PUBLISHED/
 test_output.txt
 course_development/biol-8/resources/ConceptsofBiology-WEB.pdf
 course_development/biol-8/private/Biology Lab Manual.pdf
+
+# Build artifacts
+.benchmarks/
+software/logs/
+software/file:/
