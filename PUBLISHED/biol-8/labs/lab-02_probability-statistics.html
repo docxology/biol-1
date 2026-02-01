@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2: Introduction to Probability and Statistics</title>
+    <style>
+
+/* Lab Manual Worksheet Styles - Black/White/Gray with Red Accents */
+@page {
+    size: letter;
+    margin: 0.75in;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5em;
+    border-bottom: 3px solid #c41e3a;
+    padding-bottom: 0.3em;
+    color: #1a1a1a;
+}
+
+h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #c41e3a;
+    border-left: 4px solid #c41e3a;
+    padding-left: 0.5em;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+    color: #333333;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 1.5em 0;
+}
+
+/* Lab Header Info */
+.lab-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border: 1px solid #333333;
+    background-color: #f5f5f5;
+}
+
+.lab-header-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+.lab-header-label {
+    font-weight: bold;
+    white-space: nowrap;
+    color: #1a1a1a;
+}
+
+.lab-header-value {
+    flex: 1;
+    border-bottom: 1px solid #333333;
+    min-height: 1.5em;
+}
+
+/* Data Tables */
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.lab-table th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #1a1a1a;
+}
+
+.lab-table td {
+    padding: 8px 12px;
+    border: 1px solid #333333;
+    min-height: 2em;
+    vertical-align: top;
+}
+
+.lab-table td.fillable {
+    background-color: #fafafa;
+    min-height: 2.5em;
+}
+
+.lab-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+/* Fillable Fields */
+.fill-text {
+    display: inline-block;
+    min-width: 200px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+}
+
+.fill-number {
+    display: inline-block;
+    min-width: 60px;
+    max-width: 100px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+/* Inline tables inside reflection/calculation boxes */
+.reflection-box table,
+.calculation-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+.reflection-box th,
+.calculation-box th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 6px 10px;
+    border: 1px solid #1a1a1a;
+}
+
+.reflection-box td,
+.calculation-box td {
+    padding: 6px 10px;
+    border: 1px solid #333333;
+    vertical-align: top;
+}
+
+.reflection-box tr:nth-child(even),
+.calculation-box tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.fill-textarea {
+    display: block;
+    width: 100%;
+    min-height: 3em;
+    border: 1px solid #333333;
+    padding: 8px;
+    margin: 0.5em 0;
+    background-color: #fafafa;
+}
+
+.fill-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    margin: 0.3em 0;
+}
+
+.fill-checkbox input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    accent-color: #c41e3a;
+}
+
+/* Measurement Table */
+.measurement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.measurement-table th {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 12px;
+    border: 1px solid #000000;
+}
+
+.measurement-table td {
+    padding: 12px;
+    border: 1px solid #333333;
+    text-align: center;
+}
+
+.measurement-table td.fillable {
+    background-color: #fafafa;
+    min-height: 3em;
+}
+
+.measurement-table .row-number {
+    width: 40px;
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Object Selection Section */
+.object-selection {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-left: 5px solid #c41e3a;
+}
+
+.object-selection h3 {
+    margin-top: 0;
+    color: #1a1a1a;
+}
+
+.object-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    margin: 1em 0;
+}
+
+.object-label {
+    font-weight: bold;
+    min-width: 150px;
+    color: #333333;
+}
+
+.object-input {
+    flex: 1;
+    border-bottom: 2px solid #333333;
+    min-height: 1.5em;
+    background-color: #ffffff;
+    padding: 4px;
+}
+
+/* Feasibility Section */
+.feasibility-section {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.feasibility-question {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #1a1a1a;
+}
+
+.feasibility-options {
+    margin-left: 1em;
+}
+
+/* Calculation Box */
+.calculation-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #999999;
+    border-left: 4px solid #2563eb;
+    background-color: #f8fafc;
+    min-height: 60px;
+}
+
+.calculation-box code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e8e8e8;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.calculation-box pre {
+    background-color: #f0f0f0;
+    padding: 0.75em;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    overflow-x: auto;
+}
+
+/* Reflection Box */
+.reflection-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #666666;
+    border-left: 4px solid #c41e3a;
+    background-color: #fafafa;
+    min-height: 100px;
+}
+
+/* Blockquotes (Learning Goals) */
+blockquote {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid #c41e3a;
+    background-color: #f9f9f9;
+    font-style: italic;
+    color: #333333;
+}
+
+blockquote strong {
+    color: #c41e3a;
+}
+
+/* Strong emphasis */
+strong {
+    color: #1a1a1a;
+}
+
+/* Emphasis within reflection */
+em {
+    color: #555555;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5em;
+}
+
+li {
+    margin: 0.3em 0;
+}
+
+/* Summary table */
+.summary-table th {
+    background-color: #c41e3a;
+    color: #ffffff;
+}
+
+/* Print Styles */
+@media print {
+    .lab-table td.fillable,
+    .fill-text,
+    .fill-textarea,
+    .object-input {
+        background-color: white !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .lab-table, .measurement-table {
+        page-break-inside: avoid;
+    }
+    
+    blockquote {
+        background-color: white !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="lab-manual">
+        <h1>Lab 2: Introduction to Probability and Statistics</h1>
+<p style="text-align: center; font-style: italic;">BIOL-8</p>
+<div class="lab-header">
+<div class="lab-header-field">
+<span class="lab-header-label">Name:</span>
+<span class="lab-header-value"></span>
+</div>
+<div class="lab-header-field">
+<span class="lab-header-label">Date:</span>
+<span class="lab-header-value"></span>
+</div>
+</div>
+<h2>Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li><strong>Understand the difference</strong> between theoretical (expected) and experimental (observed) probability</li>
+<li><strong>Formulate testable hypotheses</strong> and make predictions based on probability theory</li>
+<li><strong>Conduct controlled experiments</strong> using coin flips and dice rolls</li>
+<li><strong>Record data systematically</strong> using appropriate data tables</li>
+<li><strong>Calculate probabilities</strong> and compare expected vs. observed results</li>
+<li><strong>Apply statistical thinking</strong> to interpret biological phenomena</li>
+</ul>
+<hr />
+<h2>Introduction</h2>
+<p>Probability plays a fundamental role in biology. From genetics (inheritance patterns) to ecology (population dynamics) to medicine (disease risk), understanding probability helps us make predictions and interpret data. In this lab, we'll use simple tools—coins and dice—to explore probability concepts that apply directly to biological studies.</p>
+<p><strong>Key Terms:</strong></p>
+<ul>
+<li><strong>Theoretical probability</strong>: What we <em>expect</em> to happen based on mathematics</li>
+<li><strong>Experimental probability</strong>: What we <em>actually observe</em> when performing an experiment</li>
+<li><strong>Sample size</strong>: The number of trials or observations in an experiment</li>
+<li><strong>Random event</strong>: An outcome that cannot be predicted with certainty</li>
+</ul>
+<hr />
+<h2>Part 1: Coin Flipping — Single Coin</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Understand how theoretical probability compares to experimental results, and how sample size affects accuracy.</p>
+</blockquote>
+<h3>Background</h3>
+<p>A fair coin has two sides (heads and tails). Each flip is an independent event.</p>
+<p><strong>Theoretical Probability:</strong></p>
+<ul>
+<li>P(Heads) = 1/2 = 0.50 = 50%</li>
+<li>P(Tails) = 1/2 = 0.50 = 50%</li>
+</ul>
+<h3>Hypothesis</h3>
+<div class="reflection-box">
+<p>Based on theoretical probability, write your hypothesis for 20 coin flips:</p>
+<p><strong>If</strong> I flip a fair coin 20 times, <strong>then</strong> I expect to get approximately <input type="text" class="fill-text" /> heads and <input type="text" class="fill-text" /> tails, <strong>because</strong> <input type="text" class="fill-text" />.</p>
+</div>
+
+<h3>Procedure</h3>
+<ol>
+<li>Obtain one coin from the lab instructor</li>
+<li>Flip the coin 20 times</li>
+<li>Record each result immediately in the data table below</li>
+<li>Calculate your experimental probability</li>
+</ol>
+<h3>Data Collection</h3>
+<h3>Coin Flip Data — 20 Trials</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Result (H or T)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">7</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">8</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">9</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">10</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">11</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">12</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">13</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">14</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">15</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">16</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">17</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">18</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">19</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">20</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Calculations</h3>
+<div class="calculation-box">
+<p><strong>Count your results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Count</th>
+<th>Experimental Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Heads</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /> ÷ 20 = <input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>Tails</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /> ÷ 20 = <input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>20</td>
+<td>1.00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Calculating Experimental Probability:</strong></p>
+<pre><code>Experimental Probability = (Number of desired outcomes) ÷ (Total number of trials)
+
+P(Heads) = _____ ÷ 20 = _____
+P(Tails) = _____ ÷ 20 = _____
+</code></pre>
+<p><strong>Show your work:</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<h3>Analysis</h3>
+<div class="reflection-box">
+<p><strong>1. Did your experimental results match the theoretical probability (50% heads, 50% tails)?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>2. Calculate the difference between your expected and observed results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Expected (out of 20)</th>
+<th>Observed</th>
+<th>Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Heads</td>
+<td>10</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td>Tails</td>
+<td>10</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. Was your hypothesis supported? Explain why or why not:</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 2: Effect of Sample Size</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Discover how increasing sample size improves the match between experimental and theoretical probability—a crucial concept in statistical analysis.</p>
+</blockquote>
+<h3>Class Data Compilation</h3>
+<p>Combine your results with the class data:</p>
+<h3>Class Combined Data</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Statistic</th>
+<th>Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Comparison</h3>
+<div class="reflection-box">
+<p><strong>Compare your individual results to the class results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Your Data (n=20)</th>
+<th>Class Data (n=___)</th>
+<th>Theoretical</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P(Heads)</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td>0.50</td>
+</tr>
+<tr>
+<td>P(Tails)</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td>0.50</td>
+</tr>
+<tr>
+<td>Difference from theoretical</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why do larger sample sizes typically give results closer to theoretical probability?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>In genetics, why do scientists study many offspring rather than just a few?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 3: Die Rolling — Single Die</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Apply probability concepts to a different random event with 6 possible outcomes. Calculate probabilities for more complex events.</p>
+</blockquote>
+<h3>Background</h3>
+<p>A fair 6-sided die has 6 outcomes, each equally likely.</p>
+<p><strong>Theoretical Probability for each number:</strong></p>
+<ul>
+<li>P(1) = P(2) = P(3) = P(4) = P(5) = P(6) = 1/6 ≈ 0.167 ≈ 16.7%</li>
+</ul>
+<h3>Hypothesis</h3>
+<div class="reflection-box">
+<p><strong>If</strong> I roll a fair die 30 times, <strong>then</strong> I expect each number to appear approximately <input type="text" class="fill-text" /> times, <strong>because</strong> <input type="text" class="fill-text" />.</p>
+<p><strong>Calculate the expected number of times each value should appear:</strong></p>
+<p>Expected frequency = (Probability) × (Number of trials) = (1/6) × 30 = <input type="number" class="fill-number" /></p>
+</div>
+
+<h3>Procedure</h3>
+<ol>
+<li>Obtain one 6-sided die from the lab instructor</li>
+<li>Roll the die 30 times</li>
+<li>Record each result using tally marks</li>
+<li>Count and calculate probabilities</li>
+</ol>
+<h3>Data Collection</h3>
+<h3>Die Roll Data — 30 Trials</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Die Value</th>
+<th>Tally (use marks:</th>
+<th>)</th>
+<th>Count</th>
+<th>Experimental Probability</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Calculations and Analysis</h3>
+<div class="calculation-box">
+<p><strong>Calculate probabilities for compound events:</strong></p>
+<p><strong>1. P(rolling an even number) — rolling 2, 4, or 6:</strong></p>
+<p>Theoretical: P(even) = 3/6 = 0.50 = 50%</p>
+<p>Your experimental result:<br />
+Count of even rolls (2 + 4 + 6): <input type="number" class="fill-number" /><br />
+P(even) = <input type="number" class="fill-number" /> ÷ 30 = <input type="number" class="fill-number" /> = <input type="number" class="fill-number" />%</p>
+<p><strong>2. P(rolling greater than 4) — rolling 5 or 6:</strong></p>
+<p>Theoretical: P(&gt;4) = 2/6 = 0.333 = 33.3%</p>
+<p>Your experimental result:<br />
+Count of 5s and 6s: <input type="number" class="fill-number" /><br />
+P(&gt;4) = <input type="number" class="fill-number" /> ÷ 30 = <input type="number" class="fill-number" /> = <input type="number" class="fill-number" />%</p>
+<p><strong>3. P(rolling 1 or 6):</strong></p>
+<p>Theoretical: P(1 or 6) = 2/6 = 0.333 = 33.3%</p>
+<p>Your experimental result:<br />
+Count of 1s and 6s: <input type="number" class="fill-number" /><br />
+P(1 or 6) = <input type="number" class="fill-number" /> ÷ 30 = <input type="number" class="fill-number" /> = <input type="number" class="fill-number" />%</p>
+</div>
+
+<div class="reflection-box">
+<p><strong>Comparison of Expected vs. Observed:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Die Value</th>
+<th>Expected Count (30 × 1/6 = 5)</th>
+<th>Observed Count</th>
+<th>Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td><input type="number" class="fill-number" /></td>
+<td><input type="number" class="fill-number" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Which value appeared most often? Least often?</strong></p>
+<p>Most: <input type="text" class="fill-text" /> | Least: <input type="text" class="fill-text" /></p>
+<p><strong>Does this mean the die was unfair? Explain your reasoning:</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 4: Two Dice — Combined Probabilities</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Understand how combining independent events creates more complex probability distributions, similar to how traits combine in genetics.</p>
+</blockquote>
+<h3>Background</h3>
+<p>When rolling two dice, the outcomes combine. While each die is independent, some sums are more likely than others:</p>
+<table>
+<thead>
+<tr>
+<th>Sum</th>
+<th>Number of Ways</th>
+<th>Theoretical Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>1 (1+1)</td>
+<td>1/36 = 2.8%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>2/36 = 5.6%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>3/36 = 8.3%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>4</td>
+<td>4/36 = 11.1%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>5</td>
+<td>5/36 = 13.9%</td>
+</tr>
+<tr>
+<td>7</td>
+<td>6</td>
+<td>6/36 = 16.7%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5</td>
+<td>5/36 = 13.9%</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4</td>
+<td>4/36 = 11.1%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>3</td>
+<td>3/36 = 8.3%</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2</td>
+<td>2/36 = 5.6%</td>
+</tr>
+<tr>
+<td>12</td>
+<td>1 (6+6)</td>
+<td>1/36 = 2.8%</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: See Dashboard 2 for an interactive visualization of this probability distribution. The key insight is that 7 is the most probable sum because it has the most combinations (6 ways to roll a 7).</em></p>
+<h3>Hypothesis</h3>
+<div class="reflection-box">
+<p><strong>Which sum do you predict will occur most frequently? Why?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<h3>Procedure</h3>
+<ol>
+<li>Obtain two dice of different colors</li>
+<li>Roll both dice together 36 times (to match the number of possible combinations)</li>
+<li>Record the sum each time</li>
+</ol>
+<h3>Data Collection</h3>
+<h3>Sum of Two Dice — 36 Trials</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Sum</th>
+<th>Tally</th>
+<th>Observed Count</th>
+<th>Expected Count (36 × P)</th>
+<th>Difference</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">7</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">8</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">9</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">10</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">11</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Analysis</h3>
+<div class="reflection-box">
+<p><strong>1. Which sum appeared most frequently in your experiment?</strong> <input type="text" class="fill-text" /></p>
+<p><strong>2. Did this match the theoretical prediction (7 is most likely)? Explain:</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>3. Record your observed counts for each sum (2–12) in the data table above.</strong></p>
+<p><em>Use Dashboard 2 to create a bar graph of your results and compare to the theoretical distribution.</em></p>
+<p><strong>4. Why is 7 the most probable sum when rolling two dice?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 5: Application to Biology</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Connect probability concepts to real biological phenomena, particularly genetics.</p>
+</blockquote>
+<div class="reflection-box">
+<p><strong>1. In genetics, a heterozygous cross (Aa × Aa) has the following offspring probabilities:</strong></p>
+<p><strong>Punnett Square (Aa × Aa):</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Parent 1: <strong>A</strong></th>
+<th>Parent 1: <strong>a</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parent 2: <strong>A</strong></td>
+<td>AA</td>
+<td>Aa</td>
+</tr>
+<tr>
+<td>Parent 2: <strong>a</strong></td>
+<td>Aa</td>
+<td>aa</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Results:</strong> 1 AA : 2 Aa : 1 aa</p>
+<table>
+<thead>
+<tr>
+<th>Genotype</th>
+<th>Probability</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AA</td>
+<td>1/4</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>Aa</td>
+<td>2/4</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>aa</td>
+<td>1/4</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How is this similar to rolling dice or flipping coins?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>2. A couple plans to have 4 children. If the probability of having a boy or girl is 50% (like a coin flip), complete this prediction:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Expected Number in 4 Children</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All boys</td>
+<td>4 × (1/16) = 0.25</td>
+</tr>
+<tr>
+<td>3 boys, 1 girl</td>
+<td>4 × (4/16) = <input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>2 boys, 2 girls</td>
+<td>4 × (6/16) = <input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>1 boy, 3 girls</td>
+<td>4 × (4/16) = <input type="number" class="fill-number" /></td>
+</tr>
+<tr>
+<td>All girls</td>
+<td>4 × (1/16) = 0.25</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. Why do real-world genetic outcomes sometimes differ from theoretical expectations?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>4. Medical decisions often involve probability. If a screening test is 95% accurate, what does that mean in practical terms? Why is understanding probability important for healthcare?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<hr />
+<h2>Summary and Conclusions</h2>
+<div class="reflection-box">
+<p><strong>1. State the main concept you learned about probability in this lab:</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>2. Was your coin flip hypothesis supported? Your die roll hypothesis?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>3. What is the relationship between sample size and the accuracy of experimental results?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>4. Give one example of how probability applies to human biology or medicine:</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>5. What questions do you still have about probability?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Key Formulas Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Formula</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P(event) = favorable outcomes / total outcomes</td>
+<td>Theoretical probability</td>
+</tr>
+<tr>
+<td>P(experimental) = observed count / total trials</td>
+<td>Experimental probability</td>
+</tr>
+<tr>
+<td>Expected count = P(event) × number of trials</td>
+<td>Predicted frequency</td>
+</tr>
+<tr>
+<td>Difference = Observed - Expected</td>
+<td>Deviation from expected</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Connection to Module 02:</strong> This lab demonstrates the mathematical foundations underlying biological variation. The same probability rules that govern coin flips and dice also govern inheritance patterns, disease risk, and population genetics. Understanding probability is essential for interpreting scientific data and making informed health decisions.</p>
+<hr />
+<p><em>Lab adapted for BIOL-8: Human Biology, Spring 2026</em></p>
+    </div>
+    <script>
+
+// Lab Manual Interactive Functions
+
+// Auto-save form data to localStorage
+function saveLabData() {
+    const form = document.querySelector('.lab-manual');
+    const inputs = form.querySelectorAll('input, textarea');
+    const data = {};
+    inputs.forEach((input, idx) => {
+        const key = input.id || input.name || `field_${idx}`;
+        if (input.type === 'checkbox') {
+            data[key] = input.checked;
+        } else {
+            data[key] = input.value;
+        }
+    });
+    localStorage.setItem('labManualData_' + document.title, JSON.stringify(data));
+    showSaveNotification();
+}
+
+// Load saved form data
+function loadLabData() {
+    const saved = localStorage.getItem('labManualData_' + document.title);
+    if (saved) {
+        const data = JSON.parse(saved);
+        const form = document.querySelector('.lab-manual');
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach((input, idx) => {
+            const key = input.id || input.name || `field_${idx}`;
+            if (data[key] !== undefined) {
+                if (input.type === 'checkbox') {
+                    input.checked = data[key];
+                } else {
+                    input.value = data[key];
+                }
+            }
+        });
+    }
+}
+
+// Show save notification
+function showSaveNotification() {
+    let notification = document.getElementById('save-notification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'save-notification';
+        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #c41e3a; color: white; padding: 10px 20px; border-radius: 4px; opacity: 0; transition: opacity 0.3s;';
+        document.body.appendChild(notification);
+    }
+    notification.textContent = 'Progress saved!';
+    notification.style.opacity = '1';
+    setTimeout(() => { notification.style.opacity = '0'; }, 2000);
+}
+
+// Clear all data
+function clearLabData() {
+    if (confirm('Clear all entered data? This cannot be undone.')) {
+        localStorage.removeItem('labManualData_' + document.title);
+        location.reload();
+    }
+}
+
+// Print lab manual
+function printLabManual() {
+    window.print();
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadLabData();
+    
+    // Auto-save on input
+    const form = document.querySelector('.lab-manual');
+    if (form) {
+        form.addEventListener('input', () => {
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveLabData, 1000);
+        });
+    }
+});
+
+    </script>
+</body>
+</html>

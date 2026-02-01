@@ -120,6 +120,73 @@ def copy_labs_and_dashboards(verbose: bool = False) -> int:
     return total_copied
 
 
+def copy_slides(verbose: bool = False) -> int:
+    """Copy slide PDFs from resources/slides to PUBLISHED directory."""
+    repo_root = get_repo_root()
+    published_dir = repo_root / 'PUBLISHED'
+    total_copied = 0
+    courses = ['biol-1', 'biol-8']
+    
+    for course in courses:
+        slides_src = repo_root / 'course_development' / course / 'resources' / 'slides'
+        slides_dest = published_dir / course / 'slides'
+        
+        if not slides_src.exists():
+            continue
+        
+        slides_dest.mkdir(parents=True, exist_ok=True)
+        course_copied = 0
+        
+        for slide_file in slides_src.glob('*.pdf'):
+            dest = slides_dest / slide_file.name
+            shutil.copy2(slide_file, dest)
+            course_copied += 1
+        
+        if course_copied > 0:
+            logger.info(f"  {course}: Copied {course_copied} slide PDFs")
+            total_copied += course_copied
+    
+    return total_copied
+
+
+def copy_exams(verbose: bool = False) -> int:
+    """Copy exam files from course/exams to PUBLISHED directory."""
+    repo_root = get_repo_root()
+    published_dir = repo_root / 'PUBLISHED'
+    total_copied = 0
+    
+    # BIOL-8 has exams in course/exams/
+    exams_src = repo_root / 'course_development' / 'biol-8' / 'course' / 'exams'
+    exams_dest = published_dir / 'biol-8' / 'exams'
+    
+    if not exams_src.exists():
+        logger.warning(f"Exams directory not found: {exams_src}")
+        return 0
+    
+    exams_dest.mkdir(parents=True, exist_ok=True)
+    
+    # Copy exam markdown files (exclude answer keys with _key suffix)
+    for exam_file in exams_src.glob('*.md'):
+        if not exam_file.stem.endswith('_key'):
+            dest = exams_dest / exam_file.name
+            shutil.copy2(exam_file, dest)
+            total_copied += 1
+    
+    # Copy exam outputs (PDF, DOCX, etc.) if they exist
+    output_dir = exams_src / 'output'
+    if output_dir.exists():
+        for output_file in output_dir.rglob('*'):
+            if output_file.is_file():
+                dest = exams_dest / output_file.name
+                shutil.copy2(output_file, dest)
+                total_copied += 1
+    
+    if total_copied > 0:
+        logger.info(f"  biol-8: Copied {total_copied} exam files")
+    
+    return total_copied
+
+
 def flatten_module(module_dir: Path) -> int:
     """Flatten a single module directory."""
     moved = 0
@@ -151,7 +218,7 @@ def flatten_published() -> int:
         for module_dir in course_dir.iterdir():
             if not module_dir.is_dir():
                 continue
-            if module_dir.name in ['labs', 'dashboards', 'syllabus']:
+            if module_dir.name in ['labs', 'dashboards', 'syllabus', 'slides', 'exams']:
                 continue
             
             subdirs = [d for d in module_dir.iterdir() if d.is_dir()]
@@ -297,6 +364,13 @@ def main():
         logger.info(f"  ✓ Copied {copied} files")
     else:
         logger.info("\nSTEP 4: Skipping copy extras (--skip-copy-extras)")
+
+    # Step 4.5: Copy slides and exams
+    if not args.skip_copy_extras:
+        logger.info("\nSTEP 4.5: Copying slides and exams")
+        slides_copied = copy_slides(args.verbose)
+        exams_copied = copy_exams(args.verbose)
+        logger.info(f"  ✓ Copied {slides_copied} slides, {exams_copied} exams")
 
     # Step 5: Flatten structure
     if not args.skip_flatten:

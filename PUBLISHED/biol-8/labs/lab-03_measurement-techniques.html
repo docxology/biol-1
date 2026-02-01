@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3: Basic Measurement Techniques</title>
+    <style>
+
+/* Lab Manual Worksheet Styles - Black/White/Gray with Red Accents */
+@page {
+    size: letter;
+    margin: 0.75in;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5em;
+    border-bottom: 3px solid #c41e3a;
+    padding-bottom: 0.3em;
+    color: #1a1a1a;
+}
+
+h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #c41e3a;
+    border-left: 4px solid #c41e3a;
+    padding-left: 0.5em;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+    color: #333333;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 1.5em 0;
+}
+
+/* Lab Header Info */
+.lab-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border: 1px solid #333333;
+    background-color: #f5f5f5;
+}
+
+.lab-header-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+.lab-header-label {
+    font-weight: bold;
+    white-space: nowrap;
+    color: #1a1a1a;
+}
+
+.lab-header-value {
+    flex: 1;
+    border-bottom: 1px solid #333333;
+    min-height: 1.5em;
+}
+
+/* Data Tables */
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.lab-table th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #1a1a1a;
+}
+
+.lab-table td {
+    padding: 8px 12px;
+    border: 1px solid #333333;
+    min-height: 2em;
+    vertical-align: top;
+}
+
+.lab-table td.fillable {
+    background-color: #fafafa;
+    min-height: 2.5em;
+}
+
+.lab-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+/* Fillable Fields */
+.fill-text {
+    display: inline-block;
+    min-width: 200px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+}
+
+.fill-number {
+    display: inline-block;
+    min-width: 60px;
+    max-width: 100px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+/* Inline tables inside reflection/calculation boxes */
+.reflection-box table,
+.calculation-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+.reflection-box th,
+.calculation-box th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 6px 10px;
+    border: 1px solid #1a1a1a;
+}
+
+.reflection-box td,
+.calculation-box td {
+    padding: 6px 10px;
+    border: 1px solid #333333;
+    vertical-align: top;
+}
+
+.reflection-box tr:nth-child(even),
+.calculation-box tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.fill-textarea {
+    display: block;
+    width: 100%;
+    min-height: 3em;
+    border: 1px solid #333333;
+    padding: 8px;
+    margin: 0.5em 0;
+    background-color: #fafafa;
+}
+
+.fill-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    margin: 0.3em 0;
+}
+
+.fill-checkbox input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    accent-color: #c41e3a;
+}
+
+/* Measurement Table */
+.measurement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.measurement-table th {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 12px;
+    border: 1px solid #000000;
+}
+
+.measurement-table td {
+    padding: 12px;
+    border: 1px solid #333333;
+    text-align: center;
+}
+
+.measurement-table td.fillable {
+    background-color: #fafafa;
+    min-height: 3em;
+}
+
+.measurement-table .row-number {
+    width: 40px;
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Object Selection Section */
+.object-selection {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-left: 5px solid #c41e3a;
+}
+
+.object-selection h3 {
+    margin-top: 0;
+    color: #1a1a1a;
+}
+
+.object-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    margin: 1em 0;
+}
+
+.object-label {
+    font-weight: bold;
+    min-width: 150px;
+    color: #333333;
+}
+
+.object-input {
+    flex: 1;
+    border-bottom: 2px solid #333333;
+    min-height: 1.5em;
+    background-color: #ffffff;
+    padding: 4px;
+}
+
+/* Feasibility Section */
+.feasibility-section {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.feasibility-question {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #1a1a1a;
+}
+
+.feasibility-options {
+    margin-left: 1em;
+}
+
+/* Calculation Box */
+.calculation-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #999999;
+    border-left: 4px solid #2563eb;
+    background-color: #f8fafc;
+    min-height: 60px;
+}
+
+.calculation-box code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e8e8e8;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.calculation-box pre {
+    background-color: #f0f0f0;
+    padding: 0.75em;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    overflow-x: auto;
+}
+
+/* Reflection Box */
+.reflection-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #666666;
+    border-left: 4px solid #c41e3a;
+    background-color: #fafafa;
+    min-height: 100px;
+}
+
+/* Blockquotes (Learning Goals) */
+blockquote {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid #c41e3a;
+    background-color: #f9f9f9;
+    font-style: italic;
+    color: #333333;
+}
+
+blockquote strong {
+    color: #c41e3a;
+}
+
+/* Strong emphasis */
+strong {
+    color: #1a1a1a;
+}
+
+/* Emphasis within reflection */
+em {
+    color: #555555;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5em;
+}
+
+li {
+    margin: 0.3em 0;
+}
+
+/* Summary table */
+.summary-table th {
+    background-color: #c41e3a;
+    color: #ffffff;
+}
+
+/* Print Styles */
+@media print {
+    .lab-table td.fillable,
+    .fill-text,
+    .fill-textarea,
+    .object-input {
+        background-color: white !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .lab-table, .measurement-table {
+        page-break-inside: avoid;
+    }
+    
+    blockquote {
+        background-color: white !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="lab-manual">
+        <h1>Lab 3: Basic Measurement Techniques</h1>
+<p style="text-align: center; font-style: italic;">BIOL-8</p>
+<div class="lab-header">
+<div class="lab-header-field">
+<span class="lab-header-label">Name:</span>
+<span class="lab-header-value"></span>
+</div>
+<div class="lab-header-field">
+<span class="lab-header-label">Date:</span>
+<span class="lab-header-value"></span>
+</div>
+</div>
+<p><strong>Name:</strong> <input type="text" class="fill-text" /> <strong>Date:</strong> <input type="text" class="fill-text" /></p>
+<hr />
+<h2>Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li><strong>Measure mass accurately</strong> using analytical and triple-beam balances</li>
+<li><strong>Measure pH</strong> using pH paper and/or digital pH meters</li>
+<li><strong>Measure temperature</strong> using thermometers and temperature probes</li>
+<li><strong>Measure length</strong> using metric rulers with proper precision</li>
+<li><strong>Record measurements</strong> with appropriate significant figures and units</li>
+<li><strong>Compare measurement methods</strong> and understand sources of error</li>
+</ul>
+<hr />
+<h2>Introduction</h2>
+<p>Accurate measurement is the foundation of all scientific investigation. In biology and medicine, precise measurements of mass, pH, temperature, and dimensions are essential for everything from drug dosing to diagnosing disease. In this lab, you'll practice using common laboratory instruments and learn to record data with proper precision and units.</p>
+<p><strong>Key Concepts:</strong></p>
+<ul>
+<li><strong>Precision</strong>: How close repeated measurements are to each other</li>
+<li><strong>Accuracy</strong>: How close a measurement is to the true value</li>
+<li><strong>Significant figures</strong>: Digits that convey meaningful information about precision</li>
+<li><strong>Metric system</strong>: The international standard for scientific measurement (SI units)</li>
+</ul>
+<hr />
+<h2>Part 1: Mass Measurement</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Learn to use balances correctly and understand the relationship between mass, weight, and volume.</p>
+</blockquote>
+<h3>Background</h3>
+<p>Mass measures the amount of matter in an object. In the lab, we measure mass using balances. Common units include:</p>
+<ul>
+<li>Kilograms (kg) - 1 kg = 1,000 g</li>
+<li>Grams (g) - basic unit</li>
+<li>Milligrams (mg) - 1 g = 1,000 mg</li>
+</ul>
+<p><strong>Why is mass important in biology?</strong></p>
+<ul>
+<li>Drug dosing (mg/kg body weight)</li>
+<li>Nutritional content</li>
+<li>Growth measurements</li>
+<li>Chemical reactions</li>
+</ul>
+<h3>Procedure</h3>
+<ol>
+<li><strong>Zero the balance</strong> before each measurement</li>
+<li>Place object on balance pan</li>
+<li>Wait for reading to stabilize</li>
+<li>Record the measurement with units</li>
+</ol>
+<h3>Data Collection</h3>
+<h4>Station A: Measuring Common Objects</h4>
+<h3>Mass Measurements — Common Objects</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Object</th>
+<th>Predicted Mass (g)</th>
+<th>Measured Mass (g)</th>
+<th>Difference</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Standard coin masses (for reference):</strong></p>
+<ul>
+<li>Penny: 2.5 g</li>
+<li>Nickel: 5.0 g</li>
+<li>Quarter: 5.67 g</li>
+</ul>
+<div class="reflection-box">
+<p><strong>How accurate were your predictions? What surprised you?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>Were your measured values close to the standard values? Calculate the percent error for the penny:</strong></p>
+<pre><code>Percent Error = |Measured - Actual| ÷ Actual × 100%
+Percent Error = |_____ - 2.5| ÷ 2.5 × 100% = _____%
+</code></pre>
+</div>
+
+<h4>Station B: Measuring Liquids (Density)</h4>
+<p>Use a graduated cylinder and balance to measure water mass.</p>
+<h3>Water Mass Measurements</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Volume of Water (mL)</th>
+<th>Cylinder + Water Mass (g)</th>
+<th>Empty Cylinder Mass (g)</th>
+<th>Water Mass (g)</th>
+<th>Calculated Density (g/mL)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculate density:</strong></p>
+<pre><code>Density = Mass ÷ Volume
+
+Example: If 25 mL of water has mass of 25.1 g
+Density = 25.1 g ÷ 25 mL = 1.004 g/mL
+</code></pre>
+<div class="reflection-box">
+<p><strong>The actual density of water is 1.00 g/mL at room temperature. How close were your measurements?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>Why is density important in biology and medicine?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 2: pH Measurement</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Understand the pH scale and learn to measure acidity/basicity using different methods.</p>
+</blockquote>
+<h3>Background</h3>
+<p>pH measures how acidic or basic (alkaline) a solution is:</p>
+<ul>
+<li>pH &lt; 7 = Acidic (more H⁺ ions)</li>
+<li>pH = 7 = Neutral</li>
+<li>pH &gt; 7 = Basic/Alkaline (more OH⁻ ions)</li>
+</ul>
+<p><strong>The pH Scale (0-14):</strong></p>
+<pre><code>  ACIDIC                    NEUTRAL                    BASIC
+  ←─────────────────────────────┼─────────────────────────────→
+  0   1   2   3   4   5   6   7   8   9   10  11  12  13  14
+  │   │   │   │   │   │   │   │   │   │   │   │   │   │   │
+  ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼
+ Battery Lemon  Vinegar   Coffee Milk  Pure Baking Blood Bleach Drain
+  Acid Juice   (2.5)    (5) (6.5) Water Soda (7.4) (12.5) Cleaner
+ (0.5) (2)                       (7)  (8.5)              (14)
+</code></pre>
+<p><strong>pH in the Human Body:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Body System</th>
+<th>Normal pH Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stomach acid</td>
+<td>1.5 - 3.5</td>
+</tr>
+<tr>
+<td>Blood</td>
+<td>7.35 - 7.45</td>
+</tr>
+<tr>
+<td>Saliva</td>
+<td>6.2 - 7.4</td>
+</tr>
+<tr>
+<td>Urine</td>
+<td>4.5 - 8.0</td>
+</tr>
+</tbody>
+</table>
+<h3>Procedure — Using pH Paper</h3>
+<ol>
+<li>Tear off a small strip of pH paper</li>
+<li>Dip briefly into the solution (or place drop on paper)</li>
+<li>Compare color to the pH scale chart</li>
+<li>Record the pH value</li>
+</ol>
+<h3>Data Collection</h3>
+<h4>Station A: Measuring Common Solutions</h4>
+<h3>pH Measurements — Common Solutions</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Solution</th>
+<th>Predicted pH</th>
+<th>Color Observed</th>
+<th>Measured pH</th>
+<th>Acidic/Neutral/Basic?</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">7</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">8</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Station B: pH Range Comparison</h4>
+<p>Arrange your measured solutions from most acidic to most basic:</p>
+<div class="reflection-box">
+<p><strong>Ranked by pH (most acidic to most basic):</strong></p>
+<ol>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />) — Most acidic</li>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />)</li>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />)</li>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />)</li>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />)</li>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />)</li>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />)</li>
+<li><input type="text" class="fill-text" /> (pH = <input type="number" class="fill-number" />) — Most basic</li>
+</ol>
+</div>
+
+<h3>Analysis</h3>
+<div class="reflection-box">
+<p><strong>1. Which solution was most acidic? Most basic?</strong></p>
+<p>Most acidic: <input type="text" class="fill-text" /><br />
+Most basic: <input type="text" class="fill-text" /></p>
+<p><strong>2. Why is blood pH tightly regulated? What happens if blood becomes too acidic or too basic?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>3. What would happen to stomach function if the pH were not acidic?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>4. If you used both pH paper and a digital pH meter, which was more precise? Why?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 3: Temperature Measurement</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Practice reading thermometers accurately and understand temperature's role in biological systems.</p>
+</blockquote>
+<h3>Background</h3>
+<p>Temperature measures the kinetic energy of molecules. We commonly use:</p>
+<ul>
+<li>Celsius (°C) - scientific standard</li>
+<li>Fahrenheit (°F) - common in US daily life</li>
+<li>Kelvin (K) - absolute temperature scale</li>
+</ul>
+<p><strong>Conversion formulas:</strong></p>
+<ul>
+<li>°F = (°C × 9/5) + 32</li>
+<li>°C = (°F - 32) × 5/9</li>
+<li>K = °C + 273</li>
+</ul>
+<p><strong>Temperature in Biology:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal body temp</td>
+<td>37°C (98.6°F)</td>
+</tr>
+<tr>
+<td>Fever</td>
+<td>&gt;38°C (&gt;100.4°F)</td>
+</tr>
+<tr>
+<td>Hypothermia</td>
+<td>&lt;35°C (&lt;95°F)</td>
+</tr>
+<tr>
+<td>Room temperature</td>
+<td>~20-25°C</td>
+</tr>
+<tr>
+<td>Water freezing</td>
+<td>0°C (32°F)</td>
+</tr>
+<tr>
+<td>Water boiling</td>
+<td>100°C (212°F)</td>
+</tr>
+</tbody>
+</table>
+<h3>Procedure</h3>
+<ol>
+<li>Hold thermometer vertically in the liquid</li>
+<li>Wait for temperature reading to stabilize (30-60 seconds)</li>
+<li>Read at eye level</li>
+<li>Record temperature with units</li>
+</ol>
+<h3>Data Collection</h3>
+<h4>Station A: Various Water Temperatures</h4>
+<h3>Temperature Measurements — Water Samples</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Water Sample</th>
+<th>Temperature (°C)</th>
+<th>Convert to (°F)</th>
+<th>Convert to (K)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Show your conversion calculations:</strong></p>
+<div class="calculation-box">
+<p><strong>Example: Convert room temperature water from °C to °F and K</strong></p>
+<p>Measured temperature: _____ °C</p>
+<p>To Fahrenheit: (<strong><em>_</em> × 9/5) + 32 = </strong>___ °F</p>
+<p>To Kelvin: <strong><em>_</em> + 273 = </strong>___ K</p>
+</div>
+
+<h4>Station B: Environmental Temperatures</h4>
+<h3>Environmental Temperature Measurements</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Location/Item</th>
+<th>Predicted Temp (°C)</th>
+<th>Measured Temp (°C)</th>
+<th>Difference</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Analysis</h3>
+<div class="reflection-box">
+<p><strong>1. Why is it important for the human body to maintain a constant internal temperature (~37°C)?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>2. Was your skin temperature the same at different body locations? Why or why not?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>3. Enzymes work best at specific temperatures. What happens to enzymes if temperature is too high or too low?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 4: Length Measurement</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Use metric units correctly and measure objects with appropriate precision using rulers.</p>
+</blockquote>
+<h3>Background</h3>
+<p>The metric system is based on powers of 10:</p>
+<ul>
+<li>1 meter (m) = 100 centimeters (cm) = 1,000 millimeters (mm)</li>
+<li>1 cm = 10 mm</li>
+<li>1 mm = 1,000 micrometers (μm)</li>
+</ul>
+<p><strong>Precision in measurement:</strong></p>
+<ul>
+<li>Always estimate one digit beyond the smallest division</li>
+<li>If smallest division is 1 mm, estimate to 0.1 mm</li>
+</ul>
+<h3>Procedure</h3>
+<ol>
+<li>Place ruler firmly against object</li>
+<li>Align the zero mark with one end</li>
+<li>Read the measurement at the other end</li>
+<li>Estimate to one decimal place</li>
+</ol>
+<h3>Data Collection</h3>
+<h4>Station A: Measuring Common Objects</h4>
+<h3>Length Measurements — Common Objects</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Object</th>
+<th>Measurement (mm)</th>
+<th>Measurement (cm)</th>
+<th>Measurement (m)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Conversion practice:</strong></p>
+<div class="calculation-box">
+<p>Convert 85 mm to cm: 85 mm ÷ 10 = <input type="number" class="fill-number" /> cm</p>
+<p>Convert 15.3 cm to mm: 15.3 cm × 10 = <input type="number" class="fill-number" /> mm</p>
+<p>Convert 23 cm to m: 23 cm ÷ 100 = <input type="number" class="fill-number" /> m</p>
+<p>Convert 0.076 m to cm: 0.076 m × 100 = <input type="number" class="fill-number" /> cm</p>
+</div>
+
+<h4>Station B: Calculating Perimeter and Area</h4>
+<p>Choose one rectangular object and measure its dimensions:</p>
+<h3>Rectangle Measurements</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Object</th>
+<th>Length (cm)</th>
+<th>Width (cm)</th>
+<th>Perimeter (cm)</th>
+<th>Area (cm²)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Show your calculations:</strong></p>
+<div class="calculation-box">
+<p>Perimeter = 2(Length) + 2(Width)<br />
+Perimeter = 2(<strong><em>*</em>*) + 2(</strong>****) = ______ cm</p>
+<p>Area = Length × Width<br />
+Area = <strong><em>_</em>_ × </strong><strong><em>_ = </em></strong>___ cm²</p>
+</div>
+
+<h3>Analysis</h3>
+<div class="reflection-box">
+<p><strong>1. Why is it important to use the metric system in science rather than inches/feet?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>2. When would you use mm vs. cm vs. m in biological measurements?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>3. What is the relationship between the width of your thumb and 1 cm? Can your thumb be used as a rough measuring tool?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 5: Measurement Summary and Error Analysis</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Synthesize your understanding of measurement techniques and identify sources of error.</p>
+</blockquote>
+<h3>Summary Table</h3>
+<h3>Measurement Tools Summary</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Property Measured</th>
+<th>Tool Used</th>
+<th>SI Unit</th>
+<th>Precision Available</th>
+<th>One Biological Application</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Sources of Error</h3>
+<div class="reflection-box">
+<p><strong>For each measurement type, identify at least one source of possible error:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>Possible Source of Error</th>
+<th>How to Minimize It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mass</td>
+<td><input type="text" class="fill-text" /></td>
+<td><input type="text" class="fill-text" /></td>
+</tr>
+<tr>
+<td>pH</td>
+<td><input type="text" class="fill-text" /></td>
+<td><input type="text" class="fill-text" /></td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td><input type="text" class="fill-text" /></td>
+<td><input type="text" class="fill-text" /></td>
+</tr>
+<tr>
+<td>Length</td>
+<td><input type="text" class="fill-text" /></td>
+<td><input type="text" class="fill-text" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong>What is the difference between systematic error and random error?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<hr />
+<h2>Conclusions</h2>
+<div class="reflection-box">
+<p><strong>1. Which measurement technique did you find easiest to perform accurately? Most difficult?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>2. Why is accurate measurement critical in fields like medicine and pharmacology?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>3. Give an example of how incorrect measurements could have serious consequences in healthcare:</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>4. What new skill did you develop today that you will use in future labs?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>Common Units</th>
+<th>Conversions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mass</td>
+<td>g, mg, kg</td>
+<td>1 kg = 1000 g, 1 g = 1000 mg</td>
+</tr>
+<tr>
+<td>Length</td>
+<td>m, cm, mm</td>
+<td>1 m = 100 cm, 1 cm = 10 mm</td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>L, mL</td>
+<td>1 L = 1000 mL</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>°C, °F, K</td>
+<td>°F = (°C × 9/5) + 32; K = °C + 273</td>
+</tr>
+<tr>
+<td>pH</td>
+<td>pH units</td>
+<td>Scale 0-14; 7 = neutral</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Connection to Module 03:</strong> Accurate measurement of mass, pH, temperature, and size is essential for understanding biomolecules and their functions. Enzymes, for example, are affected by pH and temperature. Drug dosing depends on mass. Cell size is measured in micrometers. The skills you practiced today form the foundation for all biological research.</p>
+<hr />
+<p><em>Lab adapted for BIOL-8: Human Biology, Spring 2026</em></p>
+    </div>
+    <script>
+
+// Lab Manual Interactive Functions
+
+// Auto-save form data to localStorage
+function saveLabData() {
+    const form = document.querySelector('.lab-manual');
+    const inputs = form.querySelectorAll('input, textarea');
+    const data = {};
+    inputs.forEach((input, idx) => {
+        const key = input.id || input.name || `field_${idx}`;
+        if (input.type === 'checkbox') {
+            data[key] = input.checked;
+        } else {
+            data[key] = input.value;
+        }
+    });
+    localStorage.setItem('labManualData_' + document.title, JSON.stringify(data));
+    showSaveNotification();
+}
+
+// Load saved form data
+function loadLabData() {
+    const saved = localStorage.getItem('labManualData_' + document.title);
+    if (saved) {
+        const data = JSON.parse(saved);
+        const form = document.querySelector('.lab-manual');
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach((input, idx) => {
+            const key = input.id || input.name || `field_${idx}`;
+            if (data[key] !== undefined) {
+                if (input.type === 'checkbox') {
+                    input.checked = data[key];
+                } else {
+                    input.value = data[key];
+                }
+            }
+        });
+    }
+}
+
+// Show save notification
+function showSaveNotification() {
+    let notification = document.getElementById('save-notification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'save-notification';
+        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #c41e3a; color: white; padding: 10px 20px; border-radius: 4px; opacity: 0; transition: opacity 0.3s;';
+        document.body.appendChild(notification);
+    }
+    notification.textContent = 'Progress saved!';
+    notification.style.opacity = '1';
+    setTimeout(() => { notification.style.opacity = '0'; }, 2000);
+}
+
+// Clear all data
+function clearLabData() {
+    if (confirm('Clear all entered data? This cannot be undone.')) {
+        localStorage.removeItem('labManualData_' + document.title);
+        location.reload();
+    }
+}
+
+// Print lab manual
+function printLabManual() {
+    window.print();
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadLabData();
+    
+    // Auto-save on input
+    const form = document.querySelector('.lab-manual');
+    if (form) {
+        form.addEventListener('input', () => {
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveLabData, 1000);
+        });
+    }
+});
+
+    </script>
+</body>
+</html>

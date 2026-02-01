@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4: Introduction to Microscopy</title>
+    <style>
+
+/* Lab Manual Worksheet Styles - Black/White/Gray with Red Accents */
+@page {
+    size: letter;
+    margin: 0.75in;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5em;
+    border-bottom: 3px solid #c41e3a;
+    padding-bottom: 0.3em;
+    color: #1a1a1a;
+}
+
+h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #c41e3a;
+    border-left: 4px solid #c41e3a;
+    padding-left: 0.5em;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+    color: #333333;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 1.5em 0;
+}
+
+/* Lab Header Info */
+.lab-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border: 1px solid #333333;
+    background-color: #f5f5f5;
+}
+
+.lab-header-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+.lab-header-label {
+    font-weight: bold;
+    white-space: nowrap;
+    color: #1a1a1a;
+}
+
+.lab-header-value {
+    flex: 1;
+    border-bottom: 1px solid #333333;
+    min-height: 1.5em;
+}
+
+/* Data Tables */
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.lab-table th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #1a1a1a;
+}
+
+.lab-table td {
+    padding: 8px 12px;
+    border: 1px solid #333333;
+    min-height: 2em;
+    vertical-align: top;
+}
+
+.lab-table td.fillable {
+    background-color: #fafafa;
+    min-height: 2.5em;
+}
+
+.lab-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+/* Fillable Fields */
+.fill-text {
+    display: inline-block;
+    min-width: 200px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+}
+
+.fill-number {
+    display: inline-block;
+    min-width: 60px;
+    max-width: 100px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+/* Inline tables inside reflection/calculation boxes */
+.reflection-box table,
+.calculation-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+.reflection-box th,
+.calculation-box th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 6px 10px;
+    border: 1px solid #1a1a1a;
+}
+
+.reflection-box td,
+.calculation-box td {
+    padding: 6px 10px;
+    border: 1px solid #333333;
+    vertical-align: top;
+}
+
+.reflection-box tr:nth-child(even),
+.calculation-box tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.fill-textarea {
+    display: block;
+    width: 100%;
+    min-height: 3em;
+    border: 1px solid #333333;
+    padding: 8px;
+    margin: 0.5em 0;
+    background-color: #fafafa;
+}
+
+.fill-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    margin: 0.3em 0;
+}
+
+.fill-checkbox input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    accent-color: #c41e3a;
+}
+
+/* Measurement Table */
+.measurement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.measurement-table th {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 12px;
+    border: 1px solid #000000;
+}
+
+.measurement-table td {
+    padding: 12px;
+    border: 1px solid #333333;
+    text-align: center;
+}
+
+.measurement-table td.fillable {
+    background-color: #fafafa;
+    min-height: 3em;
+}
+
+.measurement-table .row-number {
+    width: 40px;
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Object Selection Section */
+.object-selection {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-left: 5px solid #c41e3a;
+}
+
+.object-selection h3 {
+    margin-top: 0;
+    color: #1a1a1a;
+}
+
+.object-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    margin: 1em 0;
+}
+
+.object-label {
+    font-weight: bold;
+    min-width: 150px;
+    color: #333333;
+}
+
+.object-input {
+    flex: 1;
+    border-bottom: 2px solid #333333;
+    min-height: 1.5em;
+    background-color: #ffffff;
+    padding: 4px;
+}
+
+/* Feasibility Section */
+.feasibility-section {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.feasibility-question {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #1a1a1a;
+}
+
+.feasibility-options {
+    margin-left: 1em;
+}
+
+/* Calculation Box */
+.calculation-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #999999;
+    border-left: 4px solid #2563eb;
+    background-color: #f8fafc;
+    min-height: 60px;
+}
+
+.calculation-box code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e8e8e8;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.calculation-box pre {
+    background-color: #f0f0f0;
+    padding: 0.75em;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    overflow-x: auto;
+}
+
+/* Reflection Box */
+.reflection-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #666666;
+    border-left: 4px solid #c41e3a;
+    background-color: #fafafa;
+    min-height: 100px;
+}
+
+/* Blockquotes (Learning Goals) */
+blockquote {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid #c41e3a;
+    background-color: #f9f9f9;
+    font-style: italic;
+    color: #333333;
+}
+
+blockquote strong {
+    color: #c41e3a;
+}
+
+/* Strong emphasis */
+strong {
+    color: #1a1a1a;
+}
+
+/* Emphasis within reflection */
+em {
+    color: #555555;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5em;
+}
+
+li {
+    margin: 0.3em 0;
+}
+
+/* Summary table */
+.summary-table th {
+    background-color: #c41e3a;
+    color: #ffffff;
+}
+
+/* Print Styles */
+@media print {
+    .lab-table td.fillable,
+    .fill-text,
+    .fill-textarea,
+    .object-input {
+        background-color: white !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .lab-table, .measurement-table {
+        page-break-inside: avoid;
+    }
+    
+    blockquote {
+        background-color: white !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="lab-manual">
+        <h1>Lab 4: Introduction to Microscopy</h1>
+<p style="text-align: center; font-style: italic;">BIOL-8</p>
+<div class="lab-header">
+<div class="lab-header-field">
+<span class="lab-header-label">Name:</span>
+<span class="lab-header-value"></span>
+</div>
+<div class="lab-header-field">
+<span class="lab-header-label">Date:</span>
+<span class="lab-header-value"></span>
+</div>
+</div>
+<p><strong>Name:</strong> <input type="text" class="fill-text" /> <strong>Date:</strong> <input type="text" class="fill-text" /></p>
+<hr />
+<h2>Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li><strong>Identify the parts of a compound microscope</strong> and describe their functions</li>
+<li><strong>Demonstrate proper microscope techniques</strong> for focusing and handling</li>
+<li><strong>Prepare wet mount slides</strong> for microscopic observation</li>
+<li><strong>Calculate magnification and specimen size</strong> using appropriate formulas</li>
+<li><strong>Compare how images appear</strong> through the microscope versus naked eye</li>
+<li><strong>Observe a variety of specimens</strong> including prepared slides and self-made slides</li>
+</ul>
+<hr />
+<h2>Introduction</h2>
+<p>The microscope is one of the most important tools in biology. It allows us to see structures that are invisible to the naked eye—from cells to microorganisms to the intricate details of tissues. In this lab, you'll learn proper microscopy techniques, including how to focus, calculate magnification, estimate specimen size, and prepare your own slides.</p>
+<p><strong>Historical Note:</strong> The first microscopes were developed in the late 1500s. In 1665, Robert Hooke used an early microscope to observe cork and coined the term "cells."</p>
+<p><strong>Key Terms:</strong></p>
+<ul>
+<li><strong>Magnification</strong>: How many times larger an object appears</li>
+<li><strong>Resolution</strong>: The ability to distinguish two close objects as separate</li>
+<li><strong>Field of view</strong>: The circular area visible through the microscope</li>
+</ul>
+<hr />
+<h2>Part 1: Microscope Parts and Functions</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Become familiar with the components of a compound light microscope before using it.</p>
+</blockquote>
+<h3>Microscope Diagram</h3>
+<p>Study the microscope at your station. Use this diagram as a reference and label the parts in the table below:</p>
+<pre><code>                    ╔══╗
+                    ║  ║ ← Eyepiece (Ocular Lens)
+                    ╚══╝
+                     │
+                ┌────┴────┐
+                │  Body   │ ← Body Tube
+                │  Tube   │
+                └────┬────┘
+              ╭──────┴──────╮
+             ╱   Revolving   ╲
+            (    Nosepiece    ) ← Holds Objectives
+             ╲_______________╱
+              │ │ │ │ │ │ │
+              ╰─┼─┼─┼─╯ ← Objective Lenses
+                │ │ │
+    ┌───────────────────────────┐
+    │                           │ ← Stage
+    │    ╔═══════════════╗      │
+    │    ║   (Slide)     ║      │
+    │    ╚═══════════════╝      │
+    └───────────────────────────┘
+           │           │
+    ╭──────╯           ╰──────╮
+    │ Coarse        Fine      │
+    │ Adjustment    Adjustment│
+    ╰─────────────────────────╯
+              │
+    ┌─────────┴─────────┐
+    │                   │ ← Arm
+    │  ┌─────────────┐  │
+    │  │   Light /   │  │ ← Light Source
+    │  │  Diaphragm  │  │
+    │  └─────────────┘  │
+    └───────────────────┘
+    ═══════════════════════ ← Base
+</code></pre>
+<h3>Microscope Parts — Identification</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Part Name</th>
+<th>Location on Microscope</th>
+<th>Function</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">7</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">8</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">9</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">10</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">11</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">12</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Magnification Levels</h3>
+<p>Your microscope has multiple objective lenses:</p>
+<h3>Objective Lens Magnification</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Objective Lens</th>
+<th>Objective Power</th>
+<th>Eyepiece Power</th>
+<th>Total Magnification</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculating Total Magnification:</strong></p>
+<pre><code>Total Magnification = Eyepiece Power × Objective Power
+
+Example: 10× eyepiece × 40× objective = 400× total magnification
+</code></pre>
+<hr />
+<h2>Part 2: The Letter "e" Observation</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Discover how the microscope inverts images and how to move specimens.</p>
+</blockquote>
+<h3>Background</h3>
+<p>The compound microscope creates an image that is both <strong>inverted</strong> (upside down) and <strong>reversed</strong> (left/right flipped). This affects how you move slides to keep specimens in view.</p>
+<h3>Procedure</h3>
+<ol>
+<li>Obtain a prepared slide with a letter "e" (or cut a small letter "e" from newspaper)</li>
+<li>Place the slide on the stage with the "e" right-side up and readable</li>
+<li>Start with the lowest power objective (4× or 10×)</li>
+<li>Focus carefully using coarse then fine adjustment</li>
+<li>Observe and record how the letter appears</li>
+</ol>
+<h3>Data Collection</h3>
+<h3>Letter 'e' Observations</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>How does the letter "e" appear?</th>
+<th>Sketch what you see through the microscope</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Draw the letter "e" as it appears on the slide (naked eye) and through the microscope:</strong></p>
+<table>
+<thead>
+<tr>
+<th>As placed on stage</th>
+<th>As seen through microscope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>e</td>
+<td><input type="text" class="fill-text" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Movement Investigation</h3>
+<div class="reflection-box">
+<p><strong>When you move the slide to the RIGHT, which direction does the image move?</strong></p>
+<p><input type="text" class="fill-text" /></p>
+<p><strong>When you move the slide AWAY from you (up), which direction does the image move?</strong></p>
+<p><input type="text" class="fill-text" /></p>
+<p><strong>Why does this happen? Explain in terms of how light passes through the microscope:</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>Practical implication: If a specimen you want to view is in the upper right corner of the field of view, which direction should you move the slide?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 3: Calculating Specimen Size</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Learn to estimate the actual size of microscopic objects using field of view diameter.</p>
+</blockquote>
+<h3>Background</h3>
+<p>To calculate specimen size, we first need to know the <strong>field of view diameter</strong> at each magnification.</p>
+<p><strong>Key relationships:</strong></p>
+<ul>
+<li>Higher magnification = smaller field of view</li>
+<li>Field of view diameter and magnification are inversely proportional</li>
+</ul>
+<h3>Measuring Field of View</h3>
+<p>Place a transparent metric ruler across the stage and measure the field of view diameter at low power:</p>
+<p><strong>How to Measure Field of View:</strong></p>
+<pre><code>         ┌─────────────────────────┐
+        /                           \
+       │    ╔═══════════════════╗    │
+       │    ║ ← Ruler markings → ║    │  
+       │    ║  │ │ │ │ │ │ │ │  ║    │
+       │    ║  0 1 2 3 4 5 mm   ║    │
+       │    ╚═══════════════════╝    │
+        \                           /
+         └─────────────────────────┘
+              Field of View
+
+   Count the mm markings visible = FOV diameter
+</code></pre>
+<h3>Field of View Diameter</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Objective</th>
+<th>Total Magnification</th>
+<th>FOV Diameter (mm)</th>
+<th>FOV Diameter (μm)</th>
+<th>How Measured?</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Step-by-Step FOV Calculation for High Power:</strong></p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│  FORMULA: FOV₂ = FOV₁ × (Magnification₁ ÷ Magnification₂)  │
+└─────────────────────────────────────────────────────────────┘
+
+EXAMPLE:
+• Low power (100×) FOV measured = 2.0 mm
+• High power (400×) FOV = ?
+
+  FOV at 400× = 2.0 mm × (100 ÷ 400)
+              = 2.0 mm × 0.25
+              = 0.5 mm
+              = 500 μm
+
+YOUR CALCULATION:
+• Your low power (100×) FOV = _______ mm
+• High power (400×) FOV = _______ mm × (100 ÷ 400)
+                        = _______ mm × 0.25
+                        = _______ mm
+                        = _______ μm
+</code></pre>
+<h3>Estimating Specimen Size</h3>
+<p>Once you know the field of view diameter, you can estimate specimen size:</p>
+<div class="calculation-box">
+<p><strong>Example:</strong><br />
+If the field of view diameter at 100× is 1.5 mm (1500 μm), and a specimen takes up half the field:</p>
+<p>Specimen size = 1500 μm × 0.5 = 750 μm</p>
+<p><strong>Convert to different units:</strong></p>
+<ul>
+<li>750 μm = 0.75 mm</li>
+<li>750 μm = 0.00075 m</li>
+</ul>
+</div>
+
+<hr />
+<h2>Part 4: Observing Prepared Slides</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Practice focusing and observing different types of specimens using proper technique.</p>
+</blockquote>
+<h3>Procedure</h3>
+<ol>
+<li>Always start at the LOWEST magnification</li>
+<li>Use COARSE adjustment to bring specimen into rough focus</li>
+<li>Use FINE adjustment to sharpen the image</li>
+<li>When changing to higher magnification:</li>
+<li>Center the specimen first</li>
+<li>Rotate to higher objective</li>
+<li>Use ONLY fine adjustment (never coarse on high power!)</li>
+<li>Adjust diaphragm for optimal lighting</li>
+</ol>
+<h3>Observations (Prepared Slides)</h3>
+<h3>Prepared Slide Observations</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Slide Name/Description</th>
+<th>Magnification Used</th>
+<th>Sketch What You See</th>
+<th>Estimated Specimen Size</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Drawing Area</h3>
+<p>Draw what you observe through the microscope in the circles below. Include labels where possible.</p>
+<p><strong>Slide 1:</strong> <input type="text" class="fill-text" /></p>
+<pre><code>        _______________
+      /                 \
+     /                   \
+    |                     |
+    |                     |
+    |                     |
+     \                   /
+      \_________________/
+
+Magnification: _____×
+</code></pre>
+<p><strong>Slide 2:</strong> <input type="text" class="fill-text" /></p>
+<pre><code>        _______________
+      /                 \
+     /                   \
+    |                     |
+    |                     |
+    |                     |
+     \                   /
+      \_________________/
+
+Magnification: _____×
+</code></pre>
+<p><strong>Slide 3:</strong> <input type="text" class="fill-text" /></p>
+<pre><code>        _______________
+      /                 \
+     /                   \
+    |                     |
+    |                     |
+    |                     |
+     \                   /
+      \_________________/
+
+Magnification: _____×
+</code></pre>
+<hr />
+<h2>Part 5: Making Your Own Wet Mount Slides</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Learn to prepare simple wet mount slides for observation.</p>
+</blockquote>
+<h3>Materials Needed</h3>
+<ul>
+<li>Clean glass slides</li>
+<li>Coverslips</li>
+<li>Dropper and water</li>
+<li>Specimens (provided by instructor)</li>
+</ul>
+<h3>Procedure</h3>
+<ol>
+<li>Place a clean glass slide on the table</li>
+<li>Add ONE drop of water to the center of the slide</li>
+<li>Place the specimen in the water drop</li>
+<li>Hold coverslip at 45° angle, touching one edge to the water</li>
+<li>Slowly lower the coverslip to avoid air bubbles</li>
+<li>Blot excess water with paper towel (if needed)</li>
+</ol>
+<h3>Specimens to Prepare and Observe</h3>
+<h3>Wet Mount Slide Observations</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Specimen</th>
+<th>Magnification</th>
+<th>What did you observe?</th>
+<th>Estimated size</th>
+<th>Drawing on next page?</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Size Estimation Exercise</h3>
+<p><strong>Estimate the size of one of your specimens using field of view:</strong></p>
+<div class="calculation-box">
+<p>Specimen chosen: <input type="text" class="fill-text" /></p>
+<p>Field of view diameter at the magnification used: <input type="number" class="fill-number" /> μm</p>
+<p>The specimen appears to take up approximately <input type="text" class="fill-text" /> (fraction) of the field of view.</p>
+<p><strong>Calculation:</strong><br />
+Estimated size = FOV diameter × fraction<br />
+Estimated size = <strong><em>_</em> μm × </strong><strong><em> = </em></strong>__ μm</p>
+<p>Convert to mm: <strong><em>_</em> μm ÷ 1000 = </strong>___ mm</p>
+</div>
+
+<h3>Bonus Activity: The Letter on Paper</h3>
+<p><strong>Observe newspaper print or typed text under the microscope:</strong></p>
+<div class="reflection-box">
+<p><strong>What happens to the appearance of printed letters under magnification?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>Can you see individual dots or ink patterns? Describe what you see:</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>Estimate the size of one printed period (.) or letter:</strong></p>
+<p><textarea class="fill-textarea" rows="1"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 6: Troubleshooting and Best Practices</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Recognize common problems and know how to solve them.</p>
+</blockquote>
+<h3>Common Microscope Problems</h3>
+<h3>Troubleshooting Guide</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Problem</th>
+<th>Possible Cause</th>
+<th>Solution</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Proper Microscope Care Checklist</h3>
+<div class="reflection-box">
+<p>Before putting away your microscope:</p>
+<ul>
+<li>[ ] Rotate to lowest power objective</li>
+<li>[ ] Remove slide from stage</li>
+<li>[ ] Clean lenses with lens paper only (never paper towels!)</li>
+<li>[ ] Lower stage to lowest position</li>
+<li>[ ] Turn off light source</li>
+<li>[ ] Cover microscope (if applicable)</li>
+<li>[ ] Return to proper storage location</li>
+</ul>
+<p><strong>Why is it important to store the microscope on the lowest power objective?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Part 7: Size Comparison Summary</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Develop a sense of scale for biological structures.</p>
+</blockquote>
+<h3>Relative Sizes</h3>
+<div class="reflection-box">
+<p><strong>Rank the following from smallest to largest (1 = smallest):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Specimen</th>
+<th>Your Rank (1-8)</th>
+<th>Typical Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Human hair diameter</td>
+<td class="fillable">&nbsp;</td>
+<td>50-100 μm</td>
+</tr>
+<tr>
+<td>Red blood cell</td>
+<td class="fillable">&nbsp;</td>
+<td>7-8 μm</td>
+</tr>
+<tr>
+<td>Bacterium (E. coli)</td>
+<td class="fillable">&nbsp;</td>
+<td>1-2 μm</td>
+</tr>
+<tr>
+<td>Human cheek cell</td>
+<td class="fillable">&nbsp;</td>
+<td>50-80 μm</td>
+</tr>
+<tr>
+<td>Plant cell</td>
+<td class="fillable">&nbsp;</td>
+<td>10-100 μm</td>
+</tr>
+<tr>
+<td>Virus particle</td>
+<td class="fillable">&nbsp;</td>
+<td>0.02-0.3 μm</td>
+</tr>
+<tr>
+<td>Thread fiber</td>
+<td class="fillable">&nbsp;</td>
+<td>10-30 μm</td>
+</tr>
+<tr>
+<td>Printed period (.)</td>
+<td class="fillable">&nbsp;</td>
+<td>~400 μm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Which of these could you see with a standard light microscope (resolution limit ~0.2 μm)?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>What type of microscope would be needed to see viruses?</strong></p>
+<p><input type="text" class="fill-text" /></p>
+</div>
+
+<hr />
+<h2>Conclusions</h2>
+<div class="reflection-box">
+<p><strong>1. What was the most surprising thing you observed under the microscope today?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>2. Why do we always start at the lowest magnification?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>3. Explain the relationship between magnification and field of view:</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>4. Describe one way microscopes are used in medicine or healthcare:</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>5. What would you like to observe under the microscope in a future lab?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+</div>
+
+<hr />
+<h2>Quick Reference: Units of Measurement</h2>
+<table>
+<thead>
+<tr>
+<th>Unit</th>
+<th>Symbol</th>
+<th>Relationship</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meter</td>
+<td>m</td>
+<td>1 m = 1,000 mm</td>
+<td>Large organisms</td>
+</tr>
+<tr>
+<td>Millimeter</td>
+<td>mm</td>
+<td>1 mm = 1,000 μm</td>
+<td>Small organisms, tissues</td>
+</tr>
+<tr>
+<td>Micrometer</td>
+<td>μm</td>
+<td>1 μm = 1,000 nm</td>
+<td>Cells</td>
+</tr>
+<tr>
+<td>Nanometer</td>
+<td>nm</td>
+<td>1 nm = 0.001 μm</td>
+<td>Molecules, viruses</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conversion practice:</strong></p>
+<ul>
+<li>50 μm = 50/1000 = 0.05 mm</li>
+<li>2 mm = 2 × 1000 = 2000 μm</li>
+<li>0.5 mm = 500 μm</li>
+</ul>
+<hr />
+<h2>Formula Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Formula</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total magnification = Eyepiece × Objective</td>
+<td>Calculate how much larger image appears</td>
+</tr>
+<tr>
+<td>FOV₂ = FOV₁ × (Mag₁/Mag₂)</td>
+<td>Calculate field of view at different magnification</td>
+</tr>
+<tr>
+<td>Specimen size = FOV × fraction</td>
+<td>Estimate actual specimen dimensions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Connection to Module 04:</strong> Understanding cell structure requires microscopy skills. The techniques you learned today—proper focusing, slide preparation, size estimation—will be essential for observing cell organelles, tissues, and microorganisms throughout this course. Microscopy is also a key diagnostic tool in medicine, from blood smears to tissue biopsies.</p>
+<hr />
+<p><em>Lab adapted for BIOL-8: Human Biology, Spring 2026</em></p>
+    </div>
+    <script>
+
+// Lab Manual Interactive Functions
+
+// Auto-save form data to localStorage
+function saveLabData() {
+    const form = document.querySelector('.lab-manual');
+    const inputs = form.querySelectorAll('input, textarea');
+    const data = {};
+    inputs.forEach((input, idx) => {
+        const key = input.id || input.name || `field_${idx}`;
+        if (input.type === 'checkbox') {
+            data[key] = input.checked;
+        } else {
+            data[key] = input.value;
+        }
+    });
+    localStorage.setItem('labManualData_' + document.title, JSON.stringify(data));
+    showSaveNotification();
+}
+
+// Load saved form data
+function loadLabData() {
+    const saved = localStorage.getItem('labManualData_' + document.title);
+    if (saved) {
+        const data = JSON.parse(saved);
+        const form = document.querySelector('.lab-manual');
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach((input, idx) => {
+            const key = input.id || input.name || `field_${idx}`;
+            if (data[key] !== undefined) {
+                if (input.type === 'checkbox') {
+                    input.checked = data[key];
+                } else {
+                    input.value = data[key];
+                }
+            }
+        });
+    }
+}
+
+// Show save notification
+function showSaveNotification() {
+    let notification = document.getElementById('save-notification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'save-notification';
+        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #c41e3a; color: white; padding: 10px 20px; border-radius: 4px; opacity: 0; transition: opacity 0.3s;';
+        document.body.appendChild(notification);
+    }
+    notification.textContent = 'Progress saved!';
+    notification.style.opacity = '1';
+    setTimeout(() => { notification.style.opacity = '0'; }, 2000);
+}
+
+// Clear all data
+function clearLabData() {
+    if (confirm('Clear all entered data? This cannot be undone.')) {
+        localStorage.removeItem('labManualData_' + document.title);
+        location.reload();
+    }
+}
+
+// Print lab manual
+function printLabManual() {
+    window.print();
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadLabData();
+    
+    // Auto-save on input
+    const form = document.querySelector('.lab-manual');
+    if (form) {
+        form.addEventListener('input', () => {
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveLabData, 1000);
+        });
+    }
+});
+
+    </script>
+</body>
+</html>

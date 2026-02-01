@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 13 Dashboard: Gene Regulation | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TOGGLE SWITCHES
+   ═══════════════════════════════════════════════════════════════════════ */
+.toggle-row {
+  display: flex; align-items: center; gap: 12px; padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.toggle-row:last-child { border-bottom: none; }
+.toggle-label { flex: 1; font-size: 13px; font-weight: 600; }
+.toggle-desc { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+.toggle-switch {
+  position: relative; width: 48px; height: 26px; cursor: pointer; flex-shrink: 0;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-track {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: #d1d5db; border-radius: 13px; transition: all 0.2s;
+}
+.toggle-track::after {
+  content: ''; position: absolute; width: 20px; height: 20px;
+  left: 3px; top: 3px; background: #fff; border-radius: 50%;
+  transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.toggle-switch input:checked + .toggle-track { background: var(--green); }
+.toggle-switch input:checked + .toggle-track::after { transform: translateX(22px); }
+.toggle-switch input:checked + .toggle-track.track-red { background: var(--accent); }
+.toggle-switch input:checked + .toggle-track.track-blue { background: var(--blue); }
+.toggle-switch input:checked + .toggle-track.track-purple { background: var(--purple); }
+.toggle-switch input:checked + .toggle-track.track-amber { background: var(--amber); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   EXPRESSION METER
+   ═══════════════════════════════════════════════════════════════════════ */
+.expression-meter {
+  margin: 12px 0; padding: 12px; background: #f8fafc; border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.meter-bar-bg {
+  height: 28px; background: #e5e7eb; border-radius: 14px; overflow: hidden;
+  position: relative;
+}
+.meter-bar-fill {
+  height: 100%; border-radius: 14px; transition: width 0.5s ease, background 0.5s ease;
+  display: flex; align-items: center; justify-content: flex-end; padding-right: 10px;
+  font-size: 12px; font-weight: 700; color: #fff; min-width: 40px;
+}
+.meter-label {
+  display: flex; justify-content: space-between; margin-top: 4px;
+  font-size: 11px; color: var(--text-muted); font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CELL TYPE CARDS
+   ═══════════════════════════════════════════════════════════════════════ */
+.cell-type-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 12px 0; }
+.cell-type-btn {
+  padding: 14px 10px; border-radius: 8px; border: 2px solid var(--border);
+  background: var(--card); cursor: pointer; text-align: center; transition: all 0.2s;
+  font-family: var(--font);
+}
+.cell-type-btn:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.cell-type-btn.active { border-color: var(--accent); background: #fef2f2; }
+.cell-type-btn .ct-icon { font-size: 28px; margin-bottom: 4px; }
+.cell-type-btn .ct-name { font-size: 13px; font-weight: 700; }
+.cell-type-btn .ct-desc { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 13 &mdash; Gene Regulation</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Lac Operon</a>
+    <a href="#part2"><span class="nav-num">2</span> Gene Switches</a>
+    <a href="#part3"><span class="nav-num">3</span> Epigenetics</a>
+    <a href="#part4"><span class="nav-num">4</span> Differentiation</a>
+    <a href="#part5"><span class="nav-num">5</span> Environment</a>
+    <a href="#part6"><span class="nav-num">6</span> Expression Profiling</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Gene Regulation</h2>
+  <p>Explore how cells control which genes are active. From the lac operon to epigenetic marks, discover the molecular switches that make each cell type unique despite carrying the same DNA.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Gene Regulation</span>
+    <span class="bio-tag">Epigenetics</span>
+    <span class="bio-tag">Operons</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 1: LAC OPERON ═══════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Lac Operon Simulator</div>
+    <div class="section-subtitle">Model the classic prokaryotic gene regulation system</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Environmental Conditions</div>
+    <div class="card-row">
+      <div>
+        <div class="toggle-row">
+          <div class="toggle-label">Lactose Present<div class="toggle-desc">Substrate that induces the operon</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="lac-lactose" onchange="lacUpdate()"><span class="toggle-track track-blue"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">Glucose Present<div class="toggle-desc">Preferred carbon source (catabolite repression)</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="lac-glucose" onchange="lacUpdate()" checked><span class="toggle-track track-amber"></span></label>
+        </div>
+      </div>
+      <div>
+        <div class="stat-grid">
+          <div class="stat-box stat-accent"><div class="stat-val" id="lac-state">OFF</div><div class="stat-label">Operon State</div></div>
+          <div class="stat-box stat-blue"><div class="stat-val" id="lac-mrna">0%</div><div class="stat-label">mRNA Level</div></div>
+          <div class="stat-box stat-green"><div class="stat-val" id="lac-protein">0%</div><div class="stat-label">Protein Level</div></div>
+          <div class="stat-box stat-purple"><div class="stat-val" id="lac-cap">OFF</div><div class="stat-label">CAP Active</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Lac Operon Diagram</div>
+    <div class="chart-wrap"><canvas id="lac-canvas" height="340"></canvas></div>
+    <div class="convergence-info" style="margin-top: 8px;">
+      <span><span class="ci-dot" style="background:#6366f1;"></span> Regulatory Gene</span>
+      <span><span class="ci-dot" style="background:#f59e0b;"></span> Promoter</span>
+      <span><span class="ci-dot" style="background:#ef4444;"></span> Operator</span>
+      <span><span class="ci-dot" style="background:#3b82f6;"></span> Structural Genes</span>
+      <span><span class="ci-dot" style="background:#10b981;"></span> mRNA</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Four States of the Lac Operon</div>
+    <div class="chart-wrap"><canvas id="lac-states-chart" height="220"></canvas></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Toggle lactose and glucose above to explore each state. The current state is highlighted.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 2: GENE SWITCHES ════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Gene Switch Panel</div>
+    <div class="section-subtitle">See how multiple regulatory inputs combine to control expression</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Regulatory Mechanisms</div>
+    <div class="card-row">
+      <div>
+        <div class="toggle-row">
+          <div class="toggle-label">Transcription Factor<div class="toggle-desc">Protein that binds promoter to initiate transcription</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="sw-tf" onchange="switchUpdate()"><span class="toggle-track"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">Enhancer Active<div class="toggle-desc">Distant DNA element that boosts transcription</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="sw-enhancer" onchange="switchUpdate()"><span class="toggle-track track-blue"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">Silencer Active<div class="toggle-desc">DNA element that blocks transcription</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="sw-silencer" onchange="switchUpdate()"><span class="toggle-track track-red"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">DNA Methylation<div class="toggle-desc">CH3 groups on cytosine &mdash; typically silences genes</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="sw-methyl" onchange="switchUpdate()"><span class="toggle-track track-purple"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">Histone Acetylation<div class="toggle-desc">Acetyl groups open chromatin &mdash; promotes expression</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="sw-acetyl" onchange="switchUpdate()"><span class="toggle-track track-amber"></span></label>
+        </div>
+      </div>
+      <div>
+        <div class="expression-meter">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:13px;font-weight:700;">Gene Expression Level</span>
+            <span style="font-family:var(--mono);font-size:20px;font-weight:800;" id="sw-pct">0%</span>
+          </div>
+          <div class="meter-bar-bg">
+            <div class="meter-bar-fill" id="sw-meter" style="width:0%;background:var(--accent);">0%</div>
+          </div>
+          <div class="meter-label"><span>Silent</span><span>Low</span><span>Moderate</span><span>High</span><span>Max</span></div>
+        </div>
+        <div class="stat-grid" style="margin-top: 16px;">
+          <div class="stat-box stat-green"><div class="stat-val" id="sw-activators">0</div><div class="stat-label">Activators</div></div>
+          <div class="stat-box stat-accent"><div class="stat-val" id="sw-repressors">0</div><div class="stat-label">Repressors</div></div>
+          <div class="stat-box stat-blue"><div class="stat-val" id="sw-net">0</div><div class="stat-label">Net Signal</div></div>
+        </div>
+        <div id="sw-explanation" class="analysis-result" style="margin-top:12px;">
+          <div class="ar-title">No inputs active</div>
+          <p>Toggle regulatory mechanisms to see how they affect gene expression.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Regulatory Input Breakdown</div>
+    <div class="chart-wrap"><canvas id="switch-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 3: EPIGENETICS ══════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Epigenetics Visualizer</div>
+    <div class="section-subtitle">DNA modifications that control gene activity without changing sequence</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Epigenetic Modifications</div>
+    <div class="card-row">
+      <div>
+        <div class="toggle-row">
+          <div class="toggle-label">DNA Methylation<div class="toggle-desc">CH3 groups added to cytosine bases &rarr; silences gene</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="epi-methyl" onchange="epiUpdate()"><span class="toggle-track track-purple"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">Histone Acetylation<div class="toggle-desc">Acetyl groups on histones &rarr; opens chromatin</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="epi-acetyl" onchange="epiUpdate()"><span class="toggle-track track-amber"></span></label>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-label">Show Daughter Cells<div class="toggle-desc">See how marks are inherited during cell division</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="epi-daughters" onchange="epiUpdate()"><span class="toggle-track track-blue"></span></label>
+        </div>
+      </div>
+      <div>
+        <div class="stat-grid">
+          <div class="stat-box stat-purple"><div class="stat-val" id="epi-methyl-stat">OFF</div><div class="stat-label">Methylation</div></div>
+          <div class="stat-box stat-amber"><div class="stat-val" id="epi-acetyl-stat">OFF</div><div class="stat-label">Acetylation</div></div>
+          <div class="stat-box stat-green"><div class="stat-val" id="epi-chromatin">Closed</div><div class="stat-label">Chromatin</div></div>
+          <div class="stat-box stat-blue"><div class="stat-val" id="epi-expression">0%</div><div class="stat-label">Expression</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Chromatin Structure</div>
+    <div class="chart-wrap"><canvas id="epi-canvas" height="360"></canvas></div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:#6366f1;"></span> DNA strand</span>
+      <span><span class="ci-dot" style="background:#f59e0b;"></span> Histones</span>
+      <span><span class="ci-dot" style="background:#a855f7;"></span> CH3 (methyl)</span>
+      <span><span class="ci-dot" style="background:#10b981;"></span> Ac (acetyl)</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 4: DIFFERENTIATION ══════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Cell Differentiation Demo</div>
+    <div class="section-subtitle">Same DNA, different gene expression patterns create specialized cells</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select Cell Fate</div>
+    <div class="cell-type-grid">
+      <div class="cell-type-btn" onclick="diffSelect('stem')" id="ct-stem">
+        <div class="ct-icon">&#9711;</div>
+        <div class="ct-name">Stem Cell</div>
+        <div class="ct-desc">Pluripotent, all genes available</div>
+      </div>
+      <div class="cell-type-btn" onclick="diffSelect('neuron')" id="ct-neuron">
+        <div class="ct-icon">&#10038;</div>
+        <div class="ct-name">Neuron</div>
+        <div class="ct-desc">Nerve signal transmission</div>
+      </div>
+      <div class="cell-type-btn" onclick="diffSelect('muscle')" id="ct-muscle">
+        <div class="ct-icon">&#9644;</div>
+        <div class="ct-name">Muscle Cell</div>
+        <div class="ct-desc">Contraction and movement</div>
+      </div>
+      <div class="cell-type-btn" onclick="diffSelect('epithelial')" id="ct-epithelial">
+        <div class="ct-icon">&#11034;</div>
+        <div class="ct-name">Epithelial</div>
+        <div class="ct-desc">Barrier and protection</div>
+      </div>
+      <div class="cell-type-btn" onclick="diffSelect('blood')" id="ct-blood">
+        <div class="ct-icon">&#9679;</div>
+        <div class="ct-name">Blood Cell</div>
+        <div class="ct-desc">Oxygen transport (RBC)</div>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="diff-active">0</div><div class="stat-label">Active Genes</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="diff-silent">0</div><div class="stat-label">Silenced</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="diff-total">20</div><div class="stat-label">Total Genes</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="diff-pct">0%</div><div class="stat-label">% Active</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Cell Morphology &amp; Active Genes</div>
+    <div class="chart-wrap"><canvas id="diff-canvas" height="300"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Gene Expression Heatmap Across Cell Types</div>
+    <div class="chart-wrap"><canvas id="diff-heatmap" height="320"></canvas></div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:#16a34a;"></span> High expression</span>
+      <span><span class="ci-dot" style="background:#fbbf24;"></span> Low expression</span>
+      <span><span class="ci-dot" style="background:#1a1a1a;"></span> Silent</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 5: ENVIRONMENT ══════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Environmental Factors</div>
+    <div class="section-subtitle">How external signals change gene expression through signal transduction</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select Environmental Trigger</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="envSelect('heat')">Heat Stress</button>
+      <button class="btn btn-secondary" onclick="envSelect('nutrient')">Nutrients</button>
+      <button class="btn btn-outline" onclick="envSelect('hormone')">Hormones</button>
+      <button class="btn btn-outline" onclick="envSelect('stress')">Oxidative Stress</button>
+      <button class="btn btn-outline" onclick="envSelect('light')">Light</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="env-trigger">-</div><div class="stat-label">Trigger</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="env-pathway">-</div><div class="stat-label">Pathway</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="env-before">0%</div><div class="stat-label">Before</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="env-after">0%</div><div class="stat-label">After</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Signal Transduction Pathway</div>
+    <div class="chart-wrap"><canvas id="env-canvas" height="320"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Before vs. After Expression Levels</div>
+    <div class="chart-wrap"><canvas id="env-chart" height="240"></canvas></div>
+    <div id="env-example" class="analysis-result" style="margin-top:8px;">
+      <div class="ar-title">Select a trigger above</div>
+      <p>Choose an environmental factor to see how it changes gene expression through signal transduction.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PART 6: EXPRESSION PROFILING ═════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Gene Expression Profiling</div>
+    <div class="section-subtitle">Simulated microarray heatmap &mdash; compare expression across conditions</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Conditions to Compare</div>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-primary" onclick="profToggle(0)">Normal</button>
+      <button class="btn btn-sm btn-secondary" onclick="profToggle(1)">Heat Shock</button>
+      <button class="btn btn-sm btn-outline" onclick="profToggle(2)">Starvation</button>
+      <button class="btn btn-sm btn-outline" onclick="profToggle(3)">Hormone</button>
+      <button class="btn btn-sm btn-outline" onclick="profToggle(4)">Infection</button>
+      <button class="btn btn-sm btn-outline" onclick="profToggle(5)">Hypoxia</button>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);">Click conditions to toggle them. Selected conditions appear in the heatmap.</p>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="prof-up">-</div><div class="stat-label">% Upregulated</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="prof-down">-</div><div class="stat-label">% Downregulated</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="prof-unchanged">-</div><div class="stat-label">% Unchanged</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="prof-coregulated">-</div><div class="stat-label">Co-regulated</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Expression Heatmap</div>
+    <div class="chart-wrap"><canvas id="prof-heatmap" height="400"></canvas></div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:#dc2626;"></span> High expression</span>
+      <span><span class="ci-dot" style="background:#1a1a1a;"></span> Baseline / none</span>
+      <span><span class="ci-dot" style="background:#16a34a;"></span> Low / repressed</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Cluster Analysis</div>
+    <div class="chart-wrap"><canvas id="prof-cluster" height="240"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    // value on top
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  // expected line
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  // grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  // ref line
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    // dots
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: LAC OPERON
+// ══════════════════════════════════════════════════════════════════════════
+let lacAnim = { mrnaProg: 0, proteinProg: 0, frame: null, time: 0 };
+
+function lacGetState() {
+  const lactose = $('lac-lactose').checked;
+  const glucose = $('lac-glucose').checked;
+  if (!lactose && glucose) return { state: 'OFF', mrna: 0, protein: 0, cap: false, repressor: true, label: 'Glucose only' };
+  if (!lactose && !glucose) return { state: 'OFF', mrna: 0, protein: 0, cap: true, repressor: true, label: 'Both absent' };
+  if (lactose && glucose) return { state: 'LOW', mrna: 25, protein: 20, cap: false, repressor: false, label: 'Both present' };
+  return { state: 'ON', mrna: 100, protein: 100, cap: true, repressor: false, label: 'Lactose only' };
+}
+
+function lacUpdate() {
+  const s = lacGetState();
+  $('lac-state').textContent = s.state;
+  $('lac-mrna').textContent = s.mrna + '%';
+  $('lac-protein').textContent = s.protein + '%';
+  $('lac-cap').textContent = s.cap ? 'ON' : 'OFF';
+  $('lac-state').style.color = s.state === 'ON' ? 'var(--green)' : s.state === 'LOW' ? 'var(--amber)' : 'var(--accent)';
+  drawLacOperon();
+  drawLacStates();
+}
+
+function drawLacOperon() {
+  const ctx = getCtx('lac-canvas');
+  const W = ctx.W, H = ctx.H;
+  const s = lacGetState();
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const y0 = 120; // DNA baseline
+  const dnaY = y0;
+  const geneH = 50;
+
+  // DNA backbone
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(20, dnaY); ctx.lineTo(W - 20, dnaY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(20, dnaY + 8); ctx.lineTo(W - 20, dnaY + 8); ctx.stroke();
+
+  // Gene regions - calculate widths
+  const regStart = 30, regW = 70;
+  const promStart = regStart + regW + 10, promW = 50;
+  const opStart = promStart + promW + 5, opW = 40;
+  const zStart = opStart + opW + 10, zW = 80;
+  const yStart = zStart + zW + 5, yW = 70;
+  const aStart = yStart + yW + 5, aW = 70;
+
+  // Regulatory gene (lacI)
+  ctx.fillStyle = '#6366f1';
+  ctx.fillRect(regStart, dnaY - geneH, regW, geneH);
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('lacI', regStart + regW/2, dnaY - geneH/2 + 4);
+  ctx.fillStyle = '#6366f1'; ctx.font = '10px system-ui';
+  ctx.fillText('Regulatory', regStart + regW/2, dnaY - geneH - 6);
+
+  // Promoter
+  ctx.fillStyle = '#f59e0b';
+  ctx.fillRect(promStart, dnaY - geneH, promW, geneH);
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui';
+  ctx.fillText('P', promStart + promW/2, dnaY - geneH/2 + 4);
+  ctx.fillStyle = '#f59e0b'; ctx.font = '10px system-ui';
+  ctx.fillText('Promoter', promStart + promW/2, dnaY - geneH - 6);
+
+  // CAP binding site (above promoter)
+  if (s.cap) {
+    ctx.fillStyle = '#10b981';
+    ctx.beginPath();
+    ctx.arc(promStart + promW/2, dnaY - geneH - 22, 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 9px system-ui';
+    ctx.fillText('CAP', promStart + promW/2, dnaY - geneH - 19);
+    // Arrow down
+    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(promStart + promW/2, dnaY - geneH - 8);
+    ctx.lineTo(promStart + promW/2, dnaY - geneH + 4);
+    ctx.stroke();
+  }
+
+  // Operator
+  ctx.fillStyle = s.repressor ? '#ef4444' : '#86efac';
+  ctx.fillRect(opStart, dnaY - geneH, opW, geneH);
+  ctx.fillStyle = s.repressor ? '#fff' : '#166534'; ctx.font = 'bold 11px system-ui';
+  ctx.fillText('O', opStart + opW/2, dnaY - geneH/2 + 4);
+  ctx.fillStyle = '#ef4444'; ctx.font = '10px system-ui';
+  ctx.fillText('Operator', opStart + opW/2, dnaY - geneH - 6);
+
+  // Repressor protein on operator
+  if (s.repressor) {
+    ctx.fillStyle = '#dc2626';
+    ctx.beginPath();
+    const rpx = opStart + opW/2, rpy = dnaY - geneH - 20;
+    ctx.moveTo(rpx - 16, rpy + 8);
+    ctx.lineTo(rpx, rpy - 12);
+    ctx.lineTo(rpx + 16, rpy + 8);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 8px system-ui';
+    ctx.fillText('REP', rpx, rpy + 2);
+  }
+
+  // Structural genes
+  const structColor = (s.mrna > 0) ? '#3b82f6' : '#94a3b8';
+  [{s: zStart, w: zW, n: 'lacZ', d: 'beta-gal'},
+   {s: yStart, w: yW, n: 'lacY', d: 'permease'},
+   {s: aStart, w: aW, n: 'lacA', d: 'transacetyl'}].forEach(g => {
+    ctx.fillStyle = structColor;
+    ctx.fillRect(g.s, dnaY - geneH, g.w, geneH);
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(g.n, g.s + g.w/2, dnaY - geneH/2 + 4);
+    ctx.fillStyle = structColor; ctx.font = '9px system-ui';
+    ctx.fillText(g.d, g.s + g.w/2, dnaY - geneH - 6);
+  });
+
+  // Labels below DNA
+  ctx.fillStyle = '#64748b'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('DNA', W/2, dnaY + 26);
+
+  // mRNA production arrow & transcript
+  if (s.mrna > 0) {
+    const mStart = zStart;
+    const mEnd = aStart + aW;
+    const mY = dnaY + 40;
+    // Arrow from genes down
+    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 2;
+    ctx.setLineDash([6, 3]);
+    ctx.beginPath(); ctx.moveTo(mStart + 10, dnaY + 10); ctx.lineTo(mStart + 10, mY - 5); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // mRNA strand (wavy line)
+    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    for (let x = mStart; x <= mEnd; x += 2) {
+      const yOff = Math.sin((x - mStart) * 0.15) * 5;
+      if (x === mStart) ctx.moveTo(x, mY + yOff);
+      else ctx.lineTo(x, mY + yOff);
+    }
+    ctx.stroke();
+    ctx.fillStyle = '#10b981'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('mRNA', mEnd + 8, mY + 4);
+
+    // Protein production
+    if (s.protein > 0) {
+      const pY = mY + 40;
+      ctx.strokeStyle = '#8b5cf6'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+      ctx.beginPath(); ctx.moveTo((mStart + mEnd)/2, mY + 10); ctx.lineTo((mStart + mEnd)/2, pY - 5); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Protein blobs
+      const pColors = ['#3b82f6', '#8b5cf6', '#ec4899'];
+      const pNames = ['Beta-gal', 'Permease', 'Transacetyl.'];
+      for (let i = 0; i < 3; i++) {
+        const px = mStart + 40 + i * 90;
+        ctx.fillStyle = pColors[i];
+        ctx.beginPath();
+        ctx.ellipse(px, pY, 28, 16, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText(pNames[i], px, pY + 3);
+      }
+
+      // Expression level indicator
+      const barX = 30, barY = pY + 35, barW2 = W - 60;
+      ctx.fillStyle = '#e5e7eb';
+      ctx.fillRect(barX, barY, barW2, 14);
+      const fillW = barW2 * (s.mrna / 100);
+      ctx.fillStyle = s.mrna === 100 ? '#16a34a' : '#d97706';
+      ctx.fillRect(barX, barY, fillW, 14);
+      ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('Expression: ' + s.mrna + '%', W/2, barY + 32);
+    }
+  }
+
+  // Repressor protein detail (free, bottom-left)
+  if (!s.repressor) {
+    const fpx = 60, fpy = dnaY + 80;
+    ctx.fillStyle = 'rgba(220, 38, 38, 0.3)';
+    ctx.beginPath();
+    ctx.moveTo(fpx - 12, fpy + 6);
+    ctx.lineTo(fpx, fpy - 8);
+    ctx.lineTo(fpx + 12, fpy + 6);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#dc2626'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Repressor', fpx, fpy + 18);
+    ctx.fillText('(inactive)', fpx, fpy + 28);
+    // Allolactose binding
+    ctx.fillStyle = '#3b82f6';
+    ctx.beginPath(); ctx.arc(fpx + 16, fpy - 2, 5, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#2563eb'; ctx.font = '8px system-ui';
+    ctx.fillText('lactose', fpx + 28, fpy + 1);
+  }
+
+  // State label
+  ctx.fillStyle = s.state === 'ON' ? '#16a34a' : s.state === 'LOW' ? '#d97706' : '#dc2626';
+  ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('State: ' + s.state + ' (' + s.label + ')', W - 30, 30);
+}
+
+function drawLacStates() {
+  const ctx = getCtx('lac-states-chart');
+  const current = lacGetState();
+  const states = [
+    { label: 'Gluc+/Lac-', mrna: 0, state: 'OFF' },
+    { label: 'Gluc-/Lac-', mrna: 0, state: 'OFF' },
+    { label: 'Gluc+/Lac+', mrna: 25, state: 'LOW' },
+    { label: 'Gluc-/Lac+', mrna: 100, state: 'ON' }
+  ];
+  const colors = states.map(s => {
+    if (s.label === current.label.replace('Glucose only','Gluc+/Lac-').replace('Both absent','Gluc-/Lac-').replace('Both present','Gluc+/Lac+').replace('Lactose only','Gluc-/Lac+'))
+      return '#c41e3a';
+    return '#94a3b8';
+  });
+  // Map current label
+  let currentIdx = -1;
+  const lactose = $('lac-lactose').checked, glucose = $('lac-glucose').checked;
+  if (glucose && !lactose) currentIdx = 0;
+  else if (!glucose && !lactose) currentIdx = 1;
+  else if (glucose && lactose) currentIdx = 2;
+  else currentIdx = 3;
+  const finalColors = states.map((s, i) => i === currentIdx ? '#c41e3a' : '#cbd5e1');
+
+  drawBarChart(ctx, {
+    labels: states.map(s => s.label),
+    values: states.map(s => s.mrna),
+    colors: finalColors,
+    maxVal: 120
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: GENE SWITCHES
+// ══════════════════════════════════════════════════════════════════════════
+function switchUpdate() {
+  const tf = $('sw-tf').checked;
+  const enhancer = $('sw-enhancer').checked;
+  const silencer = $('sw-silencer').checked;
+  const methyl = $('sw-methyl').checked;
+  const acetyl = $('sw-acetyl').checked;
+
+  // Calculate expression level
+  let level = 0;
+  let activators = 0, repressors = 0;
+  const effects = [];
+
+  if (tf) { level += 40; activators++; effects.push('+40% from transcription factor binding'); }
+  if (enhancer) { level += 30; activators++; effects.push('+30% from enhancer activation'); }
+  if (acetyl) { level += 20; activators++; effects.push('+20% from histone acetylation (open chromatin)'); }
+  if (silencer) { level -= 35; repressors++; effects.push('-35% from silencer element'); }
+  if (methyl) { level -= 45; repressors++; effects.push('-45% from DNA methylation (closed chromatin)'); }
+
+  level = clamp(level, 0, 100);
+
+  $('sw-pct').textContent = level + '%';
+  $('sw-activators').textContent = activators;
+  $('sw-repressors').textContent = repressors;
+  $('sw-net').textContent = (activators - repressors >= 0 ? '+' : '') + (activators - repressors);
+
+  // Update meter
+  const meter = $('sw-meter');
+  meter.style.width = Math.max(level, 4) + '%';
+  meter.textContent = level + '%';
+  if (level >= 70) meter.style.background = 'var(--green)';
+  else if (level >= 30) meter.style.background = 'var(--amber)';
+  else if (level > 0) meter.style.background = 'var(--blue)';
+  else meter.style.background = 'var(--accent)';
+
+  // Explanation
+  const ex = $('sw-explanation');
+  if (effects.length === 0) {
+    ex.className = 'analysis-result';
+    ex.innerHTML = '<div class="ar-title">No inputs active</div><p>Toggle regulatory mechanisms to see how they affect gene expression.</p>';
+  } else {
+    ex.className = 'analysis-result ' + (level >= 50 ? 'ar-pass' : 'ar-fail');
+    ex.innerHTML = '<div class="ar-title">Expression Level: ' + level + '% ' +
+      (level >= 70 ? '(High)' : level >= 30 ? '(Moderate)' : level > 0 ? '(Low)' : '(Silent)') +
+      '</div><p>' + effects.join('<br>') + '</p>';
+  }
+
+  drawSwitchChart();
+}
+
+function drawSwitchChart() {
+  const ctx = getCtx('switch-chart');
+  const inputs = [
+    { name: 'TF', val: $('sw-tf').checked ? 40 : 0, color: '#16a34a' },
+    { name: 'Enhancer', val: $('sw-enhancer').checked ? 30 : 0, color: '#2563eb' },
+    { name: 'Acetylation', val: $('sw-acetyl').checked ? 20 : 0, color: '#d97706' },
+    { name: 'Silencer', val: $('sw-silencer').checked ? -35 : 0, color: '#ef4444' },
+    { name: 'Methylation', val: $('sw-methyl').checked ? -45 : 0, color: '#7c3aed' }
+  ];
+
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 90 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const maxAbs = 50;
+  const centerX = pad.left + plotW / 2;
+  const barH = Math.min(28, plotH / inputs.length * 0.7);
+  const gap = (plotH - barH * inputs.length) / (inputs.length + 1);
+
+  // Center line
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(centerX, pad.top); ctx.lineTo(centerX, H - pad.bottom); ctx.stroke();
+
+  // Grid
+  [-40, -20, 20, 40].forEach(v => {
+    const x = centerX + (v / maxAbs) * (plotW / 2);
+    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, H - pad.bottom); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText((v > 0 ? '+' : '') + v + '%', x, pad.top - 4);
+  });
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('0%', centerX, pad.top - 4);
+
+  inputs.forEach((inp, i) => {
+    const y = pad.top + gap + i * (barH + gap);
+    const w = (inp.val / maxAbs) * (plotW / 2);
+    const x = inp.val >= 0 ? centerX : centerX + w;
+    ctx.fillStyle = inp.val !== 0 ? inp.color : '#e5e7eb';
+    ctx.fillRect(x, y, Math.abs(w), barH);
+
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(inp.name, pad.left - 6, y + barH/2 + 4);
+
+    // Value
+    if (inp.val !== 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui';
+      ctx.textAlign = inp.val >= 0 ? 'left' : 'right';
+      const vx = inp.val >= 0 ? centerX + Math.abs(w) + 6 : centerX + w - 6;
+      ctx.fillText((inp.val > 0 ? '+' : '') + inp.val + '%', vx, y + barH/2 + 4);
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: EPIGENETICS
+// ══════════════════════════════════════════════════════════════════════════
+function epiUpdate() {
+  const methyl = $('epi-methyl').checked;
+  const acetyl = $('epi-acetyl').checked;
+  const daughters = $('epi-daughters').checked;
+
+  $('epi-methyl-stat').textContent = methyl ? 'ON' : 'OFF';
+  $('epi-acetyl-stat').textContent = acetyl ? 'ON' : 'OFF';
+
+  let chromatin = 'Normal';
+  let expression = 50;
+  if (methyl && !acetyl) { chromatin = 'Closed'; expression = 5; }
+  else if (!methyl && acetyl) { chromatin = 'Open'; expression = 95; }
+  else if (methyl && acetyl) { chromatin = 'Mixed'; expression = 30; }
+  else { chromatin = 'Normal'; expression = 50; }
+
+  $('epi-chromatin').textContent = chromatin;
+  $('epi-expression').textContent = expression + '%';
+
+  drawEpigenetics(methyl, acetyl, daughters, chromatin, expression);
+}
+
+function drawEpigenetics(methyl, acetyl, daughters, chromatin, expression) {
+  const ctx = getCtx('epi-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Draw nucleosomes (DNA wrapped around histones)
+  const numNuc = 6;
+  const spacing = chromatin === 'Closed' ? 65 : chromatin === 'Open' ? 100 : 80;
+  const startX = (W - (numNuc - 1) * spacing) / 2;
+  const baseY = daughters ? 100 : 160;
+
+  // Title
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Chromatin State: ' + chromatin, W/2, 24);
+
+  // Draw the DNA strand threading through nucleosomes
+  ctx.strokeStyle = '#6366f1'; ctx.lineWidth = 3;
+  ctx.beginPath();
+  for (let i = 0; i < numNuc; i++) {
+    const cx = startX + i * spacing;
+    const cy = baseY;
+
+    if (i === 0) {
+      ctx.moveTo(cx - 20, cy);
+    } else {
+      // Linker DNA between nucleosomes
+      const prevCx = startX + (i-1) * spacing;
+      if (chromatin === 'Closed') {
+        // Tight winding
+        ctx.lineTo(prevCx + 18, cy - 8);
+        ctx.lineTo(cx - 18, cy - 8);
+      } else if (chromatin === 'Open') {
+        // Loose, extended
+        const midX = (prevCx + cx) / 2;
+        ctx.quadraticCurveTo(midX, cy - 35, cx - 22, cy);
+      } else {
+        ctx.quadraticCurveTo((prevCx + cx)/2, cy - 20, cx - 20, cy);
+      }
+    }
+
+    // Wrap around histone (semicircle)
+    ctx.arc(cx, cy, 20, Math.PI, 0, false);
+  }
+  ctx.lineTo(startX + (numNuc - 1) * spacing + 20, baseY);
+  ctx.stroke();
+
+  // Draw histones (circles)
+  for (let i = 0; i < numNuc; i++) {
+    const cx = startX + i * spacing;
+    const cy = baseY;
+
+    // Histone octamer
+    ctx.fillStyle = chromatin === 'Open' ? '#fef3c7' : chromatin === 'Closed' ? '#e5e7eb' : '#fef9c3';
+    ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cx, cy, 18, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // Histone label
+    ctx.fillStyle = '#92400e'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('H', cx, cy + 3);
+
+    // Methylation marks (on DNA above histone)
+    if (methyl) {
+      ctx.fillStyle = '#a855f7';
+      ctx.beginPath(); ctx.arc(cx - 8, cy - 24, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui';
+      ctx.fillText('Me', cx - 8, cy - 22);
+
+      if (i % 2 === 0) {
+        ctx.fillStyle = '#a855f7';
+        ctx.beginPath(); ctx.arc(cx + 8, cy - 24, 5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui';
+        ctx.fillText('Me', cx + 8, cy - 22);
+      }
+    }
+
+    // Acetylation marks (on histone tails)
+    if (acetyl) {
+      // Tail lines
+      ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(cx - 12, cy + 16); ctx.lineTo(cx - 16, cy + 28); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx + 12, cy + 16); ctx.lineTo(cx + 16, cy + 28); ctx.stroke();
+
+      // Acetyl marks on tails
+      ctx.fillStyle = '#10b981';
+      ctx.beginPath(); ctx.arc(cx - 16, cy + 30, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 6px system-ui';
+      ctx.fillText('Ac', cx - 16, cy + 32);
+
+      ctx.fillStyle = '#10b981';
+      ctx.beginPath(); ctx.arc(cx + 16, cy + 30, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 6px system-ui';
+      ctx.fillText('Ac', cx + 16, cy + 32);
+    }
+  }
+
+  // Gene expression indicator
+  const exY = baseY + 65;
+  const barX = 60, barW2 = W - 120;
+  ctx.fillStyle = '#e5e7eb';
+  ctx.fillRect(barX, exY, barW2, 16);
+  const fillW = barW2 * (expression / 100);
+  ctx.fillStyle = expression >= 70 ? '#16a34a' : expression >= 30 ? '#d97706' : '#dc2626';
+  ctx.fillRect(barX, exY, fillW, 16);
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Gene Expression: ' + expression + '%', W/2, exY + 34);
+
+  // Arrow pointing to gene
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(W/2, exY - 5);
+  ctx.lineTo(W/2, exY - 1);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(W/2 - 4, exY - 5); ctx.lineTo(W/2, exY); ctx.lineTo(W/2 + 4, exY - 5);
+  ctx.fill();
+
+  // Daughter cells
+  if (daughters) {
+    const dY = exY + 60;
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Daughter Cells (Epigenetic Inheritance)', W/2, dY);
+
+    // Division arrow
+    ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(W/2, dY + 6); ctx.lineTo(W/2, dY + 18); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W/2, dY + 18); ctx.lineTo(W/2 - 80, dY + 35); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W/2, dY + 18); ctx.lineTo(W/2 + 80, dY + 35); ctx.stroke();
+
+    // Two daughter cells
+    [W/2 - 80, W/2 + 80].forEach((dx, idx) => {
+      const dy = dY + 42;
+      ctx.fillStyle = '#f8fafc'; ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.ellipse(dx, dy + 20, 60, 30, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+      // Mini nucleosomes
+      for (let i = 0; i < 3; i++) {
+        const nx = dx - 30 + i * 30;
+        const ny = dy + 15;
+        ctx.fillStyle = '#fef9c3'; ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(nx, ny, 8, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        if (methyl) {
+          ctx.fillStyle = '#a855f7';
+          ctx.beginPath(); ctx.arc(nx, ny - 11, 3, 0, Math.PI * 2); ctx.fill();
+        }
+        if (acetyl) {
+          ctx.fillStyle = '#10b981';
+          ctx.beginPath(); ctx.arc(nx + 6, ny + 8, 3, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+
+      // Expression label
+      ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('Expr: ' + expression + '%', dx, dy + 48);
+      ctx.fillText(methyl ? 'Methylated' : acetyl ? 'Acetylated' : 'Normal', dx, dy + 60);
+    });
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: CELL DIFFERENTIATION
+// ══════════════════════════════════════════════════════════════════════════
+const GENES = [
+  'Keratin', 'Collagen', 'Actin', 'Myosin', 'Hemoglobin',
+  'Neurofilament', 'Tubulin', 'Insulin', 'Albumin', 'Rhodopsin',
+  'MyoD', 'GATA1', 'SOX2', 'PAX6', 'CDH1',
+  'NeuN', 'Desmin', 'Occludin', 'Spectrin', 'Oct4'
+];
+
+const CELL_PROFILES = {
+  stem: {
+    active: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    color: '#8b5cf6', shape: 'circle', name: 'Stem Cell'
+  },
+  neuron: {
+    active: [0,0,1,0,0,1,1,0,0,0,0,0,0,1,0,1,0,0,0,0],
+    color: '#3b82f6', shape: 'neuron', name: 'Neuron'
+  },
+  muscle: {
+    active: [0,1,1,1,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0],
+    color: '#ef4444', shape: 'muscle', name: 'Muscle Cell'
+  },
+  epithelial: {
+    active: [1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0],
+    color: '#16a34a', shape: 'epithelial', name: 'Epithelial Cell'
+  },
+  blood: {
+    active: [0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0],
+    color: '#dc2626', shape: 'blood', name: 'Blood Cell (RBC)'
+  }
+};
+
+let currentCellType = null;
+
+function diffSelect(type) {
+  currentCellType = type;
+  // Update active button
+  document.querySelectorAll('.cell-type-btn').forEach(b => b.classList.remove('active'));
+  $('ct-' + type).classList.add('active');
+
+  const profile = CELL_PROFILES[type];
+  const activeCount = profile.active.filter(a => a).length;
+  const silentCount = 20 - activeCount;
+
+  $('diff-active').textContent = activeCount;
+  $('diff-silent').textContent = silentCount;
+  $('diff-total').textContent = 20;
+  $('diff-pct').textContent = (activeCount / 20 * 100).toFixed(0) + '%';
+
+  drawDiffCanvas(type);
+  drawDiffHeatmap();
+}
+
+function drawDiffCanvas(type) {
+  const ctx = getCtx('diff-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const profile = CELL_PROFILES[type];
+
+  // Draw cell shape
+  const cx = 130, cy = H/2;
+  ctx.fillStyle = profile.color + '22';
+  ctx.strokeStyle = profile.color;
+  ctx.lineWidth = 3;
+
+  if (profile.shape === 'circle') {
+    ctx.beginPath(); ctx.arc(cx, cy, 60, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // Nucleus
+    ctx.fillStyle = profile.color + '44';
+    ctx.beginPath(); ctx.arc(cx, cy, 25, 0, Math.PI * 2); ctx.fill();
+  } else if (profile.shape === 'neuron') {
+    // Cell body
+    ctx.beginPath(); ctx.arc(cx, cy, 35, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // Axon
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(cx + 35, cy); ctx.lineTo(cx + 100, cy);
+    ctx.lineTo(cx + 110, cy - 15); ctx.moveTo(cx + 100, cy);
+    ctx.lineTo(cx + 110, cy + 15); ctx.stroke();
+    // Dendrites
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx - 35, cy - 10); ctx.lineTo(cx - 65, cy - 30);
+    ctx.moveTo(cx - 60, cy - 25); ctx.lineTo(cx - 75, cy - 20);
+    ctx.moveTo(cx - 35, cy + 10); ctx.lineTo(cx - 65, cy + 30);
+    ctx.moveTo(cx - 60, cy + 25); ctx.lineTo(cx - 75, cy + 20);
+    ctx.moveTo(cx - 30, cy - 25); ctx.lineTo(cx - 50, cy - 50); ctx.stroke();
+    // Nucleus
+    ctx.fillStyle = profile.color + '44';
+    ctx.beginPath(); ctx.arc(cx, cy, 15, 0, Math.PI * 2); ctx.fill();
+  } else if (profile.shape === 'muscle') {
+    // Elongated
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, 90, 25, 0, 0, Math.PI * 2);
+    ctx.fill(); ctx.stroke();
+    // Striations
+    ctx.strokeStyle = profile.color + '66'; ctx.lineWidth = 1;
+    for (let i = -70; i <= 70; i += 14) {
+      ctx.beginPath(); ctx.moveTo(cx + i, cy - 20); ctx.lineTo(cx + i, cy + 20); ctx.stroke();
+    }
+    // Nuclei (multinucleated)
+    ctx.fillStyle = profile.color + '44';
+    [-35, 0, 35].forEach(dx => {
+      ctx.beginPath(); ctx.ellipse(cx + dx, cy, 8, 6, 0, 0, Math.PI * 2); ctx.fill();
+    });
+  } else if (profile.shape === 'epithelial') {
+    // Columnar
+    ctx.beginPath();
+    ctx.rect(cx - 30, cy - 50, 60, 100);
+    ctx.fill(); ctx.stroke();
+    // Microvilli on top
+    ctx.lineWidth = 2;
+    for (let i = -25; i <= 25; i += 10) {
+      ctx.beginPath(); ctx.moveTo(cx + i, cy - 50); ctx.lineTo(cx + i, cy - 65); ctx.stroke();
+    }
+    // Nucleus
+    ctx.fillStyle = profile.color + '44';
+    ctx.beginPath(); ctx.ellipse(cx, cy + 10, 14, 10, 0, 0, Math.PI * 2); ctx.fill();
+  } else if (profile.shape === 'blood') {
+    // Biconcave disk (side view)
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, 50, 30, 0, 0, Math.PI * 2);
+    ctx.fill(); ctx.stroke();
+    // Concavity (lighter center)
+    ctx.fillStyle = '#fff4';
+    ctx.beginPath(); ctx.ellipse(cx, cy, 20, 12, 0, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // Cell type label
+  ctx.fillStyle = profile.color; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(profile.name, cx, cy + 85);
+
+  // Gene expression list
+  const listX = 280;
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Gene Expression Pattern', listX, 24);
+
+  GENES.forEach((gene, i) => {
+    const isActive = profile.active[i];
+    const x = listX + (i >= 10 ? 180 : 0);
+    const y = 46 + (i % 10) * 24;
+
+    // Status dot
+    ctx.fillStyle = isActive ? '#16a34a' : '#ef4444';
+    ctx.beginPath(); ctx.arc(x, y - 3, 5, 0, Math.PI * 2); ctx.fill();
+
+    // Gene name
+    ctx.fillStyle = isActive ? '#1a1a1a' : '#9ca3af';
+    ctx.font = (isActive ? 'bold' : 'normal') + ' 12px system-ui';
+    ctx.textAlign = 'left';
+    ctx.fillText(gene, x + 12, y);
+
+    // Status text
+    ctx.fillStyle = isActive ? '#16a34a' : '#ef4444';
+    ctx.font = '10px system-ui';
+    ctx.fillText(isActive ? 'ACTIVE' : 'SILENT', x + 100, y);
+  });
+}
+
+function drawDiffHeatmap() {
+  const ctx = getCtx('diff-heatmap');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const types = ['stem', 'neuron', 'muscle', 'epithelial', 'blood'];
+  const typeNames = ['Stem', 'Neuron', 'Muscle', 'Epithelial', 'Blood'];
+  const pad = { top: 30, right: 20, bottom: 20, left: 100 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+  const cellW = plotW / types.length;
+  const cellH = plotH / GENES.length;
+
+  // Column headers
+  ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  types.forEach((t, i) => {
+    ctx.fillStyle = CELL_PROFILES[t].color;
+    ctx.fillText(typeNames[i], pad.left + i * cellW + cellW/2, pad.top - 8);
+  });
+
+  // Rows
+  GENES.forEach((gene, gi) => {
+    const y = pad.top + gi * cellH;
+
+    // Gene label
+    ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(gene, pad.left - 8, y + cellH/2 + 3);
+
+    types.forEach((t, ti) => {
+      const x = pad.left + ti * cellW;
+      const isActive = CELL_PROFILES[t].active[gi];
+
+      if (t === 'stem') {
+        // Stem cells have all genes at moderate
+        ctx.fillStyle = '#fbbf24';
+      } else if (isActive) {
+        ctx.fillStyle = '#16a34a';
+      } else {
+        ctx.fillStyle = '#1a1a1a';
+      }
+
+      ctx.fillRect(x + 1, y + 1, cellW - 2, cellH - 2);
+
+      // Highlight current selection
+      if (currentCellType === t) {
+        ctx.strokeStyle = CELL_PROFILES[t].color;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(x, y, cellW, cellH);
+      }
+    });
+  });
+
+  // Highlight column header for selected type
+  if (currentCellType) {
+    const idx = types.indexOf(currentCellType);
+    ctx.strokeStyle = CELL_PROFILES[currentCellType].color;
+    ctx.lineWidth = 3;
+    ctx.strokeRect(pad.left + idx * cellW - 1, pad.top - 1, cellW + 2, plotH + 2);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: ENVIRONMENTAL FACTORS
+// ══════════════════════════════════════════════════════════════════════════
+const ENV_DATA = {
+  heat: {
+    trigger: 'Heat', pathway: 'HSF1', before: 10, after: 95,
+    genes: [{n:'HSP70', b:5, a:90}, {n:'HSP90', b:10, a:85}, {n:'HSP27', b:3, a:75}, {n:'Normal-1', b:70, a:30}, {n:'Normal-2', b:65, a:25}],
+    example: 'Heat shock proteins (HSPs) are rapidly upregulated when cells experience high temperatures. HSP70 and HSP90 act as molecular chaperones, preventing protein misfolding. This is one of the most conserved stress responses across all life forms.',
+    steps: ['Heat stress detected', 'Protein unfolding', 'HSF1 trimerizes', 'HSF1 binds HSE', 'HSP genes activated', 'Chaperones produced']
+  },
+  nutrient: {
+    trigger: 'Nutrients', pathway: 'AMPK', before: 50, after: 85,
+    genes: [{n:'GLUT4', b:30, a:90}, {n:'Hexokinase', b:40, a:80}, {n:'LPL', b:20, a:70}, {n:'FAS', b:60, a:15}, {n:'ACC', b:55, a:10}],
+    example: 'When glucose is available, cells upregulate glucose transporters (GLUT4) and metabolic enzymes. In bacteria, the lac operon is a classic example: lactose presence induces enzymes for its metabolism.',
+    steps: ['Nutrient detected', 'Receptor activation', 'AMPK pathway', 'Transcription factors', 'Metabolic genes ON', 'Enzymes produced']
+  },
+  hormone: {
+    trigger: 'Hormone', pathway: 'Nuclear Rec.', before: 15, after: 80,
+    genes: [{n:'Target-A', b:10, a:85}, {n:'Target-B', b:5, a:70}, {n:'Growth-F', b:20, a:75}, {n:'Repressed-1', b:60, a:15}, {n:'Repressed-2', b:50, a:10}],
+    example: 'Steroid hormones like estrogen cross the cell membrane and bind intracellular receptors. The hormone-receptor complex enters the nucleus and directly activates target genes. This is how sex hormones drive development of secondary sexual characteristics.',
+    steps: ['Hormone arrives', 'Crosses membrane', 'Binds receptor', 'Complex enters nucleus', 'Binds DNA (HRE)', 'Target genes ON']
+  },
+  stress: {
+    trigger: 'Ox. Stress', pathway: 'NRF2', before: 20, after: 90,
+    genes: [{n:'SOD', b:15, a:85}, {n:'Catalase', b:10, a:80}, {n:'GPx', b:20, a:75}, {n:'NQO1', b:5, a:70}, {n:'Normal-1', b:60, a:25}],
+    example: 'Reactive oxygen species (ROS) activate the NRF2 transcription factor. NRF2 upregulates dozens of antioxidant and detoxification genes, protecting cells from oxidative damage. This pathway is important in aging and cancer prevention.',
+    steps: ['ROS detected', 'KEAP1 oxidized', 'NRF2 released', 'NRF2 enters nucleus', 'Binds ARE elements', 'Antioxidant genes ON']
+  },
+  light: {
+    trigger: 'Light', pathway: 'Phytochrome', before: 5, after: 75,
+    genes: [{n:'LHCB', b:5, a:90}, {n:'RbcS', b:3, a:80}, {n:'CHS', b:10, a:70}, {n:'CAB', b:8, a:85}, {n:'Skoto-1', b:60, a:10}],
+    example: 'In plants, light activates phytochrome receptors which trigger massive gene expression changes. Photosynthesis genes are upregulated, etiolation genes silenced. Flowering time is controlled by photoperiod-responsive gene regulation.',
+    steps: ['Light detected', 'Phytochrome activated', 'Signal cascade', 'TF phosphorylation', 'Light-responsive genes', 'Chloroplast proteins']
+  }
+};
+
+let currentEnv = null;
+
+function envSelect(type) {
+  currentEnv = type;
+  const d = ENV_DATA[type];
+
+  $('env-trigger').textContent = d.trigger;
+  $('env-pathway').textContent = d.pathway;
+  $('env-before').textContent = d.before + '%';
+  $('env-after').textContent = d.after + '%';
+
+  $('env-example').className = 'analysis-result ar-pass';
+  $('env-example').innerHTML = '<div class="ar-title">Real-world Example: ' + d.trigger + ' Response</div><p>' + d.example + '</p>';
+
+  drawEnvCanvas(type);
+  drawEnvChart(type);
+}
+
+function drawEnvCanvas(type) {
+  const ctx = getCtx('env-canvas');
+  const W = ctx.W, H = ctx.H;
+  const d = ENV_DATA[type];
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Signal transduction pathway - steps flowing left to right
+  const steps = d.steps;
+  const stepW = (W - 80) / steps.length;
+  const stepY = 80;
+
+  // Title
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Signal Transduction: ' + d.trigger + ' Response', W/2, 24);
+
+  // Draw pathway steps
+  const stepColors = ['#ef4444', '#f59e0b', '#8b5cf6', '#3b82f6', '#10b981', '#16a34a'];
+  steps.forEach((step, i) => {
+    const x = 40 + i * stepW + stepW/2;
+
+    // Box
+    ctx.fillStyle = stepColors[i] + '22';
+    ctx.strokeStyle = stepColors[i];
+    ctx.lineWidth = 2;
+    const bw = stepW - 20;
+    const bh = 50;
+    ctx.beginPath();
+    ctx.roundRect(x - bw/2, stepY - bh/2, bw, bh, 8);
+    ctx.fill(); ctx.stroke();
+
+    // Step number
+    ctx.fillStyle = stepColors[i];
+    ctx.beginPath(); ctx.arc(x, stepY - bh/2 - 10, 10, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(i + 1, x, stepY - bh/2 - 7);
+
+    // Step text
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    const words = step.split(' ');
+    if (words.length <= 2) {
+      ctx.fillText(step, x, stepY + 3);
+    } else {
+      ctx.fillText(words.slice(0, 2).join(' '), x, stepY - 4);
+      ctx.fillText(words.slice(2).join(' '), x, stepY + 10);
+    }
+
+    // Arrow to next
+    if (i < steps.length - 1) {
+      const ax = x + bw/2 + 2;
+      const ax2 = x + stepW - (stepW - 20)/2 - 2;
+      ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(ax, stepY); ctx.lineTo(ax2, stepY); ctx.stroke();
+      // Arrowhead
+      ctx.fillStyle = '#94a3b8';
+      ctx.beginPath();
+      ctx.moveTo(ax2, stepY - 4); ctx.lineTo(ax2 + 6, stepY); ctx.lineTo(ax2, stepY + 4);
+      ctx.closePath(); ctx.fill();
+    }
+  });
+
+  // Gene expression change visualization
+  const genesY = 180;
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Gene Expression Changes', W/2, genesY);
+
+  const geneW = (W - 100) / d.genes.length;
+  d.genes.forEach((gene, i) => {
+    const gx = 50 + i * geneW + geneW/2;
+    const gy = genesY + 30;
+    const barMaxH = 80;
+
+    // Before bar
+    const bh = (gene.b / 100) * barMaxH;
+    ctx.fillStyle = '#94a3b8';
+    ctx.fillRect(gx - 18, gy + barMaxH - bh, 14, bh);
+
+    // After bar
+    const ah = (gene.a / 100) * barMaxH;
+    ctx.fillStyle = gene.a > gene.b ? '#16a34a' : '#dc2626';
+    ctx.fillRect(gx + 4, gy + barMaxH - ah, 14, ah);
+
+    // Gene name
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(gene.n, gx, gy + barMaxH + 16);
+
+    // Direction arrow
+    const arrowY = gy - 8;
+    if (gene.a > gene.b) {
+      ctx.fillStyle = '#16a34a'; ctx.font = 'bold 14px system-ui';
+      ctx.fillText('\u2191', gx, arrowY);
+    } else {
+      ctx.fillStyle = '#dc2626'; ctx.font = 'bold 14px system-ui';
+      ctx.fillText('\u2193', gx, arrowY);
+    }
+
+    // Values
+    ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#94a3b8'; ctx.fillText(gene.b + '%', gx - 11, gy + barMaxH - bh - 4);
+    ctx.fillStyle = gene.a > gene.b ? '#16a34a' : '#dc2626';
+    ctx.fillText(gene.a + '%', gx + 11, gy + barMaxH - ah - 4);
+  });
+
+  // Legend
+  ctx.fillStyle = '#94a3b8'; ctx.fillRect(50, genesY + 130, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Before stimulus', 68, genesY + 140);
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(180, genesY + 130, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('After (upregulated)', 198, genesY + 140);
+  ctx.fillStyle = '#dc2626'; ctx.fillRect(340, genesY + 130, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('After (downregulated)', 358, genesY + 140);
+}
+
+function drawEnvChart(type) {
+  const ctx = getCtx('env-chart');
+  const d = ENV_DATA[type];
+  const labels = d.genes.map(g => g.n);
+  const before = d.genes.map(g => g.b);
+  const after = d.genes.map(g => g.a);
+
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = labels.length;
+  const groupW = plotW / n;
+  const barW = groupW * 0.3;
+  const maxVal = 100;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxVal * i / 4).toFixed(0) + '%', pad.left - 6, y + 4);
+  }
+
+  labels.forEach((label, i) => {
+    const cx = pad.left + groupW * i + groupW / 2;
+
+    // Before bar
+    const bh = (before[i] / maxVal) * plotH;
+    ctx.fillStyle = '#94a3b8';
+    ctx.fillRect(cx - barW - 2, pad.top + plotH - bh, barW, bh);
+
+    // After bar
+    const ah = (after[i] / maxVal) * plotH;
+    ctx.fillStyle = after[i] > before[i] ? '#16a34a' : '#dc2626';
+    ctx.fillRect(cx + 2, pad.top + plotH - ah, barW, ah);
+
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(label, cx, H - pad.bottom + 16);
+
+    // Values
+    ctx.font = 'bold 10px system-ui';
+    ctx.fillStyle = '#94a3b8'; ctx.fillText(before[i] + '%', cx - barW/2 - 2, pad.top + plotH - bh - 4);
+    ctx.fillStyle = after[i] > before[i] ? '#16a34a' : '#dc2626';
+    ctx.fillText(after[i] + '%', cx + barW/2 + 2, pad.top + plotH - ah - 4);
+  });
+
+  // Legend
+  ctx.fillStyle = '#94a3b8'; ctx.fillRect(pad.left, 8, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Before', pad.left + 18, 18);
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left + 70, 8, 12, 12);
+  ctx.fillStyle = '#374151'; ctx.fillText('After', pad.left + 88, 18);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: GENE EXPRESSION PROFILING
+// ══════════════════════════════════════════════════════════════════════════
+const PROF_CONDITIONS = ['Normal', 'Heat Shock', 'Starvation', 'Hormone', 'Infection', 'Hypoxia'];
+const PROF_GENES = [
+  'HSP70', 'HSP90', 'SOD2', 'GLUT1', 'VEGF',
+  'p53', 'BCL2', 'TNFa', 'IL-6', 'MMP9',
+  'GAPDH', 'Actin', 'HIF1a', 'NFkB', 'Caspase3',
+  'Cyclin D1', 'CDK4', 'RB1', 'E2F1', 'MDM2'
+];
+
+// Expression data: rows=genes, cols=conditions (0-1 scale)
+const PROF_DATA = [
+  // Normal, Heat, Starve, Hormone, Infect, Hypoxia
+  [0.3, 0.95, 0.2, 0.3, 0.5, 0.4],  // HSP70
+  [0.35, 0.9, 0.25, 0.35, 0.4, 0.3],  // HSP90
+  [0.2, 0.5, 0.7, 0.2, 0.6, 0.8],   // SOD2
+  [0.5, 0.3, 0.85, 0.6, 0.3, 0.9],   // GLUT1
+  [0.15, 0.1, 0.3, 0.4, 0.2, 0.95],  // VEGF
+  [0.3, 0.4, 0.5, 0.2, 0.6, 0.5],   // p53
+  [0.6, 0.3, 0.2, 0.7, 0.15, 0.3],  // BCL2
+  [0.1, 0.2, 0.15, 0.1, 0.9, 0.3],  // TNFa
+  [0.1, 0.15, 0.1, 0.15, 0.85, 0.25], // IL-6
+  [0.2, 0.1, 0.15, 0.3, 0.7, 0.6],  // MMP9
+  [0.7, 0.65, 0.3, 0.7, 0.6, 0.4],  // GAPDH
+  [0.8, 0.7, 0.5, 0.75, 0.65, 0.5],  // Actin
+  [0.15, 0.3, 0.5, 0.2, 0.3, 0.9],  // HIF1a
+  [0.2, 0.3, 0.2, 0.15, 0.85, 0.4],  // NFkB
+  [0.1, 0.3, 0.5, 0.1, 0.6, 0.4],   // Caspase3
+  [0.7, 0.3, 0.15, 0.8, 0.2, 0.3],  // Cyclin D1
+  [0.6, 0.25, 0.1, 0.7, 0.15, 0.25], // CDK4
+  [0.5, 0.6, 0.65, 0.3, 0.55, 0.5],  // RB1
+  [0.55, 0.2, 0.1, 0.65, 0.15, 0.2], // E2F1
+  [0.4, 0.3, 0.35, 0.5, 0.3, 0.3]   // MDM2
+];
+
+let profActive = [true, false, false, false, false, false]; // which conditions shown
+
+function profToggle(idx) {
+  if (idx === 0) {
+    // Normal is always shown as baseline
+    profActive[0] = true;
+  } else {
+    profActive[idx] = !profActive[idx];
+  }
+  profUpdateStats();
+  drawProfHeatmap();
+  drawProfCluster();
+}
+
+function profUpdateStats() {
+  const activeIdxs = profActive.map((a, i) => a ? i : -1).filter(i => i >= 0);
+  if (activeIdxs.length <= 1) {
+    $('prof-up').textContent = '-';
+    $('prof-down').textContent = '-';
+    $('prof-unchanged').textContent = '-';
+    $('prof-coregulated').textContent = '-';
+    return;
+  }
+
+  // Compare last toggled condition to Normal
+  const condIdx = activeIdxs[activeIdxs.length - 1];
+  if (condIdx === 0) {
+    $('prof-up').textContent = '-';
+    $('prof-down').textContent = '-';
+    $('prof-unchanged').textContent = '-';
+    $('prof-coregulated').textContent = '-';
+    return;
+  }
+
+  let up = 0, down = 0, unchanged = 0;
+  PROF_DATA.forEach(row => {
+    const diff = row[condIdx] - row[0];
+    if (diff > 0.2) up++;
+    else if (diff < -0.2) down++;
+    else unchanged++;
+  });
+
+  $('prof-up').textContent = (up / PROF_GENES.length * 100).toFixed(0) + '%';
+  $('prof-down').textContent = (down / PROF_GENES.length * 100).toFixed(0) + '%';
+  $('prof-unchanged').textContent = (unchanged / PROF_GENES.length * 100).toFixed(0) + '%';
+
+  // Co-regulated: genes that change in same direction across all active non-normal conditions
+  const nonNormal = activeIdxs.filter(i => i !== 0);
+  if (nonNormal.length >= 2) {
+    let coReg = 0;
+    PROF_DATA.forEach(row => {
+      const diffs = nonNormal.map(ci => row[ci] - row[0]);
+      const allUp = diffs.every(d => d > 0.15);
+      const allDown = diffs.every(d => d < -0.15);
+      if (allUp || allDown) coReg++;
+    });
+    $('prof-coregulated').textContent = coReg;
+  } else {
+    $('prof-coregulated').textContent = '-';
+  }
+}
+
+function drawProfHeatmap() {
+  const ctx = getCtx('prof-heatmap');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const activeIdxs = profActive.map((a, i) => a ? i : -1).filter(i => i >= 0);
+  if (activeIdxs.length === 0) return;
+
+  const pad = { top: 40, right: 20, bottom: 20, left: 80 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+  const cellW = plotW / activeIdxs.length;
+  const cellH = plotH / PROF_GENES.length;
+
+  // Column headers
+  activeIdxs.forEach((ci, i) => {
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(PROF_CONDITIONS[ci], pad.left + i * cellW + cellW/2, pad.top - 8);
+  });
+
+  // Heatmap cells
+  PROF_GENES.forEach((gene, gi) => {
+    const y = pad.top + gi * cellH;
+
+    // Gene label
+    ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(gene, pad.left - 6, y + cellH/2 + 3);
+
+    activeIdxs.forEach((ci, i) => {
+      const x = pad.left + i * cellW;
+      const val = PROF_DATA[gi][ci];
+
+      // Color: red=high, black=mid, green=low (traditional microarray)
+      let r, g, b;
+      if (val >= 0.5) {
+        // Red gradient (0.5->1.0 maps to black->red)
+        const t = (val - 0.5) * 2;
+        r = Math.round(t * 220);
+        g = 0;
+        b = 0;
+      } else {
+        // Green gradient (0->0.5 maps to green->black)
+        const t = val * 2;
+        r = 0;
+        g = Math.round((1 - t) * 180);
+        b = 0;
+      }
+
+      ctx.fillStyle = `rgb(${r},${g},${b})`;
+      ctx.fillRect(x + 1, y + 1, cellW - 2, cellH - 2);
+
+      // Value text on hover equivalent
+      if (cellW > 50 && cellH > 14) {
+        ctx.fillStyle = val > 0.3 && val < 0.7 ? '#fff' : (val >= 0.7 ? '#fecaca' : '#bbf7d0');
+        ctx.font = '9px ' + 'system-ui';
+        ctx.textAlign = 'center';
+        ctx.fillText(val.toFixed(2), x + cellW/2, y + cellH/2 + 3);
+      }
+    });
+  });
+}
+
+function drawProfCluster() {
+  const ctx = getCtx('prof-cluster');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const activeIdxs = profActive.map((a, i) => a ? i : -1).filter(i => i >= 0);
+  if (activeIdxs.length < 2) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Select at least 2 conditions to see cluster analysis', W/2, H/2);
+    return;
+  }
+
+  // Simple clustering: group genes by their overall pattern
+  const pad = { top: 30, right: 20, bottom: 30, left: 80 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Gene Expression Profiles Across Selected Conditions', W/2, 18);
+
+  // Calculate average expression per gene across active conditions
+  const geneAvgs = PROF_GENES.map((gene, gi) => {
+    const avg = activeIdxs.reduce((s, ci) => s + PROF_DATA[gi][ci], 0) / activeIdxs.length;
+    return { gene, avg, idx: gi };
+  });
+
+  // Sort by average expression
+  geneAvgs.sort((a, b) => b.avg - a.avg);
+
+  // Draw as sorted profile lines
+  const lineColors = ['#dc2626', '#f59e0b', '#16a34a', '#2563eb', '#8b5cf6', '#ec4899'];
+  const xStep = plotW / (activeIdxs.length - 1 || 1);
+
+  geneAvgs.forEach((gInfo, sortIdx) => {
+    const gi = gInfo.idx;
+    const y0 = pad.top + (sortIdx / PROF_GENES.length) * plotH;
+
+    // Gene label
+    ctx.fillStyle = '#374151'; ctx.font = '9px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(gInfo.gene, pad.left - 6, y0 + 3);
+
+    // Mini sparkline for this gene
+    const sparkH = plotH / PROF_GENES.length * 0.8;
+    const vals = activeIdxs.map(ci => PROF_DATA[gi][ci]);
+
+    // Color based on cluster (high avg = red, low = green)
+    const hue = gInfo.avg > 0.6 ? '#dc2626' : gInfo.avg > 0.4 ? '#f59e0b' : '#16a34a';
+
+    ctx.strokeStyle = hue; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    vals.forEach((v, i) => {
+      const x = pad.left + i * xStep;
+      const barW = Math.max(3, xStep * 0.6);
+      ctx.fillStyle = hue + '44';
+      ctx.fillRect(x, y0 - 4, barW, 8);
+      ctx.fillStyle = hue;
+      const fillH = v * 8;
+      ctx.fillRect(x, y0 + 4 - fillH, barW, fillH);
+    });
+  });
+
+  // Condition labels at bottom
+  ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  activeIdxs.forEach((ci, i) => {
+    ctx.fillStyle = '#374151';
+    ctx.fillText(PROF_CONDITIONS[ci], pad.left + i * xStep + (xStep > 10 ? xStep * 0.3 : 0), H - 8);
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  lacUpdate();
+  switchUpdate();
+  epiUpdate();
+  drawDiffHeatmap();
+  drawProfHeatmap();
+  drawProfCluster();
+});
+
+window.addEventListener('resize', () => {
+  lacUpdate();
+  switchUpdate();
+  epiUpdate();
+  if (currentCellType) drawDiffCanvas(currentCellType);
+  drawDiffHeatmap();
+  if (currentEnv) { drawEnvCanvas(currentEnv); drawEnvChart(currentEnv); }
+  drawProfHeatmap();
+  drawProfCluster();
+});
+</script>
+</body>
+</html>

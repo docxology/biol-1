@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 Dashboard: Measurement Techniques | BIOL-8</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --sidebar: #1a1a2e;
+            --sidebar-hover: #252545;
+            --accent: #c41e3a;
+            --accent-light: #e8354f;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --green: #16a34a;
+            --amber: #d97706;
+            --purple: #7c3aed;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --radius: 10px;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar);
+            color: #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 12px 0;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.15s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--sidebar-hover);
+            color: #e2e8f0;
+        }
+
+        .sidebar-nav a.active {
+            color: #fff;
+            background: var(--sidebar-hover);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav .nav-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav a.active .nav-num {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .main {
+            margin-left: 260px;
+            flex: 1;
+            padding: 32px;
+            max-width: 1200px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .card-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+        }
+
+        .slider-group label {
+            font-size: 13px;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .slider-group input[type=range] {
+            flex: 1;
+            accent-color: var(--accent);
+        }
+
+        .slider-val {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        input[type=number] {
+            padding: 8px 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        input[type=number]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .input-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 14px 8px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+        }
+
+        .stat-box .stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: var(--mono);
+        }
+
+        .stat-box .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-accent .stat-val {
+            color: var(--accent);
+        }
+
+        .stat-blue .stat-val {
+            color: var(--blue);
+        }
+
+        .stat-green .stat-val {
+            color: var(--green);
+        }
+
+        .stat-amber .stat-val {
+            color: var(--amber);
+        }
+
+        .stat-purple .stat-val {
+            color: var(--purple);
+        }
+
+        .chart-wrap {
+            position: relative;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .chart-wrap canvas {
+            width: 100% !important;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .analysis-result {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px 0;
+            border-left: 4px solid var(--blue);
+            font-size: 14px;
+        }
+
+        .analysis-result .ar-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .analysis-result.ar-pass {
+            border-left-color: var(--green);
+        }
+
+        .analysis-result.ar-info {
+            border-left-color: var(--blue);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 36px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .hero .bio-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero .bio-tag {
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .scale-display {
+            font-family: var(--mono);
+            font-size: 48px;
+            font-weight: 800;
+            text-align: center;
+            padding: 24px;
+            background: #1a1a1a;
+            color: #4ade80;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+
+        .ph-bar {
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(to right, #dc2626, #f97316, #eab308, #84cc16, #22c55e, #14b8a6, #0ea5e9, #6366f1, #a855f7);
+            position: relative;
+            margin: 16px 0;
+        }
+
+        .ph-marker {
+            position: absolute;
+            top: -8px;
+            width: 4px;
+            height: 56px;
+            background: #1a1a1a;
+            border-radius: 2px;
+            transform: translateX(-50%);
+            transition: left 0.3s;
+        }
+
+        .thermometer {
+            width: 40px;
+            height: 200px;
+            background: #e5e7eb;
+            border-radius: 20px 20px 40px 40px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .thermometer-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, #dc2626, #f97316);
+            border-radius: 0 0 40px 40px;
+            transition: height 0.5s;
+        }
+
+        .thermometer-bulb {
+            width: 60px;
+            height: 60px;
+            background: #dc2626;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ruler {
+            height: 60px;
+            background: #fef3c7;
+            border: 2px solid #d97706;
+            border-radius: 4px;
+            position: relative;
+            margin: 16px 0;
+        }
+
+        .ruler-marks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin: 12px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 10px 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .data-table th {
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            background: #fafafa;
+        }
+
+        .data-table td input {
+            width: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>BIOL-8: Human Biology</h1>
+                <p>Lab 3 &mdash; Measurement Techniques</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+                <a href="#part1"><span class="nav-num">1</span> Mass Measurement</a>
+                <a href="#part2"><span class="nav-num">2</span> pH Measurement</a>
+                <a href="#part3"><span class="nav-num">3</span> Temperature</a>
+                <a href="#part4"><span class="nav-num">4</span> Length Measurement</a>
+                <a href="#part5"><span class="nav-num">5</span> Data Analysis</a>
+            </nav>
+            <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+        </aside>
+        <div class="main">
+            <div class="hero" id="hero">
+                <h2>Measurement Techniques</h2>
+                <p>Practice essential laboratory measurement skills: weighing samples, measuring pH, reading
+                    thermometers, and using rulers. Learn proper techniques and record data with appropriate precision.
+                </p>
+                <div class="bio-tags">
+                    <span class="bio-tag">Mass</span>
+                    <span class="bio-tag">pH</span>
+                    <span class="bio-tag">Temperature</span>
+                    <span class="bio-tag">Length</span>
+                </div>
+            </div>
+
+            <!-- PART 1: MASS MEASUREMENT -->
+            <div class="section" id="part1">
+                <div class="section-header">
+                    <div class="section-num">1</div>
+                    <div>
+                        <div class="section-title">Mass Measurement</div>
+                        <div class="section-subtitle">Using a digital balance to measure mass accurately</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Virtual Balance</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Select a sample object and
+                        observe the mass reading. Practice recording measurements with correct significant figures.</p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="weighSample('penny')">Weigh Penny</button>
+                        <button class="btn btn-secondary" onclick="weighSample('nickel')">Weigh Nickel</button>
+                        <button class="btn btn-secondary" onclick="weighSample('quarter')">Weigh Quarter</button>
+                        <button class="btn btn-outline" onclick="weighSample('unknown')">Unknown Sample</button>
+                    </div>
+                    <div class="scale-display" id="mass-display">0.00 g</div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="mass-samples">0</div>
+                            <div class="stat-label">Samples Weighed</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="mass-last">-</div>
+                            <div class="stat-label">Last Reading</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="mass-precision">0.01g</div>
+                            <div class="stat-label">Precision</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Sample Data Log</div>
+                    <table class="data-table" id="mass-table">
+                        <thead>
+                            <tr>
+                                <th>Trial</th>
+                                <th>Sample</th>
+                                <th>Mass (g)</th>
+                                <th>Expected (g)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mass-log"></tbody>
+                    </table>
+                    <div class="btn-group">
+                        <button class="btn btn-outline btn-sm" onclick="clearMassLog()">Clear Log</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2: pH MEASUREMENT -->
+            <div class="section" id="part2">
+                <div class="section-header">
+                    <div class="section-num">2</div>
+                    <div>
+                        <div class="section-title">pH Measurement</div>
+                        <div class="section-subtitle">Measuring acidity and alkalinity of solutions</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">pH Meter Simulator</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Select a solution to measure
+                        its pH. The marker shows the position on the pH scale (0-14).</p>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-outline" onclick="measurePH('lemon')">Lemon Juice</button>
+                        <button class="btn btn-sm btn-outline" onclick="measurePH('vinegar')">Vinegar</button>
+                        <button class="btn btn-sm btn-outline" onclick="measurePH('water')">Pure Water</button>
+                        <button class="btn btn-sm btn-outline" onclick="measurePH('blood')">Blood</button>
+                        <button class="btn btn-sm btn-outline" onclick="measurePH('bleach')">Bleach</button>
+                        <button class="btn btn-sm btn-outline" onclick="measurePH('unknown')">Unknown</button>
+                    </div>
+                    <div class="ph-bar">
+                        <div class="ph-marker" id="ph-marker" style="left:50%;"></div>
+                    </div>
+                    <div
+                        style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:-8px;">
+                        <span>0 (Acidic)</span><span>7 (Neutral)</span><span>14 (Basic)</span></div>
+                    <div class="stat-grid" style="margin-top:16px;">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="ph-value">7.0</div>
+                            <div class="stat-label">pH Value</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="ph-type">Neutral</div>
+                            <div class="stat-label">Classification</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="ph-sample">Water</div>
+                            <div class="stat-label">Sample</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">pH Data Log</div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Solution</th>
+                                <th>pH Reading</th>
+                                <th>Acid/Base/Neutral</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ph-log"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PART 3: TEMPERATURE -->
+            <div class="section" id="part3">
+                <div class="section-header">
+                    <div class="section-num">3</div>
+                    <div>
+                        <div class="section-title">Temperature Measurement</div>
+                        <div class="section-subtitle">Reading thermometers in Celsius and Fahrenheit</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-row">
+                        <div>
+                            <div class="card-title">Virtual Thermometer</div>
+                            <div class="slider-group">
+                                <label>Set Temp (°C)</label>
+                                <input type="range" id="temp-slider" min="-20" max="110" value="25"
+                                    oninput="updateThermometer()">
+                                <span class="slider-val" id="temp-c">25°C</span>
+                            </div>
+                            <div style="text-align:center;margin:24px 0;">
+                                <div style="display:inline-block;position:relative;">
+                                    <div class="thermometer" id="thermometer">
+                                        <div class="thermometer-fill" id="therm-fill" style="height:35%;"></div>
+                                    </div>
+                                    <div class="thermometer-bulb"></div>
+                                </div>
+                            </div>
+                            <div class="stat-grid">
+                                <div class="stat-box stat-accent">
+                                    <div class="stat-val" id="temp-celsius">25</div>
+                                    <div class="stat-label">Celsius</div>
+                                </div>
+                                <div class="stat-box stat-blue">
+                                    <div class="stat-val" id="temp-fahrenheit">77</div>
+                                    <div class="stat-label">Fahrenheit</div>
+                                </div>
+                                <div class="stat-box stat-purple">
+                                    <div class="stat-val" id="temp-kelvin">298</div>
+                                    <div class="stat-label">Kelvin</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card-title">Common Reference Temperatures</div>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline" onclick="setTemp(-10)">Freezer (-10°C)</button>
+                                <button class="btn btn-sm btn-outline" onclick="setTemp(0)">Ice Water (0°C)</button>
+                                <button class="btn btn-sm btn-outline" onclick="setTemp(20)">Room Temp (20°C)</button>
+                                <button class="btn btn-sm btn-outline" onclick="setTemp(37)">Body Temp (37°C)</button>
+                                <button class="btn btn-sm btn-outline" onclick="setTemp(100)">Boiling (100°C)</button>
+                            </div>
+                            <div class="analysis-result ar-info" style="margin-top:16px;">
+                                <div class="ar-title">Conversion Formulas</div>
+                                <p><strong>°F = (°C × 9/5) + 32</strong></p>
+                                <p><strong>K = °C + 273.15</strong></p>
+                                <p style="margin-top:8px;color:var(--text-muted);">Normal human body temperature:
+                                    36.1-37.2°C (97-99°F)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 4: LENGTH MEASUREMENT -->
+            <div class="section" id="part4">
+                <div class="section-header">
+                    <div class="section-num">4</div>
+                    <div>
+                        <div class="section-title">Length Measurement</div>
+                        <div class="section-subtitle">Using rulers and measuring with precision</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Virtual Ruler (cm)</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Drag the slider to measure
+                        objects. Practice reading to the nearest 0.1 cm.</p>
+                    <div class="slider-group">
+                        <label>Object Length</label>
+                        <input type="range" id="length-slider" min="0" max="150" value="50" oninput="updateLength()">
+                        <span class="slider-val" id="length-cm">5.0 cm</span>
+                    </div>
+                    <div class="chart-wrap"><canvas id="ruler-canvas" height="80"></canvas></div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="len-cm">5.0</div>
+                            <div class="stat-label">Centimeters</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="len-mm">50</div>
+                            <div class="stat-label">Millimeters</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="len-in">2.0</div>
+                            <div class="stat-label">Inches</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Measure These Objects</div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="measureObject('pencil')">Pencil (≈19cm)</button>
+                        <button class="btn btn-secondary" onclick="measureObject('phone')">Phone (≈15cm)</button>
+                        <button class="btn btn-secondary" onclick="measureObject('finger')">Finger Width
+                            (≈1.5cm)</button>
+                        <button class="btn btn-outline" onclick="measureObject('random')">Random Object</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Object</th>
+                                <th>Your Measurement (cm)</th>
+                                <th>Actual Length (cm)</th>
+                                <th>Error (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="length-log"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PART 5: DATA ANALYSIS -->
+            <div class="section" id="part5">
+                <div class="section-header">
+                    <div class="section-num">5</div>
+                    <div>
+                        <div class="section-title">Data Analysis</div>
+                        <div class="section-subtitle">Calculate mean, range, and identify measurement uncertainty</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Enter Multiple Measurements</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Enter 5 measurements of the
+                        same object to calculate statistics. This demonstrates measurement variability.</p>
+                    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0;">
+                        <div class="input-group"><label>Trial 1</label><input type="number" id="data-1" step="0.01"
+                                oninput="calcStats()"></div>
+                        <div class="input-group"><label>Trial 2</label><input type="number" id="data-2" step="0.01"
+                                oninput="calcStats()"></div>
+                        <div class="input-group"><label>Trial 3</label><input type="number" id="data-3" step="0.01"
+                                oninput="calcStats()"></div>
+                        <div class="input-group"><label>Trial 4</label><input type="number" id="data-4" step="0.01"
+                                oninput="calcStats()"></div>
+                        <div class="input-group"><label>Trial 5</label><input type="number" id="data-5" step="0.01"
+                                oninput="calcStats()"></div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="loadSampleData()">Load Sample Data</button>
+                        <button class="btn btn-outline" onclick="clearData()">Clear</button>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="stat-mean">-</div>
+                            <div class="stat-label">Mean</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="stat-range">-</div>
+                            <div class="stat-label">Range</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="stat-min">-</div>
+                            <div class="stat-label">Min</div>
+                        </div>
+                        <div class="stat-box stat-amber">
+                            <div class="stat-val" id="stat-max">-</div>
+                            <div class="stat-label">Max</div>
+                        </div>
+                        <div class="stat-box stat-purple">
+                            <div class="stat-val" id="stat-sd">-</div>
+                            <div class="stat-label">Std Dev</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Measurement Distribution</div>
+                    <div class="chart-wrap"><canvas id="stats-chart" height="240"></canvas></div>
+                    <div class="analysis-result ar-info" id="stats-analysis">
+                        <div class="ar-title">Understanding Measurement Uncertainty</div>
+                        <p>Every measurement has some uncertainty. By taking multiple measurements and calculating the
+                            mean, we can reduce random error and get closer to the true value.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const $ = id => document.getElementById(id);
+        const rand = (min, max) => Math.random() * (max - min) + min;
+
+        function getCtx(id) {
+            const c = $(id); const dpr = window.devicePixelRatio || 1;
+            const w = c.offsetWidth || c.width || 300;
+            const h = c.offsetHeight || c.height || 150;
+            c.width = w * dpr; c.height = h * dpr;
+            const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+            ctx.W = w; ctx.H = h;
+            return ctx;
+        }
+
+        // MASS
+        const sampleMasses = { penny: 2.50, nickel: 5.00, quarter: 5.67, unknown: 0 };
+        let massLog = [];
+        let massCount = 0;
+
+        function weighSample(sample) {
+            massCount++;
+            let mass;
+            if (sample === 'unknown') {
+                mass = rand(1, 20);
+                sampleMasses.unknown = mass;
+            } else {
+                mass = sampleMasses[sample] + rand(-0.02, 0.02);
+            }
+            mass = Math.round(mass * 100) / 100;
+            $('mass-display').textContent = mass.toFixed(2) + ' g';
+            $('mass-samples').textContent = massCount;
+            $('mass-last').textContent = mass.toFixed(2) + 'g';
+            massLog.push({ trial: massCount, sample, mass, expected: sample === 'unknown' ? '-' : sampleMasses[sample].toFixed(2) });
+            updateMassLog();
+        }
+
+        function updateMassLog() {
+            $('mass-log').innerHTML = massLog.slice(-10).map(m =>
+                `<tr><td>${m.trial}</td><td>${m.sample}</td><td>${m.mass.toFixed(2)}</td><td>${m.expected}</td></tr>`
+            ).join('');
+        }
+
+        function clearMassLog() {
+            massLog = [];
+            massCount = 0;
+            $('mass-display').textContent = '0.00 g';
+            $('mass-samples').textContent = '0';
+            $('mass-last').textContent = '-';
+            $('mass-log').innerHTML = '';
+        }
+
+        // pH
+        const phValues = { lemon: 2.0, vinegar: 2.4, water: 7.0, blood: 7.4, bleach: 12.5, unknown: 0 };
+        let phLog = [];
+
+        function measurePH(solution) {
+            let ph;
+            if (solution === 'unknown') {
+                ph = rand(1, 13);
+                phValues.unknown = ph;
+            } else {
+                ph = phValues[solution] + rand(-0.1, 0.1);
+            }
+            ph = Math.round(ph * 10) / 10;
+            $('ph-value').textContent = ph.toFixed(1);
+            $('ph-marker').style.left = (ph / 14 * 100) + '%';
+            $('ph-sample').textContent = solution.charAt(0).toUpperCase() + solution.slice(1);
+            let type = 'Neutral';
+            if (ph < 6.5) type = 'Acidic';
+            else if (ph > 7.5) type = 'Basic';
+            $('ph-type').textContent = type;
+            if (!phLog.find(p => p.solution === solution) || solution === 'unknown') {
+                phLog.push({ solution, ph, type });
+                updatePHLog();
+            }
+        }
+
+        function updatePHLog() {
+            $('ph-log').innerHTML = phLog.map(p =>
+                `<tr><td>${p.solution}</td><td>${p.ph.toFixed(1)}</td><td>${p.type}</td></tr>`
+            ).join('');
+        }
+
+        // TEMPERATURE
+        function updateThermometer() {
+            const c = parseInt($('temp-slider').value);
+            const f = Math.round(c * 9 / 5 + 32);
+            const k = Math.round(c + 273.15);
+            $('temp-c').textContent = c + '°C';
+            $('temp-celsius').textContent = c;
+            $('temp-fahrenheit').textContent = f;
+            $('temp-kelvin').textContent = k;
+            const pct = Math.max(0, Math.min(100, (c + 20) / 130 * 100));
+            $('therm-fill').style.height = pct + '%';
+        }
+
+        function setTemp(c) {
+            $('temp-slider').value = c;
+            updateThermometer();
+        }
+
+        // LENGTH
+        let lengthLog = [];
+
+        function updateLength() {
+            const mm = parseInt($('length-slider').value);
+            const cm = mm / 10;
+            const inch = cm / 2.54;
+            $('length-cm').textContent = cm.toFixed(1) + ' cm';
+            $('len-cm').textContent = cm.toFixed(1);
+            $('len-mm').textContent = mm;
+            $('len-in').textContent = inch.toFixed(2);
+            drawRuler(cm);
+        }
+
+        function drawRuler(measurement) {
+            const ctx = getCtx('ruler-canvas');
+            const W = ctx.W, H = ctx.H;
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = '#fef3c7';
+            ctx.fillRect(0, 10, W, H - 20);
+            ctx.strokeStyle = '#d97706';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(0, 10, W, H - 20);
+            ctx.strokeStyle = '#92400e';
+            ctx.lineWidth = 1;
+            const cmWidth = (W - 20) / 15;
+            for (let i = 0; i <= 15; i++) {
+                const x = 10 + i * cmWidth;
+                const isMajor = i % 1 === 0;
+                ctx.beginPath();
+                ctx.moveTo(x, 10);
+                ctx.lineTo(x, isMajor ? 35 : 25);
+                ctx.stroke();
+                if (isMajor) {
+                    ctx.fillStyle = '#1a1a1a';
+                    ctx.font = 'bold 11px system-ui';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(i, x, H - 15);
+                }
+            }
+            const mPos = 10 + (measurement / 15) * (W - 20);
+            ctx.fillStyle = 'rgba(196,30,58,0.3)';
+            ctx.fillRect(10, 10, mPos - 10, H - 20);
+            ctx.strokeStyle = '#c41e3a';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(mPos, 5);
+            ctx.lineTo(mPos, H - 5);
+            ctx.stroke();
+        }
+
+        function measureObject(obj) {
+            const actuals = { pencil: 19, phone: 15, finger: 1.5, random: rand(3, 12) };
+            const actual = actuals[obj];
+            $('length-slider').value = actual * 10;
+            updateLength();
+            const measured = parseFloat($('len-cm').textContent);
+            const error = Math.abs((measured - actual) / actual * 100);
+            lengthLog.push({ obj, measured, actual, error: error.toFixed(1) });
+            $('length-log').innerHTML = lengthLog.slice(-5).map(l =>
+                `<tr><td>${l.obj}</td><td>${l.measured.toFixed(1)}</td><td>${l.actual.toFixed(1)}</td><td>${l.error}%</td></tr>`
+            ).join('');
+        }
+
+        // STATS
+        function calcStats() {
+            const vals = [];
+            for (let i = 1; i <= 5; i++) {
+                const v = parseFloat($('data-' + i).value);
+                if (!isNaN(v)) vals.push(v);
+            }
+            if (vals.length === 0) return;
+            const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+            const min = Math.min(...vals);
+            const max = Math.max(...vals);
+            const range = max - min;
+            const sd = Math.sqrt(vals.reduce((sum, v) => sum + Math.pow(v - mean, 2), 0) / vals.length);
+            $('stat-mean').textContent = mean.toFixed(2);
+            $('stat-range').textContent = range.toFixed(2);
+            $('stat-min').textContent = min.toFixed(2);
+            $('stat-max').textContent = max.toFixed(2);
+            $('stat-sd').textContent = sd.toFixed(2);
+            drawStatsChart(vals, mean);
+        }
+
+        function drawStatsChart(vals, mean) {
+            const ctx = getCtx('stats-chart');
+            const W = ctx.W, H = ctx.H;
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, W, H);
+            if (vals.length === 0) return;
+            const pad = { top: 30, bottom: 40, left: 50, right: 20 };
+            const plotW = W - pad.left - pad.right;
+            const min = Math.min(...vals) - 0.5;
+            const max = Math.max(...vals) + 0.5;
+            const range = max - min || 1;
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad.left, H - pad.bottom);
+            ctx.lineTo(W - pad.right, H - pad.bottom);
+            ctx.stroke();
+            vals.forEach((v, i) => {
+                const x = pad.left + (i / (vals.length - 1 || 1)) * plotW;
+                const y = H - pad.bottom - ((v - min) / range) * (H - pad.top - pad.bottom);
+                ctx.fillStyle = '#c41e3a';
+                ctx.beginPath();
+                ctx.arc(x, y, 8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#1a1a1a';
+                ctx.font = 'bold 11px system-ui';
+                ctx.textAlign = 'center';
+                ctx.fillText(v.toFixed(2), x, y - 14);
+                ctx.fillText('T' + (i + 1), x, H - pad.bottom + 16);
+            });
+            const meanY = H - pad.bottom - ((mean - min) / range) * (H - pad.top - pad.bottom);
+            ctx.strokeStyle = '#16a34a';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(pad.left, meanY);
+            ctx.lineTo(W - pad.right, meanY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#16a34a';
+            ctx.font = 'bold 11px system-ui';
+            ctx.textAlign = 'left';
+            ctx.fillText('Mean: ' + mean.toFixed(2), pad.left + 5, meanY - 6);
+        }
+
+        function loadSampleData() {
+            const base = 5.5;
+            [1, 2, 3, 4, 5].forEach(i => {
+                $('data-' + i).value = (base + rand(-0.15, 0.15)).toFixed(2);
+            });
+            calcStats();
+        }
+
+        function clearData() {
+            for (let i = 1; i <= 5; i++) $('data-' + i).value = '';
+            $('stat-mean').textContent = '-';
+            $('stat-range').textContent = '-';
+            $('stat-min').textContent = '-';
+            $('stat-max').textContent = '-';
+            $('stat-sd').textContent = '-';
+            const ctx = getCtx('stats-chart');
+            ctx.clearRect(0, 0, ctx.W, ctx.H);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, ctx.W, ctx.H);
+        }
+
+        // INIT
+        updateThermometer();
+        updateLength();
+        measurePH('water');
+    </script>
+</body>
+
+</html>

@@ -35,7 +35,6 @@ course_development/**/website/index.html
 # Each course (biol-1, biol-8) is its own git repo pushed to GitHub.
 # See: https://github.com/docxology/biol-1
 # See: https://github.com/docxology/biol-8
-PUBLISHED/
 
 # Temporary
 test_output.txt

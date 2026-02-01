@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 9 Dashboard: Cell Division &mdash; Mitosis | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PHASE DESCRIPTION PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.phase-panel {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--accent); font-size: 14px; line-height: 1.7;
+}
+.phase-panel .phase-name { font-weight: 800; font-size: 18px; margin-bottom: 4px; }
+.phase-panel .phase-desc { color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHECKLIST
+   ═══════════════════════════════════════════════════════════════════════ */
+.checklist { list-style: none; margin: 12px 0; }
+.checklist li {
+  padding: 10px 14px; font-size: 14px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.check-plant { background: #f0fdf4; color: var(--green); }
+.check-animal { background: #eff6ff; color: var(--blue); }
+.check-both { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MICROSCOPE FIELD
+   ═══════════════════════════════════════════════════════════════════════ */
+.microscope-wrap {
+  position: relative; border-radius: 50%; overflow: hidden;
+  width: 400px; height: 400px; margin: 0 auto;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.15);
+  border: 4px solid #333;
+}
+.microscope-wrap canvas { width: 100%; height: 100%; cursor: crosshair; }
+@media (max-width: 600px) { .microscope-wrap { width: 300px; height: 300px; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 9 &mdash; Cell Division: Mitosis</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Phase Visualizer</a>
+    <a href="#part2"><span class="nav-num">2</span> Mitotic Index</a>
+    <a href="#part3"><span class="nav-num">3</span> Cell Cycle Clock</a>
+    <a href="#part4"><span class="nav-num">4</span> Plant vs Animal</a>
+    <a href="#part5"><span class="nav-num">5</span> Chromosome Tracker</a>
+    <a href="#part6"><span class="nav-num">6</span> Growth &amp; Repair</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Cell Division: Mitosis</h2>
+  <p>Explore the stages of mitotic cell division through interactive animations. Identify phases under a virtual microscope, calculate mitotic index, and compare plant and animal cell division.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Cell Division</span>
+    <span class="bio-tag">Chromosomes</span>
+    <span class="bio-tag">Growth</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: MITOSIS PHASE VISUALIZER ════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Mitosis Phase Visualizer</div>
+    <div class="section-subtitle">Animated cell cycling through all stages of mitotic division</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Cell Animation</div>
+    <div class="chart-wrap"><canvas id="phase-canvas" height="360"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="phaseTogglePlay()" id="phase-play-btn">Play</button>
+      <button class="btn btn-secondary" onclick="phaseStep(-1)">Previous</button>
+      <button class="btn btn-secondary" onclick="phaseStep(1)">Next</button>
+      <button class="btn btn-outline" onclick="phaseReset()">Reset</button>
+    </div>
+    <div class="slider-group">
+      <label>Speed</label>
+      <input type="range" id="phase-speed" min="1" max="10" value="3" oninput="phaseSpeedUpdate()">
+      <span class="slider-val" id="phase-speed-val">3x</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="phase-current-name">Interphase</div><div class="stat-label">Current Phase</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="phase-step-num">1/6</div><div class="stat-label">Step</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="phase-chr-count">2n</div><div class="stat-label">Chromosome State</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Phase Description</div>
+    <div class="phase-panel" id="phase-desc-panel">
+      <div class="phase-name" id="phase-desc-name">Interphase (G1/S/G2)</div>
+      <div class="phase-desc" id="phase-desc-text">The cell grows, replicates its DNA during S phase, and prepares for division. Chromosomes are in the form of dispersed chromatin. The cell spends most of its life in interphase.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: MITOTIC INDEX CALCULATOR ═════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Mitotic Index Calculator</div>
+    <div class="section-subtitle">Classify cells in a virtual microscope field to calculate mitotic index</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Virtual Microscope &mdash; Click cells to classify their phase</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on each cell to cycle through phase classifications: Interphase (gray) &rarr; Prophase (red) &rarr; Metaphase (blue) &rarr; Anaphase (green) &rarr; Telophase (purple). Classify all cells to calculate the mitotic index.</p>
+    <div class="btn-group">
+      <button class="btn btn-secondary btn-sm" onclick="miSetTissue('root')">Root Tip</button>
+      <button class="btn btn-outline btn-sm" onclick="miSetTissue('leaf')">Mature Leaf</button>
+      <button class="btn btn-outline btn-sm" onclick="miReset()">New Field</button>
+    </div>
+    <div class="microscope-wrap">
+      <canvas id="mi-canvas" width="400" height="400"></canvas>
+    </div>
+    <div class="stat-grid" style="margin-top:16px;">
+      <div class="stat-box stat-accent"><div class="stat-val" id="mi-total">50</div><div class="stat-label">Total Cells</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="mi-dividing">0</div><div class="stat-label">Dividing Cells</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="mi-index">0%</div><div class="stat-label">Mitotic Index</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="mi-classified">0</div><div class="stat-label">Classified</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Phase Distribution</div>
+    <div class="chart-wrap"><canvas id="mi-chart" height="240"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Tissue Comparison &mdash; Mitotic Index</div>
+    <div class="chart-wrap"><canvas id="mi-compare-chart" height="200"></canvas></div>
+    <div id="mi-compare-info" class="analysis-result ar-pass" style="display:none;">
+      <div class="ar-title">Comparison Result</div>
+      <p id="mi-compare-text"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: CELL CYCLE CLOCK ═════════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Cell Cycle Clock</div>
+    <div class="section-subtitle">Visualize relative time spent in each phase of the cell cycle</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Cycle Diagram &mdash; Click a phase for details</div>
+      <div class="chart-wrap"><canvas id="clock-canvas" height="380"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Phase Durations</div>
+      <div class="slider-group">
+        <label>G1 Phase</label>
+        <input type="range" id="clock-g1" min="2" max="20" value="11" oninput="clockUpdate()">
+        <span class="slider-val" id="clock-g1-val">11 hr</span>
+      </div>
+      <div class="slider-group">
+        <label>S Phase</label>
+        <input type="range" id="clock-s" min="2" max="12" value="8" oninput="clockUpdate()">
+        <span class="slider-val" id="clock-s-val">8 hr</span>
+      </div>
+      <div class="slider-group">
+        <label>G2 Phase</label>
+        <input type="range" id="clock-g2" min="1" max="8" value="4" oninput="clockUpdate()">
+        <span class="slider-val" id="clock-g2-val">4 hr</span>
+      </div>
+      <div class="slider-group">
+        <label>M Phase</label>
+        <input type="range" id="clock-m" min="0.5" max="4" value="1" step="0.5" oninput="clockUpdate()">
+        <span class="slider-val" id="clock-m-val">1 hr</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box stat-accent"><div class="stat-val" id="clock-total">24</div><div class="stat-label">Total (hr)</div></div>
+        <div class="stat-box stat-blue"><div class="stat-val" id="clock-m-pct">4.2%</div><div class="stat-label">Mitosis %</div></div>
+        <div class="stat-box stat-green"><div class="stat-val" id="clock-interphase-pct">95.8%</div><div class="stat-label">Interphase %</div></div>
+      </div>
+      <div class="phase-panel" id="clock-info-panel">
+        <div class="phase-name" id="clock-info-name">G1 Phase (Gap 1)</div>
+        <div class="phase-desc" id="clock-info-desc">The cell grows in size, produces RNA and synthesizes proteins. The cell is metabolically active. This is usually the longest phase of the cell cycle. The G1 checkpoint ensures the cell is large enough and has adequate nutrients before proceeding to S phase.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: PLANT vs ANIMAL ══════════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Plant vs. Animal Mitosis</div>
+    <div class="section-subtitle">Side-by-side comparison of key differences during cell division</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Side-by-Side Animation</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="paTogglePlay()" id="pa-play-btn">Play</button>
+      <button class="btn btn-secondary" onclick="paStep(-1)">Previous</button>
+      <button class="btn btn-secondary" onclick="paStep(1)">Next</button>
+      <button class="btn btn-outline" onclick="paReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="pa-canvas" height="380"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="pa-phase-name">Interphase</div><div class="stat-label">Current Phase</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="pa-plant-note">Cell wall present</div><div class="stat-label">Plant Cell</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="pa-animal-note">Centrioles present</div><div class="stat-label">Animal Cell</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Key Differences Checklist</div>
+    <ul class="checklist">
+      <li><span class="check-icon check-plant">P</span> <strong>Cytokinesis:</strong> Plant cells form a cell plate from vesicles; animal cells use a cleavage furrow (contractile ring)</li>
+      <li><span class="check-icon check-animal">A</span> <strong>Centrioles:</strong> Animal cells have centrioles that organize the spindle; most plant cells lack centrioles</li>
+      <li><span class="check-icon check-plant">P</span> <strong>Cell Shape:</strong> Plant cells maintain rigid rectangular shape due to cell wall; animal cells round up during division</li>
+      <li><span class="check-icon check-animal">A</span> <strong>Asters:</strong> Star-shaped microtubule arrays radiate from centrioles in animal cells; absent in most plant cells</li>
+      <li><span class="check-icon check-both">B</span> <strong>Spindle Formation:</strong> Both form mitotic spindles, but from different organizing centers</li>
+      <li><span class="check-icon check-both">B</span> <strong>Chromosome Behavior:</strong> Identical in both &mdash; condense, align, separate equally</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: CHROMOSOME BEHAVIOR TRACKER ══════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Chromosome Behavior Tracker</div>
+    <div class="section-subtitle">Follow chromosome dynamics through the cell cycle with 2n = 4</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Chromosome Visualization (2n = 4)</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="chrTogglePlay()" id="chr-play-btn">Play</button>
+      <button class="btn btn-secondary" onclick="chrStep(-1)">Previous</button>
+      <button class="btn btn-secondary" onclick="chrStep(1)">Next</button>
+      <button class="btn btn-outline" onclick="chrReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="chr-canvas" height="340"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="chr-phase">Interphase</div><div class="stat-label">Phase</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="chr-count">2n = 4</div><div class="stat-label">Chromosome #</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="chr-dna">2C</div><div class="stat-label">DNA Content</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="chr-state">Chromatin</div><div class="stat-label">Structure</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">DNA Content Through the Cell Cycle</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> DNA content</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> Chromosome count</span>
+    </div>
+    <div class="chart-wrap"><canvas id="chr-graph" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">What If Something Goes Wrong? &mdash; Nondisjunction Preview</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Compare normal anaphase separation to a failure event where chromosomes do not separate properly, leading to aneuploidy.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="chrShowError('normal')">Normal Separation</button>
+      <button class="btn btn-accent btn-secondary" onclick="chrShowError('error')">Nondisjunction</button>
+    </div>
+    <div class="chart-wrap"><canvas id="chr-error-canvas" height="260"></canvas></div>
+    <div id="chr-error-info" class="analysis-result">
+      <div class="ar-title" id="chr-error-title">Normal Anaphase</div>
+      <p id="chr-error-text">Sister chromatids separate evenly. Each daughter cell receives exactly 2n = 4 chromosomes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: GROWTH & REPAIR ══════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Growth &amp; Repair Scenarios</div>
+    <div class="section-subtitle">Explore how cell division rate changes in different biological contexts</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Scenario Selector</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="grSetScenario('wound')" id="gr-btn-wound">Wound Healing</button>
+      <button class="btn btn-secondary" onclick="grSetScenario('embryo')" id="gr-btn-embryo">Embryonic Dev.</button>
+      <button class="btn btn-outline" onclick="grSetScenario('cancer')" id="gr-btn-cancer">Cancer</button>
+    </div>
+    <div class="slider-group">
+      <label>Growth Rate</label>
+      <input type="range" id="gr-rate" min="1" max="10" value="3" oninput="grUpdateRate()">
+      <span class="slider-val" id="gr-rate-val">3x</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="grRun()">Simulate Growth</button>
+      <button class="btn btn-outline" onclick="grReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="gr-scenario-name">Wound Healing</div><div class="stat-label">Scenario</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="gr-cells">1</div><div class="stat-label">Cell Count</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="gr-generations">0</div><div class="stat-label">Generations</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="gr-checkpoint">Active</div><div class="stat-label">Checkpoints</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Cell Population Over Time</div>
+    <div class="chart-wrap"><canvas id="gr-pop-chart" height="280"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Normal vs. Cancer &mdash; Checkpoint Failure Visualization</div>
+    <div class="chart-wrap"><canvas id="gr-canvas" height="300"></canvas></div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--green);"></span> Normal (checkpoints active)</span>
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Cancer (checkpoints disabled)</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Mitotic Rate Comparison</div>
+    <div class="chart-wrap"><canvas id="gr-compare-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const TAU = Math.PI * 2;
+
+// ── Chart helpers (from reference) ────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, TAU); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: MITOSIS PHASE VISUALIZER
+// ══════════════════════════════════════════════════════════════════════════
+const PHASES = [
+  { name: 'Interphase', short: 'G1/S/G2', desc: 'The cell grows, replicates its DNA during S phase, and prepares for division. Chromosomes are in the form of dispersed chromatin. The cell spends most of its life in interphase.', chrState: 'Chromatin', dna: '2C->4C', chr: '2n' },
+  { name: 'Prophase', short: 'Prophase', desc: 'Chromatin condenses into visible chromosomes (each consisting of two sister chromatids joined at the centromere). The nuclear envelope begins to break down and the mitotic spindle starts forming.', chrState: 'Condensing', dna: '4C', chr: '2n' },
+  { name: 'Metaphase', short: 'Metaphase', desc: 'Chromosomes align along the metaphase plate (cell equator). Spindle fibers from opposite poles attach to the centromere of each chromosome. The metaphase checkpoint ensures all chromosomes are properly attached.', chrState: 'Aligned', dna: '4C', chr: '2n' },
+  { name: 'Anaphase', short: 'Anaphase', desc: 'Sister chromatids separate at the centromere and are pulled to opposite poles by shortening spindle fibers. The cell elongates as polar microtubules push apart.', chrState: 'Separating', dna: '4C', chr: '4n->2n' },
+  { name: 'Telophase', short: 'Telophase', desc: 'Chromosomes arrive at opposite poles and begin to decondense back into chromatin. Nuclear envelopes reform around each set of chromosomes. The spindle disassembles.', chrState: 'Decondensing', dna: '2C each', chr: '2n each' },
+  { name: 'Cytokinesis', short: 'Cytokinesis', desc: 'The cytoplasm divides, producing two genetically identical daughter cells. In animal cells this occurs via a cleavage furrow; in plant cells a cell plate forms.', chrState: 'Chromatin', dna: '2C each', chr: '2n each' }
+];
+
+let phaseIdx = 0, phaseAnim = null, phaseT = 0;
+
+function phaseSpeedUpdate() { $('phase-speed-val').textContent = $('phase-speed').value + 'x'; }
+
+function drawPhaseVisualizer() {
+  const ctx = getCtx('phase-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+  const cellR = Math.min(W, H) * 0.32;
+  const phase = PHASES[phaseIdx];
+  const t = phaseT; // 0-1 animation progress
+
+  // Phase indicator bar at top
+  const barY = 10, barH = 8, barPad = 60;
+  const barW = W - barPad * 2;
+  PHASES.forEach((p, i) => {
+    const segW = barW / PHASES.length;
+    const sx = barPad + i * segW;
+    ctx.fillStyle = i === phaseIdx ? '#c41e3a' : (i < phaseIdx ? '#e8354f44' : '#e5e7eb');
+    ctx.beginPath();
+    ctx.roundRect(sx + 1, barY, segW - 2, barH, 4);
+    ctx.fill();
+    ctx.fillStyle = i === phaseIdx ? '#1a1a1a' : '#9ca3af';
+    ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(p.short, sx + segW/2, barY + barH + 14);
+  });
+
+  // Draw cell
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  // Cell membrane
+  if (phaseIdx === 5) {
+    // Cytokinesis: cell is pinching
+    const pinch = t * 0.4;
+    ctx.fillStyle = '#fef3c7';
+    ctx.strokeStyle = '#92400e';
+    ctx.lineWidth = 3;
+    // Left daughter
+    ctx.beginPath();
+    ctx.ellipse(-cellR * 0.5, 0, cellR * 0.5, cellR * (1 - pinch * 0.3), 0, 0, TAU);
+    ctx.fill(); ctx.stroke();
+    // Right daughter
+    ctx.beginPath();
+    ctx.ellipse(cellR * 0.5, 0, cellR * 0.5, cellR * (1 - pinch * 0.3), 0, 0, TAU);
+    ctx.fill(); ctx.stroke();
+    // Cleavage furrow
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.moveTo(0, -cellR * (1 - pinch));
+    ctx.lineTo(0, cellR * (1 - pinch));
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Chromosomes in each daughter (decondensed chromatin dots)
+    drawChromatinDots(ctx, -cellR * 0.5, 0, cellR * 0.3, 4, '#c41e3a');
+    drawChromatinDots(ctx, cellR * 0.5, 0, cellR * 0.3, 4, '#2563eb');
+  } else {
+    // Normal cell shape (elongates during anaphase)
+    const elongation = phaseIdx === 3 ? t * 0.25 : (phaseIdx === 4 ? 0.25 : 0);
+    ctx.fillStyle = '#fef3c7';
+    ctx.strokeStyle = '#92400e';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, cellR * (1 + elongation), cellR * (1 - elongation * 0.3), 0, 0, TAU);
+    ctx.fill(); ctx.stroke();
+
+    // Nuclear envelope
+    if (phaseIdx <= 1) {
+      const envAlpha = phaseIdx === 1 ? 1 - t : 1;
+      ctx.strokeStyle = `rgba(37,99,235,${envAlpha * 0.6})`;
+      ctx.lineWidth = 2;
+      if (phaseIdx === 1 && t > 0.5) {
+        ctx.setLineDash([6, 4]);
+      }
+      ctx.beginPath();
+      ctx.arc(0, 0, cellR * 0.55, 0, TAU);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // Telophase: two nuclear envelopes forming
+    if (phaseIdx === 4) {
+      ctx.strokeStyle = 'rgba(37,99,235,0.4)';
+      ctx.lineWidth = 2;
+      const envR = cellR * 0.3 * t;
+      ctx.beginPath(); ctx.arc(-cellR * 0.35, 0, envR, 0, TAU); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cellR * 0.35, 0, envR, 0, TAU); ctx.stroke();
+    }
+
+    // Draw chromosomes based on phase
+    drawChromosomes(ctx, phaseIdx, t, cellR);
+
+    // Spindle fibers (metaphase, anaphase)
+    if (phaseIdx >= 2 && phaseIdx <= 3) {
+      drawSpindleFibers(ctx, phaseIdx, t, cellR);
+    }
+  }
+
+  ctx.restore();
+
+  // Update info
+  $('phase-current-name').textContent = phase.name;
+  $('phase-step-num').textContent = (phaseIdx + 1) + '/6';
+  $('phase-chr-count').textContent = phase.chr;
+  $('phase-desc-name').textContent = phase.name + (phase.short !== phase.name ? ' (' + phase.short + ')' : '');
+  $('phase-desc-text').textContent = phase.desc;
+}
+
+function drawChromatinDots(ctx, cx, cy, radius, count, color) {
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * TAU + 0.3;
+    const r = radius * 0.5 + Math.sin(i * 2.5) * radius * 0.3;
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r;
+    ctx.fillStyle = color;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath(); ctx.arc(x, y, 4, 0, TAU); ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+function drawChromosomes(ctx, phase, t, R) {
+  const chrColors = ['#c41e3a', '#c41e3a', '#2563eb', '#2563eb'];
+
+  if (phase === 0) {
+    // Interphase: diffuse chromatin
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * TAU + 0.5;
+      const r = R * 0.25 + Math.sin(i * 3.1) * R * 0.15;
+      ctx.fillStyle = chrColors[i % 4];
+      ctx.globalAlpha = 0.25;
+      ctx.beginPath();
+      ctx.arc(Math.cos(angle) * r, Math.sin(angle) * r, 5 + Math.sin(i) * 2, 0, TAU);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  } else if (phase === 1) {
+    // Prophase: condensing chromosomes (X shapes forming)
+    const condense = t;
+    for (let i = 0; i < 4; i++) {
+      const angle = (i / 4) * TAU + 0.8;
+      const r = R * 0.3 * (1 - condense * 0.3);
+      const x = Math.cos(angle) * r;
+      const y = Math.sin(angle) * r;
+      ctx.strokeStyle = chrColors[i];
+      ctx.lineWidth = 2 + condense * 2;
+      ctx.lineCap = 'round';
+      const size = 8 + condense * 8;
+      // X shape
+      ctx.beginPath(); ctx.moveTo(x - size/2, y - size/2); ctx.lineTo(x + size/2, y + size/2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x + size/2, y - size/2); ctx.lineTo(x - size/2, y + size/2); ctx.stroke();
+      // Centromere dot
+      ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(x, y, 2, 0, TAU); ctx.fill();
+    }
+  } else if (phase === 2) {
+    // Metaphase: aligned at center
+    for (let i = 0; i < 4; i++) {
+      const yOff = (i - 1.5) * 22;
+      const wobble = Math.sin(t * TAU + i) * 2;
+      ctx.strokeStyle = chrColors[i];
+      ctx.lineWidth = 4;
+      ctx.lineCap = 'round';
+      const size = 14;
+      const x = wobble;
+      const y = yOff;
+      ctx.beginPath(); ctx.moveTo(x - size/2, y - size/2); ctx.lineTo(x + size/2, y + size/2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x + size/2, y - size/2); ctx.lineTo(x - size/2, y + size/2); ctx.stroke();
+      ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(x, y, 2.5, 0, TAU); ctx.fill();
+    }
+  } else if (phase === 3) {
+    // Anaphase: separating to poles
+    const sep = t * R * 0.6;
+    for (let i = 0; i < 4; i++) {
+      const yOff = (i - 1.5) * 18;
+      // Left set (V shapes moving left)
+      ctx.strokeStyle = chrColors[i]; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      const lx = -sep;
+      ctx.beginPath(); ctx.moveTo(lx, yOff - 6); ctx.lineTo(lx + 4, yOff); ctx.lineTo(lx, yOff + 6); ctx.stroke();
+      // Right set (V shapes moving right)
+      const rx = sep;
+      ctx.beginPath(); ctx.moveTo(rx, yOff - 6); ctx.lineTo(rx - 4, yOff); ctx.lineTo(rx, yOff + 6); ctx.stroke();
+    }
+  } else if (phase === 4) {
+    // Telophase: at poles, decondensing
+    const decon = t;
+    for (let i = 0; i < 4; i++) {
+      const yOff = (i - 1.5) * 14;
+      const spread = R * 0.35;
+      ctx.globalAlpha = 1 - decon * 0.5;
+      ctx.strokeStyle = chrColors[i]; ctx.lineWidth = 3 - decon * 1.5; ctx.lineCap = 'round';
+      // Left group
+      ctx.beginPath(); ctx.moveTo(-spread, yOff - 5); ctx.lineTo(-spread + 3, yOff); ctx.lineTo(-spread, yOff + 5); ctx.stroke();
+      // Right group
+      ctx.beginPath(); ctx.moveTo(spread, yOff - 5); ctx.lineTo(spread - 3, yOff); ctx.lineTo(spread, yOff + 5); ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+  }
+}
+
+function drawSpindleFibers(ctx, phase, t, R) {
+  ctx.strokeStyle = 'rgba(124,58,237,0.3)';
+  ctx.lineWidth = 1;
+  const poleL = -R * 0.85, poleR = R * 0.85;
+
+  for (let i = 0; i < 4; i++) {
+    const yOff = (i - 1.5) * (phase === 2 ? 22 : 18);
+    const chrX = phase === 3 ? t * R * 0.6 : 0;
+    // Left pole to chromosome
+    ctx.beginPath(); ctx.moveTo(poleL, 0); ctx.quadraticCurveTo(poleL * 0.3, yOff * 0.5, -chrX, yOff); ctx.stroke();
+    // Right pole to chromosome
+    ctx.beginPath(); ctx.moveTo(poleR, 0); ctx.quadraticCurveTo(poleR * 0.3, yOff * 0.5, chrX, yOff); ctx.stroke();
+  }
+
+  // Pole markers
+  ctx.fillStyle = '#7c3aed';
+  ctx.beginPath(); ctx.arc(poleL, 0, 4, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.arc(poleR, 0, 4, 0, TAU); ctx.fill();
+}
+
+function phaseTogglePlay() {
+  if (phaseAnim) { cancelAnimationFrame(phaseAnim); phaseAnim = null; $('phase-play-btn').textContent = 'Play'; return; }
+  $('phase-play-btn').textContent = 'Pause';
+  let last = performance.now();
+  function tick(now) {
+    const speed = parseInt($('phase-speed').value);
+    const dt = (now - last) / 1000 * speed * 0.3;
+    last = now;
+    phaseT += dt;
+    if (phaseT >= 1) {
+      phaseT = 0;
+      phaseIdx = (phaseIdx + 1) % PHASES.length;
+    }
+    drawPhaseVisualizer();
+    phaseAnim = requestAnimationFrame(tick);
+  }
+  phaseAnim = requestAnimationFrame(tick);
+}
+
+function phaseStep(dir) {
+  if (phaseAnim) { cancelAnimationFrame(phaseAnim); phaseAnim = null; $('phase-play-btn').textContent = 'Play'; }
+  phaseIdx = (phaseIdx + dir + PHASES.length) % PHASES.length;
+  phaseT = 0;
+  drawPhaseVisualizer();
+}
+
+function phaseReset() {
+  if (phaseAnim) { cancelAnimationFrame(phaseAnim); phaseAnim = null; $('phase-play-btn').textContent = 'Play'; }
+  phaseIdx = 0; phaseT = 0;
+  drawPhaseVisualizer();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: MITOTIC INDEX CALCULATOR
+// ══════════════════════════════════════════════════════════════════════════
+const MI_PHASES = ['unclassified', 'interphase', 'prophase', 'metaphase', 'anaphase', 'telophase'];
+const MI_COLORS = { unclassified: '#d1d5db', interphase: '#9ca3af', prophase: '#dc2626', metaphase: '#2563eb', anaphase: '#16a34a', telophase: '#7c3aed' };
+const MI_LABELS = { unclassified: '?', interphase: 'I', prophase: 'P', metaphase: 'M', anaphase: 'A', telophase: 'T' };
+
+let miCells = [];
+let miTissue = 'root';
+let miHistory = {}; // stores completed tissue results
+
+function miGenerateCells(tissue) {
+  miCells = [];
+  const n = 50;
+  // Different actual distributions for different tissues
+  let phaseDist;
+  if (tissue === 'root') {
+    // Root tip: high mitotic index ~20-25%
+    phaseDist = { interphase: 0.75, prophase: 0.10, metaphase: 0.05, anaphase: 0.05, telophase: 0.05 };
+  } else {
+    // Mature leaf: low mitotic index ~2-5%
+    phaseDist = { interphase: 0.96, prophase: 0.02, metaphase: 0.005, anaphase: 0.005, telophase: 0.01 };
+  }
+
+  // Place cells randomly in the circular field
+  for (let i = 0; i < n; i++) {
+    let x, y;
+    do {
+      x = Math.random() * 360 + 20;
+      y = Math.random() * 360 + 20;
+    } while (Math.sqrt((x-200)**2 + (y-200)**2) > 180);
+
+    // Assign actual phase
+    const r = Math.random();
+    let cumulative = 0, actualPhase = 'interphase';
+    for (const [phase, prob] of Object.entries(phaseDist)) {
+      cumulative += prob;
+      if (r < cumulative) { actualPhase = phase; break; }
+    }
+
+    const cellSize = rand(12, 20);
+    miCells.push({
+      x, y, size: cellSize,
+      actual: actualPhase,
+      classified: 'unclassified',
+      classIdx: 0
+    });
+  }
+}
+
+function miSetTissue(tissue) {
+  miTissue = tissue;
+  document.querySelectorAll('#part2 .btn-group .btn').forEach(b => {
+    b.className = b.className.replace('btn-secondary', 'btn-outline').replace('btn-primary', 'btn-outline');
+  });
+  if (tissue === 'root') {
+    $('gr-btn-wound') || 0; // just find the right button
+    document.querySelectorAll('#part2 .btn-group .btn')[0].className = 'btn btn-secondary btn-sm';
+  } else {
+    document.querySelectorAll('#part2 .btn-group .btn')[1].className = 'btn btn-secondary btn-sm';
+  }
+  miReset();
+}
+
+function miReset() {
+  miGenerateCells(miTissue);
+  miDraw();
+  miUpdateStats();
+}
+
+function miDraw() {
+  const canvas = $('mi-canvas');
+  const dpr = window.devicePixelRatio || 1;
+  const size = canvas.parentElement.offsetWidth || 400;
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const scale = size / 400;
+
+  // Background (microscope field)
+  ctx.fillStyle = '#f8f0e8';
+  ctx.fillRect(0, 0, size, size);
+
+  // Circular mask effect
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size/2, 0, TAU);
+  ctx.clip();
+
+  // Light gradient
+  const grad = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+  grad.addColorStop(0, '#faf5ee');
+  grad.addColorStop(0.7, '#f0e8d8');
+  grad.addColorStop(1, '#e0d5c0');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, size, size);
+
+  // Draw cells
+  miCells.forEach((cell, i) => {
+    const x = cell.x * scale, y = cell.y * scale, s = cell.size * scale;
+    const color = MI_COLORS[cell.classified];
+
+    // Cell body
+    ctx.fillStyle = color;
+    ctx.globalAlpha = 0.6;
+    ctx.beginPath();
+    ctx.ellipse(x, y, s, s * 0.85, (i * 0.7), 0, TAU);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Cell outline
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5 * scale;
+    ctx.beginPath();
+    ctx.ellipse(x, y, s, s * 0.85, (i * 0.7), 0, TAU);
+    ctx.stroke();
+
+    // Draw internal features based on actual phase to give visual hints
+    drawCellPhaseHint(ctx, x, y, s * 0.6, cell.actual, scale);
+
+    // Label if classified
+    if (cell.classified !== 'unclassified') {
+      ctx.fillStyle = '#fff';
+      ctx.font = `bold ${10 * scale}px system-ui`;
+      ctx.textAlign = 'center';
+      ctx.fillText(MI_LABELS[cell.classified], x, y + 3 * scale);
+    }
+  });
+
+  ctx.restore();
+}
+
+function drawCellPhaseHint(ctx, x, y, r, phase, scale) {
+  ctx.save();
+  ctx.globalAlpha = 0.35;
+  if (phase === 'interphase') {
+    // Nucleus visible
+    ctx.strokeStyle = '#666';
+    ctx.lineWidth = 1 * scale;
+    ctx.beginPath(); ctx.arc(x, y, r * 0.6, 0, TAU); ctx.stroke();
+    // Nucleolus
+    ctx.fillStyle = '#555';
+    ctx.beginPath(); ctx.arc(x + r * 0.15, y - r * 0.1, r * 0.15, 0, TAU); ctx.fill();
+  } else if (phase === 'prophase') {
+    // Condensing chromosomes
+    ctx.strokeStyle = '#333'; ctx.lineWidth = 1.5 * scale;
+    for (let i = 0; i < 3; i++) {
+      const a = i * 1.2 + 0.5;
+      const cr = r * 0.3;
+      ctx.beginPath();
+      ctx.moveTo(x + Math.cos(a) * cr - 3 * scale, y + Math.sin(a) * cr - 3 * scale);
+      ctx.lineTo(x + Math.cos(a) * cr + 3 * scale, y + Math.sin(a) * cr + 3 * scale);
+      ctx.stroke();
+    }
+  } else if (phase === 'metaphase') {
+    // Chromosomes lined up in center
+    ctx.strokeStyle = '#333'; ctx.lineWidth = 2 * scale;
+    ctx.beginPath(); ctx.moveTo(x, y - r * 0.5); ctx.lineTo(x, y + r * 0.5); ctx.stroke();
+  } else if (phase === 'anaphase') {
+    // Chromosomes moving apart
+    ctx.strokeStyle = '#333'; ctx.lineWidth = 1.5 * scale;
+    ctx.beginPath(); ctx.moveTo(x - r * 0.4, y - r * 0.2); ctx.lineTo(x - r * 0.4, y + r * 0.2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x + r * 0.4, y - r * 0.2); ctx.lineTo(x + r * 0.4, y + r * 0.2); ctx.stroke();
+  } else if (phase === 'telophase') {
+    // Two nuclei forming, cell pinching
+    ctx.strokeStyle = '#333'; ctx.lineWidth = 1 * scale;
+    ctx.beginPath(); ctx.arc(x - r * 0.25, y, r * 0.3, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(x + r * 0.25, y, r * 0.3, 0, TAU); ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function miHandleClick(e) {
+  const canvas = $('mi-canvas');
+  const rect = canvas.getBoundingClientRect();
+  const scale = 400 / (canvas.parentElement.offsetWidth || 400);
+  const mx = (e.clientX - rect.left) * scale;
+  const my = (e.clientY - rect.top) * scale;
+
+  // Find closest cell
+  let closest = -1, closestDist = Infinity;
+  miCells.forEach((cell, i) => {
+    const d = Math.sqrt((mx - cell.x) ** 2 + (my - cell.y) ** 2);
+    if (d < cell.size + 5 && d < closestDist) {
+      closest = i;
+      closestDist = d;
+    }
+  });
+
+  if (closest >= 0) {
+    const cell = miCells[closest];
+    cell.classIdx = (cell.classIdx + 1) % MI_PHASES.length;
+    cell.classified = MI_PHASES[cell.classIdx];
+    miDraw();
+    miUpdateStats();
+  }
+}
+
+function miUpdateStats() {
+  const classified = miCells.filter(c => c.classified !== 'unclassified');
+  const dividing = classified.filter(c => c.classified !== 'interphase');
+  const total = miCells.length;
+
+  $('mi-total').textContent = total;
+  $('mi-dividing').textContent = dividing.length;
+  $('mi-classified').textContent = classified.length;
+
+  const idx = classified.length > 0 ? ((dividing.length / classified.length) * 100).toFixed(1) + '%' : '0%';
+  $('mi-index').textContent = idx;
+
+  // Store for tissue comparison
+  if (classified.length === total) {
+    miHistory[miTissue] = {
+      index: dividing.length / classified.length,
+      phases: {
+        interphase: classified.filter(c => c.classified === 'interphase').length,
+        prophase: classified.filter(c => c.classified === 'prophase').length,
+        metaphase: classified.filter(c => c.classified === 'metaphase').length,
+        anaphase: classified.filter(c => c.classified === 'anaphase').length,
+        telophase: classified.filter(c => c.classified === 'telophase').length
+      }
+    };
+    miDrawCompare();
+  }
+
+  miDrawDistribution();
+}
+
+function miDrawDistribution() {
+  const counts = { interphase: 0, prophase: 0, metaphase: 0, anaphase: 0, telophase: 0 };
+  miCells.forEach(c => { if (c.classified !== 'unclassified') counts[c.classified]++; });
+  const ctx = getCtx('mi-chart');
+  drawBarChart(ctx, {
+    labels: ['Interphase', 'Prophase', 'Metaphase', 'Anaphase', 'Telophase'],
+    values: [counts.interphase, counts.prophase, counts.metaphase, counts.anaphase, counts.telophase],
+    colors: [MI_COLORS.interphase, MI_COLORS.prophase, MI_COLORS.metaphase, MI_COLORS.anaphase, MI_COLORS.telophase],
+    maxVal: Math.max(50, ...Object.values(counts)) * 1.2
+  });
+}
+
+function miDrawCompare() {
+  const ctx = getCtx('mi-compare-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const tissues = ['root', 'leaf'];
+  const labels = ['Root Tip', 'Mature Leaf'];
+  const values = tissues.map(t => miHistory[t] ? (miHistory[t].index * 100) : 0);
+  const hasData = tissues.some(t => miHistory[t]);
+
+  if (!hasData) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Classify all cells in both tissues to see comparison', W / 2, H / 2);
+    return;
+  }
+
+  drawBarChart(ctx, {
+    labels: labels,
+    values: values,
+    colors: ['#16a34a', '#d97706'],
+    maxVal: 40
+  });
+
+  if (miHistory.root && miHistory.leaf) {
+    $('mi-compare-info').style.display = 'block';
+    const rootIdx = (miHistory.root.index * 100).toFixed(1);
+    const leafIdx = (miHistory.leaf.index * 100).toFixed(1);
+    $('mi-compare-text').innerHTML = `Root tip mitotic index: <code>${rootIdx}%</code> vs. Mature leaf: <code>${leafIdx}%</code>. Root tips have a much higher mitotic index because they are actively growing regions (meristems). Mature leaf cells have largely stopped dividing.`;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: CELL CYCLE CLOCK
+// ══════════════════════════════════════════════════════════════════════════
+const CLOCK_PHASES = [
+  { key: 'g1', name: 'G1 Phase (Gap 1)', color: '#2563eb', desc: 'The cell grows in size, produces RNA and synthesizes proteins. The cell is metabolically active. This is usually the longest phase of the cell cycle. The G1 checkpoint ensures the cell is large enough and has adequate nutrients before proceeding to S phase.' },
+  { key: 's', name: 'S Phase (Synthesis)', color: '#16a34a', desc: 'DNA replication occurs. Each chromosome is duplicated, forming two sister chromatids joined at the centromere. The cell\'s DNA content doubles from 2C to 4C. After S phase the cell has 4n worth of DNA but is still considered 2n in chromosome number.' },
+  { key: 'g2', name: 'G2 Phase (Gap 2)', color: '#d97706', desc: 'The cell continues to grow and produces proteins needed for mitosis (like tubulin for spindle fibers). The G2 checkpoint ensures all DNA has been replicated and checks for DNA damage before the cell enters mitosis.' },
+  { key: 'm', name: 'M Phase (Mitosis)', color: '#c41e3a', desc: 'The cell divides its duplicated chromosomes equally into two daughter nuclei (mitosis) followed by division of the cytoplasm (cytokinesis). This is the shortest phase of the cell cycle but is the most visually dramatic. The spindle assembly checkpoint ensures all chromosomes are properly attached before anaphase.' }
+];
+
+let clockSelectedPhase = 0;
+
+function clockUpdate() {
+  const g1 = parseFloat($('clock-g1').value);
+  const s = parseFloat($('clock-s').value);
+  const g2 = parseFloat($('clock-g2').value);
+  const m = parseFloat($('clock-m').value);
+  $('clock-g1-val').textContent = g1 + ' hr';
+  $('clock-s-val').textContent = s + ' hr';
+  $('clock-g2-val').textContent = g2 + ' hr';
+  $('clock-m-val').textContent = m + ' hr';
+  const total = g1 + s + g2 + m;
+  $('clock-total').textContent = total.toFixed(1);
+  $('clock-m-pct').textContent = (m / total * 100).toFixed(1) + '%';
+  $('clock-interphase-pct').textContent = ((g1 + s + g2) / total * 100).toFixed(1) + '%';
+  drawClock();
+}
+
+function drawClock() {
+  const ctx = getCtx('clock-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const g1 = parseFloat($('clock-g1').value);
+  const s = parseFloat($('clock-s').value);
+  const g2 = parseFloat($('clock-g2').value);
+  const m = parseFloat($('clock-m').value);
+  const total = g1 + s + g2 + m;
+  const durations = [g1, s, g2, m];
+
+  const cx = W / 2, cy = H / 2;
+  const outerR = Math.min(W, H) * 0.38;
+  const innerR = outerR * 0.55;
+
+  let startAngle = -Math.PI / 2; // Start at 12 o'clock
+
+  CLOCK_PHASES.forEach((phase, i) => {
+    const sweep = (durations[i] / total) * TAU;
+    const endAngle = startAngle + sweep;
+    const isSelected = i === clockSelectedPhase;
+
+    // Donut segment
+    ctx.beginPath();
+    ctx.arc(cx, cy, isSelected ? outerR + 6 : outerR, startAngle, endAngle);
+    ctx.arc(cx, cy, innerR, endAngle, startAngle, true);
+    ctx.closePath();
+    ctx.fillStyle = phase.color;
+    ctx.globalAlpha = isSelected ? 1 : 0.7;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Outline
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, isSelected ? outerR + 6 : outerR, startAngle, endAngle);
+    ctx.arc(cx, cy, innerR, endAngle, startAngle, true);
+    ctx.closePath();
+    ctx.stroke();
+
+    // Label on segment
+    const midAngle = startAngle + sweep / 2;
+    const labelR = (outerR + innerR) / 2;
+    const lx = cx + Math.cos(midAngle) * labelR;
+    const ly = cy + Math.sin(midAngle) * labelR;
+
+    if (sweep > 0.3) {
+      ctx.fillStyle = '#fff';
+      ctx.font = `bold ${isSelected ? 14 : 12}px system-ui`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(phase.key.toUpperCase(), lx, ly - 6);
+      ctx.font = `${isSelected ? 12 : 10}px system-ui`;
+      ctx.fillText(durations[i] + 'hr', lx, ly + 8);
+    }
+
+    // Percentage outside
+    const pctAngle = midAngle;
+    const pctR = outerR + 22;
+    const px = cx + Math.cos(pctAngle) * pctR;
+    const py = cy + Math.sin(pctAngle) * pctR;
+    if (sweep > 0.2) {
+      ctx.fillStyle = phase.color;
+      ctx.font = 'bold 11px system-ui';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText((durations[i] / total * 100).toFixed(1) + '%', px, py);
+    }
+
+    startAngle = endAngle;
+  });
+
+  // Center label
+  ctx.fillStyle = '#1a1a1a';
+  ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('Cell Cycle', cx, cy - 10);
+  ctx.font = '13px system-ui'; ctx.fillStyle = '#6b7280';
+  ctx.fillText(total.toFixed(1) + ' hours', cx, cy + 10);
+
+  // Update info panel
+  const sel = CLOCK_PHASES[clockSelectedPhase];
+  $('clock-info-name').textContent = sel.name;
+  $('clock-info-desc').textContent = sel.desc;
+}
+
+function clockHandleClick(e) {
+  const canvas = $('clock-canvas');
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.width / dpr, H = canvas.height / dpr;
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const cx = W / 2, cy = H / 2;
+  const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
+  const outerR = Math.min(W, H) * 0.38;
+  const innerR = outerR * 0.55;
+
+  if (dist < innerR || dist > outerR + 10) return;
+
+  let angle = Math.atan2(my - cy, mx - cx);
+  if (angle < -Math.PI / 2) angle += TAU;
+  const normalizedAngle = (angle + Math.PI / 2 + TAU) % TAU;
+
+  const g1 = parseFloat($('clock-g1').value);
+  const s = parseFloat($('clock-s').value);
+  const g2 = parseFloat($('clock-g2').value);
+  const m = parseFloat($('clock-m').value);
+  const total = g1 + s + g2 + m;
+  const durations = [g1, s, g2, m];
+
+  let cumAngle = 0;
+  for (let i = 0; i < 4; i++) {
+    const sweep = (durations[i] / total) * TAU;
+    if (normalizedAngle >= cumAngle && normalizedAngle < cumAngle + sweep) {
+      clockSelectedPhase = i;
+      drawClock();
+      return;
+    }
+    cumAngle += sweep;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: PLANT vs ANIMAL MITOSIS
+// ══════════════════════════════════════════════════════════════════════════
+const PA_PHASES = [
+  { name: 'Interphase', plant: 'Cell wall present, no centrioles', animal: 'Centrioles present near nucleus' },
+  { name: 'Prophase', plant: 'Spindle forms without centrioles', animal: 'Centrioles migrate to poles' },
+  { name: 'Metaphase', plant: 'Chromosomes align, rigid shape', animal: 'Cell rounds up, asters visible' },
+  { name: 'Anaphase', plant: 'Maintains rectangular shape', animal: 'Cell elongates freely' },
+  { name: 'Telophase', plant: 'Vesicles gather at center', animal: 'Cleavage furrow begins' },
+  { name: 'Cytokinesis', plant: 'Cell plate forms from center', animal: 'Cleavage furrow pinches inward' }
+];
+let paIdx = 0, paAnim = null, paT = 0;
+
+function drawPlantAnimal() {
+  const ctx = getCtx('pa-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const halfW = W / 2 - 20;
+  const phase = PA_PHASES[paIdx];
+
+  // Headers
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Plant Cell', W * 0.25, 28);
+  ctx.fillStyle = '#2563eb';
+  ctx.fillText('Animal Cell', W * 0.75, 28);
+
+  // Divider
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(W/2, 40); ctx.lineTo(W/2, H - 10); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Phase label bar
+  const barY = 44;
+  PA_PHASES.forEach((p, i) => {
+    const segW = (W - 80) / PA_PHASES.length;
+    const sx = 40 + i * segW;
+    ctx.fillStyle = i === paIdx ? '#c41e3a' : '#e5e7eb';
+    ctx.beginPath(); ctx.roundRect(sx + 1, barY, segW - 2, 6, 3); ctx.fill();
+  });
+
+  const cellTop = 70;
+  const cellH = H - cellTop - 20;
+  const cellCy = cellTop + cellH / 2;
+  const cellR = Math.min(halfW * 0.35, cellH * 0.35);
+
+  // Draw Plant Cell (left)
+  drawPlantCell(ctx, W * 0.25, cellCy, cellR, paIdx, paT);
+
+  // Draw Animal Cell (right)
+  drawAnimalCell(ctx, W * 0.75, cellCy, cellR, paIdx, paT);
+
+  // Update info
+  $('pa-phase-name').textContent = phase.name;
+  $('pa-plant-note').textContent = phase.plant;
+  $('pa-animal-note').textContent = phase.animal;
+  $('pa-plant-note').style.fontSize = '12px';
+  $('pa-animal-note').style.fontSize = '12px';
+}
+
+function drawPlantCell(ctx, cx, cy, R, phase, t) {
+  ctx.save();
+
+  if (phase === 5) {
+    // Cytokinesis: cell plate forming
+    // Two rectangular daughters
+    ctx.fillStyle = '#dcfce7'; ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 3;
+    ctx.fillRect(cx - R, cy - R, R * 2, R * 0.9);
+    ctx.strokeRect(cx - R, cy - R, R * 2, R * 0.9);
+    ctx.fillRect(cx - R, cy + R * 0.1, R * 2, R * 0.9);
+    ctx.strokeRect(cx - R, cy + R * 0.1, R * 2, R * 0.9);
+    // Cell plate (growing from center)
+    const plateW = R * 2 * t;
+    ctx.fillStyle = '#86efac';
+    ctx.fillRect(cx - plateW/2, cy - 2, plateW, 4);
+    ctx.strokeStyle = '#166534'; ctx.lineWidth = 1;
+    ctx.strokeRect(cx - plateW/2, cy - 2, plateW, 4);
+    // Vesicles
+    for (let i = 0; i < 5; i++) {
+      const vx = cx - plateW/2 + (plateW / 4) * i;
+      ctx.fillStyle = '#4ade80'; ctx.globalAlpha = 0.6;
+      ctx.beginPath(); ctx.arc(vx, cy, 3, 0, TAU); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    // Chromatin in each half
+    drawChromatinDots(ctx, cx, cy - R * 0.5, R * 0.25, 4, '#16a34a');
+    drawChromatinDots(ctx, cx, cy + R * 0.5, R * 0.25, 4, '#16a34a');
+  } else {
+    // Rectangular cell wall
+    ctx.fillStyle = '#dcfce7'; ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 3;
+    const elongation = phase === 3 ? t * 0.15 : (phase === 4 ? 0.15 : 0);
+    ctx.fillRect(cx - R, cy - R * (1 + elongation), R * 2, R * 2 * (1 + elongation));
+    ctx.strokeRect(cx - R, cy - R * (1 + elongation), R * 2, R * 2 * (1 + elongation));
+
+    // Inner content
+    if (phase <= 1) {
+      // Nuclear envelope
+      const alpha = phase === 1 ? 1 - t : 1;
+      ctx.strokeStyle = `rgba(22,163,74,${alpha * 0.5})`;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, R * 0.5, 0, TAU); ctx.stroke();
+    }
+
+    // Chromosomes
+    drawPlantChromosomes(ctx, cx, cy, R * 0.4, phase, t);
+
+    // Spindle (no centrioles shown)
+    if (phase >= 2 && phase <= 3) {
+      ctx.strokeStyle = 'rgba(22,163,74,0.2)'; ctx.lineWidth = 1;
+      for (let i = 0; i < 3; i++) {
+        const yOff = (i - 1) * 15;
+        ctx.beginPath(); ctx.moveTo(cx - R * 0.8, cy); ctx.quadraticCurveTo(cx, cy + yOff, cx + R * 0.8, cy); ctx.stroke();
+      }
+    }
+
+    if (phase === 4) {
+      // Two nuclei reforming
+      ctx.strokeStyle = 'rgba(22,163,74,0.4)'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy - R * 0.4, R * 0.25 * t, 0, TAU); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cy + R * 0.4, R * 0.25 * t, 0, TAU); ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+}
+
+function drawPlantChromosomes(ctx, cx, cy, r, phase, t) {
+  const color = '#166534';
+  ctx.strokeStyle = color; ctx.lineCap = 'round';
+  if (phase === 0) {
+    ctx.globalAlpha = 0.2;
+    for (let i = 0; i < 6; i++) {
+      const a = i * 1.1; const cr = r * 0.5;
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(cx + Math.cos(a) * cr, cy + Math.sin(a) * cr, 3, 0, TAU); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  } else if (phase === 1) {
+    ctx.lineWidth = 2 + t * 2;
+    for (let i = 0; i < 4; i++) {
+      const a = (i/4) * TAU + 0.5; const cr = r * (1 - t * 0.3);
+      const x = cx + Math.cos(a) * cr, y = cy + Math.sin(a) * cr;
+      const s = 5 + t * 5;
+      ctx.beginPath(); ctx.moveTo(x-s/2, y-s/2); ctx.lineTo(x+s/2, y+s/2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x+s/2, y-s/2); ctx.lineTo(x-s/2, y+s/2); ctx.stroke();
+    }
+  } else if (phase === 2) {
+    ctx.lineWidth = 3;
+    for (let i = 0; i < 4; i++) {
+      const y = cy + (i - 1.5) * 14;
+      ctx.beginPath(); ctx.moveTo(cx-5, y-5); ctx.lineTo(cx+5, y+5); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx+5, y-5); ctx.lineTo(cx-5, y+5); ctx.stroke();
+    }
+  } else if (phase === 3) {
+    ctx.lineWidth = 2.5;
+    const sep = t * r * 1.5;
+    for (let i = 0; i < 4; i++) {
+      const yOff = (i - 1.5) * 12;
+      ctx.beginPath(); ctx.moveTo(cx, cy - sep + yOff - 4); ctx.lineTo(cx + 3, cy - sep + yOff); ctx.lineTo(cx, cy - sep + yOff + 4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx, cy + sep + yOff - 4); ctx.lineTo(cx - 3, cy + sep + yOff); ctx.lineTo(cx, cy + sep + yOff + 4); ctx.stroke();
+    }
+  } else if (phase === 4) {
+    ctx.lineWidth = 2; ctx.globalAlpha = 1 - t * 0.5;
+    for (let i = 0; i < 4; i++) {
+      const yOff = (i - 1.5) * 10;
+      ctx.beginPath(); ctx.moveTo(cx, cy - r * 1 + yOff - 3); ctx.lineTo(cx + 2, cy - r * 1 + yOff); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx, cy + r * 1 + yOff - 3); ctx.lineTo(cx - 2, cy + r * 1 + yOff); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+}
+
+function drawAnimalCell(ctx, cx, cy, R, phase, t) {
+  ctx.save();
+
+  if (phase === 5) {
+    // Cytokinesis: cleavage furrow
+    const pinch = t * 0.5;
+    ctx.fillStyle = '#dbeafe'; ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+    // Left cell
+    ctx.beginPath();
+    ctx.ellipse(cx - R * 0.55, cy, R * 0.5, R * (1 - pinch * 0.3), 0, 0, TAU);
+    ctx.fill(); ctx.stroke();
+    // Right cell
+    ctx.beginPath();
+    ctx.ellipse(cx + R * 0.55, cy, R * 0.5, R * (1 - pinch * 0.3), 0, 0, TAU);
+    ctx.fill(); ctx.stroke();
+    // Furrow line
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(cx, cy - R * (1 - pinch)); ctx.lineTo(cx, cy + R * (1 - pinch)); ctx.stroke();
+    ctx.setLineDash([]);
+    // Chromatin
+    drawChromatinDots(ctx, cx - R * 0.55, cy, R * 0.25, 4, '#2563eb');
+    drawChromatinDots(ctx, cx + R * 0.55, cy, R * 0.25, 4, '#2563eb');
+    // Centrioles in each daughter
+    drawCentriole(ctx, cx - R * 0.55 - R * 0.3, cy);
+    drawCentriole(ctx, cx + R * 0.55 + R * 0.3, cy);
+  } else {
+    // Circular cell
+    const elongation = phase === 3 ? t * 0.2 : (phase === 4 ? 0.2 : 0);
+    ctx.fillStyle = '#dbeafe'; ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy, R * (1 + elongation), R * (1 - elongation * 0.2), 0, 0, TAU);
+    ctx.fill(); ctx.stroke();
+
+    // Centrioles
+    if (phase === 0) {
+      drawCentriole(ctx, cx + R * 0.3, cy - R * 0.3);
+    } else if (phase >= 1) {
+      // Centrioles at poles
+      const poleSpread = phase === 1 ? t : 1;
+      drawCentriole(ctx, cx - R * (0.7 + elongation * 0.3) * poleSpread, cy);
+      drawCentriole(ctx, cx + R * (0.7 + elongation * 0.3) * poleSpread, cy);
+      // Aster rays
+      if (phase >= 2) {
+        drawAster(ctx, cx - R * (0.7 + elongation * 0.3), cy, R * 0.2);
+        drawAster(ctx, cx + R * (0.7 + elongation * 0.3), cy, R * 0.2);
+      }
+    }
+
+    // Nuclear envelope
+    if (phase <= 1) {
+      const alpha = phase === 1 ? 1 - t : 1;
+      ctx.strokeStyle = `rgba(37,99,235,${alpha * 0.5})`;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, R * 0.5, 0, TAU); ctx.stroke();
+    }
+
+    // Spindle
+    if (phase >= 2 && phase <= 3) {
+      ctx.strokeStyle = 'rgba(37,99,235,0.2)'; ctx.lineWidth = 1;
+      for (let i = 0; i < 3; i++) {
+        const yOff = (i - 1) * 15;
+        const poleX = R * (0.7 + elongation * 0.3);
+        ctx.beginPath(); ctx.moveTo(cx - poleX, cy); ctx.quadraticCurveTo(cx, cy + yOff, cx + poleX, cy); ctx.stroke();
+      }
+    }
+
+    // Chromosomes (horizontal orientation for animal)
+    drawAnimalChromosomes(ctx, cx, cy, R * 0.35, phase, t, elongation);
+
+    if (phase === 4) {
+      ctx.strokeStyle = 'rgba(37,99,235,0.4)'; ctx.lineWidth = 1.5;
+      const eR = R * 0.25 * t;
+      ctx.beginPath(); ctx.arc(cx - R * 0.4, cy, eR, 0, TAU); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx + R * 0.4, cy, eR, 0, TAU); ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+}
+
+function drawAnimalChromosomes(ctx, cx, cy, r, phase, t, elongation) {
+  const color = '#1e40af';
+  ctx.strokeStyle = color; ctx.lineCap = 'round';
+  if (phase === 0) {
+    ctx.globalAlpha = 0.2;
+    for (let i = 0; i < 6; i++) {
+      const a = i * 1.1 + 0.3; const cr = r * 0.5;
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(cx + Math.cos(a) * cr, cy + Math.sin(a) * cr, 3, 0, TAU); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  } else if (phase === 1) {
+    ctx.lineWidth = 2 + t * 2;
+    for (let i = 0; i < 4; i++) {
+      const a = (i/4) * TAU + 0.3; const cr = r * (1 - t * 0.3);
+      const x = cx + Math.cos(a) * cr, y = cy + Math.sin(a) * cr;
+      const s = 5 + t * 5;
+      ctx.beginPath(); ctx.moveTo(x-s/2, y-s/2); ctx.lineTo(x+s/2, y+s/2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x+s/2, y-s/2); ctx.lineTo(x-s/2, y+s/2); ctx.stroke();
+    }
+  } else if (phase === 2) {
+    ctx.lineWidth = 3;
+    for (let i = 0; i < 4; i++) {
+      const y = cy + (i - 1.5) * 14;
+      ctx.beginPath(); ctx.moveTo(cx-5, y-5); ctx.lineTo(cx+5, y+5); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx+5, y-5); ctx.lineTo(cx-5, y+5); ctx.stroke();
+    }
+  } else if (phase === 3) {
+    ctx.lineWidth = 2.5;
+    const sep = t * r * 2 * (1 + elongation);
+    for (let i = 0; i < 4; i++) {
+      const yOff = (i - 1.5) * 12;
+      ctx.beginPath(); ctx.moveTo(cx - sep, cy + yOff - 4); ctx.lineTo(cx - sep + 3, cy + yOff); ctx.lineTo(cx - sep, cy + yOff + 4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx + sep, cy + yOff - 4); ctx.lineTo(cx + sep - 3, cy + yOff); ctx.lineTo(cx + sep, cy + yOff + 4); ctx.stroke();
+    }
+  } else if (phase === 4) {
+    ctx.lineWidth = 2; ctx.globalAlpha = 1 - t * 0.5;
+    for (let i = 0; i < 4; i++) {
+      const yOff = (i - 1.5) * 10;
+      ctx.beginPath(); ctx.moveTo(cx - r * 1.3, cy + yOff - 3); ctx.lineTo(cx - r * 1.3 + 2, cy + yOff); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx + r * 1.3, cy + yOff - 3); ctx.lineTo(cx + r * 1.3 - 2, cy + yOff); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+}
+
+function drawCentriole(ctx, x, y) {
+  ctx.fillStyle = '#7c3aed';
+  ctx.beginPath();
+  ctx.rect(x - 4, y - 2, 8, 4);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.rect(x - 2, y - 4, 4, 8);
+  ctx.fill();
+}
+
+function drawAster(ctx, x, y, r) {
+  ctx.strokeStyle = 'rgba(124,58,237,0.25)'; ctx.lineWidth = 0.8;
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * TAU;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r);
+    ctx.stroke();
+  }
+}
+
+function paTogglePlay() {
+  if (paAnim) { cancelAnimationFrame(paAnim); paAnim = null; $('pa-play-btn').textContent = 'Play'; return; }
+  $('pa-play-btn').textContent = 'Pause';
+  let last = performance.now();
+  function tick(now) {
+    const dt = (now - last) / 1000 * 0.4;
+    last = now;
+    paT += dt;
+    if (paT >= 1) { paT = 0; paIdx = (paIdx + 1) % PA_PHASES.length; }
+    drawPlantAnimal();
+    paAnim = requestAnimationFrame(tick);
+  }
+  paAnim = requestAnimationFrame(tick);
+}
+
+function paStep(dir) {
+  if (paAnim) { cancelAnimationFrame(paAnim); paAnim = null; $('pa-play-btn').textContent = 'Play'; }
+  paIdx = (paIdx + dir + PA_PHASES.length) % PA_PHASES.length;
+  paT = 0;
+  drawPlantAnimal();
+}
+
+function paReset() {
+  if (paAnim) { cancelAnimationFrame(paAnim); paAnim = null; $('pa-play-btn').textContent = 'Play'; }
+  paIdx = 0; paT = 0;
+  drawPlantAnimal();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: CHROMOSOME BEHAVIOR TRACKER
+// ══════════════════════════════════════════════════════════════════════════
+const CHR_STAGES = [
+  { name: 'G1 (Interphase)', count: '2n = 4', dna: '2C', state: 'Chromatin', desc: 'Chromosomes exist as uncondensed chromatin. 2 pairs of chromosomes (4 total, 2n=4).' },
+  { name: 'S Phase', count: '2n = 4', dna: '2C -> 4C', state: 'Replicating', desc: 'DNA replicates. Each chromosome now consists of 2 sister chromatids. DNA content doubles to 4C but chromosome number stays 2n=4.' },
+  { name: 'G2 (Interphase)', count: '2n = 4', dna: '4C', state: 'Chromatin (replicated)', desc: 'Cell has replicated DNA (4C). Still 4 chromosomes, but each has 2 chromatids. Cell prepares for division.' },
+  { name: 'Prophase', count: '2n = 4', dna: '4C', state: 'Condensing', desc: 'Chromosomes condense and become visible. Each consists of 2 sister chromatids joined at centromere.' },
+  { name: 'Metaphase', count: '2n = 4', dna: '4C', state: 'Aligned at plate', desc: 'Chromosomes align at metaphase plate. Spindle fibers attach to centromeres. Checkpoint ensures proper attachment.' },
+  { name: 'Anaphase', count: '2n -> 2n per pole', dna: '4C -> 2C+2C', state: 'Separating', desc: 'Sister chromatids separate. Each chromatid is now an individual chromosome. 4 chromosomes move to each pole.' },
+  { name: 'Telophase', count: '2n = 4 each', dna: '2C each', state: 'Decondensing', desc: 'Chromosomes arrive at poles and decondense. Nuclear envelopes reform. Each daughter nucleus has 2n=4 chromosomes.' }
+];
+
+let chrIdx = 0, chrAnim = null, chrT = 0;
+
+function drawChromosomeTracker() {
+  const ctx = getCtx('chr-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const stage = CHR_STAGES[chrIdx];
+  const cx = W / 2, cy = H / 2;
+
+  // Progress bar
+  const barY = 10, barH = 6;
+  CHR_STAGES.forEach((s, i) => {
+    const segW = (W - 80) / CHR_STAGES.length;
+    const sx = 40 + i * segW;
+    ctx.fillStyle = i === chrIdx ? '#c41e3a' : (i < chrIdx ? 'rgba(196,30,58,0.3)' : '#e5e7eb');
+    ctx.beginPath(); ctx.roundRect(sx + 1, barY, segW - 2, barH, 3); ctx.fill();
+  });
+
+  // Stage name
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(stage.name, cx, 38);
+
+  // Draw chromosomes based on stage
+  const chrR = Math.min(W * 0.35, H * 0.3);
+  const pair1Color = '#c41e3a'; // Maternal-like
+  const pair2Color = '#2563eb'; // Paternal-like
+
+  ctx.save();
+  ctx.translate(cx, cy + 10);
+
+  if (chrIdx === 0) {
+    // G1: 4 individual chromatin blobs
+    drawChromatinBlob(ctx, -40, -30, pair1Color, 'L');
+    drawChromatinBlob(ctx, 40, -30, pair1Color, 'S');
+    drawChromatinBlob(ctx, -40, 30, pair2Color, 'L');
+    drawChromatinBlob(ctx, 40, 30, pair2Color, 'S');
+    // Label
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('4 chromosomes (2 pairs), unreplicated', 0, chrR + 30);
+  } else if (chrIdx === 1) {
+    // S Phase: DNA replicating - show fork
+    const progress = chrT;
+    for (let i = 0; i < 4; i++) {
+      const x = (i - 1.5) * 55;
+      const col = i < 2 ? pair1Color : pair2Color;
+      const isLong = i % 2 === 0;
+      // Original strand
+      ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      const len = isLong ? 35 : 25;
+      ctx.beginPath(); ctx.moveTo(x, -len); ctx.lineTo(x, len * progress); ctx.stroke();
+      // New sister chromatid forming
+      if (progress > 0.2) {
+        ctx.strokeStyle = col; ctx.globalAlpha = progress - 0.2;
+        ctx.beginPath(); ctx.moveTo(x + 5, -len); ctx.lineTo(x + 5, len * (progress - 0.2)); ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+    }
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('DNA replicating: each chromosome forming sister chromatids', 0, chrR + 30);
+  } else if (chrIdx === 2) {
+    // G2: 4 chromosomes, each with sister chromatids
+    drawReplicatedChromosome(ctx, -50, -20, pair1Color, 35);
+    drawReplicatedChromosome(ctx, 50, -20, pair1Color, 25);
+    drawReplicatedChromosome(ctx, -50, 30, pair2Color, 35);
+    drawReplicatedChromosome(ctx, 50, 30, pair2Color, 25);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('4 chromosomes, each with 2 sister chromatids (DNA = 4C)', 0, chrR + 30);
+  } else if (chrIdx === 3) {
+    // Prophase: condensing X shapes
+    const condense = Math.min(1, chrT * 1.2);
+    for (let i = 0; i < 4; i++) {
+      const a = (i / 4) * TAU + 0.5;
+      const r = chrR * 0.4 * (1 - condense * 0.3);
+      const x = Math.cos(a) * r, y = Math.sin(a) * r;
+      const col = i < 2 ? pair1Color : pair2Color;
+      const size = 8 + condense * 12;
+      drawXChromosome(ctx, x, y, size, col, 2 + condense * 2);
+    }
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Chromosomes condensing into visible X-shapes', 0, chrR + 30);
+  } else if (chrIdx === 4) {
+    // Metaphase: aligned at center
+    for (let i = 0; i < 4; i++) {
+      const y = (i - 1.5) * 28;
+      const col = i < 2 ? pair1Color : pair2Color;
+      const wobble = Math.sin(chrT * TAU + i * 1.5) * 3;
+      drawXChromosome(ctx, wobble, y, 18, col, 4);
+    }
+    // Metaphase plate line
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(0, -70); ctx.lineTo(0, 70); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('All chromosomes aligned at metaphase plate', 0, chrR + 30);
+  } else if (chrIdx === 5) {
+    // Anaphase: separating
+    const sep = chrT * chrR * 0.8;
+    for (let i = 0; i < 4; i++) {
+      const y = (i - 1.5) * 20;
+      const col = i < 2 ? pair1Color : pair2Color;
+      // Left V
+      ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(-sep, y - 8); ctx.lineTo(-sep + 4, y); ctx.lineTo(-sep, y + 8); ctx.stroke();
+      // Right V
+      ctx.beginPath(); ctx.moveTo(sep, y - 8); ctx.lineTo(sep - 4, y); ctx.lineTo(sep, y + 8); ctx.stroke();
+    }
+    // Arrows showing movement
+    ctx.fillStyle = '#9ca3af'; ctx.font = '18px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('<--', -sep - 25, 0);
+    ctx.fillText('-->', sep + 25, 0);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
+    ctx.fillText('Sister chromatids separate to opposite poles (2n at each)', 0, chrR + 30);
+  } else if (chrIdx === 6) {
+    // Telophase: at poles, decondensing
+    const decon = chrT;
+    ctx.globalAlpha = 1 - decon * 0.4;
+    for (let i = 0; i < 4; i++) {
+      const y = (i - 1.5) * 16;
+      const col = i < 2 ? pair1Color : pair2Color;
+      ctx.strokeStyle = col; ctx.lineWidth = 3 - decon * 1.5; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(-chrR * 0.6, y - 5); ctx.lineTo(-chrR * 0.6 + 3, y); ctx.lineTo(-chrR * 0.6, y + 5); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(chrR * 0.6, y - 5); ctx.lineTo(chrR * 0.6 - 3, y); ctx.lineTo(chrR * 0.6, y + 5); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    // Nuclear envelopes
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(-chrR * 0.6, 0, chrR * 0.35 * decon, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(chrR * 0.6, 0, chrR * 0.35 * decon, 0, TAU); ctx.stroke();
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Each daughter nucleus: 2n = 4 chromosomes (2C DNA)', 0, chrR + 30);
+  }
+
+  ctx.restore();
+
+  // Update stats
+  $('chr-phase').textContent = stage.name;
+  $('chr-count').textContent = stage.count;
+  $('chr-dna').textContent = stage.dna;
+  $('chr-state').textContent = stage.state;
+
+  // Draw DNA content graph
+  drawChrDNAGraph();
+}
+
+function drawChromatinBlob(ctx, x, y, color, type) {
+  ctx.fillStyle = color; ctx.globalAlpha = 0.3;
+  const r = type === 'L' ? 18 : 12;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
+  ctx.globalAlpha = 1;
+  ctx.strokeStyle = color; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.stroke();
+  ctx.fillStyle = color; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(type === 'L' ? 'Chr 1' : 'Chr 2', x, y + r + 12);
+}
+
+function drawReplicatedChromosome(ctx, x, y, color, height) {
+  ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineCap = 'round';
+  // Two parallel lines (sister chromatids)
+  ctx.beginPath(); ctx.moveTo(x - 3, y - height/2); ctx.lineTo(x - 3, y + height/2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x + 3, y - height/2); ctx.lineTo(x + 3, y + height/2); ctx.stroke();
+  // Centromere
+  ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(x, y, 3, 0, TAU); ctx.fill();
+}
+
+function drawXChromosome(ctx, x, y, size, color, lw) {
+  ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x - size/2, y - size/2); ctx.lineTo(x + size/2, y + size/2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x + size/2, y - size/2); ctx.lineTo(x - size/2, y + size/2); ctx.stroke();
+  ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(x, y, 2, 0, TAU); ctx.fill();
+}
+
+function drawChrDNAGraph() {
+  const ctx = getCtx('chr-graph');
+  // DNA content through stages
+  const dnaValues = [2, 3, 4, 4, 4, 4, 2]; // 2C -> 4C during S, then back to 2C at telophase
+  const chrCounts = [4, 4, 4, 4, 4, 8, 4]; // effectively: stays 2n=4, anaphase has transiently "8" individual chromatids
+
+  // Highlight current stage
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((i + 1) + 'C', pad.left - 6, y + 4);
+  }
+
+  // Current stage highlight
+  const segW = plotW / CHR_STAGES.length;
+  ctx.fillStyle = 'rgba(196,30,58,0.08)';
+  ctx.fillRect(pad.left + chrIdx * segW, pad.top, segW, plotH);
+
+  // DNA content line
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  dnaValues.forEach((v, i) => {
+    const x = pad.left + (i + 0.5) * segW;
+    const y = pad.top + plotH * (1 - (v - 1) / 4);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  dnaValues.forEach((v, i) => {
+    const x = pad.left + (i + 0.5) * segW;
+    const y = pad.top + plotH * (1 - (v - 1) / 4);
+    ctx.fillStyle = i === chrIdx ? '#c41e3a' : 'rgba(196,30,58,0.5)';
+    ctx.beginPath(); ctx.arc(x, y, i === chrIdx ? 5 : 3, 0, TAU); ctx.fill();
+  });
+
+  // Stage labels
+  ctx.fillStyle = '#6b7280'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+  const shortNames = ['G1', 'S', 'G2', 'Pro', 'Meta', 'Ana', 'Telo'];
+  shortNames.forEach((n, i) => {
+    ctx.fillStyle = i === chrIdx ? '#c41e3a' : '#9ca3af';
+    ctx.font = i === chrIdx ? 'bold 10px system-ui' : '9px system-ui';
+    ctx.fillText(n, pad.left + (i + 0.5) * segW, H - pad.bottom + 16);
+  });
+}
+
+function chrTogglePlay() {
+  if (chrAnim) { cancelAnimationFrame(chrAnim); chrAnim = null; $('chr-play-btn').textContent = 'Play'; return; }
+  $('chr-play-btn').textContent = 'Pause';
+  let last = performance.now();
+  function tick(now) {
+    const dt = (now - last) / 1000 * 0.35;
+    last = now;
+    chrT += dt;
+    if (chrT >= 1) { chrT = 0; chrIdx = (chrIdx + 1) % CHR_STAGES.length; }
+    drawChromosomeTracker();
+    chrAnim = requestAnimationFrame(tick);
+  }
+  chrAnim = requestAnimationFrame(tick);
+}
+
+function chrStep(dir) {
+  if (chrAnim) { cancelAnimationFrame(chrAnim); chrAnim = null; $('chr-play-btn').textContent = 'Play'; }
+  chrIdx = (chrIdx + dir + CHR_STAGES.length) % CHR_STAGES.length;
+  chrT = 0;
+  drawChromosomeTracker();
+}
+
+function chrReset() {
+  if (chrAnim) { cancelAnimationFrame(chrAnim); chrAnim = null; $('chr-play-btn').textContent = 'Play'; }
+  chrIdx = 0; chrT = 0;
+  drawChromosomeTracker();
+}
+
+// Nondisjunction visualization
+function chrShowError(mode) {
+  const ctx = getCtx('chr-error-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+  const pair1Color = '#c41e3a', pair2Color = '#2563eb';
+
+  // Draw anaphase scene
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  // Cell outline
+  ctx.fillStyle = '#fef3c7'; ctx.strokeStyle = '#92400e'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.ellipse(0, 0, W * 0.4, H * 0.38, 0, 0, TAU); ctx.fill(); ctx.stroke();
+
+  // Poles
+  ctx.fillStyle = '#7c3aed';
+  ctx.beginPath(); ctx.arc(-W * 0.3, 0, 5, 0, TAU); ctx.fill();
+  ctx.beginPath(); ctx.arc(W * 0.3, 0, 5, 0, TAU); ctx.fill();
+
+  const sepX = W * 0.22;
+
+  if (mode === 'normal') {
+    // Normal: 4 to each side
+    for (let i = 0; i < 4; i++) {
+      const y = (i - 1.5) * 18;
+      const col = i < 2 ? pair1Color : pair2Color;
+      ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(-sepX, y - 6); ctx.lineTo(-sepX + 3, y); ctx.lineTo(-sepX, y + 6); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(sepX, y - 6); ctx.lineTo(sepX - 3, y); ctx.lineTo(sepX, y + 6); ctx.stroke();
+    }
+    // Labels
+    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('2n = 4', -sepX, H * 0.32);
+    ctx.fillText('2n = 4', sepX, H * 0.32);
+
+    $('chr-error-title').textContent = 'Normal Anaphase';
+    $('chr-error-text').textContent = 'Sister chromatids separate evenly. Each daughter cell receives exactly 2n = 4 chromosomes. This is the normal outcome of mitosis.';
+    $('chr-error-info').className = 'analysis-result ar-pass';
+  } else {
+    // Nondisjunction: one chromosome pair fails to separate
+    // Left side gets 3, right gets 5
+    const leftChr = [pair1Color, pair2Color, pair2Color]; // 3 chromosomes
+    const rightChr = [pair1Color, pair1Color, pair2Color, pair2Color, pair1Color]; // 5 chromosomes
+
+    leftChr.forEach((col, i) => {
+      const y = (i - 1) * 18;
+      ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(-sepX, y - 6); ctx.lineTo(-sepX + 3, y); ctx.lineTo(-sepX, y + 6); ctx.stroke();
+    });
+    rightChr.forEach((col, i) => {
+      const y = (i - 2) * 15;
+      ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(sepX, y - 5); ctx.lineTo(sepX - 3, y); ctx.lineTo(sepX, y + 5); ctx.stroke();
+    });
+
+    // Error indicators
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('2n-1 = 3', -sepX, H * 0.32);
+    ctx.fillText('2n+1 = 5', sepX, H * 0.32);
+
+    // Warning X
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(-15, -H * 0.28); ctx.lineTo(15, -H * 0.22); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(15, -H * 0.28); ctx.lineTo(-15, -H * 0.22); ctx.stroke();
+
+    $('chr-error-title').textContent = 'Nondisjunction Error';
+    $('chr-error-text').textContent = 'One pair of sister chromatids failed to separate. One daughter cell gets an extra chromosome (2n+1, trisomy) and the other loses one (2n-1, monosomy). This is called aneuploidy and can cause serious developmental problems or cancer.';
+    $('chr-error-info').className = 'analysis-result ar-fail';
+  }
+
+  ctx.restore();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: GROWTH & REPAIR SCENARIOS
+// ══════════════════════════════════════════════════════════════════════════
+const GR_SCENARIOS = {
+  wound: { name: 'Wound Healing', color: '#16a34a', checkpoint: true, plateauGen: 8, desc: 'Cells divide rapidly at wound site, then slow as tissue heals. Growth factors signal when to stop. Checkpoints remain functional.' },
+  embryo: { name: 'Embryonic Dev.', color: '#2563eb', checkpoint: true, plateauGen: 12, desc: 'Rapid cell division during embryonic development. Cells divide quickly but checkpoints remain active. Cell cycle is shorter than in adult cells.' },
+  cancer: { name: 'Cancer', color: '#c41e3a', checkpoint: false, plateauGen: 999, desc: 'Uncontrolled cell division. Cell cycle checkpoints are disabled due to mutations (e.g., p53). Cells ignore signals to stop dividing.' }
+};
+
+let grScenario = 'wound';
+let grData = { populations: [], generations: 0 };
+
+function grSetScenario(scenario) {
+  grScenario = scenario;
+  // Update button styles
+  ['wound', 'embryo', 'cancer'].forEach(s => {
+    const btn = $('gr-btn-' + s);
+    if (btn) btn.className = s === scenario ? 'btn btn-primary' : 'btn btn-outline';
+  });
+  grReset();
+}
+
+function grUpdateRate() {
+  $('gr-rate-val').textContent = $('gr-rate').value + 'x';
+}
+
+function grReset() {
+  grData = { populations: [1], generations: 0 };
+  grUpdateUI();
+  drawGrPopChart();
+  drawGrCheckpointVis();
+  drawGrCompareChart();
+}
+
+function grRun() {
+  const rate = parseInt($('gr-rate').value);
+  const sc = GR_SCENARIOS[grScenario];
+
+  for (let step = 0; step < rate * 3; step++) {
+    const gen = grData.generations;
+    const lastPop = grData.populations[grData.populations.length - 1];
+
+    if (sc.checkpoint && gen >= sc.plateauGen) {
+      // Checkpoint active, reached plateau
+      grData.populations.push(lastPop);
+    } else {
+      // Exponential growth with some stochasticity
+      const growthRate = grScenario === 'cancer' ? 2.0 : (grScenario === 'embryo' ? 1.9 : 1.7);
+      const noise = 0.9 + Math.random() * 0.2;
+      const newPop = Math.round(lastPop * growthRate * noise);
+      grData.populations.push(Math.min(newPop, 100000));
+    }
+    grData.generations++;
+  }
+
+  grUpdateUI();
+  drawGrPopChart();
+  drawGrCheckpointVis();
+  drawGrCompareChart();
+}
+
+function grUpdateUI() {
+  const sc = GR_SCENARIOS[grScenario];
+  $('gr-scenario-name').textContent = sc.name;
+  $('gr-scenario-name').style.fontSize = '14px';
+  $('gr-cells').textContent = grData.populations[grData.populations.length - 1].toLocaleString();
+  $('gr-generations').textContent = grData.generations;
+  $('gr-checkpoint').textContent = sc.checkpoint ? 'Active' : 'Disabled';
+  $('gr-checkpoint').style.color = sc.checkpoint ? 'var(--green)' : 'var(--accent)';
+}
+
+function drawGrPopChart() {
+  if (grData.populations.length < 2) {
+    const ctx = getCtx('gr-pop-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Click "Simulate Growth" to begin', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+  const ctx = getCtx('gr-pop-chart');
+  const maxPop = Math.max(...grData.populations);
+  const normalized = grData.populations.map(p => p / maxPop);
+  drawLineChart(ctx, [
+    { data: normalized, color: GR_SCENARIOS[grScenario].color, width: 2.5, dots: grData.populations.length < 50 }
+  ], { yMin: 0, yMax: 1.1 });
+
+  // Add axis labels
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + (H - pad.top - pad.bottom) * (1 - i/4);
+    ctx.fillText(Math.round(maxPop * i / 4).toLocaleString(), pad.left - 6, y + 4);
+  }
+}
+
+function drawGrCheckpointVis() {
+  const ctx = getCtx('gr-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Simulate both normal and cancer growth for comparison
+  const maxGen = 20;
+  const normalPops = [1], cancerPops = [1];
+
+  for (let g = 0; g < maxGen; g++) {
+    const normalLast = normalPops[normalPops.length - 1];
+    const cancerLast = cancerPops[cancerPops.length - 1];
+
+    // Normal: grows then plateaus around gen 8
+    if (g < 8) {
+      normalPops.push(Math.round(normalLast * 1.8));
+    } else {
+      normalPops.push(normalLast + Math.round(Math.random() * 5 - 2));
+    }
+
+    // Cancer: keeps growing exponentially
+    cancerPops.push(Math.round(cancerLast * 1.9));
+  }
+
+  const maxVal = Math.max(...cancerPops, ...normalPops);
+  const pad = { top: 30, right: 20, bottom: 40, left: 60 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxVal * i / 4).toLocaleString(), pad.left - 6, y + 4);
+  }
+
+  // Checkpoint zone
+  const cpX = pad.left + (8 / maxGen) * plotW;
+  ctx.fillStyle = 'rgba(22,163,74,0.06)';
+  ctx.fillRect(cpX, pad.top, plotW - (cpX - pad.left), plotH);
+  ctx.fillStyle = '#16a34a'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Checkpoint zone', cpX + 4, pad.top + 14);
+
+  // Normal growth line
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  normalPops.forEach((p, i) => {
+    const x = pad.left + (i / maxGen) * plotW;
+    const y = pad.top + plotH * (1 - p / maxVal);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Cancer growth line
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  cancerPops.forEach((p, i) => {
+    const x = pad.left + (i / maxGen) * plotW;
+    const y = pad.top + plotH * (1 - p / maxVal);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // X axis labels
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  for (let g = 0; g <= maxGen; g += 5) {
+    ctx.fillText(g, pad.left + (g / maxGen) * plotW, H - pad.bottom + 18);
+  }
+  ctx.fillText('Generations', pad.left + plotW / 2, H - 4);
+
+  // Legend
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left, 8, 14, 4);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Normal (checkpoints)', pad.left + 20, 14);
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 160, 8, 14, 4);
+  ctx.fillStyle = '#374151'; ctx.fillText('Cancer (no checkpoints)', pad.left + 180, 14);
+}
+
+function drawGrCompareChart() {
+  const ctx = getCtx('gr-compare-chart');
+  // Mitotic index comparison across tissues/scenarios
+  const labels = ['Root Tip', 'Bone Marrow', 'Skin', 'Embryo', 'Liver (adult)', 'Muscle', 'Cancer'];
+  const values = [22, 35, 12, 40, 2, 0.5, 65];
+  const colors = ['#16a34a', '#2563eb', '#d97706', '#7c3aed', '#6b7280', '#9ca3af', '#c41e3a'];
+
+  drawBarChart(ctx, {
+    labels: labels,
+    values: values,
+    colors: colors,
+    maxVal: 80
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR NAVIGATION HIGHLIGHTING
+// ══════════════════════════════════════════════════════════════════════════
+function setupNavHighlighting() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -80% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ══════════════════════════════════════════════════════════════════════════
+function init() {
+  // Part 1: Phase Visualizer
+  drawPhaseVisualizer();
+
+  // Part 2: Mitotic Index
+  miGenerateCells('root');
+  miDraw();
+  miDrawDistribution();
+  $('mi-canvas').addEventListener('click', miHandleClick);
+
+  // Part 3: Cell Cycle Clock
+  clockUpdate();
+  $('clock-canvas').addEventListener('click', clockHandleClick);
+
+  // Part 4: Plant vs Animal
+  drawPlantAnimal();
+
+  // Part 5: Chromosome Tracker
+  drawChromosomeTracker();
+  chrShowError('normal');
+
+  // Part 6: Growth & Repair
+  grReset();
+  drawGrCheckpointVis();
+  drawGrCompareChart();
+
+  // Nav
+  setupNavHighlighting();
+
+  // Redraw on resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      drawPhaseVisualizer();
+      miDraw();
+      miDrawDistribution();
+      clockUpdate();
+      drawPlantAnimal();
+      drawChromosomeTracker();
+      drawGrCheckpointVis();
+      drawGrCompareChart();
+    }, 200);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
