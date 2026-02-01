@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2: Probability and Statistics</title>
+    <style>
+
+/* Lab Manual Worksheet Styles - Black/White/Gray with Red Accents */
+@page {
+    size: letter;
+    margin: 0.75in;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5em;
+    border-bottom: 3px solid #c41e3a;
+    padding-bottom: 0.3em;
+    color: #1a1a1a;
+}
+
+h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #c41e3a;
+    border-left: 4px solid #c41e3a;
+    padding-left: 0.5em;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+    color: #333333;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 1.5em 0;
+}
+
+/* Lab Header Info */
+.lab-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border: 1px solid #333333;
+    background-color: #f5f5f5;
+}
+
+.lab-header-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+.lab-header-label {
+    font-weight: bold;
+    white-space: nowrap;
+    color: #1a1a1a;
+}
+
+.lab-header-value {
+    flex: 1;
+    border-bottom: 1px solid #333333;
+    min-height: 1.5em;
+}
+
+/* Data Tables */
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.lab-table th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #1a1a1a;
+}
+
+.lab-table td {
+    padding: 8px 12px;
+    border: 1px solid #333333;
+    min-height: 2em;
+    vertical-align: top;
+}
+
+.lab-table td.fillable {
+    background-color: #fafafa;
+    min-height: 2.5em;
+}
+
+.lab-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+/* Fillable Fields */
+.fill-text {
+    display: inline-block;
+    min-width: 200px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+}
+
+.fill-number {
+    display: inline-block;
+    min-width: 60px;
+    max-width: 100px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+/* Inline tables inside reflection/calculation boxes */
+.reflection-box table,
+.calculation-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+.reflection-box th,
+.calculation-box th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 6px 10px;
+    border: 1px solid #1a1a1a;
+}
+
+.reflection-box td,
+.calculation-box td {
+    padding: 6px 10px;
+    border: 1px solid #333333;
+    vertical-align: top;
+}
+
+.reflection-box tr:nth-child(even),
+.calculation-box tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.fill-textarea {
+    display: block;
+    width: 100%;
+    min-height: 3em;
+    border: 1px solid #333333;
+    padding: 8px;
+    margin: 0.5em 0;
+    background-color: #fafafa;
+}
+
+.fill-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    margin: 0.3em 0;
+}
+
+.fill-checkbox input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    accent-color: #c41e3a;
+}
+
+/* Measurement Table */
+.measurement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.measurement-table th {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 12px;
+    border: 1px solid #000000;
+}
+
+.measurement-table td {
+    padding: 12px;
+    border: 1px solid #333333;
+    text-align: center;
+}
+
+.measurement-table td.fillable {
+    background-color: #fafafa;
+    min-height: 3em;
+}
+
+.measurement-table .row-number {
+    width: 40px;
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Object Selection Section */
+.object-selection {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-left: 5px solid #c41e3a;
+}
+
+.object-selection h3 {
+    margin-top: 0;
+    color: #1a1a1a;
+}
+
+.object-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    margin: 1em 0;
+}
+
+.object-label {
+    font-weight: bold;
+    min-width: 150px;
+    color: #333333;
+}
+
+.object-input {
+    flex: 1;
+    border-bottom: 2px solid #333333;
+    min-height: 1.5em;
+    background-color: #ffffff;
+    padding: 4px;
+}
+
+/* Feasibility Section */
+.feasibility-section {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.feasibility-question {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #1a1a1a;
+}
+
+.feasibility-options {
+    margin-left: 1em;
+}
+
+/* Calculation Box */
+.calculation-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #999999;
+    border-left: 4px solid #2563eb;
+    background-color: #f8fafc;
+    min-height: 60px;
+}
+
+.calculation-box code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e8e8e8;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.calculation-box pre {
+    background-color: #f0f0f0;
+    padding: 0.75em;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    overflow-x: auto;
+}
+
+/* Reflection Box */
+.reflection-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #666666;
+    border-left: 4px solid #c41e3a;
+    background-color: #fafafa;
+    min-height: 100px;
+}
+
+/* Blockquotes (Learning Goals) */
+blockquote {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid #c41e3a;
+    background-color: #f9f9f9;
+    font-style: italic;
+    color: #333333;
+}
+
+blockquote strong {
+    color: #c41e3a;
+}
+
+/* Strong emphasis */
+strong {
+    color: #1a1a1a;
+}
+
+/* Emphasis within reflection */
+em {
+    color: #555555;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5em;
+}
+
+li {
+    margin: 0.3em 0;
+}
+
+/* Summary table */
+.summary-table th {
+    background-color: #c41e3a;
+    color: #ffffff;
+}
+
+/* Print Styles */
+@media print {
+    .lab-table td.fillable,
+    .fill-text,
+    .fill-textarea,
+    .object-input {
+        background-color: white !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .lab-table, .measurement-table {
+        page-break-inside: avoid;
+    }
+    
+    blockquote {
+        background-color: white !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="lab-manual">
+        <h1>Lab 2: Probability and Statistics</h1>
+<p style="text-align: center; font-style: italic;">BIOL-1</p>
+<div class="lab-header">
+<div class="lab-header-field">
+<span class="lab-header-label">Name:</span>
+<span class="lab-header-value"></span>
+</div>
+<div class="lab-header-field">
+<span class="lab-header-label">Date:</span>
+<span class="lab-header-value"></span>
+</div>
+</div>
+<h2>Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Define probability and distinguish theoretical from experimental probability</li>
+<li>Conduct random trials and record data systematically</li>
+<li>Calculate simple probabilities from observed frequencies</li>
+<li>Combine independent events and determine combined probabilities</li>
+<li>Explain the Law of Large Numbers using pooled class data</li>
+<li>Use probability to make predictions about future outcomes</li>
+<li>Recognize that probability governs biological inheritance</li>
+</ul>
+<h2>Why This Lab Matters in Biology</h2>
+<p>Biology is built on patterns — from molecular structures to ecosystems. But biological systems also show variation. Probability gives scientists the tools to distinguish real patterns from random noise, making it essential for studying how life is organized, how we gather evidence about living systems, and how evolution produces both variation and order.</p>
+<p>The probability skills you practice today connect to three core ideas in introductory biology:</p>
+<ul>
+<li><strong>Biological systems are organized.</strong> The rules of inheritance — alleles, dominance, probability ratios — are not random chaos. They form an organized system that produces predictable patterns at the population level, even though individual outcomes vary.</li>
+<li><strong>We use science to study biology.</strong> Collecting data, comparing observations to predictions, and pooling results for larger sample sizes — these are the methods scientists use to study living systems. You will practice all of them today.</li>
+<li><strong>Evolution is the unifying theme of biology.</strong> The variation that probability produces in each generation of offspring is the raw material for natural selection. Without probability-driven variation, evolution could not work.</li>
+</ul>
+<h2>Lab Roadmap</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Skill</th>
+<th>What You Will Learn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Equipment Preparation</td>
+<td>Building and using paper-based randomizers</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Two-Outcome Probability</td>
+<td>Random events with equally likely outcomes</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Multi-Outcome Probability</td>
+<td>Expanding the sample space to six outcomes</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Theoretical vs. Experimental</td>
+<td>Comparing calculated and observed probabilities</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Combined Events</td>
+<td>Multiplying probabilities for independent events</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Law of Large Numbers</td>
+<td>Why larger samples give more reliable results</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Prediction</td>
+<td>Using probability to forecast future outcomes</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Biology Connection</td>
+<td>How probability governs genetic inheritance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Idea:</strong> Living systems are organized at every level, yet they also exhibit variation. Probability is the mathematical tool scientists use to study that interplay — distinguishing real patterns from noise, designing experiments with adequate sample sizes, and making predictions from data. The probabilistic variation you will model in genetic crosses is the very raw material that natural selection acts on.</p>
+<hr />
+<h2>Part 0: Preparing Your Equipment</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Prepare the paper-based randomizers you will use throughout this lab.</p>
+</blockquote>
+<p>Your equipment is printed on the <strong>Equipment Page</strong> at the end of this lab. Before you begin:</p>
+<ol>
+<li><strong>Locate</strong> the Equipment Page (last page).</li>
+<li><strong>Tear apart</strong> the six numbered die squares along the dashed lines.</li>
+<li><strong>Tear apart</strong> the two coin squares (H and T) along the dashed lines.</li>
+<li><strong>Leave</strong> the four Gene Cards (A, A, a, a) attached for now — you will tear those apart in Part 7.</li>
+<li><strong>Fold</strong> each piece in half so the number or letter is hidden.</li>
+<li><strong>Practice:</strong> Place all six die pieces face-down, mix them around, draw one, record the number, return it, and mix again. Do this three times to get comfortable with the process.</li>
+</ol>
+<p><strong>Important:</strong> Always return the drawn piece and mix thoroughly before the next draw. This ensures each draw is random and independent.</p>
+<hr />
+<h2>Part 1: Coin Flips — Two Outcomes</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Understand random events with two equally likely outcomes.</p>
+</blockquote>
+<p>Using your two paper coin pieces (H and T), you will conduct 20 random draws.</p>
+<p><strong>Procedure:</strong> Place both pieces face-down. Mix them. Draw one. Record the result (H or T) in the grid below. Return it. Mix again. Repeat for all 20 draws.</p>
+<p><strong>Recording Grid</strong> — Write H or T in each cell. Fill left to right, then move to the next row. Each row = 5 draws.</p>
+<table class="lab-table">
+<thead>
+<tr><th>Draws</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>1–5</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+<tr><td><strong>6–10</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+<tr><td><strong>11–15</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+<tr><td><strong>16–20</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+</tbody>
+</table>
+
+<p><strong>Calculate:</strong></p>
+<p>Total Heads: <input type="text" class="fill-text" /> out of 20 | Total Tails: <input type="text" class="fill-text" /> out of 20</p>
+<p>Proportion of Heads: <input type="text" class="fill-text" /> (Total Heads / 20) | Proportion of Tails: <input type="text" class="fill-text" /> (Total Tails / 20)</p>
+<div class="reflection-box">
+<p><strong>Did you get exactly 10 Heads and 10 Tails? If not, does this mean the coin is unfair? Explain why your results might differ from a perfect 50/50 split.</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<p><strong>Key Concept:</strong> When two outcomes are equally likely, the <em>expected</em> (theoretical) probability of each is 1/2. Small samples often deviate from this expectation due to random variation.</p>
+<hr />
+<h2>Part 2: Die Draws — Six Outcomes</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Explore probability with a larger sample space.</p>
+</blockquote>
+<p>Using your six paper die pieces (numbered 1–6), you will conduct 30 random draws. Follow the same draw-return-mix method from Part 1.</p>
+<p><strong>Recording Grid</strong> — Write the number you drew (1–6) in each cell. Fill left to right, then move to the next row. Each row = 6 draws.</p>
+<table class="lab-table">
+<thead>
+<tr><th>Draws</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>6th</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>1–6</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+<tr><td><strong>7–12</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+<tr><td><strong>13–18</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+<tr><td><strong>19–24</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+<tr><td><strong>25–30</strong></td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td><td class="fillable">&nbsp;</td></tr>
+</tbody>
+</table>
+
+<p>Now tally your results in the frequency table:</p>
+<h3>Die Draw Frequency</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Outcome</th>
+<th>Tally Marks</th>
+<th>Observed Frequency</th>
+<th>Expected Frequency</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>Hint: The expected frequency for each outcome is 30 draws / 6 outcomes = 5.</em></p>
+<p><strong>Calculate:</strong></p>
+<p>Which number appeared most often? <input type="text" class="fill-text" /> | How many times? <input type="text" class="fill-text" /></p>
+<p>Which number appeared least often? <input type="text" class="fill-text" /> | How many times? <input type="text" class="fill-text" /></p>
+<div class="reflection-box">
+<p><strong>Is it surprising that some numbers appeared more often than others, even though all six are equally likely? What do you think would happen if you did 300 draws instead of 30?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<p><strong>Key Concept:</strong> With six equally likely outcomes, the theoretical probability of each is 1/6. With only 30 trials, variation from the expected frequency of 5 is normal.</p>
+<hr />
+<h2>Part 3: Theoretical vs. Experimental Probability</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Distinguish between what <em>should</em> happen and what <em>did</em> happen.</p>
+</blockquote>
+<p><strong>Theoretical probability</strong> is calculated from the structure of the situation:</p>
+<blockquote>
+<p>Theoretical Probability = Favorable Outcomes / Total Possible Outcomes</p>
+</blockquote>
+<p><strong>Experimental probability</strong> is calculated from actual data you collected:</p>
+<blockquote>
+<p>Experimental Probability = Times It Occurred / Total Trials</p>
+</blockquote>
+<p><strong>Fill in the theoretical probabilities:</strong></p>
+<p>P(Heads) = <input type="text" class="fill-text" /> / <input type="text" class="fill-text" /> = <input type="text" class="fill-text" /></p>
+<p>P(Rolling a 3) = <input type="text" class="fill-text" /> / <input type="text" class="fill-text" /> = <input type="text" class="fill-text" /></p>
+<p>P(Rolling an even number) = <input type="text" class="fill-text" /> / <input type="text" class="fill-text" /> = <input type="text" class="fill-text" /></p>
+<p><strong>Now compare to your experimental results:</strong></p>
+<p>Your experimental P(Heads) = <input type="text" class="fill-text" /> (from Part 1: Total Heads / 20)</p>
+<p>Your experimental P(Rolling a 3) = <input type="text" class="fill-text" /> (from Part 2: Frequency of 3 / 30)</p>
+<p>Your experimental P(Rolling even) = <input type="text" class="fill-text" /> (from Part 2: [Frequency of 2 + 4 + 6] / 30)</p>
+<div class="reflection-box">
+<p><strong>How close were your experimental probabilities to the theoretical values? Why don't experimental results perfectly match theoretical predictions?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<p><strong>Key Concept:</strong> Variation between theoretical and experimental probability is normal. The more trials you conduct, the closer experimental results tend to get to the theoretical values.</p>
+<hr />
+<h2>Part 4: Combined Events</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Understand how combining random events creates larger sample spaces.</p>
+</blockquote>
+<p>When you draw from the coin AND the die at the same time, the outcomes combine. The complete <strong>sample space</strong> (all possible outcomes) is:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H</strong></td>
+<td>H1</td>
+<td>H2</td>
+<td>H3</td>
+<td>H4</td>
+<td>H5</td>
+<td>H6</td>
+</tr>
+<tr>
+<td><strong>T</strong></td>
+<td>T1</td>
+<td>T2</td>
+<td>T3</td>
+<td>T4</td>
+<td>T5</td>
+<td>T6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total possible outcomes:</strong> <input type="text" class="fill-text" /></p>
+<p>Conduct <strong>12 trials</strong> drawing from both the coin and die simultaneously. Mix each group, draw one from each, record the combination, return both pieces, and mix again.</p>
+<h3>Combined Event Trials</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Trial</th>
+<th>Coin</th>
+<th>Die</th>
+<th>Combination</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">7</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">8</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">9</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">10</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">11</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">12</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculate:</strong></p>
+<p>How many times did you get H and an even number (H2, H4, or H6)? <input type="text" class="fill-text" /></p>
+<p>Your experimental P(H and even) = <input type="text" class="fill-text" /> / 12 = <input type="text" class="fill-text" /></p>
+<p>How many times did you get T and 1 (T1)? <input type="text" class="fill-text" /></p>
+<p>Your experimental P(T and 1) = <input type="text" class="fill-text" /> / 12 = <input type="text" class="fill-text" /></p>
+<p><strong>Theoretical calculations for independent events:</strong></p>
+<p>P(H and even) = P(H) x P(even) = 1/2 x 3/6 = <input type="text" class="fill-text" /></p>
+<p>P(T and 1) = P(T) x P(1) = 1/2 x 1/6 = <input type="text" class="fill-text" /></p>
+<div class="reflection-box">
+<p><strong>How do your experimental results compare to the theoretical combined probabilities? Why is the combined probability always smaller than either individual probability?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<p><strong>Key Concept:</strong> For independent events, the combined probability equals P(A) x P(B). Combining events always creates a larger sample space, making any specific combination less likely.</p>
+<hr />
+<h2>Part 5: The Law of Large Numbers</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Discover that larger samples produce more stable results.</p>
+</blockquote>
+<p>In Part 1, you each flipped a coin 20 times. Now pool your data with the class by lab group.</p>
+<h3>Class Coin Flip Data</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Lab Group</th>
+<th># Heads</th>
+<th># Tails</th>
+<th>% Heads</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Class Totals:</strong></p>
+<p>Total Heads (all groups combined): <input type="text" class="fill-text" /></p>
+<p>Total Tails (all groups combined): <input type="text" class="fill-text" /></p>
+<p>Total Flips (all groups combined): <input type="text" class="fill-text" /></p>
+<p>Class % Heads: <input type="text" class="fill-text" /></p>
+<p><strong>Compare:</strong></p>
+<p>Your group's % Heads (from Part 1): <input type="text" class="fill-text" /> | Class % Heads: <input type="text" class="fill-text" /></p>
+<p>Which is closer to 50%? <input type="text" class="fill-text" /></p>
+<div class="reflection-box">
+<p><strong>Why does the class total tend to be closer to 50% than any single group's result? What does this tell you about the importance of sample size in science?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<p><strong>Key Concept:</strong> The <strong>Law of Large Numbers</strong> states that as the number of trials increases, the experimental probability converges toward the theoretical probability. This is why scientists seek large sample sizes.</p>
+<hr />
+<h2>Part 6: Probability and Prediction</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Use probability to make predictions about future events.</p>
+</blockquote>
+<p>Probability allows us to make <em>predictions</em> — educated estimates about what will likely happen. Predictions are not guarantees.</p>
+<p><strong>Using your die data from Part 2:</strong></p>
+<p>If you drew 60 more times, how many 3's would you expect? <input type="text" class="fill-text" /></p>
+<p>Show your calculation: <input type="text" class="fill-text" /></p>
+<p><strong>Using the class coin data from Part 5:</strong></p>
+<p>If all groups combined flipped 1000 more times, how many Heads would you expect? <input type="text" class="fill-text" /></p>
+<p>Show your calculation: <input type="text" class="fill-text" /></p>
+<div class="reflection-box">
+<p><strong>What is the difference between a prediction and a guarantee? If you predicted 10 Heads in 20 flips but got 7, was your prediction wrong? Explain.</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<p><strong>Key Concept:</strong> Probability enables informed prediction, not certainty. A prediction based on probability tells you the <em>most likely</em> outcome, but individual results will vary.</p>
+<hr />
+<h2>Part 7: Probability in the Living World</h2>
+<blockquote>
+<p><strong>Learning Goal:</strong> Recognize that probability governs biological outcomes like genetic inheritance.</p>
+</blockquote>
+<p>Now tear apart the four <strong>Gene Cards</strong> from the Equipment Page: two labeled <strong>A</strong> (dominant allele) and two labeled <strong>a</strong> (recessive allele).</p>
+<p><strong>Background:</strong> Every organism inherits two copies of each gene — one from each parent. If both parents carry one dominant allele (A) and one recessive allele (a), their genotype is <strong>Aa</strong>. When they reproduce, each parent randomly passes one of their two alleles to the offspring. This is the same kind of random draw you have practiced throughout this lab — and it follows the same probability rules.</p>
+<p><strong>Simulation:</strong> You will model a genetic cross between two Aa parents. Separate the cards into two pairs: Parent 1 (one A, one a) and Parent 2 (one A, one a). Use the same draw-return-mix method: fold, mix, draw one from each parent, record the result, return all cards, and repeat.</p>
+<h3>Genetic Cross Simulation (Aa x Aa)</h3>
+<table class="lab-table">
+<thead><tr>
+<th class="row-number">#</th>
+<th>Trial</th>
+<th>Parent 1 Allele</th>
+<th>Parent 2 Allele</th>
+<th>Offspring Genotype</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="row-number">1</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">2</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">3</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">4</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">5</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">6</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">7</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">8</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">9</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">10</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">11</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+<tr>
+<td class="row-number">12</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+<td class="fillable">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Tally your results:</strong></p>
+<p>AA (homozygous dominant): <input type="text" class="fill-text" /> | Aa or aA (heterozygous): <input type="text" class="fill-text" /> | aa (homozygous recessive): <input type="text" class="fill-text" /></p>
+<p><strong>Expected ratio:</strong> 1 AA : 2 Aa : 1 aa (out of 12 trials, expect roughly 3 AA : 6 Aa : 3 aa)</p>
+<div class="reflection-box">
+<p><strong>How close were your results to the expected 1:2:1 ratio? Based on what you learned about probability and sample size in this lab, what would happen to the ratio if you ran 200 trials instead of 12?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<p><strong>Key Concept:</strong> Biological inheritance follows the same probability rules you practiced today. Each parent randomly passes one allele — just like a coin flip. Look back at the three biology connections at the beginning of this lab: your genetics simulation demonstrated all three — organized systems, the scientific method, and the variation that drives evolution.</p>
+<hr />
+<div style="page-break-before: always;"></div>
+
+<h2>Equipment Page — Tear Along Dashed Lines</h2>
+<p><strong>Instructions:</strong> Carefully tear apart each piece along the dashed border. Fold each piece in half so the number or letter is hidden. Place pieces face-down and mix before each draw.</p>
+<h3>Paper Die (6 pieces)</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0;">
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">1</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">2</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">3</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">4</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">5</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">6</div>
+</div>
+
+<h3>Paper Coin (2 pieces)</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0;">
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">H</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">T</div>
+</div>
+
+<h3>Gene Cards (4 pieces) — For Part 7</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0;">
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">A</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">A</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">a</div>
+<div style="border: 3px dashed #333; width: 1.4in; height: 1.4in; text-align: center; line-height: 1.4in; font-size: 36pt; font-weight: bold;">a</div>
+</div>
+    </div>
+    <script>
+
+// Lab Manual Interactive Functions
+
+// Auto-save form data to localStorage
+function saveLabData() {
+    const form = document.querySelector('.lab-manual');
+    const inputs = form.querySelectorAll('input, textarea');
+    const data = {};
+    inputs.forEach((input, idx) => {
+        const key = input.id || input.name || `field_${idx}`;
+        if (input.type === 'checkbox') {
+            data[key] = input.checked;
+        } else {
+            data[key] = input.value;
+        }
+    });
+    localStorage.setItem('labManualData_' + document.title, JSON.stringify(data));
+    showSaveNotification();
+}
+
+// Load saved form data
+function loadLabData() {
+    const saved = localStorage.getItem('labManualData_' + document.title);
+    if (saved) {
+        const data = JSON.parse(saved);
+        const form = document.querySelector('.lab-manual');
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach((input, idx) => {
+            const key = input.id || input.name || `field_${idx}`;
+            if (data[key] !== undefined) {
+                if (input.type === 'checkbox') {
+                    input.checked = data[key];
+                } else {
+                    input.value = data[key];
+                }
+            }
+        });
+    }
+}
+
+// Show save notification
+function showSaveNotification() {
+    let notification = document.getElementById('save-notification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'save-notification';
+        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #c41e3a; color: white; padding: 10px 20px; border-radius: 4px; opacity: 0; transition: opacity 0.3s;';
+        document.body.appendChild(notification);
+    }
+    notification.textContent = 'Progress saved!';
+    notification.style.opacity = '1';
+    setTimeout(() => { notification.style.opacity = '0'; }, 2000);
+}
+
+// Clear all data
+function clearLabData() {
+    if (confirm('Clear all entered data? This cannot be undone.')) {
+        localStorage.removeItem('labManualData_' + document.title);
+        location.reload();
+    }
+}
+
+// Print lab manual
+function printLabManual() {
+    window.print();
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadLabData();
+    
+    // Auto-save on input
+    const form = document.querySelector('.lab-manual');
+    if (form) {
+        form.addEventListener('input', () => {
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveLabData, 1000);
+        });
+    }
+});
+
+    </script>
+</body>
+</html>

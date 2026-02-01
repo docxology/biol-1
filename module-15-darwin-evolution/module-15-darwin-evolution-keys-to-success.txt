@@ -1,0 +1,32 @@
+Module 15: Darwin and Evolution
+Keys to Success & Study Guide
+
+Learning Objectives
+By the end of this module, you should be able to:
+
+Describe the key components of Darwin's theory of natural selection.
+Contrast homologous and analogous structures as evidence for evolution.
+Explain how fossil and molecular evidence supports common descent.
+Apply the concept of biological fitness to evolutionary scenarios.
+
+Key Terminology Checklist
+Define these terms in your own words to ensure mastery.
+
+[ ] Adaptation: A heritable trait that increases an organism's fitness in a specific environment.
+[ ] Biogeography: The study of the geographic distribution of species.
+[ ] Transitional Fossil: A fossil showing intermediate characteristics between ancestral and descendant groups.
+[ ] Convergent Evolution: Independent evolution of similar traits in unrelated species due to similar selective pressures.
+[ ] Industrial Melanism: The increase in dark-colored (melanic) morphs in polluted environments.
+
+Concept Check
+What is Evolution?
+   Question: What is the biological definition of evolution?
+   Key Answer: Change in allele frequencies in a population over time. Individuals do not evolve; populations evolve over generations.
+
+Natural Selection Requirements
+   Question: What conditions are required for natural selection?
+   Key Answer: (1) Heritable variation, (2) Overproduction of offspring, (3) Differential survival and reproduction based on traits.
+
+Evidence: Comparative Anatomy
+   Question: What are homologous structures?
+   Key Answer: Structures with similar underlying anatomy derived from a common ancestor, despite different functions (e.g., human arm, whale flipper, bat wing).
