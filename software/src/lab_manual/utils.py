@@ -167,6 +167,13 @@ def expand_fillable_fields(html: str) -> str:
         '<input type="text" class="fill-text" />',
         html
     )
+
+    # Replace {fill:number} with number input
+    html = re.sub(
+        r"\{fill:number\}",
+        '<input type="number" class="fill-number" />',
+        html
+    )
     
     # Replace {fill:textarea rows=N} with textarea
     def textarea_replacement(match: re.Match) -> str:

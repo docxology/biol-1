@@ -110,6 +110,12 @@ Examples:
         help="Skip website generation",
     )
 
+    parser.add_argument(
+        "--skip-labs",
+        action="store_true",
+        help="Skip lab manual rendering",
+    )
+
     return parser.parse_args()
 
 
@@ -144,6 +150,7 @@ def process_course_modules(
     course_name: str,
     module_filter: Optional[int] = None,
     generate_website: bool = True,
+    formats: Optional[List[str]] = None,
 ) -> dict:
     """Process all modules for a course.
 
@@ -152,6 +159,7 @@ def process_course_modules(
         course_name: Name of the course
         module_filter: If specified, only process this module number
         generate_website: Whether to generate HTML websites for modules
+        formats: Optional list of formats to generate (e.g. ["pdf", "html"])
 
     Returns:
         Dictionary with processing results
@@ -187,7 +195,7 @@ def process_course_modules(
         output_dir = module_dir / "output"
         module_start = time.time()
         try:
-            module_results = process_module_by_type(str(module_dir), str(output_dir))
+            module_results = process_module_by_type(str(module_dir), str(output_dir), formats=formats)
             module_duration = time.time() - module_start
             results["modules"].append({
                 "name": module_name,
@@ -229,12 +237,17 @@ def process_course_modules(
     return results
 
 
-def process_course_syllabus(course_path: Path, course_name: str) -> dict:
+def process_course_syllabus(
+    course_path: Path,
+    course_name: str,
+    formats: Optional[List[str]] = None,
+) -> dict:
     """Process syllabus for a course.
 
     Args:
         course_path: Path to course directory
         course_name: Name of the course
+        formats: Optional list of formats to generate (e.g. ["pdf", "html"])
 
     Returns:
         Dictionary with processing results
@@ -252,7 +265,7 @@ def process_course_syllabus(course_path: Path, course_name: str) -> dict:
     syllabus_start = time.time()
 
     try:
-        results = process_syllabus(str(syllabus_dir), str(output_dir))
+        results = process_syllabus(str(syllabus_dir), str(output_dir), formats=formats)
         syllabus_duration = time.time() - syllabus_start
         logger.info(f"Syllabus outputs generated in {syllabus_duration:.2f}s:")
         logger.info(f"  PDF: {results['summary']['pdf']}")
@@ -277,6 +290,75 @@ def process_course_syllabus(course_path: Path, course_name: str) -> dict:
         error_msg = f"Failed to process syllabus: {e}"
         logger.error(error_msg, exc_info=True)
         return {"processed": False, "errors": [error_msg]}
+
+
+def process_course_labs(
+    course_path: Path,
+    course_name: str,
+    formats: Optional[List[str]] = None,
+) -> dict:
+    """Process lab manuals for a course.
+
+    Args:
+        course_path: Path to course directory
+        course_name: Name of the course
+        formats: Optional list of formats to generate (supports "pdf", "html")
+
+    Returns:
+        Dictionary with processing results
+    """
+    labs_dir = course_path / "course" / "labs"
+    if not labs_dir.exists():
+        logger.warning(f"Labs directory not found: {labs_dir}")
+        return {"processed": False, "errors": []}
+
+    logger.info(f"{'='*60}")
+    logger.info(f"Processing {course_name} Labs")
+    logger.info(f"{'='*60}")
+
+    output_dir = labs_dir / "output"
+    lab_start = time.time()
+
+    results = {
+        "processed": True,
+        "files": [],
+        "errors": [],
+        "duration": 0.0,
+    }
+
+    # Lab rendering supports pdf and html formats
+    lab_formats = ["pdf", "html"]
+    if formats:
+        lab_formats = [f for f in formats if f in ("pdf", "html")]
+
+    if not lab_formats:
+        logger.info("No lab-compatible formats requested, skipping labs")
+        results["processed"] = False
+        return results
+
+    # Lazy import to avoid WeasyPrint load at module level
+    from src.lab_manual.main import batch_render_lab_manuals
+
+    for fmt in lab_formats:
+        try:
+            fmt_output = output_dir / fmt
+            rendered = batch_render_lab_manuals(
+                str(labs_dir),
+                str(fmt_output),
+                output_format=fmt,
+                course_name=course_name,
+            )
+            results["files"].extend(rendered)
+            logger.info(f"  {fmt.upper()}: {len(rendered)} lab files rendered")
+        except Exception as e:
+            error_msg = f"Lab {fmt} rendering failed: {e}"
+            logger.error(error_msg, exc_info=True)
+            results["errors"].append(error_msg)
+
+    results["duration"] = time.time() - lab_start
+    logger.info(f"Lab rendering completed in {results['duration']:.2f}s: {len(results['files'])} files")
+
+    return results
 
 
 def main() -> int:
@@ -309,6 +391,8 @@ def main() -> int:
         logger.info("Skipping output clearing")
     if args.no_website:
         logger.info("Website generation disabled")
+    if args.skip_labs:
+        logger.info("Lab rendering disabled")
 
     # Dry run mode - just show what would be processed
     if args.dry_run:
@@ -345,7 +429,15 @@ def main() -> int:
                 syllabus_files = list(syllabus_dir.glob("*.md"))
                 logger.info(f"  Syllabus: {len(syllabus_files)} files")
                 logger.info(f"    Would generate: {', '.join(formats)}")
-        
+
+            if not args.skip_labs:
+                labs_dir = course_path / "course" / "labs"
+                if labs_dir.exists():
+                    lab_files = list(labs_dir.glob("lab-*.md"))
+                    lab_formats = [f for f in formats if f in ("pdf", "html")]
+                    logger.info(f"  Labs: {len(lab_files)} files")
+                    logger.info(f"    Would generate: {', '.join(lab_formats) if lab_formats else 'none (no compatible formats)'}")
+
         logger.info("\nDry run complete. No files were generated.")
         return 0
 
@@ -382,10 +474,11 @@ def main() -> int:
 
         # Process modules (with optional module filter)
         module_results = process_course_modules(
-            course_path, 
+            course_path,
             course_name,
             module_filter=args.module,
             generate_website=not args.no_website,
+            formats=formats,
         )
         all_results["courses"].append({
             "name": course_name,
@@ -394,13 +487,21 @@ def main() -> int:
 
         # Process syllabus (only if not filtering by specific module)
         if not args.module:
-            syllabus_results = process_course_syllabus(course_path, course_name)
+            syllabus_results = process_course_syllabus(course_path, course_name, formats=formats)
             all_results["courses"][-1]["syllabus"] = syllabus_results
             all_results["total_errors"].extend(syllabus_results.get("errors", []))
             if syllabus_results.get("processed"):
                 all_results["total_files_generated"] += sum(
                     syllabus_results["results"]["summary"].values()
                 )
+
+        # Process labs (only if not filtering by specific module and not skipped)
+        if not args.module and not args.skip_labs:
+            lab_results = process_course_labs(course_path, course_name, formats=formats)
+            all_results["courses"][-1]["labs"] = lab_results
+            all_results["total_errors"].extend(lab_results.get("errors", []))
+            if lab_results.get("processed"):
+                all_results["total_files_generated"] += len(lab_results.get("files", []))
 
         # Collect errors and count files
         all_results["total_errors"].extend(module_results.get("errors", []))

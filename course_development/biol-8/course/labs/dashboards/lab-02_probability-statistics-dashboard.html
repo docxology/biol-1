@@ -561,6 +561,134 @@
             display: inline-block;
         }
 
+        .punnett-grid {
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+            gap: 2px;
+            max-width: 360px;
+            margin: 12px 0;
+        }
+
+        .punnett-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 18px;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 4px;
+        }
+
+        .punnett-header {
+            background: #333333;
+            color: #ffffff;
+            font-size: 13px;
+        }
+
+        .punnett-corner {
+            background: transparent;
+        }
+
+        .punnett-AA {
+            background: #7c3aed;
+            color: #ffffff;
+        }
+
+        .punnett-Aa {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .punnett-aa {
+            background: #d97706;
+            color: #ffffff;
+        }
+
+        .punnett-result {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        .punnett-result strong {
+            color: var(--text);
+        }
+
+        .combo-grid {
+            display: grid;
+            grid-template-columns: auto repeat(6, 1fr);
+            gap: 2px;
+            max-width: 480px;
+            margin: 12px 0;
+        }
+
+        .combo-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 3px;
+            min-width: 42px;
+            min-height: 42px;
+        }
+
+        .combo-header {
+            background: #333333;
+            color: #ffffff;
+            font-size: 12px;
+        }
+
+        .combo-corner {
+            background: transparent;
+        }
+
+        .combo-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+
+        .formula-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+
+        .formula-table th {
+            background: #333333;
+            color: #ffffff;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .formula-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .formula-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .formula-table td:first-child {
+            font-family: var(--mono);
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .formula-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 display: none;
@@ -588,6 +716,7 @@
                 <a href="#part3"><span class="nav-num">3</span> Die Rolling</a>
                 <a href="#part4"><span class="nav-num">4</span> Two Dice</a>
                 <a href="#part5"><span class="nav-num">5</span> Biology Application</a>
+                <a href="#part6"><span class="nav-num">6</span> Key Formulas</a>
             </nav>
             <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
         </aside>
@@ -601,6 +730,8 @@
                     <span class="bio-tag">Probability</span>
                     <span class="bio-tag">Statistics</span>
                     <span class="bio-tag">Sample Size</span>
+                    <span class="bio-tag">Genetics</span>
+                    <span class="bio-tag">Formulas</span>
                 </div>
             </div>
 
@@ -821,6 +952,62 @@
                     </div>
                 </div>
                 <div class="card">
+                    <div class="card-title">All Possible Outcomes (6 x 6 = 36)</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Each cell shows the sum of the two dice. Color intensity reflects how many ways each sum can be made.</p>
+                    <div class="combo-grid" id="dice-combo-grid">
+                        <div class="combo-cell combo-corner"></div>
+                        <div class="combo-cell combo-header">1</div>
+                        <div class="combo-cell combo-header">2</div>
+                        <div class="combo-cell combo-header">3</div>
+                        <div class="combo-cell combo-header">4</div>
+                        <div class="combo-cell combo-header">5</div>
+                        <div class="combo-cell combo-header">6</div>
+                        <div class="combo-cell combo-header">1</div>
+                        <div class="combo-cell" data-sum="2">2</div>
+                        <div class="combo-cell" data-sum="3">3</div>
+                        <div class="combo-cell" data-sum="4">4</div>
+                        <div class="combo-cell" data-sum="5">5</div>
+                        <div class="combo-cell" data-sum="6">6</div>
+                        <div class="combo-cell" data-sum="7">7</div>
+                        <div class="combo-cell combo-header">2</div>
+                        <div class="combo-cell" data-sum="3">3</div>
+                        <div class="combo-cell" data-sum="4">4</div>
+                        <div class="combo-cell" data-sum="5">5</div>
+                        <div class="combo-cell" data-sum="6">6</div>
+                        <div class="combo-cell" data-sum="7">7</div>
+                        <div class="combo-cell" data-sum="8">8</div>
+                        <div class="combo-cell combo-header">3</div>
+                        <div class="combo-cell" data-sum="4">4</div>
+                        <div class="combo-cell" data-sum="5">5</div>
+                        <div class="combo-cell" data-sum="6">6</div>
+                        <div class="combo-cell" data-sum="7">7</div>
+                        <div class="combo-cell" data-sum="8">8</div>
+                        <div class="combo-cell" data-sum="9">9</div>
+                        <div class="combo-cell combo-header">4</div>
+                        <div class="combo-cell" data-sum="5">5</div>
+                        <div class="combo-cell" data-sum="6">6</div>
+                        <div class="combo-cell" data-sum="7">7</div>
+                        <div class="combo-cell" data-sum="8">8</div>
+                        <div class="combo-cell" data-sum="9">9</div>
+                        <div class="combo-cell" data-sum="10">10</div>
+                        <div class="combo-cell combo-header">5</div>
+                        <div class="combo-cell" data-sum="6">6</div>
+                        <div class="combo-cell" data-sum="7">7</div>
+                        <div class="combo-cell" data-sum="8">8</div>
+                        <div class="combo-cell" data-sum="9">9</div>
+                        <div class="combo-cell" data-sum="10">10</div>
+                        <div class="combo-cell" data-sum="11">11</div>
+                        <div class="combo-cell combo-header">6</div>
+                        <div class="combo-cell" data-sum="7">7</div>
+                        <div class="combo-cell" data-sum="8">8</div>
+                        <div class="combo-cell" data-sum="9">9</div>
+                        <div class="combo-cell" data-sum="10">10</div>
+                        <div class="combo-cell" data-sum="11">11</div>
+                        <div class="combo-cell" data-sum="12">12</div>
+                    </div>
+                    <div class="combo-note">All 36 possible outcomes when rolling two dice. Notice that 7 appears on the diagonal &mdash; 6 times!</div>
+                </div>
+                <div class="card">
                     <div class="card-title">Sum Distribution (2-12)</div>
                     <div class="chart-wrap"><canvas id="dice-sum-chart" height="300"></canvas></div>
                     <div class="convergence-info">
@@ -842,8 +1029,8 @@
                 </div>
                 <div class="card">
                     <div class="card-title">Genetic Cross Simulator (Monohybrid)</div>
-                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Simulate a Bb × Bb cross. Each
-                        parent contributes one allele randomly. Expected ratio: 25% BB, 50% Bb, 25% bb (3:1 phenotype
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Simulate an Aa × Aa cross. Each
+                        parent contributes one allele randomly. Expected ratio: 25% AA, 50% Aa, 25% aa (3:1 phenotype
                         ratio).</p>
                     <div class="btn-group">
                         <button class="btn btn-primary" onclick="runGeneticCross(1)">Cross 1</button>
@@ -857,16 +1044,16 @@
                             <div class="stat-label">Total Offspring</div>
                         </div>
                         <div class="stat-box stat-purple">
-                            <div class="stat-val" id="gen-BB">0</div>
-                            <div class="stat-label">BB (25%)</div>
+                            <div class="stat-val" id="gen-AA">0</div>
+                            <div class="stat-label" style="text-transform:none;">AA (25%)</div>
                         </div>
                         <div class="stat-box stat-blue">
-                            <div class="stat-val" id="gen-Bb">0</div>
-                            <div class="stat-label">Bb (50%)</div>
+                            <div class="stat-val" id="gen-Aa">0</div>
+                            <div class="stat-label" style="text-transform:none;">Aa (50%)</div>
                         </div>
                         <div class="stat-box stat-amber">
-                            <div class="stat-val" id="gen-bb">0</div>
-                            <div class="stat-label">bb (25%)</div>
+                            <div class="stat-val" id="gen-aa">0</div>
+                            <div class="stat-label" style="text-transform:none;">aa (25%)</div>
                         </div>
                     </div>
                     <div class="stat-grid">
@@ -885,12 +1072,74 @@
                     </div>
                 </div>
                 <div class="card">
+                    <div class="card-title">Punnett Square: Aa x Aa Cross</div>
+                    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">A Punnett square shows all possible offspring genotypes from a monohybrid cross.</p>
+                    <div class="punnett-grid">
+                        <div class="punnett-cell punnett-corner"></div>
+                        <div class="punnett-cell punnett-header">Parent 1: A</div>
+                        <div class="punnett-cell punnett-header">Parent 1: a</div>
+                        <div class="punnett-cell punnett-header">Parent 2: A</div>
+                        <div class="punnett-cell punnett-AA">AA</div>
+                        <div class="punnett-cell punnett-Aa">Aa</div>
+                        <div class="punnett-cell punnett-header">Parent 2: a</div>
+                        <div class="punnett-cell punnett-Aa">Aa</div>
+                        <div class="punnett-cell punnett-aa">aa</div>
+                    </div>
+                    <div class="punnett-result">
+                        <strong>Results:</strong> 1 AA : 2 Aa : 1 aa &rarr; Phenotype ratio 3:1 (dominant:recessive)
+                    </div>
+                </div>
+                <div class="card">
                     <div class="card-title">Genotype Distribution</div>
                     <div class="chart-wrap"><canvas id="genetic-chart" height="280"></canvas></div>
                     <div class="analysis-result ar-info" id="genetic-analysis">
                         <div class="ar-title">Mendelian Genetics</div>
-                        <p>In a Bb × Bb cross, probability works like coin flips: each parent "flips" to decide which
+                        <p>In an Aa × Aa cross, probability works like coin flips: each parent "flips" to decide which
                             allele to pass. This produces the classic 1:2:1 genotype ratio.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 6: KEY FORMULAS -->
+            <div class="section" id="part6">
+                <div class="section-header">
+                    <div class="section-num">6</div>
+                    <div>
+                        <div class="section-title">Key Formulas Reference</div>
+                        <div class="section-subtitle">Essential probability and statistics formulas from this lab</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Probability Formulas</div>
+                    <table class="formula-table">
+                        <thead>
+                            <tr>
+                                <th>Formula</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>P(event) = favorable / total</td>
+                                <td>Theoretical probability</td>
+                            </tr>
+                            <tr>
+                                <td>P(exp) = observed / trials</td>
+                                <td>Experimental probability</td>
+                            </tr>
+                            <tr>
+                                <td>Expected = P(event) &times; trials</td>
+                                <td>Predicted frequency</td>
+                            </tr>
+                            <tr>
+                                <td>Difference = Observed &minus; Expected</td>
+                                <td>Deviation from expected</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="analysis-result ar-info" style="margin-top:16px;">
+                        <div class="ar-title">Connection to Module 02</div>
+                        <p>This lab demonstrates the mathematical foundations underlying biological variation. The same probability rules that govern coin flips and dice also govern inheritance patterns, disease risk, and population genetics.</p>
                     </div>
                 </div>
             </div>
@@ -1166,39 +1415,56 @@
         }
 
         // GENETIC CROSS
-        let genData = { total: 0, BB: 0, Bb: 0, bb: 0 };
+        let genData = { total: 0, AA: 0, Aa: 0, aa: 0 };
 
         function runGeneticCross(n) {
             for (let i = 0; i < n; i++) {
-                const a1 = Math.random() < 0.5 ? 'B' : 'b';
-                const a2 = Math.random() < 0.5 ? 'B' : 'b';
-                const geno = [a1, a2].sort().reverse().join('');
+                const a1 = Math.random() < 0.5 ? 'A' : 'a';
+                const a2 = Math.random() < 0.5 ? 'A' : 'a';
+                const geno = [a1, a2].sort().join('');
                 genData.total++;
-                if (geno === 'BB') genData.BB++;
-                else if (geno === 'Bb') genData.Bb++;
-                else genData.bb++;
+                if (geno === 'AA') genData.AA++;
+                else if (geno === 'Aa') genData.Aa++;
+                else genData.aa++;
             }
             updateGeneticUI();
         }
 
         function resetGeneticCross() {
-            genData = { total: 0, BB: 0, Bb: 0, bb: 0 };
+            genData = { total: 0, AA: 0, Aa: 0, aa: 0 };
             updateGeneticUI();
         }
 
         function updateGeneticUI() {
             $('gen-total').textContent = genData.total;
-            $('gen-BB').textContent = genData.BB;
-            $('gen-Bb').textContent = genData.Bb;
-            $('gen-bb').textContent = genData.bb;
-            const dom = genData.BB + genData.Bb;
-            const rec = genData.bb;
+            $('gen-AA').textContent = genData.AA;
+            $('gen-Aa').textContent = genData.Aa;
+            $('gen-aa').textContent = genData.aa;
+            const dom = genData.AA + genData.Aa;
+            const rec = genData.aa;
             $('gen-dom').textContent = dom;
             $('gen-rec').textContent = rec;
             $('gen-ratio').textContent = rec > 0 ? (dom / rec).toFixed(2) + ':1' : '-';
             const ctx = getCtx('genetic-chart');
             const expected = genData.total ? [genData.total * 0.25, genData.total * 0.5, genData.total * 0.25] : null;
-            drawBarChart(ctx, { labels: ['BB', 'Bb', 'bb'], values: [genData.BB, genData.Bb, genData.bb], colors: ['#7c3aed', '#2563eb', '#d97706'], expected });
+            drawBarChart(ctx, { labels: ['AA', 'Aa', 'aa'], values: [genData.AA, genData.Aa, genData.aa], colors: ['#7c3aed', '#2563eb', '#d97706'], expected });
+        }
+
+        // COLOR COMBO GRID
+        function colorComboGrid() {
+            const comboCounts = { 2:1, 3:2, 4:3, 5:4, 6:5, 7:6, 8:5, 9:4, 10:3, 11:2, 12:1 };
+            const maxCount = 6;
+            const cells = document.querySelectorAll('#dice-combo-grid .combo-cell[data-sum]');
+            cells.forEach(cell => {
+                const sum = parseInt(cell.getAttribute('data-sum'));
+                const count = comboCounts[sum] || 1;
+                const intensity = count / maxCount;
+                const r = Math.round(196 * intensity + 248 * (1 - intensity));
+                const g = Math.round(30 * intensity + 240 * (1 - intensity));
+                const b = Math.round(58 * intensity + 240 * (1 - intensity));
+                cell.style.background = `rgb(${r}, ${g}, ${b})`;
+                cell.style.color = intensity > 0.5 ? '#ffffff' : '#1a1a1a';
+            });
         }
 
         // INIT
@@ -1206,6 +1472,7 @@
         updateDieUI();
         updateTwoDiceUI();
         updateGeneticUI();
+        colorComboGrid();
     </script>
 </body>
 

@@ -9,6 +9,7 @@ Get started with cr-bio course management software.
 ## 📦 Prerequisites
 
 ### 1. Install uv (Python Package Manager)
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
@@ -16,33 +17,39 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ### 2. Install System Dependencies
 
 **macOS (Homebrew)**:
+
 ```bash
 brew install cairo pango gdk-pixbuf libffi glib
 ```
 
 **Ubuntu/Debian**:
+
 ```bash
 sudo apt-get install python3-cairo python3-pango libgdk-pixbuf2.0-dev libffi-dev
 ```
 
 ### 3. Install Python Dependencies
+
 ```bash
 cd software
 uv sync
 ```
 
 ### 4. Set Environment Variable (macOS only)
+
 ```bash
 export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
 ```
 
 Add to `~/.zshrc` for persistence:
+
 ```bash
 echo 'export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
 ### 5. Verify Installation
+
 ```bash
 uv run python -c "from weasyprint import HTML; print('✓ WeasyPrint: OK')"
 uv run python -c "from src.format_conversion.main import convert_file; print('✓ Format conversion: OK')"
@@ -111,6 +118,7 @@ generate_speech('Hello world! This is a test.', 'output.mp3')
 ```
 
 ### Process Schedule File
+
 ```bash
 uv run python -c "
 from src.schedule.main import process_schedule
@@ -120,6 +128,7 @@ print(f'Generated {sum(result[\"summary\"].values())} files')
 ```
 
 ### Generate HTML Website
+
 ```bash
 uv run python -c "
 from src.html_website.main import generate_module_website
@@ -142,6 +151,7 @@ if not result['valid']:
 ```
 
 ### Convert Between Formats
+
 ```bash
 uv run python -c "
 from src.format_conversion.main import convert_file
@@ -152,10 +162,45 @@ convert_file('input.md', 'html', 'output.html')
 
 ---
 
+## Full Publish Pipeline (Recommended)
+
+The primary entry point is the top-level `publish.py` script with configuration via `publish.toml`:
+
+```bash
+# From the repository root (not software/)
+cd /path/to/cr-bio
+
+# Full publish pipeline
+python publish.py
+
+# Dry run to see what would be generated
+python publish.py --dry-run
+
+# Override formats on command line
+python publish.py --override-formats pdf,html
+
+# Include MP3 audio generation (slower, ~30s per file)
+python publish.py --override-formats pdf,docx,html,txt,mp3
+```
+
+**Configuration** (`publish.toml`):
+
+| Setting | Description |
+|---------|-------------|
+| `publish.formats.mp3` | Enable/disable audio generation |
+| `publish.clean` | Clear outputs before generation |
+| `publish.courses.*.enabled` | Enable/disable specific courses |
+| `publish.pipeline.*` | Toggle pipeline stages |
+
+---
+
 ## Generation Scripts
 
 ### Generate All Course Outputs
+
 ```bash
+cd software
+
 # Generate all outputs for a course
 uv run python scripts/generate_all_outputs.py --course biol-8
 
@@ -176,11 +221,13 @@ uv run python scripts/generate_all_outputs.py --course all
 | `--no-website` | Skip website generation |
 
 ### Generate Module Website
+
 ```bash
 uv run python scripts/generate_module_website.py /path/to/module
 ```
 
 ### Generate Syllabus Renderings
+
 ```bash
 uv run python scripts/generate_syllabus_renderings.py /path/to/syllabus.md
 ```
@@ -190,22 +237,26 @@ uv run python scripts/generate_syllabus_renderings.py /path/to/syllabus.md
 ## Running Tests
 
 ### Run All Tests
+
 ```bash
 ./run_tests.sh
 ```
 
 Or manually:
+
 ```bash
 DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH" uv run pytest
 ```
 
 ### Run with Coverage
+
 ```bash
 uv run pytest --cov=src --cov-report=html tests/
 # View report: open htmlcov/index.html
 ```
 
 ### Run Specific Tests
+
 ```bash
 # Single file
 uv run pytest tests/test_schedule_main.py -v
@@ -215,8 +266,9 @@ uv run pytest tests/test_schedule_main.py::TestProcessSchedule::test_process_sch
 ```
 
 ### Current Statistics
-- **Tests**: 325 collected (verify with `uv run pytest --collect-only`)
-- **Coverage**: Measure with `uv run pytest --cov=src --cov-report=html`
+
+- **Tests**: 414 passed, 6 skipped
+- **Coverage**: 74% overall (measure with `uv run pytest --cov=src --cov-report=html`)
 
 ---
 
@@ -252,6 +304,7 @@ module-1/
 **Error**: `OSError: cannot load library 'pangocairo'`
 
 **Solution**:
+
 ```bash
 # Install dependencies
 brew install cairo pango gdk-pixbuf glib
@@ -265,6 +318,7 @@ export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
 **Error**: `ModuleNotFoundError: No module named 'src'`
 
 **Solution**: Run from the `software` directory:
+
 ```bash
 cd /path/to/cr-bio/software
 uv run python scripts/generate_all_outputs.py
@@ -274,7 +328,8 @@ uv run python scripts/generate_all_outputs.py
 
 **Error**: `gTTSError: 429 (Too Many Requests)`
 
-**Solution**: 
+**Solution**:
+
 - Wait a few minutes and retry
 - Use `--skip-audio` flag if available
 - Process smaller batches

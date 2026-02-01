@@ -6,7 +6,7 @@ Technical documentation for course management software utilities, including func
 
 ## Test Coverage
 
-**Overall: 87%** (401 tests, 395 passed, 6 skipped)
+**Overall: 74%** (414 tests, 414 passed, 6 skipped)
 
 | Module | Coverage | Notes |
 | ------ | -------- | ----- |
@@ -22,6 +22,7 @@ Technical documentation for course management software utilities, including func
 | `schedule` | 93% | Schedule processing |
 | `speech_to_text` | 88-98% | Audio transcription |
 | `text_to_speech` | 89-91% | Audio generation |
+| `validation` | 31-64% | Output validation (syllabus, study guides) |
 
 ## Modular Architecture
 
@@ -344,6 +345,40 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 - `copy_directory_contents(src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None) -> int` - Intelligent copy
 
 **Used by**: Publishing scripts
+
+### Validation Module
+
+**Purpose**: Validate output files and directory structure for published courses
+
+**Location**: `src/validation/`
+
+**Standalone**: Yes - no dependencies on other modules
+
+**Dependencies**: None (pathlib only)
+
+**Key Functions**:
+
+- `validate_module_outputs(module_dir: Path) -> Dict[str, Any]` - Validate a module's output directory
+- `validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]` - Validate syllabus outputs (flat structure)
+- `validate_published_directory(published_dir: Path, course: str) -> Dict[str, Any]` - Validate published directory
+- `run_validation(course: str, published_dir: Path) -> Dict[str, Any]` - Run full validation suite
+
+**Configuration** (`config.py`):
+
+- `EXPECTED_FORMATS`: Required output formats (`["pdf", "docx", "html", "txt"]`)
+- `EXPECTED_STUDY_GUIDE_FILES`: Required study guide files per module
+- `OPTIONAL_STUDY_GUIDE_FILES`: Optional files (e.g., MP3 audio narration)
+- `SYLLABUS_REQUIRED_FORMATS` / `SYLLABUS_OPTIONAL_FORMATS`: Format requirements for syllabus
+
+**Utility Functions** (`utils.py`):
+
+- `count_files_by_extension(directory: Path) -> Dict[str, int]` - Count files by extension
+- `get_module_directories(course_dir: Path) -> List[Path]` - Get all module directories
+- `check_study_guide_files(module_path: Path) -> Dict[str, bool]` - Check study guide files exist
+- `check_output_directory_structure(module_path: Path) -> Dict[str, Any]` - Validate output structure
+- `check_lab_outputs(labs_dir: Path) -> Dict[str, Any]` - Validate lab outputs
+
+**Used by**: `scripts/validate_outputs.py`, `scripts/publish_all.py`
 
 ## Code Organization
 

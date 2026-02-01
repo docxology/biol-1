@@ -222,6 +222,113 @@ class TestClearAllOutputs:
         assert result["errors"] == []
 
 
+class TestProcessModuleByTypeFormats:
+    """Tests for process_module_by_type formats parameter."""
+
+    def test_formats_none_generates_all(self, temp_dir):
+        """formats=None generates all formats (default behavior)."""
+        module_dir = temp_dir / "module-01"
+        module_dir.mkdir()
+        (module_dir / "keys-to-success.md").write_text(
+            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(str(module_dir), str(output_dir), formats=None)
+
+        assert "summary" in result
+        # All format keys should exist in summary
+        for fmt in ["pdf", "mp3", "docx", "html", "txt"]:
+            assert fmt in result["summary"]
+
+    def test_formats_txt_only(self, temp_dir):
+        """formats=["txt"] only generates TXT, skips others."""
+        module_dir = temp_dir / "module-01"
+        module_dir.mkdir()
+        (module_dir / "keys-to-success.md").write_text(
+            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(str(module_dir), str(output_dir), formats=["txt"])
+
+        assert result["summary"]["txt"] >= 1
+        assert result["summary"]["pdf"] == 0
+        assert result["summary"]["mp3"] == 0
+        assert result["summary"]["docx"] == 0
+        assert result["summary"]["html"] == 0
+
+    def test_formats_unrecognized_ignored(self, temp_dir):
+        """Unrecognized format in list is silently ignored."""
+        module_dir = temp_dir / "module-01"
+        module_dir.mkdir()
+        (module_dir / "keys-to-success.md").write_text(
+            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(
+            str(module_dir), str(output_dir), formats=["txt", "xyz"]
+        )
+
+        # TXT should have outputs, xyz does nothing
+        assert result["summary"]["txt"] >= 1
+        # Standard formats not requested should be zero
+        assert result["summary"]["pdf"] == 0
+        assert result["summary"]["mp3"] == 0
+        assert result["summary"]["docx"] == 0
+        assert result["summary"]["html"] == 0
+
+    def test_formats_empty_list(self, temp_dir):
+        """formats=[] generates nothing."""
+        module_dir = temp_dir / "module-01"
+        module_dir.mkdir()
+        (module_dir / "keys-to-success.md").write_text(
+            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(str(module_dir), str(output_dir), formats=[])
+
+        assert sum(result["summary"].values()) == 0
+
+
+class TestProcessSyllabusFormats:
+    """Tests for process_syllabus formats parameter."""
+
+    def test_syllabus_formats_none(self, temp_dir):
+        """formats=None generates all formats."""
+        syllabus_dir = temp_dir / "syllabus"
+        syllabus_dir.mkdir()
+        (syllabus_dir / "Syllabus.md").write_text(
+            "# Syllabus\n\nCourse overview.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_syllabus(str(syllabus_dir), str(output_dir), formats=None)
+
+        assert "summary" in result
+        for fmt in ["pdf", "mp3", "docx", "html", "txt"]:
+            assert fmt in result["summary"]
+
+    def test_syllabus_formats_txt_only(self, temp_dir):
+        """formats=["txt"] only generates TXT."""
+        syllabus_dir = temp_dir / "syllabus"
+        syllabus_dir.mkdir()
+        (syllabus_dir / "Syllabus.md").write_text(
+            "# Syllabus\n\nCourse overview.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_syllabus(str(syllabus_dir), str(output_dir), formats=["txt"])
+
+        assert result["summary"]["txt"] >= 1
+        assert result["summary"]["pdf"] == 0
+        assert result["summary"]["mp3"] == 0
+        assert result["summary"]["docx"] == 0
+        assert result["summary"]["html"] == 0
+
+
 class TestProcessModuleWebsite:
     """Tests for process_module_website function."""
 

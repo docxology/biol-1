@@ -1,13 +1,30 @@
-[publish]
-clean = true
-verbose = false
+# Publish Configuration for cr-bio
+# ================================
+# This configuration controls the full publish pipeline via `python publish.py`
+# 
+# Usage:
+#   python publish.py              # Full pipeline with config settings
+#   python publish.py --dry-run    # Preview what would be generated
+#   python publish.py --override-formats pdf,html  # Override formats
 
+[publish]
+clean = true        # Clean output directories before generation
+verbose = false     # Enable verbose logging
+
+# Output Format Configuration
+# --------------------------
+# Toggle each format on/off as needed. MP3 is time-consuming (~30s per file)
+# and requires internet access for Google TTS.
 [publish.formats]
-pdf  = true
-docx = true
-html = true
-txt  = true
-mp3  = false
+pdf  = true         # PDF files (via WeasyPrint)
+docx = true         # Word documents (via Pandoc)
+html = true         # HTML files (via Pandoc)
+txt  = true         # Plain text (extracted from Markdown)
+mp3  = false        # Audio narration (via Google TTS, slower)
+
+# Course Configuration
+# -------------------
+# Each course can be enabled/disabled independently with specific options.
 
 [publish.courses.biol-1]
 enabled = true
@@ -27,9 +44,12 @@ include_syllabus = true
 include_labs = true
 include_dashboards = true
 
+# Pipeline Stage Configuration
+# ---------------------------
+# Toggle individual pipeline stages. Useful for debugging or partial runs.
 [publish.pipeline]
-generate  = true
-publish   = true
-copy_extras = true
-flatten   = true
-validate  = true
+generate  = true    # Generate outputs from source Markdown
+publish   = true    # Copy outputs to PUBLISHED/ directory
+copy_extras = true  # Copy labs and dashboards
+flatten   = true    # Flatten module subdirectory structure
+validate  = true    # Validate all outputs exist and are correct

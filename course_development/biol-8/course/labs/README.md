@@ -9,9 +9,9 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 | Lab | Topic | Status | Related Module |
 |-----|-------|--------|----------------|
 | [Lab 01](lab-01_measurement-methods.md) | Introduction to Scientific Measurement | ✅ Complete | Module 01 |
-| [Lab 02](lab-02_chemistry-of-life.md) | Chemistry of Life | 📝 Stub | Module 02 |
-| [Lab 03](lab-03_biomolecules.md) | Biomolecules | 📝 Stub | Module 03 |
-| [Lab 04](lab-04_cellular-function.md) | Cellular Function | 📝 Stub | Module 04 |
+| [Lab 02](lab-02_probability-statistics.md) | Probability and Statistics | ✅ Complete | Module 02 |
+| [Lab 03](lab-03_measurement-techniques.md) | Measurement Techniques | ✅ Complete | Module 03 |
+| [Lab 04](lab-04_introduction-to-microscopy.md) | Introduction to Microscopy | ✅ Complete | Module 04 |
 | [Lab 05](lab-05_membranes.md) | Membranes | 📝 Stub | Module 05 |
 | [Lab 06](lab-06_metabolism.md) | Metabolism | 📝 Stub | Module 06 |
 | [Lab 07](lab-07_mitosis.md) | Mitosis | 📝 Stub | Module 07 |
@@ -32,7 +32,8 @@ Labs use specialized markdown directives for interactive elements:
 - **Reflection Boxes**: `<!-- lab:reflection -->` for open-ended responses  
 - **Object Selection**: `<!-- lab:object-selection -->` for choosing study subjects
 - **Feasibility Analysis**: `<!-- lab:measurement-feasibility -->` for constraint evaluation
-- **Fillable Fields**: `{fill:text}`, `{fill:textarea rows=N}` for inline inputs
+- **Calculation Boxes**: `<!-- lab:calculation -->` for formula and calculation areas
+- **Fillable Fields**: `{fill:text}`, `{fill:number}`, `{fill:textarea rows=N}` for inline inputs
 
 See [Lab 01](lab-01_measurement-methods.md) as the reference implementation for the full directive syntax.
 
