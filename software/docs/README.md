@@ -12,11 +12,12 @@ Documentation for cr-bio course management software. Generates educational mater
 
 | Metric | Value | Last Updated |
 |--------|-------|--------------|
-| **Total Tests** | 262 (26 test files, 7 with collection errors) | 2026-01-15 |
-| **Modules** | 13 | 2026-01-15 |
-| **Code Coverage** | Measured via `uv run pytest --cov=src` | - |
+| **Total Tests** | 414 passed, 6 skipped | 2026-02-01 |
+| **Modules** | 14 | 2026-02-01 |
+| **Code Coverage** | 74% overall | 2026-02-01 |
 
 ### Supported Courses
+
 - **BIOL-1**: 17 modules (Spring 2026)
 - **BIOL-8**: 15 modules (Spring 2026)
 
@@ -25,12 +26,14 @@ Documentation for cr-bio course management software. Generates educational mater
 ## Documentation Index
 
 ### Getting Started
+
 | Document | Description | Audience |
 |----------|-------------|----------|
 | **[QUICKSTART.md](QUICKSTART.md)** | Installation, setup, quick commands | New users |
 | **[../README.md](../README.md)** | Project overview and setup | All users |
 
 ### Technical Reference
+
 | Document | Description | Audience |
 |----------|-------------|----------|
 | **[ARCHITECTURE.md](ARCHITECTURE.md)** | System design, module diagrams | Developers |
@@ -39,6 +42,7 @@ Documentation for cr-bio course management software. Generates educational mater
 | **[../AGENTS.md](../AGENTS.md)** | API reference (all functions) | Developers |
 
 ### Source and Tests
+
 | Document | Description | Audience |
 |----------|-------------|----------|
 | **[../src/README.md](../src/README.md)** | Source code overview | Developers |
@@ -80,6 +84,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHE
 |--------|---------|--------------|------------|--------------|
 | [module_organization](../src/module_organization/) | Create module structures | `create_module_structure()` | Yes | None |
 | [file_validation](../src/file_validation/) | Validate content | `validate_module_files()` | Yes | None |
+| [validation](../src/validation/) | Validate published outputs | `run_validation()` | Yes | None |
 | [canvas_integration](../src/canvas_integration/) | Upload to Canvas LMS | `upload_module_to_canvas()` | Yes | file_validation |
 | [publish](../src/publish/) | Export to PUBLISHED directory | `publish_course()` | Yes | None |
 
@@ -155,6 +160,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 | Date | Changes |
 |------|---------|
+| 2026-02-01 | Updated statistics (414 tests, 74% coverage), added validation module |
 | 2026-01-15 | Updated statistics, corrected module count, removed unverified coverage claims |
 | 2026-01-09 | Updated test counts and coverage |
 | 2026-01-08 | Enhanced documentation modularity and signposting |

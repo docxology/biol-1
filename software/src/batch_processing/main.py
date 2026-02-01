@@ -256,7 +256,11 @@ def generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]:
     return results
 
 
-def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
+def process_module_by_type(
+    module_path: str,
+    output_dir: str,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
     """Process module files by curriculum element type and generate all format renderings.
 
     Organizes outputs by curriculum element type (assignments, lab-protocols,
@@ -265,6 +269,8 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
     Args:
         module_path: Path to module directory
         output_dir: Base output directory for all renderings
+        formats: Optional list of formats to generate (e.g. ["pdf", "html"]).
+                 When None, all formats are generated.
 
     Returns:
         Dictionary with results:
@@ -282,6 +288,10 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
     logger.info(f"Processing module: {module_dir.name}")
     base_output = Path(output_dir)
     ensure_output_directory(base_output)
+
+    # Determine which formats to generate
+    all_formats = {"pdf", "mp3", "docx", "html", "txt"}
+    active_formats = set(formats) if formats is not None else all_formats
 
     # Curriculum element type mapping
     type_mapping = {
@@ -366,85 +376,90 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
                 base_name = f"{module_name}-{base_name}"
 
             # Generate PDF
-            try:
-                pdf_file = type_output_dir / f"{base_name}.pdf"
-                from ..markdown_to_pdf.main import render_markdown_to_pdf
+            if "pdf" in active_formats:
+                try:
+                    pdf_file = type_output_dir / f"{base_name}.pdf"
+                    from ..markdown_to_pdf.main import render_markdown_to_pdf
 
-                logger.debug(f"Generating PDF: {pdf_file.name}")
-                render_markdown_to_pdf(str(md_file), str(pdf_file))
-                results["by_type"][output_subdir].append(str(pdf_file))
-                results["summary"]["pdf"] += 1
-            except Exception as e:
-                error_msg = f"PDF generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+                    logger.debug(f"Generating PDF: {pdf_file.name}")
+                    render_markdown_to_pdf(str(md_file), str(pdf_file))
+                    results["by_type"][output_subdir].append(str(pdf_file))
+                    results["summary"]["pdf"] += 1
+                except Exception as e:
+                    error_msg = f"PDF generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate Audio (MP3)
-            try:
-                audio_file = type_output_dir / f"{base_name}.mp3"
-                from ..text_to_speech.utils import (
-                    extract_text_from_markdown,
-                    read_text_file,
-                )
-                from ..text_to_speech.main import generate_speech
-            
-                logger.debug(f"Generating MP3: {audio_file.name}")
-                content = read_text_file(md_file)
-                text_content = extract_text_from_markdown(content)
-                generate_speech(text_content, str(audio_file))
-                time.sleep(2)  # Add delay to avoid 429 errors
-                results["by_type"][output_subdir].append(str(audio_file))
-                results["summary"]["mp3"] += 1
-            except Exception as e:
-                error_msg = f"Audio generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+            if "mp3" in active_formats:
+                try:
+                    audio_file = type_output_dir / f"{base_name}.mp3"
+                    from ..text_to_speech.utils import (
+                        extract_text_from_markdown,
+                        read_text_file,
+                    )
+                    from ..text_to_speech.main import generate_speech
+
+                    logger.debug(f"Generating MP3: {audio_file.name}")
+                    content = read_text_file(md_file)
+                    text_content = extract_text_from_markdown(content)
+                    generate_speech(text_content, str(audio_file))
+                    time.sleep(2)  # Add delay to avoid 429 errors
+                    results["by_type"][output_subdir].append(str(audio_file))
+                    results["summary"]["mp3"] += 1
+                except Exception as e:
+                    error_msg = f"Audio generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate DOCX
-            try:
-                docx_file = type_output_dir / f"{base_name}.docx"
-                from ..format_conversion.main import convert_file
+            if "docx" in active_formats:
+                try:
+                    docx_file = type_output_dir / f"{base_name}.docx"
+                    from ..format_conversion.main import convert_file
 
-                logger.debug(f"Generating DOCX: {docx_file.name}")
-                convert_file(str(md_file), "docx", str(docx_file))
-                results["by_type"][output_subdir].append(str(docx_file))
-                results["summary"]["docx"] += 1
-            except Exception as e:
-                error_msg = f"DOCX generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+                    logger.debug(f"Generating DOCX: {docx_file.name}")
+                    convert_file(str(md_file), "docx", str(docx_file))
+                    results["by_type"][output_subdir].append(str(docx_file))
+                    results["summary"]["docx"] += 1
+                except Exception as e:
+                    error_msg = f"DOCX generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate HTML
-            try:
-                html_file = type_output_dir / f"{base_name}.html"
-                from ..format_conversion.main import convert_file as convert_file_func
-                logger.debug(f"Generating HTML: {html_file.name}")
-                convert_file_func(str(md_file), "html", str(html_file))
-                results["by_type"][output_subdir].append(str(html_file))
-                results["summary"]["html"] += 1
-            except Exception as e:
-                error_msg = f"HTML generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+            if "html" in active_formats:
+                try:
+                    html_file = type_output_dir / f"{base_name}.html"
+                    from ..format_conversion.main import convert_file as convert_file_func
+                    logger.debug(f"Generating HTML: {html_file.name}")
+                    convert_file_func(str(md_file), "html", str(html_file))
+                    results["by_type"][output_subdir].append(str(html_file))
+                    results["summary"]["html"] += 1
+                except Exception as e:
+                    error_msg = f"HTML generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate TXT (extracted text)
-            try:
-                txt_file = type_output_dir / f"{base_name}.txt"
-                from ..text_to_speech.utils import (
-                    extract_text_from_markdown,
-                    read_text_file,
-                )
+            if "txt" in active_formats:
+                try:
+                    txt_file = type_output_dir / f"{base_name}.txt"
+                    from ..text_to_speech.utils import (
+                        extract_text_from_markdown,
+                        read_text_file,
+                    )
 
-                logger.debug(f"Generating TXT: {txt_file.name}")
-                content = read_text_file(md_file)
-                text_content = extract_text_from_markdown(content)
-                txt_file.write_text(text_content, encoding="utf-8")
-                results["by_type"][output_subdir].append(str(txt_file))
-                results["summary"]["txt"] += 1
-            except Exception as e:
-                error_msg = f"TXT generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+                    logger.debug(f"Generating TXT: {txt_file.name}")
+                    content = read_text_file(md_file)
+                    text_content = extract_text_from_markdown(content)
+                    txt_file.write_text(text_content, encoding="utf-8")
+                    results["by_type"][output_subdir].append(str(txt_file))
+                    results["summary"]["txt"] += 1
+                except Exception as e:
+                    error_msg = f"TXT generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
         except Exception as e:
             logger.error(f"Processing failed for {md_file.name}: {e}", exc_info=True)
@@ -458,7 +473,11 @@ def process_module_by_type(module_path: str, output_dir: str) -> Dict[str, Any]:
     return results
 
 
-def process_syllabus(syllabus_path: str, output_dir: str) -> Dict[str, Any]:
+def process_syllabus(
+    syllabus_path: str,
+    output_dir: str,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
     """Process syllabus files and generate all format renderings.
 
     Organizes outputs flat in the output directory (same structure as module assignments),
@@ -467,6 +486,8 @@ def process_syllabus(syllabus_path: str, output_dir: str) -> Dict[str, Any]:
     Args:
         syllabus_path: Path to syllabus directory
         output_dir: Base output directory for all renderings
+        formats: Optional list of formats to generate (e.g. ["pdf", "html"]).
+                 When None, all formats are generated.
 
     Returns:
         Dictionary with results:
@@ -484,6 +505,10 @@ def process_syllabus(syllabus_path: str, output_dir: str) -> Dict[str, Any]:
     logger.info(f"Processing syllabus: {syllabus_dir.name}")
     base_output = Path(output_dir)
     ensure_output_directory(base_output)
+
+    # Determine which formats to generate
+    all_formats = {"pdf", "mp3", "docx", "html", "txt"}
+    active_formats = set(formats) if formats is not None else all_formats
 
     # Find all markdown files in syllabus directory (excluding README and AGENTS)
     markdown_files = find_markdown_files(syllabus_dir)
@@ -504,85 +529,90 @@ def process_syllabus(syllabus_path: str, output_dir: str) -> Dict[str, Any]:
             base_name = md_file.stem
 
             # Generate PDF
-            try:
-                pdf_file = base_output / f"{base_name}.pdf"
-                from ..markdown_to_pdf.main import render_markdown_to_pdf
+            if "pdf" in active_formats:
+                try:
+                    pdf_file = base_output / f"{base_name}.pdf"
+                    from ..markdown_to_pdf.main import render_markdown_to_pdf
 
-                logger.debug(f"Generating PDF: {pdf_file.name}")
-                render_markdown_to_pdf(str(md_file), str(pdf_file))
-                results["by_format"]["pdf"].append(str(pdf_file))
-                results["summary"]["pdf"] += 1
-            except Exception as e:
-                error_msg = f"PDF generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+                    logger.debug(f"Generating PDF: {pdf_file.name}")
+                    render_markdown_to_pdf(str(md_file), str(pdf_file))
+                    results["by_format"]["pdf"].append(str(pdf_file))
+                    results["summary"]["pdf"] += 1
+                except Exception as e:
+                    error_msg = f"PDF generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate Audio (MP3)
-            try:
-                audio_file = base_output / f"{base_name}.mp3"
-                from ..text_to_speech.utils import (
-                    extract_text_from_markdown,
-                    read_text_file,
-                )
-                from ..text_to_speech.main import generate_speech
-            
-                logger.debug(f"Generating MP3: {audio_file.name}")
-                content = read_text_file(md_file)
-                text_content = extract_text_from_markdown(content)
-                generate_speech(text_content, str(audio_file))
-                time.sleep(2)  # Add delay to avoid 429 errors
-                results["by_format"]["mp3"].append(str(audio_file))
-                results["summary"]["mp3"] += 1
-            except Exception as e:
-                error_msg = f"Audio generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+            if "mp3" in active_formats:
+                try:
+                    audio_file = base_output / f"{base_name}.mp3"
+                    from ..text_to_speech.utils import (
+                        extract_text_from_markdown,
+                        read_text_file,
+                    )
+                    from ..text_to_speech.main import generate_speech
+
+                    logger.debug(f"Generating MP3: {audio_file.name}")
+                    content = read_text_file(md_file)
+                    text_content = extract_text_from_markdown(content)
+                    generate_speech(text_content, str(audio_file))
+                    time.sleep(2)  # Add delay to avoid 429 errors
+                    results["by_format"]["mp3"].append(str(audio_file))
+                    results["summary"]["mp3"] += 1
+                except Exception as e:
+                    error_msg = f"Audio generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate DOCX
-            try:
-                docx_file = base_output / f"{base_name}.docx"
-                from ..format_conversion.main import convert_file
+            if "docx" in active_formats:
+                try:
+                    docx_file = base_output / f"{base_name}.docx"
+                    from ..format_conversion.main import convert_file
 
-                logger.debug(f"Generating DOCX: {docx_file.name}")
-                convert_file(str(md_file), "docx", str(docx_file))
-                results["by_format"]["docx"].append(str(docx_file))
-                results["summary"]["docx"] += 1
-            except Exception as e:
-                error_msg = f"DOCX generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+                    logger.debug(f"Generating DOCX: {docx_file.name}")
+                    convert_file(str(md_file), "docx", str(docx_file))
+                    results["by_format"]["docx"].append(str(docx_file))
+                    results["summary"]["docx"] += 1
+                except Exception as e:
+                    error_msg = f"DOCX generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate HTML
-            try:
-                html_file = base_output / f"{base_name}.html"
-                from ..format_conversion.main import convert_file as convert_file_func
-                logger.debug(f"Generating HTML: {html_file.name}")
-                convert_file_func(str(md_file), "html", str(html_file))
-                results["by_format"]["html"].append(str(html_file))
-                results["summary"]["html"] += 1
-            except Exception as e:
-                error_msg = f"HTML generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+            if "html" in active_formats:
+                try:
+                    html_file = base_output / f"{base_name}.html"
+                    from ..format_conversion.main import convert_file as convert_file_func
+                    logger.debug(f"Generating HTML: {html_file.name}")
+                    convert_file_func(str(md_file), "html", str(html_file))
+                    results["by_format"]["html"].append(str(html_file))
+                    results["summary"]["html"] += 1
+                except Exception as e:
+                    error_msg = f"HTML generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
             # Generate TXT (extracted text)
-            try:
-                txt_file = base_output / f"{base_name}.txt"
-                from ..text_to_speech.utils import (
-                    extract_text_from_markdown,
-                    read_text_file,
-                )
+            if "txt" in active_formats:
+                try:
+                    txt_file = base_output / f"{base_name}.txt"
+                    from ..text_to_speech.utils import (
+                        extract_text_from_markdown,
+                        read_text_file,
+                    )
 
-                logger.debug(f"Generating TXT: {txt_file.name}")
-                content = read_text_file(md_file)
-                text_content = extract_text_from_markdown(content)
-                txt_file.write_text(text_content, encoding="utf-8")
-                results["by_format"]["txt"].append(str(txt_file))
-                results["summary"]["txt"] += 1
-            except Exception as e:
-                error_msg = f"TXT generation failed for {md_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append(error_msg)
+                    logger.debug(f"Generating TXT: {txt_file.name}")
+                    content = read_text_file(md_file)
+                    text_content = extract_text_from_markdown(content)
+                    txt_file.write_text(text_content, encoding="utf-8")
+                    results["by_format"]["txt"].append(str(txt_file))
+                    results["summary"]["txt"] += 1
+                except Exception as e:
+                    error_msg = f"TXT generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
 
         except Exception as e:
             logger.error(f"Processing failed for {md_file.name}: {e}", exc_info=True)
@@ -638,6 +668,11 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
         syllabus_path = course_path / "syllabus" / "output"
         if syllabus_path.exists():
             output_dirs.append(syllabus_path)
+
+        # Labs output directory
+        labs_output_path = course_path / "course" / "labs" / "output"
+        if labs_output_path.exists():
+            output_dirs.append(labs_output_path)
 
     logger.info(f"Found {len(output_dirs)} output directories to clear")
 

@@ -4,10 +4,6 @@
 
 ---
 
-**Name:** {fill:text} **Date:** {fill:text}
-
----
-
 ## Objectives
 
 By the end of this lab, you will be able to:
@@ -65,28 +61,8 @@ Based on theoretical probability, write your hypothesis for 20 coin flips:
 ### Data Collection
 
 <!-- lab:data-table rows=20 title="Coin Flip Data — 20 Trials" -->
-| Trial # | Result (H or T) |
-|---------|-----------------|
-| 1       | {fill}          |
-| 2       | {fill}          |
-| 3       | {fill}          |
-| 4       | {fill}          |
-| 5       | {fill}          |
-| 6       | {fill}          |
-| 7       | {fill}          |
-| 8       | {fill}          |
-| 9       | {fill}          |
-| 10      | {fill}          |
-| 11      | {fill}          |
-| 12      | {fill}          |
-| 13      | {fill}          |
-| 14      | {fill}          |
-| 15      | {fill}          |
-| 16      | {fill}          |
-| 17      | {fill}          |
-| 18      | {fill}          |
-| 19      | {fill}          |
-| 20      | {fill}          |
+| Result (H or T) |
+|-----------------|
 <!-- /lab:data-table -->
 
 ### Calculations
@@ -293,20 +269,7 @@ When rolling two dice, the outcomes combine. While each die is independent, some
 | 11  | 2             | 2/36 = 5.6% |
 | 12  | 1 (6+6)       | 1/36 = 2.8% |
 
-**Visual Representation of Probability Distribution:**
-
-```
-                          ██
-                       ██ ██ ██
-                    ██ ██ ██ ██ ██
-                 ██ ██ ██ ██ ██ ██ ██
-              ██ ██ ██ ██ ██ ██ ██ ██ ██
-           ██ ██ ██ ██ ██ ██ ██ ██ ██ ██ ██
-           2  3  4  5  6  7  8  9  10 11 12
-                        SUM
-```
-
-*Notice how 7 is at the peak—this shows why 7 is most likely!*
+*Note: See Dashboard 2 for an interactive visualization of this probability distribution. The key insight is that 7 is the most probable sum because it has the most combinations (6 ways to roll a 7).*
 
 ### Hypothesis
 
@@ -350,27 +313,9 @@ When rolling two dice, the outcomes combine. While each die is independent, some
 
 {fill:textarea rows=2}
 
-**3. Create a simple bar graph of your results on the grid below:**
+**3. Record your observed counts for each sum (2–12) in the data table above.**
 
-*(Draw bars showing observed counts for each sum from 2-12)*
-
-```
-12|
-11|
-10|
- 9|
- 8|
- 7|
- 6|
- 5|
- 4|
- 3|
- 2|
- 1|
- 0|____________________________
-   2  3  4  5  6  7  8  9  10 11 12
-            SUM
-```
+*Use Dashboard 2 to create a bar graph of your results and compare to the theoretical distribution.*
 
 **4. Why is 7 the most probable sum when rolling two dice?**
 
@@ -386,21 +331,14 @@ When rolling two dice, the outcomes combine. While each die is independent, some
 <!-- lab:reflection -->
 **1. In genetics, a heterozygous cross (Aa × Aa) has the following offspring probabilities:**
 
-**Punnett Square:**
+**Punnett Square (Aa × Aa):**
 
-```
-              Parent 1
-           ┌─────┬─────┐
-           │  A  │  a  │
-     ┌─────┼─────┼─────┤
-  P  │  A  │ AA  │ Aa  │
-  a  ├─────┼─────┼─────┤
-  r  │  a  │ Aa  │ aa  │
-  e  └─────┴─────┴─────┘
-  n
-  t   Results: 1 AA : 2 Aa : 1 aa
-  2
-```
+|               | Parent 1: **A** | Parent 1: **a** |
+|---------------|-----------------|-----------------|
+| Parent 2: **A** | AA           | Aa              |
+| Parent 2: **a** | Aa           | aa              |
+
+**Results:** 1 AA : 2 Aa : 1 aa
 
 | Genotype | Probability | Percentage |
 |----------|-------------|------------|

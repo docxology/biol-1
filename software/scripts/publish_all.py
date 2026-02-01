@@ -98,10 +98,10 @@ def copy_labs_and_dashboards(verbose: bool = False) -> int:
             shutil.copy2(lab_file, dest)
             total_copied += 1
         
-        # Copy lab outputs
+        # Copy lab outputs (both flat files and format subdirectories like output/pdf/, output/html/)
         output_dir = course_dev / 'output'
         if output_dir.exists():
-            for output_file in output_dir.iterdir():
+            for output_file in output_dir.rglob('*'):
                 if output_file.is_file():
                     dest = labs_pub / output_file.name
                     shutil.copy2(output_file, dest)
@@ -203,7 +203,31 @@ def main():
         '--verbose', '-v', action='store_true',
         help='Show detailed output from subscripts'
     )
-    
+    parser.add_argument(
+        '--skip-publish', action='store_true',
+        help='Skip publishing to PUBLISHED/ directory'
+    )
+    parser.add_argument(
+        '--skip-copy-extras', action='store_true',
+        help='Skip copying labs and dashboards'
+    )
+    parser.add_argument(
+        '--skip-flatten', action='store_true',
+        help='Skip flattening module structure'
+    )
+    parser.add_argument(
+        '--skip-validate', action='store_true',
+        help='Skip output validation'
+    )
+    parser.add_argument(
+        '--skip-labs', action='store_true',
+        help='Skip lab manual rendering during generation'
+    )
+    parser.add_argument(
+        '--clean-source-outputs', action='store_true',
+        help='Clean source output/ directories before generation'
+    )
+
     args = parser.parse_args()
     
     start_time = time.time()
@@ -219,14 +243,23 @@ def main():
         clean_published()
     else:
         logger.info("STEP 1: Skipping clean (use --clean to clean first)")
-    
+
+    # Step 1.5: Clean source outputs if requested
+    if args.clean_source_outputs:
+        logger.info("\nSTEP 1.5: Cleaning source output directories")
+        repo_root = get_repo_root()
+        sys.path.insert(0, str(repo_root / 'software'))
+        from src.batch_processing.main import clear_all_outputs
+        clear_results = clear_all_outputs(repo_root / 'course_development')
+        logger.info(f"  ✓ Cleared {clear_results['total_files_removed']} files from {len(clear_results['cleared_directories'])} directories")
+
     # Step 2: Generate outputs
     if not args.skip_generation:
         logger.info("\nSTEP 2: Generating all outputs")
-        
+
         # Build generation args
         gen_args = ['--course', 'all']
-        
+
         # Handle format options
         if args.skip_mp3:
             gen_args.extend(['--formats', 'pdf,docx,html,txt'])
@@ -234,37 +267,54 @@ def main():
         elif args.formats != 'all':
             gen_args.extend(['--formats', args.formats])
             logger.info(f"  Formats: {args.formats}")
-        
+
+        # Pass through skip-labs flag
+        if args.skip_labs:
+            gen_args.append('--skip-labs')
+            logger.info("  Skipping lab rendering (--skip-labs)")
+
         if not run_script('generate_all_outputs.py', gen_args, args.verbose):
             logger.error("Generation failed!")
             return 1
         logger.info("  ✓ Generation complete")
     else:
         logger.info("\nSTEP 2: Skipping generation (--skip-generation)")
-    
+
     # Step 3: Publish to PUBLISHED/
-    logger.info("\nSTEP 3: Publishing to PUBLISHED/")
-    if not run_script('publish_course.py', ['--course', 'all'], args.verbose):
-        logger.error("Publishing failed!")
-        return 1
-    logger.info("  ✓ Publishing complete")
-    
+    if not args.skip_publish:
+        logger.info("\nSTEP 3: Publishing to PUBLISHED/")
+        if not run_script('publish_course.py', ['--course', 'all'], args.verbose):
+            logger.error("Publishing failed!")
+            return 1
+        logger.info("  ✓ Publishing complete")
+    else:
+        logger.info("\nSTEP 3: Skipping publish (--skip-publish)")
+
     # Step 4: Copy labs and dashboards
-    logger.info("\nSTEP 4: Copying labs and dashboards")
-    copied = copy_labs_and_dashboards(args.verbose)
-    logger.info(f"  ✓ Copied {copied} files")
-    
+    if not args.skip_copy_extras:
+        logger.info("\nSTEP 4: Copying labs and dashboards")
+        copied = copy_labs_and_dashboards(args.verbose)
+        logger.info(f"  ✓ Copied {copied} files")
+    else:
+        logger.info("\nSTEP 4: Skipping copy extras (--skip-copy-extras)")
+
     # Step 5: Flatten structure
-    logger.info("\nSTEP 5: Flattening module structure")
-    moved = flatten_published()
-    logger.info(f"  ✓ Flattened {moved} files")
-    
+    if not args.skip_flatten:
+        logger.info("\nSTEP 5: Flattening module structure")
+        moved = flatten_published()
+        logger.info(f"  ✓ Flattened {moved} files")
+    else:
+        logger.info("\nSTEP 5: Skipping flatten (--skip-flatten)")
+
     # Step 6: Validate
-    logger.info("\nSTEP 6: Validating outputs")
-    if not run_script('validate_outputs.py', ['--course', 'all'], args.verbose):
-        logger.error("Validation failed!")
-        return 1
-    logger.info("  ✓ Validation complete")
+    if not args.skip_validate:
+        logger.info("\nSTEP 6: Validating outputs")
+        if not run_script('validate_outputs.py', ['--course', 'all'], args.verbose):
+            logger.error("Validation failed!")
+            return 1
+        logger.info("  ✓ Validation complete")
+    else:
+        logger.info("\nSTEP 6: Skipping validation (--skip-validate)")
     
     # Summary
     duration = time.time() - start_time

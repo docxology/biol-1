@@ -150,6 +150,14 @@ class TestExpandFillableFields:
         
         assert '<td class="fillable">' in result
 
+    def test_expand_number_input(self):
+        """Expand {fill:number} to number input element."""
+        html = "Count: {fill:number}"
+
+        result = expand_fillable_fields(html)
+
+        assert '<input type="number" class="fill-number" />' in result
+
     def test_expand_standalone_fill(self):
         """Expand standalone {fill}."""
         html = "Value: {fill}"

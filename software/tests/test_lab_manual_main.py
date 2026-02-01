@@ -91,6 +91,20 @@ Reflect on your findings.
         assert len(elements) == 1
         assert elements[0].element_type == "reflection"
 
+    def test_parse_calculation(self):
+        """Parse calculation directive."""
+        content = """<!-- lab:calculation -->
+**Show your work:**
+
+P(Heads) = {fill:number} / 20 = {fill:number}
+<!-- /lab:calculation -->"""
+
+        elements = parse_lab_elements(content)
+
+        assert len(elements) == 1
+        assert elements[0].element_type == "calculation"
+        assert "Show your work" in elements[0].content
+
     def test_parse_multiple_elements(self):
         """Parse multiple different elements."""
         content = """<!-- lab:object-selection -->

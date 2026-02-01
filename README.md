@@ -86,12 +86,56 @@ The automation engine for the repository.
 
 ### Key Scripts
 
-```bash
-# Generate outputs for a course
-uv run python software/scripts/generate_all_outputs.py --course biol-8
+The primary entry point is the top-level `publish.py` script with configuration via `publish.toml`:
 
-# Publish generated outputs to PUBLISHED/
-uv run python software/scripts/publish_course.py --course all
+```bash
+# Full publish pipeline (recommended)
+python publish.py
+
+# Dry run to see what would be generated
+python publish.py --dry-run
+
+# Override formats on command line
+python publish.py --override-formats pdf,html
+```
+
+#### Configuration (`publish.toml`)
+
+```toml
+[publish]
+clean = true        # Clean output directories before generation
+verbose = false     # Enable verbose logging
+
+[publish.formats]
+pdf  = true         # Generate PDF files
+docx = true         # Generate Word documents
+html = true         # Generate HTML files
+txt  = true         # Generate plain text files
+mp3  = false        # Generate audio narration (slower, ~30s per file)
+
+[publish.courses.biol-1]
+enabled = true
+include_labs = true
+include_dashboards = true
+
+[publish.pipeline]
+generate = true     # Run output generation
+publish = true      # Copy to PUBLISHED/
+flatten = true      # Flatten module structure
+validate = true     # Validate outputs
+```
+
+#### Direct Script Access
+
+```bash
+# Generate outputs for a specific course
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+
+# Generate only specific formats
+cd software && uv run python scripts/generate_all_outputs.py --formats pdf,html
+
+# Validate outputs
+cd software && uv run python scripts/validate_outputs.py --course all
 ```
 
 See [software/docs/README.md](software/docs/README.md) for comprehensive documentation.

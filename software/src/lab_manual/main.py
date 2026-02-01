@@ -97,6 +97,17 @@ def parse_lab_elements(markdown_content: str) -> List[LabElement]:
             end_pos=match.end(),
         ))
     
+    # Parse calculation
+    calc_pattern = r"<!-- lab:calculation -->(.*?)<!-- /lab:calculation -->"
+    for match in re.finditer(calc_pattern, markdown_content, re.DOTALL):
+        elements.append(LabElement(
+            element_type="calculation",
+            content=match.group(1).strip(),
+            config={},
+            start_pos=match.start(),
+            end_pos=match.end(),
+        ))
+
     # Parse reflection
     refl_pattern = r"<!-- lab:reflection -->(.*?)<!-- /lab:reflection -->"
     for match in re.finditer(refl_pattern, markdown_content, re.DOTALL):
@@ -208,6 +219,10 @@ def _process_lab_content(markdown_content: str) -> str:
             content_html = markdown_to_html(element.content)
             replacement_html = f'<div class="feasibility-section">\n{content_html}\n</div>'
         
+        elif element.element_type == "calculation":
+            content_html = markdown_to_html(element.content)
+            replacement_html = f'<div class="calculation-box">\n{content_html}\n</div>'
+
         elif element.element_type == "reflection":
             content_html = markdown_to_html(element.content)
             replacement_html = f'<div class="reflection-box">\n{content_html}\n</div>'
@@ -273,9 +288,23 @@ def render_lab_manual(
         else:
             lab_title = input_file.stem.replace("-", " ").replace("_", " ").title()
     
+    # When header is included, strip the leading H1 and course subtitle
+    # from markdown to avoid duplication (header already provides these)
+    if include_header:
+        # Remove leading H1
+        markdown_content = re.sub(
+            r"^#\s+.+\n*", "", markdown_content, count=1
+        )
+        # Remove course subtitle line (bold text with pipe)
+        markdown_content = re.sub(
+            r"^\*\*.+\*\*\s*\|.+\n*", "", markdown_content, count=1
+        )
+        # Remove leading horizontal rule left behind
+        markdown_content = re.sub(r"^---\s*\n*", "", markdown_content, count=1)
+
     # Process lab content
     content_html = _process_lab_content(markdown_content)
-    
+
     # Build header if requested
     header_html = ""
     if include_header:

@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Optional
 
 from . import config
 from .utils import (
+    check_lab_files,
     check_output_directory,
     check_study_guide_files,
     check_website_files,
@@ -82,13 +83,26 @@ def validate_outputs(course_path: str) -> Dict[str, Any]:
     # Validate syllabus
     syllabus_result = _validate_syllabus_outputs(course_dir)
     results["syllabus_valid"] = syllabus_result["valid"]
-    
+
     if not syllabus_result["valid"]:
         results["issues"].extend(syllabus_result.get("issues", []))
-        
+
+    # Validate labs
+    lab_result = check_lab_files(course_dir)
+    results["labs"] = lab_result
+
+    if lab_result["missing_outputs"]:
+        results["issues"].extend(
+            [f"Lab missing rendered output: {lab}" for lab in lab_result["missing_outputs"]]
+        )
+    if lab_result["issues"]:
+        results["issues"].extend(lab_result["issues"])
+
     # Log summary
     logger.info(f"Validation complete: {results['modules_valid']}/{results['modules_checked']} modules valid")
-    
+    if lab_result["source_labs"] > 0:
+        logger.info(f"Labs: {lab_result['source_labs']} source, outputs: {lab_result['output_files']}, dashboards: {lab_result['dashboards']}")
+
     return results
 
 
@@ -145,6 +159,9 @@ def _validate_module_outputs(module_path: Path) -> Dict[str, Any]:
 def _validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]:
     """Validate syllabus outputs for a course.
 
+    Syllabus outputs are placed directly in the syllabus/output/ directory
+    (flat structure), not in format subdirectories.
+
     Args:
         course_dir: Path to course directory
 
@@ -163,17 +180,23 @@ def _validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]:
         result["valid"] = False
         result["issues"].append("Syllabus output directory not found")
         return result
-        
-    # Check for expected formats
-    for fmt in config.SYLLABUS_EXPECTED_FORMATS:
-        fmt_dir = syllabus_output / fmt
-        if fmt_dir.exists():
-            files = list(fmt_dir.glob(f"*.{fmt}"))
-            result["files"][fmt] = len(files)
-        else:
-            result["files"][fmt] = 0
-            result["issues"].append(f"Missing syllabus {fmt} directory")
+    
+    # Check for files of each expected format directly in output directory
+    # MP3 is optional for syllabus since it requires TTS processing
+    required_formats = ["pdf", "docx", "html", "txt"]
+    optional_formats = ["mp3"]
+    
+    for fmt in required_formats:
+        files = list(syllabus_output.glob(f"*.{fmt}"))
+        result["files"][fmt] = len(files)
+        if len(files) == 0:
+            result["issues"].append(f"No syllabus {fmt.upper()} files found")
             result["valid"] = False
+    
+    for fmt in optional_formats:
+        files = list(syllabus_output.glob(f"*.{fmt}"))
+        result["files"][fmt] = len(files)
+        # No validity check for optional formats
             
     return result
 

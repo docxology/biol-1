@@ -123,6 +123,46 @@ hr {
     background-color: #fafafa;
 }
 
+.fill-number {
+    display: inline-block;
+    min-width: 60px;
+    max-width: 100px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+/* Inline tables inside reflection/calculation boxes */
+.reflection-box table,
+.calculation-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+.reflection-box th,
+.calculation-box th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 6px 10px;
+    border: 1px solid #1a1a1a;
+}
+
+.reflection-box td,
+.calculation-box td {
+    padding: 6px 10px;
+    border: 1px solid #333333;
+    vertical-align: top;
+}
+
+.reflection-box tr:nth-child(even),
+.calculation-box tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
 .fill-textarea {
     display: block;
     width: 100%;
@@ -234,6 +274,33 @@ hr {
 
 .feasibility-options {
     margin-left: 1em;
+}
+
+/* Calculation Box */
+.calculation-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #999999;
+    border-left: 4px solid #2563eb;
+    background-color: #f8fafc;
+    min-height: 60px;
+}
+
+.calculation-box code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e8e8e8;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.calculation-box pre {
+    background-color: #f0f0f0;
+    padding: 0.75em;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    overflow-x: auto;
 }
 
 /* Reflection Box */
@@ -349,6 +416,7 @@ LAB_DIRECTIVES = {
     "object-selection": r"<!-- lab:object-selection -->(.*)<!-- /lab:object-selection -->",
     "measurement-feasibility": r"<!-- lab:measurement-feasibility -->(.*)<!-- /lab:measurement-feasibility -->",
     "reflection": r"<!-- lab:reflection -->(.*)<!-- /lab:reflection -->",
+    "calculation": r"<!-- lab:calculation -->(.*)<!-- /lab:calculation -->",
 }
 
 # Default measurement table columns
