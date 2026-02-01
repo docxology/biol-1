@@ -12,7 +12,7 @@ Documentation for cr-bio course management software. Generates educational mater
 
 | Metric | Value | Last Updated |
 |--------|-------|--------------|
-| **Total Tests** | 414 passed, 6 skipped | 2026-02-01 |
+| **Total Tests** | 420 passed, 6 skipped | 2026-02-01 |
 | **Modules** | 14 | 2026-02-01 |
 | **Code Coverage** | 74% overall | 2026-02-01 |
 
@@ -77,6 +77,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHE
 | [batch_processing](../src/batch_processing/) | Batch module processing | `process_module_by_type()` | Yes | Core/format modules |
 | [html_website](../src/html_website/) | Interactive HTML websites | `generate_module_website()` | Yes | batch_processing, format_conversion |
 | [schedule](../src/schedule/) | Schedule file processing | `process_schedule()` | Yes | Core/format modules |
+| [lab_manual](../src/lab_manual/) | Rich lab manual rendering | `render_lab_manual()` | Yes | markdown, weasyprint |
 
 ### Course Management
 
@@ -160,7 +161,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 | Date | Changes |
 |------|---------|
-| 2026-02-01 | Updated statistics (414 tests, 74% coverage), added validation module |
+| 2026-02-01 | Updated statistics (420 tests, 74% coverage), added validation module |
 | 2026-01-15 | Updated statistics, corrected module count, removed unverified coverage claims |
 | 2026-01-09 | Updated test counts and coverage |
 | 2026-01-08 | Enhanced documentation modularity and signposting |

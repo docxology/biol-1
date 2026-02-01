@@ -11,16 +11,19 @@ This project uses [uv](https://github.com/astral-sh/uv) for dependency managemen
 ### Installation
 
 1. Install uv (if not already installed):
+
    ```bash
    curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
 
 2. Install system dependencies (macOS):
+
    ```bash
    brew install cairo pango gdk-pixbuf glib
    ```
-   
+
    These are required for WeasyPrint (PDF generation). On Linux, install via your package manager:
+
    ```bash
    # Ubuntu/Debian
    sudo apt-get install python3-cairo python3-pango libgdk-pixbuf2.0-dev libffi-dev
@@ -30,24 +33,28 @@ This project uses [uv](https://github.com/astral-sh/uv) for dependency managemen
    ```
 
 3. Install Python dependencies:
+
    ```bash
    uv sync --extra dev
    ```
 
 4. Set library path (macOS only):
+
    ```bash
    export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
    ```
-   
+
    Add this to your `~/.zshrc` or `~/.bash_profile` to make it permanent:
+
    ```bash
    echo 'export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"' >> ~/.zshrc
    source ~/.zshrc
    ```
-   
+
    **Note**: You may need to restart your terminal or run `source ~/.zshrc` for the change to take effect.
 
 5. Verify installation:
+
    ```bash
    export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
    uv run python -c "from weasyprint import HTML; print('✓ WeasyPrint: OK')"
@@ -62,6 +69,7 @@ This project uses [uv](https://github.com/astral-sh/uv) for dependency managemen
 **Important**: Always use `uv run pytest` to ensure tests run in the correct environment with all dependencies.
 
 Run all tests:
+
 ```bash
 # macOS (with library path)
 DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH" uv run pytest
@@ -71,26 +79,31 @@ uv run pytest
 ```
 
 Run tests with coverage:
+
 ```bash
 DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH" uv run pytest --cov=src --cov-report=html
 ```
 
 Run specific test modules:
+
 ```bash
 DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH" uv run pytest tests/test_module_organization_main.py -v
 ```
 
 Run import verification tests:
+
 ```bash
 uv run pytest tests/test_imports.py -v
 ```
 
 Run dependency verification tests:
+
 ```bash
 uv run pytest tests/test_dependencies.py -v
 ```
 
 Run real implementation verification tests:
+
 ```bash
 uv run pytest tests/test_real_implementations.py -v
 ```
@@ -98,6 +111,7 @@ uv run pytest tests/test_real_implementations.py -v
 ### Dependencies
 
 All required dependencies are specified in `pyproject.toml`:
+
 - `gtts>=2.5.0` - Google Text-to-Speech
 - `speechrecognition>=3.10.0` - Speech recognition
 - `pydub>=0.25.1` - Audio processing
@@ -108,11 +122,13 @@ All required dependencies are specified in `pyproject.toml`:
 - `markdown2>=2.4.0` - Additional markdown support
 
 Install all dependencies:
+
 ```bash
 uv sync --extra dev
 ```
 
 Verify dependencies are installed:
+
 ```bash
 uv run pytest tests/test_dependencies.py -v
 ```
@@ -120,6 +136,7 @@ uv run pytest tests/test_dependencies.py -v
 ### Development
 
 Activate the virtual environment:
+
 ```bash
 source .venv/bin/activate  # On Unix/macOS
 # or
@@ -127,6 +144,7 @@ source .venv/bin/activate  # On Unix/macOS
 ```
 
 Or use uv to run commands directly:
+
 ```bash
 uv run python -m src.markdown_to_pdf.main
 ```
@@ -150,6 +168,7 @@ The software follows a modular architecture where each module is:
 ### Module Structure
 
 Every module follows a consistent structure:
+
 - `main.py`: Public API (imported by users and other modules)
 - `utils.py`: Internal helper functions (private to module)
 - `config.py`: Constants and configuration
@@ -171,6 +190,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for design principles and [docs
 ## Utilities
 
 ### Content Generation
+
 - **Markdown to PDF**: Convert course materials from Markdown to PDF format
 - **Text-to-Speech**: Generate audio content from text materials
 - **Speech-to-Text**: Transcribe audio files to text
@@ -181,6 +201,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for design principles and [docs
 - **Publishing**: Export generated course materials to `PUBLISHED/` folder
 
 ### Course Management
+
 - **Module Organization**: Automated structure creation for new modules
 - **Canvas Integration**: Scripts for batch uploading module materials
 - **File Validation**: Comprehensive validation of module files and structure
@@ -199,6 +220,7 @@ Sample biology course materials are available in `course_development/`:
   - `sample_assignment-2-research.md`
 
 These sample files can be used to test:
+
 - Text-to-speech conversion
 - Speech-to-text transcription
 - PDF export
@@ -210,8 +232,8 @@ All code in this software uses real methods and implementations. No mocks, stubs
 
 ## Test Coverage
 
-- **325 tests collected** (verify with `uv run pytest --collect-only`)
-- Tests cover all major functionality across 11 modules
+- **420 tests collected** (verify with `uv run pytest --collect-only`)
+- Tests cover all major functionality across 14 modules
 - Run tests with: `uv run pytest tests/ -v`
 - Measure coverage with: `uv run pytest --cov=src --cov-report=html`
 

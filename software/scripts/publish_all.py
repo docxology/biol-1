@@ -149,6 +149,57 @@ def copy_slides(verbose: bool = False) -> int:
     return total_copied
 
 
+def copy_slides_to_modules(verbose: bool = False) -> int:
+    """Copy slide PDFs into each module's published folder.
+    
+    Maps module directories (e.g., module-01-study-of-life/) to slide files
+    (e.g., module-1-slides-full.pdf, module-1-slides-notes.pdf) and copies
+    the slides into each module folder.
+    """
+    repo_root = get_repo_root()
+    published_dir = repo_root / 'PUBLISHED'
+    total_copied = 0
+    courses = ['biol-1', 'biol-8']
+    
+    for course in courses:
+        slides_src = repo_root / 'course_development' / course / 'resources' / 'slides'
+        course_pub = published_dir / course
+        
+        if not slides_src.exists() or not course_pub.exists():
+            continue
+        
+        course_copied = 0
+        
+        # Find all module directories in published folder
+        for module_dir in sorted(course_pub.iterdir()):
+            if not module_dir.is_dir():
+                continue
+            # Skip non-module directories
+            if not module_dir.name.startswith('module-'):
+                continue
+            
+            # Extract module number from directory name (e.g., "module-01-study-of-life" -> 1)
+            try:
+                module_num = int(module_dir.name.split('-')[1])
+            except (IndexError, ValueError):
+                continue
+            
+            # Find matching slides (slides use single-digit pattern: module-1-slides-*.pdf)
+            slide_pattern = f"module-{module_num}-slides-*.pdf"
+            matching_slides = list(slides_src.glob(slide_pattern))
+            
+            for slide_file in matching_slides:
+                dest = module_dir / slide_file.name
+                shutil.copy2(slide_file, dest)
+                course_copied += 1
+        
+        if course_copied > 0:
+            logger.info(f"  {course}: Copied {course_copied} slides into module folders")
+            total_copied += course_copied
+    
+    return total_copied
+
+
 def copy_exams(verbose: bool = False) -> int:
     """Copy exam files from course/exams to PUBLISHED directory."""
     repo_root = get_repo_root()
@@ -369,8 +420,9 @@ def main():
     if not args.skip_copy_extras:
         logger.info("\nSTEP 4.5: Copying slides and exams")
         slides_copied = copy_slides(args.verbose)
+        module_slides_copied = copy_slides_to_modules(args.verbose)
         exams_copied = copy_exams(args.verbose)
-        logger.info(f"  ✓ Copied {slides_copied} slides, {exams_copied} exams")
+        logger.info(f"  ✓ Copied {slides_copied} slides to central dir, {module_slides_copied} to module folders, {exams_copied} exams")
 
     # Step 5: Flatten structure
     if not args.skip_flatten:

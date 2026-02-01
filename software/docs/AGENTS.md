@@ -15,12 +15,14 @@ Statistics are maintained in [README.md](README.md). This document focuses on do
 ## Documentation Map
 
 ### Root Level (`software/`)
+
 | File | Purpose | Audience |
 |------|---------|----------|
 | [README.md](../README.md) | Project overview, installation | All users |
 | [AGENTS.md](../AGENTS.md) | Technical API reference | Developers |
 
 ### Documentation Directory (`software/docs/`)
+
 | File | Purpose | Audience |
 |------|---------|----------|
 | [README.md](README.md) | Documentation index | All users |
@@ -30,12 +32,14 @@ Statistics are maintained in [README.md](README.md). This document focuses on do
 | [QUICKSTART.md](QUICKSTART.md) | Installation, quick commands | New users |
 
 ### Source Code (`software/src/`)
+
 | File | Purpose | Audience |
 |------|---------|----------|
 | [README.md](../src/README.md) | Source overview | Developers |
 | [AGENTS.md](../src/AGENTS.md) | Module implementation details | Developers |
 
 ### Test Suite (`software/tests/`)
+
 | File | Purpose | Audience |
 |------|---------|----------|
 | [README.md](../tests/README.md) | Test suite overview | Contributors |
@@ -48,6 +52,7 @@ Statistics are maintained in [README.md](README.md). This document focuses on do
 ### Every Document Must Include
 
 1. **Navigation Header**: Blockquote with links to related docs
+
    ```markdown
    > **Navigation**: [← Parent](parent.md) | [Sibling](sibling.md) | [Child →](child.md)
    ```
@@ -105,12 +110,14 @@ Use tables for structured data:
 ### Links
 
 - **Internal links**: Use relative paths
+
   ```markdown
   [Quick Start](QUICKSTART.md)
   [../AGENTS.md](../AGENTS.md)
   ```
 
 - **Anchored links**: Use fragment identifiers
+
   ```markdown
   [Section](#section-name)
   ```
@@ -203,9 +210,11 @@ result = primary_function(arg1, arg2)
 ```
 
 **Requirements for standalone use:**
+
 - List any prerequisites
 - External dependencies needed
 - System requirements
+
 ```
 
 #### 4. Integration Points
@@ -368,6 +377,48 @@ def function_name(
 | [ORCHESTRATION.md](ORCHESTRATION.md) | Workflow patterns |
 | [QUICKSTART.md](QUICKSTART.md) | Quick start guide |
 | [../AGENTS.md](../AGENTS.md) | API reference |
+| [../scripts/README.md](../scripts/README.md) | CLI scripts documentation |
+| [../tests/README.md](../tests/README.md) | Test suite documentation |
+
+---
+
+## Testing Standards
+
+See [../tests/AGENTS.md](../tests/AGENTS.md) for complete testing documentation. Key standards summarized here.
+
+### Test Organization
+
+Tests mirror source code structure in `tests/`:
+
+| Pattern | Example |
+|---------|---------|
+| Module main | `test_batch_processing_main.py` |
+| Module utils | `test_batch_processing_utils.py` |
+| Integration | `test_integration.py` |
+
+### Real Methods Policy
+
+**All tests use real implementations - no mocks, stubs, or fakes.**
+
+- Real file operations
+- Real library calls (gTTS, WeasyPrint, etc.)
+- Real validation logic
+- Temporary directories for isolation
+
+### Test Markers
+
+| Marker | Purpose |
+|--------|---------|
+| `requires_internet` | Tests requiring network (gTTS) |
+| `requires_api` | Tests requiring external API |
+
+### Fixtures (conftest.py)
+
+| Fixture | Purpose |
+|---------|---------|
+| `temp_dir` | Temporary directory for test files |
+| `sample_markdown_file` | Sample markdown for testing |
+| `sample_module_structure` | Sample module directory |
 
 ---
 
@@ -375,6 +426,7 @@ def function_name(
 
 | Date | Changes |
 |------|---------|
+| 2026-02-01 | Added Testing Standards section |
 | 2026-01-15 | Removed unverified statistics, focused on documentation standards |
 | 2026-01-09 | Complete rewrite with comprehensive standards |
 | 2026-01-08 | Added navigation headers |

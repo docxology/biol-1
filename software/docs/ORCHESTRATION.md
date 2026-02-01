@@ -87,6 +87,7 @@ Create, validate, and generate all outputs for a module:
 **Required Modules**: `module_organization`, `file_validation`, `batch_processing`, `html_website`
 
 **Module Dependencies**:
+
 - `batch_processing` depends on: `markdown_to_pdf`, `text_to_speech`, `format_conversion`
 - `html_website` depends on: `batch_processing`, `format_conversion`
 
@@ -342,6 +343,70 @@ if syllabus_path.exists():
 
 ---
 
+### 8. Publish Pipeline (Recommended)
+
+The recommended entry point for course publishing is the top-level `publish.py` with `publish.toml` configuration:
+
+**Required Modules**: `batch_processing`, `format_conversion`, `publish`, `validation`
+
+**Configuration**: Edit `publish.toml` at the repository root to customize formats, courses, and pipeline stages.
+
+```bash
+# Full publish pipeline (from repository root)
+python publish.py
+
+# Dry run to preview actions
+python publish.py --dry-run
+
+# Override formats on command line
+python publish.py --override-formats pdf,html,docx
+```
+
+**Configuration Options** (`publish.toml`):
+
+```toml
+[publish.formats]
+pdf  = true         # PDF files via WeasyPrint
+docx = true         # Word documents
+html = true         # HTML files
+txt  = true         # Plain text
+mp3  = false        # Audio narration (slower, ~30s per file)
+
+[publish.courses.biol-8]
+enabled = true
+include_labs = true
+include_syllabus = true
+
+[publish.pipeline]
+generate = true     # Generate outputs from source
+publish  = true     # Copy to PUBLISHED/
+validate = true     # Validate all outputs
+```
+
+**Programmatic Usage**:
+
+```python
+from src.publish.main import publish_course
+from src.validation.main import validate_published_directory
+from pathlib import Path
+
+# Publish a course
+result = publish_course(
+    course_path="/path/to/course_development/biol-8",
+    publish_root="/path/to/PUBLISHED"
+)
+print(f"Published {result['files_copied']} files")
+
+# Validate the published outputs
+validation = validate_published_directory(
+    published_dir=Path("/path/to/PUBLISHED"),
+    course="biol-8"
+)
+print(f"Validation passed: {validation['valid']}")
+```
+
+---
+
 ## Best Practices
 
 ### Error Handling Pattern
@@ -515,6 +580,47 @@ See [../tests/README.md](../tests/README.md) for test organization and [../tests
 
 ---
 
+## CLI Scripts Reference
+
+The `scripts/` directory contains CLI orchestrators for course material generation. For detailed usage, see [../scripts/README.md](../scripts/README.md).
+
+### Primary Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `publish_all.py` | **Top-level pipeline** - generate, publish, validate |
+| `generate_all_outputs.py` | Generate all outputs for all modules |
+| `publish_course.py` | Publish module outputs to PUBLISHED/ |
+| `validate_outputs.py` | Validate generated outputs |
+
+### Relationship to Top-Level publish.py
+
+The repository root contains `publish.py` which is a thin wrapper around `scripts/publish_all.py`:
+
+```bash
+# Repository root: uses publish.toml configuration
+python publish.py
+
+# Software directory: full CLI options
+cd software
+uv run python scripts/publish_all.py --clean --verbose
+```
+
+### Common Commands
+
+```bash
+# Full publish with all formats (~17 min)
+uv run python scripts/publish_all.py --clean --verbose
+
+# Skip MP3 for faster iteration (~5 min)
+uv run python scripts/publish_all.py --clean --skip-mp3
+
+# PDF-only for quick testing
+uv run python scripts/publish_all.py --clean --formats pdf
+```
+
+---
+
 ## Related Documentation
 
 | Document | Description |
@@ -523,3 +629,4 @@ See [../tests/README.md](../tests/README.md) for test organization and [../tests
 | [ARCHITECTURE.md](ARCHITECTURE.md) | System design diagrams |
 | [../AGENTS.md](../AGENTS.md) | Complete API reference |
 | [../tests/README.md](../tests/README.md) | Test suite documentation |
+| [../scripts/README.md](../scripts/README.md) | CLI scripts documentation |

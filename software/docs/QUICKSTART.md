@@ -57,6 +57,68 @@ uv run python -c "from src.format_conversion.main import convert_file; print('âœ
 
 ---
 
+## Project Configuration
+
+### Configuration Files Overview
+
+| File | Purpose |
+|------|---------|
+| `pyproject.toml` | Project metadata, dependencies, tool configuration |
+| `.python-version` | Python version for uv (3.11) |
+| `uv.lock` | Locked dependency versions for reproducibility |
+| `.gitignore` | Git exclusion patterns |
+| `.cursorrules` | Real Methods Policy for AI assistants |
+| `run_tests.sh` | macOS-compatible test runner wrapper |
+
+### pyproject.toml
+
+Defines project dependencies and tool configuration:
+
+```toml
+[project]
+requires-python = ">=3.11"
+dependencies = ["markdown", "weasyprint", "gtts", "requests", ...]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "black", "mypy", "ruff"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--cov=src", "--cov-report=html", "-v"]
+markers = ["requires_internet", "requires_api"]
+```
+
+### .python-version
+
+Specifies Python 3.11 for uv package manager:
+
+```text
+3.11
+```
+
+### uv.lock
+
+Auto-generated lock file ensuring reproducible builds. **Never edit manually** - regenerate with:
+
+```bash
+uv lock
+```
+
+### .cursorrules (Real Methods Policy)
+
+Documents the core development principle: **all code uses real implementations, no mocks or stubs**.
+
+### run_tests.sh
+
+Wrapper script for macOS that sets `DYLD_LIBRARY_PATH` for WeasyPrint:
+
+```bash
+./run_tests.sh              # Runs all tests
+./run_tests.sh tests/test_imports.py -v  # Run specific test
+```
+
+---
+
 ## Using Modules Independently
 
 All modules can be imported and used independently. Each module has a self-contained public API in its `main.py` file.
@@ -268,7 +330,7 @@ uv run pytest tests/test_schedule_main.py::TestProcessSchedule::test_process_sch
 
 ### Current Statistics
 
-- **Tests**: 414 passed, 6 skipped
+- **Tests**: 420 passed, 6 skipped
 - **Coverage**: 74% overall (measure with `uv run pytest --cov=src --cov-report=html`)
 
 ---

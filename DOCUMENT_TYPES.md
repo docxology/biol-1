@@ -79,8 +79,8 @@ Structured lab protocols with interactive elements (fillable fields, data tables
 | Property | Value |
 |----------|-------|
 | **Location** | `course/labs/lab-XX_*.md` |
-| **BIOL-1 Count** | 1 complete |
-| **BIOL-8 Count** | 1 complete, 14 stubs |
+| **BIOL-1 Count** | 2 complete, 15 stubs |
+| **BIOL-8 Count** | 4 complete, 11 stubs |
 | **Output Formats** | PDF (fillable), HTML (interactive) |
 | **Output Location** | `course/labs/output/` |
 
@@ -252,8 +252,8 @@ generate_module_website("course/module-01", output_dir="output/website", course_
 |---------------|--------|--------|--------|
 | **keys-to-success.md** | 17 | 15 | ✅ Complete |
 | **questions.md** | 17 | 15 | ✅ Complete |
-| **Labs (complete)** | 1 | 4 | ✅ Labs 1-4 implemented for BIOL-8 |
-| **Labs (stubs)** | 16 | 11 | ✅ Both have stubs |
+| **Labs (complete)** | 2 | 4 | ✅ Labs 1-4 implemented for BIOL-8 |
+| **Labs (stubs)** | 15 | 11 | ✅ Both have stubs |
 | **Exams** | Templates | 4 + keys | ❌ BIOL-1 needs content |
 | **Quizzes** | Templates | 15 + keys | ❌ BIOL-1 needs content |
 | **Syllabus** | 2 files | 2 files | ✅ Complete |

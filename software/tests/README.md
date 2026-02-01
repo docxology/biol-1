@@ -6,7 +6,7 @@ This directory contains test files for validating software functionality. Test s
 
 ## Test Statistics
 
-- **325 tests collected** (verify with `uv run pytest --collect-only`)
+- **420 tests collected** (verify with `uv run pytest --collect-only`)
 - Coverage measured via `uv run pytest --cov=src --cov-report=html`
 
 ## Test Organization
@@ -14,6 +14,7 @@ This directory contains test files for validating software functionality. Test s
 Tests are organized to mirror the source code structure:
 
 ### Module Tests
+
 | Test File | Coverage For |
 |-----------|--------------|
 | `test_batch_processing_main.py` | Batch processing functionality |
@@ -34,6 +35,7 @@ Tests are organized to mirror the source code structure:
 | `test_text_to_speech_main.py` | Text-to-speech functionality |
 
 ### Integration and Verification Tests
+
 | Test File | Purpose |
 |-----------|---------|
 | `test_cli.py` | CLI argument parsing |
@@ -48,37 +50,45 @@ Tests are organized to mirror the source code structure:
 **Important**: Always use `uv run pytest` to ensure tests run in the correct environment with all dependencies installed.
 
 ### All Tests
+
 ```bash
 DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH" uv run pytest tests/ -v
 ```
 
 ### Specific Test File
+
 ```bash
 uv run pytest tests/test_[module_name].py -v
 ```
 
 ### With Coverage
+
 ```bash
 uv run pytest --cov=src --cov-report=html tests/
 ```
 
 ### Import Verification
+
 ```bash
 uv run pytest tests/test_imports.py -v
 ```
 
 ### Dependency Verification
+
 ```bash
 uv run pytest tests/test_dependencies.py -v
 ```
 
 ### Real Implementation Verification
+
 ```bash
 uv run pytest tests/test_real_implementations.py -v
 ```
 
 ### Tests Requiring Internet
+
 Some tests require internet connection for external APIs (gTTS, speech recognition). These tests will be skipped if internet is unavailable:
+
 ```bash
 # Run all tests (skips internet-required tests if offline)
 uv run pytest tests/
@@ -105,6 +115,7 @@ uv run pytest tests/ -m "not requires_internet"
 ## Fixtures
 
 Shared fixtures are defined in `conftest.py`:
+
 - `temp_dir`: Temporary directory for test files
 - `sample_markdown_file`: Sample markdown file for testing
 - `sample_text_file`: Sample text file for testing

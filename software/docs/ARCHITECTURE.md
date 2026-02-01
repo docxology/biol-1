@@ -181,10 +181,10 @@ module_name/
 
 | Layer | Modules | Description |
 |-------|---------|-------------|
-| **Core** | markdown_to_pdf, text_to_speech, speech_to_text | Single-purpose converters |
+| **Core** | markdown_to_pdf, text_to_speech, speech_to_text, lab_manual | Single-purpose converters |
 | **Format** | format_conversion | Multi-format transformations |
 | **Orchestration** | batch_processing, html_website, schedule | Combine multiple converters |
-| **Management** | module_organization, file_validation | Course/module structure |
+| **Management** | module_organization, file_validation, validation | Course/module structure and validation |
 | **Integration** | canvas_integration, publish | External services and publishing |
 
 ---
@@ -291,20 +291,24 @@ See [Module Independence](#module-independence) for details on standalone usage.
 
 ## Repository Structure
 
-```
+```text
 software/
-├── src/                              # Source code (11 modules)
+├── src/                              # Source code (14 modules)
 │   ├── __init__.py
 │   ├── batch_processing/             # Module batch operations
 │   ├── canvas_integration/           # Canvas LMS upload
 │   ├── file_validation/              # Content validation
 │   ├── format_conversion/            # Format transformations
 │   ├── html_website/                 # Interactive websites
+│   ├── lab_manual/                   # Rich lab manual rendering
+│   ├── legacy_import/                # Legacy import utilities
 │   ├── markdown_to_pdf/              # PDF generation
 │   ├── module_organization/          # Directory structure
+│   ├── publish/                      # Course publishing
 │   ├── schedule/                     # Schedule processing
 │   ├── speech_to_text/               # Audio transcription
-│   └── text_to_speech/               # Audio generation
+│   ├── text_to_speech/               # Audio generation
+│   └── validation/                   # Output validation
 │
 ├── tests/                            # Test suite
 │   ├── conftest.py                   # Shared fixtures
@@ -453,6 +457,66 @@ Tests are organized to mirror source structure:
 
 ---
 
+## Development Tooling
+
+### Package Management (uv)
+
+[uv](https://github.com/astral-sh/uv) manages dependencies and virtual environments:
+
+```bash
+uv sync              # Install all dependencies
+uv run pytest        # Run commands in venv
+uv lock              # Regenerate uv.lock
+uv add <package>     # Add new dependency
+```
+
+### Testing (pytest)
+
+Configuration in `pyproject.toml`:
+
+| Setting | Value |
+|---------|-------|
+| Test path | `tests/` |
+| Coverage | `--cov=src --cov-report=html` |
+| Markers | `requires_internet`, `requires_api` |
+
+**Commands**:
+
+```bash
+uv run pytest                    # All tests
+uv run pytest -v tests/          # Verbose
+./run_tests.sh                   # macOS wrapper
+```
+
+### Coverage Reporting
+
+| File/Directory | Purpose |
+|----------------|---------|
+| `.coverage` | SQLite database (generated) |
+| `htmlcov/` | HTML report directory |
+
+Generate report:
+
+```bash
+uv run pytest --cov=src --cov-report=html
+open htmlcov/index.html
+```
+
+### Code Quality Tools
+
+| Tool | Purpose | Command |
+|------|---------|---------|
+| **black** | Code formatting | `uv run black src/` |
+| **mypy** | Static type checking | `uv run mypy src/` |
+| **ruff** | Fast linting | `uv run ruff check src/` |
+
+All tools configured in `pyproject.toml` with:
+
+- Line length: 100
+- Target: Python 3.11
+
+---
+
 ## Related Documentation
 
 | Document | Description |
@@ -462,3 +526,4 @@ Tests are organized to mirror source structure:
 | [QUICKSTART.md](QUICKSTART.md) | Installation and quick commands |
 | [../AGENTS.md](../AGENTS.md) | Complete API reference |
 | [../tests/README.md](../tests/README.md) | Test suite documentation |
+| [../scripts/README.md](../scripts/README.md) | CLI script documentation |
