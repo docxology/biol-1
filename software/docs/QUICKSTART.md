@@ -119,6 +119,22 @@ Wrapper script for macOS that sets `DYLD_LIBRARY_PATH` for WeasyPrint:
 
 ---
 
+## Check Version
+
+```bash
+# Check software version
+uv run python -c "from src import __version__; print(f'cr-bio-software v{__version__}')"
+
+# Check Python version
+python --version
+
+# Check key dependency versions
+uv run python -c "import weasyprint; print(f'WeasyPrint: {weasyprint.__version__}')"
+uv run python -c "import gtts; print(f'gTTS: {gtts.__version__}')"
+```
+
+---
+
 ## Using Modules Independently
 
 All modules can be imported and used independently. Each module has a self-contained public API in its `main.py` file.

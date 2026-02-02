@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+> **Complete Documentation**: See [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for visual diagrams, the full documentation map, and system architecture.
+
 ## Project Overview
 
 CR-BIO is a course management and content generation system for Biology courses at College of the Redwoods. It converts Markdown source files into multiple output formats (PDF, DOCX, HTML, TXT, MP3, interactive websites) for two courses:
@@ -78,7 +80,7 @@ uv run python scripts/validate_outputs.py --course all
 
 ### Directory Layout
 
-```
+```text
 course_development/          # Source content (Markdown)
   biol-{1,8}/
     course/
@@ -118,10 +120,12 @@ Configured via `publish.toml` at repo root. Five stages: generate â†’ publish â†
 ### Content Structure
 
 Each module contains two source files:
+
 - `keys-to-success.md` - Learning objectives, key concepts, study tips
 - `questions.md` - Study/review questions
 
 Labs use special directive syntax for interactive HTML dashboards:
+
 - `{fill:text}`, `{fill:textarea rows=N}` - Fillable fields
 - `<!-- lab:data-table rows=N -->` - Data tables
 - `<!-- lab:reflection -->` - Reflection boxes

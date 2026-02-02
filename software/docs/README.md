@@ -1,6 +1,6 @@
 # Software Documentation
 
-> **Quick Navigation**: [Quick Start](QUICKSTART.md) | [Architecture](ARCHITECTURE.md) | [Orchestration](ORCHESTRATION.md) | [API Reference](../AGENTS.md)
+> **Quick Navigation**: [Quick Start](QUICKSTART.md) | [Architecture](ARCHITECTURE.md) | [Orchestration](ORCHESTRATION.md) | [API Reference](../AGENTS.md) | [How It Works](../../HOW_IT_WORKS.md)
 
 ## Overview
 
@@ -159,10 +159,22 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 ## Version History
 
-| Date | Changes |
-|------|---------|
-| 2026-02-01 | Updated statistics (420 tests, 74% coverage), added validation module |
-| 2026-01-15 | Updated statistics, corrected module count, removed unverified coverage claims |
-| 2026-01-09 | Updated test counts and coverage |
-| 2026-01-08 | Enhanced documentation modularity and signposting |
-| 2026-01-01 | Initial comprehensive documentation |
+**Current Version**: `0.1.0` (pre-release)
+
+> 📋 For detailed versioning information including semantic versioning policy, module stability, and function signatures, see [ARCHITECTURE.md#versioning](ARCHITECTURE.md#versioning).
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 0.1.0 | 2026-02-02 | Added versioning documentation to ARCHITECTURE.md and QUICKSTART.md |
+| 0.1.0 | 2026-02-01 | Updated statistics (420 tests, 74% coverage), added validation module |
+| 0.1.0 | 2026-01-15 | Updated statistics, corrected module count (14 modules) |
+| 0.1.0 | 2026-01-09 | Updated test counts and coverage tracking |
+| 0.1.0 | 2026-01-08 | Enhanced documentation modularity and signposting |
+| 0.1.0 | 2026-01-01 | Initial comprehensive documentation |
+
+### Version Locations
+
+| Location | Purpose |
+|----------|---------|
+| `pyproject.toml` | Package metadata (`version = "0.1.0"`) |
+| `src/__init__.py` | Runtime access (`__version__ = "0.1.0"`) |

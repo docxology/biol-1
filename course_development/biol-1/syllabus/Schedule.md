@@ -8,7 +8,7 @@
 | 1 | Wed | 1/21 | Module 1: Biology - The Study of Life; Module 2: Basic Chemistry | |
 | 2 | Mon | 1/26 | Module 3: Organic Molecules; Lab 1 | |
 | 2 | Wed | 1/28 | Module 4: Cells; Lab 2 | |
-| 3 | Mon | 2/2 | Lab / Practice | Monday class meets |
+| 3 | Mon | 2/2 | Lab 3 / Practice | Monday class meets |
 | 3 | Wed | 2/4 | No Class | First Wednesday - Programs Canceled |
 | 4 | Mon | 2/9 | Module 5: Membranes | |
 | 4 | Wed | 2/11 | Module 6: Metabolism | |

@@ -517,6 +517,101 @@ All tools configured in `pyproject.toml` with:
 
 ---
 
+## Versioning
+
+### Version Locations
+
+The software version is maintained in two synchronized locations:
+
+| Location | Purpose | Format |
+|----------|---------|--------|
+| `pyproject.toml` | Package metadata (pip/uv) | `version = "0.1.0"` |
+| `src/__init__.py` | Runtime access | `__version__ = "0.1.0"` |
+
+### Checking the Version
+
+```python
+# From Python
+from src import __version__
+print(__version__)  # "0.1.0"
+
+# From shell
+uv run python -c "from src import __version__; print(__version__)"
+```
+
+### Semantic Versioning
+
+The project follows [Semantic Versioning](https://semver.org/) (SemVer):
+
+| Format | When to Increment |
+|--------|-------------------|
+| `MAJOR.minor.patch` | Breaking API changes |
+| `major.MINOR.patch` | New features, backward-compatible |
+| `major.minor.PATCH` | Bug fixes, backward-compatible |
+
+**Current Version**: `0.1.0` (pre-release, API may change)
+
+### Module Stability
+
+| Module | API Stability | Since |
+|--------|---------------|-------|
+| `markdown_to_pdf` | **Stable** | 0.1.0 |
+| `text_to_speech` | **Stable** | 0.1.0 |
+| `format_conversion` | **Stable** | 0.1.0 |
+| `batch_processing` | **Stable** | 0.1.0 |
+| `html_website` | **Stable** | 0.1.0 |
+| `schedule` | **Stable** | 0.1.0 |
+| `lab_manual` | **Stable** | 0.1.0 |
+| `module_organization` | **Stable** | 0.1.0 |
+| `file_validation` | **Stable** | 0.1.0 |
+| `validation` | **Stable** | 0.1.0 |
+| `publish` | **Stable** | 0.1.0 |
+| `canvas_integration` | Experimental | 0.1.0 |
+
+### Function Signatures
+
+All public API functions are documented with versioned signatures in [../AGENTS.md](../AGENTS.md). Key functions:
+
+```python
+# Core Converters (Stable since 0.1.0)
+render_markdown_to_pdf(markdown_path: str, output_path: str) -> str
+generate_speech(text: str, output_path: str, lang: str = "en") -> str
+convert_file(input_path: str, output_path: str) -> str
+transcribe_audio(audio_path: str) -> str
+
+# Orchestration (Stable since 0.1.0)  
+process_module_by_type(module_path: str, output_dir: str, formats: list[str] = None) -> dict
+generate_module_website(module_path: str, output_dir: str) -> str
+process_schedule(schedule_path: str, output_dir: str) -> dict
+
+# Course Management (Stable since 0.1.0)
+create_module_structure(course_path: str, module_number: int) -> Path
+validate_module_files(module_path: str) -> dict
+publish_course(course: str, formats: list[str]) -> dict
+```
+
+### Dependency Versioning
+
+External dependencies are pinned to minimum versions in `pyproject.toml`:
+
+```toml
+dependencies = [
+    "markdown>=3.5.0",
+    "weasyprint>=60.0",
+    "gtts>=2.5.0",
+    "pypdf>=4.0.0",
+    "python-docx>=1.1.0",
+]
+```
+
+Exact versions are locked in `uv.lock` for reproducible builds.
+
+### Version History
+
+See [README.md](README.md#version-history) for the complete changelog.
+
+---
+
 ## Related Documentation
 
 | Document | Description |

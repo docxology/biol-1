@@ -36,6 +36,33 @@ graph TD
 
 ---
 
+## 📖 Documentation Guide
+
+> **New here?** Start with [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for a comprehensive visual guide to the entire system.
+
+### Quick Links by Audience
+
+| If you are a... | Start with... |
+|-----------------|---------------|
+| **New User** | [README.md](README.md) (this file) → [HOW_IT_WORKS.md](HOW_IT_WORKS.md) |
+| **Content Author** | [CONTRIBUTING.md](CONTRIBUTING.md) → [DOCUMENT_TYPES.md](DOCUMENT_TYPES.md) |
+| **Developer** | [software/docs/ARCHITECTURE.md](software/docs/ARCHITECTURE.md) → [software/AGENTS.md](software/AGENTS.md) |
+| **AI Assistant** | [CLAUDE.md](CLAUDE.md) → [AGENTS.md](AGENTS.md) |
+
+### Documentation Index
+
+| Document | Purpose |
+|----------|---------|
+| [HOW_IT_WORKS.md](HOW_IT_WORKS.md) | **Master guide** - Visual diagrams, complete system overview |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to add labs, assessments, and content |
+| [DOCUMENT_TYPES.md](DOCUMENT_TYPES.md) | All document types and output formats |
+| [GENERATION.md](GENERATION.md) | How to generate course materials |
+| [AGENTS.md](AGENTS.md) | Technical specifications and conventions |
+| [CLAUDE.md](CLAUDE.md) | AI assistant guidance and commands |
+| [software/docs/](software/docs/README.md) | Developer documentation (architecture, API, testing) |
+
+---
+
 ## 🏗️ Course Development (`course_development/`)
 
 This is the working directory for instructors. It contains the source of truth for all course content.

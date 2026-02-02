@@ -188,6 +188,31 @@ def expand_fillable_fields(html: str) -> str:
         html
     )
     
+    # Replace {fill:drawing} with drawing area box
+    def drawing_replacement(match: re.Match) -> str:
+        attrs = match.group(1) if match.group(1) else ""
+        
+        # Parse height attribute (default 300px)
+        height_match = re.search(r"height=(\d+)", attrs)
+        height = height_match.group(1) if height_match else "300"
+        
+        # Parse shape attribute (default rectangle)
+        shape_match = re.search(r"shape=(\w+)", attrs)
+        shape = shape_match.group(1) if shape_match else "rectangle"
+        
+        if shape == "circle":
+            # Create circular drawing area
+            return f'''<div class="fill-drawing-circle" style="width: {height}px; height: {height}px;"></div>'''
+        else:
+            # Create rectangular drawing area
+            return f'''<div class="fill-drawing" style="min-height: {height}px;"></div>'''
+    
+    html = re.sub(
+        r"\{fill:drawing\s*(.*?)\}",
+        drawing_replacement,
+        html
+    )
+    
     # Replace {fill} in table cells with fillable cell styling
     html = re.sub(
         r"<td>\s*\{fill\}\s*</td>",

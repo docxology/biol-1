@@ -20,6 +20,12 @@ OUTPUT_DIRECTORIES: Dict[str, str] = {
 # Supported course directory names
 SUPPORTED_COURSES: List[str] = ["biol-1", "biol-8"]
 
+# Available courses with their directory paths (relative to repo root)
+AVAILABLE_COURSES: List[str] = ["biol-1", "biol-8"]
+
+# Available output formats
+AVAILABLE_FORMATS: List[str] = ["pdf", "mp3", "docx", "html", "txt"]
+
 # File selection patterns for batch processing
 SAMPLE_FILE_PREFIX: str = "sample_"
 

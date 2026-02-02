@@ -173,6 +173,25 @@ hr {
     background-color: #fafafa;
 }
 
+/* Drawing Areas - Blank Space for Student Drawings */
+.fill-drawing {
+    display: block;
+    width: 100%;
+    border: 2px solid #333333;
+    margin: 1em 0;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.fill-drawing-circle {
+    display: block;
+    border: 2px solid #333333;
+    border-radius: 50%;
+    margin: 1em auto;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
 .fill-checkbox {
     display: flex;
     align-items: flex-start;

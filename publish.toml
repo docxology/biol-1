@@ -9,7 +9,7 @@
 
 [publish]
 clean = true        # Clean output directories before generation
-verbose = false     # Enable verbose logging
+verbose = true     # Enable verbose logging
 
 # Output Format Configuration
 # --------------------------
@@ -18,8 +18,8 @@ verbose = false     # Enable verbose logging
 [publish.formats]
 pdf  = true         # PDF files (via WeasyPrint)
 docx = true         # Word documents (via Pandoc)
-html = true         # HTML files (via Pandoc)
-txt  = true         # Plain text (extracted from Markdown)
+html = false         # HTML files (via Pandoc)
+txt  = false         # Plain text (extracted from Markdown)
 mp3  = false        # Audio narration (via Google TTS, slower)
 
 # Course Configuration
@@ -35,6 +35,7 @@ include_syllabus = true
 include_labs = true
 include_dashboards = true
 include_slides = true
+include_practice_tests = true
 
 [publish.courses.biol-8]
 enabled = true
@@ -46,6 +47,7 @@ include_labs = true
 include_dashboards = true
 include_exams = true
 include_slides = true
+include_practice_tests = true
 
 # Pipeline Stage Configuration
 # ---------------------------

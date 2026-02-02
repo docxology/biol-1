@@ -715,7 +715,321 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
     return results
 
 
+def process_course_modules(
+    course_path: Path,
+    course_name: str,
+    module_filter: Optional[int] = None,
+    generate_website: bool = True,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
+    """Process all modules for a course.
+
+    Args:
+        course_path: Path to course directory
+        course_name: Name of the course
+        module_filter: If specified, only process this module number
+        generate_website: Whether to generate HTML websites for modules
+        formats: Optional list of formats to generate (e.g. ["pdf", "html"])
+
+    Returns:
+        Dictionary with processing results
+    """
+    from ..module_organization.utils import matches_module_number
+
+    course_dir = course_path / "course"
+    if not course_dir.exists():
+        logger.warning(f"Course directory not found: {course_dir}")
+        return {"modules": [], "errors": []}
+
+    results: Dict[str, Any] = {
+        "course": course_name,
+        "modules": [],
+        "errors": [],
+    }
+
+    # Find all modules
+    modules = sorted(
+        [d for d in course_dir.iterdir() if d.is_dir() and d.name.startswith("module-")]
+    )
+
+    # Filter by module number if specified
+    if module_filter is not None:
+        modules = [m for m in modules if matches_module_number(m.name, module_filter)]
+        if not modules:
+            logger.warning(f"Module {module_filter} not found in {course_name}")
+            return results
+
+    for module_dir in modules:
+        module_name = module_dir.name
+        logger.info(f"{'='*60}")
+        logger.info(f"Processing {course_name} - {module_name}")
+        logger.info(f"{'='*60}")
+
+        # Process module outputs
+        output_dir = module_dir / "output"
+        module_start = time.time()
+        try:
+            module_results = process_module_by_type(
+                str(module_dir), str(output_dir), formats=formats
+            )
+            module_duration = time.time() - module_start
+            results["modules"].append({
+                "name": module_name,
+                "outputs": module_results,
+                "duration": module_duration,
+            })
+
+            logger.info(f"{module_name} outputs generated in {module_duration:.2f}s:")
+            logger.info(f"  PDF: {module_results['summary']['pdf']}")
+            logger.info(f"  MP3: {module_results['summary']['mp3']}")
+            logger.info(f"  DOCX: {module_results['summary']['docx']}")
+            logger.info(f"  HTML: {module_results['summary']['html']}")
+            logger.info(f"  TXT: {module_results['summary']['txt']}")
+
+            if module_results["errors"]:
+                logger.warning(
+                    f"Errors in {module_name}: {len(module_results['errors'])} errors"
+                )
+                for error in module_results["errors"]:
+                    logger.error(f"  {module_name}: {error}")
+                    results["errors"].append(f"{module_name}: {error}")
+
+        except Exception as e:
+            error_msg = f"Failed to process {module_name}: {e}"
+            logger.error(error_msg, exc_info=True)
+            results["errors"].append(error_msg)
+            continue
+
+        # Generate website (if enabled)
+        if generate_website:
+            website_start = time.time()
+            try:
+                website_file = process_module_website(str(module_dir))
+                website_duration = time.time() - website_start
+                logger.info(
+                    f"Website generated in {website_duration:.2f}s: {website_file}"
+                )
+            except Exception as e:
+                error_msg = f"Failed to generate website for {module_name}: {e}"
+                logger.error(error_msg, exc_info=True)
+                results["errors"].append(error_msg)
+
+    return results
+
+
+def process_course_syllabus(
+    course_path: Path,
+    course_name: str,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
+    """Process syllabus for a course.
+
+    Args:
+        course_path: Path to course directory
+        course_name: Name of the course
+        formats: Optional list of formats to generate (e.g. ["pdf", "html"])
+
+    Returns:
+        Dictionary with processing results
+    """
+    syllabus_dir = course_path / "syllabus"
+    if not syllabus_dir.exists():
+        logger.warning(f"Syllabus directory not found: {syllabus_dir}")
+        return {"processed": False, "errors": []}
+
+    logger.info(f"{'='*60}")
+    logger.info(f"Processing {course_name} Syllabus")
+    logger.info(f"{'='*60}")
+
+    output_dir = syllabus_dir / "output"
+    syllabus_start = time.time()
+
+    try:
+        results = process_syllabus(str(syllabus_dir), str(output_dir), formats=formats)
+        syllabus_duration = time.time() - syllabus_start
+        logger.info(f"Syllabus outputs generated in {syllabus_duration:.2f}s:")
+        logger.info(f"  PDF: {results['summary']['pdf']}")
+        logger.info(f"  MP3: {results['summary']['mp3']}")
+        logger.info(f"  DOCX: {results['summary']['docx']}")
+        logger.info(f"  HTML: {results['summary']['html']}")
+        logger.info(f"  TXT: {results['summary']['txt']}")
+
+        if results["errors"]:
+            logger.warning(
+                f"Errors in syllabus processing: {len(results['errors'])} errors"
+            )
+            for error in results["errors"]:
+                logger.error(f"  {error}")
+
+        return {
+            "processed": True,
+            "results": results,
+            "errors": results["errors"],
+            "duration": syllabus_duration,
+        }
+
+    except Exception as e:
+        error_msg = f"Failed to process syllabus: {e}"
+        logger.error(error_msg, exc_info=True)
+        return {"processed": False, "errors": [error_msg]}
+
+
+def process_course_labs(
+    course_path: Path,
+    course_name: str,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
+    """Process lab manuals for a course.
+
+    Args:
+        course_path: Path to course directory
+        course_name: Name of the course
+        formats: Optional list of formats to generate (supports "pdf", "html")
+
+    Returns:
+        Dictionary with processing results
+    """
+    labs_dir = course_path / "course" / "labs"
+    if not labs_dir.exists():
+        logger.warning(f"Labs directory not found: {labs_dir}")
+        return {"processed": False, "errors": []}
+
+    logger.info(f"{'='*60}")
+    logger.info(f"Processing {course_name} Labs")
+    logger.info(f"{'='*60}")
+
+    output_dir = labs_dir / "output"
+    lab_start = time.time()
+
+    results: Dict[str, Any] = {
+        "processed": True,
+        "files": [],
+        "errors": [],
+        "duration": 0.0,
+    }
+
+    # Lab rendering supports pdf and html formats
+    lab_formats = ["pdf", "html"]
+    if formats:
+        lab_formats = [f for f in formats if f in ("pdf", "html")]
+
+    if not lab_formats:
+        logger.info("No lab-compatible formats requested, skipping labs")
+        results["processed"] = False
+        return results
+
+    # Lazy import to avoid WeasyPrint load at module level
+    from ..lab_manual.main import batch_render_lab_manuals
+
+    for fmt in lab_formats:
+        try:
+            fmt_output = output_dir / fmt
+            rendered = batch_render_lab_manuals(
+                str(labs_dir),
+                str(fmt_output),
+                output_format=fmt,
+                course_name=course_name,
+            )
+            results["files"].extend(rendered)
+            logger.info(f"  {fmt.upper()}: {len(rendered)} lab files rendered")
+        except Exception as e:
+            error_msg = f"Lab {fmt} rendering failed: {e}"
+            logger.error(error_msg, exc_info=True)
+            results["errors"].append(error_msg)
+
+    results["duration"] = time.time() - lab_start
+    logger.info(
+        f"Lab rendering completed in {results['duration']:.2f}s: "
+        f"{len(results['files'])} files"
+    )
+
+    return results
+
+
+def process_course_practice_tests(
+    course_path: Path,
+    course_name: str,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
+    """Process practice tests for a course.
+
+    Renders practice test markdown files (including answer keys) to PDF
+    for student use.
+
+    Args:
+        course_path: Path to course directory
+        course_name: Name of the course
+        formats: Optional list of formats to generate (supports "pdf")
+
+    Returns:
+        Dictionary with processing results
+    """
+    practice_tests_dir = course_path / "course" / "practice_tests"
+    if not practice_tests_dir.exists():
+        logger.debug(f"Practice tests directory not found: {practice_tests_dir}")
+        return {"processed": False, "errors": [], "files": []}
+
+    logger.info(f"{'='*60}")
+    logger.info(f"Processing {course_name} Practice Tests")
+    logger.info(f"{'='*60}")
+
+    output_dir = practice_tests_dir / "output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    start_time = time.time()
+
+    results: Dict[str, Any] = {
+        "processed": True,
+        "files": [],
+        "errors": [],
+        "duration": 0.0,
+    }
+
+    # Practice test rendering supports pdf format
+    if formats and "pdf" not in formats:
+        logger.info("PDF format not requested, skipping practice tests")
+        results["processed"] = False
+        return results
+
+    # Find all practice test markdown files (excluding README)
+    md_files = [
+        f for f in practice_tests_dir.glob("*.md")
+        if not f.name.startswith("README") and not f.name.startswith("AGENTS")
+    ]
+
+    if not md_files:
+        logger.info(f"No practice test files found in {practice_tests_dir}")
+        results["processed"] = False
+        return results
+
+    # Lazy import to avoid load at module level
+    from ..markdown_to_pdf.main import render_markdown_to_pdf
+
+    for md_file in md_files:
+        try:
+            pdf_file = output_dir / f"{md_file.stem}.pdf"
+            logger.debug(f"Generating PDF: {pdf_file.name}")
+            render_markdown_to_pdf(str(md_file), str(pdf_file))
+            results["files"].append(str(pdf_file))
+        except Exception as e:
+            error_msg = f"PDF generation failed for {md_file.name}: {e}"
+            logger.error(error_msg, exc_info=True)
+            results["errors"].append(error_msg)
+
+    results["duration"] = time.time() - start_time
+    logger.info(
+        f"  PDF: {len(results['files'])} practice test files rendered"
+    )
+    logger.info(
+        f"Practice test rendering completed in {results['duration']:.2f}s: "
+        f"{len(results['files'])} files"
+    )
+
+    return results
+
+
 def process_module_website(module_path: str, output_dir: Optional[str] = None) -> str:
+
     """Generate HTML website for a module.
 
     Args:

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Script to renumber questions.md files to use continuous numbering.
 
-This script converts section-based question files (with headers like "1. **Topic**")
-to continuous numbered format (1. Question, 2. Question, etc.).
+Thin orchestrator - delegates to src.content_processing.
 
 Usage:
     uv run python scripts/renumber_questions.py --course all
@@ -12,81 +11,13 @@ Usage:
 """
 
 import argparse
-import re
+import sys
 from pathlib import Path
 
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-def extract_questions_from_sectioned(content: str) -> list[str]:
-    """Extract all questions from a sectioned questions.md file.
-
-    Handles format like:
-    1.  **Topic Header**
-        *   Question one?
-        *   Question two?
-    """
-    questions = []
-
-    # Find all bullet point questions (lines starting with * or -)
-    lines = content.split('\n')
-    for line in lines:
-        stripped = line.strip()
-        # Match lines that start with * or - and contain a question
-        if stripped.startswith('*') or stripped.startswith('-'):
-            # Remove the bullet point marker
-            question = stripped.lstrip('*- \t')
-            if question and len(question) > 5:  # Skip very short items
-                questions.append(question)
-
-    return questions
-
-
-def format_as_continuous(questions: list[str], title: str) -> str:
-    """Format questions as continuous numbered list."""
-    lines = [f"# {title}", ""]
-
-    for i, q in enumerate(questions, 1):
-        lines.append(f"{i}. {q}")
-        lines.append("")
-
-    return '\n'.join(lines)
-
-
-def process_questions_file(filepath: Path, dry_run: bool = False, verbose: bool = False) -> tuple[bool, int]:
-    """Process a single questions.md file.
-
-    Returns:
-        Tuple of (was_changed, question_count)
-    """
-    content = filepath.read_text()
-
-    # Check if already in continuous format (no ### sections with numbered headers)
-    if not re.search(r'\n###\s+Part', content):
-        # Already in continuous format
-        count = len(re.findall(r'^\d+\.', content, re.MULTILINE))
-        return False, count
-
-    # Extract title from first line
-    first_line = content.split('\n')[0]
-    title = first_line.lstrip('# ').strip()
-
-    # Extract questions
-    questions = extract_questions_from_sectioned(content)
-
-    if not questions:
-        return False, 0
-
-    # Generate new content
-    new_content = format_as_continuous(questions, title)
-
-    if verbose:
-        print(f"    Title: {title}")
-        print(f"    Questions extracted: {len(questions)}")
-
-    # Write back
-    if not dry_run:
-        filepath.write_text(new_content)
-
-    return True, len(questions)
+from src.content_processing import process_questions_file, renumber_questions_in_course
 
 
 def main():
@@ -129,44 +60,38 @@ def main():
 
     prefix = "[DRY RUN] " if args.dry_run else ""
 
-    for course in courses:
-        course_path = repo_root / 'course_development' / course / 'course'
+    # Delegate to module function
+    results = renumber_questions_in_course(
+        repo_root=repo_root,
+        courses=courses,
+        module_filter=args.module,
+        dry_run=args.dry_run,
+        verbose=args.verbose
+    )
 
+    # Display results
+    for course_result in results["courses_processed"]:
         print(f"\n{'='*60}")
-        print(f"{prefix}Processing {course.upper()}")
+        print(f"{prefix}Processing {course_result['name'].upper()}")
         print('='*60)
 
-        if not course_path.exists():
-            print(f"  ERROR: Course path not found: {course_path}")
-            continue
-
-        if args.module:
-            # Process single module
-            module_dirs = [course_path / args.module]
-        else:
-            module_dirs = sorted(course_path.glob('module-*'))
-
-        for module_dir in module_dirs:
-            if not module_dir.exists():
-                print(f"  ✗ NOT FOUND {module_dir.name}")
-                continue
-
-            questions_file = module_dir / 'questions.md'
-
-            if not questions_file.exists():
-                print(f"  ✗ MISSING {module_dir.name}")
-                continue
-
-            was_changed, count = process_questions_file(
-                questions_file, dry_run=args.dry_run, verbose=args.verbose
-            )
-
-            if was_changed:
+        for module_info in course_result["modules"]:
+            if module_info["converted"]:
                 action = "WOULD CONVERT" if args.dry_run else "CONVERTED"
                 status = f"✓ {action}"
             else:
                 status = "○ OK"
-            print(f"  {status} {module_dir.name}: {count} questions")
+            print(f"  {status} {module_info['name']}: {module_info['question_count']} questions")
+
+    # Print summary
+    print(f"\nTotal files converted: {results['files_converted']}")
+    print(f"Total questions: {results['total_questions']}")
+
+    if results["errors"]:
+        print(f"\nErrors ({len(results['errors'])}):")
+        for error in results["errors"]:
+            print(f"  - {error}")
+        return 1
 
     return 0
 
