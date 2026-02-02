@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 Dashboard: Light Microscopy | BIOL-1</title>
+    <style>
+        /* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --sidebar: #1a1a2e;
+            --sidebar-hover: #252545;
+            --accent: #16a34a;
+            --accent-light: #22c55e;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --green: #16a34a;
+            --amber: #d97706;
+            --purple: #7c3aed;
+            --red: #dc2626;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --radius: 10px;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar);
+            color: #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 12px 0;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.15s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--sidebar-hover);
+            color: #e2e8f0;
+        }
+
+        .sidebar-nav a.active {
+            color: #fff;
+            background: var(--sidebar-hover);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav .nav-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav a.active .nav-num {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .main {
+            margin-left: 260px;
+            flex: 1;
+            padding: 32px;
+            max-width: 1200px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .card-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+
+            .card-row,
+            .card-row-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .btn-active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 14px 8px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+        }
+
+        .stat-box .stat-val {
+            font-size: 28px;
+            font-weight: 800;
+            font-family: var(--mono);
+        }
+
+        .stat-box .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-accent .stat-val {
+            color: var(--accent);
+        }
+
+        .stat-blue .stat-val {
+            color: var(--blue);
+        }
+
+        .stat-green .stat-val {
+            color: var(--green);
+        }
+
+        .stat-amber .stat-val {
+            color: var(--amber);
+        }
+
+        .stat-purple .stat-val {
+            color: var(--purple);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   MICROSCOPE DIAGRAM
+   ═══════════════════════════════════════════════════════════════════════ */
+        .microscope-container {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .microscope-visual {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .microscope-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .parts-list {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .part-item {
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.15s;
+            background: #fff;
+            font-size: 13px;
+        }
+
+        .part-item:hover {
+            border-color: var(--blue);
+            background: #eff6ff;
+        }
+
+        .part-item.selected {
+            border-color: var(--accent);
+            background: #f0fdf4;
+            color: var(--accent);
+        }
+
+        .part-item.correct {
+            border-color: var(--green);
+            background: #f0fdf4;
+        }
+
+        .part-item .part-name {
+            font-weight: 700;
+        }
+
+        .part-item .part-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   SPECIMEN VIEWER
+   ═══════════════════════════════════════════════════════════════════════ */
+        .viewer-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .viewer-controls {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .viewer-display {
+            flex: 2;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .viewer-circle {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border: 8px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .viewer-content {
+            transition: transform 0.3s ease;
+        }
+
+        .specimen-select {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            margin-bottom: 12px;
+            font-family: var(--font);
+        }
+
+        .specimen-select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .mag-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .mag-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: 2px solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .mag-btn:hover {
+            border-color: var(--blue);
+        }
+
+        .mag-btn.active {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .mag-btn .mag-val {
+            font-size: 20px;
+            display: block;
+        }
+
+        .mag-btn .mag-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .mag-btn.active .mag-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .info-panel {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            border-left: 4px solid var(--blue);
+        }
+
+        .info-panel .info-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .info-panel ul {
+            padding-left: 18px;
+            font-size: 13px;
+        }
+
+        .info-panel li {
+            margin-bottom: 4px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+        .hero {
+            background: linear-gradient(135deg, #0d3320 0%, #16532e 50%, #1a4028 100%);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 36px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #bbf7d0;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .hero .bio-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero .bio-tag {
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   QUIZ STYLES
+   ═══════════════════════════════════════════════════════════════════════ */
+        .quiz-question {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+            border: 2px solid var(--border);
+        }
+
+        .quiz-question.correct {
+            border-color: var(--green);
+            background: #f0fdf4;
+        }
+
+        .quiz-question.incorrect {
+            border-color: var(--red);
+            background: #fef2f2;
+        }
+
+        .quiz-text {
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quiz-option {
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.15s;
+            font-size: 14px;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--blue);
+            background: #eff6ff;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--accent);
+            background: #f0fdf4;
+        }
+
+        .quiz-option.correct-answer {
+            border-color: var(--green);
+            background: #dcfce7;
+        }
+
+        .quiz-option.wrong-answer {
+            border-color: var(--red);
+            background: #fee2e2;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 16px;
+            }
+
+            .viewer-circle {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+
+        <!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>BIOL-1: Biology</h1>
+                <p>Lab 3 &mdash; Light Microscopy</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+                <a href="#part1"><span class="nav-num">1</span> Microscope Anatomy</a>
+                <a href="#part2"><span class="nav-num">2</span> Virtual Viewer</a>
+                <a href="#part3"><span class="nav-num">3</span> Focus Simulator</a>
+                <a href="#part4"><span class="nav-num">4</span> Field of View</a>
+                <a href="#part5"><span class="nav-num">5</span> Magnification Math</a>
+                <a href="#part6"><span class="nav-num">6</span> Proper Technique</a>
+                <a href="#part7"><span class="nav-num">7</span> Knowledge Check</a>
+            </nav>
+            <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+        </aside>
+
+        <!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+        <div class="main">
+
+            <!-- HERO -->
+            <div class="hero" id="hero">
+                <h2>🔬 Light Microscopy</h2>
+                <p>Master the compound light microscope through interactive practice. Learn the parts,
+                    practice focusing techniques, explore specimens at different magnifications, and understand
+                    how field of view changes. This dashboard supplements your hands-on lab experience.</p>
+                <div class="bio-tags">
+                    <span class="bio-tag">Microscope Parts</span>
+                    <span class="bio-tag">Focusing Technique</span>
+                    <span class="bio-tag">Magnification</span>
+                    <span class="bio-tag">Field of View</span>
+                    <span class="bio-tag">Specimen Observation</span>
+                    <span class="bio-tag">Scientific Drawing</span>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════ PART 1: MICROSCOPE ANATOMY ════════════════════════════════ -->
+            <div class="section" id="part1">
+                <div class="section-header">
+                    <div class="section-num">1</div>
+                    <div>
+                        <div class="section-title">Microscope Anatomy</div>
+                        <div class="section-subtitle">Click on parts to learn their names and functions</div>
+                    </div>
+                </div>
+                <div class="stat-grid" style="margin-bottom:16px;">
+                    <div class="stat-box stat-accent">
+                        <div class="stat-val" id="parts-learned">0</div>
+                        <div class="stat-label">Parts Learned</div>
+                    </div>
+                    <div class="stat-box stat-blue">
+                        <div class="stat-val" id="parts-total">11</div>
+                        <div class="stat-label">Total Parts</div>
+                    </div>
+                    <div class="stat-box stat-green">
+                        <div class="stat-val" id="parts-progress">0%</div>
+                        <div class="stat-label">Progress</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Interactive Microscope Diagram</div>
+                    <div class="microscope-container">
+                        <div class="microscope-visual">
+                            <svg viewBox="0 0 300 450" width="300" height="450">
+                                <!-- Base -->
+                                <path id="svg-base" d="M70 420 L230 420 L250 430 L50 430 L70 420" fill="#444"
+                                    stroke="#333" stroke-width="2" style="cursor:pointer" />
+                                <text x="150" y="427" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold"
+                                    style="pointer-events:none">BASE</text>
+
+                                <!-- Arm -->
+                                <path id="svg-arm"
+                                    d="M130 120 L130 380 L170 380 L170 120 Q 170 100 150 100 Q 130 100 130 120"
+                                    fill="#555" stroke="#333" stroke-width="2" style="cursor:pointer" />
+                                <text x="185" y="250" fill="#333" font-size="10" font-weight="bold"
+                                    style="pointer-events:none">ARM</text>
+
+                                <!-- Stage -->
+                                <rect id="svg-stage" x="60" y="280" width="180" height="20" fill="#666" stroke="#333"
+                                    stroke-width="2" rx="3" style="cursor:pointer" />
+                                <text x="150" y="294" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold"
+                                    style="pointer-events:none">STAGE</text>
+
+                                <!-- Stage Clips -->
+                                <rect id="svg-clips" x="85" y="275" width="15" height="10" fill="#888" stroke="#333"
+                                    stroke-width="1" style="cursor:pointer" />
+                                <rect x="200" y="275" width="15" height="10" fill="#888" stroke="#333" stroke-width="1"
+                                    style="cursor:pointer" />
+
+                                <!-- Light Source -->
+                                <ellipse id="svg-light" cx="150" cy="350" rx="25" ry="15" fill="#ffd700" stroke="#333"
+                                    stroke-width="2" style="cursor:pointer" />
+                                <text x="150" y="354" text-anchor="middle" fill="#333" font-size="8" font-weight="bold"
+                                    style="pointer-events:none">LIGHT</text>
+
+                                <!-- Diaphragm -->
+                                <ellipse id="svg-diaphragm" cx="150" cy="320" rx="20" ry="8" fill="#777" stroke="#333"
+                                    stroke-width="2" style="cursor:pointer" />
+
+                                <!-- Nosepiece -->
+                                <ellipse id="svg-nosepiece" cx="150" cy="215" rx="40" ry="15" fill="#555" stroke="#333"
+                                    stroke-width="2" style="cursor:pointer" />
+
+                                <!-- Objective Lenses -->
+                                <g id="svg-objectives" style="cursor:pointer">
+                                    <rect x="100" y="220" width="12" height="40" fill="#c41e3a" stroke="#333"
+                                        stroke-width="1" rx="2" />
+                                    <rect x="120" y="220" width="14" height="50" fill="#2563eb" stroke="#333"
+                                        stroke-width="1" rx="2" />
+                                    <rect x="166" y="220" width="16" height="60" fill="#7c3aed" stroke="#333"
+                                        stroke-width="1" rx="2" />
+                                </g>
+
+                                <!-- Body Tube -->
+                                <rect x="140" y="120" width="20" height="60" fill="#444" stroke="#333"
+                                    stroke-width="2" />
+
+                                <!-- Eyepiece -->
+                                <g id="svg-eyepiece" style="cursor:pointer">
+                                    <rect x="135" y="70" width="30" height="50" fill="#333" stroke="#222"
+                                        stroke-width="2" rx="3" />
+                                    <ellipse cx="150" cy="70" rx="18" ry="8" fill="#222" stroke="#111"
+                                        stroke-width="2" />
+                                </g>
+                                <text x="150" y="60" text-anchor="middle" fill="#333" font-size="10" font-weight="bold"
+                                    style="pointer-events:none">EYEPIECE</text>
+
+                                <!-- Coarse Adjustment -->
+                                <circle id="svg-coarse" cx="200" cy="340" r="22" fill="#666" stroke="#333"
+                                    stroke-width="2" style="cursor:pointer" />
+                                <circle cx="200" cy="340" r="8" fill="#444" stroke="#333" stroke-width="1"
+                                    style="pointer-events:none" />
+
+                                <!-- Fine Adjustment -->
+                                <circle id="svg-fine" cx="200" cy="390" r="15" fill="#777" stroke="#333"
+                                    stroke-width="2" style="cursor:pointer" />
+                                <circle cx="200" cy="390" r="5" fill="#555" stroke="#333" stroke-width="1"
+                                    style="pointer-events:none" />
+                            </svg>
+                        </div>
+                        <div class="parts-list" id="parts-list">
+                            <!-- Parts inserted by JS -->
+                        </div>
+                    </div>
+                    <div class="info-panel" id="part-info" style="display:none;">
+                        <div class="info-title" id="info-title"></div>
+                        <p id="info-desc"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════ PART 2: VIRTUAL VIEWER ════════════════════════════════ -->
+            <div class="section" id="part2">
+                <div class="section-header">
+                    <div class="section-num">2</div>
+                    <div>
+                        <div class="section-title">Virtual Specimen Viewer</div>
+                        <div class="section-subtitle">Explore specimens at different magnifications</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Specimen Viewer</div>
+                    <div class="viewer-container">
+                        <div class="viewer-controls">
+                            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Select
+                                Specimen:</label>
+                            <select class="specimen-select" id="specimen-select" onchange="changeSpecimen()">
+                                <option value="letter_e">Letter "e" Slide</option>
+                                <option value="onion">Onion Cells</option>
+                                <option value="cheek">Cheek Cells</option>
+                                <option value="elodea">Elodea (Aquatic Plant)</option>
+                                <option value="paramecium">Paramecium</option>
+                            </select>
+                            <label
+                                style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Magnification:</label>
+                            <div class="mag-buttons">
+                                <div class="mag-btn active" onclick="setMagnification(40)" data-mag="40">
+                                    <span class="mag-val">40×</span>
+                                    <span class="mag-label">Low Power</span>
+                                </div>
+                                <div class="mag-btn" onclick="setMagnification(100)" data-mag="100">
+                                    <span class="mag-val">100×</span>
+                                    <span class="mag-label">Medium</span>
+                                </div>
+                                <div class="mag-btn" onclick="setMagnification(400)" data-mag="400">
+                                    <span class="mag-val">400×</span>
+                                    <span class="mag-label">High Power</span>
+                                </div>
+                            </div>
+                            <div class="stat-grid" style="margin-top:16px;">
+                                <div class="stat-box stat-accent">
+                                    <div class="stat-val" id="current-mag">40×</div>
+                                    <div class="stat-label">Total Mag</div>
+                                </div>
+                                <div class="stat-box stat-blue">
+                                    <div class="stat-val" id="specimens-viewed">0</div>
+                                    <div class="stat-label">Viewed</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewer-display">
+                            <div class="viewer-circle" id="viewer-circle">
+                                <div class="viewer-content" id="viewer-content">
+                                    <!-- Specimen rendered here -->
+                                </div>
+                            </div>
+                            <p style="margin-top:12px;font-size:13px;color:var(--text-muted);" id="specimen-name">Letter
+                                "e" Slide</p>
+                        </div>
+                    </div>
+                    <div class="info-panel" id="specimen-info">
+                        <div class="info-title" id="specimen-info-title">Letter "e" Slide</div>
+                        <ul id="specimen-info-list">
+                            <li>Classic introductory microscopy specimen</li>
+                            <li>Notice: The image appears upside-down and reversed</li>
+                            <li>Used to demonstrate image orientation in microscopes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════ PART 3: FOCUS SIMULATOR ════════════════════════════════ -->
+                <div class="section" id="part3">
+                    <div class="section-header">
+                        <div class="section-num">3</div>
+                        <div>
+                            <div class="section-title">Focus Simulator</div>
+                            <div class="section-subtitle">Practice the proper focusing sequence</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">🎯 Learn to Focus</div>
+                        <p style="margin-bottom:16px;color:var(--text-muted);font-size:14px;">
+                            Use the coarse and fine adjustment controls to bring the specimen into focus.
+                            Start with coarse adjustment on low power, then use fine adjustment for sharpness.
+                        </p>
+                        <div class="viewer-container">
+                            <div class="viewer-controls">
+                                <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Coarse
+                                    Adjustment:</label>
+                                <input type="range" id="coarse-focus" min="0" max="100" value="20"
+                                    style="width:100%;margin-bottom:12px;" oninput="updateFocus()">
+                                <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Fine
+                                    Adjustment:</label>
+                                <input type="range" id="fine-focus" min="0" max="100" value="50"
+                                    style="width:100%;margin-bottom:12px;" oninput="updateFocus()">
+                                <div class="stat-grid" style="margin-top:16px;">
+                                    <div class="stat-box" id="focus-quality-box">
+                                        <div class="stat-val" id="focus-quality">Blurry</div>
+                                        <div class="stat-label">Focus Quality</div>
+                                    </div>
+                                    <div class="stat-box stat-accent">
+                                        <div class="stat-val" id="focus-score">0%</div>
+                                        <div class="stat-label">Sharpness</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" style="width:100%;margin-top:12px;"
+                                    onclick="resetFocus()">Reset Focus</button>
+                            </div>
+                            <div class="viewer-display">
+                                <div class="viewer-circle" id="focus-circle" style="background:#f8fafc;">
+                                    <div id="focus-content" style="filter:blur(10px);transition:filter 0.2s;">
+                                        <div
+                                            style="font-size:80px;font-weight:bold;color:#1a365d;transform:rotate(180deg) scaleX(-1);text-shadow:1px 1px 2px rgba(0,0,0,0.3);">
+                                            e</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-panel" style="margin-top:16px;">
+                            <div class="info-title">💡 Focusing Tips</div>
+                            <ul>
+                                <li><strong>Always start with low power</strong> — easier to find specimen and less risk
+                                    of damage</li>
+                                <li><strong>Use coarse adjustment first</strong> — get specimen roughly in view</li>
+                                <li><strong>Fine adjustment for precision</strong> — small movements make big
+                                    differences</li>
+                                <li><strong>Watch from the side</strong> — lower stage while watching to avoid crashing
+                                    lens into slide</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════ PART 4: FIELD OF VIEW ════════════════════════════════ -->
+                <div class="section" id="part4">
+                    <div class="section-header">
+                        <div class="section-num">4</div>
+                        <div>
+                            <div class="section-title">Field of View Explorer</div>
+                            <div class="section-subtitle">See how magnification affects what you can observe</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">🔍 Field of View vs Magnification</div>
+                        <p style="margin-bottom:16px;color:var(--text-muted);font-size:14px;">
+                            As magnification increases, you see more detail but less area. Click the magnification
+                            buttons to compare what you can see at each power level.
+                        </p>
+                        <div class="viewer-container">
+                            <div class="viewer-controls">
+                                <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Select
+                                    Magnification:</label>
+                                <div class="mag-buttons" id="fov-mag-buttons">
+                                    <div class="mag-btn active" onclick="setFOVMag(40)" data-fov-mag="40">
+                                        <span class="mag-val">40×</span>
+                                        <span class="mag-label">Low</span>
+                                    </div>
+                                    <div class="mag-btn" onclick="setFOVMag(100)" data-fov-mag="100">
+                                        <span class="mag-val">100×</span>
+                                        <span class="mag-label">Medium</span>
+                                    </div>
+                                    <div class="mag-btn" onclick="setFOVMag(400)" data-fov-mag="400">
+                                        <span class="mag-val">400×</span>
+                                        <span class="mag-label">High</span>
+                                    </div>
+                                </div>
+                                <div class="stat-grid" style="margin-top:16px;">
+                                    <div class="stat-box stat-blue">
+                                        <div class="stat-val" id="fov-diameter">4.5mm</div>
+                                        <div class="stat-label">FOV Diameter</div>
+                                    </div>
+                                    <div class="stat-box stat-purple">
+                                        <div class="stat-val" id="fov-cells">~100</div>
+                                        <div class="stat-label">Cells Visible</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="viewer-display">
+                                <div class="viewer-circle" id="fov-circle" style="position:relative;">
+                                    <div id="fov-content">
+                                        <!-- FOV cells rendered by JS -->
+                                    </div>
+                                    <div id="fov-highlight"
+                                        style="position:absolute;border:3px dashed #ff6b6b;border-radius:50%;pointer-events:none;display:none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-panel" style="margin-top:16px;border-left-color:var(--purple);">
+                            <div class="info-title">📏 Understanding Field of View</div>
+                            <ul>
+                                <li><strong>Low power (40×):</strong> Large FOV (~4.5mm) — good for finding and scanning
+                                    specimens</li>
+                                <li><strong>Medium power (100×):</strong> Medium FOV (~1.8mm) — intermediate detail</li>
+                                <li><strong>High power (400×):</strong> Small FOV (~0.45mm) — maximum detail, minimum
+                                    area</li>
+                                <li><strong>Key insight:</strong> FOV decreases proportionally as magnification
+                                    increases!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════ PART 5: MAGNIFICATION MATH ════════════════════════════════ -->
+                <div class="section" id="part5">
+                    <div class="section-header">
+                        <div class="section-num">5</div>
+                        <div>
+                            <div class="section-title">Magnification Calculator</div>
+                            <div class="section-subtitle">Calculate total magnification from eyepiece and objective
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">How Magnification Works</div>
+                        <div class="info-panel" style="margin:0 0 16px 0;border-left-color:var(--accent);">
+                            <div class="info-title">Total Magnification Formula</div>
+                            <p style="font-size:18px;font-family:var(--mono);margin:8px 0;">Total Magnification =
+                                Eyepiece ×
+                                Objective</p>
+                            <p style="font-size:13px;color:var(--text-muted);">Most microscopes have a 10× eyepiece. The
+                                objective lenses are typically 4× (scanning), 10× (low), and 40× (high power).</p>
+                        </div>
+                        <div class="card-row">
+                            <div>
+                                <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Eyepiece
+                                    Magnification:</label>
+                                <select class="specimen-select" id="eyepiece-mag" onchange="calculateMag()">
+                                    <option value="10">10×</option>
+                                    <option value="15">15×</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Objective
+                                    Magnification:</label>
+                                <select class="specimen-select" id="objective-mag" onchange="calculateMag()">
+                                    <option value="4">4× (Scanning)</option>
+                                    <option value="10">10× (Low Power)</option>
+                                    <option value="40">40× (High Power)</option>
+                                    <option value="100">100× (Oil Immersion)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="stat-grid" style="margin-top:16px;">
+                            <div class="stat-box stat-accent">
+                                <div class="stat-val" id="calc-eyepiece">10×</div>
+                                <div class="stat-label">Eyepiece</div>
+                            </div>
+                            <div class="stat-box"
+                                style="font-size:24px;display:flex;align-items:center;justify-content:center;">×</div>
+                            <div class="stat-box stat-blue">
+                                <div class="stat-val" id="calc-objective">4×</div>
+                                <div class="stat-label">Objective</div>
+                            </div>
+                            <div class="stat-box"
+                                style="font-size:24px;display:flex;align-items:center;justify-content:center;">=</div>
+                            <div class="stat-box stat-green">
+                                <div class="stat-val" id="calc-total">40×</div>
+                                <div class="stat-label">Total</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════ PART 6: PROPER TECHNIQUE ════════════════════════════════ -->
+                <div class="section" id="part6">
+                    <div class="section-header">
+                        <div class="section-num">6</div>
+                        <div>
+                            <div class="section-title">Proper Technique</div>
+                            <div class="section-subtitle">Best practices for microscope use and specimen preparation
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-row">
+                        <div class="card">
+                            <div class="card-title">🚶 Carrying the Microscope</div>
+                            <ul style="padding-left:20px;font-size:14px;line-height:1.8;">
+                                <li><strong>One hand on the ARM</strong> — the main support structure</li>
+                                <li><strong>One hand under the BASE</strong> — supports from below</li>
+                                <li>Keep microscope close to your body</li>
+                                <li>Walk carefully — no running!</li>
+                                <li>Place gently on the table</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">🔧 Setting Up</div>
+                            <ul style="padding-left:20px;font-size:14px;line-height:1.8;">
+                                <li>Plug in and turn on the light</li>
+                                <li>Rotate to <strong>lowest power objective (4×)</strong></li>
+                                <li>Adjust diaphragm for comfortable brightness</li>
+                                <li>Clean lenses with lens paper only</li>
+                                <li>Position slide with specimen over light opening</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-row">
+                        <div class="card">
+                            <div class="card-title">🎯 Focusing Sequence</div>
+                            <ol style="padding-left:20px;font-size:14px;line-height:1.8;">
+                                <li>Start on <strong>low power (4× objective)</strong></li>
+                                <li>Use <strong>coarse adjustment</strong> to find specimen</li>
+                                <li>Center specimen in field of view</li>
+                                <li>Use <strong>fine adjustment</strong> to sharpen image</li>
+                                <li>Switch to higher power, refocus with <strong>fine only</strong></li>
+                                <li>Repeat step 5 for each power increase</li>
+                            </ol>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">⚠️ Safety Reminders</div>
+                            <ul style="padding-left:20px;font-size:14px;line-height:1.8;color:var(--red);">
+                                <li><strong>NEVER</strong> use coarse adjustment on high power</li>
+                                <li><strong>NEVER</strong> force the nosepiece to rotate</li>
+                                <li><strong>NEVER</strong> touch lenses with fingers</li>
+                                <li><strong>NEVER</strong> leave without returning to low power</li>
+                                <li>Report any damage immediately</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">✏️ Scientific Drawing Tips</div>
+                        <div class="card-row">
+                            <div>
+                                <ul style="padding-left:20px;font-size:14px;line-height:1.8;">
+                                    <li>Use a <strong>sharpened pencil</strong> only (no color/pen)</li>
+                                    <li>Draw what you <strong>actually see</strong>, not what you expect</li>
+                                    <li>Fill the drawing circle — don't draw tiny specimens</li>
+                                    <li>Include <strong>labels</strong> with lines pointing to structures</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul style="padding-left:20px;font-size:14px;line-height:1.8;">
+                                    <li>Write <strong>title</strong> and <strong>total magnification</strong></li>
+                                    <li>Draw structures in <strong>proportion</strong> to each other</li>
+                                    <li>Use stippling (dots) for shading, not scribbles</li>
+                                    <li>Keep labels outside the drawing circle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════ PART 7: KNOWLEDGE CHECK ════════════════════════════════ -->
+                <div class="section" id="part7">
+                    <div class="section-header">
+                        <div class="section-num">7</div>
+                        <div>
+                            <div class="section-title">Knowledge Check</div>
+                            <div class="section-subtitle">Test your understanding of microscope use</div>
+                        </div>
+                    </div>
+                    <div class="stat-grid" style="margin-bottom:16px;">
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="quiz-score">0</div>
+                            <div class="stat-label">Correct</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="quiz-total">12</div>
+                            <div class="stat-label">Questions</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="quiz-percent">0%</div>
+                            <div class="stat-label">Score</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Quiz — Microscopy Fundamentals</div>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" onclick="resetQuiz()">Reset Quiz</button>
+                        </div>
+                        <div id="quiz-container">
+                            <!-- Quiz questions inserted by JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /main -->
+        </div><!-- /layout -->
+
+        <!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+        <script>
+            // ── Utility ──────────────────────────────────────────────────────────────
+            const $ = id => document.getElementById(id);
+
+            // ── Sidebar active link ──────────────────────────────────────────────────
+            (function () {
+                const links = document.querySelectorAll('.sidebar-nav a');
+                const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+                window.addEventListener('scroll', () => {
+                    let current = '';
+                    sections.forEach(s => { if (s.getBoundingClientRect().top <= 120) current = s.id; });
+                    links.forEach(a => {
+                        a.classList.remove('active');
+                        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+                    });
+                });
+            })();
+
+            // ══════════════════════════════════════════════════════════════════════════
+            // PART 1: MICROSCOPE ANATOMY
+            // ══════════════════════════════════════════════════════════════════════════
+            const microscopeParts = [
+                { id: 'eyepiece', svgId: 'svg-eyepiece', name: 'Eyepiece (Ocular Lens)', desc: 'The lens you look through. Typically provides 10× magnification. Also called the ocular lens.' },
+                { id: 'objectives', svgId: 'svg-objectives', name: 'Objective Lenses', desc: 'The lenses closest to the specimen. Usually 4× (red), 10× (yellow), and 40× (blue). These provide the primary magnification.' },
+                { id: 'nosepiece', svgId: 'svg-nosepiece', name: 'Revolving Nosepiece', desc: 'Holds the objective lenses and rotates to change magnification. Always click into place, never force.' },
+                { id: 'stage', svgId: 'svg-stage', name: 'Stage', desc: 'The flat platform where you place your slide. The specimen is centered over the opening where light passes through.' },
+                { id: 'clips', svgId: 'svg-clips', name: 'Stage Clips', desc: 'Metal clips that hold the slide securely in place on the stage during observation.' },
+                { id: 'diaphragm', svgId: 'svg-diaphragm', name: 'Diaphragm/Iris', desc: 'Controls the amount of light reaching the specimen. Adjust for optimal contrast and clarity.' },
+                { id: 'light', svgId: 'svg-light', name: 'Light Source', desc: 'Illuminates the specimen from below. Can be a built-in LED or an external lamp.' },
+                { id: 'coarse', svgId: 'svg-coarse', name: 'Coarse Adjustment Knob', desc: 'The larger knob for rough focusing. ONLY use with low power objectives to avoid damaging the lens or slide.' },
+                { id: 'fine', svgId: 'svg-fine', name: 'Fine Adjustment Knob', desc: 'The smaller knob for precise focusing. Use this to sharpen the image, especially at higher magnifications.' },
+                { id: 'arm', svgId: 'svg-arm', name: 'Arm', desc: 'Connects the body tube to the base. Always carry the microscope by the arm with one hand supporting the base.' },
+                { id: 'base', svgId: 'svg-base', name: 'Base', desc: 'The bottom support of the microscope. Provides stability. Support from below when carrying.' }
+            ];
+
+            let learnedParts = new Set();
+
+            function buildPartsList() {
+                const list = $('parts-list');
+                list.innerHTML = '';
+                microscopeParts.forEach(part => {
+                    const item = document.createElement('div');
+                    item.className = 'part-item';
+                    item.id = 'part-' + part.id;
+                    item.innerHTML = `<div class="part-name">${part.name}</div>`;
+                    item.onclick = () => selectPart(part.id);
+                    list.appendChild(item);
+                });
+
+                // Add click handlers to SVG elements
+                microscopeParts.forEach(part => {
+                    const svgEl = $(part.svgId);
+                    if (svgEl) {
+                        svgEl.onclick = () => selectPart(part.id);
+                    }
+                });
+            }
+
+            function selectPart(id) {
+                const part = microscopeParts.find(p => p.id === id);
+                if (!part) return;
+
+                learnedParts.add(id);
+
+                // Update selection
+                document.querySelectorAll('.part-item').forEach(el => el.classList.remove('selected'));
+                $('part-' + id).classList.add('selected');
+                $('part-' + id).classList.add('correct');
+
+                // Highlight SVG
+                microscopeParts.forEach(p => {
+                    const svgEl = $(p.svgId);
+                    if (svgEl) {
+                        svgEl.style.opacity = p.id === id ? '1' : '0.5';
+                    }
+                });
+
+                // Show info
+                $('part-info').style.display = 'block';
+                $('info-title').textContent = part.name;
+                $('info-desc').textContent = part.desc;
+
+                // Update stats
+                $('parts-learned').textContent = learnedParts.size;
+                $('parts-progress').textContent = Math.round(learnedParts.size / microscopeParts.length * 100) + '%';
+            }
+
+            // ══════════════════════════════════════════════════════════════════════════
+            // PART 2: VIRTUAL VIEWER
+            // ══════════════════════════════════════════════════════════════════════════
+            const specimens = {
+                letter_e: {
+                    name: 'Letter "e" Slide',
+                    info: ['Classic introductory microscopy specimen', 'Notice: The image appears upside-down and reversed', 'Used to demonstrate image orientation in microscopes'],
+                    render: (scale) => `<div style="font-size:${60 * scale}px;font-weight:bold;color:#333;transform:rotate(180deg) scaleX(-1);">e</div>`
+                },
+                onion: {
+                    name: 'Onion Cells',
+                    info: ['Plant cells from onion epidermis (thin skin layer)', 'Look for: rectangular cells with visible cell walls', 'Nucleus may be visible as dark spot in each cell'],
+                    render: (scale) => {
+                        let cells = '';
+                        const rows = Math.floor(4 * scale);
+                        const cols = Math.floor(3 * scale);
+                        for (let r = 0; r < rows; r++) {
+                            for (let c = 0; c < cols; c++) {
+                                const x = 40 + c * 70 / scale;
+                                const y = 40 + r * 50 / scale;
+                                cells += `<div style="position:absolute;left:${x}px;top:${y}px;width:${60 / scale}px;height:${40 / scale}px;border:2px solid #4a7;background:rgba(144,238,144,0.3);border-radius:3px;"></div>`;
+                                cells += `<div style="position:absolute;left:${x + 20 / scale}px;top:${y + 15 / scale}px;width:${10 / scale}px;height:${10 / scale}px;background:#357;border-radius:50%;"></div>`;
+                            }
+                        }
+                        return `<div style="position:relative;width:280px;height:280px;">${cells}</div>`;
+                    }
+                },
+                cheek: {
+                    name: 'Cheek Cells',
+                    info: ['Human epithelial cells from inside of mouth', 'Look for: irregular rounded shapes', 'Nucleus visible as dark central spot', 'These are animal cells (no cell wall)'],
+                    render: (scale) => {
+                        let cells = '';
+                        const count = Math.floor(6 * scale);
+                        for (let i = 0; i < count; i++) {
+                            const x = 60 + Math.random() * 160;
+                            const y = 60 + Math.random() * 160;
+                            const size = 40 / scale + Math.random() * 20 / scale;
+                            cells += `<div style="position:absolute;left:${x}px;top:${y}px;width:${size}px;height:${size * 0.8}px;border:2px solid #b8860b;background:rgba(255,228,181,0.4);border-radius:45%;"></div>`;
+                            cells += `<div style="position:absolute;left:${x + size * 0.35}px;top:${y + size * 0.25}px;width:${size * 0.25}px;height:${size * 0.25}px;background:#8b4513;border-radius:50%;opacity:0.7;"></div>`;
+                        }
+                        return `<div style="position:relative;width:280px;height:280px;">${cells}</div>`;
+                    }
+                },
+                elodea: {
+                    name: 'Elodea (Aquatic Plant)',
+                    info: ['Aquatic plant commonly used in microscopy', 'Look for: rectangular cells with visible chloroplasts', 'Chloroplasts appear as green ovals around cell edges', 'May observe cytoplasmic streaming at high power'],
+                    render: (scale) => {
+                        let cells = '';
+                        const rows = Math.floor(5 * scale);
+                        const cols = Math.floor(4 * scale);
+                        for (let r = 0; r < rows; r++) {
+                            for (let c = 0; c < cols; c++) {
+                                const x = 20 + c * 60 / scale;
+                                const y = 20 + r * 45 / scale;
+                                cells += `<div style="position:absolute;left:${x}px;top:${y}px;width:${55 / scale}px;height:${40 / scale}px;border:2px solid #2d5a2d;background:rgba(144,238,144,0.2);border-radius:2px;"></div>`;
+                                // Chloroplasts
+                                for (let cp = 0; cp < 6 / scale; cp++) {
+                                    const cpx = x + 5 + cp * 8;
+                                    const cpy = y + 5 + (cp % 2) * 25 / scale;
+                                    cells += `<div style="position:absolute;left:${cpx}px;top:${cpy}px;width:6px;height:4px;background:#228b22;border-radius:50%;"></div>`;
+                                }
+                            }
+                        }
+                        return `<div style="position:relative;width:280px;height:280px;">${cells}</div>`;
+                    }
+                },
+                paramecium: {
+                    name: 'Paramecium',
+                    info: ['Single-celled protist (unicellular organism)', 'Look for: slipper-shaped cell with cilia around edges', 'May see oral groove and food vacuoles', 'Watch for movement if viewing live specimen'],
+                    render: (scale) => {
+                        const size = 120 * scale;
+                        return `
+        <div style="position:relative;width:280px;height:280px;display:flex;align-items:center;justify-content:center;">
+          <div style="width:${size}px;height:${size * 0.4}px;background:linear-gradient(135deg,rgba(200,200,255,0.6),rgba(180,180,230,0.4));border:3px solid #8888cc;border-radius:45%;position:relative;">
+            <div style="position:absolute;left:30%;top:40%;width:15%;height:20%;background:rgba(100,100,180,0.5);border-radius:50%;"></div>
+            <div style="position:absolute;left:60%;top:35%;width:10%;height:15%;background:rgba(100,100,180,0.3);border-radius:50%;"></div>
+          </div>
+        </div>
+      `;
+                    }
+                }
+            };
+
+            let currentSpecimen = 'letter_e';
+            let currentMag = 40;
+            let viewedSpecimens = new Set();
+
+            function changeSpecimen() {
+                currentSpecimen = $('specimen-select').value;
+                viewedSpecimens.add(currentSpecimen);
+                $('specimens-viewed').textContent = viewedSpecimens.size;
+                renderSpecimen();
+            }
+
+            function setMagnification(mag) {
+                currentMag = mag;
+                document.querySelectorAll('.mag-btn').forEach(btn => {
+                    btn.classList.toggle('active', parseInt(btn.dataset.mag) === mag);
+                });
+                $('current-mag').textContent = mag + '×';
+                renderSpecimen();
+            }
+
+            function renderSpecimen() {
+                const spec = specimens[currentSpecimen];
+                const scale = currentMag / 40;
+                $('viewer-content').innerHTML = spec.render(scale);
+                $('viewer-content').style.transform = `scale(${Math.min(scale, 3)})`;
+                $('specimen-name').textContent = spec.name;
+                $('specimen-info-title').textContent = spec.name;
+                $('specimen-info-list').innerHTML = spec.info.map(i => `<li>${i}</li>`).join('');
+            }
+
+            // ══════════════════════════════════════════════════════════════════════════
+            // PART 3: MAGNIFICATION CALCULATOR
+            // ══════════════════════════════════════════════════════════════════════════
+            function calculateMag() {
+                const eye = parseInt($('eyepiece-mag').value);
+                const obj = parseInt($('objective-mag').value);
+                const total = eye * obj;
+                $('calc-eyepiece').textContent = eye + '×';
+                $('calc-objective').textContent = obj + '×';
+                $('calc-total').textContent = total + '×';
+            }
+
+            // ══════════════════════════════════════════════════════════════════════════
+            // PART 3: FOCUS SIMULATOR
+            // ══════════════════════════════════════════════════════════════════════════
+            function updateFocus() {
+                const coarse = parseInt($('coarse-focus').value);
+                const fine = parseInt($('fine-focus').value);
+
+                // Optimal focus when coarse ≈ 50 and fine ≈ 50
+                const coarseError = Math.abs(coarse - 50);
+                const fineError = Math.abs(fine - 50);
+
+                // Calculate blur: max blur 15px, min 0px
+                const blur = (coarseError * 0.2) + (fineError * 0.1);
+                const clampedBlur = Math.max(0, Math.min(15, blur));
+
+                // Calculate sharpness percentage
+                const sharpness = Math.max(0, Math.round(100 - (clampedBlur / 15 * 100)));
+
+                // Apply blur
+                $('focus-content').style.filter = `blur(${clampedBlur}px)`;
+                $('focus-score').textContent = sharpness + '%';
+
+                // Update quality label
+                let quality = 'Blurry';
+                let color = 'var(--red)';
+                if (sharpness >= 90) { quality = 'Perfect!'; color = 'var(--green)'; }
+                else if (sharpness >= 70) { quality = 'Sharp'; color = 'var(--accent)'; }
+                else if (sharpness >= 50) { quality = 'Okay'; color = 'var(--amber)'; }
+                else if (sharpness >= 30) { quality = 'Fuzzy'; color = 'var(--amber)'; }
+
+                $('focus-quality').textContent = quality;
+                $('focus-quality').style.color = color;
+            }
+
+            function resetFocus() {
+                $('coarse-focus').value = 20;
+                $('fine-focus').value = 50;
+                updateFocus();
+            }
+
+            // ══════════════════════════════════════════════════════════════════════════
+            // PART 4: FIELD OF VIEW EXPLORER
+            // ══════════════════════════════════════════════════════════════════════════
+            let currentFOVMag = 40;
+
+            function setFOVMag(mag) {
+                currentFOVMag = mag;
+                document.querySelectorAll('[data-fov-mag]').forEach(btn => {
+                    btn.classList.toggle('active', parseInt(btn.dataset.fovMag) === mag);
+                });
+                renderFOV();
+            }
+
+            function renderFOV() {
+                const container = $('fov-content');
+                const scale = 40 / currentFOVMag; // Inverse relationship
+
+                // FOV diameter decreases as magnification increases
+                const fovData = {
+                    40: { diameter: '4.5mm', cells: '~100' },
+                    100: { diameter: '1.8mm', cells: '~16' },
+                    400: { diameter: '0.45mm', cells: '~4' }
+                };
+
+                $('fov-diameter').textContent = fovData[currentFOVMag].diameter;
+                $('fov-cells').textContent = fovData[currentFOVMag].cells;
+
+                // Render cells - higher mag = fewer but LARGER cells (zoomed in)
+                let cells = '';
+                const cellScale = currentFOVMag / 40; // Higher mag = larger cells
+                const gridSize = Math.max(2, Math.ceil(10 / cellScale)); // Fewer cells at high mag
+                const cellSize = 280 / gridSize;
+
+                for (let r = 0; r < gridSize; r++) {
+                    for (let c = 0; c < gridSize; c++) {
+                        const x = c * cellSize;
+                        const y = r * cellSize;
+                        const inCircle = Math.sqrt(Math.pow(x + cellSize / 2 - 140, 2) + Math.pow(y + cellSize / 2 - 140, 2)) < 130;
+                        if (inCircle) {
+                            cells += `<div style="position:absolute;left:${x}px;top:${y}px;width:${cellSize - 2}px;height:${cellSize - 2}px;
+                                border:2px solid #4a7;background:rgba(144,238,144,0.3);border-radius:3px;"></div>`;
+                            cells += `<div style="position:absolute;left:${x + cellSize * 0.3}px;top:${y + cellSize * 0.3}px;
+                                width:${cellSize * 0.35}px;height:${cellSize * 0.35}px;background:#357;border-radius:50%;"></div>`;
+                        }
+                    }
+                }
+
+                container.innerHTML = `<div style="position:relative;width:280px;height:280px;">${cells}</div>`;
+            }
+
+            // ══════════════════════════════════════════════════════════════════════════
+            // PART 7: KNOWLEDGE CHECK (EXPANDED)
+            // ══════════════════════════════════════════════════════════════════════════
+            const quizQuestions = [
+                {
+                    q: 'Which knob should you use FIRST when focusing on a specimen?',
+                    options: ['Fine adjustment knob', 'Coarse adjustment knob', 'Diaphragm', 'Nosepiece'],
+                    correct: 1,
+                    explanation: 'Always start with the coarse adjustment on low power to get the specimen in view.'
+                },
+                {
+                    q: 'What is the total magnification if using a 10× eyepiece and 40× objective?',
+                    options: ['50×', '400×', '40×', '4×'],
+                    correct: 1,
+                    explanation: 'Total magnification = eyepiece × objective = 10× × 40× = 400×'
+                },
+                {
+                    q: 'Why should you start with the LOWEST power objective when viewing a new slide?',
+                    options: ['It uses less electricity', 'Larger field of view makes it easier to find specimen', 'It makes colors brighter', 'The eyepiece works better'],
+                    correct: 1,
+                    explanation: 'Low power provides a larger field of view, making it easier to locate your specimen.'
+                },
+                {
+                    q: 'How should you carry a microscope?',
+                    options: ['By the eyepiece only', 'By the stage', 'One hand on arm, one hand under base', 'By the objective lenses'],
+                    correct: 2,
+                    explanation: 'Always carry with one hand on the arm and one hand supporting the base.'
+                },
+                {
+                    q: 'What does the diaphragm control?',
+                    options: ['Magnification', 'Focus', 'Amount of light', 'Slide position'],
+                    correct: 2,
+                    explanation: 'The diaphragm controls how much light passes through the specimen.'
+                },
+                {
+                    q: 'What happens to the field of view when you increase magnification?',
+                    options: ['It gets larger', 'It stays the same', 'It gets smaller', 'It disappears'],
+                    correct: 2,
+                    explanation: 'As magnification increases, you see more detail but a smaller area (field of view).'
+                },
+                {
+                    q: 'Why does the image appear upside-down and reversed in a microscope?',
+                    options: ['The eyepiece is broken', 'Light bends through multiple lenses', 'The slide is placed wrong', 'The diaphragm is closed'],
+                    correct: 1,
+                    explanation: 'Compound microscopes use multiple lenses that invert and flip the image.'
+                },
+                {
+                    q: 'What should you ALWAYS do before putting the microscope away?',
+                    options: ['Turn off the light only', 'Return to low power objective', 'Remove the slide only', 'Clean the stage only'],
+                    correct: 1,
+                    explanation: 'Always return to the lowest power objective to protect the lenses and prepare for the next user.'
+                },
+                {
+                    q: 'Which part of the microscope holds the objective lenses?',
+                    options: ['Stage', 'Arm', 'Revolving nosepiece', 'Base'],
+                    correct: 2,
+                    explanation: 'The revolving nosepiece (turret) holds and rotates the objective lenses.'
+                },
+                {
+                    q: 'What should you use to clean microscope lenses?',
+                    options: ['Paper towel', 'Your shirt', 'Lens paper only', 'Water and soap'],
+                    correct: 2,
+                    explanation: 'Only use lens paper to clean microscope lenses. Other materials can scratch the delicate coating.'
+                },
+                {
+                    q: 'If a specimen appears in the upper-right of your field of view, which direction should you move the slide to center it?',
+                    options: ['Lower-left', 'Upper-right', 'Lower-right', 'Upper-left'],
+                    correct: 1,
+                    explanation: 'Because the image is inverted, move the slide toward the specimen (upper-right) to center it.'
+                },
+                {
+                    q: 'What is the purpose of the stage clips?',
+                    options: ['To adjust magnification', 'To hold the slide in place', 'To control light', 'To focus the image'],
+                    correct: 1,
+                    explanation: 'Stage clips secure the slide to the stage, preventing movement during observation.'
+                }
+            ];
+
+            let quizAnswers = {};
+
+            function buildQuiz() {
+                const container = $('quiz-container');
+                container.innerHTML = '';
+                quizQuestions.forEach((q, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'quiz-question';
+                    div.id = 'quiz-q-' + i;
+                    div.innerHTML = `
+                        <div class="quiz-text">${i + 1}. ${q.q}</div>
+                        <div class="quiz-options">
+                            ${q.options.map((opt, j) => `
+                                <div class="quiz-option" id="quiz-${i}-${j}" onclick="answerQuiz(${i}, ${j})">${opt}</div>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            function answerQuiz(qIndex, aIndex) {
+                if (quizAnswers[qIndex] !== undefined) return;
+
+                quizAnswers[qIndex] = aIndex;
+                const q = quizQuestions[qIndex];
+                const isCorrect = aIndex === q.correct;
+
+                $(`quiz-${qIndex}-${aIndex}`).classList.add(isCorrect ? 'correct-answer' : 'wrong-answer');
+
+                if (!isCorrect) {
+                    $(`quiz-${qIndex}-${q.correct}`).classList.add('correct-answer');
+                }
+
+                $('quiz-q-' + qIndex).classList.add(isCorrect ? 'correct' : 'incorrect');
+
+                const correct = Object.entries(quizAnswers).filter(([qi, ai]) => quizQuestions[qi].correct === ai).length;
+                $('quiz-score').textContent = correct;
+                $('quiz-percent').textContent = Math.round(correct / quizQuestions.length * 100) + '%';
+            }
+
+            // ══════════════════════════════════════════════════════════════════════════
+            // INITIALIZATION
+            // ══════════════════════════════════════════════════════════════════════════
+            buildPartsList();
+            renderSpecimen();
+            buildQuiz();
+            calculateMag();
+            updateFocus();
+            renderFOV();
+        </script>
+</body>
+
+</html>
