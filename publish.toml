@@ -58,3 +58,37 @@ publish   = true    # Copy outputs to PUBLISHED/ directory
 copy_extras = true  # Copy labs and dashboards
 flatten   = true    # Flatten module subdirectory structure
 validate  = true    # Validate all outputs exist and are correct
+git_push  = true    # Push to configured git repos after publish
+
+# Git Repository Configuration
+# ---------------------------
+# Configure git remotes for automatic deployment. Requires remotes to be set up.
+# Run `python publish.py --setup-git` to configure remotes if needed.
+[publish.git]
+enabled = true                      # Master toggle for git operations
+auto_commit = true                  # Automatically commit PUBLISHED changes
+commit_message = "Update published course materials"
+
+# Private repository (source of truth)
+[publish.git.repos.cr-bio]
+remote = "origin"
+url = "https://github.com/docxology/cr-bio.git"
+branch = "main"
+push = true
+
+# Public course repositories (subtree push)
+[publish.git.repos.biol-1]
+remote = "biol-1"
+url = "https://github.com/docxology/biol-1.git"
+branch = "main"
+prefix = "PUBLISHED/biol-1"         # Subtree prefix for push
+push = true
+force = true                        # Use force push for subtree
+
+[publish.git.repos.biol-8]
+remote = "biol-8"
+url = "https://github.com/docxology/biol-8.git"
+branch = "main"
+prefix = "PUBLISHED/biol-8"         # Subtree prefix for push
+push = true
+force = true                        # Use force push for subtree

@@ -1,6 +1,6 @@
 # BIOL-8 Practice Test 01 — Answer Key
 
-## Modules 1-4: Foundations of Human Biology
+## Modules 1-6: Foundations of Human Biology
 
 ---
 
@@ -33,6 +33,17 @@
 | 23 | C | Ribosomes are the site of protein synthesis |
 | 24 | C | Plant cells have cell walls; animal cells do not |
 | 25 | D | Golgi apparatus packages and ships proteins |
+| 26 | B | Fluid mosaic model describes membrane structure |
+| 27 | C | Passive transport requires no energy |
+| 28 | B | Pure water is hypotonic; cell swells and lyses |
+| 29 | B | Osmosis = water movement across membrane |
+| 30 | B | Facilitated diffusion uses proteins, no ATP |
+| 31 | B | Na⁺/K⁺ pump: 3 Na⁺ out, 2 K⁺ in |
+| 32 | B | Hypertonic = cell loses water, shrinks |
+| 33 | B | ATP is the energy currency of cells |
+| 34 | B | Enzymes lower activation energy |
+| 35 | C | Glycolysis occurs in the cytoplasm |
+| 36 | C | Fermentation occurs without oxygen |
 
 ---
 
@@ -40,22 +51,24 @@
 
 | Q | Answer |
 |:---:|--------|
-| 26 | cell |
-| 27 | nucleus |
-| 28 | isotopes |
-| 29 | basic (or alkaline) |
-| 30 | monosaccharide (or simple sugar) |
-| 31 | energy |
-| 32 | ribosome |
-| 33 | cell |
-| 34 | chloroplasts |
-| 35 | rough |
+| 37 | cell |
+| 38 | nucleus |
+| 39 | isotopes |
+| 40 | basic (or alkaline) |
+| 41 | monosaccharide (or simple sugar) |
+| 42 | energy |
+| 43 | ribosome |
+| 44 | phospholipids |
+| 45 | osmosis |
+| 46 | hypertonic |
+| 47 | ATP (adenosine triphosphate) |
+| 48 | proteins |
 
 ---
 
 ## Part C: Short Answer Key
 
-**36. Characteristics of living things (any 3):**
+**49. Characteristics of living things (any 3):**
 
 - Cellular organization (made of cells)
 - Metabolism (use energy)
@@ -65,20 +78,57 @@
 - Response to stimuli
 - Adaptation
 
-**37. Ionic vs. Covalent bonds:**
+---
 
-- Ionic bonds: electrons are transferred from one atom to another
-- Covalent bonds: electrons are shared between atoms
+**50. Ionic vs. Covalent bonds:**
 
-**38. Four biomolecules:**
+- Ionic bonds: electrons are **transferred** from one atom to another, forming ions (charged particles) that attract each other
+- Covalent bonds: electrons are **shared** between atoms
+- Example: NaCl (ionic); H₂O (covalent)
 
-- Carbohydrates, Lipids, Proteins, Nucleic Acids
-- Nucleic acids (DNA and RNA) store genetic information
+---
 
-**39. Prokaryotes vs. Eukaryotes:**
+**51. Four biomolecules:**
 
-- Prokaryotes: no nucleus, no membrane-bound organelles, smaller (ex: bacteria)
-- Eukaryotes: have a nucleus and membrane-bound organelles, larger (ex: plants, animals)
+- **Carbohydrates** – quick energy (sugars, starches)
+- **Lipids** – long-term energy, membranes
+- **Proteins** – enzymes, structure, transport
+- **Nucleic acids** – **store genetic information** (DNA and RNA)
+
+---
+
+**52. Prokaryotes vs. Eukaryotes:**
+
+| Feature | Prokaryotes | Eukaryotes |
+|---------|-------------|------------|
+| Nucleus | No membrane-bound nucleus | Has nucleus |
+| Organelles | No membrane-bound organelles | Has organelles (mitochondria, ER, etc.) |
+| Size | Smaller (1-10 μm) | Larger (10-100 μm) |
+| Examples | Bacteria, Archaea | Plants, Animals, Fungi, Protists |
+
+---
+
+**53. Selective permeability and transport:**
+
+The membrane is "selectively permeable" because it allows some substances through while blocking others. The phospholipid bilayer blocks large/charged molecules but allows small nonpolar molecules.
+
+- **Passive transport example:** Diffusion of O₂ across the membrane (no energy)
+- **Active transport example:** Sodium-potassium pump (uses ATP to move ions against their gradient)
+
+---
+
+**54. Aerobic respiration vs. fermentation:**
+
+| | Aerobic Respiration | Fermentation |
+|---|---------------------|--------------|
+| Oxygen? | Yes | No |
+| ATP yield | ~36-38 ATP per glucose | 2 ATP per glucose |
+| Location | Cytoplasm + Mitochondria | Cytoplasm only |
+
+Fermentation is less efficient because:
+
+1. It only uses glycolysis (no Krebs cycle or electron transport chain)
+2. Most energy remains in the waste products (lactic acid or ethanol)
 
 ---
 

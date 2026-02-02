@@ -10,10 +10,10 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 |-----|-------|--------|----------------|
 | [Lab 01](lab-01_measurement-methods.md) | Introduction to Scientific Measurement | ✅ Complete | Module 01 |
 | [Lab 02](lab-02_probability-statistics.md) | Probability and Statistics | ✅ Complete | Module 02 |
-| [Lab 03](lab-03_measurement-techniques.md) | Measurement Techniques | ✅ Complete | Module 03 |
-| [Lab 04](lab-04_introduction-to-microscopy.md) | Introduction to Microscopy | ✅ Complete | Module 04 |
-| [Lab 05](lab-05_membranes.md) | Membranes | 📝 Stub | Module 05 |
-| [Lab 06](lab-06_metabolism.md) | Metabolism | 📝 Stub | Module 06 |
+| [Lab 03](lab-03_microscopy.md) | Introduction to Microscopy | ✅ Complete | Module 03 |
+| [Lab 04](lab-04_diffusion-membranes.md) | Diffusion and Membranes | ✅ Complete | Module 04 |
+| [Lab 05](lab-05_ph-solutions.md) | pH and Solutions | ✅ Complete | Module 05 |
+| [Lab 06](lab-06_enzymes.md) | Enzymes | ✅ Complete | Module 06 |
 | [Lab 07](lab-07_mitosis.md) | Mitosis | 📝 Stub | Module 07 |
 | [Lab 08](lab-08_meiosis.md) | Meiosis | 📝 Stub | Module 08 |
 | [Lab 09](lab-09_inheritance.md) | Inheritance | 📝 Stub | Module 09 |

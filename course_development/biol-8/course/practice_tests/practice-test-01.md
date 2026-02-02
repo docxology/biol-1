@@ -1,12 +1,12 @@
 # BIOL-8 Practice Test 01
 
-## Modules 1-4: Foundations of Human Biology
+## Modules 1-6: Foundations of Human Biology
 
-**Instructions:** This practice test covers material from Modules 1-4. Answer all questions to the best of your ability.
+**Instructions:** This practice test covers material from Modules 1-6. Answer all questions to the best of your ability.
 
 ---
 
-## Part A: Multiple Choice (25 questions)
+## Part A: Multiple Choice (36 questions)
 
 *Choose the best answer for each question.*
 
@@ -201,49 +201,146 @@ D) Golgi apparatus
 
 ---
 
-## Part B: Fill in the Blank (10 questions)
+### Module 5: Membranes
 
-*Write the correct term in the blank.*
+**26.** The fluid mosaic model describes:
 
-**26.** The basic unit of life is the _________________________.
+A) How DNA replicates  
+B) The structure of cell membranes  
+C) Protein synthesis  
+D) Cell division
 
-**27.** The _________________________ is the organelle that contains the cell's genetic material.
+**27.** Which type of transport does NOT require energy from the cell?
 
-**28.** Atoms of the same element with different numbers of neutrons are called _________________________.
+A) Active transport  
+B) Endocytosis  
+C) Passive transport  
+D) Exocytosis
 
-**29.** A solution with a pH greater than 7 is _________________________.
+**28.** A red blood cell placed in pure water will:
 
-**30.** The monomer (building block) of carbohydrates is the _________________________.
+A) Shrink  
+B) Swell and possibly burst  
+C) Remain unchanged  
+D) Divide
 
-**31.** Lipids are used for long-term _________________________ storage.
+**29.** Osmosis is specifically the movement of:
 
-**32.** The _________________________ is the site of protein synthesis in all cells.
+A) Solutes from high to low concentration  
+B) Water across a semipermeable membrane  
+C) Proteins across the membrane  
+D) Ions using ATP
 
-**33.** The three principles of _________________________ theory state that all living things are made of cells.
+**30.** What type of transport uses carrier proteins but no ATP?
 
-**34.** Plant cells have both mitochondria and _________________________ for energy.
+A) Simple diffusion  
+B) Facilitated diffusion  
+C) Active transport  
+D) Endocytosis
 
-**35.** The endoplasmic reticulum covered with ribosomes is called _________________________ ER.
+**31.** The sodium-potassium pump moves:
+
+A) Both ions in the same direction  
+B) Sodium out and potassium into the cell  
+C) Water molecules  
+D) Without using ATP
+
+**32.** A cell placed in a hypertonic solution will:
+
+A) Swell  
+B) Shrink  
+C) Stay the same  
+D) Divide
 
 ---
 
-## Part C: Short Answer (4 questions)
+### Module 6: Metabolism
+
+**33.** ATP is best described as:
+
+A) A protein  
+B) The energy currency of cells  
+C) A type of lipid  
+D) Genetic material
+
+**34.** Enzymes work by:
+
+A) Increasing activation energy  
+B) Lowering activation energy  
+C) Providing energy for reactions  
+D) Changing the products of a reaction
+
+**35.** Glycolysis occurs in the:
+
+A) Nucleus  
+B) Mitochondria  
+C) Cytoplasm  
+D) Chloroplast
+
+**36.** When oxygen is NOT available, cells may carry out:
+
+A) Aerobic respiration  
+B) Photosynthesis  
+C) Fermentation  
+D) The citric acid cycle
+
+---
+
+## Part B: Fill in the Blank (12 questions)
+
+*Write the correct term in the blank.*
+
+**37.** The basic unit of life is the _________________________.
+
+**38.** The _________________________ is the organelle that contains the cell's genetic material.
+
+**39.** Atoms of the same element with different numbers of neutrons are called _________________________.
+
+**40.** A solution with a pH greater than 7 is _________________________.
+
+**41.** The monomer (building block) of carbohydrates is the _________________________.
+
+**42.** Lipids are used for long-term _________________________ storage.
+
+**43.** The _________________________ is the site of protein synthesis in all cells.
+
+**44.** The cell membrane is made primarily of a double layer of _________________________.
+
+**45.** The movement of water from high to low concentration across a membrane is called _________________________.
+
+**46.** An _________________________ solution has a higher solute concentration than inside the cell.
+
+**47.** The energy molecule used by all cells is _________________________ (abbreviation is fine).
+
+**48.** Enzymes are made of _________________________ (type of macromolecule).
+
+---
+
+## Part C: Short Answer (6 questions)
 
 *Answer each question in 2-3 complete sentences.*
 
-**36.** List three characteristics that all living things share.
+**49.** List three characteristics that all living things share.
 
 <br><br><br><br><br><br>
 
-**37.** Compare ionic bonds and covalent bonds. How are they different?
+**50.** Compare ionic bonds and covalent bonds. How are they different?
 
 <br><br><br><br><br><br>
 
-**38.** Name the four major types of biomolecules and identify which one stores genetic information.
+**51.** Name the four major types of biomolecules and identify which one stores genetic information.
 
 <br><br><br><br><br><br>
 
-**39.** Describe two differences between prokaryotic and eukaryotic cells.
+**52.** Describe two differences between prokaryotic and eukaryotic cells.
+
+<br><br><br><br><br><br>
+
+**53.** Explain why the cell membrane is described as "selectively permeable." Give an example of passive and active transport.
+
+<br><br><br><br><br><br>
+
+**54.** Compare the ATP yield of aerobic respiration and fermentation. Why is fermentation less efficient?
 
 <br><br><br><br><br><br>
 

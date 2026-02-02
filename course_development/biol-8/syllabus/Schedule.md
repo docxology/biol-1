@@ -10,8 +10,8 @@ Each class will consist of different proportions of lecture, discussion, and han
 |------|-------|---------|----------|-------|
 | 1 | 1/20 - 1/22 | Module 01: Exploring Life Science & Module 02: Chemistry of Life | Module 03: Biomolecules & Module 04: Cellular Function | First week of classes |
 | 2 | 1/27 - 1/29 | Lab 01: Measurement Methods & Module 04 Review | Lab 02: Probability & Statistics & Review Modules 01-04 | Labs begin |
-| 3 | 2/3 - 2/5 | Module 05: Membranes & Lab 03: Measurement Techniques | Module 06: Metabolism & Lab 04: Introduction to Microscopy | |
-| 4 | 2/10 - 2/12 | Test Review & Lab 05: Membranes | **Exam 01** | Exam covers Modules 01-06 |
+| 3 | 2/3 - 2/5 | Module 05: Membranes & Lab 03: Microscopy | Module 06: Metabolism & Lab 04: Diffusion | |
+| 4 | 2/10 - 2/12 | Test Review & Lab 05: pH and Solutions | **Exam 01** | Exam covers Modules 01-06 |
 | 5 | 2/17 - 2/19 | Module 07: Mitosis & Lab 06: Metabolism | Module 08: Meiosis & Lab 07: Mitosis | |
 | 6 | 2/24 - 2/26 | Module 09: Inheritance & Lab 08: Meiosis | Module 10: Tissues & Lab 09: Inheritance | |
 | 7 | 3/3 - 3/5 | Review & Lab 10: Tissues | **Exam 02** | Exam covers Modules 07-10 |
