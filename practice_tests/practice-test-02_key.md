@@ -1,6 +1,6 @@
 # BIOL-1 Practice Test 02 — Answer Key
 
-## Modules 5-17: Membranes through Evolution
+## Modules 5-8: Membranes through Cellular Respiration
 
 ---
 
@@ -8,31 +8,31 @@
 
 | Q | Answer | Explanation |
 |:---:|:------:|-------------|
-| 1 | C | Cell membrane = phospholipid bilayer |
-| 2 | D | Active transport requires ATP |
-| 3 | B | Hypotonic = water moves INTO cell |
-| 4 | B | Enzymes lower activation energy |
-| 5 | B | ATP is the energy currency of cells |
-| 6 | B | Light reactions occur in thylakoid membranes |
-| 7 | C | Calvin cycle produces glucose |
-| 8 | B | Glycolysis nets 2 ATP |
-| 9 | B | Krebs cycle occurs in mitochondrial matrix |
-| 10 | A | Respiration produces CO2 and H2O |
-| 11 | B | DNA replication occurs during S phase |
-| 12 | C | Sister chromatids separate in anaphase |
-| 13 | D | Meiosis produces 4 haploid cells |
-| 14 | A | Crossing over occurs in prophase I |
-| 15 | B | Mitosis is for growth and repair |
-| 16 | B | Aa × Aa = 3:1 phenotypic ratio |
-| 17 | B | DNA replication is semiconservative |
-| 18 | C | Helicase unwinds DNA |
-| 19 | B | AUG codes for methionine (start) |
-| 20 | B | Translation occurs at ribosomes |
-| 21 | B | PCR amplifies DNA |
-| 22 | B | Gel electrophoresis separates by size |
-| 23 | B | Homologous structures = common ancestry |
-| 24 | B | Natural selection requires heritable variation |
-| 25 | D | Evolution takes many generations |
+| 1 | B | The fluid mosaic model describes membrane structure |
+| 2 | C | Cell membrane = phospholipid bilayer |
+| 3 | B | Phospholipids have hydrophilic heads and hydrophobic tails |
+| 4 | B | Cholesterol helps maintain membrane fluidity |
+| 5 | D | Active transport requires ATP |
+| 6 | B | Hypotonic = water moves INTO cell |
+| 7 | C | Isotonic = no net water movement |
+| 8 | B | Enzymes lower activation energy |
+| 9 | B | ATP is the energy currency of cells |
+| 10 | B | Substrates bind at the active site |
+| 11 | B | Denaturation = loss of enzyme shape |
+| 12 | B | ATP releases energy via phosphate hydrolysis |
+| 13 | B | Enzymes can be reused (not consumed) |
+| 14 | B | Light reactions occur in thylakoid membranes |
+| 15 | B | Calvin cycle occurs in the stroma |
+| 16 | C | Calvin cycle produces glucose (G3P) |
+| 17 | C | Photosynthesis occurs in chloroplasts |
+| 18 | B | Chlorophyll captures light energy |
+| 19 | C | Water splitting produces O₂ and electrons |
+| 20 | B | Glycolysis nets 2 ATP |
+| 21 | B | Glycolysis occurs in cytoplasm |
+| 22 | B | Krebs cycle occurs in mitochondrial matrix |
+| 23 | A | Respiration produces CO₂ and H₂O |
+| 24 | B | Without oxygen, cells perform fermentation |
+| 25 | C | Most ATP comes from electron transport chain |
 
 ---
 
@@ -42,41 +42,46 @@
 |:---:|--------|
 | 26 | fluid |
 | 27 | osmosis |
-| 28 | chloroplast |
-| 29 | ATP |
-| 30 | interphase |
-| 31 | meiosis |
-| 32 | genotypes/phenotypes |
-| 33 | transcription |
-| 34 | protein |
-| 35 | mutation |
+| 28 | active |
+| 29 | hypotonic |
+| 30 | chloroplast(s) |
+| 31 | NADPH |
+| 32 | ATP |
+| 33 | fermentation |
+| 34 | oxygen (O₂) |
+| 35 | oxygen (O₂) |
 
 ---
 
 ## Part C: Short Answer Key
 
-**36. Photosynthesis vs. Cellular Respiration:**
+**36. Passive vs. Active Transport:**
 
-- Photosynthesis: CO2 + H2O + light → glucose + O2 (builds glucose)
-- Cellular Respiration: glucose + O2 → CO2 + H2O + ATP (breaks down glucose)
+- Passive transport: does not require energy (ATP); moves with concentration gradient (ex: diffusion, osmosis, facilitated diffusion)
+- Active transport: requires energy (ATP); moves against concentration gradient (ex: sodium-potassium pump)
 
-**37. Mitosis vs. Meiosis:**
+**37. Cell in Hypertonic Solution:**
 
-- Mitosis: 2 identical diploid cells; for growth and repair
-- Meiosis: 4 unique haploid cells; for sexual reproduction
+- Water moves OUT of the cell (toward higher solute concentration)
+- Animal cell: will shrink (crenation)
+- Plant cell: will plasmolyze (cell membrane pulls away from cell wall), but cell wall prevents complete collapse
 
-**38. Central Dogma:**
+**38. Light Reactions vs. Calvin Cycle:**
 
-- DNA → RNA → Protein
-- Information flows from DNA (replication) to RNA (transcription) to protein (translation)
+- Light reactions: occur in thylakoid membranes; produce ATP, NADPH, and O₂
+- Calvin cycle: occurs in stroma; uses ATP and NADPH to produce glucose (G3P)
 
-**39. Evidence for Evolution (any one):**
+**39. Photosynthesis vs. Cellular Respiration:**
 
-- Fossil record, homologous structures, embryological similarities, molecular/DNA evidence, direct observation (bacteria, finches)
+- Photosynthesis: CO₂ + H₂O + light → glucose + O₂ (builds glucose, stores energy)
+- Cellular Respiration: glucose + O₂ → CO₂ + H₂O + ATP (breaks down glucose, releases energy)
+- They are essentially opposite processes
 
-**40. Natural Selection:**
+**40. Why We Breathe:**
 
-- Individuals with favorable traits survive and reproduce more; these traits become more common in the population over generations, leading to adaptation
+- We inhale oxygen because it is required as the final electron acceptor in the electron transport chain
+- Without oxygen, the ETC cannot function and very little ATP can be produced
+- We exhale CO₂ because it is a waste product released when pyruvate is broken down in the Krebs cycle
 
 ---
 
