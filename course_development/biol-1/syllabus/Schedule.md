@@ -10,13 +10,13 @@
 | 2 | Wed | 1/28 | Module 4: Cells; Lab 2 | |
 | 3 | Mon | 2/2 | Lab 3 / Practice | Monday class meets |
 | 3 | Wed | 2/4 | No Class | First Wednesday - Programs Canceled |
-| 4 | Mon | 2/9 | Module 5: Membranes | |
-| 4 | Wed | 2/11 | Module 6: Metabolism | |
+| 4 | Mon | 2/9 | Module 5: Membranes; Lab 4 | |
+| 4 | Wed | 2/11 | Module 6: Metabolism; Lab 5 | |
 | 5 | Mon | 2/16 | No Class | Presidents' Day Holiday |
-| 5 | Wed | 2/18 | Module 7: Photosynthesis | |
-| 6 | Mon | 2/23 | Exam 01 Review | |
-| 6 | Wed | 2/25 | **Exam 01** | Exam + Lab |
-| 7 | Mon | 3/2 | Lab / Post-Exam Review | Monday class meets |
+| 5 | Wed | 2/18 | Module 7: Photosynthesis; Lab 6 | |
+| 6 | Mon | 2/23 | Module 8: Cellular Respiration; Lab 7 | |
+| 6 | Wed | 2/25 | Lab 8; Exam 01 Review | Review Session |
+| 7 | Mon | 3/2 | **Exam 01** | Monday class meets |
 | 7 | Wed | 3/4 | No Class | First Wednesday - Programs Canceled |
 | 8 | Mon | 3/9 | No Class | Spring Break |
 | 8 | Wed | 3/11 | No Class | Spring Break |
@@ -49,7 +49,7 @@
 
 ## Exam Schedule
 
-- **Exam 01**: Week 6 (February 23, 2026) - Exam + Lab
+- **Exam 01**: Week 7 (March 2, 2026) - Exam
 - **Exam 02**: Week 10 (March 23, 2026) - Exam + Lab
 - **Exam 03**: Week 14 (April 20, 2026) - Exam + Lab
 - **Exam 04**: Week 17 (May 11, 2026) - Final Exam + Lab
