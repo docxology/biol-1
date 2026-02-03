@@ -471,3 +471,122 @@ def copy_practice_tests(
 
     return total_copied
 
+
+# =============================================================================
+# Category Reorganization Functions
+# =============================================================================
+
+def reorganize_to_categories(
+    published_dir: Path,
+    courses: Optional[List[str]] = None,
+    verbose: bool = False
+) -> int:
+    """Reorganize PUBLISHED directory from module-based to category-based structure.
+
+    Transforms:
+        module-XX-*/keys-to-success files → module_keys/
+        module-XX-*/questions files → homework/
+        module-XX-*/website (index.html) → removed
+        module-XX-*/slides → slides/
+        syllabus/ → course/
+
+    Args:
+        published_dir: Path to the PUBLISHED directory
+        courses: List of course names (default: ['biol-1', 'biol-8'])
+        verbose: If True, log detailed operations
+
+    Returns:
+        Total number of files reorganized
+    """
+    if courses is None:
+        courses = ['biol-1', 'biol-8']
+
+    total_moved = 0
+
+    for course in courses:
+        course_dir = published_dir / course
+        if not course_dir.exists():
+            continue
+
+        # Create category directories
+        homework_dir = course_dir / 'homework'
+        module_keys_dir = course_dir / 'module_keys'
+        course_info_dir = course_dir / 'course'
+        
+        homework_dir.mkdir(parents=True, exist_ok=True)
+        module_keys_dir.mkdir(parents=True, exist_ok=True)
+        course_info_dir.mkdir(parents=True, exist_ok=True)
+
+        # Rename syllabus → course (if syllabus exists)
+        syllabus_dir = course_dir / 'syllabus'
+        if syllabus_dir.exists():
+            for f in syllabus_dir.iterdir():
+                if f.is_file():
+                    dest = course_info_dir / f.name
+                    shutil.move(str(f), str(dest))
+                    total_moved += 1
+                    if verbose:
+                        logger.debug(f"  {f.name} → course/")
+            # Remove empty syllabus directory
+            if syllabus_dir.exists() and not any(syllabus_dir.iterdir()):
+                syllabus_dir.rmdir()
+
+        # Process each module directory
+        module_dirs = sorted([d for d in course_dir.iterdir() 
+                              if d.is_dir() and d.name.startswith('module-')])
+        
+        for module_dir in module_dirs:
+            for f in list(module_dir.iterdir()):
+                if not f.is_file():
+                    continue
+
+                fname = f.name.lower()
+                
+                # Questions files → homework/
+                if 'questions' in fname:
+                    dest = homework_dir / f.name
+                    shutil.move(str(f), str(dest))
+                    total_moved += 1
+                    if verbose:
+                        logger.debug(f"  {f.name} → homework/")
+                
+                # Keys-to-success files → module_keys/
+                elif 'keys-to-success' in fname:
+                    dest = module_keys_dir / f.name
+                    shutil.move(str(f), str(dest))
+                    total_moved += 1
+                    if verbose:
+                        logger.debug(f"  {f.name} → module_keys/")
+                
+                # Slides files → slides/ (they might already be there, but handle duplicates)
+                # Matches both: "module-X-slides-*.pdf" and "Module XX - Topic.pdf"
+                elif fname.endswith('.pdf') and ('slides' in fname or fname.startswith('module ')):
+                    slides_dir = course_dir / 'slides'
+                    slides_dir.mkdir(parents=True, exist_ok=True)
+                    dest = slides_dir / f.name
+                    if not dest.exists():
+                        shutil.move(str(f), str(dest))
+                        total_moved += 1
+                        if verbose:
+                            logger.debug(f"  {f.name} → slides/")
+
+                    else:
+                        # Duplicate slide - remove from module
+                        f.unlink()
+                
+                # Remove website files (index.html)
+                elif fname == 'index.html':
+                    f.unlink()
+                    if verbose:
+                        logger.debug(f"  Removed {f.name}")
+
+            # Remove empty module directory
+            if module_dir.exists() and not any(module_dir.iterdir()):
+                module_dir.rmdir()
+                if verbose:
+                    logger.debug(f"  Removed empty {module_dir.name}/")
+
+        logger.info(f"  {course}: Reorganized to category structure")
+
+    return total_moved
+

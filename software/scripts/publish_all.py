@@ -36,6 +36,7 @@ from src.publish.utils import (
     copy_slides,
     copy_slides_to_modules,
     flatten_published,
+    reorganize_to_categories,
 )
 
 # Setup logging
@@ -222,6 +223,12 @@ def main():
         logger.info(f"  ✓ Flattened {moved} files")
     else:
         logger.info("\nSTEP 5: Skipping flatten (--skip-flatten)")
+
+    # Step 5.5: Reorganize to category folders
+    if not args.skip_flatten:
+        logger.info("\nSTEP 5.5: Reorganizing to category folders")
+        reorganized = reorganize_to_categories(published_dir, courses, args.verbose)
+        logger.info(f"  ✓ Reorganized {reorganized} files into category folders")
 
     # Step 6: Validate
     if not args.skip_validate:

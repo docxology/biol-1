@@ -21,7 +21,7 @@ docx = true         # Word documents (via Pandoc)
 html = false         # HTML files (via Pandoc)
 txt  = false         # Plain text (extracted from Markdown)
 md   = true          # Markdown copy (source files with standardized names)
-mp3  = true        # Audio narration (via Google TTS, slower)
+mp3  = false        # Audio narration (via Google TTS, slower)
 
 # Course Configuration
 # -------------------
