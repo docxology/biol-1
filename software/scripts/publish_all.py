@@ -30,7 +30,6 @@ sys.path.insert(0, str(software_dir))
 from src.batch_processing.main import clear_all_outputs
 from src.publish.utils import (
     clean_published,
-    copy_exams,
     copy_labs_and_dashboards,
     copy_practice_tests,
     copy_slides,
@@ -207,14 +206,14 @@ def main():
     else:
         logger.info("\nSTEP 4: Skipping copy extras (--skip-copy-extras)")
 
-    # Step 4.5: Copy slides, exams, and practice tests
+    # Step 4.5: Copy slides and practice tests
+    # Note: Exams are NOT published - they are teacher-only materials
     if not args.skip_copy_extras:
-        logger.info("\nSTEP 4.5: Copying slides, exams, and practice tests")
+        logger.info("\nSTEP 4.5: Copying slides and practice tests")
         slides_copied = copy_slides(repo_root, courses, args.verbose)
         module_slides_copied = copy_slides_to_modules(repo_root, courses, args.verbose)
-        exams_copied = copy_exams(repo_root, args.verbose)
         practice_tests_copied = copy_practice_tests(repo_root, courses, args.verbose)
-        logger.info(f"  ✓ Copied {slides_copied} slides to central dir, {module_slides_copied} to module folders, {exams_copied} exams, {practice_tests_copied} practice tests")
+        logger.info(f"  ✓ Copied {slides_copied} slides to central dir, {module_slides_copied} to module folders, {practice_tests_copied} practice tests")
 
     # Step 5: Flatten structure
     if not args.skip_flatten:

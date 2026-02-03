@@ -91,8 +91,9 @@ flowchart TD
         G[1. Generate<br/>Create PDF/MP3/HTML/DOCX/TXT]
         P[2. Publish<br/>Copy to PUBLISHED/]
         E[3. Copy Extras<br/>Labs, Dashboards, Slides]
-        F[4. Flatten<br/>Simplify directory structure]
-        V[5. Validate<br/>Verify all outputs]
+        F[4. Flatten<br/>Simplify module structure]
+        R[5. Reorganize<br/>Sort into category folders]
+        V[6. Validate<br/>Verify all outputs]
     end
     
     subgraph ENTRY["Entry Points"]
@@ -103,7 +104,7 @@ flowchart TD
     TOML --> PY
     CLI --> PY
     PY --> G
-    G --> P --> E --> F --> V
+    G --> P --> E --> F --> R --> V
     
     style CONFIG fill:#e3f2fd
     style PIPELINE fill:#f3e5f5
@@ -248,12 +249,12 @@ include_syllabus = true
 [publish.courses.biol-8]
 enabled = true
 include_labs = true
-include_exams = true
+# Note: Exams are NOT published (teacher-only materials)
 
 [publish.pipeline]
 generate = true     # Generate outputs from source
 publish  = true     # Copy to PUBLISHED/
-flatten  = true     # Flatten directory structure
+flatten  = true     # Flatten and reorganize to categories
 validate = true     # Validate all outputs
 ```
 
@@ -365,4 +366,4 @@ uv run pytest tests/ -v
 
 ---
 
-*Last Updated: 2026-02-01*
+*Last Updated: 2026-02-03*

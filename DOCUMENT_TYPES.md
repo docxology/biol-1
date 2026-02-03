@@ -119,6 +119,7 @@ Formal examinations covering multiple modules.
 | **BIOL-8 Count** | 4 exams + 4 keys |
 | **Format** | 50 MC (2pts) + 30 SA (5pts) + 20 Essay = 100 pts |
 | **Output Formats** | PDF, DOCX, HTML, TXT, MP3 |
+| **Published** | ❌ No (teacher-only materials, not in PUBLISHED/) |
 
 **Structure:**
 
@@ -413,4 +414,4 @@ uv run pytest tests/ -v
 
 ---
 
-*Last Updated: 2026-02-01*
+*Last Updated: 2026-02-03*

@@ -1,4 +1,4 @@
-# Lab 3: Introduction to Microscopy
+# Lab 3: Introduction to Light Microscopy
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
@@ -16,8 +16,8 @@ By the end of this lab, you will be able to:
 - **Describe the function** of each microscope component
 - **Demonstrate proper microscope handling** and focusing techniques
 - **Calculate total magnification** using eyepiece and objective powers
-- **Prepare wet mount slides** for observation
-- **Draw biological specimens** as seen through the microscope at different magnifications
+- **Observe and draw biological cells** at different magnifications
+- **Prepare wet mount slides** for microscopic observation
 
 ---
 
@@ -35,74 +35,50 @@ The microscope is one of the most important tools in biology. It allows us to se
 
 ---
 
-## Part 1: Parts of the Compound Microscope
+## Materials
 
-> **Learning Goal:** Identify and understand the function of each component of the compound light microscope.
+- Compound light microscope (1 per student or pair)
+- Prepared slides (cells, tissues)
+- Blank glass slides and coverslips
+- Lens paper
+- Dropper bottle with water
+- Optional specimens for wet mounts
 
-### Microscope Diagram
+---
 
-Study the microscope at your station. Label each part on the diagram below by writing the part name on the corresponding line.
+<div style="page-break-after: always;"></div>
 
-```
-                        ╔══════╗
-                        ║      ║ ← ____________________
-                        ╚══════╝     (where you look)
-                           │
-                    ┌──────┴──────┐
-                    │             │ ← ____________________
-                    │             │     (connects parts)
-                    └──────┬──────┘
-                  ╭────────┴────────╮
-                 /                   \
-                (   ○   ○   ○   ○    ) ← ____________________
-                 \                   /     (rotates objectives)
-                  ╰────────┬────────╯
-                    ╱ ╱ ╱ ╱
-                   ◎ ◎ ◎ ◎ ← ____________________
-                    ╲ ╲ ╲      (magnify the specimen)
-        ┌───────────────────────────────┐
-        │   ┌─────────────────────────┐ │
-        │   │        SPECIMEN         │ │ ← ____________________
-        │   │                         │ │     (holds the slide)
-        │   └─────────────────────────┘ │
-        └───────────────────────────────┘
-                       │
-    ╭──────────────────┼──────────────────╮
-    │                  │                  │
-   (○)                │                 (○)
-    │                  │                  │
-    ↑                  ↑                   ↑
-__________        __________          __________
-(large knob)      (small knob)        (supports)
+## Part 1: Microscope Anatomy & Labeling
 
-        ╔═════════════════════════════════╗
-        ║                                 ║
-        ║    ☀ ← Light source             ║
-        ║                                 ║
-        ╚═════════════════════════════════╝ ← ____________________
-                                              (provides stability)
-```
+> **Learning Goal:** Become familiar with the parts of a compound light microscope and their functions.
 
-### Microscope Parts Reference Table
+Using the microscope at your station, examine its parts carefully. In the large box below, **draw your microscope** and label it using the terms from the list.
 
-Complete the table below by filling in the location and function of each microscope part.
+<!-- lab:drawing-area title="Microscope Drawing" height=500 -->
 
-<!-- lab:data-table rows=12 title="Microscope Parts — Identification and Function" -->
-| Part Name | Location | Function |
-|-----------|----------|----------|
-| Eyepiece (Ocular Lens) | Top of microscope | {fill:text} |
-| Body Tube | {fill:text} | Holds eyepiece and connects to nosepiece |
-| Revolving Nosepiece | Below body tube | {fill:text} |
-| Objective Lenses (4×, 10×, 40×) | {fill:text} | {fill:text} |
-| Stage | {fill:text} | {fill:text} |
-| Stage Clips | On the stage | {fill:text} |
-| Coarse Adjustment Knob | {fill:text} | {fill:text} |
-| Fine Adjustment Knob | {fill:text} | {fill:text} |
-| Diaphragm/Iris | {fill:text} | {fill:text} |
-| Light Source/Illuminator | {fill:text} | {fill:text} |
-| Arm | {fill:text} | {fill:text} |
-| Base | Bottom | {fill:text} |
-<!-- /lab:data-table -->
+**Draw your compound light microscope here:**
+
+{fill:drawing height=450}
+
+<!-- /lab:drawing-area -->
+
+### Terms to Label on Your Drawing
+
+Use the following terms to label your drawing. Draw lines from each part to its label on your diagram.
+
+| Term | Function |
+|------|----------|
+| **Eyepiece (Ocular Lens)** | Lens you look through; typically 10× magnification |
+| **Objective Lenses** | Rotating lenses providing different magnifications (4×, 10×, 40×) |
+| **Revolving Nosepiece** | Rotates to change objective lenses |
+| **Stage** | Platform where the slide is placed |
+| **Stage Clips** | Hold the slide in place on the stage |
+| **Coarse Adjustment Knob** | Large knob for rough focusing (use only with low power) |
+| **Fine Adjustment Knob** | Small knob for precise focusing |
+| **Diaphragm/Iris** | Controls the amount of light passing through specimen |
+| **Light Source** | Illuminates the specimen from below |
+| **Arm** | Used to carry the microscope; connects body to base |
+| **Base** | Bottom support of the microscope |
 
 ### Magnification Calculations
 
@@ -110,79 +86,33 @@ Calculate the total magnification for each objective lens. The eyepiece on your 
 
 **Formula:** Total Magnification = Eyepiece Power × Objective Power
 
-<!-- lab:data-table rows=4 title="Calculating Total Magnification" -->
+<!-- lab:data-table rows=3 title="Calculating Total Magnification" -->
 | Objective Lens | Objective Power | Eyepiece Power | Total Magnification |
 |----------------|-----------------|----------------|---------------------|
 | Scanning (red band) | 4× | 10× | {fill:number}× |
 | Low Power (yellow band) | 10× | 10× | {fill:number}× |
 | High Power (blue band) | 40× | 10× | {fill:number}× |
-| Oil Immersion (white band) | 100× | 10× | {fill:number}× |
 <!-- /lab:data-table -->
 
----
-
-## Part 2: The Letter "e" — Image Orientation
-
-> **Learning Goal:** Discover how images appear through the microscope compared to the naked eye.
-
-### Background
-
-The compound microscope uses two lens systems (eyepiece and objective) that together create an image that is both **inverted** (upside down) and **reversed** (left-to-right mirror image). Understanding this is essential for navigating specimens.
-
-### Procedure
-
-1. Obtain a prepared slide of the letter "e" (or make one from newspaper)
-2. Place the slide on the stage with the letter "e" **right-side up and facing you**
-3. Start with the **4× (scanning) objective**
-4. Use the **coarse adjustment** to bring the letter into focus
-5. Refine with the **fine adjustment**
-6. Center the letter "e" and increase to **10× objective**
-
-### Observations
-
-**Draw the letter "e" exactly as it appears:**
-
-| As placed on stage (naked eye) | As seen through microscope (4×) | As seen through microscope (10×) |
-|-------------------------------|--------------------------------|----------------------------------|
-| e | {fill:text} | {fill:text} |
-
 <!-- lab:reflection -->
-**1. Is the image upside down, right-side up, or rotated?**
+**Reflection Questions:**
 
-{fill:text}
+1. Why should you always start focusing with the lowest power objective lens?
 
-**2. Is the image reversed (mirror image) compared to the original?**
+{fill:textarea rows=2}
 
-{fill:text}
-
-**3. Complete this summary: Under the microscope, images appear _____________ and _____________.**
-
-{fill:text}
-<!-- /lab:reflection -->
-
-### Movement Investigation
-
-While viewing the letter "e" at low power:
-
-<!-- lab:reflection -->
-**When you move the slide to the RIGHT, which direction does the image appear to move?**
-
-{fill:text}
-
-**When you move the slide AWAY from you (toward the back of the stage), which direction does the image appear to move?**
-
-{fill:text}
-
-**Practical Question:** If you want to center a specimen that appears in the upper-left corner of your field of view, which direction should you actually move the slide?
+1. Why is it important to never use the coarse adjustment knob with high power objectives?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 3: Observing and Drawing Prepared Slides
+<div style="page-break-after: always;"></div>
 
-> **Learning Goal:** Practice proper microscopy technique while observing and accurately drawing biological specimens.
+## Part 2: Observing Prepared Cell Slides
+
+> **Learning Goal:** Practice proper microscopy technique while observing and accurately drawing biological cells.
 
 ### Proper Microscopy Procedure
 
@@ -192,163 +122,182 @@ While viewing the letter "e" at low power:
 4. When switching to higher magnification:
    - Use **ONLY the fine adjustment knob** (never coarse!)
    - Adjust the **diaphragm** if the image is too bright or too dark
-5. **Never use the coarse adjustment on high power** (40× or 100×)
-
-### Specimen Observations
-
-For each prepared slide, observe at multiple magnifications and create detailed drawings.
-
-#### Specimen 1: {fill:text}
-
-<!-- lab:data-table rows=2 title="Specimen 1 Observations" -->
-| Magnification | Field of View Description | Colors Observed | Structures Identified |
-|---------------|--------------------------|-----------------|----------------------|
-| Low (100×) | {fill:text} | {fill:text} | {fill:text} |
-| High (400×) | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
-**Drawing at Low Power (100×):**
-
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
-
-Total Magnification: _____×
-Specimen: ________________
-```
-
-**Drawing at High Power (400×):**
-
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
-
-Total Magnification: _____×
-Specimen: ________________
-```
+5. **Never use the coarse adjustment on high power** (40×)
 
 ---
 
-#### Specimen 2: {fill:text}
+### Specimen A: {fill:text}
 
-<!-- lab:data-table rows=2 title="Specimen 2 Observations" -->
-| Magnification | Field of View Description | Colors Observed | Structures Identified |
-|---------------|--------------------------|-----------------|----------------------|
-| Low (100×) | {fill:text} | {fill:text} | {fill:text} |
-| High (400×) | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+**Slide Description:** {fill:text}
 
-**Drawing at Low Power (100×):**
+#### Observation Drawings
 
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
+In the circles below, draw what you see at **low power** and **high power**. Your drawings should accurately represent what you observe—include details like cell shapes, structures, colors, and relative sizes. Label any identifiable structures.
 
-Total Magnification: _____×
-Specimen: ________________
-```
+<!-- lab:drawing-area title="Low Power Observation" -->
+**Low Power (Total Magnification: ___×)**
 
-**Drawing at High Power (400×):**
+{fill:drawing height=280 shape=circle}
 
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
+**Magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
 
-Total Magnification: _____×
-Specimen: ________________
-```
+<!-- lab:drawing-area title="High Power Observation" -->
+**High Power (Total Magnification: ___×)**
+
+{fill:drawing height=280 shape=circle}
+
+**Magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
+
+<!-- lab:reflection -->
+**Observations for Specimen A:**
+
+1. Describe the overall shape of the cells:
+
+{fill:text}
+
+1. What structures can you identify inside the cells?
+
+{fill:textarea rows=2}
+
+1. Are the cells all the same size? Estimate how many cells fit across the field of view:
+
+{fill:text}
+<!-- /lab:reflection -->
 
 ---
 
-#### Specimen 3: {fill:text}
+<div style="page-break-after: always;"></div>
 
-<!-- lab:data-table rows=2 title="Specimen 3 Observations" -->
-| Magnification | Field of View Description | Colors Observed | Structures Identified |
-|---------------|--------------------------|-----------------|----------------------|
-| Low (100×) | {fill:text} | {fill:text} | {fill:text} |
-| High (400×) | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+### Specimen B: {fill:text}
 
-**Drawing at Low Power (100×):**
+**Slide Description:** {fill:text}
 
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
+#### Observation Drawings
 
-Total Magnification: _____×
-Specimen: ________________
-```
+<!-- lab:drawing-area title="Low Power Observation" -->
+**Low Power (Total Magnification: ___×)**
 
-**Drawing at High Power (400×):**
+{fill:drawing height=280 shape=circle}
 
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
+**Magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
 
-Total Magnification: _____×
-Specimen: ________________
-```
+<!-- lab:drawing-area title="High Power Observation" -->
+**High Power (Total Magnification: ___×)**
+
+{fill:drawing height=280 shape=circle}
+
+**Magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
+
+<!-- lab:reflection -->
+**Observations for Specimen B:**
+
+1. Describe the overall shape of the cells:
+
+{fill:text}
+
+1. What structures can you identify inside the cells?
+
+{fill:textarea rows=2}
+
+1. How do these cells compare to Specimen A?
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
 
 ---
+
+<div style="page-break-after: always;"></div>
+
+### Specimen C: {fill:text}
+
+**Slide Description:** {fill:text}
+
+#### Observation Drawings
+
+<!-- lab:drawing-area title="Low Power Observation" -->
+**Low Power (Total Magnification: ___×)**
+
+{fill:drawing height=280 shape=circle}
+
+**Magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
+
+<!-- lab:drawing-area title="High Power Observation" -->
+**High Power (Total Magnification: ___×)**
+
+{fill:drawing height=280 shape=circle}
+
+**Magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
+
+<!-- lab:reflection -->
+**Observations for Specimen C:**
+
+1. Describe the overall shape of the cells:
+
+{fill:text}
+
+1. What structures can you identify inside the cells?
+
+{fill:textarea rows=2}
+
+1. What is unique or interesting about this specimen?
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## Part 3: Comparing Cell Types
+
+> **Learning Goal:** Compare and contrast the structural features of different cell types.
+
+Based on your observations from Part 2, complete the comparison table below.
+
+<!-- lab:data-table rows=3 title="Cell Type Comparison" -->
+| Feature | Specimen A | Specimen B | Specimen C |
+|---------|-----------|-----------|-----------|
+| Cell Shape | {fill:text} | {fill:text} | {fill:text} |
+| Approximate Cell Size | {fill:text} | {fill:text} | {fill:text} |
+| Visible Nucleus? | {fill:text} | {fill:text} | {fill:text} |
+| Other Structures Observed | {fill:text} | {fill:text} | {fill:text} |
+| Arrangement (single/clusters/layers) | {fill:text} | {fill:text} | {fill:text} |
+<!-- /lab:data-table -->
+
+<!-- lab:reflection -->
+**Analysis Questions:**
+
+1. Which specimen showed the clearest cellular structures? Why do you think this is?
+
+{fill:textarea rows=2}
+
+1. Based on your observations, what might be the function of cells that are:
+   - Long and thin (like some muscle cells)?
+
+{fill:text}
+
+- Flat and scale-like (like some skin cells)?
+
+{fill:text}
+
+1. Why is it important for scientists and medical professionals to be able to identify different cell types?
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+<div style="page-break-after: always;"></div>
 
 ## Part 4: Making Wet Mount Slides
 
 > **Learning Goal:** Learn to prepare your own slides for microscopic observation.
-
-### Materials
-
-- Clean glass slides
-- Coverslips
-- Dropper bottle with water
-- Specimens provided by instructor
 
 ### Wet Mount Procedure
 
@@ -359,76 +308,73 @@ Specimen: ________________
 5. **Slowly lower** the coverslip to avoid trapping air bubbles
 6. Blot excess water with a paper towel if needed
 
-**Avoiding Air Bubbles:**
+**Tip:** If you see large circular objects that are all the same size, those are likely air bubbles, not cells!
 
-```
-     CORRECT                    INCORRECT
-        ╱                           ▬
-       ╱ ← Coverslip              ═══ ← Dropped flat
-      ╱    at 45°                
-   ▂▂▂▂▂▂▂ ← Slide              ○ ○ ○ ← Air bubbles!
-      │
-      ↓
-   Lower slowly
-```
+---
 
-### Wet Mount Observations
+### Wet Mount Observation: {fill:text}
 
-#### Wet Mount 1: {fill:text}
+**Specimen/material used:** {fill:text}
 
-**Drawing:**
+#### Observation Drawing
 
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
+<!-- lab:drawing-area title="Wet Mount Observation" -->
+**Magnification: ___×**
 
-Total Magnification: _____×
-Specimen: ________________
-```
+{fill:drawing height=280 shape=circle}
+
+**Total magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**Describe what you observed. What details became visible at higher magnification?**
+**Describe what you observed:**
 
 {fill:textarea rows=3}
-<!-- /lab:reflection -->
 
-#### Wet Mount 2: {fill:text}
+**Were there any challenges with preparing or viewing this specimen?**
 
-**Drawing:**
-
-```
-         _________________
-       /                   \
-      /                     \
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-     |                       |
-      \                     /
-       \___________________ /
-
-Total Magnification: _____×
-Specimen: ________________
-```
-
-<!-- lab:reflection -->
-**Describe what you observed. Were there any challenges with this specimen?**
-
-{fill:textarea rows=3}
+{fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 5: Microscope Care and Storage
+<div style="page-break-after: always;"></div>
+
+## Part 5: Optional — Creative Specimen Observation
+
+> **Learning Goal:** Apply your microscopy skills to explore specimens of your own choosing.
+
+*Complete this section if time permits and with instructor approval.*
+
+**Specimen chosen:** {fill:text}
+
+**Why did you choose this specimen?**
+
+{fill:textarea rows=2}
+
+#### Observation Drawing
+
+<!-- lab:drawing-area title="Creative Specimen Observation" -->
+**Magnification: ___×**
+
+{fill:drawing height=280 shape=circle}
+
+**Total magnification used:** {fill:text}
+<!-- /lab:drawing-area -->
+
+<!-- lab:reflection -->
+**What did you discover about this specimen?**
+
+{fill:textarea rows=3}
+
+**What questions do you have about what you observed?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+## Part 6: Microscope Care and Storage
 
 > **Learning Goal:** Learn proper care and storage procedures to maintain microscope function.
 
@@ -437,7 +383,8 @@ Specimen: ________________
 Before putting away your microscope, complete the following:
 
 - [ ] Rotate to the **lowest power objective (4×)**
-- [ ] Remove slide from stage and clean if needed
+- [ ] Remove slide from stage and return prepared slides
+- [ ] Dispose of any wet mount slides properly
 - [ ] **Lower the stage** to its lowest position
 - [ ] Clean lenses with **lens paper only** (never paper towels or tissues!)
 - [ ] **Turn off the light source**
@@ -449,13 +396,11 @@ Before putting away your microscope, complete the following:
 **Why is it important to store the microscope on the lowest power objective?**
 
 {fill:textarea rows=2}
-
-**Why should you never use paper towels to clean the lenses?**
-
-{fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Conclusions
 
@@ -464,15 +409,19 @@ Before putting away your microscope, complete the following:
 
 {fill:textarea rows=3}
 
-**2. What was the most interesting or surprising thing you observed under the microscope today?**
+**2. Of the cells you observed today, which type was most interesting to you? Why?**
 
 {fill:textarea rows=2}
 
-**3. Why do biologists and medical professionals use microscopes? Give two specific examples:**
+**3. How might microscopy be used in medical settings? Give two specific examples:**
 
 {fill:textarea rows=3}
 
-**4. What difficulties did you encounter, and how did you solve them?**
+**4. What difficulties did you encounter during this lab, and how did you solve them?**
+
+{fill:textarea rows=2}
+
+**5. What specimen would you want to examine under a microscope in the future? Why?**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -483,9 +432,7 @@ Before putting away your microscope, complete the following:
 
 ### Magnification Formula
 
-```
-Total Magnification = Eyepiece Power × Objective Power
-```
+**Total Magnification = Eyepiece Power × Objective Power**
 
 ### Common Objective Lens Colors (may vary by manufacturer)
 
@@ -494,7 +441,6 @@ Total Magnification = Eyepiece Power × Objective Power
 | Scanning | Red | 4× |
 | Low Power | Yellow | 10× |
 | High Power | Blue | 40× |
-| Oil Immersion | White | 100× |
 
 ### Rules for Focusing
 
@@ -505,7 +451,7 @@ Total Magnification = Eyepiece Power × Objective Power
 
 ---
 
-**Connection to Module 03:** Understanding microscopy is fundamental to studying cell biology. The techniques you learned today—proper focusing, slide preparation, specimen drawing—will be essential for observing cells, tissues, and microorganisms throughout this course. Microscopy is also a critical diagnostic tool in medicine, from blood smears to tissue biopsies.
+**Connection to Human Biology:** Understanding microscopy is fundamental to studying cells and tissues. The techniques you learned today—proper focusing, slide preparation, specimen drawing—will be essential for observing human cells, tissues, and microorganisms throughout this course. In medicine, microscopy is a critical diagnostic tool used for analyzing blood smears, tissue biopsies, and identifying pathogens.
 
 ---
 

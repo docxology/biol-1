@@ -1,8 +1,8 @@
 # BIOL-8 Practice Test 02
 
-## Modules 5-15: Membranes through Body Systems
+## Modules 5-6: Membranes & Metabolism
 
-**Instructions:** This practice test covers material from Modules 5-15. Answer all questions to the best of your ability.
+**Instructions:** This practice test covers material from Modules 5 and 6. Answer all questions to the best of your ability.
 
 ---
 
@@ -10,198 +10,186 @@
 
 *Choose the best answer for each question.*
 
-### Modules 5-6: Membranes & Metabolism
+### Module 5: Membranes
 
-**1.** The cell membrane's phospholipid bilayer has:
+**1.** The plasma membrane is described as a "fluid mosaic" because:
 
-A) Hydrophilic heads facing outward  
-B) Hydrophobic heads facing outward  
-C) Only proteins on the surface  
-D) No protein component
+A) It is made entirely of phospholipids
+B) Proteins float and move within a flexible lipid bilayer
+C) It is rigid and tightly packed
+D) Water flows freely through it
 
-**2.** Endocytosis is the process of:
+**2.** The hydrophobic tails of phospholipids face:
 
-A) Releasing materials from the cell  
-B) Taking materials into the cell  
-C) Passive diffusion  
-D) Osmotic balance
+A) Toward the extracellular fluid
+B) Toward the cytoplasm
+C) Toward each other, inside the bilayer
+D) Toward the membrane proteins
 
-**3.** Which process uses vesicles to export materials from the cell?
+**3.** Cholesterol in the plasma membrane functions to:
 
-A) Endocytosis  
-B) Exocytosis  
-C) Facilitated diffusion  
+A) Transport oxygen across the membrane
+B) Maintain membrane fluidity across temperature changes
+C) Act as a receptor for hormones
+D) Provide energy for active transport
+
+**4.** Which type of membrane protein spans the entire lipid bilayer?
+
+A) Peripheral protein
+B) Integral (transmembrane) protein
+C) Glycoprotein
+D) Channel protein only
+
+**5.** Glycoproteins on the cell surface are important for:
+
+A) ATP production
+B) Cell recognition and signaling
+C) DNA replication
+D) Lipid synthesis
+
+**6.** A membrane is described as "selectively permeable" because it:
+
+A) Allows all molecules to pass through freely
+B) Blocks all molecules from entering
+C) Allows some substances to cross but not others
+D) Only permits water molecules
+
+**7.** Simple diffusion moves molecules:
+
+A) Against their concentration gradient using ATP
+B) Down their concentration gradient without energy or proteins
+C) Through channel proteins only
+D) By vesicle transport
+
+**8.** Facilitated diffusion differs from simple diffusion because it:
+
+A) Requires ATP
+B) Moves molecules against the gradient
+C) Requires transport proteins
+D) Only moves water
+
+**9.** Osmosis is best defined as the movement of:
+
+A) Solute from high to low concentration
+B) Water across a selectively permeable membrane toward higher solute concentration
+C) Proteins through channel proteins
+D) Ions using ATP
+
+**10.** A red blood cell placed in a hypotonic solution will:
+
+A) Shrink (crenate)
+B) Remain unchanged
+C) Swell and possibly burst (lyse)
+D) Divide
+
+**11.** A plant cell placed in a hypertonic solution will:
+
+A) Swell and burst
+B) Undergo plasmolysis as water leaves
+C) Remain unchanged due to the cell wall
+D) Begin dividing
+
+**12.** The sodium-potassium pump is an example of:
+
+A) Passive transport
+B) Simple diffusion
+C) Active transport
 D) Osmosis
 
-**4.** Anabolic reactions:
+**13.** Which process involves the cell membrane engulfing a large particle?
 
-A) Break down molecules  
-B) Build up molecules  
-C) Require no energy  
-D) Release energy
-
-**5.** Competitive inhibition occurs when:
-
-A) Temperature denatures an enzyme  
-B) A molecule blocks the active site  
-C) pH is too high  
-D) No substrate is present
+A) Pinocytosis
+B) Exocytosis
+C) Phagocytosis
+D) Facilitated diffusion
 
 ---
 
-### Modules 7-8: Mitosis & Meiosis
+### Module 6: Metabolism
 
-**6.** Chromatin condenses into visible chromosomes during:
+**14.** Catabolic reactions:
 
-A) Interphase  
-B) Prophase  
-C) Anaphase  
-D) Telophase
+A) Build complex molecules from simpler ones
+B) Break down complex molecules and release energy
+C) Require no enzymes
+D) Only occur in plants
 
-**7.** Sister chromatids separate during which phase of mitosis?
+**15.** The energy currency molecule of cells is:
 
-A) Prophase  
-B) Metaphase  
-C) Anaphase  
-D) Telophase
+A) DNA
+B) Glucose
+C) ATP
+D) NADH
 
-**8.** Meiosis produces:
+**16.** Energy is stored in ATP in the:
 
-A) Two diploid cells  
-B) Four diploid cells  
-C) Four haploid cells  
-D) Two haploid cells
+A) Adenine base
+B) Ribose sugar
+C) Bonds between phosphate groups
+D) Hydrogen bonds
 
-**9.** Independent assortment refers to:
+**17.** Enzymes speed up chemical reactions by:
 
-A) Crossing over  
-B) Random alignment of homologs at metaphase I  
-C) Sister chromatid separation  
-D) DNA replication
+A) Increasing the temperature
+B) Lowering the activation energy
+C) Changing the products formed
+D) Adding more substrate
 
-**10.** Crossing over increases:
+**18.** The induced fit model describes how:
 
-A) Chromosome number  
-B) Genetic variation  
-C) Cell size  
-D) Mutation rate
+A) Substrates change shape permanently
+B) The enzyme's active site changes shape to fit the substrate
+C) Products inhibit the enzyme
+D) Enzymes are destroyed after one use
 
----
+**19.** A noncompetitive inhibitor works by:
 
-### Module 9: Inheritance
+A) Binding to the active site
+B) Binding to a site other than the active site, changing enzyme shape
+C) Increasing substrate concentration
+D) Raising the pH
 
-**11.** In a monohybrid cross Aa × Aa, the phenotypic ratio is:
+**20.** Feedback inhibition is when:
 
-A) 1:2:1  
-B) 3:1  
-C) 9:3:3:1  
-D) 1:1
+A) A substrate activates an enzyme
+B) The end product of a pathway inhibits an earlier enzyme
+C) Temperature increases enzyme activity
+D) Two enzymes compete for the same substrate
 
-**12.** A test cross involves mating with a:
+**21.** The overall equation for cellular respiration is:
 
-A) Heterozygous individual  
-B) Homozygous dominant individual  
-C) Homozygous recessive individual  
-D) Random individual
+A) CO₂ + H₂O → C₆H₁₂O₆ + O₂
+B) C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP
+C) ATP → ADP + energy
+D) 2 pyruvate → ethanol + CO₂
 
-**13.** Sex-linked traits are carried on:
+**22.** Glycolysis occurs in the:
 
-A) Autosomes  
-B) Sex chromosomes  
-C) Mitochondrial DNA  
-D) Plasmids
+A) Mitochondria
+B) Nucleus
+C) Cytoplasm
+D) Cell membrane
 
----
+**23.** The electron transport chain produces most of the cell's ATP and is located in the:
 
-### Modules 10-12: Tissues & Skeletal/Muscular Systems
+A) Cytoplasm
+B) Inner mitochondrial membrane
+C) Nucleus
+D) Ribosome
 
-**14.** The four basic tissue types are epithelial, connective, muscle, and:
+**24.** When oxygen is NOT available, cells can produce ATP through:
 
-A) Blood  
-B) Bone  
-C) Nervous  
-D) Skin
+A) The citric acid cycle
+B) Oxidative phosphorylation
+C) Fermentation
+D) The electron transport chain
 
-**15.** The function of bone (skeletal system) includes all EXCEPT:
+**25.** Aerobic respiration produces approximately how many ATP per glucose molecule?
 
-A) Support  
-B) Protection  
-C) Blood cell production  
-D) Hormone production
-
-**16.** Skeletal muscle is controlled:
-
-A) Involuntarily  
-B) Voluntarily  
-C) Automatically only  
-D) By hormones only
-
-**17.** The sliding filament theory describes:
-
-A) Bone growth  
-B) Muscle contraction  
-C) Nerve transmission  
-D) Blood flow
-
----
-
-### Modules 13-15: Pathogens & Cardiovascular/Respiratory Systems
-
-**18.** Pathogens include all of the following EXCEPT:
-
-A) Bacteria  
-B) Viruses  
-C) Red blood cells  
-D) Fungi
-
-**19.** The heart chamber that pumps blood to the lungs is the:
-
-A) Left atrium  
-B) Right atrium  
-C) Left ventricle  
-D) Right ventricle
-
-**20.** Blood vessels that carry blood AWAY from the heart are:
-
-A) Veins  
-B) Arteries  
-C) Capillaries  
-D) Lymph vessels
-
-**21.** The function of red blood cells is to:
-
-A) Fight infection  
-B) Carry oxygen  
-C) Clot blood  
-D) Produce antibodies
-
-**22.** Gas exchange in the lungs occurs at the:
-
-A) Bronchi  
-B) Trachea  
-C) Alveoli  
-D) Bronchioles
-
-**23.** The diaphragm is a muscle used for:
-
-A) Circulation  
-B) Breathing  
-C) Digestion  
-D) Movement
-
-**24.** The correct path of air through the respiratory system is:
-
-A) Nose → Bronchi → Trachea → Lungs  
-B) Nose → Trachea → Bronchi → Alveoli  
-C) Lungs → Trachea → Bronchi → Nose  
-D) Bronchi → Nose → Trachea → Lungs
-
-**25.** White blood cells function primarily to:
-
-A) Carry oxygen  
-B) Fight infection  
-C) Clot blood  
-D) Transport nutrients
+A) 2
+B) 4
+C) 18
+D) 36-38
 
 ---
 
@@ -209,25 +197,25 @@ D) Transport nutrients
 
 *Write the correct term in the blank.*
 
-**26.** The process by which cells take in fluid and dissolved molecules is _________________________.
+**26.** The two main components of the plasma membrane are phospholipids and _________________________.
 
-**27.** The phase of interphase when DNA is copied is called _________________________ phase.
+**27.** Transport that requires no cellular energy is called _________________________ transport.
 
-**28.** Gametes (sex cells) contain the _________________________ number of chromosomes.
+**28.** A solution with a higher solute concentration than the cell is called _________________________.
 
-**29.** The four tissue types are epithelial, connective, muscle, and _________________________.
+**29.** The process of a cell releasing materials using vesicles is called _________________________.
 
-**30.** Bones store minerals, particularly _________________________ and phosphorus.
+**30.** The type of endocytosis that takes in fluids and small dissolved molecules is called _________________________.
 
-**31.** The protein filaments that slide past each other during muscle contraction are actin and _________________________.
+**31.** The sum of all chemical reactions in a cell is called _________________________.
 
-**32.** The _________________________ system is the body's first line of defense against pathogens.
+**32.** Enzymes are biological _________________________ that speed up chemical reactions.
 
-**33.** Blood is pumped from the left ventricle into the _________________________.
+**33.** The three stages of cellular respiration are glycolysis, the citric acid cycle, and the _________________________.
 
-**34.** The exchange of oxygen and carbon dioxide occurs across the thin walls of the _________________________.
+**34.** In the absence of oxygen, muscle cells produce ATP and _________________________ through fermentation.
 
-**35.** Hemoglobin is the protein in red blood cells that carries _________________________.
+**35.** The role of oxygen in cellular respiration is to serve as the final _________________________ acceptor.
 
 ---
 
@@ -235,23 +223,23 @@ D) Transport nutrients
 
 *Answer each question in 2-3 complete sentences.*
 
-**36.** Compare and contrast mitosis and meiosis in terms of their purpose and outcomes.
+**36.** Compare and contrast passive transport and active transport. Give one example of each.
 
 <br><br><br><br><br><br>
 
-**37.** Explain how the muscular and skeletal systems work together to produce movement.
+**37.** Explain what happens to an animal cell in each type of solution: isotonic, hypertonic, and hypotonic.
 
 <br><br><br><br><br><br>
 
-**38.** Describe the pathway blood takes through the heart and to the lungs.
+**38.** Describe how enzymes work, including the role of the active site. What happens when an enzyme is denatured?
 
 <br><br><br><br><br><br>
 
-**39.** Explain how the respiratory system exchanges gases (oxygen and carbon dioxide).
+**39.** Outline the three main stages of cellular respiration, including where each occurs and what each produces.
 
 <br><br><br><br><br><br>
 
-**40.** Describe two ways the body defends itself against pathogens.
+**40.** Compare lactic acid fermentation and alcoholic fermentation. Why does fermentation produce far less ATP than aerobic respiration?
 
 <br><br><br><br><br><br>
 
