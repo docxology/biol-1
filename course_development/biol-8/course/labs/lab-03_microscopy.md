@@ -92,18 +92,6 @@ Use the following terms to label your drawing. Draw lines from each part to its 
 | **Arm** | Used to carry the microscope; connects body to base |
 | **Base** | Bottom support of the microscope |
 
-### Magnification Calculations
-
-Calculate the total magnification for each objective lens. The eyepiece on your microscope is **10×**.
-
-**Formula:** Total Magnification = Eyepiece Power × Objective Power
-
-| Objective Lens | Objective Power | Eyepiece Power | Total Magnification |
-|----------------|-----------------|----------------|---------------------|
-| Scanning (red band) | 4× | 10× | {fill:number}× |
-| Low Power (yellow band) | 10× | 10× | {fill:number}× |
-| High Power (blue band) | 40× | 10× | {fill:number}× |
-
 <!-- lab:reflection -->
 **Reflection Questions:**
 
@@ -111,11 +99,11 @@ Calculate the total magnification for each objective lens. The eyepiece on your 
 
 {fill:textarea rows=2}
 
-2. Why is it important to never use the coarse adjustment knob with high power objectives?
+1. Why is it important to never use the coarse adjustment knob with high power objectives?
 
 {fill:textarea rows=2}
 
-3. What happens to the field of view (area you can see) as you increase magnification?
+1. What happens to the field of view (area you can see) as you increase magnification?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -145,7 +133,7 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 {fill:drawing height=280 shape=circle}
 
-**Magnification used:** {fill:text}
+**Objective selected:** {fill:text}
 <!-- /lab:drawing-area -->
 
 <!-- lab:drawing-area title="High Power Observation" -->
@@ -159,15 +147,15 @@ In the circles below, draw what you see at **low power** and **high power**. You
 <!-- lab:reflection -->
 **Observations for Specimen A:**
 
-1. Describe the overall shape of the cells:
+Describe the overall shape of the cells:
 
 {fill:textarea rows=2}
 
-2. What structures can you identify inside the cells (e.g., nucleus, cell membrane, cytoplasm)?
+What structures can you identify inside the cells (e.g., nucleus, cell membrane, cytoplasm)?
 
 {fill:textarea rows=2}
 
-3. Approximately how many cells fit across the diameter of your field of view at high power?
+Approximately how many cells fit across the diameter of your field of view at high power?
 
 {fill:text}
 <!-- /lab:reflection -->
@@ -187,7 +175,7 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 {fill:drawing height=280 shape=circle}
 
-**Magnification used:** {fill:text}
+**Objective selected:** {fill:text}
 <!-- /lab:drawing-area -->
 
 <!-- lab:drawing-area title="High Power Observation" -->
@@ -195,21 +183,21 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 {fill:drawing height=280 shape=circle}
 
-**Magnification used:** {fill:text}
+**Objective selected:** {fill:text}
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
 **Observations for Specimen B:**
 
-1. Describe the overall shape of the cells:
+Describe the overall shape of the cells:
 
 {fill:textarea rows=2}
 
-2. What structures can you identify inside the cells?
+What structures can you identify inside the cells?
 
 {fill:textarea rows=2}
 
-3. How do these cells compare to Specimen A in terms of shape and size?
+How do these cells compare to Specimen A in terms of shape and size?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -229,7 +217,7 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 {fill:drawing height=280 shape=circle}
 
-**Magnification used:** {fill:text}
+**Objective selected:** {fill:text}
 <!-- /lab:drawing-area -->
 
 <!-- lab:drawing-area title="High Power Observation" -->
@@ -237,21 +225,21 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 {fill:drawing height=280 shape=circle}
 
-**Magnification used:** {fill:text}
+**Objective selected:** {fill:text}
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
 **Observations for Specimen C:**
 
-1. Describe the overall shape of the cells:
+Describe the overall shape of the cells:
 
 {fill:textarea rows=2}
 
-2. What structures can you identify inside the cells?
+What structures can you identify inside the cells?
 
 {fill:textarea rows=2}
 
-3. What is unique or interesting about this specimen compared to the others?
+What is unique or interesting about this specimen compared to the others?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -262,9 +250,11 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 ## Part 3: Making and Observing Your Own Slide
 
-> **Learning Goal:** Learn to prepare wet mount slides and explore specimens of your choosing.
+> **Learning Goal:** Learn to prepare slides and explore specimens of your choosing. Depending on your specimen, you may prepare a **wet mount** (for biological specimens) or a **dry mount** (for paper, fabric, or other small objects).
 
-### Wet Mount Procedure
+### Slide Preparation Options
+
+**Wet Mount** (for biological specimens like onion skin, cheek cells, pond water):
 
 1. Place a **clean glass slide** on a flat surface
 2. Add **ONE small drop of water** to the center of the slide
@@ -272,6 +262,12 @@ In the circles below, draw what you see at **low power** and **high power**. You
 4. Hold a coverslip at a **45° angle**, touching one edge to the water
 5. **Slowly lower** the coverslip to avoid trapping air bubbles
 6. Blot excess water with a paper towel if needed
+
+**Dry Mount** (for paper, fabric, hair, or other non-biological specimens):
+
+1. Place a **clean glass slide** on a flat surface
+2. Place your specimen **directly on the slide** (no water needed)
+3. Carefully place a coverslip on top
 
 **Tip:** If you see large circular objects that are all the same size, those are likely air bubbles, not cells!
 
@@ -294,7 +290,7 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 {fill:drawing height=300 shape=circle}
 
-**Total magnification used:** {fill:text}
+**Objective selected:** {fill:text}
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
@@ -304,11 +300,11 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 {fill:textarea rows=3}
 
-2. Were there any challenges with preparing or viewing this specimen? How did you solve them?
+1. Were there any challenges with preparing or viewing this specimen? How did you solve them?
 
 {fill:textarea rows=2}
 
-3. If you could look at anything under a microscope, what would you choose and why?
+1. If you could look at anything under a microscope, what would you choose and why?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -354,19 +350,19 @@ Before putting away your microscope, complete the following:
 
 {fill:textarea rows=3}
 
-2. Of all the specimens you observed today, which was most interesting to you? Why?
+1. Of all the specimens you observed today, which was most interesting to you? Why?
 
 {fill:textarea rows=2}
 
-3. How might microscopy be used in medical settings? Give two specific examples:
+1. How might microscopy be used in medical settings? Give two specific examples:
 
 {fill:textarea rows=3}
 
-4. What was the most challenging part of today's lab, and how did you overcome it?
+1. What was the most challenging part of today's lab, and how did you overcome it?
 
 {fill:textarea rows=2}
 
-5. Based on what you learned today, why is microscopy considered essential for understanding human biology?
+1. Based on what you learned today, why is microscopy considered essential for understanding human biology?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
