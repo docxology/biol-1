@@ -1,6 +1,6 @@
 # BIOL-8 Practice Test 01 — Answer Key
 
-## Modules 1-6: Foundations of Human Biology
+## Modules 1-4: Foundations of Human Biology
 
 ---
 
@@ -8,42 +8,38 @@
 
 | Q | Answer | Explanation |
 |:---:|:------:|-------------|
-| 1 | C | All living things are made of cells |
-| 2 | A | Cell → Tissue → Organ → Organ System → Organism |
-| 3 | B | The independent variable is what the scientist changes |
-| 4 | B | Theories are well-supported by many experiments |
-| 5 | B | Homeostasis = maintaining a stable internal environment |
-| 6 | B | Autotrophs make their own food |
-| 7 | C | Atomic number = number of protons |
-| 8 | B | Covalent bonds involve sharing electrons |
-| 9 | C | Water is polar due to unequal electron sharing |
-| 10 | B | Acids have pH less than 7 |
-| 11 | A | Carbon, Hydrogen, Oxygen, Nitrogen are most common |
-| 12 | B | Hydrogen bonds give water its unique properties |
-| 13 | B | Acids release H+ ions |
-| 14 | B | Dehydration synthesis removes water to build polymers |
-| 15 | C | Carbohydrates provide quick energy |
-| 16 | B | Amino acids are protein monomers |
-| 17 | B | Amino acid sequence determines protein shape/function |
-| 18 | D | DNA and RNA are nucleic acids |
-| 19 | B | Hydrolysis adds water to break polymers |
-| 20 | B | Cell theory: cells come from pre-existing cells |
-| 21 | C | Prokaryotes lack a membrane-bound nucleus |
-| 22 | C | Mitochondria produce ATP |
-| 23 | C | Ribosomes are the site of protein synthesis |
-| 24 | C | Plant cells have cell walls; animal cells do not |
-| 25 | D | Golgi apparatus packages and ships proteins |
-| 26 | B | Fluid mosaic model describes membrane structure |
-| 27 | C | Passive transport requires no energy |
-| 28 | B | Pure water is hypotonic; cell swells and lyses |
-| 29 | B | Osmosis = water movement across membrane |
-| 30 | B | Facilitated diffusion uses proteins, no ATP |
-| 31 | B | Na⁺/K⁺ pump: 3 Na⁺ out, 2 K⁺ in |
-| 32 | B | Hypertonic = cell loses water, shrinks |
-| 33 | B | ATP is the energy currency of cells |
-| 34 | B | Enzymes lower activation energy |
-| 35 | C | Glycolysis occurs in the cytoplasm |
-| 36 | C | Fermentation occurs without oxygen |
+| 1 | C | All living things have cellular organization — this is universal to life |
+| 2 | A | Cell → Tissue → Organ → Organ System → Organism is the correct hierarchy |
+| 3 | B | The independent variable is what the scientist deliberately changes |
+| 4 | B | A theory is well-supported by extensive, repeated experimental evidence |
+| 5 | B | Homeostasis = maintaining internal stability despite external changes |
+| 6 | B | Sweating to reduce a fever is negative feedback — opposing the change to restore normal temp |
+| 7 | B | Anatomy = structure; Physiology = function |
+| 8 | B | The stomach is an organ (composed of multiple tissue types working together) |
+| 9 | C | Atomic number = number of protons in the nucleus |
+| 10 | B | Covalent bonds involve sharing electrons between atoms |
+| 11 | C | Oxygen pulls shared electrons more strongly → unequal sharing → polarity |
+| 12 | C | pH 3 is well below 7, making it strongly acidic |
+| 13 | A | Carbon, Hydrogen, Oxygen, Nitrogen make up ~96% of living matter |
+| 14 | B | Hydrogen bonds give water high specific heat — it resists temperature change |
+| 15 | B | Buffers resist pH changes, keeping blood pH stable near 7.35-7.45 |
+| 16 | B | Isotopes = same element, different neutron count (e.g., Carbon-12 and Carbon-14) |
+| 17 | B | Dehydration synthesis removes water to join monomers into polymers |
+| 18 | C | Carbohydrates (glucose) are the body's preferred quick energy source |
+| 19 | B | Amino acids are the monomers of proteins (20 different types) |
+| 20 | B | The amino acid sequence dictates how the protein folds and what it does |
+| 21 | D | DNA and RNA are nucleic acids built from nucleotide monomers |
+| 22 | B | Hydrolysis (hydro = water, lysis = break) adds water to split polymers |
+| 23 | B | Saturated fats have no C=C double bonds; they pack tightly → solid at room temp |
+| 24 | B | Denaturation = loss of 3D shape (and function) due to extreme heat or pH |
+| 25 | B | Cell theory: all living things are made of cells; all cells come from pre-existing cells |
+| 26 | C | Prokaryotes lack a membrane-bound nucleus (pro = before, karyon = nucleus) |
+| 27 | C | Mitochondria are the "powerhouse of the cell" — site of aerobic respiration |
+| 28 | B | Ribosomes translate mRNA into proteins (protein synthesis) |
+| 29 | C | Plant cells have a rigid cell wall made of cellulose; animal cells do not |
+| 30 | C | Golgi receives proteins from the ER, modifies, sorts, and ships them in vesicles |
+| 31 | C | Ribosomes attached to the ER surface give it the "rough" appearance |
+| 32 | B | Endosymbiotic theory: mitochondria and chloroplasts were once independent prokaryotes |
 
 ---
 
@@ -51,84 +47,70 @@
 
 | Q | Answer |
 |:---:|--------|
-| 37 | cell |
-| 38 | nucleus |
-| 39 | isotopes |
-| 40 | basic (or alkaline) |
-| 41 | monosaccharide (or simple sugar) |
-| 42 | energy |
-| 43 | ribosome |
-| 44 | phospholipids |
-| 45 | osmosis |
-| 46 | hypertonic |
-| 47 | ATP (adenosine triphosphate) |
-| 48 | proteins |
+| 33 | cell |
+| 34 | homeostasis |
+| 35 | control |
+| 36 | isotopes |
+| 37 | basic (or alkaline) |
+| 38 | monosaccharide (or simple sugar) |
+| 39 | phospholipids |
+| 40 | proteins |
+| 41 | nucleus |
+| 42 | lysosome |
 
 ---
 
 ## Part C: Short Answer Key
 
-**49. Characteristics of living things (any 3):**
+**43. Four characteristics of living things (any four):**
 
-- Cellular organization (made of cells)
-- Metabolism (use energy)
-- Homeostasis (maintain internal stability)
-- Growth and development
-- Reproduction
-- Response to stimuli
-- Adaptation
-
----
-
-**50. Ionic vs. Covalent bonds:**
-
-- Ionic bonds: electrons are **transferred** from one atom to another, forming ions (charged particles) that attract each other
-- Covalent bonds: electrons are **shared** between atoms
-- Example: NaCl (ionic); H₂O (covalent)
+- **Cellular organization:** All living things are made of one or more cells
+- **Metabolism:** All organisms carry out chemical reactions to obtain and use energy
+- **Homeostasis:** Living things maintain a stable internal environment
+- **Reproduction:** Organisms produce offspring (sexually or asexually)
+- **Growth and development:** Organisms grow and develop according to genetic instructions
+- **Response to stimuli:** Living things detect and respond to changes in their environment
+- **Adaptation/Evolution:** Populations change over time through natural selection
 
 ---
 
-**51. Four biomolecules:**
+**44. Ionic vs. Covalent Bonds:**
 
-- **Carbohydrates** – quick energy (sugars, starches)
-- **Lipids** – long-term energy, membranes
-- **Proteins** – enzymes, structure, transport
-- **Nucleic acids** – **store genetic information** (DNA and RNA)
+- **Ionic bonds:** Electrons are **transferred** from one atom to another, creating oppositely charged ions that attract each other. Example: NaCl (sodium chloride) — sodium gives an electron to chlorine
+- **Covalent bonds:** Electrons are **shared** between atoms. Example: H₂O (water) — oxygen shares electrons with two hydrogen atoms
+- Ionic bonds typically form between metals and nonmetals; covalent bonds form between two nonmetals
 
 ---
 
-**52. Prokaryotes vs. Eukaryotes:**
+**45. Four Biomolecules:**
+
+| Biomolecule | Monomer | Primary Function |
+|-------------|---------|-----------------|
+| Carbohydrates | Monosaccharides (e.g., glucose) | Quick energy, structural support |
+| Lipids | Fatty acids + glycerol | Long-term energy storage, cell membranes, insulation |
+| Proteins | Amino acids | Enzymes, structural support, transport, immune defense |
+| Nucleic acids | Nucleotides | Store and transmit genetic information (DNA and RNA) |
+
+---
+
+**46. Prokaryotes vs. Eukaryotes (any three):**
 
 | Feature | Prokaryotes | Eukaryotes |
 |---------|-------------|------------|
-| Nucleus | No membrane-bound nucleus | Has nucleus |
-| Organelles | No membrane-bound organelles | Has organelles (mitochondria, ER, etc.) |
-| Size | Smaller (1-10 μm) | Larger (10-100 μm) |
+| Nucleus | No membrane-bound nucleus | Has a true nucleus |
+| Organelles | No membrane-bound organelles | Has mitochondria, ER, Golgi, etc. |
+| Size | Smaller (typically 1-10 μm) | Larger (typically 10-100 μm) |
+| DNA | Single circular chromosome | Multiple linear chromosomes |
 | Examples | Bacteria, Archaea | Plants, Animals, Fungi, Protists |
 
 ---
 
-**53. Selective permeability and transport:**
+**47. Protein pathway from production to export:**
 
-The membrane is "selectively permeable" because it allows some substances through while blocking others. The phospholipid bilayer blocks large/charged molecules but allows small nonpolar molecules.
-
-- **Passive transport example:** Diffusion of O₂ across the membrane (no energy)
-- **Active transport example:** Sodium-potassium pump (uses ATP to move ions against their gradient)
-
----
-
-**54. Aerobic respiration vs. fermentation:**
-
-| | Aerobic Respiration | Fermentation |
-|---|---------------------|--------------|
-| Oxygen? | Yes | No |
-| ATP yield | ~36-38 ATP per glucose | 2 ATP per glucose |
-| Location | Cytoplasm + Mitochondria | Cytoplasm only |
-
-Fermentation is less efficient because:
-
-1. It only uses glycolysis (no Krebs cycle or electron transport chain)
-2. Most energy remains in the waste products (lactic acid or ethanol)
+1. **Nucleus:** DNA instructions (a gene) are transcribed into mRNA
+2. **Ribosome on Rough ER:** mRNA is translated into a polypeptide chain; the protein enters the ER lumen where initial folding and quality control occur
+3. **Golgi Apparatus:** The protein is further modified (e.g., sugar groups added), sorted, and packaged into transport vesicles
+4. **Plasma Membrane:** Transport vesicles fuse with the membrane and release the protein outside the cell via exocytosis
 
 ---
 

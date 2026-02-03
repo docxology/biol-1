@@ -232,7 +232,7 @@ All code in this software uses real methods and implementations. No mocks, stubs
 
 ## Test Coverage
 
-- **420 tests collected** (verify with `uv run pytest --collect-only`)
+- **609 tests collected** (verify with `uv run pytest --collect-only`)
 - Tests cover all major functionality across 14 modules
 - Run tests with: `uv run pytest tests/ -v`
 - Measure coverage with: `uv run pytest --cov=src --cov-report=html`

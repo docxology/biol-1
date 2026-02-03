@@ -10,29 +10,34 @@
 |:---:|:------:|-------------|
 | 1 | B | Proteins float within a flexible phospholipid bilayer — the "fluid mosaic" |
 | 2 | C | Hydrophobic tails face inward, away from water, toward each other |
-| 3 | B | Cholesterol buffers membrane fluidity — prevents too rigid or too fluid |
-| 4 | B | Integral (transmembrane) proteins span the entire bilayer |
-| 5 | B | Glycoproteins serve as identification markers for cell recognition |
-| 6 | C | Selectively permeable = allows some substances through but not others |
-| 7 | B | Simple diffusion moves down the gradient, no energy, no proteins needed |
-| 8 | C | Facilitated diffusion is passive but uses channel or carrier proteins |
-| 9 | B | Osmosis = water movement toward higher solute concentration across a membrane |
-| 10 | C | Hypotonic = less solute outside, water enters cell → swelling/lysis |
-| 11 | B | Hypertonic = more solute outside, water leaves → plasmolysis in plant cells |
-| 12 | C | Na⁺/K⁺ pump uses ATP to move ions against their gradient = active transport |
-| 13 | C | Phagocytosis = "cell eating," engulfing large particles |
-| 14 | B | Catabolism breaks down molecules and releases energy |
-| 15 | C | ATP (adenosine triphosphate) is the cell's energy currency |
-| 16 | C | Energy stored in phosphate-phosphate bonds (phosphoanhydride bonds) |
-| 17 | B | Enzymes lower activation energy, making reactions proceed faster |
-| 18 | B | Induced fit = active site adjusts shape to bind substrate more tightly |
-| 19 | B | Noncompetitive inhibitor binds elsewhere, distorting the active site |
-| 20 | B | Feedback inhibition = end product shuts down an earlier enzyme in the pathway |
-| 21 | B | Glucose + O₂ → CO₂ + H₂O + ATP (cellular respiration summary) |
-| 22 | C | Glycolysis occurs in the cytoplasm (does not require mitochondria) |
-| 23 | B | ETC is embedded in the inner mitochondrial membrane |
-| 24 | C | Fermentation produces ATP without oxygen (anaerobic) |
-| 25 | D | Aerobic respiration yields ~36-38 ATP per glucose |
+| 3 | B | Cholesterol buffers membrane fluidity — prevents too rigid in cold or too fluid in heat |
+| 4 | B | Integral (transmembrane) proteins span the entire bilayer from one side to the other |
+| 5 | B | Glycoproteins serve as identification markers for cell recognition and signaling |
+| 6 | C | Selectively permeable = allows some substances through but not others based on size, charge, polarity |
+| 7 | B | Simple diffusion moves molecules down their gradient, no energy, no proteins needed |
+| 8 | C | Facilitated diffusion is passive but uses channel or carrier proteins to assist transport |
+| 9 | B | Osmosis = water movement across a selectively permeable membrane toward higher solute concentration |
+| 10 | C | Hypotonic = less solute outside → water enters the cell → swelling → possible lysis |
+| 11 | B | Hypertonic = more solute outside → water leaves → plasma membrane pulls from cell wall (plasmolysis) |
+| 12 | C | Na⁺/K⁺ pump uses ATP to move ions against their concentration gradient = active transport |
+| 13 | C | Phagocytosis = "cell eating" — the membrane wraps around and engulfs large solid particles |
+| 14 | B | Pure water is hypotonic to blood cells; water would rush in by osmosis, causing cells to lyse |
+| 15 | C | Aquaporins are specialized channel proteins for rapid water transport across membranes |
+| 16 | B | Catabolism = breaking down complex molecules, releasing energy (e.g., glucose → CO₂ + ATP) |
+| 17 | B | Anabolism = building complex molecules from simple ones, requiring energy input |
+| 18 | C | ATP (adenosine triphosphate) is the cell's energy currency |
+| 19 | C | Energy is stored in the phosphoanhydride bonds between the phosphate groups |
+| 20 | B | Enzymes lower activation energy, allowing reactions to proceed faster at body temperature |
+| 21 | B | Induced fit = the active site adjusts its shape slightly to bind the substrate more tightly |
+| 22 | B | Competitive inhibitors mimic the substrate and bind directly to the active site, blocking it |
+| 23 | B | Noncompetitive inhibitors bind elsewhere on the enzyme, distorting the active site shape |
+| 24 | B | Feedback inhibition = the end product shuts down an earlier enzyme in its own production pathway |
+| 25 | B | Glucose + 6O₂ → 6CO₂ + 6H₂O + ATP (the overall equation for cellular respiration) |
+| 26 | C | Glycolysis occurs in the cytoplasm (does not require mitochondria) |
+| 27 | B | The citric acid cycle occurs in the mitochondrial matrix |
+| 28 | B | The ETC is embedded in the inner mitochondrial membrane (cristae) |
+| 29 | C | Fermentation produces ATP without oxygen (anaerobic pathway) |
+| 30 | D | Aerobic respiration yields approximately 36-38 ATP per glucose molecule |
 
 ---
 
@@ -40,50 +45,77 @@
 
 | Q | Answer |
 |:---:|--------|
-| 26 | proteins |
-| 27 | passive |
-| 28 | hypertonic |
-| 29 | exocytosis |
-| 30 | pinocytosis |
-| 31 | metabolism |
-| 32 | catalysts |
-| 33 | electron transport chain |
-| 34 | lactic acid |
-| 35 | electron |
+| 31 | proteins |
+| 32 | passive |
+| 33 | hypertonic |
+| 34 | exocytosis |
+| 35 | pinocytosis |
+| 36 | metabolism |
+| 37 | catalysts |
+| 38 | electron transport chain |
+| 39 | lactic acid |
+| 40 | electron |
 
 ---
 
 ## Part C: Short Answer Key
 
-**36. Passive vs. Active Transport:**
+**41. Passive vs. Active Transport:**
 
-- Passive transport moves substances down their concentration gradient without energy (e.g., osmosis, simple diffusion, facilitated diffusion)
-- Active transport moves substances against their concentration gradient and requires ATP (e.g., sodium-potassium pump, endocytosis)
-- Key distinction: energy requirement and direction relative to gradient
+| Feature | Passive Transport | Active Transport |
+|---------|-------------------|------------------|
+| Energy | No ATP required | Requires ATP |
+| Direction | Down (with) the concentration gradient | Against the concentration gradient |
+| Examples | Diffusion, osmosis, facilitated diffusion | Sodium-potassium pump, endocytosis, exocytosis |
 
-**37. Tonicity and Animal Cells:**
+Key distinction: Passive transport is driven by the natural kinetic energy of molecules moving from high to low concentration. Active transport requires the cell to spend ATP to move substances where they would not naturally go.
 
-- Isotonic solution: water moves in and out equally; cell maintains normal shape
-- Hypertonic solution: water leaves the cell; cell shrinks (crenation)
-- Hypotonic solution: water enters the cell; cell swells and may burst (lysis)
+---
 
-**38. Enzyme Function and Denaturation:**
+**42. Tonicity and Animal Cells:**
 
-- Enzymes have an active site that binds a specific substrate (induced fit model)
-- They lower the activation energy needed for the reaction, speeding it up without being consumed
-- Denaturation (from extreme heat or pH) unfolds the enzyme, distorting the active site so the substrate can no longer bind — the enzyme loses function
+| Solution | What Happens | Result |
+|----------|-------------|--------|
+| **Isotonic** | Water moves in and out equally | Cell maintains normal shape |
+| **Hypertonic** | Water leaves the cell (toward higher external solute) | Cell shrinks — **crenation** |
+| **Hypotonic** | Water enters the cell (toward higher internal solute) | Cell swells and may burst — **lysis** (cytolysis) |
 
-**39. Three Stages of Cellular Respiration:**
+The direction of water movement always follows the solute concentration — water moves toward the side with MORE solute (less water).
 
-- Glycolysis (cytoplasm): splits glucose into 2 pyruvate molecules; produces 2 ATP and 2 NADH
-- Citric acid cycle (mitochondrial matrix): breaks down pyruvate derivatives; produces 2 ATP, NADH, and FADH2
-- Electron transport chain (inner mitochondrial membrane): uses NADH and FADH2 to produce ~32-34 ATP via chemiosmosis
+---
 
-**40. Fermentation Comparison:**
+**43. Enzyme Function and Denaturation:**
 
-- Lactic acid fermentation: pyruvate → lactic acid; occurs in muscle cells during intense exercise
-- Alcoholic fermentation: pyruvate → ethanol + CO₂; occurs in yeast and some bacteria
-- Both produce only 2 ATP per glucose (from glycolysis only) because without oxygen, the electron transport chain cannot run — that's where the vast majority (~34) of ATP would normally be produced
+- Enzymes are biological catalysts (proteins) with a specific **active site** that binds a particular substrate
+- The **induced fit model** states that the active site slightly changes shape upon substrate binding for a tighter fit, like a handshake
+- Enzymes lower the **activation energy** needed for a reaction, dramatically increasing reaction rate without being consumed
+- **Denaturation** occurs when extreme temperature or pH disrupts the hydrogen bonds and other interactions that maintain the enzyme's 3D shape — the active site is distorted and can no longer bind the substrate, so the enzyme loses its function
+
+---
+
+**44. Three Stages of Cellular Respiration:**
+
+| Stage | Location | Inputs | Outputs |
+|-------|----------|--------|---------|
+| **Glycolysis** | Cytoplasm | 1 glucose | 2 pyruvate, 2 ATP (net), 2 NADH |
+| **Citric Acid Cycle** | Mitochondrial matrix | 2 acetyl-CoA | 2 ATP, 6 NADH, 2 FADH₂, CO₂ |
+| **Electron Transport Chain** | Inner mitochondrial membrane | NADH, FADH₂, O₂ | ~32-34 ATP, H₂O |
+
+Total yield: approximately **36-38 ATP** per glucose molecule. Oxygen serves as the final electron acceptor in the ETC, combining with electrons and H⁺ to form water.
+
+---
+
+**45. Fermentation Comparison:**
+
+| Feature | Lactic Acid Fermentation | Alcoholic Fermentation |
+|---------|-------------------------|----------------------|
+| End products | Lactic acid | Ethanol + CO₂ |
+| Occurs in | Animal muscle cells, some bacteria | Yeast, some bacteria |
+| Example | Muscle soreness during intense exercise | Bread rising, beer/wine production |
+
+Both types produce only **2 ATP per glucose** (from glycolysis only). Fermentation is far less efficient than aerobic respiration (~36-38 ATP) because:
+1. Without oxygen, the electron transport chain cannot run — this is where the vast majority of ATP is generated
+2. Most of the energy from glucose remains trapped in the waste products (lactic acid or ethanol) rather than being extracted
 
 ---
 

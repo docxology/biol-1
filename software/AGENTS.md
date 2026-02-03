@@ -6,7 +6,7 @@ Technical documentation for course management software utilities, including func
 
 ## Test Coverage
 
-**Overall: 74%** (420 tests, 420 passed, 6 skipped)
+**Overall: 81%** (609 tests, 609 passed, 6 skipped)
 
 | Module | Coverage | Notes |
 | ------ | -------- | ----- |

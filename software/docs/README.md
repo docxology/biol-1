@@ -12,7 +12,7 @@ Documentation for cr-bio course management software. Generates educational mater
 
 | Metric | Value | Last Updated |
 |--------|-------|--------------|
-| **Total Tests** | 562 passed, 6 skipped | 2026-02-03 |
+| **Total Tests** | 609 passed, 6 skipped | 2026-02-03 |
 | **Modules** | 15 | 2026-02-03 |
 | **Code Coverage** | 81% overall | 2026-02-03 |
 

@@ -4,34 +4,18 @@
 
 ---
 
-**Name:** {fill:text} **Date:** {fill:text}
-
----
-
-## Objectives
+## Learning Objectives
 
 By the end of this lab, you will be able to:
 
-- **Identify and label the parts** of a compound light microscope
-- **Describe the function** of each microscope component
-- **Demonstrate proper microscope handling** and focusing techniques
-- **Calculate total magnification** using eyepiece and objective powers
-- **Observe and draw biological cells** at different magnifications
-- **Prepare wet mount slides** for microscopic observation
+1. **Identify and label the parts** of a compound light microscope
+2. **Describe the function** of each microscope component
+3. **Demonstrate proper microscope handling** and focusing techniques
+4. **Calculate total magnification** using eyepiece and objective powers
+5. **Observe and draw biological cells** at different magnifications
+6. **Prepare wet mount slides** for microscopic observation
 
----
-
-## Introduction
-
-The microscope is one of the most important tools in biology. It allows us to see structures invisible to the naked eye—from individual cells to microorganisms to the intricate details of tissues. The term "microscope" comes from the Greek words *mikros* (small) and *skopein* (to look at).
-
-**Historical Note:** In 1665, Robert Hooke used an early microscope to observe cork and coined the term "cells" because the tiny compartments reminded him of monks' rooms (cells) in a monastery.
-
-**Key Terms:**
-
-- **Magnification**: How many times larger an object appears compared to its actual size
-- **Resolution**: The ability to distinguish two close objects as separate (clarity)
-- **Field of View (FOV)**: The circular area visible through the microscope
+> **Connection to Human Biology:** The compound microscope is the foundational tool for studying cells and tissues. Every discovery about human anatomy—from the structure of blood cells to the organization of muscle fibers—began with careful microscopic observation. The skills you develop today will be essential for understanding how the human body works at the cellular level.
 
 ---
 
@@ -42,7 +26,35 @@ The microscope is one of the most important tools in biology. It allows us to se
 - Blank glass slides and coverslips
 - Lens paper
 - Dropper bottle with water
-- Optional specimens for wet mounts
+- Optional specimens for wet mounts (newspaper, onion skin, cheek cells)
+
+---
+
+## Essential Rules for Microscopy
+
+> **CRITICAL:** Following these rules protects expensive equipment and ensures successful observations.
+
+### The Golden Rules
+
+| Rule | Why It Matters |
+|------|----------------|
+| **1. Always start with the scanning objective (4×)** | Prevents lens damage and helps you find specimens quickly |
+| **2. Never use coarse adjustment on high power** | The high-power objective is very close to the slide—coarse adjustment can crack the slide or damage the lens |
+| **3. Lower the stage before switching objectives** | Prevents the new objective from hitting the slide |
+| **4. Only use lens paper on objectives** | Paper towels and tissues scratch the lens coatings |
+| **5. Always center the specimen before increasing magnification** | What you see at low power may not be visible at high power if it's not centered |
+| **6. Carry the microscope with two hands** | One hand on the arm, one under the base—microscopes are expensive and delicate |
+
+### Focusing Procedure (memorize this!)
+
+1. **Start with 4× objective** (scanning power)
+2. **Use coarse adjustment** to bring specimen into approximate focus
+3. **Use fine adjustment** to sharpen the image
+4. **Center** the part of the specimen you want to examine closely
+5. **Switch to 10× objective** (low power)
+6. **Use fine adjustment ONLY** to refocus
+7. **Center again**, then switch to **40× objective** (high power)
+8. **Use fine adjustment ONLY** to refocus
 
 ---
 
@@ -86,13 +98,11 @@ Calculate the total magnification for each objective lens. The eyepiece on your 
 
 **Formula:** Total Magnification = Eyepiece Power × Objective Power
 
-<!-- lab:data-table rows=3 title="Calculating Total Magnification" -->
 | Objective Lens | Objective Power | Eyepiece Power | Total Magnification |
 |----------------|-----------------|----------------|---------------------|
 | Scanning (red band) | 4× | 10× | {fill:number}× |
 | Low Power (yellow band) | 10× | 10× | {fill:number}× |
 | High Power (blue band) | 40× | 10× | {fill:number}× |
-<!-- /lab:data-table -->
 
 <!-- lab:reflection -->
 **Reflection Questions:**
@@ -101,7 +111,11 @@ Calculate the total magnification for each objective lens. The eyepiece on your 
 
 {fill:textarea rows=2}
 
-1. Why is it important to never use the coarse adjustment knob with high power objectives?
+2. Why is it important to never use the coarse adjustment knob with high power objectives?
+
+{fill:textarea rows=2}
+
+3. What happens to the field of view (area you can see) as you increase magnification?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -114,15 +128,7 @@ Calculate the total magnification for each objective lens. The eyepiece on your 
 
 > **Learning Goal:** Practice proper microscopy technique while observing and accurately drawing biological cells.
 
-### Proper Microscopy Procedure
-
-1. **Always start with the lowest power objective (4×)**
-2. Use **coarse adjustment** first, then **fine adjustment**
-3. **Center the specimen** before switching to higher power
-4. When switching to higher magnification:
-   - Use **ONLY the fine adjustment knob** (never coarse!)
-   - Adjust the **diaphragm** if the image is too bright or too dark
-5. **Never use the coarse adjustment on high power** (40×)
+For each specimen, follow the focusing procedure from the Essential Rules section. Draw what you observe at two magnifications, and answer the reflection questions.
 
 ---
 
@@ -155,13 +161,13 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 1. Describe the overall shape of the cells:
 
-{fill:text}
+{fill:textarea rows=2}
 
-1. What structures can you identify inside the cells?
+2. What structures can you identify inside the cells (e.g., nucleus, cell membrane, cytoplasm)?
 
 {fill:textarea rows=2}
 
-1. Are the cells all the same size? Estimate how many cells fit across the field of view:
+3. Approximately how many cells fit across the diameter of your field of view at high power?
 
 {fill:text}
 <!-- /lab:reflection -->
@@ -197,13 +203,13 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 1. Describe the overall shape of the cells:
 
-{fill:text}
+{fill:textarea rows=2}
 
-1. What structures can you identify inside the cells?
+2. What structures can you identify inside the cells?
 
 {fill:textarea rows=2}
 
-1. How do these cells compare to Specimen A?
+3. How do these cells compare to Specimen A in terms of shape and size?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -239,54 +245,13 @@ In the circles below, draw what you see at **low power** and **high power**. You
 
 1. Describe the overall shape of the cells:
 
-{fill:text}
+{fill:textarea rows=2}
 
-1. What structures can you identify inside the cells?
+2. What structures can you identify inside the cells?
 
 {fill:textarea rows=2}
 
-1. What is unique or interesting about this specimen?
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-<div style="page-break-after: always;"></div>
-
-## Part 3: Comparing Cell Types
-
-> **Learning Goal:** Compare and contrast the structural features of different cell types.
-
-Based on your observations from Part 2, complete the comparison table below.
-
-<!-- lab:data-table rows=3 title="Cell Type Comparison" -->
-| Feature | Specimen A | Specimen B | Specimen C |
-|---------|-----------|-----------|-----------|
-| Cell Shape | {fill:text} | {fill:text} | {fill:text} |
-| Approximate Cell Size | {fill:text} | {fill:text} | {fill:text} |
-| Visible Nucleus? | {fill:text} | {fill:text} | {fill:text} |
-| Other Structures Observed | {fill:text} | {fill:text} | {fill:text} |
-| Arrangement (single/clusters/layers) | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
-<!-- lab:reflection -->
-**Analysis Questions:**
-
-1. Which specimen showed the clearest cellular structures? Why do you think this is?
-
-{fill:textarea rows=2}
-
-1. Based on your observations, what might be the function of cells that are:
-   - Long and thin (like some muscle cells)?
-
-{fill:text}
-
-- Flat and scale-like (like some skin cells)?
-
-{fill:text}
-
-1. Why is it important for scientists and medical professionals to be able to identify different cell types?
+3. What is unique or interesting about this specimen compared to the others?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -295,9 +260,9 @@ Based on your observations from Part 2, complete the comparison table below.
 
 <div style="page-break-after: always;"></div>
 
-## Part 4: Making Wet Mount Slides
+## Part 3: Making and Observing Your Own Slide
 
-> **Learning Goal:** Learn to prepare your own slides for microscopic observation.
+> **Learning Goal:** Learn to prepare wet mount slides and explore specimens of your choosing.
 
 ### Wet Mount Procedure
 
@@ -312,26 +277,38 @@ Based on your observations from Part 2, complete the comparison table below.
 
 ---
 
-### Wet Mount Observation: {fill:text}
+### Your Specimen: {fill:text}
 
-**Specimen/material used:** {fill:text}
+**What material did you use?** (Examples: newspaper print, onion skin, cheek cells, plant material, etc.)
+
+{fill:text}
+
+**Why did you choose this specimen?**
+
+{fill:textarea rows=2}
 
 #### Observation Drawing
 
-<!-- lab:drawing-area title="Wet Mount Observation" -->
+<!-- lab:drawing-area title="Your Specimen Observation" -->
 **Magnification: ___×**
 
-{fill:drawing height=280 shape=circle}
+{fill:drawing height=300 shape=circle}
 
 **Total magnification used:** {fill:text}
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**Describe what you observed:**
+**Reflection Questions:**
+
+1. Describe what you observed in your specimen:
 
 {fill:textarea rows=3}
 
-**Were there any challenges with preparing or viewing this specimen?**
+2. Were there any challenges with preparing or viewing this specimen? How did you solve them?
+
+{fill:textarea rows=2}
+
+3. If you could look at anything under a microscope, what would you choose and why?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -340,41 +317,7 @@ Based on your observations from Part 2, complete the comparison table below.
 
 <div style="page-break-after: always;"></div>
 
-## Part 5: Optional — Creative Specimen Observation
-
-> **Learning Goal:** Apply your microscopy skills to explore specimens of your own choosing.
-
-*Complete this section if time permits and with instructor approval.*
-
-**Specimen chosen:** {fill:text}
-
-**Why did you choose this specimen?**
-
-{fill:textarea rows=2}
-
-#### Observation Drawing
-
-<!-- lab:drawing-area title="Creative Specimen Observation" -->
-**Magnification: ___×**
-
-{fill:drawing height=280 shape=circle}
-
-**Total magnification used:** {fill:text}
-<!-- /lab:drawing-area -->
-
-<!-- lab:reflection -->
-**What did you discover about this specimen?**
-
-{fill:textarea rows=3}
-
-**What questions do you have about what you observed?**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-## Part 6: Microscope Care and Storage
+## Part 4: Microscope Care and Storage
 
 > **Learning Goal:** Learn proper care and storage procedures to maintain microscope function.
 
@@ -390,68 +333,71 @@ Before putting away your microscope, complete the following:
 - [ ] **Turn off the light source**
 - [ ] Wrap the cord neatly
 - [ ] Cover the microscope (if covers are used)
-- [ ] Return to the proper storage cabinet
+- [ ] Return to the proper storage cabinet, **carrying with two hands**
 
 <!-- lab:reflection -->
-**Why is it important to store the microscope on the lowest power objective?**
+**Reflection Question:**
+
+1. Why is it important to store the microscope on the lowest power objective with the stage lowered?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
-
-<div style="page-break-after: always;"></div>
 
 ## Conclusions
 
 <!-- lab:reflection -->
-**1. Summarize in your own words how the compound microscope creates a magnified image:**
+**Final Reflection Questions:**
+
+1. Summarize in your own words how the compound microscope creates a magnified image:
 
 {fill:textarea rows=3}
 
-**2. Of the cells you observed today, which type was most interesting to you? Why?**
+2. Of all the specimens you observed today, which was most interesting to you? Why?
 
 {fill:textarea rows=2}
 
-**3. How might microscopy be used in medical settings? Give two specific examples:**
+3. How might microscopy be used in medical settings? Give two specific examples:
 
 {fill:textarea rows=3}
 
-**4. What difficulties did you encounter during this lab, and how did you solve them?**
+4. What was the most challenging part of today's lab, and how did you overcome it?
 
 {fill:textarea rows=2}
 
-**5. What specimen would you want to examine under a microscope in the future? Why?**
+5. Based on what you learned today, why is microscopy considered essential for understanding human biology?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-## Quick Reference
+## Quick Reference Card
 
 ### Magnification Formula
 
 **Total Magnification = Eyepiece Power × Objective Power**
 
-### Common Objective Lens Colors (may vary by manufacturer)
+### Common Objective Lens Colors
 
-| Objective | Color Band | Magnification |
-|-----------|------------|---------------|
-| Scanning | Red | 4× |
-| Low Power | Yellow | 10× |
-| High Power | Blue | 40× |
+| Objective | Color Band | Magnification | When to Use |
+|-----------|------------|---------------|-------------|
+| Scanning | Red | 4× | Finding specimens, initial viewing |
+| Low Power | Yellow | 10× | Getting the full picture |
+| High Power | Blue | 40× | Seeing cellular detail |
 
-### Rules for Focusing
+### The Focusing Mantra
 
-1. **START LOW** — Always begin with the lowest power objective
-2. **COARSE FIRST** — Use coarse adjustment to find the specimen
-3. **FINE FOCUS** — Use fine adjustment to sharpen the image
-4. **HIGH POWER = FINE ONLY** — Never use coarse adjustment on 40× or higher
+**"Start LOW, go SLOW, FINE at 4-0"**
+
+- Start with the **LOW**est power objective
+- Go **SLOW**ly when adjusting focus
+- Only use **FINE** adjustment at **40**× (high power)
 
 ---
 
-**Connection to Human Biology:** Understanding microscopy is fundamental to studying cells and tissues. The techniques you learned today—proper focusing, slide preparation, specimen drawing—will be essential for observing human cells, tissues, and microorganisms throughout this course. In medicine, microscopy is a critical diagnostic tool used for analyzing blood smears, tissue biopsies, and identifying pathogens.
+> **Looking Ahead:** The microscopy skills you learned today will be applied throughout this course. In upcoming labs, you will use the microscope to examine specific human tissues—epithelial, connective, muscle, and nervous tissue—and understand how their cellular structure relates to their function in the human body.
 
 ---
 
