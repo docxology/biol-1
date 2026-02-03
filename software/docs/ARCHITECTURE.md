@@ -196,6 +196,11 @@ graph LR
     subgraph layer0[Layer 0: Independent]
         FV["file_validation"]
         MO["module_organization"]
+        CP["content_processing"]
+        VAL["validation"]
+        LM["lab_manual"]
+        PUB["publish"]
+        LI["legacy_import"]
     end
 
     subgraph layer1[Layer 1: Core]
@@ -293,7 +298,7 @@ See [Module Independence](#module-independence) for details on standalone usage.
 
 ```text
 software/
-├── src/                              # Source code (14 modules)
+├── src/                              # Source code (15 modules)
 │   ├── __init__.py
 │   ├── batch_processing/             # Module batch operations
 │   ├── canvas_integration/           # Canvas LMS upload

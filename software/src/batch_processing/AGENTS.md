@@ -2,7 +2,7 @@
 
 ## Overview
 
-Batch processing utilities for converting entire course modules to multiple media formats (PDF, audio, text transcriptions).
+Batch processing utilities for converting entire course modules to multiple media formats (PDF, audio, DOCX, HTML, TXT, MD).
 
 ## Module Purpose
 
@@ -11,6 +11,7 @@ Process entire modules for multiple format conversions, maintaining directory st
 ## Module Boundaries
 
 **What this module does:**
+
 - Processes entire modules for format conversion
 - Organizes outputs by curriculum element type
 - Coordinates multiple conversion modules
@@ -18,6 +19,7 @@ Process entire modules for multiple format conversions, maintaining directory st
 - Clears output directories
 
 **What this module does NOT do:**
+
 - Does not perform individual file conversions (uses conversion modules)
 - Does not validate module structure (uses `file_validation` module)
 - Does not create module structures (uses `module_organization` module)
@@ -26,15 +28,18 @@ Process entire modules for multiple format conversions, maintaining directory st
 ## Dependencies
 
 ### Internal Dependencies (Other Modules)
+
 - `markdown_to_pdf`: For PDF generation
 - `text_to_speech`: For audio generation
 - `format_conversion`: For multi-format conversions
 - `file_validation`: For module validation (optional, used in some workflows)
 
 ### External Dependencies (Libraries)
+
 - Standard library only (pathlib, os, logging)
 
 ### System Dependencies
+
 - Dependencies of the conversion modules it uses
 
 ## Independent Usage
@@ -42,6 +47,7 @@ Process entire modules for multiple format conversions, maintaining directory st
 **Can be used standalone**: Yes (if dependencies are available)
 
 **Standalone Example:**
+
 ```python
 from src.batch_processing.main import process_module_by_type
 results = process_module_by_type("/path/to/module", "/path/to/output")
@@ -49,6 +55,7 @@ print(f"Generated: {results['summary']}")
 ```
 
 **Requirements for standalone use:**
+
 - Module directory path
 - Core conversion modules available (`markdown_to_pdf`, `text_to_speech`, `format_conversion`)
 - System dependencies for conversion modules
@@ -56,10 +63,12 @@ print(f"Generated: {results['summary']}")
 ## Integration Points
 
 **Used by:**
+
 - `html_website`: Uses `process_module_by_type()` to generate content before website creation
 - Generation scripts: Use batch processing functions for course-wide generation
 
 **Integration Pattern:**
+
 - Orchestration: This module orchestrates multiple conversion modules
 - Sequential composition: Other modules call this after validation
 - Interface: Other modules import and call functions from `main.py`
@@ -67,6 +76,7 @@ print(f"Generated: {results['summary']}")
 ## Interface Contract
 
 **Public API:**
+
 - `process_module_by_type(module_path, output_dir) -> Dict[str, Any]`
 - `process_module_to_pdf(module_path, output_dir) -> List[str]`
 - `process_module_to_audio(module_path, output_dir) -> List[str]`
@@ -74,17 +84,20 @@ print(f"Generated: {results['summary']}")
 - `clear_all_outputs(repo_root) -> Dict[str, Any]`
 
 **Return Value Guarantees:**
+
 - `process_module_by_type()`: Returns dict with `summary` (format counts) and `errors`
 - `process_module_to_*()`: Returns list of output file paths
 - `clear_all_outputs()`: Returns dict with `total_files_removed` and `errors`
 - All functions return consistent dictionary structures
 
 **Error Handling:**
+
 - Raises `ValueError` for invalid inputs
 - Returns errors in result dictionaries (continues processing on individual file errors)
 - Logs errors for debugging
 
 **Side Effects:**
+
 - Creates output files and directories
 - Modifies file system (creates files, may clear directories)
 - No external API calls (delegates to conversion modules)
@@ -99,15 +112,18 @@ print(f"Generated: {results['summary']}")
 Clear all output directories before regeneration.
 
 **Args**:
+
 - `repo_root`: Root path of the repository
 
 **Returns**:
+
 - Dictionary with summary:
   - `cleared_directories`: List of cleared directory paths
   - `total_files_removed`: Total count of files removed
   - `errors`: List of errors encountered
 
 **Logging**:
+
 - Logs start and completion of clearing process
 - Logs each directory cleared with file counts
 - Logs errors encountered during clearing
@@ -121,17 +137,21 @@ Clear all output directories before regeneration.
 Convert all Markdown files in a module to PDF.
 
 **Args**:
+
 - `module_path`: Path to module directory
 - `output_dir`: Output directory for PDF files
 
 **Returns**:
+
 - List of output PDF file paths
 
 **Raises**:
+
 - `ValueError`: If module path doesn't exist
 - `OSError`: If PDF conversion fails
 
 **Dependencies**:
+
 - `markdown_to_pdf.main.render_markdown_to_pdf`
 
 #### `process_module_to_audio(module_path: str, output_dir: str) -> List[str]`
@@ -139,17 +159,21 @@ Convert all Markdown files in a module to PDF.
 Convert all text/Markdown files in a module to audio.
 
 **Args**:
+
 - `module_path`: Path to module directory
 - `output_dir`: Output directory for audio files
 
 **Returns**:
+
 - List of output audio file paths
 
 **Raises**:
+
 - `ValueError`: If module path doesn't exist
 - `OSError`: If audio generation fails
 
 **Dependencies**:
+
 - `text_to_speech.main.generate_speech`
 - `text_to_speech.utils.extract_text_from_markdown`
 - `text_to_speech.utils.read_text_file`
@@ -159,17 +183,21 @@ Convert all text/Markdown files in a module to audio.
 Transcribe all audio files in a module to text.
 
 **Args**:
+
 - `module_path`: Path to module directory
 - `output_dir`: Output directory for text files
 
 **Returns**:
+
 - List of output text file paths
 
 **Raises**:
+
 - `ValueError`: If module path doesn't exist
 - `OSError`: If transcription fails
 
 **Dependencies**:
+
 - `speech_to_text.main.transcribe_audio`
 
 #### `generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]`
@@ -177,10 +205,12 @@ Transcribe all audio files in a module to text.
 Generate all media formats for a module (PDF, audio, text transcriptions).
 
 **Args**:
+
 - `module_path`: Path to module directory
 - `output_dir`: Base output directory for all media
 
 **Returns**:
+
 - Dictionary with results:
   - `pdf_files`: List of generated PDF files
   - `audio_files`: List of generated audio files
@@ -188,9 +218,11 @@ Generate all media formats for a module (PDF, audio, text transcriptions).
   - `errors`: List of errors encountered
 
 **Raises**:
+
 - `ValueError`: If module path doesn't exist
 
 **Dependencies**:
+
 - `process_module_to_pdf`
 - `process_module_to_audio`
 - `process_module_to_text`
@@ -199,22 +231,26 @@ Generate all media formats for a module (PDF, audio, text transcriptions).
 
 Process module files by curriculum element type and generate all format renderings.
 
-Organizes outputs by curriculum element type (assignments, lab-protocols, lecture-content, study-guides) with all formats (PDF, MP3, DOCX, HTML, TXT).
+Organizes outputs by curriculum element type (assignments, lab-protocols, lecture-content, study-guides) with all formats (PDF, MP3, DOCX, HTML, TXT, MD).
 
 **Args**:
+
 - `module_path`: Path to module directory
 - `output_dir`: Base output directory for all renderings
 
 **Returns**:
+
 - Dictionary with results:
   - `by_type`: Dict mapping curriculum type to list of generated files
   - `summary`: Dict with counts of generated files by format
   - `errors`: List of errors encountered
 
 **Raises**:
+
 - `ValueError`: If module path doesn't exist
 
 **Dependencies**:
+
 - `markdown_to_pdf.main.render_markdown_to_pdf`
 - `text_to_speech.main.generate_speech`
 - `format_conversion.main.convert_file`
@@ -223,22 +259,26 @@ Organizes outputs by curriculum element type (assignments, lab-protocols, lectur
 
 Process syllabus files and generate all format renderings.
 
-Organizes outputs by format type (pdf, mp3, docx, html, txt) rather than curriculum element type. Excludes README and AGENTS files from processing.
+Organizes outputs by format type (pdf, mp3, docx, html, txt, md) rather than curriculum element type. Excludes README and AGENTS files from processing.
 
 **Args**:
+
 - `syllabus_path`: Path to syllabus directory
 - `output_dir`: Base output directory for all renderings
 
 **Returns**:
+
 - Dictionary with results:
   - `by_format`: Dict mapping format type to list of generated files
   - `summary`: Dict with counts of generated files by format
   - `errors`: List of errors encountered
 
 **Raises**:
+
 - `ValueError`: If syllabus path doesn't exist
 
 **Dependencies**:
+
 - `markdown_to_pdf.main.render_markdown_to_pdf`
 - `text_to_speech.main.generate_speech`
 - `format_conversion.main.convert_file`
@@ -248,17 +288,21 @@ Organizes outputs by format type (pdf, mp3, docx, html, txt) rather than curricu
 Generate HTML website for a module.
 
 **Args**:
+
 - `module_path`: Path to module directory
 - `output_dir`: Optional output directory (defaults to module_path/output/website)
 
 **Returns**:
+
 - Path to generated HTML file
 
 **Raises**:
+
 - `ValueError`: If module path doesn't exist
 - `OSError`: If website generation fails
 
 **Dependencies**:
+
 - `html_website.main.generate_module_website`
 
 ### Utility Functions
@@ -312,6 +356,7 @@ Ensure output directory exists, creating if necessary.
 ## Error Handling
 
 All functions handle errors gracefully:
+
 - Individual file processing errors are caught and logged
 - Errors are collected in results dictionaries
 - Processing continues for remaining files after errors
@@ -326,6 +371,7 @@ All functions handle errors gracefully:
 **Function**: `setup_logging(log_dir: Optional[Path] = None, log_level: int = logging.INFO, file_level: int = logging.DEBUG) -> logging.Logger`
 
 Configures logging with:
+
 - Console handler: INFO level and above, simplified format
 - File handler: DEBUG level and above, detailed format with timestamps
 - Log files: Timestamped files in `software/logs/generation_YYYY-MM-DD_HH-MM-SS.log`
@@ -333,6 +379,7 @@ Configures logging with:
 ### Logging Usage
 
 All batch processing functions use the logger for:
+
 - Progress tracking (INFO level)
 - Error reporting (ERROR level with stack traces)
 - Detailed debugging (DEBUG level)
@@ -343,6 +390,7 @@ All batch processing functions use the logger for:
 **Function**: `clear_all_outputs(repo_root: Path) -> Dict[str, Any]`
 
 Clears all output directories before regeneration:
+
 - Finds all `output/` directories in course modules and syllabi
 - Removes all files and subdirectories while preserving directory structure
 - Logs each directory cleared with file counts

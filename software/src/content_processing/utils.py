@@ -5,6 +5,7 @@ Functions migrated from scripts/renumber_questions.py.
 
 import re
 import logging
+from typing import List, Dict, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -56,3 +57,164 @@ def format_as_continuous(questions: list[str], title: str) -> str:
         lines.append("")
 
     return '\n'.join(lines)
+
+
+def normalize_whitespace(content: str) -> str:
+    """Normalize whitespace in markdown content.
+
+    - Removes trailing whitespace from lines
+    - Collapses multiple blank lines into at most two
+    - Ensures file ends with single newline
+
+    Args:
+        content: The markdown content to normalize
+
+    Returns:
+        Normalized markdown content
+    """
+    lines = content.split('\n')
+
+    # Remove trailing whitespace from each line
+    lines = [line.rstrip() for line in lines]
+
+    # Collapse multiple blank lines
+    result = []
+    blank_count = 0
+    for line in lines:
+        if line == '':
+            blank_count += 1
+            if blank_count <= 2:
+                result.append(line)
+        else:
+            blank_count = 0
+            result.append(line)
+
+    # Ensure single trailing newline
+    while result and result[-1] == '':
+        result.pop()
+    result.append('')
+
+    return '\n'.join(result)
+
+
+def extract_headers(content: str) -> List[Tuple[int, str]]:
+    """Extract all markdown headers from content.
+
+    Args:
+        content: The markdown content to parse
+
+    Returns:
+        List of tuples (level, header_text) where level is 1-6
+    """
+    headers = []
+    lines = content.split('\n')
+
+    for line in lines:
+        # Match markdown headers (# Header, ## Header, etc.)
+        match = re.match(r'^(#{1,6})\s+(.+)$', line)
+        if match:
+            level = len(match.group(1))
+            text = match.group(2).strip()
+            headers.append((level, text))
+
+    return headers
+
+
+def count_questions(content: str) -> Dict[str, int]:
+    """Count questions in markdown content by type.
+
+    Detects numbered questions (1. Question?), bullet questions (* Question?),
+    and questions ending with ? within text.
+
+    Args:
+        content: The markdown content to analyze
+
+    Returns:
+        Dictionary with counts:
+        - numbered: Questions starting with number and period
+        - bulleted: Questions starting with * or -
+        - inline: Lines containing ? (potential questions)
+    """
+    lines = content.split('\n')
+
+    counts = {
+        "numbered": 0,
+        "bulleted": 0,
+        "inline": 0,
+    }
+
+    for line in lines:
+        stripped = line.strip()
+        if re.match(r'^\d+\.', stripped):
+            counts["numbered"] += 1
+        elif stripped.startswith('*') or stripped.startswith('-'):
+            counts["bulleted"] += 1
+        elif '?' in stripped:
+            counts["inline"] += 1
+
+    return counts
+
+
+def extract_numbered_items(content: str) -> List[str]:
+    """Extract all numbered list items from markdown content.
+
+    Args:
+        content: The markdown content to parse
+
+    Returns:
+        List of text for each numbered item
+    """
+    items = []
+    lines = content.split('\n')
+
+    for line in lines:
+        # Match numbered list items: "1. Text" or "12. Text"
+        match = re.match(r'^\s*\d+\.\s+(.+)$', line)
+        if match:
+            items.append(match.group(1))
+
+    return items
+
+
+def validate_question_format(content: str) -> Dict[str, any]:
+    """Validate that a questions.md file has proper format.
+
+    Args:
+        content: The markdown content to validate
+
+    Returns:
+        Dictionary with validation results:
+        - valid: bool indicating if format is correct
+        - has_title: bool if file has # header
+        - question_count: number of detected questions
+        - issues: list of format issues found
+    """
+    result = {
+        "valid": True,
+        "has_title": False,
+        "question_count": 0,
+        "issues": [],
+    }
+
+    lines = content.split('\n')
+
+    # Check for title
+    for line in lines:
+        if line.startswith('# '):
+            result["has_title"] = True
+            break
+
+    if not result["has_title"]:
+        result["issues"].append("Missing title (# Header)")
+        result["valid"] = False
+
+    # Count questions
+    counts = count_questions(content)
+    result["question_count"] = counts["numbered"] + counts["bulleted"]
+
+    if result["question_count"] == 0:
+        result["issues"].append("No questions found")
+        result["valid"] = False
+
+    return result
+

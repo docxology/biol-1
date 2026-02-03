@@ -346,8 +346,8 @@ uv run pytest tests/test_schedule_main.py::TestProcessSchedule::test_process_sch
 
 ### Current Statistics
 
-- **Tests**: 420 passed, 6 skipped
-- **Coverage**: 74% overall (measure with `uv run pytest --cov=src --cov-report=html`)
+- **Tests**: 562 passed, 6 skipped
+- **Coverage**: 81% overall (measure with `uv run pytest --cov=src --cov-report=html`)
 
 ---
 

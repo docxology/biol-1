@@ -351,3 +351,80 @@ class TestProcessModuleWebsite:
         result = process_module_website(str(module_dir))
         
         assert "output/website/index.html" in result
+
+
+class TestProcessModuleByTypeMdFormat:
+    """Tests for process_module_by_type MD format support."""
+
+    def test_formats_md_only(self, temp_dir):
+        """formats=["md"] only generates MD, skips others."""
+        module_dir = temp_dir / "module-01"
+        module_dir.mkdir()
+        (module_dir / "keys-to-success.md").write_text(
+            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(str(module_dir), str(output_dir), formats=["md"])
+
+        assert result["summary"]["md"] >= 1
+        assert result["summary"]["pdf"] == 0
+        assert result["summary"]["mp3"] == 0
+        assert result["summary"]["docx"] == 0
+        assert result["summary"]["html"] == 0
+        assert result["summary"]["txt"] == 0
+
+    def test_formats_md_in_summary(self, temp_dir):
+        """Verify MD count appears in summary when generating all formats."""
+        module_dir = temp_dir / "module-01"
+        module_dir.mkdir()
+        (module_dir / "keys-to-success.md").write_text(
+            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_module_by_type(str(module_dir), str(output_dir), formats=["md", "txt"])
+
+        assert "md" in result["summary"]
+        assert result["summary"]["md"] >= 1
+        # Check that the MD file was actually created
+        md_files = list(output_dir.rglob("*.md"))
+        assert len(md_files) >= 1
+
+
+class TestProcessSyllabusMdFormat:
+    """Tests for process_syllabus MD format support."""
+
+    def test_syllabus_formats_md_only(self, temp_dir):
+        """formats=["md"] only generates MD."""
+        syllabus_dir = temp_dir / "syllabus"
+        syllabus_dir.mkdir()
+        (syllabus_dir / "Syllabus.md").write_text(
+            "# Syllabus\n\nCourse overview.", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_syllabus(str(syllabus_dir), str(output_dir), formats=["md"])
+
+        assert result["summary"]["md"] >= 1
+        assert result["summary"]["pdf"] == 0
+        assert result["summary"]["mp3"] == 0
+        assert result["summary"]["docx"] == 0
+        assert result["summary"]["html"] == 0
+        assert result["summary"]["txt"] == 0
+
+    def test_syllabus_md_file_created(self, temp_dir):
+        """Verify MD file is actually created in output directory."""
+        syllabus_dir = temp_dir / "syllabus"
+        syllabus_dir.mkdir()
+        (syllabus_dir / "Schedule.md").write_text(
+            "# Schedule\n\nWeek 1: Introduction", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = process_syllabus(str(syllabus_dir), str(output_dir), formats=["md"])
+
+        md_files = list(output_dir.rglob("*.md"))
+        assert len(md_files) >= 1
+        assert result["summary"]["md"] >= 1
+

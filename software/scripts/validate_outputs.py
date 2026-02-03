@@ -3,9 +3,12 @@
 
 Usage:
     uv run python scripts/validate_outputs.py --course {biol-1|biol-8|all}
+    uv run python scripts/validate_outputs.py --course all --formats pdf,docx,md
     
 Options:
     --course    Course to validate (biol-1, biol-8, or all)
+    --formats   Comma-separated list of formats to validate (default: pdf,docx)
+                Only validates that these formats exist, ignoring others.
     --json      Output results as JSON
     --verbose   Show detailed module-level results
 """
@@ -15,6 +18,7 @@ import json
 import logging
 import sys
 from pathlib import Path
+from typing import List, Optional
 
 # Add software directory to path
 software_dir = Path(__file__).resolve().parent.parent
@@ -26,6 +30,7 @@ from src.validation import (
     validate_outputs,
     validate_published,
 )
+from src.validation.config import DEFAULT_REQUIRED_FORMATS, ALL_SUPPORTED_FORMATS
 
 # Configure logging
 logging.basicConfig(
@@ -36,6 +41,18 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def parse_formats(formats_str: Optional[str]) -> Optional[List[str]]:
+    """Parse comma-separated formats string into list."""
+    if not formats_str:
+        return None
+    formats = [f.strip().lower() for f in formats_str.split(',')]
+    # Validate formats
+    for fmt in formats:
+        if fmt not in ALL_SUPPORTED_FORMATS:
+            logger.warning(f"Unknown format '{fmt}' - valid formats: {', '.join(ALL_SUPPORTED_FORMATS)}")
+    return formats
+
+
 def main():
     parser = argparse.ArgumentParser(description="Validate course outputs.")
     parser.add_argument(
@@ -44,6 +61,13 @@ def main():
         choices=["biol-1", "biol-8", "all"],
         required=True,
         help="Course to validate"
+    )
+    parser.add_argument(
+        "--formats",
+        type=str,
+        default=None,
+        help=f"Comma-separated list of formats to validate (default: {','.join(DEFAULT_REQUIRED_FORMATS)}). "
+             f"Valid formats: {','.join(ALL_SUPPORTED_FORMATS)}"
     )
     parser.add_argument(
         "--json",
@@ -59,12 +83,20 @@ def main():
     args = parser.parse_args()
     
     repo_root = software_dir.parent
+    formats = parse_formats(args.formats)
     
     courses_to_validate = []
     if args.course == "all":
         courses_to_validate = ["biol-1", "biol-8"]
     else:
         courses_to_validate = [args.course]
+    
+    # Log validation scope
+    logger.info(f"\n{'='*60}")
+    logger.info("VALIDATION SCOPE")
+    logger.info(f"{'='*60}")
+    logger.info(f"Courses: {', '.join(courses_to_validate)}")
+    logger.info(f"Formats: {', '.join(formats) if formats else ', '.join(DEFAULT_REQUIRED_FORMATS) + ' (default)'}")
         
     all_results = {}
     all_valid = True
@@ -74,8 +106,8 @@ def main():
         logger.info(f"Validating {course_name.upper()}")
         logger.info(f"{'='*60}")
         
-        # Generate full report
-        report = generate_validation_report(course_name, str(repo_root))
+        # Generate full report with format filter
+        report = generate_validation_report(course_name, str(repo_root), formats=formats)
         all_results[course_name] = report
         
         if not report["source_validation"].get("valid", False):
@@ -154,3 +186,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

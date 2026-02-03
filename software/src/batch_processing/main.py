@@ -290,7 +290,7 @@ def process_module_by_type(
     ensure_output_directory(base_output)
 
     # Determine which formats to generate
-    all_formats = {"pdf", "mp3", "docx", "html", "txt"}
+    all_formats = {"pdf", "mp3", "docx", "html", "txt", "md"}
     active_formats = set(formats) if formats is not None else all_formats
 
     # Curriculum element type mapping
@@ -326,7 +326,7 @@ def process_module_by_type(
 
     results = {
         "by_type": {t: [] for t in type_mapping.values()},
-        "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0},
+        "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0, "md": 0},
         "errors": [],
     }
 
@@ -461,6 +461,20 @@ def process_module_by_type(
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
 
+            # Generate MD (copy source markdown with standardized name)
+            if "md" in active_formats:
+                try:
+                    md_output_file = type_output_dir / f"{base_name}.md"
+                    logger.debug(f"Generating MD: {md_output_file.name}")
+                    import shutil
+                    shutil.copy2(str(md_file), str(md_output_file))
+                    results["by_type"][output_subdir].append(str(md_output_file))
+                    results["summary"]["md"] += 1
+                except Exception as e:
+                    error_msg = f"MD copy failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
+
         except Exception as e:
             logger.error(f"Processing failed for {md_file.name}: {e}", exc_info=True)
             results["errors"].append(f"Processing failed for {md_file.name}: {e}")
@@ -507,7 +521,7 @@ def process_syllabus(
     ensure_output_directory(base_output)
 
     # Determine which formats to generate
-    all_formats = {"pdf", "mp3", "docx", "html", "txt"}
+    all_formats = {"pdf", "mp3", "docx", "html", "txt", "md"}
     active_formats = set(formats) if formats is not None else all_formats
 
     # Find all markdown files in syllabus directory (excluding README and AGENTS)
@@ -518,8 +532,8 @@ def process_syllabus(
     ]
 
     results = {
-        "by_format": {"pdf": [], "mp3": [], "docx": [], "html": [], "txt": []},
-        "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0},
+        "by_format": {"pdf": [], "mp3": [], "docx": [], "html": [], "txt": [], "md": []},
+        "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0, "md": 0},
         "errors": [],
     }
 
@@ -611,6 +625,20 @@ def process_syllabus(
                     results["summary"]["txt"] += 1
                 except Exception as e:
                     error_msg = f"TXT generation failed for {md_file.name}: {e}"
+                    logger.error(error_msg, exc_info=True)
+                    results["errors"].append(error_msg)
+
+            # Generate MD (copy source markdown with standardized name)
+            if "md" in active_formats:
+                try:
+                    md_output_file = base_output / f"{base_name}.md"
+                    logger.debug(f"Generating MD: {md_output_file.name}")
+                    import shutil
+                    shutil.copy2(str(md_file), str(md_output_file))
+                    results["by_format"]["md"].append(str(md_output_file))
+                    results["summary"]["md"] += 1
+                except Exception as e:
+                    error_msg = f"MD copy failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
 
@@ -785,6 +813,7 @@ def process_course_modules(
             logger.info(f"  DOCX: {module_results['summary']['docx']}")
             logger.info(f"  HTML: {module_results['summary']['html']}")
             logger.info(f"  TXT: {module_results['summary']['txt']}")
+            logger.info(f"  MD:  {module_results['summary']['md']}")
 
             if module_results["errors"]:
                 logger.warning(
@@ -853,6 +882,7 @@ def process_course_syllabus(
         logger.info(f"  DOCX: {results['summary']['docx']}")
         logger.info(f"  HTML: {results['summary']['html']}")
         logger.info(f"  TXT: {results['summary']['txt']}")
+        logger.info(f"  MD:  {results['summary']['md']}")
 
         if results["errors"]:
             logger.warning(

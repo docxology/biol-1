@@ -24,7 +24,7 @@ SUPPORTED_COURSES: List[str] = ["biol-1", "biol-8"]
 AVAILABLE_COURSES: List[str] = ["biol-1", "biol-8"]
 
 # Available output formats
-AVAILABLE_FORMATS: List[str] = ["pdf", "mp3", "docx", "html", "txt"]
+AVAILABLE_FORMATS: List[str] = ["pdf", "mp3", "docx", "html", "txt", "md"]
 
 # File selection patterns for batch processing
 SAMPLE_FILE_PREFIX: str = "sample_"

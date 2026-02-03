@@ -226,7 +226,11 @@ def main():
     # Step 6: Validate
     if not args.skip_validate:
         logger.info("\nSTEP 6: Validating outputs")
-        if not run_script('validate_outputs.py', ['--course', 'all'], args.verbose):
+        # Pass formats to validation so it only checks what was generated
+        validate_args = ['--course', 'all']
+        if args.formats and args.formats != 'all':
+            validate_args.extend(['--formats', args.formats])
+        if not run_script('validate_outputs.py', validate_args, args.verbose):
             logger.error("Validation failed!")
             return 1
         logger.info("  ✓ Validation complete")

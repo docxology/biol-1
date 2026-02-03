@@ -12,9 +12,9 @@ Documentation for cr-bio course management software. Generates educational mater
 
 | Metric | Value | Last Updated |
 |--------|-------|--------------|
-| **Total Tests** | 420 passed, 6 skipped | 2026-02-01 |
-| **Modules** | 14 | 2026-02-01 |
-| **Code Coverage** | 74% overall | 2026-02-01 |
+| **Total Tests** | 562 passed, 6 skipped | 2026-02-03 |
+| **Modules** | 15 | 2026-02-03 |
+| **Code Coverage** | 81% overall | 2026-02-03 |
 
 ### Supported Courses
 
@@ -87,9 +87,29 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHE
 | [file_validation](../src/file_validation/) | Validate content | `validate_module_files()` | Yes | None |
 | [validation](../src/validation/) | Validate published outputs | `validate_outputs()` | Yes | None |
 | [canvas_integration](../src/canvas_integration/) | Upload to Canvas LMS | `upload_module_to_canvas()` | Yes | file_validation |
-| [publish](../src/publish/) | Export to PUBLISHED directory | `publish_course()` | Yes | None |
+| [content_processing](../src/content_processing/) | Question renumbering | `renumber_questions_in_course()` | Yes | None |
+| [legacy_import](../src/legacy_import/) | Import legacy formats | `import_legacy_course()` | Yes | None |
 
 ---
+
+## CLI Scripts
+
+Scripts in `scripts/` are thin orchestrators that call src modules:
+
+| Script | Purpose | Primary Module(s) |
+|--------|---------|-------------------|
+| `publish_all.py` | **Top-level pipeline** | `batch_processing`, `publish`, `validation` |
+| `generate_all_outputs.py` | Generate all course outputs | `batch_processing` |
+| `generate_module_renderings.py` | Single module processing | `batch_processing` |
+| `generate_module_website.py` | Website generation | `html_website` |
+| `generate_syllabus_renderings.py` | Syllabus processing | `schedule`, `batch_processing` |
+| `publish_course.py` | Publish to PUBLISHED/ | `publish` |
+| `validate_outputs.py` | Validate outputs | `validation` |
+| `flatten_published.py` | Flatten directories | `publish.utils` |
+| `renumber_questions.py` | Question renumbering | `content_processing` |
+| `import_legacy_materials.py` | Import legacy | `legacy_import` |
+
+See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 ## Documentation Map
 
@@ -165,9 +185,10 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 0.1.0 | 2026-02-03 | Documentation improvements (15 modules, scripts README, cross-references) |
 | 0.1.0 | 2026-02-02 | Added versioning documentation to ARCHITECTURE.md and QUICKSTART.md |
 | 0.1.0 | 2026-02-01 | Updated statistics (420 tests, 74% coverage), added validation module |
-| 0.1.0 | 2026-01-15 | Updated statistics, corrected module count (14 modules) |
+| 0.1.0 | 2026-01-15 | Updated statistics, corrected module count |
 | 0.1.0 | 2026-01-09 | Updated test counts and coverage tracking |
 | 0.1.0 | 2026-01-08 | Enhanced documentation modularity and signposting |
 | 0.1.0 | 2026-01-01 | Initial comprehensive documentation |

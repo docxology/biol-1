@@ -1,20 +1,72 @@
 # Source Code
 
-## Overview
+> **Navigation**: [← README](../README.md) | [AGENTS.md](AGENTS.md) | [docs/](../docs/) | [scripts/](../scripts/)
 
 Source code for course management software utilities.
 
-## Modular Design Principles
+---
 
-Each module follows these principles for maximum modularity:
+## Statistics
 
-### Self-Contained Modules
+- **15 Modules** across 5 layers
+- **562 Tests** (81% coverage)
+- **6 Output Formats**: PDF, DOCX, HTML, TXT, MD, MP3
 
-Each module directory contains all code, configuration, and logic needed for its purpose:
-- `main.py`: Public API functions (imported by users and other modules)
-- `utils.py`: Internal helper functions (private to module)
-- `config.py`: Constants and configuration
-- `__init__.py`: Exports public functions from `main.py`
+---
+
+## Module Architecture
+
+### Layered Design
+
+Modules are organized in layers by dependency:
+
+```
+Layer 4: Management (canvas_integration)
+              ↑
+Layer 3: Orchestration (batch_processing, html_website, schedule)
+              ↑
+Layer 2: Extended (format_conversion)
+              ↑
+Layer 1: Core (markdown_to_pdf, text_to_speech, speech_to_text)
+              ↑
+Layer 0: Independent (module_organization, file_validation, publish, 
+         content_processing, validation, lab_manual, legacy_import)
+```
+
+### Module Reference
+
+| Module | Layer | Purpose | Key Function |
+|--------|-------|---------|--------------|
+| `batch_processing` | 3 | Multi-format batch generation | `process_module_by_type()` |
+| `canvas_integration` | 4 | Canvas LMS upload | `upload_module_to_canvas()` |
+| `content_processing` | 0 | Content transformation | `renumber_questions_in_course()` |
+| `file_validation` | 0 | Structure validation | `validate_module_files()` |
+| `format_conversion` | 2 | File format conversion | `convert_file()` |
+| `html_website` | 3 | Website generation | `generate_module_website()` |
+| `lab_manual` | 0 | Lab worksheet rendering | `render_lab_manual()` |
+| `legacy_import` | 0 | Legacy format import | `import_legacy_course()` |
+| `markdown_to_pdf` | 1 | PDF generation | `render_markdown_to_pdf()` |
+| `module_organization` | 0 | Module structure creation | `create_module_structure()` |
+| `publish` | 0 | Publishing to PUBLISHED/ | `publish_course()` |
+| `schedule` | 3 | Schedule processing | `process_schedule()` |
+| `speech_to_text` | 1 | Audio transcription | `transcribe_audio()` |
+| `text_to_speech` | 1 | Audio generation | `generate_speech()` |
+| `validation` | 0 | Output validation | `validate_published_directory()` |
+
+---
+
+## Module Structure
+
+Each module follows a consistent structure:
+
+```
+[module_name]/
+├── __init__.py      # Public exports
+├── main.py          # Public API functions
+├── utils.py         # Internal helper functions
+├── config.py        # Constants and configuration
+└── AGENTS.md        # Technical documentation
+```
 
 ### Clear Boundaries
 
@@ -22,114 +74,113 @@ Each module directory contains all code, configuration, and logic needed for its
 - **Internal Implementation**: Functions in `utils.py` are private and not imported externally
 - **Configuration**: `config.py` exposes constants but not implementation details
 
-### Minimal Dependencies
+---
 
-Modules are organized in layers to minimize inter-module dependencies:
-- **Layer 0**: Independent modules (no dependencies)
-- **Layer 1**: Core modules (depend only on external libraries)
-- **Layer 2+**: Higher layers (depend only on lower layers)
+## Independent Usage
 
-### Module Independence
-
-All modules can be used independently. Even modules that depend on others can be used directly if their dependencies are satisfied:
+All modules can be used independently:
 
 ```python
-# Use any module independently
+# Use any module directly
 from src.markdown_to_pdf.main import render_markdown_to_pdf
 from src.file_validation.main import validate_module_files
+from src.publish.main import publish_course
+
+# Example: Single file conversion
+render_markdown_to_pdf("input.md", "output.pdf")
+
+# Example: Validate a module
+result = validate_module_files("/path/to/module")
+print(f"Valid: {result['valid']}")
 ```
 
-### Composable Design
-
-Modules can be combined in various ways:
-- Sequential: Output of one feeds into another
-- Parallel: Multiple modules process different inputs
-- Conditional: Modules invoked based on conditions
-
-See [../docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) for detailed architecture and [../docs/ORCHESTRATION.md](../docs/ORCHESTRATION.md) for composition patterns.
-
-## Module Organization
-
-Source code is organized into modular subdirectories, each containing functionality for a specific purpose:
-
-- **markdown_to_pdf/**: Markdown to PDF conversion (standalone, Layer 1)
-- **text_to_speech/**: Text-to-speech generation (standalone, Layer 1)
-- **speech_to_text/**: Speech-to-text transcription (standalone, Layer 1)
-- **format_conversion/**: File format conversion tools (Layer 2, depends on core)
-- **batch_processing/**: Batch process entire modules (Layer 3, composes multiple modules)
-- **html_website/**: Generate HTML websites (Layer 3, composes multiple modules)
-- **schedule/**: Schedule file processing (Layer 3, composes multiple modules)
-- **module_organization/**: Automated module structure creation (standalone, Layer 0)
-- **canvas_integration/**: Canvas LMS integration (Layer 4, uses validation)
-- **file_validation/**: File and structure validation (standalone, Layer 0)
-- **publish/**: Export course materials (standalone, Layer 0)
-
-## Module Boundaries
-
-Each module maintains clear boundaries:
-
-- **What it does**: Primary responsibility and core functionality
-- **What it doesn't do**: Responsibilities handled by other modules
-- **Dependencies**: Explicit list of required modules or libraries
-- **Interface**: Public API contract documented in `AGENTS.md`
-
-See each module's `AGENTS.md` for detailed boundaries and dependencies.
-
-## Module Orchestration
-
-Modules can be used independently or composed together. Example workflows:
-
-### Complete Module Processing Workflow
+### Module Import Pattern
 
 ```python
-from src.module_organization.main import create_module_structure
-from src.file_validation.main import validate_module_files, get_validation_report
-from src.batch_processing.main import generate_module_media
-from src.format_conversion.main import convert_file
+from src.[module_name].main import [function_name]
+```
 
-# 1. Create module structure
-module_path = create_module_structure("biol-1", 1)
+---
 
-# 2. Validate module
+## Composable Design
+
+Modules can be combined in various patterns:
+
+### Sequential Composition
+
+```python
+from src.file_validation.main import validate_module_files
+from src.batch_processing.main import process_module_by_type
+
+# Validate first, then process
 validation = validate_module_files(module_path)
 if validation["valid"]:
-    # 3. Generate all media formats
-    results = generate_module_media(module_path, "output/")
-    print(f"Generated {len(results['pdf_files'])} PDFs")
-    print(f"Generated {len(results['audio_files'])} audio files")
+    results = process_module_by_type(module_path, output_dir)
 ```
 
-### Text-to-Speech to Speech-to-Text Round Trip
+### Parallel Composition
 
 ```python
-from src.text_to_speech.main import generate_speech
-from src.speech_to_text.main import transcribe_audio
-
-# Generate audio from text
-generate_speech("Hello world", "output.mp3")
-
-# Transcribe audio back to text
-text = transcribe_audio("output.mp3", "output.txt")
-```
-
-### Format Conversion Chain
-
-```python
+from src.markdown_to_pdf.main import render_markdown_to_pdf
 from src.format_conversion.main import convert_file
+from src.text_to_speech.main import generate_speech
 
-# Markdown -> PDF -> Text
-convert_file("document.md", "pdf", "document.pdf")
-convert_file("document.pdf", "txt", "document.txt")
+# All can run independently
+render_markdown_to_pdf("file.md", "file.pdf")
+convert_file("file.md", "html", "file.html")
+generate_speech("text", "file.mp3")
 ```
+
+See [../docs/ORCHESTRATION.md](../docs/ORCHESTRATION.md) for detailed composition patterns.
+
+---
+
+## Detailed Module Documentation
+
+Each module has its own AGENTS.md with:
+
+- Module boundaries (what it does / doesn't do)
+- Dependencies (internal and external)
+- Public API documentation
+- Usage examples
+
+| Module | Documentation |
+|--------|---------------|
+| batch_processing | [AGENTS.md](batch_processing/AGENTS.md) |
+| canvas_integration | [AGENTS.md](canvas_integration/AGENTS.md) |
+| content_processing | [AGENTS.md](content_processing/AGENTS.md) |
+| file_validation | [AGENTS.md](file_validation/AGENTS.md) |
+| format_conversion | [AGENTS.md](format_conversion/AGENTS.md) |
+| html_website | [AGENTS.md](html_website/AGENTS.md) |
+| lab_manual | [AGENTS.md](lab_manual/AGENTS.md) |
+| legacy_import | [AGENTS.md](legacy_import/AGENTS.md) |
+| markdown_to_pdf | [AGENTS.md](markdown_to_pdf/AGENTS.md) |
+| module_organization | [AGENTS.md](module_organization/AGENTS.md) |
+| publish | [AGENTS.md](publish/AGENTS.md) |
+| schedule | [AGENTS.md](schedule/AGENTS.md) |
+| speech_to_text | [AGENTS.md](speech_to_text/AGENTS.md) |
+| text_to_speech | [AGENTS.md](text_to_speech/AGENTS.md) |
+| validation | [AGENTS.md](validation/AGENTS.md) |
+
+---
 
 ## Code Standards
 
-- Follow Python PEP 8 style guidelines
-- Use type hints for function signatures
-- Include docstrings for all functions and classes
-- Maintain modular, reusable code structure
-- Use real implementations (no mocks or stubs)
+- **Python PEP 8**: Style guidelines followed
+- **Type Hints**: All functions have type annotations
+- **Docstrings**: All public functions documented
+- **Real Methods**: No mocks or stubs (see [.cursorrules](.cursorrules))
+- **Modular**: Self-contained, reusable modules
+- **Logged**: Operations logged for debugging
 
-## Documentation
+---
 
-- **[AGENTS.md](AGENTS.md)**: Function signatures, modules, and code structure documentation
+## Related Documentation
+
+| Document | Description |
+|----------|-------------|
+| [AGENTS.md](AGENTS.md) | Detailed API reference |
+| [../docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | System architecture |
+| [../docs/ORCHESTRATION.md](../docs/ORCHESTRATION.md) | Multi-module workflows |
+| [../docs/QUICKSTART.md](../docs/QUICKSTART.md) | Quick start guide |
+| [../scripts/README.md](../scripts/README.md) | CLI scripts documentation |

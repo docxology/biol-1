@@ -11,6 +11,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from . import config
+from .config import (
+    get_expected_study_guide_files,
+    get_syllabus_required_formats,
+    DEFAULT_REQUIRED_FORMATS,
+)
 from .utils import (
     check_lab_files,
     check_output_directory,
@@ -25,16 +30,19 @@ from .utils import (
 logger = logging.getLogger(__name__)
 
 
-def validate_outputs(course_path: str) -> Dict[str, Any]:
+def validate_outputs(course_path: str, formats: List[str] = None) -> Dict[str, Any]:
     """Validate that all expected outputs exist for a course.
 
     Args:
         course_path: Path to course directory (e.g., course_development/biol-8)
+        formats: Optional list of formats to validate (e.g., ["pdf", "docx", "md"]).
+                 If None, uses DEFAULT_REQUIRED_FORMATS from config.
 
     Returns:
         Dictionary with validation results:
         - valid: bool indicating overall validity
         - course: course name
+        - formats_validated: list of formats being validated
         - modules_checked: number of modules checked
         - modules_valid: number of modules with complete outputs
         - modules: list of module validation details
@@ -44,11 +52,17 @@ def validate_outputs(course_path: str) -> Dict[str, Any]:
     course_dir = Path(course_path).resolve()
     course_name = course_dir.name
     
+    # Determine formats to validate
+    if formats is None:
+        formats = DEFAULT_REQUIRED_FORMATS
+    
     logger.info(f"Validating outputs for {course_name}")
+    logger.info(f"  Formats: {', '.join(formats)}")
     
     results = {
         "valid": True,
         "course": course_name,
+        "formats_validated": formats,
         "timestamp": get_timestamp(),
         "modules_checked": 0,
         "modules_valid": 0,
@@ -72,7 +86,7 @@ def validate_outputs(course_path: str) -> Dict[str, Any]:
         )
     
     for module_path in modules:
-        module_result = _validate_module_outputs(module_path)
+        module_result = _validate_module_outputs(module_path, formats)
         results["modules"].append(module_result)
         
         if module_result["valid"]:
@@ -81,7 +95,7 @@ def validate_outputs(course_path: str) -> Dict[str, Any]:
             results["valid"] = False
             
     # Validate syllabus
-    syllabus_result = _validate_syllabus_outputs(course_dir)
+    syllabus_result = _validate_syllabus_outputs(course_dir, formats)
     results["syllabus_valid"] = syllabus_result["valid"]
 
     if not syllabus_result["valid"]:
@@ -106,11 +120,12 @@ def validate_outputs(course_path: str) -> Dict[str, Any]:
     return results
 
 
-def _validate_module_outputs(module_path: Path) -> Dict[str, Any]:
+def _validate_module_outputs(module_path: Path, formats: List[str] = None) -> Dict[str, Any]:
     """Validate outputs for a single module.
 
     Args:
         module_path: Path to module directory
+        formats: Optional list of formats to validate
 
     Returns:
         Dictionary with module validation results
@@ -121,6 +136,7 @@ def _validate_module_outputs(module_path: Path) -> Dict[str, Any]:
         "name": module_name,
         "valid": True,
         "has_output_dir": False,
+        "formats_checked": formats or DEFAULT_REQUIRED_FORMATS,
         "study_guides": {},
         "website": {},
         "missing_files": [],
@@ -135,8 +151,8 @@ def _validate_module_outputs(module_path: Path) -> Dict[str, Any]:
         result["missing_files"].append("output/")
         return result
         
-    # Check study guide files
-    study_guide_files = check_study_guide_files(module_path)
+    # Check study guide files (format-aware)
+    study_guide_files = check_study_guide_files(module_path, formats)
     result["study_guides"] = study_guide_files
     
     missing_sg = [f for f, exists in study_guide_files.items() if not exists]
@@ -144,19 +160,24 @@ def _validate_module_outputs(module_path: Path) -> Dict[str, Any]:
         result["missing_files"].extend([f"study-guides/{f}" for f in missing_sg])
         result["valid"] = False
         
-    # Check website files
-    website_files = check_website_files(module_path)
-    result["website"] = website_files
-    
-    missing_web = [f for f, exists in website_files.items() if not exists]
-    if missing_web:
-        result["missing_files"].extend([f"website/{f}" for f in missing_web])
-        result["valid"] = False
+    # Check website files (index.html is always required if html format requested)
+    # Website is optional unless html is in the formats list
+    if formats is None or "html" in formats:
+        website_files = check_website_files(module_path)
+        result["website"] = website_files
+        
+        missing_web = [f for f, exists in website_files.items() if not exists]
+        if missing_web:
+            result["missing_files"].extend([f"website/{f}" for f in missing_web])
+            result["valid"] = False
+    else:
+        # Skip website validation if html not requested
+        result["website"] = {"index.html": "skipped (html not in formats)"}
         
     return result
 
 
-def _validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]:
+def _validate_syllabus_outputs(course_dir: Path, formats: List[str] = None) -> Dict[str, Any]:
     """Validate syllabus outputs for a course.
 
     Syllabus outputs are placed directly in the syllabus/output/ directory
@@ -164,12 +185,14 @@ def _validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]:
 
     Args:
         course_dir: Path to course directory
+        formats: Optional list of formats to validate. If None, uses default.
 
     Returns:
         Dictionary with syllabus validation results
     """
     result = {
         "valid": True,
+        "formats_checked": formats,
         "files": {},
         "issues": [],
     }
@@ -181,10 +204,12 @@ def _validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]:
         result["issues"].append("Syllabus output directory not found")
         return result
     
-    # Check for files of each expected format directly in output directory
-    # MP3 is optional for syllabus since it requires TTS processing
-    required_formats = ["pdf", "docx", "html", "txt"]
-    optional_formats = ["mp3"]
+    # Get required formats based on what was requested
+    required_formats = get_syllabus_required_formats(formats)
+    optional_formats = ["mp3", "md"]  # Always optional
+    
+    # Track what we're checking
+    result["required_formats"] = required_formats
     
     for fmt in required_formats:
         files = list(syllabus_output.glob(f"*.{fmt}"))
@@ -264,13 +289,15 @@ def validate_published(published_path: str) -> Dict[str, Any]:
 
 def generate_validation_report(
     course_name: str,
-    repo_root: Optional[str] = None
+    repo_root: Optional[str] = None,
+    formats: List[str] = None,
 ) -> Dict[str, Any]:
     """Generate comprehensive validation report for a course.
 
     Args:
         course_name: Name of course (biol-1 or biol-8)
         repo_root: Optional repo root path (auto-detected if not provided)
+        formats: Optional list of formats to validate (e.g., ["pdf", "docx", "md"])
 
     Returns:
         Dictionary with complete validation report
@@ -285,18 +312,21 @@ def generate_validation_report(
     published_path = root / config.PUBLISHED_DIR_NAME
     
     logger.info(f"Generating validation report for {course_name}")
+    if formats:
+        logger.info(f"  Validating formats: {', '.join(formats)}")
     
     report = {
         "course": course_name,
         "timestamp": get_timestamp(),
+        "formats_validated": formats or DEFAULT_REQUIRED_FORMATS,
         "source_validation": {},
         "published_validation": {},
         "summary": {},
     }
     
-    # Validate source outputs
+    # Validate source outputs (format-aware)
     if course_path.exists():
-        report["source_validation"] = validate_outputs(str(course_path))
+        report["source_validation"] = validate_outputs(str(course_path), formats=formats)
     else:
         report["source_validation"] = {
             "valid": False,

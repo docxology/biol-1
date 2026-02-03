@@ -293,8 +293,10 @@ def copy_slides_to_modules(
 ) -> int:
     """Copy slide PDFs into each module's published folder.
 
-    Maps module directories (e.g., module-01-study-of-life/) to slide files
-    (e.g., module-1-slides-full.pdf) and copies slides into each module folder.
+    Maps module directories (e.g., module-01-exploring-life-science/) to slide files
+    and copies slides into each module folder. Supports two naming conventions:
+    - biol-1: module-{num}-slides-*.pdf (e.g., module-1-slides-full.pdf)
+    - biol-8: Module {XX} - Topic.pdf (e.g., Module 01 - Exploring Life Science.pdf)
 
     Args:
         repo_root: Path to the repository root
@@ -304,6 +306,8 @@ def copy_slides_to_modules(
     Returns:
         Number of files copied
     """
+    import re
+    
     if courses is None:
         courses = ['biol-1', 'biol-8']
 
@@ -325,20 +329,35 @@ def copy_slides_to_modules(
             if not module_dir.name.startswith('module-'):
                 continue
 
-            # Extract module number from directory name
+            # Extract module number from directory name (e.g., module-01-topic -> 1)
             try:
                 module_num = int(module_dir.name.split('-')[1])
             except (IndexError, ValueError):
                 continue
 
-            # Find matching slides
-            slide_pattern = f"module-{module_num}-slides-*.pdf"
-            matching_slides = list(slides_src.glob(slide_pattern))
+            # Try multiple slide naming patterns
+            matching_slides = []
+            
+            # Pattern 1: module-{num}-slides-*.pdf (biol-1 style, no leading zeros)
+            pattern1 = f"module-{module_num}-slides-*.pdf"
+            matching_slides.extend(slides_src.glob(pattern1))
+            
+            # Pattern 2: Module {XX} - *.pdf (biol-8 style, with leading zeros)
+            # Match files like "Module 01 - Exploring Life Science.pdf"
+            module_num_padded = f"{module_num:02d}"
+            pattern2 = f"Module {module_num_padded} - *.pdf"
+            matching_slides.extend(slides_src.glob(pattern2))
+            
+            # Pattern 3: Module {X} - *.pdf (without leading zero, just in case)
+            pattern3 = f"Module {module_num} - *.pdf"
+            matching_slides.extend(slides_src.glob(pattern3))
 
             for slide_file in matching_slides:
                 dest = module_dir / slide_file.name
                 shutil.copy2(slide_file, dest)
                 course_copied += 1
+                if verbose:
+                    logger.debug(f"    {slide_file.name} -> {module_dir.name}/")
 
         if course_copied > 0:
             logger.info(f"  {course}: Copied {course_copied} slides into module folders")

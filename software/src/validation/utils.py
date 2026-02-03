@@ -75,7 +75,7 @@ def check_output_directory(module_path: Path) -> Tuple[bool, Dict[str, bool]]:
     return True, subdirs
 
 
-def check_study_guide_files(module_path: Path) -> Dict[str, bool]:
+def check_study_guide_files(module_path: Path, formats: List[str] = None) -> Dict[str, bool]:
     """Check which study guide files exist for a module.
 
     Study guide files are named with module prefix, e.g.:
@@ -85,20 +85,28 @@ def check_study_guide_files(module_path: Path) -> Dict[str, bool]:
 
     Args:
         module_path: Path to module directory
+        formats: Optional list of formats to check (e.g., ["pdf", "docx"]).
+                 If None, uses EXPECTED_STUDY_GUIDE_FILES from config.
 
     Returns:
         Dictionary mapping expected base suffix to existence
     """
     study_guides_path = module_path / "output" / config.OUTPUT_DIRS["study_guides"]
     
+    # Get expected files based on formats
+    if formats is not None:
+        expected_files = config.get_expected_study_guide_files(formats)
+    else:
+        expected_files = config.EXPECTED_STUDY_GUIDE_FILES
+    
     if not study_guides_path.exists():
-        return {f: False for f in config.EXPECTED_STUDY_GUIDE_FILES}
+        return {f: False for f in expected_files}
     
     # Get all files in study guides directory
     existing_files = [f.name for f in study_guides_path.iterdir() if f.is_file()]
     
     result = {}
-    for expected_suffix in config.EXPECTED_STUDY_GUIDE_FILES:
+    for expected_suffix in expected_files:
         # Check if any file ends with this suffix (e.g., "-keys-to-success.pdf")
         # The expected file is like "keys-to-success.pdf" and actual is "module-XX-topic-keys-to-success.pdf"
         suffix_to_check = f"-{expected_suffix}"

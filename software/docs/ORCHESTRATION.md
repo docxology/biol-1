@@ -582,16 +582,22 @@ See [../tests/README.md](../tests/README.md) for test organization and [../tests
 
 ## CLI Scripts Reference
 
-The `scripts/` directory contains CLI orchestrators for course material generation. For detailed usage, see [../scripts/README.md](../scripts/README.md).
+The `scripts/` directory contains CLI orchestrators that follow the "thin orchestrator" pattern. Each script calls src modules for actual functionality. For detailed usage, see [../scripts/README.md](../scripts/README.md).
 
-### Primary Scripts
+### Script-to-Module Mapping
 
-| Script | Purpose |
-|--------|---------|
-| `publish_all.py` | **Top-level pipeline** - generate, publish, validate |
-| `generate_all_outputs.py` | Generate all outputs for all modules |
-| `publish_course.py` | Publish module outputs to PUBLISHED/ |
-| `validate_outputs.py` | Validate generated outputs |
+| Script | Primary Module(s) | Purpose |
+|--------|-------------------|---------|
+| `publish_all.py` | `batch_processing`, `publish`, `validation` | **Top-level pipeline** |
+| `generate_all_outputs.py` | `batch_processing` | Generate all course outputs |
+| `generate_module_renderings.py` | `batch_processing` | Single module processing |
+| `generate_module_website.py` | `html_website` | Website generation |
+| `generate_syllabus_renderings.py` | `schedule`, `batch_processing` | Syllabus processing |
+| `publish_course.py` | `publish` | Publish to PUBLISHED/ |
+| `validate_outputs.py` | `validation` | Validate generated outputs |
+| `flatten_published.py` | `publish.utils` | Flatten directory structure |
+| `renumber_questions.py` | `content_processing` | Question renumbering |
+| `import_legacy_materials.py` | `legacy_import` | Import legacy format |
 
 ### Relationship to Top-Level publish.py
 
