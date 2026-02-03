@@ -1,0 +1,43 @@
+# Module 13: Regulation of Gene Expression
+## Keys to Success & Study Guide
+
+### Learning Objectives
+By the end of this module, you should be able to:
+
+1.  **Explain** the organization and regulation of prokaryotic operons (lac and trp).
+2.  **Identify** the multiple levels of eukaryotic gene regulation (chromatin to protein).
+3.  **Differentiate** between types of DNA mutations and predict their effects.
+4.  **Discuss** the implications of epigenetic inheritance.
+
+### Key Terminology Checklist
+*Define these terms in your own words to ensure mastery.*
+
+- [ ] **Promoter**: The DNA region where RNA polymerase binds.
+- [ ] **Operator**: A DNA segment that controls access to the structural genes.
+- [ ] **Repressor**: A protein that binds the operator and blocks transcription.
+- [ ] **Epigenetics**: Heritable changes in gene expression without alterations to the DNA sequence.
+- [ ] **Mutagen**: A physical or chemical agent that causes DNA mutations.
+- [ ] **Barr Body**: An inactivated X chromosome in female mammalian cells.
+
+### Concept Check
+#### 1. Operons
+*   **Question**: Why do bacteria use operons?
+*   **Key Answer**: Operons coordinate the expression of functionally related genes under a single promoter and operator. This enables rapid, coordinated responses to environmental changes.
+
+#### 2. Chromatin Remodeling
+*   **Question**: How does chromatin structure affect gene expression?
+*   **Key Answer**:
+    *   **Heterochromatin** (tightly condensed): Genes are inaccessible and silenced.
+    *   **Euchromatin** (loosely condensed): Genes are accessible for transcription.
+    *   Histone acetylation loosens chromatin (activation); methylation often tightens it (silencing).
+
+#### 3. Mutation Types
+*   **Question**: What is a point mutation?
+*   **Key Answer**: A single nucleotide change. Types include:
+    *   **Silent**: No amino acid change (codon redundancy).
+    *   **Missense**: Different amino acid.
+    *   **Nonsense**: Premature stop codon.
+
+#### 4. X-Inactivation
+*   **Question**: Why do calico cats have patchy fur?
+*   **Key Answer**: The fur color gene is X-linked. In females (XX), one X is randomly inactivated in each cell during development, creating a mosaic pattern.
