@@ -165,6 +165,19 @@ software/
 
 ---
 
+## Troubleshooting Quick Links
+
+| Problem | Solution |
+|---------|----------|
+| `OSError: cannot load library 'pangocairo'` | [QUICKSTART.md#pdf-generation-fails](QUICKSTART.md#pdf-generation-fails) |
+| `ModuleNotFoundError: No module named 'src'` | [QUICKSTART.md#module-not-found](QUICKSTART.md#module-not-found) |
+| `gTTSError: 429 (Too Many Requests)` | [QUICKSTART.md#audio-generation-fails](QUICKSTART.md#audio-generation-fails) |
+| Pipeline fails mid-way | [ORCHESTRATION.md#error-recovery-patterns](ORCHESTRATION.md#error-recovery-patterns) |
+| Slow processing | [ORCHESTRATION.md#batch-processing-tips](ORCHESTRATION.md#batch-processing-tips) |
+| Environment setup issues | [QUICKSTART.md#environment-verification-checklist](QUICKSTART.md#environment-verification-checklist) |
+
+---
+
 ## Documentation Standards
 
 1. **Navigation Headers**: Every doc links to related docs
@@ -185,6 +198,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 0.1.0 | 2026-02-04 | Documentation synchronization (date updates, module count correction) |
 | 0.1.0 | 2026-02-03 | Documentation improvements (15 modules, scripts README, cross-references) |
 | 0.1.0 | 2026-02-02 | Added versioning documentation to ARCHITECTURE.md and QUICKSTART.md |
 | 0.1.0 | 2026-02-01 | Updated statistics (420 tests, 74% coverage), added validation module |

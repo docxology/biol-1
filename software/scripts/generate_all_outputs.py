@@ -60,7 +60,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-clear", action="store_true")
     parser.add_argument("--no-website", action="store_true")
     parser.add_argument("--skip-labs", action="store_true")
+    parser.add_argument("--max-module", type=str, action="append", default=[],
+                        help="Max module per course (course:number, e.g., biol-8:6)")
+    parser.add_argument("--max-lab", type=str, action="append", default=[],
+                        help="Max lab per course (course:number, e.g., biol-8:5)")
     return parser.parse_args()
+
+
+def parse_limits(limit_args: list) -> dict:
+    """Parse course:number limits into {course: number} dict."""
+    limits = {}
+    for limit in limit_args:
+        if ":" in limit:
+            course, num = limit.split(":", 1)
+            try:
+                limits[course] = int(num)
+            except ValueError:
+                logger.warning(f"Invalid limit format: {limit}")
+    return limits
 
 
 def main() -> int:
@@ -75,8 +92,16 @@ def main() -> int:
     logger.info("=" * 60)
     logger.info("Starting comprehensive output generation")
     logger.info(f"Courses: {', '.join(c[1] for c in courses)} | Formats: {', '.join(formats)}")
+    # Parse module/lab limits
+    max_module_limits = parse_limits(args.max_module)
+    max_lab_limits = parse_limits(args.max_lab)
+
     if args.module:
         logger.info(f"Module filter: module-{args.module}")
+    if max_module_limits:
+        logger.info(f"Max module limits: {max_module_limits}")
+    if max_lab_limits:
+        logger.info(f"Max lab limits: {max_lab_limits}")
 
     if args.dry_run:
         report = generate_dry_run_report(
@@ -97,8 +122,14 @@ def main() -> int:
         if not course_path.exists():
             continue
 
+        # Get per-course limits (normalize course name to match config format)
+        course_key = course_name.lower().replace(" ", "-")
+        max_module = max_module_limits.get(course_key)
+        max_lab = max_lab_limits.get(course_key)
+
         module_results = process_course_modules(
-            course_path, course_name, args.module, not args.no_website, formats
+            course_path, course_name, args.module, not args.no_website, formats,
+            max_module=max_module
         )
         all_errors.extend(module_results.get("errors", []))
         for m in module_results.get("modules", []):
@@ -112,7 +143,7 @@ def main() -> int:
                 total_files += sum(syl["results"]["summary"].values())
 
         if not args.module and not args.skip_labs:
-            labs = process_course_labs(course_path, course_name, formats)
+            labs = process_course_labs(course_path, course_name, formats, max_lab=max_lab)
             all_errors.extend(labs.get("errors", []))
             if labs.get("processed"):
                 total_files += len(labs.get("files", []))

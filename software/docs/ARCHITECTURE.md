@@ -617,6 +617,101 @@ See [README.md](README.md#version-history) for the complete changelog.
 
 ---
 
+## Error Handling Patterns
+
+### Exception Types
+
+Each module raises specific exceptions that can be caught and handled:
+
+| Module | Exception | Cause |
+|--------|-----------|-------|
+| `markdown_to_pdf` | `OSError` | Missing WeasyPrint dependencies |
+| `markdown_to_pdf` | `FileNotFoundError` | Input file not found |
+| `text_to_speech` | `gTTSError` | Rate limiting or network issues |
+| `format_conversion` | `ValueError` | Unsupported format |
+| `file_validation` | Returns `{"valid": False}` | Validation failure (no exception) |
+| `batch_processing` | `FileNotFoundError` | Module directory not found |
+
+### Recommended Error Handling
+
+```python
+from src.markdown_to_pdf.main import render_markdown_to_pdf
+from src.text_to_speech.main import generate_speech
+import logging
+
+logger = logging.getLogger(__name__)
+
+def safe_render(markdown_path: str, output_path: str) -> bool:
+    """Safely render with logging."""
+    try:
+        render_markdown_to_pdf(markdown_path, output_path)
+        logger.info(f"Generated: {output_path}")
+        return True
+    except FileNotFoundError:
+        logger.error(f"Input not found: {markdown_path}")
+        return False
+    except OSError as e:
+        logger.error(f"WeasyPrint error: {e}")
+        return False
+
+def safe_generate_audio(text: str, output_path: str) -> bool:
+    """Safely generate audio with retry."""
+    import time
+    for attempt in range(3):
+        try:
+            generate_speech(text, output_path)
+            logger.info(f"Generated: {output_path}")
+            return True
+        except Exception as e:
+            if "429" in str(e):  # Rate limited
+                logger.warning(f"Rate limited, waiting...")
+                time.sleep(2 ** attempt)
+            else:
+                logger.error(f"Audio error: {e}")
+                return False
+    return False
+```
+
+---
+
+## Performance Considerations
+
+### Processing Time Estimates
+
+| Operation | Time per File | Notes |
+|-----------|--------------|-------|
+| PDF generation | ~0.5-1s | Local, fast |
+| HTML conversion | ~0.1s | Local, very fast |
+| DOCX conversion | ~0.2s | Local, fast |
+| Audio (gTTS) | ~2-5s | Network-bound, slowest |
+| Website generation | ~3-5s | Includes bundling |
+
+### Optimization Strategies
+
+```python
+# 1. Skip audio for fast iterations
+results = process_module_by_type(module_path, output_dir, formats=["pdf", "html"])
+
+# 2. Process single module for testing
+uv run python scripts/generate_module_renderings.py --course biol-8 --module 1
+
+# 3. Use validation to skip unchanged files (if implementing caching)
+validation = validate_module_files(module_path)
+if not validation.get("changed_files"):
+    print("No changes detected")
+```
+
+### Resource Usage
+
+| Resource | Typical Usage | Peak Usage |
+|----------|--------------|------------|
+| Memory | ~200 MB | ~500 MB (large PDFs) |
+| CPU | Single core | Multi-core (parallel) |
+| Network | None (except gTTS) | gTTS: ~50 KB/min audio |
+| Disk I/O | Moderate | High during batch ops |
+
+---
+
 ## Related Documentation
 
 | Document | Description |

@@ -128,6 +128,7 @@ Use these lab markdown directives:
 ### Keys to Success Files
 
 Each module needs a `keys-to-success.md` with:
+
 - Learning objectives
 - Key concepts
 - Study tips
@@ -136,6 +137,7 @@ Each module needs a `keys-to-success.md` with:
 ### Questions Files
 
 Each module needs a `questions.md` with:
+
 - 18-20 natural language study questions
 - Range from factual to analytical
 - Aligned with exam/quiz content
@@ -201,4 +203,4 @@ render_lab_manual(
 
 ---
 
-*Last Updated: 2026-01-28*
+*Last Updated: 2026-02-04*

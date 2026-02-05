@@ -135,6 +135,14 @@ def main():
         '--clean-source-outputs', action='store_true',
         help='Clean source output/ directories before generation'
     )
+    parser.add_argument(
+        '--max-module', type=str, action='append', default=[],
+        help='Max module per course (format: course:number, e.g., biol-8:6)'
+    )
+    parser.add_argument(
+        '--max-lab', type=str, action='append', default=[],
+        help='Max lab per course (format: course:number, e.g., biol-8:5)'
+    )
 
     args = parser.parse_args()
     
@@ -180,6 +188,14 @@ def main():
         if args.skip_labs:
             gen_args.append('--skip-labs')
             logger.info("  Skipping lab rendering (--skip-labs)")
+
+        # Pass through module/lab limits
+        for limit in getattr(args, 'max_module', []) or []:
+            gen_args.extend(['--max-module', limit])
+            logger.info(f"  Module limit: {limit}")
+        for limit in getattr(args, 'max_lab', []) or []:
+            gen_args.extend(['--max-lab', limit])
+            logger.info(f"  Lab limit: {limit}")
 
         if not run_script('generate_all_outputs.py', gen_args, args.verbose):
             logger.error("Generation failed!")

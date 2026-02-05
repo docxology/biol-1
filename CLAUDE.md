@@ -94,7 +94,7 @@ course_development/          # Source content (Markdown)
 PUBLISHED/                   # Generated outputs (mirror of course_development)
 
 software/
-  src/                       # 14 Python modules
+  src/                       # 15 Python modules
   scripts/                   # CLI orchestration scripts
   tests/                     # pytest test suite
 ```

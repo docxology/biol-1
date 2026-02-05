@@ -40,6 +40,31 @@ python publish.py --override-formats pdf  # Override formats
 
 See `publish.toml` for configuration options.
 
+### Selective Generation: Module and Lab Limits
+
+You can limit generation to specific ranges of modules and labs using `publish.toml`:
+
+```toml
+[publish.courses.biol-8]
+enabled = true
+modules = 15
+max_module = 6      # Only generate modules 1-6
+max_lab = 5         # Only generate labs 1-5
+```
+
+Or via command-line:
+
+```bash
+# In software/ directory
+uv run python scripts/generate_all_outputs.py --max-module biol-8:6 --max-lab biol-8:5
+```
+
+This is useful for:
+
+- Faster iteration during development (generate only what's needed)
+- Progressive course rollout (release content incrementally)
+- Testing specific module ranges
+
 This will:
 
 - Process all modules for both courses in `course_development/`

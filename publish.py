@@ -75,6 +75,13 @@ def build_args(config: dict, override_formats: str | None = None) -> list[str]:
         if fmts:
             args.extend(["--formats", ",".join(fmts)])
 
+    # Module and lab limits per course
+    for course_name, course_cfg in enabled_courses.items():
+        if course_cfg.get("max_module") is not None:
+            args.extend(["--max-module", f"{course_name}:{course_cfg['max_module']}"])
+        if course_cfg.get("max_lab") is not None:
+            args.extend(["--max-lab", f"{course_name}:{course_cfg['max_lab']}"])
+
     return args
 
 

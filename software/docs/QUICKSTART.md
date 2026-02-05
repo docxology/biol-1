@@ -417,6 +417,104 @@ uv run python scripts/generate_all_outputs.py
 
 **Note**: gTTS requires an active internet connection to generate audio files.
 
+### WeasyPrint CSS Warnings
+
+**Error**: `WARNING:weasyprint:Ignored property...`
+
+**Solution**: These are cosmetic warnings and can be safely ignored. Output PDFs are still generated correctly.
+
+### Permission Denied
+
+**Error**: `PermissionError: [Errno 13] Permission denied`
+
+**Solution**:
+
+```bash
+# Check file ownership
+ls -la /path/to/file
+
+# Fix permissions if needed
+chmod 644 /path/to/file
+```
+
+### Memory Issues with Large Files
+
+**Error**: Process killed or out of memory
+
+**Solution**:
+
+- Process modules one at a time: `--module X`
+- Disable audio generation: set `mp3 = false` in `publish.toml`
+- Close other applications
+
+---
+
+## Environment Verification Checklist
+
+Run these commands to verify your environment is set up correctly:
+
+```bash
+cd /path/to/cr-bio/software
+
+# 1. Python version (should be 3.11+)
+python --version
+
+# 2. uv installed
+uv --version
+
+# 3. Dependencies synced
+uv sync
+
+# 4. WeasyPrint working
+uv run python -c "from weasyprint import HTML; print('✓ WeasyPrint OK')"
+
+# 5. gTTS working
+uv run python -c "from gtts import gTTS; print('✓ gTTS OK')"
+
+# 6. All modules importable
+uv run python -c "from src import __version__; print(f'✓ cr-bio v{__version__}')"
+
+# 7. Tests passing (quick check)
+uv run pytest tests/ -x -q --tb=no
+```
+
+**Expected Output**: All checks should show ✓
+
+---
+
+## Copy-Paste Commands
+
+### Full Course Generation
+
+```bash
+# BIOL-8: Generate all outputs
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+
+# BIOL-1: Generate all outputs  
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
+
+# Both courses
+cd software && uv run python scripts/generate_all_outputs.py --course all
+```
+
+### Single Module Quick Test
+
+```bash
+# Generate single module (fast iteration)
+cd software && uv run python scripts/generate_module_renderings.py --course biol-8 --module 1
+
+# Generate website for module
+cd software && uv run python scripts/generate_module_website.py --course biol-8 --module 1
+```
+
+### Full Publish Pipeline
+
+```bash
+# From repository root
+python publish.py              # Full pipeline
+python publish.py --dry-run    # Preview only
+```
+
 ---
 
 ## Next Steps

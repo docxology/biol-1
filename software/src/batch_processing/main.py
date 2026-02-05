@@ -749,6 +749,7 @@ def process_course_modules(
     module_filter: Optional[int] = None,
     generate_website: bool = True,
     formats: Optional[List[str]] = None,
+    max_module: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Process all modules for a course.
 
@@ -758,6 +759,7 @@ def process_course_modules(
         module_filter: If specified, only process this module number
         generate_website: Whether to generate HTML websites for modules
         formats: Optional list of formats to generate (e.g. ["pdf", "html"])
+        max_module: If specified, only process modules 1 through max_module
 
     Returns:
         Dictionary with processing results
@@ -786,6 +788,17 @@ def process_course_modules(
         if not modules:
             logger.warning(f"Module {module_filter} not found in {course_name}")
             return results
+
+    # Filter by max_module: include modules 1 through max_module
+    if max_module is not None:
+        def get_module_number(name: str) -> int:
+            """Extract module number from name like 'module-01-topic' or 'module-1'."""
+            import re
+            match = re.search(r'module-(\d+)', name)
+            return int(match.group(1)) if match else 999
+        
+        modules = [m for m in modules if get_module_number(m.name) <= max_module]
+        logger.info(f"Filtering to modules 1-{max_module}: {len(modules)} modules")
 
     for module_dir in modules:
         module_name = module_dir.name
@@ -908,6 +921,7 @@ def process_course_labs(
     course_path: Path,
     course_name: str,
     formats: Optional[List[str]] = None,
+    max_lab: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Process lab manuals for a course.
 
@@ -915,6 +929,7 @@ def process_course_labs(
         course_path: Path to course directory
         course_name: Name of the course
         formats: Optional list of formats to generate (supports "pdf", "html")
+        max_lab: If specified, only process labs 1 through max_lab
 
     Returns:
         Dictionary with processing results
@@ -959,6 +974,7 @@ def process_course_labs(
                 str(fmt_output),
                 output_format=fmt,
                 course_name=course_name,
+                max_lab=max_lab,
             )
             results["files"].extend(rendered)
             logger.info(f"  {fmt.upper()}: {len(rendered)} lab files rendered")

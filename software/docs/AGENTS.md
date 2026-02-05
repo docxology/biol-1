@@ -422,10 +422,44 @@ Tests mirror source code structure in `tests/`:
 
 ---
 
+## Documentation Checklist
+
+Use this checklist when creating or updating documentation:
+
+### New Document Checklist
+
+- [ ] Navigation header with links to related docs
+- [ ] Purpose statement (what does this document cover?)
+- [ ] Appropriate heading hierarchy (single H1, logical H2/H3)
+- [ ] Code blocks with language specifiers
+- [ ] Working, tested code examples
+- [ ] Cross-references to related documentation
+- [ ] Tables for structured data where appropriate
+- [ ] Related Documentation section at the end
+
+### API Function Documentation
+
+- [ ] Function signature with type hints
+- [ ] Parameter descriptions
+- [ ] Return value description
+- [ ] Exceptions that may be raised
+- [ ] Working code example
+- [ ] Version info (when added, stability)
+
+### Update Checklist
+
+- [ ] Version history entry added
+- [ ] Statistics updated if changed (test counts, coverage)
+- [ ] Cross-references still valid
+- [ ] Examples still work
+
+---
+
 ## Version History
 
 | Date | Changes |
 |------|---------|
+| 2026-02-04 | Documentation synchronization (date updates across root files) |
 | 2026-02-01 | Added Testing Standards section |
 | 2026-01-15 | Removed unverified statistics, focused on documentation standards |
 | 2026-01-09 | Complete rewrite with comprehensive standards |

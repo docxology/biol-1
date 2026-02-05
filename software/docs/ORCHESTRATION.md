@@ -627,6 +627,137 @@ uv run python scripts/publish_all.py --clean --formats pdf
 
 ---
 
+## Error Recovery Patterns
+
+### Retry Failed Modules
+
+```python
+from src.batch_processing.main import process_module_by_type
+from src.file_validation.main import validate_module_files
+from pathlib import Path
+import time
+
+def process_with_retry(module_path: str, output_dir: str, max_retries: int = 3):
+    """Process module with automatic retry on failure."""
+    for attempt in range(max_retries):
+        try:
+            validation = validate_module_files(module_path)
+            if not validation["valid"]:
+                print(f"Validation failed: {validation.get('errors', [])}")
+                return {"success": False, "error": "validation"}
+            
+            result = process_module_by_type(module_path, output_dir)
+            return {"success": True, "result": result}
+        except Exception as e:
+            print(f"Attempt {attempt + 1} failed: {e}")
+            if attempt < max_retries - 1:
+                time.sleep(2 ** attempt)  # Exponential backoff
+    return {"success": False, "error": str(e)}
+```
+
+### Resume from Failed Module
+
+```python
+from pathlib import Path
+import json
+
+def save_progress(processed: list, progress_file: str = ".progress.json"):
+    """Save list of processed modules for resume."""
+    Path(progress_file).write_text(json.dumps(processed))
+
+def load_progress(progress_file: str = ".progress.json") -> list:
+    """Load list of already processed modules."""
+    path = Path(progress_file)
+    return json.loads(path.read_text()) if path.exists() else []
+
+def process_course_resumable(course_path: Path, output_dir: Path):
+    """Process course with resume capability."""
+    processed = load_progress()
+    modules = sorted(course_path.glob("module-*"))
+    
+    for module_path in modules:
+        if module_path.name in processed:
+            print(f"⊳ Skipping {module_path.name} (already processed)")
+            continue
+        
+        try:
+            result = process_module_by_type(str(module_path), str(output_dir / module_path.name))
+            processed.append(module_path.name)
+            save_progress(processed)
+            print(f"✓ {module_path.name}: {sum(result['summary'].values())} files")
+        except Exception as e:
+            print(f"✗ {module_path.name}: {e}")
+            print("Resume with: python your_script.py  # Will continue from here")
+            return {"completed": processed, "failed": module_path.name}
+    
+    return {"completed": processed, "failed": None}
+```
+
+---
+
+## Batch Processing Tips
+
+### Optimize for Speed
+
+```python
+# Fastest: PDF only (skip audio generation)
+results = process_module_by_type(module_path, output_dir, formats=["pdf"])
+
+# Medium: Skip audio but include other formats
+results = process_module_by_type(module_path, output_dir, formats=["pdf", "html", "docx"])
+
+# Full: All formats including audio (slowest due to network calls)
+results = process_module_by_type(module_path, output_dir)  # Default: all
+```
+
+### Process Specific File Types
+
+```python
+from src.batch_processing.main import process_module_by_type
+
+# Only lectures
+results = process_module_by_type(module_path, output_dir, file_types=["lectures"])
+
+# Only assessments
+results = process_module_by_type(module_path, output_dir, file_types=["assessments"])
+```
+
+### Parallel Processing (Advanced)
+
+```python
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from src.batch_processing.main import process_module_by_type
+
+def process_all_parallel(modules: list, output_base: str, max_workers: int = 4):
+    """Process multiple modules in parallel."""
+    results = {}
+    
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(
+                process_module_by_type, 
+                str(m), 
+                f"{output_base}/{m.name}"
+            ): m.name 
+            for m in modules
+        }
+        
+        for future in as_completed(futures):
+            module_name = futures[future]
+            try:
+                results[module_name] = future.result()
+                print(f"✓ {module_name}")
+            except Exception as e:
+                results[module_name] = {"error": str(e)}
+                print(f"✗ {module_name}: {e}")
+    
+    return results
+```
+
+> **Note**: Parallel processing can trigger gTTS rate limits. Use `formats=["pdf", "html"]` to avoid.
+
+---
+
 ## Related Documentation
 
 | Document | Description |

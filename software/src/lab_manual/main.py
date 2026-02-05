@@ -346,6 +346,7 @@ def batch_render_lab_manuals(
     output_dir: str,
     output_format: str = "pdf",
     course_name: Optional[str] = None,
+    max_lab: Optional[int] = None,
 ) -> List[str]:
     """Batch render lab manuals from a directory.
     
@@ -354,6 +355,7 @@ def batch_render_lab_manuals(
         output_dir: Output directory for rendered files
         output_format: Output format ("pdf" or "html")
         course_name: Optional course name
+        max_lab: If specified, only process labs 1 through max_lab
         
     Returns:
         List of output file paths
@@ -379,6 +381,17 @@ def batch_render_lab_manuals(
     # Also include any markdown file if no lab-specific files found
     if not lab_files:
         lab_files = list(source_dir.glob("*.md"))
+    
+    # Filter by max_lab if specified
+    if max_lab is not None:
+        import re
+        def get_lab_number(filename: str) -> int:
+            """Extract lab number from filename like 'lab-01_topic.md' or 'lab-1.md'."""
+            match = re.search(r'lab-?(\d+)', filename, re.IGNORECASE)
+            return int(match.group(1)) if match else 999
+        
+        lab_files = [f for f in lab_files if get_lab_number(f.name) <= max_lab]
+        print(f"  Filtering to labs 1-{max_lab}: {len(lab_files)} lab files")
     
     extension = ".html" if output_format.lower() == "html" else ".pdf"
     
