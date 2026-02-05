@@ -162,11 +162,12 @@ def get_timestamp() -> str:
     return datetime.now().strftime(config.LOG_DATE_FORMAT)
 
 
-def check_lab_files(course_path: Path) -> Dict[str, Any]:
+def check_lab_files(course_path: Path, max_lab: int = None) -> Dict[str, Any]:
     """Check lab output files and dashboards for a course.
 
     Args:
         course_path: Path to course directory
+        max_lab: Optional max lab number to check (e.g., 4 means only check labs 1-4)
 
     Returns:
         Dictionary with lab validation results:
@@ -176,6 +177,8 @@ def check_lab_files(course_path: Path) -> Dict[str, Any]:
         - missing_outputs: List of labs missing rendered output
         - issues: List of issues found
     """
+    import re
+    
     result: Dict[str, Any] = {
         "source_labs": 0,
         "output_files": {},
@@ -188,8 +191,18 @@ def check_lab_files(course_path: Path) -> Dict[str, Any]:
     if not labs_dir.exists():
         return result
 
-    # Count source lab files
-    source_labs = list(labs_dir.glob("lab-*.md"))
+    # Count source lab files - filter by max_lab if specified
+    all_source_labs = list(labs_dir.glob("lab-*.md"))
+    
+    if max_lab:
+        # Filter to only labs 1 through max_lab
+        def get_lab_number(lab_path):
+            match = re.match(r'lab-(\d+)', lab_path.stem)
+            return int(match.group(1)) if match else 0
+        source_labs = [lab for lab in all_source_labs if get_lab_number(lab) <= max_lab]
+    else:
+        source_labs = all_source_labs
+    
     result["source_labs"] = len(source_labs)
 
     # Check rendered output files (both flat output/*.fmt and subdirectory output/fmt/*.fmt)
@@ -210,7 +223,7 @@ def check_lab_files(course_path: Path) -> Dict[str, Any]:
         if source_labs:
             result["issues"].append("Lab output directory not found")
 
-    # Check each source lab has at least one rendered output
+    # Check each source lab (filtered by max_lab) has at least one rendered output
     for lab_file in source_labs:
         lab_stem = lab_file.stem
         has_output = False

@@ -252,6 +252,11 @@ def main():
         validate_args = ['--course', 'all']
         if args.formats and args.formats != 'all':
             validate_args.extend(['--formats', args.formats])
+        # Pass through module/lab limits to validation
+        for limit in getattr(args, 'max_module', []) or []:
+            validate_args.extend(['--max-module', limit])
+        for limit in getattr(args, 'max_lab', []) or []:
+            validate_args.extend(['--max-lab', limit])
         if not run_script('validate_outputs.py', validate_args, args.verbose):
             logger.error("Validation failed!")
             return 1

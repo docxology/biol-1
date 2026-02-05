@@ -2,9 +2,23 @@
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
+**Name:** _________________________ **Date:** _____________
+
 ---
 
-**Name:** {fill:text} **Date:** {fill:text}
+## Learning Connections
+
+> **Why This Matters for Human Biology:**
+
+Every cell in your body depends on diffusion and osmosis to survive. These processes explain:
+
+- **Breathing**: How oxygen moves from your lungs into your blood, and CO₂ moves out
+- **Digestion**: How nutrients are absorbed from your intestines into your bloodstream
+- **Kidney Function**: How your kidneys filter waste and regulate water balance
+- **IV Fluids**: Why medical IV solutions must be carefully formulated to match blood concentration
+- **Dehydration**: Why drinking seawater makes you MORE dehydrated (osmosis pulls water OUT of cells)
+
+In this lab, you'll see these same principles in action using dyes, agar, and dialysis tubing—models that help us understand what happens at the cellular level.
 
 ---
 
@@ -230,11 +244,19 @@ Mixed side: {fill:text}
 
 **Dialysis tubing** is a selectively permeable membrane that allows water and small molecules (like iodine) to pass through but blocks larger molecules (like sucrose and starch). This makes it an excellent model for studying osmosis and selective permeability.
 
-**Key Terms:**
+**Key Terms — Understanding Direction:**
 
-- **Hypertonic solution**: Higher solute concentration (water moves OUT)
-- **Hypotonic solution**: Lower solute concentration (water moves IN)
-- **Isotonic solution**: Equal solute concentration (no net water movement)
+When comparing two solutions separated by a membrane, we describe one solution *relative to* the other:
+
+- **Hypertonic**: A solution with **higher solute concentration** than the solution it's compared to. Water moves **out of** the less concentrated side **into** the hypertonic side.
+- **Hypotonic**: A solution with **lower solute concentration** than the solution it's compared to. Water moves **into** the less concentrated (hypotonic) side.
+- **Isotonic**: Solutions have **equal solute concentrations**. No net water movement occurs.
+
+> **Example:** If a dialysis bag contains 20% sucrose and is placed in a 1% sucrose bath:
+>
+> - The **bag** is *hypertonic to the bath* (higher solute inside)
+> - The **bath** is *hypotonic to the bag* (lower solute outside)
+> - Water moves **into the bag** (from low solute → high solute)
 
 ### Materials Checklist
 
@@ -274,9 +296,9 @@ Before beginning Part 3, confirm you have the following materials:
 
 1. Fill the main bowl with **1% sucrose solution** (this is the "bath")
 2. Prepare **3 dialysis bags** containing:
-   - Bag A: **1% sucrose solution** (isotonic to bath)
-   - Bag B: **10% sucrose solution** (hypertonic to bath)
-   - Bag C: **20% sucrose solution** (hypertonic to bath)
+   - Bag A: **1% sucrose solution** (isotonic — same concentration as bath)
+   - Bag B: **10% sucrose solution** (bag is hypertonic to bath — water will move IN)
+   - Bag C: **20% sucrose solution** (bag is hypertonic to bath — water will move IN)
 3. Seal all bags securely and **blot dry** with paper towel
 4. **Weigh each bag** and record initial mass
 5. Place all bags in the 1% sucrose bath
@@ -325,13 +347,13 @@ Example: Initial = 10.0 g, Final = 12.5 g
 
 {fill:textarea rows=3}
 
-**3. For each bag, classify the INSIDE relative to the OUTSIDE (1% sucrose bath):**
+**3. For each bag, classify the INSIDE relative to the OUTSIDE (1% sucrose bath). Is the bag hypertonic to the bath, hypotonic to the bath, or isotonic?**
 
-| Bag | Inside Solution | Hypertonic, Hypotonic, or Isotonic? |
-|-----|-----------------|-------------------------------------|
-| A (1%) | 1% sucrose | {fill:text} |
-| B (10%) | 10% sucrose | {fill:text} |
-| C (20%) | 20% sucrose | {fill:text} |
+| Bag | Inside Solution | Bag is ______ to the bath | Water moves ______ |
+|-----|-----------------|---------------------------|--------------------|
+| A (1%) | 1% sucrose | {fill:text} | {fill:text} |
+| B (10%) | 10% sucrose | {fill:text} | {fill:text} |
+| C (20%) | 20% sucrose | {fill:text} | {fill:text} |
 <!-- /lab:reflection -->
 
 ---
@@ -432,13 +454,13 @@ Reasoning: {fill:textarea rows=2}
 | Rate = Distance / Time | Calculate diffusion rate |
 | % Change = [(Final - Initial) / Initial] × 100 | Calculate percent change in mass |
 
-### Tonicity Summary
+### Tonicity Summary (Solution Relative to Cell)
 
-| Solution Type | Solute Concentration | Water Movement | Cell Response |
-|--------------|---------------------|----------------|---------------|
-| Hypertonic | Higher outside cell | Water OUT | Cell shrinks (crenation) |
-| Hypotonic | Lower outside cell | Water IN | Cell swells (may lyse) |
-| Isotonic | Equal inside/outside | No net movement | Cell stays same |
+| If the SURROUNDING solution is... | Solute Concentration | Water Movement | Cell Response |
+|-----------------------------------|---------------------|----------------|---------------|
+| **Hypertonic** (to the cell) | Higher outside cell | Water OUT of cell | Cell shrinks (crenation) |
+| **Hypotonic** (to the cell) | Lower outside cell | Water INTO cell | Cell swells (may lyse) |
+| **Isotonic** (to the cell) | Equal inside/outside | No net movement | Cell stays same |
 
 ### Molecular Weights Reference
 

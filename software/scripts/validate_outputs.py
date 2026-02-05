@@ -79,11 +79,38 @@ def main():
         action="store_true",
         help="Show detailed module-level results"
     )
+    parser.add_argument(
+        "--max-module",
+        type=str,
+        action="append",
+        default=[],
+        help="Max module per course (format: course:number, e.g., biol-8:6)"
+    )
+    parser.add_argument(
+        "--max-lab",
+        type=str,
+        action="append",
+        default=[],
+        help="Max lab per course (format: course:number, e.g., biol-8:4)"
+    )
     
     args = parser.parse_args()
     
     repo_root = software_dir.parent
     formats = parse_formats(args.formats)
+    
+    # Parse module/lab limits into dicts
+    module_limits = {}
+    for limit in args.max_module:
+        if ':' in limit:
+            course, num = limit.split(':', 1)
+            module_limits[course.lower()] = int(num)
+    
+    lab_limits = {}
+    for limit in args.max_lab:
+        if ':' in limit:
+            course, num = limit.split(':', 1)
+            lab_limits[course.lower()] = int(num)
     
     courses_to_validate = []
     if args.course == "all":
@@ -106,8 +133,14 @@ def main():
         logger.info(f"Validating {course_name.upper()}")
         logger.info(f"{'='*60}")
         
-        # Generate full report with format filter
-        report = generate_validation_report(course_name, str(repo_root), formats=formats)
+        # Generate full report with format filter and limits
+        report = generate_validation_report(
+            course_name,
+            str(repo_root),
+            formats=formats,
+            max_module=module_limits.get(course_name),
+            max_lab=lab_limits.get(course_name),
+        )
         all_results[course_name] = report
         
         if not report["source_validation"].get("valid", False):

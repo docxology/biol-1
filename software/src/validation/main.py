@@ -30,13 +30,36 @@ from .utils import (
 logger = logging.getLogger(__name__)
 
 
-def validate_outputs(course_path: str, formats: List[str] = None) -> Dict[str, Any]:
+def _get_module_number(module_name: str) -> int:
+    """Extract module number from module directory name.
+    
+    Args:
+        module_name: Directory name like 'module-01-study-of-life'
+    
+    Returns:
+        Module number as integer (e.g., 1 for module-01)
+    """
+    import re
+    match = re.match(r'module-(\d+)', module_name)
+    if match:
+        return int(match.group(1))
+    return 0
+
+
+def validate_outputs(
+    course_path: str,
+    formats: List[str] = None,
+    max_module: Optional[int] = None,
+    max_lab: Optional[int] = None,
+) -> Dict[str, Any]:
     """Validate that all expected outputs exist for a course.
 
     Args:
         course_path: Path to course directory (e.g., course_development/biol-8)
         formats: Optional list of formats to validate (e.g., ["pdf", "docx", "md"]).
                  If None, uses DEFAULT_REQUIRED_FORMATS from config.
+        max_module: Optional max module number to validate (e.g., 6 means only validate 1-6)
+        max_lab: Optional max lab number to validate (e.g., 4 means only validate labs 1-4)
 
     Returns:
         Dictionary with validation results:
@@ -58,6 +81,10 @@ def validate_outputs(course_path: str, formats: List[str] = None) -> Dict[str, A
     
     logger.info(f"Validating outputs for {course_name}")
     logger.info(f"  Formats: {', '.join(formats)}")
+    if max_module:
+        logger.info(f"  Max module: {max_module}")
+    if max_lab:
+        logger.info(f"  Max lab: {max_lab}")
     
     results = {
         "valid": True,
@@ -71,13 +98,19 @@ def validate_outputs(course_path: str, formats: List[str] = None) -> Dict[str, A
         "issues": [],
     }
     
-    # Get expected module count
-    expected_modules = config.COURSE_CONFIG.get(course_name, {}).get(
+    # Get expected module count - use max_module limit if provided
+    full_expected = config.COURSE_CONFIG.get(course_name, {}).get(
         "expected_modules", 0
     )
+    expected_modules = max_module if max_module else full_expected
     
-    # Validate modules
-    modules = get_module_directories(course_dir)
+    # Validate modules - filter to max_module if specified
+    all_modules = get_module_directories(course_dir)
+    if max_module:
+        # Filter to only modules 1 through max_module
+        modules = [m for m in all_modules if _get_module_number(m.name) <= max_module]
+    else:
+        modules = all_modules
     results["modules_checked"] = len(modules)
     
     if len(modules) != expected_modules:
@@ -101,8 +134,8 @@ def validate_outputs(course_path: str, formats: List[str] = None) -> Dict[str, A
     if not syllabus_result["valid"]:
         results["issues"].extend(syllabus_result.get("issues", []))
 
-    # Validate labs
-    lab_result = check_lab_files(course_dir)
+    # Validate labs (with optional max_lab limit)
+    lab_result = check_lab_files(course_dir, max_lab=max_lab)
     results["labs"] = lab_result
 
     if lab_result["missing_outputs"]:
@@ -291,6 +324,8 @@ def generate_validation_report(
     course_name: str,
     repo_root: Optional[str] = None,
     formats: List[str] = None,
+    max_module: Optional[int] = None,
+    max_lab: Optional[int] = None,
 ) -> Dict[str, Any]:
     """Generate comprehensive validation report for a course.
 
@@ -298,6 +333,8 @@ def generate_validation_report(
         course_name: Name of course (biol-1 or biol-8)
         repo_root: Optional repo root path (auto-detected if not provided)
         formats: Optional list of formats to validate (e.g., ["pdf", "docx", "md"])
+        max_module: Optional max module number to validate (e.g., 6 means only validate 1-6)
+        max_lab: Optional max lab number to validate (e.g., 4 means only validate labs 1-4)
 
     Returns:
         Dictionary with complete validation report
@@ -324,9 +361,14 @@ def generate_validation_report(
         "summary": {},
     }
     
-    # Validate source outputs (format-aware)
+    # Validate source outputs (format-aware, with optional limits)
     if course_path.exists():
-        report["source_validation"] = validate_outputs(str(course_path), formats=formats)
+        report["source_validation"] = validate_outputs(
+            str(course_path),
+            formats=formats,
+            max_module=max_module,
+            max_lab=max_lab,
+        )
     else:
         report["source_validation"] = {
             "valid": False,
