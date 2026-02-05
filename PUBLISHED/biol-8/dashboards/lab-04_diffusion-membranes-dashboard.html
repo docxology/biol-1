@@ -691,6 +691,26 @@
                             water stratifies by temperature.</p>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-title">🔄 Part 2C: Mixing Demonstration</div>
+                    <p style="font-size:13px;margin-bottom:12px;">After stratification, we can mix ONE side to create
+                        "purple" water at intermediate temperature. When the divider is removed again, watch where the
+                        purple water flows!</p>
+                    <div class="water-container">
+                        <canvas id="mixing-canvas" class="water-canvas"></canvas>
+                    </div>
+                    <div class="btn-group" style="justify-content:center;">
+                        <button class="btn btn-secondary" onclick="setupMixing()">Setup Stratified</button>
+                        <button class="btn btn-primary" onclick="mixOneSide()">Mix Left Side</button>
+                        <button class="btn btn-accent" onclick="removeMixingDivider()">Remove Divider</button>
+                        <button class="btn btn-outline" onclick="resetMixing()">↺ Reset</button>
+                    </div>
+                    <div class="analysis-result ar-info" id="mixing-result">
+                        <div class="ar-title">Observation</div>
+                        <p>Click "Setup Stratified" first to create initial layers, then "Mix Left Side" to stir, then
+                            "Remove Divider" to see flow.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- PART 3: DIALYSIS TUBING -->
@@ -1302,6 +1322,136 @@
             drawDensityTank();
         }
 
+        // ============ PART 2C: MIXING SIMULATION ============
+        let mixingState = 'empty'; // 'empty', 'stratified', 'mixed', 'flow'
+
+        function drawMixingTank() {
+            const canvas = $('mixing-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.offsetWidth || 400;
+            const h = canvas.offsetHeight || 200;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            ctx.scale(dpr, dpr);
+
+            // Background
+            ctx.fillStyle = '#f8f9fa';
+            ctx.fillRect(0, 0, w, h);
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(0, 0, w, h);
+
+            if (mixingState === 'empty') {
+                ctx.fillStyle = '#ddd';
+                ctx.font = '16px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Click "Setup Stratified" to begin', w / 2, h / 2);
+            } else if (mixingState === 'stratified') {
+                // Left side: stratified (red on top, blue on bottom)
+                const leftGrad = ctx.createLinearGradient(0, 0, 0, h);
+                leftGrad.addColorStop(0, '#ff9999');
+                leftGrad.addColorStop(0.5, '#ffcccc');
+                leftGrad.addColorStop(0.5, '#ccccff');
+                leftGrad.addColorStop(1, '#9999ff');
+                ctx.fillStyle = leftGrad;
+                ctx.fillRect(0, 0, w / 2 - 2, h);
+                // Right side: stratified too
+                ctx.fillStyle = leftGrad;
+                ctx.fillRect(w / 2 + 2, 0, w / 2, h);
+                // Divider
+                ctx.fillStyle = '#333';
+                ctx.fillRect(w / 2 - 2, 0, 4, h);
+                // Labels
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Hot (top)', w / 4, 20);
+                ctx.fillText('Cold (bottom)', w / 4, h - 10);
+                ctx.fillText('Hot (top)', 3 * w / 4, 20);
+                ctx.fillText('Cold (bottom)', 3 * w / 4, h - 10);
+            } else if (mixingState === 'mixed') {
+                // Left side: mixed = purple throughout
+                ctx.fillStyle = '#b088cc';
+                ctx.fillRect(0, 0, w / 2 - 2, h);
+                // Right side: still stratified
+                const rightGrad = ctx.createLinearGradient(0, 0, 0, h);
+                rightGrad.addColorStop(0, '#ff9999');
+                rightGrad.addColorStop(0.5, '#ffcccc');
+                rightGrad.addColorStop(0.5, '#ccccff');
+                rightGrad.addColorStop(1, '#9999ff');
+                ctx.fillStyle = rightGrad;
+                ctx.fillRect(w / 2 + 2, 0, w / 2, h);
+                // Divider
+                ctx.fillStyle = '#333';
+                ctx.fillRect(w / 2 - 2, 0, 4, h);
+                // Labels
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('MIXED (Purple)', w / 4, h / 2);
+                ctx.fillStyle = '#333';
+                ctx.fillText('Stratified', 3 * w / 4, h / 2);
+            } else if (mixingState === 'flow') {
+                // Purple flows to middle (between hot top and cold bottom)
+                const gradient = ctx.createLinearGradient(0, 0, 0, h);
+                gradient.addColorStop(0, '#ff9999');    // Hot red on top
+                gradient.addColorStop(0.3, '#cc9999');
+                gradient.addColorStop(0.5, '#b088cc');  // Purple in middle
+                gradient.addColorStop(0.7, '#9999cc');
+                gradient.addColorStop(1, '#9999ff');    // Cold blue on bottom
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, w, h);
+                // Labels
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Hot (least dense) → TOP', w / 2, 20);
+                ctx.fillStyle = '#fff';
+                ctx.fillText('Purple (intermediate) → MIDDLE', w / 2, h / 2);
+                ctx.fillStyle = '#333';
+                ctx.fillText('Cold (most dense) → BOTTOM', w / 2, h - 10);
+            }
+        }
+
+        function setupMixing() {
+            mixingState = 'stratified';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">Step 1: Setup Complete</div>
+                <p>Both sides show stratification: hot (red) on top, cold (blue) on bottom. Now click "Mix Left Side" to stir the left compartment.</p>`;
+        }
+
+        function mixOneSide() {
+            if (mixingState === 'empty') {
+                setupMixing();
+                return;
+            }
+            mixingState = 'mixed';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">Step 2: Left Side Mixed</div>
+                <p>The left side is now <strong style="color:#9966aa;">purple</strong> (mixed hot + cold = intermediate temperature). The right side remains stratified. Click "Remove Divider" to see the flow!</p>`;
+        }
+
+        function removeMixingDivider() {
+            if (mixingState !== 'mixed') {
+                $('mixing-result').innerHTML = `<div class="ar-title">⚠️ Not Ready</div>
+                    <p>Please complete steps 1 and 2 first: "Setup Stratified" then "Mix Left Side".</p>`;
+                return;
+            }
+            mixingState = 'flow';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">✓ Result: Density Stratification</div>
+                <p>The <strong style="color:#9966aa;">purple</strong> water (intermediate temperature/density) flowed to the <strong>MIDDLE</strong>! Water naturally stratifies by density: hot (least dense) rises to top, cold (most dense) sinks to bottom, mixed settles in between.</p>`;
+        }
+
+        function resetMixing() {
+            mixingState = 'empty';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">Observation</div>
+                <p>Click "Setup Stratified" first to create initial layers, then "Mix Left Side" to stir, then "Remove Divider" to see flow.</p>`;
+        }
+
         // ============ PART 3: DIALYSIS ============
         let osmosisRunning = false;
         let bagSizes = [1, 1, 1]; // 1% = isotonic, 10%, 20%
@@ -1541,6 +1691,7 @@
             drawAgarPlate(0);
             drawBeakers();
             drawDensityTank();
+            drawMixingTank();
             drawDialysis();
             drawStarchTest('#f5f5f5', '#d4a574');
             showQuestion();
@@ -1549,6 +1700,7 @@
         window.addEventListener('resize', () => {
             drawAgarPlate(agarTime);
             drawDensityTank();
+            drawMixingTank();
             drawDialysis();
         });
     </script>
