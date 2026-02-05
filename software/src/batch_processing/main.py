@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Optional
 
 from . import config
 from .logging_config import get_logger
+from .log_style import format_summary, FORMAT_EMOJI, STATUS_EMOJI, CONTENT_EMOJI
 from .utils import (
     ensure_output_directory,
     find_audio_files,
@@ -802,9 +803,7 @@ def process_course_modules(
 
     for module_dir in modules:
         module_name = module_dir.name
-        logger.info(f"{'='*60}")
-        logger.info(f"Processing {course_name} - {module_name}")
-        logger.info(f"{'='*60}")
+        logger.info(f"{CONTENT_EMOJI['module']} Processing {course_name} › {module_name}")
 
         # Process module outputs
         output_dir = module_dir / "output"
@@ -820,13 +819,9 @@ def process_course_modules(
                 "duration": module_duration,
             })
 
-            logger.info(f"{module_name} outputs generated in {module_duration:.2f}s:")
-            logger.info(f"  PDF: {module_results['summary']['pdf']}")
-            logger.info(f"  MP3: {module_results['summary']['mp3']}")
-            logger.info(f"  DOCX: {module_results['summary']['docx']}")
-            logger.info(f"  HTML: {module_results['summary']['html']}")
-            logger.info(f"  TXT: {module_results['summary']['txt']}")
-            logger.info(f"  MD:  {module_results['summary']['md']}")
+            # Compact single-line format summary
+            summary_str = format_summary(module_results['summary'])
+            logger.info(f"  {STATUS_EMOJI['success']} {module_name} ({module_duration:.2f}s) → {summary_str}")
 
             if module_results["errors"]:
                 logger.warning(
@@ -879,9 +874,7 @@ def process_course_syllabus(
         logger.warning(f"Syllabus directory not found: {syllabus_dir}")
         return {"processed": False, "errors": []}
 
-    logger.info(f"{'='*60}")
-    logger.info(f"Processing {course_name} Syllabus")
-    logger.info(f"{'='*60}")
+    logger.info(f"{CONTENT_EMOJI['syllabus']} Processing {course_name} Syllabus")
 
     output_dir = syllabus_dir / "output"
     syllabus_start = time.time()
@@ -889,13 +882,9 @@ def process_course_syllabus(
     try:
         results = process_syllabus(str(syllabus_dir), str(output_dir), formats=formats)
         syllabus_duration = time.time() - syllabus_start
-        logger.info(f"Syllabus outputs generated in {syllabus_duration:.2f}s:")
-        logger.info(f"  PDF: {results['summary']['pdf']}")
-        logger.info(f"  MP3: {results['summary']['mp3']}")
-        logger.info(f"  DOCX: {results['summary']['docx']}")
-        logger.info(f"  HTML: {results['summary']['html']}")
-        logger.info(f"  TXT: {results['summary']['txt']}")
-        logger.info(f"  MD:  {results['summary']['md']}")
+        # Compact single-line format summary
+        summary_str = format_summary(results['summary'])
+        logger.info(f"  {STATUS_EMOJI['success']} Syllabus ({syllabus_duration:.2f}s) → {summary_str}")
 
         if results["errors"]:
             logger.warning(
@@ -939,9 +928,7 @@ def process_course_labs(
         logger.warning(f"Labs directory not found: {labs_dir}")
         return {"processed": False, "errors": []}
 
-    logger.info(f"{'='*60}")
-    logger.info(f"Processing {course_name} Labs")
-    logger.info(f"{'='*60}")
+    logger.info(f"{CONTENT_EMOJI['lab']} Processing {course_name} Labs")
 
     output_dir = labs_dir / "output"
     lab_start = time.time()
@@ -985,8 +972,8 @@ def process_course_labs(
 
     results["duration"] = time.time() - lab_start
     logger.info(
-        f"Lab rendering completed in {results['duration']:.2f}s: "
-        f"{len(results['files'])} files"
+        f"  {STATUS_EMOJI['success']} Labs ({results['duration']:.2f}s) → "
+        f"{FORMAT_EMOJI['pdf']} {len(results['files'])} files"
     )
 
     return results
@@ -1015,9 +1002,7 @@ def process_course_practice_tests(
         logger.debug(f"Practice tests directory not found: {practice_tests_dir}")
         return {"processed": False, "errors": [], "files": []}
 
-    logger.info(f"{'='*60}")
-    logger.info(f"Processing {course_name} Practice Tests")
-    logger.info(f"{'='*60}")
+    logger.info(f"{CONTENT_EMOJI['practice_test']} Processing {course_name} Practice Tests")
 
     output_dir = practice_tests_dir / "output"
     output_dir.mkdir(parents=True, exist_ok=True)

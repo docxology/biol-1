@@ -158,20 +158,20 @@ def main():
     
     # Step 1: Clean if requested
     if args.clean:
-        logger.info("STEP 1: Cleaning PUBLISHED directory")
+        logger.info("🧹 STEP 1: Cleaning PUBLISHED directory")
         clean_published(published_dir)
     else:
-        logger.info("STEP 1: Skipping clean (use --clean to clean first)")
+        logger.info("⏭️  STEP 1: Skipping clean (use --clean to clean first)")
 
     # Step 1.5: Clean source outputs if requested
     if args.clean_source_outputs:
-        logger.info("\nSTEP 1.5: Cleaning source output directories")
+        logger.info("\n🧹 STEP 1.5: Cleaning source output directories")
         clear_results = clear_all_outputs(repo_root / 'course_development')
-        logger.info(f"  ✓ Cleared {clear_results['total_files_removed']} files from {len(clear_results['cleared_directories'])} directories")
+        logger.info(f"  ✅ Cleared {clear_results['total_files_removed']} files from {len(clear_results['cleared_directories'])} directories")
 
     # Step 2: Generate outputs
     if not args.skip_generation:
-        logger.info("\nSTEP 2: Generating all outputs")
+        logger.info("\n⚙️  STEP 2: Generating all outputs")
 
         # Build generation args
         gen_args = ['--course', 'all']
@@ -198,56 +198,56 @@ def main():
             logger.info(f"  Lab limit: {limit}")
 
         if not run_script('generate_all_outputs.py', gen_args, args.verbose):
-            logger.error("Generation failed!")
+            logger.error("❌ Generation failed!")
             return 1
-        logger.info("  ✓ Generation complete")
+        logger.info("  ✅ Generation complete")
     else:
-        logger.info("\nSTEP 2: Skipping generation (--skip-generation)")
+        logger.info("\n⏭️  STEP 2: Skipping generation (--skip-generation)")
 
     # Step 3: Publish to PUBLISHED/
     if not args.skip_publish:
-        logger.info("\nSTEP 3: Publishing to PUBLISHED/")
+        logger.info("\n📦 STEP 3: Publishing to PUBLISHED/")
         if not run_script('publish_course.py', ['--course', 'all'], args.verbose):
-            logger.error("Publishing failed!")
+            logger.error("❌ Publishing failed!")
             return 1
-        logger.info("  ✓ Publishing complete")
+        logger.info("  ✅ Publishing complete")
     else:
-        logger.info("\nSTEP 3: Skipping publish (--skip-publish)")
+        logger.info("\n⏭️  STEP 3: Skipping publish (--skip-publish)")
 
     # Step 4: Copy labs and dashboards
     if not args.skip_copy_extras:
-        logger.info("\nSTEP 4: Copying labs and dashboards")
+        logger.info("\n📋 STEP 4: Copying labs and dashboards")
         copied = copy_labs_and_dashboards(repo_root, courses, args.verbose)
-        logger.info(f"  ✓ Copied {copied} files")
+        logger.info(f"  ✅ Copied {copied} files")
     else:
-        logger.info("\nSTEP 4: Skipping copy extras (--skip-copy-extras)")
+        logger.info("\n⏭️  STEP 4: Skipping copy extras (--skip-copy-extras)")
 
     # Step 4.5: Copy slides and practice tests
     # Note: Exams are NOT published - they are teacher-only materials
     if not args.skip_copy_extras:
-        logger.info("\nSTEP 4.5: Copying slides and practice tests")
+        logger.info("\n🎯 STEP 4.5: Copying slides and practice tests")
         slides_copied = copy_slides(repo_root, courses, args.verbose)
         module_slides_copied = copy_slides_to_modules(repo_root, courses, args.verbose)
         practice_tests_copied = copy_practice_tests(repo_root, courses, args.verbose)
-        logger.info(f"  ✓ Copied {slides_copied} slides to central dir, {module_slides_copied} to module folders, {practice_tests_copied} practice tests")
+        logger.info(f"  ✅ Copied {slides_copied} slides to central dir, {module_slides_copied} to module folders, {practice_tests_copied} practice tests")
 
     # Step 5: Flatten structure
     if not args.skip_flatten:
-        logger.info("\nSTEP 5: Flattening module structure")
+        logger.info("\n📁 STEP 5: Flattening module structure")
         moved = flatten_published(published_dir)
-        logger.info(f"  ✓ Flattened {moved} files")
+        logger.info(f"  ✅ Flattened {moved} files")
     else:
-        logger.info("\nSTEP 5: Skipping flatten (--skip-flatten)")
+        logger.info("\n⏭️  STEP 5: Skipping flatten (--skip-flatten)")
 
     # Step 5.5: Reorganize to category folders
     if not args.skip_flatten:
-        logger.info("\nSTEP 5.5: Reorganizing to category folders")
+        logger.info("\n📂 STEP 5.5: Reorganizing to category folders")
         reorganized = reorganize_to_categories(published_dir, courses, args.verbose)
-        logger.info(f"  ✓ Reorganized {reorganized} files into category folders")
+        logger.info(f"  ✅ Reorganized {reorganized} files into category folders")
 
     # Step 6: Validate
     if not args.skip_validate:
-        logger.info("\nSTEP 6: Validating outputs")
+        logger.info("\n🔍 STEP 6: Validating outputs")
         # Pass formats to validation so it only checks what was generated
         validate_args = ['--course', 'all']
         if args.formats and args.formats != 'all':
@@ -258,11 +258,11 @@ def main():
         for limit in getattr(args, 'max_lab', []) or []:
             validate_args.extend(['--max-lab', limit])
         if not run_script('validate_outputs.py', validate_args, args.verbose):
-            logger.error("Validation failed!")
+            logger.error("❌ Validation failed!")
             return 1
-        logger.info("  ✓ Validation complete")
+        logger.info("  ✅ Validation complete")
     else:
-        logger.info("\nSTEP 6: Skipping validation (--skip-validate)")
+        logger.info("\n⏭️  STEP 6: Skipping validation (--skip-validate)")
     
     # Summary
     duration = time.time() - start_time
