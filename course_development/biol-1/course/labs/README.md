@@ -10,7 +10,7 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 |-----|-------|--------|----------------|
 | [Lab 01](lab-01_measurement-methods.md) | Introduction to Scientific Measurement | ✅ Complete | Module 01 |
 | [Lab 02](lab-02_probability-statistics.md) | Probability and Statistics | ✅ Complete | Module 02 |
-| [Lab 03](lab-03_organic-molecules.md) | Organic Molecules | 📝 Stub | Module 03 |
+| [Lab 03](lab-03_microscopy.md) | Introduction to Microscopy | ✅ Complete | Module 03 |
 | [Lab 04](lab-04_cells.md) | Cells | 📝 Stub | Module 04 |
 | [Lab 05](lab-05_membranes.md) | Membranes | 📝 Stub | Module 05 |
 | [Lab 06](lab-06_metabolism.md) | Metabolism | 📝 Stub | Module 06 |
@@ -26,13 +26,14 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 | [Lab 16](lab-16_microevolution.md) | Microevolution | 📝 Stub | Module 16 |
 | [Lab 17](lab-17_speciation-macroevolution.md) | Speciation and Macroevolution | 📝 Stub | Module 17 |
 
-**Status Summary:** 2 complete, 15 stubs
+**Status Summary:** 3 complete, 14 stubs
 
 ## Development Status
 
 - ✅ **Complete**: Lab 01 (289 lines, fully developed with interactive elements)
 - ✅ **Complete**: Lab 02 (probability and statistics, tear-apart paper randomizers)
-- 📝 **Stubs**: Labs 03-17 (placeholder structure with learning objectives)
+- ✅ **Complete**: Lab 03 (microscopy, 266 lines)
+- 📝 **Stubs**: Labs 04-17 (placeholder structure with learning objectives)
 
 ## Lab Format
 

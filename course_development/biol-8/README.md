@@ -73,10 +73,10 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 |---|-----|-------|--------|
 | 01 | [Lab 01](course/labs/lab-01_measurement-methods.md) | Introduction to Scientific Measurement | Complete |
 | 02 | [Lab 02](course/labs/lab-02_probability-statistics.md) | Probability and Statistics | Complete |
-| 03 | [Lab 03](course/labs/lab-03_measurement-techniques.md) | Measurement Techniques | Complete |
-| 04 | [Lab 04](course/labs/lab-04_introduction-to-microscopy.md) | Introduction to Microscopy | Complete |
-| 05 | [Lab 05](course/labs/lab-05_membranes.md) | Membranes | Stub |
-| 06 | [Lab 06](course/labs/lab-06_metabolism.md) | Metabolism | Stub |
+| 03 | [Lab 03](course/labs/lab-03_microscopy.md) | Introduction to Microscopy | Complete |
+| 04 | [Lab 04](course/labs/lab-04_diffusion-membranes.md) | Diffusion and Membranes | Complete |
+| 05 | [Lab 05](course/labs/lab-05_ph-solutions.md) | pH and Solutions | Complete |
+| 06 | [Lab 06](course/labs/lab-06_enzymes.md) | Enzymes | Complete |
 | 07 | [Lab 07](course/labs/lab-07_mitosis.md) | Mitosis | Stub |
 | 08 | [Lab 08](course/labs/lab-08_meiosis.md) | Meiosis | Stub |
 | 09 | [Lab 09](course/labs/lab-09_inheritance.md) | Inheritance | Stub |
@@ -91,6 +91,7 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 
 Generated lab outputs are in [`course/labs/output/`](course/labs/output/):
 
+- [Lab 01 PDF](course/labs/output/lab-01_measurement-methods.pdf) · [Lab 01 HTML](course/labs/output/lab-01_measurement-methods.html)
 - [Lab 02 PDF](course/labs/output/lab-02_probability-statistics.pdf) · [Lab 02 HTML](course/labs/output/lab-02_probability-statistics.html)
 
 ### Interactive Dashboards
@@ -101,10 +102,10 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 |---|-----------|
 | 01 | [Measurement Methods](course/labs/dashboards/lab-01_measurement-methods-dashboard.html) |
 | 02 | [Probability & Statistics](course/labs/dashboards/lab-02_probability-statistics-dashboard.html) |
-| 03 | [Measurement Techniques](course/labs/dashboards/lab-03_measurement-techniques-dashboard.html) |
-| 04 | [Introduction to Microscopy](course/labs/dashboards/lab-04_introduction-to-microscopy-dashboard.html) |
-| 05 | [Membranes](course/labs/dashboards/lab-05_membranes-dashboard.html) |
-| 06 | [Metabolism](course/labs/dashboards/lab-06_metabolism-dashboard.html) |
+| 03 | [Microscopy](course/labs/dashboards/lab-03_microscopy-dashboard.html) |
+| 04 | [Diffusion and Membranes](course/labs/dashboards/lab-04_diffusion-membranes-dashboard.html) |
+| 05 | [pH and Solutions](course/labs/dashboards/lab-05_ph-solutions-dashboard.html) |
+| 06 | [Enzymes](course/labs/dashboards/lab-06_enzymes-dashboard.html) |
 | 07 | [Mitosis](course/labs/dashboards/lab-07_mitosis-dashboard.html) |
 | 08 | [Meiosis](course/labs/dashboards/lab-08_meiosis-dashboard.html) |
 | 09 | [Inheritance](course/labs/dashboards/lab-09_inheritance-dashboard.html) |

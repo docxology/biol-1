@@ -1,10 +1,37 @@
 # Software Documentation
 
-> **Quick Navigation**: [Quick Start](QUICKSTART.md) | [Architecture](ARCHITECTURE.md) | [Orchestration](ORCHESTRATION.md) | [API Reference](../AGENTS.md) | [How It Works](../../HOW_IT_WORKS.md)
+> **Quick Navigation**: [Quick Start](QUICKSTART.md) | [Architecture](ARCHITECTURE.md) | [Orchestration](ORCHESTRATION.md) | [Standards](AGENTS.md) | [API Reference](../AGENTS.md)
 
 ## Overview
 
-Documentation for cr-bio course management software. Generates educational materials in multiple formats (PDF, MP3, HTML, DOCX, TXT) from Markdown source files.
+CR-BIO is an automated curriculum management system for Biology courses at College of the Redwoods. It transforms Markdown source files into multiple output formats (PDF, MP3, HTML, DOCX, TXT) and interactive websites for two courses:
+
+- **BIOL-1**: General Biology (17 modules) — Pelican Bay Prison
+- **BIOL-8**: Human Anatomy & Physiology (15 modules) — College of the Redwoods
+
+```mermaid
+flowchart LR
+    subgraph SOURCE["📝 Source (Private)"]
+        CD[course_development/]
+    end
+    
+    subgraph PROCESS["⚙️ Processing"]
+        SW[software/]
+        PUB[publish.py]
+    end
+    
+    subgraph OUTPUT["📤 Output (Public)"]
+        PUBD[PUBLISHED/]
+    end
+    
+    CD --> SW
+    SW --> PUB
+    PUB --> PUBD
+    
+    style SOURCE fill:#fff9c4
+    style PROCESS fill:#e8f5e9
+    style OUTPUT fill:#c8e6c9
+```
 
 ---
 
@@ -13,13 +40,39 @@ Documentation for cr-bio course management software. Generates educational mater
 | Metric | Value | Last Updated |
 |--------|-------|--------------|
 | **Total Tests** | 609 passed, 6 skipped | 2026-02-03 |
-| **Modules** | 15 | 2026-02-03 |
+| **Modules** | 15 source modules | 2026-02-03 |
 | **Code Coverage** | 81% overall | 2026-02-03 |
 
 ### Supported Courses
 
 - **BIOL-1**: 17 modules (Spring 2026)
 - **BIOL-8**: 15 modules (Spring 2026)
+
+---
+
+## Documentation Guide
+
+### By Audience
+
+| If you are a... | Start with... | Then explore... |
+|-----------------|---------------|-----------------|
+| **New User** | [QUICKSTART.md](QUICKSTART.md) | [ORCHESTRATION.md](ORCHESTRATION.md) |
+| **Content Author** | [../../CONTRIBUTING.md](../../CONTRIBUTING.md) | [ARCHITECTURE.md](ARCHITECTURE.md) |
+| **Developer** | [ARCHITECTURE.md](ARCHITECTURE.md) | [../AGENTS.md](../AGENTS.md) |
+| **AI Assistant** | [../../CLAUDE.md](../../CLAUDE.md) | [AGENTS.md](AGENTS.md) |
+
+### By Topic
+
+| Topic | Document | Description |
+|-------|----------|-------------|
+| **Getting Started** | [QUICKSTART.md](QUICKSTART.md) | Installation, setup, quick commands |
+| **Architecture** | [ARCHITECTURE.md](ARCHITECTURE.md) | System design, module layers, document types |
+| **Workflows** | [ORCHESTRATION.md](ORCHESTRATION.md) | Multi-module patterns, publish pipeline, lab generation |
+| **Standards** | [AGENTS.md](AGENTS.md) | Documentation standards, output format reference |
+| **API Reference** | [../AGENTS.md](../AGENTS.md) | All function signatures |
+| **Configuration** | [../../publish.toml](../../publish.toml) | Pipeline configuration options |
+| **Contributing** | [../../CONTRIBUTING.md](../../CONTRIBUTING.md) | How to add labs, assessments, content |
+| **Testing** | [../tests/README.md](../tests/README.md) | Test suite documentation |
 
 ---
 
@@ -36,9 +89,9 @@ Documentation for cr-bio course management software. Generates educational mater
 
 | Document | Description | Audience |
 |----------|-------------|----------|
-| **[ARCHITECTURE.md](ARCHITECTURE.md)** | System design, module diagrams | Developers |
-| **[ORCHESTRATION.md](ORCHESTRATION.md)** | Multi-module workflow patterns | Developers |
-| **[AGENTS.md](AGENTS.md)** | Documentation standards | Contributors |
+| **[ARCHITECTURE.md](ARCHITECTURE.md)** | System design, module diagrams, document types | Developers |
+| **[ORCHESTRATION.md](ORCHESTRATION.md)** | Multi-module workflows, publish pipeline | Developers |
+| **[AGENTS.md](AGENTS.md)** | Documentation standards, output format reference | Contributors |
 | **[../AGENTS.md](../AGENTS.md)** | API reference (all functions) | Developers |
 
 ### Source and Tests
@@ -89,6 +142,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHE
 | [canvas_integration](../src/canvas_integration/) | Upload to Canvas LMS | `upload_module_to_canvas()` | Yes | file_validation |
 | [content_processing](../src/content_processing/) | Question renumbering | `renumber_questions_in_course()` | Yes | None |
 | [legacy_import](../src/legacy_import/) | Import legacy formats | `import_legacy_course()` | Yes | None |
+| [publish](../src/publish/) | Export to PUBLISHED/ | `publish_course()` | Yes | None |
 
 ---
 
@@ -111,6 +165,97 @@ Scripts in `scripts/` are thin orchestrators that call src modules:
 
 See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
+---
+
+## Course Parity Matrix
+
+| Document Type | BIOL-1 | BIOL-8 | Status |
+|---------------|--------|--------|--------|
+| **keys-to-success.md** | 17 | 15 | ✅ Complete |
+| **questions.md** | 17 | 15 | ✅ Complete |
+| **Labs (complete)** | 3 | 6 | ✅ Labs 1-6 implemented for BIOL-8, 1-3 for BIOL-1 |
+| **Labs (stubs)** | 14 | 9 | ✅ Both have stubs |
+| **Exams** | Templates | 4 + keys | ❌ BIOL-1 needs content |
+| **Quizzes** | Templates | 15 + keys | ❌ BIOL-1 needs content |
+| **Syllabus** | 2 files | 2 files | ✅ Complete |
+| **Schedule** | 1 file | 1 file | ✅ Complete |
+| **Slides** | 30 PDFs (modules 9, 17 missing) | 15 PDFs | ⚠️ BIOL-1 missing 2 modules |
+| **Module Resources** | Empty | 15 PDFs | ⚠️ BIOL-1 dirs empty |
+| **Website Output** | All modules | All modules | ✅ Complete |
+
+### Priority Actions
+
+1. **CRITICAL:** Create BIOL-1 exams (5 exams + 5 keys)
+2. **CRITICAL:** Create BIOL-1 quizzes (17 quizzes + 17 keys)
+3. **HIGH:** Develop remaining lab stubs into complete protocols
+4. **MEDIUM:** Add BIOL-1 slides for modules 9 and 17
+5. **LOW:** Populate BIOL-1 module resource directories
+
+---
+
+## Configuration Reference
+
+### publish.toml
+
+The main configuration file controls the entire pipeline:
+
+```toml
+[publish]
+clean = true        # Clear outputs before generation
+verbose = false     # Enable verbose logging
+
+[publish.formats]
+pdf  = true         # PDF files (via WeasyPrint)
+docx = true         # Word documents
+html = true         # HTML files
+txt  = true         # Plain text
+mp3  = false        # Audio narration (slower, ~30s per file)
+
+[publish.courses.biol-1]
+enabled = true
+include_labs = true
+include_syllabus = true
+
+[publish.courses.biol-8]
+enabled = true
+include_labs = true
+# Note: Exams are NOT published (teacher-only materials)
+
+[publish.pipeline]
+generate = true     # Generate outputs from source
+publish  = true     # Copy to PUBLISHED/
+flatten  = true     # Flatten and reorganize to categories
+validate = true     # Validate all outputs
+```
+
+### Key Settings
+
+| Setting | Purpose | Default |
+|---------|---------|---------|
+| `publish.clean` | Clear existing outputs first | `true` |
+| `publish.formats.mp3` | Generate audio (slow) | `false` |
+| `publish.courses.*.enabled` | Enable/disable specific course | `true` |
+| `publish.pipeline.validate` | Run validation after generation | `true` |
+
+---
+
+## Real Methods Policy
+
+> ⚠️ **Important**: This repository follows a strict Real Methods Policy.
+
+**All code uses real implementations—no mocks, stubs, or fake methods.**
+
+This applies to:
+
+- ✅ All library implementations (WeasyPrint, gTTS, etc.)
+- ✅ All file operations (real file system)
+- ✅ All validation logic
+- ✅ All tests (no mocking)
+
+See [../../.cursorrules](../../.cursorrules) for the complete policy statement.
+
+---
+
 ## Documentation Map
 
 ```
@@ -120,9 +265,9 @@ software/
 ├── docs/
 │   ├── README.md          ← YOU ARE HERE
 │   ├── QUICKSTART.md      → Installation and quick commands
-│   ├── ARCHITECTURE.md    → System design diagrams
-│   ├── ORCHESTRATION.md   → Multi-module workflows
-│   └── AGENTS.md          → Documentation standards
+│   ├── ARCHITECTURE.md    → System design, document types, diagrams
+│   ├── ORCHESTRATION.md   → Multi-module workflows, publish pipeline
+│   └── AGENTS.md          → Documentation standards, output formats
 ├── src/
 │   ├── README.md          → Source code overview
 │   └── AGENTS.md          → Module implementations
@@ -149,8 +294,10 @@ software/
 | **Generate HTML website** | [ORCHESTRATION.md#html-website-generation](ORCHESTRATION.md#4-html-website-generation-html-website-generation) |
 | **Combine modules in workflows** | [ORCHESTRATION.md](ORCHESTRATION.md) |
 | **Understand the architecture** | [ARCHITECTURE.md](ARCHITECTURE.md) |
-| **Run tests** | [QUICKSTART.md#-running-tests](QUICKSTART.md#-running-tests) |
+| **Run tests** | [QUICKSTART.md#running-tests](QUICKSTART.md#running-tests) |
 | **Look up a function** | [../AGENTS.md](../AGENTS.md) |
+| **Generate lab manuals** | [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generation) |
+| **Run full publish pipeline** | [QUICKSTART.md#full-publish-pipeline](QUICKSTART.md#full-publish-pipeline-recommended) |
 
 ### By Module
 
@@ -190,6 +337,16 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 ---
 
+## External Links
+
+| Resource | URL |
+|----------|-----|
+| BIOL-1 Public Repository | [github.com/docxology/biol-1](https://github.com/docxology/biol-1) |
+| BIOL-8 Public Repository | [github.com/docxology/biol-8](https://github.com/docxology/biol-8) |
+| Dr. Daniel Ari Friedman | [@docxology](https://github.com/docxology) |
+
+---
+
 ## Version History
 
 **Current Version**: `0.1.0` (pre-release)
@@ -198,6 +355,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 0.1.0 | 2026-02-08 | Documentation consolidation (absorbed HOW_IT_WORKS, GENERATION, DOCUMENT_TYPES) |
 | 0.1.0 | 2026-02-04 | Documentation synchronization (date updates, module count correction) |
 | 0.1.0 | 2026-02-03 | Documentation improvements (15 modules, scripts README, cross-references) |
 | 0.1.0 | 2026-02-02 | Added versioning documentation to ARCHITECTURE.md and QUICKSTART.md |

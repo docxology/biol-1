@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-> **Navigation**: [← README](README.md) | [Architecture](ARCHITECTURE.md) | [Orchestration →](ORCHESTRATION.md) | [API Reference](../AGENTS.md)
+> **Navigation**: [← README](README.md) | [Architecture](ARCHITECTURE.md) | [Orchestration →](ORCHESTRATION.md) | [Standards](AGENTS.md) | [API Reference](../AGENTS.md)
 
 Get started with cr-bio course management software.
 
@@ -507,13 +507,41 @@ cd software && uv run python scripts/generate_module_renderings.py --course biol
 cd software && uv run python scripts/generate_module_website.py --course biol-8 --module 1
 ```
 
-### Full Publish Pipeline
+### Full Publish Pipeline (Recommended)
 
 ```bash
-# From repository root
-python publish.py              # Full pipeline
-python publish.py --dry-run    # Preview only
+# From repository root (reads publish.toml for configuration)
+python publish.py                          # Full pipeline
+python publish.py --dry-run                # Preview without executing
+python publish.py --override-formats pdf,html  # Override formats
+python publish.py --git-only               # Skip generation, just push
+python publish.py --skip-git               # Run pipeline but skip push
 ```
+
+### Selective Generation
+
+```bash
+# Generate specific formats only
+cd software && uv run python scripts/generate_all_outputs.py --formats pdf,html
+
+# Generate specific course only
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+
+# Limit modules for testing
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-module 3
+```
+
+### Lab Manual Generation
+
+```bash
+# Generate all labs for a course
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --include-labs
+
+# Generate labs only (skip module content)
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --labs-only
+```
+
+See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generation) for Python API and dashboard generation.
 
 ---
 
@@ -521,11 +549,14 @@ python publish.py --dry-run    # Preview only
 
 | I want to... | Go to... |
 |--------------|----------|
-| Combine multiple modules in workflows | [ORCHESTRATION.md](ORCHESTRATION.md) |
-| Understand the system architecture | [ARCHITECTURE.md](ARCHITECTURE.md) |
+| Run the full publish pipeline | [ORCHESTRATION.md#the-publish-pipeline](ORCHESTRATION.md#the-publish-pipeline) |
+| Generate lab manuals | [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generation) |
+| Combine modules in workflows | [ORCHESTRATION.md](ORCHESTRATION.md) |
+| Understand the architecture | [ARCHITECTURE.md](ARCHITECTURE.md) |
+| See all document types | [ARCHITECTURE.md#document-types](ARCHITECTURE.md#document-types) |
 | Look up a specific function | [../AGENTS.md](../AGENTS.md) |
-| View all test documentation | [../tests/README.md](../tests/README.md) |
-| Contribute to documentation | [AGENTS.md](AGENTS.md) |
+| View test documentation | [../tests/README.md](../tests/README.md) |
+| Review documentation standards | [AGENTS.md](AGENTS.md) |
 
 ---
 

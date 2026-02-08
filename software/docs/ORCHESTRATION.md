@@ -1,6 +1,6 @@
 # Module Orchestration Guide
 
-> **Navigation**: [← Quick Start](QUICKSTART.md) | [README](README.md) | [Architecture](ARCHITECTURE.md) | [API Reference](../AGENTS.md)
+> **Navigation**: [← Quick Start](QUICKSTART.md) | [README](README.md) | [Architecture](ARCHITECTURE.md) | [Standards](AGENTS.md) | [API Reference](../AGENTS.md)
 
 This guide demonstrates how to combine multiple modules for complex workflows.
 
@@ -758,12 +758,164 @@ def process_all_parallel(modules: list, output_base: str, max_workers: int = 4):
 
 ---
 
+## Lab Manual Generation
+
+**Required Module**: `lab_manual` (standalone, uses WeasyPrint for PDF and custom HTML renderer)
+
+Lab protocols use a directive syntax for interactive elements (see [ARCHITECTURE.md#laboratory-protocols](ARCHITECTURE.md#laboratory-protocols)).
+
+### Generate Single Lab Manual
+
+```python
+from src.lab_manual.main import render_lab_manual
+from pathlib import Path
+
+# PDF output (fillable fields rendered as styled inputs)
+render_lab_manual(
+    Path("course_development/biol-8/course/labs/lab-01_measurement-methods.md"),
+    Path("output/lab-01.pdf"),
+    format="pdf"
+)
+
+# HTML output (interactive dashboard with data tables)
+render_lab_manual(
+    Path("course_development/biol-8/course/labs/lab-01_measurement-methods.md"),
+    Path("output/lab-01.html"),
+    format="html"
+)
+```
+
+### Batch Lab Generation
+
+```bash
+# Generate all labs for a course via CLI
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --include-labs
+
+# Generate labs only (skip module content)
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --labs-only
+```
+
+### Lab Dashboard Generation
+
+Lab dashboards are interactive HTML pages with:
+
+- 📊 Fillable data tables
+- ✍️ Reflection boxes
+- 📝 Text input fields
+- 🔬 Object selection menus
+
+```bash
+# Generate dashboards for a specific lab
+cd software && uv run python scripts/generate_module_website.py --course biol-8 --lab 1
+```
+
+---
+
+## The Publish Pipeline
+
+The publish pipeline is the automated process that transforms source content into distribution-ready materials. It is controlled by `publish.toml` at the repository root.
+
+### Pipeline Stages
+
+```mermaid
+flowchart LR
+    GEN["1. Generate"] --> PUB["2. Publish"]
+    PUB --> COPY["3. Copy Extras"]
+    COPY --> FLAT["4. Flatten"]
+    FLAT --> VAL["5. Validate"]
+    VAL --> GIT["6. Git Push"]
+    
+    style GEN fill:#e1f5ff
+    style PUB fill:#fff9c4
+    style FLAT fill:#e8f5e9
+    style VAL fill:#c8e6c9
+    style GIT fill:#f3e5f5
+```
+
+| Stage | Script | Description |
+|-------|--------|-------------|
+| **1. Generate** | `generate_all_outputs.py` | Convert Markdown → PDF, DOCX, HTML, TXT, MP3 |
+| **2. Publish** | `publish_course.py` | Copy to `PUBLISHED/biol-{1,8}/` |
+| **3. Copy Extras** | `publish_all.py` | Copy slides, syllabus, labs, resources |
+| **4. Flatten** | `flatten_published.py` | Reorganize into flat structure by category |
+| **5. Validate** | `validate_outputs.py` | Check all expected outputs exist |
+| **6. Git Push** | `publish.py` | Commit and push to public repos |
+
+### Running the Pipeline
+
+```bash
+# Full pipeline (recommended)
+python publish.py
+
+# Preview without executing
+python publish.py --dry-run
+
+# Override formats on command line
+python publish.py --override-formats pdf,html
+
+# Skip generation, just commit + push
+python publish.py --git-only
+
+# Run pipeline but skip git push
+python publish.py --skip-git
+```
+
+### Selective Generation
+
+Control what gets generated using `publish.toml` or CLI flags:
+
+```bash
+# Only generate specific formats
+cd software && uv run python scripts/generate_all_outputs.py --formats pdf,html
+
+# Only generate specific course
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+
+# Limit module range (for testing)
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-module 3
+
+# Limit lab count
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab 2
+```
+
+### Pipeline Configuration
+
+See [README.md#configuration-reference](README.md#configuration-reference) for the full `publish.toml` reference.
+
+---
+
+## Syllabus Processing
+
+**Required Modules**: `schedule` + core converters
+
+```python
+from src.schedule.main import process_schedule
+from src.batch_processing.main import process_module_by_type
+from pathlib import Path
+
+# Process schedule into multiple formats
+process_schedule(
+    Path("course_development/biol-8/syllabus/Schedule.md"),
+    Path("course_development/biol-8/syllabus/output/"),
+    formats=["pdf", "html", "txt"]
+)
+```
+
+```bash
+# Via CLI
+cd software && uv run python scripts/generate_syllabus_renderings.py --course biol-8
+```
+
+---
+
 ## Related Documentation
 
 | Document | Description |
 |----------|-------------|
-| [QUICKSTART.md](QUICKSTART.md) | Basic setup and commands |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | System design diagrams |
+| [README.md](README.md) | Documentation overview, course parity, configuration |
+| [QUICKSTART.md](QUICKSTART.md) | Basic setup and quick commands |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | System design, document types, directories |
+| [AGENTS.md](AGENTS.md) | Documentation standards, output format reference |
 | [../AGENTS.md](../AGENTS.md) | Complete API reference |
 | [../tests/README.md](../tests/README.md) | Test suite documentation |
 | [../scripts/README.md](../scripts/README.md) | CLI scripts documentation |

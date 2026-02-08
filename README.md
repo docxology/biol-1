@@ -38,14 +38,14 @@ graph TD
 
 ## 📖 Documentation Guide
 
-> **New here?** Start with [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for a comprehensive visual guide to the entire system.
+> **New here?** Start with [software/docs/README.md](software/docs/README.md) for a comprehensive visual guide to the entire system.
 
 ### Quick Links by Audience
 
 | If you are a... | Start with... |
 |-----------------|---------------|
-| **New User** | [README.md](README.md) (this file) → [HOW_IT_WORKS.md](HOW_IT_WORKS.md) |
-| **Content Author** | [CONTRIBUTING.md](CONTRIBUTING.md) → [DOCUMENT_TYPES.md](DOCUMENT_TYPES.md) |
+| **New User** | [README.md](README.md) (this file) → [software/docs/README.md](software/docs/README.md) |
+| **Content Author** | [CONTRIBUTING.md](CONTRIBUTING.md) → [software/docs/ARCHITECTURE.md](software/docs/ARCHITECTURE.md) |
 | **Developer** | [software/docs/ARCHITECTURE.md](software/docs/ARCHITECTURE.md) → [software/AGENTS.md](software/AGENTS.md) |
 | **AI Assistant** | [CLAUDE.md](CLAUDE.md) → [AGENTS.md](AGENTS.md) |
 
@@ -53,10 +53,11 @@ graph TD
 
 | Document | Purpose |
 |----------|---------|
-| [HOW_IT_WORKS.md](HOW_IT_WORKS.md) | **Master guide** - Visual diagrams, complete system overview |
+| [software/docs/README.md](software/docs/README.md) | **Master guide** — System overview, documentation map, configuration |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to add labs, assessments, and content |
-| [DOCUMENT_TYPES.md](DOCUMENT_TYPES.md) | All document types and output formats |
-| [GENERATION.md](GENERATION.md) | How to generate course materials |
+| [software/docs/ARCHITECTURE.md](software/docs/ARCHITECTURE.md) | Document types, system design, directory structure |
+| [software/docs/ORCHESTRATION.md](software/docs/ORCHESTRATION.md) | Publish pipeline, lab generation, selective generation |
+| [software/docs/QUICKSTART.md](software/docs/QUICKSTART.md) | Quick setup and generation commands |
 | [AGENTS.md](AGENTS.md) | Technical specifications and conventions |
 | [CLAUDE.md](CLAUDE.md) | AI assistant guidance and commands |
 | [software/docs/](software/docs/README.md) | Developer documentation (architecture, API, testing) |

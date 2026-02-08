@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Complete Documentation**: See [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for visual diagrams, the full documentation map, and system architecture.
+> **Complete Documentation**: See [software/docs/README.md](software/docs/README.md) for visual diagrams, the full documentation map, and system architecture.
 
 ## Project Overview
 

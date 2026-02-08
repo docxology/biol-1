@@ -53,7 +53,7 @@ course/
 ├── labs/                        # Laboratory protocols
 │   ├── README.md               # Labs documentation
 │   ├── lab-01_measurement-methods.md  # Full interactive lab
-│   ├── lab-02_chemistry-of-life.md    # Stub (to be developed)
+│   ├── lab-02_probability-statistics.md  # Full interactive lab
 │   ├── ... (15 labs total)
 │   └── output/                 # Generated lab outputs (PDF, HTML)
 │

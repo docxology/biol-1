@@ -10,7 +10,7 @@ This directory contains practice tests for BIOL-8 (Human Anatomy & Physiology).
 ## Module Coverage
 
 - **Practice Test 01**: Modules 1-4 (Exploring Life through Cellular Function)
-- **Practice Test 02**: Modules 5-15 (Membranes through Evolution)
+- **Practice Test 02**: Modules 5-15 (Membranes through Respiratory System)
 
 ## Usage
 

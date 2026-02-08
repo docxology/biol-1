@@ -64,7 +64,7 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 |---|-----|-------|--------|
 | 01 | [Lab 01](course/labs/lab-01_measurement-methods.md) | Introduction to Scientific Measurement | Complete |
 | 02 | [Lab 02](course/labs/lab-02_probability-statistics.md) | Probability and Statistics | Complete |
-| 03 | [Lab 03](course/labs/lab-03_organic-molecules.md) | Organic Molecules | Stub |
+| 03 | [Lab 03](course/labs/lab-03_microscopy.md) | Introduction to Microscopy | Complete |
 | 04 | [Lab 04](course/labs/lab-04_cells.md) | Cells | Stub |
 | 05 | [Lab 05](course/labs/lab-05_membranes.md) | Membranes | Stub |
 | 06 | [Lab 06](course/labs/lab-06_metabolism.md) | Metabolism | Stub |
@@ -95,7 +95,7 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 |---|-----------|
 | 01 | [Measurement Methods](course/labs/dashboards/lab-01_measurement-methods-dashboard.html) |
 | 02 | [Probability & Statistics](course/labs/dashboards/lab-02_probability-statistics-dashboard.html) |
-| 03 | [Organic Molecules](course/labs/dashboards/lab-03_organic-molecules-dashboard.html) |
+| 03 | [Microscopy](course/labs/dashboards/lab-03_microscopy-dashboard.html) |
 | 04 | [Cells](course/labs/dashboards/lab-04_cells-dashboard.html) |
 | 05 | [Membranes](course/labs/dashboards/lab-05_membranes-dashboard.html) |
 | 06 | [Metabolism](course/labs/dashboards/lab-06_metabolism-dashboard.html) |
