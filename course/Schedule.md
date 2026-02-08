@@ -10,12 +10,12 @@
 | 2 | Wed | 1/28 | Module 4: Cells; Lab 2 | |
 | 3 | Mon | 2/2 | Lab 3 / Practice | Monday class meets |
 | 3 | Wed | 2/4 | No Class | First Wednesday - Programs Canceled |
-| 4 | Mon | 2/9 | Module 5: Membranes; Lab 4 | |
-| 4 | Wed | 2/11 | Module 6: Metabolism; Lab 5 | |
+| 4 | Mon | 2/9 | Practice Test 1 (Modules 1-4); Module 5: Membranes | Plan upcoming labs |
+| 4 | Wed | 2/11 | Module 6: Metabolism; Lab 4 | |
 | 5 | Mon | 2/16 | No Class | Presidents' Day Holiday |
-| 5 | Wed | 2/18 | Module 7: Photosynthesis; Lab 6 | |
-| 6 | Mon | 2/23 | Module 8: Cellular Respiration; Lab 7 | |
-| 6 | Wed | 2/25 | Lab 8; Exam 01 Review | Review Session |
+| 5 | Wed | 2/18 | Module 7: Photosynthesis; Lab 5 | |
+| 6 | Mon | 2/23 | Module 8: Cellular Respiration; Lab 6 | |
+| 6 | Wed | 2/25 | Lab 7; Exam 01 Review | Review Session |
 | 7 | Mon | 3/2 | **Exam 01** | Monday class meets |
 | 7 | Wed | 3/4 | No Class | First Wednesday - Programs Canceled |
 | 8 | Mon | 3/9 | No Class | Spring Break |
