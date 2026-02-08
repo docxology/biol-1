@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-CR-BIO is a course management and content generation system for Biology courses at College of the Redwoods. It converts Markdown source files into multiple output formats (PDF, DOCX, HTML, TXT, MP3, interactive websites) for two courses:
+CR-BIO is a course management and content generation system for Biology courses at College of the Redwoods. It converts Markdown source files into multiple output formats (PDF, DOCX, HTML, TXT, MD, MP3, interactive websites) for two courses:
 
 - **BIOL-1**: Biology at Pelican Bay (17 modules)
 - **BIOL-8**: Human Biology at College of the Redwoods (15 modules)
@@ -21,8 +21,10 @@ cd software && uv sync --extra dev
 
 # System deps for WeasyPrint (macOS)
 brew install cairo pango gdk-pixbuf glib
-export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 ```
+
+Note: `publish.py` auto-sets `DYLD_FALLBACK_LIBRARY_PATH` on macOS, so manual export is only needed when running scripts directly.
 
 ### Testing
 
@@ -49,31 +51,24 @@ uv run mypy src/                   # Type check (disallow_untyped_defs=true)
 ### Content Generation
 
 ```bash
+# Full publishing pipeline from repo root (reads publish.toml config)
+python publish.py
+python publish.py --dry-run                    # Preview without executing
+python publish.py --override-formats pdf,html  # Override formats
+
+# Git operations
+python publish.py --git-only     # Skip generation, commit + push only
+python publish.py --skip-git     # Run pipeline but skip git push
+python publish.py --setup-git    # Configure git remotes from publish.toml
+
+# Direct script access from software/
 cd software
-
-# Full publishing pipeline (generate → publish → copy extras → flatten → validate)
-uv run python scripts/publish_all.py --clean --verbose
-
-# Or use the top-level entrypoint (reads publish.toml config)
-cd .. && python publish.py
-
-# Generate outputs for one course
-uv run python scripts/generate_all_outputs.py --course biol-8
-
-# Generate single module
-uv run python scripts/generate_module_renderings.py --course biol-8 --module 1
-
-# Generate single module website
-uv run python scripts/generate_module_website.py --course biol-8 --module 1
-
-# Generate syllabus outputs
-uv run python scripts/generate_syllabus_renderings.py --course biol-8
-
-# Publish to PUBLISHED/ directory
-uv run python scripts/publish_course.py --course all
-
-# Validate outputs
-uv run python scripts/validate_outputs.py --course all
+uv run python scripts/generate_all_outputs.py --course biol-8        # One course
+uv run python scripts/generate_module_renderings.py --course biol-8 --module 1  # Single module
+uv run python scripts/generate_module_website.py --course biol-8 --module 1     # Single website
+uv run python scripts/generate_syllabus_renderings.py --course biol-8           # Syllabus
+uv run python scripts/publish_course.py --course all                 # Publish to PUBLISHED/
+uv run python scripts/validate_outputs.py --course all               # Validate outputs
 ```
 
 ## Architecture
@@ -91,7 +86,9 @@ course_development/          # Source content (Markdown)
     resources/               # Slides PDFs
     private/                 # Instructor-only (not published)
 
-PUBLISHED/                   # Generated outputs (mirror of course_development)
+PUBLISHED/                   # Generated outputs (independent git repos per course)
+  biol-1/                    # → github.com/docxology/biol-1
+  biol-8/                    # → github.com/docxology/biol-8
 
 software/
   src/                       # 15 Python modules
@@ -107,15 +104,19 @@ Modules are in `software/src/`. Each has `__init__.py`, `main.py` (public API), 
 
 **Layer 1 - Core converters:** `markdown_to_pdf` (WeasyPrint), `text_to_speech` (gTTS), `speech_to_text` (SpeechRecognition), `lab_manual`
 
-**Layer 2 - Composition:** `format_conversion`, `schedule`
+**Layer 2 - Composition:** `format_conversion`, `content_processing`
 
-**Layer 3 - Orchestration:** `batch_processing`, `html_website`
+**Layer 3 - Orchestration:** `batch_processing`, `html_website`, `schedule`
 
 **Layer 4 - Integration:** `canvas_integration`, `publish`, `validation`, `legacy_import`
 
 ### Publishing Pipeline
 
-Configured via `publish.toml` at repo root. Five stages: generate → publish → copy_extras → flatten → validate. The top-level `publish.py` reads this config and delegates to `software/scripts/publish_all.py`.
+Configured via `publish.toml` at repo root. Six stages: generate → publish → copy_extras → flatten → validate → git_push. The top-level `publish.py` reads this config and delegates to `software/scripts/publish_all.py`.
+
+Available formats: `pdf`, `docx`, `html`, `txt`, `md`, `mp3`. Per-course module/lab limits are configurable via `max_module` and `max_lab` in `publish.toml`.
+
+PUBLISHED/ subdirectories are independent git repos. `publish.py` uses `git subtree push` to deploy each course to its public repo (configured in `publish.toml [publish.git.repos.*]`).
 
 ### Content Structure
 
