@@ -25,9 +25,28 @@ By the end of this lab, you will be able to:
 
 ## Introduction
 
-In this lab you will use a variety of Vernier probes connected to a **LabQuest Mini** to measure the physical and chemical properties of two liquids: **Pure Tap Water** and **Lemon Juice**. Each measurement device reveals something different about the composition and character of a liquid.
+### Why This Lab Matters
 
-**Equipment Overview:**
+In biology, understanding the physical and chemical properties of liquids is essential. Every living organism exists in a liquid environment — cells are bathed in interstitial fluid, blood carries dissolved gases and nutrients, and even the simplest microbe is sensitive to the pH, temperature, and dissolved oxygen of its surroundings. Clinicians measure these same properties daily: blood pH, electrolyte conductivity, dissolved oxygen saturation, and urine turbidity are all standard diagnostic tests.
+
+Before you can work with living organisms in future labs, you need to **master the measurement tools** and develop **good lab hygiene habits**. Proper probe handling — rinsing between samples, calibrating before use, avoiding cross-contamination — is the same discipline required for aseptic technique when working with cultures, tissue samples, and body fluids. The habits you build today with tap water and lemon juice are the exact habits that protect both you and your specimens later.
+
+### What You Will Measure
+
+In this lab you will use **six different Vernier probes** connected to a **LabQuest Mini** to characterize two liquids: **Pure Tap Water** and **Lemon Juice**. Here is a preview of every measurement you will make:
+
+| # | Probe (Device) | What It Measures | Units | Key Question |
+|---|---------------|------------------|-------|-------------|
+| 1 | **pH Meter** (+ Dip pH) | Hydrogen ion concentration | pH (0–14) | How acidic or basic is the liquid? |
+| 2 | **Conductivity Probe** | Total Dissolved Solids (TDS) | µS/cm | How many dissolved ions are present? |
+| 3 | **Temperature Probe** (+ mercury thermometer) | Temperature | °C | Are the liquids at the same temperature? |
+| 4 | **Dissolved Oxygen Probe** | Dissolved Oxygen (DO) | mg/L | How much O₂ is available in the liquid? |
+| 5 | **Colorimeter** | Absorbance at 430, 470, 565, 635 nm | Abs | Which wavelengths of light does the liquid absorb? |
+| 6 | **Turbidity Probe** | Transmittance level | NTU / %T | How cloudy is the liquid? |
+
+Each probe reveals a different dimension of the liquid's character. Together, these six measurements build a comprehensive profile — the same approach used in clinical labs, water treatment facilities, and environmental field stations.
+
+### Equipment Overview
 
 ```
 ┌──────────────────────────────────────────────┐
@@ -46,16 +65,20 @@ In this lab you will use a variety of Vernier probes connected to a **LabQuest M
 └──────────────────────────────────────────────┘
 ```
 
-**The Two Test Liquids:**
+### The Two Test Liquids
 
 | Property | Pure Tap Water | Lemon Juice |
-|----------|---------------|-------------|
+|---|---|---|
 | Source | Municipal supply | Fresh-squeezed or bottled |
 | Expected pH | ~6.5–7.5 (near neutral) | ~2.0–3.0 (acidic) |
-| Appearance | Clear | Cloudy, yellowish |
+| Appearance | Clear, colorless | Cloudy, yellowish |
 | Primary solutes | Minerals, chlorine | Citric acid, sugars, vitamins |
+| Expected conductivity | Low–moderate | High (dissolved acid + minerals) |
+| Expected turbidity | Very low | High (pulp and particulates) |
 
-**Lab Structure:** Each group has a LabQuest Mini connected to a laptop via USB. Some probes are shared between groups — take measurements as the probes become available, rotating through all six measurement stations until all data is collected.
+### How the Lab Works
+
+Each group has a **LabQuest Mini** connected to a laptop via USB. We have a limited number of some probes, so they are **shared between groups**. Work through whichever probe is available at your station — there is no required order. Rotate through all six measurement stations until your data table is complete. The only rule: **always rinse the probe with distilled water and blot dry between samples** to avoid cross-contamination (precisely the same discipline you will use when handling biological specimens).
 
 ---
 
