@@ -1,4 +1,4 @@
-# Lab 5: pH Measurement and Solution Preparation
+# Lab 5: Liquids Measurement
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
@@ -12,20 +12,99 @@
 
 By the end of this lab, you will be able to:
 
-- **Define pH** and explain the pH scale
-- **Measure pH accurately** using pH paper and digital pH meters
-- **Explain the importance of pH** in biological systems
-- **Describe how buffers work** to maintain stable pH
-- **Prepare percent (%) solutions** and explain concentration calculations
-- **Perform serial dilutions** and understand dilution factors
+- **Use the LabQuest Mini** interface with Logger Pro to collect digital sensor data
+- **Measure pH** of different liquids and explain what pH indicates
+- **Measure conductivity** and relate it to total dissolved solids
+- **Compare temperature** readings between a digital probe and a mercury thermometer
+- **Measure dissolved oxygen** and explain its biological significance
+- **Use a colorimeter** to measure absorbance at multiple wavelengths
+- **Measure turbidity** and explain how particle concentration affects light transmittance
+- **Compare and contrast** the physical and chemical properties of two liquids
 
 ---
 
 ## Introduction
 
-The pH of a solution indicates its acidity or alkalinity. The "p" in pH stands for "potenz" (German for power) and the "H" represents hydrogen ions. The pH scale measures the concentration of hydrogen ions (H⁺) in a solution.
+In this lab you will use a variety of Vernier probes connected to a **LabQuest Mini** to measure the physical and chemical properties of two liquids: **Pure Tap Water** and **Lemon Juice**. Each measurement device reveals something different about the composition and character of a liquid.
 
-**The pH Scale:**
+**Equipment Overview:**
+
+```
+┌──────────────────────────────────────────────┐
+│              LABQUEST MINI (Vernier)          │
+│         ┌──────────┐                         │
+│   USB ──┤          ├── Probe Port(s)         │
+│  (to    │ LabQuest │                         │
+│ laptop) │  Mini    │   Connected to:         │
+│         └──────────┘   • pH Meter            │
+│                        • Conductivity Probe  │
+│   Software: Logger Pro 3.16.2                │
+│                        • Temperature Probe   │
+│                        • Dissolved O₂ Probe  │
+│                        • Colorimeter         │
+│                        • Turbidity Probe     │
+└──────────────────────────────────────────────┘
+```
+
+**The Two Test Liquids:**
+
+| Property | Pure Tap Water | Lemon Juice |
+|----------|---------------|-------------|
+| Source | Municipal supply | Fresh-squeezed or bottled |
+| Expected pH | ~6.5–7.5 (near neutral) | ~2.0–3.0 (acidic) |
+| Appearance | Clear | Cloudy, yellowish |
+| Primary solutes | Minerals, chlorine | Citric acid, sugars, vitamins |
+
+**Lab Structure:** Each group has a LabQuest Mini connected to a laptop via USB. Some probes are shared between groups — take measurements as the probes become available, rotating through all six measurement stations until all data is collected.
+
+---
+
+## Setup
+
+### Materials
+
+- LabQuest Mini interface (Vernier)
+- Laptop with Logger Pro 3.16.2 installed
+- USB cable
+- Two beakers labeled "Tap Water" and "Lemon Juice"
+- Wash bottle with distilled water (for rinsing probes between samples)
+- Paper towels / Kim wipes
+
+### Connecting the LabQuest Mini
+
+1. Plug the LabQuest Mini into the laptop via USB
+2. Open Logger Pro 3.16.2
+3. Connect the first probe to the LabQuest Mini — Logger Pro should auto-detect the sensor
+4. Verify the probe is reading (the display should show live values)
+5. Between samples: **always rinse the probe with distilled water and blot dry** before switching from one liquid to the other
+
+---
+
+<!-- lab:reflection -->
+**Pre-Lab Questions:**
+
+**1. Why is it useful to measure multiple different properties of a liquid rather than just one?**
+
+{fill:textarea rows=3}
+
+**2. Which measurements do you expect to show the biggest difference between tap water and lemon juice? Why?**
+
+{fill:textarea rows=3}
+
+**3. Why is it important to rinse probes with distilled water between samples?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+## Part 1: pH Meter
+
+> **Learning Goal:** Measure pH using both the standard pH probe and the Dip pH sensor. Understand the pH scale and what hydrogen ion concentration tells us about a solution.
+
+### What Is pH?
+
+pH measures the concentration of hydrogen ions (H⁺) in a solution. The scale runs from 0 (strongly acidic) to 14 (strongly basic), with 7 being neutral. Each whole number step represents a **10-fold** change in H⁺ concentration.
 
 ```
   ACIDIC                      NEUTRAL                      BASIC
@@ -38,332 +117,362 @@ Battery Lemon Vinegar  Coffee Milk  Pure Baking  Sea  Ammonia Drain
 (0.5) (2)                        (7)  (8.3)  (8)          (14)
 ```
 
-**Key Concepts:**
+### Procedure
 
-- Each pH unit represents a **10-fold difference** in H⁺ concentration
-- pH 7 is neutral (equal H⁺ and OH⁻ ions)
-- pH < 7 is acidic (more H⁺ ions)
-- pH > 7 is basic/alkaline (more OH⁻ ions)
+1. Connect the **pH probe** to the LabQuest Mini
+2. Calibrate if instructed (Logger Pro may auto-calibrate)
+3. Rinse the probe tip with distilled water and blot dry
+4. Submerge the probe tip in the **Tap Water** sample — wait for the reading to stabilize
+5. Record the pH value
+6. Rinse the probe, blot dry, then submerge in the **Lemon Juice** sample
+7. Record the pH value
+8. If a **Dip pH** sensor is available, repeat the measurements and record those readings as well
 
-**pH in the Human Body:**
-
-| Body Location | Normal pH Range | Consequence if Abnormal |
-|--------------|-----------------|------------------------|
-| Blood | 7.35 – 7.45 | Life-threatening if outside range |
-| Stomach | 1.5 – 3.5 | Needed for protein digestion |
-| Saliva | 6.2 – 7.4 | Protects teeth, begins digestion |
-| Urine | 4.5 – 8.0 | Varies with diet and health |
-| Skin | 4.5 – 6.5 | Protects against pathogens |
-
----
-
-## Part 1: Measuring pH of Common Solutions
-
-> **Learning Goal:** Practice using pH paper and understand the pH of everyday substances.
-
-### Materials
-
-- pH paper (wide range and/or narrow range)
-- pH color chart
-- Test tubes or small cups
-- Various solutions to test
-- Gloves (recommended)
-
-### Procedure — Using pH Paper
-
-1. Tear off a small strip of pH paper
-2. Dip briefly into the solution (or place a drop on the paper)
-3. **Immediately** compare the color to the pH scale chart
-4. Record the pH value
-5. Use a fresh strip for each solution
-
-### Predictions and Measurements
+### Prediction
 
 <!-- lab:reflection -->
-**Before testing, predict the pH of each solution (acidic, neutral, or basic):**
+**Before measuring, predict what difference you expect:**
 
-| Solution | Prediction (A/N/B) | Reasoning |
-|----------|-------------------|-----------|
-| Distilled water | {fill:text} | {fill:text} |
-| Lemon juice | {fill:text} | {fill:text} |
-| Baking soda solution | {fill:text} | {fill:text} |
-| Vinegar | {fill:text} | {fill:text} |
+| Liquid | Predicted pH | Reasoning |
+|--------|-------------|-----------|
+| Tap Water | {fill:text} | {fill:text} |
+| Lemon Juice | {fill:text} | {fill:text} |
 <!-- /lab:reflection -->
 
 ### Data Collection
 
-<!-- lab:data-table rows=10 title="pH Measurements of Common Solutions" -->
-| Solution | Color Observed | pH Value | Acidic/Neutral/Basic |
-|----------|---------------|----------|---------------------|
-| Distilled water | {fill:text} | {fill:number} | {fill:text} |
-| Tap water | {fill:text} | {fill:number} | {fill:text} |
-| Lemon juice | {fill:text} | {fill:number} | {fill:text} |
-| Orange juice | {fill:text} | {fill:number} | {fill:text} |
-| Vinegar | {fill:text} | {fill:number} | {fill:text} |
-| Milk | {fill:text} | {fill:number} | {fill:text} |
-| Baking soda solution | {fill:text} | {fill:number} | {fill:text} |
-| Soapy water | {fill:text} | {fill:number} | {fill:text} |
-| Coffee | {fill:text} | {fill:number} | {fill:text} |
-| {fill:text} (other) | {fill:text} | {fill:number} | {fill:text} |
+<!-- lab:data-table rows=2 title="pH Measurements" -->
+| Liquid | pH Probe Reading | Dip pH Reading (if available) |
+|--------|-----------------|-------------------------------|
+| Tap Water | {fill:number} | {fill:number} |
+| Lemon Juice | {fill:number} | {fill:number} |
 <!-- /lab:data-table -->
-
-### Ranking Exercise
-
-<!-- lab:reflection -->
-**Rank your tested solutions from most acidic (1) to most basic:**
-
-1. {fill:text} (pH = {fill:number}) ← Most Acidic
-2. {fill:text} (pH = {fill:number})
-3. {fill:text} (pH = {fill:number})
-4. {fill:text} (pH = {fill:number})
-5. {fill:text} (pH = {fill:number})
-6. {fill:text} (pH = {fill:number})
-7. {fill:text} (pH = {fill:number})
-8. {fill:text} (pH = {fill:number}) ← Most Basic
-<!-- /lab:reflection -->
 
 ### Analysis
 
 <!-- lab:reflection -->
-**1. Which solution was most acidic? Most basic?**
-
-Most acidic: {fill:text} (pH = {fill:number})
-Most basic: {fill:text} (pH = {fill:number})
-
-**2. If lemon juice has pH 2 and coffee has pH 5, how many times more acidic is lemon juice?**
+**1. How many times more acidic is the lemon juice compared to the tap water? (Hint: Each pH unit = 10× difference in H⁺ concentration)**
 
 {fill:textarea rows=2}
 
-**3. Why is blood pH tightly regulated? What can happen if blood becomes too acidic (acidosis) or too basic (alkalosis)?**
+**2. If the pH probe and Dip pH gave different readings, which do you think is more accurate? Why?**
 
-{fill:textarea rows=3}
+{fill:textarea rows=2}
+
+**3. Why does lemon juice have a low pH? What chemical in lemons is responsible?**
+
+{fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 2: Buffers and pH Stability
+## Part 2: Conductivity Probe (Total Dissolved Solids)
 
-> **Learning Goal:** Understand how buffers resist changes in pH.
+> **Learning Goal:** Measure the electrical conductivity of each liquid and understand how dissolved ions affect a solution's ability to conduct electricity.
 
-### Background
+### What Is Conductivity?
 
-A **buffer** is a solution that resists changes in pH when small amounts of acid or base are added. Buffers contain a weak acid and its conjugate base (or vice versa).
-
-**Why Buffers Matter:**
-
-- Blood contains bicarbonate buffer (H₂CO₃/HCO₃⁻) to maintain pH 7.35-7.45
-- Cells have phosphate buffers to protect enzymes
-- Many biological processes only work within narrow pH ranges
-
-### Materials
-
-- Buffer solution (pH 7)
-- Distilled water (control)
-- Dilute HCl (acid)
-- Dilute NaOH (base)
-- pH paper or pH meter
-- Droppers
+**Conductivity** measures how well a solution conducts electricity. Pure water is a poor conductor, but dissolved ions (salts, acids, minerals) allow current to flow. Conductivity is measured in **microsiemens per centimeter (µS/cm)** and is directly related to **Total Dissolved Solids (TDS)**.
 
 ### Procedure
 
-**Part A: Adding Acid**
+1. Connect the **Conductivity probe** to the LabQuest Mini
+2. Rinse the probe with distilled water
+3. Submerge in **Tap Water** — wait for a stable reading
+4. Record the value
+5. Rinse, then submerge in **Lemon Juice**
+6. Record the value
 
-1. Place 10 mL of buffer solution in one test tube
-2. Place 10 mL of distilled water in another test tube
-3. Measure and record the initial pH of each
-4. Add 5 drops of dilute HCl to each tube
-5. Stir gently and measure pH again
-6. Repeat with 5 more drops (10 total)
+### Prediction
 
-**Part B: Adding Base**
+<!-- lab:reflection -->
+**Before measuring, predict which liquid will have higher conductivity and why:**
 
-1. Repeat the procedure with fresh solutions
-2. Add dilute NaOH instead of HCl
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
 
 ### Data Collection
 
-<!-- lab:data-table rows=2 title="Effect of Adding Acid (HCl)" -->
-| Solution | Initial pH | pH After 5 drops HCl | pH After 10 drops HCl | Total pH Change |
-|----------|-----------|---------------------|----------------------|-----------------|
-| Buffer (pH 7) | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
-| Distilled Water | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
-<!-- /lab:data-table -->
-
-<!-- lab:data-table rows=2 title="Effect of Adding Base (NaOH)" -->
-| Solution | Initial pH | pH After 5 drops NaOH | pH After 10 drops NaOH | Total pH Change |
-|----------|-----------|----------------------|------------------------|-----------------|
-| Buffer (pH 7) | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
-| Distilled Water | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+<!-- lab:data-table rows=2 title="Conductivity / TDS Measurements" -->
+| Liquid | Conductivity (µS/cm) |
+|--------|---------------------|
+| Tap Water | {fill:number} |
+| Lemon Juice | {fill:number} |
 <!-- /lab:data-table -->
 
 ### Analysis
 
 <!-- lab:reflection -->
-**1. Compare the pH changes in the buffer vs. distilled water. Which changed more?**
+**1. Which liquid had higher conductivity? What dissolved substances contribute to this?**
 
 {fill:textarea rows=2}
 
-**2. In your own words, explain what a buffer does:**
+**2. Would distilled water have higher or lower conductivity than tap water? Explain.**
 
-{fill:textarea rows=3}
+{fill:textarea rows=2}
 
-**3. Why is it important that blood is buffered? What would happen if there were no buffering system?**
-
-{fill:textarea rows=3}
-
-**4. People with severe vomiting may develop alkalosis (blood becomes too basic). Why would losing stomach acid affect blood pH?**
+**3. Why is conductivity important in biological systems? (Think about nerve impulses and body fluids.)**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 3: Preparing Percent Solutions
+## Part 3: Temperature Probe
 
-> **Learning Goal:** Learn to prepare solutions of specific concentrations.
+> **Learning Goal:** Measure temperature using both a digital temperature probe and a mercury thermometer. Compare the precision and convenience of each method.
 
-### Background
+### Procedure
 
-**Percent solutions** express concentration as grams of solute per 100 mL of solution.
+1. Connect the **Temperature probe** to the LabQuest Mini
+2. Place the digital probe in the **Tap Water** — wait for it to stabilize
+3. Record the temperature in °C
+4. Also measure the same sample with the **mercury thermometer** and record
+5. Repeat both measurements for the **Lemon Juice**
 
-**Types of Percent Solutions:**
+### Prediction
 
-| Type | Formula | Example |
-|------|---------|---------|
-| Weight/Volume (w/v) | (g solute / mL solution) × 100 | 5 g NaCl in 100 mL = 5% NaCl |
-| Volume/Volume (v/v) | (mL solute / mL solution) × 100 | 10 mL ethanol in 100 mL = 10% ethanol |
+<!-- lab:reflection -->
+**Do you expect a temperature difference between the two liquids? Why or why not?**
 
-### Formula for Making Percent (w/v) Solutions
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  Mass of solute (g) = (% desired × Volume needed) / 100    │
-└─────────────────────────────────────────────────────────────┘
+### Data Collection
 
-Example: Make 200 mL of 2% NaCl
-Mass = (2 × 200) / 100 = 4 g NaCl
-
-Dissolve 4 g NaCl in enough water to make 200 mL total volume
-```
-
-### Practice Problems
-
-<!-- lab:calculation -->
-**Calculate the mass of solute needed for each solution:**
-
-1. Prepare 100 mL of 5% NaCl (salt) solution:
-
-   Mass = ({fill:number} × {fill:number}) / 100 = {fill:number} g NaCl
-
-2. Prepare 250 mL of 10% glucose solution:
-
-   Mass = ({fill:number} × {fill:number}) / 100 = {fill:number} g glucose
-
-3. Prepare 50 mL of 3% starch solution:
-
-   Mass = ({fill:number} × {fill:number}) / 100 = {fill:number} g starch
-<!-- /lab:calculation -->
-
-### Hands-On: Prepare a Percent Solution
-
-Your instructor will assign you a solution to prepare.
-
-<!-- lab:data-table rows=1 title="Solution Preparation Record" -->
-| Assigned Solution | % Concentration | Volume to Make | Mass of Solute Needed | Mass Actually Used |
-|------------------|-----------------|----------------|----------------------|-------------------|
-| {fill:text} | {fill:number}% | {fill:number} mL | {fill:number} g | {fill:number} g |
-<!-- /lab:data-table -->
-
-**Procedure:**
-
-1. Calculate the mass of solute needed
-2. Weigh the solute on a balance
-3. Transfer to a graduated cylinder or volumetric flask
-4. Add distilled water to approximately 2/3 of the final volume
-5. Stir/swirl until dissolved
-6. Add water to reach the exact final volume
-
----
-
-## Part 4: Serial Dilutions
-
-> **Learning Goal:** Understand and perform serial dilutions.
-
-### Background
-
-A **serial dilution** is a series of stepwise dilutions where each step dilutes the previous solution by a fixed ratio. This technique is used to:
-
-- Create a range of known concentrations
-- Dilute samples to measurable levels
-- Count bacteria or cells
-
-**Dilution Factor:** The ratio of final volume to sample volume
-
-```
-Dilution Factor = Final Volume / Sample Volume
-
-Example: 1 mL sample + 9 mL water = 10 mL total
-Dilution Factor = 10/1 = 10 (or "1:10 dilution")
-```
-
-### Serial Dilution Diagram
-
-```
-Starting        Tube 1          Tube 2          Tube 3          Tube 4
-Solution
-   100%   →  1 mL + 9 mL  →  1 mL + 9 mL  →  1 mL + 9 mL  →  1 mL + 9 mL
-             water            water            water            water
-           
-             10%             1%              0.1%            0.01%
-          (1:10)          (1:100)         (1:1000)        (1:10000)
-```
-
-### Practice Serial Dilution
-
-<!-- lab:data-table rows=5 title="Serial Dilution Data" -->
-| Tube | Volume of Sample (mL) | Volume of Diluent (mL) | Dilution This Step | Cumulative Dilution | Final Concentration |
-|------|----------------------|------------------------|-------------------|---------------------|-------------------|
-| Stock | — | — | — | 1:1 (undiluted) | 100% |
-| 1 | {fill:number} | {fill:number} | {fill:text} | {fill:text} | {fill:text} |
-| 2 | {fill:number} | {fill:number} | {fill:text} | {fill:text} | {fill:text} |
-| 3 | {fill:number} | {fill:number} | {fill:text} | {fill:text} | {fill:text} |
-| 4 | {fill:number} | {fill:number} | {fill:text} | {fill:text} | {fill:text} |
+<!-- lab:data-table rows=2 title="Temperature Measurements" -->
+| Liquid | Digital Probe (°C) | Mercury Thermometer (°C) |
+|--------|-------------------|--------------------------|
+| Tap Water | {fill:number} | {fill:number} |
+| Lemon Juice | {fill:number} | {fill:number} |
 <!-- /lab:data-table -->
 
 ### Analysis
 
 <!-- lab:reflection -->
-**1. If you perform three 1:10 serial dilutions starting with a 10% solution, what is the final concentration?**
+**1. Did the digital probe and mercury thermometer agree? If not, what might account for the difference?**
 
 {fill:textarea rows=2}
 
-**2. Why are serial dilutions more practical than trying to measure very small amounts directly?**
+**2. Which measurement method is more precise? Which is more practical for laboratory work?**
 
 {fill:textarea rows=2}
 
-**3. In what real-world situations would serial dilutions be useful?**
+**3. Why is temperature an important variable to control or measure in biological experiments?**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
+
+---
+
+## Part 4: Dissolved Oxygen Probe
+
+> **Learning Goal:** Measure dissolved oxygen (DO) in each liquid and understand why oxygen levels in water matter for living organisms.
+
+### What Is Dissolved Oxygen?
+
+**Dissolved oxygen (DO)** is the amount of oxygen gas (O₂) dissolved in a liquid, measured in **mg/L** (milligrams per liter). Aquatic organisms depend on DO for respiration. Factors affecting DO include temperature, salinity, and organic matter.
+
+### Procedure
+
+1. Connect the **Dissolved Oxygen probe** to the LabQuest Mini
+2. Allow the probe to warm up (the membrane tip needs time to equilibrate)
+3. Gently stir the probe in the **Tap Water** to ensure fresh water contacts the membrane
+4. Record the DO reading once stable
+5. Rinse, then measure the **Lemon Juice**
+6. Record the DO reading
+
+### Prediction
+
+<!-- lab:reflection -->
+**Which liquid do you predict will have more dissolved oxygen? Why?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Data Collection
+
+<!-- lab:data-table rows=2 title="Dissolved Oxygen Measurements" -->
+| Liquid | Dissolved Oxygen (mg/L) |
+|--------|------------------------|
+| Tap Water | {fill:number} |
+| Lemon Juice | {fill:number} |
+<!-- /lab:data-table -->
+
+### Analysis
+
+<!-- lab:reflection -->
+**1. Which liquid had higher dissolved oxygen? Does this match your prediction?**
+
+{fill:textarea rows=2}
+
+**2. Fish need at least 4–5 mg/L of dissolved oxygen. Based on your readings, could fish survive in either liquid?**
+
+{fill:textarea rows=2}
+
+**3. What factors would decrease the dissolved oxygen in a body of water?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+## Part 5: Colorimeter (Absorbance)
+
+> **Learning Goal:** Measure how much light each liquid absorbs at four different wavelengths, and understand what absorbance tells us about a liquid's composition.
+
+### What Is Absorbance?
+
+A **colorimeter** sends a beam of light at a specific wavelength through a sample and measures how much light is absorbed. Clear solutions absorb very little light; colored or turbid solutions absorb more. Absorbance is measured in **Absorbance units (Abs)** — higher values mean more light is absorbed.
+
+**Available wavelengths on the Vernier Colorimeter:** 430 nm (violet), 470 nm (blue), 565 nm (green), 635 nm (red)
+
+### Procedure
+
+1. Connect the **Colorimeter** to the LabQuest Mini
+2. Insert a cuvette of **distilled water** and calibrate (set as blank/zero) at each wavelength
+3. Fill a cuvette with **Tap Water**, insert, and record absorbance at all four wavelengths
+4. Fill a clean cuvette with **Lemon Juice**, insert, and record absorbance at all four wavelengths
+
+### Prediction
+
+<!-- lab:reflection -->
+**Which liquid do you expect to absorb more light? At which wavelength(s) do you expect the biggest difference?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Data Collection
+
+<!-- lab:data-table rows=2 title="Colorimeter Absorbance Measurements" -->
+| Liquid | 430 nm (Abs) | 470 nm (Abs) | 565 nm (Abs) | 635 nm (Abs) |
+|--------|-------------|-------------|-------------|-------------|
+| Tap Water | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+| Lemon Juice | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+<!-- /lab:data-table -->
+
+### Analysis
+
+<!-- lab:reflection -->
+**1. At which wavelength did lemon juice absorb the most light? Why might this be?**
+
+{fill:textarea rows=2}
+
+**2. Why does tap water have very low absorbance at all wavelengths?**
+
+{fill:textarea rows=2}
+
+**3. Colorimeters are used in clinical labs to measure blood glucose and hemoglobin levels. Why is absorbance useful for measuring concentrations of substances?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+## Part 6: Turbidity Probe (Transmittance)
+
+> **Learning Goal:** Measure the turbidity (cloudiness) of each liquid and understand how suspended particles affect light transmittance.
+
+### What Is Turbidity?
+
+**Turbidity** measures how cloudy or opaque a liquid is, based on how much light can pass through it. It is typically reported in **NTU (Nephelometric Turbidity Units)** or as **percent transmittance (%T)**. Higher turbidity means more suspended particles scattering light.
+
+### Procedure
+
+1. Connect the **Turbidity probe** to the LabQuest Mini
+2. Calibrate with distilled water if instructed
+3. Insert the **Tap Water** sample and record the reading
+4. Insert the **Lemon Juice** sample and record the reading
+
+### Prediction
+
+<!-- lab:reflection -->
+**Which liquid do you predict will be more turbid? Why?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Data Collection
+
+<!-- lab:data-table rows=2 title="Turbidity Measurements" -->
+| Liquid | Turbidity (NTU) or Transmittance (%T) |
+|--------|---------------------------------------|
+| Tap Water | {fill:text} |
+| Lemon Juice | {fill:text} |
+<!-- /lab:data-table -->
+
+### Analysis
+
+<!-- lab:reflection -->
+**1. Which liquid was more turbid? What causes the cloudiness?**
+
+{fill:textarea rows=2}
+
+**2. Water treatment plants monitor turbidity closely. Why is high turbidity a concern for drinking water?**
+
+{fill:textarea rows=2}
+
+**3. How does turbidity relate to the colorimeter absorbance measurements you took earlier?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+## Summary Data Table
+
+Copy your measurements into the summary table below so you have all data in one place.
+
+<!-- lab:data-table rows=6 title="Liquids Measurement Summary" -->
+| Measurement | Tap Water | Lemon Juice |
+|------------|-----------|-------------|
+| pH | {fill:number} | {fill:number} |
+| Conductivity (µS/cm) | {fill:number} | {fill:number} |
+| Temperature (°C) | {fill:number} | {fill:number} |
+| Dissolved Oxygen (mg/L) | {fill:number} | {fill:number} |
+| Absorbance (max wavelength, Abs) | {fill:number} | {fill:number} |
+| Turbidity (NTU or %T) | {fill:text} | {fill:text} |
+<!-- /lab:data-table -->
+
+---
+
+## Group Data Sharing
+
+Share your results with the other group(s) and record their data below.
+
+<!-- lab:data-table rows=6 title="Partner Group Data" -->
+| Measurement | Tap Water (Group ___) | Lemon Juice (Group ___) |
+|------------|----------------------|------------------------|
+| pH | {fill:number} | {fill:number} |
+| Conductivity (µS/cm) | {fill:number} | {fill:number} |
+| Temperature (°C) | {fill:number} | {fill:number} |
+| Dissolved Oxygen (mg/L) | {fill:number} | {fill:number} |
+| Absorbance (max wavelength, Abs) | {fill:number} | {fill:number} |
+| Turbidity (NTU or %T) | {fill:text} | {fill:text} |
+<!-- /lab:data-table -->
 
 ---
 
 ## Conclusions
 
 <!-- lab:reflection -->
-**1. Explain why pH is important for the human body. Give at least two specific examples:**
+**1. Which measurements showed the greatest difference between tap water and lemon juice? Which showed the smallest? Explain why.**
 
 {fill:textarea rows=3}
 
-**2. How do buffers help maintain homeostasis in living organisms?**
+**2. Were your group's results similar to or different from the partner group's results? What might explain any differences you observed?**
+
+{fill:textarea rows=3}
+
+**3. If you had a third unknown liquid, which single measurement would be most useful for identifying whether it is acidic, neutral, or basic? Why?**
 
 {fill:textarea rows=2}
 
-**3. A patient needs an IV solution that is 0.9% NaCl (normal saline). How many grams of NaCl would you need to prepare 1000 mL of this solution?**
+**4. How might these measurement techniques be used in a medical or environmental context? Give at least two examples.**
 
-{fill:textarea rows=2}
+{fill:textarea rows=3}
 
-**4. What new laboratory skills did you develop in this lab?**
+**5. What new laboratory skills did you develop in this lab?**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -372,25 +481,29 @@ Solution
 
 ## Quick Reference
 
-### pH Scale Summary
+### Measurement Summary
 
-| pH Range | Classification | Examples |
-|----------|---------------|----------|
-| 0-6 | Acidic | Stomach acid, vinegar, citrus |
-| 7 | Neutral | Pure water |
-| 8-14 | Basic (Alkaline) | Baking soda, bleach, drain cleaner |
+| Probe | What It Measures | Units | Typical Range |
+|-------|-----------------|-------|---------------|
+| pH Meter | Hydrogen ion concentration | pH units | 0–14 |
+| Conductivity | Dissolved ion content | µS/cm | 0–20,000+ |
+| Temperature | Thermal energy | °C | -20 to 120 |
+| Dissolved Oxygen | O₂ in solution | mg/L | 0–15 |
+| Colorimeter | Light absorbance | Abs | 0–3+ |
+| Turbidity | Cloudiness / scatter | NTU | 0–1000+ |
 
-### Solution Preparation Formulas
+### Key Relationships
 
-| Calculation | Formula |
-|-------------|---------|
-| Mass for % solution | Mass (g) = (% × Volume in mL) / 100 |
-| Dilution factor | DF = Final Volume / Sample Volume |
-| Final concentration | C_final = C_initial / Dilution Factor |
+| Concept | Relationship |
+|---------|-------------|
+| pH & H⁺ ions | Lower pH = more H⁺ = more acidic |
+| Conductivity & dissolved ions | More dissolved ions = higher conductivity |
+| Temperature & DO | Higher temperature = lower dissolved oxygen |
+| Turbidity & absorbance | More particles = higher turbidity = higher absorbance |
 
 ---
 
-**Connection to Module 05:** Understanding pH and solution preparation is essential for comprehending enzyme function, cellular metabolism, and homeostasis. Enzymes are highly sensitive to pH — each enzyme works optimally at a specific pH. Buffer systems in blood and cells maintain the stable pH needed for life. These foundational skills will be applied throughout your study of human biology.
+**Connection to Module 05:** Understanding how to measure and characterize liquids is fundamental to biology. Body fluids—blood, urine, cerebrospinal fluid—are all assessed by these same types of measurements (pH, electrolyte conductivity, dissolved gases). The techniques you practiced here with LabQuest Mini are directly analogous to those used in clinical laboratories and environmental monitoring.
 
 ---
 

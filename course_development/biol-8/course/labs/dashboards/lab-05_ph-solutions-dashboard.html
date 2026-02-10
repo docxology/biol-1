@@ -4,22 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 5 Dashboard: pH and Solutions | BIOL-8</title>
+  <title>Lab 5 Dashboard: Liquids Measurement | BIOL-8</title>
   <style>
-    /* ═══════════════════════════════════════════════════════════════════════
-   RESET & BASE
-   ═══════════════════════════════════════════════════════════════════════ */
     *,
     *::before,
     *::after {
       box-sizing: border-box;
       margin: 0;
-      padding: 0;
+      padding: 0
     }
 
     :root {
       --bg: #f0f2f5;
-      --card: #ffffff;
+      --card: #fff;
       --sidebar: #1a1a2e;
       --sidebar-hover: #252545;
       --accent: #c41e3a;
@@ -29,33 +26,31 @@
       --green: #16a34a;
       --amber: #d97706;
       --purple: #7c3aed;
+      --teal: #0d9488;
       --text: #1a1a1a;
       --text-muted: #6b7280;
       --border: #e5e7eb;
       --radius: 10px;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --shadow: 0 1px 3px rgba(0, 0, 0, .08);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .1);
       --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+      --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: smooth
     }
 
     body {
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.6
     }
 
-    /* ═══════════════════════════════════════════════════════════════════════
-   LAYOUT
-   ═══════════════════════════════════════════════════════════════════════ */
     .layout {
       display: flex;
-      min-height: 100vh;
+      min-height: 100vh
     }
 
     .sidebar {
@@ -69,30 +64,30 @@
       overflow-y: auto;
       z-index: 100;
       display: flex;
-      flex-direction: column;
+      flex-direction: column
     }
 
     .sidebar-header {
       padding: 24px 20px 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, .1)
     }
 
     .sidebar-header h1 {
       font-size: 15px;
       font-weight: 700;
       color: #fff;
-      letter-spacing: 0.5px;
+      letter-spacing: .5px
     }
 
     .sidebar-header p {
       font-size: 12px;
       color: #94a3b8;
-      margin-top: 4px;
+      margin-top: 4px
     }
 
     .sidebar-nav {
       flex: 1;
-      padding: 12px 0;
+      padding: 12px 0
     }
 
     .sidebar-nav a {
@@ -104,19 +99,19 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
-      transition: all 0.15s;
-      border-left: 3px solid transparent;
+      transition: all .15s;
+      border-left: 3px solid transparent
     }
 
     .sidebar-nav a:hover {
       background: var(--sidebar-hover);
-      color: #e2e8f0;
+      color: #e2e8f0
     }
 
     .sidebar-nav a.active {
       color: #fff;
       background: var(--sidebar-hover);
-      border-left-color: var(--accent);
+      border-left-color: var(--accent)
     }
 
     .sidebar-nav .nav-num {
@@ -128,42 +123,39 @@
       border-radius: 6px;
       font-size: 11px;
       font-weight: 700;
-      background: rgba(255, 255, 255, 0.08);
-      flex-shrink: 0;
+      background: rgba(255, 255, 255, .08);
+      flex-shrink: 0
     }
 
     .sidebar-nav a.active .nav-num {
       background: var(--accent);
-      color: #fff;
+      color: #fff
     }
 
     .sidebar-footer {
       padding: 16px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, .1);
       font-size: 11px;
-      color: #64748b;
+      color: #64748b
     }
 
     .main {
       margin-left: 260px;
       flex: 1;
       padding: 32px;
-      max-width: 1200px;
+      max-width: 1200px
     }
 
-    /* ═══════════════════════════════════════════════════════════════════════
-   CARDS & SECTIONS
-   ═══════════════════════════════════════════════════════════════════════ */
     .section {
       margin-bottom: 40px;
-      scroll-margin-top: 24px;
+      scroll-margin-top: 24px
     }
 
     .section-header {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 20px
     }
 
     .section-num {
@@ -177,18 +169,18 @@
       color: #fff;
       font-weight: 800;
       font-size: 16px;
-      flex-shrink: 0;
+      flex-shrink: 0
     }
 
     .section-title {
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 700
     }
 
     .section-subtitle {
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 2px
     }
 
     .card {
@@ -197,7 +189,7 @@
       box-shadow: var(--shadow);
       padding: 24px;
       margin-bottom: 16px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border)
     }
 
     .card-title {
@@ -206,32 +198,29 @@
       margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 8px
     }
 
     .card-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 16px
     }
 
     .card-row-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
+      gap: 16px
     }
 
-    @media (max-width: 900px) {
+    @media(max-width:900px) {
 
       .card-row,
       .card-row-3 {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr
       }
     }
 
-    /* ═══════════════════════════════════════════════════════════════════════
-   BUTTONS & INPUTS
-   ═══════════════════════════════════════════════════════════════════════ */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -243,69 +232,69 @@
       font-weight: 600;
       border: none;
       cursor: pointer;
-      transition: all 0.15s;
-      font-family: var(--font);
+      transition: all .15s;
+      font-family: var(--font)
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #fff;
+      color: #fff
     }
 
     .btn-primary:hover {
       background: var(--accent-light);
       transform: translateY(-1px);
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-lg)
     }
 
     .btn-secondary {
       background: var(--blue);
-      color: #fff;
+      color: #fff
     }
 
     .btn-secondary:hover {
-      background: var(--blue-light);
+      background: var(--blue-light)
     }
 
     .btn-outline {
       background: transparent;
       color: var(--text);
-      border: 2px solid var(--border);
+      border: 2px solid var(--border)
     }
 
     .btn-outline:hover {
       border-color: var(--accent);
-      color: var(--accent);
+      color: var(--accent)
     }
 
     .btn-sm {
       padding: 6px 14px;
-      font-size: 12px;
+      font-size: 12px
     }
 
     .btn-group {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin: 12px 0;
+      margin: 12px 0
     }
 
     .slider-group {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 8px 0;
+      margin: 8px 0
     }
 
     .slider-group label {
       font-size: 13px;
       font-weight: 600;
-      min-width: 80px;
+      min-width: 80px
     }
 
     .slider-group input[type=range] {
       flex: 1;
-      accent-color: var(--accent);
+      accent-color: var(--accent)
     }
 
     .slider-val {
@@ -313,34 +302,14 @@
       font-size: 14px;
       font-weight: 700;
       min-width: 50px;
-      text-align: right;
+      text-align: right
     }
 
-    select.input-select {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 2px solid var(--border);
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      background: #fff;
-      color: var(--text);
-      transition: border-color 0.15s;
-    }
-
-    select.input-select:hover {
-      border-color: var(--accent);
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════════
-   STATS & BADGES
-   ═══════════════════════════════════════════════════════════════════════ */
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 12px;
-      margin: 12px 0;
+      margin: 12px 0
     }
 
     .stat-box {
@@ -348,13 +317,13 @@
       padding: 14px 8px;
       border-radius: 8px;
       background: #f8fafc;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border)
     }
 
     .stat-box .stat-val {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 800;
-      font-family: var(--mono);
+      font-family: var(--mono)
     }
 
     .stat-box .stat-label {
@@ -363,196 +332,67 @@
       margin-top: 2px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: .5px
     }
 
     .stat-accent .stat-val {
-      color: var(--accent);
+      color: var(--accent)
     }
 
     .stat-blue .stat-val {
-      color: var(--blue);
+      color: var(--blue)
     }
 
     .stat-green .stat-val {
-      color: var(--green);
+      color: var(--green)
     }
 
     .stat-amber .stat-val {
-      color: var(--amber);
+      color: var(--amber)
     }
 
     .stat-purple .stat-val {
-      color: var(--purple);
+      color: var(--purple)
     }
 
-    .badge {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .stat-teal .stat-val {
+      color: var(--teal)
     }
 
-    .badge-red {
-      background: #fef2f2;
-      color: var(--accent);
-    }
-
-    .badge-blue {
-      background: #eff6ff;
-      color: var(--blue);
-    }
-
-    .badge-green {
-      background: #f0fdf4;
-      color: var(--green);
-    }
-
-    .badge-amber {
-      background: #fffbeb;
-      color: var(--amber);
-    }
-
-    .badge-purple {
-      background: #f5f3ff;
-      color: var(--purple);
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════════
-   CHART CONTAINERS
-   ═══════════════════════════════════════════════════════════════════════ */
     .chart-wrap {
       position: relative;
       width: 100%;
-      margin: 8px 0;
+      margin: 8px 0
     }
 
     .chart-wrap canvas {
       width: 100% !important;
       display: block;
-      border-radius: 6px;
+      border-radius: 6px
     }
 
-    /* ═══════════════════════════════════════════════════════════════════════
-   ANALYSIS PANEL
-   ═══════════════════════════════════════════════════════════════════════ */
     .analysis-result {
       background: #f8fafc;
       border-radius: 8px;
       padding: 16px;
       margin: 10px 0;
       border-left: 4px solid var(--blue);
-      font-size: 14px;
+      font-size: 14px
     }
 
     .analysis-result .ar-title {
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 6px
     }
 
-    .analysis-result code {
-      font-family: var(--mono);
-      background: #e2e8f0;
-      padding: 1px 6px;
-      border-radius: 4px;
-      font-size: 13px;
-    }
-
-    .analysis-result.ar-pass {
-      border-left-color: var(--green);
-    }
-
-    .analysis-result.ar-fail {
-      border-left-color: var(--accent);
-    }
-
-    .analysis-result.ar-warn {
-      border-left-color: var(--amber);
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════════
-   CLINICAL PANEL
-   ═══════════════════════════════════════════════════════════════════════ */
-    .clinical-panel {
-      background: #f8fafc;
-      border-radius: 8px;
-      padding: 16px;
-      margin: 10px 0;
-      border-left: 4px solid var(--accent);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .clinical-panel .cp-title {
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: var(--accent);
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════════
-   BODY MAP BUTTONS
-   ═══════════════════════════════════════════════════════════════════════ */
-    .body-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      border: 2px solid var(--border);
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: var(--font);
-      background: #fff;
-    }
-
-    .body-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: #fef2f2;
-    }
-
-    .body-btn.active {
-      border-color: var(--accent);
-      background: var(--accent);
-      color: #fff;
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════════
-   CONVERGENCE LINE
-   ═══════════════════════════════════════════════════════════════════════ */
-    .convergence-info {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin: 10px 0;
-      font-size: 13px;
-    }
-
-    .convergence-info .ci-dot {
-      width: 12px;
-      height: 3px;
-      border-radius: 2px;
-      display: inline-block;
-    }
-
-    /* ═══════════════════════════════════════════════════════════════════════
-   HERO BANNER
-   ═══════════════════════════════════════════════════════════════════════ */
     .hero {
-      background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+      background: linear-gradient(135deg, #1a1a2e 0%, #1b2d3d 50%, #1a2e2e 100%);
       color: #fff;
       border-radius: var(--radius);
       padding: 36px;
       margin-bottom: 32px;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .hero::after {
@@ -562,28 +402,28 @@
       right: -20%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, transparent 70%);
-      pointer-events: none;
+      background: radial-gradient(circle, rgba(13, 148, 136, .15) 0%, transparent 70%);
+      pointer-events: none
     }
 
     .hero h2 {
       font-size: 28px;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 8px
     }
 
     .hero p {
       font-size: 15px;
       color: #cbd5e1;
       max-width: 600px;
-      line-height: 1.7;
+      line-height: 1.7
     }
 
     .hero .bio-tags {
       display: flex;
       gap: 8px;
       margin-top: 16px;
-      flex-wrap: wrap;
+      flex-wrap: wrap
     }
 
     .hero .bio-tag {
@@ -591,22 +431,112 @@
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, .1);
       backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, .15)
     }
 
-    /* ═══════════════════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════════════════ */
-    @media (max-width: 768px) {
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 12px 16px;
+      margin: 6px 0;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: var(--font)
+    }
+
+    .quiz-option:hover {
+      border-color: var(--blue);
+      background: #f0f7ff
+    }
+
+    .quiz-option.correct {
+      border-color: var(--green);
+      background: #f0fdf4;
+      color: var(--green)
+    }
+
+    .quiz-option.wrong {
+      border-color: var(--accent);
+      background: #fef2f2;
+      color: var(--accent)
+    }
+
+    .quiz-feedback {
+      padding: 12px;
+      border-radius: 8px;
+      margin: 8px 0;
+      font-size: 13px;
+      font-weight: 600;
+      display: none
+    }
+
+    .quiz-score {
+      font-size: 18px;
+      font-weight: 800;
+      font-family: var(--mono)
+    }
+
+    .data-input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 14px;
+      transition: border-color .15s
+    }
+
+    .data-input:focus {
+      outline: none;
+      border-color: var(--blue)
+    }
+
+    table.summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0
+    }
+
+    table.summary-table th,
+    table.summary-table td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+      font-size: 13px
+    }
+
+    table.summary-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .5px
+    }
+
+    table.summary-table input {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 13px
+    }
+
+    @media(max-width:768px) {
       .sidebar {
-        display: none;
+        display: none
       }
 
       .main {
         margin-left: 0;
-        padding: 16px;
+        padding: 16px
       }
     }
   </style>
@@ -614,2360 +544,974 @@
 
 <body>
   <div class="layout">
-
-    <!-- ═══════════════════════════════════════════════════════════════════════
-     SIDEBAR
-     ═══════════════════════════════════════════════════════════════════════ -->
     <aside class="sidebar">
       <div class="sidebar-header">
         <h1>BIOL-8: Human Biology</h1>
-        <p>Lab 5 &mdash; pH and Solutions</p>
+        <p>Lab 5 &mdash; Liquids Measurement</p>
       </div>
       <nav class="sidebar-nav">
         <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
-        <a href="#part1"><span class="nav-num">1</span> IV Fluid Tonicity</a>
-        <a href="#part2"><span class="nav-num">2</span> Diffusion Chamber</a>
-        <a href="#part3"><span class="nav-num">3</span> Kidney Filtration</a>
-        <a href="#part4"><span class="nav-num">4</span> Drug Delivery</a>
-        <a href="#part5"><span class="nav-num">5</span> Dialysis Tubing</a>
-        <a href="#part6"><span class="nav-num">6</span> Body Transport</a>
+        <a href="#setup"><span class="nav-num">0</span> Setup & Equipment</a>
+        <a href="#ph"><span class="nav-num">1</span> pH Meter</a>
+        <a href="#conductivity"><span class="nav-num">2</span> Conductivity</a>
+        <a href="#temperature"><span class="nav-num">3</span> Temperature</a>
+        <a href="#do"><span class="nav-num">4</span> Dissolved Oxygen</a>
+        <a href="#colorimeter"><span class="nav-num">5</span> Colorimeter</a>
+        <a href="#turbidity"><span class="nav-num">6</span> Turbidity</a>
+        <a href="#summary"><span class="nav-num">7</span> Summary Table</a>
+        <a href="#quiz"><span class="nav-num">Q</span> Knowledge Check</a>
       </nav>
       <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
     </aside>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════
-     MAIN CONTENT
-     ═══════════════════════════════════════════════════════════════════════ -->
     <div class="main">
-
       <!-- HERO -->
       <div class="hero" id="hero">
-        <h2>Membranes</h2>
-        <p>Interactive simulations exploring how cell membranes control the movement of substances. Investigate osmosis,
-          diffusion, tonicity, and transport mechanisms critical to human physiology.</p>
+        <h2>Liquids Measurement</h2>
+        <p>Use six different Vernier probes to measure and compare the physical and chemical properties of Tap Water and
+          Lemon Juice. Explore interactive visualizations of each measurement type below.</p>
         <div class="bio-tags">
-          <span class="bio-tag">Osmosis</span>
-          <span class="bio-tag">Transport</span>
-          <span class="bio-tag">Cell Membrane</span>
+          <span class="bio-tag">LabQuest Mini</span>
+          <span class="bio-tag">pH</span>
+          <span class="bio-tag">Conductivity</span>
+          <span class="bio-tag">Temperature</span>
+          <span class="bio-tag">Dissolved O₂</span>
+          <span class="bio-tag">Colorimetry</span>
+          <span class="bio-tag">Turbidity</span>
         </div>
       </div>
 
-      <!-- ═══════════════════════════ PART 1: IV FLUID TONICITY ════════════════ -->
-      <div class="section" id="part1">
+      <!-- ═══ SETUP ═══ -->
+      <div class="section" id="setup">
+        <div class="section-header">
+          <div class="section-num">0</div>
+          <div>
+            <div class="section-title">Setup & Equipment</div>
+            <div class="section-subtitle">LabQuest Mini, Logger Pro 3.16.2, and Vernier probes</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Equipment Overview</div>
+          <div class="stat-grid">
+            <div class="stat-box stat-teal">
+              <div class="stat-val">6</div>
+              <div class="stat-label">Probes</div>
+            </div>
+            <div class="stat-box stat-blue">
+              <div class="stat-val">2</div>
+              <div class="stat-label">Liquids</div>
+            </div>
+            <div class="stat-box stat-accent">
+              <div class="stat-val">USB</div>
+              <div class="stat-label">Connection</div>
+            </div>
+            <div class="stat-box stat-green">
+              <div class="stat-val">3.16</div>
+              <div class="stat-label">Logger Pro</div>
+            </div>
+          </div>
+          <div class="analysis-result">
+            <div class="ar-title">Two Test Liquids</div>
+            <p><strong>Pure Tap Water</strong> — Clear, near-neutral pH, low dissolved solids<br>
+              <strong>Lemon Juice</strong> — Cloudy, acidic (citric acid), high dissolved solids and sugars
+            </p>
+          </div>
+          <div class="analysis-result">
+            <div class="ar-title">⚠️ Between Samples</div>
+            <p>Always <strong>rinse the probe with distilled water</strong> and blot dry before switching liquids to
+              avoid cross-contamination.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ PART 1: pH ═══ -->
+      <div class="section" id="ph">
         <div class="section-header">
           <div class="section-num">1</div>
           <div>
-            <div class="section-title">IV Fluid Tonicity Simulator</div>
-            <div class="section-subtitle">See how solution tonicity affects red blood cells &mdash; and why IV saline is
-              0.9% NaCl</div>
+            <div class="section-title">pH Meter</div>
+            <div class="section-subtitle">Measure hydrogen ion concentration &mdash; the acidity or alkalinity of each
+              liquid</div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Red Blood Cell in Solution</div>
+          <div class="card-title">Interactive pH Scale</div>
           <div class="slider-group">
-            <label>NaCl %</label>
-            <input type="range" id="tonicity-slider" min="0" max="300" value="90" oninput="tonicityUpdate()">
-            <span class="slider-val" id="tonicity-val">0.90%</span>
+            <label>pH Value</label>
+            <input type="range" id="ph-slider" min="0" max="140" value="70" oninput="phUpdate()">
+            <span class="slider-val" id="ph-val">7.0</span>
           </div>
           <div class="stat-grid">
             <div class="stat-box stat-accent">
-              <div class="stat-val" id="ton-state">Normal</div>
-              <div class="stat-label">Cell State</div>
+              <div class="stat-val" id="ph-class">Neutral</div>
+              <div class="stat-label">Classification</div>
             </div>
             <div class="stat-box stat-blue">
-              <div class="stat-val" id="ton-type">Isotonic</div>
-              <div class="stat-label">Solution Type</div>
+              <div class="stat-val" id="ph-h">1.0e-7</div>
+              <div class="stat-label">H⁺ (mol/L)</div>
             </div>
             <div class="stat-box stat-green">
-              <div class="stat-val" id="ton-size">100%</div>
-              <div class="stat-label">Cell Volume</div>
-            </div>
-            <div class="stat-box stat-amber">
-              <div class="stat-val" id="ton-water">0</div>
-              <div class="stat-label">Net Water Flow</div>
+              <div class="stat-val" id="ph-example">Pure Water</div>
+              <div class="stat-label">Example</div>
             </div>
           </div>
-          <div class="chart-wrap"><canvas id="tonicity-canvas" height="300"></canvas></div>
+          <div class="chart-wrap"><canvas id="ph-canvas" height="200"></canvas></div>
           <div class="btn-group">
-            <button class="btn btn-primary" onclick="tonicityPreset(0)">Pure Water (0%)</button>
-            <button class="btn btn-secondary" onclick="tonicityPreset(45)">Hypotonic (0.45%)</button>
-            <button class="btn btn-primary" onclick="tonicityPreset(90)">Isotonic (0.9%)</button>
-            <button class="btn btn-secondary" onclick="tonicityPreset(150)">Hypertonic (1.5%)</button>
-            <button class="btn btn-outline" onclick="tonicityPreset(300)">Extreme (3.0%)</button>
+            <button class="btn btn-primary" onclick="phPreset(20)">Lemon Juice (2.0)</button>
+            <button class="btn btn-secondary" onclick="phPreset(70)">Tap Water (7.0)</button>
+            <button class="btn btn-outline" onclick="phPreset(83)">Baking Soda (8.3)</button>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Clinical Consequences</div>
-          <div id="ton-clinical" class="clinical-panel">
-            <div class="cp-title">Isotonic Solution &mdash; 0.9% NaCl (Normal Saline)</div>
-            <p>The standard IV fluid. Water moves equally in and out of cells, maintaining normal cell volume. Used for
-              fluid resuscitation, medication delivery, and maintaining hydration.</p>
-          </div>
+          <div class="card-title">Expected Results</div>
+          <div class="chart-wrap"><canvas id="ph-compare" height="200"></canvas></div>
         </div>
       </div>
 
-      <!-- ═══════════════════════════ PART 2: DIFFUSION CHAMBER ════════════════ -->
-      <div class="section" id="part2">
+      <!-- ═══ PART 2: CONDUCTIVITY ═══ -->
+      <div class="section" id="conductivity">
         <div class="section-header">
           <div class="section-num">2</div>
           <div>
-            <div class="section-title">Diffusion Chamber</div>
-            <div class="section-subtitle">Watch random molecular motion drive net diffusion across a semipermeable
-              membrane</div>
+            <div class="section-title">Conductivity Probe</div>
+            <div class="section-subtitle">Measure total dissolved solids &mdash; how well each liquid conducts
+              electricity</div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Two-Compartment Simulator</div>
+          <div class="card-title">Conductivity Simulator</div>
           <div class="slider-group">
-            <label>Temperature</label>
-            <input type="range" id="diff-temp" min="1" max="10" value="5" oninput="diffUpdateLabels()">
-            <span class="slider-val" id="diff-temp-val">37&deg;C</span>
-          </div>
-          <div class="slider-group">
-            <label>Mol. Size</label>
-            <input type="range" id="diff-size" min="1" max="5" value="2" oninput="diffUpdateLabels()">
-            <span class="slider-val" id="diff-size-val">Small</span>
-          </div>
-          <div class="slider-group">
-            <label>Pore Size</label>
-            <input type="range" id="diff-pore" min="1" max="5" value="3" oninput="diffUpdateLabels()">
-            <span class="slider-val" id="diff-pore-val">Medium</span>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-primary" onclick="diffStart()">Start Diffusion</button>
-            <button class="btn btn-secondary" onclick="diffAddLeft(20)">Add 20 Left</button>
-            <button class="btn btn-secondary" onclick="diffAddRight(5)">Add 5 Right</button>
-            <button class="btn btn-outline" onclick="diffReset()">Reset</button>
+            <label>Ion Conc.</label>
+            <input type="range" id="cond-slider" min="0" max="100" value="20" oninput="condUpdate()">
+            <span class="slider-val" id="cond-val">200 µS</span>
           </div>
           <div class="stat-grid">
-            <div class="stat-box stat-accent">
-              <div class="stat-val" id="diff-left">30</div>
-              <div class="stat-label">Left Count</div>
-            </div>
             <div class="stat-box stat-blue">
-              <div class="stat-val" id="diff-right">0</div>
-              <div class="stat-label">Right Count</div>
+              <div class="stat-val" id="cond-tds">100</div>
+              <div class="stat-label">TDS (ppm)</div>
             </div>
             <div class="stat-box stat-green">
-              <div class="stat-val" id="diff-equil">No</div>
-              <div class="stat-label">Equilibrium</div>
+              <div class="stat-val" id="cond-quality">Good</div>
+              <div class="stat-label">Water Quality</div>
             </div>
             <div class="stat-box stat-amber">
-              <div class="stat-val" id="diff-time">0s</div>
-              <div class="stat-label">Elapsed</div>
+              <div class="stat-val" id="cond-current">Low</div>
+              <div class="stat-label">Current Flow</div>
             </div>
           </div>
-          <div class="chart-wrap"><canvas id="diff-canvas" height="280"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-title">Concentration Over Time</div>
-          <div class="convergence-info">
-            <span><span class="ci-dot" style="background:var(--accent);"></span> Left compartment</span>
-            <span><span class="ci-dot" style="background:var(--blue);"></span> Right compartment</span>
-            <span><span class="ci-dot" style="background:#9ca3af;"></span> Equilibrium line</span>
+          <div class="chart-wrap"><canvas id="cond-canvas" height="240"></canvas></div>
+          <div class="btn-group">
+            <button class="btn btn-secondary" onclick="condPreset(5)">Distilled Water</button>
+            <button class="btn btn-primary" onclick="condPreset(20)">Tap Water</button>
+            <button class="btn btn-primary" onclick="condPreset(60)">Lemon Juice</button>
+            <button class="btn btn-outline" onclick="condPreset(95)">Seawater</button>
           </div>
-          <div class="chart-wrap"><canvas id="diff-chart" height="220"></canvas></div>
         </div>
       </div>
 
-      <!-- ═══════════════════════════ PART 3: KIDNEY FILTRATION ════════════════ -->
-      <div class="section" id="part3">
+      <!-- ═══ PART 3: TEMPERATURE ═══ -->
+      <div class="section" id="temperature">
         <div class="section-header">
           <div class="section-num">3</div>
           <div>
-            <div class="section-title">Kidney Filtration Model</div>
-            <div class="section-subtitle">Simplified nephron showing osmosis and selective reabsorption</div>
+            <div class="section-title">Temperature Probe</div>
+            <div class="section-subtitle">Compare digital probe and mercury thermometer readings in °C</div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Nephron Simulator</div>
+          <div class="card-title">Thermometer Comparison</div>
           <div class="slider-group">
-            <label>Blood Pressure</label>
-            <input type="range" id="kid-bp" min="60" max="180" value="120" oninput="kidneyUpdate()">
-            <span class="slider-val" id="kid-bp-val">120</span>
-          </div>
-          <div class="slider-group">
-            <label>Solute Conc.</label>
-            <input type="range" id="kid-solute" min="1" max="10" value="5" oninput="kidneyUpdate()">
-            <span class="slider-val" id="kid-solute-val">Normal</span>
+            <label>Temperature</label>
+            <input type="range" id="temp-slider" min="0" max="100" value="22" oninput="tempUpdate()">
+            <span class="slider-val" id="temp-val">22.0°C</span>
           </div>
           <div class="stat-grid">
             <div class="stat-box stat-accent">
-              <div class="stat-val" id="kid-gfr">125</div>
-              <div class="stat-label">GFR (mL/min)</div>
+              <div class="stat-val" id="temp-f">71.6°F</div>
+              <div class="stat-label">Fahrenheit</div>
             </div>
             <div class="stat-box stat-blue">
-              <div class="stat-val" id="kid-reab">99%</div>
-              <div class="stat-label">Water Reabsorbed</div>
+              <div class="stat-val" id="temp-k">295.2 K</div>
+              <div class="stat-label">Kelvin</div>
             </div>
             <div class="stat-box stat-green">
-              <div class="stat-val" id="kid-urine">Normal</div>
-              <div class="stat-label">Urine Output</div>
-            </div>
-            <div class="stat-box stat-amber">
-              <div class="stat-val" id="kid-conc">300</div>
-              <div class="stat-label">Urine mOsm/L</div>
+              <div class="stat-val" id="temp-bio">Room Temp</div>
+              <div class="stat-label">Context</div>
             </div>
           </div>
-          <div class="chart-wrap"><canvas id="kidney-canvas" height="350"></canvas></div>
-          <div class="btn-group">
-            <button class="btn btn-primary" onclick="kidneyAnimate()">Animate Flow</button>
-            <button class="btn btn-secondary" onclick="kidneyDialysis()">Show Dialysis</button>
-            <button class="btn btn-outline" onclick="kidneyReset()">Reset</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Filtration Rate vs Blood Pressure</div>
-          <div class="chart-wrap"><canvas id="kidney-chart" height="220"></canvas></div>
+          <div class="chart-wrap"><canvas id="temp-canvas" height="240"></canvas></div>
         </div>
       </div>
 
-      <!-- ═══════════════════════════ PART 4: DRUG DELIVERY ════════════════════ -->
-      <div class="section" id="part4">
+      <!-- ═══ PART 4: DISSOLVED OXYGEN ═══ -->
+      <div class="section" id="do">
         <div class="section-header">
           <div class="section-num">4</div>
           <div>
-            <div class="section-title">Drug Delivery &amp; Membrane Permeability</div>
-            <div class="section-subtitle">Predict how drug properties determine membrane crossing mechanisms</div>
+            <div class="section-title">Dissolved Oxygen Probe</div>
+            <div class="section-subtitle">Measure O₂ dissolved in each liquid &mdash; critical for aquatic life</div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Drug Properties Selector</div>
-          <div class="btn-group" style="gap:16px;">
-            <div>
-              <label style="font-size:12px;font-weight:700;display:block;margin-bottom:4px;">Molecular Weight</label>
-              <select class="input-select" id="drug-mw" onchange="drugUpdate()">
-                <option value="small">Small (&lt;500 Da)</option>
-                <option value="large">Large (&gt;500 Da)</option>
-              </select>
-            </div>
-            <div>
-              <label style="font-size:12px;font-weight:700;display:block;margin-bottom:4px;">Charge</label>
-              <select class="input-select" id="drug-charge" onchange="drugUpdate()">
-                <option value="uncharged">Uncharged</option>
-                <option value="charged">Charged</option>
-              </select>
-            </div>
-            <div>
-              <label style="font-size:12px;font-weight:700;display:block;margin-bottom:4px;">Lipid Solubility</label>
-              <select class="input-select" id="drug-lipid" onchange="drugUpdate()">
-                <option value="high">High</option>
-                <option value="low" selected>Low</option>
-              </select>
-            </div>
+          <div class="card-title">Dissolved Oxygen Gauge</div>
+          <div class="slider-group">
+            <label>DO Level</label>
+            <input type="range" id="do-slider" min="0" max="150" value="80" oninput="doUpdate()">
+            <span class="slider-val" id="do-val">8.0 mg/L</span>
           </div>
           <div class="stat-grid">
-            <div class="stat-box stat-accent">
-              <div class="stat-val" id="drug-method">--</div>
-              <div class="stat-label">Transport Method</div>
-            </div>
             <div class="stat-box stat-blue">
-              <div class="stat-val" id="drug-rate">--</div>
-              <div class="stat-label">Relative Rate</div>
+              <div class="stat-val" id="do-sat">92%</div>
+              <div class="stat-label">Saturation</div>
             </div>
             <div class="stat-box stat-green">
-              <div class="stat-val" id="drug-energy">--</div>
-              <div class="stat-label">Energy Required</div>
+              <div class="stat-val" id="do-fish">✓ OK</div>
+              <div class="stat-label">Fish Survival</div>
+            </div>
+            <div class="stat-box stat-amber">
+              <div class="stat-val" id="do-temp-effect">Normal</div>
+              <div class="stat-label">Temp Effect</div>
             </div>
           </div>
-          <div class="chart-wrap"><canvas id="drug-canvas" height="320"></canvas></div>
+          <div class="chart-wrap"><canvas id="do-canvas" height="220"></canvas></div>
           <div class="btn-group">
-            <button class="btn btn-primary" onclick="drugAnimate()">Animate Crossing</button>
-            <button class="btn btn-outline" onclick="drugReset()">Reset</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Pharmacology Connection</div>
-          <div id="drug-pharma" class="analysis-result">
-            <div class="ar-title">Select drug properties above to see pharmacology details</div>
-            <p>Drug absorption, distribution, and elimination all depend on membrane permeability.</p>
+            <button class="btn btn-secondary" onclick="doPreset(85)">Tap Water (~8.5)</button>
+            <button class="btn btn-primary" onclick="doPreset(30)">Lemon Juice (~3)</button>
+            <button class="btn btn-outline" onclick="doPreset(0)">Anoxic (0)</button>
           </div>
         </div>
       </div>
 
-      <!-- ═══════════════════════════ PART 5: DIALYSIS TUBING ══════════════════ -->
-      <div class="section" id="part5">
+      <!-- ═══ PART 5: COLORIMETER ═══ -->
+      <div class="section" id="colorimeter">
         <div class="section-header">
           <div class="section-num">5</div>
           <div>
-            <div class="section-title">Dialysis Tubing Experiment</div>
-            <div class="section-subtitle">Virtual lab demonstrating size-based membrane selectivity</div>
+            <div class="section-title">Colorimeter</div>
+            <div class="section-subtitle">Measure absorbance at 430, 470, 565, and 635 nm wavelengths</div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Dialysis Bag Setup</div>
-          <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Bag contains starch (large) + glucose
-            (small). Beaker contains iodine (small) + Benedict's reagent. Watch which molecules cross the membrane.</p>
+          <div class="card-title">Absorbance Spectrum Comparison</div>
+          <div class="btn-group">
+            <button class="btn btn-primary" id="color-water-btn" onclick="colorSelect('water')">Tap Water</button>
+            <button class="btn btn-secondary" id="color-lemon-btn" onclick="colorSelect('lemon')">Lemon Juice</button>
+            <button class="btn btn-outline" id="color-both-btn" onclick="colorSelect('both')">Compare Both</button>
+          </div>
           <div class="stat-grid">
-            <div class="stat-box stat-accent">
-              <div class="stat-val" id="dial-time">0</div>
-              <div class="stat-label">Minutes</div>
+            <div class="stat-box" style="border-top:3px solid #7c3aed">
+              <div class="stat-val" id="abs-430">0.01</div>
+              <div class="stat-label">430 nm (Violet)</div>
             </div>
+            <div class="stat-box" style="border-top:3px solid #2563eb">
+              <div class="stat-val" id="abs-470">0.01</div>
+              <div class="stat-label">470 nm (Blue)</div>
+            </div>
+            <div class="stat-box" style="border-top:3px solid #16a34a">
+              <div class="stat-val" id="abs-565">0.01</div>
+              <div class="stat-label">565 nm (Green)</div>
+            </div>
+            <div class="stat-box" style="border-top:3px solid #dc2626">
+              <div class="stat-val" id="abs-635">0.01</div>
+              <div class="stat-label">635 nm (Red)</div>
+            </div>
+          </div>
+          <div class="chart-wrap"><canvas id="color-canvas" height="280"></canvas></div>
+        </div>
+      </div>
+
+      <!-- ═══ PART 6: TURBIDITY ═══ -->
+      <div class="section" id="turbidity">
+        <div class="section-header">
+          <div class="section-num">6</div>
+          <div>
+            <div class="section-title">Turbidity Probe</div>
+            <div class="section-subtitle">Measure how suspended particles scatter light &mdash; cloudiness of each
+              liquid</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Turbidity / Transmittance Visualizer</div>
+          <div class="slider-group">
+            <label>Turbidity</label>
+            <input type="range" id="turb-slider" min="0" max="200" value="5" oninput="turbUpdate()">
+            <span class="slider-val" id="turb-val">5 NTU</span>
+          </div>
+          <div class="stat-grid">
             <div class="stat-box stat-blue">
-              <div class="stat-val" id="dial-iodine">Outside</div>
-              <div class="stat-label">Iodine Location</div>
+              <div class="stat-val" id="turb-trans">95%</div>
+              <div class="stat-label">Transmittance</div>
             </div>
             <div class="stat-box stat-green">
-              <div class="stat-val" id="dial-glucose">Inside</div>
-              <div class="stat-label">Glucose Location</div>
+              <div class="stat-val" id="turb-clarity">Clear</div>
+              <div class="stat-label">Clarity</div>
             </div>
-            <div class="stat-box stat-purple">
-              <div class="stat-val" id="dial-starch">Inside</div>
-              <div class="stat-label">Starch Location</div>
+            <div class="stat-box stat-amber">
+              <div class="stat-val" id="turb-safe">Safe</div>
+              <div class="stat-label">Drinking?</div>
             </div>
           </div>
-          <div class="chart-wrap"><canvas id="dial-canvas" height="340"></canvas></div>
+          <div class="chart-wrap"><canvas id="turb-canvas" height="220"></canvas></div>
           <div class="btn-group">
-            <button class="btn btn-primary" onclick="dialStart()">Run Experiment</button>
-            <button class="btn btn-secondary" onclick="dialStep()">Step +5 min</button>
-            <button class="btn btn-outline" onclick="dialReset()">Reset</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Molecule Movement Over Time</div>
-          <div class="convergence-info">
-            <span><span class="ci-dot" style="background:#8B4513;"></span> Iodine in bag</span>
-            <span><span class="ci-dot" style="background:#2563eb;"></span> Glucose in beaker</span>
-            <span><span class="ci-dot" style="background:#9ca3af;"></span> Starch (stays in bag)</span>
-          </div>
-          <div class="chart-wrap"><canvas id="dial-chart" height="220"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-title">Test Results</div>
-          <div id="dial-results">
-            <div class="analysis-result">
-              <div class="ar-title">Experiment Not Yet Run</div>
-              <p>Click "Run Experiment" or "Step +5 min" to observe molecular movement through the dialysis membrane.
-              </p>
-            </div>
+            <button class="btn btn-secondary" onclick="turbPreset(5)">Tap Water (~5)</button>
+            <button class="btn btn-primary" onclick="turbPreset(120)">Lemon Juice (~120)</button>
+            <button class="btn btn-outline" onclick="turbPreset(0)">Crystal Clear (0)</button>
           </div>
         </div>
       </div>
 
-      <!-- ═══════════════════════════ PART 6: BODY TRANSPORT ═══════════════════ -->
-      <div class="section" id="part6">
+      <!-- ═══ SUMMARY TABLE ═══ -->
+      <div class="section" id="summary">
         <div class="section-header">
-          <div class="section-num">6</div>
+          <div class="section-num">7</div>
           <div>
-            <div class="section-title">Transport Mechanisms in the Human Body</div>
-            <div class="section-subtitle">Click body systems to explore real-world membrane transport</div>
+            <div class="section-title">Summary Data Table</div>
+            <div class="section-subtitle">Enter your measurements and compare between groups</div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Select a Body System</div>
+          <div class="card-title">Your Group's Data</div>
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Measurement</th>
+                <th>Tap Water</th>
+                <th>Lemon Juice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pH</td>
+                <td><input type="text" class="data-input" id="s-ph-w" placeholder="e.g. 7.0"></td>
+                <td><input type="text" class="data-input" id="s-ph-l" placeholder="e.g. 2.3"></td>
+              </tr>
+              <tr>
+                <td>Conductivity (µS/cm)</td>
+                <td><input type="text" class="data-input" id="s-cond-w" placeholder="e.g. 200"></td>
+                <td><input type="text" class="data-input" id="s-cond-l" placeholder="e.g. 600"></td>
+              </tr>
+              <tr>
+                <td>Temperature (°C)</td>
+                <td><input type="text" class="data-input" id="s-temp-w" placeholder="e.g. 21.5"></td>
+                <td><input type="text" class="data-input" id="s-temp-l" placeholder="e.g. 21.3"></td>
+              </tr>
+              <tr>
+                <td>Dissolved O₂ (mg/L)</td>
+                <td><input type="text" class="data-input" id="s-do-w" placeholder="e.g. 8.2"></td>
+                <td><input type="text" class="data-input" id="s-do-l" placeholder="e.g. 3.1"></td>
+              </tr>
+              <tr>
+                <td>Absorbance (max, Abs)</td>
+                <td><input type="text" class="data-input" id="s-abs-w" placeholder="e.g. 0.02"></td>
+                <td><input type="text" class="data-input" id="s-abs-l" placeholder="e.g. 1.8"></td>
+              </tr>
+              <tr>
+                <td>Turbidity (NTU)</td>
+                <td><input type="text" class="data-input" id="s-turb-w" placeholder="e.g. 3"></td>
+                <td><input type="text" class="data-input" id="s-turb-l" placeholder="e.g. 120"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-title">Partner Group's Data</div>
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Measurement</th>
+                <th>Tap Water</th>
+                <th>Lemon Juice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pH</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+              </tr>
+              <tr>
+                <td>Conductivity (µS/cm)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+              </tr>
+              <tr>
+                <td>Temperature (°C)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+              </tr>
+              <tr>
+                <td>Dissolved O₂ (mg/L)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+              </tr>
+              <tr>
+                <td>Absorbance (max, Abs)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+              </tr>
+              <tr>
+                <td>Turbidity (NTU)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══ QUIZ ═══ -->
+      <div class="section" id="quiz">
+        <div class="section-header">
+          <div class="section-num">Q</div>
+          <div>
+            <div class="section-title">Knowledge Check</div>
+            <div class="section-subtitle">Test your understanding &mdash; 10 questions covering all probes</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Question <span id="quiz-num">1</span> of 10</div>
+          <p id="quiz-question" style="font-size:15px;margin-bottom:12px;font-weight:600;"></p>
+          <div id="quiz-options"></div>
+          <div class="quiz-feedback" id="quiz-feedback"></div>
           <div class="btn-group">
-            <button class="body-btn active" onclick="bodySelect('lungs')">Lungs</button>
-            <button class="body-btn" onclick="bodySelect('intestines')">Intestines</button>
-            <button class="body-btn" onclick="bodySelect('neurons')">Neurons</button>
-            <button class="body-btn" onclick="bodySelect('kidneys')">Kidneys</button>
+            <button class="btn btn-secondary" id="quiz-next-btn" onclick="quizNext()" style="display:none">Next Question
+              →</button>
           </div>
-          <div class="stat-grid">
-            <div class="stat-box stat-accent">
-              <div class="stat-val" id="body-transport">Diffusion</div>
-              <div class="stat-label">Transport Type</div>
-            </div>
-            <div class="stat-box stat-blue">
-              <div class="stat-val" id="body-molecule">O2/CO2</div>
-              <div class="stat-label">Key Molecules</div>
-            </div>
-            <div class="stat-box stat-green">
-              <div class="stat-val" id="body-energy">No</div>
-              <div class="stat-label">ATP Required</div>
-            </div>
-            <div class="stat-box stat-amber">
-              <div class="stat-val" id="body-direction">Down</div>
-              <div class="stat-label">Gradient Dir.</div>
-            </div>
-          </div>
-          <div class="chart-wrap"><canvas id="body-canvas" height="320"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-title">Energy Requirements Comparison</div>
-          <div class="chart-wrap"><canvas id="body-energy-chart" height="240"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-title">System Details</div>
-          <div id="body-details" class="clinical-panel">
-            <div class="cp-title">Lungs &mdash; Gas Exchange by Simple Diffusion</div>
-            <p>Oxygen diffuses from alveolar air (high concentration) into blood capillaries (low concentration). Carbon
-              dioxide moves the opposite direction. The alveolar membrane is extremely thin (0.5 micrometers) to
-              maximize diffusion rate. No energy (ATP) is required &mdash; this is passive transport driven entirely by
-              concentration gradients.</p>
-          </div>
+          <div style="margin-top:12px;font-size:14px">Score: <span class="quiz-score" id="quiz-score">0</span> / <span
+              id="quiz-total">0</span></div>
         </div>
       </div>
 
     </div><!-- /main -->
   </div><!-- /layout -->
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-     JAVASCRIPT ENGINE
-     ═══════════════════════════════════════════════════════════════════════ -->
   <script>
-    // ── Utility ──────────────────────────────────────────────────────────────
+    // ── Utility ──
     const $ = id => document.getElementById(id);
-    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
     const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-    const lerp = (a, b, t) => a + (b - a) * t;
 
-    // ── Chart helper ─────────────────────────────────────────────────────────
     function getCtx(id) {
       const c = $(id); const dpr = window.devicePixelRatio || 1;
-      const w = c.offsetWidth || c.width || 300;
-      const h = c.offsetHeight || c.height || 150;
+      const w = c.offsetWidth || c.width || 300; const h = c.offsetHeight || c.height || 150;
       c.width = w * dpr; c.height = h * dpr;
       const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
-      ctx.W = w; ctx.H = h;
-      return ctx;
+      ctx.W = w; ctx.H = h; return ctx;
     }
 
-    function drawBarChart(ctx, opts = {}) {
-      const { labels, values, expected, colors, maxVal, yLabel } = opts;
-      const W = ctx.W, H = ctx.H;
-      const pad = { top: 20, right: 20, bottom: 40, left: 50 };
-      const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
-      const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
-      ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-      const mv = maxVal || Math.max(...values, ...(expected || [0])) * 1.2 || 10;
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
-      for (let i = 0; i <= 4; i++) {
-        const y = pad.top + plotH * (1 - i / 4);
-        ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
-        ctx.textAlign = 'right'; ctx.fillText((mv * i / 4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
-      }
-      values.forEach((v, i) => {
-        const x = pad.left + (plotW / n) * i + gap / 2;
-        const h = (v / mv) * plotH;
-        ctx.fillStyle = colors ? colors[i] : '#c41e3a';
-        ctx.beginPath();
-        const r = 4;
-        ctx.moveTo(x, pad.top + plotH);
-        ctx.lineTo(x, pad.top + plotH - h + r);
-        ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
-        ctx.lineTo(x + barW - r, pad.top + plotH - h);
-        ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
-        ctx.lineTo(x + barW, pad.top + plotH);
-        ctx.closePath(); ctx.fill();
-        ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
-        ctx.fillText(labels[i], x + barW / 2, H - pad.bottom + 16);
-        if (v > 0) {
-          ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
-          ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW / 2, pad.top + plotH - h - 6);
-        }
+    // ── Sidebar nav ──
+    document.querySelectorAll('.sidebar-nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-nav a').forEach(x => x.classList.remove('active'));
+        a.classList.add('active');
       });
-      if (expected) {
-        expected.forEach((ev, i) => {
-          const x = pad.left + (plotW / n) * i + gap / 2;
-          const y = pad.top + plotH - (ev / mv) * plotH;
-          ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
-          ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
-          ctx.setLineDash([]);
-        });
-      }
+    });
+
+    // ══════════════════════════════════════════════════════════════════
+    // PART 1: pH METER
+    // ══════════════════════════════════════════════════════════════════
+    const phColors = ['#ff0000', '#ff4400', '#ff8800', '#ffaa00', '#ffdd00', '#ccff00', '#66ff00', '#00cc00', '#00aa44', '#0088aa', '#0044cc', '#0000ff', '#2200cc', '#4400aa', '#660088'];
+
+    function phPreset(v) { $('ph-slider').value = v; phUpdate(); }
+
+    function phUpdate() {
+      const raw = parseInt($('ph-slider').value);
+      const ph = raw / 10;
+      $('ph-val').textContent = ph.toFixed(1);
+      const hConc = Math.pow(10, -ph);
+      $('ph-h').textContent = hConc.toExponential(1);
+      if (ph < 3) { $('ph-class').textContent = 'Strongly Acidic'; $('ph-example').textContent = 'Lemon/Stomach'; }
+      else if (ph < 6) { $('ph-class').textContent = 'Acidic'; $('ph-example').textContent = 'Coffee/Vinegar'; }
+      else if (ph < 6.5) { $('ph-class').textContent = 'Weakly Acidic'; $('ph-example').textContent = 'Milk/Saliva'; }
+      else if (ph <= 7.5) { $('ph-class').textContent = 'Neutral'; $('ph-example').textContent = 'Pure Water'; }
+      else if (ph <= 9) { $('ph-class').textContent = 'Weakly Basic'; $('ph-example').textContent = 'Baking Soda'; }
+      else if (ph <= 12) { $('ph-class').textContent = 'Basic'; $('ph-example').textContent = 'Ammonia/Bleach'; }
+      else { $('ph-class').textContent = 'Strongly Basic'; $('ph-example').textContent = 'Drain Cleaner'; }
+      drawPhCanvas(ph);
     }
 
-    function drawLineChart(ctx, series, opts = {}) {
+    function drawPhCanvas(ph) {
+      const ctx = getCtx('ph-canvas');
       const W = ctx.W, H = ctx.H;
-      const pad = { top: 20, right: 20, bottom: 30, left: 50 };
-      const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+      ctx.clearRect(0, 0, W, H);
+      // Draw pH gradient bar
+      const barH = 40, barY = 30;
+      for (let i = 0; i < W; i++) {
+        const p = (i / W) * 14;
+        const ci = Math.min(14, Math.floor(p));
+        ctx.fillStyle = phColors[ci];
+        ctx.fillRect(i, barY, 1, barH);
+      }
+      ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.strokeRect(0, barY, W, barH);
+      // Labels
+      ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center'; ctx.fillStyle = '#374151';
+      for (let i = 0; i <= 14; i++) {
+        const x = (i / 14) * W;
+        ctx.fillText(i, x, barY + barH + 16);
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x, barY); ctx.lineTo(x, barY + barH); ctx.stroke();
+      }
+      // Marker
+      const mx = (ph / 14) * W;
+      ctx.fillStyle = '#1a1a1a'; ctx.beginPath();
+      ctx.moveTo(mx, barY - 2); ctx.lineTo(mx - 8, barY - 16); ctx.lineTo(mx + 8, barY - 16); ctx.closePath(); ctx.fill();
+      ctx.font = 'bold 14px system-ui'; ctx.fillText('pH ' + ph.toFixed(1), mx, barY - 20);
+      // Labels
+      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'left'; ctx.fillText('ACIDIC', 10, barY + barH + 40);
+      ctx.fillStyle = '#16a34a'; ctx.textAlign = 'center'; ctx.fillText('NEUTRAL', W / 2, barY + barH + 40);
+      ctx.fillStyle = '#2563eb'; ctx.textAlign = 'right'; ctx.fillText('BASIC', W - 10, barY + barH + 40);
+      // H+ visualization
+      const numDots = Math.max(1, Math.round(Math.pow(10, 4 - Math.abs(ph - 7)) * (ph < 7 ? 1 : 0.1)));
+      const dotCount = Math.min(200, numDots);
+      ctx.fillStyle = ph < 7 ? 'rgba(196,30,58,0.5)' : ph > 7 ? 'rgba(37,99,235,0.3)' : 'rgba(100,100,100,0.2)';
+      for (let i = 0; i < dotCount; i++) {
+        const dx = (i * 137.5 + 50) % W; const dy = barY + barH + 55 + ((i * 97.3) % (H - barY - barH - 65));
+        ctx.beginPath(); ctx.arc(dx, dy, 2, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.fillStyle = '#64748b'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(ph < 7 ? 'H⁺ ions (more = more acidic)' : ph > 7 ? 'OH⁻ ions (more = more basic)' : 'Balanced H⁺ and OH⁻', W / 2, H - 8);
+    }
+
+    function drawPhCompare() {
+      const ctx = getCtx('ph-compare');
+      const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
       ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-      const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
-      const yRange = yMax - yMin;
+      const data = [{ label: 'Tap Water', val: 7, color: '#2563eb' }, { label: 'Lemon Juice', val: 2.3, color: '#c41e3a' }];
+      const pad = { top: 25, bottom: 40, left: 60, right: 20 };
+      const pw = W - pad.left - pad.right, ph2 = H - pad.top - pad.bottom;
+      // Y axis (pH 0-14)
       ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
-      for (let i = 0; i <= 4; i++) {
-        const y = pad.top + plotH * (1 - i / 4);
+      for (let i = 0; i <= 14; i += 2) {
+        const y = pad.top + ph2 * (1 - i / 14);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
         ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
-        ctx.fillText((yMin + yRange * i / 4).toFixed(2), pad.left - 6, y + 4);
+        ctx.fillText(i, pad.left - 8, y + 4);
       }
-      if (refLine !== undefined) {
-        const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
-        ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6, 4]);
-        ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
-        ctx.setLineDash([]);
-      }
-      series.forEach(s => {
-        if (!s.data.length) return;
-        const xMax = opts.xMax || s.data.length;
-        ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+      ctx.fillStyle = '#64748b'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+      ctx.save(); ctx.translate(14, H / 2); ctx.rotate(-Math.PI / 2); ctx.fillText('pH', 0, 0); ctx.restore();
+      // Neutral line
+      const ny = pad.top + ph2 * (1 - 7 / 14);
+      ctx.strokeStyle = '#16a34a'; ctx.setLineDash([5, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pad.left, ny); ctx.lineTo(W - pad.right, ny); ctx.stroke();
+      ctx.setLineDash([]); ctx.fillStyle = '#16a34a'; ctx.font = '11px system-ui';
+      ctx.textAlign = 'left'; ctx.fillText('Neutral (7)', pad.left + 4, ny - 6);
+      // Bars
+      const barW = pw / data.length * 0.5;
+      data.forEach((d, i) => {
+        const x = pad.left + (pw / data.length) * i + (pw / data.length - barW) / 2;
+        const barH2 = (d.val / 14) * ph2;
+        const y = pad.top + ph2 - barH2;
+        ctx.fillStyle = d.color;
         ctx.beginPath();
-        s.data.forEach((v, i) => {
-          const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
-          const y = pad.top + plotH * (1 - (v - yMin) / yRange);
-          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        });
-        if (s.width !== 0) ctx.stroke();
-        if (s.dots && s.data.length < 80) {
-          s.data.forEach((v, i) => {
-            const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
-            const y = pad.top + plotH * (1 - (v - yMin) / yRange);
-            ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fill();
-          });
-        }
+        const r = 4;
+        ctx.moveTo(x, pad.top + ph2); ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y); ctx.lineTo(x + barW - r, y);
+        ctx.quadraticCurveTo(x + barW, y, x + barW, y + r); ctx.lineTo(x + barW, pad.top + ph2);
+        ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText(d.val.toFixed(1), x + barW / 2, y + 20);
+        ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+        ctx.fillText(d.label, x + barW / 2, H - pad.bottom + 18);
       });
     }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    // PART 1: IV FLUID TONICITY SIMULATOR
-    // ══════════════════════════════════════════════════════════════════════════
-    let tonAnim = null;
-    let tonCellSize = 1.0;
-    let tonTargetSize = 1.0;
-    let tonWaterArrows = [];
+    // ══════════════════════════════════════════════════════════════════
+    // PART 2: CONDUCTIVITY
+    // ══════════════════════════════════════════════════════════════════
+    function condPreset(v) { $('cond-slider').value = v; condUpdate(); }
 
-    function tonicityPreset(val) {
-      $('tonicity-slider').value = val;
-      tonicityUpdate();
+    function condUpdate() {
+      const raw = parseInt($('cond-slider').value);
+      const uS = raw * 10; // 0-1000 µS/cm range
+      $('cond-val').textContent = uS + ' µS';
+      $('cond-tds').textContent = Math.round(uS * 0.5);
+      if (uS < 50) { $('cond-quality').textContent = 'Ultra Pure'; $('cond-current').textContent = 'Very Low'; }
+      else if (uS < 300) { $('cond-quality').textContent = 'Good'; $('cond-current').textContent = 'Low'; }
+      else if (uS < 800) { $('cond-quality').textContent = 'Moderate'; $('cond-current').textContent = 'Medium'; }
+      else { $('cond-quality').textContent = 'High TDS'; $('cond-current').textContent = 'High'; }
+      drawCondCanvas(uS);
     }
 
-    function tonicityUpdate() {
-      const raw = parseInt($('tonicity-slider').value);
-      const pct = raw / 100;
-      $('tonicity-val').textContent = pct.toFixed(2) + '%';
-
-      let state, type, waterFlow;
-      if (pct < 0.6) {
-        type = 'Hypotonic';
-        waterFlow = 'Into cell';
-        tonTargetSize = 1.0 + (0.6 - pct) / 0.6 * 0.8;
-        if (tonTargetSize > 1.5) { state = 'Lysed'; }
-        else if (tonTargetSize > 1.3) { state = 'Swelling'; }
-        else { state = 'Slight Swell'; }
-      } else if (pct > 1.2) {
-        type = 'Hypertonic';
-        waterFlow = 'Out of cell';
-        tonTargetSize = 1.0 - (pct - 1.2) / 1.8 * 0.5;
-        tonTargetSize = Math.max(0.4, tonTargetSize);
-        if (tonTargetSize < 0.6) { state = 'Crenated'; }
-        else { state = 'Shrinking'; }
-      } else {
-        type = 'Isotonic';
-        state = 'Normal';
-        waterFlow = 'Balanced';
-        tonTargetSize = 1.0;
-      }
-
-      $('ton-state').textContent = state;
-      $('ton-type').textContent = type;
-      $('ton-size').textContent = Math.round(tonTargetSize * 100) + '%';
-      $('ton-water').textContent = waterFlow;
-
-      // Clinical panel
-      const clinicalEl = $('ton-clinical');
-      if (pct < 0.3) {
-        clinicalEl.innerHTML = '<div class="cp-title">DANGER: Extremely Hypotonic Solution</div><p>Cells rapidly absorb water and burst (hemolysis). Red blood cells lyse, releasing hemoglobin into plasma. This causes hemolytic anemia, kidney damage from free hemoglobin, and potentially death. <strong>Never administer pure water intravenously.</strong></p>';
-      } else if (pct < 0.6) {
-        clinicalEl.innerHTML = '<div class="cp-title">Hypotonic Solution &mdash; ' + pct.toFixed(2) + '% NaCl</div><p>Water enters cells by osmosis (moving from low solute concentration outside to high solute concentration inside). Cells swell. Half-normal saline (0.45%) is sometimes used for dehydrated patients who need free water, but must be administered carefully to avoid hemolysis.</p>';
-      } else if (pct <= 1.2) {
-        clinicalEl.innerHTML = '<div class="cp-title">Isotonic Solution &mdash; 0.9% NaCl (Normal Saline)</div><p>The standard IV fluid. Water moves equally in and out of cells, maintaining normal cell volume. Used for fluid resuscitation, medication delivery, and maintaining hydration. Cell volume remains at 100%.</p>';
-      } else if (pct <= 2.0) {
-        clinicalEl.innerHTML = '<div class="cp-title">Hypertonic Solution &mdash; ' + pct.toFixed(2) + '% NaCl</div><p>Water leaves cells by osmosis (moving toward higher solute concentration outside). Cells shrink and become crenated. Hypertonic saline (3%) is used clinically to treat severe hyponatremia (low blood sodium) and to reduce cerebral edema. Must be administered slowly via central line.</p>';
-      } else {
-        clinicalEl.innerHTML = '<div class="cp-title">DANGER: Extreme Hypertonic Solution</div><p>Severe water loss from cells causes dramatic crenation. Red blood cells shrink to spiky shapes and lose function. Can cause hypernatremia, seizures, brain hemorrhage, and death. <strong>Concentrations above 3% are almost never used clinically.</strong></p>';
-      }
-
-      if (!tonAnim) tonAnimLoop();
-    }
-
-    function tonAnimLoop() {
-      tonCellSize = lerp(tonCellSize, tonTargetSize, 0.05);
-      drawTonicityCanvas();
-      tonAnim = requestAnimationFrame(tonAnimLoop);
-    }
-
-    function drawTonicityCanvas() {
-      const ctx = getCtx('tonicity-canvas');
+    function drawCondCanvas(uS) {
+      const ctx = getCtx('cond-canvas');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-
-      // Background - solution
-      const raw = parseInt($('tonicity-slider').value);
-      const pct = raw / 100;
-      const soluteIntensity = Math.min(1, pct / 3);
-      ctx.fillStyle = `rgba(173, 216, 230, ${0.3 + soluteIntensity * 0.4})`;
+      // Water background
+      ctx.fillStyle = `rgba(173,216,230,${0.2 + Math.min(0.5, uS / 2000)})`;
       ctx.fillRect(0, 0, W, H);
-
-      // Draw NaCl dots in solution
-      const numDots = Math.floor(pct * 40);
-      ctx.fillStyle = 'rgba(100, 140, 180, 0.4)';
-      for (let i = 0; i < numDots; i++) {
-        const dx = ((i * 137.5) % W);
-        const dy = ((i * 97.3 + 50) % H);
-        ctx.beginPath();
-        ctx.arc(dx, dy, 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      const cx = W / 2, cy = H / 2;
-      const baseR = Math.min(W, H) * 0.22;
-      const r = baseR * tonCellSize;
-
-      // Water arrows
-      if (Math.abs(tonCellSize - 1.0) > 0.05) {
-        const arrowCount = 8;
-        const time = Date.now() / 1000;
-        for (let i = 0; i < arrowCount; i++) {
-          const angle = (i / arrowCount) * Math.PI * 2 + time * 0.5;
-          const inward = tonTargetSize > 1.0;
-          const arrowR = r + (inward ? 40 : -10);
-          const arrowDir = inward ? -1 : 1;
-          const ax = cx + Math.cos(angle) * arrowR;
-          const ay = cy + Math.sin(angle) * arrowR;
-          const tipX = ax + Math.cos(angle) * arrowDir * 25;
-          const tipY = ay + Math.sin(angle) * arrowDir * 25;
-
-          ctx.strokeStyle = inward ? 'rgba(37, 99, 235, 0.6)' : 'rgba(196, 30, 58, 0.6)';
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(ax, ay);
-          ctx.lineTo(tipX, tipY);
-          ctx.stroke();
-
-          // Arrowhead
-          const headLen = 8;
-          const headAngle = Math.atan2(tipY - ay, tipX - ax);
-          ctx.beginPath();
-          ctx.moveTo(tipX, tipY);
-          ctx.lineTo(tipX - headLen * Math.cos(headAngle - 0.4), tipY - headLen * Math.sin(headAngle - 0.4));
-          ctx.moveTo(tipX, tipY);
-          ctx.lineTo(tipX - headLen * Math.cos(headAngle + 0.4), tipY - headLen * Math.sin(headAngle + 0.4));
-          ctx.stroke();
-        }
-      }
-
-      // Draw cell
-      if (tonCellSize > 1.5) {
-        // Lysed - burst cell fragments
-        ctx.globalAlpha = 0.5;
-        for (let i = 0; i < 6; i++) {
-          const a = (i / 6) * Math.PI * 2;
-          const fragR = r * 0.3;
-          const fragX = cx + Math.cos(a) * r * 0.6;
-          const fragY = cy + Math.sin(a) * r * 0.6;
-          ctx.fillStyle = 'rgba(220, 50, 50, 0.4)';
-          ctx.beginPath();
-          ctx.arc(fragX, fragY, fragR, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-        // Hemoglobin released
-        ctx.fillStyle = 'rgba(220, 50, 50, 0.15)';
-        ctx.beginPath();
-        ctx.arc(cx, cy, r * 1.5, 0, Math.PI * 2);
-        ctx.fill();
-        // Label
-        ctx.fillStyle = '#c41e3a';
-        ctx.font = 'bold 16px system-ui';
-        ctx.textAlign = 'center';
-        ctx.fillText('HEMOLYSIS', cx, cy - r * 0.8 - 20);
-      } else if (tonCellSize < 0.65) {
-        // Crenated - spiky cell
-        ctx.fillStyle = 'rgba(220, 50, 50, 0.7)';
-        ctx.beginPath();
-        const spikes = 16;
-        for (let i = 0; i <= spikes * 2; i++) {
-          const angle = (i / (spikes * 2)) * Math.PI * 2;
-          const spikeR = i % 2 === 0 ? r : r * 0.75;
-          const x = cx + Math.cos(angle) * spikeR;
-          const y = cy + Math.sin(angle) * spikeR;
-          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
-        ctx.closePath();
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(150, 20, 20, 0.8)';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        // Nucleus
-        ctx.fillStyle = 'rgba(100, 20, 20, 0.5)';
-        ctx.beginPath();
-        ctx.arc(cx, cy, r * 0.25, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        // Normal / slightly swollen / slightly shrunken RBC shape
-        // Draw as biconcave disc (side view = ellipse with dimple)
-        ctx.fillStyle = `rgba(220, 60, 60, ${0.6 + (1 - tonCellSize) * 0.3})`;
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, r, r * 0.6, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(150, 30, 30, 0.6)';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Inner dimple (biconcave look)
-        if (tonCellSize <= 1.2) {
-          const dimpleR = r * 0.4 * (1.2 - (tonCellSize - 0.8));
-          ctx.fillStyle = 'rgba(180, 40, 40, 0.4)';
-          ctx.beginPath();
-          ctx.ellipse(cx, cy, dimpleR, dimpleR * 0.5, 0, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      // Labels
-      ctx.fillStyle = '#374151';
-      ctx.font = 'bold 13px system-ui';
-      ctx.textAlign = 'center';
-      ctx.fillText('Red Blood Cell', cx, H - 20);
-
-      // H2O label
-      ctx.fillStyle = '#2563eb';
-      ctx.font = '12px system-ui';
-      ctx.fillText('H\u2082O', 50, 30);
-      ctx.fillText('H\u2082O', W - 50, 30);
-
-      // NaCl label
+      // Electrodes
       ctx.fillStyle = '#64748b';
-      ctx.fillText('NaCl: ' + pct.toFixed(2) + '%', cx, 25);
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // PART 2: DIFFUSION CHAMBER
-    // ══════════════════════════════════════════════════════════════════════════
-    let diffState = {
-      particles: [],
-      running: false,
-      animId: null,
-      elapsed: 0,
-      lastTime: 0,
-      history: { left: [], right: [] }
-    };
-
-    function diffUpdateLabels() {
-      const t = parseInt($('diff-temp').value);
-      $('diff-temp-val').textContent = (20 + t * 4) + '\u00B0C';
-      const s = parseInt($('diff-size').value);
-      $('diff-size-val').textContent = ['Tiny', 'Small', 'Medium', 'Large', 'Huge'][s - 1];
-      const p = parseInt($('diff-pore').value);
-      $('diff-pore-val').textContent = ['Tiny', 'Small', 'Medium', 'Large', 'Wide'][p - 1];
-    }
-
-    function diffInit() {
-      diffState.particles = [];
-      for (let i = 0; i < 30; i++) {
-        diffState.particles.push({
-          x: rand(20, 240), y: rand(20, 240),
-          vx: (Math.random() - 0.5) * 2, vy: (Math.random() - 0.5) * 2,
-          side: 'left'
-        });
+      ctx.fillRect(W * 0.2 - 4, 20, 8, H - 40);
+      ctx.fillRect(W * 0.8 - 4, 20, 8, H - 40);
+      ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('(−)', W * 0.2, 14); ctx.fillText('(+)', W * 0.8, 14);
+      // Ions
+      const numIons = Math.min(80, Math.floor(uS / 12));
+      for (let i = 0; i < numIons; i++) {
+        const ix = W * 0.25 + ((i * 137.5) % (W * 0.5));
+        const iy = 30 + ((i * 97.3 + 50) % (H - 60));
+        const isPositive = i % 2 === 0;
+        ctx.fillStyle = isPositive ? 'rgba(196,30,58,0.6)' : 'rgba(37,99,235,0.6)';
+        ctx.beginPath(); ctx.arc(ix, iy, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText(isPositive ? '+' : '−', ix, iy + 3);
       }
-      diffState.elapsed = 0;
-      diffState.history = { left: [30], right: [0] };
-      diffDrawCounts();
-    }
-
-    function diffAddLeft(n) {
-      const c = getCtx('diff-canvas');
-      const memX = c.W / 2;
-      for (let i = 0; i < n; i++) {
-        diffState.particles.push({
-          x: rand(20, memX - 30), y: rand(20, 240),
-          vx: (Math.random() - 0.5) * 2, vy: (Math.random() - 0.5) * 2,
-          side: 'left'
-        });
-      }
-      diffDrawCounts();
-      drawDiffCanvas();
-    }
-
-    function diffAddRight(n) {
-      const c = getCtx('diff-canvas');
-      const memX = c.W / 2;
-      for (let i = 0; i < n; i++) {
-        diffState.particles.push({
-          x: rand(memX + 30, c.W - 20), y: rand(20, 240),
-          vx: (Math.random() - 0.5) * 2, vy: (Math.random() - 0.5) * 2,
-          side: 'right'
-        });
-      }
-      diffDrawCounts();
-      drawDiffCanvas();
-    }
-
-    function diffDrawCounts() {
-      const left = diffState.particles.filter(p => p.side === 'left').length;
-      const right = diffState.particles.filter(p => p.side === 'right').length;
-      $('diff-left').textContent = left;
-      $('diff-right').textContent = right;
-      const total = left + right;
-      const equil = total > 0 && Math.abs(left - right) <= Math.max(2, total * 0.1);
-      $('diff-equil').textContent = equil ? 'Yes' : 'No';
-      $('diff-time').textContent = Math.floor(diffState.elapsed) + 's';
-    }
-
-    function diffStart() {
-      if (diffState.running) {
-        diffState.running = false;
-        cancelAnimationFrame(diffState.animId);
-        return;
-      }
-      diffState.running = true;
-      diffState.lastTime = performance.now();
-      diffAnimLoop();
-    }
-
-    function diffAnimLoop() {
-      if (!diffState.running) return;
-      const now = performance.now();
-      const dt = (now - diffState.lastTime) / 1000;
-      diffState.lastTime = now;
-      diffState.elapsed += dt;
-
-      const temp = parseInt($('diff-temp').value);
-      const molSize = parseInt($('diff-size').value);
-      const poreSize = parseInt($('diff-pore').value);
-
-      const speed = temp * 0.6 / molSize;
-      const canPass = poreSize >= molSize;
-
-      const c = $('diff-canvas');
-      const dpr = window.devicePixelRatio || 1;
-      const W = c.width / dpr;
-      const H = c.height / dpr;
-      const memX = W / 2;
-      const poreGap = 30;
-      const numPores = 3 + poreSize;
-
-      diffState.particles.forEach(p => {
-        p.vx += (Math.random() - 0.5) * speed * 0.5;
-        p.vy += (Math.random() - 0.5) * speed * 0.5;
-        p.vx *= 0.95;
-        p.vy *= 0.95;
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Bounce off walls
-        if (p.x < 5) { p.x = 5; p.vx *= -1; }
-        if (p.x > W - 5) { p.x = W - 5; p.vx *= -1; }
-        if (p.y < 5) { p.y = 5; p.vy *= -1; }
-        if (p.y > H - 5) { p.y = H - 5; p.vy *= -1; }
-
-        // Membrane interaction
-        if (canPass) {
-          const nearMembrane = Math.abs(p.x - memX) < 8;
-          if (nearMembrane) {
-            // Check if near a pore
-            let nearPore = false;
-            for (let i = 0; i < numPores; i++) {
-              const poreY = (H / (numPores + 1)) * (i + 1);
-              if (Math.abs(p.y - poreY) < poreGap / 2) {
-                nearPore = true;
-                break;
-              }
-            }
-            if (nearPore) {
-              if (p.x < memX && p.side === 'left') p.side = 'right';
-              else if (p.x > memX && p.side === 'right') p.side = 'left';
-            } else {
-              if (p.side === 'left' && p.x > memX - 5) { p.x = memX - 6; p.vx *= -1; }
-              if (p.side === 'right' && p.x < memX + 5) { p.x = memX + 6; p.vx *= -1; }
-            }
-          }
-        } else {
-          if (p.side === 'left' && p.x > memX - 5) { p.x = memX - 6; p.vx *= -1; }
-          if (p.side === 'right' && p.x < memX + 5) { p.x = memX + 6; p.vx *= -1; }
+      // Current arrows if conducting
+      if (uS > 30) {
+        const intensity = Math.min(1, uS / 500);
+        ctx.strokeStyle = `rgba(217,119,6,${intensity})`; ctx.lineWidth = 2;
+        const arrows = Math.min(5, Math.ceil(uS / 200));
+        for (let i = 0; i < arrows; i++) {
+          const ay = 50 + (H - 100) / (arrows + 1) * (i + 1);
+          ctx.beginPath(); ctx.moveTo(W * 0.25, ay); ctx.lineTo(W * 0.75, ay); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(W * 0.75, ay); ctx.lineTo(W * 0.75 - 10, ay - 5); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(W * 0.75, ay); ctx.lineTo(W * 0.75 - 10, ay + 5); ctx.stroke();
         }
-      });
-
-      // Record history every ~0.5s
-      if (diffState.history.left.length < diffState.elapsed * 2) {
-        const left = diffState.particles.filter(p => p.side === 'left').length;
-        const right = diffState.particles.filter(p => p.side === 'right').length;
-        diffState.history.left.push(left);
-        diffState.history.right.push(right);
-      }
-
-      diffDrawCounts();
-      drawDiffCanvas();
-      drawDiffChart();
-
-      diffState.animId = requestAnimationFrame(diffAnimLoop);
-    }
-
-    function diffReset() {
-      diffState.running = false;
-      if (diffState.animId) cancelAnimationFrame(diffState.animId);
-      diffInit();
-      drawDiffCanvas();
-      drawDiffChart();
-    }
-
-    function drawDiffCanvas() {
-      const ctx = getCtx('diff-canvas');
-      const W = ctx.W, H = ctx.H;
-      ctx.clearRect(0, 0, W, H);
-
-      const memX = W / 2;
-      const poreSize = parseInt($('diff-pore').value);
-      const molSize = parseInt($('diff-size').value);
-      const numPores = 3 + poreSize;
-      const poreGap = 30;
-
-      // Background
-      ctx.fillStyle = '#f0f4ff'; ctx.fillRect(0, 0, memX, H);
-      ctx.fillStyle = '#fff8f0'; ctx.fillRect(memX, 0, W - memX, H);
-
-      // Labels
-      ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('LEFT COMPARTMENT', memX / 2, 18);
-      ctx.fillText('RIGHT COMPARTMENT', memX + (W - memX) / 2, 18);
-
-      // Membrane
-      ctx.fillStyle = '#374151';
-      ctx.fillRect(memX - 3, 0, 6, H);
-
-      // Pores
-      for (let i = 0; i < numPores; i++) {
-        const poreY = (H / (numPores + 1)) * (i + 1);
-        ctx.fillStyle = poreSize >= molSize ? '#16a34a' : '#dc2626';
-        ctx.clearRect(memX - 4, poreY - poreGap / 2, 8, poreGap);
-        ctx.fillStyle = poreSize >= molSize ? 'rgba(22, 163, 74, 0.15)' : 'rgba(220, 38, 38, 0.15)';
-        ctx.fillRect(memX - 4, poreY - poreGap / 2, 8, poreGap);
-        ctx.strokeStyle = poreSize >= molSize ? '#16a34a' : '#dc2626';
-        ctx.lineWidth = 1;
-        ctx.strokeRect(memX - 4, poreY - poreGap / 2, 8, poreGap);
-      }
-
-      // Particles
-      const particleR = 3 + molSize;
-      diffState.particles.forEach(p => {
-        ctx.fillStyle = p.side === 'left' ? 'rgba(196, 30, 58, 0.8)' : 'rgba(37, 99, 235, 0.8)';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, particleR, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Concentration gradient arrow
-      const left = diffState.particles.filter(p => p.side === 'left').length;
-      const right = diffState.particles.filter(p => p.side === 'right').length;
-      if (Math.abs(left - right) > 2) {
-        const fromLeft = left > right;
-        ctx.fillStyle = 'rgba(100, 100, 100, 0.3)';
-        ctx.font = '11px system-ui';
-        ctx.textAlign = 'center';
-        ctx.fillText('Net diffusion ' + (fromLeft ? '\u2192' : '\u2190'), memX, H - 12);
+        ctx.fillStyle = `rgba(217,119,6,${intensity})`; ctx.font = 'bold 12px system-ui';
+        ctx.textAlign = 'center'; ctx.fillText('Current Flow →', W / 2, H - 10);
       } else {
-        ctx.fillStyle = 'rgba(22, 163, 74, 0.5)';
-        ctx.font = '11px system-ui';
-        ctx.textAlign = 'center';
-        ctx.fillText('\u2190 Equilibrium \u2192', memX, H - 12);
+        ctx.fillStyle = '#94a3b8'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText('No significant current', W / 2, H - 10);
       }
+      ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(uS + ' µS/cm', W / 2, H - 28);
     }
 
-    function drawDiffChart() {
-      if (!diffState.history.left.length) return;
-      const total = diffState.particles.length || 1;
-      const ctx = getCtx('diff-chart');
-      drawLineChart(ctx, [
-        { data: diffState.history.left.map(v => v / total), color: '#c41e3a', width: 2, dots: diffState.history.left.length < 80 },
-        { data: diffState.history.right.map(v => v / total), color: '#2563eb', width: 2, dots: diffState.history.right.length < 80 }
-      ], { yMin: 0, yMax: 1, refLine: 0.5 });
+    // ══════════════════════════════════════════════════════════════════
+    // PART 3: TEMPERATURE
+    // ══════════════════════════════════════════════════════════════════
+    function tempUpdate() {
+      const c = parseInt($('temp-slider').value);
+      $('temp-val').textContent = c.toFixed(1) + '°C';
+      $('temp-f').textContent = (c * 9 / 5 + 32).toFixed(1) + '°F';
+      $('temp-k').textContent = (c + 273.15).toFixed(1) + ' K';
+      if (c <= 0) $('temp-bio').textContent = 'Freezing';
+      else if (c < 15) $('temp-bio').textContent = 'Cold';
+      else if (c < 25) $('temp-bio').textContent = 'Room Temp';
+      else if (c < 37) $('temp-bio').textContent = 'Warm';
+      else if (c < 38) $('temp-bio').textContent = 'Body Temp';
+      else if (c < 45) $('temp-bio').textContent = 'Fever Range';
+      else $('temp-bio').textContent = 'Hot/Danger';
+      drawTempCanvas(c);
     }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    // PART 3: KIDNEY FILTRATION MODEL
-    // ══════════════════════════════════════════════════════════════════════════
-    let kidneyState = {
-      animating: false, animId: null, showDialysis: false,
-      particles: [], time: 0
+    function drawTempCanvas(temp) {
+      const ctx = getCtx('temp-canvas');
+      const W = ctx.W, H = ctx.H;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      // Thermometer (left half)
+      const tx = W * 0.25, ty = 30, tw = 24, th = H - 80;
+      const bulbR = 18; const bulbY = ty + th;
+      // Tube
+      ctx.fillStyle = '#e5e7eb';
+      ctx.beginPath(); ctx.roundRect(tx - tw / 2, ty, tw, th, 8); ctx.fill();
+      // Mercury level
+      const frac = clamp(temp / 100, 0, 1);
+      const mercH = th * frac;
+      ctx.fillStyle = '#c41e3a';
+      ctx.fillRect(tx - tw / 2 + 3, ty + th - mercH, tw - 6, mercH);
+      // Bulb
+      ctx.fillStyle = '#c41e3a'; ctx.beginPath(); ctx.arc(tx, bulbY, bulbR, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.beginPath(); ctx.roundRect(tx - tw / 2, ty, tw, th, 8); ctx.stroke();
+      // Scale marks
+      ctx.fillStyle = '#64748b'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+      for (let i = 0; i <= 100; i += 20) {
+        const y = ty + th * (1 - i / 100);
+        ctx.beginPath(); ctx.moveTo(tx + tw / 2 + 2, y); ctx.lineTo(tx + tw / 2 + 10, y); ctx.stroke();
+        ctx.fillText(i + '°', tx + tw / 2 + 14, y + 4);
+      }
+      // Digital display (right half)
+      ctx.fillStyle = '#1a1a2e';
+      ctx.beginPath(); ctx.roundRect(W * 0.55, H * 0.2, W * 0.35, H * 0.35, 10); ctx.fill();
+      ctx.fillStyle = '#00ff88'; ctx.font = 'bold 36px ' + getComputedStyle(document.body).getPropertyValue('--mono');
+      ctx.textAlign = 'center'; ctx.fillText(temp.toFixed(1) + '°C', W * 0.55 + W * 0.175, H * 0.2 + H * 0.22);
+      ctx.fillStyle = '#64748b'; ctx.font = '12px system-ui';
+      ctx.fillText('Digital Probe', W * 0.55 + W * 0.175, H * 0.2 + H * 0.35 + 18);
+      ctx.fillText('Mercury Thermometer', tx, bulbY + bulbR + 18);
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // PART 4: DISSOLVED OXYGEN
+    // ══════════════════════════════════════════════════════════════════
+    function doPreset(v) { $('do-slider').value = v; doUpdate(); }
+
+    function doUpdate() {
+      const raw = parseInt($('do-slider').value);
+      const doVal = raw / 10;
+      $('do-val').textContent = doVal.toFixed(1) + ' mg/L';
+      const sat = Math.min(100, Math.round(doVal / 8.7 * 100));
+      $('do-sat').textContent = sat + '%';
+      $('do-fish').textContent = doVal >= 4 ? '✓ OK' : '✗ Low';
+      $('do-fish').style.color = doVal >= 4 ? 'var(--green)' : 'var(--accent)';
+      if (doVal > 9) $('do-temp-effect').textContent = 'Cold water';
+      else if (doVal > 6) $('do-temp-effect').textContent = 'Normal';
+      else if (doVal > 3) $('do-temp-effect').textContent = 'Warm/Acidic';
+      else $('do-temp-effect').textContent = 'Depleted';
+      drawDoCanvas(doVal);
+    }
+
+    function drawDoCanvas(doVal) {
+      const ctx = getCtx('do-canvas');
+      const W = ctx.W, H = ctx.H;
+      ctx.clearRect(0, 0, W, H);
+      // Water
+      ctx.fillStyle = 'rgba(173,216,230,0.3)'; ctx.fillRect(0, 0, W, H);
+      // O2 bubbles
+      const numBubbles = Math.min(60, Math.round(doVal * 5));
+      for (let i = 0; i < numBubbles; i++) {
+        const bx = (i * 137.5 + 30) % W;
+        const by = (i * 97.3 + 20) % H;
+        const br = 3 + Math.random() * 4;
+        ctx.fillStyle = 'rgba(37,99,235,0.15)';
+        ctx.beginPath(); ctx.arc(bx, by, br, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = 'rgba(37,99,235,0.3)'; ctx.lineWidth = 1; ctx.stroke();
+      }
+      // Gauge
+      const gx = W / 2, gy = H - 40, gr = Math.min(W, H) * 0.32;
+      const startA = Math.PI * 0.8, endA = Math.PI * 0.2;
+      const range = (2 * Math.PI) - (startA - endA);
+      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 16; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.arc(gx, gy, gr, startA, endA + 2 * Math.PI); ctx.stroke();
+      // Filled arc
+      const frac = clamp(doVal / 15, 0, 1);
+      const fillEnd = startA + frac * range;
+      const gaugeColor = doVal < 4 ? '#c41e3a' : doVal < 7 ? '#d97706' : '#16a34a';
+      ctx.strokeStyle = gaugeColor; ctx.lineWidth = 16;
+      ctx.beginPath(); ctx.arc(gx, gy, gr, startA, fillEnd); ctx.stroke();
+      // Value
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 28px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(doVal.toFixed(1), gx, gy - 10);
+      ctx.fillStyle = '#64748b'; ctx.font = '13px system-ui';
+      ctx.fillText('mg/L Dissolved O₂', gx, gy + 12);
+      // Fish threshold
+      ctx.fillStyle = '#94a3b8'; ctx.font = '11px system-ui';
+      ctx.fillText('Fish need ≥ 4 mg/L', gx, gy + gr + 20);
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // PART 5: COLORIMETER
+    // ══════════════════════════════════════════════════════════════════
+    const colorData = {
+      water: { 430: 0.01, 470: 0.01, 565: 0.01, 635: 0.01 },
+      lemon: { 430: 1.85, 470: 1.20, 565: 0.45, 635: 0.30 }
     };
+    let colorMode = 'both';
 
-    function kidneyUpdate() {
-      const bp = parseInt($('kid-bp').value);
-      const solute = parseInt($('kid-solute').value);
-      $('kid-bp-val').textContent = bp + ' mmHg';
-      $('kid-solute-val').textContent = ['Very Low', 'Low', 'Low', 'Below Avg', 'Normal', 'Normal', 'Above Avg', 'High', 'High', 'Very High'][solute - 1];
+    function colorSelect(mode) { colorMode = mode; updateColorStats(); drawColorCanvas(); }
 
-      // GFR calculation (simplified)
-      let gfr;
-      if (bp < 80) gfr = Math.max(0, (bp - 60) * 2);
-      else if (bp <= 160) gfr = 125; // autoregulation
-      else gfr = 125 + (bp - 160) * 0.5;
-      gfr = Math.round(gfr);
-      $('kid-gfr').textContent = gfr;
-
-      // Water reabsorption
-      const reab = Math.max(90, 99 - (solute - 5) * 2);
-      $('kid-reab').textContent = reab + '%';
-
-      // Urine output
-      const urineVol = gfr * (1 - reab / 100) * 60 / 1000; // L/hr simplified
-      let urineLabel;
-      if (urineVol < 0.02) urineLabel = 'Oliguria';
-      else if (urineVol < 0.05) urineLabel = 'Low';
-      else if (urineVol < 0.12) urineLabel = 'Normal';
-      else urineLabel = 'High';
-      $('kid-urine').textContent = urineLabel;
-
-      // Urine concentration
-      const conc = Math.round(300 + (solute - 5) * 80 - (bp > 160 ? (bp - 160) * 2 : 0));
-      $('kid-conc').textContent = Math.max(50, conc);
-
-      drawKidneyCanvas();
-      drawKidneyChart();
+    function updateColorStats() {
+      const d = colorMode === 'lemon' ? colorData.lemon : colorData.water;
+      $('abs-430').textContent = d[430].toFixed(2);
+      $('abs-470').textContent = d[470].toFixed(2);
+      $('abs-565').textContent = d[565].toFixed(2);
+      $('abs-635').textContent = d[635].toFixed(2);
     }
 
-    function kidneyAnimate() {
-      if (kidneyState.animating) {
-        kidneyState.animating = false;
-        cancelAnimationFrame(kidneyState.animId);
-        return;
-      }
-      kidneyState.animating = true;
-      kidneyState.particles = [];
-      kidneyState.time = 0;
-      // Create particles
-      for (let i = 0; i < 15; i++) {
-        kidneyState.particles.push({
-          type: i < 5 ? 'water' : i < 10 ? 'solute' : 'waste',
-          progress: -i * 0.06,
-          reabsorbed: false
-        });
-      }
-      kidneyAnimLoop();
-    }
-
-    function kidneyAnimLoop() {
-      if (!kidneyState.animating) return;
-      kidneyState.time += 0.005;
-      kidneyState.particles.forEach(p => {
-        p.progress += 0.003;
-        if (p.progress > 1) p.progress = -0.1;
-        if (p.progress > 0.3 && p.progress < 0.35 && !p.reabsorbed) {
-          if (p.type === 'water' && Math.random() < 0.02) p.reabsorbed = true;
-          if (p.type === 'solute' && Math.random() < 0.015) p.reabsorbed = true;
-        }
-      });
-      drawKidneyCanvas();
-      kidneyState.animId = requestAnimationFrame(kidneyAnimLoop);
-    }
-
-    function kidneyDialysis() {
-      kidneyState.showDialysis = !kidneyState.showDialysis;
-      drawKidneyCanvas();
-    }
-
-    function kidneyReset() {
-      kidneyState.animating = false;
-      kidneyState.showDialysis = false;
-      if (kidneyState.animId) cancelAnimationFrame(kidneyState.animId);
-      $('kid-bp').value = 120;
-      $('kid-solute').value = 5;
-      kidneyUpdate();
-    }
-
-    function drawKidneyCanvas() {
-      const ctx = getCtx('kidney-canvas');
+    function drawColorCanvas() {
+      const ctx = getCtx('color-canvas');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
       ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-
-      if (kidneyState.showDialysis) {
-        drawDialysisMachine(ctx, W, H);
-        return;
-      }
-
-      const bp = parseInt($('kid-bp').value);
-
-      // Draw simplified nephron
-      // Glomerulus
-      ctx.fillStyle = '#fecaca';
-      ctx.strokeStyle = '#dc2626';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(120, 80, 35, 0, Math.PI * 2);
-      ctx.fill(); ctx.stroke();
-      ctx.fillStyle = '#dc2626';
-      ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Glomerulus', 120, 85);
-
-      // Bowman's capsule
-      ctx.strokeStyle = '#7c3aed';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(120, 80, 50, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.fillStyle = '#7c3aed';
-      ctx.font = '10px system-ui';
-      ctx.fillText("Bowman's Capsule", 120, 140);
-
-      // Proximal tubule
-      ctx.strokeStyle = '#2563eb';
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.moveTo(170, 80);
-      ctx.quadraticCurveTo(250, 80, 280, 140);
-      ctx.quadraticCurveTo(310, 200, 280, 250);
-      ctx.stroke();
-
-      ctx.fillStyle = '#2563eb';
-      ctx.font = '10px system-ui'; ctx.textAlign = 'left';
-      ctx.fillText('Proximal Tubule', 255, 100);
-
-      // Loop of Henle
-      ctx.strokeStyle = '#16a34a';
-      ctx.beginPath();
-      ctx.moveTo(280, 250);
-      ctx.quadraticCurveTo(250, 310, 200, 310);
-      ctx.quadraticCurveTo(150, 310, 130, 270);
-      ctx.stroke();
-
-      ctx.fillStyle = '#16a34a';
-      ctx.font = '10px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Loop of Henle', 200, 330);
-
-      // Distal tubule
-      ctx.strokeStyle = '#d97706';
-      ctx.beginPath();
-      ctx.moveTo(130, 270);
-      ctx.quadraticCurveTo(100, 220, 80, 200);
-      ctx.quadraticCurveTo(60, 180, 60, 220);
-      ctx.stroke();
-
-      ctx.fillStyle = '#d97706';
-      ctx.font = '10px system-ui'; ctx.textAlign = 'right';
-      ctx.fillText('Distal Tubule', 95, 195);
-
-      // Collecting duct
-      ctx.strokeStyle = '#7c3aed';
-      ctx.lineWidth = 5;
-      ctx.beginPath();
-      ctx.moveTo(60, 220);
-      ctx.lineTo(60, 320);
-      ctx.stroke();
-
-      ctx.fillStyle = '#7c3aed';
-      ctx.font = '10px system-ui'; ctx.textAlign = 'right';
-      ctx.fillText('Collecting Duct', 55, 280);
-
-      // Urine output arrow
-      ctx.fillStyle = '#d97706';
-      ctx.beginPath();
-      ctx.moveTo(50, 320); ctx.lineTo(70, 320); ctx.lineTo(60, 340);
-      ctx.closePath(); ctx.fill();
-      ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Urine', 60, 350);
-
-      // Blood vessel (afferent/efferent)
-      ctx.strokeStyle = '#dc2626';
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(30, 60);
-      ctx.lineTo(70, 80);
-      ctx.stroke();
-      ctx.fillStyle = '#dc2626';
-      ctx.font = '9px system-ui'; ctx.textAlign = 'right';
-      ctx.fillText('Afferent arteriole', 65, 55);
-
-      ctx.strokeStyle = '#3b82f6';
-      ctx.beginPath();
-      ctx.moveTo(70, 90);
-      ctx.lineTo(30, 110);
-      ctx.stroke();
-      ctx.fillStyle = '#3b82f6';
-      ctx.font = '9px system-ui'; ctx.textAlign = 'right';
-      ctx.fillText('Efferent arteriole', 65, 120);
-
-      // Reabsorption arrows
-      const arrowPositions = [
-        { x: 300, y: 160, label: 'H\u2082O', color: '#2563eb', dir: 1 },
-        { x: 290, y: 200, label: 'Na\u207A', color: '#16a34a', dir: 1 },
-        { x: 270, y: 230, label: 'Glucose', color: '#d97706', dir: 1 },
-        { x: 170, y: 290, label: 'H\u2082O', color: '#2563eb', dir: -1 },
-      ];
-
-      arrowPositions.forEach(a => {
-        const endX = a.x + a.dir * 50;
-        ctx.strokeStyle = a.color;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(endX, a.y);
-        ctx.stroke();
-        // Arrowhead
-        ctx.beginPath();
-        ctx.moveTo(endX, a.y);
-        ctx.lineTo(endX - a.dir * 6, a.y - 4);
-        ctx.moveTo(endX, a.y);
-        ctx.lineTo(endX - a.dir * 6, a.y + 4);
-        ctx.stroke();
-        ctx.fillStyle = a.color;
-        ctx.font = '9px system-ui';
-        ctx.textAlign = a.dir > 0 ? 'left' : 'right';
-        ctx.fillText(a.label, endX + a.dir * 5, a.y + 3);
-      });
-
-      // Animated particles
-      if (kidneyState.animating) {
-        kidneyState.particles.forEach(p => {
-          if (p.progress < 0 || p.progress > 1) return;
-          if (p.reabsorbed && p.progress > 0.4) return;
-
-          let px, py;
-          const t = p.progress;
-          if (t < 0.2) {
-            // In glomerulus
-            px = 120 + Math.cos(t * 30) * 20;
-            py = 80 + Math.sin(t * 30) * 15;
-          } else if (t < 0.5) {
-            // Proximal tubule
-            const tt = (t - 0.2) / 0.3;
-            px = lerp(170, 280, tt);
-            py = lerp(80, 250, tt);
-          } else if (t < 0.7) {
-            // Loop
-            const tt = (t - 0.5) / 0.2;
-            px = lerp(280, 130, tt);
-            py = 280 + Math.sin(tt * Math.PI) * 30;
-          } else {
-            // Collecting duct
-            const tt = (t - 0.7) / 0.3;
-            px = 60;
-            py = lerp(220, 320, tt);
-          }
-
-          ctx.fillStyle = p.type === 'water' ? '#3b82f6' :
-            p.type === 'solute' ? '#16a34a' : '#dc2626';
-          ctx.beginPath();
-          ctx.arc(px, py, 4, 0, Math.PI * 2);
-          ctx.fill();
-        });
-
-        // Legend
-        ctx.font = '10px system-ui'; ctx.textAlign = 'left';
-        const legendX = W - 140;
-        ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.arc(legendX, 20, 4, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#374151'; ctx.fillText('Water', legendX + 10, 24);
-        ctx.fillStyle = '#16a34a'; ctx.beginPath(); ctx.arc(legendX, 38, 4, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#374151'; ctx.fillText('Solutes', legendX + 10, 42);
-        ctx.fillStyle = '#dc2626'; ctx.beginPath(); ctx.arc(legendX, 56, 4, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#374151'; ctx.fillText('Waste', legendX + 10, 60);
-      }
-
-      // Blood pressure indicator
-      ctx.fillStyle = bp < 80 ? '#dc2626' : bp > 160 ? '#dc2626' : '#16a34a';
-      ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
-      ctx.fillText('BP: ' + bp + ' mmHg', W - 140, H - 20);
-    }
-
-    function drawDialysisMachine(ctx, W, H) {
-      ctx.fillStyle = '#f0f4ff'; ctx.fillRect(0, 0, W, H);
-
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Hemodialysis Machine', W / 2, 30);
-
-      // Blood side
-      ctx.fillStyle = '#fecaca'; ctx.fillRect(40, 60, W / 2 - 60, H - 120);
-      ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2;
-      ctx.strokeRect(40, 60, W / 2 - 60, H - 120);
-      ctx.fillStyle = '#dc2626'; ctx.font = 'bold 12px system-ui';
-      ctx.fillText('Blood Side', 40 + (W / 2 - 60) / 2, 80);
-
-      // Dialysate side
-      ctx.fillStyle = '#dbeafe'; ctx.fillRect(W / 2 + 20, 60, W / 2 - 60, H - 120);
-      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
-      ctx.strokeRect(W / 2 + 20, 60, W / 2 - 60, H - 120);
-      ctx.fillStyle = '#2563eb'; ctx.font = 'bold 12px system-ui';
-      ctx.fillText('Dialysate Side', W / 2 + 20 + (W / 2 - 60) / 2, 80);
-
-      // Membrane
-      ctx.setLineDash([5, 5]);
-      ctx.strokeStyle = '#374151'; ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(W / 2, 60);
-      ctx.lineTo(W / 2, H - 60);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.fillStyle = '#374151'; ctx.font = '10px system-ui';
-      ctx.fillText('Semi-permeable', W / 2, H - 45);
-      ctx.fillText('Membrane', W / 2, H - 33);
-
-      // Arrows showing diffusion
-      const items = [
-        { label: 'Urea \u2192', y: 120, color: '#dc2626' },
-        { label: 'K\u207A \u2192', y: 160, color: '#d97706' },
-        { label: 'Creatinine \u2192', y: 200, color: '#7c3aed' },
-        { label: '\u2190 HCO\u2083\u207B', y: 240, color: '#2563eb' }
-      ];
-
-      items.forEach(item => {
-        ctx.fillStyle = item.color;
-        ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
-        ctx.fillText(item.label, W / 2, item.y);
-
-        ctx.strokeStyle = item.color; ctx.lineWidth = 1.5;
-        const dir = item.label.startsWith('\u2190') ? -1 : 1;
-        ctx.beginPath();
-        ctx.moveTo(W / 2 - dir * 50, item.y + 8);
-        ctx.lineTo(W / 2 + dir * 50, item.y + 8);
-        ctx.stroke();
-      });
-
-      // Info text
-      ctx.fillStyle = '#64748b'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Waste products diffuse from blood into dialysate', W / 2, H - 12);
-      ctx.fillText('(replaces kidney function when kidneys fail)', W / 2, H - 0);
-    }
-
-    function drawKidneyChart() {
-      const ctx = getCtx('kidney-chart');
-      const W = ctx.W, H = ctx.H;
-      const pad = { top: 20, right: 20, bottom: 40, left: 50 };
-      const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
-      ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-
+      const wl = [430, 470, 565, 635];
+      const wlColors = ['#7c3aed', '#2563eb', '#16a34a', '#dc2626'];
+      const wlLabels = ['430nm\nViolet', '470nm\nBlue', '565nm\nGreen', '635nm\nRed'];
+      const pad = { top: 30, bottom: 50, left: 55, right: 20 };
+      const pw = W - pad.left - pad.right, ph2 = H - pad.top - pad.bottom;
+      const maxAbs = 2.0;
       // Grid
       ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
-        const y = pad.top + plotH * (1 - i / 4);
+        const y = pad.top + ph2 * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
         ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
-        ctx.fillText(Math.round(200 * i / 4), pad.left - 6, y + 4);
+        ctx.fillText((maxAbs * i / 4).toFixed(1), pad.left - 8, y + 4);
       }
-
-      // GFR curve
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      for (let bp = 60; bp <= 180; bp += 2) {
-        let gfr;
-        if (bp < 80) gfr = Math.max(0, (bp - 60) * 2);
-        else if (bp <= 160) gfr = 125;
-        else gfr = 125 + (bp - 160) * 0.5;
-        const x = pad.left + ((bp - 60) / 120) * plotW;
-        const y = pad.top + plotH * (1 - gfr / 200);
-        bp === 60 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-
-      // Autoregulation zone
-      const x1 = pad.left + ((80 - 60) / 120) * plotW;
-      const x2 = pad.left + ((160 - 60) / 120) * plotW;
-      ctx.fillStyle = 'rgba(22, 163, 74, 0.1)';
-      ctx.fillRect(x1, pad.top, x2 - x1, plotH);
-      ctx.fillStyle = '#16a34a'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Autoregulation Zone', (x1 + x2) / 2, pad.top + 15);
-
-      // Current BP marker
-      const currentBP = parseInt($('kid-bp').value);
-      const cx = pad.left + ((currentBP - 60) / 120) * plotW;
-      let currentGFR;
-      if (currentBP < 80) currentGFR = Math.max(0, (currentBP - 60) * 2);
-      else if (currentBP <= 160) currentGFR = 125;
-      else currentGFR = 125 + (currentBP - 160) * 0.5;
-      const cy = pad.top + plotH * (1 - currentGFR / 200);
-      ctx.fillStyle = '#c41e3a';
-      ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2); ctx.fill();
-
-      // Axis labels
-      ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
-      for (let bp = 60; bp <= 180; bp += 20) {
-        const x = pad.left + ((bp - 60) / 120) * plotW;
-        ctx.fillText(bp, x, H - pad.bottom + 16);
-      }
-      ctx.fillText('Blood Pressure (mmHg)', pad.left + plotW / 2, H - 4);
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // PART 4: DRUG DELIVERY & MEMBRANE PERMEABILITY
-    // ══════════════════════════════════════════════════════════════════════════
-    let drugAnim = { running: false, animId: null, progress: 0, result: null };
-
-    function drugUpdate() {
-      const mw = $('drug-mw').value;
-      const charge = $('drug-charge').value;
-      const lipid = $('drug-lipid').value;
-
-      let method, rate, energy, pharma;
-
-      if (mw === 'small' && charge === 'uncharged' && lipid === 'high') {
-        method = 'Diffusion';
-        rate = 'Fast';
-        energy = 'None';
-        pharma = '<div class="ar-title">Direct Membrane Diffusion</div><p>Small, uncharged, lipid-soluble molecules pass directly through the phospholipid bilayer. <strong>Examples:</strong> steroid hormones (estrogen, testosterone, cortisol), oxygen, carbon dioxide, ethanol. These drugs are easily absorbed orally and cross the blood-brain barrier. Onset is rapid; bioavailability is typically high.</p>';
-      } else if (mw === 'small' && charge === 'uncharged' && lipid === 'low') {
-        method = 'Channel';
-        rate = 'Medium';
-        energy = 'None';
-        pharma = '<div class="ar-title">Channel-Mediated Transport</div><p>Small, uncharged, water-soluble molecules pass through aquaporins or other channel proteins. <strong>Examples:</strong> water, urea, small polar molecules. Transport is passive but selective based on channel specificity. Rate depends on the number of available channels.</p>';
-      } else if (mw === 'small' && charge === 'charged' && lipid === 'high') {
-        method = 'Channel';
-        rate = 'Medium';
-        energy = 'None';
-        pharma = '<div class="ar-title">Ion Channel Transport</div><p>Despite lipid solubility, the charge prevents direct membrane crossing. Ions use specific channel proteins. <strong>Examples:</strong> some ionizable drugs that exist in both charged and uncharged forms. The Henderson-Hasselbalch equation predicts the ratio of forms based on pH.</p>';
-      } else if (mw === 'small' && charge === 'charged' && lipid === 'low') {
-        method = 'Active';
-        rate = 'Slow';
-        energy = 'ATP';
-        pharma = '<div class="ar-title">Active Transport Required</div><p>Small, charged, water-soluble molecules need carrier proteins and energy (ATP). <strong>Examples:</strong> amino acids, ions like Na\u207A/K\u207A (via Na\u207A/K\u207A-ATPase). Drugs mimicking these molecules may use the same transporters. Rate is limited by carrier protein availability (saturation kinetics).</p>';
-      } else if (mw === 'large' && charge === 'uncharged' && lipid === 'high') {
-        method = 'Carrier';
-        rate = 'Slow';
-        energy = 'Variable';
-        pharma = '<div class="ar-title">Carrier-Mediated Transport</div><p>Large molecules cannot fit through channels even if lipid-soluble. They require carrier proteins for facilitated diffusion or active transport. <strong>Examples:</strong> fatty acids, some vitamins. These drugs may have limited oral bioavailability and may need special formulations.</p>';
-      } else if (mw === 'large' && charge === 'uncharged' && lipid === 'low') {
-        method = 'Endocytosis';
-        rate = 'Very Slow';
-        energy = 'ATP';
-        pharma = '<div class="ar-title">Endocytosis Required</div><p>Large, water-soluble molecules must be engulfed by the cell membrane in vesicles. <strong>Examples:</strong> insulin, antibodies, nanoparticle drug carriers. These drugs typically cannot be taken orally (destroyed by digestion) and must be injected. Onset is slow; targeted delivery systems are being developed.</p>';
-      } else if (mw === 'large' && charge === 'charged') {
-        method = 'Cannot Cross';
-        rate = 'None';
-        energy = 'N/A';
-        pharma = '<div class="ar-title">Membrane Impermeable</div><p>Large, charged molecules generally cannot cross cell membranes by any passive mechanism. They require receptor-mediated endocytosis or remain in the extracellular space. <strong>Examples:</strong> heparin (stays in blood), large proteins. These drugs act on cell surface receptors or must be delivered by specialized systems (liposomes, conjugates).</p>';
-      } else {
-        method = '--';
-        rate = '--';
-        energy = '--';
-        pharma = '<div class="ar-title">Select drug properties to see analysis</div>';
-      }
-
-      $('drug-method').textContent = method;
-      $('drug-method').style.fontSize = method.length > 8 ? '18px' : '28px';
-      $('drug-rate').textContent = rate;
-      $('drug-energy').textContent = energy;
-      $('drug-pharma').innerHTML = pharma;
-
-      drugAnim.result = method;
-      drawDrugCanvas();
-    }
-
-    function drugAnimate() {
-      if (drugAnim.running) {
-        drugAnim.running = false;
-        cancelAnimationFrame(drugAnim.animId);
-        return;
-      }
-      drugAnim.running = true;
-      drugAnim.progress = 0;
-      drugAnimLoop();
-    }
-
-    function drugAnimLoop() {
-      if (!drugAnim.running) return;
-      drugAnim.progress += 0.008;
-      if (drugAnim.progress > 1.2) drugAnim.progress = 0;
-      drawDrugCanvas();
-      drugAnim.animId = requestAnimationFrame(drugAnimLoop);
-    }
-
-    function drugReset() {
-      drugAnim.running = false;
-      drugAnim.progress = 0;
-      if (drugAnim.animId) cancelAnimationFrame(drugAnim.animId);
-      $('drug-mw').value = 'small';
-      $('drug-charge').value = 'uncharged';
-      $('drug-lipid').value = 'low';
-      drugUpdate();
-    }
-
-    function drawDrugCanvas() {
-      const ctx = getCtx('drug-canvas');
-      const W = ctx.W, H = ctx.H;
-      ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-
-      const memLeft = W * 0.35;
-      const memRight = W * 0.65;
-      const memTop = 40;
-      const memBottom = H - 40;
-
-      // Extracellular label
-      ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('EXTRACELLULAR', W * 0.17, 25);
-      ctx.fillText('INTRACELLULAR', W * 0.83, 25);
-
-      // Cell membrane - phospholipid bilayer
-      // Outer leaflet
-      for (let y = memTop; y < memBottom; y += 14) {
-        // Left leaflet heads
-        ctx.fillStyle = '#3b82f6';
-        ctx.beginPath(); ctx.arc(memLeft, y, 5, 0, Math.PI * 2); ctx.fill();
-        // Right leaflet heads
-        ctx.beginPath(); ctx.arc(memRight, y, 5, 0, Math.PI * 2); ctx.fill();
-        // Tails
-        ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.moveTo(memLeft + 5, y);
-        ctx.lineTo(memLeft + 20, y + (y % 28 < 14 ? 3 : -3));
-        ctx.lineTo(memLeft + 35, y);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(memRight - 5, y);
-        ctx.lineTo(memRight - 20, y + (y % 28 < 14 ? -3 : 3));
-        ctx.lineTo(memRight - 35, y);
-        ctx.stroke();
-      }
-
-      // Lipid bilayer fill
-      ctx.fillStyle = 'rgba(251, 191, 36, 0.1)';
-      ctx.fillRect(memLeft + 5, memTop, memRight - memLeft - 10, memBottom - memTop);
-
-      ctx.fillStyle = '#64748b'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Phospholipid Bilayer', (memLeft + memRight) / 2, memBottom + 15);
-
-      // Channel protein
-      const channelY = H * 0.35;
-      ctx.fillStyle = 'rgba(124, 58, 237, 0.3)';
-      ctx.fillRect(memLeft - 2, channelY - 15, memRight - memLeft + 4, 30);
-      ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
-      ctx.strokeRect(memLeft - 2, channelY - 15, memRight - memLeft + 4, 30);
-      ctx.fillStyle = '#7c3aed'; ctx.font = '9px system-ui';
-      ctx.fillText('Channel Protein', (memLeft + memRight) / 2, channelY + 4);
-
-      // Carrier protein
-      const carrierY = H * 0.65;
-      ctx.fillStyle = 'rgba(22, 163, 74, 0.3)';
-      ctx.beginPath();
-      ctx.moveTo(memLeft - 5, carrierY - 20);
-      ctx.quadraticCurveTo((memLeft + memRight) / 2, carrierY - 30, memRight + 5, carrierY - 20);
-      ctx.lineTo(memRight + 5, carrierY + 20);
-      ctx.quadraticCurveTo((memLeft + memRight) / 2, carrierY + 30, memLeft - 5, carrierY + 20);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2; ctx.stroke();
-      ctx.fillStyle = '#16a34a'; ctx.font = '9px system-ui';
-      ctx.fillText('Carrier/Pump', (memLeft + memRight) / 2, carrierY + 4);
-
-      // Drug molecule
-      const mw = $('drug-mw').value;
-      const charge = $('drug-charge').value;
-      const lipid = $('drug-lipid').value;
-      const molR = mw === 'large' ? 14 : 8;
-      const molColor = lipid === 'high' ? '#d97706' : '#2563eb';
-
-      let molX, molY;
-      const method = drugAnim.result;
-
-      if (drugAnim.running && drugAnim.progress <= 1) {
-        const p = drugAnim.progress;
-        if (method === 'Diffusion') {
-          molX = lerp(W * 0.12, W * 0.88, p);
-          molY = H * 0.5;
-        } else if (method === 'Channel') {
-          molX = lerp(W * 0.12, W * 0.88, p);
-          molY = channelY;
-        } else if (method === 'Active' || method === 'Carrier') {
-          molX = lerp(W * 0.12, W * 0.88, p);
-          molY = carrierY;
-        } else if (method === 'Endocytosis') {
-          if (p < 0.3) {
-            molX = lerp(W * 0.12, memLeft - 15, p / 0.3);
-            molY = H * 0.8;
-          } else if (p < 0.7) {
-            const t = (p - 0.3) / 0.4;
-            molX = memLeft + (memRight - memLeft) * t;
-            molY = H * 0.8 + Math.sin(t * Math.PI) * -20;
-          } else {
-            molX = lerp(memRight + 15, W * 0.88, (p - 0.7) / 0.3);
-            molY = H * 0.8;
-          }
-        } else {
-          // Cannot cross
-          molX = lerp(W * 0.12, memLeft - molR - 5, Math.min(p * 2, 1));
-          molY = H * 0.5;
-          if (p > 0.5) {
-            // Bounce back
-            molX = lerp(memLeft - molR - 5, W * 0.12, (p - 0.5) * 2);
-          }
+      ctx.fillStyle = '#64748b'; ctx.font = 'bold 11px system-ui';
+      ctx.save(); ctx.translate(14, H / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = 'center'; ctx.fillText('Absorbance', 0, 0); ctx.restore();
+      // Bars
+      const showW = colorMode !== 'lemon';
+      const showL = colorMode !== 'water';
+      const groupW2 = pw / wl.length;
+      const barW2 = showW && showL ? groupW2 * 0.35 : groupW2 * 0.5;
+      wl.forEach((w, i) => {
+        const gx = pad.left + groupW2 * i;
+        if (showW) {
+          const bx = showL ? gx + groupW2 * 0.1 : gx + (groupW2 - barW2) / 2;
+          const v = colorData.water[w]; const bh = (v / maxAbs) * ph2;
+          ctx.fillStyle = wlColors[i] + '44';
+          ctx.fillRect(bx, pad.top + ph2 - bh, barW2, bh);
+          ctx.strokeStyle = wlColors[i]; ctx.lineWidth = 1; ctx.strokeRect(bx, pad.top + ph2 - bh, barW2, bh);
+          if (v > 0.005) { ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center'; ctx.fillText(v.toFixed(2), bx + barW2 / 2, pad.top + ph2 - bh - 4); }
         }
-      } else {
-        molX = W * 0.12;
-        molY = H * 0.5;
-      }
-
-      // Draw molecule
-      ctx.fillStyle = molColor;
-      ctx.beginPath();
-      ctx.arc(molX, molY, molR, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = charge === 'charged' ? '#dc2626' : 'transparent';
-      ctx.lineWidth = 2;
-      if (charge === 'charged') {
-        ctx.stroke();
-        ctx.fillStyle = '#dc2626'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
-        ctx.fillText('+', molX, molY + 4);
-      }
-
-      // Label
-      ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Drug Molecule', molX, molY + molR + 14);
-
-      // Blocked indicator
-      if (method === 'Cannot Cross' && drugAnim.running && drugAnim.progress > 0.4 && drugAnim.progress < 0.6) {
-        ctx.fillStyle = '#dc2626'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
-        ctx.fillText('BLOCKED', memLeft - 30, molY - 20);
-      }
-
-      // Endocytosis vesicle
-      if (method === 'Endocytosis' && drugAnim.running && drugAnim.progress > 0.25 && drugAnim.progress < 0.75) {
-        ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2;
-        ctx.setLineDash([3, 3]);
-        ctx.beginPath();
-        ctx.arc(molX, molY, molR + 8, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.fillStyle = '#3b82f6'; ctx.font = '9px system-ui';
-        ctx.fillText('Vesicle', molX, molY - molR - 14);
-      }
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // PART 5: DIALYSIS TUBING EXPERIMENT
-    // ══════════════════════════════════════════════════════════════════════════
-    let dialState = {
-      time: 0,
-      running: false,
-      animId: null,
-      iodineInBag: 0,
-      glucoseInBeaker: 0,
-      starchInBag: 100,
-      history: { iodine: [0], glucose: [0], starch: [100] }
-    };
-
-    function dialStart() {
-      if (dialState.running) {
-        dialState.running = false;
-        cancelAnimationFrame(dialState.animId);
-        return;
-      }
-      dialState.running = true;
-      dialAnimLoop();
-    }
-
-    function dialStep() {
-      for (let i = 0; i < 5; i++) {
-        dialAdvance();
-      }
-      dialUpdateUI();
-      drawDialCanvas();
-      drawDialChart();
-      dialUpdateResults();
-    }
-
-    function dialAdvance() {
-      dialState.time++;
-
-      // Iodine diffuses INTO bag (small molecule)
-      const iodineRate = 3;
-      dialState.iodineInBag = Math.min(100, dialState.iodineInBag + iodineRate * (1 - dialState.iodineInBag / 100));
-
-      // Glucose diffuses OUT of bag (small molecule)
-      const glucoseRate = 2.5;
-      dialState.glucoseInBeaker = Math.min(100, dialState.glucoseInBeaker + glucoseRate * (1 - dialState.glucoseInBeaker / 100));
-
-      // Starch stays in bag (too large)
-      dialState.starchInBag = 100;
-
-      dialState.history.iodine.push(dialState.iodineInBag);
-      dialState.history.glucose.push(dialState.glucoseInBeaker);
-      dialState.history.starch.push(dialState.starchInBag);
-    }
-
-    function dialAnimLoop() {
-      if (!dialState.running) return;
-      dialAdvance();
-      dialUpdateUI();
-      drawDialCanvas();
-      drawDialChart();
-      dialUpdateResults();
-      if (dialState.time >= 60) {
-        dialState.running = false;
-        return;
-      }
-      dialState.animId = setTimeout(() => dialAnimLoop(), 200);
-    }
-
-    function dialUpdateUI() {
-      $('dial-time').textContent = dialState.time;
-      $('dial-iodine').textContent = dialState.iodineInBag > 10 ? 'Both' : 'Outside';
-      $('dial-glucose').textContent = dialState.glucoseInBeaker > 10 ? 'Both' : 'Inside';
-      $('dial-starch').textContent = 'Inside';
-    }
-
-    function dialUpdateResults() {
-      let html = '';
-      const t = dialState.time;
-
-      if (t === 0) {
-        html = '<div class="analysis-result"><div class="ar-title">Experiment Not Yet Run</div><p>Click "Run Experiment" or "Step +5 min" to observe molecular movement.</p></div>';
-      } else {
-        // Iodine test (starch + iodine = blue-black)
-        const iodineInBag = dialState.iodineInBag > 20;
-        html += `<div class="analysis-result ${iodineInBag ? 'ar-pass' : ''}">
-      <div class="ar-title">Iodine-Starch Test (Inside Bag)</div>
-      <p>${iodineInBag
-            ? '<strong>POSITIVE:</strong> Blue-black color observed inside bag. Iodine (small molecule, ~254 Da) diffused through the membrane pores and reacted with starch inside the bag. This confirms iodine crossed the membrane.'
-            : 'Waiting for iodine to diffuse into the bag... Iodine molecules are small enough to pass through the dialysis membrane pores.'}</p>
-    </div>`;
-
-        // Benedict's test (glucose + Benedict's = orange/red)
-        const glucoseOut = dialState.glucoseInBeaker > 20;
-        html += `<div class="analysis-result ${glucoseOut ? 'ar-pass' : ''}">
-      <div class="ar-title">Benedict's Test (Beaker Solution)</div>
-      <p>${glucoseOut
-            ? '<strong>POSITIVE:</strong> Orange-red precipitate in beaker. Glucose (small molecule, ~180 Da) diffused out through the membrane pores and reacted with Benedict\'s reagent. This confirms glucose crossed the membrane.'
-            : 'Waiting for glucose to diffuse out of the bag... Glucose molecules are small enough to pass through.'}</p>
-    </div>`;
-
-        // Starch test
-        html += `<div class="analysis-result ar-warn">
-      <div class="ar-title">Starch Test (Beaker Solution)</div>
-      <p><strong>NEGATIVE:</strong> No color change in beaker with iodine test. Starch (large polymer, ~50,000+ Da) is too large to pass through the dialysis membrane pores. This demonstrates <strong>size-based selectivity</strong> of the semipermeable membrane.</p>
-    </div>`;
-      }
-
-      $('dial-results').innerHTML = html;
-    }
-
-    function dialReset() {
-      dialState = {
-        time: 0, running: false, animId: null,
-        iodineInBag: 0, glucoseInBeaker: 0, starchInBag: 100,
-        history: { iodine: [0], glucose: [0], starch: [100] }
-      };
-      if (dialState.animId) clearTimeout(dialState.animId);
-      dialUpdateUI();
-      drawDialCanvas();
-      drawDialChart();
-      dialUpdateResults();
-    }
-
-    function drawDialCanvas() {
-      const ctx = getCtx('dial-canvas');
-      const W = ctx.W, H = ctx.H;
-      ctx.clearRect(0, 0, W, H);
-
-      // Beaker
-      const bx = W * 0.15, by = 50, bw = W * 0.7, bh = H - 80;
-
-      // Beaker liquid (iodine = amber, fading as it enters bag)
-      const iodineRemaining = 100 - dialState.iodineInBag;
-      ctx.fillStyle = `rgba(139, 69, 19, ${0.1 + iodineRemaining / 100 * 0.2})`;
-      ctx.fillRect(bx, by + 20, bw, bh - 20);
-
-      // Benedict's reagent color change
-      if (dialState.glucoseInBeaker > 20) {
-        const intensity = dialState.glucoseInBeaker / 100;
-        ctx.fillStyle = `rgba(234, 88, 12, ${intensity * 0.3})`;
-        ctx.fillRect(bx, by + bh * 0.6, bw, bh * 0.4 - 20);
-      }
-
-      // Beaker outline
-      ctx.strokeStyle = '#374151'; ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(bx, by);
-      ctx.lineTo(bx, by + bh);
-      ctx.lineTo(bx + bw, by + bh);
-      ctx.lineTo(bx + bw, by);
-      ctx.stroke();
-
-      // Dialysis bag
-      const bagX = W * 0.32, bagY = by + 30, bagW = W * 0.36, bagH = bh - 60;
-      const bagCx = bagX + bagW / 2;
-
-      // Bag contents - starch turns blue-black with iodine
-      const starchColor = dialState.iodineInBag > 20
-        ? `rgba(20, 20, 60, ${0.2 + dialState.iodineInBag / 100 * 0.5})`
-        : 'rgba(255, 255, 240, 0.5)';
-      ctx.fillStyle = starchColor;
-      ctx.beginPath();
-      ctx.ellipse(bagCx, bagY + bagH / 2, bagW / 2, bagH / 2, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Bag outline (semipermeable)
-      ctx.strokeStyle = '#7c3aed';
-      ctx.lineWidth = 2;
-      ctx.setLineDash([6, 4]);
-      ctx.beginPath();
-      ctx.ellipse(bagCx, bagY + bagH / 2, bagW / 2, bagH / 2, 0, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // Bag tie at top
-      ctx.fillStyle = '#374151';
-      ctx.fillRect(bagCx - 3, bagY - 10, 6, 20);
-
-      // Molecule indicators inside bag
-      // Starch (large circles)
-      ctx.fillStyle = 'rgba(100, 100, 200, 0.4)';
-      const starchPositions = [
-        [bagCx - 25, bagY + bagH * 0.3],
-        [bagCx + 20, bagY + bagH * 0.4],
-        [bagCx - 10, bagY + bagH * 0.6],
-        [bagCx + 15, bagY + bagH * 0.7],
-        [bagCx, bagY + bagH * 0.5],
-      ];
-      starchPositions.forEach(([sx, sy]) => {
-        ctx.beginPath();
-        ctx.arc(sx, sy, 10, 0, Math.PI * 2);
-        ctx.fill();
+        if (showL) {
+          const bx = showW ? gx + groupW2 * 0.55 : gx + (groupW2 - barW2) / 2;
+          const v = colorData.lemon[w]; const bh = (v / maxAbs) * ph2;
+          ctx.fillStyle = wlColors[i];
+          ctx.beginPath();
+          const r = 3;
+          ctx.moveTo(bx, pad.top + ph2); ctx.lineTo(bx, pad.top + ph2 - bh + r);
+          ctx.quadraticCurveTo(bx, pad.top + ph2 - bh, bx + r, pad.top + ph2 - bh);
+          ctx.lineTo(bx + barW2 - r, pad.top + ph2 - bh);
+          ctx.quadraticCurveTo(bx + barW2, pad.top + ph2 - bh, bx + barW2, pad.top + ph2 - bh + r);
+          ctx.lineTo(bx + barW2, pad.top + ph2); ctx.closePath(); ctx.fill();
+          ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+          if (bh > 20) ctx.fillText(v.toFixed(2), bx + barW2 / 2, pad.top + ph2 - bh + 16);
+        }
+        ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText(w + 'nm', gx + groupW2 / 2, H - pad.bottom + 16);
       });
-
-      // Glucose dots inside bag (decreasing)
-      const glucoseInBag = 100 - dialState.glucoseInBeaker;
-      const numGlucInBag = Math.floor(glucoseInBag / 10);
-      ctx.fillStyle = 'rgba(37, 99, 235, 0.6)';
-      for (let i = 0; i < numGlucInBag; i++) {
-        const gx = bagCx + Math.cos(i * 1.2) * (bagW * 0.25);
-        const gy = bagY + bagH * 0.3 + (i * bagH * 0.05);
-        ctx.beginPath();
-        ctx.arc(gx, gy, 3, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Glucose in beaker
-      const numGlucBeaker = Math.floor(dialState.glucoseInBeaker / 10);
-      ctx.fillStyle = 'rgba(37, 99, 235, 0.5)';
-      for (let i = 0; i < numGlucBeaker; i++) {
-        const gx = bx + 20 + (i % 5) * 15;
-        const gy = by + bh - 40 - Math.floor(i / 5) * 15;
-        ctx.beginPath();
-        ctx.arc(gx, gy, 3, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Iodine molecules in beaker (decreasing)
-      ctx.fillStyle = 'rgba(139, 69, 19, 0.6)';
-      const numIodBeaker = Math.floor(iodineRemaining / 10);
-      for (let i = 0; i < numIodBeaker; i++) {
-        const ix = bx + bw - 20 - (i % 4) * 12;
-        const iy = by + 40 + Math.floor(i / 4) * 15;
-        ctx.beginPath();
-        ctx.arc(ix, iy, 3, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Iodine inside bag
-      const numIodBag = Math.floor(dialState.iodineInBag / 10);
-      ctx.fillStyle = 'rgba(139, 69, 19, 0.7)';
-      for (let i = 0; i < numIodBag; i++) {
-        const ix = bagCx + Math.sin(i * 0.9) * (bagW * 0.2);
-        const iy = bagY + bagH * 0.25 + i * (bagH * 0.05);
-        ctx.beginPath();
-        ctx.arc(ix, iy, 3, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Arrows showing movement
-      if (dialState.time > 0 && dialState.time < 60) {
-        const arrowAlpha = 0.5 + Math.sin(Date.now() / 300) * 0.3;
-
-        // Iodine entering bag
-        if (dialState.iodineInBag < 90) {
-          ctx.strokeStyle = `rgba(139, 69, 19, ${arrowAlpha})`;
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(bx + bw - 40, bagY + bagH * 0.3);
-          ctx.lineTo(bagCx + bagW / 2 + 5, bagY + bagH * 0.3);
-          ctx.stroke();
-          ctx.fillStyle = `rgba(139, 69, 19, ${arrowAlpha})`;
-          ctx.beginPath();
-          ctx.moveTo(bagCx + bagW / 2 + 5, bagY + bagH * 0.3);
-          ctx.lineTo(bagCx + bagW / 2 + 12, bagY + bagH * 0.3 - 4);
-          ctx.lineTo(bagCx + bagW / 2 + 12, bagY + bagH * 0.3 + 4);
-          ctx.closePath(); ctx.fill();
-        }
-
-        // Glucose leaving bag
-        if (dialState.glucoseInBeaker < 90) {
-          ctx.strokeStyle = `rgba(37, 99, 235, ${arrowAlpha})`;
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(bagCx - bagW / 2 - 5, bagY + bagH * 0.6);
-          ctx.lineTo(bx + 30, bagY + bagH * 0.6);
-          ctx.stroke();
-          ctx.fillStyle = `rgba(37, 99, 235, ${arrowAlpha})`;
-          ctx.beginPath();
-          ctx.moveTo(bx + 30, bagY + bagH * 0.6);
-          ctx.lineTo(bx + 23, bagY + bagH * 0.6 - 4);
-          ctx.lineTo(bx + 23, bagY + bagH * 0.6 + 4);
-          ctx.closePath(); ctx.fill();
-        }
-      }
-
-      // Labels
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Beaker', bx + bw / 2, by + bh + 22);
-      ctx.fillText('Dialysis Bag', bagCx, bagY - 18);
-
       // Legend
-      ctx.font = '10px system-ui'; ctx.textAlign = 'left';
-      const lx = bx + 8, ly = by + 10;
-      ctx.fillStyle = 'rgba(100, 100, 200, 0.6)'; ctx.beginPath(); ctx.arc(lx, ly, 6, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#374151'; ctx.fillText('Starch (large - trapped)', lx + 12, ly + 4);
-      ctx.fillStyle = 'rgba(37, 99, 235, 0.6)'; ctx.beginPath(); ctx.arc(lx, ly + 18, 3, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#374151'; ctx.fillText('Glucose (small - crosses)', lx + 12, ly + 22);
-      ctx.fillStyle = 'rgba(139, 69, 19, 0.6)'; ctx.beginPath(); ctx.arc(lx, ly + 36, 3, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#374151'; ctx.fillText('Iodine (small - crosses)', lx + 12, ly + 40);
-    }
-
-    function drawDialChart() {
-      if (dialState.history.iodine.length < 2) return;
-      const ctx = getCtx('dial-chart');
-      const maxLen = dialState.history.iodine.length;
-      drawLineChart(ctx, [
-        { data: dialState.history.iodine.map(v => v / 100), color: '#8B4513', width: 2.5, dots: maxLen < 80 },
-        { data: dialState.history.glucose.map(v => v / 100), color: '#2563eb', width: 2.5, dots: maxLen < 80 },
-        { data: dialState.history.starch.map(v => v / 100), color: '#9ca3af', width: 2, dots: false }
-      ], { yMin: 0, yMax: 1, refLine: undefined });
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // PART 6: TRANSPORT MECHANISMS IN THE HUMAN BODY
-    // ══════════════════════════════════════════════════════════════════════════
-    let bodySystem = 'lungs';
-    let bodyAnimId = null;
-    let bodyTime = 0;
-
-    const bodyData = {
-      lungs: {
-        transport: 'Diffusion',
-        molecule: 'O\u2082/CO\u2082',
-        energy: 'No',
-        direction: 'Down',
-        detail: '<div class="cp-title">Lungs &mdash; Gas Exchange by Simple Diffusion</div><p>Oxygen diffuses from alveolar air (high concentration, PO\u2082 = 104 mmHg) into blood capillaries (low concentration, PO\u2082 = 40 mmHg). Carbon dioxide moves the opposite direction (PCO\u2082: blood 46 mmHg \u2192 alveolar 40 mmHg). The alveolar membrane is extremely thin (0.5 micrometers) to maximize diffusion rate. No energy (ATP) is required &mdash; this is passive transport driven entirely by partial pressure gradients. About 300 million alveoli provide ~70 m\u00B2 of surface area.</p>',
-        energyVal: 0
-      },
-      intestines: {
-        transport: 'Mixed',
-        molecule: 'Glucose+',
-        energy: 'Yes',
-        direction: 'Both',
-        detail: '<div class="cp-title">Intestines &mdash; Nutrient Absorption</div><p>The small intestine uses multiple transport mechanisms simultaneously. <strong>Glucose and amino acids:</strong> absorbed via secondary active transport (Na\u207A-glucose symporter, SGLT1) on the apical surface, then facilitated diffusion (GLUT2) on the basolateral surface. <strong>Fatty acids:</strong> simple diffusion through enterocyte membranes after bile salt emulsification. <strong>Water:</strong> osmosis following solute absorption. <strong>Ions:</strong> active transport (Na\u207A/K\u207A-ATPase). Villi and microvilli increase surface area to ~32 m\u00B2.</p>',
-        energyVal: 3
-      },
-      neurons: {
-        transport: 'Active',
-        molecule: 'Na\u207A/K\u207A',
-        energy: 'Yes',
-        direction: 'Against',
-        detail: '<div class="cp-title">Neurons &mdash; Na\u207A/K\u207A Pump &amp; Ion Channels</div><p>The Na\u207A/K\u207A-ATPase is the most important active transporter in neurons, consuming ~40% of brain ATP. It pumps 3 Na\u207A out and 2 K\u207A in per ATP hydrolyzed, maintaining the resting membrane potential (-70 mV). During an action potential, voltage-gated Na\u207A channels open (passive, down gradient), followed by K\u207A channels. The pump then restores ion gradients. This cycle repeats up to 1000 times per second in some neurons. Neurotoxins like tetrodotoxin (pufferfish) and local anesthetics (lidocaine) work by blocking these Na\u207A channels.</p>',
-        energyVal: 5
-      },
-      kidneys: {
-        transport: 'Mixed',
-        molecule: 'Multiple',
-        energy: 'Yes',
-        direction: 'Both',
-        detail: '<div class="cp-title">Kidneys &mdash; Filtration + Reabsorption</div><p>The nephron uses nearly every transport mechanism. <strong>Glomerular filtration:</strong> bulk flow driven by blood pressure (not true transport). <strong>Proximal tubule:</strong> active transport reabsorbs 65% of Na\u207A, glucose (100%), amino acids (100%); water follows by osmosis. <strong>Loop of Henle:</strong> countercurrent multiplication creates osmotic gradient (300\u21921200 mOsm/L). <strong>Collecting duct:</strong> ADH-regulated aquaporin water channels (facilitated diffusion). The kidneys filter 180 L/day but produce only 1-2 L urine, reabsorbing 99% of filtrate.</p>',
-        energyVal: 4
+      if (showW && showL) {
+        ctx.fillStyle = '#2563eb44'; ctx.fillRect(W - 140, 8, 12, 12);
+        ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left'; ctx.fillText('Tap Water', W - 124, 18);
+        ctx.fillStyle = '#2563eb'; ctx.fillRect(W - 140, 24, 12, 12);
+        ctx.fillText('Lemon Juice', W - 124, 34);
       }
-    };
-
-    function bodySelect(system) {
-      bodySystem = system;
-      const data = bodyData[system];
-      $('body-transport').textContent = data.transport;
-      $('body-molecule').textContent = data.molecule;
-      $('body-energy').textContent = data.energy;
-      $('body-direction').textContent = data.direction;
-      $('body-details').innerHTML = data.detail;
-
-      // Update button states
-      document.querySelectorAll('.body-btn').forEach(b => {
-        b.classList.remove('active');
-        if (b.textContent.toLowerCase().includes(system.substring(0, 4))) b.classList.add('active');
-      });
-
-      bodyTime = 0;
-      if (bodyAnimId) cancelAnimationFrame(bodyAnimId);
-      drawBodyCanvas();
-      drawBodyEnergyChart();
     }
 
-    function drawBodyCanvas() {
-      const ctx = getCtx('body-canvas');
+    // ══════════════════════════════════════════════════════════════════
+    // PART 6: TURBIDITY
+    // ══════════════════════════════════════════════════════════════════
+    function turbPreset(v) { $('turb-slider').value = v; turbUpdate(); }
+
+    function turbUpdate() {
+      const ntu = parseInt($('turb-slider').value);
+      $('turb-val').textContent = ntu + ' NTU';
+      const trans = Math.max(0, 100 - ntu * 0.5);
+      $('turb-trans').textContent = trans.toFixed(0) + '%';
+      if (ntu < 5) { $('turb-clarity').textContent = 'Clear'; $('turb-safe').textContent = 'Safe'; }
+      else if (ntu < 20) { $('turb-clarity').textContent = 'Slight Haze'; $('turb-safe').textContent = 'Safe'; }
+      else if (ntu < 50) { $('turb-clarity').textContent = 'Hazy'; $('turb-safe').textContent = 'Marginal'; }
+      else if (ntu < 100) { $('turb-clarity').textContent = 'Cloudy'; $('turb-safe').textContent = 'Unsafe'; }
+      else { $('turb-clarity').textContent = 'Very Cloudy'; $('turb-safe').textContent = 'Unsafe'; }
+      drawTurbCanvas(ntu);
+    }
+
+    function drawTurbCanvas(ntu) {
+      const ctx = getCtx('turb-canvas');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-
-      bodyTime += 0.02;
-      const t = bodyTime;
-
-      if (bodySystem === 'lungs') drawLungsAnim(ctx, W, H, t);
-      else if (bodySystem === 'intestines') drawIntestinesAnim(ctx, W, H, t);
-      else if (bodySystem === 'neurons') drawNeuronsAnim(ctx, W, H, t);
-      else if (bodySystem === 'kidneys') drawKidneysAnim(ctx, W, H, t);
-
-      bodyAnimId = requestAnimationFrame(drawBodyCanvas);
-    }
-
-    function drawLungsAnim(ctx, W, H, t) {
-      // Alveolus
-      const cx = W / 2, cy = H / 2;
-      const alvR = 80;
-
-      // Alveolar air space
-      ctx.fillStyle = '#e0f2fe';
-      ctx.beginPath();
-      ctx.arc(cx, cy, alvR, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#f472b6'; ctx.lineWidth = 3;
-      ctx.stroke();
-
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Alveolus', cx, cy - alvR - 15);
-      ctx.fillText('(Air Space)', cx, cy - alvR - 2);
-
-      // Capillary
-      ctx.fillStyle = 'rgba(239, 68, 68, 0.15)';
-      ctx.fillRect(cx - alvR - 60, cy - 25, alvR * 2 + 120, 50);
-      ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2;
-      ctx.strokeRect(cx - alvR - 60, cy - 25, alvR * 2 + 120, 50);
-
-      ctx.fillStyle = '#dc2626'; ctx.font = '11px system-ui';
-      ctx.fillText('Blood Capillary', cx, cy + 45);
-
-      // Thin membrane label
-      ctx.fillStyle = '#f472b6'; ctx.font = '10px system-ui';
-      ctx.fillText('Alveolar membrane (0.5 \u03BCm)', cx, cy + alvR + 15);
-
-      // O2 molecules moving into blood
-      for (let i = 0; i < 5; i++) {
-        const angle = (i / 5) * Math.PI - Math.PI / 2;
-        const progress = ((t * 0.5 + i * 0.2) % 1);
-        const startR = alvR - 20;
-        const endR = alvR + 30;
-        const r = lerp(startR, endR, progress);
-        const ox = cx + Math.cos(angle) * r;
-        const oy = cy + Math.sin(angle) * r;
-
-        ctx.fillStyle = `rgba(37, 99, 235, ${1 - progress * 0.5})`;
-        ctx.beginPath();
-        ctx.arc(ox, oy, 5, 0, Math.PI * 2);
-        ctx.fill();
-        if (progress < 0.3) {
-          ctx.fillStyle = '#2563eb'; ctx.font = 'bold 7px system-ui'; ctx.textAlign = 'center';
-          ctx.fillText('O\u2082', ox, oy + 3);
+      // Cuvette
+      const cx = W * 0.3, cw = W * 0.4, cy = 20, ch = H - 40;
+      const opacity = Math.min(0.9, ntu / 200);
+      ctx.fillStyle = `rgba(210,190,120,${opacity})`;
+      ctx.fillRect(cx, cy, cw, ch);
+      ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.strokeRect(cx, cy, cw, ch);
+      // Particles
+      const numP = Math.min(100, Math.round(ntu * 0.6));
+      for (let i = 0; i < numP; i++) {
+        const px = cx + 10 + ((i * 137.5) % (cw - 20));
+        const py = cy + 10 + ((i * 97.3) % (ch - 20));
+        ctx.fillStyle = 'rgba(139,119,42,0.5)';
+        ctx.beginPath(); ctx.arc(px, py, 1.5 + Math.random() * 2, 0, Math.PI * 2); ctx.fill();
+      }
+      // Light beam
+      ctx.fillStyle = '#ffd700'; ctx.globalAlpha = 0.8;
+      ctx.fillRect(10, H / 2 - 4, cx - 10, 8);
+      // Transmitted light
+      const transAlpha = Math.max(0.05, 1 - ntu / 200);
+      ctx.fillStyle = '#ffd700'; ctx.globalAlpha = transAlpha;
+      ctx.fillRect(cx + cw, H / 2 - 4, W - cx - cw - 10, 8);
+      ctx.globalAlpha = 1;
+      // Scattered light (if turbid)
+      if (ntu > 10) {
+        ctx.strokeStyle = `rgba(255,215,0,${Math.min(0.5, ntu / 200)})`;
+        ctx.lineWidth = 1;
+        for (let i = 0; i < Math.min(8, ntu / 15); i++) {
+          const sx = cx + cw / 2 + (Math.random() - 0.5) * cw * 0.6;
+          const sy = H / 2;
+          const angle = (Math.random() - 0.5) * Math.PI * 0.8;
+          ctx.beginPath(); ctx.moveTo(sx, sy);
+          ctx.lineTo(sx + Math.cos(angle) * 40, sy + Math.sin(angle) * 40); ctx.stroke();
         }
       }
-
-      // CO2 molecules moving into alveolus
-      for (let i = 0; i < 4; i++) {
-        const angle = (i / 4) * Math.PI + Math.PI / 2;
-        const progress = ((t * 0.4 + i * 0.25) % 1);
-        const startR = alvR + 30;
-        const endR = alvR - 30;
-        const r = lerp(startR, endR, progress);
-        const ox = cx + Math.cos(angle) * r;
-        const oy = cy + Math.sin(angle) * r;
-
-        ctx.fillStyle = `rgba(220, 38, 38, ${1 - progress * 0.5})`;
-        ctx.beginPath();
-        ctx.arc(ox, oy, 5, 0, Math.PI * 2);
-        ctx.fill();
-        if (progress < 0.3) {
-          ctx.fillStyle = '#dc2626'; ctx.font = 'bold 7px system-ui'; ctx.textAlign = 'center';
-          ctx.fillText('CO\u2082', ox, oy + 3);
-        }
-      }
-
-      // Gradient labels
-      ctx.font = '11px system-ui'; ctx.textAlign = 'left';
-      ctx.fillStyle = '#2563eb';
-      ctx.fillText('O\u2082: High \u2192 Low (into blood)', 20, 25);
-      ctx.fillStyle = '#dc2626';
-      ctx.fillText('CO\u2082: High \u2192 Low (into air)', 20, 42);
-      ctx.fillStyle = '#16a34a';
-      ctx.font = 'bold 11px system-ui';
-      ctx.fillText('Passive: No ATP needed', 20, 62);
-    }
-
-    function drawIntestinesAnim(ctx, W, H, t) {
-      // Villus
-      const vx = W / 2, vy = H * 0.3;
-      const vw = 100, vh = 180;
-
-      // Intestinal lumen
-      ctx.fillStyle = '#fef3c7';
-      ctx.fillRect(0, 0, W, vy - 30);
-      ctx.fillStyle = '#d97706'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Intestinal Lumen (Food)', W / 2, 20);
-
-      // Villus shape
-      ctx.fillStyle = '#fce7f3';
-      ctx.beginPath();
-      ctx.moveTo(vx - vw / 2, vy - 30);
-      ctx.quadraticCurveTo(vx - vw / 2 - 10, vy + vh / 2, vx, vy + vh);
-      ctx.quadraticCurveTo(vx + vw / 2 + 10, vy + vh / 2, vx + vw / 2, vy - 30);
-      ctx.closePath();
-      ctx.fill();
-      ctx.strokeStyle = '#ec4899'; ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // Microvilli (brush border)
-      ctx.strokeStyle = '#ec4899'; ctx.lineWidth = 1;
-      for (let i = -8; i <= 8; i++) {
-        const mx = vx + i * 5;
-        ctx.beginPath();
-        ctx.moveTo(mx, vy - 30);
-        ctx.lineTo(mx, vy - 42);
-        ctx.stroke();
-      }
-
-      ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Microvilli', vx, vy - 48);
-
-      // Blood capillary inside villus
-      ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(vx, vy);
-      ctx.lineTo(vx, vy + vh - 30);
-      ctx.stroke();
-      ctx.fillStyle = '#dc2626'; ctx.font = '9px system-ui';
-      ctx.fillText('Capillary', vx, vy + vh - 15);
-
-      // Glucose absorption (Na+ co-transport)
-      for (let i = 0; i < 4; i++) {
-        const progress = ((t * 0.3 + i * 0.25) % 1);
-        const gx = vx - 40 + progress * 35;
-        const gy = vy - 20 + progress * 60;
-        ctx.fillStyle = `rgba(37, 99, 235, ${1 - progress * 0.6})`;
-        ctx.beginPath(); ctx.arc(gx, gy, 4, 0, Math.PI * 2); ctx.fill();
-        if (progress < 0.2) {
-          ctx.font = '7px system-ui'; ctx.fillText('Glc', gx, gy + 3);
-        }
-      }
-
-      // Na+ with glucose
-      for (let i = 0; i < 4; i++) {
-        const progress = ((t * 0.3 + i * 0.25) % 1);
-        const nx = vx - 35 + progress * 30;
-        const ny = vy - 15 + progress * 55;
-        ctx.fillStyle = `rgba(22, 163, 74, ${1 - progress * 0.6})`;
-        ctx.beginPath(); ctx.arc(nx, ny, 3, 0, Math.PI * 2); ctx.fill();
-      }
-
-      // Fatty acid diffusion
-      for (let i = 0; i < 3; i++) {
-        const progress = ((t * 0.25 + i * 0.33) % 1);
-        const fx = vx + 45 - progress * 40;
-        const fy = vy - 20 + progress * 50;
-        ctx.fillStyle = `rgba(217, 119, 6, ${1 - progress * 0.6})`;
-        ctx.beginPath(); ctx.arc(fx, fy, 4, 0, Math.PI * 2); ctx.fill();
-      }
-
-      // Labels
-      ctx.font = '11px system-ui'; ctx.textAlign = 'left';
-      ctx.fillStyle = '#2563eb';
-      ctx.fillText('Glucose: Na\u207A co-transport (active)', 20, H - 50);
-      ctx.fillStyle = '#d97706';
-      ctx.fillText('Fatty acids: Simple diffusion (passive)', 20, H - 33);
-      ctx.fillStyle = '#16a34a';
-      ctx.fillText('Water: Osmosis follows solutes', 20, H - 16);
-    }
-
-    function drawNeuronsAnim(ctx, W, H, t) {
-      const cx = W / 2, memY = H / 2;
-
-      // Cell membrane
-      ctx.fillStyle = '#fef3c7';
-      ctx.fillRect(0, memY - 4, W, 8);
-      ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.moveTo(0, memY - 4); ctx.lineTo(W, memY - 4); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(0, memY + 4); ctx.lineTo(W, memY + 4); ctx.stroke();
-
       // Labels
       ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('OUTSIDE (Extracellular)', cx, 25);
-      ctx.fillText('INSIDE (Intracellular)', cx, H - 15);
-      ctx.fillStyle = '#d97706'; ctx.font = '10px system-ui';
-      ctx.fillText('Cell Membrane', cx, memY + 3);
+      ctx.fillText('Light Source', cx / 2, H / 2 + 24);
+      ctx.fillText('Sample', cx + cw / 2, cy - 6);
+      ctx.fillText('Detector', cx + cw + (W - cx - cw) / 2, H / 2 + 24);
+      ctx.fillText(ntu + ' NTU | ' + (100 - Math.min(100, ntu * 0.5)).toFixed(0) + '% T', W / 2, H - 8);
+    }
 
-      // Na+/K+ pump
-      const pumpX = cx;
-      ctx.fillStyle = 'rgba(124, 58, 237, 0.3)';
-      ctx.fillRect(pumpX - 30, memY - 25, 60, 50);
-      ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
-      ctx.strokeRect(pumpX - 30, memY - 25, 60, 50);
-      ctx.fillStyle = '#7c3aed'; ctx.font = 'bold 10px system-ui';
-      ctx.fillText('Na\u207A/K\u207A', pumpX, memY - 7);
-      ctx.fillText('ATPase', pumpX, memY + 7);
+    // ══════════════════════════════════════════════════════════════════
+    // QUIZ
+    // ══════════════════════════════════════════════════════════════════
+    const quizData = [
+      { q: 'What does pH measure?', opts: ['Temperature of a solution', 'Hydrogen ion concentration', 'Dissolved oxygen level', 'Light absorbance'], ans: 1 },
+      { q: 'Lemon juice has a pH of about 2. Tap water has a pH of about 7. How many times more H⁺ ions does lemon juice have?', opts: ['5 times', '50 times', '100,000 times', '7 times'], ans: 2 },
+      { q: 'What does a conductivity probe measure?', opts: ['Temperature changes', 'How well a solution conducts electricity', 'Light transmittance', 'Dissolved oxygen'], ans: 1 },
+      { q: 'Why would lemon juice have higher conductivity than distilled water?', opts: ['It is colder', 'It contains dissolved ions (citric acid, minerals)', 'It absorbs more light', 'It has more oxygen'], ans: 1 },
+      { q: 'What unit is dissolved oxygen measured in?', opts: ['pH units', 'µS/cm', 'mg/L', 'NTU'], ans: 2 },
+      { q: 'Fish need at least 4-5 mg/L of dissolved oxygen. Which factor DECREASES dissolved oxygen?', opts: ['Cold temperature', 'Higher altitude', 'Lower water temperature', 'All of the above can decrease DO'], ans: 3 },
+      { q: 'A colorimeter measures absorbance at different wavelengths. Why would lemon juice absorb more light at 430 nm (violet) than 635 nm (red)?', opts: ['Lemon juice appears yellow, which absorbs violet/blue light', 'Violet light is slower', 'Red light has more energy', 'The colorimeter is broken'], ans: 0 },
+      { q: 'What does high turbidity indicate about a liquid?', opts: ['It is very acidic', 'It contains many suspended particles', 'It is very cold', 'It has no dissolved gases'], ans: 1 },
+      { q: 'Why must you rinse probes with distilled water between samples?', opts: ['To keep the probe wet', 'To avoid cross-contamination of measurements', 'To calibrate the probe', 'Probes only work when wet'], ans: 1 },
+      { q: 'After collecting all data, why do groups share and compare their results?', opts: ['To save time', 'To verify reproducibility and identify measurement errors', 'Because the instructor requires it', 'To average out the probe readings'], ans: 1 }
+    ];
+    let quizIdx = 0, quizScore = 0, quizAnswered = 0;
 
-      // ATP being consumed
-      const atpPhase = (t * 0.5) % 1;
-      ctx.fillStyle = `rgba(234, 88, 12, ${0.5 + atpPhase * 0.5})`;
-      ctx.font = 'bold 9px system-ui';
-      ctx.fillText('ATP \u2192 ADP', pumpX, memY + 35);
+    function quizRender() {
+      const q = quizData[quizIdx];
+      $('quiz-num').textContent = quizIdx + 1;
+      $('quiz-question').textContent = q.q;
+      const optDiv = $('quiz-options');
+      optDiv.innerHTML = '';
+      q.opts.forEach((o, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.textContent = String.fromCharCode(65 + i) + '. ' + o;
+        btn.onclick = () => quizAnswer(i);
+        optDiv.appendChild(btn);
+      });
+      $('quiz-feedback').style.display = 'none';
+      $('quiz-next-btn').style.display = 'none';
+    }
 
-      // 3 Na+ going out
-      for (let i = 0; i < 3; i++) {
-        const progress = ((t * 0.4 + i * 0.15) % 1);
-        const nx = pumpX - 15 + i * 15;
-        const ny = lerp(memY + 20, memY - 60, progress);
-        ctx.fillStyle = `rgba(37, 99, 235, ${1 - progress * 0.7})`;
-        ctx.beginPath(); ctx.arc(nx, ny, 5, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui';
-        ctx.fillText('Na\u207A', nx, ny + 3);
+    function quizAnswer(idx) {
+      const q = quizData[quizIdx];
+      const opts = $('quiz-options').querySelectorAll('.quiz-option');
+      opts.forEach((o, i) => {
+        o.disabled = true;
+        o.style.pointerEvents = 'none';
+        if (i === q.ans) o.classList.add('correct');
+        if (i === idx && i !== q.ans) o.classList.add('wrong');
+      });
+      const fb = $('quiz-feedback');
+      fb.style.display = 'block';
+      if (idx === q.ans) {
+        quizScore++;
+        fb.textContent = '✓ Correct!';
+        fb.style.background = '#f0fdf4'; fb.style.color = '#16a34a';
+      } else {
+        fb.textContent = '✗ Incorrect. The correct answer is ' + String.fromCharCode(65 + q.ans) + '.';
+        fb.style.background = '#fef2f2'; fb.style.color = '#c41e3a';
       }
-
-      // 2 K+ going in
-      for (let i = 0; i < 2; i++) {
-        const progress = ((t * 0.35 + i * 0.2 + 0.5) % 1);
-        const kx = pumpX + 40 + i * 15;
-        const ky = lerp(memY - 50, memY + 30, progress);
-        ctx.fillStyle = `rgba(22, 163, 74, ${1 - progress * 0.7})`;
-        ctx.beginPath(); ctx.arc(kx, ky, 5, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui';
-        ctx.fillText('K\u207A', kx, ky + 3);
-      }
-
-      // Na+ channel (left side)
-      const chanX = cx - 120;
-      ctx.fillStyle = 'rgba(37, 99, 235, 0.2)';
-      ctx.fillRect(chanX - 15, memY - 20, 30, 40);
-      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5;
-      ctx.strokeRect(chanX - 15, memY - 20, 30, 40);
-      ctx.fillStyle = '#2563eb'; ctx.font = '9px system-ui';
-      ctx.fillText('Na\u207A Ch.', chanX, memY - 25);
-
-      // K+ channel (right side)
-      const kChanX = cx + 120;
-      ctx.fillStyle = 'rgba(22, 163, 74, 0.2)';
-      ctx.fillRect(kChanX - 15, memY - 20, 30, 40);
-      ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1.5;
-      ctx.strokeRect(kChanX - 15, memY - 20, 30, 40);
-      ctx.fillStyle = '#16a34a'; ctx.font = '9px system-ui';
-      ctx.fillText('K\u207A Ch.', kChanX, memY - 25);
-
-      // Voltage
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
-      ctx.fillText('Resting potential: -70 mV', 20, H - 40);
-
-      // Summary
-      ctx.font = '11px system-ui';
-      ctx.fillStyle = '#2563eb';
-      ctx.fillText('3 Na\u207A pumped OUT', 20, 55);
-      ctx.fillStyle = '#16a34a';
-      ctx.fillText('2 K\u207A pumped IN', 20, 72);
-      ctx.fillStyle = '#dc2626';
-      ctx.fillText('1 ATP consumed per cycle', 20, 89);
+      quizAnswered++;
+      $('quiz-score').textContent = quizScore;
+      $('quiz-total').textContent = quizAnswered;
+      if (quizIdx < quizData.length - 1) $('quiz-next-btn').style.display = 'inline-flex';
     }
 
-    function drawKidneysAnim(ctx, W, H, t) {
-      // Simplified kidney cross-section
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Nephron Transport Summary', W / 2, 25);
-
-      const zones = [
-        { label: 'Glomerulus', y: 60, mechanisms: 'Bulk Filtration', color: '#dc2626', desc: 'Pressure-driven' },
-        { label: 'Proximal Tubule', y: 120, mechanisms: 'Active + Osmosis', color: '#2563eb', desc: '65% reabsorption' },
-        { label: 'Loop of Henle', y: 180, mechanisms: 'Countercurrent', color: '#16a34a', desc: 'Conc. gradient' },
-        { label: 'Distal Tubule', y: 240, mechanisms: 'Fine-tuning', color: '#d97706', desc: 'Hormone-regulated' },
-        { label: 'Collecting Duct', y: 300, mechanisms: 'ADH + Aquaporins', color: '#7c3aed', desc: 'Final water reabsorb' }
-      ];
-
-      zones.forEach((z, i) => {
-        // Zone bar
-        ctx.fillStyle = z.color + '22';
-        ctx.fillRect(40, z.y, W - 80, 45);
-        ctx.strokeStyle = z.color; ctx.lineWidth = 2;
-        ctx.strokeRect(40, z.y, W - 80, 45);
-
-        // Label
-        ctx.fillStyle = z.color; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
-        ctx.fillText(z.label, 55, z.y + 18);
-        ctx.fillStyle = '#374151'; ctx.font = '11px system-ui';
-        ctx.fillText(z.mechanisms, 55, z.y + 34);
-
-        // Description
-        ctx.textAlign = 'right';
-        ctx.fillStyle = '#64748b'; ctx.font = '11px system-ui';
-        ctx.fillText(z.desc, W - 55, z.y + 26);
-
-        // Animated particle
-        const progress = ((t * 0.3 + i * 0.15) % 1);
-        const px = 60 + progress * (W - 140);
-        ctx.fillStyle = z.color;
-        ctx.beginPath(); ctx.arc(px, z.y + 22, 4, 0, Math.PI * 2); ctx.fill();
-
-        // Arrow to next
-        if (i < zones.length - 1) {
-          ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(W / 2, z.y + 45);
-          ctx.lineTo(W / 2, zones[i + 1].y);
-          ctx.stroke();
-          ctx.fillStyle = '#d1d5db';
-          ctx.beginPath();
-          ctx.moveTo(W / 2 - 4, zones[i + 1].y - 2);
-          ctx.lineTo(W / 2, zones[i + 1].y + 4);
-          ctx.lineTo(W / 2 + 4, zones[i + 1].y - 2);
-          ctx.closePath(); ctx.fill();
-        }
-      });
+    function quizNext() {
+      quizIdx++;
+      quizRender();
     }
 
-    function drawBodyEnergyChart() {
-      const ctx = getCtx('body-energy-chart');
-      drawBarChart(ctx, {
-        labels: ['Lungs', 'Intestines', 'Neurons', 'Kidneys'],
-        values: [0, 3, 5, 4],
-        colors: ['#3b82f6', '#d97706', '#7c3aed', '#16a34a'],
-        maxVal: 6
-      });
-      // Add axis label
-      const W = ctx.W, H = ctx.H;
-      ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Relative ATP Consumption (arbitrary units)', W / 2, H - 4);
+    // ── INIT ──
+    function init() {
+      phUpdate();
+      drawPhCompare();
+      condUpdate();
+      tempUpdate();
+      doUpdate();
+      colorSelect('both');
+      turbUpdate();
+      quizRender();
     }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // SIDEBAR SCROLL HIGHLIGHT
-    // ══════════════════════════════════════════════════════════════════════════
-    function updateSidebar() {
-      const sections = document.querySelectorAll('.section, .hero');
-      const links = document.querySelectorAll('.sidebar-nav a');
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 100) current = s.id;
-      });
-      links.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-      });
-    }
-    window.addEventListener('scroll', updateSidebar);
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // INIT
-    // ══════════════════════════════════════════════════════════════════════════
-    window.addEventListener('DOMContentLoaded', () => {
-      // Part 1 - Tonicity
-      tonicityUpdate();
-
-      // Part 2 - Diffusion
-      diffInit();
-      drawDiffCanvas();
-      drawDiffChart();
-      diffUpdateLabels();
-
-      // Part 3 - Kidney
-      kidneyUpdate();
-
-      // Part 4 - Drug
-      drugUpdate();
-      drawDrugCanvas();
-
-      // Part 5 - Dialysis
-      drawDialCanvas();
-      drawDialChart();
-      dialUpdateResults();
-
-      // Part 6 - Body transport
-      bodySelect('lungs');
-      drawBodyEnergyChart();
-    });
-
-    window.addEventListener('resize', () => {
-      drawDiffCanvas(); drawDiffChart();
-      drawKidneyCanvas(); drawKidneyChart();
-      drawDrugCanvas();
-      drawDialCanvas(); drawDialChart();
-      drawBodyCanvas(); drawBodyEnergyChart();
-    });
+    init();
+    window.addEventListener('resize', () => { drawPhCompare(); drawColorCanvas(); });
   </script>
 </body>
 

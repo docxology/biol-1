@@ -29,9 +29,9 @@ mp3  = false        # Audio narration (via Google TTS, slower)
 
 [publish.courses.biol-1]
 enabled = true
-modules = 17
-max_module = 17      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
-max_lab = 17         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
+modules = 6
+max_module = 6      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
+max_lab = 5         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
 path = "course_development/biol-1"
 input_types = ["keys-to-success", "questions"]
 include_syllabus = true
@@ -41,10 +41,8 @@ include_slides = true
 include_practice_tests = true
 
 [publish.courses.biol-8]
-enabled = true
-modules = 15
-max_module = 15      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
-max_lab = 15         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
+max_module = 8      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
+max_lab = 5         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
 path = "course_development/biol-8"
 input_types = ["keys-to-success", "questions"]
 include_syllabus = true
