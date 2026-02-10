@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 4 Dashboard: Cells | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INFO PANEL (used by organelle explorer)
+   ═══════════════════════════════════════════════════════════════════════ */
+.info-panel {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px; min-height: 80px;
+}
+.info-panel .ip-name { font-weight: 800; font-size: 16px; margin-bottom: 4px; color: var(--blue); }
+.info-panel .ip-function { margin-bottom: 4px; }
+.info-panel .ip-analogy { color: var(--text-muted); font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FEATURE CHECKLIST
+   ═══════════════════════════════════════════════════════════════════════ */
+.feature-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2px; margin: 12px 0;
+  font-size: 13px;
+}
+.feature-grid .fg-cell {
+  padding: 10px 12px; display: flex; align-items: center; justify-content: center;
+}
+.feature-grid .fg-header { background: #1a1a1a; color: #fff; font-weight: 700; font-size: 12px; }
+.feature-grid .fg-label { background: #f1f5f9; justify-content: flex-start; font-weight: 600; }
+.feature-grid .fg-yes { background: #f0fdf4; color: var(--green); font-weight: 700; }
+.feature-grid .fg-no { background: #fef2f2; color: var(--accent); font-weight: 700; }
+.feature-grid .fg-detail { background: #eff6ff; color: var(--blue); font-weight: 600; font-size: 12px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   QUIZ STYLES
+   ═══════════════════════════════════════════════════════════════════════ */
+.quiz-option {
+  display: block; width: 100%; text-align: left; padding: 12px 16px;
+  border: 2px solid var(--border); border-radius: 8px; background: #fff;
+  font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.15s;
+  margin-bottom: 8px; font-family: var(--font);
+}
+.quiz-option:hover { border-color: var(--blue); background: #f8fafc; }
+.quiz-option.correct { border-color: var(--green); background: #f0fdf4; color: var(--green); }
+.quiz-option.incorrect { border-color: var(--accent); background: #fef2f2; color: var(--accent); }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+
+.progress-bar-wrap {
+  width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; margin: 8px 0; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 4 &mdash; Cells</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Microscope Simulator</a>
+    <a href="#part2"><span class="nav-num">2</span> Organelle Explorer</a>
+    <a href="#part3"><span class="nav-num">3</span> Prokaryote vs Eukaryote</a>
+    <a href="#part4"><span class="nav-num">4</span> Plant vs Animal Cell</a>
+    <a href="#part5"><span class="nav-num">5</span> Cell Size Scale</a>
+    <a href="#part6"><span class="nav-num">6</span> Structure-Function Quiz</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Cells</h2>
+  <p>Explore the fundamental unit of life through interactive simulations. Use a virtual microscope, identify organelles, compare cell types, and master structure-function relationships.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Cell Biology</span>
+    <span class="bio-tag">Microscopy</span>
+    <span class="bio-tag">Organelles</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: MICROSCOPE SIMULATOR ═════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Microscope Simulator</div>
+    <div class="section-subtitle">Observe cells through a virtual light microscope at different magnifications</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Virtual Microscope</div>
+    <div class="btn-group">
+      <button class="btn btn-outline btn-sm" onclick="setMag(4)" id="mag-4">4x</button>
+      <button class="btn btn-outline btn-sm" onclick="setMag(10)" id="mag-10">10x</button>
+      <button class="btn btn-primary btn-sm" onclick="setMag(40)" id="mag-40">40x</button>
+      <button class="btn btn-outline btn-sm" onclick="setMag(100)" id="mag-100">100x (oil)</button>
+    </div>
+    <div class="chart-wrap"><canvas id="microscope-canvas" height="420"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="mic-obj">40x</div><div class="stat-label">Objective</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="mic-total">400x</div><div class="stat-label">Total Mag</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="mic-fov">0.45</div><div class="stat-label">FOV (mm)</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="mic-cells">~12</div><div class="stat-label">Cells Visible</div></div>
+    </div>
+    <div class="analysis-result">
+      <div class="ar-title">FOV Calculation</div>
+      <p id="mic-formula">FOV = Eyepiece FOV / Objective = 18 mm / 40 = <code>0.45 mm</code> &nbsp; Total Magnification = 10 (eyepiece) &times; 40 (objective) = <code>400x</code></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: ORGANELLE EXPLORER ═══════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Organelle Explorer</div>
+    <div class="section-subtitle">Click on organelles in the eukaryotic cell to learn about each one</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Eukaryotic Cell &mdash; Click to Explore</div>
+    <div class="chart-wrap"><canvas id="organelle-canvas" height="460"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="org-found">0</div><div class="stat-label">Found</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="org-total">10</div><div class="stat-label">Total</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="org-pct">0%</div><div class="stat-label">Progress</div></div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="org-progress" style="width:0%"></div></div>
+    <div class="info-panel" id="org-info">
+      <div class="ip-name">Click an organelle</div>
+      <div class="ip-function">Click anywhere on the cell diagram above to identify organelles.</div>
+      <div class="ip-analogy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: PROKARYOTE vs EUKARYOTE ═════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Prokaryote vs. Eukaryote Comparison</div>
+    <div class="section-subtitle">Compare two major cell types side by side</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Side-by-Side Cells</div>
+    <div class="chart-wrap"><canvas id="prok-euk-canvas" height="380"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-sm" onclick="togglePEFeature('nucleus')">Toggle Nucleus</button>
+      <button class="btn btn-secondary btn-sm" onclick="togglePEFeature('organelles')">Toggle Organelles</button>
+      <button class="btn btn-outline btn-sm" onclick="togglePEFeature('dna')">Toggle DNA</button>
+      <button class="btn btn-outline btn-sm" onclick="togglePEFeature('ribosomes')">Toggle Ribosomes</button>
+      <button class="btn btn-outline btn-sm" onclick="resetPEFeatures()">Show All</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Feature Comparison</div>
+    <div class="feature-grid" id="pe-features">
+      <div class="fg-cell fg-header">Feature</div>
+      <div class="fg-cell fg-header">Prokaryote</div>
+      <div class="fg-cell fg-header">Eukaryote</div>
+      <div class="fg-cell fg-label">True Nucleus</div><div class="fg-cell fg-no">No</div><div class="fg-cell fg-yes">Yes</div>
+      <div class="fg-cell fg-label">Membrane-bound Organelles</div><div class="fg-cell fg-no">No</div><div class="fg-cell fg-yes">Yes</div>
+      <div class="fg-cell fg-label">DNA Type</div><div class="fg-cell fg-detail">Circular</div><div class="fg-cell fg-detail">Linear chromosomes</div>
+      <div class="fg-cell fg-label">Typical Size</div><div class="fg-cell fg-detail">0.1 &ndash; 5 &mu;m</div><div class="fg-cell fg-detail">10 &ndash; 100 &mu;m</div>
+      <div class="fg-cell fg-label">Ribosomes</div><div class="fg-cell fg-detail">70S (smaller)</div><div class="fg-cell fg-detail">80S (larger)</div>
+      <div class="fg-cell fg-label">Cell Wall</div><div class="fg-cell fg-detail">Peptidoglycan (bacteria)</div><div class="fg-cell fg-detail">Varies (plants: cellulose)</div>
+      <div class="fg-cell fg-label">Examples</div><div class="fg-cell fg-detail">E. coli, Streptococcus</div><div class="fg-cell fg-detail">Animal, plant, fungi</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Quick Quiz &mdash; Prokaryote or Eukaryote?</div>
+    <div id="pe-quiz-area"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="nextPEQuiz()">Next Question</button>
+      <button class="btn btn-outline" onclick="resetPEQuiz()">Reset Score</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="pe-correct">0</div><div class="stat-label">Correct</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="pe-wrong">0</div><div class="stat-label">Incorrect</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="pe-score">-</div><div class="stat-label">Score %</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: PLANT vs ANIMAL CELL ═══════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Plant vs. Animal Cell</div>
+    <div class="section-subtitle">Identify shared and unique structures in plant and animal cells</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Side-by-Side Cells</div>
+    <div class="chart-wrap"><canvas id="plant-animal-canvas" height="400"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-sm" onclick="highlightPA('shared')">Shared Structures</button>
+      <button class="btn btn-secondary btn-sm" onclick="highlightPA('plant')">Plant Only</button>
+      <button class="btn btn-outline btn-sm" onclick="highlightPA('animal')">Animal Only</button>
+      <button class="btn btn-outline btn-sm" onclick="highlightPA('all')">Show All</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Venn Diagram View</div>
+    <div class="chart-wrap"><canvas id="venn-canvas" height="340"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-sm" onclick="toggleVennMode()">Toggle Labels</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: CELL SIZE SCALE ═══════════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Cell Size Scale</div>
+    <div class="section-subtitle">Explore the logarithmic scale of biological structures from atoms to visible objects</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Logarithmic Size Scale</div>
+    <div class="slider-group">
+      <label>Zoom Level</label>
+      <input type="range" id="size-slider" min="0" max="100" value="50" oninput="updateSizeScale()">
+      <span class="slider-val" id="size-val">50</span>
+    </div>
+    <div class="chart-wrap"><canvas id="size-canvas" height="360"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="size-current">10 &mu;m</div><div class="stat-label">Center Size</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="size-object">Animal Cell</div><div class="stat-label">Reference Object</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="size-order">10&sup1;</div><div class="stat-label">Order of Mag (&mu;m)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: STRUCTURE-FUNCTION QUIZ ═══════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Structure-Function Quiz</div>
+    <div class="section-subtitle">Match organelle functions to the correct structure</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Question <span id="quiz-num">1</span> of <span id="quiz-total">10</span></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="quiz-progress" style="width:0%"></div></div>
+    <p style="font-size:15px;font-weight:600;margin:16px 0;" id="quiz-question">Loading...</p>
+    <div id="quiz-options"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="nextQuizQuestion()" id="quiz-next-btn" disabled>Next Question</button>
+      <button class="btn btn-outline" onclick="resetQuiz()">Restart Quiz</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-green"><div class="stat-val" id="quiz-correct">0</div><div class="stat-label">Correct</div></div>
+      <div class="stat-box stat-accent"><div class="stat-val" id="quiz-wrong">0</div><div class="stat-label">Incorrect</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="quiz-score">-</div><div class="stat-label">Score %</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="quiz-streak">0</div><div class="stat-label">Streak</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// -- Utility ------------------------------------------------------------------
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// -- Chart helper (reused from reference) -------------------------------------
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: MICROSCOPE SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+let micState = { mag: 40, eyepiece: 10, eyepieceFOV: 18 };
+
+function setMag(m) {
+  micState.mag = m;
+  [4,10,40,100].forEach(v => {
+    const btn = $('mag-' + v);
+    if (btn) {
+      btn.className = v === m ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm';
+    }
+  });
+  drawMicroscope();
+}
+
+function drawMicroscope() {
+  const ctx = getCtx('microscope-canvas');
+  const W = ctx.W, H = ctx.H;
+  const mag = micState.mag;
+  const totalMag = mag * micState.eyepiece;
+  const fov = micState.eyepieceFOV / mag;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0a0a0a'; ctx.fillRect(0, 0, W, H);
+
+  // Circular field of view
+  const cx = W / 2, cy = H / 2;
+  const radius = Math.min(W, H) * 0.44;
+
+  ctx.save();
+  ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.clip();
+
+  // Light background inside FOV
+  const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+  grad.addColorStop(0, '#f5f0e8');
+  grad.addColorStop(0.85, '#ede5d8');
+  grad.addColorStop(1, '#d4c8b0');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw cells based on magnification
+  const cellCount = mag === 4 ? 40 : mag === 10 ? 18 : mag === 40 ? 6 : 2;
+  const cellSize = mag === 4 ? 18 : mag === 10 ? 35 : mag === 40 ? 70 : 140;
+  const showNucleus = mag >= 10;
+  const showOrganelles = mag >= 40;
+  const showDetail = mag >= 100;
+
+  // Use seeded random for consistent layout
+  const seed = 42;
+  let rng = seed;
+  function seededRand() { rng = (rng * 16807 + 0) % 2147483647; return (rng - 1) / 2147483646; }
+
+  for (let i = 0; i < cellCount; i++) {
+    const angle = seededRand() * Math.PI * 2;
+    const dist = seededRand() * (radius - cellSize);
+    const x = cx + Math.cos(angle) * dist;
+    const y = cy + Math.sin(angle) * dist;
+    const elongation = 0.8 + seededRand() * 0.4;
+
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(seededRand() * Math.PI);
+
+    // Cell membrane
+    ctx.beginPath();
+    ctx.ellipse(0, 0, cellSize * elongation, cellSize, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(200, 220, 200, 0.35)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(80, 120, 80, 0.6)';
+    ctx.lineWidth = mag >= 40 ? 2 : 1;
+    ctx.stroke();
+
+    if (showNucleus) {
+      // Nucleus
+      const nSize = cellSize * 0.3;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, nSize * elongation, nSize, 0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(100, 80, 140, 0.4)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(80, 60, 120, 0.7)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      if (showOrganelles) {
+        // Nucleolus
+        ctx.beginPath();
+        ctx.arc(nSize * 0.2, -nSize * 0.1, nSize * 0.25, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(60, 40, 100, 0.5)';
+        ctx.fill();
+
+        // Mitochondria
+        for (let m = 0; m < 4; m++) {
+          const mx = (seededRand() - 0.5) * cellSize * 1.2;
+          const my = (seededRand() - 0.5) * cellSize * 0.7;
+          ctx.save();
+          ctx.translate(mx, my);
+          ctx.rotate(seededRand() * Math.PI);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, cellSize * 0.12, cellSize * 0.05, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(220, 100, 80, 0.4)';
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(180, 60, 40, 0.5)';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+          // Cristae
+          if (showDetail) {
+            for (let c = -2; c <= 2; c++) {
+              ctx.beginPath();
+              ctx.moveTo(c * cellSize * 0.02, -cellSize * 0.04);
+              ctx.lineTo(c * cellSize * 0.02, cellSize * 0.03);
+              ctx.strokeStyle = 'rgba(180, 60, 40, 0.3)';
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+          ctx.restore();
+        }
+
+        // ER (rough)
+        ctx.beginPath();
+        const erX = cellSize * 0.2;
+        for (let e = 0; e < 4; e++) {
+          const ey = -cellSize * 0.4 + e * cellSize * 0.18;
+          ctx.moveTo(erX, ey);
+          ctx.quadraticCurveTo(erX + cellSize * 0.3, ey + cellSize * 0.06, erX + cellSize * 0.5, ey);
+        }
+        ctx.strokeStyle = 'rgba(80, 100, 160, 0.5)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // Ribosomes on rough ER
+        if (showDetail) {
+          for (let e = 0; e < 4; e++) {
+            const ey = -cellSize * 0.4 + e * cellSize * 0.18;
+            for (let r = 0; r < 5; r++) {
+              ctx.beginPath();
+              ctx.arc(erX + r * cellSize * 0.12, ey + (r % 2 ? 2 : -2), 1.5, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(40, 40, 120, 0.6)';
+              ctx.fill();
+            }
+          }
+        }
+      }
+    }
+    ctx.restore();
+  }
+
+  ctx.restore();
+
+  // Dark ring outside FOV
+  ctx.beginPath();
+  ctx.rect(0, 0, W, H);
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2, true);
+  ctx.fillStyle = '#0a0a0a';
+  ctx.fill();
+
+  // Subtle FOV border glow
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Magnification label
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText(totalMag + 'x', 16, H - 16);
+  ctx.fillStyle = '#9ca3af'; ctx.font = '12px system-ui';
+  ctx.fillText('FOV: ' + fov.toFixed(2) + ' mm', 16, H - 36);
+
+  // Update stats
+  $('mic-obj').textContent = mag + 'x';
+  $('mic-total').textContent = totalMag + 'x';
+  $('mic-fov').textContent = fov.toFixed(2);
+  $('mic-cells').textContent = '~' + cellCount;
+  $('mic-formula').innerHTML =
+    'FOV = Eyepiece FOV / Objective = 18 mm / ' + mag + ' = <code>' + fov.toFixed(2) + ' mm</code>' +
+    ' &nbsp; Total Magnification = 10 (eyepiece) &times; ' + mag + ' (objective) = <code>' + totalMag + 'x</code>';
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: ORGANELLE EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+const organelles = [
+  { id: 'nucleus', name: 'Nucleus', func: 'Contains DNA; controls cell activities and gene expression.', analogy: 'Like the brain or control center of the cell.', color: '#6B46C1', cx: 0.38, cy: 0.45, rx: 0.12, ry: 0.10 },
+  { id: 'mitochondria', name: 'Mitochondria', func: 'Produces ATP through cellular respiration; the powerhouse of the cell.', analogy: 'Like a power plant generating electricity for a city.', color: '#DC2626', cx: 0.62, cy: 0.32, rx: 0.07, ry: 0.035 },
+  { id: 'rough_er', name: 'Rough Endoplasmic Reticulum', func: 'Studded with ribosomes; synthesizes and transports proteins.', analogy: 'Like a factory assembly line with workers (ribosomes).', color: '#2563EB', cx: 0.55, cy: 0.50, rx: 0.09, ry: 0.06 },
+  { id: 'smooth_er', name: 'Smooth Endoplasmic Reticulum', func: 'Synthesizes lipids, detoxifies chemicals, stores calcium.', analogy: 'Like a chemical processing plant.', color: '#0891B2', cx: 0.60, cy: 0.65, rx: 0.08, ry: 0.05 },
+  { id: 'golgi', name: 'Golgi Apparatus', func: 'Modifies, sorts, and packages proteins for secretion or delivery.', analogy: 'Like a post office sorting and shipping packages.', color: '#D97706', cx: 0.72, cy: 0.48, rx: 0.06, ry: 0.08 },
+  { id: 'ribosomes', name: 'Ribosomes', func: 'Translate mRNA into proteins; found free or on rough ER.', analogy: 'Like construction workers building structures from blueprints.', color: '#374151', cx: 0.48, cy: 0.58, rx: 0.015, ry: 0.015 },
+  { id: 'lysosomes', name: 'Lysosomes', func: 'Contain digestive enzymes to break down waste and cellular debris.', analogy: 'Like the recycling center or waste disposal of the cell.', color: '#059669', cx: 0.28, cy: 0.62, rx: 0.035, ry: 0.035 },
+  { id: 'cytoskeleton', name: 'Cytoskeleton', func: 'Network of protein fibers providing structural support and enabling movement.', analogy: 'Like the steel beams and framework of a building.', color: '#6366F1', cx: 0.80, cy: 0.30, rx: 0.05, ry: 0.05 },
+  { id: 'membrane', name: 'Cell Membrane', func: 'Selectively permeable barrier controlling what enters and exits the cell.', analogy: 'Like a security gate around a facility.', color: '#16A34A', cx: 0.50, cy: 0.88, rx: 0.30, ry: 0.04 },
+  { id: 'vacuole', name: 'Vacuole', func: 'Stores water, nutrients, and waste; maintains turgor pressure in plant cells.', analogy: 'Like a storage warehouse or water tank.', color: '#8B5CF6', cx: 0.30, cy: 0.35, rx: 0.06, ry: 0.06 }
+];
+let orgFound = new Set();
+let orgHover = null;
+
+function drawOrganelleCell() {
+  const ctx = getCtx('organelle-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cellCx = W * 0.5, cellCy = H * 0.47;
+  const cellRx = W * 0.38, cellRy = H * 0.40;
+
+  // Cell membrane (outer)
+  ctx.beginPath();
+  ctx.ellipse(cellCx, cellCy, cellRx + 4, cellRy + 4, 0, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(22, 163, 106, 0.15)';
+  ctx.fill();
+  ctx.strokeStyle = '#16A34A';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  // Cell membrane inner
+  ctx.beginPath();
+  ctx.ellipse(cellCx, cellCy, cellRx, cellRy, 0, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(22, 163, 106, 0.5)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Cytoplasm fill
+  ctx.beginPath();
+  ctx.ellipse(cellCx, cellCy, cellRx - 2, cellRy - 2, 0, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(240, 248, 255, 0.6)';
+  ctx.fill();
+
+  // Cytoskeleton lines
+  ctx.strokeStyle = orgFound.has('cytoskeleton') || orgHover === 'cytoskeleton'
+    ? 'rgba(99, 102, 241, 0.6)' : 'rgba(99, 102, 241, 0.2)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 8; i++) {
+    ctx.beginPath();
+    const startAngle = i * Math.PI / 4;
+    const sx = cellCx + Math.cos(startAngle) * cellRx * 0.15;
+    const sy = cellCy + Math.sin(startAngle) * cellRy * 0.15;
+    const ex = cellCx + Math.cos(startAngle) * cellRx * 0.85;
+    const ey = cellCy + Math.sin(startAngle) * cellRy * 0.85;
+    ctx.moveTo(sx, sy);
+    ctx.quadraticCurveTo(cellCx + (Math.random() - 0.5) * 40, cellCy + (Math.random() - 0.5) * 40, ex, ey);
+    ctx.stroke();
+  }
+
+  // Nucleus
+  const nCx = cellCx * 0.76, nCy = cellCy * 0.97;
+  const nRx = W * 0.12, nRy = H * 0.11;
+  const nucHl = orgFound.has('nucleus') || orgHover === 'nucleus';
+  ctx.beginPath();
+  ctx.ellipse(nCx, nCy, nRx, nRy, 0, 0, Math.PI * 2);
+  ctx.fillStyle = nucHl ? 'rgba(107, 70, 193, 0.35)' : 'rgba(107, 70, 193, 0.15)';
+  ctx.fill();
+  ctx.strokeStyle = nucHl ? '#6B46C1' : 'rgba(107, 70, 193, 0.5)';
+  ctx.lineWidth = nucHl ? 3 : 2;
+  ctx.stroke();
+  // Nuclear envelope (double membrane)
+  ctx.beginPath();
+  ctx.ellipse(nCx, nCy, nRx - 4, nRy - 4, 0, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(107, 70, 193, 0.3)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  // Nucleolus
+  ctx.beginPath();
+  ctx.arc(nCx + nRx * 0.2, nCy - nRy * 0.15, nRy * 0.3, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(60, 40, 100, 0.4)';
+  ctx.fill();
+  // Chromatin
+  ctx.strokeStyle = 'rgba(80, 50, 130, 0.3)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 5; i++) {
+    ctx.beginPath();
+    const sa = i * 1.2;
+    ctx.moveTo(nCx + Math.cos(sa) * nRx * 0.3, nCy + Math.sin(sa) * nRy * 0.3);
+    ctx.quadraticCurveTo(nCx + Math.cos(sa + 1) * nRx * 0.6, nCy + Math.sin(sa + 1) * nRy * 0.5,
+                          nCx + Math.cos(sa + 2) * nRx * 0.4, nCy + Math.sin(sa + 2) * nRy * 0.4);
+    ctx.stroke();
+  }
+
+  // Mitochondria
+  const mitoPositions = [
+    { x: 0.62, y: 0.32, rot: 0.3 },
+    { x: 0.68, y: 0.58, rot: -0.5 },
+    { x: 0.35, y: 0.68, rot: 0.8 }
+  ];
+  const mitoHl = orgFound.has('mitochondria') || orgHover === 'mitochondria';
+  mitoPositions.forEach(mp => {
+    ctx.save();
+    ctx.translate(W * mp.x, H * mp.y);
+    ctx.rotate(mp.rot);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, W * 0.055, H * 0.025, 0, 0, Math.PI * 2);
+    ctx.fillStyle = mitoHl ? 'rgba(220, 38, 38, 0.35)' : 'rgba(220, 38, 38, 0.15)';
+    ctx.fill();
+    ctx.strokeStyle = mitoHl ? '#DC2626' : 'rgba(220, 38, 38, 0.5)';
+    ctx.lineWidth = mitoHl ? 2.5 : 1.5;
+    ctx.stroke();
+    // Cristae
+    for (let c = -2; c <= 2; c++) {
+      ctx.beginPath();
+      ctx.moveTo(c * W * 0.01, -H * 0.018);
+      ctx.lineTo(c * W * 0.01, H * 0.015);
+      ctx.strokeStyle = 'rgba(220, 38, 38, 0.3)';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+    ctx.restore();
+  });
+
+  // Rough ER
+  const rerHl = orgFound.has('rough_er') || orgHover === 'rough_er';
+  ctx.strokeStyle = rerHl ? '#2563EB' : 'rgba(37, 99, 235, 0.4)';
+  ctx.lineWidth = rerHl ? 2.5 : 1.5;
+  for (let e = 0; e < 5; e++) {
+    ctx.beginPath();
+    const ey = H * 0.38 + e * H * 0.045;
+    const ex = W * 0.48;
+    ctx.moveTo(ex, ey);
+    ctx.quadraticCurveTo(ex + W * 0.08, ey + H * 0.015, ex + W * 0.15, ey);
+    ctx.stroke();
+    // Ribosomes on ER
+    if (rerHl || orgFound.has('rough_er')) {
+      for (let r = 0; r < 6; r++) {
+        ctx.beginPath();
+        ctx.arc(ex + r * W * 0.025 + W * 0.01, ey + (r % 2 ? 3 : -3), 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(37, 99, 235, 0.5)';
+        ctx.fill();
+      }
+    }
+  }
+
+  // Smooth ER
+  const serHl = orgFound.has('smooth_er') || orgHover === 'smooth_er';
+  ctx.strokeStyle = serHl ? '#0891B2' : 'rgba(8, 145, 178, 0.4)';
+  ctx.lineWidth = serHl ? 2.5 : 1.5;
+  for (let e = 0; e < 4; e++) {
+    ctx.beginPath();
+    const ey = H * 0.60 + e * H * 0.04;
+    const ex = W * 0.52;
+    ctx.moveTo(ex, ey);
+    ctx.bezierCurveTo(ex + W * 0.04, ey - H * 0.02, ex + W * 0.08, ey + H * 0.02, ex + W * 0.13, ey);
+    ctx.stroke();
+  }
+
+  // Golgi apparatus
+  const golgiHl = orgFound.has('golgi') || orgHover === 'golgi';
+  const gx = W * 0.72, gy = H * 0.45;
+  for (let g = 0; g < 5; g++) {
+    ctx.beginPath();
+    const goy = gy - H * 0.05 + g * H * 0.025;
+    const curve = (g - 2) * W * 0.01;
+    ctx.moveTo(gx - W * 0.04, goy);
+    ctx.quadraticCurveTo(gx + curve, goy - H * 0.01, gx + W * 0.04, goy);
+    ctx.strokeStyle = golgiHl ? '#D97706' : 'rgba(217, 119, 6, 0.5)';
+    ctx.lineWidth = golgiHl ? 3 : 2;
+    ctx.stroke();
+  }
+  // Vesicles
+  [{ x: 0.78, y: 0.40 }, { x: 0.76, y: 0.53 }].forEach(v => {
+    ctx.beginPath();
+    ctx.arc(W * v.x, H * v.y, W * 0.012, 0, Math.PI * 2);
+    ctx.fillStyle = golgiHl ? 'rgba(217, 119, 6, 0.4)' : 'rgba(217, 119, 6, 0.2)';
+    ctx.fill();
+    ctx.strokeStyle = golgiHl ? '#D97706' : 'rgba(217, 119, 6, 0.4)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Free ribosomes
+  const riboHl = orgFound.has('ribosomes') || orgHover === 'ribosomes';
+  const riboPositions = [
+    { x: 0.42, y: 0.55 }, { x: 0.44, y: 0.57 }, { x: 0.46, y: 0.54 },
+    { x: 0.48, y: 0.58 }, { x: 0.50, y: 0.56 }, { x: 0.40, y: 0.60 },
+    { x: 0.43, y: 0.62 }, { x: 0.38, y: 0.56 }, { x: 0.47, y: 0.61 },
+    { x: 0.35, y: 0.53 }, { x: 0.55, y: 0.72 }, { x: 0.58, y: 0.75 }
+  ];
+  riboPositions.forEach(rp => {
+    ctx.beginPath();
+    ctx.arc(W * rp.x, H * rp.y, riboHl ? 3.5 : 2.5, 0, Math.PI * 2);
+    ctx.fillStyle = riboHl ? 'rgba(55, 65, 81, 0.7)' : 'rgba(55, 65, 81, 0.3)';
+    ctx.fill();
+  });
+
+  // Lysosomes
+  const lysoHl = orgFound.has('lysosomes') || orgHover === 'lysosomes';
+  [{ x: 0.28, y: 0.62 }, { x: 0.24, y: 0.55 }].forEach(lp => {
+    ctx.beginPath();
+    ctx.arc(W * lp.x, H * lp.y, W * 0.025, 0, Math.PI * 2);
+    ctx.fillStyle = lysoHl ? 'rgba(5, 150, 105, 0.4)' : 'rgba(5, 150, 105, 0.15)';
+    ctx.fill();
+    ctx.strokeStyle = lysoHl ? '#059669' : 'rgba(5, 150, 105, 0.5)';
+    ctx.lineWidth = lysoHl ? 2.5 : 1.5;
+    ctx.stroke();
+    // Enzymes inside
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.arc(W * lp.x + (i - 1) * 5, H * lp.y + (i % 2 ? 3 : -3), 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(5, 150, 105, 0.5)';
+      ctx.fill();
+    }
+  });
+
+  // Vacuole
+  const vacHl = orgFound.has('vacuole') || orgHover === 'vacuole';
+  ctx.beginPath();
+  ctx.ellipse(W * 0.30, H * 0.35, W * 0.055, H * 0.055, 0, 0, Math.PI * 2);
+  ctx.fillStyle = vacHl ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.1)';
+  ctx.fill();
+  ctx.strokeStyle = vacHl ? '#8B5CF6' : 'rgba(139, 92, 246, 0.4)';
+  ctx.lineWidth = vacHl ? 2.5 : 1.5;
+  ctx.stroke();
+
+  // Labels for found organelles
+  ctx.font = 'bold 11px system-ui';
+  ctx.textAlign = 'center';
+  const labelMap = {
+    nucleus: { x: nCx, y: nCy - nRy - 8 },
+    mitochondria: { x: W * 0.62, y: H * 0.27 },
+    rough_er: { x: W * 0.58, y: H * 0.36 },
+    smooth_er: { x: W * 0.62, y: H * 0.57 },
+    golgi: { x: W * 0.72, y: H * 0.36 },
+    ribosomes: { x: W * 0.44, y: H * 0.50 },
+    lysosomes: { x: W * 0.26, y: H * 0.48 },
+    cytoskeleton: { x: W * 0.82, y: H * 0.25 },
+    membrane: { x: W * 0.50, y: H * 0.88 },
+    vacuole: { x: W * 0.30, y: H * 0.26 }
+  };
+  organelles.forEach(o => {
+    if (orgFound.has(o.id) || orgHover === o.id) {
+      const lp = labelMap[o.id];
+      if (lp) {
+        ctx.fillStyle = o.color;
+        ctx.fillText(o.name, lp.x, lp.y);
+      }
+    }
+  });
+
+  // Update stats
+  $('org-found').textContent = orgFound.size;
+  $('org-pct').textContent = Math.round(orgFound.size / organelles.length * 100) + '%';
+  $('org-progress').style.width = (orgFound.size / organelles.length * 100) + '%';
+}
+
+// Hit regions for organelle clicks
+function getOrganelleAt(mx, my, W, H) {
+  const cellCx = W * 0.5, cellCy = H * 0.47;
+  const cellRx = W * 0.38, cellRy = H * 0.40;
+
+  // Check if inside cell at all
+  const cDist = Math.pow((mx - cellCx) / cellRx, 2) + Math.pow((my - cellCy) / cellRy, 2);
+
+  // Cell membrane - check if near the edge
+  if (cDist > 0.85 && cDist < 1.15) return 'membrane';
+
+  // Nucleus
+  const nCx = cellCx * 0.76, nCy = cellCy * 0.97;
+  const nRx = W * 0.12, nRy = H * 0.11;
+  if (Math.pow((mx - nCx) / nRx, 2) + Math.pow((my - nCy) / nRy, 2) < 1) return 'nucleus';
+
+  // Mitochondria
+  const mitoPositions = [
+    { x: 0.62, y: 0.32 }, { x: 0.68, y: 0.58 }, { x: 0.35, y: 0.68 }
+  ];
+  for (const mp of mitoPositions) {
+    if (Math.abs(mx - W * mp.x) < W * 0.06 && Math.abs(my - H * mp.y) < H * 0.04) return 'mitochondria';
+  }
+
+  // Golgi
+  if (Math.abs(mx - W * 0.72) < W * 0.06 && Math.abs(my - H * 0.47) < H * 0.08) return 'golgi';
+
+  // Rough ER
+  if (mx > W * 0.46 && mx < W * 0.65 && my > H * 0.36 && my < H * 0.56) return 'rough_er';
+
+  // Smooth ER
+  if (mx > W * 0.50 && mx < W * 0.67 && my > H * 0.58 && my < H * 0.68) return 'smooth_er';
+
+  // Lysosomes
+  if ((Math.pow(mx - W * 0.28, 2) + Math.pow(my - H * 0.62, 2)) < Math.pow(W * 0.035, 2)) return 'lysosomes';
+  if ((Math.pow(mx - W * 0.24, 2) + Math.pow(my - H * 0.55, 2)) < Math.pow(W * 0.03, 2)) return 'lysosomes';
+
+  // Vacuole
+  if (Math.pow((mx - W * 0.30) / (W * 0.06), 2) + Math.pow((my - H * 0.35) / (H * 0.06), 2) < 1) return 'vacuole';
+
+  // Ribosomes (cluster area)
+  if (mx > W * 0.35 && mx < W * 0.52 && my > H * 0.52 && my < H * 0.65) return 'ribosomes';
+
+  // Cytoskeleton (sparse, check corners)
+  if (mx > W * 0.75 && my < H * 0.35 && cDist < 1) return 'cytoskeleton';
+  if (mx < W * 0.22 && my < H * 0.40 && cDist < 1) return 'cytoskeleton';
+
+  return null;
+}
+
+function handleOrganelleClick(e) {
+  const c = $('organelle-canvas');
+  const rect = c.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) / rect.width * (c.offsetWidth || c.width);
+  const my = (e.clientY - rect.top) / rect.height * (c.offsetHeight || c.height);
+  const W = c.offsetWidth || c.width;
+  const H = c.offsetHeight || c.height;
+
+  const hit = getOrganelleAt(mx, my, W, H);
+  if (hit) {
+    orgFound.add(hit);
+    const org = organelles.find(o => o.id === hit);
+    if (org) {
+      $('org-info').innerHTML =
+        '<div class="ip-name" style="color:' + org.color + '">' + org.name + '</div>' +
+        '<div class="ip-function"><strong>Function:</strong> ' + org.func + '</div>' +
+        '<div class="ip-analogy"><strong>Analogy:</strong> ' + org.analogy + '</div>';
+    }
+    drawOrganelleCell();
+  }
+}
+
+function handleOrganelleHover(e) {
+  const c = $('organelle-canvas');
+  const rect = c.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) / rect.width * (c.offsetWidth || c.width);
+  const my = (e.clientY - rect.top) / rect.height * (c.offsetHeight || c.height);
+  const W = c.offsetWidth || c.width;
+  const H = c.offsetHeight || c.height;
+  const hit = getOrganelleAt(mx, my, W, H);
+  if (hit !== orgHover) {
+    orgHover = hit;
+    c.style.cursor = hit ? 'pointer' : 'default';
+    drawOrganelleCell();
+  }
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: PROKARYOTE vs EUKARYOTE
+// ══════════════════════════════════════════════════════════════════════════
+let peFeatures = { nucleus: true, organelles: true, dna: true, ribosomes: true };
+
+function togglePEFeature(f) { peFeatures[f] = !peFeatures[f]; drawProkEuk(); }
+function resetPEFeatures() { peFeatures = { nucleus: true, organelles: true, dna: true, ribosomes: true }; drawProkEuk(); }
+
+function drawProkEuk() {
+  const ctx = getCtx('prok-euk-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const midX = W / 2;
+
+  // Labels
+  ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#c41e3a'; ctx.fillText('Prokaryote', W * 0.25, 28);
+  ctx.fillStyle = '#2563eb'; ctx.fillText('Eukaryote', W * 0.75, 28);
+
+  // Divider
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(midX, 10); ctx.lineTo(midX, H - 10); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // === PROKARYOTE (left) ===
+  const pCx = W * 0.25, pCy = H * 0.52;
+  const pRx = W * 0.16, pRy = H * 0.28;
+
+  // Cell wall
+  ctx.beginPath();
+  ctx.ellipse(pCx, pCy, pRx + 6, pRy + 6, 0, 0, Math.PI * 2);
+  ctx.strokeStyle = '#92400e';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Cell membrane
+  ctx.beginPath();
+  ctx.ellipse(pCx, pCy, pRx, pRy, 0, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(254, 243, 199, 0.4)';
+  ctx.fill();
+  ctx.strokeStyle = '#d97706';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // DNA (circular, no nucleus)
+  if (peFeatures.dna) {
+    ctx.beginPath();
+    ctx.ellipse(pCx, pCy, pRx * 0.35, pRy * 0.25, 0.3, 0, Math.PI * 2);
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    // Plasmid
+    ctx.beginPath();
+    ctx.arc(pCx + pRx * 0.4, pCy - pRy * 0.3, pRx * 0.1, 0, Math.PI * 2);
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#dc2626'; ctx.textAlign = 'center';
+    ctx.fillText('Nucleoid', pCx, pCy + pRy * 0.35);
+    ctx.fillText('Plasmid', pCx + pRx * 0.4, pCy - pRy * 0.45);
+  }
+
+  // Ribosomes (smaller 70S)
+  if (peFeatures.ribosomes) {
+    for (let i = 0; i < 15; i++) {
+      const angle = i * 0.42;
+      const dist = 0.4 + (i % 3) * 0.2;
+      const rx = pCx + Math.cos(angle) * pRx * dist;
+      const ry = pCy + Math.sin(angle) * pRy * dist;
+      ctx.beginPath();
+      ctx.arc(rx, ry, 2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(55, 65, 81, 0.4)';
+      ctx.fill();
+    }
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#374151';
+    ctx.fillText('70S Ribosomes', pCx, pCy + pRy * 0.55);
+  }
+
+  // Flagellum
+  ctx.beginPath();
+  ctx.moveTo(pCx + pRx + 6, pCy);
+  for (let i = 0; i < 12; i++) {
+    ctx.lineTo(pCx + pRx + 6 + i * 4, pCy + Math.sin(i * 0.8) * 6);
+  }
+  ctx.strokeStyle = '#92400e'; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.font = '10px system-ui'; ctx.fillStyle = '#92400e';
+  ctx.fillText('Flagellum', pCx + pRx + 28, pCy - 12);
+
+  // No nucleus marker
+  if (peFeatures.nucleus) {
+    ctx.font = 'bold 11px system-ui'; ctx.fillStyle = '#c41e3a'; ctx.textAlign = 'center';
+    ctx.fillText('No true nucleus', pCx, H - 20);
+  }
+
+  // === EUKARYOTE (right) ===
+  const eCx = W * 0.75, eCy = H * 0.52;
+  const eRx = W * 0.18, eRy = H * 0.32;
+
+  // Cell membrane
+  ctx.beginPath();
+  ctx.ellipse(eCx, eCy, eRx, eRy, 0, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(219, 234, 254, 0.4)';
+  ctx.fill();
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Nucleus (membrane-bound)
+  if (peFeatures.nucleus) {
+    ctx.beginPath();
+    ctx.ellipse(eCx - eRx * 0.1, eCy - eRy * 0.1, eRx * 0.35, eRy * 0.25, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(107, 70, 193, 0.25)';
+    ctx.fill();
+    ctx.strokeStyle = '#6B46C1';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    // Double membrane
+    ctx.beginPath();
+    ctx.ellipse(eCx - eRx * 0.1, eCy - eRy * 0.1, eRx * 0.32, eRy * 0.22, 0, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(107, 70, 193, 0.4)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#6B46C1'; ctx.textAlign = 'center';
+    ctx.fillText('Nucleus', eCx - eRx * 0.1, eCy - eRy * 0.1 + 4);
+  }
+
+  // DNA (linear chromosomes inside nucleus)
+  if (peFeatures.dna && peFeatures.nucleus) {
+    const dnaCx = eCx - eRx * 0.1, dnaCy = eCy - eRy * 0.1;
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.moveTo(dnaCx - 10 + i * 10, dnaCy - 8);
+      ctx.lineTo(dnaCx - 10 + i * 10, dnaCy + 5);
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  // Membrane-bound organelles
+  if (peFeatures.organelles) {
+    // Mitochondria
+    ctx.save();
+    ctx.translate(eCx + eRx * 0.4, eCy + eRy * 0.3);
+    ctx.rotate(0.4);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, eRx * 0.15, eRy * 0.06, 0, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(220, 38, 38, 0.2)';
+    ctx.fill();
+    ctx.strokeStyle = '#DC2626'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.restore();
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#DC2626'; ctx.textAlign = 'center';
+    ctx.fillText('Mitochondria', eCx + eRx * 0.4, eCy + eRy * 0.48);
+
+    // ER
+    ctx.strokeStyle = 'rgba(37, 99, 235, 0.4)'; ctx.lineWidth = 1.5;
+    for (let e = 0; e < 3; e++) {
+      ctx.beginPath();
+      const ey = eCy + eRy * 0.05 + e * H * 0.025;
+      ctx.moveTo(eCx + eRx * 0.15, ey);
+      ctx.quadraticCurveTo(eCx + eRx * 0.35, ey + 5, eCx + eRx * 0.55, ey);
+      ctx.stroke();
+    }
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#2563EB';
+    ctx.fillText('ER', eCx + eRx * 0.55, eCy + eRy * 0.05 - 8);
+
+    // Golgi
+    for (let g = 0; g < 3; g++) {
+      ctx.beginPath();
+      const gy = eCy + eRy * 0.45 + g * 6;
+      ctx.moveTo(eCx - eRx * 0.5, gy);
+      ctx.quadraticCurveTo(eCx - eRx * 0.35, gy - 4, eCx - eRx * 0.2, gy);
+      ctx.strokeStyle = '#D97706'; ctx.lineWidth = 2; ctx.stroke();
+    }
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#D97706';
+    ctx.fillText('Golgi', eCx - eRx * 0.35, eCy + eRy * 0.67);
+  }
+
+  // Ribosomes (80S, larger)
+  if (peFeatures.ribosomes) {
+    for (let i = 0; i < 12; i++) {
+      const angle = i * 0.52 + 1;
+      const dist = 0.5 + (i % 3) * 0.15;
+      const rx = eCx + Math.cos(angle) * eRx * dist;
+      const ry = eCy + Math.sin(angle) * eRy * dist;
+      ctx.beginPath();
+      ctx.arc(rx, ry, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(55, 65, 81, 0.35)';
+      ctx.fill();
+    }
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#374151';
+    ctx.fillText('80S Ribosomes', eCx + eRx * 0.15, eCy + eRy * 0.85);
+  }
+
+  // Size labels
+  ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#9ca3af';
+  ctx.fillText('0.1 - 5 \u00B5m', pCx, H - 6);
+  ctx.fillText('10 - 100 \u00B5m', eCx, H - 6);
+}
+
+// PE Quiz
+const peQuizQuestions = [
+  { q: 'Has a true membrane-bound nucleus', a: 'Eukaryote' },
+  { q: 'Contains circular DNA in a nucleoid region', a: 'Prokaryote' },
+  { q: 'Has 80S ribosomes', a: 'Eukaryote' },
+  { q: 'Typically 0.1 to 5 micrometers in size', a: 'Prokaryote' },
+  { q: 'Contains membrane-bound organelles like mitochondria', a: 'Eukaryote' },
+  { q: 'May have a peptidoglycan cell wall', a: 'Prokaryote' },
+  { q: 'Includes organisms like E. coli', a: 'Prokaryote' },
+  { q: 'DNA is organized into linear chromosomes', a: 'Eukaryote' },
+  { q: 'Has 70S ribosomes', a: 'Prokaryote' },
+  { q: 'Includes fungi, plants, and animals', a: 'Eukaryote' },
+  { q: 'May contain plasmids', a: 'Prokaryote' },
+  { q: 'Has an endomembrane system (ER, Golgi)', a: 'Eukaryote' },
+];
+let peQuiz = { correct: 0, wrong: 0, current: null };
+
+function nextPEQuiz() {
+  const q = peQuizQuestions[rand(0, peQuizQuestions.length - 1)];
+  peQuiz.current = q;
+  const area = $('pe-quiz-area');
+  area.innerHTML = '<p style="font-size:15px;font-weight:600;margin-bottom:12px;">"' + q.q + '"</p>' +
+    '<button class="quiz-option" onclick="answerPE(this,\'Prokaryote\')">Prokaryote</button>' +
+    '<button class="quiz-option" onclick="answerPE(this,\'Eukaryote\')">Eukaryote</button>';
+}
+
+function answerPE(btn, ans) {
+  const correct = ans === peQuiz.current.a;
+  if (correct) { peQuiz.correct++; btn.classList.add('correct'); }
+  else { peQuiz.wrong++; btn.classList.add('incorrect'); }
+  // Disable all
+  document.querySelectorAll('#pe-quiz-area .quiz-option').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === peQuiz.current.a && !b.classList.contains('correct')) b.classList.add('correct');
+  });
+  const total = peQuiz.correct + peQuiz.wrong;
+  $('pe-correct').textContent = peQuiz.correct;
+  $('pe-wrong').textContent = peQuiz.wrong;
+  $('pe-score').textContent = total ? Math.round(peQuiz.correct / total * 100) + '%' : '-';
+}
+
+function resetPEQuiz() { peQuiz = { correct: 0, wrong: 0, current: null }; $('pe-quiz-area').innerHTML = ''; $('pe-correct').textContent = '0'; $('pe-wrong').textContent = '0'; $('pe-score').textContent = '-'; }
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: PLANT vs ANIMAL CELL
+// ══════════════════════════════════════════════════════════════════════════
+let paHighlight = 'all';
+let vennShowLabels = true;
+
+const paShared = ['Nucleus', 'Mitochondria', 'ER', 'Golgi', 'Ribosomes', 'Cell Membrane', 'Cytoskeleton'];
+const paPlantOnly = ['Cell Wall', 'Chloroplasts', 'Large Central Vacuole'];
+const paAnimalOnly = ['Centrioles', 'Lysosomes', 'Small Vacuoles'];
+
+function highlightPA(mode) { paHighlight = mode; drawPlantAnimal(); }
+
+function drawPlantAnimal() {
+  const ctx = getCtx('plant-animal-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mode = paHighlight;
+
+  // Labels
+  ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#16a34a'; ctx.fillText('Plant Cell', W * 0.25, 28);
+  ctx.fillStyle = '#c41e3a'; ctx.fillText('Animal Cell', W * 0.75, 28);
+
+  // Divider
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(W / 2, 10); ctx.lineTo(W / 2, H - 10); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // === PLANT CELL (left) ===
+  const pCx = W * 0.25, pCy = H * 0.52;
+  const pW = W * 0.20, pH = H * 0.34;
+
+  // Cell wall (rectangular)
+  const wallAlpha = (mode === 'plant' || mode === 'all') ? 1 : 0.15;
+  ctx.strokeStyle = `rgba(101, 67, 33, ${wallAlpha})`;
+  ctx.lineWidth = 4;
+  ctx.strokeRect(pCx - pW - 8, pCy - pH - 8, pW * 2 + 16, pH * 2 + 16);
+  if (mode === 'plant' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#654321'; ctx.textAlign = 'center';
+    ctx.fillText('Cell Wall', pCx, pCy - pH - 14);
+  }
+
+  // Cell membrane
+  const memAlpha = (mode === 'shared' || mode === 'all') ? 1 : 0.15;
+  ctx.beginPath();
+  ctx.roundRect(pCx - pW, pCy - pH, pW * 2, pH * 2, 8);
+  ctx.fillStyle = `rgba(220, 240, 220, ${memAlpha * 0.4})`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(22, 163, 106, ${memAlpha})`;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Large central vacuole (plant only)
+  const vacAlpha = (mode === 'plant' || mode === 'all') ? 1 : 0.15;
+  ctx.beginPath();
+  ctx.ellipse(pCx, pCy + pH * 0.15, pW * 0.65, pH * 0.55, 0, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(147, 197, 253, ${vacAlpha * 0.3})`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(37, 99, 235, ${vacAlpha * 0.6})`;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  if (mode === 'plant' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#2563eb'; ctx.textAlign = 'center';
+    ctx.fillText('Central Vacuole', pCx, pCy + pH * 0.18);
+  }
+
+  // Chloroplasts (plant only)
+  const chAlpha = (mode === 'plant' || mode === 'all') ? 1 : 0.15;
+  [{ x: -0.5, y: -0.5 }, { x: 0.3, y: -0.6 }, { x: -0.4, y: 0.6 }].forEach(cp => {
+    ctx.save();
+    ctx.translate(pCx + pW * cp.x, pCy + pH * cp.y);
+    ctx.rotate(cp.x);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, pW * 0.18, pH * 0.07, 0, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(34, 197, 94, ${chAlpha * 0.35})`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(22, 163, 106, ${chAlpha * 0.7})`;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Thylakoid lines
+    for (let t = -2; t <= 2; t++) {
+      ctx.beginPath();
+      ctx.moveTo(t * pW * 0.04, -pH * 0.04);
+      ctx.lineTo(t * pW * 0.04, pH * 0.04);
+      ctx.strokeStyle = `rgba(22, 163, 106, ${chAlpha * 0.3})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+    ctx.restore();
+  });
+  if (mode === 'plant' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#16a34a';
+    ctx.fillText('Chloroplast', pCx - pW * 0.5, pCy - pH * 0.55 - 6);
+  }
+
+  // Nucleus (shared)
+  const nucAlpha = (mode === 'shared' || mode === 'all') ? 1 : 0.15;
+  ctx.beginPath();
+  ctx.ellipse(pCx + pW * 0.3, pCy - pH * 0.35, pW * 0.22, pH * 0.16, 0, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(107, 70, 193, ${nucAlpha * 0.25})`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(107, 70, 193, ${nucAlpha * 0.7})`;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  if (mode === 'shared' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#6B46C1';
+    ctx.fillText('Nucleus', pCx + pW * 0.3, pCy - pH * 0.35 + 4);
+  }
+
+  // Mitochondria (shared, in plant)
+  const mitoAlpha = (mode === 'shared' || mode === 'all') ? 1 : 0.15;
+  ctx.save();
+  ctx.translate(pCx - pW * 0.2, pCy - pH * 0.15);
+  ctx.rotate(0.5);
+  ctx.beginPath();
+  ctx.ellipse(0, 0, pW * 0.12, pH * 0.05, 0, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(220, 38, 38, ${mitoAlpha * 0.25})`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(220, 38, 38, ${mitoAlpha * 0.6})`;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  ctx.restore();
+
+  // === ANIMAL CELL (right) ===
+  const aCx = W * 0.75, aCy = H * 0.52;
+  const aRx = W * 0.19, aRy = H * 0.34;
+
+  // Cell membrane (irregular shape)
+  ctx.beginPath();
+  ctx.ellipse(aCx, aCy, aRx, aRy, 0, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(254, 226, 226, ${memAlpha * 0.4})`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(196, 30, 58, ${memAlpha * 0.7})`;
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Nucleus (shared)
+  ctx.beginPath();
+  ctx.ellipse(aCx - aRx * 0.1, aCy - aRy * 0.15, aRx * 0.28, aRy * 0.2, 0, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(107, 70, 193, ${nucAlpha * 0.25})`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(107, 70, 193, ${nucAlpha * 0.7})`;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  if (mode === 'shared' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#6B46C1';
+    ctx.fillText('Nucleus', aCx - aRx * 0.1, aCy - aRy * 0.15 + 4);
+  }
+
+  // Centrioles (animal only)
+  const centAlpha = (mode === 'animal' || mode === 'all') ? 1 : 0.15;
+  const centX = aCx + aRx * 0.35, centY = aCy - aRy * 0.5;
+  // Two perpendicular cylinders
+  ctx.strokeStyle = `rgba(124, 58, 237, ${centAlpha * 0.8})`;
+  ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(centX - 8, centY - 6); ctx.lineTo(centX + 8, centY - 6); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(centX - 8, centY + 6); ctx.lineTo(centX + 8, centY + 6); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(centX - 4, centY - 10); ctx.lineTo(centX - 4, centY + 2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(centX + 4, centY - 10); ctx.lineTo(centX + 4, centY + 2); ctx.stroke();
+  if (mode === 'animal' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#7C3AED';
+    ctx.fillText('Centrioles', centX, centY - 16);
+  }
+
+  // Lysosomes (animal only)
+  const lysoAlpha = (mode === 'animal' || mode === 'all') ? 1 : 0.15;
+  [{ x: -0.3, y: 0.45 }, { x: -0.45, y: 0.3 }].forEach(lp => {
+    ctx.beginPath();
+    ctx.arc(aCx + aRx * lp.x, aCy + aRy * lp.y, aRx * 0.07, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(5, 150, 105, ${lysoAlpha * 0.35})`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(5, 150, 105, ${lysoAlpha * 0.7})`;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+  if (mode === 'animal' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#059669';
+    ctx.fillText('Lysosomes', aCx + aRx * (-0.35), aCy + aRy * 0.6);
+  }
+
+  // Mitochondria (shared, in animal)
+  ctx.save();
+  ctx.translate(aCx + aRx * 0.3, aCy + aRy * 0.25);
+  ctx.rotate(-0.3);
+  ctx.beginPath();
+  ctx.ellipse(0, 0, aRx * 0.14, aRy * 0.06, 0, 0, Math.PI * 2);
+  ctx.fillStyle = `rgba(220, 38, 38, ${mitoAlpha * 0.25})`;
+  ctx.fill();
+  ctx.strokeStyle = `rgba(220, 38, 38, ${mitoAlpha * 0.6})`;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  ctx.restore();
+  if (mode === 'shared' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#DC2626';
+    ctx.fillText('Mitochondria', aCx + aRx * 0.3, aCy + aRy * 0.38);
+  }
+
+  // Small vacuoles (animal only)
+  const svAlpha = (mode === 'animal' || mode === 'all') ? 1 : 0.15;
+  [{ x: 0.15, y: 0.5 }, { x: 0.4, y: 0.55 }].forEach(sv => {
+    ctx.beginPath();
+    ctx.arc(aCx + aRx * sv.x, aCy + aRy * sv.y, aRx * 0.04, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(139, 92, 246, ${svAlpha * 0.3})`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(139, 92, 246, ${svAlpha * 0.5})`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Shared structures label
+  if (mode === 'shared' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#DC2626';
+    ctx.fillText('Mitochondria', pCx - pW * 0.2, pCy - pH * 0.25);
+  }
+
+  // Golgi (shared, in animal)
+  const golgiAlpha = (mode === 'shared' || mode === 'all') ? 1 : 0.15;
+  for (let g = 0; g < 4; g++) {
+    ctx.beginPath();
+    const gy = aCy + aRy * 0.05 + g * 5;
+    ctx.moveTo(aCx + aRx * 0.05, gy);
+    ctx.quadraticCurveTo(aCx + aRx * 0.2, gy - 3, aCx + aRx * 0.35, gy);
+    ctx.strokeStyle = `rgba(217, 119, 6, ${golgiAlpha * 0.6})`;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+  if (mode === 'shared' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#D97706';
+    ctx.fillText('Golgi', aCx + aRx * 0.2, aCy - aRy * 0.05);
+  }
+
+  // ER (shared, in animal)
+  ctx.strokeStyle = `rgba(37, 99, 235, ${golgiAlpha * 0.4})`;
+  ctx.lineWidth = 1.5;
+  for (let e = 0; e < 3; e++) {
+    ctx.beginPath();
+    const ey = aCy + aRy * (-0.3) + e * 8;
+    ctx.moveTo(aCx - aRx * 0.35, ey);
+    ctx.quadraticCurveTo(aCx - aRx * 0.15, ey + 4, aCx - aRx * 0.0, ey);
+    ctx.stroke();
+  }
+  if (mode === 'shared' || mode === 'all') {
+    ctx.font = '10px system-ui'; ctx.fillStyle = '#2563EB';
+    ctx.fillText('ER', aCx - aRx * 0.4, aCy - aRy * 0.35);
+  }
+}
+
+function drawVenn() {
+  const ctx = getCtx('venn-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+  const r = Math.min(W, H) * 0.32;
+  const offset = r * 0.55;
+
+  // Plant circle
+  ctx.beginPath();
+  ctx.arc(cx - offset, cy, r, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(34, 197, 94, 0.12)';
+  ctx.fill();
+  ctx.strokeStyle = '#16a34a';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Animal circle
+  ctx.beginPath();
+  ctx.arc(cx + offset, cy, r, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(196, 30, 58, 0.12)';
+  ctx.fill();
+  ctx.strokeStyle = '#c41e3a';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Labels
+  ctx.font = 'bold 15px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#16a34a'; ctx.fillText('Plant Cell', cx - offset - r * 0.4, cy - r - 10);
+  ctx.fillStyle = '#c41e3a'; ctx.fillText('Animal Cell', cx + offset + r * 0.4, cy - r - 10);
+
+  if (vennShowLabels) {
+    ctx.font = '12px system-ui';
+
+    // Plant only (left)
+    ctx.fillStyle = '#16a34a'; ctx.textAlign = 'center';
+    paPlantOnly.forEach((s, i) => {
+      ctx.fillText(s, cx - offset - r * 0.42, cy - 30 + i * 22);
+    });
+
+    // Shared (center)
+    ctx.fillStyle = '#374151'; ctx.textAlign = 'center';
+    paShared.forEach((s, i) => {
+      ctx.fillText(s, cx, cy - 70 + i * 22);
+    });
+
+    // Animal only (right)
+    ctx.fillStyle = '#c41e3a'; ctx.textAlign = 'center';
+    paAnimalOnly.forEach((s, i) => {
+      ctx.fillText(s, cx + offset + r * 0.42, cy - 30 + i * 22);
+    });
+  }
+}
+
+function toggleVennMode() { vennShowLabels = !vennShowLabels; drawVenn(); }
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: CELL SIZE SCALE
+// ══════════════════════════════════════════════════════════════════════════
+const sizeItems = [
+  { name: 'Hydrogen atom', size: 0.0001, color: '#9ca3af' },
+  { name: 'Water molecule', size: 0.000275, color: '#60a5fa' },
+  { name: 'Glucose', size: 0.001, color: '#fbbf24' },
+  { name: 'Amino acid', size: 0.0008, color: '#a78bfa' },
+  { name: 'Lipid bilayer', size: 0.008, color: '#f472b6' },
+  { name: 'Hemoglobin', size: 0.005, color: '#dc2626' },
+  { name: 'Ribosome', size: 0.025, color: '#374151' },
+  { name: 'HIV virus', size: 0.12, color: '#ef4444' },
+  { name: 'Influenza virus', size: 0.1, color: '#f97316' },
+  { name: 'T4 Bacteriophage', size: 0.2, color: '#8b5cf6' },
+  { name: 'Mycoplasma (smallest cell)', size: 0.3, color: '#22d3ee' },
+  { name: 'E. coli bacterium', size: 2, color: '#d97706' },
+  { name: 'Mitochondrion', size: 2, color: '#dc2626' },
+  { name: 'Red blood cell', size: 8, color: '#ef4444' },
+  { name: 'White blood cell', size: 15, color: '#e2e8f0' },
+  { name: 'Typical animal cell', size: 20, color: '#c41e3a' },
+  { name: 'Typical plant cell', size: 50, color: '#16a34a' },
+  { name: 'Amoeba', size: 500, color: '#6366f1' },
+  { name: 'Frog egg', size: 1000, color: '#22c55e' },
+  { name: 'Grain of sand', size: 1000, color: '#d4a574' },
+  { name: 'Period (full stop)', size: 500, color: '#1a1a1a' },
+  { name: 'Penny (1 cm)', size: 10000, color: '#b45309' },
+  { name: 'Tennis ball', size: 65000, color: '#84cc16' },
+];
+
+function updateSizeScale() {
+  const val = parseInt($('size-slider').value);
+  $('size-val').textContent = val;
+  drawSizeScale(val);
+}
+
+function drawSizeScale(sliderVal) {
+  const ctx = getCtx('size-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 60, right: 30, bottom: 50, left: 30 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+
+  // Map slider (0-100) to log scale range (-4 to 5) => 0.0001 um to 100000 um
+  const logMin = -4, logMax = 5;
+  const logRange = logMax - logMin;
+  const centerLog = logMin + (sliderVal / 100) * logRange;
+  const viewHalfWidth = 2.5; // show +/- 2.5 orders of magnitude
+  const viewMin = centerLog - viewHalfWidth;
+  const viewMax = centerLog + viewHalfWidth;
+
+  // Draw scale line
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(pad.left, H - pad.bottom);
+  ctx.lineTo(W - pad.right, H - pad.bottom);
+  ctx.stroke();
+
+  // Tick marks and labels
+  ctx.font = '11px system-ui'; ctx.textAlign = 'center'; ctx.fillStyle = '#6b7280';
+  for (let log = Math.ceil(viewMin); log <= Math.floor(viewMax); log++) {
+    const x = pad.left + ((log - viewMin) / (viewMax - viewMin)) * plotW;
+    ctx.beginPath();
+    ctx.moveTo(x, H - pad.bottom);
+    ctx.lineTo(x, H - pad.bottom + 8);
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+    ctx.stroke();
+
+    let label;
+    if (log <= -3) label = (Math.pow(10, log) * 1000).toFixed(1) + ' nm';
+    else if (log <= 0) label = Math.pow(10, log).toFixed(log < 0 ? -log : 0) + ' \u00B5m';
+    else if (log <= 3) label = Math.pow(10, log).toFixed(0) + ' \u00B5m';
+    else label = (Math.pow(10, log - 3)).toFixed(0) + ' mm';
+
+    ctx.fillText(label, x, H - pad.bottom + 22);
+  }
+
+  // Category bands
+  const categories = [
+    { name: 'Atoms', logMin: -4, logMax: -3, color: 'rgba(156, 163, 175, 0.1)' },
+    { name: 'Molecules', logMin: -3, logMax: -1.5, color: 'rgba(96, 165, 250, 0.08)' },
+    { name: 'Viruses', logMin: -1.5, logMax: -0.5, color: 'rgba(239, 68, 68, 0.08)' },
+    { name: 'Bacteria', logMin: -0.5, logMax: 0.7, color: 'rgba(217, 119, 6, 0.1)' },
+    { name: 'Eukaryotic Cells', logMin: 0.7, logMax: 2.5, color: 'rgba(34, 197, 94, 0.1)' },
+    { name: 'Visible', logMin: 2.5, logMax: 5, color: 'rgba(124, 58, 237, 0.08)' }
+  ];
+
+  categories.forEach(cat => {
+    const x1 = pad.left + Math.max(0, (cat.logMin - viewMin) / (viewMax - viewMin)) * plotW;
+    const x2 = pad.left + Math.min(1, (cat.logMax - viewMin) / (viewMax - viewMin)) * plotW;
+    if (x2 > pad.left && x1 < W - pad.right) {
+      ctx.fillStyle = cat.color;
+      ctx.fillRect(Math.max(pad.left, x1), pad.top - 20, Math.min(x2, W - pad.right) - Math.max(pad.left, x1), plotH + 20);
+      // Category label
+      const labelX = (Math.max(pad.left, x1) + Math.min(x2, W - pad.right)) / 2;
+      if (labelX > pad.left + 20 && labelX < W - pad.right - 20) {
+        ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#9ca3af';
+        ctx.fillText(cat.name, labelX, pad.top - 6);
+      }
+    }
+  });
+
+  // Draw items
+  sizeItems.forEach(item => {
+    const logSize = Math.log10(item.size);
+    if (logSize >= viewMin && logSize <= viewMax) {
+      const x = pad.left + ((logSize - viewMin) / (viewMax - viewMin)) * plotW;
+      const y = H - pad.bottom - 20;
+
+      // Dot size based on how centered it is (larger when in focus)
+      const distFromCenter = Math.abs(logSize - centerLog);
+      const dotSize = Math.max(3, 10 - distFromCenter * 3);
+      const alpha = Math.max(0.3, 1 - distFromCenter * 0.3);
+
+      ctx.beginPath();
+      ctx.arc(x, y - 30, dotSize, 0, Math.PI * 2);
+      ctx.fillStyle = item.color;
+      ctx.globalAlpha = alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // Label (only if near center)
+      if (distFromCenter < 1.8) {
+        ctx.save();
+        ctx.translate(x, y - 30 - dotSize - 4);
+        ctx.rotate(-0.5);
+        ctx.font = (distFromCenter < 0.8 ? 'bold ' : '') + '11px system-ui';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#374151';
+        ctx.globalAlpha = alpha;
+        ctx.fillText(item.name, 0, 0);
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      }
+
+      // Line to scale
+      ctx.beginPath();
+      ctx.moveTo(x, y - 30 + dotSize);
+      ctx.lineTo(x, H - pad.bottom);
+      ctx.strokeStyle = item.color;
+      ctx.globalAlpha = alpha * 0.3;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+  });
+
+  // Current size indicator
+  const centerSize = Math.pow(10, centerLog);
+  let sizeStr, refObj;
+  if (centerSize < 0.001) { sizeStr = (centerSize * 1000).toFixed(1) + ' nm'; refObj = 'Atomic'; }
+  else if (centerSize < 0.1) { sizeStr = (centerSize * 1000).toFixed(0) + ' nm'; refObj = 'Molecular'; }
+  else if (centerSize < 1) { sizeStr = centerSize.toFixed(2) + ' \u00B5m'; refObj = 'Virus'; }
+  else if (centerSize < 10) { sizeStr = centerSize.toFixed(1) + ' \u00B5m'; refObj = 'Bacterium'; }
+  else if (centerSize < 200) { sizeStr = centerSize.toFixed(0) + ' \u00B5m'; refObj = 'Animal Cell'; }
+  else if (centerSize < 2000) { sizeStr = centerSize.toFixed(0) + ' \u00B5m'; refObj = 'Large Cell'; }
+  else { sizeStr = (centerSize / 1000).toFixed(1) + ' mm'; refObj = 'Visible Object'; }
+
+  $('size-current').innerHTML = sizeStr;
+  $('size-object').textContent = refObj;
+  $('size-order').innerHTML = '10<sup>' + centerLog.toFixed(1) + '</sup>';
+
+  // Arrow at center
+  const arrowX = pad.left + plotW * 0.5;
+  ctx.beginPath();
+  ctx.moveTo(arrowX, H - pad.bottom + 30);
+  ctx.lineTo(arrowX - 6, H - pad.bottom + 40);
+  ctx.lineTo(arrowX + 6, H - pad.bottom + 40);
+  ctx.closePath();
+  ctx.fillStyle = '#c41e3a';
+  ctx.fill();
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: STRUCTURE-FUNCTION QUIZ
+// ══════════════════════════════════════════════════════════════════════════
+const quizQuestions = [
+  { q: 'Produces ATP through cellular respiration; the "powerhouse" of the cell.', a: 'Mitochondria', opts: ['Nucleus', 'Mitochondria', 'Golgi Apparatus', 'Ribosome'] },
+  { q: 'Contains DNA and controls cell activities.', a: 'Nucleus', opts: ['Lysosome', 'Nucleus', 'Cell Membrane', 'Vacuole'] },
+  { q: 'Modifies, sorts, and packages proteins for secretion.', a: 'Golgi Apparatus', opts: ['Rough ER', 'Ribosome', 'Golgi Apparatus', 'Smooth ER'] },
+  { q: 'Translates mRNA into proteins.', a: 'Ribosome', opts: ['Ribosome', 'Nucleus', 'Lysosome', 'Mitochondria'] },
+  { q: 'Contains digestive enzymes to break down waste materials.', a: 'Lysosome', opts: ['Vacuole', 'Golgi Apparatus', 'Lysosome', 'Smooth ER'] },
+  { q: 'Studded with ribosomes; synthesizes and transports proteins.', a: 'Rough ER', opts: ['Smooth ER', 'Rough ER', 'Golgi Apparatus', 'Cell Membrane'] },
+  { q: 'Synthesizes lipids and detoxifies chemicals.', a: 'Smooth ER', opts: ['Rough ER', 'Mitochondria', 'Smooth ER', 'Ribosome'] },
+  { q: 'Selectively permeable barrier controlling what enters and exits the cell.', a: 'Cell Membrane', opts: ['Cell Wall', 'Cell Membrane', 'Cytoskeleton', 'Vacuole'] },
+  { q: 'Provides structural support; network of protein fibers.', a: 'Cytoskeleton', opts: ['Cell Membrane', 'Cytoskeleton', 'Cell Wall', 'Nucleus'] },
+  { q: 'Stores water, nutrients, and waste; maintains turgor pressure.', a: 'Vacuole', opts: ['Lysosome', 'Golgi Apparatus', 'Vacuole', 'Mitochondria'] },
+  { q: 'Site of photosynthesis in plant cells.', a: 'Chloroplast', opts: ['Chloroplast', 'Mitochondria', 'Chromoplast', 'Vacuole'] },
+  { q: 'Rigid outer layer in plant cells made of cellulose.', a: 'Cell Wall', opts: ['Cell Membrane', 'Cell Wall', 'Cytoskeleton', 'Capsule'] },
+  { q: 'Dark, dense region inside the nucleus that produces ribosomal RNA.', a: 'Nucleolus', opts: ['Nucleolus', 'Ribosome', 'Nucleus', 'Chromatin'] },
+  { q: 'Plays a role in cell division in animal cells; organizes spindle fibers.', a: 'Centriole', opts: ['Centriole', 'Cytoskeleton', 'Nucleus', 'Golgi Apparatus'] },
+];
+
+let quizState = { questions: [], idx: 0, correct: 0, wrong: 0, streak: 0, answered: false };
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = rand(0, i);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function resetQuiz() {
+  quizState.questions = shuffleArray(quizQuestions).slice(0, 10);
+  quizState.idx = 0;
+  quizState.correct = 0;
+  quizState.wrong = 0;
+  quizState.streak = 0;
+  quizState.answered = false;
+  $('quiz-total').textContent = quizState.questions.length;
+  showQuizQuestion();
+}
+
+function showQuizQuestion() {
+  if (quizState.idx >= quizState.questions.length) {
+    $('quiz-question').textContent = 'Quiz Complete! Final Score: ' + quizState.correct + '/' + quizState.questions.length;
+    $('quiz-options').innerHTML = '';
+    $('quiz-next-btn').disabled = true;
+    return;
+  }
+  const q = quizState.questions[quizState.idx];
+  $('quiz-num').textContent = quizState.idx + 1;
+  $('quiz-question').textContent = q.q;
+  $('quiz-progress').style.width = (quizState.idx / quizState.questions.length * 100) + '%';
+  quizState.answered = false;
+  $('quiz-next-btn').disabled = true;
+
+  const shuffledOpts = shuffleArray(q.opts);
+  $('quiz-options').innerHTML = shuffledOpts.map(o =>
+    '<button class="quiz-option" onclick="answerQuiz(this,\'' + o.replace(/'/g, "\\'") + '\')">' + o + '</button>'
+  ).join('');
+}
+
+function answerQuiz(btn, ans) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const q = quizState.questions[quizState.idx];
+  const correct = ans === q.a;
+
+  if (correct) {
+    quizState.correct++;
+    quizState.streak++;
+    btn.classList.add('correct');
+  } else {
+    quizState.wrong++;
+    quizState.streak = 0;
+    btn.classList.add('incorrect');
+  }
+
+  // Show correct answer
+  document.querySelectorAll('#quiz-options .quiz-option').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === q.a && !b.classList.contains('correct')) {
+      b.classList.add('correct');
+    }
+  });
+
+  const total = quizState.correct + quizState.wrong;
+  $('quiz-correct').textContent = quizState.correct;
+  $('quiz-wrong').textContent = quizState.wrong;
+  $('quiz-score').textContent = total ? Math.round(quizState.correct / total * 100) + '%' : '-';
+  $('quiz-streak').textContent = quizState.streak;
+  $('quiz-next-btn').disabled = false;
+}
+
+function nextQuizQuestion() {
+  quizState.idx++;
+  showQuizQuestion();
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  drawMicroscope();
+  drawOrganelleCell();
+  drawProkEuk();
+  drawPlantAnimal();
+  drawVenn();
+  updateSizeScale();
+  nextPEQuiz();
+  resetQuiz();
+
+  // Organelle canvas click handler
+  const orgCanvas = $('organelle-canvas');
+  orgCanvas.addEventListener('click', handleOrganelleClick);
+  orgCanvas.addEventListener('mousemove', handleOrganelleHover);
+});
+
+window.addEventListener('resize', () => {
+  drawMicroscope();
+  drawOrganelleCell();
+  drawProkEuk();
+  drawPlantAnimal();
+  drawVenn();
+  updateSizeScale();
+});
+</script>
+</body>
+</html>

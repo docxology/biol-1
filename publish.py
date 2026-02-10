@@ -9,6 +9,7 @@ Supports automatic git operations:
 import argparse
 import logging
 import os
+import shutil
 import subprocess
 import sys
 import tomllib
@@ -258,6 +259,57 @@ def git_push_repos(config: dict) -> bool:
     return success
 
 
+def flatten_all_files(config: dict) -> None:
+    """Copy and flatten all output files into an ALL_FILES/ subdirectory at each PUBLISHED course level.
+    
+    Every file from every subdirectory of PUBLISHED/<course> is copied into
+    PUBLISHED/<course>/ALL_FILES/. When filenames collide across subdirectories
+    the source subdirectory name is prepended (e.g., 'labs_lab-01.pdf').
+    """
+    pub = config["publish"]
+    courses = pub.get("courses", {})
+    published_root = REPO_ROOT / "PUBLISHED"
+
+    total_copied = 0
+    for course_name, course_cfg in courses.items():
+        if not course_cfg.get("enabled", True):
+            continue
+
+        course_dir = published_root / course_name
+        if not course_dir.is_dir():
+            log.info(f"  {course_name}: PUBLISHED directory not found, skipping")
+            continue
+
+        all_files_dir = course_dir / "ALL_FILES"
+        # Clean and recreate
+        if all_files_dir.exists():
+            shutil.rmtree(all_files_dir)
+        all_files_dir.mkdir(parents=True)
+
+        # Collect every file from every subdirectory (skip ALL_FILES itself)
+        seen_names: dict[str, str] = {}  # filename -> source subdir
+        copied = 0
+        for sub in sorted(course_dir.iterdir()):
+            if not sub.is_dir() or sub.name == "ALL_FILES":
+                continue
+            for src_file in sorted(sub.rglob("*")):
+                if not src_file.is_file():
+                    continue
+                fname = src_file.name
+                if fname in seen_names:
+                    # Name collision — prefix with source subdirectory
+                    fname = f"{sub.name}_{fname}"
+                else:
+                    seen_names[fname] = sub.name
+                shutil.copy2(src_file, all_files_dir / fname)
+                copied += 1
+
+        log.info(f"  {course_name}: {copied} files → ALL_FILES/")
+        total_copied += copied
+
+    log.info(f"  ✅ Flattened {total_copied} total files into ALL_FILES/")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Publish courses using publish.toml config")
     parser.add_argument("--dry-run", action="store_true", help="Show command without executing")
@@ -337,6 +389,12 @@ def main():
         log.error("Publish pipeline failed")
         sys.exit(result.returncode)
 
+    # Flatten all files into ALL_FILES/ (if enabled)
+    pipeline = config["publish"].get("pipeline", {})
+    if pipeline.get("all_files", True):
+        log.info("\n📂 STEP 7: Flattening all files into ALL_FILES/")
+        flatten_all_files(config)
+
     # Git operations (if enabled)
     pipeline = config["publish"].get("pipeline", {})
     if pipeline.get("git_push", False) and not cli.skip_git:
@@ -355,6 +413,21 @@ def main():
             sys.exit(1)
         
         log.info("\n✓ All git operations completed successfully")
+
+    log.info("\n" + "="*70)
+    published = REPO_ROOT / "PUBLISHED"
+    total = sum(1 for _ in published.rglob("*") if _.is_file()) if published.is_dir() else 0
+    courses_cfg = config["publish"].get("courses", {})
+    log.info("  PUBLISH COMPLETE")
+    log.info("="*70)
+    log.info(f"  Total files in PUBLISHED: {total}")
+    for cname in courses_cfg:
+        cdir = published / cname
+        if cdir.is_dir():
+            ccount = sum(1 for _ in cdir.rglob("*") if _.is_file())
+            all_count = sum(1 for _ in (cdir / "ALL_FILES").rglob("*") if _.is_file()) if (cdir / "ALL_FILES").is_dir() else 0
+            log.info(f"    {cname}: {ccount} files ({all_count} in ALL_FILES/)")
+    log.info("="*70)
 
 
 if __name__ == "__main__":

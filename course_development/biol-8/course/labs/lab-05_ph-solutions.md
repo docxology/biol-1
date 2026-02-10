@@ -4,7 +4,9 @@
 
 ---
 
-**Name:** {fill:text} **Date:** {fill:text}
+**Name:** {fill:text}
+
+**Date:** {fill:text}
 
 ---
 
@@ -15,7 +17,7 @@ By the end of this lab, you will be able to:
 - **Use the LabQuest Mini** interface with Logger Pro to collect digital sensor data
 - **Measure pH** of different liquids and explain what pH indicates
 - **Measure conductivity** and relate it to total dissolved solids
-- **Compare temperature** readings between a digital probe and a mercury thermometer
+- **Compare temperature** readings between a digital probe and an analog thermometer
 - **Measure dissolved oxygen** and explain its biological significance
 - **Use a colorimeter** to measure absorbance at multiple wavelengths
 - **Measure turbidity** and explain how particle concentration affects light transmittance
@@ -39,42 +41,27 @@ In this lab you will use **six different Vernier probes** connected to a **LabQu
 |---|---------------|------------------|-------|-------------|
 | 1 | **pH Meter** (+ Dip pH) | Hydrogen ion concentration | pH (0–14) | How acidic or basic is the liquid? |
 | 2 | **Conductivity Probe** | Total Dissolved Solids (TDS) | µS/cm | How many dissolved ions are present? |
-| 3 | **Temperature Probe** (+ mercury thermometer) | Temperature | °C | Are the liquids at the same temperature? |
+| 3 | **Temperature Probe** (+ analog thermometer) | Temperature | °C | Are the liquids at the same temperature? |
 | 4 | **Dissolved Oxygen Probe** | Dissolved Oxygen (DO) | mg/L | How much O₂ is available in the liquid? |
 | 5 | **Colorimeter** | Absorbance at 430, 470, 565, 635 nm | Abs | Which wavelengths of light does the liquid absorb? |
 | 6 | **Turbidity Probe** | Transmittance level | NTU / %T | How cloudy is the liquid? |
 
 Each probe reveals a different dimension of the liquid's character. Together, these six measurements build a comprehensive profile — the same approach used in clinical labs, water treatment facilities, and environmental field stations.
 
-### Equipment Overview
+### Predictions — Two Test Liquids
 
-```
-┌──────────────────────────────────────────────┐
-│              LABQUEST MINI (Vernier)          │
-│         ┌──────────┐                         │
-│   USB ──┤          ├── Probe Port(s)         │
-│  (to    │ LabQuest │                         │
-│ laptop) │  Mini    │   Connected to:         │
-│         └──────────┘   • pH Meter            │
-│                        • Conductivity Probe  │
-│   Software: Logger Pro 3.16.2                │
-│                        • Temperature Probe   │
-│                        • Dissolved O₂ Probe  │
-│                        • Colorimeter         │
-│                        • Turbidity Probe     │
-└──────────────────────────────────────────────┘
-```
+Before you begin, predict what you expect to see for each measurement. Fill in your predictions now — you will compare these to your actual results at the end of the lab.
 
-### The Two Test Liquids
-
-| Property | Pure Tap Water | Lemon Juice |
-|---|---|---|
-| Source | Municipal supply | Fresh-squeezed or bottled |
-| Expected pH | ~6.5–7.5 (near neutral) | ~2.0–3.0 (acidic) |
-| Appearance | Clear, colorless | Cloudy, yellowish |
-| Primary solutes | Minerals, chlorine | Citric acid, sugars, vitamins |
-| Expected conductivity | Low–moderate | High (dissolved acid + minerals) |
-| Expected turbidity | Very low | High (pulp and particulates) |
+<!-- lab:data-table rows=6 title="Predictions" -->
+| Measurement | Tap Water (predicted) | Lemon Juice (predicted) | Reasoning |
+|---|---|---|---|
+| pH | {fill:text} | {fill:text} | {fill:text} |
+| Conductivity (µS/cm) | {fill:text} | {fill:text} | {fill:text} |
+| Temperature (°C) | {fill:text} | {fill:text} | {fill:text} |
+| Dissolved Oxygen (mg/L) | {fill:text} | {fill:text} | {fill:text} |
+| Absorbance (Abs) | {fill:text} | {fill:text} | {fill:text} |
+| Turbidity (NTU / %T) | {fill:text} | {fill:text} | {fill:text} |
+<!-- /lab:data-table -->
 
 ### How the Lab Works
 
@@ -129,16 +116,7 @@ Each group has a **LabQuest Mini** connected to a laptop via USB. We have a limi
 
 pH measures the concentration of hydrogen ions (H⁺) in a solution. The scale runs from 0 (strongly acidic) to 14 (strongly basic), with 7 being neutral. Each whole number step represents a **10-fold** change in H⁺ concentration.
 
-```
-  ACIDIC                      NEUTRAL                      BASIC
-  ←─────────────────────────────┼─────────────────────────────→
-  0   1   2   3   4   5   6   7   8   9   10  11  12  13  14
-  │   │   │   │   │   │   │   │   │   │   │   │   │   │   │
-  ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼
-Battery Lemon Vinegar  Coffee Milk  Pure Baking  Sea  Ammonia Drain
- Acid Juice  (2.4)    (5)  (6.5) Water Soda  Water (11.5) Cleaner
-(0.5) (2)                        (7)  (8.3)  (8)          (14)
-```
+**Common pH examples:** battery acid (0.5), lemon juice (~2), vinegar (2.4), coffee (5), milk (6.5), pure water (7), baking soda (8.3), seawater (8), ammonia (11.5), drain cleaner (14).
 
 ### Procedure
 
@@ -243,14 +221,14 @@ Battery Lemon Vinegar  Coffee Milk  Pure Baking  Sea  Ammonia Drain
 
 ## Part 3: Temperature Probe
 
-> **Learning Goal:** Measure temperature using both a digital temperature probe and a mercury thermometer. Compare the precision and convenience of each method.
+> **Learning Goal:** Measure temperature using both a digital temperature probe and an analog thermometer. Compare the precision and convenience of each method.
 
 ### Procedure
 
 1. Connect the **Temperature probe** to the LabQuest Mini
 2. Place the digital probe in the **Tap Water** — wait for it to stabilize
 3. Record the temperature in °C
-4. Also measure the same sample with the **mercury thermometer** and record
+4. Also measure the same sample with the **analog thermometer** and record
 5. Repeat both measurements for the **Lemon Juice**
 
 ### Prediction
@@ -264,7 +242,7 @@ Battery Lemon Vinegar  Coffee Milk  Pure Baking  Sea  Ammonia Drain
 ### Data Collection
 
 <!-- lab:data-table rows=2 title="Temperature Measurements" -->
-| Liquid | Digital Probe (°C) | Mercury Thermometer (°C) |
+| Liquid | Digital Probe (°C) | Analog Thermometer (°C) |
 |--------|-------------------|--------------------------|
 | Tap Water | {fill:number} | {fill:number} |
 | Lemon Juice | {fill:number} | {fill:number} |
@@ -273,7 +251,7 @@ Battery Lemon Vinegar  Coffee Milk  Pure Baking  Sea  Ammonia Drain
 ### Analysis
 
 <!-- lab:reflection -->
-**1. Did the digital probe and mercury thermometer agree? If not, what might account for the difference?**
+**1. Did the digital probe and analog thermometer agree? If not, what might account for the difference?**
 
 {fill:textarea rows=2}
 
@@ -461,17 +439,17 @@ Copy your measurements into the summary table below so you have all data in one 
 
 ## Group Data Sharing
 
-Share your results with the other group(s) and record their data below.
+Share your results with the other group(s) and record their data below. This lets you compare whether different groups got similar readings.
 
-<!-- lab:data-table rows=6 title="Partner Group Data" -->
-| Measurement | Tap Water (Group ___) | Lemon Juice (Group ___) |
-|------------|----------------------|------------------------|
-| pH | {fill:number} | {fill:number} |
-| Conductivity (µS/cm) | {fill:number} | {fill:number} |
-| Temperature (°C) | {fill:number} | {fill:number} |
-| Dissolved Oxygen (mg/L) | {fill:number} | {fill:number} |
-| Absorbance (max wavelength, Abs) | {fill:number} | {fill:number} |
-| Turbidity (NTU or %T) | {fill:text} | {fill:text} |
+<!-- lab:data-table rows=6 title="Combined Group Data" -->
+| Measurement | Our Tap Water | Their Tap Water | Our Lemon Juice | Their Lemon Juice |
+|---|---|---|---|---|
+| pH | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+| Conductivity (µS/cm) | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+| Temperature (°C) | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+| Dissolved Oxygen (mg/L) | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+| Absorbance (max, Abs) | {fill:number} | {fill:number} | {fill:number} | {fill:number} |
+| Turbidity (NTU / %T) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 <!-- /lab:data-table -->
 
 ---

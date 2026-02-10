@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 8 Dashboard: Meiosis | BIOL-8</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DATA GRID
+   ═══════════════════════════════════════════════════════════════════════ */
+.data-grid {
+  display: grid; gap: 3px; margin: 10px 0; font-family: var(--mono); font-size: 14px;
+}
+.data-grid .cell {
+  display: flex; align-items: center; justify-content: center;
+  height: 38px; border-radius: 4px; font-weight: 700; transition: all 0.2s;
+}
+.data-grid .cell-header { background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 600; }
+.data-grid .cell-label { background: #f1f5f9; color: var(--text); font-size: 12px; font-weight: 600; }
+.data-grid .cell-empty { background: #fafafa; border: 1px dashed #d1d5db; color: #d1d5db; }
+.data-grid .cell-new { animation: cellPop 0.3s ease; }
+@keyframes cellPop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPARISON TABLE
+   ═══════════════════════════════════════════════════════════════════════ */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+.compare-table th, .compare-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+.compare-table th { background: #1a1a1a; color: #fff; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.compare-table tr:nth-child(even) td { background: #f8fafc; }
+.compare-table td:first-child { font-weight: 600; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-8: Human Biology</h1>
+    <p>Lab 8 &mdash; Meiosis</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Phase Animator</a>
+    <a href="#part2"><span class="nav-num">2</span> Gametogenesis</a>
+    <a href="#part3"><span class="nav-num">3</span> Crossing Over</a>
+    <a href="#part4"><span class="nav-num">4</span> Independent Assortment</a>
+    <a href="#part5"><span class="nav-num">5</span> Mitosis vs Meiosis</a>
+    <a href="#part6"><span class="nav-num">6</span> Nondisjunction</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Meiosis</h2>
+  <p>Interactive simulations for Lab 8. Explore the stages of meiosis, model crossing over and independent assortment, compare gametogenesis pathways, and connect meiotic events to genetic variation in human reproduction.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Meiosis</span>
+    <span class="bio-tag">Genetic Variation</span>
+    <span class="bio-tag">Gametogenesis</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: MEIOSIS PHASE ANIMATOR ════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Meiosis Phase Animator</div>
+    <div class="section-subtitle">Step through every stage of meiosis I and II (2n=4 for clarity; humans have 2n=46)</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Animation Controls</div>
+    <div class="btn-group">
+      <button class="btn btn-outline btn-sm" onclick="meiosisFirst()">&laquo; First</button>
+      <button class="btn btn-primary" onclick="meiosisPrev()">&larr; Previous</button>
+      <button class="btn btn-primary" onclick="meiosisNext()">Next &rarr;</button>
+      <button class="btn btn-outline btn-sm" onclick="meiosisLast()">Last &raquo;</button>
+      <button class="btn btn-secondary" onclick="meiosisAutoPlay()">Auto-Play</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="mei-phase">--</div><div class="stat-label">Current Phase</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="mei-division">--</div><div class="stat-label">Division</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="mei-chrcount">4</div><div class="stat-label">Chromosomes</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="mei-ploidy">2n</div><div class="stat-label">Ploidy</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="meiosis-canvas" height="420"></canvas></div>
+    <div class="analysis-result" id="mei-desc">
+      <div class="ar-title">Interphase (G2)</div>
+      <p>DNA has been replicated. Each chromosome now consists of two sister chromatids joined at the centromere. The cell is ready to begin meiosis I.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: HUMAN GAMETOGENESIS ═══════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Human Gametogenesis</div>
+    <div class="section-subtitle">Compare spermatogenesis (4 sperm) vs oogenesis (1 egg + 3 polar bodies)</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Side-by-Side Comparison</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="gametStep()">Step Forward</button>
+      <button class="btn btn-secondary" onclick="gametAutoPlay()">Auto-Play</button>
+      <button class="btn btn-outline" onclick="gametReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="gamet-stage">Start</div><div class="stat-label">Stage</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="gamet-sperm">0</div><div class="stat-label">Sperm Produced</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="gamet-egg">0</div><div class="stat-label">Eggs Produced</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="gamet-polar">0</div><div class="stat-label">Polar Bodies</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="gamet-canvas" height="440"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Timeline &amp; Cell Count Comparison</div>
+    <table class="compare-table">
+      <tr><th>Feature</th><th>Spermatogenesis</th><th>Oogenesis</th></tr>
+      <tr><td>Location</td><td>Seminiferous tubules (testes)</td><td>Ovarian follicles (ovaries)</td></tr>
+      <tr><td>Duration</td><td>~64 days (continuous from puberty)</td><td>Starts before birth; may complete decades later at fertilization</td></tr>
+      <tr><td>Functional gametes</td><td>4 spermatozoa per meiosis</td><td>1 ovum per meiosis</td></tr>
+      <tr><td>Non-functional products</td><td>None</td><td>3 polar bodies (degenerate)</td></tr>
+      <tr><td>Cytoplasm division</td><td>Equal (symmetric)</td><td>Unequal (asymmetric)</td></tr>
+      <tr><td>Production rate</td><td>~200 million sperm/day</td><td>~1 egg/month (1 of ~400 lifetime)</td></tr>
+      <tr><td>Lifetime production</td><td>Trillions</td><td>~400 mature ova</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: CROSSING OVER LAB ═════════════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Crossing Over Lab</div>
+    <div class="section-subtitle">Drag the crossover point to see recombinant chromatids and map distances</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Homologous Pair with 4 Gene Loci</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Drag the crossover slider to position the chiasma between gene loci. Observe how the recombinant chromatids differ from parentals.</p>
+    <div class="slider-group">
+      <label>Crossover Point</label>
+      <input type="range" id="xover-pos" min="0" max="100" value="35" oninput="xoverUpdate()">
+      <span class="slider-val" id="xover-pos-val">35%</span>
+    </div>
+    <div class="chart-wrap"><canvas id="xover-canvas" height="380"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="xover-recom">2</div><div class="stat-label">Recombinant Chromatids</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="xover-parent">2</div><div class="stat-label">Parental Chromatids</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="xover-freq">50%</div><div class="stat-label">Recombination Freq</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="xover-dist">--</div><div class="stat-label">Map Distance (cM)</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Recombination Frequency Simulator</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Run many meioses with the current crossover probability. See how crossing over increases genetic diversity beyond independent assortment alone.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="xoverSimRun(100)">Run 100 Meioses</button>
+      <button class="btn btn-secondary" onclick="xoverSimRun(1000)">Run 1000</button>
+      <button class="btn btn-outline" onclick="xoverSimReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="xover-sim-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: INDEPENDENT ASSORTMENT ════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Independent Assortment Calculator</div>
+    <div class="section-subtitle">See how chromosome number creates exponential gamete diversity</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Gamete Combinations by Chromosome Pairs</div>
+    <div class="slider-group">
+      <label>Pairs (n)</label>
+      <input type="range" id="ia-pairs" min="1" max="23" value="2" oninput="iaUpdate()">
+      <span class="slider-val" id="ia-pairs-val">2</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ia-combos">4</div><div class="stat-label">Possible Gamete Types</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ia-formula">2^2</div><div class="stat-label">Formula (2^n)</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ia-zygote">16</div><div class="stat-label">Possible Zygotes</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="ia-zformula">(2^n)^2</div><div class="stat-label">Zygote Formula</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="ia-canvas" height="360"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Metaphase I Alignment Randomizer</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Each click randomly aligns the bivalents at the metaphase plate, producing a different gamete combination.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="iaRandomize()">Randomize Alignment</button>
+      <button class="btn btn-secondary" onclick="iaRunMany(20)">Run 20 Trials</button>
+      <button class="btn btn-outline" onclick="iaTrialReset()">Reset Trials</button>
+    </div>
+    <div class="chart-wrap"><canvas id="ia-meta-canvas" height="300"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ia-trials">0</div><div class="stat-label">Trials</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ia-unique">0</div><div class="stat-label">Unique Gametes Seen</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ia-pct-seen">0%</div><div class="stat-label">% of Possible</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: MITOSIS VS MEIOSIS ═══════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Mitosis vs Meiosis Side-by-Side</div>
+    <div class="section-subtitle">See both processes from the same starting cell (2n=4)</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Dual Animation</div>
+    <div class="btn-group">
+      <button class="btn btn-outline btn-sm" onclick="dualFirst()">&laquo; First</button>
+      <button class="btn btn-primary" onclick="dualPrev()">&larr; Previous</button>
+      <button class="btn btn-primary" onclick="dualNext()">Next &rarr;</button>
+      <button class="btn btn-outline btn-sm" onclick="dualLast()">Last &raquo;</button>
+      <button class="btn btn-secondary" onclick="dualAutoPlay()">Auto-Play</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="dual-step">0/8</div><div class="stat-label">Step</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="dual-mitosis-n">2n=4</div><div class="stat-label">Mitosis Products</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="dual-meiosis-n">2n=4</div><div class="stat-label">Meiosis Products</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="dual-canvas" height="480"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Key Differences</div>
+    <table class="compare-table">
+      <tr><th>Feature</th><th>Mitosis</th><th>Meiosis</th></tr>
+      <tr><td>Number of divisions</td><td>1</td><td>2</td></tr>
+      <tr><td>Daughter cells produced</td><td>2</td><td>4</td></tr>
+      <tr><td>Chromosome number in products</td><td>2n (diploid)</td><td>n (haploid)</td></tr>
+      <tr><td>Genetic identity</td><td>Identical to parent</td><td>Unique combinations</td></tr>
+      <tr><td>Crossing over</td><td>No (rare)</td><td>Yes (prophase I)</td></tr>
+      <tr><td>Synapsis / Bivalents</td><td>No</td><td>Yes (prophase I)</td></tr>
+      <tr><td>Independent assortment</td><td>No</td><td>Yes (metaphase I)</td></tr>
+      <tr><td>Purpose in body</td><td>Growth, repair, asexual reproduction</td><td>Produce gametes (sex cells)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: NONDISJUNCTION ═══════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Nondisjunction &amp; Human Disorders</div>
+    <div class="section-subtitle">Visualize chromosome separation errors and their consequences</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Nondisjunction Simulator</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="ndj-toggle" onclick="ndjToggle()">Currently: Normal Meiosis</button>
+      <button class="btn btn-secondary" id="ndj-mi-btn" onclick="ndjSetError('MI')">Error in Meiosis I</button>
+      <button class="btn btn-secondary" id="ndj-mii-btn" onclick="ndjSetError('MII')">Error in Meiosis II</button>
+      <button class="btn btn-outline" onclick="ndjReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ndj-mode">Normal</div><div class="stat-label">Mode</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ndj-gamete-n">--</div><div class="stat-label">Gamete Chr. Counts</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ndj-fert-n">--</div><div class="stat-label">After Fertilization</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="ndj-result">--</div><div class="stat-label">Outcome</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="ndj-canvas" height="400"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Human Disorders from Nondisjunction</div>
+    <table class="compare-table">
+      <tr><th>Condition</th><th>Karyotype</th><th>Mechanism</th><th>Features</th></tr>
+      <tr><td>Down Syndrome</td><td>Trisomy 21 (47, +21)</td><td>Nondisjunction of chr. 21</td><td>Intellectual disability, characteristic facial features, heart defects</td></tr>
+      <tr><td>Turner Syndrome</td><td>Monosomy X (45, X)</td><td>Loss of one sex chromosome</td><td>Short stature, infertility, webbed neck (females only)</td></tr>
+      <tr><td>Klinefelter Syndrome</td><td>47, XXY</td><td>Extra X chromosome</td><td>Tall stature, reduced fertility, gynecomastia (males)</td></tr>
+      <tr><td>Patau Syndrome</td><td>Trisomy 13 (47, +13)</td><td>Nondisjunction of chr. 13</td><td>Severe intellectual disability, heart defects, often fatal</td></tr>
+      <tr><td>Edwards Syndrome</td><td>Trisomy 18 (47, +18)</td><td>Nondisjunction of chr. 18</td><td>Severe developmental delays, multiple organ defects</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-title">Maternal Age vs Nondisjunction Risk</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Risk of trisomy 21 (Down syndrome) increases dramatically with maternal age, especially after age 35.</p>
+    <div class="chart-wrap"><canvas id="ndj-age-chart" height="280"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ── Chromosome Drawing Helpers ──────────────────────────────────────────
+const CHR_COLORS = {
+  mat1: '#c41e3a', pat1: '#2563eb',  // pair 1
+  mat2: '#d97706', pat2: '#7c3aed',  // pair 2
+};
+
+function drawChromosome(ctx, x, y, w, h, color, label, hasCentromere) {
+  const r = Math.min(6, w/3, h/3);
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, r);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 1;
+  ctx.stroke();
+  if (hasCentromere) {
+    const cy = y + h/2;
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.fillRect(x, cy - 1.5, w, 3);
+  }
+  if (label) {
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(label, x + w/2, y + h/2 + 3);
+  }
+}
+
+function drawXShape(ctx, cx, cy, size, color, label) {
+  ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(cx - size, cy - size); ctx.lineTo(cx + size, cy + size);
+  ctx.moveTo(cx + size, cy - size); ctx.lineTo(cx - size, cy + size);
+  ctx.stroke();
+  // centromere dot
+  ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.arc(cx, cy, 2, 0, Math.PI*2); ctx.fill();
+  if (label) {
+    ctx.fillStyle = color; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(label, cx, cy - size - 5);
+  }
+}
+
+function drawCell(ctx, cx, cy, rx, ry, fill) {
+  ctx.fillStyle = fill || 'rgba(240,242,245,0.7)';
+  ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: MEIOSIS PHASE ANIMATOR
+// ══════════════════════════════════════════════════════════════════════════
+const meiosisPhases = [
+  { name: 'Interphase', div: 'Pre', chr: 4, ploidy: '2n', desc: 'DNA has been replicated. Each chromosome now consists of two sister chromatids joined at the centromere. The cell has 2n=4 chromosomes (2 homologous pairs). The cell is ready to begin meiosis I.' },
+  { name: 'Prophase I', div: 'Meiosis I', chr: 4, ploidy: '2n', desc: 'Chromosomes condense. Homologous chromosomes pair up (synapsis) forming bivalents (tetrads). Crossing over occurs at chiasmata, exchanging genetic material between non-sister chromatids. This is a key source of genetic variation.' },
+  { name: 'Metaphase I', div: 'Meiosis I', chr: 4, ploidy: '2n', desc: 'Bivalents line up at the metaphase plate. The random orientation of each bivalent (independent assortment) determines which combination of maternal and paternal chromosomes goes to each pole. Spindle fibers attach to kinetochores.' },
+  { name: 'Anaphase I', div: 'Meiosis I', chr: 4, ploidy: '2n', desc: 'Homologous chromosomes separate and move to opposite poles. Sister chromatids remain joined at centromeres. This is the reduction division: each pole now receives only one chromosome from each homologous pair.' },
+  { name: 'Telophase I', div: 'Meiosis I', chr: 2, ploidy: 'n', desc: 'Chromosomes arrive at poles. The cell divides (cytokinesis) into two haploid cells (n=2). Each cell has one chromosome from each homologous pair, but each chromosome still consists of two sister chromatids.' },
+  { name: 'Prophase II', div: 'Meiosis II', chr: 2, ploidy: 'n', desc: 'Two haploid cells prepare for the second division. Chromosomes condense again. There is NO further DNA replication and NO pairing of homologs (there are no homologs to pair with). This division resembles mitosis.' },
+  { name: 'Metaphase II', div: 'Meiosis II', chr: 2, ploidy: 'n', desc: 'Chromosomes line up individually at the metaphase plate in each cell. Spindle fibers attach to the centromeres of sister chromatids, preparing to pull them apart.' },
+  { name: 'Anaphase II', div: 'Meiosis II', chr: 2, ploidy: 'n', desc: 'Sister chromatids finally separate at their centromeres and move to opposite poles. Each chromatid is now an individual chromosome. This is the equational division.' },
+  { name: 'Telophase II', div: 'Meiosis II', chr: 1, ploidy: 'n', desc: 'Chromatids arrive at poles and cytokinesis occurs. Result: 4 haploid daughter cells, each with n=2 chromosomes (one from each pair). Each cell is genetically unique due to crossing over and independent assortment.' },
+];
+let meiStep = 0;
+let meiAutoTimer = null;
+
+function meiosisUpdateUI() {
+  const p = meiosisPhases[meiStep];
+  $('mei-phase').textContent = p.name;
+  $('mei-division').textContent = p.div;
+  $('mei-ploidy').textContent = p.ploidy;
+  $('mei-desc').innerHTML = `<div class="ar-title">${p.name}</div><p>${p.desc}</p>`;
+  drawMeiosisCanvas();
+}
+
+function meiosisNext() { if (meiStep < meiosisPhases.length - 1) { meiStep++; meiosisUpdateUI(); } }
+function meiosisPrev() { if (meiStep > 0) { meiStep--; meiosisUpdateUI(); } }
+function meiosisFirst() { meiStep = 0; meiosisUpdateUI(); }
+function meiosisLast() { meiStep = meiosisPhases.length - 1; meiosisUpdateUI(); }
+function meiosisAutoPlay() {
+  if (meiAutoTimer) { clearInterval(meiAutoTimer); meiAutoTimer = null; return; }
+  meiStep = 0; meiosisUpdateUI();
+  meiAutoTimer = setInterval(() => {
+    if (meiStep >= meiosisPhases.length - 1) { clearInterval(meiAutoTimer); meiAutoTimer = null; return; }
+    meiStep++; meiosisUpdateUI();
+  }, 2000);
+}
+
+function drawMeiosisCanvas() {
+  const ctx = getCtx('meiosis-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Phase title
+  const p = meiosisPhases[meiStep];
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(p.name, W/2, 24);
+
+  // Progress bar
+  const pbW = W - 80, pbH = 6, pbX = 40, pbY = 36;
+  ctx.fillStyle = '#e5e7eb'; ctx.beginPath(); ctx.roundRect(pbX, pbY, pbW, pbH, 3); ctx.fill();
+  const progress = meiStep / (meiosisPhases.length - 1);
+  ctx.fillStyle = '#c41e3a'; ctx.beginPath(); ctx.roundRect(pbX, pbY, pbW * progress, pbH, 3); ctx.fill();
+  // step dots
+  for (let i = 0; i < meiosisPhases.length; i++) {
+    const dx = pbX + (i / (meiosisPhases.length - 1)) * pbW;
+    ctx.fillStyle = i <= meiStep ? '#c41e3a' : '#d1d5db';
+    ctx.beginPath(); ctx.arc(dx, pbY + pbH/2, 4, 0, Math.PI*2); ctx.fill();
+  }
+
+  const areaY = 60, areaH = H - 70;
+  const chrSize = 14;
+
+  if (meiStep === 0) {
+    // Interphase: one cell with 4 replicated chromosomes (X shapes)
+    drawCell(ctx, W/2, areaY + areaH/2, 120, 100, 'rgba(240,245,255,0.6)');
+    drawXShape(ctx, W/2 - 40, areaY + areaH/2 - 30, chrSize, CHR_COLORS.mat1, 'M1');
+    drawXShape(ctx, W/2 + 10, areaY + areaH/2 - 30, chrSize, CHR_COLORS.pat1, 'P1');
+    drawXShape(ctx, W/2 - 40, areaY + areaH/2 + 30, chrSize, CHR_COLORS.mat2, 'M2');
+    drawXShape(ctx, W/2 + 10, areaY + areaH/2 + 30, chrSize, CHR_COLORS.pat2, 'P2');
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('2n = 4 (replicated)', W/2, areaY + areaH/2 + 80);
+  }
+  else if (meiStep === 1) {
+    // Prophase I: bivalents formed, crossing over shown
+    drawCell(ctx, W/2, areaY + areaH/2, 130, 110, 'rgba(255,245,240,0.6)');
+    // Bivalent 1 (pair 1 synapsed)
+    const b1y = areaY + areaH/2 - 40;
+    drawXShape(ctx, W/2 - 18, b1y, chrSize, CHR_COLORS.mat1);
+    drawXShape(ctx, W/2 + 18, b1y, chrSize, CHR_COLORS.pat1);
+    // chiasma
+    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2; ctx.setLineDash([3,3]);
+    ctx.beginPath(); ctx.moveTo(W/2 - 4, b1y - 6); ctx.lineTo(W/2 + 4, b1y + 6); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 9px system-ui';
+    ctx.fillText('chiasma', W/2, b1y - chrSize - 10);
+    // Bivalent 2 (pair 2 synapsed)
+    const b2y = areaY + areaH/2 + 40;
+    drawXShape(ctx, W/2 - 18, b2y, chrSize, CHR_COLORS.mat2);
+    drawXShape(ctx, W/2 + 18, b2y, chrSize, CHR_COLORS.pat2);
+    // labels
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Bivalent 1', W/2 + 55, b1y + 4);
+    ctx.fillText('Bivalent 2', W/2 + 55, b2y + 4);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Synapsis + Crossing Over', W/2, areaY + areaH/2 + 90);
+  }
+  else if (meiStep === 2) {
+    // Metaphase I: bivalents at metaphase plate
+    drawCell(ctx, W/2, areaY + areaH/2, 130, 110, 'rgba(240,245,255,0.6)');
+    // metaphase plate (vertical line)
+    ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(W/2, areaY + areaH/2 - 90); ctx.lineTo(W/2, areaY + areaH/2 + 90); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('metaphase plate', W/2, areaY + areaH/2 - 95);
+    // Bivalent 1 at plate
+    drawXShape(ctx, W/2 - 16, areaY + areaH/2 - 30, chrSize, CHR_COLORS.mat1);
+    drawXShape(ctx, W/2 + 16, areaY + areaH/2 - 30, chrSize, CHR_COLORS.pat1);
+    // Bivalent 2 at plate
+    drawXShape(ctx, W/2 - 16, areaY + areaH/2 + 30, chrSize, CHR_COLORS.mat2);
+    drawXShape(ctx, W/2 + 16, areaY + areaH/2 + 30, chrSize, CHR_COLORS.pat2);
+    // spindle fibers
+    ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 0.8;
+    [[W/2 - 16, areaY + areaH/2 - 30], [W/2 - 16, areaY + areaH/2 + 30]].forEach(([x,y]) => {
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(W/2 - 110, areaY + areaH/2); ctx.stroke();
+    });
+    [[W/2 + 16, areaY + areaH/2 - 30], [W/2 + 16, areaY + areaH/2 + 30]].forEach(([x,y]) => {
+      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(W/2 + 110, areaY + areaH/2); ctx.stroke();
+    });
+  }
+  else if (meiStep === 3) {
+    // Anaphase I: homologs separating
+    drawCell(ctx, W/2, areaY + areaH/2, 140, 110, 'rgba(255,250,240,0.6)');
+    // Left pole: maternal chromosomes
+    drawXShape(ctx, W/2 - 70, areaY + areaH/2 - 25, chrSize, CHR_COLORS.mat1, 'M1');
+    drawXShape(ctx, W/2 - 70, areaY + areaH/2 + 25, chrSize, CHR_COLORS.mat2, 'M2');
+    // Right pole: paternal chromosomes
+    drawXShape(ctx, W/2 + 70, areaY + areaH/2 - 25, chrSize, CHR_COLORS.pat1, 'P1');
+    drawXShape(ctx, W/2 + 70, areaY + areaH/2 + 25, chrSize, CHR_COLORS.pat2, 'P2');
+    // arrows
+    ctx.fillStyle = '#9ca3af'; ctx.font = '18px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('\u2190', W/2 - 38, areaY + areaH/2 + 5);
+    ctx.fillText('\u2192', W/2 + 38, areaY + areaH/2 + 5);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
+    ctx.fillText('Homologs separate (reduction division)', W/2, areaY + areaH/2 + 85);
+  }
+  else if (meiStep === 4) {
+    // Telophase I: two cells, each n=2
+    drawCell(ctx, W/2 - 90, areaY + areaH/2, 75, 65, 'rgba(255,240,240,0.6)');
+    drawCell(ctx, W/2 + 90, areaY + areaH/2, 75, 65, 'rgba(240,240,255,0.6)');
+    drawXShape(ctx, W/2 - 105, areaY + areaH/2 - 18, 11, CHR_COLORS.mat1);
+    drawXShape(ctx, W/2 - 75, areaY + areaH/2 + 18, 11, CHR_COLORS.mat2);
+    drawXShape(ctx, W/2 + 75, areaY + areaH/2 - 18, 11, CHR_COLORS.pat1);
+    drawXShape(ctx, W/2 + 105, areaY + areaH/2 + 18, 11, CHR_COLORS.pat2);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('n = 2 (still replicated)', W/2 - 90, areaY + areaH/2 + 55);
+    ctx.fillText('n = 2 (still replicated)', W/2 + 90, areaY + areaH/2 + 55);
+  }
+  else if (meiStep === 5) {
+    // Prophase II: two cells condensing
+    drawCell(ctx, W/2 - 90, areaY + areaH/2, 75, 65, 'rgba(255,245,245,0.6)');
+    drawCell(ctx, W/2 + 90, areaY + areaH/2, 75, 65, 'rgba(245,245,255,0.6)');
+    drawXShape(ctx, W/2 - 105, areaY + areaH/2 - 18, 11, CHR_COLORS.mat1);
+    drawXShape(ctx, W/2 - 75, areaY + areaH/2 + 18, 11, CHR_COLORS.mat2);
+    drawXShape(ctx, W/2 + 75, areaY + areaH/2 - 18, 11, CHR_COLORS.pat1);
+    drawXShape(ctx, W/2 + 105, areaY + areaH/2 + 18, 11, CHR_COLORS.pat2);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Chromosomes condense', W/2, areaY + areaH/2 + 85);
+    ctx.fillText('No DNA replication!', W/2, areaY + areaH/2 + 100);
+  }
+  else if (meiStep === 6) {
+    // Metaphase II: chromosomes at plate in both cells
+    drawCell(ctx, W/2 - 90, areaY + areaH/2, 75, 65, 'rgba(255,245,245,0.6)');
+    drawCell(ctx, W/2 + 90, areaY + areaH/2, 75, 65, 'rgba(245,245,255,0.6)');
+    // plates
+    [W/2 - 90, W/2 + 90].forEach(cx => {
+      ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.moveTo(cx, areaY + areaH/2 - 55); ctx.lineTo(cx, areaY + areaH/2 + 55); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+    drawXShape(ctx, W/2 - 90, areaY + areaH/2 - 18, 11, CHR_COLORS.mat1);
+    drawXShape(ctx, W/2 - 90, areaY + areaH/2 + 18, 11, CHR_COLORS.mat2);
+    drawXShape(ctx, W/2 + 90, areaY + areaH/2 - 18, 11, CHR_COLORS.pat1);
+    drawXShape(ctx, W/2 + 90, areaY + areaH/2 + 18, 11, CHR_COLORS.pat2);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Individual chromosomes at plate', W/2, areaY + areaH/2 + 85);
+  }
+  else if (meiStep === 7) {
+    // Anaphase II: sister chromatids separate in both cells
+    drawCell(ctx, W/2 - 90, areaY + areaH/2, 80, 68, 'rgba(255,250,240,0.6)');
+    drawCell(ctx, W/2 + 90, areaY + areaH/2, 80, 68, 'rgba(240,250,255,0.6)');
+    const cs = 8;
+    // Cell 1
+    drawChromosome(ctx, W/2 - 130, areaY + areaH/2 - 30, 8, 22, CHR_COLORS.mat1, '', true);
+    drawChromosome(ctx, W/2 - 130, areaY + areaH/2 + 8, 8, 22, CHR_COLORS.mat2, '', true);
+    drawChromosome(ctx, W/2 - 58, areaY + areaH/2 - 30, 8, 22, CHR_COLORS.mat1, '', true);
+    drawChromosome(ctx, W/2 - 58, areaY + areaH/2 + 8, 8, 22, CHR_COLORS.mat2, '', true);
+    // Cell 2
+    drawChromosome(ctx, W/2 + 52, areaY + areaH/2 - 30, 8, 22, CHR_COLORS.pat1, '', true);
+    drawChromosome(ctx, W/2 + 52, areaY + areaH/2 + 8, 8, 22, CHR_COLORS.pat2, '', true);
+    drawChromosome(ctx, W/2 + 124, areaY + areaH/2 - 30, 8, 22, CHR_COLORS.pat1, '', true);
+    drawChromosome(ctx, W/2 + 124, areaY + areaH/2 + 8, 8, 22, CHR_COLORS.pat2, '', true);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('\u2190  \u2192', W/2 - 90, areaY + areaH/2 + 5);
+    ctx.fillText('\u2190  \u2192', W/2 + 90, areaY + areaH/2 + 5);
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
+    ctx.fillText('Sister chromatids separate', W/2, areaY + areaH/2 + 90);
+  }
+  else if (meiStep === 8) {
+    // Telophase II / Final: 4 haploid cells
+    const positions = [
+      { x: W/2 - 140, y: areaY + areaH/2 - 50, c1: CHR_COLORS.mat1, c2: CHR_COLORS.mat2, label: 'Gamete 1' },
+      { x: W/2 - 50, y: areaY + areaH/2 + 50, c1: CHR_COLORS.mat1, c2: CHR_COLORS.mat2, label: 'Gamete 2' },
+      { x: W/2 + 50, y: areaY + areaH/2 - 50, c1: CHR_COLORS.pat1, c2: CHR_COLORS.pat2, label: 'Gamete 3' },
+      { x: W/2 + 140, y: areaY + areaH/2 + 50, c1: CHR_COLORS.pat1, c2: CHR_COLORS.pat2, label: 'Gamete 4' },
+    ];
+    positions.forEach(pos => {
+      drawCell(ctx, pos.x, pos.y, 45, 40, 'rgba(240,255,240,0.6)');
+      drawChromosome(ctx, pos.x - 15, pos.y - 14, 7, 18, pos.c1, '', false);
+      drawChromosome(ctx, pos.x + 6, pos.y - 4, 7, 18, pos.c2, '', false);
+      ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(pos.label, pos.x, pos.y + 35);
+    });
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('4 genetically unique haploid cells (n = 2)', W/2, areaY + areaH - 10);
+
+    $('mei-chrcount').textContent = '2 each';
+  }
+
+  // Update chromosome count
+  if (meiStep <= 4) $('mei-chrcount').textContent = meiosisPhases[meiStep].chr;
+  else if (meiStep < 8) $('mei-chrcount').textContent = 2;
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: GAMETOGENESIS
+// ══════════════════════════════════════════════════════════════════════════
+const gametStages = [
+  { name: 'Primary Cell', sperm: 0, egg: 0, polar: 0 },
+  { name: 'Meiosis I', sperm: 0, egg: 0, polar: 0 },
+  { name: 'After Meiosis I', sperm: 0, egg: 0, polar: 1 },
+  { name: 'Meiosis II', sperm: 0, egg: 0, polar: 1 },
+  { name: 'Final Products', sperm: 4, egg: 1, polar: 3 },
+];
+let gametStep = 0;
+let gametAutoTimer = null;
+
+function gametUpdateUI() {
+  const s = gametStages[gametStep];
+  $('gamet-stage').textContent = s.name;
+  $('gamet-sperm').textContent = s.sperm;
+  $('gamet-egg').textContent = s.egg;
+  $('gamet-polar').textContent = s.polar;
+  drawGametCanvas();
+}
+
+function gametStepFn() {
+  if (gametStep < gametStages.length - 1) { gametStep++; gametUpdateUI(); }
+}
+// rename to avoid collision
+function gametStep_() { gametStepFn(); }
+
+function gametAutoPlay() {
+  if (gametAutoTimer) { clearInterval(gametAutoTimer); gametAutoTimer = null; return; }
+  gametStep = 0; gametUpdateUI();
+  gametAutoTimer = setInterval(() => {
+    if (gametStep >= gametStages.length - 1) { clearInterval(gametAutoTimer); gametAutoTimer = null; return; }
+    gametStep++; gametUpdateUI();
+  }, 2500);
+}
+
+function gametReset() {
+  if (gametAutoTimer) { clearInterval(gametAutoTimer); gametAutoTimer = null; }
+  gametStep = 0; gametUpdateUI();
+}
+
+function drawGametCanvas() {
+  const ctx = getCtx('gamet-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const halfW = W / 2;
+  // Divider
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(halfW, 0); ctx.lineTo(halfW, H); ctx.stroke();
+  // Headers
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 15px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Spermatogenesis', halfW / 2, 24);
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 15px system-ui';
+  ctx.fillText('Oogenesis', halfW + halfW / 2, 24);
+
+  const startY = 50;
+
+  if (gametStep === 0) {
+    // Primary cells
+    drawCell(ctx, halfW/2, startY + 60, 45, 40, 'rgba(255,240,240,0.6)');
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Primary', halfW/2, startY + 60);
+    ctx.fillText('Spermatocyte (2n)', halfW/2, startY + 74);
+
+    drawCell(ctx, halfW + halfW/2, startY + 60, 50, 45, 'rgba(240,240,255,0.6)');
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui';
+    ctx.fillText('Primary', halfW + halfW/2, startY + 58);
+    ctx.fillText('Oocyte (2n)', halfW + halfW/2, startY + 72);
+  }
+  else if (gametStep === 1) {
+    // Meiosis I in progress
+    drawCell(ctx, halfW/2, startY + 50, 50, 42, 'rgba(255,245,240,0.5)');
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Meiosis I', halfW/2, startY + 53);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui';
+    ctx.fillText('Equal division', halfW/2, startY + 100);
+
+    drawCell(ctx, halfW + halfW/2, startY + 50, 55, 48, 'rgba(240,240,255,0.5)');
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui';
+    ctx.fillText('Meiosis I', halfW + halfW/2, startY + 53);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui';
+    ctx.fillText('UNEQUAL division', halfW + halfW/2, startY + 105);
+    // arrow showing asymmetry
+    ctx.fillStyle = '#d97706'; ctx.font = 'bold 10px system-ui';
+    ctx.fillText('Most cytoplasm \u2192 one cell', halfW + halfW/2, startY + 120);
+  }
+  else if (gametStep === 2) {
+    // After Meiosis I
+    // Spermatogenesis: 2 equal secondary spermatocytes
+    drawCell(ctx, halfW/2 - 40, startY + 80, 35, 30, 'rgba(255,240,240,0.6)');
+    drawCell(ctx, halfW/2 + 40, startY + 80, 35, 30, 'rgba(255,240,240,0.6)');
+    ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Secondary (n)', halfW/2 - 40, startY + 84);
+    ctx.fillText('Secondary (n)', halfW/2 + 40, startY + 84);
+
+    // Oogenesis: 1 large secondary oocyte + 1 small polar body
+    drawCell(ctx, halfW + halfW/2 - 20, startY + 80, 45, 40, 'rgba(240,240,255,0.6)');
+    drawCell(ctx, halfW + halfW/2 + 55, startY + 60, 15, 12, 'rgba(200,200,220,0.6)');
+    ctx.fillStyle = '#374151'; ctx.font = '10px system-ui';
+    ctx.fillText('Secondary', halfW + halfW/2 - 20, startY + 77);
+    ctx.fillText('Oocyte (n)', halfW + halfW/2 - 20, startY + 90);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '9px system-ui';
+    ctx.fillText('Polar', halfW + halfW/2 + 55, startY + 60);
+    ctx.fillText('Body 1', halfW + halfW/2 + 55, startY + 72);
+  }
+  else if (gametStep === 3) {
+    // Meiosis II in progress
+    drawCell(ctx, halfW/2 - 40, startY + 60, 35, 30, 'rgba(255,248,240,0.5)');
+    drawCell(ctx, halfW/2 + 40, startY + 60, 35, 30, 'rgba(255,248,240,0.5)');
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Meiosis II', halfW/2 - 40, startY + 63);
+    ctx.fillText('Meiosis II', halfW/2 + 40, startY + 63);
+
+    drawCell(ctx, halfW + halfW/2 - 20, startY + 60, 45, 40, 'rgba(240,245,255,0.5)');
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui';
+    ctx.fillText('Meiosis II', halfW + halfW/2 - 20, startY + 63);
+    drawCell(ctx, halfW + halfW/2 + 55, startY + 50, 12, 10, 'rgba(200,200,220,0.5)');
+    ctx.fillStyle = '#9ca3af'; ctx.font = '8px system-ui';
+    ctx.fillText('PB1', halfW + halfW/2 + 55, startY + 53);
+  }
+  else if (gametStep === 4) {
+    // Final products
+    const spermY = startY + 50;
+    // 4 equal sperm
+    for (let i = 0; i < 4; i++) {
+      const sx = halfW/2 - 60 + i * 40;
+      drawCell(ctx, sx, spermY + 30, 16, 14, 'rgba(255,240,240,0.7)');
+      // tail
+      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(sx, spermY + 44); ctx.lineTo(sx, spermY + 70); ctx.stroke();
+      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 8px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('n', sx, spermY + 34);
+    }
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('4 Functional Spermatozoa', halfW/2, spermY + 90);
+
+    // 1 large ovum + 3 small polar bodies
+    const eggX = halfW + halfW/2 - 20;
+    drawCell(ctx, eggX, spermY + 40, 40, 36, 'rgba(220,230,255,0.7)');
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 11px system-ui';
+    ctx.fillText('Ovum (n)', eggX, spermY + 43);
+    // 3 polar bodies
+    const pbPositions = [
+      { x: eggX + 60, y: spermY + 15 },
+      { x: eggX + 60, y: spermY + 40 },
+      { x: eggX + 60, y: spermY + 65 },
+    ];
+    pbPositions.forEach((pos, i) => {
+      drawCell(ctx, pos.x, pos.y, 12, 10, 'rgba(200,200,210,0.6)');
+      ctx.fillStyle = '#9ca3af'; ctx.font = '8px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('PB' + (i+1), pos.x, pos.y + 3);
+    });
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('1 Functional Ovum + 3 Polar Bodies', halfW + halfW/2, spermY + 100);
+
+    // Summary
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Spermatogenesis: symmetric divisions', halfW/2, spermY + 130);
+    ctx.fillStyle = '#d97706'; ctx.font = 'bold 12px system-ui';
+    ctx.fillText('Oogenesis: asymmetric divisions', halfW + halfW/2, spermY + 130);
+    ctx.fillText('(preserves cytoplasm for the egg)', halfW + halfW/2, spermY + 148);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: CROSSING OVER LAB
+// ══════════════════════════════════════════════════════════════════════════
+const GENE_LOCI = [
+  { name: 'Earlobes', alleles: ['E (free)', 'e (attached)'], pos: 0.15 },
+  { name: 'Tongue Roll', alleles: ['R (roller)', 'r (non-roller)'], pos: 0.38 },
+  { name: 'Widow Peak', alleles: ['W (peak)', 'w (straight)'], pos: 0.62 },
+  { name: 'Dimples', alleles: ['D (dimples)', 'd (no dimples)'], pos: 0.85 },
+];
+
+let xoverSimData = { parental: 0, recombinant: 0, history: [] };
+
+function xoverUpdate() {
+  const v = parseInt($('xover-pos').value);
+  $('xover-pos-val').textContent = v + '%';
+  drawXoverCanvas();
+  // update map distance based on which genes the crossover separates
+  updateXoverStats(v);
+}
+
+function updateXoverStats(pos) {
+  const p = pos / 100;
+  // determine which genes are separated
+  let separated = [];
+  for (let i = 0; i < GENE_LOCI.length - 1; i++) {
+    if (p >= GENE_LOCI[i].pos && p < GENE_LOCI[i+1].pos) {
+      separated = [GENE_LOCI[i].name, GENE_LOCI[i+1].name];
+      const dist = Math.round((GENE_LOCI[i+1].pos - GENE_LOCI[i].pos) * 100);
+      $('xover-dist').textContent = dist + ' cM';
+    }
+  }
+  $('xover-recom').textContent = '2';
+  $('xover-parent').textContent = '2';
+  $('xover-freq').textContent = '50%';
+}
+
+function drawXoverCanvas() {
+  const ctx = getCtx('xover-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pos = parseInt($('xover-pos').value) / 100;
+  const pad = { left: 60, right: 60, top: 30, bottom: 30 };
+  const chrW = W - pad.left - pad.right;
+  const chrH = 18;
+  const gapBetween = 6;
+
+  // Title
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Homologous Pair in Prophase I (Tetrad)', W/2, 22);
+
+  // Draw 4 chromatids (2 from maternal, 2 from paternal)
+  const startY = 50;
+  const chromatids = [
+    { y: startY, color: CHR_COLORS.mat1, label: 'Maternal chromatid 1', alleles: ['E','R','W','D'] },
+    { y: startY + chrH + gapBetween, color: CHR_COLORS.mat1, label: 'Maternal chromatid 2', alleles: ['E','R','W','D'] },
+    { y: startY + (chrH + gapBetween) * 2 + 10, color: CHR_COLORS.pat1, label: 'Paternal chromatid 1', alleles: ['e','r','w','d'] },
+    { y: startY + (chrH + gapBetween) * 3 + 10, color: CHR_COLORS.pat1, label: 'Paternal chromatid 2', alleles: ['e','r','w','d'] },
+  ];
+
+  // Before crossover - draw all 4 chromatids
+  chromatids.forEach((ch, idx) => {
+    const r = 6;
+    ctx.fillStyle = ch.color;
+    ctx.beginPath(); ctx.roundRect(pad.left, ch.y, chrW, chrH, r); ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 1; ctx.stroke();
+
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(ch.label, pad.left - 5, ch.y + chrH/2 + 3);
+  });
+
+  // Gene loci markers on all chromatids
+  GENE_LOCI.forEach((gene, gi) => {
+    const gx = pad.left + chrW * gene.pos;
+    chromatids.forEach((ch, ci) => {
+      ctx.fillStyle = '#fff'; ctx.beginPath();
+      ctx.arc(gx, ch.y + chrH/2, 6, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 8px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(ch.alleles[gi], gx, ch.y + chrH/2 + 3);
+    });
+    // gene name above
+    if (chromatids[0]) {
+      ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(gene.name, gx, startY - 8);
+    }
+  });
+
+  // Crossover point indicator
+  const xoverX = pad.left + chrW * pos;
+  ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
+  ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(xoverX, startY - 15); ctx.lineTo(xoverX, startY + (chrH + gapBetween) * 4 + 10); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#16a34a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('\u2702 Chiasma', xoverX, startY - 18);
+
+  // ── RESULT: After crossover ──
+  const resultY = startY + (chrH + gapBetween) * 4 + 40;
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('After Crossing Over \u2014 4 Resulting Chromatids', W/2, resultY);
+
+  // Determine recombinant alleles
+  const matAlleles = ['E','R','W','D'];
+  const patAlleles = ['e','r','w','d'];
+  const xoverLocus = GENE_LOCI.findIndex((g, i) => pos >= g.pos && (i === GENE_LOCI.length - 1 || pos < GENE_LOCI[i+1].pos));
+
+  // Parental 1: unchanged maternal
+  // Parental 2: unchanged paternal
+  // Recombinant 1: maternal left + paternal right
+  // Recombinant 2: paternal left + maternal right
+  const recom1 = matAlleles.map((a, i) => GENE_LOCI[i].pos <= pos ? a : patAlleles[i]);
+  const recom2 = patAlleles.map((a, i) => GENE_LOCI[i].pos <= pos ? a : matAlleles[i]);
+
+  const resultChromatids = [
+    { label: 'Parental', alleles: matAlleles, color: CHR_COLORS.mat1, rightColor: CHR_COLORS.mat1 },
+    { label: 'Recombinant', alleles: recom1, color: CHR_COLORS.mat1, rightColor: CHR_COLORS.pat1 },
+    { label: 'Recombinant', alleles: recom2, color: CHR_COLORS.pat1, rightColor: CHR_COLORS.mat1 },
+    { label: 'Parental', alleles: patAlleles, color: CHR_COLORS.pat1, rightColor: CHR_COLORS.pat1 },
+  ];
+
+  resultChromatids.forEach((ch, idx) => {
+    const ry = resultY + 15 + idx * (chrH + 8);
+    const isRecom = ch.label === 'Recombinant';
+
+    // Draw chromatid in two colors if recombinant
+    if (isRecom) {
+      const splitX = pad.left + chrW * pos;
+      // Left portion
+      ctx.fillStyle = ch.color;
+      ctx.beginPath(); ctx.roundRect(pad.left, ry, splitX - pad.left, chrH, [6,0,0,6]); ctx.fill();
+      // Right portion
+      ctx.fillStyle = ch.rightColor;
+      ctx.beginPath(); ctx.roundRect(splitX, ry, pad.left + chrW - splitX, chrH, [0,6,6,0]); ctx.fill();
+    } else {
+      ctx.fillStyle = ch.color;
+      ctx.beginPath(); ctx.roundRect(pad.left, ry, chrW, chrH, 6); ctx.fill();
+    }
+    ctx.strokeStyle = 'rgba(0,0,0,0.1)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect(pad.left, ry, chrW, chrH, 6); ctx.stroke();
+
+    // allele markers
+    GENE_LOCI.forEach((gene, gi) => {
+      const gx = pad.left + chrW * gene.pos;
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(gx, ry + chrH/2, 6, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 8px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(ch.alleles[gi], gx, ry + chrH/2 + 3);
+    });
+
+    // label
+    const badge = isRecom ? '\u2605 ' : '';
+    ctx.fillStyle = isRecom ? '#16a34a' : '#374151';
+    ctx.font = isRecom ? 'bold 10px system-ui' : '10px system-ui';
+    ctx.textAlign = 'right';
+    ctx.fillText(badge + ch.label, pad.left - 5, ry + chrH/2 + 3);
+  });
+}
+
+function xoverSimRun(count) {
+  const pos = parseInt($('xover-pos').value) / 100;
+  for (let i = 0; i < count; i++) {
+    // each meiosis: crossover happens at random position
+    const xp = Math.random();
+    // if crossover point falls between any two of our 4 genes, those are recombined
+    const betweenGenes = xp > GENE_LOCI[0].pos && xp < GENE_LOCI[GENE_LOCI.length-1].pos;
+    if (betweenGenes && Math.random() < pos) {
+      xoverSimData.recombinant += 2;
+      xoverSimData.parental += 2;
+    } else {
+      xoverSimData.parental += 4;
+    }
+    const total = xoverSimData.parental + xoverSimData.recombinant;
+    xoverSimData.history.push(xoverSimData.recombinant / total);
+  }
+  drawXoverSimChart();
+}
+
+function xoverSimReset() {
+  xoverSimData = { parental: 0, recombinant: 0, history: [] };
+  drawXoverSimChart();
+}
+
+function drawXoverSimChart() {
+  const ctx = getCtx('xover-sim-chart');
+  if (!xoverSimData.history.length) {
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Run simulations to see recombination frequency convergence', ctx.W/2, ctx.H/2);
+    return;
+  }
+  drawLineChart(ctx, [
+    { data: xoverSimData.history, color: '#16a34a', width: 2, dots: xoverSimData.history.length < 60 }
+  ], { yMin: 0, yMax: 0.6, refLine: 0.5 });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: INDEPENDENT ASSORTMENT
+// ══════════════════════════════════════════════════════════════════════════
+let iaTrialData = { trials: 0, seen: new Set() };
+let iaCurrentAlignment = [];
+
+function iaUpdate() {
+  const n = parseInt($('ia-pairs').value);
+  $('ia-pairs-val').textContent = n;
+  const combos = Math.pow(2, n);
+  $('ia-combos').textContent = combos.toLocaleString();
+  $('ia-formula').textContent = '2^' + n;
+  const zygotes = combos * combos;
+  $('ia-zygote').textContent = zygotes > 1e9 ? (zygotes / 1e12).toFixed(1) + 'T' : zygotes > 1e6 ? (zygotes / 1e6).toFixed(1) + 'M' : zygotes.toLocaleString();
+  $('ia-zformula').textContent = '(2^' + n + ')^2';
+  drawIACanvas();
+}
+
+function drawIACanvas() {
+  const ctx = getCtx('ia-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = parseInt($('ia-pairs').value);
+  const combos = Math.pow(2, n);
+
+  // Title
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Gamete Diversity from ' + n + ' Chromosome Pair' + (n > 1 ? 's' : ''), W/2, 24);
+
+  // Draw exponential growth chart
+  const pad = { left: 60, right: 40, top: 50, bottom: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+
+  // Calculate bar data
+  const maxN = Math.min(n, 23);
+  const barCount = Math.min(maxN, 12);
+  const displayN = [];
+  if (maxN <= 12) {
+    for (let i = 1; i <= maxN; i++) displayN.push(i);
+  } else {
+    displayN.push(1, 2, 3, 4, 5, 8, 10, 13, 16, 19, 21, 23);
+  }
+
+  const vals = displayN.map(x => Math.pow(2, x));
+  const maxV = Math.pow(2, n);
+  const logMax = Math.log10(maxV);
+
+  // Use log scale
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  const logSteps = Math.ceil(logMax);
+  for (let i = 0; i <= logSteps; i++) {
+    const frac = i / logSteps;
+    const y = pad.top + plotH * (1 - frac);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    const label = Math.pow(10, i);
+    ctx.fillText(label >= 1e6 ? (label/1e6).toFixed(0) + 'M' : label.toLocaleString(), pad.left - 6, y + 4);
+  }
+
+  const barW = plotW / displayN.length * 0.7;
+  const barGap = plotW / displayN.length * 0.3;
+
+  displayN.forEach((pn, i) => {
+    const v = Math.pow(2, pn);
+    const logV = Math.log10(v);
+    const h = (logV / Math.max(logMax, 1)) * plotH;
+    const x = pad.left + (plotW / displayN.length) * i + barGap / 2;
+    const isHighlighted = pn === n;
+
+    ctx.fillStyle = isHighlighted ? '#c41e3a' : pn === 23 ? '#7c3aed' : '#2563eb';
+    ctx.beginPath();
+    const r = 3;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+
+    // label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('n=' + pn, x + barW/2, H - pad.bottom + 16);
+
+    // value on top
+    const vStr = v >= 1e6 ? (v/1e6).toFixed(1) + 'M' : v.toLocaleString();
+    ctx.fillStyle = isHighlighted ? '#c41e3a' : '#374151';
+    ctx.font = 'bold 10px system-ui';
+    ctx.fillText(vStr, x + barW/2, pad.top + plotH - h - 6);
+  });
+
+  // highlight human
+  if (n !== 23) {
+    ctx.fillStyle = '#7c3aed'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Humans: n=23 \u2192 8,388,608 gamete types', W/2, H - 8);
+  } else {
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('HUMAN: Over 8 million possible gamete combinations!', W/2, H - 8);
+  }
+
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('(log scale)', pad.left + 20, pad.top + 14);
+}
+
+function iaRandomize() {
+  const n = parseInt($('ia-pairs').value);
+  iaCurrentAlignment = [];
+  for (let i = 0; i < n; i++) iaCurrentAlignment.push(Math.random() < 0.5 ? 0 : 1);
+  iaTrialData.trials++;
+  iaTrialData.seen.add(iaCurrentAlignment.join(''));
+
+  $('ia-trials').textContent = iaTrialData.trials;
+  $('ia-unique').textContent = iaTrialData.seen.size;
+  const total = Math.pow(2, n);
+  $('ia-pct-seen').textContent = ((iaTrialData.seen.size / total) * 100).toFixed(1) + '%';
+  drawIAMetaCanvas();
+}
+
+function iaRunMany(count) {
+  for (let i = 0; i < count; i++) iaRandomize();
+}
+
+function iaTrialReset() {
+  iaTrialData = { trials: 0, seen: new Set() };
+  iaCurrentAlignment = [];
+  $('ia-trials').textContent = '0';
+  $('ia-unique').textContent = '0';
+  $('ia-pct-seen').textContent = '0%';
+  drawIAMetaCanvas();
+}
+
+function drawIAMetaCanvas() {
+  const ctx = getCtx('ia-meta-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const n = parseInt($('ia-pairs').value);
+  if (!iaCurrentAlignment.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Click "Randomize Alignment" to see metaphase I arrangement', W/2, H/2);
+    return;
+  }
+
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Metaphase I Alignment (Random Orientation of Bivalents)', W/2, 22);
+
+  // metaphase plate
+  ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1; ctx.setLineDash([5,5]);
+  ctx.beginPath(); ctx.moveTo(W/2, 35); ctx.lineTo(W/2, H - 30); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#9ca3af'; ctx.font = '9px system-ui';
+  ctx.fillText('metaphase plate', W/2, 33);
+
+  const pairColors = ['#c41e3a', '#2563eb', '#d97706', '#7c3aed', '#16a34a', '#dc2626', '#0891b2', '#be185d'];
+  const maxDisplay = Math.min(n, 8);
+  const rowH = Math.min(30, (H - 70) / maxDisplay);
+
+  for (let i = 0; i < maxDisplay; i++) {
+    const y = 50 + i * rowH + rowH / 2;
+    const orientation = iaCurrentAlignment[i]; // 0 = mat-left, 1 = mat-right
+    const matColor = pairColors[i % pairColors.length];
+    const patColor = pairColors[i % pairColors.length] + '80'; // lighter
+
+    if (orientation === 0) {
+      drawChromosome(ctx, W/2 - 55, y - 8, 40, 16, matColor, 'M' + (i+1), false);
+      drawChromosome(ctx, W/2 + 15, y - 8, 40, 16, matColor, 'P' + (i+1), false);
+      // make paternal lighter
+      ctx.globalAlpha = 0.5;
+      drawChromosome(ctx, W/2 + 15, y - 8, 40, 16, matColor, '', false);
+      ctx.globalAlpha = 1;
+    } else {
+      drawChromosome(ctx, W/2 - 55, y - 8, 40, 16, matColor, 'P' + (i+1), false);
+      ctx.globalAlpha = 0.5;
+      drawChromosome(ctx, W/2 - 55, y - 8, 40, 16, matColor, '', false);
+      ctx.globalAlpha = 1;
+      drawChromosome(ctx, W/2 + 15, y - 8, 40, 16, matColor, 'M' + (i+1), false);
+    }
+
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Pair ' + (i+1), W/2 + 65, y + 4);
+  }
+
+  if (n > 8) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('(' + (n - 8) + ' more pairs not shown)', W/2, H - 35);
+  }
+
+  // Current gamete genotype
+  const gamete = iaCurrentAlignment.map((o, i) => o === 0 ? 'M' + (i+1) : 'P' + (i+1)).join(', ');
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Left pole gamete: [' + gamete.substring(0, 60) + (gamete.length > 60 ? '...' : '') + ']', W/2, H - 12);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: MITOSIS vs MEIOSIS
+// ══════════════════════════════════════════════════════════════════════════
+const dualPhases = [
+  { name: 'Parent Cell', mitLabel: 'Interphase (2n=4)', meiLabel: 'Interphase (2n=4)', mitN: '2n=4', meiN: '2n=4' },
+  { name: 'Prophase', mitLabel: 'Prophase', meiLabel: 'Prophase I (synapsis)', mitN: '2n=4', meiN: '2n=4' },
+  { name: 'Metaphase', mitLabel: 'Metaphase', meiLabel: 'Metaphase I (bivalents)', mitN: '2n=4', meiN: '2n=4' },
+  { name: 'Anaphase', mitLabel: 'Anaphase', meiLabel: 'Anaphase I (homologs separate)', mitN: '2n=4', meiN: '2n=4' },
+  { name: 'Telophase', mitLabel: 'Telophase (DONE)', meiLabel: 'Telophase I', mitN: '2x(2n=4)', meiN: '2x(n=2)' },
+  { name: 'Meiosis II Prophase', mitLabel: '(Complete)', meiLabel: 'Prophase II', mitN: '2x(2n=4)', meiN: '2x(n=2)' },
+  { name: 'Meiosis II Metaphase', mitLabel: '(Complete)', meiLabel: 'Metaphase II', mitN: '2x(2n=4)', meiN: '2x(n=2)' },
+  { name: 'Meiosis II Anaphase', mitLabel: '(Complete)', meiLabel: 'Anaphase II', mitN: '2x(2n=4)', meiN: '2x(n=2)' },
+  { name: 'Final Result', mitLabel: '2 identical diploid cells', meiLabel: '4 unique haploid cells', mitN: '2x(2n=4)', meiN: '4x(n=2)' },
+];
+let dualStep = 0;
+let dualAutoTimer = null;
+
+function dualUpdateUI() {
+  const p = dualPhases[dualStep];
+  $('dual-step').textContent = dualStep + '/' + (dualPhases.length - 1);
+  $('dual-mitosis-n').textContent = p.mitN;
+  $('dual-meiosis-n').textContent = p.meiN;
+  drawDualCanvas();
+}
+
+function dualNext() { if (dualStep < dualPhases.length - 1) { dualStep++; dualUpdateUI(); } }
+function dualPrev() { if (dualStep > 0) { dualStep--; dualUpdateUI(); } }
+function dualFirst() { dualStep = 0; dualUpdateUI(); }
+function dualLast() { dualStep = dualPhases.length - 1; dualUpdateUI(); }
+function dualAutoPlay() {
+  if (dualAutoTimer) { clearInterval(dualAutoTimer); dualAutoTimer = null; return; }
+  dualStep = 0; dualUpdateUI();
+  dualAutoTimer = setInterval(() => {
+    if (dualStep >= dualPhases.length - 1) { clearInterval(dualAutoTimer); dualAutoTimer = null; return; }
+    dualStep++; dualUpdateUI();
+  }, 2000);
+}
+
+function drawDualCanvas() {
+  const ctx = getCtx('dual-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const halfW = W / 2;
+  const p = dualPhases[dualStep];
+
+  // Divider
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(halfW, 0); ctx.lineTo(halfW, H); ctx.stroke();
+
+  // Headers
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 15px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('MITOSIS', halfW/2, 24);
+  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 15px system-ui';
+  ctx.fillText('MEIOSIS', halfW + halfW/2, 24);
+
+  // Phase labels
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(p.mitLabel, halfW/2, 44);
+  ctx.fillText(p.meiLabel, halfW + halfW/2, 44);
+
+  const areaY = 60, areaH = H - 80;
+  const midY = areaY + areaH / 2;
+
+  if (dualStep === 0) {
+    // Both: same parent cell
+    [halfW/2, halfW + halfW/2].forEach(cx => {
+      drawCell(ctx, cx, midY, 65, 55, 'rgba(240,245,255,0.6)');
+      drawXShape(ctx, cx - 22, midY - 16, 10, CHR_COLORS.mat1);
+      drawXShape(ctx, cx + 8, midY - 16, 10, CHR_COLORS.pat1);
+      drawXShape(ctx, cx - 22, midY + 16, 10, CHR_COLORS.mat2);
+      drawXShape(ctx, cx + 8, midY + 16, 10, CHR_COLORS.pat2);
+    });
+  }
+  else if (dualStep === 1) {
+    // Mitosis: condensing individually. Meiosis: pairing (synapsis)
+    drawCell(ctx, halfW/2, midY, 65, 55, 'rgba(255,245,245,0.6)');
+    drawXShape(ctx, halfW/2 - 22, midY - 16, 10, CHR_COLORS.mat1);
+    drawXShape(ctx, halfW/2 + 8, midY - 16, 10, CHR_COLORS.pat1);
+    drawXShape(ctx, halfW/2 - 22, midY + 16, 10, CHR_COLORS.mat2);
+    drawXShape(ctx, halfW/2 + 8, midY + 16, 10, CHR_COLORS.pat2);
+
+    drawCell(ctx, halfW + halfW/2, midY, 65, 55, 'rgba(245,245,255,0.6)');
+    // paired (bivalents)
+    drawXShape(ctx, halfW + halfW/2 - 14, midY - 16, 10, CHR_COLORS.mat1);
+    drawXShape(ctx, halfW + halfW/2 + 2, midY - 16, 10, CHR_COLORS.pat1);
+    drawXShape(ctx, halfW + halfW/2 - 14, midY + 16, 10, CHR_COLORS.mat2);
+    drawXShape(ctx, halfW + halfW/2 + 2, midY + 16, 10, CHR_COLORS.pat2);
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('bivalents', halfW + halfW/2, midY + 45);
+  }
+  else if (dualStep === 2) {
+    // Metaphase
+    [halfW/2, halfW + halfW/2].forEach((cx, side) => {
+      drawCell(ctx, cx, midY, 70, 58, side === 0 ? 'rgba(255,245,245,0.6)' : 'rgba(245,245,255,0.6)');
+      ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.moveTo(cx, midY - 50); ctx.lineTo(cx, midY + 50); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+    // Mitosis: all 4 at plate individually
+    drawXShape(ctx, halfW/2 - 4, midY - 22, 8, CHR_COLORS.mat1);
+    drawXShape(ctx, halfW/2 - 4, midY - 6, 8, CHR_COLORS.pat1);
+    drawXShape(ctx, halfW/2 - 4, midY + 10, 8, CHR_COLORS.mat2);
+    drawXShape(ctx, halfW/2 - 4, midY + 26, 8, CHR_COLORS.pat2);
+    // Meiosis: bivalents at plate
+    drawXShape(ctx, halfW + halfW/2 - 12, midY - 16, 9, CHR_COLORS.mat1);
+    drawXShape(ctx, halfW + halfW/2 + 6, midY - 16, 9, CHR_COLORS.pat1);
+    drawXShape(ctx, halfW + halfW/2 - 12, midY + 16, 9, CHR_COLORS.mat2);
+    drawXShape(ctx, halfW + halfW/2 + 6, midY + 16, 9, CHR_COLORS.pat2);
+  }
+  else if (dualStep === 3) {
+    // Anaphase
+    // Mitosis: sister chromatids separate
+    drawCell(ctx, halfW/2, midY, 80, 60, 'rgba(255,250,240,0.6)');
+    drawChromosome(ctx, halfW/2 - 50, midY - 25, 7, 16, CHR_COLORS.mat1, '', false);
+    drawChromosome(ctx, halfW/2 - 50, midY + 5, 7, 16, CHR_COLORS.mat2, '', false);
+    drawChromosome(ctx, halfW/2 - 38, midY - 25, 7, 16, CHR_COLORS.pat1, '', false);
+    drawChromosome(ctx, halfW/2 - 38, midY + 5, 7, 16, CHR_COLORS.pat2, '', false);
+
+    drawChromosome(ctx, halfW/2 + 30, midY - 25, 7, 16, CHR_COLORS.mat1, '', false);
+    drawChromosome(ctx, halfW/2 + 30, midY + 5, 7, 16, CHR_COLORS.mat2, '', false);
+    drawChromosome(ctx, halfW/2 + 42, midY - 25, 7, 16, CHR_COLORS.pat1, '', false);
+    drawChromosome(ctx, halfW/2 + 42, midY + 5, 7, 16, CHR_COLORS.pat2, '', false);
+
+    // Meiosis: homologs separate
+    drawCell(ctx, halfW + halfW/2, midY, 80, 60, 'rgba(240,250,255,0.6)');
+    drawXShape(ctx, halfW + halfW/2 - 45, midY - 12, 9, CHR_COLORS.mat1);
+    drawXShape(ctx, halfW + halfW/2 - 45, midY + 16, 9, CHR_COLORS.mat2);
+    drawXShape(ctx, halfW + halfW/2 + 45, midY - 12, 9, CHR_COLORS.pat1);
+    drawXShape(ctx, halfW + halfW/2 + 45, midY + 16, 9, CHR_COLORS.pat2);
+  }
+  else if (dualStep === 4) {
+    // Telophase: Mitosis DONE, Meiosis I done
+    // Mitosis: 2 identical 2n cells
+    drawCell(ctx, halfW/2 - 45, midY, 38, 35, 'rgba(255,240,240,0.6)');
+    drawCell(ctx, halfW/2 + 45, midY, 38, 35, 'rgba(255,240,240,0.6)');
+    [halfW/2 - 45, halfW/2 + 45].forEach(cx => {
+      drawChromosome(ctx, cx - 14, midY - 14, 6, 14, CHR_COLORS.mat1, '', false);
+      drawChromosome(ctx, cx + 2, midY - 14, 6, 14, CHR_COLORS.pat1, '', false);
+      drawChromosome(ctx, cx - 14, midY + 4, 6, 14, CHR_COLORS.mat2, '', false);
+      drawChromosome(ctx, cx + 2, midY + 4, 6, 14, CHR_COLORS.pat2, '', false);
+    });
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('IDENTICAL (2n)', halfW/2, midY + 50);
+
+    // Meiosis: 2 haploid cells
+    drawCell(ctx, halfW + halfW/2 - 45, midY, 38, 35, 'rgba(240,240,255,0.6)');
+    drawCell(ctx, halfW + halfW/2 + 45, midY, 38, 35, 'rgba(240,240,255,0.6)');
+    drawXShape(ctx, halfW + halfW/2 - 50, midY - 8, 8, CHR_COLORS.mat1);
+    drawXShape(ctx, halfW + halfW/2 - 38, midY + 10, 8, CHR_COLORS.mat2);
+    drawXShape(ctx, halfW + halfW/2 + 40, midY - 8, 8, CHR_COLORS.pat1);
+    drawXShape(ctx, halfW + halfW/2 + 52, midY + 10, 8, CHR_COLORS.pat2);
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('DIFFERENT (n) \u2014 continues to MII', halfW + halfW/2, midY + 50);
+  }
+  else if (dualStep >= 5 && dualStep <= 7) {
+    // Mitosis done (show result), Meiosis II proceeding
+    drawCell(ctx, halfW/2 - 45, midY - 20, 35, 30, 'rgba(255,240,240,0.6)');
+    drawCell(ctx, halfW/2 + 45, midY - 20, 35, 30, 'rgba(255,240,240,0.6)');
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('MITOSIS COMPLETE', halfW/2, midY + 30);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui';
+    ctx.fillText('2 identical 2n cells', halfW/2, midY + 46);
+
+    // Meiosis II
+    drawCell(ctx, halfW + halfW/2 - 45, midY, 38, 35, 'rgba(245,245,255,0.6)');
+    drawCell(ctx, halfW + halfW/2 + 45, midY, 38, 35, 'rgba(245,245,255,0.6)');
+
+    if (dualStep === 5) {
+      drawXShape(ctx, halfW + halfW/2 - 50, midY - 8, 8, CHR_COLORS.mat1);
+      drawXShape(ctx, halfW + halfW/2 - 38, midY + 10, 8, CHR_COLORS.mat2);
+      drawXShape(ctx, halfW + halfW/2 + 40, midY - 8, 8, CHR_COLORS.pat1);
+      drawXShape(ctx, halfW + halfW/2 + 52, midY + 10, 8, CHR_COLORS.pat2);
+      ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('Condensing for division II', halfW + halfW/2, midY + 50);
+    } else if (dualStep === 6) {
+      // metaphase II
+      [halfW + halfW/2 - 45, halfW + halfW/2 + 45].forEach(cx => {
+        ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+        ctx.beginPath(); ctx.moveTo(cx, midY - 30); ctx.lineTo(cx, midY + 30); ctx.stroke();
+        ctx.setLineDash([]);
+      });
+      drawXShape(ctx, halfW + halfW/2 - 48, midY - 8, 7, CHR_COLORS.mat1);
+      drawXShape(ctx, halfW + halfW/2 - 42, midY + 10, 7, CHR_COLORS.mat2);
+      drawXShape(ctx, halfW + halfW/2 + 42, midY - 8, 7, CHR_COLORS.pat1);
+      drawXShape(ctx, halfW + halfW/2 + 48, midY + 10, 7, CHR_COLORS.pat2);
+    } else {
+      // anaphase II
+      ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('\u2190 \u2192', halfW + halfW/2 - 45, midY + 4);
+      ctx.fillText('\u2190 \u2192', halfW + halfW/2 + 45, midY + 4);
+      ctx.fillStyle = '#374151'; ctx.font = '11px system-ui';
+      ctx.fillText('Sister chromatids separating', halfW + halfW/2, midY + 50);
+    }
+  }
+  else if (dualStep === 8) {
+    // Final
+    // Mitosis: 2 identical
+    drawCell(ctx, halfW/2 - 35, midY - 30, 30, 28, 'rgba(255,240,240,0.6)');
+    drawCell(ctx, halfW/2 + 35, midY - 30, 30, 28, 'rgba(255,240,240,0.6)');
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('2 Identical Cells', halfW/2, midY + 20);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui';
+    ctx.fillText('2n = 4 (diploid)', halfW/2, midY + 36);
+    ctx.fillText('Genetically identical to parent', halfW/2, midY + 50);
+
+    // Meiosis: 4 unique
+    const meiCells = [
+      { x: halfW + halfW/2 - 55, y: midY - 35 },
+      { x: halfW + halfW/2 - 18, y: midY - 35 },
+      { x: halfW + halfW/2 + 18, y: midY - 35 },
+      { x: halfW + halfW/2 + 55, y: midY - 35 },
+    ];
+    meiCells.forEach(pos => {
+      drawCell(ctx, pos.x, pos.y, 16, 15, 'rgba(240,255,240,0.6)');
+    });
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('4 Unique Cells', halfW + halfW/2, midY + 20);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui';
+    ctx.fillText('n = 2 (haploid)', halfW + halfW/2, midY + 36);
+    ctx.fillText('Genetically unique (gametes)', halfW + halfW/2, midY + 50);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: NONDISJUNCTION
+// ══════════════════════════════════════════════════════════════════════════
+let ndjMode = 'normal'; // 'normal', 'MI', 'MII'
+
+function ndjToggle() {
+  if (ndjMode === 'normal') ndjSetError('MI');
+  else if (ndjMode === 'MI') ndjSetError('MII');
+  else ndjSetNormal();
+}
+
+function ndjSetNormal() {
+  ndjMode = 'normal';
+  $('ndj-toggle').textContent = 'Currently: Normal Meiosis';
+  $('ndj-mode').textContent = 'Normal';
+  drawNdjCanvas();
+  updateNdjStats();
+}
+
+function ndjSetError(type) {
+  ndjMode = type;
+  $('ndj-toggle').textContent = 'Currently: ' + type + ' Error';
+  $('ndj-mode').textContent = type + ' Error';
+  drawNdjCanvas();
+  updateNdjStats();
+}
+
+function ndjReset() { ndjSetNormal(); }
+
+function updateNdjStats() {
+  if (ndjMode === 'normal') {
+    $('ndj-gamete-n').textContent = 'n, n, n, n';
+    $('ndj-fert-n').textContent = '2n (normal)';
+    $('ndj-result').textContent = 'Normal';
+  } else if (ndjMode === 'MI') {
+    $('ndj-gamete-n').textContent = 'n+1, n+1, n-1, n-1';
+    $('ndj-fert-n').textContent = '2n+1 or 2n-1';
+    $('ndj-result').textContent = 'Trisomy/Monosomy';
+  } else {
+    $('ndj-gamete-n').textContent = 'n, n, n+1, n-1';
+    $('ndj-fert-n').textContent = '2n+1 or 2n-1';
+    $('ndj-result').textContent = 'Trisomy/Monosomy';
+  }
+}
+
+function drawNdjCanvas() {
+  const ctx = getCtx('ndj-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const isError = ndjMode !== 'normal';
+  const isMI = ndjMode === 'MI';
+
+  // Title
+  ctx.fillStyle = isError ? '#c41e3a' : '#1a1a1a';
+  ctx.font = 'bold 15px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText(isError ? 'NONDISJUNCTION in Meiosis ' + (isMI ? 'I' : 'II') : 'Normal Meiosis', W/2, 22);
+
+  // Starting cell
+  drawCell(ctx, W/2, 60, 50, 35, 'rgba(240,245,255,0.6)');
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('2n (focus on 1 pair)', W/2, 63);
+
+  // Draw the pair of homologs as simple bars
+  drawChromosome(ctx, W/2 - 18, 42, 10, 20, '#c41e3a', '', true);
+  drawChromosome(ctx, W/2 + 8, 42, 10, 20, '#2563eb', '', true);
+
+  // Arrow down
+  ctx.fillStyle = '#9ca3af'; ctx.font = '16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('\u2193 Meiosis I \u2193', W/2, 110);
+
+  if (!isError || !isMI) {
+    // Normal meiosis I: homologs separate
+    drawCell(ctx, W/2 - 70, 145, 40, 30, 'rgba(255,240,240,0.5)');
+    drawCell(ctx, W/2 + 70, 145, 40, 30, 'rgba(240,240,255,0.5)');
+    drawChromosome(ctx, W/2 - 78, 136, 8, 18, '#c41e3a', '', true);
+    drawChromosome(ctx, W/2 + 66, 136, 8, 18, '#2563eb', '', true);
+  } else {
+    // MI error: both homologs go to one side
+    drawCell(ctx, W/2 - 70, 145, 45, 32, 'rgba(255,230,230,0.6)');
+    drawCell(ctx, W/2 + 70, 145, 35, 28, 'rgba(255,250,240,0.5)');
+    drawChromosome(ctx, W/2 - 82, 136, 8, 18, '#c41e3a', '', true);
+    drawChromosome(ctx, W/2 - 66, 136, 8, 18, '#2563eb', '', true);
+    // X on empty cell
+    ctx.fillStyle = '#d1d5db'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('empty', W/2 + 70, 148);
+    // Error label
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui';
+    ctx.fillText('BOTH homologs \u2192 same pole!', W/2, 126);
+  }
+
+  // Arrow down
+  ctx.fillStyle = '#9ca3af'; ctx.font = '16px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('\u2193 Meiosis II \u2193', W/2, 200);
+
+  // Meiosis II
+  const gameteY = 250;
+  if (ndjMode === 'normal') {
+    // 4 normal gametes, each with n chromosomes
+    const positions = [W/2 - 100, W/2 - 35, W/2 + 35, W/2 + 100];
+    positions.forEach((x, i) => {
+      drawCell(ctx, x, gameteY, 28, 24, 'rgba(240,255,240,0.6)');
+      const color = i < 2 ? '#c41e3a' : '#2563eb';
+      drawChromosome(ctx, x - 4, gameteY - 8, 6, 14, color, '', false);
+      ctx.fillStyle = '#374151'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText('n', x, gameteY + 18);
+    });
+    // After fertilization
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('All gametes normal (n)', W/2, gameteY + 50);
+    ctx.fillText('After fertilization: 2n (normal zygote)', W/2, gameteY + 68);
+  }
+  else if (ndjMode === 'MI') {
+    // MI error: all 4 gametes abnormal
+    const positions = [W/2 - 100, W/2 - 35, W/2 + 35, W/2 + 100];
+    positions.forEach((x, i) => {
+      const isExtra = i < 2;
+      drawCell(ctx, x, gameteY, 28, 24, isExtra ? 'rgba(255,230,230,0.6)' : 'rgba(255,250,230,0.6)');
+      if (isExtra) {
+        drawChromosome(ctx, x - 8, gameteY - 8, 5, 12, '#c41e3a', '', false);
+        drawChromosome(ctx, x + 2, gameteY - 8, 5, 12, '#2563eb', '', false);
+        ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText('n+1', x, gameteY + 18);
+      } else {
+        ctx.fillStyle = '#d97706'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText('n-1', x, gameteY + 18);
+        ctx.fillStyle = '#d1d5db'; ctx.font = '8px system-ui';
+        ctx.fillText('(0)', x, gameteY + 3);
+      }
+    });
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('2 gametes with n+1, 2 gametes with n-1', W/2, gameteY + 50);
+    ctx.fillText('After fertilization: Trisomy (2n+1) or Monosomy (2n-1)', W/2, gameteY + 68);
+  }
+  else {
+    // MII error: 2 normal, 1 with n+1, 1 with n-1
+    const positions = [W/2 - 100, W/2 - 35, W/2 + 35, W/2 + 100];
+    // Normal ones from left cell
+    drawCell(ctx, positions[0], gameteY, 28, 24, 'rgba(240,255,240,0.6)');
+    drawChromosome(ctx, positions[0] - 4, gameteY - 8, 6, 14, '#c41e3a', '', false);
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('n', positions[0], gameteY + 18);
+
+    drawCell(ctx, positions[1], gameteY, 28, 24, 'rgba(240,255,240,0.6)');
+    drawChromosome(ctx, positions[1] - 4, gameteY - 8, 6, 14, '#c41e3a', '', false);
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('n', positions[1], gameteY + 18);
+
+    // Abnormal from right cell (MII error)
+    drawCell(ctx, positions[2], gameteY, 28, 24, 'rgba(255,230,230,0.6)');
+    drawChromosome(ctx, positions[2] - 8, gameteY - 8, 5, 12, '#2563eb', '', false);
+    drawChromosome(ctx, positions[2] + 2, gameteY - 8, 5, 12, '#2563eb', '', false);
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('n+1', positions[2], gameteY + 18);
+
+    drawCell(ctx, positions[3], gameteY, 28, 24, 'rgba(255,250,230,0.6)');
+    ctx.fillStyle = '#d97706'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('n-1', positions[3], gameteY + 18);
+    ctx.fillStyle = '#d1d5db'; ctx.font = '8px system-ui';
+    ctx.fillText('(0)', positions[3], gameteY + 3);
+
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('2 normal gametes, 1 with n+1, 1 with n-1', W/2, gameteY + 50);
+    ctx.fillText('After fertilization: Normal, Trisomy, or Monosomy possible', W/2, gameteY + 68);
+    ctx.fillStyle = '#2563eb'; ctx.font = '11px system-ui';
+    ctx.fillText('(MII error: sister chromatids failed to separate in one cell)', W/2, gameteY + 86);
+  }
+
+  // Fertilization note
+  const fertY = gameteY + 105;
+  if (isError) {
+    ctx.fillStyle = 'rgba(254,242,242,0.8)';
+    ctx.beginPath(); ctx.roundRect(W/2 - 180, fertY, 360, 50, 8); ctx.fill();
+    ctx.strokeStyle = '#fecaca'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Human Examples:', W/2, fertY + 18);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui';
+    ctx.fillText('Trisomy 21 (Down) | Monosomy X (Turner) | XXY (Klinefelter)', W/2, fertY + 36);
+  }
+}
+
+function drawNdjAgeChart() {
+  const ctx = getCtx('ndj-age-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 30, bottom: 50, left: 60 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  // Data: maternal age vs risk of Down syndrome (per 1000 births, approximate)
+  const data = [
+    { age: 20, risk: 0.7 }, { age: 25, risk: 0.8 }, { age: 30, risk: 1.0 },
+    { age: 32, risk: 1.4 }, { age: 34, risk: 2.0 }, { age: 35, risk: 3.0 },
+    { age: 36, risk: 4.0 }, { age: 37, risk: 5.3 }, { age: 38, risk: 7.1 },
+    { age: 39, risk: 9.5 }, { age: 40, risk: 12.5 }, { age: 42, risk: 20 },
+    { age: 44, risk: 33 }, { age: 45, risk: 40 }, { age: 48, risk: 80 },
+  ];
+
+  const maxRisk = 90;
+  const minAge = 20, maxAge = 48;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = pad.top + plotH * (1 - i/5);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((maxRisk * i/5).toFixed(0), pad.left - 6, y + 4);
+  }
+
+  // Y-axis label
+  ctx.save();
+  ctx.translate(14, pad.top + plotH/2);
+  ctx.rotate(-Math.PI/2);
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Risk per 1,000 births', 0, 0);
+  ctx.restore();
+
+  // X-axis labels
+  for (let age = 20; age <= 48; age += 4) {
+    const x = pad.left + ((age - minAge) / (maxAge - minAge)) * plotW;
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(age, x, H - pad.bottom + 18);
+  }
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Maternal Age (years)', pad.left + plotW/2, H - 8);
+
+  // Area fill
+  ctx.fillStyle = 'rgba(196,30,58,0.1)';
+  ctx.beginPath();
+  ctx.moveTo(pad.left, pad.top + plotH);
+  data.forEach(d => {
+    const x = pad.left + ((d.age - minAge) / (maxAge - minAge)) * plotW;
+    const y = pad.top + plotH * (1 - d.risk / maxRisk);
+    ctx.lineTo(x, y);
+  });
+  ctx.lineTo(pad.left + ((data[data.length-1].age - minAge) / (maxAge - minAge)) * plotW, pad.top + plotH);
+  ctx.closePath(); ctx.fill();
+
+  // Line
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  data.forEach((d, i) => {
+    const x = pad.left + ((d.age - minAge) / (maxAge - minAge)) * plotW;
+    const y = pad.top + plotH * (1 - d.risk / maxRisk);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Dots
+  data.forEach(d => {
+    const x = pad.left + ((d.age - minAge) / (maxAge - minAge)) * plotW;
+    const y = pad.top + plotH * (1 - d.risk / maxRisk);
+    ctx.fillStyle = '#c41e3a'; ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI*2); ctx.fill();
+  });
+
+  // Highlight age 35 line
+  const x35 = pad.left + ((35 - minAge) / (maxAge - minAge)) * plotW;
+  ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5; ctx.setLineDash([5,5]);
+  ctx.beginPath(); ctx.moveTo(x35, pad.top); ctx.lineTo(x35, pad.top + plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#d97706'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Age 35', x35 + 4, pad.top + 14);
+  ctx.fillText('"Advanced', x35 + 4, pad.top + 28);
+  ctx.fillText(' maternal age"', x35 + 4, pad.top + 42);
+
+  // Title
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Risk of Down Syndrome (Trisomy 21) by Maternal Age', W/2, pad.top - 10);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR NAVIGATION
+// ══════════════════════════════════════════════════════════════════════════
+document.querySelectorAll('.sidebar-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+
+// Scroll spy
+const sections = document.querySelectorAll('.section, .hero');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 100) current = section.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+
+// ══════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ══════════════════════════════════════════════════════════════════════════
+function init() {
+  meiosisUpdateUI();
+  gametUpdateUI();
+  xoverUpdate();
+  iaUpdate();
+  dualUpdateUI();
+  ndjSetNormal();
+  drawNdjAgeChart();
+}
+
+// Expose functions to onclick
+window.meiosisNext = meiosisNext;
+window.meiosisPrev = meiosisPrev;
+window.meiosisFirst = meiosisFirst;
+window.meiosisLast = meiosisLast;
+window.meiosisAutoPlay = meiosisAutoPlay;
+window.gametStep = gametStepFn;
+window.gametAutoPlay = gametAutoPlay;
+window.gametReset = gametReset;
+window.xoverUpdate = xoverUpdate;
+window.xoverSimRun = xoverSimRun;
+window.xoverSimReset = xoverSimReset;
+window.iaUpdate = iaUpdate;
+window.iaRandomize = iaRandomize;
+window.iaRunMany = iaRunMany;
+window.iaTrialReset = iaTrialReset;
+window.dualNext = dualNext;
+window.dualPrev = dualPrev;
+window.dualFirst = dualFirst;
+window.dualLast = dualLast;
+window.dualAutoPlay = dualAutoPlay;
+window.ndjToggle = ndjToggle;
+window.ndjSetError = ndjSetError;
+window.ndjReset = ndjReset;
+
+window.addEventListener('load', init);
+window.addEventListener('resize', init);
+</script>
+</body>
+</html>

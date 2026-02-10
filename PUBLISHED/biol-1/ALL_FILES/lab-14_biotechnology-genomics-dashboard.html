@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 14 Dashboard: Biotechnology &amp; Genomics | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+select.form-select {
+  padding: 8px 12px; border-radius: 8px; border: 2px solid var(--border); font-size: 13px;
+  font-family: var(--font); font-weight: 600; background: #fff; cursor: pointer;
+  transition: border-color 0.15s;
+}
+select.form-select:focus { outline: none; border-color: var(--accent); }
+
+textarea.form-textarea {
+  width: 100%; padding: 10px 14px; border-radius: 8px; border: 2px solid var(--border);
+  font-family: var(--mono); font-size: 13px; line-height: 1.5; resize: vertical;
+  transition: border-color 0.15s;
+}
+textarea.form-textarea:focus { outline: none; border-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+.badge-amber { background: #fffbeb; color: var(--amber); }
+.badge-purple { background: #f5f3ff; color: var(--purple); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DNA SEQUENCE DISPLAY
+   ═══════════════════════════════════════════════════════════════════════ */
+.dna-sequence {
+  font-family: var(--mono); font-size: 13px; line-height: 1.8; word-break: break-all;
+  padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border);
+  margin: 8px 0; max-height: 200px; overflow-y: auto;
+}
+.dna-sequence .base-A { color: #16a34a; font-weight: 700; }
+.dna-sequence .base-T { color: #c41e3a; font-weight: 700; }
+.dna-sequence .base-G { color: #2563eb; font-weight: 700; }
+.dna-sequence .base-C { color: #d97706; font-weight: 700; }
+.dna-sequence .cut-site { background: #fef2f2; border: 1px solid #fecaca; border-radius: 3px; padding: 0 2px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GEL ELECTROPHORESIS
+   ═══════════════════════════════════════════════════════════════════════ */
+.gel-wells {
+  display: flex; gap: 4px; justify-content: center; margin: 8px 0;
+}
+.gel-well {
+  width: 50px; height: 20px; background: #1a1a2e; border-radius: 2px 2px 0 0;
+  cursor: pointer; border: 2px solid #374151; transition: all 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: #94a3b8; font-weight: 600;
+}
+.gel-well:hover { border-color: var(--accent); }
+.gel-well.loaded { border-color: var(--green); background: #0f172a; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GENOME BROWSER
+   ═══════════════════════════════════════════════════════════════════════ */
+.genome-track {
+  position: relative; overflow: hidden; border-radius: 8px;
+  border: 1px solid var(--border); background: #f8fafc; margin: 8px 0;
+}
+.gene-info-panel {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.gene-info-panel .gi-title { font-weight: 700; margin-bottom: 6px; font-size: 16px; }
+.gene-info-panel code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ETHICS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.ethics-card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 20px; border: 1px solid var(--border); cursor: pointer;
+  transition: all 0.2s;
+}
+.ethics-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.ethics-card.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(196,30,58,0.2); }
+.ethics-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.ethics-card p { font-size: 12px; color: var(--text-muted); }
+
+.panel-benefits {
+  background: #f0fdf4; border-radius: 8px; padding: 14px; border-left: 4px solid var(--green);
+}
+.panel-risks {
+  background: #fef2f2; border-radius: 8px; padding: 14px; border-left: 4px solid var(--accent);
+}
+.panel-benefits h5, .panel-risks h5 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.panel-benefits li, .panel-risks li { font-size: 12px; margin: 4px 0; margin-left: 16px; }
+
+.stakeholder-tag {
+  display: inline-block; padding: 3px 10px; border-radius: 16px; font-size: 11px;
+  font-weight: 600; margin: 3px 2px; background: #eff6ff; color: var(--blue);
+  border: 1px solid #bfdbfe;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STEP INDICATOR
+   ═══════════════════════════════════════════════════════════════════════ */
+.steps-bar {
+  display: flex; gap: 4px; margin: 12px 0;
+}
+.step-dot {
+  flex: 1; height: 6px; border-radius: 3px; background: #e5e7eb; transition: background 0.3s;
+}
+.step-dot.done { background: var(--green); }
+.step-dot.current { background: var(--accent); }
+
+.step-label {
+  font-size: 13px; font-weight: 600; color: var(--text-muted); margin: 4px 0;
+}
+.step-label.active { color: var(--accent); font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PCR THERMOMETER
+   ═══════════════════════════════════════════════════════════════════════ */
+.temp-display {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 24px; font-weight: 800;
+  padding: 8px 16px; border-radius: 8px; background: #f8fafc;
+  border: 1px solid var(--border);
+}
+.temp-display.hot { color: #c41e3a; background: #fef2f2; border-color: #fecaca; }
+.temp-display.warm { color: #d97706; background: #fffbeb; border-color: #fde68a; }
+.temp-display.cool { color: #2563eb; background: #eff6ff; border-color: #bfdbfe; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 14 &mdash; Biotechnology &amp; Genomics</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> DNA Extraction</a>
+    <a href="#part2"><span class="nav-num">2</span> Gel Electrophoresis</a>
+    <a href="#part3"><span class="nav-num">3</span> Restriction Enzymes</a>
+    <a href="#part4"><span class="nav-num">4</span> PCR Amplification</a>
+    <a href="#part5"><span class="nav-num">5</span> Genomic Explorer</a>
+    <a href="#part6"><span class="nav-num">6</span> Biotech Ethics</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Biotechnology &amp; Genomics</h2>
+  <p>Explore the molecular tools that drive modern biology. Extract DNA, run gel electrophoresis, cut with restriction enzymes, amplify with PCR, browse genomes, and debate the ethics of biotechnology.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">DNA Technology</span>
+    <span class="bio-tag">Genomics</span>
+    <span class="bio-tag">Biotechnology</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: DNA EXTRACTION ════════════════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">DNA Extraction Virtual Lab</div>
+    <div class="section-subtitle">Step-by-step extraction: lyse cells, remove proteins, precipitate DNA</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Extraction Procedure</div>
+    <div class="steps-bar" id="extract-steps">
+      <div class="step-dot current" id="step-dot-0"></div>
+      <div class="step-dot" id="step-dot-1"></div>
+      <div class="step-dot" id="step-dot-2"></div>
+      <div class="step-dot" id="step-dot-3"></div>
+    </div>
+    <div class="step-label active" id="extract-label">Step 1: Add cells to buffer solution</div>
+    <div class="chart-wrap"><canvas id="extract-canvas" height="340"></canvas></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="extract-btn" onclick="extractNext()">Add Detergent (Lyse Cells)</button>
+      <button class="btn btn-outline" onclick="extractReset()">Reset</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="extract-step-num">1</div><div class="stat-label">Current Step</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="extract-phase">Lysis</div><div class="stat-label">Phase</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="extract-yield">0</div><div class="stat-label">DNA Yield (ug)</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="extract-purity">-</div><div class="stat-label">Purity (A260/280)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: GEL ELECTROPHORESIS ═══════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Gel Electrophoresis Simulator</div>
+    <div class="section-subtitle">Separate DNA fragments by size using an electric field</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Load Samples &amp; Run Gel</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Click wells to load samples. Lane 1 is always the DNA ladder (size standard).</p>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline" onclick="gelLoadLadder()">Load Ladder (Lane 1)</button>
+      <button class="btn btn-sm btn-outline" onclick="gelLoadSample(1)">Load Sample A</button>
+      <button class="btn btn-sm btn-outline" onclick="gelLoadSample(2)">Load Sample B</button>
+      <button class="btn btn-sm btn-outline" onclick="gelLoadSample(3)">Load Unknown</button>
+    </div>
+    <div class="slider-group">
+      <label>Voltage</label>
+      <input type="range" id="gel-voltage" min="1" max="3" value="2" oninput="gelVoltageLabel()">
+      <span class="slider-val" id="gel-voltage-val">Medium</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="gelRun()">Run Gel</button>
+      <button class="btn btn-secondary" onclick="gelRunFull()">Run to Completion</button>
+      <button class="btn btn-outline" onclick="gelReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="gel-canvas" height="400"></canvas></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:4px;">Click on any band to estimate its size from the ladder.</p>
+    <div id="gel-band-info" class="analysis-result" style="display:none;"></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="gel-time">0</div><div class="stat-label">Run Time (min)</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="gel-lanes-loaded">0</div><div class="stat-label">Lanes Loaded</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="gel-bands-visible">0</div><div class="stat-label">Bands Visible</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: RESTRICTION ENZYMES ═══════════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Restriction Enzyme Cutter</div>
+    <div class="section-subtitle">Cut DNA at specific recognition sequences and predict fragment sizes</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">DNA Sequence Input</div>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-secondary" onclick="reGenerate()">Generate Random (500 bp)</button>
+      <button class="btn btn-sm btn-outline" onclick="reGenerate(1000)">Generate 1000 bp</button>
+      <button class="btn btn-sm btn-outline" onclick="reGenerate(2000)">Generate 2000 bp</button>
+    </div>
+    <textarea class="form-textarea" id="re-sequence" rows="4" placeholder="Enter or generate a DNA sequence (A, T, G, C)..."></textarea>
+    <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Sequence length: <strong id="re-seq-len">0</strong> bp</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select Restriction Enzymes</div>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-primary re-enzyme-btn active" id="re-btn-EcoRI" onclick="reToggleEnzyme('EcoRI')">EcoRI (GAATTC)</button>
+      <button class="btn btn-sm btn-outline re-enzyme-btn" id="re-btn-BamHI" onclick="reToggleEnzyme('BamHI')">BamHI (GGATCC)</button>
+      <button class="btn btn-sm btn-outline re-enzyme-btn" id="re-btn-HindIII" onclick="reToggleEnzyme('HindIII')">HindIII (AAGCTT)</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="reCut()">Cut Sequence</button>
+    </div>
+    <div id="re-sequence-display" class="dna-sequence" style="display:none;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Restriction Digest Results</div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="re-cuts">0</div><div class="stat-label">Cut Sites</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="re-fragments">0</div><div class="stat-label">Fragments</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="re-largest">-</div><div class="stat-label">Largest (bp)</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="re-smallest">-</div><div class="stat-label">Smallest (bp)</div></div>
+    </div>
+    <div id="re-fragment-list" style="margin:8px 0;"></div>
+    <div class="chart-wrap"><canvas id="re-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: PCR AMPLIFICATION ═════════════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">PCR Amplification Simulator</div>
+    <div class="section-subtitle">Polymerase Chain Reaction: exponential DNA amplification through thermal cycling</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Thermal Cycler</div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
+      <div class="temp-display" id="pcr-temp-display">25&deg;C</div>
+      <div>
+        <div class="step-label" id="pcr-phase-label" style="font-size:15px;">Ready &mdash; Press Start</div>
+        <div style="font-size:12px;color:var(--text-muted);" id="pcr-phase-desc">Load template DNA and primers to begin</div>
+      </div>
+    </div>
+    <div class="slider-group">
+      <label>Target Cycles</label>
+      <input type="range" id="pcr-cycles-target" min="5" max="40" value="30" oninput="pcrCycleLabel()">
+      <span class="slider-val" id="pcr-cycles-val">30</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="pcr-start-btn" onclick="pcrStart()">Start PCR</button>
+      <button class="btn btn-secondary" onclick="pcrSkipToEnd()">Skip to End</button>
+      <button class="btn btn-outline" onclick="pcrReset()">Reset</button>
+    </div>
+    <div class="chart-wrap"><canvas id="pcr-canvas" height="200"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="pcr-cycle">0</div><div class="stat-label">Cycle</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="pcr-copies">1</div><div class="stat-label">DNA Copies</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="pcr-temp-stat">25</div><div class="stat-label">Temp (&deg;C)</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="pcr-phase-stat">Idle</div><div class="stat-label">Phase</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Exponential Amplification (2^n)</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> DNA copies per cycle</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> Log scale</span>
+    </div>
+    <div class="chart-wrap"><canvas id="pcr-growth-chart" height="280"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: GENOMIC EXPLORER ══════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Genomic Data Explorer</div>
+    <div class="section-subtitle">Browse a simulated chromosome region, compare individuals, and explore variants</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Chromosome Browser &mdash; Region 7q31</div>
+    <div class="slider-group">
+      <label>Position</label>
+      <input type="range" id="genome-pos" min="0" max="900" value="0" oninput="genomeScroll()">
+      <span class="slider-val" id="genome-pos-val">0 kb</span>
+    </div>
+    <div class="chart-wrap"><canvas id="genome-canvas" height="220"></canvas></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:4px;">Click on any gene block for detailed information. SNP markers shown as triangles.</p>
+    <div id="genome-gene-info" class="gene-info-panel" style="display:none;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Individual Comparison &mdash; Variant Analysis</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="genomeCompare()">Compare Two Individuals</button>
+      <button class="btn btn-outline" onclick="genomeNewIndividuals()">Generate New Individuals</button>
+    </div>
+    <div class="chart-wrap"><canvas id="genome-compare-canvas" height="180"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="genome-total-snps">0</div><div class="stat-label">Total SNPs</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="genome-shared">0</div><div class="stat-label">Shared Variants</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="genome-unique-a">0</div><div class="stat-label">Unique to Ind. A</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="genome-unique-b">0</div><div class="stat-label">Unique to Ind. B</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Variant Allele Frequency</div>
+    <div class="chart-wrap"><canvas id="genome-freq-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: BIOTECH ETHICS ════════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Biotech Ethics Decision Panel</div>
+    <div class="section-subtitle">Evaluate ethical dimensions of modern biotechnology applications</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Select a Scenario</div>
+    <div class="card-row" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;" id="ethics-cards"></div>
+  </div>
+  <div class="card" id="ethics-detail-card" style="display:none;">
+    <div class="card-title" id="ethics-detail-title">Scenario Details</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;" id="ethics-detail-desc"></p>
+    <div class="card-row" style="margin-bottom:16px;">
+      <div class="panel-benefits">
+        <h5>Potential Benefits</h5>
+        <ul id="ethics-benefits"></ul>
+      </div>
+      <div class="panel-risks">
+        <h5>Potential Risks</h5>
+        <ul id="ethics-risks"></ul>
+      </div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Stakeholder Perspectives</div>
+      <div id="ethics-stakeholders"></div>
+    </div>
+    <div class="slider-group">
+      <label>Your Rating</label>
+      <input type="range" id="ethics-slider" min="1" max="10" value="5" oninput="ethicsSliderUpdate()">
+      <span class="slider-val" id="ethics-slider-val">5 / 10</span>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);">1 = Strongly oppose &nbsp;&nbsp; 10 = Strongly support</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="ethicsSubmitRating()">Submit Rating</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Ethics Summary &mdash; Radar Chart</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Rate all five scenarios to see the complete radar chart of positions.</p>
+    <div class="chart-wrap"><canvas id="ethics-radar" height="350"></canvas></div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ethics-rated">0</div><div class="stat-label">Rated</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ethics-avg">-</div><div class="stat-label">Avg Score</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ethics-highest">-</div><div class="stat-label">Most Supported</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="ethics-lowest">-</div><div class="stat-label">Least Supported</div></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+// ── Chart helpers ────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: DNA EXTRACTION
+// ══════════════════════════════════════════════════════════════════════════
+let extractState = {
+  step: 0,
+  maxSteps: 4,
+  animFrame: 0,
+  particles: [],
+  dnaStrands: [],
+  yield: 0
+};
+
+const extractSteps = [
+  { label: 'Step 1: Cells in buffer solution', btn: 'Add Detergent (Lyse Cells)', phase: 'Prep' },
+  { label: 'Step 2: Detergent breaks cell membranes', btn: 'Add Protease + Salt', phase: 'Lysis' },
+  { label: 'Step 3: Protease removes proteins', btn: 'Add Cold Ethanol', phase: 'Cleanup' },
+  { label: 'Step 4: DNA precipitates in ethanol layer', btn: 'Spool DNA', phase: 'Precipitate' },
+];
+
+function extractReset() {
+  extractState = { step: 0, maxSteps: 4, animFrame: 0, particles: [], dnaStrands: [], yield: 0 };
+  for (let i = 0; i < 4; i++) {
+    $('step-dot-' + i).className = i === 0 ? 'step-dot current' : 'step-dot';
+  }
+  $('extract-label').textContent = extractSteps[0].label;
+  $('extract-label').className = 'step-label active';
+  $('extract-btn').textContent = extractSteps[0].btn;
+  $('extract-btn').disabled = false;
+  $('extract-step-num').textContent = '1';
+  $('extract-phase').textContent = 'Prep';
+  $('extract-yield').textContent = '0';
+  $('extract-purity').textContent = '-';
+  drawExtraction();
+}
+
+function extractNext() {
+  if (extractState.step >= extractState.maxSteps) return;
+  // mark current done
+  $('step-dot-' + extractState.step).className = 'step-dot done';
+  extractState.step++;
+  if (extractState.step < extractState.maxSteps) {
+    $('step-dot-' + extractState.step).className = 'step-dot current';
+    $('extract-label').textContent = extractSteps[extractState.step].label;
+    $('extract-btn').textContent = extractSteps[extractState.step].btn;
+    $('extract-step-num').textContent = extractState.step + 1;
+    $('extract-phase').textContent = extractSteps[extractState.step].phase;
+  } else {
+    // completed
+    $('extract-label').textContent = 'Complete! DNA successfully extracted and spooled.';
+    $('extract-btn').textContent = 'Extraction Complete';
+    $('extract-btn').disabled = true;
+    $('extract-step-num').textContent = '4';
+    $('extract-phase').textContent = 'Done';
+    extractState.yield = (Math.random() * 20 + 30).toFixed(1);
+    $('extract-yield').textContent = extractState.yield;
+    $('extract-purity').textContent = (1.7 + Math.random() * 0.3).toFixed(2);
+  }
+  drawExtraction();
+}
+
+function drawExtraction() {
+  const ctx = getCtx('extract-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const step = extractState.step;
+  const beakerX = W * 0.25, beakerY = H * 0.15, beakerW = W * 0.5, beakerH = H * 0.7;
+
+  // Beaker outline
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(beakerX, beakerY);
+  ctx.lineTo(beakerX, beakerY + beakerH);
+  ctx.lineTo(beakerX + beakerW, beakerY + beakerH);
+  ctx.lineTo(beakerX + beakerW, beakerY);
+  ctx.stroke();
+
+  // Beaker rim
+  ctx.beginPath();
+  ctx.moveTo(beakerX - 10, beakerY);
+  ctx.lineTo(beakerX + beakerW + 10, beakerY);
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 4; ctx.stroke();
+
+  if (step === 0) {
+    // Buffer + cells
+    ctx.fillStyle = 'rgba(186, 230, 253, 0.6)';
+    ctx.fillRect(beakerX + 2, beakerY + beakerH * 0.3, beakerW - 4, beakerH * 0.7 - 2);
+
+    // Draw cells
+    for (let i = 0; i < 15; i++) {
+      const cx = beakerX + 20 + Math.random() * (beakerW - 40);
+      const cy = beakerY + beakerH * 0.4 + Math.random() * (beakerH * 0.5);
+      ctx.fillStyle = 'rgba(34, 197, 94, 0.5)';
+      ctx.beginPath(); ctx.ellipse(cx, cy, 12, 10, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = 'rgba(22, 163, 74, 0.8)'; ctx.lineWidth = 1.5; ctx.stroke();
+      // Nucleus
+      ctx.fillStyle = 'rgba(37, 99, 235, 0.6)';
+      ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
+    }
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Cells in Buffer', beakerX + beakerW/2, beakerY - 10);
+  }
+
+  else if (step === 1) {
+    // Lysis - membranes breaking, contents releasing
+    ctx.fillStyle = 'rgba(254, 215, 170, 0.5)';
+    ctx.fillRect(beakerX + 2, beakerY + beakerH * 0.25, beakerW - 4, beakerH * 0.75 - 2);
+
+    // Detergent bubbles
+    for (let i = 0; i < 20; i++) {
+      const bx = beakerX + 10 + Math.random() * (beakerW - 20);
+      const by = beakerY + beakerH * 0.25 + Math.random() * 30;
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      ctx.beginPath(); ctx.arc(bx, by, 3 + Math.random() * 4, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // Broken cell fragments
+    for (let i = 0; i < 12; i++) {
+      const cx = beakerX + 20 + Math.random() * (beakerW - 40);
+      const cy = beakerY + beakerH * 0.4 + Math.random() * (beakerH * 0.5);
+      // Membrane fragments
+      ctx.strokeStyle = 'rgba(34, 197, 94, 0.3)'; ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 8 + Math.random() * 6, Math.random() * Math.PI, Math.random() * Math.PI + Math.PI);
+      ctx.stroke();
+      // Released DNA tangles
+      ctx.strokeStyle = 'rgba(37, 99, 235, 0.5)'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cx - 5, cy - 3);
+      for (let j = 0; j < 6; j++) {
+        ctx.lineTo(cx - 5 + j * 2, cy - 3 + (j % 2 ? 4 : -4) * Math.random());
+      }
+      ctx.stroke();
+    }
+
+    // Proteins (small dots)
+    for (let i = 0; i < 30; i++) {
+      const px = beakerX + 10 + Math.random() * (beakerW - 20);
+      const py = beakerY + beakerH * 0.35 + Math.random() * (beakerH * 0.6);
+      ctx.fillStyle = 'rgba(217, 119, 6, 0.4)';
+      ctx.beginPath(); ctx.arc(px, py, 2, 0, Math.PI * 2); ctx.fill();
+    }
+
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Cell Lysis (Membranes Broken)', beakerX + beakerW/2, beakerY - 10);
+  }
+
+  else if (step === 2) {
+    // Protease/salt - proteins precipitating
+    // Clear lysate layer
+    ctx.fillStyle = 'rgba(186, 230, 253, 0.4)';
+    ctx.fillRect(beakerX + 2, beakerY + beakerH * 0.25, beakerW - 4, beakerH * 0.45);
+
+    // Protein pellet layer (bottom)
+    ctx.fillStyle = 'rgba(217, 119, 6, 0.3)';
+    ctx.fillRect(beakerX + 2, beakerY + beakerH * 0.7, beakerW - 4, beakerH * 0.3 - 2);
+
+    // DNA in clear layer (visible strands)
+    ctx.strokeStyle = 'rgba(37, 99, 235, 0.6)'; ctx.lineWidth = 1.5;
+    for (let i = 0; i < 8; i++) {
+      const sx = beakerX + 30 + Math.random() * (beakerW - 60);
+      const sy = beakerY + beakerH * 0.3 + Math.random() * (beakerH * 0.3);
+      ctx.beginPath(); ctx.moveTo(sx, sy);
+      for (let j = 0; j < 10; j++) {
+        ctx.lineTo(sx + j * 4, sy + Math.sin(j * 0.8) * 6);
+      }
+      ctx.stroke();
+    }
+
+    // Precipitated protein blobs at bottom
+    for (let i = 0; i < 15; i++) {
+      const px = beakerX + 15 + Math.random() * (beakerW - 30);
+      const py = beakerY + beakerH * 0.75 + Math.random() * (beakerH * 0.2);
+      ctx.fillStyle = 'rgba(217, 119, 6, 0.5)';
+      ctx.beginPath(); ctx.arc(px, py, 3 + Math.random() * 3, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // Layer labels
+    ctx.fillStyle = '#2563eb'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('DNA in solution', beakerX + beakerW + 14, beakerY + beakerH * 0.45);
+    ctx.fillStyle = '#d97706';
+    ctx.fillText('Protein pellet', beakerX + beakerW + 14, beakerY + beakerH * 0.82);
+
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Protein Removal (Protease + Salt)', beakerX + beakerW/2, beakerY - 10);
+  }
+
+  else if (step === 3) {
+    // Ethanol precipitation - two layers, DNA at interface
+    // Bottom aqueous layer
+    ctx.fillStyle = 'rgba(186, 230, 253, 0.4)';
+    ctx.fillRect(beakerX + 2, beakerY + beakerH * 0.55, beakerW - 4, beakerH * 0.45 - 2);
+
+    // Top ethanol layer
+    ctx.fillStyle = 'rgba(243, 232, 255, 0.5)';
+    ctx.fillRect(beakerX + 2, beakerY + beakerH * 0.15, beakerW - 4, beakerH * 0.4);
+
+    // Interface line
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.moveTo(beakerX + 2, beakerY + beakerH * 0.55);
+    ctx.lineTo(beakerX + beakerW - 2, beakerY + beakerH * 0.55);
+    ctx.stroke(); ctx.setLineDash([]);
+
+    // DNA precipitate at interface - white stringy mass
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    ctx.strokeStyle = 'rgba(200, 200, 220, 0.8)'; ctx.lineWidth = 2;
+    const interfaceY = beakerY + beakerH * 0.55;
+    for (let i = 0; i < 12; i++) {
+      const dx = beakerX + beakerW * 0.3 + Math.random() * (beakerW * 0.4);
+      const dy = interfaceY - 15 + Math.random() * 30;
+      ctx.beginPath();
+      ctx.moveTo(dx, dy);
+      for (let j = 0; j < 8; j++) {
+        ctx.lineTo(dx + (j - 4) * 3, dy + Math.sin(j) * 5 - j * 2);
+      }
+      ctx.stroke();
+    }
+    // Central DNA mass
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+    ctx.beginPath();
+    ctx.ellipse(beakerX + beakerW/2, interfaceY, 30, 15, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(180, 180, 200, 0.6)'; ctx.lineWidth = 1; ctx.stroke();
+
+    // Spooling rod
+    const rodX = beakerX + beakerW/2;
+    const rodTop = beakerY - 5;
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(rodX, interfaceY - 10); ctx.lineTo(rodX, rodTop); ctx.stroke();
+    // DNA spooling around rod
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)'; ctx.lineWidth = 2;
+    for (let i = 0; i < 6; i++) {
+      const ry = rodTop + 10 + i * 8;
+      ctx.beginPath();
+      ctx.ellipse(rodX, ry, 6, 3, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Layer labels
+    ctx.fillStyle = '#7c3aed'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Cold ethanol', beakerX + beakerW + 14, beakerY + beakerH * 0.35);
+    ctx.fillStyle = '#2563eb';
+    ctx.fillText('Aqueous layer', beakerX + beakerW + 14, beakerY + beakerH * 0.75);
+    ctx.fillStyle = '#374151';
+    ctx.fillText('DNA precipitate', beakerX + beakerW + 14, beakerY + beakerH * 0.55);
+
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('DNA Precipitation & Spooling', beakerX + beakerW/2, beakerY - 20);
+  }
+
+  else {
+    // Completed state
+    ctx.fillStyle = 'rgba(240, 253, 244, 0.5)'; ctx.fillRect(0, 0, W, H);
+
+    // DNA tube
+    const tubeX = W * 0.35, tubeW = W * 0.3, tubeH = H * 0.5;
+    const tubeY = H * 0.25;
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(tubeX, tubeY);
+    ctx.lineTo(tubeX, tubeY + tubeH);
+    ctx.quadraticCurveTo(tubeX, tubeY + tubeH + 15, tubeX + tubeW/2, tubeY + tubeH + 15);
+    ctx.quadraticCurveTo(tubeX + tubeW, tubeY + tubeH + 15, tubeX + tubeW, tubeY + tubeH);
+    ctx.lineTo(tubeX + tubeW, tubeY);
+    ctx.stroke();
+
+    // DNA pellet at bottom
+    ctx.fillStyle = 'rgba(37, 99, 235, 0.3)';
+    ctx.fillRect(tubeX + 2, tubeY + tubeH * 0.7, tubeW - 4, tubeH * 0.3);
+
+    // DNA pellet dot
+    ctx.fillStyle = 'rgba(37, 99, 235, 0.7)';
+    ctx.beginPath();
+    ctx.ellipse(tubeX + tubeW/2, tubeY + tubeH + 5, 10, 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Extraction Complete!', W/2, tubeY - 20);
+    ctx.fillStyle = '#374151'; ctx.font = '13px system-ui';
+    ctx.fillText('Yield: ' + extractState.yield + ' ug purified DNA', W/2, tubeY + tubeH + 45);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: GEL ELECTROPHORESIS
+// ══════════════════════════════════════════════════════════════════════════
+const gelLadder = [10000, 8000, 6000, 5000, 4000, 3000, 2000, 1500, 1000, 750, 500, 250];
+const gelSamples = {
+  'Sample A': [8500, 4200, 2100, 850],
+  'Sample B': [6000, 3500, 1800, 1200, 500],
+  'Unknown':  [5000, 3000, 1500, 750]
+};
+let gelState = {
+  lanes: [null, null, null, null, null],
+  runTime: 0,
+  running: false,
+  animId: null,
+  voltage: 2
+};
+
+function gelVoltageLabel() {
+  const v = parseInt($('gel-voltage').value);
+  gelState.voltage = v;
+  $('gel-voltage-val').textContent = ['Low', 'Medium', 'High'][v - 1];
+}
+
+function gelLoadLadder() {
+  gelState.lanes[0] = { name: 'Ladder', fragments: [...gelLadder] };
+  gelDraw();
+  gelUpdateStats();
+}
+
+function gelLoadSample(idx) {
+  const names = ['Sample A', 'Sample B', 'Unknown'];
+  const name = names[idx - 1];
+  gelState.lanes[idx] = { name, fragments: [...gelSamples[name]] };
+  gelDraw();
+  gelUpdateStats();
+}
+
+function gelReset() {
+  if (gelState.animId) cancelAnimationFrame(gelState.animId);
+  gelState = { lanes: [null, null, null, null, null], runTime: 0, running: false, animId: null, voltage: 2 };
+  $('gel-band-info').style.display = 'none';
+  gelDraw();
+  gelUpdateStats();
+}
+
+function gelUpdateStats() {
+  $('gel-time').textContent = gelState.runTime;
+  let loaded = 0, bands = 0;
+  gelState.lanes.forEach(l => {
+    if (l) { loaded++; if (gelState.runTime > 0) bands += l.fragments.length; }
+  });
+  $('gel-lanes-loaded').textContent = loaded;
+  $('gel-bands-visible').textContent = bands;
+}
+
+function sizeToMigration(size, time, voltage) {
+  // Smaller fragments migrate further (log relationship)
+  const maxSize = 12000;
+  const logMax = Math.log10(maxSize);
+  const logSize = Math.log10(Math.max(size, 50));
+  const normalizedPos = 1 - (logSize / logMax);
+  const speedFactor = voltage * 0.5;
+  return Math.min(normalizedPos * time * speedFactor * 0.08, 0.85);
+}
+
+function gelRun() {
+  if (gelState.running) return;
+  gelState.running = true;
+  const speed = gelState.voltage;
+  let frame = 0;
+  function animate() {
+    frame++;
+    gelState.runTime += speed;
+    if (gelState.runTime > 60) { gelState.runTime = 60; gelState.running = false; }
+    gelDraw();
+    gelUpdateStats();
+    if (gelState.running && frame < 120) {
+      gelState.animId = requestAnimationFrame(animate);
+    } else {
+      gelState.running = false;
+    }
+  }
+  animate();
+}
+
+function gelRunFull() {
+  if (gelState.animId) cancelAnimationFrame(gelState.animId);
+  gelState.runTime = 60;
+  gelState.running = false;
+  gelDraw();
+  gelUpdateStats();
+}
+
+function gelDraw() {
+  const ctx = getCtx('gel-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  // Gel background (dark)
+  const gelTop = 40, gelBottom = H - 20;
+  const gelLeft = 30, gelRight = W - 30;
+  const gelH = gelBottom - gelTop;
+  const gelW = gelRight - gelLeft;
+
+  ctx.fillStyle = '#0f172a';
+  ctx.beginPath();
+  ctx.roundRect(gelLeft, gelTop, gelW, gelH, 6);
+  ctx.fill();
+
+  // Negative electrode label (top)
+  ctx.fillStyle = '#9ca3af'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('(-) Cathode', gelLeft + gelW/2, gelTop - 6);
+  // Positive electrode label (bottom)
+  ctx.fillText('(+) Anode', gelLeft + gelW/2, gelBottom + 16);
+
+  const numLanes = 5;
+  const laneW = gelW / numLanes;
+
+  // Wells
+  gelState.lanes.forEach((lane, i) => {
+    const wx = gelLeft + laneW * i + laneW * 0.3;
+    const ww = laneW * 0.4;
+    // Well
+    ctx.fillStyle = lane ? '#1e3a5f' : '#1a2744';
+    ctx.fillRect(wx, gelTop + 8, ww, 8);
+    ctx.strokeStyle = '#334155'; ctx.lineWidth = 1;
+    ctx.strokeRect(wx, gelTop + 8, ww, 8);
+
+    // Lane label
+    ctx.fillStyle = '#64748b'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+    if (lane) {
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText(lane.name, wx + ww/2, gelTop + 30);
+    } else {
+      ctx.fillText('Empty', wx + ww/2, gelTop + 30);
+    }
+
+    // Bands
+    if (lane && gelState.runTime > 0) {
+      lane.fragments.forEach(size => {
+        const migration = sizeToMigration(size, gelState.runTime, gelState.voltage);
+        const bandY = gelTop + 40 + migration * (gelH - 60);
+        const bandH = Math.max(2, 6 - migration * 4);
+        // Band glow
+        const brightness = i === 0 ? 0.7 : 0.5 + Math.random() * 0.3;
+        ctx.fillStyle = `rgba(0, 255, 128, ${brightness})`;
+        ctx.shadowColor = 'rgba(0, 255, 128, 0.5)';
+        ctx.shadowBlur = 4;
+        ctx.fillRect(wx + 2, bandY, ww - 4, bandH);
+        ctx.shadowBlur = 0;
+
+        // Size label for ladder
+        if (i === 0 && gelState.runTime >= 30) {
+          ctx.fillStyle = '#64748b'; ctx.font = '9px system-ui'; ctx.textAlign = 'right';
+          ctx.fillText(size >= 1000 ? (size/1000) + 'kb' : size + 'bp', wx - 4, bandY + 4);
+        }
+      });
+    }
+  });
+
+  // Click handler for band size estimation
+  const canvas = $('gel-canvas');
+  canvas.onclick = function(e) {
+    if (gelState.runTime === 0) return;
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    const mx = (e.clientX - rect.left);
+    const my = (e.clientY - rect.top);
+
+    // Find clicked lane
+    const laneIdx = Math.floor((mx - gelLeft) / laneW);
+    if (laneIdx < 0 || laneIdx >= numLanes || !gelState.lanes[laneIdx]) return;
+
+    // Find nearest band
+    const lane = gelState.lanes[laneIdx];
+    let closest = null, closestDist = Infinity;
+    lane.fragments.forEach(size => {
+      const migration = sizeToMigration(size, gelState.runTime, gelState.voltage);
+      const bandY = gelTop + 40 + migration * (gelH - 60);
+      const dist = Math.abs(my - bandY);
+      if (dist < closestDist && dist < 20) {
+        closestDist = dist;
+        closest = size;
+      }
+    });
+
+    if (closest) {
+      const info = $('gel-band-info');
+      info.style.display = 'block';
+      info.innerHTML = `<div class="ar-title">Band Detected in ${lane.name}</div>
+        <p>Estimated size: <code>${closest.toLocaleString()} bp</code> (${(closest/1000).toFixed(1)} kb)</p>
+        <p>Migration distance: ${(sizeToMigration(closest, gelState.runTime, gelState.voltage) * 100).toFixed(1)}% of gel length</p>`;
+    }
+  };
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: RESTRICTION ENZYMES
+// ══════════════════════════════════════════════════════════════════════════
+const enzymes = {
+  EcoRI: { site: 'GAATTC', cut: 1, color: '#c41e3a' },
+  BamHI: { site: 'GGATCC', cut: 1, color: '#2563eb' },
+  HindIII: { site: 'AAGCTT', cut: 1, color: '#16a34a' }
+};
+let reState = {
+  sequence: '',
+  activeEnzymes: ['EcoRI'],
+  cutPositions: [],
+  fragments: []
+};
+
+function reGenerate(len) {
+  len = len || 500;
+  const bases = 'ATGC';
+  let seq = '';
+  for (let i = 0; i < len; i++) seq += bases[rand(0, 3)];
+  // Guarantee at least some cut sites
+  const allSites = ['GAATTC', 'GGATCC', 'AAGCTT'];
+  allSites.forEach(site => {
+    const count = rand(1, 3);
+    for (let c = 0; c < count; c++) {
+      const pos = rand(20, len - 20);
+      seq = seq.substring(0, pos) + site + seq.substring(pos + site.length);
+    }
+  });
+  $('re-sequence').value = seq.substring(0, len);
+  $('re-seq-len').textContent = $('re-sequence').value.length;
+}
+
+function reToggleEnzyme(name) {
+  const idx = reState.activeEnzymes.indexOf(name);
+  if (idx >= 0) {
+    if (reState.activeEnzymes.length > 1) reState.activeEnzymes.splice(idx, 1);
+  } else {
+    reState.activeEnzymes.push(name);
+  }
+  // Update button states
+  Object.keys(enzymes).forEach(e => {
+    const btn = $('re-btn-' + e);
+    if (reState.activeEnzymes.includes(e)) {
+      btn.className = 'btn btn-sm btn-primary re-enzyme-btn active';
+    } else {
+      btn.className = 'btn btn-sm btn-outline re-enzyme-btn';
+    }
+  });
+}
+
+function reCut() {
+  const seq = $('re-sequence').value.toUpperCase().replace(/[^ATGC]/g, '');
+  if (!seq || seq.length < 10) {
+    alert('Please enter or generate a DNA sequence first.');
+    return;
+  }
+  reState.sequence = seq;
+  $('re-seq-len').textContent = seq.length;
+
+  // Find all cut sites
+  reState.cutPositions = [];
+  reState.activeEnzymes.forEach(eName => {
+    const enz = enzymes[eName];
+    let idx = seq.indexOf(enz.site);
+    while (idx !== -1) {
+      reState.cutPositions.push({ pos: idx + enz.cut, enzyme: eName, siteStart: idx, siteEnd: idx + enz.site.length });
+      idx = seq.indexOf(enz.site, idx + 1);
+    }
+  });
+
+  // Sort by position
+  reState.cutPositions.sort((a, b) => a.pos - b.pos);
+
+  // Calculate fragments
+  reState.fragments = [];
+  let prev = 0;
+  reState.cutPositions.forEach(cp => {
+    if (cp.pos > prev) {
+      reState.fragments.push(cp.pos - prev);
+    }
+    prev = cp.pos;
+  });
+  if (prev < seq.length) reState.fragments.push(seq.length - prev);
+
+  // Sort fragments largest to smallest for display
+  const sortedFrags = [...reState.fragments].sort((a, b) => b - a);
+
+  // Update UI
+  $('re-cuts').textContent = reState.cutPositions.length;
+  $('re-fragments').textContent = reState.fragments.length;
+  $('re-largest').textContent = sortedFrags.length ? sortedFrags[0] : '-';
+  $('re-smallest').textContent = sortedFrags.length ? sortedFrags[sortedFrags.length - 1] : '-';
+
+  // Display annotated sequence
+  displayAnnotatedSequence();
+
+  // Fragment list
+  let html = '<div style="font-size:13px;margin-bottom:8px;"><strong>Fragments (sorted):</strong></div>';
+  html += '<div style="display:flex;flex-wrap:wrap;gap:6px;">';
+  sortedFrags.forEach((f, i) => {
+    html += `<span class="badge badge-blue" style="font-size:12px;">${f} bp</span>`;
+  });
+  html += '</div>';
+  $('re-fragment-list').innerHTML = html;
+
+  // Draw fragment chart
+  drawReChart(sortedFrags);
+}
+
+function displayAnnotatedSequence() {
+  const seq = reState.sequence;
+  const display = $('re-sequence-display');
+  display.style.display = 'block';
+
+  // Build set of cut site ranges
+  const siteRanges = new Set();
+  reState.cutPositions.forEach(cp => {
+    for (let i = cp.siteStart; i < cp.siteEnd; i++) siteRanges.add(i);
+  });
+
+  let html = '';
+  for (let i = 0; i < seq.length; i++) {
+    const base = seq[i];
+    const inSite = siteRanges.has(i);
+    if (inSite) {
+      html += `<span class="cut-site base-${base}">${base}</span>`;
+    } else {
+      html += `<span class="base-${base}">${base}</span>`;
+    }
+    // Add position markers every 50 bases
+    if ((i + 1) % 50 === 0) {
+      html += `<span style="color:#9ca3af;font-size:10px;"> ${i+1}</span>\n`;
+    }
+  }
+  display.innerHTML = html;
+}
+
+function drawReChart(fragments) {
+  if (!fragments || !fragments.length) return;
+  const ctx = getCtx('re-chart');
+  const colors = fragments.map((_, i) => {
+    const hues = ['#c41e3a', '#2563eb', '#16a34a', '#d97706', '#7c3aed', '#ec4899', '#14b8a6', '#f59e0b'];
+    return hues[i % hues.length];
+  });
+  drawBarChart(ctx, {
+    labels: fragments.map((f, i) => 'F' + (i+1)),
+    values: fragments,
+    colors,
+    maxVal: Math.max(...fragments) * 1.2
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: PCR AMPLIFICATION
+// ══════════════════════════════════════════════════════════════════════════
+let pcrState = {
+  cycle: 0,
+  targetCycles: 30,
+  phase: 'idle', // idle, denature, anneal, extend
+  temp: 25,
+  copies: 1,
+  history: [],
+  running: false,
+  animId: null,
+  phaseStep: 0
+};
+
+function pcrCycleLabel() {
+  pcrState.targetCycles = parseInt($('pcr-cycles-target').value);
+  $('pcr-cycles-val').textContent = pcrState.targetCycles;
+}
+
+function pcrReset() {
+  if (pcrState.animId) { clearTimeout(pcrState.animId); pcrState.animId = null; }
+  pcrState = { cycle: 0, targetCycles: parseInt($('pcr-cycles-target').value), phase: 'idle', temp: 25, copies: 1, history: [], running: false, animId: null, phaseStep: 0 };
+  $('pcr-start-btn').disabled = false;
+  pcrUpdateUI();
+  drawPCRCanvas();
+  drawPCRGrowth();
+}
+
+function pcrUpdateUI() {
+  $('pcr-cycle').textContent = pcrState.cycle;
+  const copies = pcrState.copies;
+  if (copies >= 1e9) $('pcr-copies').textContent = (copies / 1e9).toFixed(1) + 'B';
+  else if (copies >= 1e6) $('pcr-copies').textContent = (copies / 1e6).toFixed(1) + 'M';
+  else if (copies >= 1e3) $('pcr-copies').textContent = (copies / 1e3).toFixed(1) + 'K';
+  else $('pcr-copies').textContent = copies;
+  $('pcr-temp-stat').textContent = pcrState.temp;
+
+  const phases = { idle: 'Idle', denature: 'Denature', anneal: 'Anneal', extend: 'Extend', done: 'Complete' };
+  $('pcr-phase-stat').textContent = phases[pcrState.phase] || pcrState.phase;
+
+  // Temperature display
+  const td = $('pcr-temp-display');
+  td.textContent = pcrState.temp + '\u00B0C';
+  if (pcrState.temp >= 90) td.className = 'temp-display hot';
+  else if (pcrState.temp >= 60) td.className = 'temp-display warm';
+  else td.className = 'temp-display cool';
+
+  // Phase label
+  const descs = {
+    idle: ['Ready \u2014 Press Start', 'Load template DNA and primers to begin'],
+    denature: ['Denaturing at 95\u00B0C', 'Double-stranded DNA separates into single strands'],
+    anneal: ['Annealing Primers at 55\u00B0C', 'Short primers bind to complementary sequences'],
+    extend: ['Extension at 72\u00B0C', 'Taq polymerase synthesizes new DNA strands'],
+    done: ['PCR Complete!', pcrState.copies.toLocaleString() + ' copies produced from ' + pcrState.cycle + ' cycles']
+  };
+  const d = descs[pcrState.phase] || descs.idle;
+  $('pcr-phase-label').textContent = d[0];
+  $('pcr-phase-desc').textContent = d[1];
+}
+
+function pcrStart() {
+  if (pcrState.running) return;
+  pcrState.running = true;
+  $('pcr-start-btn').disabled = true;
+  pcrRunCycle();
+}
+
+function pcrRunCycle() {
+  if (pcrState.cycle >= pcrState.targetCycles) {
+    pcrState.phase = 'done';
+    pcrState.running = false;
+    pcrUpdateUI();
+    drawPCRCanvas();
+    return;
+  }
+
+  // Denature
+  pcrState.phase = 'denature';
+  pcrState.temp = 95;
+  pcrUpdateUI();
+  drawPCRCanvas();
+
+  pcrState.animId = setTimeout(() => {
+    // Anneal
+    pcrState.phase = 'anneal';
+    pcrState.temp = 55;
+    pcrUpdateUI();
+    drawPCRCanvas();
+
+    pcrState.animId = setTimeout(() => {
+      // Extend
+      pcrState.phase = 'extend';
+      pcrState.temp = 72;
+      pcrUpdateUI();
+      drawPCRCanvas();
+
+      pcrState.animId = setTimeout(() => {
+        // Complete cycle
+        pcrState.cycle++;
+        pcrState.copies = Math.pow(2, pcrState.cycle);
+        pcrState.history.push(pcrState.copies);
+        pcrUpdateUI();
+        drawPCRGrowth();
+
+        if (pcrState.cycle < pcrState.targetCycles) {
+          pcrRunCycle();
+        } else {
+          pcrState.phase = 'done';
+          pcrState.temp = 25;
+          pcrState.running = false;
+          pcrUpdateUI();
+          drawPCRCanvas();
+        }
+      }, 150);
+    }, 150);
+  }, 150);
+}
+
+function pcrSkipToEnd() {
+  if (pcrState.animId) { clearTimeout(pcrState.animId); pcrState.animId = null; }
+  const target = parseInt($('pcr-cycles-target').value);
+  pcrState.history = [];
+  for (let i = 1; i <= target; i++) {
+    pcrState.history.push(Math.pow(2, i));
+  }
+  pcrState.cycle = target;
+  pcrState.copies = Math.pow(2, target);
+  pcrState.phase = 'done';
+  pcrState.temp = 25;
+  pcrState.running = false;
+  $('pcr-start-btn').disabled = false;
+  pcrUpdateUI();
+  drawPCRCanvas();
+  drawPCRGrowth();
+}
+
+function drawPCRCanvas() {
+  const ctx = getCtx('pcr-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const phase = pcrState.phase;
+  const cx = W / 2, cy = H / 2;
+
+  if (phase === 'idle') {
+    // Draw double-stranded DNA
+    drawDNAHelix(ctx, cx - 80, cy, 160, false);
+    ctx.fillStyle = '#374151'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Template DNA (double-stranded)', cx, H - 15);
+  } else if (phase === 'denature') {
+    // Separated strands
+    drawDNAHelix(ctx, cx - 80, cy - 25, 160, true);
+    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('95\u00B0C \u2014 Strands Separating', cx, H - 15);
+  } else if (phase === 'anneal') {
+    // Strands with primers
+    drawDNAHelix(ctx, cx - 80, cy - 25, 160, true);
+    // Primers
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 10px system-ui';
+    ctx.fillRect(cx - 80, cy - 30, 30, 6);
+    ctx.fillRect(cx + 50, cy + 24, 30, 6);
+    ctx.fillStyle = '#16a34a'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Primer', cx - 80, cy - 36);
+    ctx.fillText('Primer', cx + 50, cy + 40);
+    ctx.fillStyle = '#d97706'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('55\u00B0C \u2014 Primers Annealing', cx, H - 15);
+  } else if (phase === 'extend') {
+    // New strands being synthesized
+    drawDNAHelix(ctx, cx - 80, cy - 25, 160, true);
+    // Extension in progress
+    const extLen = 100;
+    ctx.fillStyle = 'rgba(37, 99, 235, 0.4)';
+    ctx.fillRect(cx - 80, cy - 30, extLen, 6);
+    ctx.fillRect(cx + 80 - extLen, cy + 24, extLen, 6);
+    // Taq polymerase
+    ctx.fillStyle = '#7c3aed';
+    ctx.beginPath(); ctx.arc(cx - 80 + extLen, cy - 27, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx + 80 - extLen, cy + 27, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#7c3aed'; ctx.font = '9px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText('Taq', cx - 80 + extLen + 8, cy - 24);
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('72\u00B0C \u2014 Taq Extending', cx, H - 15);
+  } else if (phase === 'done') {
+    // Multiple copies
+    const numShow = Math.min(8, pcrState.cycle);
+    for (let i = 0; i < numShow; i++) {
+      const offsetX = (i - numShow/2) * 25 + 12;
+      const offsetY = (i % 2) * 15 - 7;
+      ctx.globalAlpha = 0.3 + (i / numShow) * 0.7;
+      drawDNAHelix(ctx, cx - 40 + offsetX, cy + offsetY, 80, false);
+    }
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#16a34a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('PCR Complete: ' + formatNumber(pcrState.copies) + ' copies', cx, H - 15);
+  }
+}
+
+function drawDNAHelix(ctx, x, y, width, separated) {
+  const amp = separated ? 20 : 8;
+  const sep = separated ? 15 : 0;
+
+  // Strand 1
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let i = 0; i <= width; i += 2) {
+    const px = x + i;
+    const py = y + Math.sin(i * 0.08) * amp - sep;
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Strand 2
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let i = 0; i <= width; i += 2) {
+    const px = x + i;
+    const py = y - Math.sin(i * 0.08) * amp + sep;
+    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Base pair rungs (only when not separated)
+  if (!separated) {
+    ctx.strokeStyle = 'rgba(100, 116, 139, 0.3)'; ctx.lineWidth = 1;
+    for (let i = 10; i <= width - 10; i += 12) {
+      const py1 = y + Math.sin(i * 0.08) * amp;
+      const py2 = y - Math.sin(i * 0.08) * amp;
+      ctx.beginPath(); ctx.moveTo(x + i, py1); ctx.lineTo(x + i, py2); ctx.stroke();
+    }
+  }
+}
+
+function formatNumber(n) {
+  if (n >= 1e9) return (n / 1e9).toFixed(2) + ' billion';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + ' million';
+  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+  return n.toString();
+}
+
+function drawPCRGrowth() {
+  if (!pcrState.history.length) {
+    const ctx = getCtx('pcr-growth-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Start PCR to see exponential growth', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+
+  const ctx = getCtx('pcr-growth-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 60, bottom: 40, left: 60 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const data = pcrState.history;
+  const maxCopies = data[data.length - 1];
+  const logMax = Math.log10(maxCopies);
+
+  // Grid - log scale
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  const logSteps = Math.ceil(logMax);
+  for (let i = 0; i <= logSteps; i++) {
+    const y = pad.top + plotH * (1 - i / logSteps);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    const val = Math.pow(10, i);
+    ctx.fillText(val >= 1e9 ? (val/1e9)+'B' : val >= 1e6 ? (val/1e6)+'M' : val >= 1e3 ? (val/1e3)+'K' : val, pad.left - 6, y + 4);
+  }
+
+  // Log scale line
+  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  data.forEach((copies, i) => {
+    const x = pad.left + (i / Math.max(data.length - 1, 1)) * plotW;
+    const logVal = Math.log10(copies);
+    const y = pad.top + plotH * (1 - logVal / logSteps);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Dots
+  data.forEach((copies, i) => {
+    const x = pad.left + (i / Math.max(data.length - 1, 1)) * plotW;
+    const logVal = Math.log10(copies);
+    const y = pad.top + plotH * (1 - logVal / logSteps);
+    ctx.fillStyle = '#2563eb'; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fill();
+  });
+
+  // Linear scale line (small, accent)
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  data.forEach((copies, i) => {
+    const x = pad.left + (i / Math.max(data.length - 1, 1)) * plotW;
+    const y = pad.top + plotH * (1 - copies / maxCopies);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Cycle Number', pad.left + plotW/2, H - 6);
+
+  // Cycle labels
+  const step = Math.max(1, Math.floor(data.length / 10));
+  for (let i = 0; i < data.length; i += step) {
+    const x = pad.left + (i / Math.max(data.length - 1, 1)) * plotW;
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui';
+    ctx.fillText(i + 1, x, H - pad.bottom + 14);
+  }
+
+  // Legend
+  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left, 8, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Linear scale', pad.left + 18, 13);
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left + 100, 8, 12, 3);
+  ctx.fillStyle = '#374151'; ctx.fillText('Log scale (2^n)', pad.left + 118, 13);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: GENOMIC DATA EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+const genomeGenes = [
+  { start: 20, end: 120, name: 'CFTR', color: '#2563eb', desc: 'Cystic Fibrosis Transmembrane Conductance Regulator', fn: 'Chloride ion channel in epithelial cells', condition: 'Cystic fibrosis (when mutated)' },
+  { start: 150, end: 220, name: 'MET', color: '#16a34a', desc: 'MET Proto-Oncogene', fn: 'Receptor tyrosine kinase for cell growth signaling', condition: 'Associated with various cancers when overexpressed' },
+  { start: 260, end: 350, name: 'CAV1', color: '#d97706', desc: 'Caveolin-1', fn: 'Scaffolding protein in lipid rafts', condition: 'Linked to breast cancer susceptibility' },
+  { start: 400, end: 470, name: 'LEP', color: '#7c3aed', desc: 'Leptin', fn: 'Hormone regulating energy balance and appetite', condition: 'Congenital leptin deficiency (obesity)' },
+  { start: 520, end: 600, name: 'FOXP2', color: '#c41e3a', desc: 'Forkhead Box P2', fn: 'Transcription factor for speech and language development', condition: 'Speech-language disorder' },
+  { start: 640, end: 720, name: 'SHH', color: '#ec4899', desc: 'Sonic Hedgehog', fn: 'Signaling molecule for embryonic patterning', condition: 'Holoprosencephaly when disrupted' },
+  { start: 770, end: 850, name: 'BRAF', color: '#14b8a6', desc: 'B-Raf Proto-Oncogene', fn: 'Serine/threonine protein kinase in MAPK pathway', condition: 'Melanoma, colorectal cancer' },
+  { start: 890, end: 960, name: 'EGFR', color: '#f59e0b', desc: 'Epidermal Growth Factor Receptor', fn: 'Receptor for cell proliferation signaling', condition: 'Non-small cell lung cancer' }
+];
+
+const genomeSNPs = [];
+for (let i = 0; i < 40; i++) {
+  genomeSNPs.push({
+    pos: rand(10, 990),
+    id: 'rs' + rand(100000, 999999),
+    freq: (Math.random() * 0.5).toFixed(3)
+  });
+}
+genomeSNPs.sort((a, b) => a.pos - b.pos);
+
+let genomeIndividuals = { a: [], b: [] };
+
+function generateIndividualSNPs() {
+  genomeIndividuals.a = genomeSNPs.filter(() => Math.random() < 0.4).map(s => s.id);
+  genomeIndividuals.b = genomeSNPs.filter(() => Math.random() < 0.4).map(s => s.id);
+}
+generateIndividualSNPs();
+
+function genomeScroll() {
+  const pos = parseInt($('genome-pos').value);
+  $('genome-pos-val').textContent = pos + ' kb';
+  drawGenomeBrowser();
+}
+
+function drawGenomeBrowser() {
+  const ctx = getCtx('genome-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const offset = parseInt($('genome-pos').value);
+  const viewWidth = 300; // kb visible
+  const pad = { top: 30, right: 20, bottom: 50, left: 20 };
+  const plotW = W - pad.left - pad.right;
+  const trackH = 30;
+
+  // Title / coordinates
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Chr7: ' + offset + ' kb - ' + (offset + viewWidth) + ' kb', pad.left, pad.top - 10);
+
+  // Coordinate ruler
+  const rulerY = pad.top;
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.left, rulerY); ctx.lineTo(W - pad.right, rulerY); ctx.stroke();
+  for (let kb = 0; kb <= viewWidth; kb += 25) {
+    const x = pad.left + (kb / viewWidth) * plotW;
+    ctx.beginPath(); ctx.moveTo(x, rulerY); ctx.lineTo(x, rulerY + 6); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText((offset + kb) + 'kb', x, rulerY + 16);
+  }
+
+  // Gene track
+  const geneTrackY = pad.top + 30;
+  ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Genes', pad.left, geneTrackY - 4);
+
+  genomeGenes.forEach(gene => {
+    const gStart = gene.start - offset;
+    const gEnd = gene.end - offset;
+    if (gEnd < 0 || gStart > viewWidth) return;
+    const x1 = pad.left + Math.max(0, gStart / viewWidth) * plotW;
+    const x2 = pad.left + Math.min(1, gEnd / viewWidth) * plotW;
+    const w = x2 - x1;
+    if (w < 2) return;
+
+    // Gene block
+    ctx.fillStyle = gene.color;
+    ctx.beginPath();
+    ctx.roundRect(x1, geneTrackY, w, trackH, 4);
+    ctx.fill();
+
+    // Gene name
+    if (w > 30) {
+      ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(gene.name, x1 + w/2, geneTrackY + trackH/2 + 4);
+    }
+
+    // Direction arrow
+    ctx.fillStyle = gene.color;
+    ctx.beginPath();
+    ctx.moveTo(x2, geneTrackY + trackH/2);
+    ctx.lineTo(x2 + 8, geneTrackY + trackH/2);
+    ctx.lineTo(x2 + 5, geneTrackY + trackH/2 - 4);
+    ctx.moveTo(x2 + 8, geneTrackY + trackH/2);
+    ctx.lineTo(x2 + 5, geneTrackY + trackH/2 + 4);
+    ctx.strokeStyle = gene.color; ctx.lineWidth = 1.5; ctx.stroke();
+  });
+
+  // SNP track
+  const snpTrackY = geneTrackY + trackH + 25;
+  ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('SNPs', pad.left, snpTrackY - 4);
+
+  // SNP line
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad.left, snpTrackY + 10); ctx.lineTo(W - pad.right, snpTrackY + 10); ctx.stroke();
+
+  genomeSNPs.forEach(snp => {
+    const sPos = snp.pos - offset;
+    if (sPos < 0 || sPos > viewWidth) return;
+    const x = pad.left + (sPos / viewWidth) * plotW;
+
+    // Triangle marker
+    ctx.fillStyle = '#c41e3a';
+    ctx.beginPath();
+    ctx.moveTo(x, snpTrackY + 4);
+    ctx.lineTo(x - 4, snpTrackY + 12);
+    ctx.lineTo(x + 4, snpTrackY + 12);
+    ctx.closePath(); ctx.fill();
+  });
+
+  // SNP density track
+  const densityY = snpTrackY + 25;
+  ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Density', pad.left, densityY - 4);
+
+  // Bin SNPs
+  const binSize = 30;
+  const bins = Math.ceil(viewWidth / binSize);
+  let maxBin = 0;
+  const binCounts = Array(bins).fill(0);
+  genomeSNPs.forEach(snp => {
+    const sPos = snp.pos - offset;
+    if (sPos < 0 || sPos > viewWidth) return;
+    const bi = Math.floor(sPos / binSize);
+    if (bi >= 0 && bi < bins) {
+      binCounts[bi]++;
+      if (binCounts[bi] > maxBin) maxBin = binCounts[bi];
+    }
+  });
+
+  if (maxBin > 0) {
+    binCounts.forEach((count, i) => {
+      const x = pad.left + (i * binSize / viewWidth) * plotW;
+      const w = (binSize / viewWidth) * plotW;
+      const h = (count / maxBin) * 30;
+      ctx.fillStyle = 'rgba(196, 30, 58, 0.3)';
+      ctx.fillRect(x, densityY + 30 - h, w - 1, h);
+    });
+  }
+
+  // Click handler
+  const canvas = $('genome-canvas');
+  canvas.onclick = function(e) {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+
+    // Check gene clicks
+    genomeGenes.forEach(gene => {
+      const gStart = gene.start - offset;
+      const gEnd = gene.end - offset;
+      if (gEnd < 0 || gStart > viewWidth) return;
+      const x1 = pad.left + Math.max(0, gStart / viewWidth) * plotW;
+      const x2 = pad.left + Math.min(1, gEnd / viewWidth) * plotW;
+      if (mx >= x1 && mx <= x2 && my >= geneTrackY && my <= geneTrackY + trackH) {
+        showGeneInfo(gene);
+      }
+    });
+  };
+}
+
+function showGeneInfo(gene) {
+  const panel = $('genome-gene-info');
+  panel.style.display = 'block';
+  panel.style.borderLeftColor = gene.color;
+  panel.innerHTML = `
+    <div class="gi-title" style="color:${gene.color}">${gene.name}</div>
+    <p style="margin-bottom:8px;">${gene.desc}</p>
+    <p><strong>Function:</strong> ${gene.fn}</p>
+    <p><strong>Associated condition:</strong> ${gene.condition}</p>
+    <p><strong>Position:</strong> <code>${gene.start} kb - ${gene.end} kb</code> (${gene.end - gene.start} kb)</p>
+  `;
+}
+
+function genomeNewIndividuals() {
+  generateIndividualSNPs();
+  genomeCompare();
+}
+
+function genomeCompare() {
+  const ctx = getCtx('genome-compare-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 20, right: 20, bottom: 20, left: 70 };
+  const plotW = W - pad.left - pad.right;
+  const rowH = 30;
+
+  // Individual A
+  ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('Ind. A', pad.left - 8, pad.top + 20);
+  ctx.fillStyle = '#e5e7eb';
+  ctx.fillRect(pad.left, pad.top + 5, plotW, rowH);
+
+  // Individual B
+  ctx.fillText('Ind. B', pad.left - 8, pad.top + rowH + 40);
+  ctx.fillStyle = '#e5e7eb';
+  ctx.fillRect(pad.left, pad.top + rowH + 25, plotW, rowH);
+
+  // Plot SNPs for each
+  const setA = new Set(genomeIndividuals.a);
+  const setB = new Set(genomeIndividuals.b);
+
+  let shared = 0, uniqA = 0, uniqB = 0;
+
+  genomeSNPs.forEach(snp => {
+    const x = pad.left + (snp.pos / 1000) * plotW;
+    const hasA = setA.has(snp.id);
+    const hasB = setB.has(snp.id);
+
+    if (hasA && hasB) {
+      shared++;
+      ctx.fillStyle = '#16a34a';
+    } else if (hasA) {
+      uniqA++;
+      ctx.fillStyle = '#2563eb';
+    } else if (hasB) {
+      uniqB++;
+      ctx.fillStyle = '#d97706';
+    }
+
+    if (hasA) {
+      ctx.beginPath(); ctx.arc(x, pad.top + 20, 4, 0, Math.PI * 2); ctx.fill();
+    }
+    if (hasB) {
+      ctx.fillStyle = (hasA && hasB) ? '#16a34a' : '#d97706';
+      ctx.beginPath(); ctx.arc(x, pad.top + rowH + 40, 4, 0, Math.PI * 2); ctx.fill();
+    }
+  });
+
+  // Legend
+  const legY = H - 10;
+  ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left, legY - 8, 10, 10);
+  ctx.fillStyle = '#374151'; ctx.fillText('Shared', pad.left + 14, legY);
+  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left + 70, legY - 8, 10, 10);
+  ctx.fillStyle = '#374151'; ctx.fillText('Unique A', pad.left + 84, legY);
+  ctx.fillStyle = '#d97706'; ctx.fillRect(pad.left + 155, legY - 8, 10, 10);
+  ctx.fillStyle = '#374151'; ctx.fillText('Unique B', pad.left + 169, legY);
+
+  // Update stats
+  $('genome-total-snps').textContent = genomeSNPs.length;
+  $('genome-shared').textContent = shared;
+  $('genome-unique-a').textContent = uniqA;
+  $('genome-unique-b').textContent = uniqB;
+
+  drawGenomeFreqChart();
+}
+
+function drawGenomeFreqChart() {
+  const ctx = getCtx('genome-freq-chart');
+  const freqs = genomeSNPs.map(s => parseFloat(s.freq));
+  // Bin frequencies
+  const bins = 10;
+  const binCounts = Array(bins).fill(0);
+  freqs.forEach(f => {
+    const bi = Math.min(Math.floor(f * bins / 0.5), bins - 1);
+    binCounts[bi]++;
+  });
+
+  const labels = [];
+  for (let i = 0; i < bins; i++) {
+    labels.push((i * 5) + '-' + ((i + 1) * 5) + '%');
+  }
+
+  const colors = binCounts.map((_, i) => {
+    const t = i / (bins - 1);
+    return `hsl(${210 + t * 150}, 70%, 50%)`;
+  });
+
+  drawBarChart(ctx, {
+    labels,
+    values: binCounts,
+    colors,
+    maxVal: Math.max(...binCounts) * 1.3
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: BIOTECH ETHICS
+// ══════════════════════════════════════════════════════════════════════════
+const ethicsScenarios = [
+  {
+    id: 'gmo', title: 'GMO Crops', icon: 'Crops',
+    desc: 'Genetically modified organisms engineered for pest resistance, drought tolerance, or enhanced nutrition (e.g., Golden Rice with vitamin A).',
+    benefits: ['Increased crop yields and food security', 'Reduced pesticide use', 'Enhanced nutritional content', 'Climate-resilient agriculture'],
+    risks: ['Unknown long-term ecological effects', 'Corporate control of food supply', 'Gene flow to wild relatives', 'Loss of crop biodiversity'],
+    stakeholders: ['Farmers', 'Consumers', 'Biotech Companies', 'Environmental Groups', 'Developing Nations']
+  },
+  {
+    id: 'gene-therapy', title: 'Gene Therapy', icon: 'Therapy',
+    desc: 'Introducing functional genes into patient cells to treat genetic disorders such as sickle cell disease, hemophilia, or inherited blindness.',
+    benefits: ['Potential cure for genetic diseases', 'One-time treatment vs. lifelong medication', 'Improved quality of life', 'Reduced healthcare costs long-term'],
+    risks: ['Off-target effects and insertional mutagenesis', 'Extremely high costs (millions per treatment)', 'Immune reactions to viral vectors', 'Limited to certain cell types currently'],
+    stakeholders: ['Patients & Families', 'Healthcare Providers', 'Insurance Companies', 'Pharmaceutical Industry', 'Regulatory Agencies']
+  },
+  {
+    id: 'genetic-testing', title: 'Genetic Testing', icon: 'Testing',
+    desc: 'Direct-to-consumer DNA testing revealing ancestry, carrier status, disease risk, and pharmacogenomics (how you respond to drugs).',
+    benefits: ['Early disease detection and prevention', 'Informed reproductive decisions', 'Personalized medicine approaches', 'Connection to ancestral heritage'],
+    risks: ['Privacy and data security concerns', 'Genetic discrimination (insurance, employment)', 'Psychological impact of results', 'Misinterpretation of probabilistic data'],
+    stakeholders: ['Individuals', 'Genetic Counselors', 'Employers', 'Insurance Companies', 'Law Enforcement']
+  },
+  {
+    id: 'cloning', title: 'Cloning', icon: 'Clone',
+    desc: 'Somatic cell nuclear transfer to create genetically identical organisms. Includes therapeutic cloning (stem cells) and reproductive cloning.',
+    benefits: ['Therapeutic stem cells for regenerative medicine', 'Preservation of endangered species', 'Agricultural applications (superior livestock)', 'Research model systems'],
+    risks: ['Low success rate and animal suffering', 'Ethical concerns about human dignity', 'Reduced genetic diversity', 'Potential for exploitation'],
+    stakeholders: ['Scientists', 'Religious Organizations', 'Animal Welfare Groups', 'Patients', 'Ethicists']
+  },
+  {
+    id: 'crispr', title: 'CRISPR Gene Editing', icon: 'CRISPR',
+    desc: 'CRISPR-Cas9 enables precise, targeted editing of any genome. Applications range from disease correction to enhancement and germline editing.',
+    benefits: ['Precise correction of disease-causing mutations', 'Faster and cheaper than previous methods', 'Potential to eliminate genetic diseases', 'Agricultural and environmental applications'],
+    risks: ['Off-target edits with unknown consequences', 'Germline changes affect future generations', 'Designer baby and enhancement concerns', 'Equity of access globally'],
+    stakeholders: ['Research Scientists', 'Bioethicists', 'Government Regulators', 'Future Generations', 'Disability Rights Advocates']
+  }
+];
+
+let ethicsRatings = {};
+let ethicsActiveScenario = null;
+
+function ethicsInit() {
+  const container = $('ethics-cards');
+  container.innerHTML = '';
+  ethicsScenarios.forEach((s, i) => {
+    const card = document.createElement('div');
+    card.className = 'ethics-card';
+    card.id = 'ethics-card-' + s.id;
+    card.onclick = () => ethicsSelect(s.id);
+    card.innerHTML = `
+      <h4>${s.title}</h4>
+      <p>${s.desc.substring(0, 80)}...</p>
+      ${ethicsRatings[s.id] !== undefined ? `<span class="badge badge-green" style="margin-top:8px;">Rated: ${ethicsRatings[s.id]}/10</span>` : ''}
+    `;
+    container.appendChild(card);
+  });
+}
+
+function ethicsSelect(id) {
+  const scenario = ethicsScenarios.find(s => s.id === id);
+  if (!scenario) return;
+  ethicsActiveScenario = id;
+
+  // Highlight card
+  document.querySelectorAll('.ethics-card').forEach(c => c.classList.remove('active'));
+  $('ethics-card-' + id).classList.add('active');
+
+  // Show detail panel
+  $('ethics-detail-card').style.display = 'block';
+  $('ethics-detail-title').textContent = scenario.title;
+  $('ethics-detail-desc').textContent = scenario.desc;
+
+  let benefitsHtml = '';
+  scenario.benefits.forEach(b => benefitsHtml += `<li>${b}</li>`);
+  $('ethics-benefits').innerHTML = benefitsHtml;
+
+  let risksHtml = '';
+  scenario.risks.forEach(r => risksHtml += `<li>${r}</li>`);
+  $('ethics-risks').innerHTML = risksHtml;
+
+  let stakeholdersHtml = '';
+  scenario.stakeholders.forEach(s => stakeholdersHtml += `<span class="stakeholder-tag">${s}</span>`);
+  $('ethics-stakeholders').innerHTML = stakeholdersHtml;
+
+  // Set slider to existing rating if any
+  if (ethicsRatings[id] !== undefined) {
+    $('ethics-slider').value = ethicsRatings[id];
+    $('ethics-slider-val').textContent = ethicsRatings[id] + ' / 10';
+  } else {
+    $('ethics-slider').value = 5;
+    $('ethics-slider-val').textContent = '5 / 10';
+  }
+}
+
+function ethicsSliderUpdate() {
+  $('ethics-slider-val').textContent = $('ethics-slider').value + ' / 10';
+}
+
+function ethicsSubmitRating() {
+  if (!ethicsActiveScenario) return;
+  const rating = parseInt($('ethics-slider').value);
+  ethicsRatings[ethicsActiveScenario] = rating;
+
+  // Refresh cards to show rating badges
+  ethicsInit();
+  ethicsSelect(ethicsActiveScenario);
+
+  // Update stats
+  ethicsUpdateStats();
+  drawEthicsRadar();
+}
+
+function ethicsUpdateStats() {
+  const rated = Object.keys(ethicsRatings).length;
+  $('ethics-rated').textContent = rated + '/5';
+
+  if (rated > 0) {
+    const vals = Object.values(ethicsRatings);
+    const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+    $('ethics-avg').textContent = avg.toFixed(1);
+
+    let maxId = null, minId = null, maxV = 0, minV = 11;
+    Object.entries(ethicsRatings).forEach(([id, v]) => {
+      if (v > maxV) { maxV = v; maxId = id; }
+      if (v < minV) { minV = v; minId = id; }
+    });
+    const maxScenario = ethicsScenarios.find(s => s.id === maxId);
+    const minScenario = ethicsScenarios.find(s => s.id === minId);
+    $('ethics-highest').textContent = maxScenario ? maxScenario.title.split(' ')[0] : '-';
+    $('ethics-lowest').textContent = minScenario ? minScenario.title.split(' ')[0] : '-';
+  }
+}
+
+function drawEthicsRadar() {
+  const ctx = getCtx('ethics-radar');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const cx = W / 2, cy = H / 2;
+  const maxR = Math.min(W, H) / 2 - 50;
+  const n = ethicsScenarios.length;
+  const angleStep = (Math.PI * 2) / n;
+
+  // Grid rings
+  for (let ring = 2; ring <= 10; ring += 2) {
+    const r = (ring / 10) * maxR;
+    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const angle = -Math.PI / 2 + i * angleStep;
+      const px = cx + Math.cos(angle) * r;
+      const py = cy + Math.sin(angle) * r;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.closePath(); ctx.stroke();
+    // Ring label
+    ctx.fillStyle = '#9ca3af'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(ring, cx + 4, cy - r + 4);
+  }
+
+  // Axis lines and labels
+  ethicsScenarios.forEach((s, i) => {
+    const angle = -Math.PI / 2 + i * angleStep;
+    const lx = cx + Math.cos(angle) * maxR;
+    const ly = cy + Math.sin(angle) * maxR;
+
+    ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(lx, ly); ctx.stroke();
+
+    // Label
+    const labelR = maxR + 25;
+    const labelX = cx + Math.cos(angle) * labelR;
+    const labelY = cy + Math.sin(angle) * labelR;
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(s.title, labelX, labelY + 4);
+  });
+
+  // Data polygon
+  const hasRatings = ethicsScenarios.some(s => ethicsRatings[s.id] !== undefined);
+  if (hasRatings) {
+    ctx.fillStyle = 'rgba(196, 30, 58, 0.15)';
+    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ethicsScenarios.forEach((s, i) => {
+      const val = ethicsRatings[s.id] || 0;
+      const r = (val / 10) * maxR;
+      const angle = -Math.PI / 2 + i * angleStep;
+      const px = cx + Math.cos(angle) * r;
+      const py = cy + Math.sin(angle) * r;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    });
+    ctx.closePath();
+    ctx.fill(); ctx.stroke();
+
+    // Data points
+    ethicsScenarios.forEach((s, i) => {
+      const val = ethicsRatings[s.id];
+      if (val === undefined) return;
+      const r = (val / 10) * maxR;
+      const angle = -Math.PI / 2 + i * angleStep;
+      const px = cx + Math.cos(angle) * r;
+      const py = cy + Math.sin(angle) * r;
+      ctx.fillStyle = '#c41e3a';
+      ctx.beginPath(); ctx.arc(px, py, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI * 2); ctx.fill();
+      // Value label
+      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(val, px, py - 10);
+    });
+  } else {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Rate scenarios to build the radar chart', cx, cy);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL TRACKING
+// ══════════════════════════════════════════════════════════════════════════
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+const sections = ['hero', 'part1', 'part2', 'part3', 'part4', 'part5', 'part6'];
+
+window.addEventListener('scroll', () => {
+  let current = 'hero';
+  sections.forEach(id => {
+    const el = $(id);
+    if (el && el.getBoundingClientRect().top <= 100) current = id;
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+
+// ══════════════════════════════════════════════════════════════════════════
+// INITIALIZATION
+// ══════════════════════════════════════════════════════════════════════════
+drawExtraction();
+gelDraw();
+reGenerate();
+pcrUpdateUI();
+drawPCRCanvas();
+drawPCRGrowth();
+drawGenomeBrowser();
+ethicsInit();
+drawEthicsRadar();
+</script>
+</body>
+</html>

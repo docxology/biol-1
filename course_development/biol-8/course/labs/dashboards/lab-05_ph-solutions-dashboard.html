@@ -632,7 +632,7 @@
               </tr>
               <tr>
                 <td>3</td>
-                <td><strong>Temperature Probe</strong> (+ mercury)</td>
+                <td><strong>Temperature Probe</strong> (+ analog)</td>
                 <td>Temperature</td>
                 <td>&deg;C</td>
                 <td>Same temperature?</td>
@@ -789,7 +789,7 @@
           <div class="section-num">3</div>
           <div>
             <div class="section-title">Temperature Probe</div>
-            <div class="section-subtitle">Compare digital probe and mercury thermometer readings in °C</div>
+            <div class="section-subtitle">Compare digital probe and analog thermometer readings in °C</div>
           </div>
         </div>
         <div class="card">
@@ -988,13 +988,15 @@
           </table>
         </div>
         <div class="card">
-          <div class="card-title">Partner Group's Data</div>
+          <div class="card-title">Combined Group Data</div>
           <table class="summary-table">
             <thead>
               <tr>
                 <th>Measurement</th>
-                <th>Tap Water</th>
-                <th>Lemon Juice</th>
+                <th>Our Tap Water</th>
+                <th>Their Tap Water</th>
+                <th>Our Lemon Juice</th>
+                <th>Their Lemon Juice</th>
               </tr>
             </thead>
             <tbody>
@@ -1002,9 +1004,13 @@
                 <td>pH</td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
               </tr>
               <tr>
                 <td>Conductivity (µS/cm)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
               </tr>
@@ -1012,9 +1018,13 @@
                 <td>Temperature (°C)</td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
               </tr>
               <tr>
                 <td>Dissolved O₂ (mg/L)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
               </tr>
@@ -1022,9 +1032,13 @@
                 <td>Absorbance (max, Abs)</td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
               </tr>
               <tr>
-                <td>Turbidity (NTU)</td>
+                <td>Turbidity (NTU / %T)</td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
+                <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
                 <td><input type="text" class="data-input" placeholder="—"></td>
               </tr>
@@ -1281,7 +1295,7 @@
       // Tube
       ctx.fillStyle = '#e5e7eb';
       ctx.beginPath(); ctx.roundRect(tx - tw / 2, ty, tw, th, 8); ctx.fill();
-      // Mercury level
+      // Liquid level
       const frac = clamp(temp / 100, 0, 1);
       const mercH = th * frac;
       ctx.fillStyle = '#c41e3a';
@@ -1303,7 +1317,7 @@
       ctx.textAlign = 'center'; ctx.fillText(temp.toFixed(1) + '°C', W * 0.55 + W * 0.175, H * 0.2 + H * 0.22);
       ctx.fillStyle = '#64748b'; ctx.font = '12px system-ui';
       ctx.fillText('Digital Probe', W * 0.55 + W * 0.175, H * 0.2 + H * 0.35 + 18);
-      ctx.fillText('Mercury Thermometer', tx, bulbY + bulbR + 18);
+      ctx.fillText('Analog Thermometer', tx, bulbY + bulbR + 18);
     }
 
     // ══════════════════════════════════════════════════════════════════

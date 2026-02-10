@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 15 Dashboard: Darwin &amp; Evolution | BIOL-1</title>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS & SECTIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTONS & INPUTS
+   ═══════════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-secondary { background: var(--blue); color: #fff; }
+.btn-secondary:hover { background: var(--blue-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+
+.slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATS & BADGES
+   ═══════════════════════════════════════════════════════════════════════ */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-accent .stat-val { color: var(--accent); }
+.stat-blue .stat-val { color: var(--blue); }
+.stat-green .stat-val { color: var(--green); }
+.stat-amber .stat-val { color: var(--amber); }
+.stat-purple .stat-val { color: var(--purple); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.badge-red { background: #fef2f2; color: var(--accent); }
+.badge-blue { background: #eff6ff; color: var(--blue); }
+.badge-green { background: #f0fdf4; color: var(--green); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART CONTAINERS
+   ═══════════════════════════════════════════════════════════════════════ */
+.chart-wrap { position: relative; width: 100%; margin: 8px 0; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TAB SYSTEM
+   ═══════════════════════════════════════════════════════════════════════ */
+.tab-bar { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid var(--border); }
+.tab-btn {
+  padding: 8px 16px; font-size: 13px; font-weight: 600; border: none; background: none;
+  cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: all 0.15s; font-family: var(--font);
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   QUIZ STYLES
+   ═══════════════════════════════════════════════════════════════════════ */
+.quiz-option {
+  display: block; padding: 10px 16px; margin: 6px 0; border-radius: 8px;
+  border: 2px solid var(--border); cursor: pointer; font-size: 14px;
+  transition: all 0.15s; background: #fff;
+}
+.quiz-option:hover { border-color: var(--blue); background: #eff6ff; }
+.quiz-option.correct { border-color: var(--green); background: #f0fdf4; }
+.quiz-option.wrong { border-color: var(--accent); background: #fef2f2; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONVERGENCE LINE
+   ═══════════════════════════════════════════════════════════════════════ */
+.convergence-info { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin: 10px 0; font-size: 13px; }
+.convergence-info .ci-dot { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS PANEL
+   ═══════════════════════════════════════════════════════════════════════ */
+.analysis-result {
+  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px;
+}
+.analysis-result .ar-title { font-weight: 700; margin-bottom: 6px; }
+.analysis-result code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.analysis-result.ar-pass { border-left-color: var(--green); }
+.analysis-result.ar-fail { border-left-color: var(--accent); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO BANNER
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-1: Biology</h1>
+    <p>Lab 15 &mdash; Darwin &amp; Evolution</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Natural Selection</a>
+    <a href="#part2"><span class="nav-num">2</span> Evidence Explorer</a>
+    <a href="#part3"><span class="nav-num">3</span> Homologous vs Analogous</a>
+    <a href="#part4"><span class="nav-num">4</span> Variation &amp; Selection</a>
+    <a href="#part5"><span class="nav-num">5</span> Adaptation Timeline</a>
+    <a href="#part6"><span class="nav-num">6</span> Fitness Landscape</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-1</div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <h2>Darwin &amp; Evolution</h2>
+  <p>Explore the mechanisms of evolution through interactive simulations. Witness natural selection in action, examine the evidence, and understand how populations change over time.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Natural Selection</span>
+    <span class="bio-tag">Evidence</span>
+    <span class="bio-tag">Adaptation</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 1: NATURAL SELECTION SIMULATOR ════════ -->
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">Natural Selection Simulator</div>
+    <div class="section-subtitle">Hunt prey in a colored environment &mdash; watch camouflaged organisms survive and reproduce</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Environment &amp; Controls</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click organisms to "eat" them. Survivors reproduce. Camouflaged organisms are harder to find and survive more often, shifting the population color toward the environment.</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="nsStart()">New Generation</button>
+      <button class="btn btn-secondary" onclick="nsAutoHunt()">Auto-Hunt Round</button>
+      <button class="btn btn-outline" onclick="nsReset()">Reset</button>
+    </div>
+    <div class="slider-group">
+      <label>Environment</label>
+      <select id="ns-env" onchange="nsChangeEnv()" style="flex:1;padding:6px 10px;border-radius:6px;border:1px solid var(--border);font-family:var(--font);font-size:13px;">
+        <option value="forest" selected>Forest (Green)</option>
+        <option value="desert">Desert (Brown)</option>
+        <option value="arctic">Arctic (White)</option>
+        <option value="ocean">Ocean (Blue)</option>
+      </select>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ns-gen">0</div><div class="stat-label">Generation</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ns-alive">0</div><div class="stat-label">Alive</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ns-eaten">0</div><div class="stat-label">Eaten</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="ns-pop">0</div><div class="stat-label">Population</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="ns-canvas" height="360" style="cursor:crosshair;border:2px solid var(--border);"></canvas></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:4px;">Click on organisms above to eat them. When you have eaten enough (or click Auto-Hunt), survivors reproduce for the next generation.</p>
+  </div>
+  <div class="card">
+    <div class="card-title">Population Color Distribution Over Generations</div>
+    <div class="chart-wrap"><canvas id="ns-dist-chart" height="260"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Average Camouflage Fitness Over Generations</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--green);"></span> Mean fitness (0&ndash;1)</span>
+      <span><span class="ci-dot" style="background:#9ca3af;"></span> Perfect camouflage (1.0)</span>
+    </div>
+    <div class="chart-wrap"><canvas id="ns-fitness-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: EVIDENCE FOR EVOLUTION ═════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">Evidence for Evolution Explorer</div>
+    <div class="section-subtitle">Examine four types of evidence that support the theory of evolution</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Evidence Categories</div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ev-score">0</div><div class="stat-label">Score</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ev-found">0/12</div><div class="stat-label">Evidence Found</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ev-categories">0/4</div><div class="stat-label">Categories</div></div>
+    </div>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="evTab('fossil')">Fossil Record</button>
+      <button class="tab-btn" onclick="evTab('anatomy')">Comparative Anatomy</button>
+      <button class="tab-btn" onclick="evTab('embryo')">Embryology</button>
+      <button class="tab-btn" onclick="evTab('molecular')">Molecular</button>
+    </div>
+
+    <!-- Fossil Record Tab -->
+    <div class="tab-panel active" id="tab-fossil">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on the timeline to discover transitional fossils. Each fossil shows how organisms changed over millions of years.</p>
+      <div class="chart-wrap"><canvas id="ev-fossil-canvas" height="300" style="cursor:pointer;"></canvas></div>
+      <div id="ev-fossil-info" class="analysis-result" style="display:none;"></div>
+    </div>
+
+    <!-- Comparative Anatomy Tab -->
+    <div class="tab-panel" id="tab-anatomy">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on each limb to reveal the underlying bone structure. Notice how the same bones appear in different forms across species.</p>
+      <div class="chart-wrap"><canvas id="ev-anatomy-canvas" height="340" style="cursor:pointer;"></canvas></div>
+      <div id="ev-anatomy-info" class="analysis-result" style="display:none;"></div>
+    </div>
+
+    <!-- Embryology Tab -->
+    <div class="tab-panel" id="tab-embryo">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Compare embryonic development stages across vertebrate species. Early embryos look remarkably similar, suggesting common ancestry.</p>
+      <div class="chart-wrap"><canvas id="ev-embryo-canvas" height="320" style="cursor:pointer;"></canvas></div>
+      <div id="ev-embryo-info" class="analysis-result" style="display:none;"></div>
+    </div>
+
+    <!-- Molecular Tab -->
+    <div class="tab-panel" id="tab-molecular">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Compare DNA sequence similarity between species. More closely related species share more DNA.</p>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="evMolCompare()">Compare Random Sequences</button>
+      </div>
+      <div class="chart-wrap"><canvas id="ev-molecular-chart" height="280"></canvas></div>
+      <div id="ev-molecular-info" class="analysis-result" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 3: HOMOLOGOUS vs ANALOGOUS ═══════════ -->
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Homologous vs. Analogous Structures</div>
+    <div class="section-subtitle">Distinguish structures with shared ancestry from those shaped by convergent evolution</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Structural Comparison Tool</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click each structure to reveal its skeletal anatomy. Homologous structures share the same bone pattern (same origin, different function). Analogous structures look similar but have different underlying anatomy (different origin, same function).</p>
+    <div class="chart-wrap"><canvas id="ha-canvas" height="380" style="cursor:pointer;"></canvas></div>
+    <div id="ha-info" class="analysis-result" style="display:none;"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Classification Quiz</div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="ha-correct">0</div><div class="stat-label">Correct</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="ha-total">0</div><div class="stat-label">Attempted</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="ha-pct">-</div><div class="stat-label">Accuracy</div></div>
+    </div>
+    <div id="ha-quiz"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="haNextQ()">Next Question</button>
+      <button class="btn btn-outline" onclick="haResetQuiz()">Reset Quiz</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 4: VARIATION IN POPULATIONS ═══════════ -->
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div><div class="section-title">Variation in Populations</div>
+    <div class="section-subtitle">Observe how selective pressures shift trait distributions across generations</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Beak Size Simulator</div>
+    <div class="slider-group">
+      <label>Pop. Size</label>
+      <input type="range" id="var-pop" min="50" max="500" value="200" step="10" oninput="$('var-pop-val').textContent=this.value">
+      <span class="slider-val" id="var-pop-val">200</span>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="varInit()">Initialize Population</button>
+      <button class="btn btn-secondary" onclick="varStep()">Next Generation</button>
+      <button class="btn btn-secondary" onclick="varRun10()">Run 10 Generations</button>
+      <button class="btn btn-outline" onclick="varReset()">Reset</button>
+    </div>
+    <div class="slider-group">
+      <label>Selection</label>
+      <select id="var-sel" style="flex:1;padding:6px 10px;border-radius:6px;border:1px solid var(--border);font-family:var(--font);font-size:13px;">
+        <option value="directional">Directional (favor large beaks)</option>
+        <option value="stabilizing">Stabilizing (favor medium beaks)</option>
+        <option value="disruptive">Disruptive (favor extremes)</option>
+      </select>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="var-gen">0</div><div class="stat-label">Generation</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="var-mean">-</div><div class="stat-label">Mean Beak</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="var-sd">-</div><div class="stat-label">Std Dev</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="var-n">0</div><div class="stat-label">Pop Size</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Trait Distribution (Beak Size)</div>
+    <div class="chart-wrap"><canvas id="var-hist-chart" height="260"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Mean Beak Size Over Generations</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Mean beak size</span>
+      <span><span class="ci-dot" style="background:var(--blue);"></span> &plusmn;1 Std Dev</span>
+    </div>
+    <div class="chart-wrap"><canvas id="var-line-chart" height="240"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 5: ADAPTATION TIMELINE ════════════════ -->
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div><div class="section-title">Adaptation Timeline</div>
+    <div class="section-subtitle">From Darwin's voyage to the Modern Synthesis &mdash; key milestones in evolutionary thought</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Interactive Timeline</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Click on events to learn more. Use the zoom buttons to explore different time periods.</p>
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline" onclick="tlZoom('all')">All Events</button>
+      <button class="btn btn-sm btn-outline" onclick="tlZoom('early')">1800&ndash;1870</button>
+      <button class="btn btn-sm btn-outline" onclick="tlZoom('mid')">1870&ndash;1940</button>
+      <button class="btn btn-sm btn-outline" onclick="tlZoom('modern')">1940&ndash;2000</button>
+    </div>
+    <div class="chart-wrap"><canvas id="tl-canvas" height="340" style="cursor:pointer;"></canvas></div>
+    <div id="tl-info" class="analysis-result" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 6: FITNESS LANDSCAPE ═════════════════ -->
+<div class="section" id="part6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div><div class="section-title">Fitness Landscape</div>
+    <div class="section-subtitle">Watch populations climb adaptive peaks &mdash; then survive environmental upheaval</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Landscape Simulation</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="flStart()">Start / Reset</button>
+      <button class="btn btn-secondary" onclick="flStep()">Next Generation</button>
+      <button class="btn btn-secondary" onclick="flRun10()">Run 10 Generations</button>
+      <button class="btn btn-outline" onclick="flShift()">Environmental Shift</button>
+      <button class="btn btn-outline" onclick="flExtinction()">Extinction Event</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box stat-accent"><div class="stat-val" id="fl-gen">0</div><div class="stat-label">Generation</div></div>
+      <div class="stat-box stat-blue"><div class="stat-val" id="fl-pop">0</div><div class="stat-label">Population</div></div>
+      <div class="stat-box stat-green"><div class="stat-val" id="fl-fitness">-</div><div class="stat-label">Mean Fitness</div></div>
+      <div class="stat-box stat-amber"><div class="stat-val" id="fl-peaks">0</div><div class="stat-label">Peaks</div></div>
+      <div class="stat-box stat-purple"><div class="stat-val" id="fl-extinct">0</div><div class="stat-label">Extinctions</div></div>
+    </div>
+    <div class="chart-wrap"><canvas id="fl-canvas" height="360"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Mean Fitness Over Generations</div>
+    <div class="convergence-info">
+      <span><span class="ci-dot" style="background:var(--green);"></span> Mean fitness</span>
+      <span><span class="ci-dot" style="background:var(--accent);"></span> Environmental shifts</span>
+    </div>
+    <div class="chart-wrap"><canvas id="fl-fitness-chart" height="220"></canvas></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     JAVASCRIPT ENGINE
+     ═══════════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Utility ──────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const randF = (min, max) => Math.random() * (max - min) + min;
+const gauss = () => { let u=0,v=0; while(!u) u=Math.random(); while(!v) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); };
+
+// ── Chart helper ─────────────────────────────────────────────────────────
+function getCtx(id) {
+  const c = $(id); const dpr = window.devicePixelRatio || 1;
+  const w = c.offsetWidth || c.width || 300;
+  const h = c.offsetHeight || c.height || 150;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.W = w; ctx.H = h;
+  return ctx;
+}
+
+function drawBarChart(ctx, opts = {}) {
+  const { labels, values, expected, colors, maxVal, yLabel } = opts;
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
+  }
+
+  values.forEach((v, i) => {
+    const x = pad.left + (plotW / n) * i + gap/2;
+    const h = (v / mv) * plotH;
+    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.beginPath();
+    const r = 4;
+    ctx.moveTo(x, pad.top + plotH);
+    ctx.lineTo(x, pad.top + plotH - h + r);
+    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
+    ctx.lineTo(x + barW - r, pad.top + plotH - h);
+    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
+    ctx.lineTo(x + barW, pad.top + plotH);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
+    if (v > 0) {
+      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
+    }
+  });
+
+  if (expected) {
+    expected.forEach((ev, i) => {
+      const x = pad.left + (plotW / n) * i + gap/2;
+      const y = pad.top + plotH - (ev / mv) * plotH;
+      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
+      ctx.setLineDash([]);
+    });
+  }
+}
+
+function drawLineChart(ctx, series, opts = {}) {
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
+  const yRange = yMax - yMin;
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
+  }
+  if (refLine !== undefined) {
+    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  series.forEach(s => {
+    if (!s.data.length) return;
+    const xMax = opts.xMax || s.data.length;
+    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
+    ctx.beginPath();
+    s.data.forEach((v, i) => {
+      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    if (s.width !== 0) ctx.stroke();
+    if (s.dots && s.data.length < 80) {
+      s.data.forEach((v, i) => {
+        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
+        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
+        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+      });
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: NATURAL SELECTION SIMULATOR
+// ══════════════════════════════════════════════════════════════════════════
+const envColors = {
+  forest: { bg: '#2d5a27', name: 'Forest', rgb: [45, 90, 39] },
+  desert: { bg: '#c2a052', name: 'Desert', rgb: [194, 160, 82] },
+  arctic: { bg: '#e8e8e8', name: 'Arctic', rgb: [232, 232, 232] },
+  ocean:  { bg: '#1a5276', name: 'Ocean', rgb: [26, 82, 118] }
+};
+
+let nsState = {
+  organisms: [], generation: 0, eaten: 0, env: 'forest',
+  history: [], fitnessHistory: []
+};
+
+function nsColorDist(r, g, b, envRgb) {
+  const dr = (r - envRgb[0]) / 255;
+  const dg = (g - envRgb[1]) / 255;
+  const db = (b - envRgb[2]) / 255;
+  return Math.sqrt(dr*dr + dg*dg + db*db);
+}
+
+function nsFitness(org) {
+  const envRgb = envColors[nsState.env].rgb;
+  const dist = nsColorDist(org.r, org.g, org.b, envRgb);
+  return Math.max(0, 1 - dist / 1.0);
+}
+
+function nsCreateOrganism(parentR, parentG, parentB) {
+  const c = $('ns-canvas');
+  const w = c.offsetWidth || 600;
+  const h = c.offsetHeight || 360;
+  const mutation = 30;
+  const r = parentR !== undefined ? clamp(parentR + rand(-mutation, mutation), 0, 255) : rand(0, 255);
+  const g = parentG !== undefined ? clamp(parentG + rand(-mutation, mutation), 0, 255) : rand(0, 255);
+  const b = parentB !== undefined ? clamp(parentB + rand(-mutation, mutation), 0, 255) : rand(0, 255);
+  return {
+    x: randF(20, w - 20), y: randF(20, h - 20),
+    r, g, b, alive: true, size: 8
+  };
+}
+
+function nsInit() {
+  nsState.organisms = [];
+  for (let i = 0; i < 40; i++) {
+    nsState.organisms.push(nsCreateOrganism());
+  }
+  nsState.eaten = 0;
+}
+
+function nsStart() {
+  if (nsState.organisms.length === 0 || nsState.organisms.every(o => !o.alive)) {
+    // First generation or all eaten
+    if (nsState.generation > 0) {
+      // Reproduce survivors
+      const survivors = nsState.organisms.filter(o => o.alive);
+      if (survivors.length === 0) {
+        nsState.generation = 0;
+        nsInit();
+      } else {
+        nsState.generation++;
+        const newOrgs = [];
+        const targetPop = 40;
+        while (newOrgs.length < targetPop) {
+          const parent = survivors[rand(0, survivors.length - 1)];
+          newOrgs.push(nsCreateOrganism(parent.r, parent.g, parent.b));
+        }
+        nsState.organisms = newOrgs;
+        nsState.eaten = 0;
+        // Record history
+        nsRecordHistory();
+      }
+    } else {
+      nsState.generation = 1;
+      nsInit();
+      nsRecordHistory();
+    }
+  } else {
+    // Move to next generation with survivors
+    const survivors = nsState.organisms.filter(o => o.alive);
+    nsState.generation++;
+    const newOrgs = [];
+    const targetPop = 40;
+    while (newOrgs.length < targetPop) {
+      const parent = survivors[rand(0, survivors.length - 1)];
+      newOrgs.push(nsCreateOrganism(parent.r, parent.g, parent.b));
+    }
+    nsState.organisms = newOrgs;
+    nsState.eaten = 0;
+    nsRecordHistory();
+  }
+  nsRender();
+  nsUpdateUI();
+}
+
+function nsRecordHistory() {
+  const orgs = nsState.organisms;
+  // Color distribution in bins
+  const bins = { red: 0, green: 0, blue: 0, brown: 0, white: 0 };
+  orgs.forEach(o => {
+    const maxC = Math.max(o.r, o.g, o.b);
+    const minC = Math.min(o.r, o.g, o.b);
+    if (maxC - minC < 40 && maxC > 200) bins.white++;
+    else if (maxC - minC < 50 && o.r > 120 && o.g > 100 && o.b < 120) bins.brown++;
+    else if (o.r > o.g && o.r > o.b) bins.red++;
+    else if (o.g > o.r && o.g > o.b) bins.green++;
+    else bins.blue++;
+  });
+  nsState.history.push(bins);
+
+  // Mean fitness
+  const meanFit = orgs.reduce((s, o) => s + nsFitness(o), 0) / orgs.length;
+  nsState.fitnessHistory.push(meanFit);
+}
+
+function nsAutoHunt() {
+  if (nsState.organisms.length === 0) nsStart();
+  const alive = nsState.organisms.filter(o => o.alive);
+  if (alive.length === 0) return;
+
+  // Sort by fitness (least camouflaged first) and eat ~60%
+  const sorted = alive.sort((a, b) => nsFitness(a) - nsFitness(b));
+  const toEat = Math.floor(sorted.length * 0.6);
+  for (let i = 0; i < toEat; i++) {
+    sorted[i].alive = false;
+    nsState.eaten++;
+  }
+  nsRender();
+  nsUpdateUI();
+
+  // Auto-advance to next generation
+  setTimeout(() => nsStart(), 400);
+}
+
+function nsChangeEnv() {
+  nsState.env = $('ns-env').value;
+  nsRender();
+}
+
+function nsReset() {
+  nsState = { organisms: [], generation: 0, eaten: 0, env: $('ns-env').value, history: [], fitnessHistory: [] };
+  nsRender();
+  nsUpdateUI();
+  nsDrawDistChart();
+  nsDrawFitnessChart();
+}
+
+function nsRender() {
+  const ctx = getCtx('ns-canvas');
+  const W = ctx.W, H = ctx.H;
+  const envData = envColors[nsState.env];
+
+  // Draw environment background with subtle texture
+  ctx.fillStyle = envData.bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Add subtle texture noise
+  for (let i = 0; i < 200; i++) {
+    const x = randF(0, W), y = randF(0, H);
+    ctx.fillStyle = `rgba(${rand(0,50)},${rand(0,50)},${rand(0,50)},0.05)`;
+    ctx.fillRect(x, y, rand(2, 8), rand(2, 8));
+  }
+
+  // Draw organisms
+  nsState.organisms.forEach(o => {
+    if (!o.alive) return;
+    ctx.beginPath();
+    ctx.arc(o.x, o.y, o.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgb(${o.r},${o.g},${o.b})`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(0,0,0,0.3)`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+
+  // Environment label
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.fillRect(W - 130, 8, 122, 28);
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText(envData.name + ' Environment', W - 16, 27);
+}
+
+function nsUpdateUI() {
+  $('ns-gen').textContent = nsState.generation;
+  const alive = nsState.organisms.filter(o => o.alive).length;
+  $('ns-alive').textContent = alive;
+  $('ns-eaten').textContent = nsState.eaten;
+  $('ns-pop').textContent = nsState.organisms.length;
+  nsDrawDistChart();
+  nsDrawFitnessChart();
+}
+
+// Click handler for eating organisms
+$('ns-canvas').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const scaleX = (this.offsetWidth) / rect.width;
+  const scaleY = (this.offsetHeight) / rect.height;
+  const mx = (e.clientX - rect.left) * scaleX;
+  const my = (e.clientY - rect.top) * scaleY;
+
+  let closest = null, closestDist = Infinity;
+  nsState.organisms.forEach(o => {
+    if (!o.alive) return;
+    const d = Math.sqrt((o.x - mx) ** 2 + (o.y - my) ** 2);
+    if (d < closestDist && d < 20) { closest = o; closestDist = d; }
+  });
+
+  if (closest) {
+    closest.alive = false;
+    nsState.eaten++;
+    nsRender();
+    nsUpdateUI();
+  }
+});
+
+function nsDrawDistChart() {
+  if (!nsState.history.length) {
+    const ctx = getCtx('ns-dist-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Start simulation to see color distribution', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+  const ctx = getCtx('ns-dist-chart');
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 30, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const keys = ['red', 'green', 'blue', 'brown', 'white'];
+  const keyColors = ['#dc2626', '#16a34a', '#2563eb', '#92400e', '#9ca3af'];
+  const hist = nsState.history;
+  const n = hist.length;
+
+  // Legend
+  keys.forEach((k, i) => {
+    ctx.fillStyle = keyColors[i];
+    ctx.fillRect(pad.left + i * 80, 8, 12, 12);
+    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillText(k.charAt(0).toUpperCase() + k.slice(1), pad.left + i * 80 + 16, 18);
+  });
+
+  // Stacked area chart
+  const maxPop = 40;
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i/4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxPop * i / 4), pad.left - 6, y + 4);
+  }
+
+  // Draw stacked bars
+  const barW = Math.max(4, plotW / n - 2);
+  hist.forEach((h, gi) => {
+    let cumY = 0;
+    keys.forEach((k, ki) => {
+      const val = h[k] || 0;
+      const barH = (val / maxPop) * plotH;
+      const x = pad.left + (gi / Math.max(n - 1, 1)) * (plotW - barW);
+      ctx.fillStyle = keyColors[ki];
+      ctx.fillRect(x, pad.top + plotH - cumY - barH, barW, barH);
+      cumY += barH;
+    });
+  });
+
+  // X axis labels
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Generation', pad.left + plotW / 2, H - 6);
+}
+
+function nsDrawFitnessChart() {
+  if (!nsState.fitnessHistory.length) {
+    const ctx = getCtx('ns-fitness-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Start simulation to see fitness trend', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+  const ctx = getCtx('ns-fitness-chart');
+  drawLineChart(ctx, [
+    { data: nsState.fitnessHistory, color: '#16a34a', width: 2.5, dots: true }
+  ], { yMin: 0, yMax: 1, refLine: 1.0 });
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 2: EVIDENCE FOR EVOLUTION EXPLORER
+// ══════════════════════════════════════════════════════════════════════════
+let evState = { score: 0, found: new Set(), activeTab: 'fossil' };
+
+function evTab(tab) {
+  evState.activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['fossil','anatomy','embryo','molecular'][i] === tab);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  $('tab-' + tab).classList.add('active');
+
+  if (tab === 'fossil') evDrawFossil();
+  else if (tab === 'anatomy') evDrawAnatomy();
+  else if (tab === 'embryo') evDrawEmbryo();
+  else if (tab === 'molecular') evDrawMolecular();
+}
+
+const fossilData = [
+  { year: -500, name: 'Trilobites', desc: 'Early arthropods dominate Cambrian seas. Complex eyes and segmented bodies.', x: 0 },
+  { year: -375, name: 'Tiktaalik', desc: 'Transitional fossil between fish and tetrapods. Had both fins and wrist-like joints.', x: 0 },
+  { year: -310, name: 'Early Reptiles', desc: 'First amniotic eggs allowed vertebrates to live fully on land.', x: 0 },
+  { year: -150, name: 'Archaeopteryx', desc: 'Transitional form between dinosaurs and birds. Had feathers AND teeth.', x: 0 },
+  { year: -55, name: 'Pakicetus', desc: 'Early whale ancestor that walked on land. Shows transition from land to sea mammals.', x: 0 },
+  { year: -4, name: 'Australopithecus', desc: 'Early hominin, bipedal but with ape-like features. Key human ancestor.', x: 0 },
+];
+
+function evDrawFossil() {
+  const ctx = getCtx('ev-fossil-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 40, right: 40, bottom: 60, left: 60 };
+  const plotW = W - pad.left - pad.right;
+
+  // Title
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Geological Timeline (Millions of Years Ago)', W / 2, 24);
+
+  // Timeline line
+  const lineY = H / 2;
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(pad.left, lineY); ctx.lineTo(W - pad.right, lineY); ctx.stroke();
+
+  // Draw epochs background
+  const epochs = [
+    { start: -540, end: -252, name: 'Paleozoic', color: 'rgba(37,99,235,0.08)' },
+    { start: -252, end: -66, name: 'Mesozoic', color: 'rgba(22,163,74,0.08)' },
+    { start: -66, end: 0, name: 'Cenozoic', color: 'rgba(217,119,6,0.08)' }
+  ];
+  const minYear = -540, maxYear = 0;
+  epochs.forEach(e => {
+    const x1 = pad.left + ((e.start - minYear) / (maxYear - minYear)) * plotW;
+    const x2 = pad.left + ((e.end - minYear) / (maxYear - minYear)) * plotW;
+    ctx.fillStyle = e.color;
+    ctx.fillRect(x1, pad.top, x2 - x1, H - pad.top - pad.bottom);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(e.name, (x1 + x2) / 2, H - pad.bottom + 30);
+  });
+
+  // Draw fossil markers
+  fossilData.forEach((f, i) => {
+    const x = pad.left + ((f.year - minYear) / (maxYear - minYear)) * plotW;
+    f.x = x;
+    const above = i % 2 === 0;
+    const markerY = above ? lineY - 50 : lineY + 50;
+
+    // Connector line
+    ctx.strokeStyle = '#6b7280'; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(x, lineY); ctx.lineTo(x, markerY); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Marker circle
+    const discovered = evState.found.has('fossil-' + i);
+    ctx.beginPath(); ctx.arc(x, markerY, 14, 0, Math.PI * 2);
+    ctx.fillStyle = discovered ? '#16a34a' : '#c41e3a';
+    ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+
+    // Icon (simple organism shape)
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(discovered ? '\u2713' : '?', x, markerY + 4);
+
+    // Name
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    const nameY = above ? markerY - 20 : markerY + 24;
+    ctx.fillText(f.name, x, nameY);
+
+    // Year
+    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui';
+    ctx.fillText(Math.abs(f.year) + ' MYA', x, nameY + (above ? -12 : 12));
+  });
+
+  // Scale
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  for (let y = -500; y <= 0; y += 100) {
+    const x = pad.left + ((y - minYear) / (maxYear - minYear)) * plotW;
+    ctx.fillText(Math.abs(y), x, lineY + 16);
+  }
+}
+
+$('ev-fossil-canvas').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (this.offsetWidth / rect.width);
+  const my = (e.clientY - rect.top) * (this.offsetHeight / rect.height);
+  const lineY = this.offsetHeight / 2;
+
+  fossilData.forEach((f, i) => {
+    const above = i % 2 === 0;
+    const markerY = above ? lineY - 50 : lineY + 50;
+    const d = Math.sqrt((f.x - mx) ** 2 + (markerY - my) ** 2);
+    if (d < 20) {
+      const key = 'fossil-' + i;
+      if (!evState.found.has(key)) {
+        evState.found.add(key);
+        evState.score += 10;
+      }
+      $('ev-fossil-info').style.display = 'block';
+      $('ev-fossil-info').className = 'analysis-result ar-pass';
+      $('ev-fossil-info').innerHTML = `<div class="ar-title">${f.name} (${Math.abs(f.year)} MYA)</div><p>${f.desc}</p>`;
+      evDrawFossil();
+      evUpdateUI();
+    }
+  });
+});
+
+const anatomyData = [
+  { name: 'Human Arm', x: 0, bones: 'humerus-radius-ulna-carpals-metacarpals-phalanges', type: 'homologous', color: '#dc2626' },
+  { name: 'Whale Flipper', x: 0, bones: 'humerus-radius-ulna-carpals-metacarpals-phalanges', type: 'homologous', color: '#2563eb' },
+  { name: 'Bat Wing', x: 0, bones: 'humerus-radius-ulna-carpals-metacarpals-phalanges', type: 'homologous', color: '#7c3aed' },
+  { name: 'Bird Wing', x: 0, bones: 'humerus-radius-ulna-carpals-fused metacarpals', type: 'homologous', color: '#16a34a' },
+  { name: 'Insect Wing', x: 0, bones: 'chitin exoskeleton (no internal bones)', type: 'analogous', color: '#d97706' },
+];
+
+function evDrawAnatomy() {
+  const ctx = getCtx('ev-anatomy-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = 30;
+  const n = anatomyData.length;
+  const colW = (W - pad * 2) / n;
+
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Click each structure to reveal skeletal anatomy', W / 2, 20);
+
+  anatomyData.forEach((a, i) => {
+    const cx = pad + colW * i + colW / 2;
+    a.x = cx;
+    const discovered = evState.found.has('anatomy-' + i);
+
+    // Draw limb shape
+    ctx.save();
+    ctx.translate(cx, 100);
+
+    // Outer shape
+    ctx.fillStyle = a.color + '20';
+    ctx.strokeStyle = a.color;
+    ctx.lineWidth = 2;
+
+    if (i === 0) { // Human arm
+      ctx.beginPath();
+      ctx.ellipse(0, 60, 16, 80, 0, 0, Math.PI * 2);
+      ctx.fill(); ctx.stroke();
+    } else if (i === 1) { // Whale flipper
+      ctx.beginPath();
+      ctx.ellipse(0, 50, 28, 70, 0, 0, Math.PI * 2);
+      ctx.fill(); ctx.stroke();
+    } else if (i === 2) { // Bat wing
+      ctx.beginPath();
+      ctx.moveTo(0, 0); ctx.lineTo(-40, 40); ctx.lineTo(-50, 100);
+      ctx.lineTo(0, 120); ctx.lineTo(50, 100); ctx.lineTo(40, 40);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else if (i === 3) { // Bird wing
+      ctx.beginPath();
+      ctx.moveTo(0, 0); ctx.lineTo(-35, 30); ctx.lineTo(-45, 90);
+      ctx.lineTo(-10, 120); ctx.lineTo(20, 90); ctx.lineTo(30, 30);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else { // Insect wing
+      ctx.beginPath();
+      ctx.moveTo(0, 10); ctx.bezierCurveTo(-40, 30, -50, 80, -10, 110);
+      ctx.bezierCurveTo(10, 110, 50, 80, 40, 30);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    }
+
+    // Draw bones if discovered
+    if (discovered) {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 3;
+      ctx.shadowColor = a.color; ctx.shadowBlur = 4;
+
+      if (i < 4) { // Vertebrate forelimbs (homologous)
+        // Humerus
+        ctx.beginPath(); ctx.moveTo(0, 5); ctx.lineTo(0, 35); ctx.stroke();
+        ctx.fillStyle = '#ff6b6b'; ctx.beginPath(); ctx.arc(0, 5, 4, 0, Math.PI*2); ctx.fill();
+        // Radius & Ulna
+        const spread = i === 1 ? 6 : (i === 2 ? 12 : 8);
+        ctx.beginPath(); ctx.moveTo(0, 35); ctx.lineTo(-spread, 65); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, 35); ctx.lineTo(spread, 65); ctx.stroke();
+        ctx.fillStyle = '#4ecdc4';
+        ctx.beginPath(); ctx.arc(-spread, 65, 3, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(spread, 65, 3, 0, Math.PI*2); ctx.fill();
+        // Carpals
+        const cY = 75;
+        ctx.fillStyle = '#ffe66d';
+        for (let c = -spread; c <= spread; c += spread) {
+          ctx.beginPath(); ctx.arc(c, cY, 3, 0, Math.PI*2); ctx.fill();
+        }
+        // Phalanges
+        const phalangeCount = i === 2 ? 5 : (i === 3 ? 3 : 5);
+        const pSpread = i === 1 ? 18 : (i === 2 ? 30 : 14);
+        for (let p = 0; p < phalangeCount; p++) {
+          const px = -pSpread/2 + (pSpread / Math.max(phalangeCount - 1, 1)) * p;
+          ctx.beginPath(); ctx.moveTo(0, cY); ctx.lineTo(px, cY + 30); ctx.stroke();
+          ctx.fillStyle = '#a8e6cf';
+          ctx.beginPath(); ctx.arc(px, cY + 30, 2, 0, Math.PI*2); ctx.fill();
+        }
+      } else {
+        // Insect wing - veins not bones
+        ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5;
+        ctx.shadowBlur = 0;
+        for (let v = 0; v < 5; v++) {
+          const angle = -0.4 + v * 0.2;
+          ctx.beginPath();
+          ctx.moveTo(0, 10);
+          ctx.lineTo(Math.cos(angle) * 40, 10 + Math.sin(angle + 1) * 80);
+          ctx.stroke();
+        }
+        // Cross veins
+        ctx.setLineDash([2, 2]);
+        for (let cv = 30; cv < 100; cv += 25) {
+          ctx.beginPath(); ctx.moveTo(-30, cv); ctx.lineTo(30, cv); ctx.stroke();
+        }
+        ctx.setLineDash([]);
+      }
+      ctx.shadowBlur = 0;
+    }
+
+    ctx.restore();
+
+    // Label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(a.name, cx, 245);
+
+    // Type badge
+    ctx.fillStyle = a.type === 'homologous' ? '#16a34a' : '#d97706';
+    if (discovered) {
+      ctx.font = 'bold 10px system-ui';
+      ctx.fillText(a.type === 'homologous' ? 'HOMOLOGOUS' : 'ANALOGOUS', cx, 260);
+    } else {
+      ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui';
+      ctx.fillText('Click to reveal', cx, 260);
+    }
+  });
+
+  // Bone legend
+  if (evState.found.has('anatomy-0') || evState.found.has('anatomy-1')) {
+    const ly = 285;
+    const lx = pad;
+    ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+    const legend = [
+      { color: '#ff6b6b', name: 'Humerus' },
+      { color: '#4ecdc4', name: 'Radius/Ulna' },
+      { color: '#ffe66d', name: 'Carpals' },
+      { color: '#a8e6cf', name: 'Phalanges' }
+    ];
+    legend.forEach((l, li) => {
+      const lxx = lx + li * 100;
+      ctx.fillStyle = l.color;
+      ctx.beginPath(); ctx.arc(lxx + 6, ly, 5, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = '#374151';
+      ctx.fillText(l.name, lxx + 16, ly + 4);
+    });
+  }
+}
+
+$('ev-anatomy-canvas').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (this.offsetWidth / rect.width);
+
+  anatomyData.forEach((a, i) => {
+    if (Math.abs(a.x - mx) < 50) {
+      const key = 'anatomy-' + i;
+      if (!evState.found.has(key)) {
+        evState.found.add(key);
+        evState.score += 10;
+      }
+      $('ev-anatomy-info').style.display = 'block';
+      $('ev-anatomy-info').className = 'analysis-result ar-pass';
+      $('ev-anatomy-info').innerHTML = `<div class="ar-title">${a.name} &mdash; ${a.type.charAt(0).toUpperCase() + a.type.slice(1)}</div><p>Bone pattern: <code>${a.bones}</code></p><p>${a.type === 'homologous' ? 'Same underlying structure modified for different functions. Shared evolutionary origin.' : 'Similar function but completely different structural origin. Result of convergent evolution.'}</p>`;
+      evDrawAnatomy();
+      evUpdateUI();
+    }
+  });
+});
+
+const embryoSpecies = ['Fish', 'Turtle', 'Chicken', 'Pig', 'Human'];
+const embryoStages = ['Early', 'Middle', 'Late'];
+
+function evDrawEmbryo() {
+  const ctx = getCtx('ev-embryo-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 50, left: 70, right: 20, bottom: 40 };
+  const colW = (W - pad.left - pad.right) / embryoSpecies.length;
+  const rowH = (H - pad.top - pad.bottom) / embryoStages.length;
+
+  // Column headers
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+  embryoSpecies.forEach((sp, i) => {
+    ctx.fillText(sp, pad.left + colW * i + colW / 2, 30);
+  });
+
+  // Row headers
+  ctx.textAlign = 'right';
+  embryoStages.forEach((st, j) => {
+    ctx.fillText(st, pad.left - 10, pad.top + rowH * j + rowH / 2 + 4);
+  });
+
+  // Draw embryos
+  const embryoColors = ['#2563eb', '#16a34a', '#d97706', '#c41e3a', '#7c3aed'];
+  embryoSpecies.forEach((sp, i) => {
+    embryoStages.forEach((st, j) => {
+      const cx = pad.left + colW * i + colW / 2;
+      const cy = pad.top + rowH * j + rowH / 2;
+      const discovered = evState.found.has('embryo-' + i);
+
+      // Embryo shape varies by stage
+      const diff = j * 0.3 + i * 0.1; // More differentiated at later stages
+      ctx.save();
+      ctx.translate(cx, cy);
+
+      // Body
+      const bodyW = 15 + j * 3;
+      const bodyH = 20 + j * 5 + (j === 2 ? i * 4 : 0);
+      ctx.fillStyle = discovered ? embryoColors[i] + '30' : '#e5e7eb';
+      ctx.strokeStyle = discovered ? embryoColors[i] : '#9ca3af';
+      ctx.lineWidth = 1.5;
+
+      // Head (larger in early stages)
+      const headR = 10 - j * 1.5 + (j === 2 ? i * 0.5 : 0);
+      ctx.beginPath();
+      ctx.ellipse(0, -bodyH / 2 + headR, headR, headR * 1.1, 0, 0, Math.PI * 2);
+      ctx.fill(); ctx.stroke();
+
+      // Body curve
+      ctx.beginPath();
+      ctx.ellipse(0, 5, bodyW / 2, bodyH / 2, 0, 0, Math.PI * 2);
+      ctx.fill(); ctx.stroke();
+
+      // Tail (all have in early, some lose later)
+      if (j < 2 || (j === 2 && i < 3)) {
+        const tailLen = j === 0 ? 15 : (j === 1 ? 10 : 5);
+        ctx.beginPath();
+        ctx.moveTo(0, bodyH / 2);
+        ctx.quadraticCurveTo(8, bodyH / 2 + tailLen / 2, 4, bodyH / 2 + tailLen);
+        ctx.stroke();
+      }
+
+      // Pharyngeal arches (gill slits) - all have in early
+      if (j === 0) {
+        for (let s = 0; s < 3; s++) {
+          ctx.beginPath();
+          ctx.moveTo(-headR + 2, -bodyH / 2 + headR + s * 3);
+          ctx.lineTo(-headR + 5, -bodyH / 2 + headR + s * 3);
+          ctx.stroke();
+        }
+      }
+
+      // Eye dot
+      ctx.fillStyle = discovered ? embryoColors[i] : '#6b7280';
+      ctx.beginPath(); ctx.arc(-3, -bodyH / 2 + headR - 2, 1.5, 0, Math.PI * 2); ctx.fill();
+
+      ctx.restore();
+    });
+  });
+
+  // Similarity bracket for early stage
+  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 4]);
+  ctx.strokeRect(pad.left, pad.top + 2, W - pad.left - pad.right, rowH - 4);
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillText('Most similar (shared ancestry)', pad.left + 4, pad.top + rowH + 12);
+}
+
+$('ev-embryo-canvas').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (this.offsetWidth / rect.width);
+  const pad = { left: 70, right: 20 };
+  const colW = (this.offsetWidth - pad.left - pad.right) / embryoSpecies.length;
+
+  embryoSpecies.forEach((sp, i) => {
+    const cx = pad.left + colW * i + colW / 2;
+    if (Math.abs(cx - mx) < colW / 2) {
+      const key = 'embryo-' + i;
+      if (!evState.found.has(key)) {
+        evState.found.add(key);
+        evState.score += 10;
+      }
+      $('ev-embryo-info').style.display = 'block';
+      $('ev-embryo-info').className = 'analysis-result ar-pass';
+      $('ev-embryo-info').innerHTML = `<div class="ar-title">${sp} Embryonic Development</div><p>Early embryos of all vertebrates show pharyngeal arches (gill-like slits), tails, and similar body plans. This reflects shared developmental genes inherited from a common ancestor. As development progresses, species-specific features emerge.</p>`;
+      evDrawEmbryo();
+      evUpdateUI();
+    }
+  });
+});
+
+const molecularData = [
+  { species: 'Chimpanzee', similarity: 98.7 },
+  { species: 'Gorilla', similarity: 97.7 },
+  { species: 'Dog', similarity: 84 },
+  { species: 'Mouse', similarity: 85 },
+  { species: 'Chicken', similarity: 60 },
+  { species: 'Fruit Fly', similarity: 44 },
+  { species: 'Yeast', similarity: 26 }
+];
+
+function evDrawMolecular() {
+  const ctx = getCtx('ev-molecular-chart');
+  drawBarChart(ctx, {
+    labels: molecularData.map(d => d.species),
+    values: molecularData.map(d => d.similarity),
+    colors: molecularData.map((d, i) => {
+      const t = d.similarity / 100;
+      return `hsl(${t * 120}, 70%, 45%)`;
+    }),
+    maxVal: 105
+  });
+}
+
+function evMolCompare() {
+  evDrawMolecular();
+  const key = 'molecular-0';
+  if (!evState.found.has(key)) {
+    evState.found.add(key);
+    evState.score += 10;
+  }
+  $('ev-molecular-info').style.display = 'block';
+  $('ev-molecular-info').className = 'analysis-result ar-pass';
+  $('ev-molecular-info').innerHTML = `<div class="ar-title">DNA Sequence Similarity to Humans</div><p>More closely related species share more DNA. Chimpanzees share <code>98.7%</code> of our DNA, while yeast shares only <code>26%</code>. This molecular evidence independently confirms the evolutionary relationships established by fossil and anatomical evidence.</p>`;
+  evUpdateUI();
+}
+
+function evUpdateUI() {
+  $('ev-score').textContent = evState.score;
+  $('ev-found').textContent = evState.found.size + '/12';
+  const cats = new Set();
+  evState.found.forEach(k => {
+    if (k.startsWith('fossil')) cats.add('fossil');
+    else if (k.startsWith('anatomy')) cats.add('anatomy');
+    else if (k.startsWith('embryo')) cats.add('embryo');
+    else if (k.startsWith('molecular')) cats.add('molecular');
+  });
+  $('ev-categories').textContent = cats.size + '/4';
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 3: HOMOLOGOUS vs ANALOGOUS STRUCTURES
+// ══════════════════════════════════════════════════════════════════════════
+let haState = { revealed: new Set(), correct: 0, total: 0, currentQ: null };
+
+const haStructures = [
+  { pair: ['Human Arm', 'Whale Flipper'], type: 'homologous', reason: 'Same bone structure (humerus, radius, ulna, carpals, phalanges) modified for different functions.' },
+  { pair: ['Human Arm', 'Bat Wing'], type: 'homologous', reason: 'Same pentadactyl limb pattern with elongated finger bones supporting the wing membrane.' },
+  { pair: ['Bird Wing', 'Bat Wing'], type: 'analogous', reason: 'Both are wings but evolved independently. Bird wings use feathers on fused bones; bat wings use skin stretched over fingers.' },
+  { pair: ['Bird Wing', 'Insect Wing'], type: 'analogous', reason: 'Both enable flight but have completely different structural origins. Insect wings are outgrowths of the exoskeleton.' },
+  { pair: ['Human Arm', 'Bird Wing'], type: 'homologous', reason: 'Both share the tetrapod forelimb bone pattern inherited from a common ancestor.' },
+  { pair: ['Whale Flipper', 'Fish Fin'], type: 'analogous', reason: 'Both used for swimming but whale flippers contain modified mammalian limb bones while fish fins have ray structures.' },
+  { pair: ['Dolphin Fin', 'Shark Fin'], type: 'analogous', reason: 'Convergent evolution: similar shape for swimming but completely different internal structure (bone vs cartilage).' },
+  { pair: ['Human Arm', 'Cat Foreleg'], type: 'homologous', reason: 'Same bone pattern in all mammals, modified for different locomotion styles.' },
+];
+
+function haDrawCanvas() {
+  const ctx = getCtx('ha-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const structures = [
+    { name: 'Human Arm', x: 0, color: '#dc2626' },
+    { name: 'Whale Flipper', x: 0, color: '#2563eb' },
+    { name: 'Bat Wing', x: 0, color: '#7c3aed' },
+    { name: 'Bird Wing', x: 0, color: '#16a34a' },
+    { name: 'Insect Wing', x: 0, color: '#d97706' }
+  ];
+
+  const pad = 40;
+  const colW = (W - pad * 2) / structures.length;
+
+  // Title
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Forelimb / Wing Structures Across Species', W / 2, 24);
+
+  structures.forEach((s, i) => {
+    const cx = pad + colW * i + colW / 2;
+    s.x = cx;
+    const revealed = haState.revealed.has(i);
+
+    // Card background
+    ctx.fillStyle = revealed ? s.color + '10' : '#fff';
+    ctx.strokeStyle = revealed ? s.color : '#e5e7eb';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(cx - colW / 2 + 8, 40, colW - 16, 280, 8);
+    ctx.fill(); ctx.stroke();
+
+    // Draw structure shape
+    ctx.save();
+    ctx.translate(cx, 120);
+
+    ctx.fillStyle = s.color + '30';
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = 2;
+
+    if (i === 0) { // Human arm
+      ctx.beginPath(); ctx.ellipse(0, 50, 14, 70, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      // Hand
+      ctx.beginPath(); ctx.ellipse(0, 120, 18, 14, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    } else if (i === 1) { // Whale flipper
+      ctx.beginPath(); ctx.ellipse(0, 50, 24, 65, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    } else if (i === 2) { // Bat wing
+      ctx.beginPath();
+      ctx.moveTo(0, -10); ctx.lineTo(-45, 40); ctx.lineTo(-50, 110);
+      ctx.lineTo(0, 130); ctx.lineTo(50, 110); ctx.lineTo(45, 40);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else if (i === 3) { // Bird wing
+      ctx.beginPath();
+      ctx.moveTo(0, -5); ctx.lineTo(-40, 25); ctx.lineTo(-45, 95);
+      ctx.lineTo(-5, 120); ctx.lineTo(25, 95); ctx.lineTo(35, 25);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    } else { // Insect wing
+      ctx.beginPath();
+      ctx.moveTo(0, 5); ctx.bezierCurveTo(-45, 25, -55, 80, -10, 115);
+      ctx.bezierCurveTo(15, 115, 55, 80, 45, 25);
+      ctx.closePath(); ctx.fill(); ctx.stroke();
+    }
+
+    // Draw skeleton if revealed
+    if (revealed) {
+      if (i < 4) {
+        // Vertebrate skeleton - homologous bones
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 3;
+        ctx.shadowColor = s.color; ctx.shadowBlur = 3;
+
+        // Humerus (red)
+        ctx.strokeStyle = '#ff6b6b';
+        ctx.beginPath(); ctx.moveTo(0, -5); ctx.lineTo(0, 25); ctx.stroke();
+
+        // Radius/Ulna (cyan)
+        const spread = [8, 6, 14, 10][i];
+        ctx.strokeStyle = '#4ecdc4';
+        ctx.beginPath(); ctx.moveTo(0, 25); ctx.lineTo(-spread, 55); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, 25); ctx.lineTo(spread, 55); ctx.stroke();
+
+        // Carpals (yellow dots)
+        ctx.fillStyle = '#ffe66d'; ctx.shadowBlur = 0;
+        ctx.beginPath(); ctx.arc(0, 65, 4, 0, Math.PI*2); ctx.fill();
+
+        // Phalanges (green)
+        ctx.strokeStyle = '#a8e6cf'; ctx.lineWidth = 2;
+        const pCount = [5, 5, 5, 3][i];
+        const pSpread = [12, 16, 35, 15][i];
+        const pLen = [25, 20, 40, 20][i];
+        for (let p = 0; p < pCount; p++) {
+          const px = -pSpread / 2 + (pSpread / Math.max(pCount - 1, 1)) * p;
+          ctx.beginPath(); ctx.moveTo(0, 65); ctx.lineTo(px, 65 + pLen); ctx.stroke();
+        }
+        ctx.shadowBlur = 0;
+      } else {
+        // Insect - chitin veins
+        ctx.strokeStyle = s.color; ctx.lineWidth = 1.5; ctx.shadowBlur = 0;
+        for (let v = 0; v < 6; v++) {
+          ctx.beginPath();
+          ctx.moveTo(0, 5);
+          const angle = -0.5 + v * 0.2;
+          ctx.lineTo(Math.cos(angle) * 40, 5 + Math.sin(angle + 1) * 90);
+          ctx.stroke();
+        }
+      }
+    }
+
+    ctx.restore();
+
+    // Name label
+    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(s.name, cx, 340);
+
+    // Type if revealed
+    if (revealed) {
+      const type = i < 4 ? 'Homologous' : 'Analogous';
+      ctx.fillStyle = i < 4 ? '#16a34a' : '#d97706';
+      ctx.font = 'bold 10px system-ui';
+      ctx.fillText(type, cx, 355);
+    }
+  });
+}
+
+$('ha-canvas').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (this.offsetWidth / rect.width);
+  const pad = 40;
+  const colW = (this.offsetWidth - pad * 2) / 5;
+
+  for (let i = 0; i < 5; i++) {
+    const cx = pad + colW * i + colW / 2;
+    if (Math.abs(cx - mx) < colW / 2) {
+      haState.revealed.add(i);
+      const name = ['Human Arm', 'Whale Flipper', 'Bat Wing', 'Bird Wing', 'Insect Wing'][i];
+      const type = i < 4 ? 'Homologous' : 'Analogous';
+      const desc = i < 4
+        ? 'This is a homologous structure sharing the same underlying bone pattern (humerus, radius, ulna, carpals, phalanges) inherited from a common tetrapod ancestor.'
+        : 'This is an analogous structure. Insect wings evolved independently from vertebrate wings and have a completely different structural origin (chitin exoskeleton outgrowth).';
+
+      $('ha-info').style.display = 'block';
+      $('ha-info').className = 'analysis-result ar-pass';
+      $('ha-info').innerHTML = `<div class="ar-title">${name} &mdash; ${type}</div><p>${desc}</p>`;
+      haDrawCanvas();
+      break;
+    }
+  }
+});
+
+function haNextQ() {
+  const q = haStructures[rand(0, haStructures.length - 1)];
+  haState.currentQ = q;
+  const html = `
+    <p style="font-size:14px;font-weight:600;margin-bottom:8px;">Are these structures homologous or analogous?</p>
+    <p style="font-size:16px;font-weight:700;color:var(--blue);margin-bottom:12px;">${q.pair[0]} &harr; ${q.pair[1]}</p>
+    <div class="quiz-option" onclick="haAnswer(this, 'homologous')">Homologous (same origin, different function)</div>
+    <div class="quiz-option" onclick="haAnswer(this, 'analogous')">Analogous (different origin, same function)</div>
+  `;
+  $('ha-quiz').innerHTML = html;
+}
+
+function haAnswer(el, answer) {
+  if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
+  const q = haState.currentQ;
+  haState.total++;
+  const correct = answer === q.type;
+  if (correct) haState.correct++;
+
+  el.classList.add(correct ? 'correct' : 'wrong');
+  if (!correct) {
+    document.querySelectorAll('.quiz-option').forEach(o => {
+      if (o.textContent.toLowerCase().includes(q.type)) o.classList.add('correct');
+    });
+  }
+
+  // Show explanation
+  const explanation = document.createElement('div');
+  explanation.className = 'analysis-result ' + (correct ? 'ar-pass' : 'ar-fail');
+  explanation.innerHTML = `<div class="ar-title">${correct ? 'Correct!' : 'Not quite.'} These are ${q.type}.</div><p>${q.reason}</p>`;
+  $('ha-quiz').appendChild(explanation);
+
+  $('ha-correct').textContent = haState.correct;
+  $('ha-total').textContent = haState.total;
+  $('ha-pct').textContent = haState.total ? Math.round(haState.correct / haState.total * 100) + '%' : '-';
+}
+
+function haResetQuiz() {
+  haState.correct = 0; haState.total = 0; haState.currentQ = null;
+  $('ha-quiz').innerHTML = '';
+  $('ha-correct').textContent = '0';
+  $('ha-total').textContent = '0';
+  $('ha-pct').textContent = '-';
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 4: VARIATION IN POPULATIONS
+// ══════════════════════════════════════════════════════════════════════════
+let varState = { population: [], generation: 0, meanHistory: [], sdHistory: [] };
+
+function varInit() {
+  const n = parseInt($('var-pop').value);
+  varState.population = [];
+  varState.generation = 0;
+  varState.meanHistory = [];
+  varState.sdHistory = [];
+
+  // Generate normal distribution of beak sizes centered at 10mm
+  for (let i = 0; i < n; i++) {
+    varState.population.push(10 + gauss() * 2);
+  }
+  varRecordStats();
+  varUpdateUI();
+}
+
+function varRecordStats() {
+  const pop = varState.population;
+  if (!pop.length) return;
+  const mean = pop.reduce((s, v) => s + v, 0) / pop.length;
+  const variance = pop.reduce((s, v) => s + (v - mean) ** 2, 0) / pop.length;
+  const sd = Math.sqrt(variance);
+  varState.meanHistory.push(mean);
+  varState.sdHistory.push(sd);
+}
+
+function varStep() {
+  if (!varState.population.length) { varInit(); return; }
+  const selType = $('var-sel').value;
+  const pop = varState.population;
+  const mean = pop.reduce((s, v) => s + v, 0) / pop.length;
+
+  // Calculate fitness based on selection type
+  const fitness = pop.map(v => {
+    if (selType === 'directional') {
+      // Favor larger beaks
+      return Math.max(0.1, (v - 4) / 12);
+    } else if (selType === 'stabilizing') {
+      // Favor medium beaks near mean
+      return Math.max(0.1, 1 - Math.abs(v - 10) / 8);
+    } else {
+      // Disruptive: favor extremes
+      return Math.max(0.1, Math.abs(v - 10) / 6);
+    }
+  });
+
+  // Normalize fitness to probabilities
+  const totalFit = fitness.reduce((s, f) => s + f, 0);
+  const probs = fitness.map(f => f / totalFit);
+
+  // Select parents and reproduce
+  const newPop = [];
+  const targetN = pop.length;
+  for (let i = 0; i < targetN; i++) {
+    // Roulette wheel selection
+    let r = Math.random();
+    let parentIdx = 0;
+    for (let j = 0; j < probs.length; j++) {
+      r -= probs[j];
+      if (r <= 0) { parentIdx = j; break; }
+    }
+    // Offspring with mutation
+    const offspring = pop[parentIdx] + gauss() * 0.3;
+    newPop.push(Math.max(1, offspring));
+  }
+
+  varState.population = newPop;
+  varState.generation++;
+  varRecordStats();
+  varUpdateUI();
+}
+
+function varRun10() { for (let i = 0; i < 10; i++) varStep(); }
+
+function varReset() {
+  varState = { population: [], generation: 0, meanHistory: [], sdHistory: [] };
+  varUpdateUI();
+}
+
+function varUpdateUI() {
+  const pop = varState.population;
+  $('var-gen').textContent = varState.generation;
+  $('var-n').textContent = pop.length;
+
+  if (pop.length) {
+    const mean = pop.reduce((s, v) => s + v, 0) / pop.length;
+    const sd = Math.sqrt(pop.reduce((s, v) => s + (v - mean) ** 2, 0) / pop.length);
+    $('var-mean').textContent = mean.toFixed(1);
+    $('var-sd').textContent = sd.toFixed(2);
+  } else {
+    $('var-mean').textContent = '-';
+    $('var-sd').textContent = '-';
+  }
+  varDrawHist();
+  varDrawLine();
+}
+
+function varDrawHist() {
+  const ctx = getCtx('var-hist-chart');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pop = varState.population;
+  if (!pop.length) {
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Initialize a population to see distribution', W / 2, H / 2);
+    return;
+  }
+
+  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+
+  // Bin the data
+  const minV = Math.floor(Math.min(...pop));
+  const maxV = Math.ceil(Math.max(...pop));
+  const numBins = 20;
+  const binWidth = (maxV - minV) / numBins;
+  const bins = Array(numBins).fill(0);
+  pop.forEach(v => {
+    const bin = Math.min(numBins - 1, Math.floor((v - minV) / binWidth));
+    bins[bin]++;
+  });
+
+  const maxBin = Math.max(...bins);
+  const barW = plotW / numBins;
+
+  // Grid
+  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = pad.top + plotH * (1 - i / 4);
+    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxBin * i / 4), pad.left - 6, y + 4);
+  }
+
+  // Draw bars with gradient based on selection type
+  const selType = $('var-sel').value;
+  bins.forEach((count, i) => {
+    const x = pad.left + i * barW;
+    const h = (count / maxBin) * plotH;
+    const binCenter = minV + (i + 0.5) * binWidth;
+
+    // Color based on fitness
+    let hue;
+    if (selType === 'directional') {
+      hue = clamp((binCenter - minV) / (maxV - minV) * 120, 0, 120);
+    } else if (selType === 'stabilizing') {
+      hue = clamp((1 - Math.abs(binCenter - 10) / 6) * 120, 0, 120);
+    } else {
+      hue = clamp(Math.abs(binCenter - 10) / 6 * 120, 0, 120);
+    }
+    ctx.fillStyle = `hsl(${hue}, 70%, 50%)`;
+    ctx.fillRect(x + 1, pad.top + plotH - h, barW - 2, h);
+  });
+
+  // Mean line
+  const mean = pop.reduce((s, v) => s + v, 0) / pop.length;
+  const meanX = pad.left + ((mean - minV) / (maxV - minV)) * plotW;
+  ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 2; ctx.setLineDash([6, 3]);
+  ctx.beginPath(); ctx.moveTo(meanX, pad.top); ctx.lineTo(meanX, pad.top + plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Mean: ' + mean.toFixed(1) + 'mm', meanX, pad.top - 4);
+
+  // X axis
+  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  for (let i = 0; i <= numBins; i += 4) {
+    const x = pad.left + i * barW;
+    const val = (minV + i * binWidth).toFixed(1);
+    ctx.fillText(val, x, H - pad.bottom + 16);
+  }
+  ctx.fillText('Beak Size (mm)', pad.left + plotW / 2, H - 4);
+}
+
+function varDrawLine() {
+  if (!varState.meanHistory.length) {
+    const ctx = getCtx('var-line-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Run generations to see mean trend', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+
+  const means = varState.meanHistory;
+  const sds = varState.sdHistory;
+  const yMin = Math.min(...means.map((m, i) => m - sds[i])) - 1;
+  const yMax = Math.max(...means.map((m, i) => m + sds[i])) + 1;
+
+  const ctx = getCtx('var-line-chart');
+
+  // Draw SD band
+  const W = ctx.W, H = ctx.H;
+  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+  const yRange = yMax - yMin;
+
+  drawLineChart(ctx, [
+    { data: means.map((m, i) => m + sds[i]), color: 'rgba(37,99,235,0.15)', width: 0 },
+    { data: means.map((m, i) => m - sds[i]), color: 'rgba(37,99,235,0.15)', width: 0 },
+    { data: means, color: '#c41e3a', width: 2.5, dots: true }
+  ], { yMin, yMax });
+
+  // Fill SD band
+  if (means.length > 1) {
+    ctx.fillStyle = 'rgba(37,99,235,0.1)';
+    ctx.beginPath();
+    means.forEach((m, i) => {
+      const x = pad.left + (i / Math.max(means.length - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (m + sds[i] - yMin) / yRange);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    for (let i = means.length - 1; i >= 0; i--) {
+      const x = pad.left + (i / Math.max(means.length - 1, 1)) * plotW;
+      const y = pad.top + plotH * (1 - (means[i] - sds[i] - yMin) / yRange);
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath(); ctx.fill();
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 5: ADAPTATION TIMELINE
+// ══════════════════════════════════════════════════════════════════════════
+const timelineEvents = [
+  { year: 1831, title: "Darwin's Voyage Begins", desc: "Charles Darwin boards HMS Beagle for a 5-year voyage around the world. His observations during this journey, especially in the Galapagos Islands, will form the foundation of his theory.", color: '#c41e3a' },
+  { year: 1835, title: "Galapagos Finches", desc: "Darwin observes that finches on different Galapagos Islands have differently shaped beaks adapted to different food sources. This becomes a key example of adaptive radiation.", color: '#dc2626' },
+  { year: 1858, title: "Wallace's Letter", desc: "Alfred Russel Wallace independently develops a theory of natural selection and writes to Darwin. This prompts the joint presentation of their ideas to the Linnean Society.", color: '#d97706' },
+  { year: 1859, title: "Origin of Species", desc: "Darwin publishes 'On the Origin of Species by Means of Natural Selection.' The book presents overwhelming evidence for evolution and proposes natural selection as the mechanism.", color: '#c41e3a' },
+  { year: 1866, title: "Mendel's Genetics", desc: "Gregor Mendel publishes his work on pea plant inheritance, discovering the laws of heredity. His work is largely ignored until 1900 but provides the missing mechanism for inheritance.", color: '#16a34a' },
+  { year: 1900, title: "Mendel Rediscovered", desc: "Three scientists independently rediscover Mendel's laws. Genetics is born as a field, though initially it seems to conflict with Darwinian gradualism.", color: '#16a34a' },
+  { year: 1930, title: "Population Genetics", desc: "R.A. Fisher, J.B.S. Haldane, and Sewall Wright develop mathematical models showing how natural selection acts on Mendelian genetics in populations.", color: '#2563eb' },
+  { year: 1942, title: "Modern Synthesis", desc: "Julian Huxley's 'Evolution: The Modern Synthesis' unifies Darwinian natural selection with Mendelian genetics, forming the modern theory of evolution.", color: '#7c3aed' },
+  { year: 1953, title: "DNA Structure", desc: "Watson and Crick discover the double helix structure of DNA, revealing the molecular basis of heredity and providing a mechanism for mutation and inheritance.", color: '#2563eb' },
+  { year: 1968, title: "Neutral Theory", desc: "Motoo Kimura proposes that most molecular evolution is due to genetic drift of neutral mutations, not natural selection. This becomes important for molecular phylogenetics.", color: '#d97706' },
+  { year: 1972, title: "Punctuated Equilibrium", desc: "Gould and Eldredge propose that evolution occurs in rapid bursts separated by long periods of stasis, challenging strict gradualism.", color: '#c41e3a' },
+  { year: 1990, title: "Human Genome Project", desc: "The international project to sequence all human DNA begins. Genomic data will revolutionize our understanding of evolutionary relationships.", color: '#7c3aed' },
+];
+
+let tlState = { selected: -1, viewStart: 1825, viewEnd: 2000 };
+
+function tlZoom(range) {
+  if (range === 'all') { tlState.viewStart = 1825; tlState.viewEnd = 2000; }
+  else if (range === 'early') { tlState.viewStart = 1825; tlState.viewEnd = 1870; }
+  else if (range === 'mid') { tlState.viewStart = 1870; tlState.viewEnd = 1945; }
+  else if (range === 'modern') { tlState.viewStart = 1940; tlState.viewEnd = 2000; }
+  tlDraw();
+}
+
+function tlDraw() {
+  const ctx = getCtx('tl-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+
+  const pad = { top: 30, right: 40, bottom: 40, left: 40 };
+  const plotW = W - pad.left - pad.right;
+  const lineY = H * 0.45;
+  const { viewStart, viewEnd } = tlState;
+  const range = viewEnd - viewStart;
+
+  // Background decades
+  ctx.fillStyle = '#f1f5f9';
+  for (let yr = Math.ceil(viewStart / 10) * 10; yr < viewEnd; yr += 20) {
+    const x1 = pad.left + ((yr - viewStart) / range) * plotW;
+    const x2 = pad.left + ((yr + 10 - viewStart) / range) * plotW;
+    ctx.fillRect(x1, pad.top, x2 - x1, H - pad.top - pad.bottom);
+  }
+
+  // Timeline axis
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(pad.left, lineY); ctx.lineTo(W - pad.right, lineY); ctx.stroke();
+
+  // Year markers
+  const yearStep = range <= 50 ? 5 : (range <= 100 ? 10 : 25);
+  ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  for (let yr = Math.ceil(viewStart / yearStep) * yearStep; yr <= viewEnd; yr += yearStep) {
+    const x = pad.left + ((yr - viewStart) / range) * plotW;
+    ctx.beginPath(); ctx.moveTo(x, lineY - 5); ctx.lineTo(x, lineY + 5); ctx.strokeStyle = '#374151'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillText(yr, x, lineY + 22);
+  }
+
+  // Draw events
+  const visibleEvents = timelineEvents.filter(e => e.year >= viewStart && e.year <= viewEnd);
+  visibleEvents.forEach((ev, i) => {
+    const x = pad.left + ((ev.year - viewStart) / range) * plotW;
+    const above = i % 2 === 0;
+    const offset = above ? -1 : 1;
+    const markerY = lineY + offset * (60 + (i % 3) * 20);
+
+    // Connector
+    ctx.strokeStyle = ev.color + '80'; ctx.lineWidth = 1.5; ctx.setLineDash([3, 3]);
+    ctx.beginPath(); ctx.moveTo(x, lineY); ctx.lineTo(x, markerY); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Event marker
+    const isSelected = tlState.selected === timelineEvents.indexOf(ev);
+    const r = isSelected ? 16 : 12;
+    ctx.beginPath(); ctx.arc(x, markerY, r, 0, Math.PI * 2);
+    ctx.fillStyle = ev.color; ctx.fill();
+    if (isSelected) {
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.stroke();
+      ctx.strokeStyle = ev.color; ctx.lineWidth = 1; ctx.stroke();
+    }
+
+    // Year in circle
+    ctx.fillStyle = '#fff'; ctx.font = `bold ${isSelected ? 9 : 8}px system-ui`; ctx.textAlign = 'center';
+    ctx.fillText(ev.year, x, markerY + 3);
+
+    // Title
+    ctx.fillStyle = '#374151'; ctx.font = `${isSelected ? 'bold ' : ''}11px system-ui`;
+    const titleY = above ? markerY - r - 8 : markerY + r + 14;
+    // Wrap long titles
+    const maxTitleW = Math.min(100, plotW / visibleEvents.length);
+    const words = ev.title.split(' ');
+    let line = '';
+    let lineNum = 0;
+    words.forEach(word => {
+      const test = line + (line ? ' ' : '') + word;
+      if (ctx.measureText(test).width > maxTitleW && line) {
+        ctx.fillText(line, x, titleY + lineNum * 12 * (above ? -1 : 1));
+        line = word;
+        lineNum++;
+      } else {
+        line = test;
+      }
+    });
+    ctx.fillText(line, x, titleY + lineNum * 12 * (above ? -1 : 1));
+  });
+}
+
+$('tl-canvas').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (this.offsetWidth / rect.width);
+  const my = (e.clientY - rect.top) * (this.offsetHeight / rect.height);
+  const H = this.offsetHeight;
+  const lineY = H * 0.45;
+  const pad = { left: 40, right: 40 };
+  const plotW = this.offsetWidth - pad.left - pad.right;
+  const { viewStart, viewEnd } = tlState;
+  const range = viewEnd - viewStart;
+
+  const visibleEvents = timelineEvents.filter(ev => ev.year >= viewStart && ev.year <= viewEnd);
+  let clicked = false;
+
+  visibleEvents.forEach((ev, i) => {
+    const x = pad.left + ((ev.year - viewStart) / range) * plotW;
+    const above = i % 2 === 0;
+    const offset = above ? -1 : 1;
+    const markerY = lineY + offset * (60 + (i % 3) * 20);
+    const d = Math.sqrt((x - mx) ** 2 + (markerY - my) ** 2);
+
+    if (d < 20) {
+      const idx = timelineEvents.indexOf(ev);
+      tlState.selected = idx;
+      $('tl-info').style.display = 'block';
+      $('tl-info').className = 'analysis-result ar-pass';
+      $('tl-info').innerHTML = `<div class="ar-title">${ev.year}: ${ev.title}</div><p>${ev.desc}</p>`;
+      clicked = true;
+    }
+  });
+
+  if (clicked) tlDraw();
+});
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 6: FITNESS LANDSCAPE
+// ══════════════════════════════════════════════════════════════════════════
+let flState = {
+  population: [], generation: 0, peaks: [], landscape: [],
+  fitnessHistory: [], shiftGens: [], extinctCount: 0, popHistory: []
+};
+
+function flGenerateLandscape() {
+  // Create fitness landscape with 2-3 peaks
+  const numPeaks = rand(2, 3);
+  flState.peaks = [];
+  for (let i = 0; i < numPeaks; i++) {
+    flState.peaks.push({
+      x: randF(0.15, 0.85),
+      height: randF(0.5, 1.0),
+      width: randF(0.05, 0.15)
+    });
+  }
+
+  // Generate landscape function values
+  flState.landscape = [];
+  for (let i = 0; i <= 200; i++) {
+    const x = i / 200;
+    let fitness = 0.05; // base fitness
+    flState.peaks.forEach(p => {
+      fitness += p.height * Math.exp(-((x - p.x) ** 2) / (2 * p.width ** 2));
+    });
+    flState.landscape.push(Math.min(1, fitness));
+  }
+}
+
+function flGetFitness(x) {
+  const idx = Math.round(clamp(x, 0, 1) * 200);
+  return flState.landscape[idx] || 0.05;
+}
+
+function flStart() {
+  flState.generation = 0;
+  flState.fitnessHistory = [];
+  flState.shiftGens = [];
+  flState.extinctCount = 0;
+  flState.popHistory = [];
+
+  flGenerateLandscape();
+
+  // Create initial population spread across landscape
+  flState.population = [];
+  for (let i = 0; i < 60; i++) {
+    flState.population.push({
+      x: randF(0, 1),
+      fitness: 0
+    });
+  }
+
+  // Calculate fitness
+  flState.population.forEach(p => { p.fitness = flGetFitness(p.x); });
+
+  flRecordStats();
+  flRender();
+  flUpdateUI();
+}
+
+function flStep() {
+  if (!flState.population.length) { flStart(); return; }
+  flState.generation++;
+
+  const pop = flState.population;
+  // Selection + reproduction
+  const totalFit = pop.reduce((s, p) => s + p.fitness, 0);
+  if (totalFit === 0) {
+    // Extinction
+    flState.extinctCount++;
+    flState.population = [];
+    flRecordStats();
+    flRender();
+    flUpdateUI();
+    return;
+  }
+
+  const newPop = [];
+  const targetN = Math.min(80, Math.max(20, pop.length));
+
+  for (let i = 0; i < targetN; i++) {
+    // Tournament selection
+    const a = pop[rand(0, pop.length - 1)];
+    const b = pop[rand(0, pop.length - 1)];
+    const parent = a.fitness >= b.fitness ? a : b;
+
+    // Offspring with mutation
+    const x = clamp(parent.x + gauss() * 0.02, 0, 1);
+    newPop.push({ x, fitness: flGetFitness(x) });
+  }
+
+  flState.population = newPop;
+  flRecordStats();
+  flRender();
+  flUpdateUI();
+}
+
+function flRun10() { for (let i = 0; i < 10; i++) flStep(); }
+
+function flShift() {
+  if (!flState.landscape.length) return;
+  flState.shiftGens.push(flState.generation);
+
+  // Shift peaks randomly
+  flState.peaks.forEach(p => {
+    p.x = clamp(p.x + randF(-0.3, 0.3), 0.1, 0.9);
+    p.height = clamp(p.height + randF(-0.3, 0.3), 0.3, 1.0);
+  });
+
+  // Regenerate landscape
+  flState.landscape = [];
+  for (let i = 0; i <= 200; i++) {
+    const x = i / 200;
+    let fitness = 0.05;
+    flState.peaks.forEach(p => {
+      fitness += p.height * Math.exp(-((x - p.x) ** 2) / (2 * p.width ** 2));
+    });
+    flState.landscape.push(Math.min(1, fitness));
+  }
+
+  // Recalculate fitness for existing population
+  flState.population.forEach(p => { p.fitness = flGetFitness(p.x); });
+
+  flRender();
+  flUpdateUI();
+}
+
+function flExtinction() {
+  if (!flState.population.length) return;
+  flState.shiftGens.push(flState.generation);
+
+  // Remove one peak entirely
+  if (flState.peaks.length > 1) {
+    const removeIdx = rand(0, flState.peaks.length - 1);
+    flState.peaks.splice(removeIdx, 1);
+  } else {
+    // Flatten existing peak
+    flState.peaks[0].height *= 0.3;
+  }
+
+  // Regenerate landscape
+  flState.landscape = [];
+  for (let i = 0; i <= 200; i++) {
+    const x = i / 200;
+    let fitness = 0.05;
+    flState.peaks.forEach(p => {
+      fitness += p.height * Math.exp(-((x - p.x) ** 2) / (2 * p.width ** 2));
+    });
+    flState.landscape.push(Math.min(1, fitness));
+  }
+
+  // Kill organisms on removed peak
+  flState.population.forEach(p => { p.fitness = flGetFitness(p.x); });
+  // Remove low-fitness organisms
+  const survivors = flState.population.filter(p => p.fitness > 0.15 || Math.random() < 0.3);
+  if (survivors.length < flState.population.length * 0.5) flState.extinctCount++;
+  flState.population = survivors;
+
+  flRender();
+  flUpdateUI();
+}
+
+function flRecordStats() {
+  const pop = flState.population;
+  if (pop.length) {
+    const meanFit = pop.reduce((s, p) => s + p.fitness, 0) / pop.length;
+    flState.fitnessHistory.push(meanFit);
+  } else {
+    flState.fitnessHistory.push(0);
+  }
+  flState.popHistory.push(flState.population.length);
+}
+
+function flRender() {
+  const ctx = getCtx('fl-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+
+  const pad = { top: 30, right: 20, bottom: 50, left: 40 };
+  const plotW = W - pad.left - pad.right;
+  const plotH = H - pad.top - pad.bottom;
+  const baseY = pad.top + plotH;
+
+  // Background gradient (sky)
+  const skyGrad = ctx.createLinearGradient(0, 0, 0, H);
+  skyGrad.addColorStop(0, '#e0f2fe');
+  skyGrad.addColorStop(1, '#f0fdf4');
+  ctx.fillStyle = skyGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw landscape as filled mountain
+  if (flState.landscape.length) {
+    // Mountain fill
+    ctx.beginPath();
+    ctx.moveTo(pad.left, baseY);
+    flState.landscape.forEach((f, i) => {
+      const x = pad.left + (i / 200) * plotW;
+      const y = baseY - f * plotH * 0.85;
+      ctx.lineTo(x, y);
+    });
+    ctx.lineTo(pad.left + plotW, baseY);
+    ctx.closePath();
+
+    const mtGrad = ctx.createLinearGradient(0, pad.top, 0, baseY);
+    mtGrad.addColorStop(0, '#22c55e');
+    mtGrad.addColorStop(0.4, '#4ade80');
+    mtGrad.addColorStop(0.8, '#86efac');
+    mtGrad.addColorStop(1, '#bbf7d0');
+    ctx.fillStyle = mtGrad;
+    ctx.fill();
+
+    // Mountain outline
+    ctx.strokeStyle = '#15803d'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    flState.landscape.forEach((f, i) => {
+      const x = pad.left + (i / 200) * plotW;
+      const y = baseY - f * plotH * 0.85;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Fitness contour lines
+    [0.25, 0.5, 0.75].forEach(level => {
+      ctx.strokeStyle = 'rgba(21,128,61,0.15)'; ctx.lineWidth = 1; ctx.setLineDash([4, 6]);
+      const y = baseY - level * plotH * 0.85;
+      ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left + plotW, y); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(21,128,61,0.4)'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+      ctx.fillText(level.toFixed(2), pad.left + 4, y - 2);
+    });
+  }
+
+  // Draw population as dots
+  flState.population.forEach(p => {
+    const x = pad.left + p.x * plotW;
+    const y = baseY - p.fitness * plotH * 0.85;
+
+    // Dot shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+    ctx.beginPath(); ctx.arc(x + 1, y + 2, 4, 0, Math.PI * 2); ctx.fill();
+
+    // Organism dot
+    const hue = p.fitness * 120; // red = low, green = high
+    ctx.fillStyle = `hsl(${hue}, 80%, 50%)`;
+    ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.stroke();
+  });
+
+  // Peak markers
+  flState.peaks.forEach(p => {
+    const x = pad.left + p.x * plotW;
+    const y = baseY - p.height * plotH * 0.85;
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Peak', x, y - 12);
+  });
+
+  // Labels
+  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Trait Space', pad.left + plotW / 2, H - 8);
+  ctx.save(); ctx.translate(14, pad.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2); ctx.fillText('Fitness', 0, 0); ctx.restore();
+
+  // Generation label
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.fillRect(W - 160, 8, 152, 28);
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'right';
+  ctx.fillText('Generation ' + flState.generation, W - 16, 27);
+}
+
+function flUpdateUI() {
+  $('fl-gen').textContent = flState.generation;
+  $('fl-pop').textContent = flState.population.length;
+  $('fl-peaks').textContent = flState.peaks.length;
+  $('fl-extinct').textContent = flState.extinctCount;
+
+  if (flState.population.length) {
+    const meanFit = flState.population.reduce((s, p) => s + p.fitness, 0) / flState.population.length;
+    $('fl-fitness').textContent = meanFit.toFixed(3);
+  } else {
+    $('fl-fitness').textContent = '-';
+  }
+
+  flDrawFitnessChart();
+}
+
+function flDrawFitnessChart() {
+  if (!flState.fitnessHistory.length) {
+    const ctx = getCtx('fl-fitness-chart');
+    ctx.clearRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Start simulation to see fitness over time', ctx.W / 2, ctx.H / 2);
+    return;
+  }
+
+  const ctx = getCtx('fl-fitness-chart');
+  drawLineChart(ctx, [
+    { data: flState.fitnessHistory, color: '#16a34a', width: 2.5, dots: flState.fitnessHistory.length < 60 }
+  ], { yMin: 0, yMax: 1, refLine: undefined });
+
+  // Mark environmental shifts
+  if (flState.shiftGens.length) {
+    const W = ctx.W, H = ctx.H;
+    const pad = { top: 20, right: 20, bottom: 30, left: 50 };
+    const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
+    const maxX = flState.fitnessHistory.length;
+
+    flState.shiftGens.forEach(g => {
+      if (g < maxX) {
+        const x = pad.left + (g / Math.max(maxX - 1, 1)) * plotW;
+        ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]);
+        ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, pad.top + plotH); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText('Shift', x, pad.top - 4);
+      }
+    });
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// SIDEBAR SCROLL HIGHLIGHT
+// ══════════════════════════════════════════════════════════════════════════
+function updateSidebar() {
+  const sections = document.querySelectorAll('.section, .hero');
+  const links = document.querySelectorAll('.sidebar-nav a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateSidebar);
+
+// ══════════════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  nsRender();
+  nsUpdateUI();
+  evDrawFossil();
+  evDrawMolecular();
+  evDrawAnatomy();
+  evDrawEmbryo();
+  haDrawCanvas();
+  haNextQ();
+  tlDraw();
+  flRender();
+  flUpdateUI();
+  varDrawHist();
+  varDrawLine();
+});
+
+window.addEventListener('resize', () => {
+  nsRender(); nsDrawDistChart(); nsDrawFitnessChart();
+  if (evState.activeTab === 'fossil') evDrawFossil();
+  else if (evState.activeTab === 'anatomy') evDrawAnatomy();
+  else if (evState.activeTab === 'embryo') evDrawEmbryo();
+  else evDrawMolecular();
+  haDrawCanvas();
+  varDrawHist(); varDrawLine();
+  tlDraw();
+  flRender(); flDrawFitnessChart();
+});
+</script>
+</body>
+</html>

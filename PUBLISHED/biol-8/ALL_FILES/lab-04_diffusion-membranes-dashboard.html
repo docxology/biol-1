@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4 Dashboard: Diffusion and Membranes | BIOL-8</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f0f2f5;
+            --card: #ffffff;
+            --sidebar: #1a1a2e;
+            --sidebar-hover: #252545;
+            --accent: #c41e3a;
+            --accent-light: #e8354f;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --green: #16a34a;
+            --amber: #d97706;
+            --purple: #7c3aed;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --radius: 10px;
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar);
+            color: #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 24px 20px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h1 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 12px 0;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.15s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--sidebar-hover);
+            color: #e2e8f0;
+        }
+
+        .sidebar-nav a.active {
+            color: #fff;
+            background: var(--sidebar-hover);
+            border-left-color: var(--accent);
+        }
+
+        .sidebar-nav .nav-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav a.active .nav-num {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .main {
+            margin-left: 260px;
+            flex: 1;
+            padding: 32px;
+            max-width: 1200px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            scroll-margin-top: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .card-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: var(--font);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+        }
+
+        .slider-group label {
+            font-size: 13px;
+            font-weight: 600;
+            min-width: 100px;
+        }
+
+        .slider-group input[type=range] {
+            flex: 1;
+            accent-color: var(--accent);
+        }
+
+        .slider-val {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 700;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 14px 8px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+        }
+
+        .stat-box .stat-val {
+            font-size: 24px;
+            font-weight: 800;
+            font-family: var(--mono);
+        }
+
+        .stat-box .stat-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-accent .stat-val {
+            color: var(--accent);
+        }
+
+        .stat-blue .stat-val {
+            color: var(--blue);
+        }
+
+        .stat-green .stat-val {
+            color: var(--green);
+        }
+
+        .stat-amber .stat-val {
+            color: var(--amber);
+        }
+
+        .stat-purple .stat-val {
+            color: var(--purple);
+        }
+
+        .analysis-result {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px 0;
+            border-left: 4px solid var(--blue);
+            font-size: 14px;
+        }
+
+        .analysis-result .ar-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .analysis-result.ar-info {
+            border-left-color: var(--blue);
+        }
+
+        .analysis-result.ar-success {
+            border-left-color: var(--green);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 36px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(196, 30, 58, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .hero .bio-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero .bio-tag {
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Agar Plate Simulation */
+        .agar-plate {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #f5f5dc 0%, #e8e8c0 100%);
+            position: relative;
+            border: 8px solid #c0c0c0;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .agar-canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        /* Water Container for Temperature Demo */
+        .water-container {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+            background: linear-gradient(to bottom, #87ceeb 0%, #4a90c2 100%);
+            border: 4px solid #666;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .water-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Dialysis Bag */
+        .dialysis-container {
+            width: 100%;
+            max-width: 500px;
+            height: 250px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .dialysis-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin: 12px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        .data-table th {
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            background: #fafafa;
+        }
+
+        .quiz-option {
+            display: block;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-size: 14px;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--blue);
+            background: #eff6ff;
+        }
+
+        .quiz-option.correct {
+            border-color: var(--green);
+            background: #f0fdf4;
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--accent);
+            background: #fef2f2;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>BIOL-8: Human Biology</h1>
+                <p>Lab 4 &mdash; Diffusion and Membranes</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+                <a href="#part1"><span class="nav-num">1</span> Agar Plate Diffusion</a>
+                <a href="#part2"><span class="nav-num">2</span> Temperature Effects</a>
+                <a href="#part3"><span class="nav-num">3</span> Dialysis Tubing</a>
+                <a href="#part4"><span class="nav-num">4</span> Knowledge Check</a>
+                <a href="#part5"><span class="nav-num">5</span> Bio Connections</a>
+                <a href="#part6"><span class="nav-num">6</span> Quick Reference</a>
+            </nav>
+            <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+        </aside>
+        <div class="main">
+            <div class="hero" id="hero">
+                <h2>Diffusion and Membranes</h2>
+                <p>Explore how molecules move through diffusion and osmosis. Investigate factors
+                    affecting diffusion rate including molecular size and temperature.
+                </p>
+                <div class="bio-tags">
+                    <span class="bio-tag">Diffusion</span>
+                    <span class="bio-tag">Osmosis</span>
+                    <span class="bio-tag">Molecular Size</span>
+                    <span class="bio-tag">Temperature</span>
+                    <span class="bio-tag">Dialysis</span>
+                </div>
+            </div>
+
+            <!-- PART 1: AGAR PLATE DIFFUSION -->
+            <div class="section" id="part1">
+                <div class="section-header">
+                    <div class="section-num">1</div>
+                    <div>
+                        <div class="section-title">Agar Plate Diffusion</div>
+                        <div class="section-subtitle">Compare diffusion rates of different molecular sizes</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-row">
+                        <div>
+                            <div class="card-title">🧫 Agar Plate Simulation</div>
+                            <div class="agar-plate">
+                                <canvas id="agar-canvas" class="agar-canvas"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="card-title">Controls & Measurements</div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" onclick="startAgarDiffusion()">▶ Start
+                                    Experiment</button>
+                                <button class="btn btn-outline" onclick="resetAgar()">↺ Reset</button>
+                            </div>
+                            <div class="slider-group">
+                                <label>Time (min)</label>
+                                <input type="range" id="agar-time" min="0" max="60" value="0"
+                                    oninput="setAgarTime(this.value)">
+                                <span class="slider-val" id="agar-time-val">0</span>
+                            </div>
+                            <div class="stat-grid">
+                                <div class="stat-box stat-purple">
+                                    <div class="stat-val" id="kmno4-radius">0</div>
+                                    <div class="stat-label">KMnO₄ (mm)</div>
+                                </div>
+                                <div class="stat-box stat-blue">
+                                    <div class="stat-val" id="methblue-radius">0</div>
+                                    <div class="stat-label">Meth. Blue (mm)</div>
+                                </div>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Dye</th>
+                                        <th>MW (g/mol)</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="color:#8b008b;">KMnO₄ (Purple)</td>
+                                        <td>158</td>
+                                        <td id="kmno4-rate">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:#0066cc;">Methylene Blue</td>
+                                        <td>320</td>
+                                        <td id="methblue-rate">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="analysis-result ar-info">
+                                <div class="ar-title">💡 Key Concept</div>
+                                <p>Smaller molecules (lower MW) diffuse faster through agar. KMnO₄ is roughly half the
+                                    molecular weight of methylene blue.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2: TEMPERATURE EFFECTS -->
+            <div class="section" id="part2">
+                <div class="section-header">
+                    <div class="section-num">2</div>
+                    <div>
+                        <div class="section-title">Temperature and Density</div>
+                        <div class="section-subtitle">Observe temperature effects on diffusion and density
+                            stratification</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🌡️ Temperature Diffusion Demo</div>
+                    <div class="card-row">
+                        <div style="text-align:center;">
+                            <p style="font-weight:600;margin-bottom:8px;">Hot Water (Red Dye)</p>
+                            <canvas id="hot-beaker" width="180" height="150"
+                                style="border:3px solid #cc3333;border-radius:8px;background:#fff5f5;"></canvas>
+                            <p style="color:var(--accent);font-weight:700;margin-top:4px;">~50-60°C</p>
+                        </div>
+                        <div style="text-align:center;">
+                            <p style="font-weight:600;margin-bottom:8px;">Cold Water (Blue Dye)</p>
+                            <canvas id="cold-beaker" width="180" height="150"
+                                style="border:3px solid #3366cc;border-radius:8px;background:#f5f8ff;"></canvas>
+                            <p style="color:var(--blue);font-weight:700;margin-top:4px;">~5°C (Ice Water)</p>
+                        </div>
+                    </div>
+                    <div class="btn-group" style="justify-content:center;">
+                        <button class="btn btn-primary" onclick="startTempDiffusion()">▶ Add Dye Drops</button>
+                        <button class="btn btn-outline" onclick="resetTempDemo()">↺ Reset</button>
+                    </div>
+                    <div class="analysis-result ar-info">
+                        <div class="ar-title">Observation</div>
+                        <p id="temp-observation">Click "Add Dye Drops" to see how temperature affects diffusion rate.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔀 Density Stratification Demo</div>
+                    <div class="water-container">
+                        <canvas id="density-canvas" class="water-canvas"></canvas>
+                    </div>
+                    <div class="btn-group" style="justify-content:center;">
+                        <button class="btn btn-secondary" onclick="fillDensityTank()">Fill Tank</button>
+                        <button class="btn btn-primary" onclick="removeDivider()">Remove Divider</button>
+                        <button class="btn btn-outline" onclick="resetDensity()">↺ Reset</button>
+                    </div>
+                    <div class="analysis-result ar-info">
+                        <div class="ar-title">💡 Key Concept</div>
+                        <p>Hot water is less dense (rises), cold water is denser (sinks). When the divider is removed,
+                            water stratifies by temperature.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔄 Part 2C: Mixing Demonstration</div>
+                    <p style="font-size:13px;margin-bottom:12px;">After stratification, we can mix ONE side to create
+                        "purple" water at intermediate temperature. When the divider is removed again, watch where the
+                        purple water flows!</p>
+                    <div class="water-container">
+                        <canvas id="mixing-canvas" class="water-canvas"></canvas>
+                    </div>
+                    <div class="btn-group" style="justify-content:center;">
+                        <button class="btn btn-secondary" onclick="setupMixing()">Setup Stratified</button>
+                        <button class="btn btn-primary" onclick="mixOneSide()">Mix Left Side</button>
+                        <button class="btn btn-accent" onclick="removeMixingDivider()">Remove Divider</button>
+                        <button class="btn btn-outline" onclick="resetMixing()">↺ Reset</button>
+                    </div>
+                    <div class="analysis-result ar-info" id="mixing-result">
+                        <div class="ar-title">Observation</div>
+                        <p>Click "Setup Stratified" first to create initial layers, then "Mix Left Side" to stir, then
+                            "Remove Divider" to see flow.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 3: DIALYSIS TUBING -->
+            <div class="section" id="part3">
+                <div class="section-header">
+                    <div class="section-num">3</div>
+                    <div>
+                        <div class="section-title">Dialysis Tubing & Osmosis</div>
+                        <div class="section-subtitle">Observe osmosis and selective permeability</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">💧 Osmosis Simulation</div>
+                    <div class="dialysis-container">
+                        <canvas id="dialysis-canvas" class="dialysis-canvas"></canvas>
+                    </div>
+                    <div class="btn-group" style="justify-content:center;">
+                        <button class="btn btn-primary" onclick="startOsmosis()">▶ Start Osmosis</button>
+                        <button class="btn btn-outline" onclick="resetOsmosis()">↺ Reset</button>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-val" id="bag-a-change">0%</div>
+                            <div class="stat-label">1% (Isotonic)</div>
+                        </div>
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="bag-b-change">0%</div>
+                            <div class="stat-label">10% Sucrose</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="bag-c-change">0%</div>
+                            <div class="stat-label">20% Sucrose</div>
+                        </div>
+                    </div>
+                    <div class="analysis-result ar-info">
+                        <div class="ar-title">Bath Solution</div>
+                        <p>All bags are placed in <strong>1% sucrose solution</strong>. Water moves from lower solute
+                            concentration to higher solute concentration.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🧪 Starch-Iodine Test</div>
+                    <div style="display:flex;gap:24px;justify-content:center;align-items:center;flex-wrap:wrap;">
+                        <div style="text-align:center;">
+                            <canvas id="starch-bag" width="120" height="180"
+                                style="border:2px solid #999;border-radius:8px;"></canvas>
+                            <p style="margin-top:8px;font-weight:600;">Dialysis Bag</p>
+                            <p style="font-size:12px;color:var(--text-muted);">Contains Starch</p>
+                        </div>
+                        <div style="font-size:32px;">→</div>
+                        <div style="text-align:center;">
+                            <canvas id="iodine-bath" width="160" height="180"
+                                style="border:2px solid #999;border-radius:8px;"></canvas>
+                            <p style="margin-top:8px;font-weight:600;">Iodine Bath</p>
+                            <p style="font-size:12px;color:var(--text-muted);">Iodine in water</p>
+                        </div>
+                    </div>
+                    <div class="btn-group" style="justify-content:center;">
+                        <button class="btn btn-primary" onclick="startStarchTest()">▶ Run Test</button>
+                        <button class="btn btn-outline" onclick="resetStarchTest()">↺ Reset</button>
+                    </div>
+                    <div class="analysis-result ar-success" id="starch-result">
+                        <div class="ar-title">Result</div>
+                        <p>Click "Run Test" to observe selective permeability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 4: QUIZ -->
+            <div class="section" id="part4">
+                <div class="section-header">
+                    <div class="section-num">4</div>
+                    <div>
+                        <div class="section-title">Knowledge Check</div>
+                        <div class="section-subtitle">Test your understanding of diffusion and osmosis</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Quiz: Diffusion and Membranes</div>
+                    <div id="quiz-container">
+                        <p id="quiz-question" style="font-size:15px;font-weight:600;margin-bottom:12px;">Q1: Which
+                            factor increases the rate of diffusion?</p>
+                        <div class="quiz-option" onclick="checkAnswer(this, 0)">A. Lower temperature</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 1)">B. Higher temperature</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 2)">C. Larger molecules</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, 3)">D. Smaller concentration gradient</div>
+                    </div>
+                    <div class="btn-group" style="margin-top:16px;">
+                        <button class="btn btn-secondary" onclick="nextQuestion()">Next Question</button>
+                        <button class="btn btn-outline" onclick="resetQuiz()">Restart Quiz</button>
+                    </div>
+                    <div class="stat-grid" style="margin-top:16px;">
+                        <div class="stat-box stat-green">
+                            <div class="stat-val" id="quiz-correct">0</div>
+                            <div class="stat-label">Correct</div>
+                        </div>
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val" id="quiz-total">0</div>
+                            <div class="stat-label">Attempted</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val" id="quiz-pct">0%</div>
+                            <div class="stat-label">Score</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 5: BIOLOGICAL CONNECTIONS -->
+            <div class="section" id="part5">
+                <div class="section-header">
+                    <div class="section-num">5</div>
+                    <div>
+                        <div class="section-title">Biological Connections</div>
+                        <div class="section-subtitle">How diffusion and osmosis affect your body</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🫁 Gas Exchange in Your Lungs</div>
+                    <p style="font-size:14px;margin-bottom:12px;">Every breath you take demonstrates diffusion! Oxygen
+                        diffuses from the alveoli (high concentration) into your blood (low concentration), while CO₂
+                        diffuses the opposite direction.</p>
+                    <div class="stat-grid">
+                        <div class="stat-box stat-green">
+                            <div class="stat-val">O₂</div>
+                            <div class="stat-label">Air → Blood</div>
+                        </div>
+                        <div class="stat-box stat-accent">
+                            <div class="stat-val">CO₂</div>
+                            <div class="stat-label">Blood → Air</div>
+                        </div>
+                        <div class="stat-box stat-blue">
+                            <div class="stat-val">32</div>
+                            <div class="stat-label">O₂ MW (g/mol)</div>
+                        </div>
+                    </div>
+                    <div class="analysis-result ar-info">
+                        <div class="ar-title">Clinical Connection</div>
+                        <p>At high altitude, the concentration gradient for oxygen is smaller (thin air), so diffusion
+                            to blood is slower—causing altitude sickness.</p>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card">
+                        <div class="card-title">💉 IV Fluids & Tonicity</div>
+                        <p style="font-size:13px;margin-bottom:12px;">Medical IV solutions must be
+                            <strong>isotonic</strong> with blood (~0.9% NaCl, "normal saline"). Using the wrong solution
+                            can be dangerous:
+                        </p>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Solution</th>
+                                    <th>Effect on RBCs</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0.9% NaCl (isotonic)</td>
+                                    <td>No change</td>
+                                    <td style="color:var(--green);">✓ Safe</td>
+                                </tr>
+                                <tr>
+                                    <td>Distilled water (hypotonic)</td>
+                                    <td>Cells swell</td>
+                                    <td style="color:var(--accent);">✗ Lysis</td>
+                                </tr>
+                                <tr>
+                                    <td>5% NaCl (hypertonic)</td>
+                                    <td>Cells shrink</td>
+                                    <td style="color:var(--accent);">✗ Crenation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">🚰 Your Kidneys Filter by Diffusion</div>
+                        <p style="font-size:13px;margin-bottom:12px;">Your kidneys process ~180 liters of blood daily
+                            using diffusion and osmosis:</p>
+                        <ul style="font-size:13px;margin-left:16px;">
+                            <li><strong>Filtration:</strong> Small molecules (water, urea, glucose) diffuse across
+                                filtration membrane</li>
+                            <li><strong>Reabsorption:</strong> Glucose and water diffuse back into blood</li>
+                            <li><strong>Concentration:</strong> Loop of Henle uses osmotic gradients to concentrate
+                                urine</li>
+                        </ul>
+                        <div class="analysis-result ar-info" style="margin-top:12px;">
+                            <div class="ar-title">Why Dialysis Patients Need Treatment</div>
+                            <p>When kidneys fail, waste products build up. A dialysis machine uses the same principles
+                                as our dialysis tubing experiment to filter blood!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🌊 Why Seawater Dehydrates You</div>
+                    <p style="font-size:14px;">Seawater is about 3.5% salt (hypertonic to your cells). When you drink
+                        it:</p>
+                    <div style="display:flex;align-items:center;gap:24px;margin:16px 0;flex-wrap:wrap;">
+                        <div style="text-align:center;">
+                            <div style="font-size:48px;">🧂</div>
+                            <p style="font-size:12px;font-weight:600;">3.5% Salt</p>
+                        </div>
+                        <div style="font-size:32px;">→</div>
+                        <div style="text-align:center;">
+                            <div style="font-size:48px;">💧</div>
+                            <p style="font-size:12px;font-weight:600;">Water leaves cells</p>
+                        </div>
+                        <div style="font-size:32px;">→</div>
+                        <div style="text-align:center;">
+                            <div style="font-size:48px;">😵</div>
+                            <p style="font-size:12px;font-weight:600;">MORE dehydrated!</p>
+                        </div>
+                    </div>
+                    <p style="font-size:13px;color:var(--text-muted);">Your body tries to excrete the excess salt, but
+                        you lose more water than you gained—making dehydration worse.</p>
+                </div>
+            </div>
+
+            <!-- PART 6: QUICK REFERENCE -->
+            <div class="section" id="part6">
+                <div class="section-header">
+                    <div class="section-num">6</div>
+                    <div>
+                        <div class="section-title">Quick Reference</div>
+                        <div class="section-subtitle">Key formulas and summary tables</div>
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card">
+                        <div class="card-title">📐 Key Formulas</div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Formula</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-family:var(--mono);">Rate = Distance / Time</td>
+                                    <td>Calculate diffusion rate</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-family:var(--mono);">% Change = [(Final - Initial) / Initial] × 100
+                                    </td>
+                                    <td>Osmosis mass change</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="card-title" style="margin-top:16px;">🧮 Osmosis Calculator</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+                            <div>
+                                <label style="font-size:11px;font-weight:600;display:block;">Initial Mass (g)</label>
+                                <input type="number" id="calc-initial" value="10.0" step="0.1"
+                                    style="width:100%;padding:6px;border:2px solid var(--border);border-radius:6px;">
+                            </div>
+                            <div>
+                                <label style="font-size:11px;font-weight:600;display:block;">Final Mass (g)</label>
+                                <input type="number" id="calc-final" value="12.5" step="0.1"
+                                    style="width:100%;padding:6px;border:2px solid var(--border);border-radius:6px;">
+                            </div>
+                            <div>
+                                <label style="font-size:11px;font-weight:600;display:block;">% Change</label>
+                                <div id="calc-result"
+                                    style="padding:6px;background:#f0fdf4;border:2px solid var(--green);border-radius:6px;font-weight:700;color:var(--green);text-align:center;">
+                                    +25.0%</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="calculateChange()">Calculate</button>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">⚖️ Tonicity Summary</div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Surrounding Solution</th>
+                                    <th>Water Moves</th>
+                                    <th>Cell Response</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span style="color:var(--accent);font-weight:700;">Hypertonic</span></td>
+                                    <td>OUT of cell</td>
+                                    <td>Shrinks (crenation)</td>
+                                </tr>
+                                <tr>
+                                    <td><span style="color:var(--blue);font-weight:700;">Hypotonic</span></td>
+                                    <td>INTO cell</td>
+                                    <td>Swells (may lyse)</td>
+                                </tr>
+                                <tr>
+                                    <td><span style="color:var(--green);font-weight:700;">Isotonic</span></td>
+                                    <td>No net movement</td>
+                                    <td>Stays same</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">🔬 Molecular Weight Reference</div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Molecule</th>
+                                <th>MW (g/mol)</th>
+                                <th>Passes Dialysis Membrane?</th>
+                                <th>Diffusion Speed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Water (H₂O)</td>
+                                <td>18</td>
+                                <td style="color:var(--green);">✓ Yes</td>
+                                <td>Very fast</td>
+                            </tr>
+                            <tr>
+                                <td>Oxygen (O₂)</td>
+                                <td>32</td>
+                                <td style="color:var(--green);">✓ Yes</td>
+                                <td>Very fast</td>
+                            </tr>
+                            <tr>
+                                <td>KMnO₄</td>
+                                <td>158</td>
+                                <td style="color:var(--green);">✓ Yes</td>
+                                <td>Fast</td>
+                            </tr>
+                            <tr>
+                                <td>Iodine (I₂)</td>
+                                <td>254</td>
+                                <td style="color:var(--green);">✓ Yes</td>
+                                <td>Moderate</td>
+                            </tr>
+                            <tr>
+                                <td>Methylene Blue</td>
+                                <td>320</td>
+                                <td style="color:var(--green);">✓ Yes (slow)</td>
+                                <td>Moderate</td>
+                            </tr>
+                            <tr>
+                                <td>Sucrose</td>
+                                <td>342</td>
+                                <td style="color:var(--accent);">✗ No</td>
+                                <td>Slow</td>
+                            </tr>
+                            <tr>
+                                <td>Starch</td>
+                                <td>~1,000+</td>
+                                <td style="color:var(--accent);">✗ No</td>
+                                <td>Very slow</td>
+                            </tr>
+                            <tr>
+                                <td>Proteins</td>
+                                <td>10,000+</td>
+                                <td style="color:var(--accent);">✗ No</td>
+                                <td>Extremely slow</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const $ = id => document.getElementById(id);
+
+        // ============ PART 1: AGAR PLATE ============
+        let agarTime = 0;
+        let agarAnimating = false;
+
+        function drawAgarPlate(time) {
+            const canvas = $('agar-canvas');
+            const ctx = canvas.getContext('2d');
+            const size = Math.min(canvas.offsetWidth, canvas.offsetHeight) || 300;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = size * dpr;
+            canvas.height = size * dpr;
+            ctx.scale(dpr, dpr);
+
+            // Agar background
+            ctx.fillStyle = '#f5f5dc';
+            ctx.fillRect(0, 0, size, size);
+
+            const cx = size / 2;
+            const cy = size / 2;
+            const wellRadius = 8;
+
+            // KMnO4 diffusion (purple) - faster, smaller molecule
+            const kmno4Radius = wellRadius + (time * 0.8);
+            const gradient1 = ctx.createRadialGradient(cx - 30, cy, wellRadius, cx - 30, cy, kmno4Radius);
+            gradient1.addColorStop(0, 'rgba(139, 0, 139, 0.9)');
+            gradient1.addColorStop(0.5, 'rgba(139, 0, 139, 0.4)');
+            gradient1.addColorStop(1, 'rgba(139, 0, 139, 0)');
+            ctx.fillStyle = gradient1;
+            ctx.beginPath();
+            ctx.arc(cx - 30, cy, kmno4Radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Methylene blue diffusion (blue) - slower, larger molecule
+            const methBlueRadius = wellRadius + (time * 0.5);
+            const gradient2 = ctx.createRadialGradient(cx + 30, cy, wellRadius, cx + 30, cy, methBlueRadius);
+            gradient2.addColorStop(0, 'rgba(0, 100, 200, 0.9)');
+            gradient2.addColorStop(0.5, 'rgba(0, 100, 200, 0.4)');
+            gradient2.addColorStop(1, 'rgba(0, 100, 200, 0)');
+            ctx.fillStyle = gradient2;
+            ctx.beginPath();
+            ctx.arc(cx + 30, cy, methBlueRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Wells
+            ctx.fillStyle = '#222';
+            ctx.beginPath();
+            ctx.arc(cx - 30, cy, wellRadius, 0, Math.PI * 2);
+            ctx.arc(cx + 30, cy, wellRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('KMnO₄', cx - 30, cy + kmno4Radius + 15);
+            ctx.fillText('Meth. Blue', cx + 30, cy + methBlueRadius + 15);
+
+            // Update stats
+            $('kmno4-radius').textContent = Math.round(kmno4Radius - wellRadius);
+            $('methblue-radius').textContent = Math.round(methBlueRadius - wellRadius);
+            if (time > 0) {
+                $('kmno4-rate').textContent = (((kmno4Radius - wellRadius) / time) || 0).toFixed(2) + ' mm/min';
+                $('methblue-rate').textContent = (((methBlueRadius - wellRadius) / time) || 0).toFixed(2) + ' mm/min';
+            }
+        }
+
+        function startAgarDiffusion() {
+            if (agarAnimating) return;
+            agarAnimating = true;
+            const animate = () => {
+                if (agarTime < 60 && agarAnimating) {
+                    agarTime += 0.5;
+                    $('agar-time').value = agarTime;
+                    $('agar-time-val').textContent = Math.round(agarTime);
+                    drawAgarPlate(agarTime);
+                    requestAnimationFrame(animate);
+                } else {
+                    agarAnimating = false;
+                }
+            };
+            animate();
+        }
+
+        function setAgarTime(val) {
+            agarTime = parseFloat(val);
+            $('agar-time-val').textContent = Math.round(agarTime);
+            drawAgarPlate(agarTime);
+        }
+
+        function resetAgar() {
+            agarAnimating = false;
+            agarTime = 0;
+            $('agar-time').value = 0;
+            $('agar-time-val').textContent = '0';
+            $('kmno4-rate').textContent = '—';
+            $('methblue-rate').textContent = '—';
+            drawAgarPlate(0);
+        }
+
+        // ============ PART 2: TEMPERATURE ============
+        let tempAnimating = false;
+        let hotParticles = [];
+        let coldParticles = [];
+
+        function drawBeakers() {
+            drawBeaker('hot-beaker', hotParticles, '#ff4444', true);
+            drawBeaker('cold-beaker', coldParticles, '#4444ff', false);
+        }
+
+        function drawBeaker(canvasId, particles, color, isHot) {
+            const canvas = $(canvasId);
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Water
+            ctx.fillStyle = isHot ? '#ffe8e8' : '#e8f0ff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw particles
+            particles.forEach(p => {
+                const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+                gradient.addColorStop(0, color);
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        function startTempDiffusion() {
+            if (tempAnimating) return;
+            tempAnimating = true;
+
+            // Initialize particles at center
+            const hotCanvas = $('hot-beaker');
+            const coldCanvas = $('cold-beaker');
+            hotParticles = [{ x: hotCanvas.width / 2, y: 30, size: 5 }];
+            coldParticles = [{ x: coldCanvas.width / 2, y: 30, size: 5 }];
+
+            let frame = 0;
+            const animate = () => {
+                if (frame < 200 && tempAnimating) {
+                    // Hot particles spread faster
+                    hotParticles.forEach(p => {
+                        p.size += 0.8;
+                        p.y += 0.3;
+                    });
+                    // Cold particles spread slower
+                    coldParticles.forEach(p => {
+                        p.size += 0.3;
+                        p.y += 0.1;
+                    });
+                    drawBeakers();
+                    frame++;
+                    requestAnimationFrame(animate);
+                } else {
+                    tempAnimating = false;
+                    $('temp-observation').textContent = 'The red dye in hot water diffused much faster than the blue dye in cold water. Higher temperature = more kinetic energy = faster molecular movement!';
+                }
+            };
+            animate();
+        }
+
+        function resetTempDemo() {
+            tempAnimating = false;
+            hotParticles = [];
+            coldParticles = [];
+            drawBeakers();
+            $('temp-observation').textContent = 'Click "Add Dye Drops" to see how temperature affects diffusion rate.';
+        }
+
+        // Density Tank
+        let densityState = 'empty';
+
+        function drawDensityTank() {
+            const canvas = $('density-canvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.offsetWidth || 400;
+            const h = canvas.offsetHeight || 200;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            ctx.scale(dpr, dpr);
+
+            ctx.fillStyle = '#e0e8f0';
+            ctx.fillRect(0, 0, w, h);
+
+            if (densityState === 'filled') {
+                // Left side: hot (red)
+                ctx.fillStyle = '#ffcccc';
+                ctx.fillRect(0, 0, w / 2 - 2, h);
+                // Right side: cold (blue)
+                ctx.fillStyle = '#ccccff';
+                ctx.fillRect(w / 2 + 2, 0, w / 2, h);
+                // Divider
+                ctx.fillStyle = '#333';
+                ctx.fillRect(w / 2 - 2, 0, 4, h);
+            } else if (densityState === 'stratified') {
+                // Red on top, blue on bottom
+                const gradient = ctx.createLinearGradient(0, 0, 0, h);
+                gradient.addColorStop(0, '#ff9999');
+                gradient.addColorStop(0.4, '#ffcccc');
+                gradient.addColorStop(0.5, '#ddddff');
+                gradient.addColorStop(1, '#9999ff');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, w, h);
+            }
+
+            // Labels
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px sans-serif';
+            ctx.textAlign = 'center';
+            if (densityState === 'filled') {
+                ctx.fillText('HOT (Red)', w / 4, h / 2);
+                ctx.fillText('COLD (Blue)', 3 * w / 4, h / 2);
+            } else if (densityState === 'stratified') {
+                ctx.fillText('Hot → Top (less dense)', w / 2, 30);
+                ctx.fillText('Cold → Bottom (more dense)', w / 2, h - 20);
+            }
+        }
+
+        function fillDensityTank() {
+            densityState = 'filled';
+            drawDensityTank();
+        }
+
+        function removeDivider() {
+            if (densityState === 'filled') {
+                densityState = 'stratified';
+                drawDensityTank();
+            }
+        }
+
+        function resetDensity() {
+            densityState = 'empty';
+            drawDensityTank();
+        }
+
+        // ============ PART 2C: MIXING SIMULATION ============
+        let mixingState = 'empty'; // 'empty', 'stratified', 'mixed', 'flow'
+
+        function drawMixingTank() {
+            const canvas = $('mixing-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.offsetWidth || 400;
+            const h = canvas.offsetHeight || 200;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            ctx.scale(dpr, dpr);
+
+            // Background
+            ctx.fillStyle = '#f8f9fa';
+            ctx.fillRect(0, 0, w, h);
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(0, 0, w, h);
+
+            if (mixingState === 'empty') {
+                ctx.fillStyle = '#ddd';
+                ctx.font = '16px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Click "Setup Stratified" to begin', w / 2, h / 2);
+            } else if (mixingState === 'stratified') {
+                // Left side: stratified (red on top, blue on bottom)
+                const leftGrad = ctx.createLinearGradient(0, 0, 0, h);
+                leftGrad.addColorStop(0, '#ff9999');
+                leftGrad.addColorStop(0.5, '#ffcccc');
+                leftGrad.addColorStop(0.5, '#ccccff');
+                leftGrad.addColorStop(1, '#9999ff');
+                ctx.fillStyle = leftGrad;
+                ctx.fillRect(0, 0, w / 2 - 2, h);
+                // Right side: stratified too
+                ctx.fillStyle = leftGrad;
+                ctx.fillRect(w / 2 + 2, 0, w / 2, h);
+                // Divider
+                ctx.fillStyle = '#333';
+                ctx.fillRect(w / 2 - 2, 0, 4, h);
+                // Labels
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Hot (top)', w / 4, 20);
+                ctx.fillText('Cold (bottom)', w / 4, h - 10);
+                ctx.fillText('Hot (top)', 3 * w / 4, 20);
+                ctx.fillText('Cold (bottom)', 3 * w / 4, h - 10);
+            } else if (mixingState === 'mixed') {
+                // Left side: mixed = purple throughout
+                ctx.fillStyle = '#b088cc';
+                ctx.fillRect(0, 0, w / 2 - 2, h);
+                // Right side: still stratified
+                const rightGrad = ctx.createLinearGradient(0, 0, 0, h);
+                rightGrad.addColorStop(0, '#ff9999');
+                rightGrad.addColorStop(0.5, '#ffcccc');
+                rightGrad.addColorStop(0.5, '#ccccff');
+                rightGrad.addColorStop(1, '#9999ff');
+                ctx.fillStyle = rightGrad;
+                ctx.fillRect(w / 2 + 2, 0, w / 2, h);
+                // Divider
+                ctx.fillStyle = '#333';
+                ctx.fillRect(w / 2 - 2, 0, 4, h);
+                // Labels
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('MIXED (Purple)', w / 4, h / 2);
+                ctx.fillStyle = '#333';
+                ctx.fillText('Stratified', 3 * w / 4, h / 2);
+            } else if (mixingState === 'flow') {
+                // Purple flows to middle (between hot top and cold bottom)
+                const gradient = ctx.createLinearGradient(0, 0, 0, h);
+                gradient.addColorStop(0, '#ff9999');    // Hot red on top
+                gradient.addColorStop(0.3, '#cc9999');
+                gradient.addColorStop(0.5, '#b088cc');  // Purple in middle
+                gradient.addColorStop(0.7, '#9999cc');
+                gradient.addColorStop(1, '#9999ff');    // Cold blue on bottom
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, w, h);
+                // Labels
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Hot (least dense) → TOP', w / 2, 20);
+                ctx.fillStyle = '#fff';
+                ctx.fillText('Purple (intermediate) → MIDDLE', w / 2, h / 2);
+                ctx.fillStyle = '#333';
+                ctx.fillText('Cold (most dense) → BOTTOM', w / 2, h - 10);
+            }
+        }
+
+        function setupMixing() {
+            mixingState = 'stratified';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">Step 1: Setup Complete</div>
+                <p>Both sides show stratification: hot (red) on top, cold (blue) on bottom. Now click "Mix Left Side" to stir the left compartment.</p>`;
+        }
+
+        function mixOneSide() {
+            if (mixingState === 'empty') {
+                setupMixing();
+                return;
+            }
+            mixingState = 'mixed';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">Step 2: Left Side Mixed</div>
+                <p>The left side is now <strong style="color:#9966aa;">purple</strong> (mixed hot + cold = intermediate temperature). The right side remains stratified. Click "Remove Divider" to see the flow!</p>`;
+        }
+
+        function removeMixingDivider() {
+            if (mixingState !== 'mixed') {
+                $('mixing-result').innerHTML = `<div class="ar-title">⚠️ Not Ready</div>
+                    <p>Please complete steps 1 and 2 first: "Setup Stratified" then "Mix Left Side".</p>`;
+                return;
+            }
+            mixingState = 'flow';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">✓ Result: Density Stratification</div>
+                <p>The <strong style="color:#9966aa;">purple</strong> water (intermediate temperature/density) flowed to the <strong>MIDDLE</strong>! Water naturally stratifies by density: hot (least dense) rises to top, cold (most dense) sinks to bottom, mixed settles in between.</p>`;
+        }
+
+        function resetMixing() {
+            mixingState = 'empty';
+            drawMixingTank();
+            $('mixing-result').innerHTML = `<div class="ar-title">Observation</div>
+                <p>Click "Setup Stratified" first to create initial layers, then "Mix Left Side" to stir, then "Remove Divider" to see flow.</p>`;
+        }
+
+        // ============ PART 3: DIALYSIS ============
+        let osmosisRunning = false;
+        let bagSizes = [1, 1, 1]; // 1% = isotonic, 10%, 20%
+
+        function drawDialysis() {
+            const canvas = $('dialysis-canvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.offsetWidth || 500;
+            const h = canvas.offsetHeight || 250;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            ctx.scale(dpr, dpr);
+
+            // Bath (1% sucrose)
+            ctx.fillStyle = '#e8f4fc';
+            ctx.fillRect(0, 0, w, h);
+            ctx.strokeStyle = '#3399cc';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(0, 0, w, h);
+
+            // Draw 3 bags
+            const bagW = 60;
+            const spacing = w / 4;
+
+            for (let i = 0; i < 3; i++) {
+                const bx = spacing * (i + 1) - bagW / 2;
+                const bagH = 100 * bagSizes[i];
+                const by = (h - bagH) / 2;
+
+                // Bag body
+                ctx.fillStyle = i === 0 ? '#ccddee' : (i === 1 ? '#aaddaa' : '#aabbdd');
+                ctx.beginPath();
+                ctx.ellipse(bx + bagW / 2, by + bagH / 2, bagW / 2, bagH / 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#666';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Label
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 12px sans-serif';
+                ctx.textAlign = 'center';
+                const labels = ['1%', '10%', '20%'];
+                ctx.fillText(labels[i], bx + bagW / 2, by + bagH / 2 + 4);
+            }
+
+            // Bath label
+            ctx.fillStyle = '#336699';
+            ctx.font = '12px sans-serif';
+            ctx.fillText('Bath: 1% Sucrose Solution', w / 2, h - 10);
+        }
+
+        function startOsmosis() {
+            if (osmosisRunning) return;
+            osmosisRunning = true;
+            let frame = 0;
+
+            const animate = () => {
+                if (frame < 100 && osmosisRunning) {
+                    // 1% isotonic - no change
+                    bagSizes[0] = 1;
+                    // 10% hypertonic - water moves in
+                    bagSizes[1] = Math.min(1.3, 1 + frame * 0.003);
+                    // 20% hypertonic - more water moves in
+                    bagSizes[2] = Math.min(1.5, 1 + frame * 0.005);
+
+                    drawDialysis();
+
+                    $('bag-a-change').textContent = '0%';
+                    $('bag-b-change').textContent = '+' + Math.round((bagSizes[1] - 1) * 100) + '%';
+                    $('bag-c-change').textContent = '+' + Math.round((bagSizes[2] - 1) * 100) + '%';
+
+                    frame++;
+                    requestAnimationFrame(animate);
+                } else {
+                    osmosisRunning = false;
+                }
+            };
+            animate();
+        }
+
+        function resetOsmosis() {
+            osmosisRunning = false;
+            bagSizes = [1, 1, 1];
+            $('bag-a-change').textContent = '0%';
+            $('bag-b-change').textContent = '0%';
+            $('bag-c-change').textContent = '0%';
+            drawDialysis();
+        }
+
+        // Starch-Iodine Test
+        let starchTestRunning = false;
+
+        function drawStarchTest(bagColor, bathColor) {
+            // Bag
+            const bag = $('starch-bag');
+            const ctx1 = bag.getContext('2d');
+            ctx1.clearRect(0, 0, bag.width, bag.height);
+            ctx1.fillStyle = bagColor;
+            ctx1.beginPath();
+            ctx1.ellipse(60, 100, 40, 70, 0, 0, Math.PI * 2);
+            ctx1.fill();
+            ctx1.strokeStyle = '#999';
+            ctx1.lineWidth = 3;
+            ctx1.stroke();
+            ctx1.fillStyle = '#333';
+            ctx1.font = '11px sans-serif';
+            ctx1.textAlign = 'center';
+            ctx1.fillText('Starch', 60, 100);
+
+            // Bath
+            const bath = $('iodine-bath');
+            const ctx2 = bath.getContext('2d');
+            ctx2.clearRect(0, 0, bath.width, bath.height);
+            ctx2.fillStyle = bathColor;
+            ctx2.fillRect(10, 10, bath.width - 20, bath.height - 20);
+            ctx2.strokeStyle = '#999';
+            ctx2.lineWidth = 2;
+            ctx2.strokeRect(10, 10, bath.width - 20, bath.height - 20);
+            ctx2.fillStyle = '#333';
+            ctx2.font = '11px sans-serif';
+            ctx2.textAlign = 'center';
+            ctx2.fillText('I₂ in H₂O', bath.width / 2, bath.height / 2);
+        }
+
+        function startStarchTest() {
+            if (starchTestRunning) return;
+            starchTestRunning = true;
+            let frame = 0;
+
+            const animate = () => {
+                if (frame < 100 && starchTestRunning) {
+                    const progress = frame / 100;
+                    // Bag turns blue-black as iodine enters
+                    const bagR = Math.floor(255 - progress * 225);
+                    const bagG = Math.floor(255 - progress * 225);
+                    const bagB = Math.floor(255 - progress * 100);
+                    const bagColor = `rgb(${bagR},${bagG},${bagB})`;
+
+                    // Bath stays amber (iodine doesn't leave much, starch stays in bag)
+                    const bathColor = '#d4a574';
+
+                    drawStarchTest(bagColor, bathColor);
+                    frame++;
+                    requestAnimationFrame(animate);
+                } else {
+                    starchTestRunning = false;
+                    $('starch-result').innerHTML = `<div class="ar-title">✓ Result</div>
+                        <p><strong>Bag turned blue-black!</strong> This proves iodine (small molecule) passed through the membrane and reacted with starch. The starch (large molecule) stayed inside the bag.</p>`;
+                }
+            };
+            animate();
+        }
+
+        function resetStarchTest() {
+            starchTestRunning = false;
+            drawStarchTest('#f5f5f5', '#d4a574');
+            $('starch-result').innerHTML = `<div class="ar-title">Result</div><p>Click "Run Test" to observe selective permeability.</p>`;
+        }
+
+        // ============ QUIZ ============
+        const questions = [
+            { q: 'Which factor increases the rate of diffusion?', a: 1, opts: ['Lower temperature', 'Higher temperature', 'Larger molecules', 'Smaller concentration gradient'] },
+            { q: 'A cell placed in a hypertonic solution will:', a: 0, opts: ['Shrink (lose water)', 'Swell (gain water)', 'Stay the same size', 'Divide'] },
+            { q: 'Which molecule can pass through dialysis tubing?', a: 1, opts: ['Starch', 'Iodine', 'Proteins', 'All of the above'] },
+            { q: 'Why does hot water rise above cold water?', a: 2, opts: ['Hot water is heavier', 'Cold water has more energy', 'Hot water is less dense', 'Cold water evaporates faster'] },
+            { q: 'Which dye diffuses faster through agar?', a: 0, opts: ['KMnO₄ (MW=158)', 'Methylene Blue (MW=320)', 'They diffuse at the same rate', 'Neither can diffuse through agar'] },
+            { q: 'A red blood cell placed in distilled water will:', a: 1, opts: ['Shrink (crenation)', 'Swell and possibly burst (lysis)', 'Stay the same size', 'Turn blue'] },
+            { q: 'Normal saline (0.9% NaCl) is used for IV fluids because it is:', a: 2, opts: ['Hypertonic to blood', 'Hypotonic to blood', 'Isotonic to blood', 'Free of bacteria'] },
+            { q: 'Why is drinking seawater dangerous?', a: 1, opts: ['It contains bacteria', 'It is hypertonic and pulls water from cells', 'It is too cold', 'It tastes bad'] },
+            { q: 'Osmosis is specifically the diffusion of:', a: 2, opts: ['Any molecule across a membrane', 'Solutes from high to low concentration', 'Water across a selectively permeable membrane', 'Gases in the lungs'] },
+            { q: 'In the starch-iodine test, the bag turned blue because:', a: 0, opts: ['Iodine (small) entered and reacted with starch', 'Starch (large) left the bag', 'The membrane dissolved', 'Water absorbed the iodine'] }
+        ];
+        let quizIdx = 0, quizCorrect = 0, quizTotal = 0;
+
+        function showQuestion() {
+            const q = questions[quizIdx];
+            $('quiz-question').textContent = `Q${quizIdx + 1}: ${q.q}`;
+            const container = $('quiz-container');
+            const opts = container.querySelectorAll('.quiz-option');
+            opts.forEach((opt, i) => {
+                opt.textContent = String.fromCharCode(65 + i) + '. ' + q.opts[i];
+                opt.className = 'quiz-option';
+                opt.onclick = function () { checkAnswer(this, i); };
+            });
+        }
+
+        function checkAnswer(el, idx) {
+            const q = questions[quizIdx];
+            const correct = idx === q.a;
+            el.classList.add(correct ? 'correct' : 'incorrect');
+            if (correct) quizCorrect++;
+            quizTotal++;
+            $('quiz-correct').textContent = quizCorrect;
+            $('quiz-total').textContent = quizTotal;
+            $('quiz-pct').textContent = Math.round((quizCorrect / quizTotal) * 100) + '%';
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.onclick = null);
+        }
+
+        function nextQuestion() {
+            quizIdx = (quizIdx + 1) % questions.length;
+            showQuestion();
+        }
+
+        function resetQuiz() {
+            quizIdx = 0;
+            quizCorrect = 0;
+            quizTotal = 0;
+            $('quiz-correct').textContent = '0';
+            $('quiz-total').textContent = '0';
+            $('quiz-pct').textContent = '0%';
+            showQuestion();
+        }
+
+        // ============ CALCULATOR ============
+        function calculateChange() {
+            const initial = parseFloat($('calc-initial').value) || 0;
+            const final = parseFloat($('calc-final').value) || 0;
+            if (initial === 0) {
+                $('calc-result').textContent = 'Error';
+                $('calc-result').style.background = '#fef2f2';
+                $('calc-result').style.borderColor = 'var(--accent)';
+                $('calc-result').style.color = 'var(--accent)';
+                return;
+            }
+            const change = ((final - initial) / initial) * 100;
+            const sign = change >= 0 ? '+' : '';
+            $('calc-result').textContent = sign + change.toFixed(1) + '%';
+            $('calc-result').style.background = change >= 0 ? '#f0fdf4' : '#fef2f2';
+            $('calc-result').style.borderColor = change >= 0 ? 'var(--green)' : 'var(--accent)';
+            $('calc-result').style.color = change >= 0 ? 'var(--green)' : 'var(--accent)';
+        }
+
+        // ============ INIT ============
+        window.addEventListener('load', () => {
+            drawAgarPlate(0);
+            drawBeakers();
+            drawDensityTank();
+            drawMixingTank();
+            drawDialysis();
+            drawStarchTest('#f5f5f5', '#d4a574');
+            showQuestion();
+        });
+
+        window.addEventListener('resize', () => {
+            drawAgarPlate(agarTime);
+            drawDensityTank();
+            drawMixingTank();
+            drawDialysis();
+        });
+    </script>
+</body>
+
+</html>
