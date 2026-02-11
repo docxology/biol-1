@@ -41,9 +41,19 @@
 
 ### Questions
 
+<!-- lab:reflection -->
 1. In which tube did the dye spread out faster? Why?
-2. How would you define **viscosity** based on what you see in Tube B?
-3. Imagine a cell needs to move oxygen quickly from its membrane to its center. Would this happen faster if the cytoplasm were like water or like methyl cellulose?
+
+{fill:textarea rows=3}
+
+1. How would you define **viscosity** based on what you see in Tube B?
+
+{fill:textarea rows=3}
+
+1. Imagine a cell needs to move oxygen quickly from its membrane to its center. Would this happen faster if the cytoplasm were like water or like methyl cellulose?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
 
 ---
 
@@ -53,7 +63,6 @@
 
 ### Safety
 
-- **Wear eye protection and gloves** when handling bleach.
 - Work with drops, not large volumes.
 
 ### Materials
@@ -72,8 +81,15 @@
 
 ### Questions
 
+<!-- lab:reflection -->
 1. What happened to the blue color? Did the dye leave the tube, or did it change form?
-2. Bleach is an **oxidizing agent**. What does it do to the electrons in the methylene blue molecule?
+
+{fill:textarea rows=3}
+
+1. Bleach is an **oxidizing agent**. What does it do to the electrons in the methylene blue molecule?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
 
 ---
 
@@ -83,28 +99,32 @@
 
 ### Safety
 
-- Use just a **tiny** crystal of KMnO₄; it stains skin and surfaces.
-- **Wear gloves**; rinse spills with plenty of water.
+- Work with drops, not large volumes.
 
 ### Materials
 
-- 3–4 small test tubes
-- Beaker
-- Potassium permanganate crystals
+- 2 test tubes
+- Potassium permanganate stock solution
 - Distilled water
 
 ### Procedure
 
-1. **Prepare Stock:** Put ~50 mL distilled water in a beaker. Add the smallest visible crystal of KMnO₄ and stir until deep purple.
-2. **Set up Tubes:** Label tubes 1, 2, 3 (and 4 if available). Add 5 mL of clear water to tubes 2, 3, and 4. Leave Tube 1 empty for now.
-3. **Transfer:**
-    - Pour (or pipette) 5 mL of your **Stock** solution into **Tube 1**.
-    - Take 1 mL (or a pipette squeeze) from **Tube 1** and add it to **Tube 2**. Mix.
-    - Take 1 mL from **Tube 2** and add it to **Tube 3**. Mix.
-    - Take 1 mL from **Tube 3** and add it to **Tube 4**. Mix.
+1. **Tube 1 (Stock):** Add 5 mL of the **Potassium Permanganate Stock** solution to **Tube 1**.
+2. **Tube 2 (Dilution):** Add 5 mL of clear water to **Tube 2**.
+3. **Transfer:** Take 1 mL (or a pipette squeeze) from **Tube 1** and add it to **Tube 2**. Mix gently.
 
 ### Questions
 
+<!-- lab:reflection -->
 1. Which tube has the highest concentration of potassium permanganate? Which has the lowest?
-2. Even in the lightest tube, can you still see some pink/purple color? What does this tell you about how many molecules were in that tiny initial crystal?
-3. If you took a drop from Tube 4 and put it under a microscope, would you expect to see solid crystals or dissolved ions?
+
+{fill:textarea rows=3}
+
+1. Even in the lighter tube, can you still see some pink/purple color? What does this tell you about the molecules in the solution?
+
+{fill:textarea rows=3}
+
+1. If you took a drop from Tube 2 and put it under a microscope, would you expect to see solid crystals or dissolved ions?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->

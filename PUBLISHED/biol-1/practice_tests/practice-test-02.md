@@ -1,12 +1,12 @@
 # BIOL-1 Practice Test 02
 
-## Modules 5-8: Membranes through Cellular Respiration
+## Modules 5-6: Membranes and Metabolism
 
-**Instructions:** This practice test covers material from Modules 5-8. Answer all questions to the best of your ability.
+**Instructions:** This practice test covers material from Modules 5 (Membranes) and 6 (Metabolism). Answer all questions to the best of your ability.
 
 ---
 
-## Part A: Multiple Choice (25 questions)
+## Part A: Multiple Choice
 
 *Choose the best answer for each question.*
 
@@ -109,145 +109,47 @@ D) Enzymes increase the activation energy
 
 ---
 
-### Module 7: Photosynthesis
-
-**14.** Where do the light-dependent reactions of photosynthesis occur?
-
-A) Stroma  
-B) Thylakoid membranes  
-C) Cytoplasm  
-D) Mitochondria
-
-**15.** Where does the Calvin cycle occur?
-
-A) Thylakoid membranes  
-B) Stroma  
-C) Cytoplasm  
-D) Inner mitochondrial membrane
-
-**16.** The Calvin cycle produces:
-
-A) Oxygen  
-B) ATP  
-C) Glucose (G3P)  
-D) Water
-
-**17.** Photosynthesis occurs in which organelle?
-
-A) Mitochondria  
-B) Ribosomes  
-C) Chloroplast  
-D) Nucleus
-
-**18.** The pigment that captures light energy in plants is:
-
-A) Hemoglobin  
-B) Chlorophyll  
-C) Melanin  
-D) Carotene only
-
-**19.** What is produced when water is split during the light reactions?
-
-A) Glucose  
-B) Carbon dioxide  
-C) Oxygen and electrons  
-D) ATP only
-
----
-
-### Module 8: Cellular Respiration
-
-**20.** The net yield of ATP from glycolysis is:
-
-A) 0 ATP  
-B) 2 ATP  
-C) 4 ATP  
-D) 36 ATP
-
-**21.** Where does glycolysis occur?
-
-A) Mitochondrial matrix  
-B) Cytoplasm  
-C) Thylakoid  
-D) Nucleus
-
-**22.** Where does the Krebs cycle (citric acid cycle) occur?
-
-A) Cytoplasm  
-B) Mitochondrial matrix  
-C) Thylakoid  
-D) Nucleus
-
-**23.** The overall equation for cellular respiration shows that glucose and oxygen produce:
-
-A) Carbon dioxide and water  
-B) Oxygen and glucose  
-C) Light and ATP  
-D) Protein and lipids
-
-**24.** In the absence of oxygen, cells perform:
-
-A) Aerobic respiration  
-B) Fermentation  
-C) Photosynthesis  
-D) Calvin cycle
-
-**25.** In cellular respiration, most ATP is produced during:
-
-A) Glycolysis  
-B) Krebs cycle  
-C) Electron transport chain  
-D) Fermentation
-
----
-
-## Part B: Fill in the Blank (10 questions)
+## Part B: Fill in the Blank
 
 *Write the correct term in the blank.*
 
-**26.** The phospholipid bilayer is described as a _________________________ mosaic model.
+**14.** The phospholipid bilayer is described as a _________________________ mosaic model.
 
-**27.** The process by which water moves across a membrane is called _________________________.
+**15.** The process by which water moves across a membrane is called _________________________.
 
-**28.** Transport that requires ATP is called _________________________ transport.
+**16.** Transport that requires ATP is called _________________________ transport.
 
-**29.** A solution with a lower solute concentration than the cell is called _________________________.
+**17.** A solution with a lower solute concentration than the cell is called _________________________.
 
-**30.** Photosynthesis occurs in the _________________________ of plant cells.
+**18.** The specific reactant that an enzyme acts on is called the _________________________.
 
-**31.** The products of the light reactions that are used in the Calvin cycle are ATP and _________________________.
+**19.** Energy of motion is referred to as _________________________ energy.
 
-**32.** The electron transport chain produces most of the _________________________ during cellular respiration.
+**20.** _________________________ inhibition occurs when a molecule binds to the active site and blocks the substrate.
 
-**33.** The process of breaking down glucose without oxygen is called _________________________.
+**21.** The sum of all chemical reactions in an organism is called _________________________.
 
-**34.** The byproduct released when water is split during photosynthesis is _________________________.
-
-**35.** The final electron acceptor in the electron transport chain is _________________________.
+**22.** Reactions that release energy by breaking down complex molecules are called _________________________ reactions.
 
 ---
 
-## Part C: Short Answer (5 questions)
+## Part C: Short Answer
 
 *Answer each question in 2-3 complete sentences.*
 
-**36.** Explain the difference between passive transport and active transport. Give one example of each.
+**23.** Explain the difference between passive transport and active transport. Give one example of each.
 
 <br><br><br><br><br><br>
 
-**37.** Describe what happens to a cell placed in a hypertonic solution. How would this differ for a plant cell versus an animal cell?
+**24.** Describe what happens to a cell placed in a hypertonic solution. How would this differ for a plant cell versus an animal cell?
 
 <br><br><br><br><br><br>
 
-**38.** Compare the light-dependent reactions and the Calvin cycle in terms of where they occur and what they produce.
+**25.** Explain how enzymes speed up chemical reactions and why they are specific to their substrates.
 
 <br><br><br><br><br><br>
 
-**39.** Compare photosynthesis and cellular respiration in terms of their inputs and outputs.
-
-<br><br><br><br><br><br>
-
-**40.** Explain why we breathe oxygen and exhale carbon dioxide in terms of cellular respiration.
+**26.** Describe the structure of ATP and explain how it stores and releases energy for the cell.
 
 <br><br><br><br><br><br>
 

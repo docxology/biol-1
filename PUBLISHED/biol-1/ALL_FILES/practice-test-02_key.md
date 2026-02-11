@@ -1,13 +1,13 @@
 # BIOL-1 Practice Test 02 — Answer Key
 
-## Modules 5-8: Membranes through Cellular Respiration
+## Modules 5-6: Membranes and Metabolism
 
 ---
 
 ## Part A: Multiple Choice Answers
 
 | Q | Answer | Explanation |
-|:---:|:------:|-------------|
+|:-:|:------:|-------------|
 | 1 | B | The fluid mosaic model describes membrane structure |
 | 2 | C | Cell membrane = phospholipid bilayer |
 | 3 | B | Phospholipids have hydrophilic heads and hydrophobic tails |
@@ -21,18 +21,6 @@
 | 11 | B | Denaturation = loss of enzyme shape |
 | 12 | B | ATP releases energy via phosphate hydrolysis |
 | 13 | B | Enzymes can be reused (not consumed) |
-| 14 | B | Light reactions occur in thylakoid membranes |
-| 15 | B | Calvin cycle occurs in the stroma |
-| 16 | C | Calvin cycle produces glucose (G3P) |
-| 17 | C | Photosynthesis occurs in chloroplasts |
-| 18 | B | Chlorophyll captures light energy |
-| 19 | C | Water splitting produces O₂ and electrons |
-| 20 | B | Glycolysis nets 2 ATP |
-| 21 | B | Glycolysis occurs in cytoplasm |
-| 22 | B | Krebs cycle occurs in mitochondrial matrix |
-| 23 | A | Respiration produces CO₂ and H₂O |
-| 24 | B | Without oxygen, cells perform fermentation |
-| 25 | C | Most ATP comes from electron transport chain |
 
 ---
 
@@ -40,48 +28,40 @@
 
 | Q | Answer |
 |:---:|--------|
-| 26 | fluid |
-| 27 | osmosis |
-| 28 | active |
-| 29 | hypotonic |
-| 30 | chloroplast(s) |
-| 31 | NADPH |
-| 32 | ATP |
-| 33 | fermentation |
-| 34 | oxygen (O₂) |
-| 35 | oxygen (O₂) |
+| 14 | fluid |
+| 15 | osmosis |
+| 16 | active |
+| 17 | hypotonic |
+| 18 | substrate |
+| 19 | kinetic |
+| 20 | competitive |
+| 21 | metabolism |
+| 22 | catabolic |
 
 ---
 
 ## Part C: Short Answer Key
 
-**36. Passive vs. Active Transport:**
+**23. Passive vs. Active Transport:**
 
 - Passive transport: does not require energy (ATP); moves with concentration gradient (ex: diffusion, osmosis, facilitated diffusion)
 - Active transport: requires energy (ATP); moves against concentration gradient (ex: sodium-potassium pump)
 
-**37. Cell in Hypertonic Solution:**
+**24. Cell in Hypertonic Solution:**
 
 - Water moves OUT of the cell (toward higher solute concentration)
 - Animal cell: will shrink (crenation)
 - Plant cell: will plasmolyze (cell membrane pulls away from cell wall), but cell wall prevents complete collapse
 
-**38. Light Reactions vs. Calvin Cycle:**
+**25. Enzyme Function & Specificity:**
 
-- Light reactions: occur in thylakoid membranes; produce ATP, NADPH, and O₂
-- Calvin cycle: occurs in stroma; uses ATP and NADPH to produce glucose (G3P)
+- Enzymes speed up reactions by lowering the activation energy required for the reaction to proceed.
+- They are specific because the shape of their active site matches only specific substrate molecules (lock and key / induced fit).
 
-**39. Photosynthesis vs. Cellular Respiration:**
+**26. ATP Structure & Function:**
 
-- Photosynthesis: CO₂ + H₂O + light → glucose + O₂ (builds glucose, stores energy)
-- Cellular Respiration: glucose + O₂ → CO₂ + H₂O + ATP (breaks down glucose, releases energy)
-- They are essentially opposite processes
-
-**40. Why We Breathe:**
-
-- We inhale oxygen because it is required as the final electron acceptor in the electron transport chain
-- Without oxygen, the ETC cannot function and very little ATP can be produced
-- We exhale CO₂ because it is a waste product released when pyruvate is broken down in the Krebs cycle
+- Structure: Adenine (nitrogenous base), Ribose (sugar), and 3 Phosphate groups.
+- Function: Energy is stored in the bonds between phosphate groups; when the terminal phosphate bond is broken (hydrolysis), energy is released for cellular work.
 
 ---
 
