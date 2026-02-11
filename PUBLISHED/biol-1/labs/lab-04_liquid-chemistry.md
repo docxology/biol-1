@@ -42,15 +42,15 @@
 ### Questions
 
 <!-- lab:reflection -->
-1. In which tube did the dye spread out faster? Why?
+**1.** In which tube did the dye spread out faster? Why?
 
 {fill:textarea rows=3}
 
-1. How would you define **viscosity** based on what you see in Tube B?
+**2.** How would you define **viscosity** based on what you see in Tube B?
 
 {fill:textarea rows=3}
 
-1. Imagine a cell needs to move oxygen quickly from its membrane to its center. Would this happen faster if the cytoplasm were like water or like methyl cellulose?
+**3.** Imagine a cell needs to move oxygen quickly from its membrane to its center. Would this happen faster if the cytoplasm were like water or like methyl cellulose?
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
@@ -82,11 +82,11 @@
 ### Questions
 
 <!-- lab:reflection -->
-1. What happened to the blue color? Did the dye leave the tube, or did it change form?
+**1.** What happened to the blue color? Did the dye leave the tube, or did it change form?
 
 {fill:textarea rows=3}
 
-1. Bleach is an **oxidizing agent**. What does it do to the electrons in the methylene blue molecule?
+**2.** Bleach is an **oxidizing agent**. What does it do to the electrons in the methylene blue molecule?
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
@@ -116,15 +116,15 @@
 ### Questions
 
 <!-- lab:reflection -->
-1. Which tube has the highest concentration of potassium permanganate? Which has the lowest?
+**1.** Which tube has the highest concentration of potassium permanganate? Which has the lowest?
 
 {fill:textarea rows=3}
 
-1. Even in the lighter tube, can you still see some pink/purple color? What does this tell you about the molecules in the solution?
+**2.** Even in the lighter tube, can you still see some pink/purple color? What does this tell you about the molecules in the solution?
 
 {fill:textarea rows=3}
 
-1. If you took a drop from Tube 2 and put it under a microscope, would you expect to see solid crystals or dissolved ions?
+**3.** If you took a drop from Tube 2 and put it under a microscope, would you expect to see solid crystals or dissolved ions?
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->

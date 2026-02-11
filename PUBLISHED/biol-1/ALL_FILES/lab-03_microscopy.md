@@ -55,15 +55,15 @@ Use the following terms to label your drawing. Draw lines from each part to its 
 <!-- lab:reflection -->
 **After drawing and labeling, answer these questions:**
 
-1. What is the total magnification when using the 10× eyepiece and the 40× objective lens?
+**1.** What is the total magnification when using the 10× eyepiece and the 40× objective lens?
 
 {fill:text}
 
-1. Why should you always start focusing with the lowest power objective lens?
+**2.** Why should you always start focusing with the lowest power objective lens?
 
 {fill:textarea rows=2}
 
-1. Why is it important to never use the coarse adjustment knob with high power objectives?
+**3.** Why is it important to never use the coarse adjustment knob with high power objectives?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
