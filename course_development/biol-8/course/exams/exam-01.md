@@ -1,5 +1,9 @@
 # BIOL-8 Exam 01
 
+Name: ______________________
+Date: ______________________
+Period: ____________________
+
 ## Modules 01-06
 
 **Date**: Thursday, February 12, 2026  
@@ -10,241 +14,291 @@
 
 ## Part A: Multiple Choice (30 points)
 
-*Choose the best answer for each question. Each question is worth 1 point.*
+*Select the best answer for each question. Each question is worth 1 point.*
 
 ### Module 01: Exploring Life Science
 
-1. Which of the following is NOT a characteristic shared by all living organisms?
-    - A) Maintaining homeostasis
-    - B) Responding to stimuli
-    - C) Carrying out photosynthesis
-    - D) Being composed of one or more cells
+1. Which feature is NOT a universal characteristic of living things?
+    - A) Ability to evolve over time
+    - B) Reproduction and growth
+    - C) Dependence on photosynthesis for energy
+    - D) Maintenance of homeostasis
 
-2. A student hypothesizes that plants grow taller with more sunlight. In her experiment, the amount of sunlight is the:
+2. In an experiment testing how fertilizer affects tomato plant growth, the amount of fertilizer applied is the:
     - A) Dependent variable
-    - B) Control group
-    - C) Independent variable
+    - B) Independent variable
+    - C) Control group
     - D) Conclusion
 
-3. Which sequence correctly lists the levels of biological organization from simplest to most complex?
-    - A) Cell → Organ → Tissue → Organ System → Organism
-    - B) Cell → Tissue → Organ → Organ System → Organism
-    - C) Tissue → Cell → Organ → Organism → Organ System
-    - D) Organ → Tissue → Cell → Organ System → Organism
+3. Identify the correct biological hierarchy from smallest to largest:
+    - A) Organelle → Cell → Tissue → Organ → Organ System
+    - B) Tissue → Cell → Organelle → Organ → Organism
+    - C) Organ → Tissue → Cell → Organelle → Molecule
+    - D) Molecule → Tissue → Cell → Organ → Organ System
 
-4. A scientific theory differs from a hypothesis because a theory:
-    - A) Has never been tested
-    - B) Is supported by a large body of evidence over time
-    - C) Can never be modified
-    - D) Is the same as a scientific law
+4. A scientific theory is distinct from a hypothesis because a theory:
+    - A) Is a guess based on limited data
+    - B) Is supported by extensive evidence and repeated testing
+    - C) Cannot be falsified
+    - D) Becomes a law once proven true
 
-5. Natural selection acts on populations by:
-    - A) Allowing organisms to choose favorable traits
-    - B) Favoring individuals with traits that improve survival and reproduction
-    - C) Causing all organisms to become identical
-    - D) Eliminating all genetic variation
+5. Evolution by natural selection occurs when:
+    - A) Individuals develop new traits during their lifetime
+    - B) Populations adapt as individuals with advantageous traits survive and reproduce
+    - C) All organisms stop changing to become perfect
+    - D) Random mutations create new species instantly
 
 ### Module 02: Chemistry of Life
 
-1. An atom has 6 protons, 6 neutrons, and 6 electrons. Its atomic number is:
-    - A) 12
-    - B) 6
-    - C) 18
-    - D) 3
+1. An element with 6 protons, 6 neutrons, and 6 electrons has an atomic number of:
+    - A) 18
+    - B) 12
+    - C) 6
+    - D) 0
 
-2. A covalent bond is formed when two atoms:
-    - A) Transfer electrons from one to the other
-    - B) Share one or more pairs of electrons
-    - C) Are attracted by opposite electrical charges
-    - D) Lose protons to each other
+2. Covalent bonds are formed when atoms:
+    - A) Share one or more pairs of electrons
+    - B) Transfer electrons completely
+    - C) Are held together by magnetic attraction
+    - D) Lose protons to become ions
 
-3. Water has a high specific heat because:
-    - A) Water molecules are nonpolar
-    - B) Hydrogen bonds between water molecules absorb a large amount of energy before breaking
-    - C) Water contains ionic bonds
-    - D) Water molecules are very small
+3. Water's ability to resist rapid temperature changes is due to its:
+    - A) High specific heat related to hydrogen bonding
+    - B) Low density when frozen
+    - C) Nonpolar molecular structure
+    - D) High adhesion properties
 
-4. A solution with a pH of 2 is described as:
-    - A) Neutral
-    - B) Weakly basic
+4. A substance with a pH of 2 would be classified as:
+    - A) Weakly basic
+    - B) Neutral
     - C) Strongly acidic
     - D) Strongly basic
 
-5. Carbon is the basis of organic chemistry because it can:
-    - A) Form only single bonds
-    - B) Form up to four covalent bonds with a variety of atoms
-    - C) Dissolve in water easily
-    - D) Act as either an acid or a base
+5. Carbon is the fundamental element of organic molecules because it:
+    - A) Forms only ionic bonds
+    - B) Can form up to four stable covalent bonds
+    - C) Is the most abundant element in the universe
+    - D) Dissolves easily in nonpolar solvents
 
 ### Module 03: Biomolecules
 
-1. What type of reaction links monomers together into polymers by removing a water molecule?
+1. The process that joins monomers into polymers by removing water is called:
     - A) Hydrolysis
     - B) Oxidation
     - C) Dehydration synthesis
     - D) Fermentation
 
-2. Which macromolecule provides the quickest source of energy for cells?
-    - A) Proteins
-    - B) Nucleic acids
-    - C) Lipids
+2. Which biomolecule is the primary source of quick cellular energy?
+    - A) Lipids
+    - B) Proteins
+    - C) Nucleic acids
     - D) Carbohydrates
 
-3. The bond that links amino acids together in a protein is called a:
-    - A) Glycosidic bond
-    - B) Peptide bond
-    - C) Ester bond
-    - D) Hydrogen bond
+3. Amino acids are linked together in proteins by which type of bond?
+    - A) Peptide bond
+    - B) Hydrogen bond
+    - C) Glycosidic linkage
+    - D) Ester bond
 
-4. Saturated fats differ from unsaturated fats in that saturated fats:
-    - A) Contain carbon-carbon double bonds
+4. Saturated fats are chemically distinct from unsaturated fats because they:
+    - A) Contain one or more double bonds
     - B) Are liquid at room temperature
-    - C) Have the maximum number of hydrogen atoms bonded to their carbon chains
-    - D) Are found only in plants
+    - C) Contain the maximum number of hydrogen atoms
+    - D) Are found primarily in plants
 
-5. When a protein loses its three-dimensional shape due to high temperature, the process is called:
-    - A) Hydrolysis
+5. The loss of a protein's functional 3D shape due to heat or pH changes is known as:
+    - A) Translation
     - B) Denaturation
-    - C) Translation
-    - D) Replication
+    - C) Replication
+    - D) Hydrolysis
 
 ### Module 04: Cellular Function
 
-1. Which of the following is a principle of the cell theory?
-    - A) All cells contain a nucleus
-    - B) All living things are made of cells
-    - C) All cells carry out photosynthesis
-    - D) Cells arise from non-living matter
+1. Which statement represents a core principle of cell theory?
+    - A) All cells have a nucleus
+    - B) All living organisms are composed of cells
+    - C) Cells differ in their basic chemical composition
+    - D) Spontaneous generation creates new cells
 
-2. A cell that contains a nucleus and other membrane-bound organelles is classified as:
-    - A) Prokaryotic
-    - B) Eukaryotic
-    - C) Bacterial
-    - D) Archaeal
-
-3. Which organelle modifies, packages, and ships proteins to their final destination?
-    - A) Ribosome
-    - B) Rough endoplasmic reticulum
-    - C) Golgi apparatus
-    - D) Lysosome
-
-4. The endosymbiotic theory is supported by the fact that mitochondria and chloroplasts:
-    - A) Are found only in animal cells
-    - B) Lack any internal membranes
-    - C) Contain their own circular DNA and divide independently
-    - D) Are smaller than ribosomes
-
-5. Which structure is present in plant cells but absent in animal cells?
-    - A) Mitochondria
-    - B) Cell wall
+2. Eukaryotic cells differ from prokaryotic cells because eukaryotes possess:
+    - A) A plasma membrane
+    - B) DNA
     - C) Ribosomes
-    - D) Plasma membrane
+    - D) A membrane-bound nucleus
+
+3. Which organelle is responsible for sorting, modifying, and packaging proteins?
+    - A) Smooth endoplasmic reticulum
+    - B) Golgi apparatus
+    - C) Lysosome
+    - D) Mitochondrion
+
+4. Evidence for the endosymbiotic theory includes the fact that mitochondria:
+    - A) Have their own circular DNA and ribosomes
+    - B) Lack membranes
+    - C) Are larger than the nucleus
+    - D) Are found only in plant cells
+
+5. Which structure provides rigidity to plant cells but is absent in animal cells?
+    - A) Cell membrane
+    - B) Mitochondria
+    - C) Cell wall
+    - D) Ribosome
 
 ### Module 05: Membranes
 
 1. The fluid mosaic model describes the cell membrane as:
-    - A) A rigid bilayer of proteins
-    - B) A fluid bilayer of phospholipids with embedded proteins
-    - C) A single layer of carbohydrates
-    - D) A solid wall of cellulose
+    - A) A solid layer of protein
+    - B) A flexible bilayer of phospholipids with embedded proteins
+    - C) A rigid structure made of cellulose
+    - D) A single layer of lipids
 
-2. In facilitated diffusion, molecules cross the membrane:
-    - A) Against their concentration gradient using ATP
-    - B) Down their concentration gradient with the help of transport proteins
-    - C) By being engulfed by the cell membrane
-    - D) Through the lipid bilayer without any assistance
+2. Facilitated diffusion differs from simple diffusion in that it:
+    - A) Requires cellular energy (ATP)
+    - B) Moves molecules against a concentration gradient
+    - C) Requires transport proteins
+    - D) Occurs only in plant cells
 
-3. A red blood cell placed in a hypotonic solution will:
-    - A) Shrink and wrinkle
-    - B) Remain unchanged
-    - C) Swell and potentially burst
-    - D) Lose its nucleus
+3. If a red blood cell is placed in a hypotonic solution, water will:
+    - A) Move into the cell, causing it to swell
+    - B) Move out of the cell, causing it to shrink
+    - C) Move in and out at equal rates
+    - D) Stop moving completely
 
-4. The sodium-potassium pump moves 3 Na⁺ out and 2 K⁺ into the cell. This is an example of:
-    - A) Simple diffusion
-    - B) Osmosis
-    - C) Facilitated diffusion
-    - D) Active transport
+4. The sodium-potassium pump is an example of active transport because it:
+    - A) Uses ATP to move ions against their concentration gradient
+    - B) Moves ions down their concentration gradient without energy
+    - C) Requires no energy input
+    - D) Moves only water molecules
 
-5. Which component of the cell membrane is most responsible for cell-to-cell recognition?
-    - A) Cholesterol
-    - B) Phospholipid tails
-    - C) Glycoproteins
-    - D) Channel proteins
+5. Glycoproteins on the cell surface function primarily in:
+    - A) Energy storage
+    - B) Cell-to-cell recognition
+    - C) Structural support
+    - D) DNA replication
 
 ### Module 06: Metabolism
 
-1. The molecule that serves as the primary energy currency of cells is:
+1. The primary energy currency used by cells to power work is:
     - A) Glucose
-    - B) DNA
-    - C) ATP
+    - B) ATP
+    - C) DNA
     - D) NADH
 
-2. Enzymes increase the rate of chemical reactions by:
-    - A) Raising the temperature of the reaction
+2. Enzymes catalyze reactions by:
+    - A) Increasing the temperature of the reactants
     - B) Lowering the activation energy required
-    - C) Increasing the amount of product present
-    - D) Changing the equilibrium of the reaction
+    - C) Changing the free energy of the reaction
+    - D) Being consumed in the reaction
 
-3. The three main stages of cellular respiration, in order, are:
-    - A) Electron transport chain → Citric acid cycle → Glycolysis
-    - B) Citric acid cycle → Glycolysis → Electron transport chain
-    - C) Glycolysis → Citric acid cycle → Electron transport chain
-    - D) Glycolysis → Electron transport chain → Citric acid cycle
+3. The correct sequence of stages in cellular respiration is:
+    - A) Glycolysis → Citric Acid Cycle → Electron Transport Chain
+    - B) Citric Acid Cycle → Glycolysis → Electron Transport Chain
+    - C) Electron Transport Chain → Glycolysis → Citric Acid Cycle
+    - D) Glycolysis → Electron Transport Chain → Citric Acid Cycle
 
-4. In cellular respiration, oxygen serves as the:
-    - A) Initial substrate for glycolysis
-    - B) Molecule that donates electrons to the chain
-    - C) Final electron acceptor in the electron transport chain
-    - D) Enzyme that catalyzes ATP synthesis
+4. Oxygen's role in aerobic respiration is to:
+    - A) Donate electrons to the transport chain
+    - B) Serve as the initial fuel source
+    - C) Act as the final electron acceptor
+    - D) Catalyze the breakdown of glucose
 
-5. When oxygen is unavailable, muscle cells produce ATP through:
-    - A) Photosynthesis
-    - B) The citric acid cycle
-    - C) Lactic acid fermentation
-    - D) Oxidative phosphorylation
+5. In the absence of oxygen, cells can generate ATP through:
+    - A) The citric acid cycle
+    - B) Oxidative phosphorylation
+    - C) Fermentation
+    - D) Photosynthesis
 
 ---
 
 ## Part B: Fill in the Blank (10 points)
 
-*Complete each statement with the correct term. Each question is worth 1 point.*
+*Complete each statement with the correct terminology. Each question is worth 1 point.*
 
-1. The maintenance of a stable internal environment in an organism is called \_\_\_\_\_\_\_\_\_\_\_\_.
+1. The tendency of an organism to maintain a stable internal environment is called \_\_\_\_\_\_\_\_\_\_\_\_.
 
-2. The type of chemical bond formed by the transfer of electrons from one atom to another is called a(n) \_\_\_\_\_\_\_\_\_\_\_\_ bond.
+2. A chemical bond formed by the transfer of electrons from one atom to another is a(n) \_\_\_\_\_\_\_\_\_\_\_\_ bond.
 
-3. The reaction that breaks polymers into monomers by adding water is called \_\_\_\_\_\_\_\_\_\_\_\_.
+3. The chemical reaction that breaks down polymers into monomers by adding water is known as \_\_\_\_\_\_\_\_\_\_\_\_.
 
-4. The four levels of protein structure, from simplest to most complex, are primary, secondary, \_\_\_\_\_\_\_\_\_\_\_\_, and quaternary.
+4. The four levels of protein structure are primary, secondary, \_\_\_\_\_\_\_\_\_\_\_\_, and quaternary.
 
-5. Ribosomes are attached to the surface of the \_\_\_\_\_\_\_\_\_\_\_\_ endoplasmic reticulum, giving it a "rough" appearance.
+5. The \_\_\_\_\_\_\_\_\_\_\_\_ endoplasmic reticulum is studded with ribosomes and is involved in protein synthesis.
 
-6. Organelles that contain digestive enzymes and break down worn-out cell parts are called \_\_\_\_\_\_\_\_\_\_\_\_.
+6. Membrane-bound sacs containing digestive enzymes for breaking down waste are called \_\_\_\_\_\_\_\_\_\_\_\_.
 
-7. The diffusion of water across a selectively permeable membrane is specifically called \_\_\_\_\_\_\_\_\_\_\_\_.
+7. The passive movement of water across a semipermeable membrane is called \_\_\_\_\_\_\_\_\_\_\_\_.
 
-8. A solution in which the solute concentration is equal on both sides of the membrane is described as \_\_\_\_\_\_\_\_\_\_\_\_.
+8. A solution with the same solute concentration as the cell is described as \_\_\_\_\_\_\_\_\_\_\_\_.
 
-9. The model of enzyme action in which the enzyme changes shape slightly to fit the substrate is called the \_\_\_\_\_\_\_\_\_\_\_\_ model.
+9. The concept that an enzyme changes shape to fit its substrate is called the \_\_\_\_\_\_\_\_\_\_\_\_ model.
 
-10. The process by which cells produce a small amount of ATP without oxygen is called \_\_\_\_\_\_\_\_\_\_\_\_.
+10. The anaerobic process by which cells produce ATP without oxygen is called \_\_\_\_\_\_\_\_\_\_\_\_.
 
 ---
 
 ## Part C: Free Response (10 points)
 
-*Choose THREE of the following five questions. Each response is worth up to 3–4 points. Write in complete sentences.*
+*Choose THREE of the following five questions. Answer in the provided spaces below. Each response is worth up to 3–4 points.*
 
-1. **Water and Life.** Describe three specific properties of water that make it essential for living organisms. For each property, explain how hydrogen bonding contributes to it and give one biological example.
+1. **Water and Life.** Describe three specific properties of water that make it essential for life. Explain how hydrogen bonding contributes to each property.
 
-2. **The Protein Assembly Line.** Trace the pathway of a protein from the moment it begins being made on a ribosome until it is secreted from the cell. Name each organelle involved and describe what happens at each step.
+2. **The Protein Assembly Line.** Trace the path of a protein from synthesis on a ribosome to secretion from the cell. Identify the organelles involved and their roles.
 
-3. **Membrane Transport.** Compare and contrast passive transport and active transport. Include at least two specific examples of each type, and explain why cells need both mechanisms.
+3. **Membrane Transport.** Compare and contrast passive transport and active transport. Provide two examples of each and explain why both are necessary.
 
-4. **Energy Harvest.** Compare aerobic cellular respiration and fermentation. In your response, address where each process occurs in the cell, the role of oxygen, and the relative ATP yield of each.
+4. **Energy Harvest.** Compare aerobic cellular respiration and fermentation in terms of location, ATP yield, and oxygen requirement.
 
-5. **Macromolecule Connections.** Choose two of the four macromolecule classes (carbohydrates, lipids, proteins, nucleic acids). For each, identify its monomer, describe one key function, and explain how its structure is related to that function.
+5. **Macromolecule Connections.** Select two macromolecule classes (carbohydrates, lipids, proteins, nucleic acids). For each, identify its monomer, a key function, and how its structure relates to that function.
+
+<br>
+
+**Response 1**  
+**Question Number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+**Response 2**  
+**Question Number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+**Response 3**  
+**Question Number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ---
 
