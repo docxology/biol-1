@@ -8,36 +8,36 @@
 
 | Q# | Answer | Explanation |
 |----|--------|-------------|
-| 1 | C | Not all organisms use photosynthesis (only autotrophs); all use energy, but photosynthesis is specific |
-| 2 | B | The variable manipulated by the experimenter (amount of fertilizer) is the independent variable |
-| 3 | A | Correct order: Organelle → Cell → Tissue → Organ → Organ System |
-| 4 | B | A theory is a broad explanation supported by extensive evidence, unlike a hypothesis |
-| 5 | B | Natural selection favors individuals with advantageous traits that survive and reproduce |
-| 6 | C | Atomic number corresponds to the number of protons (6 for Carbon) |
-| 7 | A | Covalent bonds involve the sharing of electron pairs between atoms |
-| 8 | A | Hydrogen bonds absorb heat before breaking, giving water a high specific heat |
-| 9 | C | pH values below 7 are acidic; pH 2 is strongly acidic |
-| 10 | B | Carbon can form four stable covalent bonds, allowing for complex organic structures |
-| 11 | C | Dehydration synthesis removes a water molecule to link monomers |
-| 12 | D | Carbohydrates (specifically simple sugars) provide the fastest cellular energy |
-| 13 | A | Peptide bonds link amino acids together in a polypeptide chain |
-| 14 | C | Saturated fats have single C-C bonds and maximum hydrogen atoms |
-| 15 | B | Denaturation is the loss of a protein's 3D structure and function |
-| 16 | B | "All living organisms are composed of cells" is a fundamental tenet of cell theory |
-| 17 | D | Eukaryotes are defined by having a membrane-bound nucleus and organelles |
-| 18 | B | The Golgi apparatus modifies, sorts, and packages proteins for secretion |
-| 19 | A | Mitochondria have circular DNA and ribosomes similar to bacteria, supporting endosymbiosis |
-| 20 | C | Cell walls provide structural support in plants but are absent in animal cells |
-| 21 | B | The fluid mosaic model describes the membrane as a fluid lipid bilayer with embedded proteins |
-| 22 | C | Facilitated diffusion requires specific transport proteins, unlike simple diffusion |
-| 23 | A | Water moves into the cell (higher solute concentration inside), causing it to swell |
-| 24 | A | The sodium-potassium pump uses ATP to move ions against their gradients |
-| 25 | B | Glycoproteins on the cell surface act as identification tags for cell recognition |
-| 26 | B | ATP is the universal energy currency for cellular work |
-| 27 | B | Enzymes speed up reactions by lowering the activation energy barrier |
-| 28 | A | Correct sequence: Glycolysis → Citric Acid Cycle → Electron Transport Chain |
-| 29 | C | Oxygen serves as the final electron acceptor at the end of the ETC |
-| 30 | C | Fermentation allows ATP production to continue in the absence of oxygen |
+| 1 | C | Correct: Not all organisms use photosynthesis (only autotrophs). |
+| 2 | B | Correct: Fertilizer amount is the variable manipulated by the experimenter. |
+| 3 | A | Correct: Organelle → Cell → Tissue → Organ → Organ System. |
+| 4 | B | Correct: An ecosystem includes the community of organisms plus abiotic factors. |
+| 5 | B | Correct: Natural selection favors traits that improve survival/reproduction. |
+| 6 | C | Correct: Atomic number equals the number of protons (6). |
+| 7 | A | Correct: Covalent bonds form by sharing electron pairs. |
+| 8 | C | Correct: Water has *high* cohesion (sticks to itself), not low cohesion. |
+| 9 | C | Correct: pH < 7 is acidic; pH 2 is strongly acidic. |
+| 10 | B | Correct: Carbon can form 4 stable covalent bonds. |
+| 11 | C | Correct: Dehydration synthesis removes water to join monomers. |
+| 12 | D | Correct: Carbohydrates provide the fastest cellular energy. |
+| 13 | A | Correct: Peptide bonds link amino acids. |
+| 14 | C | Correct: Saturated fats have max hydrogens and no double bonds. |
+| 15 | B | Correct: Denaturation is the loss of functional shape. |
+| 16 | B | Correct: "All living things are made of cells" is a cell theory principle. |
+| 17 | D | Correct: Eukaryotes have a membrane-bound nucleus; prokaryotes do not. |
+| 18 | B | Correct: Golgi apparatus processes and packages proteins. |
+| 19 | A | Correct: Mitochondria have their own circular DNA/ribosomes. |
+| 20 | C | Correct: Cell walls are found in plants but not animals. |
+| 21 | B | Correct: Fluid mosaic = fluid bilayer + embedded proteins. |
+| 22 | C | Correct: Facilitated diffusion requires transport proteins (no energy). |
+| 23 | A | Correct: Water moves into the cell (higher solute) → cell swells. |
+| 24 | A | Correct: Na⁺/K⁺ pump moves ions *against* gradients using ATP. |
+| 25 | B | Correct: Glycoproteins act as ID tags for recognition. |
+| 26 | B | Correct: ATP is the cell's energy currency. |
+| 27 | B | Correct: Enzymes lower activation energy to speed up reactions. |
+| 28 | B | Correct: Respiration breaks down glucose to release energy as ATP. |
+| 29 | C | Correct: Oxygen is the final electron acceptor. |
+| 30 | C | Correct: Anabolism builds larger molecules from smaller ones (requires energy). |
 
 ---
 
@@ -45,16 +45,16 @@
 
 | Q# | Answer | Acceptable Alternatives |
 |----|--------|------------------------|
-| 1 | homeostasis | — |
-| 2 | ionic | — |
-| 3 | hydrolysis | — |
-| 4 | tertiary | — |
-| 5 | rough | rough ER |
-| 6 | lysosomes | — |
-| 7 | osmosis | — |
-| 8 | isotonic | — |
-| 9 | induced fit | induced-fit |
-| 10 | fermentation | anaerobic respiration |
+| 31 | homeostasis | — |
+| 32 | ionic | — |
+| 33 | hydrolysis | — |
+| 34 | tertiary | — |
+| 35 | rough | rough ER |
+| 36 | lysosomes | — |
+| 37 | osmosis | — |
+| 38 | isotonic | — |
+| 39 | induced fit | induced-fit |
+| 40 | fermentation | anaerobic respiration |
 
 ---
 
@@ -75,61 +75,57 @@
 
 ### 1. Water and Life
 
-**Key points (any 3 properties with hydrogen bonding + example):**
+**Key points (any 3 properties + example):**
 
-- **High specific heat**: H-bonds absorb heat before breaking → stabilizes temperature in organisms/environments
-- **Cohesion/Adhesion**: H-bonds hold water molecules together → allows transport in plants against gravity
-- **Solvent properties**: Polarity dissolves ionic/polar substances → facilitates chemical reactions in cells
-- **Density of ice**: Open lattice structure of H-bonds makes ice less dense → floats, insulating aquatic life
+- **Cohesion/Adhesion**: Water sticks to itself/surfaces → plant transport.
+- **Specific Heat**: Resists temperature change → stable environment/body temp.
+- **Solvent**: Dissolves many things → nutrient transport in blood.
+- **Ice Density**: Ice floats → insulates lakes in winter.
 
-### 2. The Protein Assembly Line
+### 2. The Protein Path
 
-**Expected pathway:**
+**Expected sequence:**
 
-1. **Ribosome (on rough ER)**: Protein synthesis begins; polypeptide enters ER lumen
-2. **Rough ER**: Folding and initial modification (e.g., glycosylation)
-3. **Transport vesicle**: Carries protein from ER to Golgi
-4. **Golgi apparatus**: Further modification, sorting, and packaging into secretory vesicles
-5. **Secretory vesicle**: Fuses with plasma membrane (exocytosis) to release protein
+1. **Ribosome**: Makes the protein.
+2. **Rough ER**: Folds/modifies the protein.
+3. **Golgi Apparatus**: Packages/sorts the protein.
+4. **Vesicle**: Transports it to edge.
+5. **Cell Membrane**: Releases it (secretion).
 
-### 3. Membrane Transport
+### 3. Moving Across Membranes
 
 **Passive Transport:**
 
-- Movement *down* concentration gradient; requires no energy
-- Examples: Simple diffusion (O₂), Facilitated diffusion (Glucose), Osmosis (Water)
+- No energy needed. Moves *down* gradient.
+- Example: Oxygen diffusion, Osmosis.
 
 **Active Transport:**
 
-- Movement *against* concentration gradient; requires ATP
-- Examples: Sodium-potassium pump, Endocytosis, Exocytosis
+- Energy (ATP) needed. Moves *against* gradient.
+- Example: Sodium-potassium pump.
 
-**Why both?** Passive allows efficient, free movement of essential molecules; Active allows cells to maintain specific internal concentrations different from the environment.
-
-### 4. Energy Harvest
+### 4. Respiration vs. Fermentation
 
 **Aerobic Respiration:**
 
-- Location: Cytoplasm + Mitochondria
-- Oxygen: Required
-- ATP Yield: High (~30-32 ATP)
+- Needs Oxygen? Yes.
+- ATP Yield? High (~30-32).
+- Location: Mitochondria + Cytoplasm.
 
 **Fermentation:**
 
-- Location: Cytoplasm only
-- Oxygen: Not required
-- ATP Yield: Low (2 ATP)
+- Needs Oxygen? No.
+- ATP Yield? Low (2).
+- Location: Cytoplasm only.
 
-### 5. Macromolecule Connections
+### 5. Macromolecule Structure
 
-*Example pairings (choose 2):*
+*Choose 2:*
 
-| Class | Monomer | Function | Structure-Function |
-|-------|---------|----------|-------------------|
-| Carbohydrates | Monosaccharide | Quick energy | Ring structure easily broken for rapid release |
-| Lipids | Fatty acid | Long-term energy | Hydrophobic C-H bonds store dense energy |
-| Proteins | Amino acid | Enzymatic catalysis | 3D folding creates specific active sites |
-| Nucleic Acids | Nucleotide | Information storage | Base pairing allows accurate replication/coding |
+- **Carbohydrate**: Monosaccharide → Energy.
+- **Lipid**: Fatty Acid → Storage/Membrane.
+- **Protein**: Amino Acid → Enzyme/Structure.
+- **Nucleic Acid**: Nucleotide → Genetics.
 
 ---
 

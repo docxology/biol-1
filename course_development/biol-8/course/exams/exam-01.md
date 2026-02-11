@@ -1,8 +1,10 @@
 # BIOL-8 Exam 01
 
+**College of the Redwoods, Del Norte**  
+**Instructor**: Dr. Daniel Friedman  
+
 Name: ______________________
 Date: ______________________
-Period: ____________________
 
 ## Modules 01-06
 
@@ -36,11 +38,11 @@ Period: ____________________
     - C) Organ → Tissue → Cell → Organelle → Molecule
     - D) Molecule → Tissue → Cell → Organ → Organ System
 
-4. A scientific theory is distinct from a hypothesis because a theory:
-    - A) Is a guess based on limited data
-    - B) Is supported by extensive evidence and repeated testing
-    - C) Cannot be falsified
-    - D) Becomes a law once proven true
+4. Which of the following best describes an ecosystem?
+    - A) All the individuals of a single species living in an area
+    - B) A community of organisms interacting with their physical environment
+    - C) The entire planet Earth and its atmosphere
+    - D) A group of cells working together for a common function
 
 5. Evolution by natural selection occurs when:
     - A) Individuals develop new traits during their lifetime
@@ -62,11 +64,11 @@ Period: ____________________
     - C) Are held together by magnetic attraction
     - D) Lose protons to become ions
 
-3. Water's ability to resist rapid temperature changes is due to its:
-    - A) High specific heat related to hydrogen bonding
-    - B) Low density when frozen
-    - C) Nonpolar molecular structure
-    - D) High adhesion properties
+3. Which of the following is NOT a property of water?
+    - A) It is a universal solvent for polar substances
+    - B) It expands when it freezes, becoming less dense
+    - C) It strongly repels other water molecules (low cohesion)
+    - D) It resists rapid temperature changes
 
 4. A substance with a pH of 2 would be classified as:
     - A) Weakly basic
@@ -190,11 +192,11 @@ Period: ____________________
     - C) Changing the free energy of the reaction
     - D) Being consumed in the reaction
 
-3. The correct sequence of stages in cellular respiration is:
-    - A) Glycolysis → Citric Acid Cycle → Electron Transport Chain
-    - B) Citric Acid Cycle → Glycolysis → Electron Transport Chain
-    - C) Electron Transport Chain → Glycolysis → Citric Acid Cycle
-    - D) Glycolysis → Electron Transport Chain → Citric Acid Cycle
+3. The overall purpose of cellular respiration is to:
+    - A) Create glucose from sunlight and water
+    - B) Break down glucose to produce ATP
+    - C) Use oxygen to build new proteins
+    - D) Produce oxygen as a waste product
 
 4. Oxygen's role in aerobic respiration is to:
     - A) Donate electrons to the transport chain
@@ -202,11 +204,11 @@ Period: ____________________
     - C) Act as the final electron acceptor
     - D) Catalyze the breakdown of glucose
 
-5. In the absence of oxygen, cells can generate ATP through:
-    - A) The citric acid cycle
-    - B) Oxidative phosphorylation
-    - C) Fermentation
-    - D) Photosynthesis
+5. The metabolic process that builds larger molecules from smaller ones (consuming energy) is called:
+    - A) Catabolism
+    - B) Hydrolysis
+    - C) Anabolism
+    - D) Digestion
 
 ---
 
@@ -240,23 +242,21 @@ Period: ____________________
 
 *Choose THREE of the following five questions. Answer in the provided spaces below. Each response is worth up to 3–4 points.*
 
-1. **Water and Life.** Describe three specific properties of water that make it essential for life. Explain how hydrogen bonding contributes to each property.
+1. **Water and Life.** Identify three properties of water that are crucial for life. Provide a brief biological example for each.
 
-2. **The Protein Assembly Line.** Trace the path of a protein from synthesis on a ribosome to secretion from the cell. Identify the organelles involved and their roles.
+2. **The Protein Path.** Describe step-by-step how a protein is made and secreted from a cell, naming the organelles involved.
 
-3. **Membrane Transport.** Compare and contrast passive transport and active transport. Provide two examples of each and explain why both are necessary.
+3. **Moving Across Membranes.** Explain the difference between passive and active transport. Give one example of each.
 
-4. **Energy Harvest.** Compare aerobic cellular respiration and fermentation in terms of location, ATP yield, and oxygen requirement.
+4. **Respiration vs. Fermentation.** Compare aerobic respiration and fermentation. Which requires oxygen? Which produces more ATP? Where do they happen in the cell?
 
-5. **Macromolecule Connections.** Select two macromolecule classes (carbohydrates, lipids, proteins, nucleic acids). For each, identify its monomer, a key function, and how its structure relates to that function.
+5. **Macromolecule Structure.** Choose two macromolecules (carbohydrates, lipids, proteins, nucleic acids). For each, name its building block (monomer) and one major function.
 
 <br>
 
 **Response 1**  
 **Question Number:** \_\_\_\_\_
 
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -281,8 +281,6 @@ Period: ____________________
 <br>
 <br>
 <br>
-<br>
-<br>
 
 **Response 3**  
 **Question Number:** \_\_\_\_\_
@@ -297,6 +295,19 @@ Period: ____________________
 <br>
 <br>
 <br>
+
+---
+
+**Feedback (Optional)**
+
+A. Is there anything else you would like to share (e.g., questions, comments, or notes for the professor)?
+
+<br>
+<br>
+<br>
+
+B. What percentage grade do you estimate you earned on this exam? How confident are you in that estimate (1–10)?
+
 <br>
 <br>
 
