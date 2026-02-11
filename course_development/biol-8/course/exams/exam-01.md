@@ -3,8 +3,13 @@
 **College of the Redwoods, Del Norte**  
 **Instructor**: Dr. Daniel Friedman  
 
-Name: ______________________
-Date: ______________________
+<br>
+
+Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+
+<br>
+
+Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
 
 ## Modules 01-06
 
@@ -212,7 +217,7 @@ Date: ______________________
 
 ---
 
-## Part B: Fill in the Blank (10 points)
+## Part B: Fill in the Blank (11 points)
 
 *Complete each statement with the correct terminology. Each question is worth 1 point.*
 
@@ -236,11 +241,13 @@ Date: ______________________
 
 10. The anaerobic process by which cells produce ATP without oxygen is called \_\_\_\_\_\_\_\_\_\_\_\_.
 
+11. The large organelle that contains the cell's genetic material (DNA) and controls cellular activities is the \_\_\_\_\_\_\_\_\_\_\_\_.
+
 ---
 
-## Part C: Free Response (10 points)
+## Part C: Free Response (9 points)
 
-*Choose THREE of the following five questions. Answer in the provided spaces below. Each response is worth up to 3–4 points.*
+*Choose THREE of the following five questions. Answer in the provided spaces below. Each response is worth 3 points.*
 
 1. **Water and Life.** Identify three properties of water that are crucial for life. Provide a brief biological example for each.
 

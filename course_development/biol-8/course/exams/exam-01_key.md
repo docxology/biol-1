@@ -41,7 +41,7 @@
 
 ---
 
-## Part B: Fill in the Blank (10 points)
+## Part B: Fill in the Blank (11 points)
 
 | Q# | Answer | Acceptable Alternatives |
 |----|--------|------------------------|
@@ -55,12 +55,13 @@
 | 38 | isotonic | — |
 | 39 | induced fit | induced-fit |
 | 40 | fermentation | anaerobic respiration |
+| 41 | nucleus | — |
 
 ---
 
-## Part C: Free Response Rubric (10 points)
+## Part C: Free Response Rubric (9 points)
 
-*Students choose 3 of 5. Each response scored 0–3 points (with 1 bonus point available for exceptional clarity/completeness across the section).*
+*Students choose 3 of 5. Each response scored 3 points.*
 
 ### Scoring Guide per Question
 
