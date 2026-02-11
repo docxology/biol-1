@@ -223,7 +223,9 @@ def main():
         logger.info("\n⏭️  STEP 4: Skipping copy extras (--skip-copy-extras)")
 
     # Step 4.5: Copy slides and practice tests
-    # Note: Exams are NOT published - they are teacher-only materials
+    # Note: Exams are NOT published - they are teacher-only materials.
+    # Exams are rendered locally by generate_all_outputs.py (PDF + DOCX)
+    # but never copied to PUBLISHED/ or pushed to public git.
     if not args.skip_copy_extras:
         logger.info("\n🎯 STEP 4.5: Copying slides and practice tests")
         slides_copied = copy_slides(repo_root, courses, args.verbose)

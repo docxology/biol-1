@@ -48,6 +48,8 @@ input_types = ["keys-to-success", "questions"]
 include_syllabus = true
 include_labs = true
 include_dashboards = true
+# Controls local rendering of exams (PDF + DOCX into course/exams/output/).
+# Exams are NEVER published to public git — they are teacher-only materials.
 include_exams = true
 include_slides = true
 include_practice_tests = true

@@ -55,4 +55,14 @@ BIOL-8 has 15 modules. The exam schedule follows this coverage:
 
 ---
 
+## Output Rendering
+
+Exams are rendered locally to `output/` (PDF + DOCX) by `generate_all_outputs.py`.
+Both exam questions and answer keys are rendered for teacher use.
+
+> **⚠️ Teacher-Only Materials**: Exams are **never published** to public git repositories.
+> The `output/` directory is for local instructor use only.
+
+---
+
 *Created: 2026-01-29*

@@ -759,7 +759,7 @@ See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generat
 
 | Document | Location | BIOL-1 | BIOL-8 | Format | Published |
 |----------|----------|--------|--------|--------|-----------|
-| **Exams** (`exam-XX.md` + key) | `course/exams/` | Templates | 4 + 4 keys | 50 MC + 30 SA + 20 Essay = 100 pts | ❌ Teacher-only |
+| **Exams** (`exam-XX.md` + key) | `course/exams/` | — | 4 + 4 keys | 50 MC + 30 SA + 20 Essay = 100 pts | ✅ Local PDF+DOCX (❌ Not published — teacher-only) |
 | **Quizzes** (`module-XX_quiz.md` + key) | `course/quizzes/` | Templates | 15 + 15 keys | 7 MC + 3 FR = 10 pts | ❌ Teacher-only |
 
 Exam structure: `exam-01.md` (Modules 01-07), `exam-02.md` (Modules 08-11), `exam-03.md` (Modules 12-15), `final-exam.md` (Comprehensive, 150 pts).
@@ -817,7 +817,7 @@ course_development/
 │   │   ├── labs/
 │   │   │   ├── lab-01_measurement-methods.md
 │   │   │   └── output/                  # PDF, HTML
-│   │   ├── exams/                       # Templates only
+│   │   ├── exams/                       # Teacher-only, rendered locally
 │   │   └── quizzes/                     # Templates only
 │   ├── syllabus/
 │   │   ├── BIOL-1_Spring-2026_Syllabus.md
@@ -844,7 +844,8 @@ course_development/
 │   │   │   ├── exam-01.md + exam-01_key.md
 │   │   │   ├── exam-02.md + exam-02_key.md
 │   │   │   ├── exam-03.md + exam-03_key.md
-│   │   │   └── final-exam.md + final-exam_key.md
+│   │   │   ├── final-exam.md + final-exam_key.md
+│   │   │   └── output/                  # PDF, DOCX (teacher-only)
 │   │   └── quizzes/
 │   │       ├── module-01_quiz.md + module-01_quiz_key.md
 │   │       └── ... (15 modules)

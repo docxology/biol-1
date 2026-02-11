@@ -3,6 +3,7 @@
 from .main import (
     clear_all_outputs,
     generate_module_media,
+    process_course_exams,
     process_course_labs,
     process_course_modules,
     process_course_syllabus,
@@ -25,6 +26,7 @@ __all__ = [
     "generate_module_media",
     "get_courses_to_process",
     "get_formats_to_process",
+    "process_course_exams",
     "process_course_labs",
     "process_course_modules",
     "process_course_syllabus",

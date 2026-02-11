@@ -33,6 +33,7 @@ from src.batch_processing.config import AVAILABLE_COURSES, AVAILABLE_FORMATS
 from src.batch_processing.logging_config import setup_logging
 from src.batch_processing.main import (
     clear_all_outputs,
+    process_course_exams,
     process_course_labs,
     process_course_modules,
     process_course_practice_tests,
@@ -154,6 +155,13 @@ def main() -> int:
             all_errors.extend(practice_tests.get("errors", []))
             if practice_tests.get("processed"):
                 total_files += len(practice_tests.get("files", []))
+
+        # Process exams (PDF + DOCX generation, teacher-only local rendering)
+        if not args.module:
+            exams = process_course_exams(course_path, course_name, formats)
+            all_errors.extend(exams.get("errors", []))
+            if exams.get("processed"):
+                total_files += len(exams.get("files", []))
 
     logger.info(f"\nTotal: {total_files} files generated in {time.time() - start_time:.2f}s")
     if all_errors:

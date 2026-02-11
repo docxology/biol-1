@@ -703,6 +703,11 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
         if labs_output_path.exists():
             output_dirs.append(labs_output_path)
 
+        # Exams output directory
+        exams_output_path = course_path / "course" / "exams" / "output"
+        if exams_output_path.exists():
+            output_dirs.append(exams_output_path)
+
     logger.info(f"Found {len(output_dirs)} output directories to clear")
 
     for output_dir in output_dirs:
@@ -1054,6 +1059,95 @@ def process_course_practice_tests(
     logger.info(
         f"Practice test rendering completed in {results['duration']:.2f}s: "
         f"{len(results['files'])} files"
+    )
+
+    return results
+
+
+def process_course_exams(
+    course_path: Path,
+    course_name: str,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
+    """Process exams for a course.
+
+    Renders exam markdown files (including answer keys) to PDF and DOCX
+    for teacher-only local use. Exam outputs are never published to public
+    repositories.
+
+    Args:
+        course_path: Path to course directory
+        course_name: Name of the course
+        formats: Optional list of formats to generate (supports "pdf", "docx")
+
+    Returns:
+        Dictionary with processing results
+    """
+    exams_dir = course_path / "course" / "exams"
+    if not exams_dir.exists():
+        logger.debug(f"Exams directory not found: {exams_dir}")
+        return {"processed": False, "errors": [], "files": []}
+
+    logger.info(f"{CONTENT_EMOJI['exam']} Processing {course_name} Exams")
+
+    output_dir = exams_dir / "output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    start_time = time.time()
+
+    results: Dict[str, Any] = {
+        "processed": True,
+        "files": [],
+        "errors": [],
+        "duration": 0.0,
+    }
+
+    # Exam rendering supports pdf and docx formats
+    exam_formats = ["pdf", "docx"]
+    if formats:
+        exam_formats = [f for f in formats if f in ("pdf", "docx")]
+
+    if not exam_formats:
+        logger.info("No exam-compatible formats requested, skipping exams")
+        results["processed"] = False
+        return results
+
+    # Find all exam markdown files (excluding README)
+    md_files = [
+        f for f in exams_dir.glob("*.md")
+        if not f.name.startswith("README") and not f.name.startswith("AGENTS")
+    ]
+
+    if not md_files:
+        logger.info(f"No exam files found in {exams_dir}")
+        results["processed"] = False
+        return results
+
+    for md_file in sorted(md_files):
+        for fmt in exam_formats:
+            try:
+                if fmt == "pdf":
+                    from ..markdown_to_pdf.main import render_markdown_to_pdf
+
+                    out_file = output_dir / f"{md_file.stem}.pdf"
+                    logger.debug(f"Generating PDF: {out_file.name}")
+                    render_markdown_to_pdf(str(md_file), str(out_file))
+                    results["files"].append(str(out_file))
+                elif fmt == "docx":
+                    from ..format_conversion.main import convert_file
+
+                    out_file = output_dir / f"{md_file.stem}.docx"
+                    logger.debug(f"Generating DOCX: {out_file.name}")
+                    convert_file(str(md_file), "docx", str(out_file))
+                    results["files"].append(str(out_file))
+            except Exception as e:
+                error_msg = f"{fmt.upper()} generation failed for {md_file.name}: {e}"
+                logger.error(error_msg, exc_info=True)
+                results["errors"].append(error_msg)
+
+    results["duration"] = time.time() - start_time
+    logger.info(
+        f"  {len(results['files'])} exam files rendered in {results['duration']:.2f}s"
     )
 
     return results

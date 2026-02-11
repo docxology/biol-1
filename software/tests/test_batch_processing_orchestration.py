@@ -9,6 +9,7 @@ from src.batch_processing.main import (
     process_course_syllabus,
     process_course_labs,
     process_course_practice_tests,
+    process_course_exams,
 )
 
 
@@ -240,3 +241,85 @@ class TestProcessCoursePracticeTests:
         
         assert result["processed"] is False
         assert result["files"] == []
+
+
+class TestProcessCourseExams:
+    """Tests for process_course_exams function."""
+
+    @pytest.fixture
+    def mock_render_pdf(self):
+        with patch("src.markdown_to_pdf.main.render_markdown_to_pdf") as mock:
+            yield mock
+
+    @pytest.fixture
+    def mock_convert_file(self):
+        with patch("src.format_conversion.main.convert_file") as mock:
+            yield mock
+
+    def test_process_exams_success(self, temp_dir, mock_render_pdf):
+        """Test successful exam rendering to PDF."""
+        exams_dir = temp_dir / "course" / "exams"
+        exams_dir.mkdir(parents=True)
+        (exams_dir / "exam-01.md").write_text("# Exam 1", encoding="utf-8")
+
+        result = process_course_exams(
+            temp_dir, "Test Course", formats=["pdf"]
+        )
+
+        assert result["processed"] is True
+        assert len(result["files"]) == 1
+        assert mock_render_pdf.called
+
+    def test_process_exams_missing_dir(self, temp_dir):
+        """Test processing with missing exams directory."""
+        result = process_course_exams(temp_dir, "Test Course")
+
+        assert result["processed"] is False
+        assert result["errors"] == []
+
+    def test_process_exams_skip_formats(self, temp_dir):
+        """Test skipping when no exam-compatible formats requested."""
+        exams_dir = temp_dir / "course" / "exams"
+        exams_dir.mkdir(parents=True)
+        (exams_dir / "exam-01.md").write_text("# Exam 1", encoding="utf-8")
+
+        result = process_course_exams(
+            temp_dir, "Test Course", formats=["mp3", "html"]
+        )
+
+        assert result["processed"] is False
+        assert result["files"] == []
+
+    def test_process_exams_includes_keys(self, temp_dir, mock_render_pdf):
+        """Test that answer keys ARE rendered locally (unlike publish which excludes them)."""
+        exams_dir = temp_dir / "course" / "exams"
+        exams_dir.mkdir(parents=True)
+        (exams_dir / "exam-01.md").write_text("# Exam 1", encoding="utf-8")
+        (exams_dir / "exam-01_key.md").write_text("# Key", encoding="utf-8")
+        (exams_dir / "README.md").write_text("# README", encoding="utf-8")
+
+        result = process_course_exams(
+            temp_dir, "Test Course", formats=["pdf"]
+        )
+
+        assert result["processed"] is True
+        # Both exam and key are rendered, README is skipped
+        assert len(result["files"]) == 2
+        assert mock_render_pdf.call_count == 2
+
+    def test_process_exams_pdf_and_docx(
+        self, temp_dir, mock_render_pdf, mock_convert_file
+    ):
+        """Test rendering exams to both PDF and DOCX formats."""
+        exams_dir = temp_dir / "course" / "exams"
+        exams_dir.mkdir(parents=True)
+        (exams_dir / "exam-01.md").write_text("# Exam 1", encoding="utf-8")
+
+        result = process_course_exams(
+            temp_dir, "Test Course", formats=["pdf", "docx"]
+        )
+
+        assert result["processed"] is True
+        assert len(result["files"]) == 2  # 1 PDF + 1 DOCX
+        assert mock_render_pdf.call_count == 1
+        assert mock_convert_file.call_count == 1

@@ -19,6 +19,7 @@ CONTENT_EMOJI = {
     "module": "📚",
     "syllabus": "📅",
     "lab": "🧪",
+    "exam": "📝",
     "test": "📝",
     "practice_test": "📝",
     "slide": "🎯",
