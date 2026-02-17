@@ -41,8 +41,8 @@ include_slides = true
 include_practice_tests = true
 
 [publish.courses.biol-8]
-max_module = 8      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
-max_lab = 5         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
+max_module = 10      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
+max_lab = 7         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
 path = "course_development/biol-8"
 input_types = ["keys-to-success", "questions"]
 include_syllabus = true
