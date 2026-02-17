@@ -13,9 +13,8 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 | [Lab 03](lab-03_microscopy.md) | Introduction to Microscopy | ✅ Complete | Module 03 |
 | [Lab 04](lab-04_diffusion-membranes.md) | Diffusion and Membranes | ✅ Complete | Module 04 |
 | [Lab 05](lab-05_ph-solutions.md) | pH and Solutions | ✅ Complete | Module 05 |
-| [Lab 06](lab-06_enzymes.md) | Enzymes | ✅ Complete | Module 06 |
-| [Lab 07](lab-07_mitosis.md) | Mitosis | 📝 Stub | Module 07 |
-| [Lab 08](lab-08_meiosis.md) | Meiosis | 📝 Stub | Module 08 |
+| [Lab 06](lab-06_central-dogma.md) | Central Dogma: DNA → RNA → Protein | ✅ Complete | Module 07 |
+| [Lab 07](lab-07_cell-division.md) | Cell Division: Mitosis & Meiosis | ✅ Complete | Module 08 |
 | [Lab 09](lab-09_inheritance.md) | Inheritance | 📝 Stub | Module 09 |
 | [Lab 10](lab-10_tissues.md) | Tissues | 📝 Stub | Module 10 |
 | [Lab 11](lab-11_skeletal-system.md) | Skeletal System | 📝 Stub | Module 11 |

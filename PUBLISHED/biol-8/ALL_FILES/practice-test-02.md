@@ -1,6 +1,6 @@
 # BIOL-8 Practice Test 02
 
-## Modules 5-6: Membranes & Metabolism
+## Modules 5-7: Membranes, Metabolism, & Genetics
 
 **Instructions:** This practice test covers material from Modules 5 and 6. Answer all questions to the best of your ability. This test is designed to help you prepare for the second exam.
 
@@ -117,164 +117,165 @@ B) Sodium ions
 C) Water
 D) Amino acids
 
----
+### Module 07: Genetics & Central Dogma
 
-### Module 6: Metabolism
+**31.** In DNA, which base pairs with Adenine?
+A) Cytosine
+B) Guanine
+C) Thymine
+D) Uracil
 
-**16.** Catabolic reactions:
+**32.** The process of copying DNA to make new DNA is called:
+A) Transcription
+B) Translation
+C) Replication
+D) Mutation
 
-A) Build complex molecules from simpler ones
-B) Break down complex molecules and release energy
-C) Require no enzymes
-D) Only occur in plants
+**33.** Which enzyme is responsible for adding new nucleotides during DNA replication?
+A) Helicase
+B) DNA Polymerase
+C) Ligase
+D) RNA Polymerase
 
-**17.** Anabolic reactions:
+**34.** Transcription occurs in the:
+A) Nucleus
+B) Cytoplasm
+C) Ribosome
+D) Mitochondria
 
-A) Break down molecules and release energy
-B) Build complex molecules from simpler ones, requiring energy
-C) Do not involve enzymes
-D) Produce ATP directly
+**35.** The product of transcription is:
+A) A new DNA strand
+B) An mRNA molecule
+C) A protein
+D) An amino acid
 
-**18.** The energy currency molecule of cells is:
-
+**36.** Which molecule serves as the "template" for translation?
 A) DNA
-B) Glucose
-C) ATP
-D) NADH
+B) tRNA
+C) mRNA
+D) rRNA
 
-**19.** Energy is stored in ATP in the:
+**37.** A codon is a sequence of how many nucleotides?
+A) 1
+B) 2
+C) 3
+D) 4
 
-A) Adenine base
-B) Ribose sugar
-C) Bonds between phosphate groups
-D) Hydrogen bonds
+**38.** Translation takes place at the:
+A) Nucleus
+B) Ribosome
+C) Golgi apparatus
+D) Smooth ER
 
-**20.** Enzymes speed up chemical reactions by:
+**39.** The role of tRNA is to:
+A) Carry the genetic message from the nucleus
+B) Bring amino acids to the ribosome
+C) Make up the ribosome structure
+D) Unzip the DNA
 
-A) Increasing the temperature of the cell
-B) Lowering the activation energy
-C) Changing the products formed
-D) Adding more substrate to the reaction
+**40.** A point mutation that changes one base but does not change the amino acid is called a:
+A) Missense mutation
+B) Nonsense mutation
+C) Silent mutation
+D) Frameshift mutation
 
-**21.** The induced fit model describes how:
+**41.** Which of the following is NOT a difference between DNA and RNA?
+A) DNA is double-stranded; RNA is single-stranded
+B) DNA has Thymine; RNA has Uracil
+C) DNA has deoxyribose; RNA has ribose
+D) DNA has phosphate groups; RNA does not
 
-A) Substrates change shape permanently
-B) The enzyme's active site changes shape slightly to fit the substrate
-C) Products inhibit the enzyme
-D) Enzymes are destroyed after one use
+**42.** Central Dogma states that information flows from:
+A) Protein → RNA → DNA
+B) DNA → RNA → Protein
+C) RNA → DNA → Protein
+D) DNA → Protein → RNA
 
-**22.** A competitive inhibitor works by:
+**43.** If a DNA strand is **3'-TAC-5'**, the complementary mRNA codon is:
+A) 5'-ATG-3'
+B) 5'-AUG-3'
+C) 5'-UAC-3'
+D) 5'-UTC-3'
 
-A) Binding to a site away from the active site
-B) Binding directly to the active site, blocking the substrate
-C) Increasing the enzyme's temperature
-D) Permanently denaturing the enzyme
+**44.** Sickle cell anemia is caused by:
+A) A single base substitution (point mutation)
+B) A missing chromosome
+C) An extra chromosome
+D) A viral infection
 
-**23.** A noncompetitive inhibitor works by:
-
-A) Binding to the active site
-B) Binding to a site other than the active site, changing the enzyme's shape
-C) Increasing substrate concentration
-D) Raising the pH
-
-**24.** Feedback inhibition is when:
-
-A) A substrate activates an enzyme
-B) The end product of a pathway inhibits an earlier enzyme in that pathway
-C) Temperature increases enzyme activity
-D) Two enzymes compete for the same substrate
-
-**25.** The overall equation for cellular respiration is:
-
-A) CO₂ + H₂O → C₆H₁₂O₆ + O₂
-B) C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP
-C) ATP → ADP + energy
-D) 2 pyruvate → ethanol + CO₂
-
-**26.** Glycolysis occurs in the:
-
-A) Mitochondria
-B) Nucleus
-C) Cytoplasm
-D) Cell membrane
-
-**27.** The citric acid cycle (Krebs cycle) takes place in the:
-
-A) Cytoplasm
-B) Mitochondrial matrix
-C) Inner mitochondrial membrane
-D) Nucleus
-
-**28.** The electron transport chain produces most of the cell's ATP and is located in the:
-
-A) Cytoplasm
-B) Inner mitochondrial membrane
-C) Nucleus
-D) Ribosome
-
-**29.** When oxygen is NOT available, cells can produce ATP through:
-
-A) The citric acid cycle
-B) Oxidative phosphorylation
-C) Fermentation
-D) The electron transport chain
-
-**30.** Aerobic respiration produces approximately how many ATP per glucose molecule?
-
-A) 2
-B) 4
-C) 18
-D) 36-38
+**45.** What is the function of a stop codon?
+A) To start transcription
+B) To add the last amino acid
+C) To signal the end of translation
+D) To repair DNA errors
 
 ---
 
-## Part B: Fill in the Blank (10 questions)
+## Part B: Fill in the Blank (15 questions)
 
 *Write the correct term in the blank.*
 
-**31.** The two main components of the plasma membrane are phospholipids and _________________________.
+**46.** The two main components of the plasma membrane are phospholipids and _________________________.
 
-**32.** Transport that requires no cellular energy is called _________________________ transport.
+**47.** Transport that requires no cellular energy is called _________________________ transport.
 
-**33.** A solution with a higher solute concentration than the cell is called _________________________.
+**48.** A solution with a higher solute concentration than the cell is called _________________________.
 
-**34.** The process of a cell releasing materials by fusing vesicles with the membrane is called _________________________.
+**49.** The process of a cell releasing materials by fusing vesicles with the membrane is called _________________________.
 
-**35.** The type of endocytosis that takes in fluids and small dissolved molecules is called _________________________.
+**50.** The type of endocytosis that takes in fluids and small dissolved molecules is called _________________________.
 
-**36.** The sum of all chemical reactions in a cell is called _________________________.
+**51.** The sum of all chemical reactions in a cell is called _________________________.
 
-**37.** Enzymes are biological _________________________ that speed up chemical reactions without being consumed.
+**52.** Enzymes are biological _________________________ that speed up chemical reactions without being consumed.
 
-**38.** The three stages of cellular respiration are glycolysis, the citric acid cycle, and the _________________________.
+**53.** The three stages of cellular respiration are glycolysis, the citric acid cycle, and the _________________________.
 
-**39.** In the absence of oxygen, muscle cells produce ATP and _________________________ through fermentation.
+**54.** In the absence of oxygen, muscle cells produce ATP and _________________________ through fermentation.
 
-**40.** The role of oxygen in cellular respiration is to serve as the final _________________________ acceptor in the electron transport chain.
+**55.** The role of oxygen in cellular respiration is to serve as the final _________________________ acceptor in the electron transport chain.
+
+**56.** The sugar found in RNA is called _________________________.
+
+**57.** _________________________ is the enzyme that unzips the DNA double helix during replication.
+
+**58.** A group of three nucleotides on tRNA that pairs with a codon is called an _________________________.
+
+**59.** Changes in the DNA sequence are known as _________________________.
+
+**60.** In eukaryotes, mRNA must be processed and exported from the _________________________ before translation.
 
 ---
 
-## Part C: Short Answer (5 questions)
+## Part C: Short Answer (7 questions)
 
 *Answer each question in 2-4 complete sentences.*
 
-**41.** Compare and contrast passive transport and active transport. Include the role of ATP and give one specific example of each.
+**61.** Compare and contrast passive transport and active transport. Include the role of ATP and give one specific example of each.
 
 <br><br><br><br><br><br>
 
-**42.** Explain what happens to an animal cell in each type of solution: isotonic, hypertonic, and hypotonic. Use the terms "crenation" and "lysis" in your answer.
+**62.** Explain what happens to an animal cell in each type of solution: isotonic, hypertonic, and hypotonic. Use the terms "crenation" and "lysis" in your answer.
 
 <br><br><br><br><br><br>
 
-**43.** Describe how enzymes work, including the role of the active site and the induced fit model. What happens when an enzyme is denatured?
+**63.** Describe how enzymes work, including the role of the active site and the induced fit model. What happens when an enzyme is denatured?
 
 <br><br><br><br><br><br>
 
-**44.** Outline the three main stages of cellular respiration. For each stage, state where it occurs and what it produces.
+**64.** Outline the three main stages of cellular respiration. For each stage, state where it occurs and what it produces.
 
 <br><br><br><br><br><br>
 
-**45.** Compare lactic acid fermentation and alcoholic fermentation. Why does fermentation produce far less ATP than aerobic respiration?
+**65.** Compare lactic acid fermentation and alcoholic fermentation. Why does fermentation produce far less ATP than aerobic respiration?
+
+<br><br><br><br><br><br>
+
+**66.** Summarize the Central Dogma of Biology. Describe the path of genetic information from the nucleus to the ribosome.
+
+<br><br><br><br><br><br>
+
+**67.** Explain the difference between a point mutation and a frameshift mutation. Which one is likely to have a more severe effect on the protein, and why?
 
 <br><br><br><br><br><br>
 

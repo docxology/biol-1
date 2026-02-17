@@ -1,6 +1,6 @@
 # BIOL-8 Practice Test 02 — Answer Key
 
-## Modules 5-6: Membranes & Metabolism
+## Modules 5-7: Membranes, Metabolism, & Genetics
 
 ---
 
@@ -38,6 +38,21 @@
 | 28 | B | The ETC is embedded in the inner mitochondrial membrane (cristae) |
 | 29 | C | Fermentation produces ATP without oxygen (anaerobic pathway) |
 | 30 | D | Aerobic respiration yields approximately 36-38 ATP per glucose molecule |
+| 31 | C | Adenine pairs with Thymine in DNA (A-T) |
+| 32 | C | Replication makes an exact copy of DNA |
+| 33 | B | DNA Polymerase adds nucleotides during replication |
+| 34 | A | Transcription occurs in the nucleus (in eukaryotes) |
+| 35 | B | Transcription produces mRNA from DNA template |
+| 36 | C | mRNA is the template read by ribosomes |
+| 37 | C | A codon is 3 nucleotides |
+| 38 | B | Translation occurs at ribosomes in the cytoplasm |
+| 39 | B | tRNA brings amino acids to the ribosome |
+| 40 | C | Silent mutations do not change the amino acid sequence |
+| 41 | D | Both DNA and RNA have phosphate groups (backbone) |
+| 42 | B | DNA → RNA → Protein |
+| 43 | B | Complementary to TAC is AUG (A pairs with U in RNA) |
+| 44 | A | Sickle cell is a point mutation (Glu -> Val) |
+| 45 | C | Signals the ribosome to stop knowing translation |
 
 ---
 
@@ -45,77 +60,66 @@
 
 | Q | Answer |
 |:---:|--------|
-| 31 | proteins |
-| 32 | passive |
-| 33 | hypertonic |
-| 34 | exocytosis |
-| 35 | pinocytosis |
-| 36 | metabolism |
-| 37 | catalysts |
-| 38 | electron transport chain |
-| 39 | lactic acid |
-| 40 | electron |
+| 46 | proteins |
+| 47 | passive |
+| 48 | hypertonic |
+| 49 | exocytosis |
+| 50 | pinocytosis |
+| 51 | metabolism |
+| 52 | catalysts |
+| 53 | electron transport chain |
+| 54 | lactic acid |
+| 55 | electron |
+| 56 | ribose |
+| 57 | helicase |
+| 58 | anticodon |
+| 59 | mutation |
+| 60 | nucleus |
 
 ---
 
 ## Part C: Short Answer Key
 
-**41. Passive vs. Active Transport:**
+**61. Passive vs. Active Transport:**
 
-| Feature | Passive Transport | Active Transport |
-|---------|-------------------|------------------|
-| Energy | No ATP required | Requires ATP |
-| Direction | Down (with) the concentration gradient | Against the concentration gradient |
-| Examples | Diffusion, osmosis, facilitated diffusion | Sodium-potassium pump, endocytosis, exocytosis |
+- **Passive**: No ATP, moves down gradient (e.g., Osmosis).
+- **Active**: Requires ATP, moves against gradient (e.g., Na+/K+ pump).
 
-Key distinction: Passive transport is driven by the natural kinetic energy of molecules moving from high to low concentration. Active transport requires the cell to spend ATP to move substances where they would not naturally go.
+**62. Tonicity:**
 
----
+- **Isotonic**: No net movement.
+- **Hypertonic**: Water leaves (Crenation).
+- **Hypotonic**: Water enters (Lysis).
 
-**42. Tonicity and Animal Cells:**
+**63. Enzymes:**
 
-| Solution | What Happens | Result |
-|----------|-------------|--------|
-| **Isotonic** | Water moves in and out equally | Cell maintains normal shape |
-| **Hypertonic** | Water leaves the cell (toward higher external solute) | Cell shrinks — **crenation** |
-| **Hypotonic** | Water enters the cell (toward higher internal solute) | Cell swells and may burst — **lysis** (cytolysis) |
+- Catalysts with **active site**.
+- **Induced Fit**: Changes shape to bind substrate.
+- **Denatured**: Shape lost, active site destroyed (temp/pH).
 
-The direction of water movement always follows the solute concentration — water moves toward the side with MORE solute (less water).
+**64. Respiration Stages:**
 
----
+1. **Glycolysis** (Cytoplasm): Glucose -> Pyruvate + 2 ATP.
+2. **Citric Acid Cycle** (Matrix): Acetyl-CoA -> CO2 + 2 ATP + NADH/FADH2.
+3. **ETC** (Inner Membrane): NADH/FADH2 + O2 -> H2O + ~32-34 ATP.
 
-**43. Enzyme Function and Denaturation:**
+**65. Fermentation vs Aerobic:**
 
-- Enzymes are biological catalysts (proteins) with a specific **active site** that binds a particular substrate
-- The **induced fit model** states that the active site slightly changes shape upon substrate binding for a tighter fit, like a handshake
-- Enzymes lower the **activation energy** needed for a reaction, dramatically increasing reaction rate without being consumed
-- **Denaturation** occurs when extreme temperature or pH disrupts the hydrogen bonds and other interactions that maintain the enzyme's 3D shape — the active site is distorted and can no longer bind the substrate, so the enzyme loses its function
+- **Lactic Acid**: Produces lactic acid (muscles).
+- **Alcoholic**: Produces ethanol + CO2 (yeast).
+- Less ATP (2 vs 36) because no ETC/Oxygen to fully oxidize glucose.
 
----
+**66. Central Dogma:**
 
-**44. Three Stages of Cellular Respiration:**
+- **DNA** (in nucleus) is transcribed into **mRNA**.
+- **mRNA** travels to cytoplasm/ribosome.
+- **Ribosome** translates mRNA into **Protein** (using tRNA).
 
-| Stage | Location | Inputs | Outputs |
-|-------|----------|--------|---------|
-| **Glycolysis** | Cytoplasm | 1 glucose | 2 pyruvate, 2 ATP (net), 2 NADH |
-| **Citric Acid Cycle** | Mitochondrial matrix | 2 acetyl-CoA | 2 ATP, 6 NADH, 2 FADH₂, CO₂ |
-| **Electron Transport Chain** | Inner mitochondrial membrane | NADH, FADH₂, O₂ | ~32-34 ATP, H₂O |
+**67. Point vs Frameshift:**
 
-Total yield: approximately **36-38 ATP** per glucose molecule. Oxygen serves as the final electron acceptor in the ETC, combining with electrons and H⁺ to form water.
-
----
-
-**45. Fermentation Comparison:**
-
-| Feature | Lactic Acid Fermentation | Alcoholic Fermentation |
-|---------|-------------------------|----------------------|
-| End products | Lactic acid | Ethanol + CO₂ |
-| Occurs in | Animal muscle cells, some bacteria | Yeast, some bacteria |
-| Example | Muscle soreness during intense exercise | Bread rising, beer/wine production |
-
-Both types produce only **2 ATP per glucose** (from glycolysis only). Fermentation is far less efficient than aerobic respiration (~36-38 ATP) because:
-1. Without oxygen, the electron transport chain cannot run — this is where the vast majority of ATP is generated
-2. Most of the energy from glucose remains trapped in the waste products (lactic acid or ethanol) rather than being extracted
+- **Point**: Change one base. Can be silent, missense, or nonsense.
+- **Frameshift**: Insertion/Deletion. Changes reading frame.
+- **Frameshift is worse** because it alters every amino acid downstream, usually resulting in a nonfunctional protein.
 
 ---
 

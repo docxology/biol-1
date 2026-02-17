@@ -18,8 +18,8 @@ The course covers 15 modules progressing from foundational life science concepts
 | [04](module-04-cellular-function/) | Cellular Function | Cell theory, organelles, prokaryotes vs. eukaryotes |
 | [05](module-05-membranes/) | Membranes | Fluid mosaic model, transport mechanisms, osmosis |
 | [06](module-06-metabolism/) | Metabolism | ATP, enzymes, cellular respiration, fermentation |
-| [07](module-07-mitosis/) | Mitosis | Cell cycle, DNA replication, mitotic phases |
-| [08](module-08-meiosis/) | Meiosis | Gamete formation, crossing over, genetic variation |
+| [07](module-07-genetics/) | Genetics & Central Dogma | DNA structure, transcription, translation, genetic code |
+| [08](module-08-cell-division/) | Cell Division: Mitosis & Meiosis | Cell cycle, mitosis phases, meiosis I & II, genetic variation |
 | [09](module-09-inheritance/) | Inheritance | Mendelian genetics, Punnett squares, pedigrees |
 | [10](module-10-tissues/) | Tissues | Epithelial, connective, muscle, nervous tissue |
 | [11](module-11-skeletal-system/) | Skeletal System | Bone structure, bone cells, joints |

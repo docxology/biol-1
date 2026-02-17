@@ -10,8 +10,8 @@ BIOL-8 has 15 modules. The exam schedule follows this coverage:
 
 | Exam | Modules | Topic Coverage |
 |------|---------|----------------|
-| Exam 01 | 01-07 | Scientific Method, Chemistry, Cells, Membranes, Metabolism, Mitosis |
-| Exam 02 | 08-11 | Meiosis, Inheritance, Tissues, Skeletal System |
+| Exam 01 | 01-07 | Scientific Method, Chemistry, Cells, Membranes, Metabolism, Genetics |
+| Exam 02 | 08-11 | Cell Division (Mitosis & Meiosis), Inheritance, Tissues, Skeletal System |
 | Exam 03 | 12-15 | Muscular, Pathogens, Cardiovascular, Respiratory |
 | Final | 01-15 | Comprehensive |
 

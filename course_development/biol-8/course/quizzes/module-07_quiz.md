@@ -1,72 +1,74 @@
-# Module 07 Quiz: Mitosis
+# Module 07 Quiz: Genetics & the Central Dogma
 
 **Name**: _________________________ **Date**: _____________
 
 ---
 
 ## Part A: Multiple Choice (7 points)
+
 *Choose the best answer for each question. (1 point each)*
 
-1. DNA is replicated during which phase of the cell cycle?
-   - A) G1
-   - B) S phase
-   - C) G2
-   - D) Mitosis
+1. The correct base pairing rule for DNA is:
+   - A) A–G, T–C
+   - B) A–T, G–C
+   - C) A–U, G–C
+   - D) A–C, G–T
 
-2. The correct order of mitosis phases is:
-   - A) Metaphase, Prophase, Anaphase, Telophase
-   - B) Prophase, Metaphase, Anaphase, Telophase
-   - C) Prophase, Anaphase, Metaphase, Telophase
-   - D) Telophase, Anaphase, Metaphase, Prophase
+2. The central dogma of molecular biology describes the flow of information as:
+   - A) Protein → RNA → DNA
+   - B) RNA → DNA → Protein
+   - C) DNA → RNA → Protein
+   - D) DNA → Protein → RNA
 
-3. During which phase do chromosomes line up along the middle of the cell?
-   - A) Prophase
-   - B) Metaphase
-   - C) Anaphase
-   - D) Telophase
+3. During transcription, the enzyme that builds the mRNA strand is:
+   - A) Helicase
+   - B) DNA polymerase
+   - C) RNA polymerase
+   - D) Ligase
 
-4. Sister chromatids are separated during:
-   - A) Prophase
-   - B) Metaphase
-   - C) Anaphase
-   - D) Telophase
+4. If the DNA template strand reads TAC, what is the corresponding mRNA codon?
+   - A) TAC
+   - B) ATG
+   - C) AUG
+   - D) UAC
 
-5. Mitosis produces:
-   - A) Four genetically different cells
-   - B) Two genetically identical cells
-   - C) Four genetically identical cells
-   - D) Two genetically different cells
+5. The start codon (AUG) codes for which amino acid?
+   - A) Alanine
+   - B) Glycine
+   - C) Methionine
+   - D) Leucine
 
-6. The purpose of cell cycle checkpoints is to:
-   - A) Speed up cell division
-   - B) Ensure the cell is ready to proceed
-   - C) Increase genetic variation
-   - D) Prevent crossing over
+6. During translation, which molecule carries amino acids to the ribosome?
+   - A) mRNA
+   - B) rRNA
+   - C) tRNA
+   - D) DNA
 
-7. The division of the cytoplasm is called:
-   - A) Mitosis
-   - B) Cytokinesis
-   - C) Interphase
-   - D) Meiosis
+7. A change in a single DNA base that alters the amino acid sequence is called a:
+   - A) Codon
+   - B) Transcription error
+   - C) Point mutation
+   - D) Replication fork
 
 ---
 
 ## Part B: Free Response (3 points)
+
 *Answer each question in complete sentences.*
 
-8. (1 point) Describe what happens during prophase of mitosis.
+1. (1 point) Describe the process of transcription, including where it occurs and what is produced.
 
 _______________________________________________
 _______________________________________________
 _______________________________________________
 
-9. (1 point) Why is mitosis important for growth and repair in multicellular organisms?
+1. (1 point) Given the DNA template strand 3'–TAC TTT GCA ATT–5', write the mRNA sequence and use a codon table to determine the amino acid sequence.
 
 _______________________________________________
 _______________________________________________
 _______________________________________________
 
-10. (1 point) Explain how problems with cell cycle regulation can lead to cancer.
+1. (1 point) Explain how a single base substitution mutation in DNA could change the function of a protein. Use an example if possible.
 
 _______________________________________________
 _______________________________________________
