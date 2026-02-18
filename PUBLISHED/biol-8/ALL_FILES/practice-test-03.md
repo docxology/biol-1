@@ -1,257 +1,145 @@
 # BIOL-8 Practice Test 03
 
-## Modules 8-11: Cell Division, Inheritance, Tissues, Skeletal
+## Module 7: Genetics (DNA, RNA, Protein Synthesis)
 
-**Instructions:** This practice test covers material from Modules 8-11. Answer all questions to the best of your ability.
+**Instructions:** This practice test covers material from Module 7. Answer all questions to the best of your ability.
 
 ---
 
-## Part A: Multiple Choice (32 questions)
+## Part A: Multiple Choice
 
-*Choose the best answer for each question.*
+### Module 7: Genetics & Central Dogma
 
-### Module 8: Cell Division
+**1.** Which of the following is NOT part of a DNA nucleotide?
+A) Phosphate group
+B) Deoxyribose sugar
+C) Nitrogenous base
+D) Amino acid
 
-**1.** Which phase of the cell cycle involves DNA replication?
-A) G1
-B) S phase
-C) G2
-D) Mitosis
+**2.** In DNA, Adenine (A) always pairs with:
+A) Cytosine (C)
+B) Guanine (G)
+C) Thymine (T)
+D) Uracil (U)
 
-**2.** The primary difference between mitosis and meiosis is:
-A) Mitosis produces somatic cells; meiosis produces gametes
-B) Mitosis halves the chromosome number
-C) Meiosis produces identical daughter cells
-D) Mitosis occurs only in germ cells
+**3.** The bond that holds the two DNA strands together between bases is a:
+A) Covalent bond
+B) Hydrogen bond
+C) Ionic bond
+D) Peptide bond
 
-**3.** In which phase of mitosis do chromosomes line up at the cell equator?
-A) Prophase
-B) Metaphase
-C) Anaphase
-D) Telophase
+**4.** DNA replication is described as "semiconservative" because:
+A) It happens in half the time of transcription
+B) Each new DNA molecule contains one old strand and one new strand
+C) Only half the DNA is copied
+D) It requires no enzymes
 
-**4.** Crossing over occurs during:
-A) Prophase I of Meiosis
-B) Metaphase II of Meiosis
-C) Prophase of Mitosis
-D) Anaphase I of Meiosis
+**5.** Which enzyme is responsible for unzipping the DNA double helix during replication?
+A) DNA Polymerase
+B) Ligase
+C) Helicase
+D) Primase
 
-**5.** If a human cell has 46 chromosomes, how many does it have after meiosis?
-A) 46
-B) 92
-C) 23
-D) 12
+**6.** The flow of genetic information according to the Central Dogma is:
+A) Protein → RNA → DNA
+B) DNA → RNA → Protein
+C) RNA → DNA → Protein
+D) DNA → Protein → RNA
 
-**6.** Nondisjunction refers to:
-A) Failure of chromosomes to separate correctly
-B) Exchange of DNA between chromatids
-C) Replication of DNA
-D) Division of the cytoplasm
+**7.** Transcription produces:
+A) A new DNA strand
+B) An mRNA molecule
+C) A protein sequence
+D) A ribosome
 
-**7.** Cytokinesis is the division of the:
+**8.** Where does transcription occur in a eukaryotic cell?
 A) Nucleus
-B) DNA
+B) Ribosome
 C) Cytoplasm
-D) Mitochondria
+D) Golgi apparatus
 
-**8.** Which checkpoint determines if the cell is ready to divide?
-A) G1
-B) G2
-C) M
-D) S
+**9.** Which nitrogenous base is found in RNA but NOT in DNA?
+A) Adenine
+B) Cytosine
+C) Guanine
+D) Uracil
 
-### Module 9: Inheritance
+**10.** Determine the mRNA sequence meant to match this DNA template: **3'-TAC GGA-5'**
+A) 5'-ATG CCT-3'
+B) 5'-AUG CCU-3'
+C) 5'-UTC CCU-3'
+D) 5'-AUG GGA-3'
 
-**9.** An allele that masks the expression of another is called:
-A) Recessive
-B) Dominant
-C) Codominant
-D) Heterozygous
+**11.** Translation is the process of:
+A) Copying DNA
+B) Making mRNA from DNA
+C) Synthesizing a polypeptide (protein) from an mRNA code
+D) Folding a protein
 
-**10.** A genotype of **Bb** is described as:
-A) Homozygous dominant
-B) Homozygous recessive
-C) Heterozygous
-D) Hemizygous
+**12.** Translation occurs at the:
+A) Nucleus
+B) Mitochondria
+C) Ribosome
+D) Smooth ER
 
-**11.** In a cross between two heterozygotes (Aa x Aa), the expected phenotypic ratio for a dominant trait is:
-A) 1:1
-B) 3:1
-C) 1:2:1
-D) 9:3:3:1
+**13.** A sequence of three nucleotides on mRNA that codes for an amino acid is called a:
+A) Gene
+B) Codon
+C) Anticodon
+D) Chromosome
 
-**12.** Mendel’s law of independent assortment states that:
-A) Alleles segregate randomly during gamete formation
-B) Genes on different chromosomes segregate independently
-C) Dominant alleles always hide recessive ones
-D) Gametes fuse randomly
+**14.** The function of tRNA is to:
+A) Carry the genetic code from the nucleus
+B) Form the structure of the ribosome
+C) Bring the correct amino acid to the ribosome
+D) Unzip DNA
 
-**13.** Red-green color blindness is an X-linked recessive trait. A carrier mother and normal father have a son. What is the chance he is color blind?
-A) 0%
-B) 25%
-C) 50%
-D) 100%
+**15.** A mutation that changes a single nucleotide but does NOT change the amino acid is called a:
+A) Missense mutation
+B) Nonsense mutation
+C) Silent mutation
+D) Frameshift mutation
 
-**14.** Blood type AB is an example of:
-A) Incomplete dominance
-B) Codominance
-C) Polygenic inheritance
-D) Sex-linked inheritance
-
-**15.** A pedigree showing a trait that appears in every generation and affects both sexes equally is likely:
-A) Autosomal recessive
-B) Autosomal dominant
-C) X-linked recessive
-D) Mitochondrial
-
-**16.** If a flower shows incomplete dominance (Red x White = Pink), a cross between two Pink flowers yields:
-A) All Pink
-B) 1 Red : 2 Pink : 1 White
-C) 3 Red : 1 White
-D) 1 Red : 1 White
-
-### Module 10: Tissues
-
-**17.** Which tissue type lines body cavities and covers organs?
-A) Connective
-B) Muscle
-C) Nervous
-D) Epithelial
-
-**18.** Simple squamous epithelium is adapted for:
-A) Protection against friction
-B) Rapid diffusion
-C) Active transport
-D) Contraction
-
-**19.** Which connective tissue has a fluid matrix?
-A) Bone
-B) Cartilage
-C) Adipose
-D) Blood
-
-**20.** The extensive extracellular matrix of connective tissue is composed of:
-A) Cells and organelles
-B) Fibers and ground substance
-C) Neurons and glia
-D) Actin and myosin
-
-**21.** Skeletal muscle is characterized by being:
-A) Non-striated and involuntary
-B) Striated and involuntary
-C) Striated and voluntary
-D) Branched and involuntary
-
-**22.** Which cell type supports and protects neurons?
-A) Glial cells
-B) Fibroblasts
-C) Adipocytes
-D) Chondrocytes
-
-**23.** Intercalated discs are found in:
-A) Smooth muscle
-B) Skeletal muscle
-C) Cardiac muscle
-D) Dense connective tissue
-
-**24.** Stratified squamous epithelium is found in the:
-A) Lungs
-B) Epidermis of the skin
-C) Kidney tubules
-D) Small intestine
-
-### Module 11: Skeletal System
-
-**25.** Which is NOT a function of the skeletal system?
-A) Mineral storage
-B) Blood cell production
-C) Heat production
-D) Protection of internal organs
-
-**26.** The shaft of a long bone is called the:
-A) Epiphysis
-B) Diaphysis
-C) Periosteum
-D) Endosteum
-
-**27.** Osteoblasts are responsible for:
-A) Breaking down bone
-B) Forming new bone
-C) Sensing mechanical stress
-D) Producing cartilage
-
-**28.** The basic structural unit of compact bone is the:
-A) Osteon
-B) Trabecula
-C) Lamella
-D) Lacuna
-
-**29.** Red bone marrow produces:
-A) Fat
-B) Cartilage
-C) Blood cells
-D) Bone matrix
-
-**30.** A synovial joint is characterized by:
-A) Being immovable
-B) A fluid-filled cavity consisting of a capsule
-C) Connecting bones with hyaline cartilage only
-D) Fusing bones together
-
-**31.** The axis and atlas vertebrae are part of the:
-A) Thoracic spine
-B) Lumbar spine
-C) Cervical spine
-D) Sacrum
-
-**32.** Which hormone increases blood calcium levels by stimulating osteoclasts?
-A) Calcitonin
-B) Parathyroid hormone (PTH)
-C) Growth hormone
-D) Estrogen
+**16.** Which type of mutation typically has the most disastrous effect on the resulting protein?
+A) Substitution of the third base in a codon
+B) Silent mutation
+C) Frameshift mutation (insertion or deletion)
+D) Point mutation at the end of a gene
 
 ---
 
-## Part B: Fill in the Blank (10 questions)
+## Part B: Fill in the Blank
 
-*Write the correct term in the blank.*
+**17.** The sugar found in DNA is _____________________, while the sugar in RNA is _____________________.
 
-**33.** The division of the cytoplasm is called _____________________.
-**34.** An organism with two identical alleles for a trait is _____________________.
-**35.** The physical expression of a genotype is the _____________________.
-**36.** _____________________ tissue stores fat and provides insulation.
-**37.** The three types of muscle tissue are skeletal, cardiac, and _____________________.
-**38.** _____________________ are the mature bone cells found in lacunae.
-**39.** The _____________________ skeleton includes the skull, vertebral column, and rib cage.
-**40.** A _____________________ is a chart used to track a trait through a family tree.
-**41.** _____________________ dominance results in a heterozygous phenotype that is a blend of the two homozygous phenotypes.
-**42.** Chromosomes that are not sex chromosomes are called _____________________.
+**18.** The enzyme _____________________ builds the new DNA strand during replication.
 
----
+**19.** A _____________________ mutation introduces a premature stop codon.
 
-## Part C: Short Answer (5 questions)
+**20.** The transfer of information from DNA to mRNA is called _____________________.
 
-*Answer each question in 2-4 complete sentences.*
+**21.** The region of DNA where RNA polymerase binds to start transcription is the _____________________.
 
-**43.** Compare and contrast mitosis and meiosis. distinct differences in outcome.
-
-<br><br><br>
-
-**44.** Explain how a test cross can be used to determine the genotype of an organism with a dominant phenotype.
-
-<br><br><br>
-
-**45.** Describe the difference between simple and stratified epithelium and give an example of where each is found.
-
-<br><br><br>
-
-**46.** Explain the role of osteoblasts and osteoclasts in bone remodeling.
-
-<br><br><br>
-
-**47.** Define "homeostasis" and explain how the skeletal system contributes to calcium homeostasis.
-
-<br><br><br>
+**22.** _____________________ are the building blocks of proteins.
 
 ---
+
+## Part C: Short Answer
+
+**23.** Compare and contrast DNA and RNA. List at least three structural differences.
+
+<br><br><br>
+
+**24.** Explain the role of mRNA, tRNA, and rRNA in protein synthesis.
+
+<br><br><br>
+
+**25.** If a DNA coding strand has the sequence **ATG-CCC-GAT**, what is the mRNA sequence? Use the genetic code to determine the amino acid sequence (use general names if you don't have a chart, e.g., "Start...").
+
+<br><br><br>
+
+**26.** Why is a frameshift mutation often more damaging than a substitution mutation?
+
+<br><br><br>
+
 *End of Practice Test 03*
