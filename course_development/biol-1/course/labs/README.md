@@ -11,14 +11,14 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 | [Lab 01](lab-01_measurement-methods.md) | Introduction to Scientific Measurement | ✅ Complete | Module 01 |
 | [Lab 02](lab-02_probability-statistics.md) | Probability and Statistics | ✅ Complete | Module 02 |
 | [Lab 03](lab-03_microscopy.md) | Introduction to Microscopy | ✅ Complete | Module 03 |
-| [Lab 04](lab-04_cells.md) | Cells | 📝 Stub | Module 04 |
-| [Lab 05](lab-05_membranes.md) | Membranes | 📝 Stub | Module 05 |
-| [Lab 06](lab-06_metabolism.md) | Metabolism | 📝 Stub | Module 06 |
-| [Lab 07](lab-07_photosynthesis.md) | Photosynthesis | 📝 Stub | Module 07 |
-| [Lab 08](lab-08_cellular-respiration.md) | Cellular Respiration | 📝 Stub | Module 08 |
-| [Lab 09](lab-09_cell-division-mitosis.md) | Cell Division: Mitosis | 📝 Stub | Module 09 |
-| [Lab 10](lab-10_meiosis-reproduction.md) | Meiosis and Reproduction | 📝 Stub | Module 10 |
-| [Lab 11](lab-11_mendelian-genetics.md) | Mendelian Genetics | 📝 Stub | Module 11 |
+| [Lab 04](lab-04_liquid-chemistry.md) | Liquid Chemistry | 📝 Stub | Module 05 |
+| [Lab 05](lab-05_viewing-life.md) | Viewing Life | ✅ Complete | Module 06 |
+| [Lab 06](lab-06_exam-review.md) | Exam 01 Review (Paper-based) | ✅ Complete | Review |
+| [Lab 07](lab-07_energy.md) | Energy (Photosynthesis & Respiration) | ✅ Complete | Module 07 |
+| [Lab 08](lab-08_central-dogma.md) | The Central Dogma | 📝 Stub | Module 08 |
+| [Lab 09](lab-09_cell-division.md) | Cell Division | 📝 Stub | Module 09 |
+| [Lab 10](lab-10_gene-regulation.md) | Gene Regulation & Epigenetics | 📝 Stub | Module 10 |
+| [Lab 11](lab-11_inheritance.md) | Inheritance | 📝 Stub | Module 11 |
 | [Lab 12](lab-12_gene-expression.md) | Gene Expression | 📝 Stub | Module 12 |
 | [Lab 13](lab-13_gene-regulation.md) | Gene Regulation | 📝 Stub | Module 13 |
 | [Lab 14](lab-14_biotechnology-genomics.md) | Biotechnology and Genomics | 📝 Stub | Module 14 |

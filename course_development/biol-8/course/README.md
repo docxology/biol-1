@@ -57,6 +57,11 @@ course/
 │   ├── ... (15 labs total)
 │   └── output/                 # Generated lab outputs (PDF, HTML)
 │
+├── practice_tests/              # Practice tests with answer keys
+│   ├── practice-test-01.md
+│   ├── practice-test-01_key.md
+│   └── ... (5 tests + 5 keys)
+│
 └── module-XX-topic-name/        # 15 module directories
     ├── keys-to-success.md      # Learning objectives and study tips
     ├── questions.md            # 18-20 study questions
