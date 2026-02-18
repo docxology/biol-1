@@ -2,50 +2,102 @@
 
 ## Overview
 
-This lab session is dedicated to reviewing Modules 1-6 in preparation for Exam 01. It is a paper-based, collaborative study session. You will work in groups to complete review packets, concept maps, and practice questions covering the foundational concepts of biology.
+This lab session is dedicated to reviewing Modules 1-6 in preparation for Exam 01. It is a paper-based, collaborative study session designed to help you connect the dots between the "Big Picture" of life, the molecular building blocks, and the cellular machinery.
 
 ## Learning Objectives
 
 By the end of this lab, you will be able to:
 
-1. Connect concepts across Modules 1-6 (Chemistry → Molecules → Cells → Membranes → Metabolism).
-2. Identify areas of strength and weakness in your understanding.
-3. Practice applying knowledge to new scenarios (similar to exam questions).
-4. Collaborate with peers to explain and clarify complex topics.
+1. Connect wide-ranging concepts: Atoms → Molecules → Cells → Ecosystems (Modules 1-6).
+2. Visually represent biological structures and processes through scientific drawing.
+3. Collaborate with peers to explain and clarify complex topics.
+4. Identify specific areas for further study before the exam.
 
 ## Materials
 
-* Review Packet (provided)
-* Whiteboards and markers
-* Textbook/Notes
-* Concept Map templates
+* Review Packet (this document)
+* Course Textbook/Notes
+* Pencils and Colored Pencils
 
-## Activity 1: The Big Picture Concept Map
+---
 
-On a large whiteboard or paper, create a concept map connecting the following terms:
+## Part 1: The Big Picture (Module 1)
 
-* Atom
-* Molecule (Carbohydrate, Lipid, Protein, Nucleic Acid)
-* Cell (Prokaryotic, Eukaryotic)
-* Organelle (Nucleus, Mitochondria, Chloroplast)
-* Membrane (Phospholipid Bilayer)
-* Transport (Diffusion, Osmosis, Active Transport)
-* Energy (ATP, Enzyme, Metabolism)
+**Theme:** Life is organized, requires energy, responds to the environment, and evolves.
 
-**Draw arrows connecting related terms and write a verb on the arrow explaining the relationship.**
+<!-- lab:drawing-area title="Levels of Organization" -->
+**Draw a diagram showing the hierarchy of life from simplest to most complex: Atom → Molecule → Organelle → Cell → Tissue → Organ → Organism → Population → Ecosystem.**
 
-## Activity 2: Module Review Stations
+{fill:drawing height=400}
+<!-- /lab:drawing-area -->
 
-Rotate through stations focusing on specific modules:
+<!-- lab:reflection -->
+**1. Select one arrow from your diagram. Explain how the lower level (e.g., molecule) determines the function of the higher level (e.g., organelle).**
 
-* **Station 1:** Chemistry & Molecules (Bonding, pH, Macromolecules)
-* **Station 2:** Cells & Membranes (Organelle function, Transport types)
-* **Station 3:** Metabolism & Enzymes (Energy, Activation Energy, Enzyme regulation)
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
 
-## Activity 3: Practice Exam Questions
+---
 
-Work through specific practice questions from the review packet. Discuss your answers with your group. If you disagree, explain your reasoning until you reach a consensus.
+## Part 2: The Chemistry of Life (Modules 2 & 3)
+
+**Theme:** Life is based on chemical rules. The shape of a molecule determines its function.
+
+<!-- lab:drawing-area title="Water and Macromolecules" -->
+**Box A: Draw two water molecules and show the Hydrogen Bond between them.**
+**Box B: Draw a simple representation of an Enzyme (Protein) binding to a Substrate.**
+
+{fill:drawing height=300}
+
+**Label: Active Site, Substrate, Product**
+<!-- /lab:drawing-area -->
+
+<!-- lab:reflection -->
+**2. How does the polarity of water (Part A) relate to the folding of the protein (Part B)? (Hint: Hydrophobic vs. Hydrophilic)**
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+---
+
+## Part 3: The Cell & Its Systems (Modules 4, 5, & 6)
+
+**Theme:** Cells are the fundamental units of life. They manage matter, energy, and information.
+
+<!-- lab:drawing-area title="The Eukaryotic Cell Factory" -->
+**Draw a large Eukaryotic cell. Include and label:**
+
+* **Nucleus** (The Manager/Library)
+* **Mitochondria** (Power Plants)
+* **Chloroplasts** (Solar Panels - if plant cell)
+* **Ribosomes** (Assembly Lines)
+* **Cell Membrane** (Security Fence)
+
+{fill:drawing height=500}
+<!-- /lab:drawing-area -->
+
+<!-- lab:reflection -->
+**3. Trace the path of a protein that is going to be secreted from the cell. Where is it made? Where does it go next? How does it leave?**
+
+{fill:textarea rows=3}
+
+**4. Compare Passive Transport (Diffusion) with Active Transport. Which one needs energy (ATP)? Why?**
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+---
 
 ## Conclusion
 
-Use the remaining time to ask your instructor specific questions found during the review.
+Biology is not just a list of facts; it is a web of connections.
+
+<!-- lab:reflection -->
+**One concept I feel very confident about is:**
+
+{fill:text}
+
+**One concept I need to study more is:**
+
+{fill:text}
+<!-- /lab:reflection -->
