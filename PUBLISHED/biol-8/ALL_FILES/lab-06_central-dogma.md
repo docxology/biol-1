@@ -4,10 +4,6 @@
 
 ---
 
-**Name:** {fill:text} **Date:** {fill:text}
-
----
-
 ## Objectives
 
 By the end of this lab, you will be able to:
@@ -25,21 +21,7 @@ By the end of this lab, you will be able to:
 
 The **Central Dogma of Molecular Biology** describes the flow of genetic information in living cells:
 
-```
-    ┌──────────┐    Transcription    ┌──────────┐    Translation    ┌──────────────┐
-    │   DNA    │ ──────────────────→ │   mRNA   │ ────────────────→ │   PROTEIN    │
-    │ (double  │    (in nucleus)     │ (single  │  (at ribosome)   │ (amino acid  │
-    │ stranded)│                     │ stranded)│                   │   chain)     │
-    └──────────┘                     └──────────┘                   └──────────────┘
-         │
-         │  DNA Replication
-         ▼
-    ┌──────────┐
-    │ DNA Copy │
-    │ (double  │
-    │ stranded)│
-    └──────────┘
-```
+**DNA** (Nucleus) —> **mRNA** (Nucleus → Cytoplasm) —> **PROTEIN** (Ribosome)
 
 In this lab, you will use **paper cutouts** of nucleotides and amino acids to physically walk a short DNA sequence through all three processes: **replication**, **transcription**, and **translation**.
 
@@ -100,7 +82,20 @@ Coding strand (5'→3'):
 
 ---
 
-## Part 1: DNA Replication
+## Part 1: Preparation — Cutting Out Materials
+
+> **Learning Goal:** Prepare the physical models needed to simulate the Central Dogma processes.
+
+### Procedure
+
+1. **Cut out** 18 DNA nucleotide pieces for the **template strand**: T-A-C-A-A-G-T-T-T-G-C-A-C-C-G-A-T-T
+2. **Cut out** 18 DNA nucleotide pieces for the **coding strand**: A-T-G-T-T-C-A-A-A-C-G-T-G-G-C-T-A-A
+3. **Cut out** RNA nucleotides (from Appendix B) to be used for building the complementary mRNA.
+4. **Cut out** the amino acid cards (from Appendix C). Keep these organized for later use.
+
+---
+
+## Part 2: DNA Replication
 
 > **Learning Goal:** Model the semi-conservative process of DNA replication using paper nucleotide cutouts.
 
@@ -113,25 +108,13 @@ Before a cell divides, it must copy its DNA. During **DNA replication**:
 3. **Ligase** seals any gaps in the new strands
 4. Result: **Two identical double-stranded DNA molecules**
 
-```
-    Original DNA            After Replication
-    ┌─────────┐            ┌─────────┐   ┌─────────┐
-    │ T-A     │            │ T-A     │   │ T-A     │
-    │ A-T     │     →      │ A-T     │   │ A-T     │
-    │ C-G     │            │ C-G     │   │ C-G     │
-    │ G-C     │            │ G-C     │   │ G-C     │
-    └─────────┘            └─────────┘   └─────────┘
-     (1 molecule)           (2 identical molecules)
-```
-
 ### Procedure
 
-1. **Cut out** 18 DNA nucleotide pieces for the **template strand**: T-A-C-A-A-G-T-T-T-G-C-A-C-C-G-A-T-T
-2. **Cut out** 18 DNA nucleotide pieces for the **coding strand**: A-T-G-T-T-C-A-A-A-C-G-T-G-G-C-T-A-A
-3. **Arrange** them as a double-stranded DNA molecule, pairing each base with its complement
-4. **Simulate helicase**: Physically separate the two strands by pulling them apart
-5. **Simulate DNA polymerase**: For each separated strand, cut out NEW complementary nucleotides and pair them
-6. **Tape** the new nucleotides in place to form two complete double-stranded molecules
+1. **Take your cut-out DNA nucleotides** from Part 1.
+2. **Arrange** them as a double-stranded DNA molecule, pairing each base with its complement.
+3. **Simulate helicase**: Physically separate the two strands by pulling them apart
+4. **Simulate DNA polymerase**: For each separated strand, cut out NEW complementary nucleotides and pair them
+5. **Tape** the new nucleotides in place to form two complete double-stranded molecules
 
 ### Data Collection
 
@@ -160,7 +143,7 @@ Before a cell divides, it must copy its DNA. During **DNA replication**:
 
 ---
 
-## Part 2: Transcription — DNA → mRNA
+## Part 3: Transcription — DNA → mRNA
 
 > **Learning Goal:** Convert the DNA template strand into a complementary mRNA sequence, simulating transcription.
 
@@ -172,7 +155,7 @@ During **transcription**, the enzyme **RNA polymerase** reads the DNA template s
 - RNA is **single-stranded**
 - Only **one strand** of DNA (the template strand) is read
 
-**Base pairing rules for transcription:**
+**Base Pairing Rules used for Transcription:**
 
 | DNA Template Base | mRNA Base |
 |-------------------|-----------|
@@ -183,13 +166,13 @@ During **transcription**, the enzyme **RNA polymerase** reads the DNA template s
 
 ### Procedure
 
-1. **Take your template strand** from Part 1:
+1. **Take your template strand** from earlier:
 
    ```
    3'— T A C   A A G   T T T   G C A   C C G   A T T —5'
    ```
 
-2. **Cut out RNA nucleotides** (from Appendix B) to build the complementary mRNA
+2. **Use your RNA nucleotide cutouts** from Part 1.
 3. Apply the base pairing rules: A→U, T→A, G→C, C→G
 4. **Arrange the mRNA nucleotides** in a single row next to the DNA template, reading 3'→5' on the template to produce the mRNA 5'→3'
 5. **Tape** the mRNA strand together in order
@@ -235,7 +218,7 @@ During **transcription**, the enzyme **RNA polymerase** reads the DNA template s
 
 ---
 
-## Part 3: Translation — mRNA → Protein
+## Part 4: Translation — mRNA → Protein
 
 > **Learning Goal:** Decode the mRNA message into a chain of amino acids, simulating translation at the ribosome.
 
@@ -250,46 +233,16 @@ During **translation**, the ribosome reads the mRNA **three nucleotides at a tim
     acids:       (start)                                 (release)
 ```
 
-### The Standard Genetic Code (Codon Table)
-
-Use this table to decode each mRNA codon into its amino acid:
-
-```
-┌────────┬──────────────────────────────────────────────────────┐
-│        │               Second Position                        │
-│ First  ├──────────────┬──────────────┬──────────────┬─────────┤
-│Position│      U       │      C       │      A       │    G    │
-├────────┼──────────────┼──────────────┼──────────────┼─────────┤
-│        │ UUU Phe      │ UCU Ser      │ UAU Tyr      │ UGU Cys │
-│   U    │ UUC Phe      │ UCC Ser      │ UAC Tyr      │ UGC Cys │
-│        │ UUA Leu      │ UCA Ser      │ UAA STOP     │ UGA STOP│
-│        │ UUG Leu      │ UCG Ser      │ UAG STOP     │ UGG Trp │
-├────────┼──────────────┼──────────────┼──────────────┼─────────┤
-│        │ CUU Leu      │ CCU Pro      │ CAU His      │ CGU Arg │
-│   C    │ CUC Leu      │ CCC Pro      │ CAC His      │ CGC Arg │
-│        │ CUA Leu      │ CCA Pro      │ CAA Gln      │ CGA Arg │
-│        │ CUG Leu      │ CCG Pro      │ CAG Gln      │ CGG Arg │
-├────────┼──────────────┼──────────────┼──────────────┼─────────┤
-│        │ AUU Ile      │ ACU Thr      │ AAU Asn      │ AGU Ser │
-│   A    │ AUC Ile      │ ACC Thr      │ AAC Asn      │ AGC Ser │
-│        │ AUA Ile      │ ACA Thr      │ AAA Lys      │ AGA Arg │
-│        │ AUG Met/START│ ACG Thr      │ AAG Lys      │ AGG Arg │
-├────────┼──────────────┼──────────────┼──────────────┼─────────┤
-│        │ GUU Val      │ GCU Ala      │ GAU Asp      │ GGU Gly │
-│   G    │ GUC Val      │ GCC Ala      │ GAC Asp      │ GGC Gly │
-│        │ GUA Val      │ GCA Ala      │ GAA Glu      │ GGA Gly │
-│        │ GUG Val      │ GCG Ala      │ GAG Glu      │ GGG Gly │
-└────────┴──────────────┴──────────────┴──────────────┴─────────┘
-```
+Use the **Codon Table** (Appendix) to decode your sequence.
 
 ### Procedure
 
-1. **Take your mRNA strand** from Part 2
-2. **Divide it into codons** — group the mRNA into sets of three nucleotides
-3. **For each codon**, look up the amino acid in the codon table above
-4. **Cut out the corresponding amino acid cards** (from Appendix C)
-5. **Assemble the polypeptide chain** — line up the amino acid cards in order, left to right
-6. **Stop** when you reach the stop codon — do not add an amino acid for it
+1. **Take your mRNA strand** from Part 3.
+2. **Divide it into codons** — group the mRNA into sets of three nucleotides.
+3. **For each codon**, look up the amino acid in the Codon Table (Appendix).
+4. **Select the corresponding amino acid cards** from your prepared set.
+5. **Assemble the polypeptide chain** — line up the amino acid cards in order, left to right.
+6. **Stop** when you reach the stop codon — do not add an amino acid for it.
 
 ### Decode Your mRNA
 
@@ -336,7 +289,7 @@ Use this table to decode each mRNA codon into its amino acid:
 
 ---
 
-## Part 4: Mutation Simulation
+## Part 5: Mutation Simulation
 
 > **Learning Goal:** Observe how a single base change in DNA can alter the protein produced.
 
@@ -382,7 +335,7 @@ Use this table to decode each mRNA codon into its amino acid:
 
 ---
 
-## Part 5: Summary — Tracing the Central Dogma
+## Part 6: Summary — Tracing the Central Dogma
 
 ### Complete the Flowchart
 
@@ -455,4 +408,36 @@ Use this table to decode each mRNA codon into its amino acid:
 
 ---
 
-*Lab adapted for BIOL-8: Human Biology, Spring 2026*
+<!-- page-break -->
+
+# Appendix: Codon Table (Tear-off Sheet)
+
+Standard Genetic Code
+
+```
+┌────────┬──────────────────────────────────────────────────────┐
+│        │               Second Position                        │
+│ First  ├──────────────┬──────────────┬──────────────┬─────────┤
+│Position│      U       │      C       │      A       │    G    │
+│ (5' end)├──────────────┼──────────────┼──────────────┼─────────┤
+│        │ UUU Phe      │ UCU Ser      │ UAU Tyr      │ UGU Cys │
+│   U    │ UUC Phe      │ UCC Ser      │ UAC Tyr      │ UGC Cys │
+│        │ UUA Leu      │ UCA Ser      │ UAA STOP     │ UGA STOP│
+│        │ UUG Leu      │ UCG Ser      │ UAG STOP     │ UGG Trp │
+├────────┼──────────────┼──────────────┼──────────────┼─────────┤
+│        │ CUU Leu      │ CCU Pro      │ CAU His      │ CGU Arg │
+│   C    │ CUC Leu      │ CCC Pro      │ CAC His      │ CGC Arg │
+│        │ CUA Leu      │ CCA Pro      │ CAA Gln      │ CGA Arg │
+│        │ CUG Leu      │ CCG Pro      │ CAG Gln      │ CGG Arg │
+├────────┼──────────────┼──────────────┼──────────────┼─────────┤
+│        │ AUU Ile      │ ACU Thr      │ AAU Asn      │ AGU Ser │
+│   A    │ AUC Ile      │ ACC Thr      │ AAC Asn      │ AGC Ser │
+│        │ AUA Ile      │ ACA Thr      │ AAA Lys      │ AGA Arg │
+│        │ AUG Met/START│ ACG Thr      │ AAG Lys      │ AGG Arg │
+├────────┼──────────────┼──────────────┼──────────────┼─────────┤
+│        │ GUU Val      │ GCU Ala      │ GAU Asp      │ GGU Gly │
+│   G    │ GUC Val      │ GCC Ala      │ GAC Asp      │ GGC Gly │
+│        │ GUA Val      │ GCA Ala      │ GAA Glu      │ GGA Gly │
+│        │ GUG Val      │ GCG Ala      │ GAG Glu      │ GGG Gly │
+└────────┴──────────────┴──────────────┴──────────────┴─────────┘
+```

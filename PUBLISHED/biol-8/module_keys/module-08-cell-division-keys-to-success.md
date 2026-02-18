@@ -1,4 +1,4 @@
-# Module 08: Cell Division — Mitosis & Meiosis — Keys to Success
+# Module 08: Cell Division — Mitosis & Meiosis (OpenStax Chapter 6) — Keys to Success
 
 ## Key Learning Objectives
 

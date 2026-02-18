@@ -1,4 +1,4 @@
-# Lab 9: Genetics & Inheritance
+# Lab 8: Genetics & Inheritance
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 

@@ -12,9 +12,9 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 2 | 1/27 - 1/29 | Lab 01: Measurement Methods & Module 04 Review | Lab 02: Probability & Statistics & Review Modules 01-04 | Labs begin |
 | 3 | 2/3 - 2/5 | Module 05: Membranes & Lab 03: Microscopy | Module 06: Metabolism & Lab 04: Diffusion | |
 | 4 | 2/10 - 2/12 | Test Review & Lab 05: pH and Solutions | **Exam 01** | Exam covers Modules 01-06 |
-| 5 | 2/17 - 2/19 | Module 07: Mitosis & Lab 06: Metabolism | Module 08: Meiosis & Lab 07: Mitosis | |
-| 6 | 2/24 - 2/26 | Module 09: Inheritance & Lab 08: Meiosis | Module 10: Tissues & Lab 09: Inheritance | |
-| 7 | 3/3 - 3/5 | Review & Lab 10: Tissues | **Exam 02** | Exam covers Modules 07-10 |
+| 5 | 2/17 - 2/19 | Module 07: Genetics (Ch 9) & Lab 06: Central Dogma | Module 08: Cell Division (Ch 6) & Lab 07: Cell Division | |
+| 6 | 2/24 - 2/26 | Module 09: Inheritance (Ch 8) & Lab 08: Inheritance | Module 10: Tissues & Lab 09: Enzymes | |
+| 7 | 3/3 - 3/5 | Review Modules 07-10 (No Lab) | **Exam 02** | Exam covers Modules 07-10 |
 | 8 | 3/10 - 3/12 | No Class | No Class | Spring Break |
 | 9 | 3/17 - 3/19 | Module 11: Skeletal System & Lab 11: Skeletal System | Module 12: Muscular System & Lab 12: Muscular System | |
 | 10 | 3/24 - 3/26 | Module 13: Pathogens & Lab 13: Pathogens | Module 14: Cardiovascular System & Lab 14: Cardiovascular | |

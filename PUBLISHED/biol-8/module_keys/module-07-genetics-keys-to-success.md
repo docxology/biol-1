@@ -1,4 +1,4 @@
-# Module 07: Genetics & the Central Dogma — Keys to Success
+# Module 07: Genetics — DNA, RNA, & Protein Synthesis (OpenStax Chapter 9) — Keys to Success
 
 ## Key Learning Objectives
 
