@@ -1,61 +1,53 @@
-# Practice Test 03 Answer Key
+# Practice Test 03 — Answer Key
+
+## Module 7: Genetics (DNA, RNA, Protein Synthesis)
+
+---
 
 ## Part A: Multiple Choice
 
-1. **B** (S phase)
-2. **A** (Mitosis produces somatic cells; meiosis produces gametes)
-3. **B** (Metaphase)
-4. **A** (Prophase I of Meiosis)
-5. **C** (23)
-6. **A** (Failure of chromosomes to separate correctly)
-7. **C** (Cytoplasm)
-8. **A** (G1)
-9. **B** (Dominant)
-10. **C** (Heterozygous)
-11. **B** (3:1)
-12. **B** (Genes on different chromosomes segregate independently)
-13. **C** (50%) - Son gets X from mom. Mom is carrier (X^C X^c). 50% chance of X^c.
-14. **B** (Codominance)
-15. **B** (Autosomal dominant)
-16. **B** (1 Red : 2 Pink : 1 White)
-17. **D** (Epithelial)
-18. **B** (Rapid diffusion)
-19. **D** (Blood)
-20. **B** (Fibers and ground substance)
-21. **C** (Striated and voluntary)
-22. **A** (Glial cells)
-23. **C** (Cardiac muscle)
-24. **B** (Epidermis of the skin)
-25. **C** (Heat production is primarily muscle)
-26. **B** (Diaphysis)
-27. **B** (Forming new bone)
-28. **A** (Osteon)
-29. **C** (Blood cells)
-30. **B** (A fluid-filled cavity consisting of a capsule)
-31. **C** (Cervical spine)
-32. **B** (Parathyroid hormone / PTH)
+1. **D** — Amino acids are the building blocks of proteins, not nucleotides.
+2. **C** — A pairs with T in DNA.
+3. **B** — Hydrogen bonds hold complementary bases together.
+4. **B** — Each new molecule has one original (old) strand and one newly synthesized strand.
+5. **C** — Helicase unwinds/unzips the double helix.
+6. **B** — DNA → RNA → Protein is the Central Dogma.
+7. **B** — Transcription produces an mRNA molecule.
+8. **A** — Transcription occurs in the nucleus.
+9. **D** — Uracil replaces Thymine in RNA.
+10. **B** — DNA 3'-TAC GGA-5' → mRNA 5'-AUG CCU-3' (T→A, A→U, C→G, G→C).
+11. **C** — Translation produces a polypeptide (protein).
+12. **C** — Translation occurs at the ribosome.
+13. **B** — A codon is a three-nucleotide sequence on mRNA.
+14. **C** — tRNA brings the correct amino acid to the ribosome.
+15. **C** — A silent mutation changes DNA but not the amino acid (due to code redundancy).
+16. **C** — Frameshift mutations shift the entire reading frame, changing every codon after the mutation.
 
 ## Part B: Fill in the Blank
 
-1. Cytokinesis
-2. Homozygous
-3. Phenotype
-4. Adipose
-5. Smooth
-6. Osteocytes
-7. Axial
-8. Pedigree
-9. Incomplete
-10. Autosomes
+1. **Deoxyribose**; **Ribose**
+2. **DNA Polymerase**
+3. **Nonsense**
+4. **Transcription**
+5. **Promoter**
+6. **Amino acids**
 
 ## Part C: Short Answer
 
-1. **Mitosis vs Meiosis**: Mitosis involves one division producing two GMO-identical diploid somatic cells for growth/repair. Meiosis involves two divisions producing four unique haploid gametes for sexual reproduction.
+1. **DNA vs RNA — Three Differences:**
+    - DNA is double-stranded; RNA is single-stranded.
+    - DNA contains deoxyribose sugar; RNA contains ribose sugar.
+    - DNA uses thymine (T); RNA uses uracil (U).
 
-2. **Test Cross**: Cross the dominant individual (A?) with a homozygous recessive (aa). If any offspring show the recessive trait, the unknown parent must be heterozygous (Aa). If all are dominant, the parent is likely homozygous (AA).
+2. **Roles in Protein Synthesis:**
+    - **mRNA** (messenger RNA): Carries the genetic code from DNA in the nucleus to the ribosome in the cytoplasm.
+    - **tRNA** (transfer RNA): Reads the mRNA codons and brings the matching amino acid to the ribosome.
+    - **rRNA** (ribosomal RNA): Forms the structural and catalytic core of the ribosome where translation takes place.
 
-3. **Epithelium**: Simple epithelium has one layer and is for diffusion/absorption (e.g., alveoli). Stratified has multiple layers and is for protection (e.g., skin).
+3. **Sequence Conversion:**
+    - DNA coding strand: ATG-CCC-GAT
+    - mRNA (same as coding strand, with U): **AUG-CCC-GAU**
+    - Amino acids: **Met (Start) — Pro — Asp**
 
-4. **Bone Remodeling**: Osteoblasts build new bone matrix, storing calcium. Osteoclasts break down bone matrix, releasing calcium. They work together to reshape bone and maintain calcium levels.
-
-5. **Homeostasis**: Homeostasis is the maintenance of stable internal conditions. The skeleton stores calcium; when blood calcium is low, osteoclasts release it from bone to restore the balance (negative feedback).
+4. **Frameshift vs Substitution:**
+    A frameshift mutation (insertion or deletion) shifts the entire reading frame of the mRNA. Every codon after the mutation is changed, likely altering every amino acid in the resulting protein. A substitution only changes one codon and may even be silent. This is why frameshifts are usually more damaging.
