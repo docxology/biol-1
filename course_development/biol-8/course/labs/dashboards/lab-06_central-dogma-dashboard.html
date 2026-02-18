@@ -54,6 +54,18 @@
             color: var(--secondary-color);
         }
 
+        /* Highlight matching the manual */
+        .manual-ref {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
         .game-area {
             background-color: var(--light-bg);
             border-radius: 8px;
@@ -233,7 +245,7 @@
 
     <header>
         <h1>Lab 6: Central Dogma Simulation</h1>
-        <p>BIOL-8 Interactive Class Dashboard</p>
+        <p>Class Dashboard &mdash; Companion to Lab Manual</p>
     </header>
 
     <div class="container">
@@ -242,19 +254,20 @@
             <div class="step active" id="step-nav-1" onclick="showSection('replication')">1. DNA Replication</div>
             <div class="step" id="step-nav-2" onclick="showSection('transcription')">2. Transcription</div>
             <div class="step" id="step-nav-3" onclick="showSection('translation')">3. Translation</div>
-            <div class="step" id="step-nav-4" onclick="showSection('mutation')">4. Mutation Builder</div>
+            <div class="step" id="step-nav-4" onclick="showSection('mutation')">4. Mutation Lab</div>
         </div>
 
         <!-- Part 1: Replication -->
         <div id="section-replication" class="card">
             <h2>Part 1: DNA Replication</h2>
-            <p><strong>Goal:</strong> Build the complementary DNA strand. (A ↔ T, C ↔ G)</p>
+            <div class="manual-ref">Matches Lab Manual Part 1</div>
+            <p><strong>Goal:</strong> Build the complementary "New Strand" of DNA. (A ↔ T, C ↔ G)</p>
 
             <div class="game-area">
                 <p><strong>Template Strand (3' to 5'):</strong></p>
                 <div class="sequence-display" id="rep-template">TAC AAG TTT GCA CCG ATT</div>
 
-                <p><strong>Your New Strand (5' to 3'):</strong></p>
+                <p><strong>Complementary New Strand (5' to 3'):</strong></p>
                 <div class="sequence-display" id="rep-input"></div>
 
                 <div class="controls">
@@ -278,13 +291,15 @@
         <!-- Part 2: Transcription -->
         <div id="section-transcription" class="card hidden">
             <h2>Part 2: Transcription</h2>
-            <p><strong>Goal:</strong> Transcribe DNA into mRNA. (A → U, T → A, C ↔ G)</p>
+            <div class="manual-ref">Matches Lab Manual Part 2</div>
+            <p><strong>Goal:</strong> Transcribe the DNA Template into mRNA.</p>
+            <p><em>Remember: RNA uses Uracil (U) instead of Thymine (T).</em></p>
 
             <div class="game-area">
                 <p><strong>DNA Template Strand:</strong></p>
                 <div class="sequence-display" id="trans-template">TAC AAG TTT GCA CCG ATT</div>
 
-                <p><strong>Your mRNA Strand:</strong></p>
+                <p><strong>mRNA Sequence (5' to 3'):</strong></p>
                 <div class="sequence-display" id="trans-input"></div>
 
                 <div class="controls">
@@ -309,13 +324,14 @@
         <!-- Part 3: Translation -->
         <div id="section-translation" class="card hidden">
             <h2>Part 3: Translation</h2>
-            <p><strong>Goal:</strong> Translate codons into amino acids (Protein Synthesis).</p>
+            <div class="manual-ref">Matches Lab Manual Part 3</div>
+            <p><strong>Goal:</strong> Translate mRNA codons into an Amino Acid chain (Protein).</p>
 
             <div class="game-area">
                 <p><strong>mRNA Sequence:</strong></p>
                 <div class="sequence-display" id="transl-template">AUG UUC AAA CGU GGC UAA</div>
 
-                <p><strong>Protein Chain:</strong></p>
+                <p><strong>Polypeptide Chain (Protein):</strong></p>
                 <div class="sequence-display" id="transl-input" style="font-size: 1.2rem;"></div>
 
                 <div class="controls" id="aa-controls">
@@ -346,44 +362,39 @@
         <!-- Part 4: Mutation Builder -->
         <div id="section-mutation" class="card hidden">
             <h2>Part 4: Mutation Lab</h2>
-            <p>Experiment with changing the DNA sequence to see if it changes the protein.</p>
+            <div class="manual-ref">Matches Lab Manual Part 4</div>
+            <p><strong>Instruction:</strong> Change the 4th Codon as described in your lab manual.</p>
 
             <div class="game-area">
-                <h3>Edit DNA Codon #4</h3>
-                <p>Original: <strong>GCA</strong> (transcribes to CGU &rarr; Arg)</p>
+                <h3>Editing DNA Codon #4</h3>
+                <p>Original DNA: <strong>GCA</strong> &rarr; mRNA: <strong>CGU</strong> &rarr; AA: <strong>Arg</strong>
+                </p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ccc;">
 
                 <div style="font-size: 1.5rem; margin: 20px;">
-                    <select id="mut-base-1">
-                        <option>G</option>
-                        <option>A</option>
-                        <option>T</option>
-                        <option>C</option>
+                    <label>Modify DNA Base:</label><br>
+                    <span style="font-family: monospace; font-size: 2rem;">G - </span>
+                    <select id="mut-base-2" style="font-size: 1.5rem; padding: 5px; font-family: monospace;">
+                        <option value="C" selected>C (Original)</option>
+                        <option value="T">T (Mutation)</option>
+                        <option value="A">A</option>
+                        <option value="G">G</option>
                     </select>
-                    <select id="mut-base-2">
-                        <option selected>C</option>
-                        <option>A</option>
-                        <option>T</option>
-                        <option>G</option>
-                    </select>
-                    <select id="mut-base-3">
-                        <option selected>A</option>
-                        <option>A</option>
-                        <option>T</option>
-                        <option>C</option>
-                        <option>G</option>
-                    </select>
+                    <span style="font-family: monospace; font-size: 2rem;"> - A</span>
                 </div>
 
-                <button class="btn btn-primary" onclick="runMutation()">Run Simulation</button>
+                <button class="btn btn-primary" onclick="runMutation()">Simulate Effect</button>
 
                 <div id="mut-results" class="hidden"
                     style="margin-top: 2rem; border-top: 2px dashed #ccc; padding-top: 1rem;">
-                    <p>New DNA: <span id="res-dna" style="font-family:monospace; font-weight:bold;"></span></p>
-                    <p>New mRNA: <span id="res-mrna"
+                    <p>New DNA Codon: <span id="res-dna" style="font-family:monospace; font-weight:bold;"></span></p>
+                    <p>New mRNA Codon: <span id="res-mrna"
                             style="font-family:monospace; font-weight:bold; color: var(--accent-color);"></span></p>
                     <p>New Amino Acid: <span id="res-aa"
-                            style="font-weight:bold; color: var(--danger-color); font-size: 1.5rem;"></span></p>
-                    <p id="mut-conclusion" style="font-weight:bold; margin-top:10px;"></p>
+                            style="font-weight:bold; color: var(--danger-color); font-size: 1.5rem; border: 2px solid var(--danger-color); padding: 5px 10px; border-radius: 4px;"></span>
+                    </p>
+                    <br>
+                    <p id="mut-conclusion" style="font-weight:bold; margin-top:10px; font-size: 1.1em;"></p>
                 </div>
             </div>
 
@@ -395,7 +406,7 @@
     </div>
 
     <script>
-        // Game State
+        // Game State matching Manual
         const targetSequenceRep = "ATG TTC AAA CGT GGC TAA".replace(/\s/g, '');
         const targetSequenceTrans = "AUG UUC AAA CGU GGC UAA".replace(/\s/g, '');
         const targetSequenceTransl = ["Met", "Phe", "Lys", "Arg", "Gly", "STOP"];
@@ -468,10 +479,10 @@
             let feedback = document.getElementById('rep-feedback');
 
             if (input === targetSequenceRep) {
-                feedback.textContent = "✅ Correct! A pairs with T, C pairs with G.";
+                feedback.textContent = "✅ Correct! Matches the Complementary New Strand.";
                 feedback.style.color = "var(--success-color)";
             } else {
-                feedback.textContent = "❌ Not quite. Remember: A ↔ T, C ↔ G.";
+                feedback.textContent = "❌ Not quite. Remember base pairing rules (A-T, C-G).";
                 feedback.style.color = "var(--danger-color)";
             }
         }
@@ -481,10 +492,10 @@
             let feedback = document.getElementById('trans-feedback');
 
             if (input === targetSequenceTrans) {
-                feedback.textContent = "✅ Excellent! T → A, A → U, C ↔ G.";
+                feedback.textContent = "✅ Excellent! You created the correct mRNA.";
                 feedback.style.color = "var(--success-color)";
             } else {
-                feedback.textContent = "❌ Try again. Remember RNA uses Uracil (U).";
+                feedback.textContent = "❌ Try again. Use Uracil (U) instead of Thymine (T).";
                 feedback.style.color = "var(--danger-color)";
             }
         }
@@ -526,7 +537,7 @@
                 input.every((val, index) => val === targetSequenceTransl[index]);
 
             if (isCorrect) {
-                feedback.textContent = "🎉 Perfect! You built the correct protein.";
+                feedback.textContent = "🎉 Perfect! You successfully built the protein.";
                 feedback.style.color = "var(--success-color)";
             } else {
                 feedback.textContent = "❌ Check your codon table. Start with Met (AUG).";
@@ -536,9 +547,10 @@
 
         // Mutation Logic
         function runMutation() {
-            const b1 = document.getElementById('mut-base-1').value;
+            // Hardcoded context for this specific lab question
+            const b1 = 'G';
             const b2 = document.getElementById('mut-base-2').value;
-            const b3 = document.getElementById('mut-base-3').value;
+            const b3 = 'A';
 
             const dna = b1 + b2 + b3;
 
@@ -554,15 +566,18 @@
             document.getElementById('res-aa').textContent = aa;
 
             let conclusion = "";
-            if (aa === "Arg") { // The original was Arg
+            if (aa === "Arg") {
                 conclusion = "This is a SILENT mutation. The protein is unchanged.";
                 document.getElementById('res-aa').style.color = "var(--success-color)";
+                document.getElementById('res-aa').style.borderColor = "var(--success-color)";
             } else if (aa === "STOP") {
                 conclusion = "This is a NONSENSE mutation. Translation stops early!";
                 document.getElementById('res-aa').style.color = "var(--danger-color)";
+                document.getElementById('res-aa').style.borderColor = "var(--danger-color)";
             } else {
-                conclusion = "This is a MISSENSE mutation. The amino acid changed.";
+                conclusion = "This is a MISSENSE mutation. The amino acid changed from Arg.";
                 document.getElementById('res-aa').style.color = "var(--warning-color)";
+                document.getElementById('res-aa').style.borderColor = "var(--warning-color)";
             }
 
             document.getElementById('mut-conclusion').textContent = conclusion;

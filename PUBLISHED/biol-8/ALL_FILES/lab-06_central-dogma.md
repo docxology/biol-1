@@ -12,7 +12,7 @@
 
 By the end of this lab, you will be able to:
 
-- **Model DNA replication** by drawing complementary strands.
+- **Model DNA replication** by determining complementary strands.
 - **Perform transcription** by converting a DNA template strand into an mRNA sequence.
 - **Perform translation** by decoding mRNA codons into an amino acid chain.
 - **Trace the flow of genetic information** from DNA → RNA → Protein (the Central Dogma).
@@ -23,11 +23,11 @@ By the end of this lab, you will be able to:
 
 ## Introduction
 
-The **Central Dogma of Molecular Biology** describes the flow of genetic information:
+The **Central Dogma of Molecular Biology** describes the flow of genetic information in living cells:
 
 **DNA** (Nucleus) —> **mRNA** (Nucleus → Cytoplasm) —> **PROTEIN** (Ribosome)
 
-In this lab, we will use a **digital dashboard** to simulate these processes step-by-step as a class, while you **draw and record** the results on this worksheet.
+In this lab, you will follow a gene through these steps to see how a sequence of DNA bases becomes a functional protein.
 
 **Key Terms:**
 
@@ -41,17 +41,7 @@ In this lab, we will use a **digital dashboard** to simulate these processes ste
 
 ---
 
-## Materials
-
-- Computer/Tablet with Lab 6 Dashboard open
-- Colored pencils or markers (4 colors recommended)
-- This lab packet
-
----
-
 ## Part 1: DNA Replication
-
-> **Dashboard Tool:** Go to **Part 1: DNA Replication**.
 
 ### Background
 
@@ -59,9 +49,11 @@ Before a cell divides, it must copy its DNA. **Helicase** unzips the strands, an
 
 ### Procedure
 
-1. On the dashboard, you will see a **Template Strand**.
-2. Use the buttons to build the complementary **New Strand**.
-3. Once verified on the screen, **draw/write** the sequence below.
+1. Below is a **Template Strand** of DNA.
+2. Determine the **Complementary New Strand**.
+3. Remember the base pairing rules for DNA:
+    - **A** pairs with **T**
+    - **C** pairs with **G**
 
 **Template Strand (3' to 5'):**
 `T  A  C     A  A  G     T  T  T     G  C  A     C  C  G     A  T  T`
@@ -70,11 +62,15 @@ Before a cell divides, it must copy its DNA. **Helicase** unzips the strands, an
 {fill:text}
 
 <!-- lab:reflection -->
-**1. Why is DNA replication called "semi-conservative"?**
+**1. If the template strand has 20% Adenine (A), what percentage of Thymine (T) would be in the new strand?**
+
+{fill:text}
+
+**2. Why is it important for DNA to be copied accurately before a cell divides?**
 
 {fill:textarea rows=2}
 
-**2. Which enzyme is responsible for adding the new nucleotides?**
+**3. Which enzyme acts as the "builder" to add new nucleotides?**
 
 {fill:text}
 <!-- /lab:reflection -->
@@ -83,17 +79,19 @@ Before a cell divides, it must copy its DNA. **Helicase** unzips the strands, an
 
 ## Part 2: Transcription — DNA → mRNA
 
-> **Dashboard Tool:** Click **Next: Transcription**.
-
 ### Background
 
-**RNA Polymerase** reads the DNA template and builds a single-stranded **mRNA** message to send to the ribosome. Remember: **RNA uses Uracil (U)** instead of Thymine (T).
+**RNA Polymerase** reads the DNA template and builds a single-stranded **mRNA** message to send to the ribosome.
+
+**Important Difference:** RNA does not have Thymine (T). Instead, it uses **Uracil (U)**.
+
+- DNA **A** pairs with RNA **U**
+- DNA **T** pairs with RNA **A**
 
 ### Procedure
 
-1. The dashboard shows the same gene's DNA template.
-2. Transcribe it into mRNA using the on-screen tools.
-3. **Record** your mRNA sequence below. By convention, write mRNA 5' to 3'.
+1. Use the same **DNA Template** from Part 1.
+2. Transcribe it into **mRNA**.
 
 **DNA Template:** `TAC AAG TTT GCA CCG ATT`
 
@@ -101,31 +99,33 @@ Before a cell divides, it must copy its DNA. **Helicase** unzips the strands, an
 5'— {fill:text} —3'
 
 <!-- lab:reflection -->
-**3. Where in the cell does transcription occur?**
+**4. Where in the eukaryotic cell does transcription occur?**
 
 {fill:text}
 
-**4. Compare your mRNA sequence to the "New Strand" of DNA you wrote in Part 1. What is the observable difference?**
+**5. How is the structure of RNA different from DNA? (List at least two differences)**
 
 {fill:textarea rows=2}
+
+**6. If a DNA strand reads `A-T-G`, what will the mRNA read?**
+
+{fill:text}
 <!-- /lab:reflection -->
 
 ---
 
 ## Part 3: Translation — mRNA → Protein
 
-> **Dashboard Tool:** Click **Next: Translation**.
-
 ### Background
 
-The ribosome reads mRNA in triplets called **codons**. **tRNA** molecules bring the matching amino acids.
+The ribosome reads mRNA in triplets called **codons**. **tRNA** molecules bring the matching amino acids to build the protein chain.
 
 ### Procedure
 
-1. The dashboard displays your mRNA sequence.
-2. Use the on-screen **Codon Table** to find the amino acid for each triplet.
-3. Click the amino acid buttons to build the protein chain.
-4. **Write** the final amino acid sequence below.
+1. Look at your **mRNA sequence** from Part 2.
+2. Group the bases into **triplets (codons)**.
+3. Use a **Codon Table** to find the amino acid for each triplet.
+4. Write the final amino acid sequence below.
 
 **Polypeptide Chain (Protein):**
 
@@ -134,28 +134,34 @@ The ribosome reads mRNA in triplets called **codons**. **tRNA** molecules bring 
 *(Note: If you encounter a STOP codon, write "STOP" and do not add more amino acids)*
 
 <!-- lab:reflection -->
-**5. What is the start postion (codon)?**
+**7. What is the very first amino acid in almost every protein? (Hint: Look at the start codon)**
 
 {fill:text}
 
-**6. What amino acid does the start codon (AUG) always code for?**
+**8. What is the job of tRNA (transfer RNA)?**
 
-{fill:text}
+{fill:textarea rows=2}
+
+**9. How many bases make up one codon?**
+
+{fill:number}
 <!-- /lab:reflection -->
 
 ---
 
 ## Part 4: Mutation Simulation
 
-> **Dashboard Tool:** Click **Part 4: Mutation Builder**.
+### Background
+
+A **mutation** is a change in the DNA sequence. Even a single base change can alter the protein.
 
 ### Procedure
 
-1. Change the **4th Codon** of the original DNA Sequence.
-    - Original DNA: `GCA` (codes for Arg in mRNA -> CGU) -> *Wait, let's check the dashboard logic.*
-    - *Correction*: DNA `GCA` -> mRNA `CGU` -> AA `Arg`.
-2. In the dashboard mutation tool, change the DNA base **C** to **T** in that codon (so it becomes `GTA`).
-3. Observe how the mRNA and Protein change.
+1. Let's simulate a **Point Mutation**.
+2. Look at the **4th Codon** of the original DNA Sequence: `GCA`
+    - Originally, this transcribed to mRNA `CGU`, which coded for **Arginine (Arg)**.
+3. **Change the DNA base C to T**, so the codon becomes `GTA`.
+4. Determine the new mRNA codon and the new amino acid.
 
 **Original DNA Codon:** `GCA` -> **Amino Acid:** Arginine (Arg)
 
@@ -166,27 +172,28 @@ The ribosome reads mRNA in triplets called **codons**. **tRNA** molecules bring 
 **New Amino Acid:** {fill:text}
 
 <!-- lab:reflection -->
-**7. Did this mutation change the protein structure?**
+**10. Did this mutation change the amino acid sequence?**
 
 {fill:text}
 
-**8. This type of mutation (changing one base) is called a:**
-A) Frameshift
-B) Deletion
-C) Point Mutation (Substitution)
+**11. What might happen to the protein's function if its shape changes?**
 
-{fill:text}
+{fill:textarea rows=2}
+
+**12. Are all mutations bad? Explain why or why not.**
+
+{fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
 ## Conclusion
 
-**9. Summarize the flow of information in one sentence (The Central Dogma):**
+**13. Summarize the flow of information in the Central Dogma:**
 
 {fill:textarea rows=2}
 
-**10. Why is the shape of the final protein so important? (Think about enzymes from the previous lab!)**
+**14. Why do you think the cell uses an intermediate (mRNA) instead of using DNA directly for protein synthesis?**
 
 {fill:textarea rows=2}
 
