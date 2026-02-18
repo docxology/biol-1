@@ -4,10 +4,6 @@
 
 ---
 
-**Name:** {fill:text} **Date:** {fill:text}
-
----
-
 ## Objectives
 
 By the end of this lab, you will be able to:
@@ -62,15 +58,19 @@ Before a cell divides, it must copy its DNA. **Helicase** unzips the strands, an
 {fill:text}
 
 <!-- lab:reflection -->
-**1. If the template strand has 20% Adenine (A), what percentage of Thymine (T) would be in the new strand?**
+**1. Where in the cell does DNA replication occur? (Hint: Where is the DNA kept?)**
 
 {fill:text}
 
-**2. Why is it important for DNA to be copied accurately before a cell divides?**
+**2. If the template strand has 20% Adenine (A), what percentage of Thymine (T) would be in the new strand?**
+
+{fill:text}
+
+**3. Why is it important for DNA to be copied accurately before a cell divides?**
 
 {fill:textarea rows=2}
 
-**3. Which enzyme acts as the "builder" to add new nucleotides?**
+**4. Which enzyme acts as the "builder" to add new nucleotides?**
 
 {fill:text}
 <!-- /lab:reflection -->
@@ -99,15 +99,19 @@ Before a cell divides, it must copy its DNA. **Helicase** unzips the strands, an
 5'— {fill:text} —3'
 
 <!-- lab:reflection -->
-**4. Where in the eukaryotic cell does transcription occur?**
+**5. Where in the eukaryotic cell does transcription occur?**
 
 {fill:text}
 
-**5. How is the structure of RNA different from DNA? (List at least two differences)**
+**6. What is the name of the enzyme that builds the mRNA molecule?**
+
+{fill:text}
+
+**7. How is the structure of RNA different from DNA? (List at least two differences)**
 
 {fill:textarea rows=2}
 
-**6. If a DNA strand reads `A-T-G`, what will the mRNA read?**
+**8. If a DNA strand reads `A-T-G`, what will the mRNA read?**
 
 {fill:text}
 <!-- /lab:reflection -->
@@ -134,15 +138,19 @@ The ribosome reads mRNA in triplets called **codons**. **tRNA** molecules bring 
 *(Note: If you encounter a STOP codon, write "STOP" and do not add more amino acids)*
 
 <!-- lab:reflection -->
-**7. What is the very first amino acid in almost every protein? (Hint: Look at the start codon)**
+**9. Which organelle is the site of protein synthesis (Translation)?**
 
 {fill:text}
 
-**8. What is the job of tRNA (transfer RNA)?**
+**10. What is the very first amino acid in almost every protein? (Hint: Look at the start codon)**
+
+{fill:text}
+
+**11. What is the job of tRNA (transfer RNA)?**
 
 {fill:textarea rows=2}
 
-**9. How many bases make up one codon?**
+**12. How many bases make up one codon?**
 
 {fill:number}
 <!-- /lab:reflection -->
@@ -172,15 +180,15 @@ A **mutation** is a change in the DNA sequence. Even a single base change can al
 **New Amino Acid:** {fill:text}
 
 <!-- lab:reflection -->
-**10. Did this mutation change the amino acid sequence?**
+**13. Did this mutation change the amino acid sequence?**
 
 {fill:text}
 
-**11. What might happen to the protein's function if its shape changes?**
+**14. What might happen to the protein's function if its shape changes?**
 
 {fill:textarea rows=2}
 
-**12. Are all mutations bad? Explain why or why not.**
+**15. Are all mutations bad? Explain why or why not.**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -189,11 +197,11 @@ A **mutation** is a change in the DNA sequence. Even a single base change can al
 
 ## Conclusion
 
-**13. Summarize the flow of information in the Central Dogma:**
+**16. Summarize the flow of information in the Central Dogma:**
 
 {fill:textarea rows=2}
 
-**14. Why do you think the cell uses an intermediate (mRNA) instead of using DNA directly for protein synthesis?**
+**17. Why do you think the cell uses an intermediate (mRNA) instead of using DNA directly for protein synthesis?**
 
 {fill:textarea rows=2}
 
