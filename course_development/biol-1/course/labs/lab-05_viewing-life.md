@@ -4,6 +4,8 @@
 
 Biology is the study of life. In this lab, you will move beyond the textbook and observe living systems directly. You will be provided with three unknown biological samples: **Sample A**, **Sample B**, and **Sample C**.
 
+These samples were collected by your classmates and brought into the lab, representing a "mystery box" of biodiversity. We do not know exactly what they are or where they came from. This mimics the real-world work of biologists who often encounter unknown organisms in the field and must use observation to understand them.
+
 Your task is to observe them—first with your naked eye, then with a microscope—and deduce what they might be and how they live. This lab focuses on **careful observation**, **scientific inference**, and **connecting structure to function**.
 
 ## Learning Objectives
