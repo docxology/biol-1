@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,7 @@
             color: white;
             padding: 1rem 0;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .container {
@@ -44,7 +45,7 @@
             border-radius: 8px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         h2 {
@@ -63,7 +64,7 @@
 
         .sequence-display {
             font-family: 'Courier New', monospace;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             letter-spacing: 0.2rem;
             margin-bottom: 1rem;
             background: white;
@@ -71,6 +72,8 @@
             border-radius: 4px;
             border: 1px solid #bdc3c7;
             overflow-x: auto;
+            min-height: 3rem;
+            font-weight: 700;
         }
 
         .controls {
@@ -85,364 +88,490 @@
             background-color: var(--accent-color);
             color: white;
             border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
+            padding: 1rem 2rem;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.2s;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         button:hover {
             background-color: #2980b9;
+            transform: translateY(-1px);
         }
 
         button.reset {
             background-color: var(--warning-color);
         }
-        
+
         button.check {
             background-color: var(--success-color);
         }
 
         .nucleotide-btn {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin: 0 5px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
 
-        .btn-A { background-color: #e74c3c; } /* Red */
-        .btn-T { background-color: #f1c40f; color: black; } /* Yellow */
-        .btn-C { background-color: #3498db; } /* Blue */
-        .btn-G { background-color: #2ecc71; } /* Green */
-        .btn-U { background-color: #9b59b6; } /* Purple */
+        .btn-A {
+            background-color: #e74c3c;
+            box-shadow: 0 3px 0 #c0392b;
+        }
+
+        .btn-T {
+            background-color: #f1c40f;
+            color: black;
+            box-shadow: 0 3px 0 #d4ac0d;
+        }
+
+        .btn-C {
+            background-color: #3498db;
+            box-shadow: 0 3px 0 #2980b9;
+        }
+
+        .btn-G {
+            background-color: #2ecc71;
+            box-shadow: 0 3px 0 #27ae60;
+        }
+
+        .btn-U {
+            background-color: #9b59b6;
+            box-shadow: 0 3px 0 #8e44ad;
+        }
+
+        .btn-A:active,
+        .btn-T:active,
+        .btn-C:active,
+        .btn-G:active,
+        .btn-U:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
 
         .feedback {
             margin-top: 1rem;
             font-weight: bold;
             min-height: 1.5em;
+            font-size: 1.2rem;
         }
 
         .codon-chart-container {
             overflow-x: auto;
         }
 
-        table.codon-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-
-        table.codon-table th, table.codon-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        table.codon-table th {
-            background-color: var(--light-bg);
-        }
-
         .step-indicator {
             display: flex;
             justify-content: space-between;
             margin-bottom: 2rem;
+            background: #fff;
+            padding: 0.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .step {
             flex: 1;
             text-align: center;
-            padding: 0.5rem;
-            background: #eee;
-            margin: 0 2px;
-            color: #777;
-            font-size: 0.9rem;
+            padding: 1rem;
+            margin: 0 4px;
+            color: #95a5a6;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            background-color: #f0f2f5;
         }
 
         .step.active {
             background: var(--accent-color);
             color: white;
-            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Animation specific styles */
-        .dna-helix {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            align-items: center;
-            margin-bottom: 20px;
+        .hidden {
+            display: none;
         }
-        
-        .base-pair {
-            display: flex;
+
+        /* Mutation Specific */
+        .mutation-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
+            margin-top: 20px;
         }
 
-        .nucleotide {
-            width: 30px;
-            height: 30px;
+        .codon-box {
+            background: white;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
+            text-align: center;
+        }
+
+        .codon-box select {
+            font-size: 1.2rem;
+            padding: 5px;
             font-family: monospace;
         }
-
-        .nuc-A { background-color: #e74c3c; }
-        .nuc-T { background-color: #f1c40f; color: black; }
-        .nuc-G { background-color: #2ecc71; }
-        .nuc-C { background-color: #3498db; }
-        .nuc-U { background-color: #9b59b6; }
-
-        .hidden { display: none; }
-
     </style>
 </head>
+
 <body>
 
-<header>
-    <h1>Lab 6: Central Dogma Simulation</h1>
-    <p>From DNA to Protein</p>
-</header>
+    <header>
+        <h1>Lab 6: Central Dogma Simulation</h1>
+        <p>BIOL-8 Interactive Class Dashboard</p>
+    </header>
 
-<div class="container">
-    
-    <div class="step-indicator">
-        <div class="step active" id="step-nav-1">1. DNA Replication</div>
-        <div class="step" id="step-nav-2">2. Transcription</div>
-        <div class="step" id="step-nav-3">3. Translation</div>
-    </div>
+    <div class="container">
 
-    <!-- Part 1: Replication -->
-    <div id="section-replication" class="card">
-        <h2>Part 1: DNA Replication</h2>
-        <p>Replicate the DNA strand by choosing the complementary bases (A pairs with T, C pairs with G).</p>
-        
-        <div class="game-area">
-            <p><strong>Template Strand (3' to 5'):</strong></p>
-            <div class="sequence-display" id="rep-template">TAC AAG TTT GCA CCG ATT</div>
-            
-            <p><strong>Your New Strand (5' to 3'):</strong></p>
-            <div class="sequence-display" id="rep-input"></div>
-            
+        <div class="step-indicator">
+            <div class="step active" id="step-nav-1" onclick="showSection('replication')">1. DNA Replication</div>
+            <div class="step" id="step-nav-2" onclick="showSection('transcription')">2. Transcription</div>
+            <div class="step" id="step-nav-3" onclick="showSection('translation')">3. Translation</div>
+            <div class="step" id="step-nav-4" onclick="showSection('mutation')">4. Mutation Builder</div>
+        </div>
+
+        <!-- Part 1: Replication -->
+        <div id="section-replication" class="card">
+            <h2>Part 1: DNA Replication</h2>
+            <p><strong>Goal:</strong> Build the complementary DNA strand. (A ↔ T, C ↔ G)</p>
+
+            <div class="game-area">
+                <p><strong>Template Strand (3' to 5'):</strong></p>
+                <div class="sequence-display" id="rep-template">TAC AAG TTT GCA CCG ATT</div>
+
+                <p><strong>Your New Strand (5' to 3'):</strong></p>
+                <div class="sequence-display" id="rep-input"></div>
+
+                <div class="controls">
+                    <button class="nucleotide-btn btn-A" onclick="addBase('rep', 'A')">A</button>
+                    <button class="nucleotide-btn btn-T" onclick="addBase('rep', 'T')">T</button>
+                    <button class="nucleotide-btn btn-C" onclick="addBase('rep', 'C')">C</button>
+                    <button class="nucleotide-btn btn-G" onclick="addBase('rep', 'G')">G</button>
+                </div>
+                <div class="controls">
+                    <button class="reset" onclick="resetSequence('rep')">Reset</button>
+                    <button class="check" onclick="checkReplication()">Check Answer</button>
+                </div>
+                <div id="rep-feedback" class="feedback"></div>
+            </div>
+
             <div class="controls">
-                <button class="nucleotide-btn btn-A" onclick="addBase('rep', 'A')">A</button>
-                <button class="nucleotide-btn btn-T" onclick="addBase('rep', 'T')">T</button>
-                <button class="nucleotide-btn btn-C" onclick="addBase('rep', 'C')">C</button>
-                <button class="nucleotide-btn btn-G" onclick="addBase('rep', 'G')">G</button>
-                <button class="reset" onclick="resetSequence('rep')">Clear</button>
-                <button class="check" onclick="checkReplication()">Check</button>
+                <button onclick="showSection('transcription')">Next Step &rarr;</button>
             </div>
-            <div id="rep-feedback" class="feedback"></div>
         </div>
-        
-        <div class="controls">
-            <button onclick="showSection('transcription')">Next: Transcription &rarr;</button>
-        </div>
-    </div>
 
-    <!-- Part 2: Transcription -->
-    <div id="section-transcription" class="card hidden">
-        <h2>Part 2: Transcription (DNA &rarr; mRNA)</h2>
-        <p>Transcribe the DNA template into mRNA. Remember: DNA has Thymine (T), but RNA has Uracil (U).</p>
-        
-        <div class="game-area">
-            <p><strong>DNA Template Strand (Coding for Gene):</strong></p>
-            <div class="sequence-display" id="trans-template">TAC AAG TTT GCA CCG ATT</div>
-            
-            <p><strong>Your mRNA Strand:</strong></p>
-            <div class="sequence-display" id="trans-input"></div>
-            
+        <!-- Part 2: Transcription -->
+        <div id="section-transcription" class="card hidden">
+            <h2>Part 2: Transcription</h2>
+            <p><strong>Goal:</strong> Transcribe DNA into mRNA. (A → U, T → A, C ↔ G)</p>
+
+            <div class="game-area">
+                <p><strong>DNA Template Strand:</strong></p>
+                <div class="sequence-display" id="trans-template">TAC AAG TTT GCA CCG ATT</div>
+
+                <p><strong>Your mRNA Strand:</strong></p>
+                <div class="sequence-display" id="trans-input"></div>
+
+                <div class="controls">
+                    <button class="nucleotide-btn btn-A" onclick="addBase('trans', 'A')">A</button>
+                    <button class="nucleotide-btn btn-U" onclick="addBase('trans', 'U')">U</button>
+                    <button class="nucleotide-btn btn-C" onclick="addBase('trans', 'C')">C</button>
+                    <button class="nucleotide-btn btn-G" onclick="addBase('trans', 'G')">G</button>
+                </div>
+                <div class="controls">
+                    <button class="reset" onclick="resetSequence('trans')">Reset</button>
+                    <button class="check" onclick="checkTranscription()">Check Answer</button>
+                </div>
+                <div id="trans-feedback" class="feedback"></div>
+            </div>
+
             <div class="controls">
-                <button class="nucleotide-btn btn-A" onclick="addBase('trans', 'A')">A</button>
-                <button class="nucleotide-btn btn-U" onclick="addBase('trans', 'U')">U</button>
-                <button class="nucleotide-btn btn-C" onclick="addBase('trans', 'C')">C</button>
-                <button class="nucleotide-btn btn-G" onclick="addBase('trans', 'G')">G</button>
-                <button class="reset" onclick="resetSequence('trans')">Clear</button>
-                <button class="check" onclick="checkTranscription()">Check</button>
+                <button onclick="showSection('replication')">&larr; Back</button>
+                <button onclick="showSection('translation')">Next Step &rarr;</button>
             </div>
-            <div id="trans-feedback" class="feedback"></div>
         </div>
 
-        <div class="controls">
-            <button onclick="showSection('replication')">&larr; Back</button>
-            <button onclick="showSection('translation')">Next: Translation &rarr;</button>
+        <!-- Part 3: Translation -->
+        <div id="section-translation" class="card hidden">
+            <h2>Part 3: Translation</h2>
+            <p><strong>Goal:</strong> Translate codons into amino acids (Protein Synthesis).</p>
+
+            <div class="game-area">
+                <p><strong>mRNA Sequence:</strong></p>
+                <div class="sequence-display" id="transl-template">AUG UUC AAA CGU GGC UAA</div>
+
+                <p><strong>Protein Chain:</strong></p>
+                <div class="sequence-display" id="transl-input" style="font-size: 1.2rem;"></div>
+
+                <div class="controls" id="aa-controls">
+                    <!-- Amino Acid buttons -->
+                </div>
+                <div class="controls">
+                    <button class="reset" onclick="resetSequence('transl')">Clear</button>
+                    <button class="check" onclick="checkTranslation()">Check Answer</button>
+                </div>
+                <div id="transl-feedback" class="feedback"></div>
+            </div>
+
+            <div class="card" style="background: #f9f9f9;">
+                <h3>Codon Table Reference</h3>
+                <div class="codon-chart-container" style="text-align: center;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Aminoacids_table.svg"
+                        alt="Genetic Code Chart"
+                        style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="showSection('transcription')">&larr; Back</button>
+                <button onclick="showSection('mutation')">Next: Mutation Lab &rarr;</button>
+            </div>
         </div>
+
+        <!-- Part 4: Mutation Builder -->
+        <div id="section-mutation" class="card hidden">
+            <h2>Part 4: Mutation Lab</h2>
+            <p>Experiment with changing the DNA sequence to see if it changes the protein.</p>
+
+            <div class="game-area">
+                <h3>Edit DNA Codon #4</h3>
+                <p>Original: <strong>GCA</strong> (transcribes to CGU &rarr; Arg)</p>
+
+                <div style="font-size: 1.5rem; margin: 20px;">
+                    <select id="mut-base-1">
+                        <option>G</option>
+                        <option>A</option>
+                        <option>T</option>
+                        <option>C</option>
+                    </select>
+                    <select id="mut-base-2">
+                        <option selected>C</option>
+                        <option>A</option>
+                        <option>T</option>
+                        <option>G</option>
+                    </select>
+                    <select id="mut-base-3">
+                        <option selected>A</option>
+                        <option>A</option>
+                        <option>T</option>
+                        <option>C</option>
+                        <option>G</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" onclick="runMutation()">Run Simulation</button>
+
+                <div id="mut-results" class="hidden"
+                    style="margin-top: 2rem; border-top: 2px dashed #ccc; padding-top: 1rem;">
+                    <p>New DNA: <span id="res-dna" style="font-family:monospace; font-weight:bold;"></span></p>
+                    <p>New mRNA: <span id="res-mrna"
+                            style="font-family:monospace; font-weight:bold; color: var(--accent-color);"></span></p>
+                    <p>New Amino Acid: <span id="res-aa"
+                            style="font-weight:bold; color: var(--danger-color); font-size: 1.5rem;"></span></p>
+                    <p id="mut-conclusion" style="font-weight:bold; margin-top:10px;"></p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="showSection('translation')">&larr; Back</button>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Part 3: Translation -->
-    <div id="section-translation" class="card hidden">
-        <h2>Part 3: Translation (mRNA &rarr; Protein)</h2>
-        <p>Translate the mRNA sequence into an amino acid chain using the codon table.</p>
-        
-        <div class="game-area">
-            <p><strong>mRNA Sequence:</strong></p>
-            <div class="sequence-display" id="transl-template">AUG UUC AAA CGU GGC UAA</div>
-            
-            <p><strong>Amino Acid Chain:</strong></p>
-            <div class="sequence-display" id="transl-input" style="font-size: 1.2rem;"></div>
-            
-            <div class="controls" id="aa-controls">
-                <!-- Amino Acid buttons will be generated by JS -->
-            </div>
-             <div class="controls">
-                <button class="reset" onclick="resetSequence('transl')">Clear</button>
-                <button class="check" onclick="checkTranslation()">Check</button>
-            </div>
-            <div id="transl-feedback" class="feedback"></div>
-        </div>
+    <script>
+        // Game State
+        const targetSequenceRep = "ATG TTC AAA CGT GGC TAA".replace(/\s/g, '');
+        const targetSequenceTrans = "AUG UUC AAA CGU GGC UAA".replace(/\s/g, '');
+        const targetSequenceTransl = ["Met", "Phe", "Lys", "Arg", "Gly", "STOP"];
 
-        <div class="card">
-            <h3>Reference: Codon Table</h3>
-            <div class="codon-chart-container">
-                <p><em>Use the first base (left), second base (top), and third base (right) to find the amino acid.</em></p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Aminoacids_table.svg" alt="Genetic Code Chart" style="max-width: 100%; border: 1px solid #ccc;">
-            </div>
-        </div>
+        const aminoAcids = [
+            "Met", "Phe", "Lys", "Arg", "Gly", "STOP",
+            "Ala", "Asn", "Asp", "Cys", "Gln", "Glu", "His",
+            "Ile", "Leu", "Pro", "Ser", "Thr", "Trp", "Tyr", "Val"
+        ];
 
-        <div class="controls">
-            <button onclick="showSection('transcription')">&larr; Back</button>
-        </div>
-    </div>
+        // codon map for mutation lab
+        const codonTable = {
+            'UUU': 'Phe', 'UUC': 'Phe', 'UUA': 'Leu', 'UUG': 'Leu',
+            'CUU': 'Leu', 'CUC': 'Leu', 'CUA': 'Leu', 'CUG': 'Leu',
+            'AUU': 'Ile', 'AUC': 'Ile', 'AUA': 'Ile', 'AUG': 'Met',
+            'GUU': 'Val', 'GUC': 'Val', 'GUA': 'Val', 'GUG': 'Val',
+            'UCU': 'Ser', 'UCC': 'Ser', 'UCA': 'Ser', 'UCG': 'Ser',
+            'CCU': 'Pro', 'CCC': 'Pro', 'CCA': 'Pro', 'CCG': 'Pro',
+            'ACU': 'Thr', 'ACC': 'Thr', 'ACA': 'Thr', 'ACG': 'Thr',
+            'GCU': 'Ala', 'GCC': 'Ala', 'GCA': 'Ala', 'GCG': 'Ala',
+            'UAU': 'Tyr', 'UAC': 'Tyr', 'UAA': 'STOP', 'UAG': 'STOP',
+            'CAU': 'His', 'CAC': 'His', 'CAA': 'Gln', 'CAG': 'Gln',
+            'AAU': 'Asn', 'AAC': 'Asn', 'AAA': 'Lys', 'AAG': 'Lys',
+            'GAU': 'Asp', 'GAC': 'Asp', 'GAA': 'Glu', 'GAG': 'Glu',
+            'UGU': 'Cys', 'UGC': 'Cys', 'UGA': 'STOP', 'UGG': 'Trp',
+            'CGU': 'Arg', 'CGC': 'Arg', 'CGA': 'Arg', 'CGG': 'Arg',
+            'AGU': 'Ser', 'AGC': 'Ser', 'AGA': 'Arg', 'AGG': 'Arg',
+            'GGU': 'Gly', 'GGC': 'Gly', 'GGA': 'Gly', 'GGG': 'Gly'
+        };
 
-</div>
-
-<script>
-    // Game State
-    const targetSequenceRep = "ATG TTC AAA CGT GGC TAA".replace(/\s/g, '');
-    const targetSequenceTrans = "AUG UUC AAA CGU GGC UAA".replace(/\s/g, '');
-    const targetSequenceTransl = ["Met", "Phe", "Lys", "Arg", "Gly", "STOP"]; // Protein sequence
-
-    // Amino Acids List (Standard)
-    const aminoAcids = [
-        "Ala", "Arg", "Asn", "Asp", "Cys", "Gln", "Glu", "Gly", "His", "Ile",
-        "Leu", "Lys", "Met", "Phe", "Pro", "Ser", "Thr", "Trp", "Tyr", "Val", "STOP"
-    ];
-
-    function init() {
-        generateAAButtons();
-    }
-
-    function showSection(sectionId) {
-        // Hide all sequences
-        document.getElementById('section-replication').classList.add('hidden');
-        document.getElementById('section-transcription').classList.add('hidden');
-        document.getElementById('section-translation').classList.add('hidden');
-        
-        // Remove active class from steps
-        document.getElementById('step-nav-1').classList.remove('active');
-        document.getElementById('step-nav-2').classList.remove('active');
-        document.getElementById('step-nav-3').classList.remove('active');
-
-        // Show selected
-        document.getElementById('section-' + sectionId).classList.remove('hidden');
-
-        // Update step indicator
-        if(sectionId === 'replication') document.getElementById('step-nav-1').classList.add('active');
-        if(sectionId === 'transcription') document.getElementById('step-nav-2').classList.add('active');
-        if(sectionId === 'translation') document.getElementById('step-nav-3').classList.add('active');
-    }
-
-    function addBase(type, base) {
-        let displayId = type + '-input';
-        let currentText = document.getElementById(displayId).textContent.replace(/\s/g, ''); // get raw text
-        
-        let newText = currentText + base;
-        
-        // Format with spaces every 3 for readability
-        document.getElementById(displayId).textContent = formatSequence(newText);
-    }
-
-    function formatSequence(seq) {
-        return seq.match(/.{1,3}/g)?.join(' ') || seq;
-    }
-
-    function resetSequence(type) {
-        document.getElementById(type + '-input').textContent = '';
-        document.getElementById(type + '-feedback').textContent = '';
-        document.getElementById(type + '-feedback').className = 'feedback';
-    }
-
-    function checkReplication() {
-        let input = document.getElementById('rep-input').textContent.replace(/\s/g, '');
-        let feedback = document.getElementById('rep-feedback');
-        
-        if (input === targetSequenceRep) {
-            feedback.textContent = "Correct! You built the complementary coding strand.";
-            feedback.style.color = "var(--success-color)";
-        } else {
-            feedback.textContent = "Not quite. Remember: A pairs with T, C pairs with G.";
-            feedback.style.color = "var(--danger-color)";
+        function init() {
+            generateAAButtons();
         }
-    }
 
-    function checkTranscription() {
-        let input = document.getElementById('trans-input').textContent.replace(/\s/g, '');
-        let feedback = document.getElementById('trans-feedback');
-        
-        if (input === targetSequenceTrans) {
-            feedback.textContent = "Excellent! You successfully transcribed the gene into mRNA.";
-            feedback.style.color = "var(--success-color)";
-        } else {
-            feedback.textContent = "Try again. Remember: DNA 'A' pairs with RNA 'U'.";
-            feedback.style.color = "var(--danger-color)";
+        function showSection(sectionId) {
+            document.querySelectorAll('.card').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('section-' + sectionId).classList.remove('hidden');
+
+            let stepNum = 1;
+            if (sectionId === 'transcription') stepNum = 2;
+            if (sectionId === 'translation') stepNum = 3;
+            if (sectionId === 'mutation') stepNum = 4;
+
+            document.getElementById('step-nav-' + stepNum).classList.add('active');
+            window.scrollTo(0, 0);
         }
-    }
 
-    function generateAAButtons() {
-        const container = document.getElementById('aa-controls');
-        aminoAcids.forEach(aa => {
-            let btn = document.createElement('button');
-            btn.textContent = aa;
-            btn.style.backgroundColor = '#ecf0f1';
-            btn.style.color = '#2c3e50';
-            btn.style.border = '1px solid #bdc3c7';
-            btn.style.margin = '2px';
-            btn.onclick = () => addAminoAcid(aa);
-            container.appendChild(btn);
-        });
-    }
+        function addBase(type, base) {
+            let displayId = type + '-input';
+            let currentText = document.getElementById(displayId).textContent.replace(/\s/g, '');
+            if (currentText.length >= 18) return;
 
-    function addAminoAcid(aa) {
-        let display = document.getElementById('transl-input');
-        let current = display.textContent;
-        if (current.length > 0) {
-            display.textContent = current + " - " + aa;
-        } else {
-            display.textContent = aa;
+            let newText = currentText + base;
+            document.getElementById(displayId).textContent = formatSequence(newText);
         }
-    }
 
-    function checkTranslation() {
-        let inputRaw = document.getElementById('transl-input').textContent;
-        let input = inputRaw.split(' - ');
-        let feedback = document.getElementById('transl-feedback');
-
-        // Simple array comparison
-        let isCorrect = input.length === targetSequenceTransl.length && 
-                        input.every((val, index) => val === targetSequenceTransl[index]);
-
-        if (isCorrect) {
-            feedback.textContent = "Perfect! You translated the protein correctly.";
-            feedback.style.color = "var(--success-color)";
-        } else {
-            feedback.textContent = "Check your codon table. Ensure you started with Met (AUG).";
-            feedback.style.color = "var(--danger-color)";
+        function formatSequence(seq) {
+            return seq.match(/.{1,3}/g)?.join(' ') || seq;
         }
-    }
 
-    // Initialize
-    init();
+        function resetSequence(type) {
+            document.getElementById(type + '-input').textContent = '';
+            document.getElementById(type + '-feedback').textContent = '';
+        }
 
-</script>
+        function checkReplication() {
+            let input = document.getElementById('rep-input').textContent.replace(/\s/g, '');
+            let feedback = document.getElementById('rep-feedback');
+
+            if (input === targetSequenceRep) {
+                feedback.textContent = "✅ Correct! A pairs with T, C pairs with G.";
+                feedback.style.color = "var(--success-color)";
+            } else {
+                feedback.textContent = "❌ Not quite. Remember: A ↔ T, C ↔ G.";
+                feedback.style.color = "var(--danger-color)";
+            }
+        }
+
+        function checkTranscription() {
+            let input = document.getElementById('trans-input').textContent.replace(/\s/g, '');
+            let feedback = document.getElementById('trans-feedback');
+
+            if (input === targetSequenceTrans) {
+                feedback.textContent = "✅ Excellent! T → A, A → U, C ↔ G.";
+                feedback.style.color = "var(--success-color)";
+            } else {
+                feedback.textContent = "❌ Try again. Remember RNA uses Uracil (U).";
+                feedback.style.color = "var(--danger-color)";
+            }
+        }
+
+        function generateAAButtons() {
+            const container = document.getElementById('aa-controls');
+            aminoAcids.forEach(aa => {
+                let btn = document.createElement('button');
+                btn.textContent = aa;
+                btn.style.backgroundColor = '#ecf0f1';
+                btn.style.color = '#2c3e50';
+                btn.style.border = '1px solid #bdc3c7';
+                btn.style.margin = '4px';
+                btn.style.padding = '0.5rem 1rem';
+                btn.style.fontSize = '0.9rem';
+                btn.onclick = () => addAminoAcid(aa);
+                container.appendChild(btn);
+            });
+        }
+
+        function addAminoAcid(aa) {
+            let display = document.getElementById('transl-input');
+            let current = display.textContent;
+            if (current.includes(targetSequenceTransl.join(' - '))) return;
+
+            if (current.length > 0) {
+                display.textContent = current + " - " + aa;
+            } else {
+                display.textContent = aa;
+            }
+        }
+
+        function checkTranslation() {
+            let inputRaw = document.getElementById('transl-input').textContent;
+            let input = inputRaw.split(' - ');
+            let feedback = document.getElementById('transl-feedback');
+
+            let isCorrect = input.length === targetSequenceTransl.length &&
+                input.every((val, index) => val === targetSequenceTransl[index]);
+
+            if (isCorrect) {
+                feedback.textContent = "🎉 Perfect! You built the correct protein.";
+                feedback.style.color = "var(--success-color)";
+            } else {
+                feedback.textContent = "❌ Check your codon table. Start with Met (AUG).";
+                feedback.style.color = "var(--danger-color)";
+            }
+        }
+
+        // Mutation Logic
+        function runMutation() {
+            const b1 = document.getElementById('mut-base-1').value;
+            const b2 = document.getElementById('mut-base-2').value;
+            const b3 = document.getElementById('mut-base-3').value;
+
+            const dna = b1 + b2 + b3;
+
+            // Transcribe (DNA T->A, A->U, G->C, C->G)
+            let rna = "";
+            const map = { 'A': 'U', 'T': 'A', 'G': 'C', 'C': 'G' };
+            rna += map[b1] + map[b2] + map[b3];
+
+            const aa = codonTable[rna] || "???";
+
+            document.getElementById('res-dna').textContent = dna;
+            document.getElementById('res-mrna').textContent = rna;
+            document.getElementById('res-aa').textContent = aa;
+
+            let conclusion = "";
+            if (aa === "Arg") { // The original was Arg
+                conclusion = "This is a SILENT mutation. The protein is unchanged.";
+                document.getElementById('res-aa').style.color = "var(--success-color)";
+            } else if (aa === "STOP") {
+                conclusion = "This is a NONSENSE mutation. Translation stops early!";
+                document.getElementById('res-aa').style.color = "var(--danger-color)";
+            } else {
+                conclusion = "This is a MISSENSE mutation. The amino acid changed.";
+                document.getElementById('res-aa').style.color = "var(--warning-color)";
+            }
+
+            document.getElementById('mut-conclusion').textContent = conclusion;
+            document.getElementById('mut-results').classList.remove('hidden');
+        }
+
+        init();
+    </script>
 
 </body>
+
 </html>
