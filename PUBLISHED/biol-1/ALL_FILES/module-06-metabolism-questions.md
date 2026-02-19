@@ -1,34 +1,22 @@
 # Module 6: Metabolism — Study Questions
 
-## Energy Principles
-
-1. **What is the "First Law of Thermodynamics"?**
-    (Simple answer: Energy cannot be created or destroyed, only changed.)
-
-2. **What is entropy?**
-    (Think about a messy room vs. a clean room. Does nature prefer order or disorder?)
-
-3. **ATP is the "energy currency" of the cell.**
-    Explain this analogy. How do you "spend" ATP to get work done?
-
-## Enzymes
-
-1. **How do enzymes speed up chemical reactions?**
-    (Hint: They lower the "activation energy" barrier.)
-
-2. **What happens to an enzyme if you heat it up too much?**
-    (Key term: Denaturation. Can it still work?)
-
-3. **True or False:** An enzyme is used up in a chemical reaction and can only be used once.
-    (Explain your answer.)
-
-## Metabolic Pathways
-
-1. **What is the difference between an Anabolic reaction and a Catabolic reaction?**
-    (Which one builds things up? Which one breaks things down?)
-
-2. **Breathing vs. Cellular Respiration:**
-    we breathe in Oxygen to burn food, and breathe out Carbon Dioxide as waste. How does this relate to what happens inside your mitochondria?
-
-3. **Feedback Inhibition:**
-    Imagine a factory line making cars. If the parking lot is full of finished cars, what signal should be sent to the beginning of the assembly line? How do cells do this with enzymes?
+1. What is the definition of energy?
+2. What is the difference between kinetic energy and potential energy?
+3. The First Law of Thermodynamics says energy cannot be created or destroyed. How does this apply to living cells?
+4. The Second Law of Thermodynamics says entropy (disorder) is always increasing. How do cells maintain their order?
+5. What is entropy?
+6. What is metabolism?
+7. What is the difference between exergonic and endergonic reactions?
+8. What does ATP stand for?
+9. Why is ATP considered the "energy currency" of the cell?
+10. What is an enzyme?
+11. What is a substrate?
+12. What is the "active site" of an enzyme?
+13. What is "energy of activation"?
+14. How do enzymes affect the energy of activation?
+15. Name two factors that affect enzymatic rate.
+16. What does it mean to "denature" an enzyme?
+17. What is the difference between competitive and noncompetitive inhibition?
+18. In a redox reaction, what does "oxidation" mean?
+19. What is the overall equation for photosynthesis?
+20. What is the overall equation for cellular respiration?
