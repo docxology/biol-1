@@ -53,13 +53,10 @@ In this lab, you will use **paper chromosomes with labeled alleles** to physical
 
 - Scissors
 - Tape or glue stick
-- Colored pencils or markers (at least 2 colors: one for maternal, one for paternal chromosomes)
-- **Appendix A**: Printable chromosome cutouts — 2 pairs of homologous chromosomes
+- **Chromosome Cutouts** (provided on the final page of this laboratory protocol)
   - Chromosome Pair 1: Gene A (alleles: **A** and **a**)
   - Chromosome Pair 2: Gene B (alleles: **B** and **b**)
-- **Appendix B**: Centromere connectors (small strips to join sister chromatids)
-- **Appendix C**: Cell outline templates (circles representing cells)
-- Blank paper or lab worksheet for staging chromosome movements
+- Blank paper for staging chromosome movements (you will draw circles to represent cells)
 
 ## Safety Considerations
 
@@ -94,10 +91,10 @@ We will model a simple organism with **2 pairs of chromosomes** (2n = 4):
 
 ### Procedure
 
-1. **Cut out** 4 single chromosomes from Appendix A
-2. **Color** maternal chromosomes RED and paternal chromosomes BLUE
-3. **Label** each chromosome clearly with its allele: A, a, B, or b
-4. Place all 4 chromosomes inside a cell outline — this is your starting **diploid cell (2n = 4)**
+1. **Cut out** the 4 single "Starting Cell" chromosomes from the final page of this lab.
+2. Notice that maternal chromosomes are colored RED and paternal chromosomes are BLUE.
+3. Draw a large circle on your blank paper to represent the cell membrane.
+4. Place all 4 starting chromosomes inside this circle — this is your starting **diploid cell (2n = 4)**.
 5. **Answer the "Setting Up Your Cell" questions on the final Worksheet page.**
 
 ---
@@ -108,9 +105,9 @@ We will model a simple organism with **2 pairs of chromosomes** (2n = 4):
 
 Before mitosis begins, DNA is copied during S phase.
 
-1. **For each chromosome**, cut out an **identical copy** (same color, same allele)
-2. **Join** each pair of identical copies with a centromere connector — these are now **sister chromatids**
-3. You should now have 4 duplicated chromosomes (8 chromatids total)
+1. **For each chromosome**, cut out its **identical copy** from the "S-Phase Duplicates" section of the final page.
+2. **Join** each pair of identical copies using a small piece of tape at the center (the centromere) — these are now **sister chromatids**.
+3. You should now have 4 duplicated chromosomes (8 chromatids total).
 
 ```
     After S Phase:
@@ -143,7 +140,7 @@ Before mitosis begins, DNA is copied during S phase.
 
 1. **Draw a line** down the middle of the cell to separate the two groups
 2. Each group becomes a new daughter cell
-3. Place each set of chromosomes into a new cell outline
+3. Move each set of chromosomes into a newly drawn cell circle on your blank paper.
 4. **Complete the "Part 1: Mitosis" tables and questions on the Worksheet.**
 
 ---
@@ -427,3 +424,41 @@ Review your results and compare the purposes, processes, and outcomes of both ce
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
+
+<div style="page-break-before: always;"></div>
+
+# Chromosome Cutouts
+
+*(Cut these boxes out along the lines for the lab simulation. Use tape to join identical sister chromatids during S-Phase and to simulate crossing over.)*
+
+## Starting Cell (G1 Phase)
+
+### Chromosome Pair 1 (Gene A)
+
+| Maternal (Dominant) | Paternal (Recessive) |
+|:---:|:---:|
+| <br><br><br><span style="color:red; font-size:2em;">**A**</span><br><br><br>&nbsp; | <br><br><br><span style="color:blue; font-size:2em;">**a**</span><br><br><br>&nbsp; |
+
+### Chromosome Pair 2 (Gene B)
+
+| Maternal (Dominant) | Paternal (Recessive) |
+|:---:|:---:|
+| <br><br><br><span style="color:red; font-size:2em;">**B**</span><br><br><br>&nbsp; | <br><br><br><span style="color:blue; font-size:2em;">**b**</span><br><br><br>&nbsp; |
+
+<br><br>
+
+## S-Phase Duplicates (Sister Chromatids)
+
+*(Keep these aside until S-Phase, then tape to the matching chromosome above)*
+
+### Chromosome Pair 1 Copies
+
+| Maternal Copy | Paternal Copy |
+|:---:|:---:|
+| <br><br><br><span style="color:red; font-size:2em;">**A**</span><br><br><br>&nbsp; | <br><br><br><span style="color:blue; font-size:2em;">**a**</span><br><br><br>&nbsp; |
+
+### Chromosome Pair 2 Copies
+
+| Maternal Copy | Paternal Copy |
+|:---:|:---:|
+| <br><br><br><span style="color:red; font-size:2em;">**B**</span><br><br><br>&nbsp; | <br><br><br><span style="color:blue; font-size:2em;">**b**</span><br><br><br>&nbsp; |
