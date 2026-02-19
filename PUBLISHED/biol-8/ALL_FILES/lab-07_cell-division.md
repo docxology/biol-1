@@ -4,11 +4,7 @@
 
 ---
 
-**Name:** {fill:text} **Date:** {fill:text}
-
----
-
-## Objectives
+## Learning Objectives & Goals
 
 By the end of this lab, you will be able to:
 
@@ -102,26 +98,11 @@ We will model a simple organism with **2 pairs of chromosomes** (2n = 4):
 2. **Color** maternal chromosomes RED and paternal chromosomes BLUE
 3. **Label** each chromosome clearly with its allele: A, a, B, or b
 4. Place all 4 chromosomes inside a cell outline — this is your starting **diploid cell (2n = 4)**
-
-<!-- lab:reflection -->
-**Record the genotype of your starting cell:**
-
-{fill:text}
-
-**How many chromosomes are in this cell?**
-
-{fill:number}
-
-**Is this cell diploid or haploid?**
-
-{fill:text}
-<!-- /lab:reflection -->
+5. **Answer the "Setting Up Your Cell" questions on the final Worksheet page.**
 
 ---
 
 ## Part 1: Mitosis
-
-> **Learning Goal:** Walk a diploid cell through all phases of mitosis and verify that both daughter cells are genetically identical to the parent.
 
 ### Step 1: S Phase (DNA Replication)
 
@@ -163,38 +144,11 @@ Before mitosis begins, DNA is copied during S phase.
 1. **Draw a line** down the middle of the cell to separate the two groups
 2. Each group becomes a new daughter cell
 3. Place each set of chromosomes into a new cell outline
-
-### Mitosis Results
-
-<!-- lab:data-table rows=3 title="Mitosis Results — Allele Tracking" -->
-| Cell | Allele for Gene A | Allele for Gene B | Full Genotype | Diploid or Haploid? | # Chromosomes |
-|------|------------------|------------------|---------------|--------------------|----|
-| Parent cell | A and a | B and b | AaBb | Diploid (2n=4) | 4 |
-| Daughter Cell 1 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
-| Daughter Cell 2 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
-<!-- /lab:data-table -->
-
-### Analysis
-
-<!-- lab:reflection -->
-**1. Are the two daughter cells genetically identical to each other and to the parent cell?**
-
-{fill:textarea rows=2}
-
-**2. Did the chromosome number change? How many chromosomes are in each daughter cell?**
-
-{fill:textarea rows=1}
-
-**3. Why is mitosis described as producing "clones" of the parent cell?**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
+4. **Complete the "Part 1: Mitosis" tables and questions on the Worksheet.**
 
 ---
 
 ## Part 2: Meiosis I — Separating Homologous Chromosomes
-
-> **Learning Goal:** Walk a diploid cell through meiosis I, including crossing over and independent assortment.
 
 ### Reset Your Cell
 
@@ -226,11 +180,7 @@ This is the critical step that makes meiosis different from mitosis!
     └─────╨─────┘                 └─────╨─────┘
 ```
 
-<!-- lab:reflection -->
-**Describe what crossing over does to the alleles on the affected chromatids:**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
+1. **Answer the Crossing Over question on the Worksheet.**
 
 ### Step 2: Metaphase I — Independent Assortment
 
@@ -245,20 +195,7 @@ This is the critical step that makes meiosis different from mitosis!
 ```
 
 1. **Choose one arrangement** — this is independent assortment in action!
-
-<!-- lab:reflection -->
-**Which arrangement did you choose? (1 or 2)**
-
-{fill:text}
-
-**With 2 pairs of chromosomes, how many different arrangements are possible?**
-
-{fill:number}
-
-**With 23 pairs (human), the formula is 2ⁿ. How many possible arrangements?**
-
-{fill:text}
-<!-- /lab:reflection -->
+2. **Answer the Independent Assortment questions on the Worksheet.**
 
 ### Step 3: Anaphase I
 
@@ -271,22 +208,11 @@ This is the critical step that makes meiosis different from mitosis!
 1. **Divide the cell** into two new cells
 2. Each cell should have **2 duplicated chromosomes** (still sister chromatids joined)
 3. Each cell is now **haploid** (n = 2), but chromosomes are still duplicated
-
-### Meiosis I Results
-
-<!-- lab:data-table rows=3 title="Meiosis I Results — Allele Tracking" -->
-| Cell | Chromosome Pair 1 Allele | Chromosome Pair 2 Allele | Ploidy | # Chromosomes (duplicated) |
-|------|-------------------------|-------------------------|--------|--------------------------|
-| Parent | A and a | B and b | Diploid (2n=4) | 4 (duplicated to 8 chromatids) |
-| Cell after Meiosis I — Left | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
-| Cell after Meiosis I — Right | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
-<!-- /lab:data-table -->
+4. **Complete the "Meiosis I Results" table on the Worksheet.**
 
 ---
 
 ## Part 3: Meiosis II — Separating Sister Chromatids
-
-> **Learning Goal:** Complete meiosis by separating sister chromatids in each haploid cell.
 
 ### For EACH of the Two Cells from Meiosis I
 
@@ -303,133 +229,15 @@ This is the critical step that makes meiosis different from mitosis!
 
 1. **Divide each cell** into two new cells
 2. You should now have **4 total cells**, each with **2 single chromosomes** (one from each pair)
-
-### Final Meiosis Results
-
-<!-- lab:data-table rows=5 title="Final Meiosis Results — Complete Allele Tracking" -->
-| Cell | Gene A Allele | Gene B Allele | Genotype | Haploid? | # Chromosomes | Recombinant? |
-|------|--------------|--------------|----------|----------|--------------|-------------|
-| Parent Cell | A and a | B and b | AaBb | No (2n=4) | 4 | — |
-| Gamete 1 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
-| Gamete 2 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
-| Gamete 3 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
-| Gamete 4 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
-<!-- /lab:data-table -->
-
-### Analysis
-
-<!-- lab:reflection -->
-**1. How many cells did you end up with? Are they diploid or haploid?**
-
-{fill:textarea rows=1}
-
-**2. Are any of the four gametes genetically identical to each other? Explain why or why not.**
-
-{fill:textarea rows=2}
-
-**3. Which gametes (if any) contain recombinant chromosomes from crossing over?**
-
-{fill:textarea rows=2}
-
-**4. If you had chosen the other arrangement during metaphase I, how would the gamete genotypes be different?**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
+3. **Complete the "Part 3: Meiosis II" tables and questions on the Worksheet.**
 
 ---
 
 ## Part 4: Mitosis vs. Meiosis — Side-by-Side Comparison
 
-> **Learning Goal:** Synthesize your observations into a comprehensive comparison.
+Review your results and compare the purposes, processes, and outcomes of both cellular divisions.
 
-### Comparison Table
-
-<!-- lab:data-table rows=8 title="Mitosis vs. Meiosis Comparison" -->
-| Feature | Mitosis | Meiosis |
-|---------|---------|---------|
-| Purpose | {fill:text} | {fill:text} |
-| Number of cell divisions | {fill:text} | {fill:text} |
-| Number of daughter cells | {fill:text} | {fill:text} |
-| Chromosome number in daughter cells | {fill:text} | {fill:text} |
-| Genetically identical to parent? | {fill:text} | {fill:text} |
-| Crossing over occurs? | {fill:text} | {fill:text} |
-| Homologous chromosomes pair up? | {fill:text} | {fill:text} |
-| Where does it occur in the body? | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
-### Allele Distribution Summary
-
-<!-- lab:reflection -->
-**In mitosis, the parent cell (AaBb) produced daughter cells with genotype(s):**
-
-{fill:text}
-
-**In meiosis, the parent cell (AaBb) produced gametes with genotype(s):**
-
-{fill:text}
-
-**Which process produced more genetic variety? Explain why:**
-
-{fill:textarea rows=3}
-<!-- /lab:reflection -->
-
----
-
-## Part 5: Connecting to Genetics
-
-> **Learning Goal:** Understand how meiosis produces the gametes used in inheritance.
-
-### Gamete Fusion Simulation
-
-Choose one gamete from your meiosis results. Imagine it fuses with a gamete from another individual who is also **AaBb**.
-
-<!-- lab:reflection -->
-**Your selected gamete genotype:**
-
-{fill:text}
-
-**Partner's gamete genotype (choose one possibility):**
-
-{fill:text}
-
-**Offspring genotype after fertilization:**
-
-{fill:text}
-
-**Offspring phenotype (assuming A is dominant over a, and B is dominant over b):**
-
-{fill:text}
-
-**Would a different combination of gametes produce a different offspring? Explain:**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-## Conclusions
-
-<!-- lab:reflection -->
-**1. Summarize the key differences between mitosis and meiosis in your own words:**
-
-{fill:textarea rows=3}
-
-**2. Explain why meiosis is essential for sexual reproduction:**
-
-{fill:textarea rows=2}
-
-**3. How do crossing over, independent assortment, and random fertilization together produce genetically unique individuals?**
-
-{fill:textarea rows=3}
-
-**4. If a human cell (2n = 46) undergoes mitosis, how many chromosomes are in each daughter cell? If it undergoes meiosis, how many are in each gamete?**
-
-{fill:textarea rows=2}
-
-**5. A student says "Mitosis and meiosis are basically the same thing." How would you respond? What are the most important differences?**
-
-{fill:textarea rows=3}
-<!-- /lab:reflection -->
+**Complete the "Part 4: Comparison & Conclusions" tables and questions on the Worksheet.**
 
 ---
 
@@ -459,3 +267,163 @@ Choose one gamete from your meiosis results. Imagine it fuses with a gamete from
 ---
 
 *Lab adapted for BIOL-8: Human Biology, Spring 2026*
+
+---
+---
+
+<div style="page-break-before: always;"></div>
+
+# Lab 07 Worksheet: Cell Division
+
+**Name:** {fill:text} **Date:** {fill:text}
+
+*(Tear out this page and turn it in at the end of the lab)*
+
+## Setting Up Your Cell
+
+<!-- lab:reflection -->
+**Record the genotype of your starting cell:**
+
+{fill:text}
+
+**How many chromosomes are in this cell?**
+
+{fill:number}
+
+**Is this cell diploid or haploid?**
+
+{fill:text}
+<!-- /lab:reflection -->
+
+## Part 1: Mitosis
+
+<!-- lab:data-table rows=3 title="Mitosis Results — Allele Tracking" -->
+| Cell | Allele for Gene A | Allele for Gene B | Full Genotype | Diploid or Haploid? | # Chromosomes |
+|------|------------------|------------------|---------------|--------------------|----|
+| Parent cell | A and a | B and b | AaBb | Diploid (2n=4) | 4 |
+| Daughter Cell 1 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
+| Daughter Cell 2 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
+<!-- /lab:data-table -->
+
+<!-- lab:reflection -->
+**1. Are the two daughter cells genetically identical to each other and to the parent cell?**
+
+{fill:textarea rows=2}
+
+**2. Did the chromosome number change? How many chromosomes are in each daughter cell?**
+
+{fill:textarea rows=1}
+
+**3. Why is mitosis described as producing "clones" of the parent cell?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+## Part 2: Meiosis I
+
+<!-- lab:reflection -->
+**Describe what crossing over does to the alleles on the affected chromatids:**
+
+{fill:textarea rows=2}
+
+**Independent Assortment:**
+
+**Which arrangement did you choose? (1 or 2)**
+
+{fill:text}
+
+**With 2 pairs of chromosomes, how many different arrangements are possible?**
+
+{fill:number}
+
+**With 23 pairs (human), the formula is 2ⁿ. How many possible arrangements?**
+
+{fill:text}
+<!-- /lab:reflection -->
+
+<!-- lab:data-table rows=3 title="Meiosis I Results — Allele Tracking" -->
+| Cell | Chromosome Pair 1 Allele | Chromosome Pair 2 Allele | Ploidy | # Chromosomes (duplicated) |
+|------|-------------------------|-------------------------|--------|--------------------------|
+| Parent | A and a | B and b | Diploid (2n=4) | 4 (duplicated to 8 chromatids) |
+| Cell after Meiosis I — Left | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
+| Cell after Meiosis I — Right | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
+<!-- /lab:data-table -->
+
+## Part 3: Meiosis II
+
+<!-- lab:data-table rows=5 title="Final Meiosis Results — Complete Allele Tracking" -->
+| Cell | Gene A Allele | Gene B Allele | Genotype | Haploid? | # Chromosomes | Recombinant? |
+|------|--------------|--------------|----------|----------|--------------|-------------|
+| Parent Cell | A and a | B and b | AaBb | No (2n=4) | 4 | — |
+| Gamete 1 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
+| Gamete 2 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
+| Gamete 3 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
+| Gamete 4 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} | {fill:text} |
+<!-- /lab:data-table -->
+
+<!-- lab:reflection -->
+**1. How many cells did you end up with? Are they diploid or haploid?**
+
+{fill:textarea rows=1}
+
+**2. Are any of the four gametes genetically identical to each other? Explain why or why not.**
+
+{fill:textarea rows=2}
+
+**3. Which gametes (if any) contain recombinant chromosomes from crossing over?**
+
+{fill:textarea rows=2}
+
+**4. If you had chosen the other arrangement during metaphase I, how would the gamete genotypes be different?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+## Part 4: Comparison & Conclusions
+
+<!-- lab:data-table rows=8 title="Mitosis vs. Meiosis Comparison" -->
+| Feature | Mitosis | Meiosis |
+|---------|---------|---------|
+| Purpose | {fill:text} | {fill:text} |
+| Number of cell divisions | {fill:text} | {fill:text} |
+| Number of daughter cells | {fill:text} | {fill:text} |
+| Chromosome number in daughter cells | {fill:text} | {fill:text} |
+| Genetically identical to parent? | {fill:text} | {fill:text} |
+| Crossing over occurs? | {fill:text} | {fill:text} |
+| Homologous chromosomes pair up? | {fill:text} | {fill:text} |
+| Where does it occur in the body? | {fill:text} | {fill:text} |
+<!-- /lab:data-table -->
+
+<!-- lab:reflection -->
+**In mitosis, the parent cell (AaBb) produced daughter cells with genotype(s):**
+
+{fill:text}
+
+**In meiosis, the parent cell (AaBb) produced gametes with genotype(s):**
+
+{fill:text}
+
+**Which process produced more genetic variety? Explain why:**
+
+{fill:textarea rows=3}
+
+**1. Summarize the key differences between mitosis and meiosis in your own words:**
+
+{fill:textarea rows=3}
+
+**2. Explain why meiosis is essential for sexual reproduction:**
+
+{fill:textarea rows=2}
+
+**3. How do crossing over, independent assortment, and random fertilization together produce genetically unique individuals?**
+
+{fill:textarea rows=3}
+
+**4. If a human cell (2n = 46) undergoes mitosis, how many chromosomes are in each daughter cell? If it undergoes meiosis, how many are in each gamete?**
+
+{fill:textarea rows=2}
+
+**5. A student says "Mitosis and meiosis are basically the same thing." How would you respond? What are the most important differences?**
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
