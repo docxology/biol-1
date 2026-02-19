@@ -29,7 +29,7 @@ mp3  = false        # Audio narration (via Google TTS, slower)
 
 [publish.courses.biol-1]
 enabled = true
-modules = 6
+modules = 11
 max_module = 11      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
 max_lab = 11         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
 path = "course_development/biol-1"
