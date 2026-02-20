@@ -378,86 +378,72 @@ Review your results and compare the purposes, processes, and outcomes of both ty
 
 <div style="page-break-before: always;"></div>
 
-# ✂️ Chromosome Cutouts — Tear Out This Page
+<h1 style="text-align: center;">✂️ Chromosome Cutouts — Tear Out This Page</h1>
 
-Cut along the dashed lines. RED chromosomes = maternal. BLUE chromosomes = paternal.
+<p style="text-align: center; font-size: 14px;">Cut along the dashed lines. <strong style="color: red;">RED = Maternal</strong> &nbsp;|&nbsp; <strong style="color: blue;">BLUE = Paternal</strong></p>
 
----
+<h2 style="margin-top: 24px;">Starting Cell Chromosomes</h2>
 
-## Starting Cell Chromosomes
+<p style="font-size: 12px; margin-bottom: 8px;">Use these 4 chromosomes to build your starting diploid cell (AaBb, 2n = 4).</p>
 
-Use these 4 chromosomes to build your starting diploid cell (AaBb, 2n = 4).
+<table style="width: 100%; border-collapse: separate; border-spacing: 16px 12px;">
+<tr>
+<td style="width: 25%; border: 3px dashed red; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #fff0f0;">
+<div style="font-size: 11px; color: red; font-weight: bold;">MATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 1 · Gene A</div>
+<div style="font-size: 48px; font-weight: bold; color: red; margin: 12px 0;">A</div>
+<div style="font-size: 10px; color: #666;">(dominant)</div>
+</td>
+<td style="width: 25%; border: 3px dashed blue; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #f0f0ff;">
+<div style="font-size: 11px; color: blue; font-weight: bold;">PATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 1 · Gene A</div>
+<div style="font-size: 48px; font-weight: bold; color: blue; margin: 12px 0;">a</div>
+<div style="font-size: 10px; color: #666;">(recessive)</div>
+</td>
+<td style="width: 25%; border: 3px dashed red; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #fff0f0;">
+<div style="font-size: 11px; color: red; font-weight: bold;">MATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 2 · Gene B</div>
+<div style="font-size: 48px; font-weight: bold; color: red; margin: 12px 0;">B</div>
+<div style="font-size: 10px; color: #666;">(dominant)</div>
+</td>
+<td style="width: 25%; border: 3px dashed blue; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #f0f0ff;">
+<div style="font-size: 11px; color: blue; font-weight: bold;">PATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 2 · Gene B</div>
+<div style="font-size: 48px; font-weight: bold; color: blue; margin: 12px 0;">b</div>
+<div style="font-size: 10px; color: #666;">(recessive)</div>
+</td>
+</tr>
+</table>
 
-┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
+<h2 style="margin-top: 32px;">S-Phase Duplicates (Sister Chromatids)</h2>
 
-│ **PAIR 1 — Gene A**                                                              │
+<p style="font-size: 12px; margin-bottom: 8px;">Keep these aside until S-Phase. Tape each duplicate to its matching chromosome above.</p>
 
-│ ┌─────────────────┐              ┌─────────────────┐                             │
-│ │                 │              │                 │                             │
-│ │   🔴 RED        │              │   🔵 BLUE       │                             │
-│ │   Maternal      │              │   Paternal      │                             │
-│ │                 │              │                 │                             │
-│ │     **A**       │              │     **a**       │                             │
-│ │                 │              │                 │                             │
-│ │   (dominant)    │              │   (recessive)   │                             │
-│ │                 │              │                 │                             │
-│ └─────────────────┘              └─────────────────┘                             │
-
-└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
-
-┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-
-│ **PAIR 2 — Gene B**                                                              │
-
-│ ┌─────────────────┐              ┌─────────────────┐                             │
-│ │                 │              │                 │                             │
-│ │   🔴 RED        │              │   🔵 BLUE       │                             │
-│ │   Maternal      │              │   Paternal      │                             │
-│ │                 │              │                 │                             │
-│ │     **B**       │              │     **b**       │                             │
-│ │                 │              │                 │                             │
-│ │   (dominant)    │              │   (recessive)   │                             │
-│ │                 │              │                 │                             │
-│ └─────────────────┘              └─────────────────┘                             │
-
-└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
-
----
-
-## S-Phase Duplicates (Sister Chromatids)
-
-Keep these aside until S-Phase. Tape each duplicate to its matching chromosome above.
-
-┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-
-│ **PAIR 1 COPIES**                                                                │
-
-│ ┌─────────────────┐              ┌─────────────────┐                             │
-│ │                 │              │                 │                             │
-│ │   🔴 RED        │              │   🔵 BLUE       │                             │
-│ │   Maternal      │              │   Paternal      │                             │
-│ │                 │              │                 │                             │
-│ │     **A**       │              │     **a**       │                             │
-│ │                 │              │                 │                             │
-│ │   (copy)        │              │   (copy)        │                             │
-│ │                 │              │                 │                             │
-│ └─────────────────┘              └─────────────────┘                             │
-
-└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
-
-┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-
-│ **PAIR 2 COPIES**                                                                │
-
-│ ┌─────────────────┐              ┌─────────────────┐                             │
-│ │                 │              │                 │                             │
-│ │   🔴 RED        │              │   🔵 BLUE       │                             │
-│ │   Maternal      │              │   Paternal      │                             │
-│ │                 │              │                 │                             │
-│ │     **B**       │              │     **b**       │                             │
-│ │                 │              │                 │                             │
-│ │   (copy)        │              │   (copy)        │                             │
-│ │                 │              │                 │                             │
-│ └─────────────────┘              └─────────────────┘                             │
-
-└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
+<table style="width: 100%; border-collapse: separate; border-spacing: 16px 12px;">
+<tr>
+<td style="width: 25%; border: 3px dashed red; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #fff0f0;">
+<div style="font-size: 11px; color: red; font-weight: bold;">MATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 1 · Copy</div>
+<div style="font-size: 48px; font-weight: bold; color: red; margin: 12px 0;">A</div>
+<div style="font-size: 10px; color: #666;">(duplicate)</div>
+</td>
+<td style="width: 25%; border: 3px dashed blue; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #f0f0ff;">
+<div style="font-size: 11px; color: blue; font-weight: bold;">PATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 1 · Copy</div>
+<div style="font-size: 48px; font-weight: bold; color: blue; margin: 12px 0;">a</div>
+<div style="font-size: 10px; color: #666;">(duplicate)</div>
+</td>
+<td style="width: 25%; border: 3px dashed red; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #fff0f0;">
+<div style="font-size: 11px; color: red; font-weight: bold;">MATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 2 · Copy</div>
+<div style="font-size: 48px; font-weight: bold; color: red; margin: 12px 0;">B</div>
+<div style="font-size: 10px; color: #666;">(duplicate)</div>
+</td>
+<td style="width: 25%; border: 3px dashed blue; border-radius: 8px; text-align: center; padding: 20px 10px; background-color: #f0f0ff;">
+<div style="font-size: 11px; color: blue; font-weight: bold;">PATERNAL</div>
+<div style="font-size: 10px; color: #666;">Pair 2 · Copy</div>
+<div style="font-size: 48px; font-weight: bold; color: blue; margin: 12px 0;">b</div>
+<div style="font-size: 10px; color: #666;">(duplicate)</div>
+</td>
+</tr>
+</table>
