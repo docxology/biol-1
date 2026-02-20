@@ -1,6 +1,6 @@
 # Software Documentation
 
-> **Quick Navigation**: [Quick Start](QUICKSTART.md) | [Architecture](ARCHITECTURE.md) | [Orchestration](ORCHESTRATION.md) | [Standards](AGENTS.md) | [API Reference](../AGENTS.md)
+> **Quick Navigation**: [Quick Start](QUICKSTART.md) | [Architecture](ARCHITECTURE.md) | [Orchestration](ORCHESTRATION.md) | [Standards](AGENTS.md) | [Lab Format](LAB_FORMAT.md) | [Dashboard Format](DASHBOARD_FORMAT.md) | [Course Structure](COURSE_STRUCTURE.md) | [API Reference](../AGENTS.md)
 
 ## Overview
 
@@ -57,7 +57,7 @@ flowchart LR
 | If you are a... | Start with... | Then explore... |
 |-----------------|---------------|-----------------|
 | **New User** | [QUICKSTART.md](QUICKSTART.md) | [ORCHESTRATION.md](ORCHESTRATION.md) |
-| **Content Author** | [../../CONTRIBUTING.md](../../CONTRIBUTING.md) | [ARCHITECTURE.md](ARCHITECTURE.md) |
+| **Content Author** | [LAB_FORMAT.md](LAB_FORMAT.md) | [DASHBOARD_FORMAT.md](DASHBOARD_FORMAT.md), [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md) |
 | **Developer** | [ARCHITECTURE.md](ARCHITECTURE.md) | [../AGENTS.md](../AGENTS.md) |
 | **AI Assistant** | [../../CLAUDE.md](../../CLAUDE.md) | [AGENTS.md](AGENTS.md) |
 
@@ -69,6 +69,13 @@ flowchart LR
 | **Architecture** | [ARCHITECTURE.md](ARCHITECTURE.md) | System design, module layers, document types |
 | **Workflows** | [ORCHESTRATION.md](ORCHESTRATION.md) | Multi-module patterns, publish pipeline, lab generation |
 | **Standards** | [AGENTS.md](AGENTS.md) | Documentation standards, output format reference |
+| **Lab Authoring** | [LAB_FORMAT.md](LAB_FORMAT.md) | Lab protocol format, directives, templates |
+| **Dashboard Authoring** | [DASHBOARD_FORMAT.md](DASHBOARD_FORMAT.md) | Interactive dashboard architecture |
+| **Course Structure** | [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md) | Directory layout, content organization |
+| **PDF Output** | [OUTPUT_PDF.md](OUTPUT_PDF.md) | PDF generation via WeasyPrint |
+| **Audio Output** | [OUTPUT_AUDIO.md](OUTPUT_AUDIO.md) | MP3 generation via gTTS |
+| **DOCX Output** | [OUTPUT_DOCX.md](OUTPUT_DOCX.md) | Word document generation |
+| **HTML Output** | [OUTPUT_HTML.md](OUTPUT_HTML.md) | All HTML output types |
 | **API Reference** | [../AGENTS.md](../AGENTS.md) | All function signatures |
 | **Configuration** | [../../publish.toml](../../publish.toml) | Pipeline configuration options |
 | **Contributing** | [../../CONTRIBUTING.md](../../CONTRIBUTING.md) | How to add labs, assessments, content |
@@ -84,6 +91,23 @@ flowchart LR
 |----------|-------------|----------|
 | **[QUICKSTART.md](QUICKSTART.md)** | Installation, setup, quick commands | New users |
 | **[../README.md](../README.md)** | Project overview and setup | All users |
+
+### Content Authoring
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[LAB_FORMAT.md](LAB_FORMAT.md)** | Lab protocol format, directives, templates | Content Authors |
+| **[DASHBOARD_FORMAT.md](DASHBOARD_FORMAT.md)** | Interactive dashboard architecture guide | Content Authors |
+| **[COURSE_STRUCTURE.md](COURSE_STRUCTURE.md)** | Course directory layout reference | All users |
+
+### Output Format Guides
+
+| Document | Description | Audience |
+|----------|-------------|----------|
+| **[OUTPUT_PDF.md](OUTPUT_PDF.md)** | PDF generation via WeasyPrint | Developers, Authors |
+| **[OUTPUT_AUDIO.md](OUTPUT_AUDIO.md)** | MP3 audio generation via gTTS | Developers, Authors |
+| **[OUTPUT_DOCX.md](OUTPUT_DOCX.md)** | Word document generation | Developers, Authors |
+| **[OUTPUT_HTML.md](OUTPUT_HTML.md)** | All HTML output types (4 variants) | Developers, Authors |
 
 ### Technical Reference
 
@@ -267,7 +291,14 @@ software/
 │   ├── QUICKSTART.md      → Installation and quick commands
 │   ├── ARCHITECTURE.md    → System design, document types, diagrams
 │   ├── ORCHESTRATION.md   → Multi-module workflows, publish pipeline
-│   └── AGENTS.md          → Documentation standards, output formats
+│   ├── AGENTS.md          → Documentation standards, output formats
+│   ├── LAB_FORMAT.md      → Lab protocol authoring guide
+│   ├── DASHBOARD_FORMAT.md → Interactive dashboard format guide
+│   ├── COURSE_STRUCTURE.md → Course directory layout reference
+│   ├── OUTPUT_PDF.md      → PDF output format details
+│   ├── OUTPUT_AUDIO.md    → MP3 audio output format details
+│   ├── OUTPUT_DOCX.md     → DOCX output format details
+│   └── OUTPUT_HTML.md     → HTML output format details (all 4 types)
 ├── src/
 │   ├── README.md          → Source code overview
 │   └── AGENTS.md          → Module implementations
