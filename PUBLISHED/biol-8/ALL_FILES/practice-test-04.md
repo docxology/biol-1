@@ -1,14 +1,12 @@
 # BIOL-8 Practice Test 04
 
-## Modules 8-9: Cell Division & Inheritance
+## Module 8: Cell Division
 
-**Instructions:** This practice test covers material from Modules 8 and 9. Answer all questions to the best of your ability.
+**Instructions:** This practice test covers material from Module 8 only. Answer all questions to the best of your ability.
 
 ---
 
 ## Part A: Multiple Choice
-
-### Module 8: Cell Division
 
 **1.** Which phase of the cell cycle is where DNA is replicated?
 A) G1
@@ -58,55 +56,53 @@ B) Down Syndrome (Trisomy 21)
 C) Identical twins
 D) Faster cell division
 
-### Module 9: Inheritance
+**9.** During which phase of mitosis do sister chromatids separate and move to opposite poles?
+A) Prophase
+B) Metaphase
+C) Anaphase
+D) Telophase
 
-**9.** An alternate form of a gene is called a(n):
-A) Chromosome
-B) Allele
-C) Genotype
-D) Phenotype
+**10.** Homologous chromosomes are separated during:
+A) Anaphase of mitosis
+B) Anaphase I of meiosis
+C) Anaphase II of meiosis
+D) Prophase II of meiosis
 
-**10.** If an individual has two identical alleles for a trait (e.g., **AA**), they are:
-A) Heterozygous
-B) Homozygous dominant
-C) Homozygous recessive
-D) Hemizygous
+**11.** A cell that is diploid (2n) contains:
+A) Only one set of chromosomes
+B) Two sets of chromosomes (homologous pairs)
+C) Four sets of chromosomes
+D) No chromosomes
 
-**11.** In a cross between a heterozygous tall plant (Tt) and a short plant (tt), what is the probability of having short offspring?
-A) 0%
-B) 25%
-C) 50%
-D) 100%
+**12.** Which is a purpose of mitosis but NOT of meiosis?
+A) Producing gametes
+B) Increasing genetic variation
+C) Growth and tissue repair
+D) Reducing chromosome number
 
-**12.** Which inheritance pattern results in an intermediate phenotype (e.g., Red x White = Pink)?
-A) Complete dominance
-B) Codominance
-C) Incomplete dominance
-D) X-linked inheritance
+**13.** Interphase consists of which sub-phases?
+A) Prophase, Metaphase, Anaphase
+B) G1, S, G2
+C) Meiosis I and Meiosis II
+D) Cytokinesis and karyokinesis
 
-**13.** Blood type AB (genotype I^A I^B) is an example of:
-A) Incomplete dominance
-B) Codominance
-C) Simple dominance
-D) Sex-linked inheritance
+**14.** After meiosis I is complete, each resulting cell is:
+A) Diploid with replicated chromosomes
+B) Haploid with replicated chromosomes (sister chromatids still joined)
+C) Haploid with single chromatids
+D) Tetraploid
 
-**14.** Traits controlled by genes on the X chromosome are called:
-A) Autosomal traits
-B) Sex-linked traits
-C) Polygenic traits
-D) Multiple alleles
+**15.** Independent assortment occurs during:
+A) Metaphase of mitosis
+B) Metaphase I of meiosis
+C) Anaphase II of meiosis
+D) Prophase of mitosis
 
-**15.** Why are X-linked recessive disorders (like color blindness) more common in males?
-A) Males have two X chromosomes
-B) Males have only one X chromosome, so there is no dominant allele to mask the recessive one
-C) The Y chromosome carries the disorder
-D) Males have weaker immune systems
-
-**16.** A chart that tracks a trait across generations in a family is called a:
-A) Karyotype
-B) Punnett Square
-C) Pedigree
-D) Genetic map
+**16.** Uncontrolled cell division is known as:
+A) Apoptosis
+B) Cancer
+C) Meiosis
+D) Differentiation
 
 ---
 
@@ -116,27 +112,29 @@ D) Genetic map
 
 **18.** Mitosis produces cells for growth and repair, while meiosis produces _____________________.
 
-**19.** Uncontrolled cell division is known as _____________________.
+**19.** The structure where two sister chromatids are joined together is called the _____________________.
 
-**20.** Gregor Mendel represents the "Father of _____________________."
+**20.** The pairing of homologous chromosomes during Prophase I is called _____________________, and the structure formed is a _____________________.
 
-**21.** The physical appearance of an organism is its _____________________, while its genetic makeup is its _____________________.
-
-**22.** In a heterozygote, the allele that is masked (hidden) is called _____________________.
+**21.** A cell with one set of chromosomes (such as a gamete) is described as _____________________.
 
 ---
 
 ## Part C: Short Answer
 
-**23.** List three key differences between Mitosis and Meiosis.
+**22.** List three key differences between Mitosis and Meiosis.
 
 <br><br><br>
 
-**24.** Set up a Punnett square for a cross between two heterozygous parents (**Aa** x **Aa**). What are the Genotypic and Phenotypic ratios?
+**23.** Describe what happens during each phase of mitosis (Prophase, Metaphase, Anaphase, Telophase).
 
 <br><br><br>
 
-**25.** Explain what "Independent Assortment" means. When does it occur?
+**24.** Explain what "crossing over" and "independent assortment" are. How do they increase genetic variation?
+
+<br><br><br>
+
+**25.** What is nondisjunction? Describe one specific condition that can result from it and explain the chromosome abnormality involved.
 
 <br><br><br>
 

@@ -1,12 +1,10 @@
 # Practice Test 04 — Answer Key
 
-## Modules 8-9: Cell Division & Inheritance
+## Module 8: Cell Division
 
 ---
 
 ## Part A: Multiple Choice
-
-### Module 8: Cell Division
 
 1. **B** — DNA is replicated during S (Synthesis) phase.
 2. **C** — Prophase, Metaphase, Anaphase, Telophase (PMAT).
@@ -16,26 +14,22 @@
 6. **B** — Crossing over occurs during Prophase I of Meiosis.
 7. **C** — Gametes are haploid (n), so 46/2 = 23 chromosomes.
 8. **B** — Nondisjunction can result in trisomy conditions like Down Syndrome (Trisomy 21).
-
-### Module 9: Inheritance
-
-1. **B** — An alternate form of a gene is an allele.
-2. **B** — Two identical alleles (AA) = homozygous dominant.
-3. **C** — Tt × tt → 50% Tt (tall), 50% tt (short). Probability of short = 50%.
-4. **C** — Incomplete dominance produces an intermediate (blended) phenotype.
-5. **B** — Blood type AB is codominance; both A and B antigens are expressed.
-6. **B** — Genes on the X chromosome produce sex-linked traits.
-7. **B** — Males have only one X, so a single recessive allele on the X is expressed (no second X to mask it).
-8. **C** — A pedigree tracks traits across generations in a family.
+9. **C** — Sister chromatids separate at the centromere during Anaphase.
+10. **B** — Homologous chromosomes (not sister chromatids) separate during Anaphase I of meiosis.
+11. **B** — Diploid (2n) means two sets of chromosomes—one from each parent—forming homologous pairs.
+12. **C** — Mitosis is for growth and tissue repair. Meiosis produces gametes and increases genetic variation.
+13. **B** — Interphase consists of G1 (growth), S (DNA synthesis), and G2 (preparation for division).
+14. **B** — After meiosis I, cells are haploid but each chromosome still consists of two sister chromatids joined at the centromere.
+15. **B** — Independent assortment occurs during Metaphase I when homologous pairs line up randomly.
+16. **B** — Cancer is the result of uncontrolled cell division due to mutations in genes regulating the cell cycle.
 
 ## Part B: Fill in the Blank
 
 1. **Cytokinesis**
 2. **Gametes** (sex cells / sperm and eggs)
-3. **Cancer**
-4. **Genetics**
-5. **Phenotype**; **Genotype**
-6. **Recessive**
+3. **Centromere**
+4. **Synapsis**; **Tetrad** (or bivalent)
+5. **Haploid** (n)
 
 ## Part C: Short Answer
 
@@ -48,15 +42,16 @@
     | Purpose | Growth and repair | Produce gametes |
     | Crossing over | No | Yes (Prophase I) |
 
-2. **Punnett Square: Aa × Aa**
+2. **Phases of Mitosis:**
+    - **Prophase:** Chromosomes condense and become visible. The nuclear envelope begins to break down. Centrioles move to opposite poles and spindle fibers form.
+    - **Metaphase:** Chromosomes line up at the cell's equator (metaphase plate). Spindle fibers attach to the centromere of each chromosome.
+    - **Anaphase:** Sister chromatids separate at the centromere and are pulled to opposite poles by the spindle fibers.
+    - **Telophase:** Chromosomes decondense. Nuclear envelopes reform around each set of chromosomes. Cytokinesis begins to divide the cytoplasm.
 
-    |   | **A** | **a** |
-    |---|-------|-------|
-    | **A** | AA | Aa |
-    | **a** | Aa | aa |
+3. **Crossing Over and Independent Assortment:**
+    - **Crossing over** occurs during Prophase I of meiosis. Homologous chromosomes exchange segments of DNA, creating new allele combinations on the recombinant chromosomes.
+    - **Independent assortment** occurs during Metaphase I. Homologous pairs line up randomly at the cell equator, so the orientation of one pair does not affect any other pair. With 23 pairs in humans, this produces 2²³ (over 8 million) possible gamete combinations.
+    - Both mechanisms increase genetic variation in sexually reproducing organisms.
 
-    - **Genotypic ratio:** 1 AA : 2 Aa : 1 aa
-    - **Phenotypic ratio:** 3 dominant : 1 recessive
-
-3. **Independent Assortment:**
-    Mendel's Law of Independent Assortment states that genes for different traits are sorted into gametes independently of one another. This occurs during Metaphase I of meiosis, when homologous chromosome pairs line up randomly at the cell equator. This means the allele a gamete receives for one gene does not affect which allele it receives for another gene (as long as they are on different chromosomes).
+4. **Nondisjunction:**
+    Nondisjunction is the failure of homologous chromosomes or sister chromatids to separate properly during cell division. If nondisjunction occurs during meiosis, the resulting gametes have an abnormal number of chromosomes. For example, Down Syndrome (Trisomy 21) results when chromosome 21 fails to separate, producing a gamete with two copies of chromosome 21. When this gamete is fertilized, the offspring has three copies of chromosome 21 (47 total chromosomes instead of 46).

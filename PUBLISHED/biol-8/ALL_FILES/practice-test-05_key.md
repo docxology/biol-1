@@ -1,55 +1,66 @@
 # Practice Test 05 — Answer Key
 
-## Module 10: Tissues
+## Module 9: Inheritance
 
 ---
 
 ## Part A: Multiple Choice
 
-1. **B** — A tissue is a group of similar cells performing a specific function.
-2. **C** — The four main tissue types are Epithelial, Connective, Muscle, and Nervous. "Skeletal" is a type of muscle, not its own tissue category.
-3. **B** — Epithelial tissue lines body cavities and covers surfaces.
-4. **D** — Transitional epithelium (found in the bladder) can stretch and recoil.
-5. **B** — Flat cells in a single layer = simple squamous epithelium.
-6. **C** — Connective tissue has the most abundant extracellular matrix.
-7. **C** — Blood is a connective tissue that transports oxygen and nutrients.
-8. **A** — Skeletal muscle is voluntary and striated.
-9. **B** — Cardiac muscle has intercalated discs, which help coordinate contraction.
-10. **C** — Smooth muscle is found in the walls of hollow organs (stomach, blood vessels, intestines).
-11. **A** — The neuron is the main functional (signaling) cell of the nervous system.
-12. **B** — The axon carries signals away from the cell body.
-13. **B** — Ligaments and tendons are dense regular connective tissue (parallel collagen fibers).
-14. **B** — Fibroblasts produce the fibers (collagen, elastin) in connective tissue.
-15. **C** — Epithelial tissue and cartilage are avascular (no direct blood supply).
+1. **B** — An alternate form of a gene is an allele.
+2. **B** — Two identical alleles (AA) = homozygous dominant.
+3. **B** — The physical appearance (what you observe) is the phenotype.
+4. **B** — Two different alleles (Aa) = heterozygous.
+5. **C** — Tt × tt → 50% Tt (tall), 50% tt (short). Probability of short = 50%.
+6. **A** — Aa × Aa → 1 AA : 2 Aa : 1 aa. Only 1/4 (aa) shows recessive phenotype.
+7. **C** — Incomplete dominance produces an intermediate (blended) phenotype.
+8. **B** — Blood type AB is codominance; both A and B antigens are expressed simultaneously.
+9. **B** — Genes on the X chromosome produce sex-linked traits.
+10. **B** — Males have only one X, so a single recessive allele on the X is expressed (no second X to mask it).
+11. **C** — A pedigree tracks traits across generations in a family.
+12. **B** — In a pedigree, filled-in circles = affected females; filled-in squares = affected males.
+13. **B** — RW × RW → 1 RR (Red) : 2 RW (Pink) : 1 WW (White). This is the hallmark of incomplete dominance.
+14. **C** — aa is homozygous recessive (two copies of the recessive allele).
+15. **B** — Gregor Mendel is the "Father of Genetics" based on his pea plant experiments.
+16. **C** — X^C X^c × X^C Y → Sons: 50% X^C Y (normal), 50% X^c Y (color blind). So 50% of sons will be color blind.
 
 ## Part B: Fill in the Blank
 
-1. **Pseudostratified** (columnar) epithelium
-2. **Adipose** tissue
-3. **Osteocytes**; **Chondrocytes**
-4. **Extracellular matrix** (or ground substance)
-5. **Glial** (or Neuroglia)
-6. **Basal** surface
+1. **Pea** (Pisum sativum)
+2. **Phenotype**; **Genotype**
+3. **Recessive**
+4. **Dihybrid**
+5. **Polygenic**
 
 ## Part C: Short Answer
 
-1. **Four Major Tissue Types:**
+1. **Punnett Square: Aa × Aa**
 
-    | Tissue Type | Basic Function |
-    |-------------|----------------|
-    | **Epithelial** | Covers surfaces and lines body cavities; protection, absorption, secretion |
-    | **Connective** | Supports, connects, and protects organs; provides structure |
-    | **Muscle** | Contracts to produce movement |
-    | **Nervous** | Transmits electrical signals for communication and control |
+    |   | **A** | **a** |
+    |---|-------|-------|
+    | **A** | AA | Aa |
+    | **a** | Aa | aa |
 
-2. **Comparison of Three Muscle Types:**
+    - **Genotypic ratio:** 1 AA : 2 Aa : 1 aa
+    - **Phenotypic ratio:** 3 dominant : 1 recessive
 
-    | Feature | Skeletal | Cardiac | Smooth |
-    |---------|----------|---------|--------|
-    | Appearance | Striated | Striated | Non-striated |
-    | Control | Voluntary | Involuntary | Involuntary |
-    | Location | Attached to bones | Heart only | Walls of hollow organs |
-    | Special Feature | Multinucleated | Intercalated discs | Spindle-shaped cells |
+2. **Incomplete Dominance vs. Codominance:**
+    - **Incomplete dominance:** The heterozygous phenotype is a blend of the two homozygous phenotypes. Example: Red × White snapdragons → Pink offspring.
+    - **Codominance:** Both alleles are fully expressed simultaneously in the heterozygote. Example: Blood type AB (I^A I^B) where both A and B antigens appear on the red blood cell surface.
+    - Key difference: Incomplete dominance blends the phenotypes; codominance displays both phenotypes at the same time.
 
-3. **Simple Squamous Epithelium — Structure Fits Function:**
-    Simple squamous epithelium consists of a single layer of very flat (thin) cells. This structure minimizes the distance substances must travel, making it ideal for rapid diffusion and filtration. This is why it is found in the alveoli of the lungs (gas exchange) and the lining of blood capillaries (nutrient/waste exchange) and the kidney glomerulus (filtration).
+3. **Color Blindness Cross: X^c Y × X^C X^c**
+
+    |   | **X^C** | **X^c** |
+    |---|---------|---------|
+    | **X^c** | X^C X^c (carrier daughter) | X^c X^c (color blind daughter) |
+    | **Y** | X^C Y (normal son) | X^c Y (color blind son) |
+
+    - Probability of daughters being color blind: **50%** (1 out of 2 daughters)
+    - Probability of sons being color blind: **50%** (1 out of 2 sons)
+
+4. **Definitions:**
+    - **Allele:** An alternate form of a gene (e.g., T for tall, t for short).
+    - **Genotype:** The genetic makeup of an organism (e.g., Tt, AA, aa).
+    - **Phenotype:** The observable physical traits of an organism (e.g., tall, short, brown eyes).
+    - **Dominant:** The allele that is expressed in the heterozygote. Only one copy is needed to show the trait (e.g., T in Tt).
+    - **Recessive:** The allele that is masked in the heterozygote. Two copies are needed to show the trait (e.g., t in tt).

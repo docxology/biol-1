@@ -1,134 +1,140 @@
 # BIOL-8 Practice Test 05
 
-## Module 10: Tissues
+## Module 9: Inheritance
 
-**Instructions:** This practice test covers material from Module 10. Answer all questions to the best of your ability.
+**Instructions:** This practice test covers material from Module 9 only. Answer all questions to the best of your ability.
 
 ---
 
 ## Part A: Multiple Choice
 
-### Module 10: Tissues
+**1.** An alternate form of a gene is called a(n):
+A) Chromosome
+B) Allele
+C) Genotype
+D) Phenotype
 
-**1.** A group of similar cells working together to perform a specific function is a(n):
-A) Organ
-B) Tissue
-C) Organ system
-D) Organism
+**2.** If an individual has two identical alleles for a trait (e.g., **AA**), they are:
+A) Heterozygous
+B) Homozygous dominant
+C) Homozygous recessive
+D) Hemizygous
 
-**2.** Which of the following is NOT one of the four main tissue types?
-A) Epithelial
-B) Connective
-C) Skeletal
-D) Nervous
+**3.** The physical appearance of an organism (such as tall or short) is its:
+A) Genotype
+B) Phenotype
+C) Allele
+D) Karyotype
 
-**3.** Epithelial tissue is primarily found:
-A) Connecting bones to muscles
-B) Lining body cavities and covering surfaces
-C) Transmitting electrical signals
-D) Contracting to move the body
+**4.** An organism with two different alleles for a trait (e.g., **Aa**) is:
+A) Homozygous
+B) Heterozygous
+C) Dominant
+D) Recessive
 
-**4.** An epithelium capable of stretching (like in the bladder) is called:
-A) Simple squamous
-B) Stratified squamous
-C) Pseudostratified
-D) Transitional epithelium
+**5.** In a cross between a heterozygous tall plant (Tt) and a short plant (tt), what is the probability of having short offspring?
+A) 0%
+B) 25%
+C) 50%
+D) 100%
 
-**5.** Flattened cells arranged in a single layer would be classified as:
-A) Simple cuboidal
-B) Simple squamous
-C) Stratified squamous
-D) Simple columnar
+**6.** In a cross between two heterozygous individuals (Aa × Aa), what fraction of offspring will show the recessive phenotype?
+A) 1/4
+B) 1/2
+C) 3/4
+D) All
 
-**6.** Which tissue type has the most abundant extracellular matrix?
-A) Epithelial
-B) Muscle
-C) Connective
-D) Nervous
+**7.** Which inheritance pattern results in an intermediate phenotype (e.g., Red × White = Pink)?
+A) Complete dominance
+B) Codominance
+C) Incomplete dominance
+D) X-linked inheritance
 
-**7.** Which specialized connective tissue transports oxygen and nutrients?
-A) Bone
-B) Cartilage
-C) Blood
-D) Adipose
+**8.** Blood type AB (genotype I^A I^B) is an example of:
+A) Incomplete dominance
+B) Codominance
+C) Simple dominance
+D) Sex-linked inheritance
 
-**8.** The type of muscle tissue that is voluntary and striated is:
-A) Skeletal muscle
-B) Cardiac muscle
-C) Smooth muscle
-D) Visceral muscle
+**9.** Traits controlled by genes on the X chromosome are called:
+A) Autosomal traits
+B) Sex-linked traits
+C) Polygenic traits
+D) Multiple alleles
 
-**9.** Cardiac muscle is unique because it contains:
-A) Multiple nuclei per cell
-B) Intercalated discs
-C) No striations
-D) No mitochondria
+**10.** Why are X-linked recessive disorders (like color blindness) more common in males?
+A) Males have two X chromosomes
+B) Males have only one X chromosome, so there is no dominant allele to mask the recessive one
+C) The Y chromosome carries the disorder
+D) Males have weaker immune systems
 
-**10.** Where would you find smooth muscle?
-A) Attached to bones
-B) In the heart
-C) In the walls of hollow organs (stomach, blood vessels)
-D) In the brain
+**11.** A chart that tracks a trait across generations in a family is called a:
+A) Karyotype
+B) Punnett Square
+C) Pedigree
+D) Genetic map
 
-**11.** The main functional cell of the nervous system is the:
-A) Neuron
-B) Glial cell
-C) Osteocyte
-D) Fibroblast
+**12.** In a pedigree, a filled-in circle represents:
+A) An affected male
+B) An affected female
+C) A carrier
+D) An unaffected individual
 
-**12.** The part of the neuron that sends signals AWAY from the cell body is the:
-A) Dendrite
-B) Axon
-C) Nucleus
-D) Synapse
+**13.** A cross between a red flower (RR) and a white flower (WW) produces all pink offspring. If two pink flowers (RW × RW) are crossed, the phenotypic ratio is:
+A) All pink
+B) 1 Red : 2 Pink : 1 White
+C) 3 Red : 1 White
+D) 1 Red : 1 White
 
-**13.** Ligaments and tendons are made of:
-A) Loose connective tissue
-B) Dense regular connective tissue
-C) Hyaline cartilage
-D) Adipose tissue
+**14.** Which of the following genotypes would be considered homozygous recessive?
+A) AA
+B) Aa
+C) aa
+D) AB
 
-**14.** Which cell type produces the fibers in connective tissue?
-A) Macrophage
-B) Fibroblast
-C) Adipocyte
-D) Erythrocyte
+**15.** Gregor Mendel is known as the "Father of":
+A) Evolution
+B) Genetics
+C) Anatomy
+D) Microbiology
 
-**15.** Which tissue type is avascular (has no blood supply of its own)?
-A) Bone
-B) Skeletal muscle
-C) Epithelial tissue (and cartilage)
-D) Adipose tissue
+**16.** A woman who is a carrier for color blindness (X^C X^c) and a man with normal vision (X^C Y) have children. What is the probability their sons will be color blind?
+A) 0%
+B) 25%
+C) 50%
+D) 100%
 
 ---
 
 ## Part B: Fill in the Blank
 
-**16.** _____________________ epithelium appears layered but is actually a single layer of cells, often found in the respiratory tract.
+**17.** Gregor Mendel's work with _____________________ plants laid the foundation for genetics.
 
-**17.** The specific connective tissue that stores fat is called _____________________.
+**18.** The physical appearance of an organism is its _____________________, while its genetic makeup is its _____________________.
 
-**18.** Bone cells are called _____________________, while cartilage cells are called _____________________.
+**19.** In a heterozygote, the allele that is masked (hidden) is called _____________________.
 
-**19.** The non-living material surrounding connective tissue cells is the _____________________.
+**20.** A cross involving two traits (e.g., AaBb × AaBb) is called a _____________________ cross.
 
-**20.** _____________________ cells support and protect neurons in the nervous system.
-
-**21.** The side of epithelial tissue attached to the basement membrane is the _____________________ surface.
+**21.** A trait determined by multiple genes (such as skin color or height) is an example of _____________________ inheritance.
 
 ---
 
 ## Part C: Short Answer
 
-**22.** List the four major tissue types and provide one basic function for each.
+**22.** Set up a Punnett square for a cross between two heterozygous parents (**Aa** × **Aa**). What are the Genotypic and Phenotypic ratios?
 
 <br><br><br>
 
-**23.** Compare the three types of muscle tissue (Skeletal, Cardiac, Smooth). Include appearance (striated/non-striated) and control (voluntary/involuntary).
+**23.** Explain the difference between incomplete dominance and codominance. Give one example of each.
 
 <br><br><br>
 
-**24.** Describe how the structure of simple squamous epithelium fits its function of diffusion/filtration.
+**24.** A father who is color blind (X^c Y) and a mother who is a carrier (X^C X^c) have children. Set up the Punnett square and determine the probability of their daughters being color blind.
+
+<br><br><br>
+
+**25.** Define the following terms: allele, genotype, phenotype, dominant, recessive.
 
 <br><br><br>
 
