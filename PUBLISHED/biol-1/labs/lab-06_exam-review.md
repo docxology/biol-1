@@ -88,6 +88,34 @@ By the end of this lab, you will be able to:
 
 ---
 
+## Part 4: Energy & Metabolism (Modules 5 & 6)
+
+**Theme:** Energy flows through systems while matter cycles.
+
+<!-- lab:drawing-area title="Photosynthesis & Cellular Respiration" -->
+**Draw a diagram connecting a Chloroplast and a Mitochondrion. Show the flow of energy and the cycling of matter. Include and label:**
+
+* **Chloroplast**
+* **Mitochondrion**
+* **Light Energy**
+* **ATP (Cellular Energy)**
+* **Glucose, O₂, CO₂, H₂O**
+
+{fill:drawing height=400}
+<!-- /lab:drawing-area -->
+
+<!-- lab:reflection -->
+**5. Cellular respiration produces ATP. What is ATP, and why does a cell need it?**
+
+{fill:textarea rows=3}
+
+**6. Describe how the products of photosynthesis serve as the reactants (ingredients) for cellular respiration.**
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+---
+
 ## Conclusion
 
 Biology is not just a list of facts; it is a web of connections.
