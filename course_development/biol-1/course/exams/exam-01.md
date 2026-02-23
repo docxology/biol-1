@@ -217,7 +217,20 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ## Part B: Fill in the Blank (11 points)
 
-*Complete each statement with the best biological term. Each question is worth 1 point.*
+*Complete each statement with the best biological term from the word bank below. Each question is worth 1 point.*
+
+**Word Bank:**
+- Active
+- Autotroph
+- Catabolic
+- Denaturation
+- Endosymbiotic
+- Fermentation
+- Hypothesis
+- Ionic
+- Lysosomes
+- Monosaccharides
+- Mosaic
 
 1. A(n) \_\_\_\_\_\_\_\_\_\_\_\_ is a proposed explanation for a scientific observation, which can be tested through experimentation.
 
