@@ -740,8 +740,8 @@ if not validation.get("changed_files"):
 | Property | Value |
 |----------|-------|
 | **Location** | `course/labs/lab-XX_*.md` |
-| **BIOL-1 Count** | 2 complete, 15 stubs |
-| **BIOL-8 Count** | 4 complete, 11 stubs |
+| **BIOL-1 Count** | 11 complete, 6 stubs |
+| **BIOL-8 Count** | 11 complete, 4 stubs |
 | **Output Formats** | PDF (fillable), HTML (interactive) |
 | **Output Location** | `course/labs/output/` |
 

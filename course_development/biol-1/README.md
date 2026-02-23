@@ -69,10 +69,10 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 05 | [Lab 05](course/labs/lab-05_viewing-life.md) | Viewing Life | Complete |
 | 06 | [Lab 06](course/labs/lab-06_exam-review.md) | Exam 01 Review | Complete |
 | 07 | [Lab 07](course/labs/lab-07_energy.md) | Energy (Photosynthesis & Respiration) | Complete |
-| 08 | [Lab 08](course/labs/lab-08_central-dogma.md) | Central Dogma | Stub |
-| 09 | [Lab 09](course/labs/lab-09_cell-division.md) | Cell Division | Stub |
-| 10 | [Lab 10](course/labs/lab-10_gene-regulation.md) | Gene Regulation | Stub |
-| 11 | [Lab 11](course/labs/lab-11_inheritance.md) | Inheritance | Stub |
+| 08 | [Lab 08](course/labs/lab-08_central-dogma.md) | Central Dogma | Complete |
+| 09 | [Lab 09](course/labs/lab-09_cell-division.md) | Cell Division | Complete |
+| 10 | [Lab 10](course/labs/lab-10_gene-regulation.md) | Gene Regulation | Complete |
+| 11 | [Lab 11](course/labs/lab-11_inheritance.md) | Inheritance | Complete |
 | 12 | [Lab 12](course/labs/lab-12_gene-expression.md) | Gene Expression | Stub |
 | 13 | [Lab 13](course/labs/lab-13_gene-regulation.md) | Gene Regulation | Stub |
 | 14 | [Lab 14](course/labs/lab-14_biotechnology-genomics.md) | Biotechnology & Genomics | Stub |

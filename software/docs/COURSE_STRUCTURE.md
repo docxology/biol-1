@@ -257,7 +257,7 @@ The `flatten` pipeline stage reorganizes outputs into these categories.
 | **Modules** | 17 | 15 |
 | **Slide format** | 2 versions per module (full + notes) | 1 per module |
 | **Slide location** | `resources/slides/` | `course/module-XX/resources/` |
-| **Labs complete** | 3 | 7+ |
+| **Labs complete** | 11 | 11 |
 | **Exams** | Templates only | 4 complete + keys |
 | **Quizzes** | Templates only | 15 complete + keys |
 | **Dashboards** | None | 17 |
