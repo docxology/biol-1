@@ -6,12 +6,12 @@ Technical documentation for course management software utilities, including func
 
 ## Test Coverage
 
-**Overall: 81%** (609 tests, 609 passed, 6 skipped)
+**Overall: 81%** (614 tests, 608 passed, 6 skipped)
 
 | Module | Coverage | Notes |
 | ------ | -------- | ----- |
 | `batch_processing` | 78% | Main processing functions |
-| `canvas_integration` | 45% | External API (mocked in tests) |
+| `canvas_integration` | 45% | External API (live API requires key; tests validate structure) |
 | `file_validation` | 91-92% | Validation utilities |
 | `format_conversion` | 80-98% | Format-specific converters |
 | `html_website` | 92-100% | Website generation |
@@ -386,17 +386,22 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 ```text
 software/
-├── src/              # Source code
+├── src/              # Source code (15 modules)
 │   ├── batch_processing/
 │   ├── canvas_integration/
+│   ├── content_processing/
 │   ├── file_validation/
 │   ├── format_conversion/
 │   ├── html_website/
+│   ├── lab_manual/
+│   ├── legacy_import/
 │   ├── markdown_to_pdf/
 │   ├── module_organization/
+│   ├── publish/
 │   ├── schedule/
 │   ├── speech_to_text/
-│   └── text_to_speech/
+│   ├── text_to_speech/
+│   └── validation/
 ├── tests/            # Test files
 │   └── [mirrors src/ structure]
 ├── scripts/          # Generation scripts
@@ -475,7 +480,7 @@ Test files in `tests/` mirror the source structure:
 
 ### Core Dependencies
 
-- Python 3.x
+- Python 3.11+
 - Markdown parser
 - PDF generation library
 - Text-to-speech engine

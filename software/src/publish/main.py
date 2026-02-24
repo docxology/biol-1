@@ -95,9 +95,11 @@ def publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]
                     "name": module_name,
                     "files": files_copied
                 })
-                logger.info(f"Published {module_name}: {files_copied} files")
+                logger.debug(f"Published {module_name}: {files_copied} files")
             else:
-                logger.warning(f"No files found to publish in {module_name}")
+                # Intentionally empty: module exists in repo but hasn't been authored yet
+                # (e.g., beyond the current max_module publishing boundary)
+                logger.debug(f"No outputs to publish for {module_name} (not yet generated)")
 
     # 2. Publish Syllabus
     if course_conf.get("include_syllabus"):

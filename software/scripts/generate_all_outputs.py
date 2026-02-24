@@ -114,6 +114,10 @@ def main() -> int:
     clear_results = {"total_files_removed": 0}
     if not args.skip_clear:
         clear_results = clear_all_outputs(repo_root)
+        # Only log if there was actually something cleared (avoids noise when
+        # publish_all.py already did --clean-source-outputs before calling us)
+        if clear_results.get("total_files_removed", 0) == 0:
+            logger.debug("No source outputs to clear (already clean)")
 
     all_errors = []
     total_files = 0

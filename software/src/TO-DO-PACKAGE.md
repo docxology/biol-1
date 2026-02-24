@@ -24,7 +24,7 @@
 | Metric | Value |
 |--------|-------|
 | Modules | 15 across Layers 0–4 |
-| Tests | 609 passed, 6 skipped |
+| Tests | 614 passed, 6 skipped |
 | Coverage | 81% |
 | Formats | PDF, DOCX, HTML, TXT, MD, MP3 |
 | Features shipped | Selective Rendering, 6-stage pipeline, Lab dashboards, HTML websites with interactive quiz |
@@ -187,7 +187,7 @@
 ## Completed (v0.1.0)
 
 - [x] 15-module layered architecture (Layers 0–4) with clean public interfaces
-- [x] 609 tests at 81% coverage across all modules
+- [x] 614 tests at 81% coverage across all modules
 - [x] 6-stage publish pipeline (Clean → Generate → Publish → Extras → Flatten → Validate)
 - [x] Selective Rendering Boundaries (`max_module`, `max_lab`) in pipeline and validation
 - [x] 6 output formats: PDF, DOCX, HTML, TXT, MD, MP3

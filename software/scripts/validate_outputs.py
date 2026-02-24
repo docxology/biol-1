@@ -171,45 +171,63 @@ def main():
             for issue in src["issues"]:
                 logger.info(f"    ⚠ {issue}")
                 
-        # Published validation  
+        # Published validation — reuse the result from generate_validation_report
+        # (which already called validate_published internally) to avoid a redundant scan
+        pub = report.get("published_validation", {})
         if pub and pub.get("courses", {}).get(course_name):
             course_pub = pub["courses"][course_name]
+            n_modules = len(course_pub.get("modules", []))
+            n_files = course_pub.get("total_files", 0)
             logger.info(f"\nPublished Outputs:")
-            logger.info(f"  Total files: {course_pub.get('total_files', 0)}")
-            logger.info(f"  Modules: {len(course_pub.get('modules', []))}")
+            logger.info(f"  Total files: {n_files}  ({n_modules} modules)")
             
         # Output summary
         course_path = repo_root / "course_development" / course_name
         if course_path.exists():
             summary = get_output_summary(str(course_path))
-            logger.info(f"\nOutput Summary:")
-            for fmt, count in sorted(summary.get("by_format", {}).items()):
-                logger.info(f"  {fmt}: {count} files")
+            by_fmt = summary.get("by_format", {})
+            if by_fmt:
+                fmt_str = "  ".join(f"{fmt}:{count}" for fmt, count in sorted(by_fmt.items()))
+                logger.info(f"\nOutput Summary: {fmt_str}")
                 
-    # Validate published directory overall
-    published_path = repo_root / "PUBLISHED"
-    pub_results = validate_published(str(published_path))
-    all_results["published"] = pub_results
-    
+    # Aggregate published summary from already-computed per-course report data
+    # (generate_validation_report already called validate_published internally —
+    # no need to scan PUBLISHED/ a third time here)
+    total_pub_files = 0
+    all_pub_issues = []
+    all_pub_valid = True
+    per_course_pub: dict = {}
+    for cname, report in all_results.items():
+        if cname == "published":
+            continue
+        pub = report.get("published_validation", {})
+        if pub:
+            course_data = pub.get("courses", {}).get(cname, {})
+            count = course_data.get("total_files", 0)
+            total_pub_files += count
+            per_course_pub[cname] = count
+            all_pub_issues.extend(pub.get("issues", []))
+            if not pub.get("valid", True):
+                all_pub_valid = False
+
+    all_results["published"] = {"total_files": total_pub_files, "issues": all_pub_issues, "valid": all_pub_valid}
+
     logger.info(f"\n{'='*60}")
     logger.info("PUBLISHED DIRECTORY SUMMARY")
     logger.info(f"{'='*60}")
-    logger.info(f"Total files: {pub_results.get('total_files', 0)}")
-    
-    for course_name, course_data in pub_results.get("courses", {}).items():
-        logger.info(f"  {course_name}: {course_data.get('total_files', 0)} files")
-        
-    if pub_results.get("issues"):
-        for issue in pub_results["issues"]:
-            logger.info(f"  ⚠ {issue}")
-            
+    logger.info(f"Total files: {total_pub_files}")
+    for cname, count in sorted(per_course_pub.items()):
+        logger.info(f"  {cname}: {count} files")
+    for issue in all_pub_issues:
+        logger.info(f"  ⚠ {issue}")
+
     # JSON output
     if args.json:
         print(json.dumps(all_results, indent=2))
-        
+
     # Final status
     logger.info(f"\n{'='*60}")
-    if all_valid and pub_results.get("valid", False):
+    if all_valid and all_pub_valid:
         logger.info("✓ All validations PASSED")
         return 0
     else:

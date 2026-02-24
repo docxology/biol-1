@@ -47,7 +47,7 @@ cr-bio/
 │
 ├── software/                      # Processing pipeline
 │   ├── src/                       # 15 source modules
-│   ├── tests/                     # Test suite (609+ tests)
+│   ├── tests/                     # Test suite (614+ tests)
 │   ├── scripts/                   # CLI orchestrators
 │   └── docs/                      # Documentation (YOU ARE HERE)
 │

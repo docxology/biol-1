@@ -41,7 +41,7 @@ flowchart LR
 |--------|-------|--------------|
 | **Total Tests** | 608 passed, 6 skipped | 2026-02-23 |
 | **Modules** | 15 source modules | 2026-02-23 |
-| **Code Coverage** | 85% overall | 2026-02-23 |
+| **Code Coverage** | 81% overall | 2026-02-23 |
 
 ### Supported Courses
 
@@ -386,6 +386,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 0.1.0 | 2026-02-23 | Pipeline logging improvements: 9-step renumber, per-step timing, publish_course collapse, validate_published scan reduction. TO-DO-PACKAGE.md added to `software/src/`. |
 | 0.1.0 | 2026-02-23 | Comprehensive BIOL-1 Modules 7-11 Labs completion and repo-wide synchronization. |
 | 0.1.0 | 2026-02-08 | Documentation consolidation (absorbed HOW_IT_WORKS, GENERATION, DOCUMENT_TYPES) |
 | 0.1.0 | 2026-02-04 | Documentation synchronization (date updates, module count correction) |

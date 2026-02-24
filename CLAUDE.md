@@ -100,19 +100,19 @@ software/
 
 Modules are in `software/src/`. Each has `__init__.py`, `main.py` (public API), `utils.py`, `config.py`.
 
-**Layer 0 - Independent:** `module_organization`, `file_validation`
+**Layer 0 - Independent:** `module_organization`, `file_validation`, `publish`, `validation`, `lab_manual`, `content_processing`, `legacy_import`
 
-**Layer 1 - Core converters:** `markdown_to_pdf` (WeasyPrint), `text_to_speech` (gTTS), `speech_to_text` (SpeechRecognition), `lab_manual`
+**Layer 1 - Core converters:** `markdown_to_pdf` (WeasyPrint), `text_to_speech` (gTTS), `speech_to_text` (SpeechRecognition)
 
-**Layer 2 - Composition:** `format_conversion`, `content_processing`
+**Layer 2 - Composition:** `format_conversion`
 
 **Layer 3 - Orchestration:** `batch_processing`, `html_website`, `schedule`
 
-**Layer 4 - Integration:** `canvas_integration`, `publish`, `validation`, `legacy_import`
+**Layer 4 - Integration:** `canvas_integration`
 
 ### Publishing Pipeline
 
-Configured via `publish.toml` at repo root. Six stages: generate → publish → copy_extras → flatten → validate → git_push. The top-level `publish.py` reads this config and delegates to `software/scripts/publish_all.py`.
+Configured via `publish.toml` at repo root. Nine stages: clean → clean-source → generate → publish → copy_extras → flatten → reorganize → validate → git_push. The top-level `publish.py` reads this config and delegates to `software/scripts/publish_all.py`.
 
 Available formats: `pdf`, `docx`, `html`, `txt`, `md`, `mp3`. Per-course module/lab limits are configurable via `max_module` and `max_lab` in `publish.toml`.
 

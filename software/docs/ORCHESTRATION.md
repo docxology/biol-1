@@ -819,27 +819,36 @@ The publish pipeline is the automated process that transforms source content int
 
 ```mermaid
 flowchart LR
-    GEN["1. Generate"] --> PUB["2. Publish"]
-    PUB --> COPY["3. Copy Extras"]
-    COPY --> FLAT["4. Flatten"]
-    FLAT --> VAL["5. Validate"]
-    VAL --> GIT["6. Git Push"]
+    CLN["1. Clean"] --> CLNS["2. Clean-Source"]
+    CLNS --> GEN["3. Generate"]
+    GEN --> PUB["4. Publish"]
+    PUB --> COPY["5. Copy Extras"]
+    COPY --> FLAT["6. Flatten"]
+    FLAT --> REORG["7. Reorganize"]
+    REORG --> VAL["8. Validate"]
+    VAL --> GIT["9. Git Push"]
     
+    style CLN fill:#fce4ec
+    style CLNS fill:#fce4ec
     style GEN fill:#e1f5ff
     style PUB fill:#fff9c4
     style FLAT fill:#e8f5e9
+    style REORG fill:#e8f5e9
     style VAL fill:#c8e6c9
     style GIT fill:#f3e5f5
 ```
 
 | Stage | Script | Description |
 |-------|--------|-------------|
-| **1. Generate** | `generate_all_outputs.py` | Convert Markdown → PDF, DOCX, HTML, TXT, MP3 |
-| **2. Publish** | `publish_course.py` | Copy to `PUBLISHED/biol-{1,8}/` |
-| **3. Copy Extras** | `publish_all.py` | Copy slides, syllabus, labs, resources |
-| **4. Flatten** | `flatten_published.py` | Reorganize into flat structure by category |
-| **5. Validate** | `validate_outputs.py` | Check all expected outputs exist |
-| **6. Git Push** | `publish.py` | Commit and push to public repos |
+| **1. Clean** | `publish_all.py` | Remove old output/ directories |
+| **2. Clean-Source** | `publish_all.py` | Remove stale source outputs |
+| **3. Generate** | `generate_all_outputs.py` | Convert Markdown → PDF, DOCX, HTML, TXT, MD, MP3 |
+| **4. Publish** | `publish_course.py` | Copy to `PUBLISHED/biol-{1,8}/` |
+| **5. Copy Extras** | `publish_all.py` | Copy slides, syllabus, labs, resources |
+| **6. Flatten** | `flatten_published.py` | Reorganize into flat structure by category |
+| **7. Reorganize** | `publish_all.py` | Final directory restructure |
+| **8. Validate** | `validate_outputs.py` | Check all expected outputs exist |
+| **9. Git Push** | `publish.py` | Commit and push to public repos |
 
 ### Running the Pipeline
 

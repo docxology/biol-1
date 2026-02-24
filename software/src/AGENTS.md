@@ -1,6 +1,6 @@
 # Source Code Technical Documentation
 
-**Test Coverage: 81%** (609 tests passed, 6 skipped)
+**Test Coverage: 81%** (614 tests passed, 6 skipped)
 
 ## Code Structure
 

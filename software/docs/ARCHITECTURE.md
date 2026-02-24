@@ -223,7 +223,6 @@ graph LR
 
     subgraph layer4[Layer 4: Integration]
         CI["canvas_integration"]
-        PUB["publish"]
     end
 
     M2P --> FC

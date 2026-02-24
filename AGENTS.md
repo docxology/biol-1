@@ -23,7 +23,7 @@ This document provides technical documentation for the Biology courses repositor
 
 #### Published Materials (`PUBLISHED/`)
 
-- **Generated Outputs**: PDF, MP3, HTML, DOCX
+- **Generated Outputs**: PDF, MP3, HTML, DOCX, TXT, MD
 - **Organization**: Mirror of course structure, but only final files.
 
 #### Software Structure

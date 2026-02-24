@@ -156,22 +156,30 @@ def main():
     print("  " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     print("=" * 70 + "\n")
     
-    # Step 1: Clean if requested
+    # Step 1: Clean PUBLISHED/
     if args.clean:
+        t_step = time.time()
         logger.info("🧹 STEP 1: Cleaning PUBLISHED directory")
         clean_published(published_dir)
+        logger.info(f"  ✅ Cleaned  ({time.time()-t_step:.1f}s)")
     else:
         logger.info("⏭️  STEP 1: Skipping clean (use --clean to clean first)")
 
-    # Step 1.5: Clean source outputs if requested
+    # Step 2: Clean source outputs
     if args.clean_source_outputs:
-        logger.info("\n🧹 STEP 1.5: Cleaning source output directories")
+        t_step = time.time()
+        logger.info("\n🧹 STEP 2: Cleaning source output directories")
         clear_results = clear_all_outputs(repo_root / 'course_development')
-        logger.info(f"  ✅ Cleared {clear_results['total_files_removed']} files from {len(clear_results['cleared_directories'])} directories")
+        n_files = clear_results['total_files_removed']
+        n_dirs = len(clear_results['cleared_directories'])
+        logger.info(f"  ✅ Cleared {n_files} files from {n_dirs} directories  ({time.time()-t_step:.1f}s)")
+    else:
+        logger.info("\n⏭️  STEP 2: Skipping source output clean")
 
-    # Step 2: Generate outputs
+    # Step 3: Generate outputs
     if not args.skip_generation:
-        logger.info("\n⚙️  STEP 2: Generating all outputs")
+        t_step = time.time()
+        logger.info("\n⚙️  STEP 3: Generating all outputs")
 
         # Build generation args
         gen_args = ['--course', 'all']
@@ -200,56 +208,60 @@ def main():
         if not run_script('generate_all_outputs.py', gen_args, args.verbose):
             logger.error("❌ Generation failed!")
             return 1
-        logger.info("  ✅ Generation complete")
+        logger.info(f"  ✅ Generation complete  ({time.time()-t_step:.1f}s)")
     else:
-        logger.info("\n⏭️  STEP 2: Skipping generation (--skip-generation)")
+        logger.info("\n⏭️  STEP 3: Skipping generation (--skip-generation)")
 
-    # Step 3: Publish to PUBLISHED/
+    # Step 4: Publish to PUBLISHED/
     if not args.skip_publish:
-        logger.info("\n📦 STEP 3: Publishing to PUBLISHED/")
+        t_step = time.time()
+        logger.info("\n📦 STEP 4: Publishing to PUBLISHED/")
         if not run_script('publish_course.py', ['--course', 'all'], args.verbose):
             logger.error("❌ Publishing failed!")
             return 1
-        logger.info("  ✅ Publishing complete")
+        logger.info(f"  ✅ Publishing complete  ({time.time()-t_step:.1f}s)")
     else:
-        logger.info("\n⏭️  STEP 3: Skipping publish (--skip-publish)")
+        logger.info("\n⏭️  STEP 4: Skipping publish (--skip-publish)")
 
-    # Step 4: Copy labs and dashboards
+    # Step 5: Copy labs and dashboards
     if not args.skip_copy_extras:
-        logger.info("\n📋 STEP 4: Copying labs and dashboards")
+        t_step = time.time()
+        logger.info("\n📋 STEP 5: Copying labs and dashboards")
         copied = copy_labs_and_dashboards(repo_root, courses, args.verbose)
-        logger.info(f"  ✅ Copied {copied} files")
+        logger.info(f"  ✅ Copied {copied} files  ({time.time()-t_step:.1f}s)")
     else:
-        logger.info("\n⏭️  STEP 4: Skipping copy extras (--skip-copy-extras)")
+        logger.info("\n⏭️  STEP 5: Skipping copy extras (--skip-copy-extras)")
 
-    # Step 4.5: Copy slides and practice tests
-    # Note: Exams are NOT published - they are teacher-only materials.
-    # Exams are rendered locally by generate_all_outputs.py (PDF + DOCX)
-    # but never copied to PUBLISHED/ or pushed to public git.
+    # Step 6: Copy slides and practice tests
+    # Note: Exams are NOT published (teacher-only); they are rendered locally only.
     if not args.skip_copy_extras:
-        logger.info("\n🎯 STEP 4.5: Copying slides and practice tests")
+        t_step = time.time()
+        logger.info("\n🎯 STEP 6: Copying slides and practice tests")
         slides_copied = copy_slides(repo_root, courses, args.verbose)
         module_slides_copied = copy_slides_to_modules(repo_root, courses, args.verbose)
         practice_tests_copied = copy_practice_tests(repo_root, courses, args.verbose)
-        logger.info(f"  ✅ Copied {slides_copied} slides to central dir, {module_slides_copied} to module folders, {practice_tests_copied} practice tests")
+        logger.info(f"  ✅ {slides_copied} slides (central) + {module_slides_copied} (module folders) + {practice_tests_copied} practice tests  ({time.time()-t_step:.1f}s)")
 
-    # Step 5: Flatten structure
+    # Step 7: Flatten structure
     if not args.skip_flatten:
-        logger.info("\n📁 STEP 5: Flattening module structure")
+        t_step = time.time()
+        logger.info("\n📁 STEP 7: Flattening module structure")
         moved = flatten_published(published_dir)
-        logger.info(f"  ✅ Flattened {moved} files")
+        logger.info(f"  ✅ Flattened {moved} files  ({time.time()-t_step:.1f}s)")
     else:
-        logger.info("\n⏭️  STEP 5: Skipping flatten (--skip-flatten)")
+        logger.info("\n⏭️  STEP 7: Skipping flatten (--skip-flatten)")
 
-    # Step 5.5: Reorganize to category folders
+    # Step 8: Reorganize to category folders
     if not args.skip_flatten:
-        logger.info("\n📂 STEP 5.5: Reorganizing to category folders")
+        t_step = time.time()
+        logger.info("\n📂 STEP 8: Reorganizing to category folders")
         reorganized = reorganize_to_categories(published_dir, courses, args.verbose)
-        logger.info(f"  ✅ Reorganized {reorganized} files into category folders")
+        logger.info(f"  ✅ Reorganized {reorganized} files  ({time.time()-t_step:.1f}s)")
 
-    # Step 6: Validate
+    # Step 9: Validate
     if not args.skip_validate:
-        logger.info("\n🔍 STEP 6: Validating outputs")
+        t_step = time.time()
+        logger.info("\n🔍 STEP 9: Validating outputs")
         # Pass formats to validation so it only checks what was generated
         validate_args = ['--course', 'all']
         if args.formats and args.formats != 'all':
@@ -262,30 +274,14 @@ def main():
         if not run_script('validate_outputs.py', validate_args, args.verbose):
             logger.error("❌ Validation failed!")
             return 1
-        logger.info("  ✅ Validation complete")
+        logger.info(f"  ✅ Validation complete  ({time.time()-t_step:.1f}s)")
     else:
-        logger.info("\n⏭️  STEP 6: Skipping validation (--skip-validate)")
+        logger.info("\n⏭️  STEP 9: Skipping validation (--skip-validate)")
     
-    # Summary
+    # Pipeline complete — publish.py prints the full PUBLISH COMPLETE summary
+    # with per-course counts; just log the pipeline duration here.
     duration = time.time() - start_time
-    
-    total_files = sum(1 for _ in published_dir.rglob('*') if _.is_file())
-    
-    # Calculate per-course breakdown
-    course_counts = {}
-    for course_dir in sorted(published_dir.iterdir()):
-        if course_dir.is_dir() and not course_dir.name.startswith('.'):
-            course_counts[course_dir.name] = sum(1 for _ in course_dir.rglob('*') if _.is_file())
-    
-    print("\n" + "=" * 70)
-    print("  PUBLISH COMPLETE")
-    print("=" * 70)
-    print(f"  Total files in PUBLISHED: {total_files}")
-    for course, count in course_counts.items():
-        print(f"    {course}: {count} files")
-    print(f"  Duration: {duration:.1f}s")
-    print("=" * 70 + "\n")
-    
+    logger.info(f"\n✅ Pipeline complete in {duration:.1f}s")
     return 0
 
 

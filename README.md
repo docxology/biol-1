@@ -25,8 +25,8 @@ graph TD
     Biol1 --> Biol1Source[Source Markdown & Private Files]
     Biol8 --> Biol8Source[Source Markdown & Private Files]
     
-    PubBiol1 --> PubBiol1M[Generated Output: PDF, MP3, HTML]
-    PubBiol8 --> PubBiol8M[Generated Output: PDF, MP3, HTML]
+    PubBiol1 --> PubBiol1M["Generated Output: PDF, MP3, HTML, DOCX, TXT, MD"]
+    PubBiol8 --> PubBiol8M["Generated Output: PDF, MP3, HTML, DOCX, TXT, MD"]
     
     style Root fill:#e1f5ff
     style Dev fill:#fff9c4
@@ -137,8 +137,9 @@ verbose = false     # Enable verbose logging
 [publish.formats]
 pdf  = true         # Generate PDF files
 docx = true         # Generate Word documents
-html = true         # Generate HTML files
-txt  = true         # Generate plain text files
+html = false        # Generate HTML files
+txt  = false        # Generate plain text files
+md   = true         # Generate Markdown copy
 mp3  = false        # Generate audio narration (slower, ~30s per file)
 
 [publish.courses.biol-1]
@@ -147,10 +148,12 @@ include_labs = true
 include_dashboards = true
 
 [publish.pipeline]
-generate = true     # Run output generation
-publish = true      # Copy to PUBLISHED/
-flatten = true      # Flatten module structure
-validate = true     # Validate outputs
+generate    = true  # Run output generation
+publish     = true  # Copy to PUBLISHED/
+copy_extras = true  # Copy labs and dashboards
+flatten     = true  # Flatten module structure
+validate    = true  # Validate outputs
+git_push    = true  # Push to public repos
 ```
 
 #### Direct Script Access

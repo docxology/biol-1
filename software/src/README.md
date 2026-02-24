@@ -9,7 +9,7 @@ Source code for course management software utilities.
 ## Statistics
 
 - **15 Modules** across 5 layers
-- **609 Tests** (81% coverage)
+- **614 Tests** (81% coverage)
 - **6 Output Formats**: PDF, DOCX, HTML, TXT, MD, MP3
 
 ---

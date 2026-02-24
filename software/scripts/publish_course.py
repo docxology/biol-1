@@ -3,6 +3,7 @@
 
 import argparse
 import sys
+import time
 import logging
 from pathlib import Path
 
@@ -53,19 +54,21 @@ def main():
             continue
             
         try:
+            t0 = time.time()
             results = publish_course(str(course_path))
-            
-            logger.info("=" * 60)
-            logger.info(f"Publishing Results for {results['course']}")
-            logger.info("=" * 60)
-            logger.info(f"Modules processed: {results['modules_published']}")
-            logger.info(f"Syllabus files: {results['syllabus_files']}")
-            logger.info(f"Total files published: {results['total_files']}")
-            
-            if results["modules"]:
-                logger.info("\nModule Details:")
-                for mod in results["modules"]:
-                    logger.info(f"  - {mod['name']}: {mod['files']} files")
+            elapsed = time.time() - t0
+            course_id = results['course']
+            n_mod = results['modules_published']
+            n_files = results['total_files']
+            n_syl = results['syllabus_files']
+            msg = f"  ✅ {course_id}: {n_mod} modules, {n_files} files published"
+            if n_syl:
+                msg += f" ({n_syl} syllabus)"
+            msg += f" in {elapsed:.2f}s"
+            logger.info(msg)
+            if results.get('errors'):
+                for err in results['errors']:
+                    logger.warning(f"    ⚠ {err}")
             
         except Exception as e:
             logger.error(f"Failed to publish {course_name}: {e}")
