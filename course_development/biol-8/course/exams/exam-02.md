@@ -1,8 +1,8 @@
 # BIOL-8 Exam 02
 
-## Modules 08-11: Meiosis through Skeletal System
+## Modules 07-10: Genetics, Cell Division, Tissues & Inheritance
 
-**Date**: Tuesday, March 10, 2026  
+**Date**: Thursday, March 5, 2026  
 **Time**: 5:30 PM - 8:40 PM  
 **Total Points**: 100
 
@@ -12,7 +12,39 @@
 
 *Choose the best answer for each question. Each question is worth 2 points.*
 
-### Module 08: Cell Division (Mitosis & Meiosis)
+### Module 07: Genetics & DNA
+
+1. Which of the following describes the correct flow of genetic information in eukaryotic cells?
+   - A) Protein → RNA → DNA
+   - B) DNA → RNA → Protein
+   - C) RNA → DNA → Protein
+   - D) DNA → Protein → RNA
+
+2. A codon consists of:
+   - A) One nitrogen base
+   - B) Two nitrogen bases
+   - C) Three nitrogen bases
+   - D) Four nitrogen bases
+
+3. During transcription, which molecule is produced?
+   - A) DNA from an RNA template
+   - B) mRNA from a DNA template
+   - C) tRNA from an mRNA template
+   - D) Protein from a DNA template
+
+4. Which type of mutation causes a single amino acid change in a protein?
+   - A) Silent mutation
+   - B) Nonsense mutation
+   - C) Missense mutation
+   - D) Frameshift mutation
+
+5. DNA replication is described as "semiconservative" because:
+   - A) Only half the DNA is copied
+   - B) Each daughter strand contains one original and one new strand
+   - C) Only the template strand is saved
+   - D) The two strands separate and are never reunited
+
+### Module 08: Cell Division
 
 1. The primary purpose of mitosis is ______, while meiosis is for ______.
    - A) gamete production; growth and repair
@@ -39,44 +71,12 @@
    - D) Fertilization
 
 5. At the end of meiosis II, human cells contain:
-   - A) 46 chromosomes (diploid)
-   - B) 23 pairs of chromosomes
-   - C) 23 chromosomes (haploid)
-   - D) 92 chromatids
+    - A) 46 chromosomes (diploid)
+    - B) 23 pairs of chromosomes
+    - C) 23 chromosomes (haploid)
+    - D) 92 chromatids
 
-### Module 09: Inheritance
-
-1. A cross between two heterozygous individuals (Aa × Aa) would produce offspring in which ratio?
-   - A) 1:1
-   - B) 3:1
-   - C) 1:2:1
-   - D) 9:3:3:1
-
-2. If both parents are carriers for a recessive trait (Aa × Aa), what is the probability their child will express the recessive phenotype?
-   - A) 0%
-   - B) 25%
-   - C) 50%
-   - D) 75%
-
-3. Incomplete dominance is demonstrated when:
-   - A) One allele completely masks the other
-   - B) The heterozygote has a phenotype intermediate between the two homozygotes
-   - C) Both alleles are fully expressed in the heterozygote
-   - D) The trait is controlled by multiple genes
-
-4. A woman who is a carrier for color blindness (XᶜX) has children with a man who has normal color vision (XY). What percentage of their sons will be color blind?
-   - A) 0%
-   - B) 25%
-   - C) 50%
-   - D) 100%
-
-5. Blood type in humans is an example of:
-    - A) Simple dominance
-    - B) Incomplete dominance
-    - C) Multiple alleles and codominance
-    - D) Polygenic inheritance
-
-### Module 10: Tissues
+### Module 09: Tissues
 
 1. Which tissue type is specialized for contraction?
     - A) Epithelial
@@ -108,67 +108,67 @@
     - C) Voluntary, involuntary, and mixed
     - D) Fast-twitch, slow-twitch, and intermediate
 
-### Module 11: Skeletal System
+### Module 10: Inheritance
 
-1. The functions of the skeletal system include all EXCEPT:
-    - A) Support
-    - B) Blood cell production
-    - C) Hormone production
-    - D) Mineral storage
+1. A cross between two heterozygous individuals (Aa × Aa) would produce offspring in which phenotypic ratio?
+    - A) 1:1
+    - B) 3:1
+    - C) 1:2:1
+    - D) 9:3:3:1
 
-2. Compact bone is organized into units called:
-    - A) Trabeculae
-    - B) Osteons (Haversian systems)
-    - C) Lacunae
-    - D) Canaliculi
+2. If both parents are carriers for a recessive trait (Aa × Aa), what is the probability their child will express the recessive phenotype?
+    - A) 0%
+    - B) 25%
+    - C) 50%
+    - D) 75%
 
-3. Which bone cell is responsible for breaking down bone tissue?
-    - A) Osteoblast
-    - B) Osteocyte
-    - C) Osteoclast
-    - D) Chondrocyte
+3. Incomplete dominance is demonstrated when:
+    - A) One allele completely masks the other
+    - B) The heterozygote has a phenotype intermediate between the two homozygotes
+    - C) Both alleles are fully expressed in the heterozygote
+    - D) The trait is controlled by multiple genes
 
-4. The epiphyseal plate is important for:
-    - A) Blood cell production
-    - B) Bone growth in length
-    - C) Mineral storage
-    - D) Muscle attachment
+4. A woman who is a carrier for color blindness (XᶜX) has children with a man who has normal color vision (XY). What percentage of their sons will be color blind?
+    - A) 0%
+    - B) 25%
+    - C) 50%
+    - D) 100%
 
-5. Which type of joint allows the greatest range of motion?
-    - A) Fibrous joint
-    - B) Cartilaginous joint
-    - C) Synovial joint
-    - D) Suture
+5. Blood type in humans is an example of:
+    - A) Simple dominance
+    - B) Incomplete dominance
+    - C) Multiple alleles and codominance
+    - D) Polygenic inheritance
 
-6. The axial skeleton includes:
-    - A) Arms and legs
-    - B) Skull, vertebral column, and rib cage
-    - C) Pelvic girdle and shoulder girdle
-    - D) Hands and feet
+6. The Law of Independent Assortment states that:
+    - A) Alleles always segregate together
+    - B) Allele pairs on different chromosomes sort independently of each other
+    - C) Dominant alleles mask recessive alleles
+    - D) Traits skip generations
 
-7. Osteoblasts function to:
-    - A) Break down bone matrix
-    - B) Build new bone tissue
-    - C) Maintain bone tissue
-    - D) Store calcium
+7. Which of the following correctly defines "carrier"?
+    - A) An individual who is homozygous dominant for a trait
+    - B) An individual who is homozygous recessive and affected
+    - C) An individual who is heterozygous and does not show the recessive trait
+    - D) Any individual who passes traits to their children
 
-8. Red bone marrow is responsible for:
-    - A) Fat storage
-    - B) Blood cell production (hematopoiesis)
-    - C) Calcium absorption
-    - D) Bone remodeling
+8. In a dihybrid cross between two parents heterozygous for both traits (RrYy × RrYy), the expected phenotypic ratio is:
+    - A) 3:1
+    - B) 1:2:1
+    - C) 9:3:3:1
+    - D) 1:1:1:1
 
-9. The periosteum is:
-    - A) The marrow cavity
-    - B) The outer covering of bone
-    - C) The growth plate
-    - D) The spongy bone layer
+9. A pedigree shows two unaffected parents who have an affected child. The trait is most likely:
+    - A) Autosomal dominant
+    - B) Autosomal recessive
+    - C) X-linked dominant
+    - D) Y-linked
 
-10. Osteoporosis is characterized by:
-    - A) Increased bone density
-    - B) Decreased bone density and increased fracture risk
-    - C) Fusion of joints
-    - D) Excessive bone growth
+10. Why are males much more commonly affected by X-linked recessive conditions than females?
+    - A) Males have two X chromosomes and express both alleles
+    - B) Males have one X chromosome so a single recessive allele causes the condition
+    - C) Females have a protective Y chromosome
+    - D) X-linked traits are only passed through fathers
 
 ---
 
@@ -176,17 +176,17 @@
 
 *Answer each question in 2-4 sentences. Each question is worth 5 points.*
 
-1. Compare and contrast mitosis and meiosis in terms of their purposes and outcomes.
+1. Compare and contrast mitosis and meiosis in terms of their purposes, number of divisions, and genetic outcomes.
 
-2. Explain how crossing over and independent assortment contribute to genetic variation.
+2. Explain how crossing over and independent assortment contribute to genetic variation in meiosis.
 
-3. A father with blood type A (genotype AO) and a mother with blood type B (genotype BO) have children. What are the possible blood types of their offspring?
+3. A father with blood type A (genotype AO) and a mother with blood type B (genotype BO) have children. What are the possible blood types of their offspring? Show your work with a Punnett square.
 
 4. Describe the structural differences between the three types of muscle tissue and relate each structure to its function.
 
-5. Explain the process of bone remodeling and why it is important throughout life.
+5. Explain why simple squamous epithelium lines the alveoli (air sacs) of the lungs, while stratified squamous epithelium lines the skin. Connect structure to function in each case.
 
-6. Compare compact bone and spongy bone in terms of structure, location, and function.
+6. A woman is a carrier for hemophilia (X-linked recessive). Her husband is unaffected. Calculate the probability that their son has hemophilia. What is the probability for their daughter?
 
 ---
 
@@ -194,9 +194,9 @@
 
 *Choose ONE of the following essay questions. Write a well-organized response of at least one page.*
 
-**Option A**: Explain how errors in meiosis (such as nondisjunction) can lead to chromosomal disorders. Include specific examples and describe the consequences for the affected individual.
+**Option A**: Explain how errors in meiosis (such as nondisjunction) can lead to chromosomal disorders. Include specific examples (e.g., Down syndrome, Turner syndrome) and describe the biological consequences for the affected individual.
 
-**Option B**: Describe the relationship between tissues, organs, and organ systems using the skeletal system as your example. Explain how each of the four tissue types contributes to skeletal system function.
+**Option B**: Using the four tissue types as your framework, explain how the concept "structure dictates function" applies to each tissue type. Provide at least two specific examples for each tissue type, connecting the microscopic structure to the tissue's role in the body.
 
 ---
 

@@ -1,10 +1,11 @@
-# Module 10 Quiz: Tissues
+# Module 10 Quiz: Inheritance
 
 **Name**: _________________________ **Date**: _____________
 
 ---
 
 ## Part A: Multiple Choice (7 points)
+
 *Choose the best answer for each question. (1 point each)*
 
 1. Which type of tissue covers body surfaces and lines cavities?
@@ -52,22 +53,23 @@
 ---
 
 ## Part B: Free Response (3 points)
+
 *Answer each question in complete sentences.*
 
-8. (1 point) List and briefly describe the four main types of tissue in the human body.
+1. (1 point) List and briefly describe the four main types of tissue in the human body.
 
 _______________________________________________
 _______________________________________________
 _______________________________________________
 _______________________________________________
 
-9. (1 point) Compare skeletal muscle, cardiac muscle, and smooth muscle in terms of appearance and control.
+1. (1 point) Compare skeletal muscle, cardiac muscle, and smooth muscle in terms of appearance and control.
 
 _______________________________________________
 _______________________________________________
 _______________________________________________
 
-10. (1 point) Explain why epithelial tissue is ideal for lining the digestive tract.
+1. (1 point) Explain why epithelial tissue is ideal for lining the digestive tract.
 
 _______________________________________________
 _______________________________________________

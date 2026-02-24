@@ -13,8 +13,8 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 3 | 2/3 - 2/5 | Module 05: Membranes & Lab 03: Microscopy | Module 06: Metabolism & Lab 04: Diffusion | |
 | 4 | 2/10 - 2/12 | Test Review & Lab 05: pH and Solutions | **Exam 01** | Exam covers Modules 01-06 |
 | 5 | 2/17 - 2/19 | Module 07: Genetics (Ch 9) & Lab 06: Central Dogma | Module 08: Cell Division (Ch 6) & Lab 07: Cell Division | |
-| 6 | 2/24 - 2/26 | Module 09: Inheritance (Ch 8) & Lab 08: Inheritance | Module 10: Tissues & Lab 09: Enzymes | |
-| 7 | 3/3 - 3/5 | Review Modules 07-10 (No Lab) | **Exam 02** | Exam covers Modules 07-10 |
+| 6 | 2/24 - 2/26 | Module 09: Tissues & Lab 08: Enzymes | Module 10: Inheritance & Lab 09: Inheritance | |
+| 7 | 3/3 - 3/5 | Lab 10: Module 07-10 Review | **Exam 02** | Exam covers Modules 07-10 |
 | 8 | 3/10 - 3/12 | No Class | No Class | Spring Break |
 | 9 | 3/17 - 3/19 | Module 11: Skeletal System & Lab 11: Skeletal System | Module 12: Muscular System & Lab 12: Muscular System | |
 | 10 | 3/24 - 3/26 | Module 13: Pathogens & Lab 13: Pathogens | Module 14: Cardiovascular System & Lab 14: Cardiovascular | |
@@ -44,6 +44,6 @@ Each class will consist of different proportions of lecture, discussion, and han
 | Unit | Modules | Topic Focus |
 |------|---------|-------------|
 | Unit 1 | 01-06 | Foundations: Life Science, Chemistry, Cells, Membranes, Metabolism |
-| Unit 2 | 07-10 | Cell Division and Genetics: Mitosis, Meiosis, Inheritance, Tissues |
+| Unit 2 | 07-10 | Genetics & Cell Biology: Genetics, Cell Division, Tissues, Inheritance |
 | Unit 3 | 11-14 | Body Systems: Skeletal, Muscular, Pathogens, Cardiovascular |
 | Unit 4 | 15 | Respiratory System |

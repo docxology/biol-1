@@ -15,8 +15,9 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 | [Lab 05](lab-05_ph-solutions.md) | pH and Solutions | ✅ Complete | Module 05 |
 | [Lab 06](lab-06_central-dogma.md) | Central Dogma: DNA → RNA → Protein | ✅ Complete | Module 07 |
 | [Lab 07](lab-07_cell-division.md) | Cell Division: Mitosis & Meiosis | ✅ Complete | Module 08 |
-| [Lab 09](lab-09_inheritance.md) | Inheritance | 📝 Stub | Module 09 |
-| [Lab 10](lab-10_tissues.md) | Tissues | 📝 Stub | Module 10 |
+| [Lab 08](lab-08_enzymes.md) | Chicken Liver Enzyme Activity | ✅ Complete | Module 06 |
+| [Lab 09](lab-09_inheritance.md) | Genetics & Inheritance | ✅ Complete | Module 10 |
+| [Lab 10](lab-10_review.md) | Module 07-10 Review | ✅ Complete | Modules 07-10 |
 | [Lab 11](lab-11_skeletal-system.md) | Skeletal System | 📝 Stub | Module 11 |
 | [Lab 12](lab-12_muscular-system.md) | Muscular System | 📝 Stub | Module 12 |
 | [Lab 13](lab-13_pathogens.md) | Pathogens | 📝 Stub | Module 13 |

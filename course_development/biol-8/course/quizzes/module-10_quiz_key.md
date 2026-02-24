@@ -1,4 +1,4 @@
-# Module 10 Quiz: Tissues — Answer Key
+# Module 10 Quiz: Inheritance — Answer Key
 
 ---
 
@@ -19,12 +19,14 @@
 ## Part B: Free Response (3 points)
 
 **8. Four Tissue Types (1 point)**
+
 - **Epithelial**: Covers surfaces, lines cavities; protection, secretion, absorption
 - **Connective**: Connects and supports; includes bone, cartilage, blood, fat
 - **Muscle**: Produces movement; skeletal, cardiac, smooth
 - **Nervous**: Transmits signals; neurons and supporting glial cells
 
 **9. Muscle Type Comparison (1 point)**
+
 | Feature | Skeletal | Cardiac | Smooth |
 |---------|----------|---------|--------|
 | Appearance | Striated | Striated | Non-striated |
@@ -33,6 +35,7 @@
 | Nuclei | Multinucleated | Single, central | Single, central |
 
 **10. Epithelium in Digestive Tract (1 point)**
+
 - Provides initial barrier against pathogens and physical damage
 - Columnar cells in intestines have microvilli for absorption
 - Contains goblet cells that secrete protective mucus

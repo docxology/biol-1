@@ -1,10 +1,11 @@
-# Module 09 Quiz: Inheritance
+# Module 09 Quiz: Tissues
 
 **Name**: _________________________ **Date**: _____________
 
 ---
 
 ## Part A: Multiple Choice (7 points)
+
 *Choose the best answer for each question. (1 point each)*
 
 1. An organism with two different alleles for a trait is:
@@ -52,21 +53,22 @@
 ---
 
 ## Part B: Free Response (3 points)
+
 *Answer each question in complete sentences.*
 
-8. (1 point) If a father is homozygous dominant (BB) and a mother is homozygous recessive (bb), predict the genotype and phenotype of their offspring.
+1. (1 point) If a father is homozygous dominant (BB) and a mother is homozygous recessive (bb), predict the genotype and phenotype of their offspring.
 
 _______________________________________________
 _______________________________________________
 _______________________________________________
 
-9. (1 point) Explain why color blindness is more common in males than females.
+1. (1 point) Explain why color blindness is more common in males than females.
 
 _______________________________________________
 _______________________________________________
 _______________________________________________
 
-10. (1 point) Distinguish between genotype and phenotype using a specific example.
+1. (1 point) Distinguish between genotype and phenotype using a specific example.
 
 _______________________________________________
 _______________________________________________
