@@ -4,9 +4,7 @@
 
 ---
 
-**Name:** {fill:text}
-
-**Date:** {fill:text}
+**Name:** {fill:text} **Date:** {fill:text}
 
 ---
 

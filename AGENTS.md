@@ -48,6 +48,14 @@ This document provides technical documentation for the Biology courses repositor
 - **Test files**: Mirror source structure with `test_` prefix or `.test.` suffix
 - **Documentation**: Markdown files with clear, descriptive names
 
+## Document Authoring Standards
+
+### Lab Manual Formatting
+
+- **Identification Block**: All labs should use the standardized `{fill:text}` notation for student identification to ensure compatibility with automated PDF headers.
+  - **Standard Pattern**: `**Name:** {fill:text} **Date:** {fill:text}` on a **single line** immediately following the course subtitle and header.
+  - **Behavior**: The rendering pipeline dynamically detects and strips this exact line during PDF publication to prevent redundancy with the auto-generated PDF header, while preserving it for "raw" Markdown readability.
+
 ## Documentation Standards
 
 ### README.md Files

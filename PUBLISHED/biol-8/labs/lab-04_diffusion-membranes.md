@@ -2,7 +2,7 @@
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
-**Name:** _________________________ **Date:** _____________
+**Name:** {fill:text} **Date:** {fill:text}
 
 ---
 

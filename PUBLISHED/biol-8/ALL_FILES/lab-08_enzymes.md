@@ -6,8 +6,6 @@
 
 **Name:** {fill:text} **Date:** {fill:text}
 
-**Section:** {fill:text} **Lab Partner(s):** {fill:text}
-
 ---
 
 ## Objectives
@@ -26,12 +24,12 @@ By the end of this lab, you will be able to:
 
 Metabolism involves thousands of chemical reactions happening simultaneously inside your cells. Most of these reactions would occur far too slowly to sustain life if it weren't for **enzymes**—specialized proteins that act as biological catalysts. Enzymes speed up reactions without being consumed or permanently changed in the process.
 
-In this lab, we will study the enzyme **catalase**, which is found in high concentrations in the liver (as well as many other tissues). A major toxic byproduct of cellular metabolism is **hydrogen peroxide ($H_2O_2$)**. If allowed to accumulate, it would destroy the cell. Catalase quickly breaks down hydrogen peroxide into safe, harmless substances: water and oxygen gas.
+In this lab, we will study the enzyme **catalase**, which is found in high concentrations in the liver (as well as many other tissues). A major toxic byproduct of cellular metabolism is **hydrogen peroxide (H~2~O~2~)**. If allowed to accumulate, it would destroy the cell. Catalase quickly breaks down hydrogen peroxide into safe, harmless substances: water and oxygen gas.
 
 **The Reaction:**
-$$ \text{2H}_2\text{O}_2 \xrightarrow{\text{Catalase}} \text{2H}_2\text{O} + \text{O}_2\text{ (gas)} $$
+2H~2~O~2~ &rarr; 2H~2~O + O~2~ (gas)
 
-Because one of the products is oxygen gas ($O_2$), we can measure the *rate of the reaction* by capturing and measuring the volume of gas produced over a specific period of time.
+Because one of the products is oxygen gas (O~2~), we can measure the *rate of the reaction* by capturing and measuring the volume of gas produced over a specific period of time.
 
 ### Temperature and Enzymes
 
@@ -66,7 +64,7 @@ Before beginning the experiment, predict what will happen to the reaction rate (
 ## Materials
 
 - Ground chicken liver (source of catalase enzyme)
-- Hydrogen peroxide ($3\%$ $H_2O_2$)
+- Hydrogen peroxide (3% H~2~O~2~)
 - Blue plastic bin
 - Glass collection tube (graduated/marked in mL)
 - Glass tube stand
@@ -126,10 +124,10 @@ Before beginning the experiment, predict what will happen to the reaction rate (
 
 ## Data Collection
 
-<!-- lab:data-table rows=4 title="Gas Production ($mL$) Over Time" -->
-| Condition | Volume at $t=0$ min | Volume at $t=1$ min | Volume at $t=5$ min |
-|-----------|---------------------|---------------------|---------------------|
-| **Room Temp** | 0 mL | {fill:number} mL | {fill:number} mL |
+<!-- lab:data-table rows=3 title="Gas Production (mL) Over Time" -->
+| Condition | Volume at t=0 min | Volume at t=1 min | Volume at t=5 min |
+|-----------|-------------------|-------------------|-------------------|
+| **Room temp** | 0 mL | {fill:number} mL | {fill:number} mL |
 | **Cold (Ice)** | 0 mL | {fill:number} mL | {fill:number} mL |
 | **Warm (~40°C)** | 0 mL | {fill:number} mL | {fill:number} mL |
 <!-- /lab:data-table -->
