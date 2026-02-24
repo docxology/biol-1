@@ -183,11 +183,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 06: Energy & Metabolism
 
-1. Energy cannot be created or destroyed, only changed in form. This is known as:
+1. What is the term for all of the chemical reactions that happen inside a living cell?
     - A) Photosynthesis
-    - B) The First Law of Thermodynamics
+    - B) Thermodynamics
     - C) Cellular Respiration
-    - D) The Law of Gravity
+    - D) Metabolism
 
 2. What is an enzyme?
     - A) A protein that speeds up chemical reactions.
@@ -220,6 +220,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 *Complete each statement with the best biological term from the word bank below. Each question is worth 1 point.*
 
 **Word Bank:**
+
 - Active
 - Autotroph
 - Catabolic
@@ -264,7 +265,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 2. **The Flow of Genetic Information.** Trace the general path from DNA to a functional protein. Name the main "manager" organelle, the "factory worker" organelle that builds the protein, and the "shipping" organelle.
 
-3. **Crossing the Border.** Contrast simple diffusion and active transport. In your answer, mention concentration gradients (high to low vs. low to high) and the use of ATP.
+3. **Transport Options.** Contrast simple diffusion and active transport. In your answer, mention concentration gradients (high to low vs. low to high) and the use of ATP.
 
 4. **Energy Cycles.** Briefly describe the relationship between Photosynthesis and Cellular Respiration. How do the waste products of one process serve as the essential ingredients for the other?
 
