@@ -2,47 +2,51 @@
 
 ## Key Learning Objectives
 
-### 1. Introduction to Histology
+### 1. Mendelian Genetics Foundations
 
-- Define tissue and histology
-- Explain why studying tissues is important for understanding body function
-- Describe how tissues are classified
+- Define gene, allele, genotype, and phenotype
+- Distinguish between dominant and recessive alleles
+- Explain homozygous and heterozygous conditions
+- Describe Mendel's experiments and his laws of heredity
 
-### 2. Epithelial Tissue
+### 2. Law of Segregation
 
-- Describe the general characteristics of epithelial tissue
-- Classify epithelial tissue by cell shape (squamous, cuboidal, columnar)
-- Classify epithelial tissue by layering (simple, stratified, pseudostratified)
-- Identify the functions and locations of each epithelial type
-- Explain the role of basement membrane
+- Explain the law of segregation
+- Use Punnett squares to predict offspring genotypes and phenotypes
+- Calculate genotypic and phenotypic ratios for monohybrid crosses
 
-### 3. Connective Tissue
+### 3. Law of Independent Assortment
 
-- Describe the components of connective tissue (cells, ground substance, fibers)
-- Compare types of connective tissue (loose, dense, cartilage, bone, blood)
-- Identify the functions and locations of each connective tissue type
-- Explain the importance of the extracellular matrix
+- Explain the law of independent assortment
+- Understand how pairs of alleles segregate independently of one another during gamete formation
+- Perform dihybrid crosses using Punnett squares
 
-### 4. Muscle Tissue
+### 4. Extensions to Mendelian Genetics
 
-- Compare skeletal, cardiac, and smooth muscle
-- Describe the structure and function of each muscle type
-- Identify where each muscle type is found in the body
-- Explain voluntary versus involuntary control
+- Describe incomplete dominance and codominance
+- Explain multiple alleles using ABO blood types as an example
+- Understand polygenic inheritance and continuous variation
+- Explain pleiotropy (one gene affecting multiple traits)
 
-### 5. Nervous Tissue
+### 5. Sex Linkage and Chromosomal Inheritance
 
-- Describe the structure and function of neurons
-- Identify the basic structure of a neuron (cell body, dendrites, axon)
-- Explain the role of glial cells
-- Describe where nervous tissue is located
+- Describe sex determination in humans
+- Explain sex-linked inheritance patterns
+- Predict outcomes of crosses involving X-linked traits
+- Understand why sex-linked disorders are more common in males
+
+### 6. Pedigree Analysis
+
+- Interpret pedigree charts
+- Determine modes of inheritance from pedigrees
+- Identify carriers and affected individuals
 
 ---
 
 ## Study Tips
 
-1. **Use histology images** to practice tissue identification
-2. **Create comparison charts** for tissue types
-3. **Learn classification systems** thoroughly
-4. **Connect structure to function** for each tissue type
-5. **Use mnemonics** for epithelial tissue classification
+1. **Practice Punnett squares** extensively until you are comfortable setting up the axes correctly.
+2. **Learn genetics vocabulary** thoroughly; knowing the exact difference between a gene and an allele is critical.
+3. **Analyze pedigree examples** from different inheritance patterns.
+4. **Calculate ratios** for various cross types and try predicting outcomes before doing the math.
+5. **Connect concepts** to real genetic conditions like color blindness or hemophilia.

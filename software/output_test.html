@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8: Chicken Liver Enzyme Activity</title>
+    <style>
+
+/* Lab Manual Worksheet Styles - Black/White/Gray with Red Accents */
+@page {
+    size: letter;
+    margin: 0.75in;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5em;
+    border-bottom: 3px solid #c41e3a;
+    padding-bottom: 0.3em;
+    color: #1a1a1a;
+}
+
+h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #c41e3a;
+    border-left: 4px solid #c41e3a;
+    padding-left: 0.5em;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+    color: #333333;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 1.5em 0;
+}
+
+/* Lab Header Info */
+.lab-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border: 1px solid #333333;
+    background-color: #f5f5f5;
+}
+
+.lab-header-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+.lab-header-label {
+    font-weight: bold;
+    white-space: nowrap;
+    color: #1a1a1a;
+}
+
+.lab-header-value {
+    flex: 1;
+    border-bottom: 1px solid #333333;
+    min-height: 1.5em;
+}
+
+/* Data Tables */
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.lab-table th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #1a1a1a;
+}
+
+.lab-table td {
+    padding: 8px 12px;
+    border: 1px solid #333333;
+    min-height: 2em;
+    vertical-align: top;
+}
+
+.lab-table td.fillable {
+    background-color: #fafafa;
+    min-height: 2.5em;
+}
+
+.lab-table tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+/* Fillable Fields */
+.fill-text {
+    display: inline-block;
+    min-width: 200px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+}
+
+.fill-number {
+    display: inline-block;
+    min-width: 60px;
+    max-width: 100px;
+    border-bottom: 1px solid #333333;
+    padding: 2px 4px;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+/* Inline tables inside reflection/calculation boxes */
+.reflection-box table,
+.calculation-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5em 0;
+}
+
+.reflection-box th,
+.calculation-box th {
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 6px 10px;
+    border: 1px solid #1a1a1a;
+}
+
+.reflection-box td,
+.calculation-box td {
+    padding: 6px 10px;
+    border: 1px solid #333333;
+    vertical-align: top;
+}
+
+.reflection-box tr:nth-child(even),
+.calculation-box tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.fill-textarea {
+    display: block;
+    width: 100%;
+    min-height: 3em;
+    border: 1px solid #333333;
+    padding: 8px;
+    margin: 0.5em 0;
+    background-color: #fafafa;
+}
+
+/* Drawing Areas - Blank Space for Student Drawings */
+.fill-drawing {
+    display: block;
+    width: 100%;
+    border: 2px solid #333333;
+    margin: 1em 0;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.fill-drawing-circle {
+    display: block;
+    border: 2px solid #333333;
+    border-radius: 50%;
+    margin: 1em auto;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.fill-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    margin: 0.3em 0;
+}
+
+.fill-checkbox input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin-top: 0.25em;
+    accent-color: #c41e3a;
+}
+
+/* Measurement Table */
+.measurement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.measurement-table th {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 12px;
+    border: 1px solid #000000;
+}
+
+.measurement-table td {
+    padding: 12px;
+    border: 1px solid #333333;
+    text-align: center;
+}
+
+.measurement-table td.fillable {
+    background-color: #fafafa;
+    min-height: 3em;
+}
+
+.measurement-table .row-number {
+    width: 40px;
+    background-color: #e0e0e0;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Object Selection Section */
+.object-selection {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border-left: 5px solid #c41e3a;
+}
+
+.object-selection h3 {
+    margin-top: 0;
+    color: #1a1a1a;
+}
+
+.object-field {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    margin: 1em 0;
+}
+
+.object-label {
+    font-weight: bold;
+    min-width: 150px;
+    color: #333333;
+}
+
+.object-input {
+    flex: 1;
+    border-bottom: 2px solid #333333;
+    min-height: 1.5em;
+    background-color: #ffffff;
+    padding: 4px;
+}
+
+/* Feasibility Section */
+.feasibility-section {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.feasibility-question {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #1a1a1a;
+}
+
+.feasibility-options {
+    margin-left: 1em;
+}
+
+/* Calculation Box */
+.calculation-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #999999;
+    border-left: 4px solid #2563eb;
+    background-color: #f8fafc;
+    min-height: 60px;
+}
+
+.calculation-box code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e8e8e8;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.calculation-box pre {
+    background-color: #f0f0f0;
+    padding: 0.75em;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    overflow-x: auto;
+}
+
+/* Reflection Box */
+.reflection-box {
+    margin: 1em 0;
+    padding: 1em;
+    border: 2px solid #666666;
+    border-left: 4px solid #c41e3a;
+    background-color: #fafafa;
+    min-height: 100px;
+}
+
+/* Blockquotes (Learning Goals) */
+blockquote {
+    margin: 1em 0;
+    padding: 0.75em 1em;
+    border-left: 4px solid #c41e3a;
+    background-color: #f9f9f9;
+    font-style: italic;
+    color: #333333;
+}
+
+blockquote strong {
+    color: #c41e3a;
+}
+
+/* Strong emphasis */
+strong {
+    color: #1a1a1a;
+}
+
+/* Emphasis within reflection */
+em {
+    color: #555555;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5em;
+}
+
+li {
+    margin: 0.3em 0;
+}
+
+/* Summary table */
+.summary-table th {
+    background-color: #c41e3a;
+    color: #ffffff;
+}
+
+/* Print Styles */
+@media print {
+    .lab-table td.fillable,
+    .fill-text,
+    .fill-textarea,
+    .object-input {
+        background-color: white !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .lab-table, .measurement-table {
+        page-break-inside: avoid;
+    }
+    
+    blockquote {
+        background-color: white !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="lab-manual">
+        <h1>Lab 8: Chicken Liver Enzyme Activity</h1>
+<div class="lab-header">
+<div class="lab-header-field">
+<span class="lab-header-label">Name:</span>
+<span class="lab-header-value"></span>
+</div>
+<div class="lab-header-field">
+<span class="lab-header-label">Date:</span>
+<span class="lab-header-value"></span>
+</div>
+</div>
+<hr />
+<h2>Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Explain the role of enzymes as biological catalysts that speed up chemical reactions.</li>
+<li>Describe the specific reaction catalyzed by the enzyme <strong>catalase</strong>.</li>
+<li>Accurately construct and read an inverted gas-collection apparatus.</li>
+<li>Measure the rate of an enzyme-catalyzed reaction by quantifying gas production over time.</li>
+<li>Analyze how environmental factors (specifically temperature) affect enzyme activity.</li>
+</ul>
+<hr />
+<h2>Introduction</h2>
+<p>Metabolism involves thousands of chemical reactions happening simultaneously inside your cells. Most of these reactions would occur far too slowly to sustain life if it weren't for <strong>enzymes</strong>—specialized proteins that act as biological catalysts. Enzymes speed up reactions without being consumed or permanently changed in the process.</p>
+<p>In this lab, we will study the enzyme <strong>catalase</strong>, which is found in high concentrations in the liver (as well as many other tissues). A major toxic byproduct of cellular metabolism is <strong>hydrogen peroxide (H<sub>2</sub>O<sub>2</sub>)</strong>. If allowed to accumulate, it would destroy the cell. Catalase quickly breaks down hydrogen peroxide into safe, harmless substances: water and oxygen gas.</p>
+<p><strong>The Reaction:</strong><br />
+2H<sub>2</sub>O<sub>2</sub> &rarr; 2H<sub>2</sub>O + O<sub>2</sub> (gas)</p>
+<p>Because one of the products is oxygen gas (O<sub>2</sub>), we can measure the <em>rate of the reaction</em> by capturing and measuring the volume of gas produced over a specific period of time.</p>
+<h3>Temperature and Enzymes</h3>
+<p>Because enzymes are proteins, their 3D shape is critical to their function. Environmental factors like temperature and pH can alter this shape.</p>
+<ul>
+<li><strong>Cold temperatures</strong> generally slow down molecular movement, which should slow the reaction.</li>
+<li><strong>Warm temperatures</strong> speed up molecular movement, increasing the reaction rate up to a certain optimal point.</li>
+<li><strong>Extreme heat</strong> can cause the protein to unfold and lose its shape entirely. This permanent loss of structure and function is called <strong>denaturation</strong>.</li>
+</ul>
+<hr />
+<h2>Pre-Lab Predictions (Hypotheses)</h2>
+<p>Before beginning the experiment, predict what will happen to the reaction rate (the amount of gas produced) under the following temperature conditions compared to room temperature.</p>
+<div class="reflection-box">
+<p><strong>1. Cold (Ice Bath):</strong><br />
+<input type="text" class="fill-text" /></p>
+<p><strong>2. Room Temperature:</strong><br />
+<em>(This is your baseline / control)</em></p>
+<p><strong>3. Warm Water Bath (~40°C):</strong><br />
+<input type="text" class="fill-text" /></p>
+<p><strong>4. Extreme Heat (100°C / Boiling):</strong> <em>(We are not testing this today, but what do you predict would happen and why?)</em><br />
+<textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<hr />
+<h2>Materials</h2>
+<ul>
+<li>Ground chicken liver (source of catalase enzyme)</li>
+<li>Hydrogen peroxide (3% H<sub>2</sub>O<sub>2</sub>)</li>
+<li>Blue plastic bin</li>
+<li>Glass collection tube (graduated/marked in mL)</li>
+<li>Glass tube stand</li>
+<li>Small reaction beaker with a rubber stopper</li>
+<li>Rubber tubing (connecting the stopper to the blue bin)</li>
+<li>Distilled water</li>
+<li>Ice bath</li>
+<li>Warm water bath (~40°C)</li>
+</ul>
+<hr />
+<h2>Procedure</h2>
+<h3>Setup: The Gas Collection Apparatus</h3>
+<ol>
+<li><strong>Prepare the Blue Bin:</strong> Fill the blue bin with a few inches of tap water.</li>
+<li><strong>Prepare the Stand:</strong> Place the glass tube stand into the blue bin.</li>
+<li><strong>Fill the Glass Tube:</strong> Fill the graduated glass tube completely to the brim with water (do this carefully so it doesn't shoot out). Top it off with a squirt of distilled water until it forms a slight dome (meniscus) over the edge.</li>
+<li><strong>Invert the Tube:</strong> Cover the open end of the glass tube tightly with your thumb. Turn the tube upside down, dip your thumb <em>under</em> the water line in the blue bin, and then remove your thumb. The water should stay suspended inside the glass tube.</li>
+<li><strong>Position the Tube:</strong> Place the downward-facing opening of the tube directly over the hole in the bottom of the blue bin's stand.</li>
+<li><strong>Connect the System:</strong> Ensure the small reaction beaker is ready, and its rubber stopper is connected via the tan tubing to the inlet hole under the glass tube in the blue bin.</li>
+</ol>
+<blockquote>
+<p><strong>Note on Reading the Tube:</strong> Practice reading the graduations on the tube. As gas enters the tube, it will displace the water. You will measure <em>how much air</em> (gas) is collected at the top of the tube.</p>
+</blockquote>
+<h3>Trial 1: Room Temperature (Baseline)</h3>
+<ol>
+<li>Ensure your glass tube is completely full of water (0 mL of gas).</li>
+<li>Add <strong>1 mL of ground chicken liver</strong> to the small reaction beaker.</li>
+<li>Add <strong>1 mL of hydrogen peroxide</strong> to the small reaction beaker.</li>
+<li><strong>IMMEDIATELY cap the beaker</strong> tightly with the rubber stopper.</li>
+<li><em>Observation:</em> You should see the reaction bubbling vigorously in the beaker, and oxygen gas bubbles tracing through the tan tube into the blue bin, rising to the top of the glass tube.</li>
+<li><strong>Record the gas volume</strong> in the data table at $t=0$ (should be 0), $t=1$ minute, and $t=5$ minutes.</li>
+<li><strong>Clean up:</strong> Thoroughly wash out the reaction beaker and stopper with water.</li>
+<li><strong>Reset:</strong> Refill and invert the glass collection tube exactly as you did in the Setup phase.</li>
+</ol>
+<h3>Trial 2: Cold (Ice Bath)</h3>
+<ol>
+<li>Place the clean reaction beaker into the prepared ice bath to chill it.</li>
+<li>Ensure your glass tube is completely full of water (0 mL of gas) and ready.</li>
+<li>Add <strong>1 mL of ground chicken liver</strong> to the chilled reaction beaker.</li>
+<li>Add <strong>1 mL of hydrogen peroxide</strong>.</li>
+<li><strong>IMMEDIATELY cap the beaker</strong>, keeping it resting in the ice bath.</li>
+<li><strong>Record the gas volume</strong> in the data table at $t=0$, $t=1$ minute, and $t=5$ minutes.</li>
+<li><strong>Clean up and Reset:</strong> Wash the beaker and refill the glass collection tube.</li>
+</ol>
+<h3>Trial 3: Warm Water Bath (~40°C)</h3>
+<ol>
+<li>Place the clean reaction beaker into the warm water bath.</li>
+<li>Ensure your glass tube is full and ready.</li>
+<li>Add <strong>1 mL of ground chicken liver</strong> to the warm reaction beaker.</li>
+<li>Add <strong>1 mL of hydrogen peroxide</strong>.</li>
+<li><strong>IMMEDIATELY cap the beaker</strong>, keeping it resting in the warm water bath.</li>
+<li><strong>Record the gas volume</strong> in the data table at $t=0$, $t=1$ minute, and $t=5$ minutes.</li>
+<li><strong>Final Clean Up:</strong> Wash all glassware and wipe down your lab station.</li>
+</ol>
+<hr />
+<h2>Data Collection</h2>
+<h3>Gas Production (mL) Over Time</h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Volume at t=0 min</th>
+<th>Volume at t=1 min</th>
+<th>Volume at t=5 min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Room temp</strong></td>
+<td>0 mL</td>
+<td><input type="number" class="fill-number" /> mL</td>
+<td><input type="number" class="fill-number" /> mL</td>
+</tr>
+<tr>
+<td><strong>Cold (Ice)</strong></td>
+<td>0 mL</td>
+<td><input type="number" class="fill-number" /> mL</td>
+<td><input type="number" class="fill-number" /> mL</td>
+</tr>
+<tr>
+<td><strong>Warm (~40°C)</strong></td>
+<td>0 mL</td>
+<td><input type="number" class="fill-number" /> mL</td>
+<td><input type="number" class="fill-number" /> mL</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Analysis &amp; Conclusion</h2>
+<div class="reflection-box">
+<p><strong>1. Which temperature produced the greatest volume of gas at 5 minutes? Were your pre-lab predictions correct?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>2. Based on your data, how does chilling the enzyme (Cold) affect its reaction rate compared to room temperature? Explain why this happens at the molecular level.</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>3. Based on your data, how does warming the enzyme (~40°C) affect its reaction rate compared to room temperature? Why did this happen?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>4. The internal temperature of a chicken is approximately 41.5°C (106.7°F). Does your data make sense biologically based on this fact? Why or why not?</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+<p><strong>5. What is the specific gas that was collecting at the top of the glass tube? Where did it come from?</strong></p>
+<p><textarea class="fill-textarea" rows="2"></textarea></p>
+<p><strong>6. If you were to take the chicken liver that had been boiled to 100°C and added hydrogen peroxide to it, what volume of gas would you expect to produce? Use the term <em>denature</em> in your explanation.</strong></p>
+<p><textarea class="fill-textarea" rows="3"></textarea></p>
+</div>
+
+<hr />
+<p><em>Lab adapted for BIOL-8: Human Biology</em></p>
+    </div>
+    <script>
+
+// Lab Manual Interactive Functions
+
+// Auto-save form data to localStorage
+function saveLabData() {
+    const form = document.querySelector('.lab-manual');
+    const inputs = form.querySelectorAll('input, textarea');
+    const data = {};
+    inputs.forEach((input, idx) => {
+        const key = input.id || input.name || `field_${idx}`;
+        if (input.type === 'checkbox') {
+            data[key] = input.checked;
+        } else {
+            data[key] = input.value;
+        }
+    });
+    localStorage.setItem('labManualData_' + document.title, JSON.stringify(data));
+    showSaveNotification();
+}
+
+// Load saved form data
+function loadLabData() {
+    const saved = localStorage.getItem('labManualData_' + document.title);
+    if (saved) {
+        const data = JSON.parse(saved);
+        const form = document.querySelector('.lab-manual');
+        const inputs = form.querySelectorAll('input, textarea');
+        inputs.forEach((input, idx) => {
+            const key = input.id || input.name || `field_${idx}`;
+            if (data[key] !== undefined) {
+                if (input.type === 'checkbox') {
+                    input.checked = data[key];
+                } else {
+                    input.value = data[key];
+                }
+            }
+        });
+    }
+}
+
+// Show save notification
+function showSaveNotification() {
+    let notification = document.getElementById('save-notification');
+    if (!notification) {
+        notification = document.createElement('div');
+        notification.id = 'save-notification';
+        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #c41e3a; color: white; padding: 10px 20px; border-radius: 4px; opacity: 0; transition: opacity 0.3s;';
+        document.body.appendChild(notification);
+    }
+    notification.textContent = 'Progress saved!';
+    notification.style.opacity = '1';
+    setTimeout(() => { notification.style.opacity = '0'; }, 2000);
+}
+
+// Clear all data
+function clearLabData() {
+    if (confirm('Clear all entered data? This cannot be undone.')) {
+        localStorage.removeItem('labManualData_' + document.title);
+        location.reload();
+    }
+}
+
+// Print lab manual
+function printLabManual() {
+    window.print();
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadLabData();
+    
+    // Auto-save on input
+    const form = document.querySelector('.lab-manual');
+    if (form) {
+        form.addEventListener('input', () => {
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveLabData, 1000);
+        });
+    }
+});
+
+    </script>
+</body>
+</html>

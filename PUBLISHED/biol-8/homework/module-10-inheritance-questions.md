@@ -1,73 +1,45 @@
 # Module 10: Inheritance — Study Questions
 
-## Introduction to Tissues
+1. What is the difference between a gene and an allele?
 
-1. What is a tissue, and how does it relate to cells and organs?
+2. Define genotype and phenotype, and give an example of each.
 
-2. What are the four main types of tissues found in the human body?
+3. What does it mean for an allele to be dominant compared to recessive?
 
-3. What is histology, and why is it important in medicine?
+4. What is the fundamental difference between an individual who is homozygous versus heterozygous for a trait?
 
-4. How do tissues work together to form organs?
+5. Who was Gregor Mendel, and why is he called the "father of genetics"?
 
-## Epithelial Tissue
+6. Explain Mendel's law of segregation in your own words.
 
-1. What are the general characteristics of epithelial tissue?
+7. In Mendel's experiments, a cross between two purple-flowered plants sometimes produced white-flowered offspring. How is this genetically possible?
 
-2. What are the three main cell shapes found in epithelium?
+8. If you cross two heterozygous tall plants (Tt × Tt), what are the expected genotypic and phenotypic ratios?
 
-3. What is the difference between simple and stratified epithelium?
+9. How do you set up the axes of a Punnett square for a monohybrid cross?
 
-4. Where would you find simple squamous epithelium, and what is its function?
+10. In a cross between a homozygous dominant (BB) and homozygous recessive (bb) individual, what will be the genotype and phenotype of all offspring?
 
-5. Why is stratified squamous epithelium found in areas subject to abrasion?
+11. What is a test cross, and why is it useful?
 
-6. What is pseudostratified epithelium? Give an example of where it is found.
+12. What is the law of independent assortment?
 
-7. What is the basement membrane, and what role does it play?
+13. What is the expected phenotypic ratio of a standard dihybrid cross between two individuals heterozygous for both traits?
 
-8. How does the structure of epithelium relate to its functions of protection, secretion, and absorption?
+14. What is incomplete dominance? Provide a real-world biological example.
 
-## Connective Tissue
+15. How does codominance differ from incomplete dominance?
 
-1. What are the three main components of connective tissue?
+16. Explain the inheritance of human ABO blood types, and describe what type of inheritance pattern (or patterns) it demonstrates.
 
-2. How is connective tissue different from epithelial tissue in terms of cell arrangement?
+17. What is polygenic inheritance, and how does it explain traits with continuous variation, like human height or skin color?
 
-3. Compare loose connective tissue and dense connective tissue.
+18. How is biological sex genetically determined in humans?
 
-4. What are the three types of fibers found in connective tissue, and what are their properties?
+19. What are sex-linked traits, and why are X-linked recessive disorders more common in males than in females?
 
-5. What are the three types of cartilage, and where is each found?
+20. If a carrier woman (X^C^X^c^) has children with a man with normal vision (X^C^Y), what is the probability that their sons will be color blind?
 
-6. How is bone tissue different from cartilage?
+21. What is a pedigree chart, and how do geneticists use it to trace traits through a family?
 
-7. Why is blood considered a connective tissue?
-
-8. What is the extracellular matrix, and why is it important in connective tissue?
-
-## Muscle Tissue
-
-1. What are the three types of muscle tissue?
-
-2. What are the differences between voluntary and involuntary muscle?
-
-3. Describe the appearance of skeletal muscle cells. Why are they called "striated"?
-
-4. How is cardiac muscle similar to and different from skeletal muscle?
-
-5. Where is smooth muscle found, and what functions does it perform?
-
-6. Why is cardiac muscle described as having intercalated discs?
-
-## Nervous Tissue
-
-1. What are the two main cell types in nervous tissue?
-
-2. Describe the structure of a neuron and the function of each part.
-
-3. What is the function of glial cells?
-
-4. Where is nervous tissue found in the body?
-
-5. How does the structure of neurons relate to their function of transmitting information?
+22. **Challenge Question:** Looking at a pedigree, how can you definitively tell if a particular trait is dominant or recessive, just by looking at the parents and offspring?

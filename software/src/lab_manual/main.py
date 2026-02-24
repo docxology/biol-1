@@ -302,7 +302,7 @@ def render_lab_manual(
         # Remove source Name/Date line to avoid duplication with header fields
         # Matches: **Name:** {fill:text} **Date:** {fill:text} or _____ (with optional underscores or blanks)
         markdown_content = re.sub(
-            r"^\*\*Name:\*\*\s*(?:_*|{fill:text})\s*\*\*Date:\*\*\s*(?:_*|{fill:text})\s*\n*", "", markdown_content, count=1
+            r"^\*\*Name:\*\*\s*(?:_+|\{fill:text\})?\s*\*\*Date:\*\*\s*(?:_+|\{fill:text\})?\s*\n*", "", markdown_content, count=1, flags=re.MULTILINE
         )
         # Remove leading horizontal rule left behind
         markdown_content = re.sub(r"^---\s*\n*", "", markdown_content, count=1)
