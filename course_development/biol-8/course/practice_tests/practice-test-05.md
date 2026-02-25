@@ -1,140 +1,162 @@
 # BIOL-8 Practice Test 05
 
-## Module 9: Inheritance
+## Module 9: Tissues and the Animal Body
 
-**Instructions:** This practice test covers material from Module 9 only. Answer all questions to the best of your ability.
+**Instructions:** This practice test covers material from Module 9. Answer all questions to the best of your ability.
 
 ---
 
 ## Part A: Multiple Choice
 
-**1.** An alternate form of a gene is called a(n):
-A) Chromosome
-B) Allele
-C) Genotype
-D) Phenotype
+### Homeostasis & Body Systems
 
-**2.** If an individual has two identical alleles for a trait (e.g., **AA**), they are:
-A) Heterozygous
-B) Homozygous dominant
-C) Homozygous recessive
-D) Hemizygous
+**1.** The process by which the body maintains a stable internal environment is called:
+A) Metabolism
+B) Homeostasis
+C) Photosynthesis
+D) Fermentation
 
-**3.** The physical appearance of an organism (such as tall or short) is its:
-A) Genotype
-B) Phenotype
-C) Allele
-D) Karyotype
+**2.** A thermostat that turns on the heater when a room gets too cold is an example of:
+A) Positive feedback
+B) Negative feedback
+C) Osmosis
+D) Diffusion
 
-**4.** An organism with two different alleles for a trait (e.g., **Aa**) is:
-A) Homozygous
-B) Heterozygous
-C) Dominant
-D) Recessive
+**3.** Maintaining the proper balance of water and salt in the body is called:
+A) Thermoregulation
+B) Osmoregulation
+C) Homeostasis only
+D) Metabolism
 
-**5.** In a cross between a heterozygous tall plant (Tt) and a short plant (tt), what is the probability of having short offspring?
-A) 0%
-B) 25%
-C) 50%
-D) 100%
+**4.** Which organ system is most responsible for maintaining water and salt balance?
+A) Respiratory system
+B) Urinary (excretory) system
+C) Muscular system
+D) Skeletal system
 
-**6.** In a cross between two heterozygous individuals (Aa × Aa), what fraction of offspring will show the recessive phenotype?
-A) 1/4
-B) 1/2
-C) 3/4
-D) All
+### Digestive System
 
-**7.** Which inheritance pattern results in an intermediate phenotype (e.g., Red × White = Pink)?
-A) Complete dominance
-B) Codominance
-C) Incomplete dominance
-D) X-linked inheritance
+**5.** Breaking food into smaller pieces by chewing is an example of:
+A) Chemical digestion
+B) Mechanical digestion
+C) Absorption
+D) Fermentation
 
-**8.** Blood type AB (genotype I^A I^B) is an example of:
-A) Incomplete dominance
-B) Codominance
-C) Simple dominance
-D) Sex-linked inheritance
+**6.** Which organ is considered the most important for nutrient absorption?
+A) Stomach
+B) Large intestine
+C) Small intestine
+D) Esophagus
 
-**9.** Traits controlled by genes on the X chromosome are called:
-A) Autosomal traits
-B) Sex-linked traits
-C) Polygenic traits
-D) Multiple alleles
+**7.** Which of the following is an accessory organ of digestion?
+A) Small intestine
+B) Stomach
+C) Liver
+D) Esophagus
 
-**10.** Why are X-linked recessive disorders (like color blindness) more common in males?
-A) Males have two X chromosomes
-B) Males have only one X chromosome, so there is no dominant allele to mask the recessive one
-C) The Y chromosome carries the disorder
-D) Males have weaker immune systems
+### Circulatory & Respiratory Systems
 
-**11.** A chart that tracks a trait across generations in a family is called a:
-A) Karyotype
-B) Punnett Square
-C) Pedigree
-D) Genetic map
+**8.** Which type of blood vessel carries blood AWAY from the heart?
+A) Vein
+B) Capillary
+C) Artery
+D) Venule
 
-**12.** In a pedigree, a filled-in circle represents:
-A) An affected male
-B) An affected female
-C) A carrier
-D) An unaffected individual
+**9.** Where does gas exchange (O₂ in, CO₂ out) occur in the lungs?
+A) Bronchi
+B) Trachea
+C) Alveoli
+D) Larynx
 
-**13.** A cross between a red flower (RR) and a white flower (WW) produces all pink offspring. If two pink flowers (RW × RW) are crossed, the phenotypic ratio is:
-A) All pink
-B) 1 Red : 2 Pink : 1 White
-C) 3 Red : 1 White
-D) 1 Red : 1 White
+**10.** Why is the left ventricle of the heart thicker than the right ventricle?
+A) It pumps blood to the lungs, which are far away
+B) It pumps blood to the entire body, requiring more force
+C) It holds more blood than the right side
+D) It has more valves than the right side
 
-**14.** Which of the following genotypes would be considered homozygous recessive?
-A) AA
-B) Aa
-C) aa
-D) AB
+### Endocrine System
 
-**15.** Gregor Mendel is known as the "Father of":
-A) Evolution
-B) Genetics
-C) Anatomy
-D) Microbiology
+**11.** Chemical messengers produced by endocrine glands and carried by the blood are called:
+A) Enzymes
+B) Neurotransmitters
+C) Hormones
+D) Antibodies
 
-**16.** A woman who is a carrier for color blindness (X^C X^c) and a man with normal vision (X^C Y) have children. What is the probability their sons will be color blind?
-A) 0%
-B) 25%
-C) 50%
-D) 100%
+**12.** Which organ uses the hormones insulin and glucagon to regulate blood sugar?
+A) Thyroid
+B) Adrenal gland
+C) Pancreas
+D) Pituitary gland
+
+**13.** The part of the brain that links the nervous system and the endocrine system is the:
+A) Cerebellum
+B) Medulla
+C) Hypothalamus
+D) Cerebrum
+
+### Musculoskeletal System
+
+**14.** Which type of muscle is voluntary and attached to bones?
+A) Smooth muscle
+B) Cardiac muscle
+C) Skeletal muscle
+D) Visceral muscle
+
+**15.** Which type of muscle is found in the walls of hollow organs like the stomach and blood vessels?
+A) Skeletal muscle
+B) Cardiac muscle
+C) Smooth muscle
+D) Striated muscle
+
+**16.** Besides support and movement, the skeletal system also:
+A) Produces hormones for digestion
+B) Protects organs and produces blood cells
+C) Absorbs nutrients from food
+D) Filters waste from the blood
+
+### Nervous System
+
+**17.** The central nervous system (CNS) consists of the:
+A) Nerves and ganglia
+B) Brain and spinal cord
+C) Sensory and motor neurons
+D) Heart and blood vessels
+
+**18.** The part of a neuron that carries signals AWAY from the cell body is the:
+A) Dendrite
+B) Cell body
+C) Axon
+D) Synapse
 
 ---
 
 ## Part B: Fill in the Blank
 
-**17.** Gregor Mendel's work with _____________________ plants laid the foundation for genetics.
+**19.** In a negative feedback loop, the response _____________________ (opposes / amplifies) the original stimulus to bring the body back to normal.
 
-**18.** The physical appearance of an organism is its _____________________, while its genetic makeup is its _____________________.
+**20.** The three types of blood vessels are _____________________, _____________________, and _____________________.
 
-**19.** In a heterozygote, the allele that is masked (hidden) is called _____________________.
+**21.** The three types of muscle tissue are _____________________, _____________________, and _____________________.
 
-**20.** A cross involving two traits (e.g., AaBb × AaBb) is called a _____________________ cross.
-
-**21.** A trait determined by multiple genes (such as skin color or height) is an example of _____________________ inheritance.
+**22.** A _____________________ neuron carries information FROM the senses TO the brain, while a _____________________ neuron carries commands FROM the brain TO the muscles.
 
 ---
 
 ## Part C: Short Answer
 
-**22.** Set up a Punnett square for a cross between two heterozygous parents (**Aa** × **Aa**). What are the Genotypic and Phenotypic ratios?
+**23.** Explain the difference between negative feedback and positive feedback. Give one biological example of each.
 
 <br><br><br>
 
-**23.** Explain the difference between incomplete dominance and codominance. Give one example of each.
+**24.** Trace the path of a bite of food from the mouth to the large intestine, naming each organ it passes through and its main function.
 
 <br><br><br>
 
-**24.** A father who is color blind (X^c Y) and a mother who is a carrier (X^C X^c) have children. Set up the Punnett square and determine the probability of their daughters being color blind.
+**25.** Compare the three types of muscle tissue (skeletal, cardiac, smooth) in terms of where each is found and whether its movement is voluntary or involuntary.
 
 <br><br><br>
 
-**25.** Define the following terms: allele, genotype, phenotype, dominant, recessive.
+**26.** You accidentally touch a hot pan. Describe how the nervous system, muscular system, and skeletal system work together to pull your hand away.
 
 <br><br><br>
 

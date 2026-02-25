@@ -8,137 +8,141 @@
 
 ## Part A: Multiple Choice
 
-### Module 7: Genetics & Central Dogma
+### Module 7: Genetics & the Central Dogma
 
-**1.** Which of the following is NOT part of a DNA nucleotide?
-A) Phosphate group
-B) Deoxyribose sugar
-C) Nitrogenous base
-D) Amino acid
+**1.** Which molecule carries the genetic instructions for building an organism?
+A) RNA
+B) Protein
+C) DNA
+D) Lipid
 
-**2.** In DNA, Adenine (A) always pairs with:
+**2.** What are the four bases found in DNA?
+A) Adenine, Uracil, Guanine, Cytosine
+B) Adenine, Thymine, Guanine, Cytosine
+C) Alanine, Threonine, Glycine, Cysteine
+D) Adenine, Thymine, Glucose, Cytosine
+
+**3.** In DNA, Adenine (A) always pairs with:
 A) Cytosine (C)
 B) Guanine (G)
 C) Thymine (T)
 D) Uracil (U)
 
-**3.** The bond that holds the two DNA strands together between bases is a:
-A) Covalent bond
-B) Hydrogen bond
-C) Ionic bond
-D) Peptide bond
+**4.** What makes up the "backbone" of a DNA molecule?
+A) Nitrogenous bases
+B) Amino acids
+C) Sugar and phosphate groups
+D) Hydrogen bonds
 
-**4.** DNA replication is described as "semiconservative" because:
-A) It happens in half the time of transcription
+**5.** DNA replication is described as "semiconservative" because:
+A) Only half the DNA is copied
 B) Each new DNA molecule contains one old strand and one new strand
-C) Only half the DNA is copied
+C) It happens in half the time of transcription
 D) It requires no enzymes
 
-**5.** Which enzyme is responsible for unzipping the DNA double helix during replication?
+**6.** Which enzyme unzips the DNA double helix during replication?
 A) DNA Polymerase
 B) Ligase
 C) Helicase
-D) Primase
+D) RNA Polymerase
 
-**6.** The flow of genetic information according to the Central Dogma is:
+**7.** The Central Dogma describes the flow of genetic information as:
 A) Protein → RNA → DNA
 B) DNA → RNA → Protein
 C) RNA → DNA → Protein
 D) DNA → Protein → RNA
 
-**7.** Transcription produces:
-A) A new DNA strand
-B) An mRNA molecule
-C) A protein sequence
-D) A ribosome
+**8.** What is the process of making an mRNA copy from DNA called?
+A) Translation
+B) Replication
+C) Transcription
+D) Mutation
 
-**8.** Where does transcription occur in a eukaryotic cell?
-A) Nucleus
-B) Ribosome
-C) Cytoplasm
+**9.** Where does transcription take place in a eukaryotic cell?
+A) Ribosome
+B) Cytoplasm
+C) Nucleus
 D) Golgi apparatus
 
-**9.** Which nitrogenous base is found in RNA but NOT in DNA?
+**10.** Which nitrogenous base is found in RNA but NOT in DNA?
 A) Adenine
 B) Cytosine
 C) Guanine
 D) Uracil
 
-**10.** Determine the mRNA sequence meant to match this DNA template: **3'-TAC GGA-5'**
-A) 5'-ATG CCT-3'
-B) 5'-AUG CCU-3'
-C) 5'-UTC CCU-3'
-D) 5'-AUG GGA-3'
+**11.** What is the mRNA sequence produced from this DNA template: **3′–TAC GGA–5′**?
+A) 5′–ATG CCT–3′
+B) 5′–AUG CCU–3′
+C) 5′–UTC CCU–3′
+D) 5′–AUG GGA–3′
 
-**11.** Translation is the process of:
-A) Copying DNA
-B) Making mRNA from DNA
-C) Synthesizing a polypeptide (protein) from an mRNA code
-D) Folding a protein
+**12.** Translation is the process of:
+A) Copying DNA into two new molecules
+B) Making mRNA from a DNA template
+C) Building a protein from an mRNA code
+D) Folding a protein into its final shape
 
-**12.** Translation occurs at the:
+**13.** Where does translation occur in the cell?
 A) Nucleus
 B) Mitochondria
 C) Ribosome
 D) Smooth ER
 
-**13.** A sequence of three nucleotides on mRNA that codes for an amino acid is called a:
+**14.** A three-nucleotide sequence on mRNA that codes for one amino acid is called a:
 A) Gene
 B) Codon
 C) Anticodon
 D) Chromosome
 
-**14.** The function of tRNA is to:
-A) Carry the genetic code from the nucleus
-B) Form the structure of the ribosome
+**15.** The job of tRNA during translation is to:
+A) Carry the genetic code out of the nucleus
+B) Form the body of the ribosome
 C) Bring the correct amino acid to the ribosome
-D) Unzip DNA
+D) Unzip the DNA double helix
 
-**15.** A mutation that changes a single nucleotide but does NOT change the amino acid is called a:
+**16.** A mutation that changes one nucleotide but does NOT change the amino acid is called a:
 A) Missense mutation
 B) Nonsense mutation
 C) Silent mutation
 D) Frameshift mutation
 
-**16.** Which type of mutation typically has the most disastrous effect on the resulting protein?
-A) Substitution of the third base in a codon
-B) Silent mutation
+**17.** Which type of mutation usually causes the most damage to the resulting protein?
+A) Silent mutation
+B) A substitution of the third base in a codon
 C) Frameshift mutation (insertion or deletion)
-D) Point mutation at the end of a gene
+D) Point mutation at the very end of a gene
 
 ---
 
 ## Part B: Fill in the Blank
 
-**17.** The sugar found in DNA is _____________________, while the sugar in RNA is _____________________.
+**18.** The sugar found in DNA is _____________________, while the sugar in RNA is _____________________.
 
-**18.** The enzyme _____________________ builds the new DNA strand during replication.
+**19.** The enzyme that builds the new DNA strand during replication is _____________________.
 
-**19.** A _____________________ mutation introduces a premature stop codon.
+**20.** The flow of information from DNA → mRNA is called _____________________.
 
-**20.** The transfer of information from DNA to mRNA is called _____________________.
+**21.** The three-letter mRNA sequence **AUG** is known as the _____________________ codon and codes for the amino acid methionine.
 
-**21.** The region of DNA where RNA polymerase binds to start transcription is the _____________________.
-
-**22.** _____________________ are the building blocks of proteins.
+**22.** _____________________ are the building blocks (monomers) of proteins.
 
 ---
 
 ## Part C: Short Answer
 
-**23.** Compare and contrast DNA and RNA. List at least three structural differences.
+**23.** List three structural differences between DNA and RNA.
 
 <br><br><br>
 
-**24.** Explain the role of mRNA, tRNA, and rRNA in protein synthesis.
+**24.** Describe the specific roles of mRNA, tRNA, and rRNA in protein synthesis.
 
 <br><br><br>
 
-**25.** If a DNA coding strand has the sequence **ATG-CCC-GAT**, what is the mRNA sequence? Use the genetic code to determine the amino acid sequence (use general names if you don't have a chart, e.g., "Start...").
+**25.** A DNA coding strand reads **ATG–CCC–GAT**. Write the mRNA sequence. Then, using a codon chart, identify the amino acid sequence.
 
 <br><br><br>
 
-**26.** Why is a frameshift mutation often more damaging than a substitution mutation?
+**26.** Why is a frameshift mutation (an insertion or deletion) usually more harmful than a simple substitution mutation?
 
 <br><br><br>
 
