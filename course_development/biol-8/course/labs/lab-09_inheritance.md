@@ -77,7 +77,7 @@ When a parent with genotype **Aa** makes sperm or egg cells, each cell randomly 
 
 ### Data
 
-<!-- lab:data-table rows=4 title="Genotype Tally (20 Tosses)" -->
+<!-- lab:data-table rows=3 title="Genotype Tally (20 Tosses)" -->
 | Genotype | Tally | Count | Percentage (Count ÷ 20 × 100) |
 |---|---|---|---|
 | AA | {fill:text} | {fill:number} | {fill:number}% |
@@ -114,8 +114,7 @@ A man with normal pigmentation (**AA**) has children with a woman who has albini
 
 **Draw the Punnett square in the box below:**
 
-<!-- lab:drawing-box height=200 -->
-<!-- /lab:drawing-box -->
+{fill:drawing height=200}
 
 <!-- lab:reflection -->
 **Genotype of all offspring:** {fill:text}
@@ -132,8 +131,7 @@ Two people who are both **carriers** (Aa) have children together.
 
 **Draw the Punnett square in the box below:**
 
-<!-- lab:drawing-box height=200 -->
-<!-- /lab:drawing-box -->
+{fill:drawing height=200}
 
 <!-- lab:reflection -->
 **Expected genotypic ratio:**
@@ -167,8 +165,7 @@ Both parents are carriers for sickle cell trait.
 
 **Draw the Punnett square in the box below:**
 
-<!-- lab:drawing-box height=200 -->
-<!-- /lab:drawing-box -->
+{fill:drawing height=200}
 
 <!-- lab:reflection -->
 **1. What is the probability their child will have sickle cell disease (hh)?** {fill:text}
@@ -223,8 +220,7 @@ Read the family description, then draw the pedigree in the box below.
 
 Use the standard symbols above. Squares for males, circles for females. Shade in anyone who is affected. Label each person with their name.
 
-<!-- lab:drawing-box height=300 -->
-<!-- /lab:drawing-box -->
+{fill:drawing height=300}
 
 ### Pedigree Analysis
 
@@ -247,8 +243,7 @@ Use the standard symbols above. Squares for males, circles for females. Shade in
 
 **5. Draw the Punnett square for Ff × Ff in the box below to support your answer.**
 
-<!-- lab:drawing-box height=200 -->
-<!-- /lab:drawing-box -->
+{fill:drawing height=200}
 
 **6. Looking at your pedigree, could you tell just by looking at appearances that Frank and Gina were carriers? Why is this important for genetic counseling?**
 
