@@ -147,35 +147,41 @@ Two people who are both **carriers** (Aa) have children together.
 
 ---
 
-## Part 4: Punnett Squares — Sickle Cell Trait
+## Part 4: Sex-Linked Inheritance — Color Blindness
 
-> **Learning Goal:** Apply Punnett squares to another real human genetic condition.
+> **Learning Goal:** Understand how traits on the X chromosome are inherited differently in males and females.
 
-**Sickle cell disease** is an autosomal recessive condition affecting hemoglobin in red blood cells.
+**Color blindness** (red-green type) is a **recessive trait carried on the X chromosome**. Because males have only one X chromosome (XY), they only need one copy of the recessive allele to be color blind. Females (XX) need two copies.
 
-- **H** = Normal hemoglobin (dominant)
-- **h** = Sickle cell hemoglobin (recessive)
-- **HH** = Unaffected
-- **Hh** = Carrier (sickle cell *trait* — usually healthy)
-- **hh** = Sickle cell *disease*
+- **X<sup>C</sup>** = Normal color vision (dominant)
+- **X<sup>c</sup>** = Color blind (recessive)
 
-### Cross: Hh × Hh
+| Genotype | Sex | Phenotype |
+|----------|-----|-----------|
+| X<sup>C</sup>X<sup>C</sup> | Female | Normal vision |
+| X<sup>C</sup>X<sup>c</sup> | Female | Normal vision (carrier) |
+| X<sup>c</sup>X<sup>c</sup> | Female | Color blind |
+| X<sup>C</sup>Y | Male | Normal vision |
+| X<sup>c</sup>Y | Male | Color blind |
 
-Both parents are carriers for sickle cell trait.
+### Cross: Carrier Mother × Normal Father
+
+A mother with normal vision who is a **carrier (X<sup>C</sup>X<sup>c</sup>)** has children with a father who has **normal vision (X<sup>C</sup>Y)**.
 
 **Draw the Punnett square in the box below:**
 
 {fill:drawing height=200}
 
 <!-- lab:reflection -->
-**1. What is the probability their child will have sickle cell disease (hh)?** {fill:text}
+**1. What is the probability of having a color-blind daughter?** {fill:text}
 
-**2. What is the probability their child will be a carrier (Hh)?** {fill:text}
+**2. What is the probability of having a color-blind son?** {fill:text}
 
-**3. What is the probability their child will be completely unaffected (HH)?** {fill:text}
+**3. What fraction of their daughters would be carriers?** {fill:text}
 
-**4. If this couple has 4 children, how many would you *expect* to be carriers? (This is a prediction, not a guarantee.)**
-{fill:text}
+**4. Why are males much more likely to be color blind than females? (Hint: think about how many X chromosomes each sex has.)**
+
+{fill:textarea rows=3}
 <!-- /lab:reflection -->
 
 ---
