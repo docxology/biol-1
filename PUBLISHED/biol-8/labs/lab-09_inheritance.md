@@ -14,7 +14,6 @@ By the end of this lab, you will be able to:
 
 - Define key genetics terms: gene, allele, genotype, phenotype, dominant, recessive
 - Use Punnett squares to predict offspring genotypes and phenotypes
-- Identify dominant and recessive traits in yourself
 - Analyze a family pedigree to trace inheritance of a trait
 
 ---
@@ -27,6 +26,7 @@ Read each term and definition carefully. You will use these throughout the entir
 |------|------------|
 | **Gene** | A segment of DNA that codes for a specific trait |
 | **Allele** | A version of a gene (e.g., brown-eye allele vs. blue-eye allele) |
+| **Diploid** | Having **two copies** of each chromosome — one from each parent — so you carry **two alleles** for every gene |
 | **Genotype** | The alleles an organism carries, written with letters (e.g., *Aa*) |
 | **Phenotype** | The physical trait you can observe (e.g., "brown eyes") |
 | **Homozygous** | Two identical alleles (*AA* or *aa*) |
@@ -38,19 +38,23 @@ Read each term and definition carefully. You will use these throughout the entir
 ### Check Your Understanding
 
 <!-- lab:reflection -->
-**1. If someone has the genotype *Bb*, are they homozygous or heterozygous?**
+**1. When we write a genotype like *Aa* or *Bb*, the capital letter and the lowercase letter each represent a different allele of the same gene. Humans are diploid, meaning they carry two copies of each gene. In your own words, explain what the genotype *Aa* tells you — what does the capital *A* represent, what does the lowercase *a* represent, and why are there exactly two letters?**
+
+{fill:textarea rows=3}
+
+**2. If someone has the genotype *Bb*, are they homozygous or heterozygous?**
 
 {fill:text}
 
-**2. An organism with genotype *aa* shows the recessive trait. What genotype(s) would show the dominant trait?**
+**3. An organism with genotype *aa* shows the recessive trait. What genotype(s) would show the dominant trait?**
 
 {fill:text}
 
-**3. What is the difference between a genotype and a phenotype?**
+**4. What is the difference between a genotype and a phenotype?**
 
 {fill:textarea rows=2}
 
-**4. Why is a person with genotype *Aa* called a "carrier" for a recessive condition?**
+**5. Why is a person with genotype *Aa* called a "carrier" for a recessive condition?**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -66,19 +70,19 @@ When a parent with genotype **Aa** makes sperm or egg cells, each cell randomly 
 ### Procedure
 
 1. Get **two coins**. One = Father (Aa). One = Mother (Aa).
-2. Flip both coins **10 times**. Record each result below.
+2. Flip both coins **20 times**. Record each result below.
    - **Heads** = Dominant allele (**A**)
    - **Tails** = Recessive allele (**a**)
    - Both Heads = **AA** · One of each = **Aa** · Both Tails = **aa**
 
 ### Data
 
-<!-- lab:data-table rows=4 title="Genotype Tally (10 Tosses)" -->
-| Genotype | Tally | Count | Percentage |
+<!-- lab:data-table rows=4 title="Genotype Tally (20 Tosses)" -->
+| Genotype | Tally | Count | Percentage (Count ÷ 20 × 100) |
 |---|---|---|---|
-| **AA** | {fill:text} | {fill:number} | {fill:number}% |
-| **Aa** | {fill:text} | {fill:number} | {fill:number}% |
-| **aa** | {fill:text} | {fill:number} | {fill:number}% |
+| AA | {fill:text} | {fill:number} | {fill:number}% |
+| Aa | {fill:text} | {fill:number} | {fill:number}% |
+| aa | {fill:text} | {fill:number} | {fill:number}% |
 <!-- /lab:data-table -->
 
 ### Questions
@@ -110,19 +114,7 @@ A man with normal pigmentation (**AA**) has children with a woman who has albini
 
 **Draw the Punnett square in the box below:**
 
-<!-- lab:drawing-box height=150 -->
-```
-         Mother
-       ___a___ ___a___
-      |       |       |
-  A   |       |       |
- F    |_______|_______|
- a    |       |       |
- t  A |       |       |
- h    |_______|_______|
- e
- r
-```
+<!-- lab:drawing-box height=200 -->
 <!-- /lab:drawing-box -->
 
 <!-- lab:reflection -->
@@ -140,19 +132,7 @@ Two people who are both **carriers** (Aa) have children together.
 
 **Draw the Punnett square in the box below:**
 
-<!-- lab:drawing-box height=150 -->
-```
-         Mother
-       ___A___ ___a___
-      |       |       |
-  A   |       |       |
- F    |_______|_______|
- a    |       |       |
- t  a |       |       |
- h    |_______|_______|
- e
- r
-```
+<!-- lab:drawing-box height=200 -->
 <!-- /lab:drawing-box -->
 
 <!-- lab:reflection -->
@@ -187,19 +167,7 @@ Both parents are carriers for sickle cell trait.
 
 **Draw the Punnett square in the box below:**
 
-<!-- lab:drawing-box height=150 -->
-```
-         Mother
-       ___H___ ___h___
-      |       |       |
-  H   |       |       |
- F    |_______|_______|
- a    |       |       |
- t  h |       |       |
- h    |_______|_______|
- e
- r
-```
+<!-- lab:drawing-box height=200 -->
 <!-- /lab:drawing-box -->
 
 <!-- lab:reflection -->
@@ -215,34 +183,7 @@ Both parents are carriers for sickle cell trait.
 
 ---
 
-## Part 5: My Traits — Dominant vs. Recessive
-
-> **Learning Goal:** Identify real dominant and recessive traits in yourself.
-
-Check yourself for each trait below. If you show the dominant phenotype, your genotype could be homozygous dominant *or* heterozygous — write it with an underscore (e.g., **T_**).
-
-<!-- lab:data-table rows=5 title="My Genetic Profile" -->
-| Trait | Dominant | Recessive | My Phenotype | My Possible Genotype |
-|---|---|---|---|---|
-| Tongue Rolling | Can roll (**T**) | Cannot roll (**t**) | {fill:text} | {fill:text} |
-| Earlobes | Free / unattached (**E**) | Attached (**e**) | {fill:text} | {fill:text} |
-| Widow's Peak | Peak hairline (**W**) | Straight hairline (**w**) | {fill:text} | {fill:text} |
-| Hitchhiker's Thumb | Straight (**H**) | Bends back ≥ 90° (**h**) | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
-<!-- lab:reflection -->
-**1. For any trait where you show the recessive phenotype, what must your genotype be? Why?**
-
-{fill:textarea rows=2}
-
-**2. Why can't you know your exact genotype if you show the dominant phenotype?**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-## Part 6: Family Pedigree — Tracing a Trait Through Generations
+## Part 5: Family Pedigree — Tracing a Trait Through Generations
 
 > **Learning Goal:** Read and draw a pedigree chart to trace how a trait is inherited in a real family.
 
@@ -280,22 +221,9 @@ Read the family description, then draw the pedigree in the box below.
 
 ### Draw the Pedigree
 
-Use the standard symbols above. Use squares for males, circles for females. Shade in anyone who is affected.
+Use the standard symbols above. Squares for males, circles for females. Shade in anyone who is affected. Label each person with their name.
 
-<!-- lab:drawing-box height=250 -->
-```
-Draw your pedigree here. Use three rows:
-
-  Generation I:     □———○
-                      |
-            ____________________
-            |         |         |
-  Generation II:   ○———□      ■        ○
-
-  Generation III:  ○    □
-
-(Fill in names, shade affected individuals)
-```
+<!-- lab:drawing-box height=300 -->
 <!-- /lab:drawing-box -->
 
 ### Pedigree Analysis
@@ -319,16 +247,7 @@ Draw your pedigree here. Use three rows:
 
 **5. Draw the Punnett square for Ff × Ff in the box below to support your answer.**
 
-<!-- lab:drawing-box height=120 -->
-```
-         ___F___ ___f___
-        |       |       |
-    F   |       |       |
-        |_______|_______|
-        |       |       |
-    f   |       |       |
-        |_______|_______|
-```
+<!-- lab:drawing-box height=200 -->
 <!-- /lab:drawing-box -->
 
 **6. Looking at your pedigree, could you tell just by looking at appearances that Frank and Gina were carriers? Why is this important for genetic counseling?**
