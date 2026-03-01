@@ -9,7 +9,7 @@
 **Module 01: The Science of Biology & Big Picture**
 
 1. **B** (Atom → Molecule → Cell → Tissue → Organism)
-2. **C** (Hypothesis)
+2. **B** or **C** (Hypothesis)
 3. **C** (Maintain a stable internal environment despite external changes)
 4. **B** (The Cell)
 5. **C** (Eukarya)
