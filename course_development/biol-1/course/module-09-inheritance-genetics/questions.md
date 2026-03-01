@@ -1,41 +1,41 @@
 # Module 9: Inheritance Genetics — Study Questions
 
-1. What organism did Mendel study? Why was it a good choice for genetics experiments?
+1. Who is Gregor Mendel? What organism did he study?
 
-2. Define the Law of Segregation and the Law of Independent Assortment.
+2. What is the difference between a dominant allele and a recessive allele?
 
-3. Explain the difference between genotype and phenotype, and between homozygous and heterozygous.
+3. What is the difference between genotype and phenotype?
 
-4. Cross Tt × Tt. What are the expected genotypic and phenotypic ratios?
+4. What is the difference between homozygous (AA, aa) and heterozygous (Aa)?
 
-5. What is a test cross? Cross Tt × tt and explain what the results tell you.
+5. Cross Tt × Tt using a Punnett square. What is the phenotypic ratio?
 
-6. What phenotypic ratio is expected from a dihybrid cross (AaBb × AaBb)?
+6. What is a test cross? What is it used for?
 
-7. Differentiate between incomplete dominance and codominance. Give an example of each.
+7. What phenotypic ratio do you expect from a dihybrid cross (AaBb × AaBb)?
 
-8. In snapdragons, red (RR) × white (rr) produces pink (Rr). Cross Rr × Rr. What are the expected phenotypic ratios?
+8. What is incomplete dominance? Give an example.
 
-9. Explain the ABO blood type system. What alleles are involved? Which are codominant? Which is recessive?
+9. What is codominance? Give an example.
 
-10. Can a Type A mother (Iᴬi) and a Type B father (Iᴮi) have a Type O child? Show the Punnett square.
+10. Explain the ABO blood type system. What are the possible genotypes for Type A blood?
 
-11. What is pleiotropy? How does the sickle cell allele illustrate this concept?
+11. Can two parents with Type A and Type B blood have a Type O child? Explain.
 
-12. Why are males more frequently affected by X-linked recessive disorders (e.g., color blindness, hemophilia)?
+12. Why are X-linked recessive disorders more common in males?
 
-13. A carrier mother and an unaffected father have children. What fraction of their sons will be affected? What fraction of their daughters will be carriers?
+13. A carrier mother (X^B X^b) and a normal father (X^B Y) have children. What fraction of sons will be colorblind?
 
-14. Two unaffected parents have an affected child. Is the trait most likely dominant or recessive? Explain.
+14. Two unaffected parents have an affected child. Is the trait dominant or recessive?
 
-15. In a pedigree, a trait appears almost exclusively in males and is never passed from father to son. What inheritance pattern does this suggest?
+15. What is a pedigree? What can it tell you?
 
-16. What is a polygenic trait? How does the inheritance of human height differ from pea plant height?
+16. What is a polygenic trait? Give one example.
 
-17. Why do polygenic traits show continuous variation instead of distinct categories?
+17. How is the inheritance of human height different from the inheritance of pea plant height?
 
-18. A student says: "If I know someone's genotype, I know exactly what they'll look like." Is this accurate? Give a specific example.
+18. True or False: If you know someone's genotype, you always know their phenotype. Explain.
 
-19. Explain how Mendel's Law of Segregation connects to the physical process of homolog separation during Meiosis I (link to Module 8).
+19. What is Mendel's Law of Segregation? How does it connect to meiosis?
 
-20. Compare single-gene inheritance (Mendelian) and polygenic inheritance: number of genes, phenotype categories, example traits, and distribution pattern.
+20. What is Mendel's Law of Independent Assortment?

@@ -1,41 +1,41 @@
 # Module 10: Epigenetics — Study Questions
 
-1. What does "gene expression" mean? Why don't all cells express all genes at all times?
+1. What does "gene expression" mean?
 
-2. Every cell in your body has the same DNA. Explain how a muscle cell and a nerve cell can look and function so differently.
+2. Every cell in your body has the same DNA. Why do muscle cells and nerve cells look different?
 
-3. What is a transcription factor? How do activators and repressors control gene expression?
+3. What is a transcription factor?
 
 4. What is a promoter? What is an enhancer?
 
-5. What is an operon? Describe how the lac operon works when lactose is absent vs. present.
+5. What is an operon?
 
-6. Compare inducible operons (lac) vs. repressible operons (trp). How do they differ in their default state?
+6. How does the lac operon work when lactose is absent?
 
-7. List the five levels at which gene expression can be regulated (from chromatin to post-translational).
+7. How does the lac operon work when lactose is present?
 
-8. What is alternative splicing? How can one gene produce multiple different proteins?
+8. What is the difference between an inducible operon and a repressible operon?
 
-9. Define epigenetics. How does it differ from a genetic mutation?
+9. What is epigenetics? How is it different from a mutation?
 
-10. What is DNA methylation? Does it typically activate or silence gene expression?
+10. What is DNA methylation? Does it turn genes on or off?
 
-11. What are histones? How does histone acetylation affect gene expression?
+11. What are histones? What does histone acetylation do?
 
-12. Explain the difference between euchromatin and heterochromatin. Which allows gene expression?
+12. What is the difference between euchromatin and heterochromatin?
 
-13. What is X-inactivation? Why does it occur? Explain how calico cats demonstrate it.
+13. What is X-inactivation? What is a Barr body?
 
-14. Define point mutation vs. frameshift mutation. Why are frameshift mutations typically more damaging?
+14. How do calico cats demonstrate X-inactivation?
 
-15. How can mutations in tumor suppressor genes or proto-oncogenes lead to uncontrolled cell division?
+15. What is alternative splicing?
 
-16. Give two examples of how environmental factors can influence gene expression through epigenetic mechanisms.
+16. What is miRNA? What does it do?
 
-17. Identical twins share the same DNA. Why might they develop different traits or disease risks as they age?
+17. Give two examples of how the environment can affect gene expression.
 
-18. A researcher discovers that a tumor suppressor gene in cancer cells has heavy methylation in its promoter region but no mutations in its DNA sequence. Explain how this could contribute to cancer.
+18. Why might identical twins develop different traits as they age?
 
-19. Compare the lac operon model (prokaryotic) with enhancer/transcription factor regulation (eukaryotic). What fundamental principle do they share?
+19. A tumor suppressor gene is heavily methylated but not mutated. Could this cause cancer? Explain.
 
-20. A student says: "Epigenetics proves that Lamarck was right — organisms can pass on acquired characteristics." Evaluate this claim.
+20. Summarize: How do cells with identical DNA become different types of cells?

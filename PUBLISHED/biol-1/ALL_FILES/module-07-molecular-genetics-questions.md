@@ -1,41 +1,41 @@
 # Module 7: Molecular Genetics — Study Questions
 
-1. What are the three components of a nucleotide?
+1. What are the three parts of a nucleotide?
 
-2. Name the four nitrogenous bases in DNA. Which are purines and which are pyrimidines?
+2. What are the base pairing rules for DNA? (A pairs with ___, G pairs with___)
 
-3. State the base pairing rules for DNA. How many hydrogen bonds form between A-T? Between G-C?
+3. What does "semi-conservative" mean in DNA replication?
 
-4. What does it mean that DNA strands are antiparallel?
+4. What does helicase do during DNA replication?
 
-5. Why must DNA be replicated before a cell divides? What does "semi-conservative" mean?
+5. What does DNA polymerase do during DNA replication?
 
-6. Describe the roles of helicase, DNA polymerase, primase, and ligase in DNA replication.
+6. What is the difference between the leading strand and the lagging strand?
 
-7. Why can DNA polymerase only build in the 5′ → 3′ direction? How does this create the leading and lagging strands?
+7. If a DNA strand reads 5′-ATCG-3′, what is the complementary strand?
 
-8. If one strand of DNA reads 5′-ATCGGATC-3′, write the complementary strand with correct directionality.
+8. What is transcription? Where does it happen?
 
-9. What is transcription? Where does it occur in eukaryotic cells?
+9. How is RNA different from DNA? (Name two differences.)
 
-10. Which enzyme performs transcription? What DNA sequences signal where it starts and stops?
+10. Given the DNA template strand 3′-TACGGC-5′, write the mRNA.
 
-11. How does RNA differ from DNA? (List at least three differences.)
+11. What are the three types of RNA and what does each do?
 
-12. Given the DNA template strand 3′-TACGGCAT-5′, write the resulting mRNA sequence.
+12. What is a codon? How many bases does it have?
 
-13. What are the three types of RNA (mRNA, tRNA, rRNA)? Briefly describe the function of each.
+13. What is the start codon? What amino acid does it code for?
 
-14. What post-transcriptional modifications occur in eukaryotes? (5′ cap, poly-A tail, intron splicing)
+14. Name the three stop codons.
 
-15. What is translation? Describe the roles of the three ribosome sites (A, P, E).
+15. What is the job of tRNA during translation?
 
-16. What is a codon? What is the start codon? What are the three stop codons?
+16. What happens at the A site, P site, and E site of the ribosome?
 
-17. Starting with the DNA template strand 3′-TACAAAGCAATT-5′, write the mRNA and determine the amino acid sequence using a codon table.
+17. Using a codon table, translate this mRNA: AUG-GCA-UAA. What is the amino acid sequence?
 
-18. If a single base is inserted into the middle of a gene, what happens to the protein? Why is this called a "frameshift" mutation?
+18. What is a point mutation? What is a frameshift mutation?
 
-19. A mutation changes one codon from GAA to GAG. Does this change the amino acid? What type of mutation is this?
+19. Why are frameshift mutations usually more harmful than point mutations?
 
-20. Compare DNA replication, transcription, and translation: location, enzyme, template, product, and direction.
+20. Summarize the Central Dogma: DNA → ___→___

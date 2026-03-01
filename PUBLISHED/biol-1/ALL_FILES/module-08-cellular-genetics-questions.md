@@ -1,41 +1,41 @@
 # Module 8: Cellular Genetics — Study Questions
 
-1. Name the three stages of interphase (G₁, S, G₂). What major event occurs during each?
+1. What are the three stages of interphase? What happens in each?
 
-2. After S phase, are the two copies of a chromosome called homologs or sister chromatids? How can you tell the difference?
+2. What happens during S phase?
 
-3. List the four phases of mitosis in order (PMAT). Briefly describe what happens during each.
+3. What is the difference between sister chromatids and homologous chromosomes?
 
-4. What structures separate during anaphase of mitosis?
+4. List the four phases of mitosis in order.
 
-5. At the end of mitosis and cytokinesis, how many daughter cells are produced? Are they diploid or haploid? Are they genetically identical to the parent cell?
+5. What happens during metaphase?
 
-6. Compare cytokinesis in animal cells (cleavage furrow) vs. plant cells (cell plate).
+6. What separates during anaphase of mitosis?
 
-7. Where does meiosis occur in humans? What is the purpose of meiosis?
+7. How many daughter cells does mitosis produce? Are they identical to the parent?
 
-8. How many rounds of division occur in meiosis? How many daughter cells are produced? What is their ploidy?
+8. What is the difference between a cleavage furrow and a cell plate?
 
-9. What structures separate during Anaphase I? How does this differ from Anaphase II?
+9. What is the purpose of meiosis? Where does it happen in humans?
 
-10. Describe synapsis and crossing over. During which phase do they occur? Why are they important?
+10. How many daughter cells does meiosis produce? Are they diploid or haploid?
 
-11. What is independent assortment? How does random alignment of homologs at Metaphase I contribute to genetic diversity?
+11. What separates during Anaphase I? What separates during Anaphase II?
 
-12. In humans (2n = 46), how many unique gamete combinations are possible from independent assortment alone?
+12. What is crossing over? When does it happen?
 
-13. Complete a comparison table: Mitosis vs. Meiosis (number of divisions, daughter cells, ploidy, genetic identity, purpose).
+13. What is independent assortment?
 
-14. Why is it critical that gametes are haploid? What would happen if gametes were diploid?
+14. Why is it important that gametes are haploid?
 
-15. Name the three sources of genetic variation in sexual reproduction. Which two occur during meiosis?
+15. Complete: Mitosis makes ___cells that are___. Meiosis makes ___cells that are___.
 
-16. What is nondisjunction? During which stage(s) of meiosis can it occur?
+16. What is nondisjunction? Give one example of what it causes.
 
-17. What is aneuploidy? Give one example of an aneuploid condition in humans.
+17. What are the three sources of genetic variation in sexual reproduction?
 
-18. What are cell cycle checkpoints (G₁, G₂, M)? What is evaluated at each?
+18. What are cell cycle checkpoints? Why are they important?
 
-19. Distinguish between a proto-oncogene and an oncogene. What role does p53 play?
+19. What is the difference between a proto-oncogene and an oncogene?
 
-20. Explain why siblings from the same parents are not genetically identical to each other.
+20. Why are siblings from the same parents not identical?

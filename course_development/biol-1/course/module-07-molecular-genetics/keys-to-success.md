@@ -4,122 +4,79 @@
 
 By the end of this module, you should be able to:
 
-1. State the Central Dogma of Molecular Biology: DNA → RNA → Protein
-2. Describe the structure of DNA (double helix, nucleotides, base pairing rules)
-3. Explain the process of DNA replication and why it is semi-conservative
-4. Describe transcription: how DNA is copied into mRNA
-5. Describe translation: how mRNA is decoded into a polypeptide at the ribosome
-6. Explain the roles of mRNA, tRNA, and rRNA in protein synthesis
-7. Use the genetic code (codon table) to determine amino acid sequences
+1. Describe the structure of DNA (double helix, nucleotides, base pairing)
+2. Explain how DNA is copied (replication)
+3. Explain how DNA is read to make RNA (transcription)
+4. Explain how RNA is read to make a protein (translation)
+5. Use a codon table to figure out amino acid sequences
+6. Describe what mutations are and how they affect proteins
 
-## The Central Dogma
+## The Big Picture: The Central Dogma
 
-```
-    DNA  →  RNA  →  Protein
-         ↑         ↑
-    Replication  Transcription  Translation
-```
+> **DNA → RNA → Protein**
+> This is the flow of genetic information in all living things.
 
-- **DNA** stores genetic information (the "blueprint")
-- **RNA** carries and translates the information (the "messenger" and "decoder")
-- **Protein** performs cellular functions (the "worker")
+- **DNA** = the instruction book (stored in the nucleus)
+- **RNA** = the copy of one instruction (carries it to the ribosome)
+- **Protein** = the finished product (does the actual work in the cell)
 
-## Key Terms to Know
+## Key Terms
 
 ### DNA Structure
 
-- **Nucleotide** — Monomer of nucleic acids: phosphate group + sugar + nitrogenous base
-- **Deoxyribose** — The sugar in DNA nucleotides
-- **Nitrogenous Bases** — Adenine (A), Thymine (T), Guanine (G), Cytosine (C)
-- **Base Pairing Rules** — A pairs with T (2 hydrogen bonds); G pairs with C (3 hydrogen bonds)
-- **Double Helix** — Two antiparallel strands wound around each other
-- **Antiparallel** — The two DNA strands run in opposite directions (5′ → 3′ and 3′ → 5′)
-- **Complementary** — Each strand determines the sequence of the other via base pairing
-- **Chromosome** — A long, continuous DNA molecule packaged with histone proteins
-- **Gene** — A segment of DNA that encodes a functional product (usually a protein)
+- **Nucleotide** — The building block of DNA: a phosphate + a sugar + a base
+- **Four DNA Bases** — Adenine (A), Thymine (T), Guanine (G), Cytosine (C)
+- **Base Pairing** — A pairs with T (2 bonds); G pairs with C (3 bonds)
+- **Double Helix** — Two strands twisted around each other, running in opposite directions
+- **Gene** — A section of DNA that codes for one protein
+- **Chromosome** — A long DNA molecule packaged with proteins
 
-### DNA Replication
+### DNA Replication (Copying DNA)
 
-- **Semi-Conservative Replication** — Each new DNA molecule has one original strand and one new strand
-- **Helicase** — Enzyme that unwinds and separates the double helix
-- **DNA Polymerase** — Enzyme that synthesizes new DNA by adding nucleotides (5′ → 3′ direction only)
-- **Leading Strand** — Synthesized continuously in the direction of the replication fork
-- **Lagging Strand** — Synthesized in short fragments (Okazaki fragments) away from the fork
-- **Primase** — Enzyme that makes a short RNA primer to start replication
-- **Ligase** — Enzyme that joins Okazaki fragments together
-- **Origin of Replication** — Where replication begins; produces a replication bubble
+- **Helicase** — Unzips the double helix
+- **DNA Polymerase** — Builds the new strand by matching bases (only works 5′→3′)
+- **Leading Strand** — Built continuously (smooth and easy)
+- **Lagging Strand** — Built in short pieces called **Okazaki fragments**
+- **Primase** — Lays down a short RNA starter (primer)
+- **Ligase** — Glues the fragments together
+- **Semi-conservative** — Each new DNA molecule has one old strand and one new strand
 
 ### Transcription (DNA → RNA)
 
-- **RNA** — Single-stranded nucleic acid; uses ribose sugar and uracil (U) instead of thymine (T)
-- **mRNA (Messenger RNA)** — Carries the genetic message from DNA to the ribosome
-- **RNA Polymerase** — Enzyme that synthesizes mRNA using the DNA template strand
-- **Template Strand** — The DNA strand read by RNA polymerase (3′ → 5′)
-- **Coding Strand** — The DNA strand NOT read; has same sequence as mRNA (except T→U)
-- **Promoter** — DNA sequence that signals where transcription begins
-- **Terminator** — DNA sequence that signals where transcription ends
-- **5′ Cap and Poly-A Tail** — Modifications added to eukaryotic mRNA for protection and export
-- **Introns** — Non-coding sequences removed during RNA processing (spliced out)
-- **Exons** — Coding sequences retained in the mature mRNA
+- **RNA Polymerase** — Reads DNA and builds mRNA
+- **mRNA** — The messenger; carries the gene's code to the ribosome
+- **RNA uses Uracil (U) instead of Thymine (T)** — So A pairs with U in RNA
+- **Promoter** — The "start here" signal on DNA
+- In eukaryotes: **introns are removed**, **exons stay** (EX-ons are EX-pressed)
 
 ### Translation (RNA → Protein)
 
-- **Codon** — A three-nucleotide sequence on mRNA that specifies one amino acid
-- **Genetic Code** — The set of rules mapping codons to amino acids (64 codons, 20 amino acids)
-- **Start Codon** — AUG (codes for methionine; signals where translation begins)
-- **Stop Codons** — UAA, UAG, UGA (signal end of translation; no amino acid)
-- **tRNA (Transfer RNA)** — Carries amino acids to the ribosome; has an anticodon that pairs with mRNA codon
-- **Anticodon** — Three-nucleotide sequence on tRNA complementary to the mRNA codon
-- **Ribosome** — The molecular machine that reads mRNA and assembles the polypeptide
-- **rRNA (Ribosomal RNA)** — Structural and catalytic component of ribosomes
-- **A Site (Aminoacyl)** — Ribosome site where incoming charged tRNA binds
-- **P Site (Peptidyl)** — Ribosome site where the growing polypeptide chain is held
-- **E Site (Exit)** — Ribosome site where empty tRNA exits
-- **Polypeptide** — A chain of amino acids linked by peptide bonds; folds into a functional protein
+- **Codon** — A 3-letter code on mRNA (e.g., AUG = start)
+- **Start codon** — AUG (codes for methionine)
+- **Stop codons** — UAA, UAG, UGA (no amino acid; translation stops)
+- **tRNA** — Carries the right amino acid; has an anticodon that matches the mRNA codon
+- **Ribosome** — The machine that reads mRNA and builds the protein
+- **A site** — New tRNA arrives here
+- **P site** — Growing protein chain is held here
+- **E site** — Empty tRNA exits here
 
-## DNA Replication: Step by Step
+## Quick Comparison
 
-1. **Helicase** unwinds the double helix at the origin of replication
-2. **Primase** adds a short RNA primer
-3. **DNA Polymerase** adds complementary nucleotides (A-T, G-C) in the 5′ → 3′ direction
-4. **Leading strand** is synthesized continuously; **lagging strand** in Okazaki fragments
-5. **Ligase** seals the fragments together
-6. Result: **Two identical DNA molecules**, each with one old and one new strand (semi-conservative)
+| | Replication | Transcription | Translation |
+|---|---|---|---|
+| **Makes** | DNA copy | mRNA | Protein |
+| **Enzyme** | DNA Polymerase | RNA Polymerase | Ribosome |
+| **Where** | Nucleus | Nucleus | Cytoplasm |
 
-## Transcription: Step by Step
+## Mutations
 
-1. **RNA Polymerase** binds to the **promoter** on DNA
-2. RNA Polymerase reads the **template strand** (3′ → 5′) and builds mRNA (5′ → 3′)
-3. Base pairing: A→U, T→A, G→C, C→G (note: U replaces T in RNA)
-4. RNA Polymerase reaches the **terminator** → mRNA is released
-5. In eukaryotes: **5′ cap** and **poly-A tail** are added; **introns are spliced out**
-6. Mature mRNA exits the nucleus through nuclear pores → heads to the ribosome
-
-## Translation: Step by Step
-
-1. **mRNA** binds to the ribosome; the start codon (**AUG**) is positioned at the P site
-2. A **tRNA** with the anticodon matching the A site codon brings the next amino acid
-3. A **peptide bond** forms between the amino acids (catalyzed by rRNA)
-4. The ribosome shifts one codon forward (**translocation**): tRNA moves P→E (exits), new tRNA enters A site
-5. Steps 2-4 repeat until a **stop codon** (UAA, UAG, or UGA) is reached
-6. The polypeptide is **released** and folds into a functional protein
-
-## Key Comparisons
-
-| Feature | DNA Replication | Transcription | Translation |
-|---------|----------------|---------------|-------------|
-| Template | DNA | DNA | mRNA |
-| Product | DNA | mRNA | Polypeptide |
-| Enzyme | DNA Polymerase | RNA Polymerase | Ribosome |
-| Location | Nucleus | Nucleus | Cytoplasm (ribosome) |
-| Direction | 5′ → 3′ | 5′ → 3′ (mRNA) | 5′ → 3′ (read direction) |
+- **Point mutation** — One base is changed → may or may not change the protein
+- **Frameshift mutation** — A base is added or deleted → shifts ALL the codons → usually devastating
 
 ## Study Tips
 
-1. **Master the Central Dogma flow** — DNA → (transcription) → mRNA → (translation) → Protein
-2. **Know your base pairing** — DNA: A-T, G-C. RNA: A-U, G-C
-3. **Practice codon reading** — Given a DNA strand, write the mRNA, then use the codon table to find amino acids
-4. **Compare the three processes** — Make a table with Location, Enzyme, Template, Product for each
-5. **Remember the RNA types** — mRNA carries the message, tRNA carries amino acids, rRNA builds the ribosome
-6. **Understand introns vs. exons** — "EX-ons are EX-pressed; IN-trons stay IN the nucleus"
-7. **Think about why this matters** — Every trait you have comes from proteins, and every protein comes from genes via this pathway
+1. **Know the Central Dogma** — DNA → RNA → Protein
+2. **Practice base pairing** — DNA: A-T, G-C. RNA: A-U, G-C
+3. **Practice with the codon table** — Start with DNA, write the mRNA, then look up amino acids
+4. **Remember the enzymes** — Helicase unzips, Polymerase builds, Ligase glues
+5. **EX-ons EX-pressed, IN-trons stay IN** — Easy way to remember splicing
