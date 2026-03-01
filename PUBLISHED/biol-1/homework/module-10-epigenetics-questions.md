@@ -6,62 +6,36 @@
 
 3. What is a transcription factor? How do activators and repressors control gene expression?
 
-4. What is a promoter? What is an enhancer? How far apart can an enhancer be from the gene it regulates?
+4. What is a promoter? What is an enhancer?
 
-5. What is a housekeeping gene? Give an example of why some genes must be expressed in every cell.
+5. What is an operon? Describe how the lac operon works when lactose is absent vs. present.
 
-6. What is an operon? Why are operons common in prokaryotes but not in eukaryotes?
+6. Compare inducible operons (lac) vs. repressible operons (trp). How do they differ in their default state?
 
-7. Describe how the lac operon works when lactose is absent. What role does the repressor play?
+7. List the five levels at which gene expression can be regulated (from chromatin to post-translational).
 
-8. Describe how the lac operon works when lactose is present. What happens to the repressor?
+8. What is alternative splicing? How can one gene produce multiple different proteins?
 
-9. Why is inducible regulation energy-efficient for the cell?
+9. Define epigenetics. How does it differ from a genetic mutation?
 
-10. Compare inducible operons (lac) vs. repressible operons (trp). How do they differ in their default state?
+10. What is DNA methylation? Does it typically activate or silence gene expression?
 
-11. List the five levels at which gene expression can be regulated (from chromatin to post-translational). At which level is regulation most common?
+11. What are histones? How does histone acetylation affect gene expression?
 
-12. What is alternative splicing? How can one gene produce multiple different proteins?
+12. Explain the difference between euchromatin and heterochromatin. Which allows gene expression?
 
-13. What is miRNA? How does it regulate gene expression after transcription?
+13. What is X-inactivation? Why does it occur? Explain how calico cats demonstrate it.
 
-14. What are post-translational modifications? Give two examples of how they affect protein function.
+14. Define point mutation vs. frameshift mutation. Why are frameshift mutations typically more damaging?
 
-15. Define epigenetics. How does it differ from a genetic mutation?
+15. How can mutations in tumor suppressor genes or proto-oncogenes lead to uncontrolled cell division?
 
-16. What is DNA methylation? Does it typically activate or silence gene expression?
+16. Give two examples of how environmental factors can influence gene expression through epigenetic mechanisms.
 
-17. What are histones? How does histone acetylation affect gene expression?
+17. Identical twins share the same DNA. Why might they develop different traits or disease risks as they age?
 
-18. Explain the difference between euchromatin and heterochromatin. Which allows gene expression?
+18. A researcher discovers that a tumor suppressor gene in cancer cells has heavy methylation in its promoter region but no mutations in its DNA sequence. Explain how this could contribute to cancer.
 
-19. What is X-inactivation? Why does it occur? What is a Barr body?
+19. Compare the lac operon model (prokaryotic) with enhancer/transcription factor regulation (eukaryotic). What fundamental principle do they share?
 
-20. Explain how calico cats demonstrate X-inactivation in action.
-
-21. Explain dosage compensation. Why is it necessary in organisms with XX/XY sex determination?
-
-22. Define point mutation vs. frameshift mutation. Why are frameshift mutations typically more damaging?
-
-23. How can mutations in tumor suppressor genes or proto-oncogenes lead to uncontrolled cell division?
-
-24. Give two examples of how environmental factors (nutrition, stress, toxins, or exercise) can influence gene expression through epigenetic mechanisms.
-
-25. Identical twins share the same DNA. Why might they develop different traits or disease risks as they age?
-
-26. A pregnant individual's diet can influence gene expression patterns in the developing offspring through methylation changes. Explain why folic acid is recommended during pregnancy in light of this.
-
-27. Environmental factors (diet, stress) can modify DNA methylation without changing the sequence. Can these modifications be inherited? Discuss the evidence.
-
-28. A researcher discovers that a tumor suppressor gene in cancer cells has heavy methylation in its promoter region but no mutations in its DNA sequence. Explain how this could contribute to cancer.
-
-29. Compare the lac operon model (prokaryotic) with enhancer/transcription factor regulation (eukaryotic). What is the fundamental principle shared by both systems?
-
-30. If a cell loses the enzyme that performs histone acetylation, predict what would happen to gene expression in that cell. Would it increase or decrease? Why?
-
-31. Diagram the flow: DNA → RNA → Protein. What is the role of DNA polymerase? RNA polymerase? Ribosomes?
-
-32. DNA template strand: 3′-TAC GGG AAA ACT-5′. Transcribe to mRNA (5′→3′) and translate to amino acids using a codon chart.
-
-33. A student says: "Epigenetics proves that Lamarck was right — organisms can pass on acquired characteristics." Evaluate this claim. Is it accurate? What are the limitations?
+20. A student says: "Epigenetics proves that Lamarck was right — organisms can pass on acquired characteristics." Evaluate this claim.
