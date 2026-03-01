@@ -9,11 +9,10 @@ This directory contains exams for BIOL-1: Introduction to Biology (Pelican Bay S
 BIOL-1 has 17 modules. The exam schedule follows this coverage:
 
 | Exam | Modules | Topic Coverage |
-|------|---------|----------------|
-| Exam 01 | 01-05 | Scientific Method, Chemistry, Cells |
-| Exam 02 | 06-09 | Energy, Photosynthesis, Respiration, Cell Division |
-| Exam 03 | 10-13 | Genetics, DNA, Gene Expression, Biotechnology |
-| Exam 04 | 14-17 | Evolution, Natural Selection, Speciation |
+| --- | --- | --- |
+| Exam 01 | 01-06 | Scientific Method, Chemistry, Cells, Membranes, Metabolism |
+| Exam 02 | 07-11 | Molecular Genetics, Cellular Genetics, Inheritance Genetics, Epigenetics, Genomics & Biotechnology |
+| Exam 03 | 15-17 | Darwin & Evolution, Microevolution, Speciation & Macroevolution |
 | Final | 01-17 | Comprehensive |
 
 ## File Naming Convention
@@ -36,10 +35,9 @@ BIOL-1 has 17 modules. The exam schedule follows this coverage:
 
 ## Development Status
 
-- [ ] exam-01.md + key
+- [x] exam-01.md + key
 - [ ] exam-02.md + key
 - [ ] exam-03.md + key
-- [ ] exam-04.md + key
 - [ ] final-exam.md + key
 
 ## Template
@@ -49,3 +47,4 @@ See `exam-template.md` for the standard format.
 ---
 
 *Created: 2026-01-28*
+*Updated: 2026-03-01 — Exam 2 updated to cover restructured modules 7-11*

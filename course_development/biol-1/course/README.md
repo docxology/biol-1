@@ -11,28 +11,25 @@ The course covers 17 modules progressing through foundational biology concepts:
 ### Modules
 
 | Module | Topic | Directory |
-|--------|-------|-----------|
+| --- | --- | --- |
 | 01 | Study of Life | [module-01-study-of-life](module-01-study-of-life/) |
 | 02 | Basic Chemistry | [module-02-basic-chemistry](module-02-basic-chemistry/) |
 | 03 | Organic Molecules | [module-03-organic-molecules](module-03-organic-molecules/) |
 | 04 | Cells | [module-04-cells](module-04-cells/) |
 | 05 | Membranes | [module-05-membranes](module-05-membranes/) |
 | 06 | Metabolism | [module-06-metabolism](module-06-metabolism/) |
-| 07 | Photosynthesis & Cellular Respiration | [module-07-energy](module-07-energy/) |
-| 08 | Central Dogma (DNA → RNA → Protein) | [module-08-central-dogma](module-08-central-dogma/) |
-| 09 | Cell Division: Mitosis & Meiosis | [module-09-cell-division](module-09-cell-division/) |
-| 10 | Gene Expression & Epigenetics | [module-10-gene-regulation](module-10-gene-regulation/) |
-| 11 | Mendelian Genetics | [module-11-mendelian-genetics](module-11-mendelian-genetics/) |
-| 12 | Gene Expression | [module-12-gene-expression](module-12-gene-expression/) |
-| 13 | Gene Regulation | [module-13-gene-regulation](module-13-gene-regulation/) |
-| 14 | Biotechnology & Genomics | [module-14-biotechnology-genomics](module-14-biotechnology-genomics/) |
+| 07 | Molecular Genetics | [module-07-molecular-genetics](module-07-molecular-genetics/) |
+| 08 | Cellular Genetics | [module-08-cellular-genetics](module-08-cellular-genetics/) |
+| 09 | Inheritance Genetics | [module-09-inheritance-genetics](module-09-inheritance-genetics/) |
+| 10 | Epigenetics | [module-10-epigenetics](module-10-epigenetics/) |
+| 11 | Genomics & Biotechnology | [module-11-genomics-biotechnology](module-11-genomics-biotechnology/) |
 | 15 | Darwin & Evolution | [module-15-darwin-evolution](module-15-darwin-evolution/) |
 | 16 | Microevolution | [module-16-microevolution](module-16-microevolution/) |
 | 17 | Speciation & Macroevolution | [module-17-speciation-macroevolution](module-17-speciation-macroevolution/) |
 
 ## Directory Organization
 
-```
+```text
 course/
 ├── README.md                    # This file
 ├── AGENTS.md                    # Technical documentation
@@ -44,7 +41,7 @@ course/
 ├── practice_tests/              # Practice tests with answer keys
 ├── quizzes/                     # Quiz materials
 │
-└── module-XX-topic/             # 17 module directories
+└── module-XX-topic/             # Module directories
     ├── for_upload/              # Materials ready for distribution
     ├── output/                  # Generated outputs (PDF, MP3, etc.)
     ├── resources/               # Supplementary materials

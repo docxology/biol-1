@@ -16,27 +16,27 @@
 | 5 | Wed | 2/18 | Module 6: Metabolism; Lab 5: Viewing Life | |
 | 6 | Mon | 2/23 | Exam 01 Review (Modules 1-6); Lab 6: Exam Review (Paper-based) | |
 | 6 | Wed | 2/25 | **Exam 01** (Modules 1-6) | Exam |
-| 7 | Mon | 3/2 | Module 7: Photosynthesis & Cellular Respiration (Energy); Lab 7: Energy | Monday class meets |
+| 7 | Mon | 3/2 | Module 7-11 Preview | Monday class meets |
 | 7 | Wed | 3/4 | No Class | First Wednesday - Programs Canceled |
 | 8 | Mon | 3/9 | No Class | Spring Break |
 | 8 | Wed | 3/11 | No Class | Spring Break |
-| 9 | Mon | 3/16 | Module 8: Central Dogma; Lab 8: Central Dogma | |
-| 9 | Wed | 3/18 | Module 9: Cell Division; Lab 9: Cell Division | |
-| 10 | Mon | 3/23 | Module 10: Gene Expression & Epigenetics; Lab 10: Gene Regulation | |
-| 10 | Wed | 3/25 | Module 11: Inheritance; Lab 11: Inheritance | |
-| 11 | Mon | 3/30 | Exam 02 Review (Modules 7-11) | Monday class meets |
+| 9 | Mon | 3/16 | Module 07: Molecular Genetics; Lab 07: Molecular Genetics | |
+| 9 | Wed | 3/18 | Module 08: Cellular Genetics; Lab 08: Cellular Genetics | |
+| 10 | Mon | 3/23 | Module 09: Inheritance Genetics; Lab 09: Inheritance Genetics | |
+| 10 | Wed | 3/25 | Module 10: Epigenetics; Lab 10: Epigenetics | |
+| 11 | Mon | 3/30 | Module 11: Genomics & Biotechnology; Lab 11: Genomics & Biotechnology | Monday class meets |
 | 11 | Wed | 4/1 | No Class | First Wednesday - Programs Canceled |
-| 12 | Mon | 4/6 | **Exam 02** (Modules 7-11) | Exam |
-| 12 | Wed | 4/8 | Module 12: Gene Expression (DNA to Protein) | Start of new unit |
-| 13 | Mon | 4/13 | Module 13: Regulation of Gene Expression | |
-| 13 | Wed | 4/15 | Module 14: Biotechnology and Genomics | |
-| 14 | Mon | 4/20 | Exam 03 Review | |
-| 14 | Wed | 4/22 | **Exam 03** (Modules 12-14) | Exam |
-| 15 | Mon | 4/27 | Module 15: Darwin and Evolution | |
-| 15 | Wed | 4/29 | Module 16: Evolution of Populations (Microevolution) | |
-| 16 | Mon | 5/4 | Module 17: Speciation and Macroevolution | |
+| 12 | Mon | 4/6 | Module 7-11 Review; Lab 12: Exam 02 Review (Paper-based) | |
+| 12 | Wed | 4/8 | **Exam 02** (Modules 7-11) | Exam |
+| 13 | Mon | 4/13 | Module 15: Darwin and Evolution | Start of new unit |
+| 13 | Wed | 4/15 | Module 16: Evolution of Populations (Microevolution) | |
+| 14 | Mon | 4/20 | Module 17: Speciation and Macroevolution | |
+| 14 | Wed | 4/22 | Exam 03 Review (Modules 15-17) | |
+| 15 | Mon | 4/27 | **Exam 03** (Modules 15-17) | Exam |
+| 15 | Wed | 4/29 | Final Exam Review (Comprehensive) | |
+| 16 | Mon | 5/4 | Final Exam Review (Comprehensive) | |
 | 16 | Wed | 5/6 | No Class | First Wednesday - Programs Canceled |
-| 17 | Mon | 5/11 | **Final Exam (Exam 04)** | Final Exam + Lab |
+| 17 | Mon | 5/11 | **Final Exam (Exam 04)** | Final Exam |
 | 17 | Wed | 5/13 | No Class | |
 
 ## Important Dates
@@ -50,6 +50,6 @@
 ## Exam Schedule
 
 - **Exam 01**: Week 6 (February 25, 2026) - Modules 1-6
-- **Exam 02**: Week 12 (April 6, 2026) - Modules 7-11
-- **Exam 03**: Week 14 (April 22, 2026) - Modules 12-14
+- **Exam 02**: Week 12 (April 8, 2026) - Modules 7-11
+- **Exam 03**: Week 15 (April 27, 2026) - Modules 15-17
 - **Exam 04**: Week 17 (May 11, 2026) - Final Exam (Comprehensive)
