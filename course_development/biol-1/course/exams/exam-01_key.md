@@ -43,7 +43,7 @@
 25. **D** (Active transport)
 
 **Module 06: Energy & Metabolism**
-26. **B** (The First Law of Thermodynamics)
+26. **D** (Metabolism)
 27. **A** (A protein that speeds up chemical reactions.)
 28. **D** (ATP)
 29. **C** (Chloroplast)
