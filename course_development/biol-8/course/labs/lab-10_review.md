@@ -1,4 +1,4 @@
-# Lab 10: Module 07–10 Review — Genetics, Cell Division, Tissues & Inheritance
+# Lab 10: Exam 02 Review — Modules 07–10
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
@@ -6,491 +6,331 @@
 
 **Name:** {fill:text} **Date:** {fill:text}
 
-**Section:** {fill:text} **Lab Partner(s):** {fill:text}
-
 ---
 
 ## Purpose
 
-This lab is a structured, paper-based review to prepare you for **Exam 02**, which covers:
+This lab is a paper-based review to help you prepare for **Exam 02**, which covers Modules 07–10. For each module you will find:
 
-| Module | Topic | Key Concepts |
-|--------|-------|-------------|
-| **07** | Genetics & DNA | DNA structure, replication, transcription, translation, mutations |
-| **08** | Cell Division | Mitosis, meiosis, the cell cycle, comparison of both processes |
-| **09** | Tissues | Four tissue types, structure-function relationships, locations |
-| **10** | Inheritance | Mendelian laws, Punnett squares, pedigrees, sex-linked traits |
+- A **brief reminder** of the main ideas
+- A few **focused questions** to test your understanding
+- **Space to draw or diagram** key concepts
 
-> **How to use this lab:** Work through each section systematically. The activities progress from recall → application → analysis → synthesis. Complete all fill-in tables and reflection questions honestly — this is practice for the exam.
+> **Tip:** Try to answer each question *without* your notes first — that's the best way to find out what you still need to study.
 
 ---
 
-## Part 1: Module 07 — Genetics & DNA
+## Module 07 — The Central Dogma of Molecular Biology
 
-### 1A. Core Vocabulary Check
+### Context Reminder
 
-Fill in the blank with the correct term:
+The **central dogma** describes the one-way flow of genetic information: **DNA → RNA → Protein**.
 
-<!-- lab:data-table rows=10 title="Module 07 Vocabulary" -->
-| Definition | Term |
-|------------|------|
-| The complete set of genetic instructions in an organism | {fill:text} |
-| The process of copying DNA before cell division | {fill:text} |
-| Converting DNA → RNA | {fill:text} |
-| Converting mRNA → Protein | {fill:text} |
-| A three-nucleotide sequence on mRNA that codes for one amino acid | {fill:text} |
-| The organelle where translation occurs | {fill:text} |
-| A change in the DNA sequence | {fill:text} |
-| The "backbone" of DNA is made of alternating _____ and _____ groups | {fill:text} |
-| The base-pairing rule: Adenine pairs with _____ in DNA | {fill:text} |
-| The enzyme that unzips DNA during replication | {fill:text} |
-<!-- /lab:data-table -->
+- **DNA** is a double-stranded helix made of nucleotides (A, T, G, C) joined by a sugar-phosphate backbone. Bases pair by the rule A–T and G–C.
+- **Replication** copies the entire DNA molecule before a cell divides (enzyme: *helicase* unzips; *DNA polymerase* builds the new strand).
+- **Transcription** converts a gene (DNA) into messenger RNA (mRNA) inside the nucleus using *RNA polymerase*.
+- **Translation** reads the mRNA codons at a ribosome in the cytoplasm and assembles a chain of amino acids into a protein.
+- A **mutation** is any change in the DNA sequence. It may be *silent* (no amino acid change), *missense* (different amino acid), or *nonsense* (early stop codon).
 
 ---
 
-### 1B. DNA Structure Diagram
-
-In the space below (or on scratch paper), **sketch a short segment of DNA** (at least 4 base pairs) and label:
-
-- Sugar-phosphate backbone
-- Hydrogen bonds
-- At least two correctly paired bases (A-T and G-C)
+### Questions
 
 <!-- lab:reflection -->
-**After sketching, answer: Why is the DNA double helix described as "antiparallel"?**
+**1. Complete the central dogma flow chart — fill in the blanks:**
 
-{fill:textarea rows=2}
+```
+    DNA  ──────────────→  ________  ──────────────→  ________
+           (Process: ___)              (Process: ___)
 
-**Why does accurate base pairing matter for DNA replication?**
+    Location: _________              Location: _________
+```
 
-{fill:textarea rows=2}
+{fill:textarea rows=1}
+
+**2. A template DNA strand reads 3ʹ–TAC GCA AAA–5ʹ. Write the mRNA sequence and then use a codon chart to identify the amino acid chain.**
+
+{fill:textarea rows=3}
+
+**3. A mutation changes one codon from GAG to GUG, which swaps glutamic acid for valine. Is this a silent, missense, or nonsense mutation? What real disease does this exact mutation cause?**
+
+{fill:textarea rows=3}
+
 <!-- /lab:reflection -->
 
 ---
 
-### 1C. Central Dogma Flow
+### Drawing Box — DNA Structure
 
-Complete the flow chart by filling in the blanks:
+In the box below, **sketch a short segment of double-stranded DNA** (at least 4 base pairs). Label:
 
-```
-DNA  ──────────────→  ________  ──────────────→  ________
-       (Transcription)             (Translation)
-
-Location: _________               Location: _________
-```
+- Sugar-phosphate backbone (with 5ʹ and 3ʹ ends)
+- Hydrogen bonds between base pairs
+- At least one A–T pair and one G–C pair
 
 <!-- lab:reflection -->
-**A mutation changes a codon from CAU to CAA. Both code for different amino acids. What type of mutation is this (silent, missense, or nonsense)?**
 
-{fill:text}
+{fill:textarea rows=12}
 
-**Why can a single point mutation sometimes have no effect on the final protein?**
-
-{fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 2: Module 08 — Cell Division
+## Module 08 — Mitosis & Meiosis
 
-### 2A. The Cell Cycle
+### Context Reminder
 
-Label the phases of the cell cycle in the diagram below by completing the table:
+Cells reproduce through a regulated **cell cycle**: **G₁ → S (DNA replication) → G₂ → M (mitosis + cytokinesis)**.
 
-<!-- lab:data-table rows=6 title="Cell Cycle Phases" -->
-| Phase | What Happens | Is the Cell Dividing? |
-|-------|-------------|----------------------|
-| G₁ (Gap 1) | {fill:text} | {fill:text} |
-| S (Synthesis) | {fill:text} | {fill:text} |
-| G₂ (Gap 2) | {fill:text} | {fill:text} |
-| M — Mitosis | {fill:text} | {fill:text} |
-| M — Cytokinesis | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+- **Mitosis** produces **2 identical diploid (2n) daughter cells** — used for growth and repair.
+- **Meiosis** produces **4 genetically unique haploid (n) gametes** — used for sexual reproduction.
+- Meiosis has **two rounds of division** (meiosis I separates homologous pairs; meiosis II separates sister chromatids).
+- Genetic variation arises from **crossing over** (prophase I) and **independent assortment** (metaphase I).
 
----
-
-### 2B. Mitosis Phase Sequencing
-
-**Cut and arrange** (or simply number 1–6 in order) the following events:
-
-<!-- lab:data-table rows=7 title="Order the Events of Mitosis" -->
-| Event | Order (1–6) |
-|-------|-------------|
-| Sister chromatids pull apart toward opposite poles (Anaphase) | {fill:number} |
-| Nuclear envelope reforms; chromosomes decondense (Telophase) | {fill:number} |
-| Chromosomes condense; spindle fibers begin to form (Prophase) | {fill:number} |
-| Cell physically splits into two daughter cells (Cytokinesis) | {fill:number} |
-| Chromosomes line up single-file at the cell's equator (Metaphase) | {fill:number} |
-| DNA is replicated (S Phase — occurs before mitosis begins) | {fill:number} |
-<!-- /lab:data-table -->
-
----
-
-### 2C. Mitosis vs. Meiosis Comparison
-
-<!-- lab:data-table rows=9 title="Comparing Mitosis and Meiosis" -->
 | Feature | Mitosis | Meiosis |
 |---------|---------|---------|
-| Purpose | {fill:text} | {fill:text} |
-| Number of divisions | {fill:text} | {fill:text} |
-| Number of daughter cells | {fill:text} | {fill:text} |
-| Ploidy of daughter cells | {fill:text} | {fill:text} |
-| Genetic identity of daughter cells | {fill:text} | {fill:text} |
-| Homologous chromosomes pair up? | {fill:text} | {fill:text} |
-| Crossing over occurs? | {fill:text} | {fill:text} |
-| Where does it occur? | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+| Purpose | Growth / repair | Gamete production |
+| Divisions | 1 | 2 |
+| Daughter cells | 2, diploid | 4, haploid |
+| Genetically identical? | Yes | No |
+
+---
+
+### Questions
 
 <!-- lab:reflection -->
-**Why must meiosis produce haploid cells? (Think about what happens at fertilization.)**
-
-{fill:textarea rows=2}
-
-**Name two ways meiosis generates genetic variation:**
-
-1. {fill:text}
-2. {fill:text}
-<!-- /lab:reflection -->
-
----
-
-### 2D. Chromosome Counting Practice
-
-Use the following starting cell: **diploid organism, 2n = 6** (3 homologous pairs).
-
-<!-- lab:data-table rows=5 title="Chromosome Counts Through Division" -->
-| Stage | Number of Chromosomes per Cell | Number of Cells | Total Chromatids |
-|-------|-------------------------------|-----------------|-----------------|
-| Before S phase (G₁) | {fill:number} | 1 | {fill:number} |
-| After S phase (G₂) — chromatids joined | {fill:number} chromosomes (as {fill:number} chromatids) | 1 | {fill:number} |
-| After Mitosis (each daughter cell) | {fill:number} | 2 | {fill:number} |
-| After Meiosis I (each cell) | {fill:number} | 2 | {fill:number} |
-| After Meiosis II (each gamete) | {fill:number} | 4 | {fill:number} |
-<!-- /lab:data-table -->
-
----
-
-## Part 3: Module 09 — Tissues
-
-### 3A. The Four Tissue Types
-
-<!-- lab:data-table rows=5 title="Four Primary Tissue Types" -->
-| Tissue Type | Primary Function | Key Characteristic | Example Location in Body |
-|-------------|-----------------|-------------------|-------------------------|
-| **Epithelial** | {fill:text} | {fill:text} | {fill:text} |
-| **Connective** | {fill:text} | {fill:text} | {fill:text} |
-| **Muscle** | {fill:text} | {fill:text} | {fill:text} |
-| **Nervous** | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
----
-
-### 3B. Epithelial Tissue Classification
-
-Epithelial tissue is classified by two features: **shape** (squamous/cuboidal/columnar) and **layers** (simple/stratified/pseudostratified).
-
-<!-- lab:data-table rows=6 title="Epithelial Tissue Types" -->
-| Epithelial Type | Shape | Layers | Location / Function |
-|-----------------|-------|--------|---------------------|
-| Simple squamous | {fill:text} | {fill:text} | {fill:text} |
-| Simple cuboidal | {fill:text} | {fill:text} | {fill:text} |
-| Simple columnar | {fill:text} | {fill:text} | {fill:text} |
-| Stratified squamous | {fill:text} | {fill:text} | {fill:text} |
-| Pseudostratified columnar | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
----
-
-### 3C. Connective Tissue Variety
-
-Match each connective tissue type to its defining feature and location:
-
-<!-- lab:data-table rows=6 title="Connective Tissue Types" -->
-| Connective Tissue | Defining Feature | Location |
-|-------------------|-----------------|----------|
-| Loose (areolar) | {fill:text} | {fill:text} |
-| Dense regular | {fill:text} | {fill:text} |
-| Adipose | {fill:text} | {fill:text} |
-| Cartilage (hyaline) | {fill:text} | {fill:text} |
-| Bone (osseous) | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
----
-
-### 3D. Tissue Identification Scenarios
-
-For each description, identify the most likely tissue type and subtype:
-
-<!-- lab:reflection -->
-**1. You observe cells that are flat and scale-like, arranged in a single layer lining the inside of a blood vessel. What tissue is this?**
-
-{fill:text}
-
-**2. You observe long, cylindrical, multinucleated cells with visible striations (stripes). This tissue is:**
-
-{fill:text}
-
-**3. You observe cells scattered in a gel-like matrix with abundant collagen fibers running in all directions. This is most likely:**
-
-{fill:text}
-
-**4. A tissue sample shows branching, involuntary cells with intercalated discs connecting them. This is:**
-
-{fill:text}
-
-**5. A tissue with cells that have long processes (axons and dendrites) embedded in a matrix of support cells (glia). This is:**
-
-{fill:text}
-<!-- /lab:reflection -->
-
----
-
-### 3E. Structure-Function Synthesis
-
-<!-- lab:reflection -->
-**Why does the intestinal lining use simple columnar epithelium rather than stratified squamous epithelium? (Hint: think about absorption vs. protection.)**
-
-{fill:textarea rows=3}
-
-**The trachea (windpipe) is lined with pseudostratified ciliated columnar epithelium. What function do the cilia serve, and why is this important for lung health?**
-
-{fill:textarea rows=3}
-<!-- /lab:reflection -->
-
----
-
-## Part 4: Module 10 — Inheritance
-
-### 4A. Mendel's Laws
-
-Fill in the blanks:
-
-<!-- lab:data-table rows=3 title="Mendel's Laws" -->
-| Law | Statement | What It Predicts |
-|-----|-----------|-----------------|
-| **Law of Segregation** | {fill:text} | {fill:text} |
-| **Law of Independent Assortment** | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
-
----
-
-### 4B. Monohybrid Cross Practice
-
-**Scenario:** Freckles (F) are dominant over no freckles (f). Two heterozygous parents (Ff × Ff) have children.
-
-**1. Complete the Punnett square:**
-
-```
-        F          f
-   ┌──────────┬──────────┐
- F │          │          │
-   ├──────────┼──────────┤
- f │          │          │
-   └──────────┴──────────┘
-```
-
-<!-- lab:reflection -->
-**What fraction of offspring will have freckles?**
-
-{fill:text}
-
-**What fraction will be homozygous recessive (ff)?**
-
-{fill:text}
-
-**What is the genotypic ratio (AA : Aa : aa)?**
-
-{fill:text}
-
-**What is the phenotypic ratio (dominant : recessive)?**
-
-{fill:text}
-<!-- /lab:reflection -->
-
----
-
-### 4C. Dihybrid Cross
-
-**Scenario:** Smooth skin (S) is dominant over rough (s). Brown eyes (B) is dominant over blue (b). Two parents heterozygous for both traits cross: **SsBb × SsBb**.
-
-<!-- lab:reflection -->
-**List all possible gametes each parent can produce:**
-
-{fill:text}
-
-**Using the 9:3:3:1 ratio, out of 16 offspring, how many would you expect to be:**
-
-- Smooth skin AND brown eyes: {fill:number} / 16
-- Smooth skin AND blue eyes: {fill:number} / 16
-- Rough skin AND brown eyes: {fill:number} / 16
-- Rough skin AND blue eyes: {fill:number} / 16
-
-**If the genes for skin texture and eye color are on the same chromosome (linked), would independent assortment still apply? Explain:**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-### 4D. Pedigree Analysis
-
-The following family has a history of cystic fibrosis (CF). CF is **autosomal recessive** (let C = normal allele, c = CF allele).
-
-```
-Generation I:     □──○         □──○
-                    |             |
-Generation II:   □  ●  □─────○   ○
-                              |
-Generation III:             □   ○
-```
-
-*Legend: □ = unaffected male, ○ = unaffected female, ● = affected female. Lines between individuals indicate mating; vertical lines indicate offspring.*
-
-<!-- lab:reflection -->
-**The shaded individual in Generation II has CF. What is her genotype?**
-
-{fill:text}
-
-**What must the genotypes of her parents (Generation I) be?**
-
-{fill:text}
-
-**Her unaffected brother in Generation II marries an unaffected woman with no family history. What is the probability that their child (Generation III) will have CF? Show your reasoning.**
-
-{fill:textarea rows=3}
-
-**Could CF appear in Generation III even if neither parent is known to be a carrier? Explain:**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-### 4E. Sex-Linked Inheritance
-
-**Key Rule:** Genes on the X chromosome follow X-linked inheritance. Males (XY) only have one copy of X-linked genes, so they express whatever allele is present.
-
-**Scenario:** Color blindness is **X-linked recessive** (X^B = normal vision, X^b = color blind).
-
-**Cross:** Carrier female (X^B X^b) × Normal male (X^B Y)
-
-**Complete the Punnett square:**
-
-```
-           X^B         Y
-   ┌──────────────┬──────────────┐
-X^B│              │              │
-   ├──────────────┼──────────────┤
-X^b│              │              │
-   └──────────────┴──────────────┘
-```
-
-<!-- lab:reflection -->
-**What is the probability of a color-blind son?**
-
-{fill:text}
-
-**What is the probability of a color-blind daughter?**
-
-{fill:text}
-
-**Why are males much more commonly affected by X-linked recessive conditions than females?**
-
-{fill:textarea rows=2}
-
-**In hemophilia (also X-linked recessive), could a daughter be affected? Under what circumstances?**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-## Part 5: Integration — Connecting the Modules
-
-### 5A. Cross-Module Concept Map
-
-On your scratch paper, **draw a concept map** (or complete the partial map below) that shows how the four modules are connected. Key relationships to include:
-
-- DNA (Module 07) → controls cell function → required for cell division (Module 08)
-- Cell division (Module 08) → meiosis → produces gametes → enables inheritance (Module 10)
-- Inheritance (Module 10) → determines which genes are expressed → affects tissue development (Module 09)
-- Mutations in DNA (Module 07) → can disrupt the cell cycle (Module 08) → can alter tissue type or function (Module 09)
-
-<!-- lab:reflection -->
-**In your own words, explain how a single mutation in a DNA repair gene (Module 07) could ultimately lead to uncontrolled cell division (Module 08). What is the medical term for this condition?**
-
-{fill:textarea rows=3}
-
-**Sickle cell disease is caused by a single point mutation (Module 07). It is inherited recessively (Module 10). The abnormal hemoglobin causes red blood cells to sickle and clog capillaries. This affects which tissue types (Module 09)?**
-
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
----
-
-### 5B. Exam Readiness Self-Assessment
-
-Rate your confidence on each topic (1 = need more study, 5 = very confident):
-
-<!-- lab:data-table rows=10 title="Exam Readiness Check" -->
-| Topic | Confidence (1–5) | One Question I Still Have |
-|-------|-----------------|--------------------------|
-| DNA structure and base pairing (Mod 07) | {fill:number} | {fill:text} |
-| Transcription and translation (Mod 07) | {fill:number} | {fill:text} |
-| Types of mutations (Mod 07) | {fill:number} | {fill:text} |
-| Phases of mitosis (Mod 08) | {fill:number} | {fill:text} |
-| Meiosis and genetic variation (Mod 08) | {fill:number} | {fill:text} |
-| Mitosis vs. meiosis comparison (Mod 08) | {fill:number} | {fill:text} |
-| Four tissue types and their subtypes (Mod 09) | {fill:number} | {fill:text} |
-| Tissue identification (Mod 09) | {fill:number} | {fill:text} |
-| Punnett squares — mono and dihybrid (Mod 10) | {fill:number} | {fill:text} |
-| Pedigrees and sex-linked traits (Mod 10) | {fill:number} | {fill:text} |
-<!-- /lab:data-table -->
-
----
-
-### 5C. Final Synthesis Questions
-
-<!-- lab:reflection -->
-**1. What is the relationship between meiosis and Mendel's Law of Independent Assortment? (Which stage of meiosis directly explains this law?)**
-
-{fill:textarea rows=3}
-
-**2. A cell has 2n = 46 chromosomes. After meiosis I is complete, how many chromosomes are in each cell? After meiosis II? Are these chromosomes duplicated (as sister chromatids) or single-stranded at those points?**
-
-{fill:textarea rows=3}
-
-**3. Two parents are both carriers (heterozygous) for an autosomal recessive condition. They have 4 children. Predict how many children you would expect to be affected. Does this mean exactly that number will be affected? Why or why not?**
-
-{fill:textarea rows=3}
-
-**4. Explain why stratified squamous epithelium is well-adapted for the skin (outer epidermis) but would be a poor choice for lining the lungs' alveoli (air sacs).**
-
-{fill:textarea rows=3}
-
-**5. BONUS — Critical Thinking:** A woman is a carrier for an X-linked recessive condition. Her sister is also a carrier. They each have one son. For each son, what is the probability of being affected? If both sons are affected, is that evidence of a genetic link between the brothers, or just chance? Explain.
+**1. Put these events in the correct order (number 1–5):**
+
+| Event | Order |
+|-------|:-----:|
+| Sister chromatids separate to opposite poles (Anaphase) | {fill:number} |
+| Chromosomes condense; spindle forms (Prophase) | {fill:number} |
+| Chromosomes line up at the cell equator (Metaphase) | {fill:number} |
+| Nuclear envelope reforms; chromosomes decondense (Telophase) | {fill:number} |
+| Cell physically splits into two (Cytokinesis) | {fill:number} |
+
+**2. A diploid organism has 2n = 6. Fill in the chromosome counts:**
+
+| Stage | Chromosomes per cell |
+|-------|:--------------------:|
+| After mitosis (each daughter cell) | {fill:number} |
+| After meiosis I (each cell) | {fill:number} |
+| After meiosis II (each gamete) | {fill:number} |
+
+**3. Name two mechanisms by which meiosis generates genetic diversity, and briefly explain each.**
 
 {fill:textarea rows=4}
+
 <!-- /lab:reflection -->
 
 ---
 
-## Quick Reference: Key Formulas & Rules
+### Drawing Box — Mitosis vs. Meiosis
 
-| Concept | Rule / Formula |
-|---------|---------------|
-| Independent assortment combinations | 2ⁿ (where n = number of chromosome pairs) |
-| Punnett square offspring types | Monohybrid: 4 boxes; Dihybrid: 16 boxes |
-| Diploid (2n) after mitosis | Still 2n |
-| After meiosis I | n chromosomes (duplicated) |
-| After meiosis II | n chromosomes (single-stranded) |
-| X-linked recessive in males | Only one X needed for expression |
-| X-linked recessive in females | Two recessive alleles needed |
-| Carrier (heterozygous) phenotype | Dominant phenotype (does not show recessive trait) |
+Sketch a cell (2n = 4) at **metaphase of mitosis** and **metaphase I of meiosis** side by side. Show how chromosomes line up differently in each case.
+
+<!-- lab:reflection -->
+
+{fill:textarea rows=12}
+
+<!-- /lab:reflection -->
 
 ---
 
-**Connection to Exam 02:** This lab directly maps to all content on Exam 02 (Modules 07–10). If you can answer every question on this worksheet without looking at your notes, you are well prepared.
+## Module 09 — Human Body Systems & Tissues
+
+### Context Reminder
+
+The human body is organized in a hierarchy: **cells → tissues → organs → organ systems → organism**.
+
+**Four tissue types** form the building blocks:
+
+| Tissue Type | Function | Example |
+|-------------|----------|---------|
+| **Epithelial** | Covers surfaces, lines cavities; protection & absorption | Skin, intestinal lining |
+| **Connective** | Supports, binds, protects; transports (blood) | Bone, cartilage, blood, fat |
+| **Muscle** | Produces movement (skeletal, smooth, cardiac) | Heart wall, biceps, intestinal wall |
+| **Nervous** | Sends electrical signals; coordinates body function | Brain, spinal cord, nerves |
+
+**Major organ systems** work together to maintain **homeostasis** (internal stability):
+
+| System | Primary Role |
+|--------|-------------|
+| Digestive | Breaks down food; absorbs nutrients |
+| Circulatory | Transports O₂, nutrients, wastes via blood |
+| Respiratory | Gas exchange — O₂ in, CO₂ out |
+| Nervous | Rapid electrical signaling and coordination |
+| Endocrine | Hormonal signaling for long-term regulation |
+| Skeletal | Support, protection, movement, blood cell production |
+| Muscular | Movement (voluntary and involuntary) |
+
+---
+
+### Questions
+
+<!-- lab:reflection -->
+**1. Match each description to the correct tissue type (Epithelial, Connective, Muscle, or Nervous):**
+
+| Description | Tissue Type |
+|-------------|:-----------:|
+| Long cells with striations attached to bones | {fill:text} |
+| Flat cells in a single layer lining blood vessels | {fill:text} |
+| Cells with axons and dendrites | {fill:text} |
+| Cells embedded in a gel-like matrix with collagen fibers | {fill:text} |
+
+**2. A student eats a sandwich. Trace the path of food through the digestive system, naming at least 5 organs in order:**
+
+{fill:textarea rows=3}
+
+**3. Explain why the left ventricle of the heart is thicker than the right ventricle. Which organ system does this belong to, and what is its overall function?**
+
+{fill:textarea rows=3}
+
+<!-- /lab:reflection -->
+
+---
+
+### Drawing Box — Body Systems
+
+Choose **one organ system** (digestive, circulatory, or respiratory) and draw a simplified diagram showing its major organs. Label at least 4 structures.
+
+<!-- lab:reflection -->
+
+{fill:textarea rows=12}
+
+<!-- /lab:reflection -->
+
+---
+
+## Module 10 — Mendelian Genetics & Inheritance
+
+### Context Reminder
+
+**Gregor Mendel** discovered the basic laws of inheritance by crossing pea plants.
+
+- **Alleles** are different versions of a gene. An organism has two alleles per gene (one from each parent).
+- **Dominant** alleles (capital letter, e.g. **B**) mask **recessive** alleles (lowercase, e.g. **b**).
+- **Homozygous** = two identical alleles (BB or bb). **Heterozygous** = two different alleles (Bb).
+- **Genotype** = the alleles an organism carries. **Phenotype** = the observable trait.
+
+**Mendel's Laws:**
+
+| Law | Meaning |
+|-----|---------|
+| **Segregation** | The two alleles for a gene separate during meiosis — each gamete gets one |
+| **Independent Assortment** | Genes on different chromosomes sort independently during meiosis |
+
+**Special patterns:** Incomplete dominance (blending), codominance (both expressed), sex-linked traits (genes on the X chromosome — males more commonly affected by X-linked recessive conditions).
+
+---
+
+### Questions
+
+<!-- lab:reflection -->
+**1. Complete this Punnett square for a monohybrid cross (Ff × Ff, where F = freckles, f = no freckles):**
+
+```
+         F          f
+    ┌──────────┬──────────┐
+  F │          │          │
+    ├──────────┼──────────┤
+  f │          │          │
+    └──────────┴──────────┘
+```
+
+**Genotypic ratio (FF : Ff : ff):** {fill:text}
+
+**Phenotypic ratio (Freckles : No freckles):** {fill:text}
+
+**2. Color blindness is X-linked recessive (Xᴮ = normal, Xᵇ = color blind). A carrier woman (Xᴮ Xᵇ) has children with a normal-vision man (Xᴮ Y). What is the probability of a color-blind son? A color-blind daughter? Explain why.**
+
+{fill:textarea rows=4}
+
+**3. Two parents are both carriers (Cc) for cystic fibrosis (autosomal recessive). Draw the Punnett square and state the probability their child will be affected.**
+
+```
+         C          c
+    ┌──────────┬──────────┐
+  C │          │          │
+    ├──────────┼──────────┤
+  c │          │          │
+    └──────────┴──────────┘
+```
+
+**Probability of an affected child (cc):** {fill:text}
+
+<!-- /lab:reflection -->
+
+---
+
+### Drawing Box — Pedigree
+
+The pedigree below shows a family with an autosomal recessive trait. Copy it and fill in the **genotypes** for each individual. (□ = unaffected male, ○ = unaffected female, ■ / ● = affected)
+
+```
+Generation I:     □──○
+                    |
+Generation II:  □   ●   □──○
+                           |
+Generation III:          □   ○
+```
+
+<!-- lab:reflection -->
+
+Write the genotype next to each individual and explain your reasoning:
+
+{fill:textarea rows=6}
+
+<!-- /lab:reflection -->
+
+---
+
+## Part 5 — Reflection: Connecting the Modules
+
+These questions ask you to **think across** all four modules. Answer in complete sentences.
+
+<!-- lab:reflection -->
+
+**1. How does the central dogma (Module 07) connect to inheritance (Module 10)? In other words, why does a child having the genotype "bb" result in a specific phenotype?**
+
+{fill:textarea rows=4}
+
+**2. Explain how a single point mutation in a DNA repair gene (Module 07) could lead to uncontrolled cell division (Module 08). What is the medical term for this?**
+
+{fill:textarea rows=4}
+
+**3. Meiosis (Module 08) is the physical basis for Mendel's Law of Independent Assortment (Module 10). Which specific stage of meiosis demonstrates this law, and how?**
+
+{fill:textarea rows=4}
+
+**4. Sickle cell disease is caused by a single-base mutation (Module 07) in the hemoglobin gene. It is inherited as an autosomal recessive trait (Module 10). The abnormal hemoglobin causes red blood cells to change shape and clog small blood vessels. Which tissue types and organ systems (Module 09) are affected? Explain.**
+
+{fill:textarea rows=4}
+
+**5. Imagine you are explaining to a friend why studying all four of these modules together makes more sense than studying them separately. Write 2–3 sentences making your case.**
+
+{fill:textarea rows=4}
+
+<!-- /lab:reflection -->
+
+---
+
+## Self-Assessment
+
+Before you leave, rate your confidence and identify what to focus on:
+
+<!-- lab:data-table rows=5 title="Exam 02 Readiness Check" -->
+| Module | Topic | Confidence (1–5) | What I Still Need to Review |
+|--------|-------|:-----------------:|----------------------------|
+| 07 | Central Dogma (DNA → RNA → Protein) | {fill:number} | {fill:text} |
+| 08 | Mitosis & Meiosis | {fill:number} | {fill:text} |
+| 09 | Body Systems & Tissues | {fill:number} | {fill:text} |
+| 10 | Mendelian Genetics & Inheritance | {fill:number} | {fill:text} |
+<!-- /lab:data-table -->
+
+---
+
+**This lab directly maps to all content on Exam 02 (Modules 07–10).** If you can answer every question on this worksheet without looking at your notes, you are well prepared.
 
 ---
 
