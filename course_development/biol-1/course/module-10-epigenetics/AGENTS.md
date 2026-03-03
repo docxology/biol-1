@@ -7,11 +7,13 @@ No special processing rules apply beyond the standard automated multi-format exp
 
 ## Module Scope
 
-This module covers introductory epigenetics for BIOL-1 (non-majors). Content focuses on:
+Introductory epigenetics for BIOL-1 (non-majors). Content explicitly builds on Modules 07–09:
 
-- Gene regulation basics (gene expression, transcription factors, promoters)
-- Epigenetic mechanisms (DNA methylation, histone modification)
-- X-inactivation and calico cats as a concrete example
-- Environmental influences on gene expression (diet, stress, exercise, toxins)
+- Gene expression as the "output" of the central dogma (Module 07)
+- Same DNA in all cells via mitosis (Module 08) → why regulation is needed
+- Phenotype = genotype + environment (Module 09) → epigenetics as the mechanism
+- DNA methylation and histone acetylation (with M=Muting, A=Activation mnemonics)
+- X-inactivation and calico cats
+- Environmental influences on gene activity
 
-**Excluded from this introductory module:** operons (lac/trp), miRNA, alternative splicing, euchromatin/heterochromatin terminology, and multi-level regulation details. These topics are covered in the BIOL-8 (majors) course.
+**Excluded:** operons, miRNA, alternative splicing, euchromatin/heterochromatin, multi-level regulation. These are covered in BIOL-8.

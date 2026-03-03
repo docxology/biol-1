@@ -1,23 +1,20 @@
-# Module 11: Genomics & Biotechnology — Using What We Know About DNA
+# Module 11: Genomics & Biotechnology — What Can We DO with DNA?
 
 ## Overview
 
-This module shows how scientists **apply** everything you've learned about DNA to solve real-world problems. If Module 07–09 taught you how DNA works (central dogma, mutations, inheritance) and Module 10 showed you that genes can be turned on and off (epigenetics), this module asks: **What can we DO with that knowledge?**
+This is the "so what?" module. In Modules 07–09 you learned *how DNA works*: it gets copied (replication), read (transcription & translation), inherited (Mendel), and can mutate. In Module 10 you learned that genes can be turned on or off (epigenetics). Now the question is: **What can scientists do with all of this knowledge?**
 
-## Key Ideas
+The answer: **a lot.** We can copy DNA in a test tube, cut and paste genes between organisms, identify criminals from a drop of blood, and even edit the genome to fix genetic disorders.
 
-- **Biotechnology** uses the tools of molecular biology — cutting, copying, and reading DNA — to solve problems in medicine, agriculture, and forensics
-- The same **universal genetic code** (Module 07) that allows transcription and translation in your cells also lets bacteria read a human gene and make a human protein
-- Technologies like **PCR** (copying DNA), **gel electrophoresis** (sorting DNA by size), and **CRISPR** (editing DNA) all build on the central dogma concepts from earlier modules
+## How This Connects to What You Already Know
 
-## Connections to Earlier Modules
-
-| Earlier Module | Connection to This Module |
-|---------------|--------------------------|
-| **07 — Central Dogma** | The universal genetic code is *why* genetic engineering works across species |
-| **08 — Cell Division** | Understanding DNA replication explains how PCR copies DNA |
-| **09 — Inheritance** | DNA fingerprinting and paternity tests rely on inherited variation |
-| **10 — Epigenetics** | Gene therapy and CRISPR raise questions about changing gene activity vs. changing DNA itself |
+| You learned... | Now you'll learn... |
+|---------------|---------------------|
+| DNA is copied by DNA polymerase (Module 07) | PCR copies DNA the same way — but in a test tube instead of a cell |
+| The genetic code is universal — same codons = same amino acids in all life (Module 07) | That's WHY we can put a human gene into bacteria and it still works |
+| DNA can mutate and cause disease (Module 07) | Gene therapy and CRISPR try to fix those mutations |
+| Alleles are inherited from parents (Module 09) | DNA fingerprinting compares inherited STR patterns to identify people |
+| Epigenetic changes can turn genes on/off (Module 10) | This raises questions: should we edit DNA? What about changes that get inherited? |
 
 ## Contents
 

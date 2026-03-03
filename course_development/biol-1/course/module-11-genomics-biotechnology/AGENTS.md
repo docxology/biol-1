@@ -7,13 +7,13 @@ No special processing rules apply beyond the standard automated multi-format exp
 
 ## Module Scope
 
-This module covers introductory genomics and biotechnology for BIOL-1 (non-majors). Content focuses on:
+Introductory genomics and biotechnology for BIOL-1 (non-majors). Designed as the capstone "so what?" module that explicitly builds on Modules 07–10:
 
-- Core DNA toolkit (restriction enzymes, ligase, recombinant DNA, plasmids)
-- PCR as a simplified version of DNA replication (connects to Module 08)
-- Gel electrophoresis and DNA fingerprinting / STR analysis
-- Genetic engineering and GMOs (connects to Module 07 universal genetic code)
-- CRISPR-Cas9 overview and ethical considerations
-- Cross-module synthesis (Modules 07–10 → applied biotechnology)
+- DNA toolkit (restriction enzymes, ligase, plasmids) → connects to Module 07 enzymes
+- PCR as DNA replication in a tube → connects to Module 07 (helicase, primase, DNA polymerase)
+- Gel electrophoresis → connects to Module 07 (phosphate backbone = negative charge)
+- DNA fingerprinting / STRs → connects to Module 09 (inheritance patterns)
+- GMOs → connects to Module 07 (universal genetic code = central dogma works across species)
+- CRISPR overview and ethics → connects to Module 07 (mutations) and Module 10 (gene regulation)
 
-**Excluded from this introductory module:** specific PCR temperatures, ex vivo / in vivo gene therapy distinction, somatic vs. germline editing details, detailed Human Genome Project history, and transformation protocols. These topics are covered in the BIOL-8 (majors) course.
+**Excluded:** PCR temperatures, ex vivo/in vivo gene therapy, somatic vs germline editing details, transformation protocols, Human Genome Project history. These are covered in BIOL-8.

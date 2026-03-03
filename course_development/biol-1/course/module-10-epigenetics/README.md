@@ -1,21 +1,18 @@
-# Module 10: Epigenetics — How Genes Are Turned On and Off
+# Module 10: Epigenetics — How Genes Get Turned On and Off
 
 ## Overview
 
-This module introduces the idea that your DNA is not your destiny. Every cell in your body has the **same DNA**, yet a skin cell looks and acts completely differently from a brain cell. How? Cells control **which genes are active** — a process called **gene regulation**. **Epigenetics** is the study of changes that turn genes on or off *without* altering the DNA sequence itself.
+In Module 07 you learned that **DNA → RNA → Protein** (the central dogma). In Module 08 you learned that every cell gets a copy of the same DNA when cells divide. So here's the puzzle: **if a skin cell and a brain cell have identical DNA, why are they so different?**
 
-## Key Ideas
+The answer is **gene regulation** — cells turn different genes on or off. **Epigenetics** is the study of how genes are switched on or off *without changing the DNA sequence itself*.
 
-- All your cells share the same genome, but different genes are active in different cell types
-- Gene regulation happens at many levels — the most important for this course are **DNA methylation** (silences genes) and **histone modification** (opens or closes DNA)
-- Environmental factors like diet, stress, and chemical exposure can change which genes are turned on
-- Epigenetic changes are **reversible** and sometimes **heritable** — they are NOT mutations
+## How This Connects to What You Already Know
 
-## Real-World Examples
-
-- **Calico cats** — random X-inactivation creates their unique coat color patches
-- **Identical twins** — same DNA, but they can develop different traits over time because of epigenetic differences
-- **Diet and health** — nutrients like folic acid can influence gene activity through methylation
+| You learned... | Now you'll learn... |
+|---------------|---------------------|
+| DNA codes for proteins (Module 07) | Not every gene is active in every cell — cells pick and choose |
+| All cells get the same DNA through mitosis (Module 08) | Even with the same DNA, cells become different by turning genes on/off |
+| Traits are inherited through alleles (Module 09) | Some trait differences aren't caused by different alleles — they're caused by which genes are active |
 
 ## Contents
 

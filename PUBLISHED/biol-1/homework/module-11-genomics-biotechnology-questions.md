@@ -1,25 +1,25 @@
 # Module 11: Genomics & Biotechnology — Study Questions
 
-1. What is a restriction enzyme, and what does it do to DNA?
+1. What is a restriction enzyme? What does it do to DNA?
 
-2. What is recombinant DNA? Give an example of why a scientist would want to create it.
+2. What is a plasmid, and why is it useful in genetic engineering?
 
-3. In your own words, describe how PCR copies DNA. How is PCR similar to DNA replication inside your cells (Module 08)?
+3. PCR copies DNA in a test tube. Describe the three basic steps. For each step, name the Module 07 enzyme or concept it is similar to. (Hint: helicase, primase, DNA polymerase.)
 
-4. What is gel electrophoresis used for? Do small or large DNA fragments travel farther through the gel, and why?
+4. After 1 cycle of PCR you have 2 copies. After 2 cycles you have 4. How many copies do you have after 5 cycles? After 10?
 
-5. What are STRs (Short Tandem Repeats)? How are they used to identify individuals in forensics or paternity tests?
+5. In gel electrophoresis, do small or large DNA fragments travel farther? Why?
 
-6. What is a GMO? Briefly describe the steps to create a bacterium that produces human insulin.
+6. What are STRs? How are STR patterns inherited? (Connect this to Module 09.)
 
-7. The genetic code is "universal" — the same codons code for the same amino acids in bacteria, plants, and humans. Why is this fact essential for genetic engineering? (Think back to the central dogma from Module 07.)
+7. How is DNA fingerprinting used in forensics or paternity testing?
 
-8. What is CRISPR-Cas9? How is it different from a restriction enzyme?
+8. What is a GMO? Describe the basic steps to make a bacterium produce a human protein (like insulin).
 
-9. What is gene therapy? Give one example of a disease it could potentially treat.
+9. In Module 07 you learned that the genetic code is "universal." Why is this fact absolutely essential for genetic engineering to work?
 
-10. Name one benefit and one concern about genetically modified organisms (GMOs).
+10. What is CRISPR-Cas9? In simple terms, how does it edit DNA?
 
-11. **Connecting the modules:** A scientist discovers a mutation (Module 07) in a gene that causes a genetic disorder inherited in an autosomal recessive pattern (Module 09). She wants to use CRISPR to fix the gene. Explain, step by step, how the concepts from Modules 07, 09, and 11 all connect in this scenario.
+11. Name one benefit and one concern about GMOs or gene editing.
 
-12. **Thinking critically:** Should scientists be allowed to edit genes in human embryos (changes that would be passed to future generations)? State your position and give at least one reason for and one reason against.
+12. **Putting it all together:** A child is born with a genetic disorder caused by a single-base mutation (Module 07). The disorder follows an autosomal recessive pattern (Module 09). Scientists want to use CRISPR (Module 11) to fix the gene. In 3–4 sentences, explain how concepts from Modules 07, 09, and 11 all connect in this scenario.
