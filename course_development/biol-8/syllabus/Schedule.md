@@ -18,10 +18,10 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 8 | 3/10 - 3/12 | Module 11: Skeletal System & Lab 11: Skeletal System | Module 12: Muscular System & Lab 12: Muscular System | |
 | 9 | 3/17 - 3/19 | No Class | No Class | Spring Break |
 | 10 | 3/24 - 3/26 | Module 13: Pathogens & Lab 13: Pathogens | Module 14: Cardiovascular System & Lab 14: Cardiovascular | |
-| 11 | 3/31 - 4/2 | Review & Lab 15: Respiratory | **Exam 03** | Exam covers Modules 11-14 |
-| 12 | 4/7 - 4/9 | Module 15: Respiratory System | Systems Integration Lab | |
-| 13 | 4/14 - 4/16 | Comprehensive Review | Lab Practicum | |
-| 14 | 4/21 - 4/23 | Final Review | Final Review | |
+| 11 | 3/31 - 4/2 | No Class | Review & Lab 15: Respiratory | Holiday (March 31) |
+| 12 | 4/7 - 4/9 | **Exam 03** | Module 15: Respiratory System | Exam covers Modules 11-14 |
+| 13 | 4/14 - 4/16 | Systems Integration Lab | Comprehensive Review | |
+| 14 | 4/21 - 4/23 | Lab Practicum | Final Review | |
 | 15 | 4/28 - 4/30 | Final Review | Final Review | |
 | Finals | 5/5 - 5/7 | **Final Exam** | Course Wrap-up | Finals Week |
 
@@ -36,7 +36,7 @@ Each class will consist of different proportions of lecture, discussion, and han
 
 - **Exam 01**: Week 4 (February 12, 2026) - Modules 01-06
 - **Exam 02**: Week 7 (March 5, 2026) - Modules 07-10
-- **Exam 03**: Week 11 (April 2, 2026) - Modules 11-14
+- **Exam 03**: Week 12 (April 7, 2026) - Modules 11-14
 - **Final Exam**: Finals Week (May 5, 2026) - Comprehensive (includes Module 15)
 
 ## Module Distribution
