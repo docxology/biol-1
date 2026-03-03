@@ -15,8 +15,8 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 5 | 2/17 - 2/19 | Module 07: Genetics (Ch 9) & Lab 06: Central Dogma | Module 08: Cell Division (Ch 6) & Lab 07: Cell Division | |
 | 6 | 2/24 - 2/26 | Module 09: Tissues & Lab 08: Enzymes | Module 10: Inheritance & Lab 09: Inheritance | |
 | 7 | 3/3 - 3/5 | Lab 10: Module 07-10 Review | **Exam 02** | Exam covers Modules 07-10 |
-| 8 | 3/10 - 3/12 | No Class | No Class | Spring Break |
-| 9 | 3/17 - 3/19 | Module 11: Skeletal System & Lab 11: Skeletal System | Module 12: Muscular System & Lab 12: Muscular System | |
+| 8 | 3/10 - 3/12 | Module 11: Skeletal System & Lab 11: Skeletal System | Module 12: Muscular System & Lab 12: Muscular System | |
+| 9 | 3/17 - 3/19 | No Class | No Class | Spring Break |
 | 10 | 3/24 - 3/26 | Module 13: Pathogens & Lab 13: Pathogens | Module 14: Cardiovascular System & Lab 14: Cardiovascular | |
 | 11 | 3/31 - 4/2 | Review & Lab 15: Respiratory | **Exam 03** | Exam covers Modules 11-14 |
 | 12 | 4/7 - 4/9 | Module 15: Respiratory System | Systems Integration Lab | |
@@ -28,7 +28,7 @@ Each class will consist of different proportions of lecture, discussion, and han
 ## Important Dates
 
 - **Classes Begin**: January 20, 2026
-- **Spring Break**: March 10-12, 2026 (No Classes)
+- **Spring Break**: March 17-19, 2026 (No Classes)
 - **Final Examinations**: May 5, 2026
 - **Semester Ends**: May 7, 2026
 

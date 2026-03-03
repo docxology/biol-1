@@ -18,10 +18,10 @@
 | 6 | Wed | 2/25 | **Exam 01** (Modules 1-6) | Exam |
 | 7 | Mon | 3/2 | Module 7-11 Preview | Monday class meets |
 | 7 | Wed | 3/4 | No Class | First Wednesday - Programs Canceled |
-| 8 | Mon | 3/9 | No Class | Spring Break |
-| 8 | Wed | 3/11 | No Class | Spring Break |
-| 9 | Mon | 3/16 | Module 07: Molecular Genetics; Lab 07: Molecular Genetics | |
-| 9 | Wed | 3/18 | Module 08: Cellular Genetics; Lab 08: Cellular Genetics | |
+| 8 | Mon | 3/9 | Module 07: Molecular Genetics; Lab 07: Molecular Genetics | |
+| 8 | Wed | 3/11 | Module 08: Cellular Genetics; Lab 08: Cellular Genetics | |
+| 9 | Mon | 3/16 | No Class | Spring Break |
+| 9 | Wed | 3/18 | No Class | Spring Break |
 | 10 | Mon | 3/23 | Module 09: Inheritance Genetics; Lab 09: Inheritance Genetics | |
 | 10 | Wed | 3/25 | Module 10: Epigenetics; Lab 10: Epigenetics | |
 | 11 | Mon | 3/30 | Module 11: Genomics & Biotechnology; Lab 11: Genomics & Biotechnology | Monday class meets |
@@ -42,7 +42,7 @@
 ## Important Dates
 
 - **Classes Begin**: January 17, 2026
-- **Spring Break**: March 9-14, 2026 (No Classes)
+- **Spring Break**: March 16-21, 2026 (No Classes)
 - **Final Examinations**: May 11, 2026
 - **Semester Ends**: May 15, 2026
 - **Programs Canceled (First Wednesday)**: February 4, March 4, April 1, May 6, 2026
