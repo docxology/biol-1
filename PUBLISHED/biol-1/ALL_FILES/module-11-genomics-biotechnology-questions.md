@@ -1,41 +1,25 @@
-# Module 11: Genomics and Biotechnology — Study Questions
+# Module 11: Genomics & Biotechnology — Study Questions
 
-1. What is a restriction enzyme? What does it cut?
+1. What is a restriction enzyme, and what does it do to DNA?
 
-2. What are "sticky ends"? Why are they useful?
+2. What is recombinant DNA? Give an example of why a scientist would want to create it.
 
-3. What is a plasmid? How is it used in genetic engineering?
+3. In your own words, describe how PCR copies DNA. How is PCR similar to DNA replication inside your cells (Module 08)?
 
-4. What is recombinant DNA?
+4. What is gel electrophoresis used for? Do small or large DNA fragments travel farther through the gel, and why?
 
-5. What are the three steps of PCR? What temperature is used for each?
+5. What are STRs (Short Tandem Repeats)? How are they used to identify individuals in forensics or paternity tests?
 
-6. Why does PCR need a heat-stable polymerase (Taq)?
+6. What is a GMO? Briefly describe the steps to create a bacterium that produces human insulin.
 
-7. Starting with one DNA molecule, how many copies do you have after 10 PCR cycles?
+7. The genetic code is "universal" — the same codons code for the same amino acids in bacteria, plants, and humans. Why is this fact essential for genetic engineering? (Think back to the central dogma from Module 07.)
 
-8. What is gel electrophoresis? How does it separate DNA?
+8. What is CRISPR-Cas9? How is it different from a restriction enzyme?
 
-9. In gel electrophoresis, do small or large fragments travel farther? Why?
+9. What is gene therapy? Give one example of a disease it could potentially treat.
 
-10. What are STRs (Short Tandem Repeats)? How are they used in forensics?
+10. Name one benefit and one concern about genetically modified organisms (GMOs).
 
-11. In a paternity test, which bands in the child must come from the father?
+11. **Connecting the modules:** A scientist discovers a mutation (Module 07) in a gene that causes a genetic disorder inherited in an autosomal recessive pattern (Module 09). She wants to use CRISPR to fix the gene. Explain, step by step, how the concepts from Modules 07, 09, and 11 all connect in this scenario.
 
-12. What is a transgenic organism (GMO)?
-
-13. What are the basic steps to create a GMO bacterium that produces human insulin?
-
-14. What is gene therapy?
-
-15. What is the difference between ex vivo and in vivo gene therapy?
-
-16. What is CRISPR-Cas9? How is it different from restriction enzymes?
-
-17. What is the difference between somatic gene therapy and germline modification?
-
-18. Name one benefit and one concern about GMOs.
-
-19. Why can bacteria read and use a human gene to make a human protein?
-
-20. What was the Human Genome Project? Why is it important?
+12. **Thinking critically:** Should scientists be allowed to edit genes in human embryos (changes that would be passed to future generations)? State your position and give at least one reason for and one reason against.

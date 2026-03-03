@@ -317,20 +317,79 @@ These questions ask you to **think across** all four modules. Answer in complete
 
 ## Self-Assessment
 
-Before you leave, rate your confidence and identify what to focus on:
+Before you leave, honestly check each box you can do **without** looking at your notes.
 
-<!-- lab:data-table rows=5 title="Exam 02 Readiness Check" -->
-| Module | Topic | Confidence (1–5) | What I Still Need to Review |
-|--------|-------|:-----------------:|----------------------------|
-| 07 | Central Dogma (DNA → RNA → Protein) | {fill:number} | {fill:text} |
-| 08 | Mitosis & Meiosis | {fill:number} | {fill:text} |
-| 09 | Body Systems & Tissues | {fill:number} | {fill:text} |
-| 10 | Mendelian Genetics & Inheritance | {fill:number} | {fill:text} |
-<!-- /lab:data-table -->
+### Module 07 — Central Dogma
+
+<!-- lab:reflection -->
+- [ ] I can diagram the flow DNA → RNA → Protein and name each process
+- [ ] I can write an mRNA sequence from a DNA template strand
+- [ ] I can distinguish silent, missense, and nonsense mutations
+
+**What's still fuzzy for me in Module 07:**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Module 08 — Mitosis & Meiosis
+
+<!-- lab:reflection -->
+- [ ] I can list the phases of mitosis in order and describe each
+- [ ] I can explain at least 3 differences between mitosis and meiosis
+- [ ] I can calculate chromosome numbers after mitosis, meiosis I, and meiosis II
+
+**What's still fuzzy for me in Module 08:**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Module 09 — Body Systems & Tissues
+
+<!-- lab:reflection -->
+- [ ] I can name the four tissue types and give an example of each
+- [ ] I can match major organ systems to their primary functions
+- [ ] I can explain how homeostasis is maintained using a specific example
+
+**What's still fuzzy for me in Module 09:**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Module 10 — Mendelian Genetics & Inheritance
+
+<!-- lab:reflection -->
+- [ ] I can set up and solve a monohybrid Punnett square
+- [ ] I can explain why X-linked recessive traits affect males more often
+- [ ] I can read a pedigree and determine genotypes
+
+**What's still fuzzy for me in Module 10:**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
 
 ---
 
-**This lab directly maps to all content on Exam 02 (Modules 07–10).** If you can answer every question on this worksheet without looking at your notes, you are well prepared.
+### My Study Plan for Exam 02
+
+<!-- lab:reflection -->
+**The module I feel *most* confident about:**
+
+{fill:text}
+
+**The module I need to spend the *most* time reviewing:**
+
+{fill:text}
+
+**Three specific things I will do before the exam to prepare:**
+
+1. {fill:text}
+2. {fill:text}
+3. {fill:text}
+<!-- /lab:reflection -->
+
+---
+
+**This lab directly maps to all content on Exam 02 (Modules 07–10).** If you checked every box above without looking at your notes, you are well prepared.
 
 ---
 
