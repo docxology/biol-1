@@ -39,14 +39,13 @@ The **central dogma** describes the one-way flow of genetic information: **DNA �
 <!-- lab:reflection -->
 **1. Complete the central dogma flow chart — fill in the blanks:**
 
-```
-    DNA  ──────────────→  ________  ──────────────→  ________
-           (Process: ___)              (Process: ___)
-
-    Location: _________              Location: _________
-```
-
-{fill:textarea rows=1}
+<!-- lab:data-table rows=3 title="Central Dogma Flow" -->
+| Step 1 | Step 2 | Step 3 |
+|--------|--------|--------|
+| **Molecule:** DNA | **Molecule:** {fill:text} | **Molecule:** {fill:text} |
+| **Process:** (starts here) | **Process:** {fill:text} | **Process:** {fill:text} |
+| **Location:** {fill:text} | **Location:** {fill:text} | **Location:** {fill:text} |
+<!-- /lab:data-table -->
 
 **2. A template DNA strand reads 3ʹ–TAC GCA AAA–5ʹ. Write the mRNA sequence and then use a codon chart to identify the amino acid chain.**
 
@@ -314,6 +313,8 @@ These questions ask you to **think across** all four modules. Answer in complete
 <!-- /lab:reflection -->
 
 ---
+
+\newpage
 
 ## Self-Assessment
 
