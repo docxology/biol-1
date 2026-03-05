@@ -20,7 +20,7 @@
 | 10 | D | Meiosis produces 4 haploid cells |
 | 11 | C | Muscle tissue specializes in contraction |
 | 12 | C | The digestive system breaks down food into absorbable nutrients |
-| 13 | B | The four tissue types are epithelial, connective, muscle, and nervous |
+| 13 | B | The stomach wall contains muscle tissue (smooth muscle for churning food) |
 | 14 | D | Neurons are the functional cells of nervous tissue |
 | 15 | B | Skeletal, cardiac, and smooth are the three muscle types |
 | 16 | C | The circulatory system transports oxygen and nutrients via the blood |
@@ -30,7 +30,7 @@
 | 20 | B | Red × White → all pink = incomplete dominance (blending in heterozygote) |
 | 21 | C | ABO blood type: multiple alleles (Iᴬ, Iᴮ, i) and codominance |
 | 22 | C | Carrier = heterozygous, shows dominant phenotype, carries recessive allele |
-| 23 | C | A dihybrid cross produces 4 different phenotype combinations (9:3:3:1 = 4 categories) |
+| 23 | C | A dihybrid cross (heterozygous × heterozygous for 2 traits) yields 4 phenotype combinations |
 | 24 | B | Unaffected parents → affected child = autosomal recessive |
 | 25 | B | Males (XY) have one X; one recessive allele is enough to cause the condition |
 | 26 | C | 50% of sons receive Xᶜ from carrier mother |

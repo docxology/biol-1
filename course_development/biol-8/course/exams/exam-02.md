@@ -101,11 +101,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Digestive system
     - D) Endocrine system
 
-3. The four main types of tissue in the human body are:
-    - A) Skin, blood, bone, and fat
-    - B) Epithelial, connective, muscle, and nervous
-    - C) Brain, heart, lung, and liver
-    - D) Red, white, smooth, and rough
+3. An organ like the stomach contains multiple tissue types working together. Which of the following is a tissue type found in the stomach wall?
+    - A) Bone tissue
+    - B) Muscle tissue
+    - C) Cartilage
+    - D) Gonads
 
 4. The functional cells of nervous tissue are called:
     - A) Fibroblasts
@@ -163,11 +163,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Is heterozygous and does not show the recessive trait
     - D) Has no alleles for the trait
 
-6. When tracking two traits at once (a dihybrid cross), how many different phenotype combinations are expected in the offspring?
-    - A) 2
-    - B) 3
-    - C) 4
-    - D) 8
+6. If you cross two parents that are both heterozygous genotype for two different dominant traits, the offspring will show:
+    - A) Only one combination of traits
+    - B) Two combinations of traits
+    - C) Four combinations of traits
+    - D) No variation in traits
 
 7. A pedigree shows two unaffected parents with an affected child. This trait is most likely:
     - A) Autosomal dominant
