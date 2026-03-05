@@ -43,11 +43,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) A protein
     - D) tRNA
 
-4. A missense mutation results in:
-    - A) No change to the protein
-    - B) A premature stop codon
-    - C) A single amino acid change
-    - D) An insertion or deletion of bases
+4. A change (mutation) in DNA:
+    - A) Always changes the protein
+    - B) Sometimes changes the protein and sometimes does not
+    - C) Never changes the protein
+    - D) Always kills the cell
 
 5. DNA replication is called "semiconservative" because each new DNA molecule contains:
     - A) Only newly made strands
@@ -95,17 +95,17 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Muscle
     - D) Nervous
 
-2. Simple squamous epithelium is best described as:
-    - A) Multiple layers of flat cells
-    - B) One layer of cube-shaped cells
-    - C) One layer of thin, flat cells
-    - D) Multiple layers of column-shaped cells
+2. Which organ system breaks down food into nutrients the body can use?
+    - A) Respiratory system
+    - B) Nervous system
+    - C) Digestive system
+    - D) Endocrine system
 
-3. Which connective tissue has a liquid matrix?
-    - A) Bone
-    - B) Cartilage
-    - C) Blood
-    - D) Adipose
+3. The four main types of tissue in the human body are:
+    - A) Skin, blood, bone, and fat
+    - B) Epithelial, connective, muscle, and nervous
+    - C) Brain, heart, lung, and liver
+    - D) Red, white, smooth, and rough
 
 4. The functional cells of nervous tissue are called:
     - A) Fibroblasts
@@ -119,21 +119,21 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Voluntary, involuntary, and mixed
     - D) Fast-twitch, slow-twitch, and intermediate
 
-6. Simple squamous epithelium lines the air sacs of the lungs because:
-    - A) It provides strong protection
-    - B) It allows rapid diffusion of gases
-    - C) It produces mucus
-    - D) It is thick and durable
+6. Which organ system is responsible for transporting oxygen and nutrients throughout the body?
+    - A) Digestive system
+    - B) Respiratory system
+    - C) Circulatory system
+    - D) Skeletal system
 
-7. Cardiac muscle tissue is unique because it has:
-    - A) Multiple nuclei per cell
-    - B) No striations
-    - C) Intercalated discs that connect cells
-    - D) Voluntary control
+7. Which type of muscle is under voluntary (conscious) control?
+    - A) Smooth muscle
+    - B) Cardiac muscle
+    - C) Skeletal muscle
+    - D) All muscle types are voluntary
 
 ### Module 10: Inheritance
 
-1. When two heterozygous parents (Aa × Aa) are crossed, the expected ratio of phenotypes is:
+1. When two heterozygous parents (Aa × Aa) are crossed, the expected ratio of genotypes (AA : Aa : aa) is:
     - A) 1:1
     - B) 3:1
     - C) 1:2:1
@@ -145,11 +145,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) 50%
     - D) 75%
 
-3. In incomplete dominance, the heterozygote shows:
-    - A) The dominant trait only
-    - B) The recessive trait only
-    - C) A blend of both traits
-    - D) Neither trait
+3. A red flower (RR) is crossed with a white flower (WW). All offspring are pink. This is an example of:
+    - A) Complete dominance
+    - B) Incomplete dominance
+    - C) Codominance
+    - D) Polygenic inheritance
 
 4. Human blood type is an example of:
     - A) Simple dominance
@@ -163,11 +163,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Is heterozygous and does not show the recessive trait
     - D) Has no alleles for the trait
 
-6. In a dihybrid cross (RrYy × RrYy), the expected phenotypic ratio is:
-    - A) 3:1
-    - B) 1:2:1
-    - C) 9:3:3:1
-    - D) 1:1:1:1
+6. When tracking two traits at once (a dihybrid cross), how many different phenotype combinations are expected in the offspring?
+    - A) 2
+    - B) 3
+    - C) 4
+    - D) 8
 
 7. A pedigree shows two unaffected parents with an affected child. This trait is most likely:
     - A) Autosomal dominant
@@ -177,7 +177,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 8. Males are more often affected by X-linked recessive conditions because:
     - A) Males have two X chromosomes
-    - B) Males have one X, so one recessive allele is enough
+    - B) Males have one X, so one recessive allele is enough to cause the condition
     - C) Females have a protective Y chromosome
     - D) X-linked traits only come from fathers
 
@@ -199,11 +199,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) AB only
     - D) A, B, AB, or O
 
-12. If a trait is autosomal dominant, an affected parent crossed with an unaffected parent will produce:
-    - A) All affected children
-    - B) About half affected children
-    - C) No affected children
-    - D) All carrier children
+12. A genetic trait that requires two copies of the recessive allele (one from each parent) to appear is called:
+    - A) Autosomal dominant
+    - B) Autosomal recessive
+    - C) Sex-linked
+    - D) Codominant
 
 13. Which of the following is true about sex-linked inheritance?
     - A) Fathers pass X-linked traits to their sons

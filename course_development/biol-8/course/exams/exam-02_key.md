@@ -11,7 +11,7 @@
 | 1 | B | Central dogma: DNA → RNA → Protein |
 | 2 | C | A codon = 3 bases (triplet code) |
 | 3 | B | Transcription produces mRNA from a DNA template |
-| 4 | C | Missense = single amino acid change |
+| 4 | B | A DNA mutation sometimes changes the protein (silent mutations don't, missense mutations do) |
 | 5 | B | Semiconservative: each new molecule has one original + one new strand |
 | 6 | B | Mitosis = growth and repair of body cells |
 | 7 | B | DNA replication occurs in S (Synthesis) phase |
@@ -19,24 +19,24 @@
 | 9 | C | After meiosis: 23 chromosomes (haploid) in each sex cell |
 | 10 | D | Meiosis produces 4 haploid cells |
 | 11 | C | Muscle tissue specializes in contraction |
-| 12 | C | Simple squamous = one layer of thin, flat cells |
-| 13 | C | Blood has a liquid matrix (plasma) — it is a connective tissue |
+| 12 | C | The digestive system breaks down food into absorbable nutrients |
+| 13 | B | The four tissue types are epithelial, connective, muscle, and nervous |
 | 14 | D | Neurons are the functional cells of nervous tissue |
 | 15 | B | Skeletal, cardiac, and smooth are the three muscle types |
-| 16 | B | Thin single layer allows rapid gas diffusion |
-| 17 | C | Intercalated discs connect cardiac muscle cells for coordinated contraction |
-| 18 | B | Aa × Aa phenotypic ratio = 3 dominant : 1 recessive |
+| 16 | C | The circulatory system transports oxygen and nutrients via the blood |
+| 17 | C | Skeletal muscle is the only type under voluntary (conscious) control |
+| 18 | C | Aa × Aa genotypic ratio = 1 AA : 2 Aa : 1 aa (1:2:1) |
 | 19 | B | 1/4 (25%) will be aa (recessive phenotype) |
-| 20 | C | Incomplete dominance: heterozygote shows a blend of both traits |
+| 20 | B | Red × White → all pink = incomplete dominance (blending in heterozygote) |
 | 21 | C | ABO blood type: multiple alleles (Iᴬ, Iᴮ, i) and codominance |
 | 22 | C | Carrier = heterozygous, shows dominant phenotype, carries recessive allele |
-| 23 | C | Dihybrid cross (RrYy × RrYy) = 9:3:3:1 phenotypic ratio |
+| 23 | C | A dihybrid cross produces 4 different phenotype combinations (9:3:3:1 = 4 categories) |
 | 24 | B | Unaffected parents → affected child = autosomal recessive |
-| 25 | B | Males (XY) have one X; one recessive allele is enough for expression |
+| 25 | B | Males (XY) have one X; one recessive allele is enough to cause the condition |
 | 26 | C | 50% of sons receive Xᶜ from carrier mother |
 | 27 | B | Genes on different chromosomes sort independently during meiosis |
 | 28 | D | AO × BO → possible genotypes: AB, AO, BO, OO (all four blood types) |
-| 29 | B | Autosomal dominant: Aa × aa → 50% Aa (affected), 50% aa (unaffected) |
+| 29 | B | Autosomal recessive: requires two copies (one from each parent) to express the trait |
 | 30 | B | Mothers can pass X-linked recessive alleles to sons via their X chromosome |
 
 ---
