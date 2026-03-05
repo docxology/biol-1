@@ -285,12 +285,10 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 <br>
 <br>
 <br>
-<br>
 
 **Response 3**  
 **Question Number:** \_\_\_\_\_
 
-<br>
 <br>
 <br>
 <br>
@@ -307,7 +305,6 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 A. Is there anything else you would like to share (e.g., questions, comments, or notes for the professor)?
 
-<br>
 <br>
 <br>
 
