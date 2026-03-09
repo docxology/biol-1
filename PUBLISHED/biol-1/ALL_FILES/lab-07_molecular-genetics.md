@@ -29,9 +29,101 @@ By the end of this lab, you will be able to:
 
 <div style="page-break-after: always;"></div>
 
-## Part 1: The Codon Table
+## Part 1: Base Pairing — The Language of DNA and RNA
 
-mRNA is read in groups of **three bases** called **codons**. Each codon specifies one amino acid (or a stop signal). The table below lists all 64 codons.
+DNA and RNA are built from four **nucleotide bases**. These bases always pair in specific, predictable ways — like puzzle pieces that only fit together one way. Understanding these pairing rules is the key to everything else in this lab.
+
+### DNA–DNA Pairing (Replication)
+
+When a cell needs to **copy its DNA** before dividing, the double helix unzips and each strand serves as a template. The enzyme **DNA Polymerase** reads the template and adds the matching base according to these rules:
+
+| Template Base | Pairs With |
+|:---:|:---:|
+| **A** (Adenine) | **T** (Thymine) |
+| **T** (Thymine) | **A** (Adenine) |
+| **G** (Guanine) | **C** (Cytosine) |
+| **C** (Cytosine) | **G** (Guanine) |
+
+> 🧠 **Memory trick:** **A**lways with **T**, **G**oes with **C** — in DNA, A pairs with T and G pairs with C.
+
+**Quick practice — Write the complementary DNA strand:**
+
+| Template | T | A | C | C | G | T |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| New strand | ___ | ___ | ___ | ___ | ___ | ___ |
+
+### DNA–RNA Pairing (Transcription)
+
+When the cell needs to **make a protein**, it doesn't send the DNA out of the nucleus. Instead, the enzyme **RNA Polymerase** reads the DNA template and builds a single-stranded **mRNA** (messenger RNA) copy — a process called **transcription**.
+
+RNA has one important difference: it uses **Uracil (U)** instead of Thymine (T).
+
+| DNA Template Base | Pairs With (RNA) |
+|:---:|:---:|
+| **A** (Adenine) | **U** (Uracil) |
+| **T** (Thymine) | **A** (Adenine) |
+| **G** (Guanine) | **C** (Cytosine) |
+| **C** (Cytosine) | **G** (Guanine) |
+
+> 🔑 **The only change from DNA→DNA pairing:** Wherever DNA has **A**, the mRNA gets **U** instead of T. Everything else stays the same.
+
+**Quick practice — Transcribe this short DNA template into mRNA:**
+
+| DNA Template | T | A | C | C | G | T |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| mRNA | ___ | ___ | ___ | ___ | ___ | ___ |
+
+<!-- lab:reflection -->
+**Check your understanding:**
+
+**1. What are the two base-pairing rules that are the *same* in both DNA replication and transcription?**
+
+{fill:text}
+
+**2. What is the one key difference between DNA–DNA pairing and DNA–RNA pairing?**
+
+{fill:text}
+
+**3. If a DNA template strand reads `G-A-T-T-C-A`, what would the mRNA sequence be?**
+
+{fill:text}
+<!-- /lab:reflection -->
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## Part 2: Transcription — DNA → mRNA
+
+Now let's apply those pairing rules to a full gene! Transcription is like photocopying one page from a master binder — the original DNA stays safe in the nucleus while the mRNA copy travels to the ribosome.
+
+Use the DNA→RNA pairing rules from Part 1: **A→U, T→A, G→C, C→G**.
+
+**DNA template strand:** `3′ — T A C · C G T · A C G · T C G · G G T · G A C · A T T — 5′`
+
+<!-- lab:reflection -->
+**4. Transcribe — Write the mRNA sequence. Group into codons (groups of 3).**
+
+{fill:textarea rows=2}
+
+**5. Where in a eukaryotic cell does transcription occur?**
+
+{fill:text}
+
+**6. What enzyme carries out transcription?**
+
+{fill:text}
+<!-- /lab:reflection -->
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## Part 3: Translation — mRNA → Protein (The Codon Table)
+
+Once the mRNA reaches the ribosome, it is read in groups of **three bases** called **codons**. Each codon specifies one amino acid (or a stop signal). This process is called **translation** — the cell is literally *translating* the language of nucleotides into the language of amino acids.
+
+### The Codon Table
 
 > **How to use it:** Find the first base in the left column, the second base in the top row, and the third base in the right column. The intersection gives you the amino acid.
 
@@ -71,6 +163,18 @@ Try decoding these three codons before moving on:
 | AUG | A | U | G | __________ |
 
 <!-- lab:reflection -->
+**7. Translate your mRNA from Part 2 — Use the codon table to convert each codon into an amino acid. Write the amino acid chain.**
+
+{fill:textarea rows=2}
+
+**8. What was your first codon? What amino acid does it code for, and why is that codon special?**
+
+{fill:text}
+
+**9. How did you know to stop translating? What was the stop codon?**
+
+{fill:text}
+
 **Bonus look-up:** Find two different codons that both code for Leucine (Leu). Write them here:
 
 {fill:text}
@@ -84,35 +188,7 @@ This is called **redundancy** — multiple codons can code for the same amino ac
 
 <div style="page-break-after: always;"></div>
 
-## Part 2: Transcription & Translation
-
-Transcription is like photocopying one page from a master binder — the original DNA stays safe in the nucleus while the mRNA copy travels to the ribosome. Use these base-pairing rules: **A→U, T→A, G→C, C→G**.
-
-**DNA template strand:** `3′ — T A C · C G T · A C G · T C G · G G T · G A C · A T T — 5′`
-
-<!-- lab:reflection -->
-**1. Transcribe — Write the mRNA sequence. Group into codons (groups of 3).**
-
-{fill:textarea rows=2}
-
-**2. Translate — Use the codon table to convert each codon into an amino acid. Write the amino acid chain.**
-
-{fill:textarea rows=2}
-
-**3. What was your first codon? What amino acid does it code for, and why is that codon special?**
-
-{fill:text}
-
-**4. How did you know to stop translating? What was the stop codon?**
-
-{fill:text}
-<!-- /lab:reflection -->
-
----
-
-<div style="page-break-after: always;"></div>
-
-## Part 3: Mutation Detective
+## Part 4: Mutation Detective
 
 Mutations are changes in the DNA sequence — like typos in a recipe. Some are harmless; others can ruin the dish. Let's investigate.
 
@@ -125,12 +201,12 @@ The **10th base** (the first `C` in the third codon `ACG`) changes to a **C → 
 **Mutated DNA template:** `3′ — T A C · C G T · A G G · T C G · G G T · G A C · A T T — 5′`
 
 <!-- lab:reflection -->
-**5. Transcribe and translate the mutated sequence.**
+**10. Transcribe and translate the mutated sequence.**
 
 - Mutated mRNA: {fill:text}
 - Amino acid chain: {fill:text}
 
-**6. Did the amino acid chain change? Classify the mutation as *silent* (no change), *missense* (different amino acid), or *nonsense* (creates a premature stop).**
+**11. Did the amino acid chain change? Classify the mutation as *silent* (no change), *missense* (different amino acid), or *nonsense* (creates a premature stop).**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -142,12 +218,12 @@ Return to the **original DNA template**. An extra **G** is inserted right after 
 **Mutated DNA template:** `3′ — T A C · G C G · T A C · G T C · G G G · T G A · C A T · T — 5′`
 
 <!-- lab:reflection -->
-**7. Transcribe and translate the frameshift-mutated sequence.**
+**12. Transcribe and translate the frameshift-mutated sequence.**
 
 - Mutated mRNA: {fill:text}
 - Amino acid chain: {fill:text}
 
-**8. Compare the frameshift protein to your original. How many amino acids changed? Why is this type called a "frameshift"?**
+**13. Compare the frameshift protein to your original. How many amino acids changed? Why is this type called a "frameshift"?**
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
@@ -161,12 +237,12 @@ Return to the **original DNA template**. This time, **delete the 7th base** (the
 *(Re-group into codons after the deletion:)* `3′ — T A C · C G A · C G T · C G G · G T G · A C A · T T — 5′`
 
 <!-- lab:reflection -->
-**9. Transcribe and translate the deletion-mutated sequence.**
+**14. Transcribe and translate the deletion-mutated sequence.**
 
 - Mutated mRNA: {fill:text}
 - Amino acid chain: {fill:text}
 
-**10. How does a deletion compare to an insertion? Did both cause the same amount of damage to the protein?**
+**15. How does a deletion compare to an insertion? Did both cause the same amount of damage to the protein?**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -174,54 +250,50 @@ Return to the **original DNA template**. This time, **delete the 7th base** (the
 ### Comparing All Three Mutations
 
 <!-- lab:reflection -->
-**11. Rank the three mutations (substitution, insertion, deletion) from least to most damaging. Explain your reasoning.**
+**16. Rank the three mutations (substitution, insertion, deletion) from least to most damaging. Explain your reasoning.**
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 4: Big Picture
+## Part 5: Big Picture
 
 <!-- lab:reflection -->
-**12. Complete the Central Dogma:**
+**17. Complete the Central Dogma:**
 
 DNA → _________________ → _________________
 
-**13. Where in a eukaryotic cell does transcription occur?**
+**18. Where in a eukaryotic cell does transcription occur?**
 
 {fill:text}
 
-**14. Where does translation occur?**
+**19. Where does translation occur?**
 
 {fill:text}
 
-**15. What enzyme copies DNA into mRNA (carries out transcription)?**
+**20. What cellular structure reads mRNA and builds proteins (carries out translation)?**
 
 {fill:text}
 
-**16. What cellular structure reads mRNA and builds proteins (carries out translation)?**
-
-{fill:text}
-
-**17. In your own words: How can a single change in someone's DNA affect their physical traits? Trace the path from gene → protein → trait.**
+**21. In your own words: How can a single change in someone's DNA affect their physical traits? Trace the path from gene → protein → trait.**
 
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 5: Real-World Connection
+## Part 6: Real-World Connection
 
 <!-- lab:reflection -->
-**18. Sickle-cell disease** is caused by a single point mutation in the hemoglobin gene. The 6th amino acid changes from Glutamic acid (Glu) to Valine (Val). Based on what you learned today:
+**22. Sickle-cell disease** is caused by a single point mutation in the hemoglobin gene. The 6th amino acid changes from Glutamic acid (Glu) to Valine (Val). Based on what you learned today:
 
 - What kind of mutation is this — silent, missense, or nonsense? {fill:text}
 - Why can a single amino acid change affect the shape of an entire protein? *(Hint: amino acids fold into 3D shapes, and each one contributes to the fold.)*
 
 {fill:textarea rows=3}
 
-**19. Not all mutations are bad!** Can you think of a situation where a mutation might actually help an organism survive? *(Hint: think about how evolution works.)*
+**23. Not all mutations are bad!** Can you think of a situation where a mutation might actually help an organism survive? *(Hint: think about how evolution works.)*
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
