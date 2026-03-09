@@ -70,6 +70,16 @@ Try decoding these three codons before moving on:
 | UUU | U | U | U | __________ |
 | AUG | A | U | G | __________ |
 
+<!-- lab:reflection -->
+**Bonus look-up:** Find two different codons that both code for Leucine (Leu). Write them here:
+
+{fill:text}
+
+This is called **redundancy** — multiple codons can code for the same amino acid. Why might this be useful for an organism? *(Hint: think about mutations.)*
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
 ---
 
 <div style="page-break-after: always;"></div>
@@ -155,8 +165,31 @@ Return to the **original DNA template**. An extra **G** is inserted right after 
 **8. Compare the frameshift protein to your original. How many amino acids changed? Why is this type called a "frameshift"?**
 
 {fill:textarea rows=3}
+<!-- /lab:reflection -->
 
-**9. Which mutation was more damaging — the substitution (A) or the frameshift (B)? Explain your reasoning.**
+### Scenario C: Deletion (Another Frameshift)
+
+Return to the **original DNA template**. This time, **delete the 7th base** (the `T` in the second codon `CGT`).
+
+**Mutated DNA template:** `3′ — T A C · C G A · C G · T C G · G G T · G A C · A T T — 5′`
+
+*(Re-group into codons after the deletion:)* `3′ — T A C · C G A · C G T · C G G · G T G · A C A · T T — 5′`
+
+<!-- lab:reflection -->
+**9. Transcribe and translate the deletion-mutated sequence.**
+
+- Mutated mRNA: {fill:text}
+- Amino acid chain: {fill:text}
+
+**10. How does a deletion compare to an insertion? Did both cause the same amount of damage to the protein?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Comparing All Three Mutations
+
+<!-- lab:reflection -->
+**11. Rank the three mutations (substitution, insertion, deletion) from least to most damaging. Explain your reasoning.**
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
@@ -166,27 +199,58 @@ Return to the **original DNA template**. An extra **G** is inserted right after 
 ## Part 4: Big Picture
 
 <!-- lab:reflection -->
-**10. Complete the Central Dogma:**
+**12. Complete the Central Dogma:**
 
 DNA → _________________ → _________________
 
-**11. Where in a eukaryotic cell does transcription occur?**
+**13. Where in a eukaryotic cell does transcription occur?**
 
 {fill:text}
 
-**12. Where does translation occur?**
+**14. Where does translation occur?**
 
 {fill:text}
 
-**13. What enzyme copies DNA into mRNA (carries out transcription)?**
+**15. What enzyme copies DNA into mRNA (carries out transcription)?**
 
 {fill:text}
 
-**14. What cellular structure reads mRNA and builds proteins (carries out translation)?**
+**16. What cellular structure reads mRNA and builds proteins (carries out translation)?**
 
 {fill:text}
 
-**15. In your own words: How can a single change in someone's DNA affect their physical traits? Trace the path from gene → protein → trait.**
+**17. In your own words: How can a single change in someone's DNA affect their physical traits? Trace the path from gene → protein → trait.**
 
 {fill:textarea rows=4}
+<!-- /lab:reflection -->
+
+---
+
+## Part 5: Real-World Connection
+
+<!-- lab:reflection -->
+**18. Sickle-cell disease** is caused by a single point mutation in the hemoglobin gene. The 6th amino acid changes from Glutamic acid (Glu) to Valine (Val). Based on what you learned today:
+
+- What kind of mutation is this — silent, missense, or nonsense? {fill:text}
+- Why can a single amino acid change affect the shape of an entire protein? *(Hint: amino acids fold into 3D shapes, and each one contributes to the fold.)*
+
+{fill:textarea rows=3}
+
+**19. Not all mutations are bad!** Can you think of a situation where a mutation might actually help an organism survive? *(Hint: think about how evolution works.)*
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+---
+
+## Bonus Challenge 🧬
+
+<!-- lab:reflection -->
+**Design your own mutation!** Start with the original DNA template from Part 2. Create a mutation of your choice (substitution, insertion, or deletion), then transcribe and translate it.
+
+- Type of mutation you chose: {fill:text}
+- Your mutated DNA template: {fill:text}
+- Mutated mRNA: {fill:text}
+- Amino acid chain: {fill:text}
+- What happened to the protein? Was it silent, missense, nonsense, or a frameshift? {fill:text}
 <!-- /lab:reflection -->
