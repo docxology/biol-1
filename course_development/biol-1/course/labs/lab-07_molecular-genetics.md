@@ -86,24 +86,9 @@ This is called **redundancy** — multiple codons can code for the same amino ac
 
 ## Part 2: Transcription & Translation
 
-### Background
+Transcription is like photocopying one page from a master binder — the original DNA stays safe in the nucleus while the mRNA copy travels to the ribosome. Use these base-pairing rules: **A→U, T→A, G→C, C→G**.
 
-Think of transcription like photocopying one page from a master binder — the original DNA stays safe in the nucleus while the mRNA copy travels to the ribosome.
-
-**Base-pairing rules for transcription (DNA → mRNA):**
-
-| DNA base | mRNA base |
-|:---:|:---:|
-| A | U |
-| T | A |
-| G | C |
-| C | G |
-
-### Your Gene
-
-**DNA template strand:**
-
-`3′ — T A C · C G T · A C G · T C G · G G T · G A C · A T T — 5′`
+**DNA template strand:** `3′ — T A C · C G T · A C G · T C G · G G T · G A C · A T T — 5′`
 
 <!-- lab:reflection -->
 **1. Transcribe — Write the mRNA sequence. Group into codons (groups of 3).**
