@@ -2,68 +2,113 @@
 
 ## Overview
 
-The "Central Dogma" of molecular biology describes how the information in your genes becomes a working part of your body: **DNA → RNA → Protein**. Every protein in every cell — from the keratin in your hair to the hemoglobin carrying oxygen in your blood — was built by reading a gene through this pathway.
+Every living cell follows the same basic recipe to turn genetic information into a working molecule:
 
-In this lab, you will act as the cell's molecular machinery. You will **transcribe** a gene (copy DNA into mRNA) and then **translate** that mRNA into a chain of amino acids using the genetic code. You will also see firsthand how **mutations** — even small changes in the DNA — can alter the protein product.
+> **DNA → RNA → Protein**
+
+This is the **Central Dogma** of molecular biology. It means your DNA is like a master cookbook that never leaves the kitchen (the nucleus). When a protein needs to be made, the cell copies just the recipe it needs into a messenger (mRNA), which travels to the ribosome — the cell's protein-building machine.
+
+In this lab you will **be the cell**. You'll copy DNA into mRNA (*transcription*), decode mRNA into amino acids (*translation*), and discover what happens when the recipe gets a typo (*mutations*).
 
 ## Learning Objectives
 
 By the end of this lab, you will be able to:
 
-1. Transcribe a DNA sequence into mRNA using base pairing rules.
+1. Transcribe a DNA sequence into mRNA using base-pairing rules.
 2. Translate an mRNA sequence into amino acids using a codon table.
-3. Identify the effects of point mutations and frameshift mutations on a protein.
-4. Explain why the Central Dogma matters for understanding genetics.
+3. Predict the effects of point mutations and frameshift mutations on a protein.
+4. Explain the Central Dogma in your own words.
 
 ## Materials
 
 - This worksheet
-- Codon table (provided in Part 1)
-- Colored pencils (optional)
+- Codon table (Part 1)
+- Colored pencils (optional — great for color-coding bases!)
 
 ---
 
 <div style="page-break-after: always;"></div>
 
-## Part 1: The Genetic Code Reference
+## Part 1: The Codon Table
 
-Use this mRNA codon table to decode your mRNA sequences. **How to read it:** Find the 1st base on the left, the 2nd base across the top, and the 3rd base on the right.
+mRNA is read in groups of **three bases** called **codons**. Each codon specifies one amino acid (or a stop signal). The table below lists all 64 codons.
 
-| 1st Base | U | C | A | G | 3rd Base |
-| :---: | :--- | :--- | :--- | :--- | :---: |
-| **U** | Phe (F) / Phe (F) / Leu (L) / Leu (L) | Ser (S) / Ser (S) / Ser (S) / Ser (S) | Tyr (Y) / Tyr (Y) / **STOP** / **STOP** | Cys (C) / Cys (C) / **STOP** / Trp (W) | U / C / A / G |
-| **C** | Leu (L) / Leu (L) / Leu (L) / Leu (L) | Pro (P) / Pro (P) / Pro (P) / Pro (P) | His (H) / His (H) / Gln (Q) / Gln (Q) | Arg (R) / Arg (R) / Arg (R) / Arg (R) | U / C / A / G |
-| **A** | Ile (I) / Ile (I) / Ile (I) / **Met (M) START** | Thr (T) / Thr (T) / Thr (T) / Thr (T) | Asn (N) / Asn (N) / Lys (K) / Lys (K) | Ser (S) / Ser (S) / Arg (R) / Arg (R) | U / C / A / G |
-| **G** | Val (V) / Val (V) / Val (V) / Val (V) | Ala (A) / Ala (A) / Ala (A) / Ala (A) | Asp (D) / Asp (D) / Glu (E) / Glu (E) | Gly (G) / Gly (G) / Gly (G) / Gly (G) | U / C / A / G |
+> **How to use it:** Find the first base in the left column, the second base in the top row, and the third base in the right column. The intersection gives you the amino acid.
 
-> **Tip:** Each cell shows 4 amino acids separated by slashes, corresponding to 3rd base = U, C, A, G (top to bottom).
+| | **U** | **C** | **A** | **G** | |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| | *2nd base →* | | | | *3rd base ↓* |
+| **U** | **Phe** (F) | **Ser** (S) | **Tyr** (Y) | **Cys** (C) | **U** |
+| | **Phe** (F) | **Ser** (S) | **Tyr** (Y) | **Cys** (C) | **C** |
+| | **Leu** (L) | **Ser** (S) | ⛔ STOP | ⛔ STOP | **A** |
+| | **Leu** (L) | **Ser** (S) | ⛔ STOP | **Trp** (W) | **G** |
+| **C** | **Leu** (L) | **Pro** (P) | **His** (H) | **Arg** (R) | **U** |
+| | **Leu** (L) | **Pro** (P) | **His** (H) | **Arg** (R) | **C** |
+| | **Leu** (L) | **Pro** (P) | **Gln** (Q) | **Arg** (R) | **A** |
+| | **Leu** (L) | **Pro** (P) | **Gln** (Q) | **Arg** (R) | **G** |
+| **A** | **Ile** (I) | **Thr** (T) | **Asn** (N) | **Ser** (S) | **U** |
+| | **Ile** (I) | **Thr** (T) | **Asn** (N) | **Ser** (S) | **C** |
+| | **Ile** (I) | **Thr** (T) | **Lys** (K) | **Arg** (R) | **A** |
+| | 🟢 **Met** (M) START | **Thr** (T) | **Lys** (K) | **Arg** (R) | **G** |
+| **G** | **Val** (V) | **Ala** (A) | **Asp** (D) | **Gly** (G) | **U** |
+| | **Val** (V) | **Ala** (A) | **Asp** (D) | **Gly** (G) | **C** |
+| | **Val** (V) | **Ala** (A) | **Glu** (E) | **Gly** (G) | **A** |
+| | **Val** (V) | **Ala** (A) | **Glu** (E) | **Gly** (G) | **G** |
 
-> **Remember:** AUG is both the Start codon AND codes for Methionine (Met). UAA, UAG, UGA are Stop codons.
+> **Key:**
+>
+> - 🟢 **AUG** = Start codon (also codes for Methionine)
+> - ⛔ **UAA, UAG, UGA** = Stop codons (no amino acid added — translation ends)
+
+### Quick Practice
+
+Try decoding these three codons before moving on:
+
+| Codon | 1st base | 2nd base | 3rd base | Amino Acid |
+|:---:|:---:|:---:|:---:|:---:|
+| GCA | G | C | A | __________ |
+| UUU | U | U | U | __________ |
+| AUG | A | U | G | __________ |
 
 ---
 
-## Part 2: Transcription and Translation
+<div style="page-break-after: always;"></div>
 
-*Transcription is like copying one page from a library book — the original DNA stays in the nucleus, and the mRNA copy travels to the ribosome.*
+## Part 2: Transcription & Translation
 
-**Your gene (DNA template strand):** `3′ — T A C · C G T · A C G · T C G · G G T · G A C · A T T — 5′`
+### Background
 
-**Base pairing rules for transcription:** A → U, T → A, G → C, C → G
+Think of transcription like photocopying one page from a master binder — the original DNA stays safe in the nucleus while the mRNA copy travels to the ribosome.
+
+**Base-pairing rules for transcription (DNA → mRNA):**
+
+| DNA base | mRNA base |
+|:---:|:---:|
+| A | U |
+| T | A |
+| G | C |
+| C | G |
+
+### Your Gene
+
+**DNA template strand:**
+
+`3′ — T A C · C G T · A C G · T C G · G G T · G A C · A T T — 5′`
 
 <!-- lab:reflection -->
-**1. Transcribe: Write the mRNA sequence by replacing each DNA base with its RNA complement. Group into codons (3 letters each).**
+**1. Transcribe — Write the mRNA sequence. Group into codons (groups of 3).**
 
 {fill:textarea rows=2}
 
-**2. Translate: Use the codon table to convert each mRNA codon into an amino acid. Write the amino acid chain.**
+**2. Translate — Use the codon table to convert each codon into an amino acid. Write the amino acid chain.**
 
 {fill:textarea rows=2}
 
-**3. Which codon did you start with? What amino acid does it code for?**
+**3. What was your first codon? What amino acid does it code for, and why is that codon special?**
 
 {fill:text}
 
-**4. What told you to stop translating? What was the stop codon?**
+**4. How did you know to stop translating? What was the stop codon?**
 
 {fill:text}
 <!-- /lab:reflection -->
@@ -72,76 +117,76 @@ Use this mRNA codon table to decode your mRNA sequences. **How to read it:** Fin
 
 <div style="page-break-after: always;"></div>
 
-## Part 3: Mutation Analysis
+## Part 3: Mutation Detective
 
-*Mutations are changes in the DNA sequence. Some are harmless; others can be devastating. Let's see why.*
+Mutations are changes in the DNA sequence — like typos in a recipe. Some are harmless; others can ruin the dish. Let's investigate.
 
-Return to the **original DNA template strand** from Part 2.
+Go back to the **original DNA template strand** from Part 2.
 
-### Scenario A: Point Mutation (Substitution)
+### Scenario A: Substitution (Point Mutation)
 
-The **10th base** (the first T in the third codon `ACG`) changes to a **G**.
+The **10th base** (the first `C` in the third codon `ACG`) changes to a **C → G**.
 
-New DNA template: `3′ — T A C · C G T · A G G · T C G · G G T · G A C · A T T — 5′`
+**Mutated DNA template:** `3′ — T A C · C G T · A G G · T C G · G G T · G A C · A T T — 5′`
 
 <!-- lab:reflection -->
 **5. Transcribe and translate the mutated sequence.**
 
 - Mutated mRNA: {fill:text}
-- Mutated amino acids: {fill:text}
+- Amino acid chain: {fill:text}
 
-**6. Did the amino acid chain change compared to your original? What type of mutation is this — silent, missense, or nonsense?**
+**6. Did the amino acid chain change? Classify the mutation as *silent* (no change), *missense* (different amino acid), or *nonsense* (creates a premature stop).**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
 
-### Scenario B: Frameshift Mutation (Insertion)
+### Scenario B: Insertion (Frameshift Mutation)
 
 Return to the **original DNA template**. An extra **G** is inserted right after the 3rd base (after the `C` in `TAC`).
 
-New DNA template: `3′ — T A C · G C G · T A C · G T C · G G G · T G A · C A T · T — 5′`
+**Mutated DNA template:** `3′ — T A C · G C G · T A C · G T C · G G G · T G A · C A T · T — 5′`
 
 <!-- lab:reflection -->
-**7. Transcribe and translate the mutated sequence.**
+**7. Transcribe and translate the frameshift-mutated sequence.**
 
 - Mutated mRNA: {fill:text}
-- Mutated amino acids: {fill:text}
+- Amino acid chain: {fill:text}
 
-**8. Compare your frameshift protein to your original protein. How many amino acids changed? Why is this called a "frameshift"?**
+**8. Compare the frameshift protein to your original. How many amino acids changed? Why is this type called a "frameshift"?**
 
 {fill:textarea rows=3}
 
-**9. Which type of mutation is more dangerous — the point mutation (Scenario A) or the frameshift (Scenario B)? Explain why.**
+**9. Which mutation was more damaging — the substitution (A) or the frameshift (B)? Explain your reasoning.**
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 4: Putting It All Together
+## Part 4: Big Picture
 
 <!-- lab:reflection -->
-**10. Fill in the Central Dogma:**
+**10. Complete the Central Dogma:**
 
 DNA → _________________ → _________________
 
-**11. Where does transcription happen in a eukaryotic cell?**
+**11. Where in a eukaryotic cell does transcription occur?**
 
 {fill:text}
 
-**12. Where does translation happen?**
+**12. Where does translation occur?**
 
 {fill:text}
 
-**13. What enzyme carries out transcription?**
+**13. What enzyme copies DNA into mRNA (carries out transcription)?**
 
 {fill:text}
 
-**14. What structure carries out translation?**
+**14. What cellular structure reads mRNA and builds proteins (carries out translation)?**
 
 {fill:text}
 
-**15. In your own words, explain why a change in DNA can change what a person looks like or how their body works. (Hint: trace the path from gene to trait.)**
+**15. In your own words: How can a single change in someone's DNA affect their physical traits? Trace the path from gene → protein → trait.**
 
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
