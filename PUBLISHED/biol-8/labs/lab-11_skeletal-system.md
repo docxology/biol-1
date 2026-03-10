@@ -2,7 +2,7 @@
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
-**Name:** {fill:text} **Date:** {fill:text} **Lab Section:** {fill:text}
+**Name:** {fill:text} **Date:** {fill:text}
 
 ---
 
@@ -12,8 +12,6 @@ Your skeleton does far more than hold you upright — it protects organs, stores
 
 **Materials:** Articulated human skeleton · Mammal skeleton(s) · Your own body · This worksheet
 
-**Duration:** ~1.5 hours
-
 ---
 
 ## Part 1: Functions of the Skeleton — A Quick Body Tour
@@ -22,13 +20,13 @@ The skeletal system has five functions: **Support · Protection · Movement · M
 
 For each function, perform the brief activity and note your observation.
 
-| Function | Do This | Your Observation |
-|----------|---------|-----------------|
-| **Support** | Stand up and deliberately relax your postural muscles. Notice the sag. | {fill:text} |
-| **Protection** | Place your hands on your skull, then your sternum, then your hip crests. | {fill:text} |
-| **Movement** | Flex your elbow while feeling your bicep and tricep with the opposite hand. | {fill:text} |
-| **Mineral Storage** | (Think): Your body pulls calcium from bone when blood levels drop. Which organ regulates this? | {fill:text} |
-| **Hematopoiesis** | (Think): Where in the skeleton is red bone marrow found in adults? | {fill:text} |
+| Function | Do This | **What did you observe — and how does the skeleton help?** |
+|----------|---------|-----------------------------------------------------------|
+| **Support** | Stand, then deliberately relax all your postural muscles for 3 seconds. Notice what happens to your posture. | {fill:text} |
+| **Protection** | Gently tap your skull, then your sternum, then your hip crests. Describe the texture and firmness you feel. What is each protecting underneath? | {fill:text} |
+| **Movement** | Flex your elbow slowly while touching your bicep and tricep with the other hand. Which muscle tightens? Which relaxes? What role does bone play as a lever? | {fill:text} |
+| **Mineral Storage** | (Think & discuss): When blood calcium drops, the body dissolves bone to release it. Name the hormone and gland that trigger this. | {fill:text} |
+| **Hematopoiesis** | (Think & discuss): Red bone marrow makes blood cells. In adults, which bones still contain red marrow — the long limb bones or the flat/irregular bones? | {fill:text} |
 
 ---
 
@@ -40,6 +38,7 @@ For each function, perform the brief activity and note your observation.
 
 <!-- lab:checklist -->
 **Skull:**
+
 - [ ] Frontal bone — your forehead
 - [ ] Parietal bones — top and sides of skull
 - [ ] Temporal bones — just above ears (your temples)
@@ -47,6 +46,7 @@ For each function, perform the brief activity and note your observation.
 - [ ] Mandible — lower jaw; the only freely movable skull bone
 
 **Vertebral Column:**
+
 - [ ] Cervical vertebrae C1–C7 — neck; C7 is the prominent bump at the base of your neck
 - [ ] Thoracic vertebrae T1–T12 — mid-back; ribs attach here
 - [ ] Lumbar vertebrae L1–L5 — lower back; largest vertebrae
@@ -54,6 +54,7 @@ For each function, perform the brief activity and note your observation.
 - [ ] Coccyx — tailbone at the very tip of the spine
 
 **Thoracic Cage:**
+
 - [ ] Sternum — breastbone; feel the flat bone in the center of your chest
 - [ ] True ribs (1–7) — attached directly to sternum
 - [ ] False ribs (8–10) — attached via cartilage of rib 7
@@ -66,6 +67,7 @@ For each function, perform the brief activity and note your observation.
 
 <!-- lab:checklist -->
 **Pectoral Girdle and Upper Limb:**
+
 - [ ] Clavicle — collarbone; trace from sternum to shoulder
 - [ ] Scapula — shoulder blade; feel the ridge and pointed acromion on top
 - [ ] Humerus — single bone of the upper arm
@@ -76,6 +78,7 @@ For each function, perform the brief activity and note your observation.
 - [ ] Phalanges — finger bones (3 per finger, 2 per thumb)
 
 **Pelvic Girdle and Lower Limb:**
+
 - [ ] Ilium — the large wing; hands on your hip crests
 - [ ] Ischium — the "sitting bone" felt on a hard chair
 - [ ] Pubis — front of pelvis; pubic symphysis at the midline
@@ -92,7 +95,20 @@ For each function, perform the brief activity and note your observation.
 ### 2C: Bone Identification Questions
 
 <!-- lab:reflection -->
-**1. The adult human body has ______ bones total. It is divided into the ____________ skeleton (______ bones) and the ____________ skeleton (______ bones).**
+**1a. The adult human body has ______ bones total.**
+
+**1b. It is divided into two divisions. Name them and give the bone count for each:**
+
+| Division | Name | Number of Bones |
+|----------|------|-----------------|
+| Central axis | {fill:text} | {fill:text} |
+| Limbs & girdles | {fill:text} | {fill:text} |
+
+**1c. Some bones are singular (or midline) rather than paired. List TWO examples of midline/unpaired bones from the axial skeleton:**
+
+{fill:textarea rows=2}
+
+**1d. Each arm contains ______ bones. Each leg contains ______ bones. (Include girdle bones in your count.)**
 
 **2. Which of the following belongs to the axial skeleton? Circle all that apply:**
 
@@ -102,16 +118,28 @@ For each function, perform the brief activity and note your observation.
 
 {fill:textarea rows=2}
 
-**4. A classmate fractures their clavicle. Which division of the skeleton is affected? Why does this injury limit shoulder movement even though the clavicle looks like a simple connecting strut?**
+**4. Your lab partner slips and lands on an outstretched arm. You suspect a clavicle fracture.**
+
+**(a)** Which division of the skeleton does the clavicle belong to, and where exactly does it articulate (connect) at each end?
+
+{fill:textarea rows=2}
+
+**(b)** Even though the clavicle is just a slender S-shaped strut, this fracture drastically limits all arm movement. Explain why — what biomechanical role does the clavicle actually play between the shoulder and the sternum?
 
 {fill:textarea rows=3}
+
+**(c)** Name one other injury (besides a direct blow) that can fracture the clavicle, and explain the mechanism of force:
+
+{fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-## Part 3: Bone Structure — A Long Bone at a Glance
+## Part 3: Bone Structure — Feeling It From the Inside Out
 
-A long bone (like your femur or humerus) has the following regions:
+Bones are not all alike. Their structure matches their job. Use the classroom skeleton, your own body, and the mini-experiments below to explore how bone structure differs between skeleton divisions.
+
+**Quick Reference — Regions of a Long Bone:**
 
 | Structure | Location / Description |
 |-----------|----------------------|
@@ -125,16 +153,57 @@ A long bone (like your femur or humerus) has the following regions:
 
 **Spongy bone** — lightweight inner lattice (trabeculae aligned along stress lines); found at epiphyses; houses red marrow.
 
+---
+
+### 3A: Appendicular Skeleton — Long Bones in Your Limbs
+
+> Long bones are the workhorses of the appendicular skeleton. Their hollow shaft and flared ends are a masterpiece of engineering.
+
+**Mini-Experiment 1 — Clench your fist.**
+
+Make a tight fist and look at the back of your hand. Those ridges under the skin are **metacarpals**.
+
+- How many ridges can you count? ______
+- Run a finger across the knuckles. Each knuckle is the **distal epiphysis** of a metacarpal. Can you feel how the end of the bone is wider than the shaft? ______
+- Now extend your fingers flat. The phalanges straighten. How many finger segments (phalanges) does your index finger have? ______
+
 <!-- lab:reflection -->
-**5. On the classroom femur, point to and name: (a) the proximal epiphysis, (b) the diaphysis, and (c) where the growth plate (epiphyseal line) would be. Sketch or describe what you observe:**
+**5. On the classroom femur (the longest long bone), locate and label the following. Describe where each is:**
 
-{fill:textarea rows=4}
+| Structure | Your Description / Location |
+|-----------|-----------------------------|
+| Proximal epiphysis | {fill:text} |
+| Diaphysis (shaft) | {fill:text} |
+| Epiphyseal line | {fill:text} |
+| Medullary cavity | {fill:text} |
 
-**6. Why is the shaft of a long bone hollow rather than solid? (Hint: think strength-to-weight ratio.)**
+**6. Why is the shaft of a long bone hollow rather than solid? (Hint: think strength-to-weight ratio and engineering.)**
 
 {fill:textarea rows=2}
 
-**7. A 14-year-old fractures through the epiphyseal plate. Why is this a more serious concern than a fracture through the shaft of the bone?**
+**7. A 14-year-old fractures through the epiphyseal plate of the femur. Why is this more serious than a mid-shaft fracture in the diaphysis?**
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+---
+
+### 3B: Axial Skeleton — Flat, Irregular, and Short Bones
+
+> The axial skeleton relies on flat and irregular bones for protection and attachment — very different from long-bone architecture.
+
+**Mini-Experiment 2 — Feel your own axial bones.**
+
+- Place your fingertips on your **sternum** (breastbone) and press gently. It is flat and broad — why does this shape suit its job of protecting the heart and lungs?
+- Reach both hands behind your head and feel the **occipital bone** at the base of your skull. Find the ridge (external occipital protuberance). Now tilt your head back — what muscles are anchored here?
+- Gently count the **thoracic vertebrae** bumps down your mid-back. These are irregular bones. How are they different in shape from the flat bones you just touched?
+
+<!-- lab:reflection -->
+**8. Flat bones (like the sternum and skull bones) contain a "sandwich" of compact bone on the outside and spongy bone in the middle (called the diploë). Why is this arrangement stronger than solid compact bone for a flat plate?**
+
+{fill:textarea rows=2}
+
+**9. The vertebrae are classified as irregular bones. Name TWO structural features visible on the classroom vertebra that you could not find on the femur:**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -160,22 +229,70 @@ Compare the two skeletons side by side. For each region, describe what you obser
 | Overall size and robustness | {fill:text} | {fill:text} | {fill:text} |
 <!-- /lab:data-table -->
 
+**Sketch the mammal skeleton (or a key region) below. Label at least 4 bones by name:**
+
+<!-- lab:drawing -->
+
+|   |
+|---|
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| &nbsp; |
+| *(Drawing space — use the full box. Label bones clearly.)* |
+
+<!-- /lab:drawing -->
+
+### Homologous Bone Identification
+
+> **Homologous structures** share the same evolutionary origin (same ancestral bone) even if they look different or serve different functions. **Analogous structures** perform similar functions but evolved independently — they do *not* share ancestry.
+
+**Hands-On: Map the Forelimb**
+
+With your lab partner, hold your arm next to the mammal's forelimb. Work bone-by-bone from the shoulder to the fingertips.
+
+<!-- lab:data-table rows=5 title="Homologous Forelimb Bones" -->
+| Human Bone | Location in Human Limb | Homologous Bone in Mammal | Location in Mammal Limb | Same function? (Y/N) |
+|---|---|---|---|---|
+| Humerus | Upper arm, shoulder to elbow | {fill:text} | {fill:text} | {fill:text} |
+| Radius | Forearm, thumb side | {fill:text} | {fill:text} | {fill:text} |
+| Ulna | Forearm, pinky side / elbow | {fill:text} | {fill:text} | {fill:text} |
+| Carpals | Wrist | {fill:text} | {fill:text} | {fill:text} |
+| Phalanges | Finger bones | {fill:text} | {fill:text} | {fill:text} |
+<!-- /lab:data-table -->
+
 <!-- lab:reflection -->
-**8. Point to the bone in the mammal's forelimb that is homologous to your humerus, your radius, and your ulna. Describe where each is:**
+**10. Based on the table above — even if the shapes differ significantly — are these bones homologous, analogous, or both? How can you tell?**
 
 {fill:textarea rows=3}
 
-**9. The human vertebral column has an S-shaped curve; most quadruped mammals have a simpler arch. What advantage does the S-curve give upright humans?**
+**11. List TWO structural features that are strikingly *similar* between the human and mammal skeleton, and TWO that are strikingly *different*. For each difference, explain what it suggests about how the mammal lives or moves:**
+
+| | Bone / Region | Why Similar or Different? |
+|---|---|---|
+| **Similar 1** | {fill:text} | {fill:text} |
+| **Similar 2** | {fill:text} | {fill:text} |
+| **Different 1** | {fill:text} | {fill:text} |
+| **Different 2** | {fill:text} | {fill:text} |
+
+**12. The human vertebral column has an S-shaped curve; most quadruped mammals have a simpler arch. What advantage does the S-curve provide for upright bipedal posture?**
 
 {fill:textarea rows=2}
 
-**10. What was the single most striking structural difference you noticed between the human and the mammal skeleton? What does it reveal about that animal's lifestyle or evolutionary history?**
+**13. What was the single most striking structural difference between the human and the mammal skeleton? What does it reveal about that animal's lifestyle or evolutionary history?**
 
 {fill:textarea rows=3}
 
-**11. Are homologous structures evidence for common ancestry? Explain in 2–3 sentences:**
+**14. Are homologous structures evidence for common ancestry? Why can't we use *analogous* structures (like a bat's wing and a bee's wing) to infer shared ancestry? Explain in 3–4 sentences:**
 
-{fill:textarea rows=3}
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---
