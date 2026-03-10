@@ -14,14 +14,46 @@ Your skeleton does far more than hold you upright — it protects organs, stores
 
 ---
 
+## Before You Begin: Key Concepts
+
+Review these ideas before starting — they will sharpen your observations throughout the lab.
+
+### Bone Cells
+
+Living bone is maintained by three specialized cell types working in a constant cycle:
+
+| Cell | Job |
+| ---- | --- |
+| **Osteoblasts** | Build new bone matrix; eventually become osteocytes |
+| **Osteocytes** | Mature bone cells trapped in the matrix; sense mechanical stress and regulate remodeling |
+| **Osteoclasts** | Break down (resorb) bone; release stored calcium back into the blood |
+
+This ongoing **bone remodeling** allows the skeleton to repair micro-damage, reshape itself in response to stress, and keep blood calcium in balance.
+
+### Bone Growth and Development
+
+Most bones form through **endochondral ossification** — a cartilage model is gradually replaced by bone tissue. Flat bones of the skull use **intramembranous ossification** instead, forming directly from connective tissue.
+
+Long bones grow in length at the **epiphyseal plate** (growth plate), a layer of cartilage near each end of the bone. When growth hormone and sex hormones signal the plate to close (usually in the late teens), the cartilage is replaced by bone — forming an **epiphyseal line** — and the bone stops lengthening.
+
+### Skeletal Health
+
+- **Osteoporosis**: Loss of bone density, usually from low calcium intake, low estrogen, or inactivity. Risk factors include family history, smoking, and inadequate weight-bearing exercise. Prevention: adequate calcium and vitamin D, regular exercise, no smoking.
+- **Fracture healing**: Occurs in four overlapping stages — hematoma formation → soft callus (cartilage) → hard callus (woven bone) → bone remodeling back to normal structure.
+- **Arthritis**: *Osteoarthritis* is wear-and-tear degeneration of joint cartilage; *rheumatoid arthritis* is an autoimmune attack on the synovial membrane.
+
+> **Think about it as you work:** Where do you see evidence of bone remodeling, stress adaptation, or structural differences that relate to skeletal health?
+
+---
+
 ## Part 1: Functions of the Skeleton — A Quick Body Tour
 
 The skeletal system has five functions: **Support · Protection · Movement · Mineral Storage · Hematopoiesis**
 
 For each function, perform the brief activity and note your observation.
 
-| Function | Do This | **What did you observe — and how does the skeleton help?** |
-|----------|---------|-----------------------------------------------------------|
+| Function | Do This | What did you observe — and how does the skeleton help? |
+| -------- | ------- | ------------------------------------------------------ |
 | **Support** | Stand, then deliberately relax all your postural muscles for 3 seconds. Notice what happens to your posture. | {fill:text} |
 | **Protection** | Gently tap your skull, then your sternum, then your hip crests. Describe the texture and firmness you feel. What is each protecting underneath? | {fill:text} |
 | **Movement** | Flex your elbow slowly while touching your bicep and tricep with the other hand. Which muscle tightens? Which relaxes? What role does bone play as a lever? | {fill:text} |
@@ -100,15 +132,16 @@ For each function, perform the brief activity and note your observation.
 **1b. It is divided into two divisions. Name them and give the bone count for each:**
 
 | Division | Name | Number of Bones |
-|----------|------|-----------------|
+| -------------- | ----------- | --------------- |
 | Central axis | {fill:text} | {fill:text} |
+
 | Limbs & girdles | {fill:text} | {fill:text} |
 
 **1c. Some bones are singular (or midline) rather than paired. List TWO examples of midline/unpaired bones from the axial skeleton:**
 
 {fill:textarea rows=2}
 
-**1d. Each arm contains ______ bones. Each leg contains ______ bones. (Include girdle bones in your count.)**
+**1d.** Each arm contains ______ bones. Each leg contains ______ bones. (Include girdle bones in your count.)
 
 **2. Which of the following belongs to the axial skeleton? Circle all that apply:**
 
@@ -139,19 +172,13 @@ For each function, perform the brief activity and note your observation.
 
 Bones are not all alike. Their structure matches their job. Use the classroom skeleton, your own body, and the mini-experiments below to explore how bone structure differs between skeleton divisions.
 
-**Quick Reference — Regions of a Long Bone:**
+### Compact bone
 
-| Structure | Location / Description |
-|-----------|----------------------|
-| **Diaphysis** | Long shaft; mainly compact bone; surrounds the medullary cavity |
-| **Epiphysis** | Expanded ends; mainly spongy bone; covered by articular cartilage at joints |
-| **Periosteum** | Outer fibrous covering; contains osteoblasts for repair; anchors tendons |
-| **Medullary cavity** | Hollow center of shaft; yellow marrow (fat) in adults |
-| **Epiphyseal line** | Remnant of the growth plate; marks where lengthening happened during childhood |
+Dense outer shell; organized into osteons (Haversian systems); resists compression and twisting.
 
-**Compact bone** — dense outer shell; organized into osteons (Haversian systems); resists compression and twisting.
+### Spongy bone
 
-**Spongy bone** — lightweight inner lattice (trabeculae aligned along stress lines); found at epiphyses; houses red marrow.
+Lightweight inner lattice (trabeculae aligned along stress lines); found at epiphyses; houses red marrow.
 
 ---
 
@@ -159,7 +186,7 @@ Bones are not all alike. Their structure matches their job. Use the classroom sk
 
 > Long bones are the workhorses of the appendicular skeleton. Their hollow shaft and flared ends are a masterpiece of engineering.
 
-**Mini-Experiment 1 — Clench your fist.**
+### Mini-Experiment 1 — Clench your fist
 
 Make a tight fist and look at the back of your hand. Those ridges under the skin are **metacarpals**.
 
@@ -168,20 +195,15 @@ Make a tight fist and look at the back of your hand. Those ridges under the skin
 - Now extend your fingers flat. The phalanges straighten. How many finger segments (phalanges) does your index finger have? ______
 
 <!-- lab:reflection -->
-**5. On the classroom femur (the longest long bone), locate and label the following. Describe where each is:**
+**5. Look at the metacarpal you just palpated. Label its parts by matching each term to the description:**
 
-| Structure | Your Description / Location |
-|-----------|-----------------------------|
-| Proximal epiphysis | {fill:text} |
+| Term | What you feel / where it is |
+| ------------------- | --------------------------- |
 | Diaphysis (shaft) | {fill:text} |
-| Epiphyseal line | {fill:text} |
-| Medullary cavity | {fill:text} |
+| Distal epiphysis | {fill:text} |
+| Articular cartilage | {fill:text} |
 
-**6. Why is the shaft of a long bone hollow rather than solid? (Hint: think strength-to-weight ratio and engineering.)**
-
-{fill:textarea rows=2}
-
-**7. A 14-year-old fractures through the epiphyseal plate of the femur. Why is this more serious than a mid-shaft fracture in the diaphysis?**
+**6. Recall the three bone cell types from the overview. Which type is most active in a healing fracture, and why?**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -192,7 +214,7 @@ Make a tight fist and look at the back of your hand. Those ridges under the skin
 
 > The axial skeleton relies on flat and irregular bones for protection and attachment — very different from long-bone architecture.
 
-**Mini-Experiment 2 — Feel your own axial bones.**
+### Mini-Experiment 2 — Feel your own axial bones
 
 - Place your fingertips on your **sternum** (breastbone) and press gently. It is flat and broad — why does this shape suit its job of protecting the heart and lungs?
 - Reach both hands behind your head and feel the **occipital bone** at the base of your skull. Find the ridge (external occipital protuberance). Now tilt your head back — what muscles are anchored here?
@@ -220,7 +242,7 @@ Compare the two skeletons side by side. For each region, describe what you obser
 
 <!-- lab:data-table rows=6 title="Human vs. Mammal Skeleton Comparison" -->
 | Body Region | Human | Mammal Observed | What Does the Difference Tell You? |
-|---|---|---|---|
+| ----------- | ----- | --------------- | ---------------------------------- |
 | Skull / Cranium size | Large cranium, small face | {fill:text} | {fill:text} |
 | Vertebral column orientation | Vertical (bipedal, S-curve) | {fill:text} | {fill:text} |
 | Forelimb (arm/front leg) | Free limb, not load-bearing | {fill:text} | {fill:text} |
@@ -233,8 +255,8 @@ Compare the two skeletons side by side. For each region, describe what you obser
 
 <!-- lab:drawing -->
 
-|   |
-|---|
+| |
+| --- |
 | &nbsp; |
 | &nbsp; |
 | &nbsp; |
@@ -254,13 +276,13 @@ Compare the two skeletons side by side. For each region, describe what you obser
 
 > **Homologous structures** share the same evolutionary origin (same ancestral bone) even if they look different or serve different functions. **Analogous structures** perform similar functions but evolved independently — they do *not* share ancestry.
 
-**Hands-On: Map the Forelimb**
+#### Hands-On: Map the Forelimb
 
 With your lab partner, hold your arm next to the mammal's forelimb. Work bone-by-bone from the shoulder to the fingertips.
 
 <!-- lab:data-table rows=5 title="Homologous Forelimb Bones" -->
 | Human Bone | Location in Human Limb | Homologous Bone in Mammal | Location in Mammal Limb | Same function? (Y/N) |
-|---|---|---|---|---|
+| ---------- | ---------------------- | ------------------------- | ----------------------- | -------------------- |
 | Humerus | Upper arm, shoulder to elbow | {fill:text} | {fill:text} | {fill:text} |
 | Radius | Forearm, thumb side | {fill:text} | {fill:text} | {fill:text} |
 | Ulna | Forearm, pinky side / elbow | {fill:text} | {fill:text} | {fill:text} |
@@ -276,7 +298,7 @@ With your lab partner, hold your arm next to the mammal's forelimb. Work bone-by
 **11. List TWO structural features that are strikingly *similar* between the human and mammal skeleton, and TWO that are strikingly *different*. For each difference, explain what it suggests about how the mammal lives or moves:**
 
 | | Bone / Region | Why Similar or Different? |
-|---|---|---|
+| --- | ------------- | ------------------------- |
 | **Similar 1** | {fill:text} | {fill:text} |
 | **Similar 2** | {fill:text} | {fill:text} |
 | **Different 1** | {fill:text} | {fill:text} |

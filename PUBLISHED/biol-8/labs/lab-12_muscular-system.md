@@ -32,7 +32,7 @@ Muscles are responsible for every movement your body makes — from blinking to 
 ## Background: Three Types of Muscle Tissue
 
 | Feature | Skeletal Muscle | Cardiac Muscle | Smooth Muscle |
-|---------|----------------|----------------|---------------|
+| ------- | --------------- | -------------- | ------------- |
 | **Location** | Attached to bones | Heart wall | Walls of hollow organs (stomach, blood vessels, bladder) |
 | **Appearance** | Striated (striped) | Striated | Non-striated |
 | **Control** | Voluntary | Involuntary | Involuntary |
@@ -55,10 +55,12 @@ Each **muscle fiber** is a single, long, multinucleate cell packed with **myofib
 ### The Sarcomere and Sliding Filament Theory
 
 The **sarcomere** is the functional unit of contraction. It contains two interleaved sets of protein filaments:
+
 - **Thick filaments** — myosin, with projecting "heads" that form **cross-bridges** with actin
 - **Thin filaments** — actin, coated by the regulatory proteins **troponin** and **tropomyosin**
 
-**How a contraction happens (step by step):**
+### How a contraction happens (step by step)
+
 1. A nerve signal arrives → ACh is released at the neuromuscular junction
 2. ACh binds receptors on the muscle fiber → action potential travels along the sarcolemma and into T-tubules
 3. T-tubules signal the **sarcoplasmic reticulum** to release Ca²⁺ into the cytoplasm
@@ -81,7 +83,7 @@ A **motor unit** = one motor neuron + all the muscle fibers it controls. Recruit
 ### Muscle Fiber Types and Energy Systems
 
 | | Slow-Twitch (Type I) | Fast-Twitch (Type IIa) | Fast-Twitch (Type IIx) |
-|---|---|---|---|
+| --- | -------------------- | ---------------------- | ---------------------- |
 | **Speed** | Slow | Moderate-fast | Very fast |
 | **Fatigue resistance** | Very high | Moderate | Low |
 | **Primary energy source** | Aerobic (oxidative) | Mixed aerobic/anaerobic | Anaerobic (glycolytic) |
@@ -89,7 +91,8 @@ A **motor unit** = one motor neuron + all the muscle fibers it controls. Recruit
 | **Myoglobin / color** | High (red) | Moderate | Low (white) |
 | **Example use** | Marathon running | 400 m swim | 100 m sprint |
 
-**Key energy concepts:**
+### Key energy concepts
+
 - **ATP** is the immediate energy currency; muscles store only ~2–3 seconds worth
 - **Creatine phosphate** replenishes ATP rapidly for ~10 seconds of intense activity
 - **Anaerobic glycolysis** generates ATP quickly but produces **lactate** (and H⁺), contributing to acidification and fatigue
@@ -103,12 +106,12 @@ A **motor unit** = one motor neuron + all the muscle fibers it controls. Recruit
 **1. List the three types of muscle tissue and give one example location for each:**
 
 | Muscle Type | Example Location |
-|-------------|-----------------|
+| ----------- | ---------------- |
 | {fill:text} | {fill:text} |
 | {fill:text} | {fill:text} |
 | {fill:text} | {fill:text} |
 
-**2. What is the role of calcium in muscle contraction? (Trace from nerve signal to cross-bridge formation in 3–4 steps.)**
+**2.** What is the role of calcium in muscle contraction? (Trace from nerve signal to cross-bridge formation in 3–4 steps.)
 
 {fill:textarea rows=4}
 
@@ -129,17 +132,17 @@ A **motor unit** = one motor neuron + all the muscle fibers it controls. Recruit
 
 ## Experiment 1: Grip Fatigue Test
 
-### Background
+### Experiment 1 Background
 
 When you repeatedly squeeze a muscle, it eventually fatigues — it produces less force or cannot sustain the same rate of contractions. Fatigue in fast-twitch fibers happens quickly (ATP and glycogen deplete, lactic acid builds). Slow-twitch fibers are more fatigue-resistant. This experiment measures how many squeezes you can complete in 30-second intervals, across 3 minutes total.
 
-### Hypothesis
+### Experiment 1 Hypothesis
 
 Before starting, predict what will happen to your squeeze count across the six 30-second intervals:
 
 {fill:textarea rows=2}
 
-### Procedure
+### Experiment 1 Procedure
 
 1. Sit comfortably with your dominant arm resting on the table, holding the stress/tennis ball.
 2. Have a partner time six consecutive **30-second intervals** (3 minutes total). **Do not rest between intervals.**
@@ -147,11 +150,11 @@ Before starting, predict what will happen to your squeeze count across the six 3
 4. Count and record your squeezes for **each 30-second interval**.
 5. Repeat with your **non-dominant hand** if time allows.
 
-### Data Table
+### Experiment 1 Data Table
 
 <!-- lab:data-table rows=6 title="Grip Fatigue — Dominant Hand" -->
 | Interval | Time (min:sec) | Squeeze Count | Running Total |
-|----------|---------------|--------------|--------------|
+| -------- | -------------- | ------------- | ------------- |
 | 1 | 0:00 – 0:30 | {fill:number} | {fill:number} |
 | 2 | 0:30 – 1:00 | {fill:number} | {fill:number} |
 | 3 | 1:00 – 1:30 | {fill:number} | {fill:number} |
@@ -162,7 +165,7 @@ Before starting, predict what will happen to your squeeze count across the six 3
 
 <!-- lab:data-table rows=6 title="Grip Fatigue — Non-Dominant Hand (optional)" -->
 | Interval | Time (min:sec) | Squeeze Count | Running Total |
-|----------|---------------|--------------|--------------|
+| -------- | -------------- | ------------- | ------------- |
 | 1 | 0:00 – 0:30 | {fill:number} | {fill:number} |
 | 2 | 0:30 – 1:00 | {fill:number} | {fill:number} |
 | 3 | 1:00 – 1:30 | {fill:number} | {fill:number} |
@@ -197,22 +200,124 @@ Percent change = (Interval 6 − Interval 1) ÷ Interval 1 × 100 = \_\_\_\_\_\_
 
 ---
 
-## Part 2: Synthesis
+## Experiment 2: Yardstick Drop — Measuring Reaction Time
+
+### Experiment 2 Background
+
+Your nervous system controls muscle contraction, but there is always a measurable delay — **reaction time** — between detecting a stimulus (seeing something drop) and responding (catching it). This delay includes:
+
+1. Sensory reception (light hits retina → signal sent)
+2. Signal traveling to the brain
+3. Brain processing and decision-making
+4. Motor signal traveling to the muscles
+5. Muscles contracting and the hand closing
+
+We can estimate reaction time by measuring **how far a yardstick falls** before you catch it. Because objects fall under gravity at a predictable rate, we can convert the distance caught into time using:
+
+> **t = √(2d / g)**
+>
+> where **d** = drop distance in meters, **g** = 9.8 m/s²
+
+**Quick reference table** (for estimated conversions):
+
+| Distance caught (cm) | Reaction time (ms) |
+| -------------------- | ------------------ |
+| 5 | 101 |
+| 10 | 143 |
+| 15 | 175 |
+| 20 | 202 |
+| 25 | 226 |
+| 30 | 247 |
+
+### Experiment 2 Hypothesis
+
+Before starting, predict: Will your reaction time improve over 10 trials, worsen, or stay roughly the same? Explain your reasoning in terms of nervous system function.
+
+{fill:textarea rows=2}
+
+### Experiment 2 Procedure
+
+1. Sit at a table. Rest your **dominant hand** at the edge, palm facing in, fingers and thumb open (ready to pinch).
+2. Your partner holds the yardstick vertically, with the **0-cm mark level with the top of your thumb**.
+3. Your partner drops the yardstick **without warning**. Catch it as fast as you can by closing your fingers.
+4. Record the **centimeter mark** at the top of your thumb at the catch point.
+5. Repeat for **10 trials total**. Do not rush — wait for your partner to re-set between each trial.
+
+### Experiment 2 Data Table
+
+<!-- lab:data-table rows=10 title="Yardstick Drop — Reaction Time Trials" -->
+| Trial | Distance dropped (cm) | Reaction time (ms) — calculate or look up |
+| ----- | --------------------- | ----------------------------------------- |
+| 1 | {fill:number} | {fill:number} |
+| 2 | {fill:number} | {fill:number} |
+| 3 | {fill:number} | {fill:number} |
+| 4 | {fill:number} | {fill:number} |
+| 5 | {fill:number} | {fill:number} |
+| 6 | {fill:number} | {fill:number} |
+| 7 | {fill:number} | {fill:number} |
+| 8 | {fill:number} | {fill:number} |
+| 9 | {fill:number} | {fill:number} |
+| 10 | {fill:number} | {fill:number} |
+<!-- /lab:data-table -->
+
+### Experiment 2 Summary Statistics
+
+<!-- lab:data-table rows=3 title="Reaction Time Summary" -->
+| Statistic | Distance (cm) | Reaction Time (ms) |
+| --------- | ------------- | ------------------ |
+| **Minimum** *(fastest catch)* | {fill:number} | {fill:number} |
+| **Maximum** *(slowest catch)* | {fill:number} | {fill:number} |
+| **Mean** *(sum ÷ 10)* | {fill:number} | {fill:number} |
+<!-- /lab:data-table -->
+
+**Show your mean calculation here:**
+
+{fill:textarea rows=2}
+
+### Experiment 2 Analysis — Reaction Time
 
 <!-- lab:reflection -->
-**11. In the grip fatigue test, your hand muscles were contracting isotonically. Describe what is happening at the level of the sarcomere during each squeeze. What happens to actin and myosin as you fatigue and ATP availability declines?**
-
-{fill:textarea rows=4}
-
-**12. Professional athletes in endurance sports (marathon runners, cyclists) have a higher proportion of slow-twitch fibers than sprinters. Based on what you observed in the grip fatigue test, describe the practical difference this fiber type distribution would make during a 3-hour race.**
+**11. Did your reaction time improve, worsen, or stay roughly the same across the 10 trials? Describe the trend you see in your data:**
 
 {fill:textarea rows=3}
 
-**13. The acetylcholine released at the neuromuscular junction must be broken down immediately after signaling so the muscle can relax. If a toxin (like certain nerve agents) blocked this breakdown, what would happen to the muscle? Connect your answer to the sliding filament mechanism.**
+**12. Identify your minimum (fastest) and maximum (slowest) trials. What is the range (max − min) in milliseconds? What factors might explain the trial-to-trial variability?**
+
+Range = _______ ms
+
+{fill:textarea rows=3}
+
+**13. The yardstick drop measures the time for a sensory-to-motor loop through the nervous system. List the steps in order — from the drop to your hand closing — and identify WHERE in this chain most of the delay occurs:**
 
 {fill:textarea rows=4}
 
-**14. Looking back at the module questions and keys to success: which concept from the module (sliding filament theory, motor units, fiber types, neuromuscular junction, energy systems) did this lab make most concrete and real for you? Explain why.**
+**14. Predict how each of the following would affect your reaction time, and explain the mechanism:**
+
+| Factor | Prediction (faster / slower / no change) | Mechanism |
+| ------ | ---------------------------------------- | --------- |
+| Fatigue from the grip test before this experiment | {fill:text} | {fill:text} |
+| Practicing this test 50 times per day for a week | {fill:text} | {fill:text} |
+| Looking away from the yardstick instead of watching it | {fill:text} | {fill:text} |
+<!-- /lab:reflection -->
+
+---
+
+## Part 2: Synthesis
+
+<!-- lab:reflection -->
+**S1. In the grip fatigue test, your hand muscles were contracting isotonically. Describe what is happening at the level of the sarcomere during each squeeze. What happens to actin and myosin as you fatigue and ATP availability declines?**
+
+{fill:textarea rows=4}
+
+**S2. Professional athletes in endurance sports (marathon runners, cyclists) have a higher proportion of slow-twitch fibers than sprinters. Based on what you observed in the grip fatigue test, describe the practical difference this fiber type distribution would make during a 3-hour race.**
+
+{fill:textarea rows=3}
+
+**S3. The acetylcholine released at the neuromuscular junction must be broken down immediately after signaling so the muscle can relax. If a toxin (like certain nerve agents) blocked this breakdown, what would happen to the muscle? Connect your answer to the sliding filament mechanism.**
+
+{fill:textarea rows=4}
+
+**S4. Looking back at the module questions and keys to success: which concept from the module (sliding filament theory, motor units, fiber types, neuromuscular junction, energy systems) did this lab make most concrete and real for you? Explain why.**
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->

@@ -10,11 +10,13 @@
 
 By the end of this lab, you will be able to:
 
-1. **Explain** what happens to chromosomes during interphase (S phase) before division begins.
-2. **Model mitosis** step by step using paper chromosomes, tracing each allele through every phase.
-3. **Model meiosis I and II** using paper chromosomes, distinguishing what separates at each stage.
-4. **Compare and contrast** mitosis and meiosis by purpose, steps, chromosome number, and genetic outcome.
-5. **Explain** why meiosis produces genetically unique gametes while mitosis produces identical daughter cells.
+1. **Define** key vocabulary: diploid, haploid, homologous chromosomes, sister chromatids, allele, gamete.
+2. **Explain** what happens to chromosomes during interphase (S phase) before division begins.
+3. **Model mitosis** step by step using paper chromosomes, tracing each allele through every phase.
+4. **Model meiosis I and II** using paper chromosomes, distinguishing what separates at each stage.
+5. **Explain** the critical difference between Anaphase I (homologs separate) and Anaphase II (sister chromatids separate).
+6. **Compare and contrast** mitosis and meiosis by purpose, number of divisions, chromosome number, and genetic outcome.
+7. **Explain** why meiosis produces genetically unique gametes while mitosis produces identical daughter cells.
 
 ---
 
@@ -54,18 +56,18 @@ In this lab, you will use **paper chromosomes** — RED for maternal, BLUE for p
 
 ## Materials
 
-- Scissors
-- Tape or glue stick
-- **Chromosome Cutouts** (last page of this lab — tear out before starting)
+- **Chromosome Cutouts** (last page of this lab)
   - Chromosome Pair 1: Gene A (alleles **A** and **a**)
   - Chromosome Pair 2: Gene B (alleles **B** and **b**)
 - Blank paper for staging (draw large circles to represent cells)
+
+> **No scissors needed.** Carefully tear along the dashed borders of each chromosome card. Slow, steady tears work best — go corner to corner.
 
 ---
 
 ## Part 1: Chromosome Basics
 
-*Before you start cutting, answer these questions to check your vocabulary.*
+*Before you tear out the chromosomes, answer these questions to check your vocabulary.*
 
 <!-- lab:reflection -->
 **1. Match each term to its definition:**
@@ -225,8 +227,8 @@ Chromosomes condense. **Homologous chromosomes pair up** side by side — this i
 | Cell | Chromosome Pair 1 Allele | Chromosome Pair 2 Allele | Ploidy | # Chromosomes (each still duplicated) |
 |------|--------------------------|--------------------------|--------|---------------------------------------|
 | Parent | A and a | B and b | Diploid (2n = 4) | 4 |
-| Cell after Meiosis I — Left | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
-| Cell after Meiosis I — Right | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
+| Daughter 1 | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
+| Daughter 2 | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
 <!-- /lab:data-table -->
 
 <!-- lab:reflection -->
@@ -259,10 +261,9 @@ Chromosomes condense. **Homologous chromosomes pair up** side by side — this i
 1. **Divide each cell** into two new cells.
 2. You should now have **4 total cells** (gametes), each with **2 single chromosomes (n = 2)**.
 
-<!-- lab:data-table rows=5 title="Final Meiosis Results — All 4 Gametes" -->
+<!-- lab:data-table rows=4 title="Final Meiosis Results — All 4 Gametes" -->
 | Cell | Gene A Allele | Gene B Allele | Genotype | Haploid? | # Chromosomes |
 |------|--------------|--------------|----------|----------|---------------|
-| Parent Cell | A and a | B and b | AaBb | No (2n = 4) | 4 |
 | Gamete 1 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
 | Gamete 2 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
 | Gamete 3 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:number} |
