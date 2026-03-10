@@ -48,8 +48,8 @@ Modules follow the pattern: `module-XX-topic-name/`
 | 04 | `module-04-cellular-function` |
 | 05 | `module-05-membranes` |
 | 06 | `module-06-metabolism` |
-| 07 | `module-07-mitosis` |
-| 08 | `module-08-meiosis` |
+| 07 | `module-07-genetics` |
+| 08 | `module-08-cell-division` |
 | 09 | `module-09-inheritance` |
 | 10 | `module-10-tissues` |
 | 11 | `module-11-skeletal-system` |

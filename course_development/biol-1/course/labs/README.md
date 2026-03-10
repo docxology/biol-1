@@ -14,26 +14,26 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 | [Lab 04](lab-04_liquid-chemistry.md) | Liquid Chemistry | 📝 Stub | Module 05 |
 | [Lab 05](lab-05_viewing-life.md) | Viewing Life | ✅ Complete | Module 06 |
 | [Lab 06](lab-06_exam-review.md) | Exam 01 Review (Paper-based) | ✅ Complete | Review |
-| [Lab 07](lab-07_energy.md) | Energy (Photosynthesis & Respiration) | ✅ Complete | Module 07 |
-| [Lab 08](lab-08_central-dogma.md) | The Central Dogma | 📝 Stub | Module 08 |
-| [Lab 09](lab-09_cell-division.md) | Cell Division | 📝 Stub | Module 09 |
-| [Lab 10](lab-10_gene-regulation.md) | Gene Regulation & Epigenetics | 📝 Stub | Module 10 |
-| [Lab 11](lab-11_inheritance.md) | Inheritance | 📝 Stub | Module 11 |
-| [Lab 12](lab-12_gene-expression.md) | Gene Expression | 📝 Stub | Module 12 |
-| [Lab 13](lab-13_gene-regulation.md) | Gene Regulation | 📝 Stub | Module 13 |
-| [Lab 14](lab-14_biotechnology-genomics.md) | Biotechnology and Genomics | 📝 Stub | Module 14 |
+| [Lab 07](lab-07_molecular-genetics.md) | Molecular Genetics | ✅ Complete | Module 07 |
+| [Lab 08](lab-08_cellular-genetics.md) | Cellular Genetics (Mitosis & Meiosis) | ✅ Complete | Module 08 |
+| [Lab 09](lab-09_inheritance-genetics.md) | Inheritance Genetics | ✅ Complete | Module 09 |
+| [Lab 10](lab-10_epigenetics.md) | Epigenetics | ✅ Complete | Module 10 |
+| [Lab 11](lab-11_genomics-biotechnology.md) | Genomics & Biotechnology | ✅ Complete | Module 11 |
+| [Lab 12](lab-12_exam-02-review.md) | Exam 02 Review | ✅ Complete | Review |
+| [Lab 13](lab-13_gene-regulation.md) | Gene Regulation | 📝 Stub | Module — |
+| [Lab 14](lab-14_biotechnology-genomics.md) | Biotechnology & Genomics | 📝 Stub | Module — |
 | [Lab 15](lab-15_darwin-evolution.md) | Darwin and Evolution | 📝 Stub | Module 15 |
 | [Lab 16](lab-16_microevolution.md) | Microevolution | 📝 Stub | Module 16 |
 | [Lab 17](lab-17_speciation-macroevolution.md) | Speciation and Macroevolution | 📝 Stub | Module 17 |
 
-**Status Summary:** 3 complete, 14 stubs
+**Status Summary:** 12 complete, 5 stubs
 
 ## Development Status
 
-- ✅ **Complete**: Lab 01 (289 lines, fully developed with interactive elements)
-- ✅ **Complete**: Lab 02 (probability and statistics, tear-apart paper randomizers)
-- ✅ **Complete**: Lab 03 (microscopy, 266 lines)
-- 📝 **Stubs**: Labs 04-17 (placeholder structure with learning objectives)
+- ✅ **Complete**: Labs 01–03 (measurement, statistics, microscopy)
+- ✅ **Complete**: Labs 05–06 (viewing life, exam 01 review)
+- ✅ **Complete**: Labs 07–12 (molecular genetics through exam 02 review)
+- 📝 **Stubs**: Labs 04, 13–17 (placeholder structure with learning objectives)
 
 ## Lab Format
 

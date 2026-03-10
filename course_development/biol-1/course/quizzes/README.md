@@ -6,27 +6,24 @@ This directory contains module quizzes for BIOL-1: Introduction to Biology (Peli
 
 ## Quiz Structure
 
-One quiz per module (17 total), each worth 10 points.
+One quiz per module (14 total), each worth 10 points.
 
 | Quiz | Module Topic |
 |------|--------------|
-| 01 | Exploring Life Science |
-| 02 | Chemistry of Life |
-| 03 | Biomolecules |
-| 04 | Cell Structure |
-| 05 | Cell Membranes |
-| 06 | Energy and Metabolism |
-| 07 | Photosynthesis |
-| 08 | Cellular Respiration |
-| 09 | Cell Division |
-| 10 | Mendelian Genetics |
-| 11 | DNA Structure and Replication |
-| 12 | Gene Expression |
-| 13 | Biotechnology |
-| 14 | Evolution Overview |
-| 15 | Natural Selection |
-| 16 | Population Genetics |
-| 17 | Speciation and Macroevolution |
+| 01 | Study of Life |
+| 02 | Basic Chemistry |
+| 03 | Organic Molecules |
+| 04 | Cells |
+| 05 | Membranes |
+| 06 | Metabolism |
+| 07 | Molecular Genetics |
+| 08 | Cellular Genetics |
+| 09 | Inheritance Genetics |
+| 10 | Epigenetics |
+| 11 | Genomics & Biotechnology |
+| 15 | Darwin & Evolution |
+| 16 | Microevolution |
+| 17 | Speciation & Macroevolution |
 
 ## File Naming Convention
 

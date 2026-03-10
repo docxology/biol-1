@@ -77,12 +77,12 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 04 | [Lab 04](course/labs/lab-04_diffusion-membranes.md) | Diffusion and Membranes | Complete |
 | 05 | [Lab 05](course/labs/lab-05_ph-solutions.md) | pH and Solutions | Complete |
 | 06 | [Lab 06](course/labs/lab-06_enzymes.md) | Enzymes | Complete |
-| 07 | [Lab 07](course/labs/lab-07_mitosis.md) | Mitosis | Complete |
-| 08 | [Lab 08](course/labs/lab-08_meiosis.md) | Meiosis | Complete |
+| 07 | [Lab 07](course/labs/lab-07_cell-division.md) | Cell Division: Mitosis & Meiosis | Complete |
+| 08 | [Lab 08](course/labs/lab-08_enzymes.md) | Chicken Liver Enzyme Activity | Complete |
 | 09 | [Lab 09](course/labs/lab-09_inheritance.md) | Inheritance | Complete |
 | 10 | [Lab 10](course/labs/lab-10_tissues.md) | Tissues | Complete |
 | 11 | [Lab 11](course/labs/lab-11_skeletal-system.md) | Skeletal System | Complete |
-| 12 | [Lab 12](course/labs/lab-12_muscular-system.md) | Muscular System | Stub |
+| 12 | [Lab 12](course/labs/lab-12_muscular-system.md) | Muscular System | Complete |
 | 13 | [Lab 13](course/labs/lab-13_pathogens.md) | Pathogens | Stub |
 | 14 | [Lab 14](course/labs/lab-14_cardiovascular-system.md) | Cardiovascular System | Stub |
 | 15 | [Lab 15](course/labs/lab-15_respiratory-system.md) | Respiratory System | Stub |

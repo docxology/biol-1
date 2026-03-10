@@ -35,14 +35,11 @@ Each module contains two source files (`keys-to-success.md`, `questions.md`) and
 | 04 | [Cells](course/module-04-cells/) | Cell theory, prokaryotic/eukaryotic structure, organelles | [Keys](course/module-04-cells/keys-to-success.md) · [Questions](course/module-04-cells/questions.md) |
 | 05 | [Membranes](course/module-05-membranes/) | Membrane structure, transport, osmosis, diffusion | [Keys](course/module-05-membranes/keys-to-success.md) · [Questions](course/module-05-membranes/questions.md) |
 | 06 | [Metabolism](course/module-06-metabolism/) | Enzymes, energy, ATP, metabolic pathways | [Keys](course/module-06-metabolism/keys-to-success.md) · [Questions](course/module-06-metabolism/questions.md) |
-| 07 | [Photosynthesis & Cellular Respiration](course/module-07-energy/) | Light reactions, Calvin cycle, glycolysis, Krebs cycle, ETC, fermentation | [Keys](course/module-07-energy/keys-to-success.md) · [Questions](course/module-07-energy/questions.md) |
-| 08 | [Central Dogma](course/module-08-central-dogma/) | DNA structure, replication, transcription, translation, genetic code | [Keys](course/module-08-central-dogma/keys-to-success.md) · [Questions](course/module-08-central-dogma/questions.md) |
-| 09 | [Cell Division: Mitosis & Meiosis](course/module-09-cell-division/) | Cell cycle, mitosis, meiosis, genetic variation, cancer | [Keys](course/module-09-cell-division/keys-to-success.md) · [Questions](course/module-09-cell-division/questions.md) |
-| 10 | [Gene Expression & Epigenetics](course/module-10-gene-regulation/) | Gene regulation, lac operon, methylation, histone modification | [Keys](course/module-10-gene-regulation/keys-to-success.md) · [Questions](course/module-10-gene-regulation/questions.md) |
-| 11 | [Inheritance: Mendelian & Polygenic](course/module-11-mendelian-genetics/) | Mendel's laws, Punnett squares, polygenic traits, pedigrees | [Keys](course/module-11-mendelian-genetics/keys-to-success.md) · [Questions](course/module-11-mendelian-genetics/questions.md) |
-| 12 | [Gene Expression](course/module-12-gene-expression/) | DNA replication, transcription, translation, genetic code | [Keys](course/module-12-gene-expression/keys-to-success.md) · [Questions](course/module-12-gene-expression/questions.md) |
-| 13 | [Gene Regulation](course/module-13-gene-regulation/) | Operons, epigenetics, gene expression control | [Keys](course/module-13-gene-regulation/keys-to-success.md) · [Questions](course/module-13-gene-regulation/questions.md) |
-| 14 | [Biotechnology & Genomics](course/module-14-biotechnology-genomics/) | PCR, gel electrophoresis, CRISPR, genomic applications | [Keys](course/module-14-biotechnology-genomics/keys-to-success.md) · [Questions](course/module-14-biotechnology-genomics/questions.md) |
+| 07 | [Molecular Genetics](course/module-07-molecular-genetics/) | DNA structure, replication, transcription, translation, genetic code | [Keys](course/module-07-molecular-genetics/keys-to-success.md) · [Questions](course/module-07-molecular-genetics/questions.md) |
+| 08 | [Cellular Genetics](course/module-08-cellular-genetics/) | Cell cycle, mitosis, meiosis, genetic variation | [Keys](course/module-08-cellular-genetics/keys-to-success.md) · [Questions](course/module-08-cellular-genetics/questions.md) |
+| 09 | [Inheritance Genetics](course/module-09-inheritance-genetics/) | Mendelian genetics, Punnett squares, polygenic traits, pedigrees | [Keys](course/module-09-inheritance-genetics/keys-to-success.md) · [Questions](course/module-09-inheritance-genetics/questions.md) |
+| 10 | [Epigenetics](course/module-10-epigenetics/) | Gene regulation, epigenetic mechanisms, methylation, histone modification | [Keys](course/module-10-epigenetics/keys-to-success.md) · [Questions](course/module-10-epigenetics/questions.md) |
+| 11 | [Genomics & Biotechnology](course/module-11-genomics-biotechnology/) | PCR, gel electrophoresis, CRISPR, genomic applications | [Keys](course/module-11-genomics-biotechnology/keys-to-success.md) · [Questions](course/module-11-genomics-biotechnology/questions.md) |
 | 15 | [Darwin & Evolution](course/module-15-darwin-evolution/) | Natural selection, evidence for evolution, Darwin's theory | [Keys](course/module-15-darwin-evolution/keys-to-success.md) · [Questions](course/module-15-darwin-evolution/questions.md) |
 | 16 | [Microevolution](course/module-16-microevolution/) | Population genetics, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-16-microevolution/keys-to-success.md) · [Questions](course/module-16-microevolution/questions.md) |
 | 17 | [Speciation & Macroevolution](course/module-17-speciation-macroevolution/) | Species concepts, speciation mechanisms, phylogenetics | [Keys](course/module-17-speciation-macroevolution/keys-to-success.md) · [Questions](course/module-17-speciation-macroevolution/questions.md) |
@@ -68,12 +65,12 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 04 | [Lab 04](course/labs/lab-04_liquid-chemistry.md) | Liquid Chemistry | Stub |
 | 05 | [Lab 05](course/labs/lab-05_viewing-life.md) | Viewing Life | Complete |
 | 06 | [Lab 06](course/labs/lab-06_exam-review.md) | Exam 01 Review | Complete |
-| 07 | [Lab 07](course/labs/lab-07_energy.md) | Energy (Photosynthesis & Respiration) | Complete |
-| 08 | [Lab 08](course/labs/lab-08_central-dogma.md) | Central Dogma | Complete |
-| 09 | [Lab 09](course/labs/lab-09_cell-division.md) | Cell Division | Complete |
-| 10 | [Lab 10](course/labs/lab-10_gene-regulation.md) | Gene Regulation | Complete |
-| 11 | [Lab 11](course/labs/lab-11_inheritance.md) | Inheritance | Complete |
-| 12 | [Lab 12](course/labs/lab-12_gene-expression.md) | Gene Expression | Stub |
+| 07 | [Lab 07](course/labs/lab-07_molecular-genetics.md) | Molecular Genetics | Complete |
+| 08 | [Lab 08](course/labs/lab-08_cellular-genetics.md) | Cellular Genetics (Mitosis & Meiosis) | Complete |
+| 09 | [Lab 09](course/labs/lab-09_inheritance-genetics.md) | Inheritance Genetics | Complete |
+| 10 | [Lab 10](course/labs/lab-10_epigenetics.md) | Epigenetics | Complete |
+| 11 | [Lab 11](course/labs/lab-11_genomics-biotechnology.md) | Genomics & Biotechnology | Complete |
+| 12 | [Lab 12](course/labs/lab-12_exam-02-review.md) | Exam 02 Review | Complete |
 | 13 | [Lab 13](course/labs/lab-13_gene-regulation.md) | Gene Regulation | Stub |
 | 14 | [Lab 14](course/labs/lab-14_biotechnology-genomics.md) | Biotechnology & Genomics | Stub |
 | 15 | [Lab 15](course/labs/lab-15_darwin-evolution.md) | Darwin & Evolution | Stub |
