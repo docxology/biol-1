@@ -6,6 +6,8 @@ from typing import Optional
 import speech_recognition as sr
 from pydub import AudioSegment
 
+from src.shared.file_utils import ensure_output_directory
+
 
 def read_audio_file(audio_path: Path) -> AudioSegment:
     """Read audio file and convert to format suitable for speech recognition.
@@ -78,15 +80,6 @@ def transcribe_audio_segment(audio_path: Path, language: str = "en") -> str:
 
     except Exception as e:
         raise OSError(f"Failed to transcribe audio: {e}") from e
-
-
-def ensure_output_directory(output_path: Path) -> None:
-    """Ensure output directory exists.
-
-    Args:
-        output_path: Path to output file
-    """
-    output_path.parent.mkdir(parents=True, exist_ok=True)
 
 
 def get_output_path(input_path: Path, output_dir: Optional[Path] = None) -> Path:

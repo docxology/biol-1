@@ -6,22 +6,7 @@ from typing import Dict, List, Optional
 
 import markdown
 
-
-def read_markdown_file(file_path: Path) -> str:
-    """Read markdown file content.
-
-    Args:
-        file_path: Path to markdown file
-
-    Returns:
-        File content as string
-
-    Raises:
-        FileNotFoundError: If file doesn't exist
-    """
-    if not file_path.exists():
-        raise FileNotFoundError(f"Markdown file not found: {file_path}")
-    return file_path.read_text(encoding="utf-8")
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 def markdown_to_html(markdown_content: str) -> str:
@@ -134,15 +119,6 @@ def extract_quiz_questions(markdown_content: str) -> List[dict]:
         questions.append(current_question)
 
     return questions
-
-
-def ensure_output_directory(directory: Path) -> None:
-    """Ensure output directory exists.
-
-    Args:
-        directory: Directory path to create
-    """
-    directory.mkdir(parents=True, exist_ok=True)
 
 
 def parse_questions_json(questions_file: Path) -> List[Dict]:

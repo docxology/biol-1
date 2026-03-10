@@ -24,6 +24,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from scripts.utils import print_module_not_found
 from src.batch_processing.main import process_module_by_type
 from src.module_organization.utils import find_module_path
 
@@ -71,14 +72,7 @@ def main() -> int:
     module_path = find_module_path(course_path, args.module)
 
     if module_path is None:
-        print(f"Error: Module {args.module} not found in {args.course}")
-        print(f"  Available modules in {args.course}:")
-        course_dir = course_path / "course"
-        if course_dir.exists():
-            modules = sorted([d.name for d in course_dir.iterdir()
-                             if d.is_dir() and d.name.startswith("module-")])
-            for m in modules:
-                print(f"    - {m}")
+        print_module_not_found(course_path, args.course, args.module)
         return 1
 
     output_dir = module_path / "output"

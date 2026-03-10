@@ -149,6 +149,106 @@ def process_chapter_questions(
     return results
 
 
+def _process_slides_set(
+    source_dir: Path,
+    course_root: Path,
+    dry_run: bool,
+    slide_type: str,
+    chapter_mapping: Dict[int, int],
+    results: Dict[str, Any],
+) -> None:
+    """Process a set of slide PDFs (full or notes) into module directories.
+
+    Args:
+        source_dir: Directory containing slide PDFs
+        course_root: Course root directory (e.g., biol-1)
+        dry_run: If True, only show what would be done without doing it
+        slide_type: Type label for the slides ("full" or "notes")
+        chapter_mapping: Mapping from chapter numbers to module numbers
+        results: Mutable results dict to append processing outcomes to
+    """
+    if not source_dir.exists():
+        logger.warning(
+            f"{slide_type.capitalize()} slides directory does not exist: {source_dir}"
+        )
+        return
+
+    pdf_files = list(source_dir.glob("*.pdf"))
+    logger.info(f"Found {len(pdf_files)} {slide_type} slide PDFs to process")
+
+    for pdf_file in sorted(pdf_files):
+        try:
+            chapter_num = extract_chapter_number(pdf_file.name)
+
+            if chapter_num not in chapter_mapping:
+                logger.warning(
+                    f"Skipping {pdf_file.name}: Chapter {chapter_num} not in mapping"
+                )
+                results["skipped"].append(
+                    {
+                        "file": pdf_file.name,
+                        "reason": f"Chapter {chapter_num} not in mapping",
+                    }
+                )
+                results["summary"]["skipped"] += 1
+                continue
+
+            module_num = chapter_mapping[chapter_num]
+
+            # Ensure module exists
+            module_path = ensure_module_exists(course_root, module_num, dry_run)
+            if not module_path.exists() and not dry_run:
+                continue
+
+            # Create slides directory in module
+            slides_dir = module_path / "slides"
+            if not dry_run:
+                slides_dir.mkdir(parents=True, exist_ok=True)
+
+            output_filename = f"module-{module_num}-slides-{slide_type}.pdf"
+            output_path = slides_dir / output_filename
+
+            if dry_run:
+                logger.info(
+                    f"[DRY RUN] Would copy: {pdf_file.name} -> {output_path}"
+                )
+                results["processed"].append(
+                    {
+                        "source": pdf_file.name,
+                        "destination": str(output_path),
+                        "module": module_num,
+                        "chapter": chapter_num,
+                        "type": slide_type,
+                    }
+                )
+            else:
+                logger.info(f"Copying: {pdf_file.name} -> {output_path.name}")
+                shutil.copy2(pdf_file, output_path)
+                logger.debug(f"Copied: {output_path}")
+
+                results["processed"].append(
+                    {
+                        "source": pdf_file.name,
+                        "destination": str(output_path),
+                        "module": module_num,
+                        "chapter": chapter_num,
+                        "type": slide_type,
+                    }
+                )
+                results["summary"]["copied"] += 1
+
+        except ValueError as e:
+            error_msg = f"Error processing {pdf_file.name}: {e}"
+            logger.error(error_msg)
+            results["errors"].append({"file": pdf_file.name, "error": str(e)})
+            results["summary"]["errors"] += 1
+        except Exception as e:
+            error_msg = f"Unexpected error processing {pdf_file.name}: {e}"
+            logger.error(error_msg, exc_info=True)
+            results["errors"].append({"file": pdf_file.name, "error": str(e)})
+            results["summary"]["errors"] += 1
+
+
 def process_slides(
     slides_full_dir: Path,
     slides_notes_dir: Path,
@@ -183,162 +283,14 @@ def process_slides(
     chapter_mapping = get_chapter_to_module_mapping()
 
     # Process full slides
-    if slides_full_dir.exists():
-        full_slides = list(slides_full_dir.glob("*.pdf"))
-        logger.info(f"Found {len(full_slides)} full slide PDFs to process")
-
-        for pdf_file in sorted(full_slides):
-            try:
-                chapter_num = extract_chapter_number(pdf_file.name)
-
-                if chapter_num not in chapter_mapping:
-                    logger.warning(
-                        f"Skipping {pdf_file.name}: Chapter {chapter_num} not in mapping"
-                    )
-                    results["skipped"].append(
-                        {
-                            "file": pdf_file.name,
-                            "reason": f"Chapter {chapter_num} not in mapping",
-                        }
-                    )
-                    results["summary"]["skipped"] += 1
-                    continue
-
-                module_num = chapter_mapping[chapter_num]
-
-                # Ensure module exists
-                module_path = ensure_module_exists(course_root, module_num, dry_run)
-                if not module_path.exists() and not dry_run:
-                    continue
-
-                # Create slides directory in module
-                slides_dir = module_path / "slides"
-                if not dry_run:
-                    slides_dir.mkdir(parents=True, exist_ok=True)
-
-                output_filename = f"module-{module_num}-slides-full.pdf"
-                output_path = slides_dir / output_filename
-
-                if dry_run:
-                    logger.info(
-                        f"[DRY RUN] Would copy: {pdf_file.name} -> {output_path}"
-                    )
-                    results["processed"].append(
-                        {
-                            "source": pdf_file.name,
-                            "destination": str(output_path),
-                            "module": module_num,
-                            "chapter": chapter_num,
-                            "type": "full",
-                        }
-                    )
-                else:
-                    logger.info(f"Copying: {pdf_file.name} -> {output_path.name}")
-                    shutil.copy2(pdf_file, output_path)
-                    logger.debug(f"Copied: {output_path}")
-
-                    results["processed"].append(
-                        {
-                            "source": pdf_file.name,
-                            "destination": str(output_path),
-                            "module": module_num,
-                            "chapter": chapter_num,
-                            "type": "full",
-                        }
-                    )
-                    results["summary"]["copied"] += 1
-
-            except ValueError as e:
-                error_msg = f"Error processing {pdf_file.name}: {e}"
-                logger.error(error_msg)
-                results["errors"].append({"file": pdf_file.name, "error": str(e)})
-                results["summary"]["errors"] += 1
-            except Exception as e:
-                error_msg = f"Unexpected error processing {pdf_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append({"file": pdf_file.name, "error": str(e)})
-                results["summary"]["errors"] += 1
-    else:
-        logger.warning(f"Full slides directory does not exist: {slides_full_dir}")
+    _process_slides_set(
+        slides_full_dir, course_root, dry_run, "full", chapter_mapping, results
+    )
 
     # Process notes slides
-    if slides_notes_dir.exists():
-        notes_slides = list(slides_notes_dir.glob("*.pdf"))
-        logger.info(f"Found {len(notes_slides)} notes slide PDFs to process")
-
-        for pdf_file in sorted(notes_slides):
-            try:
-                chapter_num = extract_chapter_number(pdf_file.name)
-
-                if chapter_num not in chapter_mapping:
-                    logger.warning(
-                        f"Skipping {pdf_file.name}: Chapter {chapter_num} not in mapping"
-                    )
-                    results["skipped"].append(
-                        {
-                            "file": pdf_file.name,
-                            "reason": f"Chapter {chapter_num} not in mapping",
-                        }
-                    )
-                    results["summary"]["skipped"] += 1
-                    continue
-
-                module_num = chapter_mapping[chapter_num]
-
-                # Ensure module exists
-                module_path = ensure_module_exists(course_root, module_num, dry_run)
-                if not module_path.exists() and not dry_run:
-                    continue
-
-                # Create slides directory in module
-                slides_dir = module_path / "slides"
-                if not dry_run:
-                    slides_dir.mkdir(parents=True, exist_ok=True)
-
-                output_filename = f"module-{module_num}-slides-notes.pdf"
-                output_path = slides_dir / output_filename
-
-                if dry_run:
-                    logger.info(
-                        f"[DRY RUN] Would copy: {pdf_file.name} -> {output_path}"
-                    )
-                    results["processed"].append(
-                        {
-                            "source": pdf_file.name,
-                            "destination": str(output_path),
-                            "module": module_num,
-                            "chapter": chapter_num,
-                            "type": "notes",
-                        }
-                    )
-                else:
-                    logger.info(f"Copying: {pdf_file.name} -> {output_path.name}")
-                    shutil.copy2(pdf_file, output_path)
-                    logger.debug(f"Copied: {output_path}")
-
-                    results["processed"].append(
-                        {
-                            "source": pdf_file.name,
-                            "destination": str(output_path),
-                            "module": module_num,
-                            "chapter": chapter_num,
-                            "type": "notes",
-                        }
-                    )
-                    results["summary"]["copied"] += 1
-
-            except ValueError as e:
-                error_msg = f"Error processing {pdf_file.name}: {e}"
-                logger.error(error_msg)
-                results["errors"].append({"file": pdf_file.name, "error": str(e)})
-                results["summary"]["errors"] += 1
-            except Exception as e:
-                error_msg = f"Unexpected error processing {pdf_file.name}: {e}"
-                logger.error(error_msg, exc_info=True)
-                results["errors"].append({"file": pdf_file.name, "error": str(e)})
-                results["summary"]["errors"] += 1
-    else:
-        logger.warning(f"Notes slides directory does not exist: {slides_notes_dir}")
+    _process_slides_set(
+        slides_notes_dir, course_root, dry_run, "notes", chapter_mapping, results
+    )
 
     return results
 

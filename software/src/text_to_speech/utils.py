@@ -7,6 +7,8 @@ import shutil
 from pathlib import Path
 from typing import Optional
 
+from src.shared.file_utils import ensure_output_directory
+
 
 def read_text_file(file_path: Path) -> str:
     """Read text file content.
@@ -109,15 +111,6 @@ def text_to_speech_audio(
             tmp_aiff.unlink()
         if tmp_txt.exists():
             tmp_txt.unlink()
-
-
-def ensure_output_directory(output_path: Path) -> None:
-    """Ensure output directory exists.
-
-    Args:
-        output_path: Path to output file
-    """
-    output_path.parent.mkdir(parents=True, exist_ok=True)
 
 
 def get_output_path(input_path: Path, output_dir: Optional[Path] = None) -> Path:

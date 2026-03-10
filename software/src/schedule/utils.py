@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from . import config
+from src.shared.file_utils import ensure_output_directory
 
 
 def parse_schedule_table(content: str) -> List[Dict[str, str]]:
@@ -207,13 +208,3 @@ def read_schedule_file(file_path: Path) -> str:
     return file_path.read_text(encoding="utf-8")
 
 
-def ensure_output_directory(output_path: Path) -> None:
-    """Ensure output directory exists, creating if necessary.
-
-    Args:
-        output_path: Path to output file or directory
-    """
-    if output_path.is_file() or output_path.suffix:
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-    else:
-        output_path.mkdir(parents=True, exist_ok=True)

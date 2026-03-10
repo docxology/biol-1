@@ -9,6 +9,7 @@ import markdown
 from weasyprint import CSS, HTML
 
 from . import config
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 @dataclass
@@ -466,36 +467,6 @@ def markdown_to_html(content: str) -> str:
         extensions=["tables", "fenced_code", "nl2br"],
     )
     return md.convert(content)
-
-
-def read_markdown_file(file_path: Path) -> str:
-    """Read a Markdown file and return its contents.
-    
-    Args:
-        file_path: Path to Markdown file
-        
-    Returns:
-        File contents as string
-        
-    Raises:
-        FileNotFoundError: If file doesn't exist
-    """
-    if not file_path.exists():
-        raise FileNotFoundError(f"File not found: {file_path}")
-    
-    return file_path.read_text(encoding="utf-8")
-
-
-def ensure_output_directory(output_path: Path) -> None:
-    """Ensure the output directory exists.
-    
-    Args:
-        output_path: Path to output file or directory
-    """
-    if output_path.is_dir():
-        output_path.mkdir(parents=True, exist_ok=True)
-    else:
-        output_path.parent.mkdir(parents=True, exist_ok=True)
 
 
 def html_to_pdf(html_content: str, css_content: str, output_path: Path) -> None:

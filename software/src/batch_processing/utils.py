@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import List, Optional
 
 from . import config
+from src.shared.file_utils import find_files
 
 logger = logging.getLogger(__name__)
 
@@ -18,10 +19,7 @@ def find_markdown_files(directory: Path) -> List[Path]:
     Returns:
         List of Markdown file paths
     """
-    markdown_files = []
-    for pattern in ["*.md", "*.markdown"]:
-        markdown_files.extend(directory.rglob(pattern))
-    return sorted(markdown_files)
+    return find_files(directory, ["*.md", "*.markdown"])
 
 
 def find_audio_files(directory: Path) -> List[Path]:
@@ -33,10 +31,7 @@ def find_audio_files(directory: Path) -> List[Path]:
     Returns:
         List of audio file paths
     """
-    audio_files = []
-    for pattern in ["*.mp3", "*.wav", "*.m4a", "*.flac", "*.ogg"]:
-        audio_files.extend(directory.rglob(pattern))
-    return sorted(audio_files)
+    return find_files(directory, ["*.mp3", "*.wav", "*.m4a", "*.flac", "*.ogg"])
 
 
 def should_process_file(file_path: Path, skip_dirs: List[str]) -> bool:
@@ -53,15 +48,6 @@ def should_process_file(file_path: Path, skip_dirs: List[str]) -> bool:
         if part in skip_dirs:
             return False
     return True
-
-
-def ensure_output_directory(output_dir: Path) -> None:
-    """Ensure output directory exists.
-
-    Args:
-        output_dir: Path to output directory
-    """
-    output_dir.mkdir(parents=True, exist_ok=True)
 
 
 def get_relative_output_path(source_file: Path, source_dir: Path, output_dir: Path) -> Path:

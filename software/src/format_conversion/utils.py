@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Optional
 
 from ..markdown_to_pdf.main import render_markdown_to_pdf
+from src.shared.file_utils import ensure_output_directory
 
 
 def get_file_extension(file_path: Path) -> str:
@@ -16,15 +17,6 @@ def get_file_extension(file_path: Path) -> str:
         File extension without dot
     """
     return file_path.suffix.lower().lstrip(".")
-
-
-def ensure_output_directory(output_path: Path) -> None:
-    """Ensure output directory exists.
-
-    Args:
-        output_path: Path to output file
-    """
-    output_path.parent.mkdir(parents=True, exist_ok=True)
 
 
 def get_output_path(
@@ -330,6 +322,9 @@ def convert_audio_to_text(input_path: Path, output_path: Path) -> None:
 def get_conversion_path(input_path: str, output_format: str) -> str:
     """Generate output path for file conversion.
 
+    Thin string-typed wrapper around get_output_path for callers
+    that operate on string paths rather than Path objects.
+
     Args:
         input_path: Path to input file
         output_format: Target format (without dot)
@@ -337,6 +332,4 @@ def get_conversion_path(input_path: str, output_format: str) -> str:
     Returns:
         Output file path with new extension
     """
-    input_file = Path(input_path)
-    output_file = input_file.with_suffix(f".{output_format}")
-    return str(output_file)
+    return str(get_output_path(Path(input_path), output_format))

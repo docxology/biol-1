@@ -7,24 +7,7 @@ from typing import Optional
 import markdown
 from weasyprint import HTML, CSS
 
-
-def read_markdown_file(file_path: Path) -> str:
-    """Read Markdown file content.
-
-    Args:
-        file_path: Path to Markdown file
-
-    Returns:
-        File content as string
-
-    Raises:
-        FileNotFoundError: If file doesn't exist
-        UnicodeDecodeError: If file encoding is invalid
-    """
-    if not file_path.exists():
-        raise FileNotFoundError(f"Markdown file not found: {file_path}")
-
-    return file_path.read_text(encoding="utf-8")
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 def markdown_to_html(markdown_text: str, extensions: Optional[list] = None) -> str:
@@ -68,15 +51,6 @@ def html_to_pdf(html_content: str, css_content: str, output_path: Path) -> None:
         html_doc.write_pdf(output_path, stylesheets=[css_doc])
     except Exception as e:
         raise OSError(f"Failed to generate PDF: {e}") from e
-
-
-def ensure_output_directory(output_path: Path) -> None:
-    """Ensure output directory exists.
-
-    Args:
-        output_path: Path to output file
-    """
-    output_path.parent.mkdir(parents=True, exist_ok=True)
 
 
 def get_output_path(input_path: Path, output_dir: Optional[Path] = None) -> Path:
