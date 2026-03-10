@@ -1,21 +1,19 @@
 """Main functions for HTML website generation."""
 
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Optional
 
 from . import config
 from ..batch_processing.logging_config import get_logger
 from .utils import (
-    ensure_output_directory,
-    extract_quiz_questions,
     find_audio_file,
     find_questions_file,
     find_text_file,
     get_relative_path,
     markdown_to_html,
     parse_questions_json,
-    read_markdown_file,
 )
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 logger = get_logger("html_website")
 
@@ -36,7 +34,6 @@ def generate_module_website(
         website_output = Path(output_dir)
     else:
         website_output = module_dir / "output" / "website"
-
     ensure_output_directory(website_output)
 
     module_name = module_dir.name

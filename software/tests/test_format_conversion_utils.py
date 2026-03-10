@@ -1,8 +1,8 @@
 """Comprehensive tests for format conversion utilities."""
 
 from pathlib import Path
-import pytest
 
+from src.shared.file_utils import ensure_output_directory
 from src.format_conversion.utils import (
     convert_docx_to_markdown,
     convert_markdown_to_docx,
@@ -10,13 +10,11 @@ from src.format_conversion.utils import (
     convert_pdf_to_text,
     get_conversion_path,
     get_file_extension,
-    ensure_output_directory,
     get_output_path,
     convert_markdown_to_pdf,
     convert_html_to_pdf,
     convert_text_to_pdf,
     convert_text_to_html,
-    convert_audio_to_text,
 )
 
 
@@ -84,7 +82,6 @@ class TestConvertMarkdownToHtml:
 
         convert_markdown_to_html(md_file, html_file)
 
-        content = html_file.read_text()
         assert html_file.exists()
 
     def test_convert_markdown_to_html_list(self, temp_dir):

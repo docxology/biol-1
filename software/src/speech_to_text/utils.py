@@ -6,7 +6,6 @@ from typing import Optional
 import speech_recognition as sr
 from pydub import AudioSegment
 
-from src.shared.file_utils import ensure_output_directory
 
 
 def read_audio_file(audio_path: Path) -> AudioSegment:

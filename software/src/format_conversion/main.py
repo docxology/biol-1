@@ -10,10 +10,10 @@ from .utils import (
     convert_markdown_to_pdf,
     convert_text_to_html,
     convert_text_to_pdf,
-    ensure_output_directory,
     get_file_extension,
     get_output_path,
 )
+from src.shared.file_utils import ensure_output_directory
 
 
 def convert_file(input_path: str, output_format: str, output_path: str) -> None:
@@ -47,7 +47,6 @@ def convert_file(input_path: str, output_format: str, output_path: str) -> None:
             f"Conversion from {input_ext} to {output_format_lower} is not supported"
         )
 
-    # Ensure output directory exists
     ensure_output_directory(output_file)
 
     # Perform conversion based on formats

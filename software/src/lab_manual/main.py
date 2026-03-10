@@ -12,13 +12,12 @@ from .utils import (
     create_lab_header_html,
     create_measurement_table_html,
     create_object_selection_html,
-    ensure_output_directory,
     expand_fillable_fields,
     get_output_path,
     html_to_pdf,
     markdown_to_html,
-    read_markdown_file,
 )
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 def parse_lab_elements(markdown_content: str) -> List[LabElement]:
@@ -269,7 +268,6 @@ def render_lab_manual(
     if output_format not in ("pdf", "html"):
         raise ValueError(f"Invalid output format: {output_format}. Must be 'pdf' or 'html'.")
     
-    # Ensure output directory exists
     ensure_output_directory(output_file)
     
     # Read and process content

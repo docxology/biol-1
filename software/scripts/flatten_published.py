@@ -16,7 +16,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.publish.utils import flatten_module, flatten_published
+from src.publish.utils import flatten_published
 
 
 def main():

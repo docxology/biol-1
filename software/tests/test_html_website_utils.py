@@ -1,13 +1,12 @@
 """Tests for HTML website utility functions."""
 
 import json
-import tempfile
 from pathlib import Path
 
 import pytest
 
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 from src.html_website.utils import (
-    ensure_output_directory,
     extract_quiz_questions,
     find_audio_file,
     find_questions_file,
@@ -15,7 +14,6 @@ from src.html_website.utils import (
     get_relative_path,
     markdown_to_html,
     parse_questions_json,
-    read_markdown_file,
 )
 
 

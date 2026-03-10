@@ -29,7 +29,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.batch_processing.config import AVAILABLE_COURSES, AVAILABLE_FORMATS
+from src.batch_processing.config import AVAILABLE_COURSES
 from src.batch_processing.logging_config import setup_logging
 from src.batch_processing.main import (
     clear_all_outputs,

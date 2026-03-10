@@ -5,12 +5,11 @@ from typing import Any, Dict, List, Optional
 
 from . import config
 from .utils import (
-    ensure_output_directory,
     get_output_path,
     html_to_pdf,
     markdown_to_html,
-    read_markdown_file,
 )
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 def render_markdown_to_pdf(
@@ -34,7 +33,6 @@ def render_markdown_to_pdf(
     input_file = Path(input_path)
     output_file = Path(output_path)
 
-    # Ensure output directory exists
     ensure_output_directory(output_file)
 
     # Read Markdown file

@@ -1,13 +1,11 @@
 """Utility functions for Markdown to PDF conversion."""
 
-import html
 from pathlib import Path
 from typing import Optional
 
 import markdown
 from weasyprint import HTML, CSS
 
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 def markdown_to_html(markdown_text: str, extensions: Optional[list] = None) -> str:

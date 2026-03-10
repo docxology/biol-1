@@ -1,7 +1,6 @@
 """Extended tests for legacy_import main module to improve coverage."""
 
-from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 import pytest
 
 from src.legacy_import.main import (

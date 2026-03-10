@@ -1,6 +1,5 @@
 """Tests for validation/utils.py functions."""
 
-from pathlib import Path
 from src.validation.utils import (
     count_files_by_extension,
     get_module_directories,
@@ -214,7 +213,7 @@ class TestCheckStudyGuideFiles:
         # Create files with module prefix but matching suffix
         (sg_dir / "module-01-study-guide-keys-to-success.pdf").write_text("pdf", encoding="utf-8")
 
-        result = check_study_guide_files(temp_dir)
+        check_study_guide_files(temp_dir)
         # At least one file should be found if suffix matches
         # This depends on EXPECTED_STUDY_GUIDE_FILES config
 

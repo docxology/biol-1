@@ -5,7 +5,6 @@ from typing import Any, Dict, List, Optional
 
 from . import config
 from .utils import (
-    ensure_output_directory,
     extract_schedule_sections,
     find_schedule_files,
     generate_schedule_markdown,
@@ -13,6 +12,7 @@ from .utils import (
     read_schedule_file,
     validate_schedule_entry,
 )
+from src.shared.file_utils import ensure_output_directory
 
 
 def parse_schedule_markdown(schedule_path: str) -> Dict[str, Any]:
@@ -134,8 +134,8 @@ def generate_schedule_outputs(
         ValueError: If format is not supported
         OSError: If file generation fails
     """
-    outputs = {fmt: [] for fmt in formats}
     ensure_output_directory(output_dir)
+    outputs = {fmt: [] for fmt in formats}
 
     # Generate markdown first (used as source for other formats)
     markdown_content = generate_schedule_markdown(

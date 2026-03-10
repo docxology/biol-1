@@ -1,7 +1,7 @@
 """Main logic for the publish module."""
 
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any
 import logging
 
 from . import config

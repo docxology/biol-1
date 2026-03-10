@@ -2,12 +2,9 @@
 
 import re
 import subprocess
-import os
-import shutil
 from pathlib import Path
 from typing import Optional
 
-from src.shared.file_utils import ensure_output_directory
 
 
 def read_text_file(file_path: Path) -> str:

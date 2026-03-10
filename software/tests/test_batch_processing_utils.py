@@ -1,7 +1,7 @@
 """Tests for batch processing utility functions."""
 
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from src.batch_processing.utils import (
     find_markdown_files,
     find_audio_files,
@@ -12,7 +12,6 @@ from src.batch_processing.utils import (
     generate_dry_run_report,
 )
 from src.shared.file_utils import ensure_output_directory
-from src.batch_processing import config
 
 
 def test_find_markdown_files(temp_dir):

@@ -6,7 +6,6 @@ from typing import Dict, List, Optional
 
 import markdown
 
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 def markdown_to_html(markdown_content: str) -> str:

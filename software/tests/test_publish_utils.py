@@ -1,8 +1,5 @@
 """Tests for publish utils module."""
 
-import shutil
-from pathlib import Path
-import pytest
 
 from src.publish.utils import (
     flatten_module,

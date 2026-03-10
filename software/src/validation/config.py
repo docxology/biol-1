@@ -1,6 +1,5 @@
 """Configuration for validation module."""
 
-from pathlib import Path
 from typing import Dict, List
 
 # All supported output formats

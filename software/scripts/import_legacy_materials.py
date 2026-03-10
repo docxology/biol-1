@@ -116,7 +116,7 @@ def main() -> int:
             source_questions_dir, course_root, course_dir, args.dry_run
         )
 
-        print(f"\nChapter Questions Summary:")
+        print("\nChapter Questions Summary:")
         print(f"  Converted: {questions_results['summary']['converted']}")
         print(f"  Modules Created: {questions_results['summary']['modules_created']}")
         print(f"  Skipped: {questions_results['summary']['skipped']}")
@@ -145,7 +145,7 @@ def main() -> int:
             args.dry_run,
         )
 
-        print(f"\nSlides Summary:")
+        print("\nSlides Summary:")
         print(f"  Copied: {slides_results['summary']['copied']}")
         print(f"  Skipped: {slides_results['summary']['skipped']}")
         print(f"  Errors: {slides_results['summary']['errors']}")
@@ -184,7 +184,7 @@ def main() -> int:
     print("=" * 60)
     for_upload_results = process_for_upload_all_modules(course_dir, args.dry_run)
 
-    print(f"\nFor Upload Summary:")
+    print("\nFor Upload Summary:")
     print(f"  Modules Processed: {for_upload_results['modules_processed']}")
     print(f"  PDF files created: {for_upload_results['total_pdf']}")
     print(f"  DOCX files created: {for_upload_results['total_docx']}")

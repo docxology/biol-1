@@ -5,12 +5,12 @@ from typing import Any, Dict, List, Optional
 
 from . import config
 from .utils import (
-    ensure_output_directory,
     extract_text_from_markdown,
     get_output_path,
     read_text_file,
     text_to_speech_audio,
 )
+from src.shared.file_utils import ensure_output_directory
 
 
 def generate_speech(
@@ -34,7 +34,6 @@ def generate_speech(
     """
     output_file = Path(output_path)
 
-    # Ensure output directory exists
     ensure_output_directory(output_file)
 
     # Use default language if not provided

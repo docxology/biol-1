@@ -1,6 +1,5 @@
 """Tests for speech_to_text main functions."""
 
-from pathlib import Path
 
 import pytest
 
@@ -124,7 +123,6 @@ def test_read_audio_file_invalid_format(temp_dir):
 def test_transcribe_audio_segment_error_handling(temp_dir):
     """Test error handling in transcribe_audio_segment."""
     from src.speech_to_text.utils import transcribe_audio_segment
-    from pathlib import Path
 
     # Create an invalid audio file
     invalid_audio = temp_dir / "invalid.wav"

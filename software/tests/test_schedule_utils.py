@@ -1,12 +1,10 @@
 """Tests for schedule utility functions."""
 
-import tempfile
-from pathlib import Path
 
 import pytest
 
+from src.shared.file_utils import ensure_output_directory
 from src.schedule.utils import (
-    ensure_output_directory,
     extract_schedule_sections,
     find_schedule_files,
     format_date,

@@ -1,6 +1,5 @@
 """Configuration for the publish module."""
 
-from pathlib import Path
 
 # Root directory name for published content (relative to repo root)
 PUBLISH_ROOT_NAME = "PUBLISHED"

@@ -4,7 +4,8 @@ from pathlib import Path
 from typing import Optional
 
 from ..markdown_to_pdf.main import render_markdown_to_pdf
-from src.shared.file_utils import ensure_output_directory
+from ..markdown_to_pdf.utils import markdown_to_html
+from src.shared.file_utils import read_markdown_file
 
 
 def get_file_extension(file_path: Path) -> str:
@@ -56,7 +57,7 @@ def convert_markdown_to_html(input_path: Path, output_path: Path) -> None:
         input_path: Path to input Markdown file
         output_path: Path to output HTML file
     """
-    from ..markdown_to_pdf.utils import markdown_to_html, read_markdown_file
+    # imports moved to top-level
 
     markdown_content = read_markdown_file(input_path)
     html_content = markdown_to_html(markdown_content)
@@ -145,9 +146,8 @@ def convert_markdown_to_docx(input_path: Path, output_path: Path) -> None:
         output_path: Path to output DOCX file
     """
     from docx import Document
-    from docx.shared import Inches
 
-    from ..markdown_to_pdf.utils import markdown_to_html, read_markdown_file
+    # imports moved to top-level
 
     # Read and convert Markdown to HTML first
     markdown_content = read_markdown_file(input_path)

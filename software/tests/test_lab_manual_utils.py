@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 from src.lab_manual.utils import (
-    LabElement,
     TableConfig,
     create_data_table_html,
     create_feasibility_html,
@@ -14,14 +14,12 @@ from src.lab_manual.utils import (
     create_measurement_table_html,
     create_object_selection_html,
     create_reflection_html,
-    ensure_output_directory,
     expand_fillable_fields,
     get_output_path,
     markdown_to_html,
     parse_object_selection,
     parse_reflection,
     parse_table_directive,
-    read_markdown_file,
 )
 
 

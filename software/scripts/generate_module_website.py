@@ -78,7 +78,7 @@ def main() -> int:
 
     try:
         html_file = process_module_website(str(module_path))
-        print(f"\n✓ Website generated successfully!")
+        print("\n✓ Website generated successfully!")
         print(f"Location: {html_file}")
         print(f"\nOpen in browser: file://{Path(html_file).absolute()}")
         return 0

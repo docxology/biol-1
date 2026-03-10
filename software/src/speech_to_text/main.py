@@ -2,17 +2,16 @@
 
 import tempfile
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
-from . import config
 from .utils import (
     convert_audio_to_wav,
-    ensure_output_directory,
     get_output_path,
     is_audio_file,
     read_audio_file,
     transcribe_audio_segment,
 )
+from src.shared.file_utils import ensure_output_directory
 
 
 def transcribe_audio(
@@ -38,7 +37,6 @@ def transcribe_audio(
     if not audio_file.exists():
         raise FileNotFoundError(f"Audio file not found: {audio_path}")
 
-    # Ensure output directory exists
     ensure_output_directory(output_file)
 
     # Read audio file

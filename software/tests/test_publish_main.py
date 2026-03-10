@@ -1,9 +1,6 @@
 """Tests for the publish module."""
 
-from pathlib import Path
-import pytest
 from src.publish.main import publish_course
-from src.publish import config
 
 class TestPublishCourse:
     

@@ -3,10 +3,9 @@
 import re
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 from . import config
-from src.shared.file_utils import ensure_output_directory
 
 
 def parse_schedule_table(content: str) -> List[Dict[str, str]]:

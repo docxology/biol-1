@@ -1,13 +1,10 @@
 """Tests for legacy_import main module."""
 
 import sys
-from pathlib import Path
-from types import ModuleType
 from unittest.mock import patch, MagicMock
 import pytest
 
 from src.legacy_import.config import get_chapter_to_module_mapping
-from src.legacy_import.utils import extract_chapter_number, create_comprehension_questions
 
 
 # Create a mock for format_conversion.utils to avoid WeasyPrint import chain

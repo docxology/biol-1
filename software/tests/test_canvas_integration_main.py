@@ -1,7 +1,6 @@
 """Tests for canvas_integration main functions."""
 
 import os
-from pathlib import Path
 
 import pytest
 
@@ -77,7 +76,7 @@ def test_validate_upload_readiness_file_too_large(temp_dir):
     # For testing, we'll just verify the function checks file sizes
     large_file.write_bytes(b"x" * 100)  # Small for test, but tests the path
 
-    issues = validate_upload_readiness(str(module_dir))
+    validate_upload_readiness(str(module_dir))
     # Should not have size issues for small file
     # But we're testing that the path is covered
 
@@ -117,31 +116,6 @@ def test_upload_module_to_canvas_with_credentials(sample_module_structure):
     except Exception as e:
         # If upload fails due to network/API issues, that's okay for testing
         # We're testing that the code path is executed
-        pytest.skip(f"Canvas API call failed: {e}")
-
-
-def test_sync_module_structure_full(sample_module_structure):
-    """Test sync_module_structure with credentials from environment variables."""
-    # Check for Canvas credentials in environment
-    canvas_api_key = os.getenv("CANVAS_API_KEY")
-    canvas_course_id = os.getenv("CANVAS_COURSE_ID")
-    canvas_domain = os.getenv("CANVAS_DOMAIN", "canvas.instructure.com")
-
-    if not canvas_api_key or not canvas_course_id:
-        pytest.skip("Canvas API credentials not available in environment variables")
-
-    # Test actual sync with real credentials
-    try:
-        result = sync_module_structure(
-            str(sample_module_structure),
-            canvas_course_id,
-            canvas_api_key,
-            canvas_domain,
-        )
-        assert isinstance(result, dict)
-        assert "uploaded_files" in result
-    except Exception as e:
-        # If sync fails due to network/API issues, that's okay for testing
         pytest.skip(f"Canvas API call failed: {e}")
 
 

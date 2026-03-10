@@ -17,7 +17,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.content_processing import process_questions_file, renumber_questions_in_course
+from src.content_processing import renumber_questions_in_course
 
 
 def main():

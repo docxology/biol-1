@@ -27,8 +27,6 @@ sys.path.append(str(software_dir))
 from src.validation import (
     generate_validation_report,
     get_output_summary,
-    validate_outputs,
-    validate_published,
 )
 from src.validation.config import DEFAULT_REQUIRED_FORMATS, ALL_SUPPORTED_FORMATS
 
@@ -153,12 +151,12 @@ def main():
         src = report["source_validation"]
         pub = report.get("published_validation", {})
         
-        logger.info(f"\nSource Outputs:")
+        logger.info("\nSource Outputs:")
         logger.info(f"  Modules: {src.get('modules_valid', 0)}/{src.get('modules_checked', 0)} valid")
         logger.info(f"  Syllabus: {'✓' if src.get('syllabus_valid') else '✗'}")
         
         if args.verbose and src.get("modules"):
-            logger.info(f"\n  Module Details:")
+            logger.info("\n  Module Details:")
             for mod in src["modules"]:
                 status = "✓" if mod["valid"] else "✗"
                 logger.info(f"    {status} {mod['name']}")
@@ -167,7 +165,7 @@ def main():
                         logger.info(f"      - Missing: {f}")
                         
         if src.get("issues"):
-            logger.info(f"\n  Issues:")
+            logger.info("\n  Issues:")
             for issue in src["issues"]:
                 logger.info(f"    ⚠ {issue}")
                 
@@ -178,7 +176,7 @@ def main():
             course_pub = pub["courses"][course_name]
             n_modules = len(course_pub.get("modules", []))
             n_files = course_pub.get("total_files", 0)
-            logger.info(f"\nPublished Outputs:")
+            logger.info("\nPublished Outputs:")
             logger.info(f"  Total files: {n_files}  ({n_modules} modules)")
             
         # Output summary

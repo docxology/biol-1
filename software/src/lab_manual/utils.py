@@ -9,7 +9,6 @@ import markdown
 from weasyprint import CSS, HTML
 
 from . import config
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 @dataclass
@@ -101,9 +100,8 @@ def parse_measurement_section(content: str) -> Tuple[MeasurementConfig, str]:
     if not match:
         return MeasurementConfig(), content
     
-    section_content = match.group(1).strip()
     measurement_config = MeasurementConfig()
-    
+
     return measurement_config, content[match.end():]
 
 
