@@ -15,14 +15,16 @@ By the end of this lab, you will be able to:
 3. **Model mitosis** step by step using paper chromosomes, tracing each allele through every phase.
 4. **Model meiosis I and II** using paper chromosomes, distinguishing what separates at each stage.
 5. **Explain** the critical difference between Anaphase I (homologs separate) and Anaphase II (sister chromatids separate).
-6. **Compare and contrast** mitosis and meiosis by purpose, number of divisions, chromosome number, and genetic outcome.
+6. **Compare and contrast** mitosis and meiosis by purpose, number of divisions, chromosome number, genetic outcome, and other features.
 7. **Explain** why meiosis produces genetically unique gametes while mitosis produces identical daughter cells.
 
 ---
 
 ## Overview
 
-Every cell in your body came from a single fertilized egg that divided over and over again. That process — **cell division** — is how you grow, repair wounds, and replace worn-out cells. But not all cell division works the same way:
+Every cell in your body came from a single fertilized egg that divided over and over again.
+
+That process — **cell division** — is how you grow, repair wounds, and replace worn-out cells. But not all cell division works the same way:
 
 ```text
                     CELL DIVISION
