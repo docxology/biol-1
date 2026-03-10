@@ -1,8 +1,7 @@
 """Main functions for Canvas integration."""
 
-import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, TypedDict
 
 import requests
 
@@ -16,9 +15,20 @@ from .utils import (
 from ..file_validation.main import validate_module_files
 
 
+class UploadedFileInfo(TypedDict):
+    file: str
+    canvas_url: str
+
+
+class ModuleUploadResult(TypedDict):
+    uploaded_files: List[UploadedFileInfo]
+    failed_files: List[str]
+    errors: List[str]
+
+
 def upload_module_to_canvas(
     module_path: str, course_id: str, api_key: str, domain: str = "canvas.instructure.com"
-) -> Dict[str, Any]:
+) -> ModuleUploadResult:
     """Upload module materials to Canvas LMS.
 
     Args:
@@ -44,7 +54,7 @@ def upload_module_to_canvas(
     if not validation["valid"]:
         raise ValueError(f"Module structure is invalid: {validation}")
 
-    results = {
+    results: ModuleUploadResult = {
         "uploaded_files": [],
         "failed_files": [],
         "errors": [],
@@ -74,7 +84,7 @@ def upload_module_to_canvas(
                         "canvas_url": upload_result.get("url", ""),
                     }
                 )
-            except Exception as e:
+            except (requests.RequestException, OSError, KeyError, ValueError) as e:
                 results["failed_files"].append(str(file_path))
                 results["errors"].append(f"Error uploading {file_path.name}: {e}")
 
@@ -120,32 +130,6 @@ def validate_upload_readiness(module_path: str) -> List[str]:
     return issues
 
 
-def sync_module_structure(module_path: str, canvas_course_id: str, api_key: str, domain: str = "canvas.instructure.com") -> Dict[str, Any]:
-    """Sync module structure with Canvas course.
-
-    Args:
-        module_path: Path to module directory
-        canvas_course_id: Canvas course ID
-        api_key: Canvas API key
-        domain: Canvas domain (default: "canvas.instructure.com")
-
-    Returns:
-        Dictionary with sync results
-
-    Raises:
-        ValueError: If module path is invalid
-        requests.RequestException: If API request fails
-    """
-    module_dir = Path(module_path)
-
-    if not module_dir.exists():
-        raise ValueError(f"Module path does not exist: {module_path}")
-
-    # This is similar to upload_module_to_canvas but focuses on structure
-    # For now, we'll use the upload function
-    return upload_module_to_canvas(module_path, canvas_course_id, api_key, domain)
-
-
 def _get_or_create_folder(
     course_id: str, api_key: str, domain: str, folder_name: str
 ) -> str:
@@ -180,7 +164,7 @@ def _get_or_create_folder(
 
 def _upload_file_to_canvas(
     file_path: Path, folder_id: str, api_key: str, domain: str
-) -> Dict[str, Any]:
+) -> Dict[str, Any]:  # Shape determined by Canvas API response; genuinely dynamic
     """Upload a single file to Canvas.
 
     Args:
@@ -190,7 +174,7 @@ def _upload_file_to_canvas(
         domain: Canvas domain
 
     Returns:
-        Upload result dictionary
+        Upload result dictionary (shape varies by Canvas API version)
     """
     # Canvas file upload is a two-step process:
     # 1. Request upload URL
@@ -206,11 +190,13 @@ def _upload_file_to_canvas(
     response = make_canvas_request("POST", url, api_key, params=params)
     upload_data = response.json()
 
-    # Upload file
+    # Upload file to the pre-signed URL via make_canvas_request for
+    # consistent rate-limiting and auth header handling.
     upload_url = upload_data["upload_url"]
     with open(file_path, "rb") as f:
         files = {"file": (file_path.name, f, get_file_mime_type(file_path))}
-        upload_response = requests.post(upload_url, files=files)
+        upload_response = make_canvas_request(
+            "POST", upload_url, api_key, files=files
+        )
 
-    upload_response.raise_for_status()
     return upload_response.json()

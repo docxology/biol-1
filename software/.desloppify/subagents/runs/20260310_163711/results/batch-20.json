@@ -1,0 +1,62 @@
+{
+  "batch": "authorization_consistency",
+  "batch_index": 20,
+  "assessments": {"authorization_consistency": 82.0},
+  "dimension_notes": {
+    "authorization_consistency": {
+      "evidence": [
+        "This is a local course-management content pipeline, not a web application or API service. There are no route handlers, no RLS tables, no HTTP endpoints, and no session/JWT/role management. The authorization_consistency dimension's primary applicability criteria (route handlers, RLS, permission middleware) are absent.",
+        "The only external API integration is canvas_integration/main.py, which uses a bearer token (api_key) passed as a function parameter. There is no auth middleware or decorator pattern — authentication is handled at the call site by the caller providing the key.",
+        "canvas_integration/utils.py make_canvas_request(): the api_key is injected as Authorization: Bearer header for every outbound request — consistent; no request bypasses auth",
+        "canvas_integration/main.py: api_key and domain are explicit required parameters on all public Canvas functions (upload_module_to_canvas, validate_upload_readiness, sync_module_structure) — auth credentials are never sourced from global state or environment variables implicitly",
+        "There is no service-role bypass or admin-override code path — the Canvas API key is a per-call parameter only",
+        "scripts/* do not handle any user authentication; they operate on local filesystem paths only",
+        "No permission strings, RBAC constants, or ACL definitions exist in the codebase — this is consistent (uniformly absent) rather than inconsistently applied",
+        "canvas_integration/main.py _upload_file_to_canvas(): uses requests.post() directly for the second upload step (line 213) without calling make_canvas_request() — meaning the rate-limit sleep and raise_for_status() wrapper in make_canvas_request() are not applied to the actual file upload request",
+        "canvas_integration/main.py _upload_file_to_canvas(): upload_response.raise_for_status() is called manually on line 215 — so auth failure on the upload URL would raise, but the rate-limiting protection is bypassed for this step"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "confidence": "high",
+      "issues_preventing_higher_score": "The canvas upload's second HTTP step bypasses the make_canvas_request() wrapper, which is the only location where rate-limiting is applied. While not a security issue, it is an inconsistent application of the auth/request wrapper pattern for the only external API integration in the codebase."
+    }
+  },
+  "dimension_judgment": {
+    "authorization_consistency": {
+      "strengths": [
+        "The codebase is a local content pipeline — there are no web routes, HTTP endpoints, or user-facing authentication surfaces, so the dimension's primary risk patterns (unprotected routes, missing RLS, permission bypass) structurally do not apply",
+        "The only external integration (Canvas API) consistently requires an explicit api_key parameter on all public functions — credentials are never implicitly sourced from global state",
+        "All outbound Canvas requests use a shared make_canvas_request() wrapper that applies auth headers and raise_for_status()",
+        "No hardcoded credentials, API keys, or tokens appear anywhere in the source files reviewed"
+      ],
+      "issue_character": "The single meaningful inconsistency is that the Canvas two-step file upload bypasses the make_canvas_request() wrapper for the actual upload POST, meaning rate-limiting is not applied uniformly to all outbound Canvas HTTP calls.",
+      "score_rationale": "This codebase has no meaningful attack surface from an authorization perspective — it is a local CLI tool that converts files and publishes to local directories. The Canvas integration is the only external API surface, and it handles credentials consistently. The score reflects that the dimension is largely not applicable to this system type, with one minor consistency gap in the Canvas upload wrapper, placing it in the low-80s (high for this dimension given the narrow surface area)."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "authorization_consistency",
+      "identifier": "ac-01",
+      "summary": "canvas_integration _upload_file_to_canvas() uses requests.post() directly for the upload step, bypassing the make_canvas_request() wrapper and its rate-limiting protection",
+      "related_files": ["src/canvas_integration/main.py"],
+      "evidence": [
+        "Line 213: 'upload_response = requests.post(upload_url, files=files)' — direct requests.post(), not make_canvas_request()",
+        "make_canvas_request() in utils.py applies time.sleep(config.RATE_LIMIT_DELAY) before every request — this is skipped for the file upload step",
+        "The upload URL is an external Canvas-provided URL, so the Bearer header from make_canvas_request() is not needed here (correct), but rate-limiting should still apply"
+      ],
+      "suggestion": "Add time.sleep(config.RATE_LIMIT_DELAY) before line 213, or extract a _rate_limited_post() helper that applies only the rate-limiting concern without injecting the Authorization header (which is not appropriate for the pre-signed upload URL).",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "inconsistent_wrapper_usage"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "The authorization_consistency dimension is structurally mismatched to this codebase type — a local content generation pipeline has no authorization surfaces beyond API key passing",
+      "The Canvas upload step bypass was likely written intentionally because the pre-signed upload URL does not need the Authorization header — the author correctly avoided injecting it but forgot to preserve rate-limiting"
+    ],
+    "likely_symptoms": ["ac-01 would only manifest as Canvas API rate-limit errors under high-throughput batch uploads"],
+    "possible_false_positives": ["The dimension score near 82 reflects near-full compliance for the applicable scope, not a low-evidence rating"]
+  }
+}

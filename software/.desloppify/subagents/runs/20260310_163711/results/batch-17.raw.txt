@@ -1,0 +1,126 @@
+{
+  "batch": "contract_coherence",
+  "batch_index": 17,
+  "assessments": {"contract_coherence": 72.0},
+  "dimension_notes": {
+    "contract_coherence": {
+      "evidence": [
+        "validation/main.py validate_outputs(): param 'formats: List[str] = None' — annotation says List[str] but default is None, making the actual type Optional[List[str]]; the annotation is a lie on the default path",
+        "validation/main.py generate_validation_report(): same pattern — 'formats: List[str] = None' should be 'Optional[List[str]] = None'",
+        "validation/main.py _validate_module_outputs(): param 'formats: List[str] = None' — same annotation lie; internally falls back to DEFAULT_REQUIRED_FORMATS when None is passed",
+        "canvas_integration/main.py upload_module_to_canvas(): broad except clause catches all Exception types and appends to results['errors'], hiding the error contract — callers see a non-empty results dict that appears partially successful rather than receiving an exception",
+        "canvas_integration/main.py sync_module_structure(): docstring says 'Raises: ValueError, requests.RequestException' but it simply delegates to upload_module_to_canvas() without adding any new raise paths — the docstring error contract is copied from the wrong template",
+        "publish/utils.py copy_directory_contents(): docstring says 'exclude_patterns: List of glob patterns to exclude' but param annotation is Optional[List[str]] — minor divergence, annotation is correct",
+        "content_processing/main.py process_questions_file(): return type annotation is tuple[bool, int] (lowercase) — valid in Python 3.9+ but inconsistent with the rest of the codebase which uses typing.Tuple or Dict; this is a style inconsistency, not a lie, but signals inconsistent API convention",
+        "batch_processing/utils.py get_courses_to_process(): returns List[tuple] — the inner tuple has no declared element types; callers cannot infer the (str, str) shape without reading the implementation",
+        "module_organization/main.py validate_module_structure(): declared return type bool but internally calls list_missing_files and list_missing_directories and returns True/False — contract is honored but the function name implies it validates and returns detail, yet it only returns a boolean; the richer validate_module_files() in file_validation does this but with a different name",
+        "lab_manual/main.py batch_render_lab_manuals(): 'Raises: ValueError: If directory doesn't exist' — but if directory.is_dir() fails the condition, it raises ValueError; this is correct. However, individual file render_lab_manual() errors are caught and printed (not re-raised), so callers of batch_render_lab_manuals cannot distinguish partial success from full failure via exception"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "Systematic use of 'List[str] = None' (without Optional) across multiple validation function signatures means the declared return and parameter types do not match actual runtime behavior. This is a consistent pattern across at least three public API functions."
+    }
+  },
+  "dimension_judgment": {
+    "contract_coherence": {
+      "strengths": [
+        "Most functions raise exactly the exception types documented in their docstrings (FileNotFoundError, ValueError, OSError)",
+        "Return type dicts are consistently structured — the keys documented in the Returns section are the keys actually returned",
+        "Functions named with action verbs (render_, generate_, convert_, validate_) correctly perform the action and do not silently return None on failure paths",
+        "Module __init__.py exports are aligned with what main.py actually defines — no phantom exports"
+      ],
+      "issue_character": "The dominant contract defect is systematic Optional annotation omission: multiple public API functions annotate parameters as List[str] while accepting None as a valid default, creating a type mismatch that is systematic rather than isolated.",
+      "score_rationale": "Docstrings are generally accurate and error contracts are mostly honored. The primary issue is the Optional annotation pattern appearing in at least three validation module public API functions, which is a contract lie that affects static analysis and caller expectations. The canvas_integration broad-except pattern conceals error contracts from callers. Neither issue is catastrophic but both are recurring and affect public interfaces, placing the score in the low-70s."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-01",
+      "summary": "validate_outputs(), generate_validation_report(), and _validate_module_outputs() annotate formats as List[str] but the parameter accepts None",
+      "related_files": ["src/validation/main.py"],
+      "evidence": [
+        "validate_outputs(course_path: str, formats: List[str] = None, ...): annotation says List[str], default is None — passes None through to DEFAULT_REQUIRED_FORMATS fallback",
+        "generate_validation_report(..., formats: List[str] = None, ...): same pattern",
+        "_validate_module_outputs(module_path: Path, formats: List[str] = None): same pattern — internally does 'formats or DEFAULT_REQUIRED_FORMATS'"
+      ],
+      "suggestion": "Change all three signatures to use Optional[List[str]] = None. Add 'from typing import Optional' if not already imported.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "optional_annotation_omission"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-02",
+      "summary": "canvas_integration/main.py upload_module_to_canvas() broad except clause hides error contract from callers",
+      "related_files": ["src/canvas_integration/main.py"],
+      "evidence": [
+        "Line 77: except Exception as e: — catches all exceptions for each file upload attempt, appending to results['errors'] and results['failed_files']",
+        "The function docstring states 'Raises: requests.RequestException' but only the pre-loop validation (line 45) will actually raise; per-file errors are silently captured",
+        "Callers cannot distinguish network failures from permission failures from size violations without inspecting results['errors'] list"
+      ],
+      "suggestion": "Document the swallowed exception contract explicitly: add 'Note: Per-file upload errors are captured in results[\"errors\"] rather than raised. Only pre-validation failures raise ValueError.' Alternatively, surface a summary exception when failed_files is non-empty.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "hidden_error_contract"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-03",
+      "summary": "sync_module_structure() copies the ValueError/RequestException raise contract but only delegates to upload_module_to_canvas() without adding any new raises",
+      "related_files": ["src/canvas_integration/main.py"],
+      "evidence": [
+        "sync_module_structure() docstring: 'Raises: ValueError: If module path is invalid, requests.RequestException: If API request fails'",
+        "Implementation: return upload_module_to_canvas(module_path, canvas_course_id, api_key, domain) — all exception paths come from the delegated function, not independently",
+        "The raise contract is technically accurate by delegation, but the docstring implies the function independently validates and raises, which is misleading"
+      ],
+      "suggestion": "Update the docstring to note 'Raises are delegated to upload_module_to_canvas().' or implement the validation independently so the contract is truly owned by this function.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "docstring_copy_paste"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-04",
+      "summary": "batch_render_lab_manuals() silently swallows per-file errors, returning partial results with no indication of failure count",
+      "related_files": ["src/lab_manual/main.py"],
+      "evidence": [
+        "Lines 413-415: except Exception as e: print(f'Error rendering {md_file}: {e}'); continue",
+        "Return type is List[str] (paths of successfully rendered files) — callers have no way to know how many files failed without comparing input to output",
+        "Docstring does not mention that errors are swallowed and printed to stdout"
+      ],
+      "suggestion": "Either return a result dict with 'output_files' and 'errors' keys (matching other batch functions in the codebase), or document the swallowing behavior explicitly. Using print() for errors instead of logger is also inconsistent with the module's use of logger elsewhere.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "hidden_error_contract"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-05",
+      "summary": "batch_processing/utils.py get_courses_to_process() returns List[tuple] — the inner tuple type is undeclared",
+      "related_files": ["src/batch_processing/utils.py"],
+      "evidence": [
+        "Return annotation: List[tuple] — the actual runtime type is List[Tuple[str, str]] where element 0 is a relative path string and element 1 is a display name",
+        "Callers in batch_processing/main.py unpack these tuples as (course_dir, course_name) but have no type-checked contract to rely on"
+      ],
+      "suggestion": "Change return type to List[Tuple[str, str]] and import Tuple from typing, or define a CourseEntry TypedDict or NamedTuple.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "under_typed_return"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "The Optional annotation omission pattern is systemic — likely all validation functions were written by the same author at the same time without mypy enforcement",
+      "Error swallowing in batch functions (lab_manual, canvas) follows a 'continue on error' pattern that was chosen intentionally but not contracted explicitly in docstrings"
+    ],
+    "likely_symptoms": ["cc-03 is borderline — the docstring contract is technically satisfied by delegation"],
+    "possible_false_positives": []
+  }
+}

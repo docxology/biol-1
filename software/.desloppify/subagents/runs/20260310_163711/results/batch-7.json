@@ -1,0 +1,92 @@
+{
+  "batch": "dependency_health",
+  "batch_index": 7,
+  "assessments": {
+    "dependency_health": 61.0
+  },
+  "dimension_notes": {
+    "dependency_health": {
+      "evidence": [
+        "pyproject.toml lists both 'markdown>=3.5.0' and 'markdown2>=2.4.0' as runtime dependencies — two libraries for the same purpose (Markdown-to-HTML conversion).",
+        "markdown is used in lab_manual/utils.py (markdown.Markdown with extensions tables, fenced_code, nl2br), html_website/utils.py (markdown.Markdown with extensions extra, codehilite, tables), and markdown_to_pdf/utils.py (markdown.Markdown with extensions extra, codehilite, tables, fenced_code).",
+        "markdown2 is declared as a runtime dependency but no import of markdown2 appears in any src/ file reviewed; it appears entirely unused in production code.",
+        "format_conversion/utils.py imports 'from weasyprint import HTML' in two separate function bodies (convert_html_to_pdf and convert_text_to_pdf) rather than at module level — this is a style issue but also masks the actual dependency surface.",
+        "format_conversion/utils.py:convert_markdown_to_docx() imports 'from docx import Document' and 'from docx.shared import Inches' locally; Inches is imported but never used in the function body.",
+        "text_to_speech/utils.py uses macOS system commands ('say', 'ffmpeg') via subprocess, effectively creating an implicit runtime dependency on OS-level tooling not declared anywhere in pyproject.toml.",
+        "The 'pydub' library is listed in dependencies but pydub imports appear in text_to_speech (for audio manipulation) — this dependency is legitimate but worth noting that the actual usage is lightweight (format conversion bridge).",
+        "speech_recognition (SpeechRecognition package) is a heavy dependency pulled in for what appears to be a narrow speech-to-text use case; the primary TTS path now uses macOS 'say' + ffmpeg instead of gTTS or SpeechRecognition, suggesting gTTS may also be partially redundant.",
+        "pyproject.toml does not pin upper bounds or exact versions — only lower bounds with >=; lock file (uv.lock) exists but was not in scope to fully audit."
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "single_edit",
+      "confidence": "high"
+    }
+  },
+  "dimension_judgment": {
+    "dependency_health": {
+      "strengths": [
+        "Dependencies are logically grouped into runtime and dev extras; dev tools (pytest, black, mypy, ruff) are cleanly separated from production deps.",
+        "Most runtime dependencies directly correspond to clearly used libraries: weasyprint for PDF, requests for Canvas API, pypdf for PDF reading, python-docx for DOCX generation.",
+        "The pyproject.toml is minimal and readable — no dependency sprawl or obvious version conflicts visible."
+      ],
+      "issue_character": "The primary problem is a duplicate Markdown library (markdown + markdown2) where markdown2 appears unused, combined with a hidden OS-level dependency on macOS 'say' and 'ffmpeg' that is not declared in pyproject.toml.",
+      "score_rationale": "The codebase has a modest but clear dependency health problem: markdown2 is declared but undetected in use across reviewed sources, constituting dead weight; the macOS 'say' + ffmpeg pipeline is a silent undeclared system dependency that will fail on non-Mac environments without any clear error at install time. These two issues together represent both dead-weight and hidden coupling concerns. The overall package count is small and conflicts are not visible, preventing a lower score."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "dependency_health",
+      "identifier": "duplicate_markdown_libraries",
+      "summary": "Both 'markdown' and 'markdown2' declared as runtime dependencies; markdown2 appears unused",
+      "related_files": ["pyproject.toml", "src/lab_manual/utils.py", "src/html_website/utils.py", "src/markdown_to_pdf/utils.py"],
+      "evidence": [
+        "pyproject.toml lines 8 and 16: 'markdown>=3.5.0' and 'markdown2>=2.4.0' both listed under [project] dependencies",
+        "All Markdown conversion code imports 'import markdown' and uses markdown.Markdown(); no 'import markdown2' found in any src/ file"
+      ],
+      "suggestion": "Remove 'markdown2>=2.4.0' from pyproject.toml dependencies after verifying no import exists in the codebase; keep only 'markdown>=3.5.0'.",
+      "confidence": "high",
+      "impact_scope": "codebase",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "dependency_health",
+      "identifier": "undeclared_system_dependency_say_ffmpeg",
+      "summary": "text_to_speech pipeline requires macOS 'say' and 'ffmpeg' system binaries not declared in pyproject.toml",
+      "related_files": ["src/text_to_speech/utils.py"],
+      "evidence": [
+        "text_to_speech/utils.py lines 92, 96-102: subprocess.run(['say', ...]) and subprocess.run(['ffmpeg', ...])",
+        "pyproject.toml has no mention of ffmpeg, say, or any OS-level tooling requirement"
+      ],
+      "suggestion": "Add an explicit system-requirements section to README/CLAUDE.md noting ffmpeg and macOS 'say' are required, and/or add a startup check that raises a descriptive error if ffmpeg is absent (similar to the WeasyPrint brew note in CLAUDE.md).",
+      "confidence": "high",
+      "impact_scope": "codebase",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "dependency_health",
+      "identifier": "unused_import_docx_inches",
+      "summary": "docx.shared.Inches imported in convert_markdown_to_docx() but never used",
+      "related_files": ["src/format_conversion/utils.py"],
+      "evidence": [
+        "Line 157: 'from docx.shared import Inches'",
+        "No reference to Inches anywhere in the function body below"
+      ],
+      "suggestion": "Remove the unused 'Inches' import from the local import block in convert_markdown_to_docx().",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "markdown2 was likely added as an alternative candidate and never cleaned up after the codebase settled on the 'markdown' library",
+      "The TTS implementation was migrated from gTTS (network) to local macOS 'say' but system prerequisites were never added to project documentation"
+    ],
+    "likely_symptoms": [
+      "markdown2 dead import — symptom of an earlier library evaluation that was not cleaned up"
+    ],
+    "possible_false_positives": [
+      "gtts and speechrecognition may have active usage in parts of the code not fully read (speech_to_text/main.py); their presence is legitimate if those modules are still active"
+    ]
+  }
+}

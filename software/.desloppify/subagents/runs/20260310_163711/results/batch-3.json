@@ -1,0 +1,109 @@
+{
+  "batch": "convention_outlier",
+  "batch_index": 3,
+  "assessments": {
+    "convention_outlier": 72.0
+  },
+  "dimension_notes": {
+    "convention_outlier": {
+      "evidence": [
+        "All 15 src packages follow the same file layout (main.py, utils.py, config.py, __init__.py) — this is a strong, uniformly applied convention",
+        "All function and variable names across seed files use snake_case — no camelCase drift found",
+        "batch_processing/log_style.py introduces a fifth file type in one package; no other package has an analogous non-standard file, making it a style island within batch_processing",
+        "flatten_published.py and generate_all_outputs.py are thin orchestrators that properly delegate to src/ — consistent with sibling scripts",
+        "generate_module_renderings.py uses print() for user-facing output while generate_all_outputs.py uses the logger infrastructure — the two sibling scripts use inconsistent output strategies",
+        "html_website/main.py uses a nested helper function (create_section defined inside generate_module_website) — no other module in the codebase uses nested function definitions as a pattern; all other helpers are extracted to utils.py",
+        "batch_processing/main.py uses `import shutil` and `import time` at the module body level (not at top of file) inside function bodies (line 471 and line 1) — time is imported at top, shutil is re-imported inline inside `process_module_by_type` — minor but inconsistent with PEP8 top-of-file import convention",
+        "publish/utils.py uses section comment delimiters (`# ===... / # Flattening Functions`) as an organizational device — no other utils.py in the codebase uses this pattern; others rely on function grouping alone",
+        "canvas_integration/utils.py uses a local mime_types dict inside get_file_mime_type rather than a module-level constant in config.py — all other similar lookup tables (FORMAT_EMOJI, SUPPORTED_CONVERSIONS) live in config.py"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high"
+    }
+  },
+  "dimension_judgment": {
+    "convention_outlier": {
+      "strengths": [
+        "Uniform snake_case naming across all 15 packages with no camelCase drift",
+        "The main/utils/config/__init__ package layout is applied consistently across all packages",
+        "All scripts follow the thin-orchestrator pattern delegating to src/",
+        "Export patterns are consistent: __init__.py uses explicit __all__ lists uniformly"
+      ],
+      "issue_character": "The codebase is largely convention-consistent, but has a cluster of localized style islands: one script pair uses print vs logger inconsistently, one module uses nested helpers instead of utils.py extraction, one utils.py has section dividers not found elsewhere, and one config constant lives inside a function instead of config.py.",
+      "score_rationale": "The macro-level conventions (naming, file layout, export patterns) are followed with high consistency — this is one of the better-scoring aspects of the codebase. The score is reduced by a handful of localized outliers that each break a different established convention: the scripts diverge on output strategy, html_website breaks the utils.py helper extraction convention, and publish/utils.py uses section dividers that no other file uses. None of these individually are severe, but together they represent an uneven surface that a new contributor would need to discover rather than infer from adjacent examples."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-01",
+      "summary": "generate_module_renderings.py uses print() while generate_all_outputs.py uses the logger — sibling scripts have inconsistent output strategies",
+      "related_files": ["scripts/generate_module_renderings.py", "scripts/generate_all_outputs.py"],
+      "evidence": [
+        "generate_module_renderings.py lines 74, 86, 93-113: uses print() for all user output",
+        "generate_all_outputs.py uses setup_logging() and logger.info/warning/error throughout",
+        "Both scripts serve the same category of use case (generate content for a course/module) but produce output in incompatible ways"
+      ],
+      "suggestion": "Adopt the logger pattern from generate_all_outputs.py in generate_module_renderings.py for consistency. Replace print() calls with logger.info() / logger.error() using the same setup_logging() call.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-02",
+      "summary": "html_website/main.py defines create_section as a nested function instead of extracting it to utils.py per the established module convention",
+      "related_files": ["src/html_website/main.py"],
+      "evidence": [
+        "Lines 57-67: `def create_section(id, title, content):` is defined inside `generate_module_website`",
+        "Every other module in the codebase extracts helpers to utils.py — none uses nested function definitions for reusable HTML generation logic",
+        "create_section is a pure function with no closure dependency; it could be a top-level utils.py function with no change to behavior"
+      ],
+      "suggestion": "Move create_section to html_website/utils.py as a module-level function. Import it in main.py. This follows the codebase convention and makes the helper independently testable.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-03",
+      "summary": "canvas_integration/utils.py defines the mime_types lookup dict inside get_file_mime_type instead of config.py, breaking the config-for-constants convention",
+      "related_files": ["src/canvas_integration/utils.py", "src/canvas_integration/config.py"],
+      "evidence": [
+        "utils.py lines 90-97: `mime_types = {'.pdf': ..., '.md': ..., ...}` is defined inside the function body",
+        "All other lookup tables in the codebase (FORMAT_EMOJI in batch_processing/log_style.py, SUPPORTED_CONVERSIONS in format_conversion/config.py) are module-level constants",
+        "Placing a configuration dict inside a function means it is re-created on every call and cannot be overridden or reused by other functions"
+      ],
+      "suggestion": "Move the mime_types dict to canvas_integration/config.py as MIME_TYPE_MAP and reference it from get_file_mime_type.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-04",
+      "summary": "publish/utils.py uses section-divider comment blocks not found in any other utils.py, creating a local organizational style island",
+      "related_files": ["src/publish/utils.py"],
+      "evidence": [
+        "Lines 83-85: `# =============================================================================\\n# Flattening Functions (migrated from ...)\\n# =============================================================================`",
+        "Lines 179-181: `# Copy Functions (migrated from ...)`",
+        "Lines 475-477: `# Category Reorganization Functions`",
+        "No other utils.py file in the codebase uses this section-divider convention; publish/utils.py is unique"
+      ],
+      "suggestion": "The section dividers are a symptom of the file being too large (600+ lines). The proper fix is splitting into focused sub-modules (flatten.py, copy_assets.py, reorganize.py) as described in CMA-03. If the split is not done immediately, the dividers should at minimum be removed in favor of grouping by convention, or a comment noting the planned split.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "hub_module_growth"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "html_website/main.py was written more like a monolithic script than following the module convention",
+      "Scripts were added at different times by different contributors without enforcing a shared output strategy"
+    ],
+    "likely_symptoms": ["CO-04 is a symptom of the publish/utils.py megafile problem (CMA-03)"],
+    "possible_false_positives": []
+  }
+}

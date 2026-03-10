@@ -9,19 +9,14 @@ from .utils import (
     LabElement,
     TableConfig,
     create_data_table_html,
-    create_feasibility_html,
     create_lab_header_html,
     create_measurement_table_html,
     create_object_selection_html,
-    create_reflection_html,
     ensure_output_directory,
     expand_fillable_fields,
     get_output_path,
     html_to_pdf,
     markdown_to_html,
-    parse_object_selection,
-    parse_reflection,
-    parse_table_directive,
     read_markdown_file,
 )
 
@@ -352,41 +347,48 @@ def batch_render_lab_manuals(
     output_format: str = "pdf",
     course_name: Optional[str] = None,
     max_lab: Optional[int] = None,
-) -> List[str]:
+) -> Dict[str, Any]:
     """Batch render lab manuals from a directory.
-    
+
     Args:
         directory: Directory containing Markdown lab files
         output_dir: Output directory for rendered files
         output_format: Output format ("pdf" or "html")
         course_name: Optional course name
         max_lab: If specified, only process labs 1 through max_lab
-        
+
     Returns:
-        List of output file paths
-        
+        Dictionary with keys:
+        - files: List of successfully rendered output file paths
+        - errors: List of error messages for failed renderings
+
     Raises:
         ValueError: If directory doesn't exist
     """
+    import logging
+
+    logger = logging.getLogger(__name__)
+
     source_dir = Path(directory)
     if not source_dir.exists() or not source_dir.is_dir():
         raise ValueError(f"Directory does not exist: {directory}")
-    
+
     output_directory = Path(output_dir)
     output_directory.mkdir(parents=True, exist_ok=True)
-    
-    output_files = []
-    
+
+    output_files: List[str] = []
+    errors: List[str] = []
+
     # Find all lab manual files (check for 'lab' in filename)
     lab_files = [
         f for f in source_dir.glob("*.md")
         if "lab" in f.name.lower()
     ]
-    
+
     # Also include any markdown file if no lab-specific files found
     if not lab_files:
         lab_files = list(source_dir.glob("*.md"))
-    
+
     # Filter by max_lab if specified
     if max_lab is not None:
         import re
@@ -394,12 +396,12 @@ def batch_render_lab_manuals(
             """Extract lab number from filename like 'lab-01_topic.md' or 'lab-1.md'."""
             match = re.search(r'lab-?(\d+)', filename, re.IGNORECASE)
             return int(match.group(1)) if match else 999
-        
+
         lab_files = [f for f in lab_files if get_lab_number(f.name) <= max_lab]
-        print(f"  Filtering to labs 1-{max_lab}: {len(lab_files)} lab files")
-    
+        logger.info("Filtering to labs 1-%d: %d lab files", max_lab, len(lab_files))
+
     extension = ".html" if output_format.lower() == "html" else ".pdf"
-    
+
     for md_file in lab_files:
         try:
             output_path = get_output_path(md_file, output_directory, extension)
@@ -410,11 +412,13 @@ def batch_render_lab_manuals(
                 course_name=course_name,
             )
             output_files.append(str(output_path))
-        except Exception as e:
-            print(f"Error rendering {md_file}: {e}")
+        except (OSError, ValueError) as e:
+            error_msg = f"Error rendering {md_file.name}: {e}"
+            logger.error(error_msg)
+            errors.append(error_msg)
             continue
-    
-    return output_files
+
+    return {"files": output_files, "errors": errors}
 
 
 def get_lab_template(template_name: str = "basic") -> str:

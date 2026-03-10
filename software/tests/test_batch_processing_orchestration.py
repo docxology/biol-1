@@ -1,7 +1,6 @@
 """Tests for batch processing orchestration functions."""
 
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 import pytest
 
 from src.batch_processing.main import (
@@ -33,7 +32,7 @@ class TestProcessCourseModules:
 
     @pytest.fixture
     def mock_matches_module(self):
-        with patch("src.module_organization.utils.matches_module_number") as mock:
+        with patch("src.batch_processing.main.matches_module_number") as mock:
             mock.return_value = True
             yield mock
 
@@ -72,7 +71,7 @@ class TestProcessCourseModules:
         (course_dir / "module-02").mkdir()
 
         # Mock matches_module_number to only match module-01
-        with patch("src.module_organization.utils.matches_module_number") as mock_match:
+        with patch("src.batch_processing.main.matches_module_number") as mock_match:
             mock_match.side_effect = lambda name, num: name == "module-01"
             
             result = process_course_modules(
@@ -165,8 +164,8 @@ class TestProcessCourseLabs:
 
     @pytest.fixture
     def mock_render_labs(self):
-        with patch("src.lab_manual.main.batch_render_lab_manuals") as mock:
-            mock.return_value = ["lab1.pdf", "lab2.pdf"]
+        with patch("src.batch_processing.main.batch_render_lab_manuals") as mock:
+            mock.return_value = {"files": ["lab1.pdf", "lab2.pdf"], "errors": []}
             yield mock
 
     def test_process_course_labs_success(self, temp_dir, mock_render_labs):
@@ -206,7 +205,7 @@ class TestProcessCoursePracticeTests:
 
     @pytest.fixture
     def mock_render_pdf(self):
-        with patch("src.markdown_to_pdf.main.render_markdown_to_pdf") as mock:
+        with patch("src.batch_processing.main.render_markdown_to_pdf") as mock:
             yield mock
 
     def test_process_practice_tests_success(self, temp_dir, mock_render_pdf):
@@ -248,12 +247,12 @@ class TestProcessCourseExams:
 
     @pytest.fixture
     def mock_render_pdf(self):
-        with patch("src.markdown_to_pdf.main.render_markdown_to_pdf") as mock:
+        with patch("src.batch_processing.main.render_markdown_to_pdf") as mock:
             yield mock
 
     @pytest.fixture
     def mock_convert_file(self):
-        with patch("src.format_conversion.main.convert_file") as mock:
+        with patch("src.batch_processing.main.convert_file") as mock:
             yield mock
 
     def test_process_exams_success(self, temp_dir, mock_render_pdf):

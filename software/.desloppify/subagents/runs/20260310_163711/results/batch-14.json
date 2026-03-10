@@ -1,0 +1,95 @@
+{
+  "batch": "package_organization",
+  "batch_index": 14,
+  "assessments": {
+    "package_organization": 76.0
+  },
+  "dimension_notes": {
+    "package_organization": {
+      "evidence": [
+        "src/ contains 15 packages: batch_processing, canvas_integration, content_processing, file_validation, format_conversion, html_website, lab_manual, legacy_import, markdown_to_pdf, module_organization, publish, schedule, speech_to_text, text_to_speech, validation. Package names are domain-aligned and distinct.",
+        "batch_processing package is a hub: it re-exports 15 symbols from main.py (process_module_to_pdf, process_module_to_audio, process_module_to_text, process_module_by_type, process_module_website, process_syllabus, process_course_modules, process_course_syllabus, process_course_labs, process_course_exams, process_course_practice_tests, generate_module_media, clear_all_outputs) plus 3 utils symbols. Scripts import directly from batch_processing.main rather than from individual converter packages, making batch_processing a de facto God package.",
+        "publish/utils.py has absorbed responsibilities from multiple concerns: flatten_module/flatten_published (originally in scripts/flatten_published.py), copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests, reorganize_to_categories — 7 distinct copy/move operations that span the entire publishing pipeline. The file is 593 lines.",
+        "scripts/flatten_published.py is a thin wrapper that imports from src.publish.utils — the actual flatten logic moved to publish/utils.py but the script was retained, creating a redundant entry point.",
+        "The scripts/ directory contains 8 scripts that are all thin orchestrators. These are appropriate placement (CLI entry points), but flatten_published.py now duplicates an entry point that publish_all.py already covers.",
+        "src/batch_processing/log_style.py is a formatting-constants module within batch_processing — it has no imports from other packages and is only used by batch_processing/main.py. It is a cohesive utility internal to the package, appropriate placement.",
+        "canvas_integration has 3 exported functions (upload_module_to_canvas, validate_upload_readiness, sync_module_structure) but sync_module_structure is a stub — the package has the shape of a real module but one-third of its public surface is unused placeholder.",
+        "html_website/main.py is 400 lines with embedded JavaScript strings, CSS logic delegated to config.py, and HTML generation all in one function. This is a flat-directory overload within a single file rather than package fragmentation, but it suggests the module would benefit from internal decomposition."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high"
+    }
+  },
+  "dimension_judgment": {
+    "package_organization": {
+      "strengths": [
+        "15 packages in src/ each have a clearly named domain responsibility (markdown_to_pdf, text_to_speech, html_website, etc.) with no ambiguous names.",
+        "Each package follows the same internal structure: __init__.py, main.py, utils.py, config.py — consistent internal organization across all modules.",
+        "scripts/ is cleanly separated from src/, with thin orchestrators that don't contain business logic.",
+        "The __init__.py re-export pattern is used consistently: each package exposes its public API through __init__.py with an explicit __all__."
+      ],
+      "issue_character": "batch_processing acts as a hub that re-exports and orchestrates 13+ symbols from downstream converters, and publish/utils.py has grown into a multi-concern utility file (flattening, copying, reorganizing) that accumulates operations from multiple pipeline stages without clear sub-organization.",
+      "score_rationale": "The package naming and structural consistency are strong. The main organizational defect is that batch_processing has become a God package — it is the primary import point for essentially every operation in the pipeline, collapsing the layer distinctions described in the architecture documentation. publish/utils.py is a secondary concern: at 593 lines with 7 distinct operation families, it would benefit from sub-module decomposition. Neither issue breaks navigation, but both create coupling that slows future changes. This lands mid-range: above average naming and structure with meaningful hub and utility-file overload problems."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "package_organization",
+      "identifier": "batch_processing_hub_overload",
+      "summary": "batch_processing re-exports 15+ symbols from downstream converters, acting as a God package that collapses architectural layers",
+      "related_files": ["src/batch_processing/__init__.py", "src/batch_processing/main.py"],
+      "evidence": [
+        "__init__.py re-exports: process_module_to_pdf, process_module_to_audio, process_module_to_text, process_module_by_type, process_module_website, process_syllabus, process_course_modules, process_course_syllabus, process_course_labs, process_course_exams, process_course_practice_tests, generate_module_media, clear_all_outputs — 13 public functions",
+        "Scripts and callers import `from src.batch_processing.main import process_course_modules` rather than from the specific converter packages, making batch_processing the primary coupling point for all operations",
+        "batch_processing/main.py at ~600 lines handles PDF, audio, text, website, syllabus, lab, exam, and practice test processing — spanning the responsibilities of 6+ downstream packages"
+      ],
+      "suggestion": "Staged reorg: (1) Move per-format orchestration functions (process_module_to_pdf, _to_audio, _to_text) to their respective packages (markdown_to_pdf, text_to_speech, format_conversion) as module-level entry points. (2) Keep batch_processing as a pure multi-format orchestrator that composes those per-format calls. (3) Run `grep -r 'from src.batch_processing' scripts/ tests/ src/` to find all callers and update imports. Validate with `uv run pytest tests/ -v`.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "package_organization",
+      "identifier": "publish_utils_overloaded",
+      "summary": "publish/utils.py is a 593-line multi-concern file mixing flatten, copy, reorganize, and clean operations across 7 distinct operation families",
+      "related_files": ["src/publish/utils.py"],
+      "evidence": [
+        "File contains: get_course_config, clean_directory, copy_directory_contents (base utilities), flatten_module, flatten_published (flattening), copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests (copy operations), reorganize_to_categories (restructure), clean_published (destructive cleanup)",
+        "593 lines with 12 public functions across 4 conceptually distinct concern groups",
+        "The flattening functions were migrated from scripts/flatten_published.py but the script was not removed, creating a redundant entry point"
+      ],
+      "suggestion": "Split publish/utils.py into focused sub-modules: publish/copy_ops.py (copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests), publish/flatten.py (flatten_module, flatten_published), publish/reorganize.py (reorganize_to_categories). Keep publish/utils.py for base utilities (get_course_config, clean_directory, copy_directory_contents, clean_published). Update publish/__init__.py re-exports accordingly. Validate with `grep -r 'from src.publish' scripts/ src/` to update callers.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "package_organization",
+      "identifier": "flatten_script_redundant_entry_point",
+      "summary": "scripts/flatten_published.py is a redundant entry point after its logic was migrated to publish/utils.py, which publish_all.py already calls",
+      "related_files": ["scripts/flatten_published.py", "scripts/publish_all.py", "src/publish/utils.py"],
+      "evidence": [
+        "flatten_published.py imports flatten_published from src.publish.utils — it is now purely a thin wrapper",
+        "publish_all.py already calls flatten_published() from src.publish.utils as part of the full pipeline",
+        "Two CLI entry points for the same operation create maintenance ambiguity (which one to use?)"
+      ],
+      "suggestion": "Either retain flatten_published.py explicitly labeled as a standalone CLI tool for manual use (add a comment to that effect), or remove it and document that flattening is handled via publish_all.py. If retained, verify it is not invoked redundantly by publish_all.py.",
+      "confidence": "low",
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "batch_processing grew organically as the orchestration layer absorbed per-format logic instead of delegating to the format-specific packages it wraps.",
+      "publish/utils.py accumulated functions as the publishing pipeline evolved new stages (exams, practice_tests, reorganize) without creating new sub-modules."
+    ],
+    "likely_symptoms": [
+      "batch_processing_hub_overload"
+    ],
+    "possible_false_positives": [
+      "flatten_script_redundant_entry_point is marked low confidence because the script may be intentionally retained as a standalone tool for manual operations outside the full publish pipeline."
+    ]
+  }
+}

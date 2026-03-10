@@ -1,0 +1,2091 @@
+{
+  "assessments": {
+    "abstraction_fitness": {
+      "score": 38.0,
+      "components": [
+        "Abstraction Leverage",
+        "Indirection Cost",
+        "Interface Honesty",
+        "Delegation Density",
+        "Definition Directness",
+        "Type Discipline"
+      ],
+      "component_scores": {
+        "Abstraction Leverage": 55.0,
+        "Indirection Cost": 45.0,
+        "Interface Honesty": 68.0,
+        "Delegation Density": 48.0,
+        "Definition Directness": 60.0,
+        "Type Discipline": 70.0
+      }
+    },
+    "ai_generated_debt": 41.0,
+    "api_surface_coherence": 53.6,
+    "authorization_consistency": 79.8,
+    "contract_coherence": 53.4,
+    "convention_outlier": 59.5,
+    "cross_module_architecture": 38.0,
+    "dependency_health": 46.2,
+    "design_coherence": 46.4,
+    "error_consistency": 37.8,
+    "high_level_elegance": 48.7,
+    "incomplete_migration": 72.0,
+    "initialization_coupling": 44.7,
+    "logic_clarity": 59.7,
+    "low_level_elegance": 40.8,
+    "mid_level_elegance": 51.5,
+    "naming_quality": 58.7,
+    "package_organization": 63.5,
+    "test_strategy": 45.8,
+    "type_safety": 43.8
+  },
+  "dimension_notes": {
+    "cross_module_architecture": {
+      "evidence": [
+        "batch_processing/main.py uses deferred function-level imports inside loops for markdown_to_pdf, text_to_speech, format_conversion, speech_to_text on every loop iteration (lines 65, 120-123, 130, 184, 383-386, 398-402, 420-421, 435, 449-452, 550-552, 565-569, 587, 602): this is systematic cycle pressure avoidance at the cost of hidden runtime dependencies that circumvent static analysis",
+        "canvas_integration/main.py imports from ..file_validation.main at module level (line 16), making Layer 4 directly depend on Layer 0 \u2014 consistent with the documented architecture but the dependency crosses two layers without going through any intermediate boundary",
+        "module_organization/main.py uses deferred import of ..file_validation.utils.validate_assignment_name inside get_module_statistics (line 250) \u2014 a deferred import used to avoid a coupling concern that should instead be handled by a direct module-level import or boundary contract",
+        "batch_processing/utils.py imports from src.module_organization.utils at line 143 (generate_dry_run_report), creating a lateral coupling between two Layer 0 modules through the utility layer of a higher-layer module",
+        "html_website/main.py imports get_logger from ..batch_processing.logging_config (line 7) \u2014 html_website (Layer 3) coupling to batch_processing (Layer 3) for a shared utility, when logging belongs in a shared utility layer",
+        "The publish module has absorbed flattening, copying, reorganization and publication functions as a mega-utility (publish/utils.py is 600+ lines), concentrating cross-cutting concerns in a single file that violates single-responsibility",
+        "format_conversion/main.py implements a parallel markdown-to-pdf pipeline (convert_markdown_to_pdf from its own utils) that duplicates the markdown_to_pdf module's purpose \u2014 two modules do the same conversion with no documented rationale for coexistence"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "architectural_change",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "high_level_elegance": {
+      "evidence": [
+        "Top-level package names (batch_processing, markdown_to_pdf, text_to_speech, format_conversion, html_website, canvas_integration, module_organization, file_validation, publish) map clearly to domain capabilities \u2014 a new engineer can read the directory and understand the system's surface",
+        "CLAUDE.md documents a 4-layer architecture (Layer 0-4) that is mostly honored in module-level imports",
+        "Each package consistently provides main.py (public API), utils.py (internals), config.py (constants), and __init__.py (re-exports) \u2014 this is a coherent internal pattern applied uniformly",
+        "canvas_integration/__init__.py exposes only 3 public functions, demonstrating appropriate surface restraint",
+        "html_website/__init__.py exposes only generate_module_website \u2014 single-function public surface is clean and predictable",
+        "batch_processing/__init__.py re-exports 18 symbols \u2014 the full internal API, eliminating encapsulation value of the __init__.py boundary",
+        "canvas_integration/main.py has sync_module_structure (line 123) that does nothing but call upload_module_to_canvas with a comment 'For now, we'll use the upload function' \u2014 a public API function that is semantically distinct but behaviorally identical, creating false ownership boundaries",
+        "scripts/ directory contains generate_all_outputs.py, generate_module_renderings.py, flatten_published.py which are thin wrappers \u2014 appropriate \u2014 but the publish pipeline also lives partly in the top-level publish.py (repo root), partly in scripts/publish_all.py, and partly in src/publish/ creating a fragmented entry-point map",
+        "log_style.py as a standalone file in batch_processing breaks the main/utils/config convention: it is neither main logic nor pure utils nor config, introducing a fourth file type in one package that does not exist elsewhere",
+        "format_conversion module exposes batch_convert and convert_file as its primary API, but batch_processing/main.py never calls format_conversion \u2014 it calls the sub-converters directly \u2014 making format_conversion's stated role as composition layer invisible in practice"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "convention_outlier": {
+      "evidence": [
+        "All 15 src packages follow the same file layout (main.py, utils.py, config.py, __init__.py) \u2014 this is a strong, uniformly applied convention",
+        "All function and variable names across seed files use snake_case \u2014 no camelCase drift found",
+        "batch_processing/log_style.py introduces a fifth file type in one package; no other package has an analogous non-standard file, making it a style island within batch_processing",
+        "flatten_published.py and generate_all_outputs.py are thin orchestrators that properly delegate to src/ \u2014 consistent with sibling scripts",
+        "generate_module_renderings.py uses print() for user-facing output while generate_all_outputs.py uses the logger infrastructure \u2014 the two sibling scripts use inconsistent output strategies",
+        "html_website/main.py uses a nested helper function (create_section defined inside generate_module_website) \u2014 no other module in the codebase uses nested function definitions as a pattern; all other helpers are extracted to utils.py",
+        "batch_processing/main.py uses `import shutil` and `import time` at the module body level (not at top of file) inside function bodies (line 471 and line 1) \u2014 time is imported at top, shutil is re-imported inline inside `process_module_by_type` \u2014 minor but inconsistent with PEP8 top-of-file import convention",
+        "publish/utils.py uses section comment delimiters (`# ===... / # Flattening Functions`) as an organizational device \u2014 no other utils.py in the codebase uses this pattern; others rely on function grouping alone",
+        "canvas_integration/utils.py uses a local mime_types dict inside get_file_mime_type rather than a module-level constant in config.py \u2014 all other similar lookup tables (FORMAT_EMOJI, SUPPORTED_CONVERSIONS) live in config.py"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "error_consistency": {
+      "evidence": [
+        "batch_processing/main.py process_module_to_pdf (lines 69-71): `except Exception as e: print(f'Error converting {md_file} to PDF: {e}'); continue` \u2014 broad catch, logs via print (not logger), silently continues; same pattern in process_module_to_audio (134-136) and process_module_to_text (189-190)",
+        "batch_processing/main.py process_module_by_type (lines 388-392): improved pattern using `logger.error(error_msg, exc_info=True)` with specific error messages \u2014 but same file uses both print() and logger.error() for errors depending on function",
+        "markdown_to_pdf/main.py batch_render_markdown (lines 85-88): `except Exception as e: print(f'Error converting {md_file}: {e}'); continue` \u2014 same bare-except-then-print pattern, losing exception type information",
+        "text_to_speech/main.py batch_generate_speech (lines 94-97): `except Exception as e: print(f'Error generating speech for {text_file}: {e}'); continue` \u2014 consistent with other batch functions but still uses print not logger",
+        "format_conversion/main.py batch_convert (lines 127-130): `except Exception as e: print(f'Error converting {input_file}: {e}'); continue` \u2014 same pattern",
+        "html_website/main.py line 186: `except Exception: pass` \u2014 silent swallow of JSON parse errors for questions file; no log, no propagation, no indication to caller that questions were not loaded",
+        "canvas_integration/main.py upload_module_to_canvas (lines 77-79): catches Exception and adds to results['errors'] list \u2014 different error strategy (Result-like accumulator) compared to all other modules that either raise or print",
+        "canvas_integration/utils.py make_canvas_request: calls response.raise_for_status() which raises requests.HTTPError \u2014 this is propagated to callers, consistent within canvas_integration but inconsistent with the print-and-continue strategy used in batch functions",
+        "publish/utils.py copy_directory_contents (lines 74-78): `except Exception as e: logger.error(f'Failed to copy {item}: {e}')` \u2014 logs but does not propagate; caller receives a count that may be lower than expected with no signal of partial failure",
+        "file_validation/main.py check_file_sizes (lines 370-374): `except OSError: continue` \u2014 silent skip on unreadable files with no log",
+        "module_organization/main.py get_module_statistics (lines 237-240): catches ValueError and sets module_number = None silently \u2014 caller gets a result dict with None module_number and no error indication"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "naming_quality": {
+      "evidence": [
+        "Domain-specific function names are generally strong: render_markdown_to_pdf, batch_render_markdown, generate_module_website, validate_module_files, flatten_published, copy_labs_and_dashboards, reorganize_to_categories \u2014 all communicate intent precisely",
+        "snake_case is used uniformly; no naming-convention divergence detected",
+        "process_module_to_pdf, process_module_to_audio, process_module_to_text in batch_processing/main.py: 'process' is a generic verb that communicates no more than 'do something with a module' \u2014 the to_pdf/to_audio suffix saves them, but the prefix is weak",
+        "generate_module_media (batch_processing/main.py): 'media' is vague \u2014 it generates PDF, audio, and text transcriptions, not 'media' in the commonly understood sense; generate_module_all_formats or generate_all_module_outputs would be clearer",
+        "process_module_by_type (batch_processing/main.py): 'type' is generic \u2014 the function processes markdown files grouped by curriculum element type (assignments, lab-protocols, etc.); render_module_by_curriculum_type or render_module_content_by_type would communicate the domain",
+        "parse_limits (generate_all_outputs.py line 71): 'limits' is vague \u2014 the function parses module/lab count limits from CLI arguments; parse_count_limits or parse_module_lab_limits would be more specific",
+        "ensure_output_directory appears in batch_processing/utils.py, text_to_speech/utils.py, markdown_to_pdf (via utils), html_website/utils.py, and module_organization/utils.py (as ensure_directory_exists) \u2014 the same utility function is named differently across modules: ensure_output_directory vs ensure_directory_exists",
+        "get_relative_output_path (batch_processing/utils.py) vs get_relative_path (html_website/utils.py) \u2014 different names for functions that both compute a relative path, but with slightly different signatures",
+        "configure_voice_settings (text_to_speech/main.py): the function 'configures' a dict but does not apply it anywhere \u2014 a caller would expect this to set state; the name suggests a setter but it is a pure factory returning a new dict",
+        "configure_pdf_options (markdown_to_pdf/main.py): same pattern as configure_voice_settings \u2014 returns a configured dict without applying it; 'build_pdf_options' or 'make_pdf_options' would communicate the pure-factory intent",
+        "check_file_exists and check_directory_exists (module_organization/utils.py): 'check' is a generic verb \u2014 is_file and is_directory_present or file_exists and directory_exists would be more idiomatic Python"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "abstraction_fitness": {
+      "evidence": [
+        "canvas_integration/main.py:sync_module_structure() is a pure delegation to upload_module_to_canvas() with zero added policy \u2014 a one-liner wrapper that serves no purpose distinguishable from a direct alias.",
+        "format_conversion/utils.py:convert_markdown_to_pdf() calls render_markdown_to_pdf(str(input_path), str(output_path)) with only string coercions \u2014 no error handling, no config policy, no translation logic added.",
+        "format_conversion/utils.py:convert_audio_to_text() calls transcribe_audio(str(input_path), str(output_path)) \u2014 same pure-forward pattern.",
+        "module_organization/utils.py:check_file_exists() wraps file_path.exists() and file_path.is_file() in a named function with a docstring \u2014 adds no domain policy over two boolean operators.",
+        "module_organization/utils.py:check_directory_exists() is analogous \u2014 thin stdlib wrap with no domain value.",
+        "module_organization/utils.py:ensure_directory_exists() wraps directory.mkdir(parents=True, exist_ok=True) \u2014 a one-liner re-exported under a domain name.",
+        "lab_manual/utils.py:read_markdown_file() and html_website/utils.py:read_markdown_file() are near-identical implementations of the same function, duplicating the file-read+not-exists-check pattern across modules instead of centralizing it.",
+        "markdown_to_pdf/utils.py:read_markdown_file(), lab_manual/utils.py:read_markdown_file(), html_website/utils.py:read_markdown_file() \u2014 three independent near-identical implementations of the same one-level-up utility across three modules.",
+        "ensure_output_directory() appears in at least five modules (batch_processing, lab_manual, html_website, markdown_to_pdf, text_to_speech, format_conversion) as near-identical path.mkdir() one-liners \u2014 a generic helper surface repeated across bounded packages rather than centralized.",
+        "file_validation/utils.py exposes validate_assignment_name(), validate_lecture_name(), validate_lab_name(), validate_study_guide_name(), validate_quiz_name() \u2014 each is a one-liner wrapping matches_pattern() with a specific config constant; the indirection adds no value over direct config.PATTERN.match() calls at the caller side.",
+        "format_conversion/utils.py defines both get_output_path() (takes Path, returns Path) and get_conversion_path() (takes str, returns str) \u2014 two functions for the same semantic operation with different type signatures, creating dual generic entry points."
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "",
+      "sub_axes": {
+        "abstraction_leverage": 55.0,
+        "indirection_cost": 45.0,
+        "interface_honesty": 68.0,
+        "delegation_density": 48.0,
+        "definition_directness": 60.0,
+        "type_discipline": 70.0
+      }
+    },
+    "dependency_health": {
+      "evidence": [
+        "pyproject.toml lists both 'markdown>=3.5.0' and 'markdown2>=2.4.0' as runtime dependencies \u2014 two libraries for the same purpose (Markdown-to-HTML conversion).",
+        "markdown is used in lab_manual/utils.py (markdown.Markdown with extensions tables, fenced_code, nl2br), html_website/utils.py (markdown.Markdown with extensions extra, codehilite, tables), and markdown_to_pdf/utils.py (markdown.Markdown with extensions extra, codehilite, tables, fenced_code).",
+        "markdown2 is declared as a runtime dependency but no import of markdown2 appears in any src/ file reviewed; it appears entirely unused in production code.",
+        "format_conversion/utils.py imports 'from weasyprint import HTML' in two separate function bodies (convert_html_to_pdf and convert_text_to_pdf) rather than at module level \u2014 this is a style issue but also masks the actual dependency surface.",
+        "format_conversion/utils.py:convert_markdown_to_docx() imports 'from docx import Document' and 'from docx.shared import Inches' locally; Inches is imported but never used in the function body.",
+        "text_to_speech/utils.py uses macOS system commands ('say', 'ffmpeg') via subprocess, effectively creating an implicit runtime dependency on OS-level tooling not declared anywhere in pyproject.toml.",
+        "The 'pydub' library is listed in dependencies but pydub imports appear in text_to_speech (for audio manipulation) \u2014 this dependency is legitimate but worth noting that the actual usage is lightweight (format conversion bridge).",
+        "speech_recognition (SpeechRecognition package) is a heavy dependency pulled in for what appears to be a narrow speech-to-text use case; the primary TTS path now uses macOS 'say' + ffmpeg instead of gTTS or SpeechRecognition, suggesting gTTS may also be partially redundant.",
+        "pyproject.toml does not pin upper bounds or exact versions \u2014 only lower bounds with >=; lock file (uv.lock) exists but was not in scope to fully audit."
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "single_edit",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "low_level_elegance": {
+      "evidence": [
+        "html_website/main.py:generate_module_website() is a 400-line function that builds HTML by mutating string variables through a sequential cascade of side-effectful append operations; state (content_sections, sidebar_links, inner_html, q_html) is accumulated across large blocks with no intermediate extraction into named helpers.",
+        "html_website/main.py lines 127-187: the questions rendering block contains four nested elif branches (multiple_choice, free_response, true_false, matching), each generating HTML via mutable string concatenation \u2014 a 60-line block of inline HTML generation that mixes logic and templating.",
+        "html_website/main.py lines 196-381: a 185-line JavaScript string literal is embedded directly in a Python function body as a raw multi-line string, making it impossible to lint, test, or extract independently.",
+        "html_website/main.py lines 342-353: matching question validation contains 'isCorrect = true; // Placeholder for complex matching logic' \u2014 documented incomplete logic accepted as 'always correct'.",
+        "format_conversion/utils.py:convert_markdown_to_docx() defines a nested class TextExtractor(HTMLParser) inside the function body \u2014 extraction technique is inconsistent with the module's other functions and creates a private class scoped to a single call site.",
+        "format_conversion/utils.py:convert_docx_to_markdown() has a dead code pattern: level = 1 is set as a default, then immediately overwritten by a chain of if/elif/elif branches that redundantly include 'heading 1' -> level = 1 (same as default), making the else case of the heading branch unreachable with a wrong level.",
+        "validation/utils.py:check_study_guide_files() has an argument typed 'formats: List[str] = None' \u2014 a mutable-default-adjacent anti-pattern (None checked at runtime but typed as List[str], not Optional[List[str]]).",
+        "lab_manual/utils.py:create_feasibility_html() uses hash(option) % 10000 for checkbox id generation \u2014 non-deterministic across Python runtimes and collisions are possible; produces fragile HTML.",
+        "publish/utils.py:reorganize_to_categories() has a 50-line inner loop with three different file-type dispatch branches (questions, keys-to-success, slides/pdf, index.html) in a single for-loop body \u2014 mixed responsibilities and inconsistent exit style (some branches move, one unlinks directly).",
+        "batch_processing/utils.py:generate_dry_run_report() imports 'from src.module_organization.utils import matches_module_number' at function body level \u2014 inconsistent import location relative to module-level imports in the same file."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "mid_level_elegance": {
+      "evidence": [
+        "scripts/generate_all_outputs.py passes result dicts from process_course_modules(), process_course_syllabus(), process_course_labs() etc. and extracts total_files via ad-hoc dict key navigation (m['outputs']['summary'].values(), syl['results']['summary'].values(), len(labs.get('files', []))). The dict schema varies between callers \u2014 summary is nested two levels deep for modules but labs uses a flat 'files' list.",
+        "canvas_integration/main.py:upload_module_to_canvas() calls validate_module_files() from file_validation.main and then inspects the raw dict result (validation['valid'], validation.get('missing_files')) inline \u2014 the boundary translation is ad-hoc and lacks a single place where the validation dict is converted to a domain exception.",
+        "canvas_integration/main.py:sync_module_structure() delegates entirely to upload_module_to_canvas() \u2014 the seam between 'sync' and 'upload' operations exposes no distinguishable contract, so callers cannot predict what boundary semantics 'sync' provides vs 'upload'.",
+        "html_website/main.py:generate_module_website() receives a module_path: str and output_dir: Optional[str] \u2014 string-typed paths at the public API boundary, while internally it immediately converts to Path. The seam between caller and callee uses the wrong type, requiring a conversion at the top of every consumer.",
+        "scripts/generate_all_outputs.py:main() accumulates all_errors by calling .extend(results.get('errors', [])) on four different result shapes \u2014 the error list is the only consistent cross-boundary output contract, but each process_* function may or may not populate 'errors', 'files', 'summary', or 'processed' in different shapes.",
+        "batch_processing/main.py (from generate_all_outputs import): process_course_modules() returns a dict with 'modules' key containing a list of dicts each with optional 'outputs.summary' \u2014 but the caller must know this nested shape to count files. No typed result object exists at this seam.",
+        "scripts/flatten_published.py is a clean thin orchestrator that delegates entirely to src.publish.utils.flatten_published() \u2014 a well-designed seam where the script owns only argument parsing and the library owns logic.",
+        "scripts/generate_module_renderings.py delegates to process_module_by_type() and then accesses results['summary']['pdf'], results['by_type'] directly \u2014 the script couples to the internal dict layout of batch_processing output rather than a typed result."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "test_strategy": {
+      "evidence": [
+        "Test suite has good per-module unit test coverage: test files exist for every src/ module (test_batch_processing_main.py, test_canvas_integration_main.py, test_html_website_utils.py, test_lab_manual_main.py, test_markdown_to_pdf_main.py, etc.).",
+        "test_integration.py covers only two cross-module workflows (module creation + validation, module with assignment validation) \u2014 very thin for a codebase with 15 modules and a 9-stage publishing pipeline.",
+        "test_orchestration.py covers test_complete_module_workflow (create\u2192validate\u2192stats) and test_format_conversion_chain, but neither tests the actual batch pipeline (process_course_modules, process_course_syllabus, process_course_labs) at the integration level.",
+        "The primary publishing pipeline script (scripts/generate_all_outputs.py) and publish_all.py have no corresponding test files \u2014 the 9-stage pipeline (clean \u2192 generate \u2192 publish \u2192 flatten \u2192 reorganize \u2192 validate \u2192 git_push) is entirely untested at integration level.",
+        "html_website/main.py:generate_module_website() \u2014 the most complex function in the codebase (400+ lines) \u2014 is tested in test_html_website_features.py and test_html_website_utils.py, but the embedded JavaScript and the matching question always-true placeholder are not covered by any test.",
+        "text_to_speech tests (test_text_to_speech_main.py) require internet and are gated with @pytest.mark.requires_internet \u2014 this is a correct pattern. However, the macOS 'say' path (the actual production path) is not tested at all since it calls subprocess system commands.",
+        "test_canvas_integration_main.py and test_canvas_integration_utils.py test Canvas API functions; since Canvas requires real API credentials, these tests appropriately validate structure/logic only.",
+        "test_real_implementations.py exists and is named to emphasize the no-mocks policy \u2014 this is a positive signal for coupling resistance.",
+        "No snapshot tests observed \u2014 snapshot overuse is not a concern here.",
+        "tests/conftest.py provides sample_module_structure and temp_dir fixtures used across many tests, which is good infrastructure, but sample_module_structure appears to create a minimal fixture not representative of the real biol-1/biol-8 module structure (with keys-to-success.md and questions.md)."
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "api_surface_coherence": {
+      "evidence": [
+        "setup_logging() in src/batch_processing/logging_config.py returns a Logger, but get_logger() also returns a Logger with a completely different shape (one creates + configures, one just looks up). The module documents both as public API but only setup_logging() is meaningful to call first.",
+        "sync_module_structure() in canvas_integration/main.py is documented as a distinct public API function, but its body is literally: `return upload_module_to_canvas(module_path, canvas_course_id, api_key, domain)`. It adds no logic, has no distinct contract, and yet exposes a differently-named parameter (canvas_course_id vs course_id) for what is functionally the same operation.",
+        "batch_processing/main.py exposes process_module_to_pdf(module_path: str, output_dir: str), process_module_to_audio(module_path: str, output_dir: str), process_module_to_text(module_path: str, output_dir: str), process_module_by_type(str, str), process_module_website(str) \u2014 these are parallel functions but website takes only one path arg while all others take two (module_path + output_dir).",
+        "generate_module_website() in html_website/main.py takes (module_path: str, output_dir: Optional[str], course_name: Optional[str]) \u2014 3 params. Its sibling process_module_website() in batch_processing calls it after deriving output_dir internally; neither contract is stated in terms of error paths.",
+        "Missing error contracts: process_module_to_pdf raises ValueError and OSError per docstring, but process_module_by_type has no Raises section at all despite calling all the same low-level converters.",
+        "process_course_modules() in batch_processing/main.py takes 6 parameters (course_path, course_name, module_filter, generate_website, formats, max_module); similar process_course_labs() takes 4; process_course_syllabus() takes 3. Fan-out varies without documented rationale."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "ai_generated_debt": {
+      "evidence": [
+        "scripts/import_legacy_materials.py line 40: `logger = setup_logging()` at module-level (import-time side effect and logging call that creates a file on disk the moment the script is imported).",
+        "Identical boilerplate error handling block in legacy_import/main.py for process_slides(): the full slides loop and the notes slides loop are structurally identical \u2014 same try/except structure, same result dict update logic, same dry_run branching, same chapter_mapping lookup \u2014 duplicated verbatim (~80 lines each).",
+        "generate_module_renderings.py and generate_module_website.py share an identical 'module not found' error block (find_module_path \u2192 iterate course_dir \u2192 print module list), copied exactly. The only variation is the print line before the block.",
+        "Docstring bloat example: batch_processing/utils.py ensure_output_directory() is a 1-line function (output_dir.mkdir(parents=True, exist_ok=True)) with a 4-line Args/Returns docstring block.",
+        "batch_processing/utils.py find_markdown_files() and find_audio_files() are structurally identical: 3-line list-accumulate-return bodies with full docstrings. The only variable is the patterns list.",
+        "legacy_import/utils.py create_questions_directory() embeds large multi-line README.md and AGENTS.md template strings (100+ lines) directly in the function body \u2014 boilerplate content generation that obscures any logic.",
+        "html_website/main.py: `except Exception: pass` at line 186 \u2014 silent swallow of the question-parsing exception with no logging, a classic defensive overengineering pattern that masks errors.",
+        "generate_module_renderings.py and generate_syllabus_renderings.py have near-identical `print` summary blocks for results dicts (5 lines each), differing only in key names ('by_type' vs 'by_format').",
+        "Restating comment in batch_processing/utils.py: `# Find all Markdown files` directly above `markdown_files = []` with patterns list \u2014 no insight beyond what the code says.",
+        "Restating comment in batch_processing/main.py: `# Filter out files in skip directories` directly above a list comprehension that filters files using should_process_file."
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "incomplete_migration": {
+      "evidence": [
+        "scripts/import_legacy_materials.py contains a function process_for_upload_all_modules() which processes 'for_upload' folders \u2014 this is a legacy biol-1-specific workflow (mapping from bio_1_2025/) that coexists with the standard batch_processing pipeline. The script hardcodes paths into a legacy source tree (bio_1_2025/) that presumably no longer exists for normal workflows.",
+        "legacy_import module in src/ is a standalone module specifically for importing from bio_1_2025/ \u2014 an old directory layout. The module has full production infrastructure (config.py, main.py, utils.py, __init__.py) but its only callers appear to be the import_legacy_materials.py script. This is a completed one-time migration tool that remains as production code.",
+        "canvas_integration/main.py sync_module_structure() is documented as a distinct operation but is a stub that unconditionally delegates to upload_module_to_canvas() \u2014 behavior suggests a migration shim that never received its own implementation.",
+        "src/legacy_import/main.py line 41: `from src.format_conversion.utils import convert_docx_to_markdown` and line 408: `from src.markdown_to_pdf.main import render_markdown_to_pdf` \u2014 lazy imports inside functions, a pattern often indicating migration-era workarounds for circular imports or module unavailability.",
+        "No stale TODO/FIXME referencing 'migrate', 'legacy', 'remove after' were found in the script files examined.",
+        "All scripts uniformly use the same sys.path.insert pattern to add the src/ directory \u2014 no mixed import styles across the set."
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "medium",
+      "issues_preventing_higher_score": ""
+    },
+    "package_organization": {
+      "evidence": [
+        "src/ contains 15 packages: batch_processing, canvas_integration, content_processing, file_validation, format_conversion, html_website, lab_manual, legacy_import, markdown_to_pdf, module_organization, publish, schedule, speech_to_text, text_to_speech, validation. Package names are domain-aligned and distinct.",
+        "batch_processing package is a hub: it re-exports 15 symbols from main.py (process_module_to_pdf, process_module_to_audio, process_module_to_text, process_module_by_type, process_module_website, process_syllabus, process_course_modules, process_course_syllabus, process_course_labs, process_course_exams, process_course_practice_tests, generate_module_media, clear_all_outputs) plus 3 utils symbols. Scripts import directly from batch_processing.main rather than from individual converter packages, making batch_processing a de facto God package.",
+        "publish/utils.py has absorbed responsibilities from multiple concerns: flatten_module/flatten_published (originally in scripts/flatten_published.py), copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests, reorganize_to_categories \u2014 7 distinct copy/move operations that span the entire publishing pipeline. The file is 593 lines.",
+        "scripts/flatten_published.py is a thin wrapper that imports from src.publish.utils \u2014 the actual flatten logic moved to publish/utils.py but the script was retained, creating a redundant entry point.",
+        "The scripts/ directory contains 8 scripts that are all thin orchestrators. These are appropriate placement (CLI entry points), but flatten_published.py now duplicates an entry point that publish_all.py already covers.",
+        "src/batch_processing/log_style.py is a formatting-constants module within batch_processing \u2014 it has no imports from other packages and is only used by batch_processing/main.py. It is a cohesive utility internal to the package, appropriate placement.",
+        "canvas_integration has 3 exported functions (upload_module_to_canvas, validate_upload_readiness, sync_module_structure) but sync_module_structure is a stub \u2014 the package has the shape of a real module but one-third of its public surface is unused placeholder.",
+        "html_website/main.py is 400 lines with embedded JavaScript strings, CSS logic delegated to config.py, and HTML generation all in one function. This is a flat-directory overload within a single file rather than package fragmentation, but it suggests the module would benefit from internal decomposition."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "initialization_coupling": {
+      "evidence": [
+        "scripts/generate_all_outputs.py line 48: `logger = setup_logging()` at module scope \u2014 this executes setup_logging() at import time, which creates a timestamped log file on disk (src/batch_processing/logging_config.py line 54-57) as a side effect of importing the script.",
+        "scripts/import_legacy_materials.py line 40: `logger = setup_logging()` at module scope \u2014 same pattern: log file is created on disk the moment the script module is loaded, before any argument parsing.",
+        "src/batch_processing/main.py line 19: `logger = get_logger()` at module scope \u2014 if batch_processing.main is imported before setup_logging() has been called, the logger has no handlers and all log output is silently dropped. The module depends on an external call to setup_logging() having happened first, but this ordering contract is nowhere documented.",
+        "src/html_website/main.py line 20: `logger = get_logger('html_website')` at module scope \u2014 same silent ordering dependency as batch_processing/main.py.",
+        "src/validation/main.py line 30: `logger = logging.getLogger(__name__)` at module scope \u2014 uses standard library logging (not setup_logging), meaning validation logs go to root logger. If a script calls setup_logging() which configures 'batch_processing' logger only, validation logs may bypass the file handler entirely.",
+        "src/legacy_import/main.py line 16: `logger = logging.getLogger(__name__)` \u2014 same mixed logger namespace as validation: uses 'src.legacy_import.main' which is not a child of 'batch_processing', so it inherits from root logger, not from the configured batch_processing handler.",
+        "src/publish/main.py line 11: `logger = logging.getLogger(__name__)` \u2014 publish module logs to 'src.publish.main' namespace, not under batch_processing. File handler configured by setup_logging() for 'batch_processing' logger does not capture publish logs.",
+        "src/legacy_import/main.py line 41 and line 408: lazy imports inside function bodies (`from src.format_conversion.utils import convert_docx_to_markdown`, `from src.markdown_to_pdf.main import render_markdown_to_pdf`) \u2014 these avoid import-time side effects for the converters but indicate that the import graph has latent circular dependency pressure.",
+        "src/batch_processing/logging_config.py: setup_logging() both configures the 'batch_processing' logger AND creates a log file on disk as a side effect. This is not a no-op configuration call \u2014 calling it twice from different scripts would create two separate timestamped log files."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "design_coherence": {
+      "evidence": [
+        "html_website/main.py: generate_module_website() is a 400-line function that simultaneously parses curriculum elements, builds sidebar HTML, embeds ~200 lines of inline JavaScript, constructs question interaction logic per-type, and writes the output file \u2014 five to six distinct responsibilities in a single body",
+        "publish/utils.py: file mixes flattening logic (flatten_module, flatten_published), cleaning logic (clean_published), four copy functions (copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_practice_tests), and a full category-reorganization algorithm (reorganize_to_categories) in one file, covering the entire pipeline post-generation",
+        "batch_processing/main.py (per persisted output): contains process_module_to_pdf, process_module_to_txt, process_module_to_mp3, generate_all_outputs, clear_all_outputs \u2014 broad format dispatch plus orchestration in one module",
+        "legacy_import/main.py: process_slides() duplicates the entire chapter-to-module lookup + copy loop for full-slides and notes-slides sub-types; the repeated structural pattern (extract chapter, map to module, ensure_module_exists, build output filename, copy/log, handle errors) appears in nearly identical form twice within the same function body (200+ lines)",
+        "scripts/publish_all.py step 5 and step 6 share the same --skip-copy-extras gate, but step 6 has no dedicated --skip-slides guard \u2014 the pairing is implicit and likely to silently skip slides when the user only intends to skip labs",
+        "format_conversion/main.py convert_file() uses a large if/elif chain on a string key (conversion_key = f'{input_ext}->{output_format_lower}') rather than a dispatch table, making the pattern data-driven in name only",
+        "scripts/flatten_published.py, generate_all_outputs.py, generate_module_website.py, generate_syllabus_renderings.py, publish_course.py, renumber_questions.py are all CLI entry points invoked via subprocess from publish_all.py; the 'orphaned' signal is a false positive \u2014 they are shell-entry-point scripts, not library modules",
+        "html_website/main.py: create_section() is a nested helper function defined inside generate_module_website(); it is only used locally, but the nesting adds cognitive overhead without clarity benefit \u2014 a module-level private function would be cleaner",
+        "content_processing/main.py: process_questions_file() does file reading, regex-based format detection, question extraction, reformatting, and writing \u2014 five concerns in ~60 lines, though they share a single coherent pipeline"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "The top issue is generate_module_website() being a 400-line god function that inlines JavaScript, HTML construction, and question-type dispatch together. The secondary issue is publish/utils.py being a catch-all for every post-generation pipeline operation. Both are addressable by splitting responsibilities into focused modules."
+    },
+    "contract_coherence": {
+      "evidence": [
+        "validation/main.py validate_outputs(): param 'formats: List[str] = None' \u2014 annotation says List[str] but default is None, making the actual type Optional[List[str]]; the annotation is a lie on the default path",
+        "validation/main.py generate_validation_report(): same pattern \u2014 'formats: List[str] = None' should be 'Optional[List[str]] = None'",
+        "validation/main.py _validate_module_outputs(): param 'formats: List[str] = None' \u2014 same annotation lie; internally falls back to DEFAULT_REQUIRED_FORMATS when None is passed",
+        "canvas_integration/main.py upload_module_to_canvas(): broad except clause catches all Exception types and appends to results['errors'], hiding the error contract \u2014 callers see a non-empty results dict that appears partially successful rather than receiving an exception",
+        "canvas_integration/main.py sync_module_structure(): docstring says 'Raises: ValueError, requests.RequestException' but it simply delegates to upload_module_to_canvas() without adding any new raise paths \u2014 the docstring error contract is copied from the wrong template",
+        "publish/utils.py copy_directory_contents(): docstring says 'exclude_patterns: List of glob patterns to exclude' but param annotation is Optional[List[str]] \u2014 minor divergence, annotation is correct",
+        "content_processing/main.py process_questions_file(): return type annotation is tuple[bool, int] (lowercase) \u2014 valid in Python 3.9+ but inconsistent with the rest of the codebase which uses typing.Tuple or Dict; this is a style inconsistency, not a lie, but signals inconsistent API convention",
+        "batch_processing/utils.py get_courses_to_process(): returns List[tuple] \u2014 the inner tuple has no declared element types; callers cannot infer the (str, str) shape without reading the implementation",
+        "module_organization/main.py validate_module_structure(): declared return type bool but internally calls list_missing_files and list_missing_directories and returns True/False \u2014 contract is honored but the function name implies it validates and returns detail, yet it only returns a boolean; the richer validate_module_files() in file_validation does this but with a different name",
+        "lab_manual/main.py batch_render_lab_manuals(): 'Raises: ValueError: If directory doesn't exist' \u2014 but if directory.is_dir() fails the condition, it raises ValueError; this is correct. However, individual file render_lab_manual() errors are caught and printed (not re-raised), so callers of batch_render_lab_manuals cannot distinguish partial success from full failure via exception"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "Systematic use of 'List[str] = None' (without Optional) across multiple validation function signatures means the declared return and parameter types do not match actual runtime behavior. This is a consistent pattern across at least three public API functions."
+    },
+    "logic_clarity": {
+      "evidence": [
+        "publish/main.py lines 78-82: double-check pattern \u2014 'if not source_path.exists(): logger.warning(...); continue' is correctly guarded, but then 'if source_path.exists(): files_copied += copy_directory_contents(...)' immediately follows with the inverse check; the second check is always True at that point, making it dead conditional logic",
+        "publish/main.py lines 80-83: similarly 'else: logger.warning(...)' after 'if source_path.exists()' inside the block where source_path was already confirmed to exist \u2014 this else branch is unreachable dead code",
+        "html_website/main.py line 186-187: 'except Exception: pass' \u2014 broad silent exception swallow; if questions file parsing fails, the questions section is silently omitted with no log message, giving the developer no signal of the failure",
+        "validation/main.py _validate_module_outputs(): 'result[\"formats_checked\"] = formats or DEFAULT_REQUIRED_FORMATS' \u2014 this means when formats=[] (an empty list, falsy), it falls back to DEFAULT_REQUIRED_FORMATS instead of validating nothing; an empty list is a distinct caller intent from None, but both are treated identically",
+        "batch_processing/utils.py get_courses_to_process(): 'return [(c, n) for c, n in all_courses if c.endswith(course_arg)]' \u2014 if course_arg is 'biol-1', this also matches 'biol-11' or 'biol-21' if they were ever added; endswith() is an imprecise match for directory names",
+        "publish/utils.py reorganize_to_categories(): the match for slides uses 'fname.endswith(\".pdf\") and (\"slides\" in fname or fname.startswith(\"module \"))' \u2014 the second condition startswith(\"module \") is tested on fname.lower(), but fname = f.name.lower() is already lowercase, so startswith(\"module \") correctly handles that; no logic error but the mixed casing is confusing",
+        "schedule/main.py generate_schedule_outputs(): markdown_file is written unconditionally even when 'md' is not in the requested formats list (line 144-145: markdown_file.write_text(...) always runs); the intermediate markdown is always written to disk regardless of whether the caller requested it",
+        "legacy_import/main.py process_chapter_questions() lines 82-94: 'if not dry_run and not module_path.exists(): results[\"skipped\"].append(...)' followed immediately by 'if not module_path.exists() and not dry_run: results[\"summary\"][\"modules_created\"] += 1' \u2014 these two blocks have the same condition but different intent; the second block will execute immediately after the first skipped the file, so when module creation fails, both the 'skipped' path and the 'modules_created' counter are updated \u2014 the counter increment is incorrectly executed even when the module was NOT created",
+        "validation/utils.py check_lab_files(): 'if max_lab:' \u2014 treats max_lab=0 as falsy, meaning a caller passing max_lab=0 would not filter at all; should be 'if max_lab is not None:'"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": ""
+    },
+    "type_safety": {
+      "evidence": [
+        "validation/main.py: three public API functions (validate_outputs, generate_validation_report, _validate_module_outputs) use 'formats: List[str] = None' \u2014 missing Optional[] wrapper means mypy would flag all three",
+        "validation/main.py validate_outputs(): 'formats: List[str] = None' \u2014 also the parameter is used as 'if formats is None: formats = DEFAULT_REQUIRED_FORMATS', confirming None is a valid input, contradicting the annotation",
+        "batch_processing/utils.py get_courses_to_process(): returns List[tuple] \u2014 unparameterized tuple; actual runtime type is List[Tuple[str, str]] \u2014 callers cannot type-check tuple element access",
+        "batch_processing/main.py: the large process_course_modules() function (from persisted output) uses Dict[str, Any] throughout for results accumulation \u2014 the actual dict shape is consistent and would benefit from a TypedDict or dataclass",
+        "content_processing/main.py process_questions_file(): return type 'tuple[bool, int]' uses PEP 585 built-in generics (Python 3.9+) while the rest of the codebase imports Tuple from typing \u2014 inconsistent type discipline within the same codebase targeting Python 3.11+",
+        "lab_manual/main.py batch_render_lab_manuals(): return type List[str] is accurate but the error path (per-file exception) means the returned list may be shorter than the input \u2014 callers typed to List[str] cannot distinguish partial success without len() comparison",
+        "canvas_integration/main.py upload_module_to_canvas(): returns Dict[str, Any] \u2014 the actual shape is {'uploaded_files': List[Dict], 'failed_files': List[str], 'errors': List[str]}; a TypedDict UploadResult would prevent callers from accessing non-existent keys",
+        "validation/utils.py check_lab_files(): return annotation Dict[str, Any] \u2014 the actual shape is stable and documented in the docstring: source_labs: int, output_files: Dict[str, int], dashboards: int, missing_outputs: List[str], issues: List[str]; a TypedDict would make this statically checkable",
+        "publish/utils.py copy_directory_contents(): 'exclude_patterns: Optional[List[str]] = None' \u2014 annotation is correct; internal default fetched from config when None: this is the correct pattern and a positive example",
+        "module_organization/main.py get_module_statistics(): 'module_number: Optional[int]' in return dict \u2014 the key is always present but may be None if path parsing fails; the return annotation Dict[str, Any] hides this from callers",
+        "schedule/main.py generate_schedule_outputs(): 'formats: List[str]' \u2014 non-optional, correctly typed; positive example",
+        "html_website/main.py: no type annotations on the nested create_section() helper function \u2014 acceptable as a private nested function per skip rules"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "The Optional annotation omission in public API functions is systemic (at least 3 functions across validation/main.py). The use of Dict[str, Any] for stable return shapes that could be TypedDict is pervasive across canvas_integration, validation/utils, and batch_processing. Together these prevent static analysis from catching type errors at module boundaries."
+    },
+    "authorization_consistency": {
+      "evidence": [
+        "This is a local course-management content pipeline, not a web application or API service. There are no route handlers, no RLS tables, no HTTP endpoints, and no session/JWT/role management. The authorization_consistency dimension's primary applicability criteria (route handlers, RLS, permission middleware) are absent.",
+        "The only external API integration is canvas_integration/main.py, which uses a bearer token (api_key) passed as a function parameter. There is no auth middleware or decorator pattern \u2014 authentication is handled at the call site by the caller providing the key.",
+        "canvas_integration/utils.py make_canvas_request(): the api_key is injected as Authorization: Bearer header for every outbound request \u2014 consistent; no request bypasses auth",
+        "canvas_integration/main.py: api_key and domain are explicit required parameters on all public Canvas functions (upload_module_to_canvas, validate_upload_readiness, sync_module_structure) \u2014 auth credentials are never sourced from global state or environment variables implicitly",
+        "There is no service-role bypass or admin-override code path \u2014 the Canvas API key is a per-call parameter only",
+        "scripts/* do not handle any user authentication; they operate on local filesystem paths only",
+        "No permission strings, RBAC constants, or ACL definitions exist in the codebase \u2014 this is consistent (uniformly absent) rather than inconsistently applied",
+        "canvas_integration/main.py _upload_file_to_canvas(): uses requests.post() directly for the second upload step (line 213) without calling make_canvas_request() \u2014 meaning the rate-limit sleep and raise_for_status() wrapper in make_canvas_request() are not applied to the actual file upload request",
+        "canvas_integration/main.py _upload_file_to_canvas(): upload_response.raise_for_status() is called manually on line 215 \u2014 so auth failure on the upload URL would raise, but the rate-limiting protection is bypassed for this step"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "confidence": "high",
+      "issues_preventing_higher_score": "The canvas upload's second HTTP step bypasses the make_canvas_request() wrapper, which is the only location where rate-limiting is applied. While not a security issue, it is an inconsistent application of the auth/request wrapper pattern for the only external API integration in the codebase."
+    }
+  },
+  "dimension_judgment": {
+    "cross_module_architecture": {
+      "strengths": [
+        "Layer boundaries (0-4) are documented in CLAUDE.md and largely respected at module-level import boundaries for the main public APIs",
+        "Each package has a clear main.py/utils.py/config.py structure that separates concerns within a module",
+        "__init__.py files expose minimal surfaces (e.g., html_website exposes only generate_module_website)",
+        "canvas_integration correctly uses validate_module_files from file_validation rather than reimplementing validation"
+      ],
+      "issue_character": "Systematic use of deferred (function-level) imports across batch_processing/main.py masks inter-module cycles and circumvents static dependency analysis, while the publish module has grown into a cross-cutting mega-utility and format_conversion duplicates markdown_to_pdf's core responsibility.",
+      "score_rationale": "The documented layer model is followed for top-level imports in most modules, earning credit for intentional architecture. However, the pervasive deferred-import pattern in the highest-traffic orchestration file (batch_processing/main.py) creates invisible runtime dependencies that the static layer model cannot enforce. The publish/utils.py megafile and the format_conversion/markdown_to_pdf duplication are structural defects that will cause blast-radius confusion on any format-related change. These issues collectively represent a meaningful gap from a well-bounded architecture, placing the score well below the 75-80 range appropriate for a codebase with mostly correct but imperfect layer discipline."
+    },
+    "high_level_elegance": {
+      "strengths": [
+        "Package names are strongly domain-aligned and self-explanatory",
+        "The main/utils/config/init internal structure is applied uniformly across all 15 packages",
+        "Public surfaces on leaf packages (html_website, canvas_integration) are appropriately small",
+        "The layer model is documented and directionally followed, making the intended architecture legible",
+        "Scripts are thin orchestrators that delegate to src/ rather than containing business logic"
+      ],
+      "issue_character": "The decomposition is structurally sound at the naming level but has several ownership blurs: format_conversion's role is undermined by batch_processing bypassing it, canvas_integration has a public stub that violates its own contract, and the publish/logging infrastructure has grown beyond its domain without being refactored into a clearer shape.",
+      "score_rationale": "This codebase scores above average on high-level structure: the package taxonomy is genuinely domain-aligned, and the uniform internal pattern (main/utils/config) lowers cognitive load for new engineers. The score is held back by three significant ownership blurs \u2014 format_conversion is architecturally documented as a composition layer but is bypassed in the main pipeline, sync_module_structure is a dead-stub public API that misleads about canvas_integration's capabilities, and the four-way split of the publishing entry point (repo-root publish.py, scripts/publish_all.py, scripts/generate_all_outputs.py, src/publish/) creates navigational confusion. These are not cosmetic; they represent places where subsystem change boundaries would surprise a developer."
+    },
+    "convention_outlier": {
+      "strengths": [
+        "Uniform snake_case naming across all 15 packages with no camelCase drift",
+        "The main/utils/config/__init__ package layout is applied consistently across all packages",
+        "All scripts follow the thin-orchestrator pattern delegating to src/",
+        "Export patterns are consistent: __init__.py uses explicit __all__ lists uniformly"
+      ],
+      "issue_character": "The codebase is largely convention-consistent, but has a cluster of localized style islands: one script pair uses print vs logger inconsistently, one module uses nested helpers instead of utils.py extraction, one utils.py has section dividers not found elsewhere, and one config constant lives inside a function instead of config.py.",
+      "score_rationale": "The macro-level conventions (naming, file layout, export patterns) are followed with high consistency \u2014 this is one of the better-scoring aspects of the codebase. The score is reduced by a handful of localized outliers that each break a different established convention: the scripts diverge on output strategy, html_website breaks the utils.py helper extraction convention, and publish/utils.py uses section dividers that no other file uses. None of these individually are severe, but together they represent an uneven surface that a new contributor would need to discover rather than infer from adjacent examples."
+    },
+    "error_consistency": {
+      "strengths": [
+        "Most top-level public functions (render_markdown_to_pdf, generate_speech, validate_module_files) raise exceptions on invalid inputs \u2014 the raise-on-invalid-input pattern is followed consistently for entry-point validation",
+        "canvas_integration uses raise_for_status() to propagate HTTP errors, preserving error context at the network boundary",
+        "process_module_by_type uses logger.error with exc_info=True for format-generation errors \u2014 this is the best error-handling pattern in the codebase"
+      ],
+      "issue_character": "The codebase has three distinct error strategies in active use \u2014 (1) raise ValueError/OSError at validation boundaries, (2) broad except-and-print in batch loops silently continuing, (3) Result-accumulator dict in canvas_integration \u2014 with no documented rationale for the mixing, and at least one instance of a completely silent swallow (except Exception: pass).",
+      "score_rationale": "The score reflects a codebase where the input-validation layer has reasonable error propagation, but the processing layer has systematically chosen broad-catch-and-continue patterns that lose error type information, mix print() and logger.error() inconsistently, and in one case (html_website questions parsing) silently swallow failures entirely. The canvas_integration Result-accumulator pattern is reasonable for a network integration but is not used anywhere else, creating a strategy divergence. This level of inconsistency means a developer cannot predict how failures will surface or be handled without reading each function individually."
+    },
+    "naming_quality": {
+      "strengths": [
+        "Domain-specific names (render_markdown_to_pdf, generate_module_website, validate_module_files, flatten_published) are precise and intent-revealing",
+        "Consistent snake_case throughout with no naming convention divergence",
+        "The modules themselves (markdown_to_pdf, text_to_speech, html_website) are excellently named",
+        "Batch function names follow a clear <action>_<scope>_<subaction> pattern (process_course_modules, process_course_labs) that is readable and consistent"
+      ],
+      "issue_character": "The naming issues cluster around two patterns: (1) generic-verb prefixes ('process', 'configure', 'check') on functions where a domain verb would communicate more, and (2) vocabulary divergence for the same utility concept across modules (ensure_output_directory vs ensure_directory_exists, get_relative_output_path vs get_relative_path).",
+      "score_rationale": "The codebase names its primary domain concepts well \u2014 file conversion, website generation, module validation, and publishing are all accurately named. The score is held back by a systematic preference for 'process' and 'configure' as verb prefixes in the batch_processing and tts modules, which reduce intent clarity, and by vocabulary fragmentation for shared utility operations. Neither issue is severe, but together they create a reading tax in the highest-traffic module (batch_processing/main.py). The score sits in the comfortable above-average range appropriate for a codebase with strong naming in the right places but noticeable generic-verb drift in the orchestration layer."
+    },
+    "abstraction_fitness": {
+      "strengths": [
+        "Module-level __init__.py files act as proper public facades, re-exporting a curated subset of main.py symbols rather than leaking all internals.",
+        "canvas_integration/utils.py:make_canvas_request() is a legitimate wrapper \u2014 it adds auth header injection and rate-limit delay, justifying its existence.",
+        "batch_processing/main.py and scripts/generate_all_outputs.py form a clean two-layer: scripts orchestrate, main.py owns domain logic, no back-and-forth hop through unnecessary intermediaries.",
+        "lab_manual/utils.py defines rich domain objects (TableConfig, MeasurementConfig, LabElement) with dataclasses rather than untyped dicts \u2014 good abstraction leverage."
+      ],
+      "issue_character": "The codebase systematically exposes thin one-liner delegations and duplicated micro-helpers across bounded packages instead of choosing between centralizing the shared utility or simply calling the underlying operation directly.",
+      "score_rationale": "The codebase sits in the middle range. Legitimate abstractions exist (auth wrappers, domain dataclasses, facade __init__ modules). But there is a pervasive pattern of one-liner wrapper functions with no added policy \u2014 sync_module_structure delegating to upload_module_to_canvas, five independent ensure_output_directory() implementations, three read_markdown_file() clones, and a chain of single-dispatch validator wrappers in file_validation/utils.py. These raise the indirection cost without buying any leverage, placing the score below the 70s but above the 50s due to the codebase's overall direct module topology."
+    },
+    "dependency_health": {
+      "strengths": [
+        "Dependencies are logically grouped into runtime and dev extras; dev tools (pytest, black, mypy, ruff) are cleanly separated from production deps.",
+        "Most runtime dependencies directly correspond to clearly used libraries: weasyprint for PDF, requests for Canvas API, pypdf for PDF reading, python-docx for DOCX generation.",
+        "The pyproject.toml is minimal and readable \u2014 no dependency sprawl or obvious version conflicts visible."
+      ],
+      "issue_character": "The primary problem is a duplicate Markdown library (markdown + markdown2) where markdown2 appears unused, combined with a hidden OS-level dependency on macOS 'say' and 'ffmpeg' that is not declared in pyproject.toml.",
+      "score_rationale": "The codebase has a modest but clear dependency health problem: markdown2 is declared but undetected in use across reviewed sources, constituting dead weight; the macOS 'say' + ffmpeg pipeline is a silent undeclared system dependency that will fail on non-Mac environments without any clear error at install time. These two issues together represent both dead-weight and hidden coupling concerns. The overall package count is small and conflicts are not visible, preventing a lower score."
+    },
+    "low_level_elegance": {
+      "strengths": [
+        "Most utility modules (module_organization, content_processing, schedule, file_validation) contain short, single-purpose functions with clear intent and minimal nesting.",
+        "publish/utils.py functions like flatten_module() and copy_labs_and_dashboards() are well-bounded with direct iteration patterns and bounded side effects.",
+        "lab_manual/utils.py parser functions (parse_table_directive, parse_reflection, parse_measurement_section) return named result objects (dataclasses/dicts) rather than mutating global state.",
+        "text_to_speech/utils.py:extract_text_from_markdown() uses a clear sequential regex pipeline with explicit comments per step."
+      ],
+      "issue_character": "The dominant problem is a concentration of complexity in html_website/main.py, where a single large function accumulates HTML state through mutable string concatenation, embeds a 185-line JavaScript literal, and contains known-incomplete branch logic \u2014 all patterns that reduce local readability and testability.",
+      "score_rationale": "The majority of utility and helper functions across the codebase show good low-level discipline: short, direct, single-purpose. The score is dragged down substantially by html_website/main.py:generate_module_website(), which violates almost every criterion \u2014 unbounded state mutation, deeply nested branches, embedded untestable JavaScript, and a documented 'Placeholder' always-true code path. The nested class in format_conversion and the mutable default type issue in validation/utils.py are smaller but real defects. A codebase with this distribution \u2014 many clean helpers plus one severely problematic monolith \u2014 lands around 64."
+    },
+    "mid_level_elegance": {
+      "strengths": [
+        "scripts/flatten_published.py and scripts/generate_module_renderings.py are clean thin orchestrators that delegate promptly to library functions, exemplifying the desired script-library seam pattern.",
+        "batch_processing/__init__.py provides a stable public facade that scripts import from, avoiding direct sub-module imports in most call sites.",
+        "canvas_integration module isolates API credentials and rate-limiting in utils.py:make_canvas_request(), providing a clean cross-boundary concern for auth.",
+        "Error propagation across batch processing follows a consistent pattern: each process_* function returns a dict with 'errors' key, allowing the orchestrator to aggregate without try/except at each boundary."
+      ],
+      "issue_character": "The dominant seam problem is ad-hoc, inconsistently-shaped result dicts passed between the orchestration layer and the library layer, requiring callers to know the internal nested structure of results rather than working through a consistent typed interface.",
+      "score_rationale": "The codebase shows good seam discipline in the thin script orchestrators and the facade __init__ modules. However, the process_* family of functions returns four different dict shapes (modules with nested summary, syllabus with results.summary, labs with files list, practice_tests with files list), and callers must navigate these shapes with ad-hoc .get() access. The canvas integration's validate-then-inspect-dict pattern is a second area where boundary translation is scattered. These are real mid-level seam defects but they do not completely undermine the architecture \u2014 the overall composition is readable, placing the score in the mid-60s."
+    },
+    "test_strategy": {
+      "strengths": [
+        "Every src/ module has at least one corresponding test file \u2014 no module is entirely untested.",
+        "The @pytest.mark.requires_internet and @pytest.mark.requires_api markers correctly gate tests that need external services, allowing the suite to run cleanly offline.",
+        "No snapshot test overuse \u2014 the test suite relies on real assertions rather than snapshot comparisons.",
+        "test_real_implementations.py demonstrates commitment to testing against real library behavior (no mocks/stubs)."
+      ],
+      "issue_character": "The test suite has thorough unit coverage at the per-function level but nearly zero integration coverage for the high-value orchestration paths: the full publishing pipeline, the batch processing course loop, and the generate_all_outputs script are all untested end-to-end.",
+      "score_rationale": "Per-module unit tests are good, and the markers/fixtures infrastructure is well-organized. The critical gap is integration coverage: the 9-stage publishing pipeline, the batch course processing loop, and the major script entry points have no tests at all. Given that the real pipeline risk lies in how stages compose and pass data across boundaries (the inconsistent result dict shapes noted in mid_level_elegance), the absence of integration tests means these failure modes are entirely invisible to the test suite. This pattern \u2014 solid unit base, hollow integration layer \u2014 places the score mid-range at 65."
+    },
+    "api_surface_coherence": {
+      "strengths": [
+        "Core batch_processing functions (process_module_to_pdf, _to_audio, _to_text) share consistent (module_path: str, output_dir: str) signature, making them easy to use uniformly.",
+        "canvas_integration and batch_processing both expose clean __all__ lists, making the public surface explicit.",
+        "logging_config.py exposes only two functions with clear intent separation (setup vs. get), even if the ordering dependency is undocumented."
+      ],
+      "issue_character": "A recurring mismatch between parallel function families: most process_module_* accept two path args, but process_module_website takes one; sync_module_structure is a documented alias with renamed parameters that provides no distinct contract; and error-contract documentation is inconsistent across the public surface.",
+      "score_rationale": "The codebase is largely consistent within tight function families, but the website function's arity deviation from its siblings and the publish-through sync_module_structure wrapper are real consumer-facing confusions. Missing error contracts on orchestration functions and parameter-count divergence across the course-level process_course_* family add noise that a developer must resolve by reading implementation. This lands solidly in the 'mostly consistent but with notable gaps' range, below exemplary (90+) but well above chaotic."
+    },
+    "ai_generated_debt": {
+      "strengths": [
+        "Scripts are thin orchestrators with clear delegation to src modules, avoiding fat script bodies.",
+        "Docstrings on public API functions include Args/Returns sections that are accurate and non-trivial for complex functions.",
+        "The dry_run branching pattern, while repetitive, is explicit and easy to audit."
+      ],
+      "issue_character": "Structural copy-paste duplication is the dominant problem: identical try/except and result-reporting blocks are repeated verbatim across the slides processing functions and across multiple scripts, indicating these were generated or assembled without a shared helper extraction step.",
+      "score_rationale": "The codebase shows several hallmarks of LLM-assisted generation: verbatim duplication of 80-line loops (full vs. notes slides), identical error-handling scaffolds across sibling scripts, and docstrings on trivial utility functions that restate the obvious. Silent exception swallowing in html_website (except Exception: pass) and module-level setup_logging() calls in scripts compound the picture. These issues are real maintenance burdens but are all fixable with local refactors; they do not indicate fundamental design confusion. A score in the low-60s reflects 'clearly present, moderately impactful' AI-generated debt patterns."
+    },
+    "incomplete_migration": {
+      "strengths": [
+        "All five seed scripts use a single consistent import style (sys.path.insert + from src.X import Y) with no mixing of old and new patterns.",
+        "The legacy_import module is cleanly separated into its own package rather than scattered inline in scripts.",
+        "No deprecated symbols with @deprecated markers or active DEPRECATED comments were found in the examined files.",
+        "No mixed JS/TS or Python 2/3 coexistence \u2014 the codebase is uniformly Python 3.11+."
+      ],
+      "issue_character": "A completed one-time import migration tool (legacy_import module + import_legacy_materials.py) remains as permanent production infrastructure, creating ambiguity about whether the module is a live feature or historical artifact; and sync_module_structure acts as an unimplemented stub that was never migrated from placeholder to real logic.",
+      "score_rationale": "The codebase shows no active migration churn \u2014 there are no deprecated-but-called symbols, no mixed-paradigm coexistence patterns, and no stale migration TODOs. The primary incomplete_migration signal is a legacy import tool that has outlived its purpose and a canvas sync function that is a permanent stub. These are modest issues that add dead weight and confusion without actively harming the working pipeline. A score of 80 reflects a clean codebase with a small number of stranded artifacts rather than an active incomplete migration."
+    },
+    "package_organization": {
+      "strengths": [
+        "15 packages in src/ each have a clearly named domain responsibility (markdown_to_pdf, text_to_speech, html_website, etc.) with no ambiguous names.",
+        "Each package follows the same internal structure: __init__.py, main.py, utils.py, config.py \u2014 consistent internal organization across all modules.",
+        "scripts/ is cleanly separated from src/, with thin orchestrators that don't contain business logic.",
+        "The __init__.py re-export pattern is used consistently: each package exposes its public API through __init__.py with an explicit __all__."
+      ],
+      "issue_character": "batch_processing acts as a hub that re-exports and orchestrates 13+ symbols from downstream converters, and publish/utils.py has grown into a multi-concern utility file (flattening, copying, reorganizing) that accumulates operations from multiple pipeline stages without clear sub-organization.",
+      "score_rationale": "The package naming and structural consistency are strong. The main organizational defect is that batch_processing has become a God package \u2014 it is the primary import point for essentially every operation in the pipeline, collapsing the layer distinctions described in the architecture documentation. publish/utils.py is a secondary concern: at 593 lines with 7 distinct operation families, it would benefit from sub-module decomposition. Neither issue breaks navigation, but both create coupling that slows future changes. This lands mid-range: above average naming and structure with meaningful hub and utility-file overload problems."
+    },
+    "initialization_coupling": {
+      "strengths": [
+        "No DB connections, network calls, or environment variable reads occur at module scope in any of the examined files.",
+        "The lazy import pattern in legacy_import/main.py correctly defers heavy converter imports to call time, avoiding slow import-time side effects.",
+        "src/batch_processing/config.py is purely declarative constants with no computed values or side effects at import time.",
+        "The standard library modules (pathlib, shutil, re) imported at module scope are side-effect-free."
+      ],
+      "issue_character": "Two distinct initialization problems coexist: (1) setup_logging() is called at module scope in scripts, creating log files on disk as an import-time side effect; and (2) the logging namespace is fragmented \u2014 some modules use logging.getLogger(__name__) (publish, legacy_import, validation) while others use get_logger('batch_processing'), meaning the configured file handler silently misses log output from half the codebase.",
+      "score_rationale": "The codebase avoids the worst initialization coupling patterns (no DB/network at import time, no circular init dependencies), but has a genuine fragmentation problem in logging namespaces: setup_logging() configures only the 'batch_processing' logger, yet half the src modules log to their own __name__ namespace which is not a child of 'batch_processing'. This means the configured file handler silently drops production logs from publish, validation, and legacy_import. Additionally, module-scope setup_logging() calls in scripts create log files on disk as import-time side effects, breaking test isolation. These are real operational and testability problems that would be discovered in practice, landing this in the 60s."
+    },
+    "design_coherence": {
+      "strengths": [
+        "The layered module architecture (layer 0-4) is well-conceived and enforced \u2014 low-level converters do not import orchestration modules",
+        "Scripts are correctly kept as thin CLI orchestrators that delegate to src.* modules",
+        "lab_manual/main.py cleanly separates parse_lab_elements, _process_lab_content, and render_lab_manual with clear single-purpose abstractions",
+        "validation/main.py decomposes into focused helpers (_validate_module_outputs, _validate_syllabus_outputs, validate_published) that each own one concern",
+        "module_organization/main.py has tight, coherent functions \u2014 every public function does exactly one thing"
+      ],
+      "issue_character": "The dominant issue is concentrated complexity: a small number of files (html_website/main.py, publish/utils.py, legacy_import/main.py) accumulate multiple unrelated responsibilities, while the majority of the codebase maintains good single-responsibility discipline.",
+      "score_rationale": "Most modules demonstrate good design coherence \u2014 thin scripts, focused helpers, clear layer separation. However, html_website/main.py's generate_module_website() function conflates HTML construction, JavaScript embedding, per-question-type rendering, and file I/O into a single 400-line body. publish/utils.py serves as an operational grab-bag for six distinct pipeline operations. legacy_import/main.py duplicates a structural copy pattern twice in process_slides(). These represent design debt in high-traffic pipeline paths rather than domain complexity, placing the score in the low-70s range."
+    },
+    "contract_coherence": {
+      "strengths": [
+        "Most functions raise exactly the exception types documented in their docstrings (FileNotFoundError, ValueError, OSError)",
+        "Return type dicts are consistently structured \u2014 the keys documented in the Returns section are the keys actually returned",
+        "Functions named with action verbs (render_, generate_, convert_, validate_) correctly perform the action and do not silently return None on failure paths",
+        "Module __init__.py exports are aligned with what main.py actually defines \u2014 no phantom exports"
+      ],
+      "issue_character": "The dominant contract defect is systematic Optional annotation omission: multiple public API functions annotate parameters as List[str] while accepting None as a valid default, creating a type mismatch that is systematic rather than isolated.",
+      "score_rationale": "Docstrings are generally accurate and error contracts are mostly honored. The primary issue is the Optional annotation pattern appearing in at least three validation module public API functions, which is a contract lie that affects static analysis and caller expectations. The canvas_integration broad-except pattern conceals error contracts from callers. Neither issue is catastrophic but both are recurring and affect public interfaces, placing the score in the low-70s."
+    },
+    "logic_clarity": {
+      "strengths": [
+        "Most guard clauses use early returns correctly \u2014 validate_outputs(), validate_module_files(), check_file_sizes() all return early on non-existent paths",
+        "Boolean return functions (validate_module_structure, verify_required_structure, should_process_file) are direct without unnecessary branching",
+        "Error handling in legacy_import correctly separates ValueError from generic Exception with independent handlers",
+        "The dry_run pattern is consistently applied as a boolean gate with clear if/else branches throughout the codebase"
+      ],
+      "issue_character": "The predominant pattern of issues is dead conditional logic caused by double-checking already-established state (publish/main.py) and falsy-zero bugs in optional integer parameters (validation/utils.py, potentially batch functions).",
+      "score_rationale": "The codebase is largely logically clear \u2014 most branches are meaningful and control flow is readable. However, publish/main.py contains a confirmed dead-code branch (the else-logger warning after source_path was already confirmed to exist), legacy_import has a counter that increments incorrectly, and the max_lab=0 falsy check is a latent boundary bug. These are concrete logic defects, not style concerns, placing the score in the mid-70s."
+    },
+    "type_safety": {
+      "strengths": [
+        "All public functions have return type annotations \u2014 there are no completely unannotated public API functions",
+        "Parameters are annotated consistently across all modules",
+        "Path types are correctly used (Path vs str is explicit at function boundaries)",
+        "Optional[] is used correctly in several places: copy_directory_contents, find_audio_file, etc.",
+        "Enum/Literal types are not used in the codebase \u2014 format strings are validated against config sets rather than bypassed, which is acceptable"
+      ],
+      "issue_character": "The dominant type safety issue is annotation precision: Optional is omitted on nullable parameters, Dict[str, Any] is used for stable-shape return values, and List[tuple] is used where List[Tuple[T1, T2]] is known \u2014 all reducing the value of annotations for static analysis.",
+      "score_rationale": "The codebase has consistent annotation coverage, which is a meaningful positive. However, the Optional omission pattern across at least three validation module public functions means mypy would flag these as errors, and the pervasive Dict[str, Any] for stable return shapes means callers cannot catch key access errors statically. The codebase is typed but not type-safe at module boundaries, placing it in the mid-60s."
+    },
+    "authorization_consistency": {
+      "strengths": [
+        "The codebase is a local content pipeline \u2014 there are no web routes, HTTP endpoints, or user-facing authentication surfaces, so the dimension's primary risk patterns (unprotected routes, missing RLS, permission bypass) structurally do not apply",
+        "The only external integration (Canvas API) consistently requires an explicit api_key parameter on all public functions \u2014 credentials are never implicitly sourced from global state",
+        "All outbound Canvas requests use a shared make_canvas_request() wrapper that applies auth headers and raise_for_status()",
+        "No hardcoded credentials, API keys, or tokens appear anywhere in the source files reviewed"
+      ],
+      "issue_character": "The single meaningful inconsistency is that the Canvas two-step file upload bypasses the make_canvas_request() wrapper for the actual upload POST, meaning rate-limiting is not applied uniformly to all outbound Canvas HTTP calls.",
+      "score_rationale": "This codebase has no meaningful attack surface from an authorization perspective \u2014 it is a local CLI tool that converts files and publishes to local directories. The Canvas integration is the only external API surface, and it handles credentials consistently. The score reflects that the dimension is largely not applicable to this system type, with one minor consistency gap in the Canvas upload wrapper, placing it in the low-80s (high for this dimension given the narrow surface area)."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "CMA-01",
+      "summary": "batch_processing/main.py uses deferred function-level imports for all cross-module calls, hiding runtime dependencies from static analysis",
+      "confidence": "high",
+      "suggestion": "Move all cross-module imports to the module top-level in batch_processing/main.py. If cycles exist that force deferred imports, resolve the cycle by extracting a shared boundary (e.g., a conversion_registry or renderer protocol) rather than hiding it at runtime.",
+      "related_files": [
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "Line 65: `from ..markdown_to_pdf.main import render_markdown_to_pdf` inside for-loop",
+        "Lines 120-123: deferred imports of text_to_speech.utils inside loop body",
+        "Lines 130, 184: deferred imports of generate_speech and transcribe_audio inside loops",
+        "Lines 383-386, 398-402, 420-421, 435, 449-452 in process_module_by_type: same pattern repeated for every format handler",
+        "Lines 550-569, 587, 602 in process_syllabus: identical deferred import pattern repeated verbatim"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "CMA-02",
+      "summary": "format_conversion module duplicates markdown_to_pdf module's core responsibility with no documented boundary rationale",
+      "confidence": "high",
+      "suggestion": "Define clear ownership: format_conversion should be a routing layer that delegates to markdown_to_pdf (and other specific converters) rather than re-implementing conversion logic. Remove the duplicate convert_markdown_to_pdf from format_conversion/utils.py and route through markdown_to_pdf/main.py instead.",
+      "related_files": [
+        "src/format_conversion/main.py",
+        "src/markdown_to_pdf/main.py"
+      ],
+      "evidence": [
+        "format_conversion/main.py has convert_markdown_to_pdf imported from its own utils (line 10)",
+        "markdown_to_pdf/main.py provides render_markdown_to_pdf as its primary API",
+        "Both modules independently convert markdown to PDF; batch_processing/main.py calls markdown_to_pdf directly, bypassing format_conversion entirely",
+        "format_conversion also provides convert_markdown_to_html, mirroring markdown_to_pdf's pipeline"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "CMA-03",
+      "summary": "publish/utils.py is a cross-cutting megafile absorbing flattening, copying, reorganization, and publication concerns",
+      "confidence": "high",
+      "suggestion": "Split publish/utils.py into focused sub-modules: publish/flatten.py, publish/copy_assets.py, publish/reorganize.py. The publish/utils.py should re-export their public APIs if needed.",
+      "related_files": [
+        "src/publish/utils.py"
+      ],
+      "evidence": [
+        "publish/utils.py contains flatten_module, flatten_published, clean_published, copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests, reorganize_to_categories \u2014 9 distinct operations spanning 600+ lines",
+        "Comment blocks separate groups of functions: '# Flattening Functions (migrated from scripts/flatten_published.py)', '# Copy Functions (migrated from scripts/publish_all.py)', '# Category Reorganization Functions'",
+        "The migration comments confirm this file grew by absorbing scripts without decomposing them into focused modules"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "CMA-04",
+      "summary": "html_website couples to batch_processing logging infrastructure rather than a shared logging utility",
+      "confidence": "high",
+      "suggestion": "Move get_logger and setup_logging to a shared utility location (e.g., src/logging_utils.py or src/shared/logging.py) so all modules can import from a neutral location without coupling to batch_processing internals.",
+      "related_files": [
+        "src/html_website/main.py",
+        "src/batch_processing/logging_config.py"
+      ],
+      "evidence": [
+        "html_website/main.py line 7: `from ..batch_processing.logging_config import get_logger`",
+        "html_website is a Layer 3 sibling of batch_processing \u2014 one Layer 3 module importing internals from another creates a hidden lateral dependency",
+        "get_logger is a generic utility that has no semantic coupling to batch_processing's domain"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "CMA-05",
+      "summary": "batch_processing/utils.py imports from module_organization creating a lateral Layer 0 dependency",
+      "confidence": "medium",
+      "suggestion": "Either move matches_module_number to a shared utility accessible to both, or make the caller pass the matched modules list in rather than re-filtering inside generate_dry_run_report.",
+      "related_files": [
+        "src/batch_processing/utils.py",
+        "src/module_organization/utils.py"
+      ],
+      "evidence": [
+        "batch_processing/utils.py line 143 (inside generate_dry_run_report): `from src.module_organization.utils import matches_module_number`",
+        "Both modules are Layer 0 in the documented architecture; this cross-dependency means changes to module_organization affect batch_processing's utility layer",
+        "The import uses an absolute `src.` path rather than a relative import, suggesting it was added as an afterthought"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "high_level_elegance",
+      "identifier": "HLE-01",
+      "summary": "format_conversion is documented as a composition layer but bypassed entirely by the main pipeline, making its role invisible",
+      "confidence": "high",
+      "suggestion": "Commit to one of two options: (a) route all format conversions through format_conversion/main.py so it is the actual composition boundary, or (b) remove format_conversion as a distinct layer and merge its routing logic into batch_processing. Leaving both in place obscures ownership.",
+      "related_files": [
+        "src/format_conversion/main.py",
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "batch_processing/main.py calls render_markdown_to_pdf directly from markdown_to_pdf, generate_speech from text_to_speech, and convert_file from format_conversion only for DOCX and HTML \u2014 not as the single conversion boundary",
+        "format_conversion/main.py provides convert_file and batch_convert as its public API, suggesting it should be the single conversion entry point",
+        "The architecture doc (CLAUDE.md) places format_conversion at Layer 2 as a composition layer, but the Layer 3 batch_processing module talks to Layer 1 modules directly"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "architectural_change"
+    },
+    {
+      "dimension": "high_level_elegance",
+      "identifier": "HLE-02",
+      "summary": "canvas_integration.sync_module_structure is a public API stub that delegates entirely to upload_module_to_canvas with no distinct behavior",
+      "confidence": "high",
+      "suggestion": "Either implement distinct sync semantics in sync_module_structure (checking existing canvas state and only uploading changed files) or remove it from the public API until it has real behavior. The current stub actively misleads about module capability.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "Line 144-146: `# This is similar to upload_module_to_canvas but focuses on structure / # For now, we'll use the upload function / return upload_module_to_canvas(...)`",
+        "sync_module_structure is exported in __init__.py and __all__, making it part of the public contract",
+        "A developer calling sync_module_structure expecting sync semantics (idempotent, diff-based) will get full upload behavior instead"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "high_level_elegance",
+      "identifier": "HLE-03",
+      "summary": "log_style.py is a fourth file type in batch_processing that breaks the package's own main/utils/config structural convention",
+      "confidence": "high",
+      "suggestion": "Move FORMAT_EMOJI, STATUS_EMOJI, CONTENT_EMOJI, STEP_EMOJI constants to config.py and format_summary/format_module_result/section_header/step_header/validation_status functions to utils.py. Delete log_style.py to restore the uniform package structure.",
+      "related_files": [
+        "src/batch_processing/log_style.py"
+      ],
+      "evidence": [
+        "Every other package has exactly main.py, utils.py, config.py, __init__.py",
+        "batch_processing has an additional log_style.py containing emoji dicts and formatting helpers",
+        "log_style.py content (formatting constants + utility functions) maps squarely to either config.py (constants) or utils.py (helpers) \u2014 it is not a justified fourth type"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "high_level_elegance",
+      "identifier": "HLE-04",
+      "summary": "batch_processing/__init__.py re-exports the full internal API (18 symbols), eliminating package encapsulation",
+      "confidence": "medium",
+      "suggestion": "Reduce __init__.py to the functions that form the genuine public API consumed by scripts/ (process_course_modules, process_course_labs, process_course_syllabus, clear_all_outputs, generate_dry_run_report, get_courses_to_process, get_formats_to_process). Remove low-level worker functions like process_module_to_pdf, process_module_to_audio, process_module_to_text from the re-export surface.",
+      "related_files": [
+        "src/batch_processing/__init__.py"
+      ],
+      "evidence": [
+        "__init__.py re-exports all 18 public and semi-public functions from main.py and utils.py",
+        "This means any caller of batch_processing can reach internal helpers like ensure_output_directory-equivalents through the package surface",
+        "By contrast, html_website exposes 1 symbol and canvas_integration exposes 3 \u2014 the inconsistency makes batch_processing's intended public contract ambiguous"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-01",
+      "summary": "generate_module_renderings.py uses print() while generate_all_outputs.py uses the logger \u2014 sibling scripts have inconsistent output strategies",
+      "confidence": "high",
+      "suggestion": "Adopt the logger pattern from generate_all_outputs.py in generate_module_renderings.py for consistency. Replace print() calls with logger.info() / logger.error() using the same setup_logging() call.",
+      "related_files": [
+        "scripts/generate_module_renderings.py",
+        "scripts/generate_all_outputs.py"
+      ],
+      "evidence": [
+        "generate_module_renderings.py lines 74, 86, 93-113: uses print() for all user output",
+        "generate_all_outputs.py uses setup_logging() and logger.info/warning/error throughout",
+        "Both scripts serve the same category of use case (generate content for a course/module) but produce output in incompatible ways"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-02",
+      "summary": "html_website/main.py defines create_section as a nested function instead of extracting it to utils.py per the established module convention",
+      "confidence": "high",
+      "suggestion": "Move create_section to html_website/utils.py as a module-level function. Import it in main.py. This follows the codebase convention and makes the helper independently testable.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "Lines 57-67: `def create_section(id, title, content):` is defined inside `generate_module_website`",
+        "Every other module in the codebase extracts helpers to utils.py \u2014 none uses nested function definitions for reusable HTML generation logic",
+        "create_section is a pure function with no closure dependency; it could be a top-level utils.py function with no change to behavior"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-03",
+      "summary": "canvas_integration/utils.py defines the mime_types lookup dict inside get_file_mime_type instead of config.py, breaking the config-for-constants convention",
+      "confidence": "high",
+      "suggestion": "Move the mime_types dict to canvas_integration/config.py as MIME_TYPE_MAP and reference it from get_file_mime_type.",
+      "related_files": [
+        "src/canvas_integration/utils.py",
+        "src/canvas_integration/config.py"
+      ],
+      "evidence": [
+        "utils.py lines 90-97: `mime_types = {'.pdf': ..., '.md': ..., ...}` is defined inside the function body",
+        "All other lookup tables in the codebase (FORMAT_EMOJI in batch_processing/log_style.py, SUPPORTED_CONVERSIONS in format_conversion/config.py) are module-level constants",
+        "Placing a configuration dict inside a function means it is re-created on every call and cannot be overridden or reused by other functions"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "CO-04",
+      "summary": "publish/utils.py uses section-divider comment blocks not found in any other utils.py, creating a local organizational style island",
+      "confidence": "medium",
+      "suggestion": "The section dividers are a symptom of the file being too large (600+ lines). The proper fix is splitting into focused sub-modules (flatten.py, copy_assets.py, reorganize.py) as described in CMA-03. If the split is not done immediately, the dividers should at minimum be removed in favor of grouping by convention, or a comment noting the planned split.",
+      "related_files": [
+        "src/publish/utils.py"
+      ],
+      "evidence": [
+        "Lines 83-85: `# =============================================================================\\n# Flattening Functions (migrated from ...)\\n# =============================================================================`",
+        "Lines 179-181: `# Copy Functions (migrated from ...)`",
+        "Lines 475-477: `# Category Reorganization Functions`",
+        "No other utils.py file in the codebase uses this section-divider convention; publish/utils.py is unique"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-01",
+      "summary": "html_website/main.py silently swallows JSON parse errors for questions file with bare `except Exception: pass`",
+      "confidence": "high",
+      "suggestion": "Replace `except Exception: pass` with `except (FileNotFoundError, json.JSONDecodeError) as e: logger.warning(f'Could not load questions for {module_name}: {e}')`. This preserves the skip-section behavior while making the failure visible in logs.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "Lines 127-187: the entire questions loading block is wrapped in `try: ... except Exception: pass`",
+        "If questions.json is malformed or parse_questions_json raises, the section is silently omitted from the generated website",
+        "No log message, no return value annotation, no way for the caller to know questions were not rendered"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-02",
+      "summary": "process_module_to_pdf, process_module_to_audio, process_module_to_text in batch_processing use print() for errors while process_module_by_type uses logger.error \u2014 inconsistent error output within the same file",
+      "confidence": "high",
+      "suggestion": "Replace all print() error outputs in batch_processing/main.py with logger.error(). Add exc_info=True to preserve the stack trace. This aligns with the pattern already established in process_module_by_type.",
+      "related_files": [
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "process_module_to_pdf line 70: `print(f'Error converting {md_file} to PDF: {e}')`",
+        "process_module_to_audio line 135: `print(f'Error converting {text_file} to audio: {e}')`",
+        "process_module_to_text line 189: `print(f'Error transcribing {audio_file}: {e}')`",
+        "process_module_by_type line 391: `logger.error(error_msg, exc_info=True)` \u2014 includes stack trace",
+        "The older functions use print(); the newer function uses logger \u2014 both exist in the same module"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-03",
+      "summary": "publish/utils.py copy_directory_contents logs errors but returns a potentially low count with no indication of partial failure to callers",
+      "confidence": "medium",
+      "suggestion": "Return a tuple (copied_count, failed_count) or a dataclass with both counts, so callers can decide whether to warn or abort on partial failure. Alternatively, accumulate failed paths and raise after the loop if any failures occurred.",
+      "related_files": [
+        "src/publish/utils.py"
+      ],
+      "evidence": [
+        "Lines 74-78: `except Exception as e: logger.error(f'Failed to copy {item}: {e}')` then continues the loop",
+        "The function returns `count` \u2014 callers receive a count that may be less than expected but have no way to distinguish 'all files copied' from 'some files failed'",
+        "The copy functions (copy_labs_and_dashboards, copy_slides, etc.) log success counts via logger.info but do not surface partial-failure information to the publish pipeline"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-04",
+      "summary": "canvas_integration uses a Result-accumulator dict error strategy while all other modules use raise-or-print \u2014 strategy is isolated to one module without documentation",
+      "confidence": "medium",
+      "suggestion": "Document the Result-accumulator contract explicitly in the docstring: state that callers MUST check results['failed_files'] and results['errors']. Consider whether partial-upload-as-success is the intended contract, or whether any failed file should cause the function to raise after completing all attempts.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "upload_module_to_canvas returns `{'uploaded_files': [...], 'failed_files': [...], 'errors': [...]}` \u2014 callers must check results['failed_files'] to detect failures",
+        "No other module uses this Result-accumulator pattern \u2014 all other batch functions either raise or print-and-continue",
+        "A developer calling upload_module_to_canvas without checking 'failed_files' will silently accept partial uploads as success"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-05",
+      "summary": "file_validation/main.py check_file_sizes silently skips unreadable files with no log",
+      "confidence": "medium",
+      "suggestion": "Change `except OSError: continue` to `except OSError as e: oversized_files.append(f'{file_path.relative_to(module_dir)} (unreadable: {e})')` or log a warning. The caller should know that some files could not be assessed.",
+      "related_files": [
+        "src/file_validation/main.py"
+      ],
+      "evidence": [
+        "Lines 370-374: `except OSError: continue` \u2014 files that cannot be stat'd are skipped with no message",
+        "The function is a validation utility \u2014 silently excluding unreadable files from a size check means the validation result may be incomplete without the caller knowing",
+        "A file that cannot be read is itself a validation concern that should be surfaced"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-01",
+      "summary": "generate_module_media is a misleading name \u2014 the function generates PDF, audio, and text transcriptions, not 'media' in the conventional sense",
+      "confidence": "medium",
+      "suggestion": "Rename to generate_module_outputs or render_module_all_formats to communicate that it orchestrates all format outputs, not just media.",
+      "related_files": [
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "generate_module_media returns pdf_files, audio_files, text_files",
+        "'media' typically connotes audio/video in modern usage; PDF and text transcription are not 'media'",
+        "The function is also rarely called compared to process_module_by_type \u2014 it may be a legacy entry point"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-02",
+      "summary": "configure_voice_settings and configure_pdf_options imply a stateful setter but are pure factories returning new dicts",
+      "confidence": "medium",
+      "suggestion": "Rename configure_voice_settings to build_voice_settings and configure_pdf_options to build_pdf_options to signal their pure-factory nature.",
+      "related_files": [
+        "src/text_to_speech/main.py",
+        "src/markdown_to_pdf/main.py"
+      ],
+      "evidence": [
+        "configure_voice_settings (text_to_speech/main.py line 102): creates a copy of DEFAULT_VOICE_SETTINGS, applies overrides, returns it \u2014 does not set any state",
+        "configure_pdf_options (markdown_to_pdf/main.py line 93): creates a copy of DEFAULT_PDF_OPTIONS, applies overrides, returns it \u2014 does not set any state",
+        "Python convention: 'configure' typically implies a side-effectful setup; pure factories use 'build_', 'make_', or 'create_'"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-03",
+      "summary": "ensure_output_directory (batch_processing, text_to_speech, markdown_to_pdf) vs ensure_directory_exists (module_organization) \u2014 vocabulary divergence for the same operation",
+      "confidence": "high",
+      "suggestion": "Extract a single ensure_directory_exists (or ensure_output_directory) to a shared utility and import it everywhere. Standardize on one name. The duplication is a cross-module convention issue as much as a naming issue.",
+      "related_files": [
+        "src/batch_processing/utils.py",
+        "src/text_to_speech/utils.py",
+        "src/module_organization/utils.py",
+        "src/html_website/utils.py"
+      ],
+      "evidence": [
+        "batch_processing/utils.py: ensure_output_directory(output_dir: Path) \u2014 calls mkdir(parents=True, exist_ok=True)",
+        "text_to_speech/utils.py: ensure_output_directory(output_path: Path) \u2014 calls output_path.parent.mkdir(parents=True, exist_ok=True)",
+        "html_website/utils.py: ensure_output_directory(directory: Path) \u2014 calls directory.mkdir(parents=True, exist_ok=True)",
+        "module_organization/utils.py: ensure_directory_exists(directory: Path) \u2014 calls directory.mkdir(parents=True, exist_ok=True)",
+        "Four separate implementations of the identical operation under two different names"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-04",
+      "summary": "process_module_by_type uses 'type' generically when the domain term is 'curriculum element type'",
+      "confidence": "low",
+      "suggestion": "Rename to render_module_by_curriculum_type or process_module_content_by_type to expose the domain concept in the name.",
+      "related_files": [
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "The function groups markdown files by curriculum element type (assignments, lab-protocols, lecture-content, study-guides) and renders them to multiple formats",
+        "'by_type' in the function name does not distinguish this from other possible type-based processing",
+        "The internal variable type_mapping and the docstring use 'curriculum element type' \u2014 the domain vocabulary is present in the body but absent from the name"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "sync_module_pure_delegation",
+      "summary": "sync_module_structure() is a pure delegation to upload_module_to_canvas() with no added policy",
+      "confidence": "high",
+      "suggestion": "Remove sync_module_structure() and expose upload_module_to_canvas() directly, or implement distinct sync semantics (idempotent upsert vs replace) that justify a separate name.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "Lines 123-146: function validates path, then calls return upload_module_to_canvas(module_path, canvas_course_id, api_key, domain) with a comment 'For now, we'll use the upload function'"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "format_conversion_pure_forward_wrappers",
+      "summary": "convert_markdown_to_pdf() and convert_audio_to_text() are pure argument-forwarding wrappers",
+      "confidence": "high",
+      "suggestion": "Either inline these at call sites in format_conversion/main.py or add actual boundary policy (error wrapping, format validation) to justify the wrapper layer.",
+      "related_files": [
+        "src/format_conversion/utils.py"
+      ],
+      "evidence": [
+        "convert_markdown_to_pdf(): entire body is render_markdown_to_pdf(str(input_path), str(output_path)) \u2014 only adds string coercions, no error handling or config",
+        "convert_audio_to_text(): entire body is transcribe_audio(str(input_path), str(output_path)) \u2014 same pattern"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "ensure_output_directory_duplication",
+      "summary": "ensure_output_directory() duplicated as identical one-liner across at least five modules",
+      "confidence": "high",
+      "suggestion": "Consolidate into one shared utility (e.g., src/publish/utils.py already has clean_directory \u2014 add ensure_output_directory there) and have modules import the shared version.",
+      "related_files": [
+        "src/batch_processing/utils.py",
+        "src/lab_manual/utils.py",
+        "src/html_website/utils.py",
+        "src/markdown_to_pdf/utils.py",
+        "src/text_to_speech/utils.py",
+        "src/format_conversion/utils.py"
+      ],
+      "evidence": [
+        "Each module defines ensure_output_directory() with body: output_path.parent.mkdir(parents=True, exist_ok=True) or directory.mkdir(parents=True, exist_ok=True)",
+        "No module imports this utility from a shared location"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "read_markdown_file_triplication",
+      "summary": "read_markdown_file() defined independently in three separate modules with near-identical logic",
+      "confidence": "high",
+      "suggestion": "Place read_markdown_file() in one module (markdown_to_pdf/utils.py is already used cross-module by format_conversion) and have lab_manual and html_website import from there.",
+      "related_files": [
+        "src/markdown_to_pdf/utils.py",
+        "src/lab_manual/utils.py",
+        "src/html_website/utils.py"
+      ],
+      "evidence": [
+        "All three check file_path.exists(), raise FileNotFoundError, then return file_path.read_text(encoding='utf-8')",
+        "html_website/utils.py imports markdown independently without reusing lab_manual or markdown_to_pdf utilities"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "file_validation_one_liner_wrapper_chain",
+      "summary": "Five single-dispatch validator functions in file_validation/utils.py each wrap matches_pattern() with a config constant",
+      "confidence": "high",
+      "suggestion": "Collapse the chain: expose a single validate_file_name(file_name, file_type) function or let callers call config.PATTERN.match() directly; at minimum remove the matches_pattern() intermediate.",
+      "related_files": [
+        "src/file_validation/utils.py"
+      ],
+      "evidence": [
+        "validate_assignment_name() body: return matches_pattern(file_name, config.ASSIGNMENT_PATTERN)",
+        "validate_lecture_name(), validate_lab_name(), validate_study_guide_name(), validate_quiz_name() follow identical pattern",
+        "matches_pattern() itself is a one-liner: return bool(pattern.match(name))"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "dual_output_path_functions",
+      "summary": "format_conversion/utils.py defines two functions for the same semantic operation with different type signatures",
+      "confidence": "high",
+      "suggestion": "Remove get_conversion_path() and standardize on get_output_path() with Path types; callers needing strings can call str() at the boundary.",
+      "related_files": [
+        "src/format_conversion/utils.py"
+      ],
+      "evidence": [
+        "get_output_path(input_path: Path, output_format: str, output_dir: Optional[Path]) -> Path",
+        "get_conversion_path(input_path: str, output_format: str) -> str \u2014 same logic, string-typed"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "dependency_health",
+      "identifier": "duplicate_markdown_libraries",
+      "summary": "Both 'markdown' and 'markdown2' declared as runtime dependencies; markdown2 appears unused",
+      "confidence": "high",
+      "suggestion": "Remove 'markdown2>=2.4.0' from pyproject.toml dependencies after verifying no import exists in the codebase; keep only 'markdown>=3.5.0'.",
+      "related_files": [
+        "pyproject.toml",
+        "src/lab_manual/utils.py",
+        "src/html_website/utils.py",
+        "src/markdown_to_pdf/utils.py"
+      ],
+      "evidence": [
+        "pyproject.toml lines 8 and 16: 'markdown>=3.5.0' and 'markdown2>=2.4.0' both listed under [project] dependencies",
+        "All Markdown conversion code imports 'import markdown' and uses markdown.Markdown(); no 'import markdown2' found in any src/ file"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "dependency_health",
+      "identifier": "undeclared_system_dependency_say_ffmpeg",
+      "summary": "text_to_speech pipeline requires macOS 'say' and 'ffmpeg' system binaries not declared in pyproject.toml",
+      "confidence": "high",
+      "suggestion": "Add an explicit system-requirements section to README/CLAUDE.md noting ffmpeg and macOS 'say' are required, and/or add a startup check that raises a descriptive error if ffmpeg is absent (similar to the WeasyPrint brew note in CLAUDE.md).",
+      "related_files": [
+        "src/text_to_speech/utils.py"
+      ],
+      "evidence": [
+        "text_to_speech/utils.py lines 92, 96-102: subprocess.run(['say', ...]) and subprocess.run(['ffmpeg', ...])",
+        "pyproject.toml has no mention of ffmpeg, say, or any OS-level tooling requirement"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "dependency_health",
+      "identifier": "unused_import_docx_inches",
+      "summary": "docx.shared.Inches imported in convert_markdown_to_docx() but never used",
+      "confidence": "high",
+      "suggestion": "Remove the unused 'Inches' import from the local import block in convert_markdown_to_docx().",
+      "related_files": [
+        "src/format_conversion/utils.py"
+      ],
+      "evidence": [
+        "Line 157: 'from docx.shared import Inches'",
+        "No reference to Inches anywhere in the function body below"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "low_level_elegance",
+      "identifier": "website_monolith_400_line_function",
+      "summary": "generate_module_website() is a 400-line function accumulating HTML state through mutable string concatenation with no intermediate helpers",
+      "confidence": "high",
+      "suggestion": "Extract at minimum: render_questions_section(questions), render_assignments_section(assignments_dir), render_curriculum_element(element_type, info, module_dir, website_output), and build_sidebar_html(sidebar_links) as separate named functions.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "content_sections and sidebar_links are lists accumulated via .append() through the entire function body",
+        "inner_html and q_html are mutable strings built with += across 60+ line blocks",
+        "No sub-functions extracted for section rendering, question rendering, or sidebar construction"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "low_level_elegance",
+      "identifier": "javascript_embedded_in_python_string",
+      "summary": "185-line JavaScript block embedded as raw string literal inside a Python function body",
+      "confidence": "high",
+      "suggestion": "Move JavaScript to a separate .js file loaded via config or a static asset, or at minimum extract it to html_website/config.py as a module-level constant alongside the existing DEFAULT_CSS and HTML_TEMPLATE patterns.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "Lines 196-381: javascript = \"\"\"\\n    // Sidebar & Mobile Toggle ... \"\"\" spanning 185 lines inside generate_module_website()",
+        "The JS block cannot be linted, formatted, or tested independently"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "low_level_elegance",
+      "identifier": "matching_question_always_true_placeholder",
+      "summary": "Matching question validation always returns isCorrect=true with a comment acknowledging it is a placeholder",
+      "confidence": "high",
+      "suggestion": "Either implement matching validation or add a JavaScript console.warn and visually indicate to users that matching scoring is unavailable \u2014 do not silently mark all matching answers as correct.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "Lines 351-353: 'elif(type === \\'matching\\') { isCorrect = true; // Placeholder for complex matching logic re-implementation if needed }'",
+        "Comment explicitly documents the incompleteness but logic is shipped as-is"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "low_level_elegance",
+      "identifier": "nested_class_in_function_body",
+      "summary": "TextExtractor HTMLParser subclass defined inside convert_markdown_to_docx() function body",
+      "confidence": "high",
+      "suggestion": "Lift TextExtractor to module level in format_conversion/utils.py so it can be independently tested and is consistent with the module's other helper definitions.",
+      "related_files": [
+        "src/format_conversion/utils.py"
+      ],
+      "evidence": [
+        "Lines 170-185: class TextExtractor(HTMLParser): defined inside convert_markdown_to_docx()",
+        "Inconsistent with all other module patterns; cannot be independently tested"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "low_level_elegance",
+      "identifier": "hash_for_html_ids_non_deterministic",
+      "summary": "create_feasibility_html() uses hash(option) % 10000 to generate HTML element IDs",
+      "confidence": "high",
+      "suggestion": "Replace with a deterministic id strategy: enumerate() index (e.g., f'opt_{idx}') or a slugified option text.",
+      "related_files": [
+        "src/lab_manual/utils.py"
+      ],
+      "evidence": [
+        "Lines 378-379: id='opt_{hash(option) % 10000}' used for both checkbox id and label for attributes",
+        "Python's hash() is randomized across runs (PYTHONHASHSEED); collisions possible with 4-digit space"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "low_level_elegance",
+      "identifier": "function_level_import_dry_run_report",
+      "summary": "generate_dry_run_report() imports matches_module_number at function body level inconsistent with module-level imports",
+      "confidence": "high",
+      "suggestion": "Move the import to module level; if circular import is the concern, restructure to avoid it rather than deferring the import.",
+      "related_files": [
+        "src/batch_processing/utils.py"
+      ],
+      "evidence": [
+        "Line 143: 'from src.module_organization.utils import matches_module_number' inside function body",
+        "All other imports in batch_processing/utils.py are at module level"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "mid_level_elegance",
+      "identifier": "inconsistent_result_dict_schemas",
+      "summary": "process_* functions at the batch_processing boundary return inconsistently shaped dicts requiring callers to know internal structure",
+      "confidence": "high",
+      "suggestion": "Define a ProcessResult dataclass or TypedDict with consistent fields (files_generated: int, errors: List[str], processed: bool) and have all process_* functions return it; remove the need for callers to navigate nested dict layouts.",
+      "related_files": [
+        "scripts/generate_all_outputs.py",
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "generate_all_outputs.py line 142: sum(m['outputs']['summary'].values()) \u2014 nested two levels for modules",
+        "Line 148: sum(syl['results']['summary'].values()) \u2014 different nesting for syllabus",
+        "Lines 154, 161, 167: len(labs.get('files', [])), len(practice_tests.get('files', [])), len(exams.get('files', [])) \u2014 flat list count for labs/practice/exams",
+        "No common result type or protocol is shared across these functions"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "mid_level_elegance",
+      "identifier": "canvas_validation_dict_boundary_translation",
+      "summary": "canvas_integration/main.py inspects raw validation dict from file_validation inline instead of translating at one boundary point",
+      "confidence": "medium",
+      "suggestion": "Create a single translation function (e.g., raise_if_invalid(validation_result)) in canvas_integration or file_validation that converts the dict to a typed exception \u2014 callers should not need to know which dict keys to inspect.",
+      "related_files": [
+        "src/canvas_integration/main.py",
+        "src/file_validation/main.py"
+      ],
+      "evidence": [
+        "upload_module_to_canvas() lines 43-45: validation = validate_module_files(module_path); if not validation['valid']: raise ValueError(...)",
+        "validate_upload_readiness() lines 101-112: inspects validation.get('missing_files'), validation.get('missing_directories'), validation.get('naming_violations') with separate conditionals"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "mid_level_elegance",
+      "identifier": "string_typed_path_api_boundary",
+      "summary": "html_website/main.py and batch_processing functions accept str paths at public API boundary requiring immediate internal conversion to Path",
+      "confidence": "medium",
+      "suggestion": "Accept Path at the public API boundary (Union[str, Path] with normalization is acceptable) to make the intended type explicit and eliminate the conversion boilerplate at every call site.",
+      "related_files": [
+        "src/html_website/main.py",
+        "src/batch_processing/main.py",
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "generate_module_website(module_path: str, output_dir: Optional[str]) immediately does Path(module_path)",
+        "upload_module_to_canvas(module_path: str, ...) immediately does Path(module_path)",
+        "process_module_to_pdf(module_path: str, output_dir: str) immediately does Path(module_path)"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "test_strategy",
+      "identifier": "publishing_pipeline_no_integration_tests",
+      "summary": "The 9-stage publishing pipeline (generate_all_outputs, publish_all) has no integration tests",
+      "confidence": "high",
+      "suggestion": "Add an integration test that runs process_course_modules + process_course_syllabus against a minimal fixture course directory and verifies output file counts and error-list emptiness; add a dry-run integration test for the full pipeline using --dry-run mode.",
+      "related_files": [
+        "scripts/generate_all_outputs.py",
+        "scripts/publish_all.py",
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "No test file exists for scripts/generate_all_outputs.py or scripts/publish_all.py",
+        "test_batch_processing_orchestration.py exists but tests individual functions; no test exercises the full course processing loop (process_course_modules + process_course_syllabus + process_course_labs together)",
+        "The 9-stage pipeline configuration in publish.toml has no test coverage for stage sequencing"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "test_strategy",
+      "identifier": "result_dict_schema_not_tested",
+      "summary": "The inconsistent result dict schemas returned by process_* functions are not covered by contract tests",
+      "confidence": "high",
+      "suggestion": "Add tests that assert the exact schema of each process_* return value (required keys, nested shapes); this acts as a contract test protecting the orchestration layer.",
+      "related_files": [
+        "src/batch_processing/main.py",
+        "tests/test_batch_processing_main.py",
+        "tests/test_batch_processing_orchestration.py"
+      ],
+      "evidence": [
+        "process_course_modules() returns dict with 'modules' key; process_course_labs() returns dict with 'files' key; process_course_syllabus() returns dict with 'results.summary' \u2014 none of these schemas are verified in tests",
+        "generate_all_outputs.py navigates these schemas at runtime with ad-hoc .get() calls; a schema change would be a silent runtime failure"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "test_strategy",
+      "identifier": "tts_subprocess_path_untested",
+      "summary": "The macOS 'say' + ffmpeg TTS path in text_to_speech/utils.py has no test coverage",
+      "confidence": "medium",
+      "suggestion": "Add a test that verifies text_to_speech_audio() raises OSError with a meaningful message when 'say' or 'ffmpeg' is absent, using @pytest.mark.skipif(shutil.which('ffmpeg') is None) to gate on environment.",
+      "related_files": [
+        "src/text_to_speech/utils.py",
+        "tests/test_text_to_speech_main.py"
+      ],
+      "evidence": [
+        "text_to_speech/utils.py:text_to_speech_audio() uses subprocess.run(['say', ...]) and subprocess.run(['ffmpeg', ...])",
+        "test_text_to_speech_main.py marks tests with @pytest.mark.requires_internet (original gTTS assumption); the subprocess path does not require internet but is not tested",
+        "Failure mode for missing ffmpeg binary is an opaque OSError with CalledProcessError"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "test_strategy",
+      "identifier": "html_website_js_logic_untested",
+      "summary": "Embedded JavaScript in generate_module_website() \u2014 including the always-true matching placeholder \u2014 has no test coverage",
+      "confidence": "medium",
+      "suggestion": "Add an HTML output test that parses the generated index.html and verifies presence of key JS function names (checkQuestion, selectMultipleChoice); separately, fix the matching validation logic or mark matching questions as unscored with a visible UI indicator.",
+      "related_files": [
+        "src/html_website/main.py",
+        "tests/test_html_website_features.py"
+      ],
+      "evidence": [
+        "The 185-line JavaScript block is written into the HTML output but no test asserts its presence or correctness",
+        "The matching question always-correct placeholder (isCorrect = true) is a logic defect that cannot be caught by Python tests since it is embedded JavaScript"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "sync_alias_param_rename",
+      "summary": "sync_module_structure is a documented public function that only forwards to upload_module_to_canvas with a renamed parameter",
+      "confidence": "high",
+      "suggestion": "Remove sync_module_structure from the public API and __all__, or give it a genuine distinct contract (e.g., diff-only sync, idempotent check before upload). If kept for backward compatibility, mark it deprecated and point to upload_module_to_canvas.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "Lines 123-146: sync_module_structure(module_path, canvas_course_id, api_key, domain) has a single-line body: return upload_module_to_canvas(module_path, canvas_course_id, api_key, domain)",
+        "The parameter is renamed from course_id (upload) to canvas_course_id (sync) with no functional distinction",
+        "Both are exported via __init__.py __all__, presenting two names for one operation"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "website_arity_deviation",
+      "summary": "process_module_website takes one path argument while all sibling process_module_to_* functions take two (module_path + output_dir)",
+      "confidence": "high",
+      "suggestion": "Add an optional output_dir parameter to process_module_website to match its siblings: process_module_website(module_path: str, output_dir: Optional[str] = None). Default behavior can remain unchanged.",
+      "related_files": [
+        "src/batch_processing/main.py",
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "process_module_to_pdf(module_path: str, output_dir: str) \u2014 two required args",
+        "process_module_to_audio(module_path: str, output_dir: str) \u2014 two required args",
+        "process_module_website(module_path: str) \u2014 one required arg; derives output_dir internally as module_dir / 'output' / 'website'",
+        "Callers cannot override output location without going through generate_module_website directly"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "missing_error_contract_orchestrators",
+      "summary": "process_module_by_type and process_course_* family functions lack Raises documentation despite calling converters that raise ValueError/OSError",
+      "confidence": "medium",
+      "suggestion": "Add Raises sections to orchestration function docstrings or convert error propagation to a documented return value (e.g., include an 'errors' key in result dicts consistently), making the error contract explicit at all layers.",
+      "related_files": [
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "process_module_to_pdf docstring declares: Raises: ValueError, OSError",
+        "process_module_by_type docstring has no Raises section, but calls process_module_to_pdf and other converters",
+        "process_course_modules, process_course_labs, process_course_syllabus all lack Raises sections"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "setup_logging_ordering_hidden",
+      "summary": "get_logger() silently returns an unconfigured logger if called before setup_logging(), with no documented ordering requirement",
+      "confidence": "medium",
+      "suggestion": "Document the ordering requirement explicitly in get_logger()'s docstring, or make get_logger() lazily call setup_logging() with defaults if no handlers are configured (check logger.handlers before returning).",
+      "related_files": [
+        "src/batch_processing/logging_config.py"
+      ],
+      "evidence": [
+        "get_logger() calls logging.getLogger(name) with no guard checking whether setup_logging() has been called first",
+        "Multiple src/*.py modules call get_logger() at import time (module-level logger = get_logger()), but setup_logging() is only called in scripts that happen to import those modules",
+        "No docstring warning in get_logger() that a prior call to setup_logging() is required for configured output"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "ai_generated_debt",
+      "identifier": "slides_loop_verbatim_dup",
+      "summary": "Full slides and notes slides processing loops in legacy_import/main.py are verbatim duplicates (~80 lines each)",
+      "confidence": "high",
+      "suggestion": "Extract a private _process_slide_set(source_dir, slide_type, chapter_mapping, course_root, results, dry_run) helper that takes the slide type as a parameter and handles both cases. Call it twice from process_slides().",
+      "related_files": [
+        "src/legacy_import/main.py"
+      ],
+      "evidence": [
+        "process_slides() contains two loops (lines ~190-260 for full slides, lines ~265-340 for notes slides) with identical try/except structure, result dict updates, dry_run branching, and chapter_mapping lookups",
+        "The only differences are the source directory variable, glob pattern, and output filename suffix (-slides-full.pdf vs -slides-notes.pdf)"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "ai_generated_debt",
+      "identifier": "module_not_found_block_copied",
+      "summary": "Identical 'module not found' diagnostic block copied between generate_module_renderings.py and generate_module_website.py",
+      "confidence": "high",
+      "suggestion": "Extract a shared print_available_modules(course_path, course_name, module_num) helper function in a scripts/utils.py or move into src/module_organization \u2014 call it from both scripts.",
+      "related_files": [
+        "scripts/generate_module_renderings.py",
+        "scripts/generate_module_website.py"
+      ],
+      "evidence": [
+        "Both scripts contain identical 9-line block: if module_path is None: print error, iterate course_dir.iterdir() for module directories, print each one, return 1",
+        "The block is character-for-character identical except for whitespace variations"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "ai_generated_debt",
+      "identifier": "silent_exception_swallow_html",
+      "summary": "Silent bare except in html_website/main.py swallows question-parsing errors with no logging",
+      "confidence": "high",
+      "suggestion": "Replace `except Exception: pass` with `except Exception as e: logger.warning(f'Could not parse questions from {questions_file}: {e}')` to preserve observability without failing the page generation.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "Line 186: `except Exception: pass` \u2014 question parsing failure is silently ignored",
+        "No logger.warning or logger.debug call; the section simply produces no output with no diagnostic"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "ai_generated_debt",
+      "identifier": "trivial_function_docstring_bloat",
+      "summary": "ensure_output_directory() has a 4-line Args/Returns docstring for a 1-line function body",
+      "confidence": "high",
+      "suggestion": "Collapse to a one-line docstring: `\"\"\"Create output_dir and all parents if they do not exist.\"\"\"` \u2014 the type annotation and name are sufficient.",
+      "related_files": [
+        "src/batch_processing/utils.py"
+      ],
+      "evidence": [
+        "Function body: `output_dir.mkdir(parents=True, exist_ok=True)` \u2014 one line",
+        "Docstring is 4 lines with Args section for a parameter whose name and type already document intent"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "ai_generated_debt",
+      "identifier": "find_files_structural_dup",
+      "summary": "find_markdown_files() and find_audio_files() are structurally identical functions differing only in pattern list",
+      "confidence": "high",
+      "suggestion": "Extract a private _find_files_by_patterns(directory: Path, patterns: List[str]) -> List[Path] helper and call it from both public functions with their respective pattern lists.",
+      "related_files": [
+        "src/batch_processing/utils.py"
+      ],
+      "evidence": [
+        "Both functions accumulate into a list via `for pattern in PATTERNS: list.extend(directory.rglob(pattern))`, then sort and return",
+        "find_markdown_files uses MARKDOWN_PATTERNS, find_audio_files uses AUDIO_PATTERNS \u2014 the body is otherwise identical"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "ai_generated_debt",
+      "identifier": "template_content_in_function_body",
+      "summary": "create_questions_directory() in legacy_import/utils.py embeds 100+ lines of README.md and AGENTS.md template strings in function body",
+      "confidence": "medium",
+      "suggestion": "Move template strings to module-level constants (README_TEMPLATE, AGENTS_TEMPLATE) or to external template files. The function should only handle file creation logic.",
+      "related_files": [
+        "src/legacy_import/utils.py"
+      ],
+      "evidence": [
+        "Lines 126-264: two multi-section f-string template literals for README.md and AGENTS.md content embedded directly inside a utility function",
+        "The templates dominate the function making logic hard to find; content includes full JSON examples and section headers that could be stored as template files or module-level constants"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "incomplete_migration",
+      "identifier": "legacy_import_stranded_module",
+      "summary": "src/legacy_import is a completed one-time migration tool that remains as permanent production code with full module infrastructure",
+      "confidence": "medium",
+      "suggestion": "If the one-time migration is complete, archive or remove the legacy_import module and import_legacy_materials.py, or move them to a tools/migration/ directory clearly marked as historical. Add a comment documenting why it is retained if it serves a repeatable purpose.",
+      "related_files": [
+        "src/legacy_import/main.py",
+        "src/legacy_import/utils.py",
+        "src/legacy_import/config.py",
+        "scripts/import_legacy_materials.py"
+      ],
+      "evidence": [
+        "The entire module exists to import from bio_1_2025/ \u2014 a source directory that is outside the normal course_development/ tree and was presumably a one-time conversion",
+        "import_legacy_materials.py hardcodes paths into repo_root / 'bio_1_2025' / 'files' / 'Chapter Questions'",
+        "config.py maps 17 chapters to 17 modules (1:1), a one-time operation, not an ongoing workflow",
+        "No other production code in the pipeline calls legacy_import functions"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "incomplete_migration",
+      "identifier": "sync_module_never_implemented",
+      "summary": "sync_module_structure() is a public API function that was never implemented beyond a stub forwarding to upload_module_to_canvas()",
+      "confidence": "high",
+      "suggestion": "Either implement sync_module_structure with distinct sync logic (diff-based, idempotent), or remove it from the public API and __all__. The 'For now' comment should not remain in production code without a tracking issue.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "The function comment says: 'This is similar to upload_module_to_canvas but focuses on structure / For now, we'll use the upload function'",
+        "The 'For now' comment indicates a migration placeholder that was never replaced with real implementation",
+        "The function is exported in __all__ as a stable public API"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "package_organization",
+      "identifier": "batch_processing_hub_overload",
+      "summary": "batch_processing re-exports 15+ symbols from downstream converters, acting as a God package that collapses architectural layers",
+      "confidence": "high",
+      "suggestion": "Staged reorg: (1) Move per-format orchestration functions (process_module_to_pdf, _to_audio, _to_text) to their respective packages (markdown_to_pdf, text_to_speech, format_conversion) as module-level entry points. (2) Keep batch_processing as a pure multi-format orchestrator that composes those per-format calls. (3) Run `grep -r 'from src.batch_processing' scripts/ tests/ src/` to find all callers and update imports. Validate with `uv run pytest tests/ -v`.",
+      "related_files": [
+        "src/batch_processing/__init__.py",
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "__init__.py re-exports: process_module_to_pdf, process_module_to_audio, process_module_to_text, process_module_by_type, process_module_website, process_syllabus, process_course_modules, process_course_syllabus, process_course_labs, process_course_exams, process_course_practice_tests, generate_module_media, clear_all_outputs \u2014 13 public functions",
+        "Scripts and callers import `from src.batch_processing.main import process_course_modules` rather than from the specific converter packages, making batch_processing the primary coupling point for all operations",
+        "batch_processing/main.py at ~600 lines handles PDF, audio, text, website, syllabus, lab, exam, and practice test processing \u2014 spanning the responsibilities of 6+ downstream packages"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "package_organization",
+      "identifier": "publish_utils_overloaded",
+      "summary": "publish/utils.py is a 593-line multi-concern file mixing flatten, copy, reorganize, and clean operations across 7 distinct operation families",
+      "confidence": "medium",
+      "suggestion": "Split publish/utils.py into focused sub-modules: publish/copy_ops.py (copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests), publish/flatten.py (flatten_module, flatten_published), publish/reorganize.py (reorganize_to_categories). Keep publish/utils.py for base utilities (get_course_config, clean_directory, copy_directory_contents, clean_published). Update publish/__init__.py re-exports accordingly. Validate with `grep -r 'from src.publish' scripts/ src/` to update callers.",
+      "related_files": [
+        "src/publish/utils.py"
+      ],
+      "evidence": [
+        "File contains: get_course_config, clean_directory, copy_directory_contents (base utilities), flatten_module, flatten_published (flattening), copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests (copy operations), reorganize_to_categories (restructure), clean_published (destructive cleanup)",
+        "593 lines with 12 public functions across 4 conceptually distinct concern groups",
+        "The flattening functions were migrated from scripts/flatten_published.py but the script was not removed, creating a redundant entry point"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "package_organization",
+      "identifier": "flatten_script_redundant_entry_point",
+      "summary": "scripts/flatten_published.py is a redundant entry point after its logic was migrated to publish/utils.py, which publish_all.py already calls",
+      "confidence": "low",
+      "suggestion": "Either retain flatten_published.py explicitly labeled as a standalone CLI tool for manual use (add a comment to that effect), or remove it and document that flattening is handled via publish_all.py. If retained, verify it is not invoked redundantly by publish_all.py.",
+      "related_files": [
+        "scripts/flatten_published.py",
+        "scripts/publish_all.py",
+        "src/publish/utils.py"
+      ],
+      "evidence": [
+        "flatten_published.py imports flatten_published from src.publish.utils \u2014 it is now purely a thin wrapper",
+        "publish_all.py already calls flatten_published() from src.publish.utils as part of the full pipeline",
+        "Two CLI entry points for the same operation create maintenance ambiguity (which one to use?)"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "initialization_coupling",
+      "identifier": "module_scope_setup_logging_file_creation",
+      "summary": "setup_logging() called at module scope in scripts creates a timestamped log file on disk as an import-time side effect",
+      "confidence": "high",
+      "suggestion": "Move setup_logging() calls into the main() function of each script, after argument parsing. Module-scope loggers should call get_logger() only: `logger = get_logger('batch_processing')`. setup_logging() should be called exactly once in the entry point: `def main(): logger = setup_logging(); ...`",
+      "related_files": [
+        "scripts/generate_all_outputs.py",
+        "scripts/import_legacy_materials.py",
+        "src/batch_processing/logging_config.py"
+      ],
+      "evidence": [
+        "generate_all_outputs.py line 48: `logger = setup_logging()` at module scope",
+        "import_legacy_materials.py line 40: `logger = setup_logging()` at module scope",
+        "setup_logging() in logging_config.py lines 46-57 creates log_dir, then a timestamped log file via FileHandler \u2014 this disk I/O executes at import time",
+        "Any test or tool that imports these scripts (e.g., subprocess or pytest) will create spurious log files"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "initialization_coupling",
+      "identifier": "logging_namespace_fragmentation",
+      "summary": "Half of src modules log to __name__ namespaces not under 'batch_processing', silently bypassing the file handler configured by setup_logging()",
+      "confidence": "high",
+      "suggestion": "Standardize all src modules to use `logger = logging.getLogger('batch_processing.' + __name__.split('.')[-1])` or pass a logger via dependency injection. Alternatively, configure setup_logging() to also add a handler to the root logger so all namespaces benefit from file logging.",
+      "related_files": [
+        "src/publish/main.py",
+        "src/legacy_import/main.py",
+        "src/validation/main.py",
+        "src/batch_processing/logging_config.py"
+      ],
+      "evidence": [
+        "src/validation/main.py line 30: `logger = logging.getLogger(__name__)` \u2014 logs to 'src.validation.main'",
+        "src/legacy_import/main.py line 16: `logger = logging.getLogger(__name__)` \u2014 logs to 'src.legacy_import.main'",
+        "src/publish/main.py line 11: `logger = logging.getLogger(__name__)` \u2014 logs to 'src.publish.main'",
+        "setup_logging() in logging_config.py line 29: `logger = logging.getLogger('batch_processing')` \u2014 only configures 'batch_processing' namespace",
+        "Python logging propagates child\u2192parent: 'batch_processing.foo' would propagate to 'batch_processing', but 'src.publish.main' does not \u2014 it propagates to root logger which has no file handler configured"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "initialization_coupling",
+      "identifier": "get_logger_silent_ordering_dep",
+      "summary": "Module-scope get_logger() calls in src modules silently return unconfigured loggers if imported before setup_logging() is called",
+      "confidence": "high",
+      "suggestion": "Add a lazy initialization guard in get_logger(): check if the returned logger has no handlers and no parent handlers, and if so call setup_logging() with defaults. Alternatively, document the ordering requirement in get_logger()'s docstring with a warning: 'Call setup_logging() before first use in scripts.'",
+      "related_files": [
+        "src/batch_processing/main.py",
+        "src/html_website/main.py",
+        "src/batch_processing/logging_config.py"
+      ],
+      "evidence": [
+        "batch_processing/main.py line 19: `logger = get_logger()` at module scope",
+        "html_website/main.py line 20: `logger = get_logger('html_website')` at module scope",
+        "get_logger() returns logging.getLogger(name) with no check whether handlers have been configured",
+        "If any test imports batch_processing.main without first calling setup_logging(), all logger.info/debug calls silently produce no output and no file"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "initialization_coupling",
+      "identifier": "lazy_imports_circular_pressure",
+      "summary": "Lazy function-body imports in legacy_import/main.py indicate latent circular dependency pressure in the import graph",
+      "confidence": "medium",
+      "suggestion": "Investigate whether the lazy imports can be moved to module scope by restructuring legacy_import to depend on format_conversion at the package boundary. If circular dependency is confirmed, document it with a comment explaining why the lazy import is necessary. This also affects testability \u2014 lazy imports make mock injection harder.",
+      "related_files": [
+        "src/legacy_import/main.py"
+      ],
+      "evidence": [
+        "Line 41: `from src.format_conversion.utils import convert_docx_to_markdown` inside process_chapter_questions() function body",
+        "Line 408: `from src.format_conversion.main import convert_file` inside create_for_upload_files() function body",
+        "Line 399: `from src.markdown_to_pdf.main import render_markdown_to_pdf` inside create_for_upload_files() function body",
+        "These are deferred to avoid import-time issues, suggesting that moving them to module scope would cause circular imports or slow startup"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "design_coherence",
+      "identifier": "dc-01",
+      "summary": "generate_module_website() is a 400-line god function mixing HTML construction, JavaScript embedding, and per-question-type dispatch",
+      "confidence": "high",
+      "suggestion": "Extract question rendering into a render_question(q) function, move JavaScript to an external file or config constant, extract sidebar_html construction to build_sidebar(), and move the per-type HTML generators into utils.py. The top-level function should orchestrate, not implement.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "Single function handles: curriculum element processing, audio/text file lookup, sidebar HTML assembly, question parsing per type (multiple_choice, free_response, true_false, matching), progress bar HTML, ~200 lines of inline JavaScript, and file output",
+        "Nested create_section() helper defined inside the function body"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "design_coherence",
+      "identifier": "dc-02",
+      "summary": "publish/utils.py is a pipeline catch-all mixing flattening, cleaning, four copy operations, and category reorganization",
+      "confidence": "high",
+      "suggestion": "Split into at minimum: copy_ops.py (copy_labs_and_dashboards, copy_slides*, copy_practice_tests, copy_exams), structure_ops.py (flatten_*, clean_*), and reorganize.py (reorganize_to_categories). Keep utils.py for truly shared helpers (clean_directory, copy_directory_contents).",
+      "related_files": [
+        "src/publish/utils.py"
+      ],
+      "evidence": [
+        "File contains: clean_directory, copy_directory_contents, flatten_module, flatten_published, clean_published, copy_labs_and_dashboards, copy_slides, copy_slides_to_modules, copy_exams, copy_practice_tests, reorganize_to_categories",
+        "Six distinct pipeline operations with no shared abstraction between them"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "design_coherence",
+      "identifier": "dc-03",
+      "summary": "legacy_import/main.py duplicates the chapter-map/copy/log pattern for full-slides and notes-slides within a single function",
+      "confidence": "high",
+      "suggestion": "Extract a _process_slide_dir(source_dir, slide_type, chapter_mapping, course_root, dry_run) helper and call it twice from process_slides().",
+      "related_files": [
+        "src/legacy_import/main.py"
+      ],
+      "evidence": [
+        "process_slides() contains two near-identical loops: one for slides_full_dir and one for slides_notes_dir, each ~75 lines with identical structure: extract chapter number, map to module, ensure_module_exists, build output filename, dry_run branch, copy, log, error handling",
+        "The only meaningful difference is the output_filename suffix ('slides-full' vs 'slides-notes')"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "design_coherence",
+      "identifier": "dc-04",
+      "summary": "publish_all.py silently skips slides when --skip-copy-extras is used, because step 6 shares step 5's gate with no independent flag",
+      "confidence": "medium",
+      "suggestion": "Add a dedicated --skip-slides flag (or document explicitly that --skip-copy-extras covers all three copy operations). At minimum add a comment on step 6 noting its shared gate.",
+      "related_files": [
+        "scripts/publish_all.py"
+      ],
+      "evidence": [
+        "Lines 237-243: step 6 (copy slides and practice tests) is gated by `if not args.skip_copy_extras:` \u2014 the same flag as step 5 (copy labs and dashboards)",
+        "A user passing --skip-copy-extras intending to skip labs will also silently skip slides and practice tests, despite no --skip-slides flag existing"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "design_coherence",
+      "identifier": "dc-05",
+      "summary": "format_conversion/main.py uses a string-keyed if/elif dispatch rather than a data-driven dispatch table",
+      "confidence": "medium",
+      "suggestion": "Replace the if/elif chain with a dict: CONVERTERS = {'md->pdf': convert_markdown_to_pdf, ...} and do handler = CONVERTERS.get(conversion_key); if not handler: raise ValueError(...); handler(input_file, output_file).",
+      "related_files": [
+        "src/format_conversion/main.py"
+      ],
+      "evidence": [
+        "convert_file() builds conversion_key = f'{input_ext}->{output_format_lower}' then has 9 elif branches, each importing a specific converter",
+        "Adding a new format requires editing the dispatch chain, not registering in a table"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-01",
+      "summary": "validate_outputs(), generate_validation_report(), and _validate_module_outputs() annotate formats as List[str] but the parameter accepts None",
+      "confidence": "high",
+      "suggestion": "Change all three signatures to use Optional[List[str]] = None. Add 'from typing import Optional' if not already imported.",
+      "related_files": [
+        "src/validation/main.py"
+      ],
+      "evidence": [
+        "validate_outputs(course_path: str, formats: List[str] = None, ...): annotation says List[str], default is None \u2014 passes None through to DEFAULT_REQUIRED_FORMATS fallback",
+        "generate_validation_report(..., formats: List[str] = None, ...): same pattern",
+        "_validate_module_outputs(module_path: Path, formats: List[str] = None): same pattern \u2014 internally does 'formats or DEFAULT_REQUIRED_FORMATS'"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-02",
+      "summary": "canvas_integration/main.py upload_module_to_canvas() broad except clause hides error contract from callers",
+      "confidence": "high",
+      "suggestion": "Document the swallowed exception contract explicitly: add 'Note: Per-file upload errors are captured in results[\"errors\"] rather than raised. Only pre-validation failures raise ValueError.' Alternatively, surface a summary exception when failed_files is non-empty.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "Line 77: except Exception as e: \u2014 catches all exceptions for each file upload attempt, appending to results['errors'] and results['failed_files']",
+        "The function docstring states 'Raises: requests.RequestException' but only the pre-loop validation (line 45) will actually raise; per-file errors are silently captured",
+        "Callers cannot distinguish network failures from permission failures from size violations without inspecting results['errors'] list"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-03",
+      "summary": "sync_module_structure() copies the ValueError/RequestException raise contract but only delegates to upload_module_to_canvas() without adding any new raises",
+      "confidence": "medium",
+      "suggestion": "Update the docstring to note 'Raises are delegated to upload_module_to_canvas().' or implement the validation independently so the contract is truly owned by this function.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "sync_module_structure() docstring: 'Raises: ValueError: If module path is invalid, requests.RequestException: If API request fails'",
+        "Implementation: return upload_module_to_canvas(module_path, canvas_course_id, api_key, domain) \u2014 all exception paths come from the delegated function, not independently",
+        "The raise contract is technically accurate by delegation, but the docstring implies the function independently validates and raises, which is misleading"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-04",
+      "summary": "batch_render_lab_manuals() silently swallows per-file errors, returning partial results with no indication of failure count",
+      "confidence": "high",
+      "suggestion": "Either return a result dict with 'output_files' and 'errors' keys (matching other batch functions in the codebase), or document the swallowing behavior explicitly. Using print() for errors instead of logger is also inconsistent with the module's use of logger elsewhere.",
+      "related_files": [
+        "src/lab_manual/main.py"
+      ],
+      "evidence": [
+        "Lines 413-415: except Exception as e: print(f'Error rendering {md_file}: {e}'); continue",
+        "Return type is List[str] (paths of successfully rendered files) \u2014 callers have no way to know how many files failed without comparing input to output",
+        "Docstring does not mention that errors are swallowed and printed to stdout"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc-05",
+      "summary": "batch_processing/utils.py get_courses_to_process() returns List[tuple] \u2014 the inner tuple type is undeclared",
+      "confidence": "medium",
+      "suggestion": "Change return type to List[Tuple[str, str]] and import Tuple from typing, or define a CourseEntry TypedDict or NamedTuple.",
+      "related_files": [
+        "src/batch_processing/utils.py"
+      ],
+      "evidence": [
+        "Return annotation: List[tuple] \u2014 the actual runtime type is List[Tuple[str, str]] where element 0 is a relative path string and element 1 is a display name",
+        "Callers in batch_processing/main.py unpack these tuples as (course_dir, course_name) but have no type-checked contract to rely on"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-01",
+      "summary": "publish/main.py: dead else branch \u2014 logger.warning is unreachable because source_path existence was already confirmed in the enclosing if block",
+      "confidence": "high",
+      "suggestion": "Remove the redundant if/else check. After the early-return guard at line 68-70, source_path.exists() is guaranteed True. Simplify to: files_copied += copy_directory_contents(source_path, dest_path).",
+      "related_files": [
+        "src/publish/main.py"
+      ],
+      "evidence": [
+        "Lines 66-82: outer guard 'if not source_path.exists(): logger.warning(...); continue' exits early when missing",
+        "Lines 79-82: inside the continuation, 'if source_path.exists(): files_copied += ...' is always True \u2014 the else branch 'logger.warning(...)' is dead code that can never execute"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-02",
+      "summary": "legacy_import/main.py: modules_created counter increments even when module creation failed and the file was skipped",
+      "confidence": "medium",
+      "suggestion": "Track module creation before ensure_module_exists() by checking 'existed_before = module_path.exists()', then after the call: 'if not existed_before and module_path.exists(): results[\"summary\"][\"modules_created\"] += 1'.",
+      "related_files": [
+        "src/legacy_import/main.py"
+      ],
+      "evidence": [
+        "Lines 82-91: 'if not dry_run and not module_path.exists(): results[\"skipped\"].append(...); continue' \u2014 skips the file if module cannot be created",
+        "Lines 93-94: 'if not module_path.exists() and not dry_run: results[\"summary\"][\"modules_created\"] += 1' \u2014 this block executes immediately after the skip check; when module creation fails, the file is skipped (continue) so lines 93-94 never run for that file... but the guard condition on line 82 requires module_path to not exist, and then uses continue, so 93-94 are after a continue. Re-reading: the continue on line 88 means lines 93-94 are only reached if the file was NOT skipped. However, when module was freshly created (exists() is now True), the condition 'not module_path.exists()' is False. This counter will never fire for newly-created modules, making it effectively dead code."
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-03",
+      "summary": "validation/utils.py check_lab_files(): max_lab=0 is treated as 'no limit' due to falsy check",
+      "confidence": "high",
+      "suggestion": "Replace 'if max_lab:' with 'if max_lab is not None:' in check_lab_files() and in validate_outputs(). This correctly handles the zero case.",
+      "related_files": [
+        "src/validation/utils.py"
+      ],
+      "evidence": [
+        "Line 197: 'if max_lab:' \u2014 evaluates max_lab=0 as False, skipping the filter; a caller passing max_lab=0 intending to validate no labs would instead validate all labs",
+        "Same pattern appears in validation/main.py line 109: 'if max_lab:'"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-04",
+      "summary": "html_website/main.py: silent broad except around questions parsing suppresses all errors with no logging",
+      "confidence": "high",
+      "suggestion": "Replace 'except Exception: pass' with 'except Exception as e: logger.warning(f\"Failed to render questions for {module_name}: {e}\")'. The questions section can still be omitted on error, but the failure should be observable.",
+      "related_files": [
+        "src/html_website/main.py"
+      ],
+      "evidence": [
+        "Lines 186-187: 'except Exception: pass' \u2014 any exception during parse_questions_json() or question rendering is silently swallowed",
+        "No log.warning(), no fallback message in the HTML output \u2014 questions section is simply omitted with no developer signal"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-05",
+      "summary": "schedule/main.py generate_schedule_outputs(): intermediate markdown file is always written to disk even when 'md' is not in the requested formats",
+      "confidence": "medium",
+      "suggestion": "Either document that a .md file is always generated as an intermediate artifact, or gate the write behind 'if \"md\" in formats or any format conversion needed'. If the markdown is always needed as a build input, clean it up after use or keep it only in a temp location.",
+      "related_files": [
+        "src/schedule/main.py"
+      ],
+      "evidence": [
+        "Lines 141-145: markdown_content is generated and markdown_file.write_text() is called unconditionally before the format loop",
+        "If the caller requests only ['pdf'], a markdown file is still written alongside the pdf \u2014 this is an unannounced side effect"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "type_safety",
+      "identifier": "ts-01",
+      "summary": "Three validation/main.py public functions annotate formats as List[str] but accept None \u2014 Optional wrapper missing",
+      "confidence": "high",
+      "suggestion": "Add 'from typing import Optional' and change all three to 'formats: Optional[List[str]] = None'. Run mypy to confirm no downstream callers pass conflicting types.",
+      "related_files": [
+        "src/validation/main.py"
+      ],
+      "evidence": [
+        "validate_outputs(course_path: str, formats: List[str] = None, ...) \u2014 annotation is wrong",
+        "generate_validation_report(..., formats: List[str] = None, ...) \u2014 annotation is wrong",
+        "_validate_module_outputs(module_path: Path, formats: List[str] = None) \u2014 annotation is wrong",
+        "All three internally handle None with 'if formats is None' or 'formats or DEFAULT_REQUIRED_FORMATS' \u2014 confirming None is intended"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "type_safety",
+      "identifier": "ts-02",
+      "summary": "canvas_integration upload results use Dict[str, Any] for a stable shape that should be a TypedDict",
+      "confidence": "high",
+      "suggestion": "Define: class UploadResult(TypedDict): uploaded_files: List[Dict[str, str]]; failed_files: List[str]; errors: List[str]. Change return type to UploadResult. This allows callers to type-check key access.",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "upload_module_to_canvas() returns Dict[str, Any] with guaranteed keys: uploaded_files: List[Dict[str, str]], failed_files: List[str], errors: List[str]",
+        "The same shape is constructed identically in all code paths \u2014 it is stable, not dynamic"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "type_safety",
+      "identifier": "ts-03",
+      "summary": "validation/utils.py check_lab_files() returns Dict[str, Any] for a fully specified stable shape",
+      "confidence": "high",
+      "suggestion": "Define a LabCheckResult TypedDict with the five keys and use it as the return type. The docstring can reference the TypedDict instead of repeating the shape description.",
+      "related_files": [
+        "src/validation/utils.py"
+      ],
+      "evidence": [
+        "Return dict always has: source_labs: int, output_files: Dict[str, int], dashboards: int, missing_outputs: List[str], issues: List[str]",
+        "Docstring fully documents the shape \u2014 type information exists in prose but not in the type annotation"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "type_safety",
+      "identifier": "ts-04",
+      "summary": "batch_processing/utils.py get_courses_to_process() returns unparameterized List[tuple]",
+      "confidence": "high",
+      "suggestion": "Change return annotation to List[Tuple[str, str]]. Import Tuple from typing (already imported as part of List usage or use the built-in tuple[str, str] in Python 3.11+).",
+      "related_files": [
+        "src/batch_processing/utils.py"
+      ],
+      "evidence": [
+        "Return annotation: List[tuple] \u2014 runtime type is List[Tuple[str, str]]",
+        "Callers unpack as: 'for course_dir, course_name in courses:' \u2014 mypy cannot validate this without the parameterized type"
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "type_safety",
+      "identifier": "ts-05",
+      "summary": "content_processing/main.py uses PEP 585 built-in tuple[bool, int] inconsistently with the rest of the codebase",
+      "confidence": "low",
+      "suggestion": "Since the project targets Python 3.11+, PEP 585 generics are correct. However, standardize across the codebase: either migrate all to built-in generics (tuple, dict, list) or keep typing module imports. Update pyproject.toml or a style guide to document the chosen convention.",
+      "related_files": [
+        "src/content_processing/main.py"
+      ],
+      "evidence": [
+        "process_questions_file() return type: tuple[bool, int] \u2014 uses PEP 585 style (Python 3.9+)",
+        "Other modules use typing.Tuple, typing.Dict, typing.List throughout \u2014 the inconsistency signals the annotation was written with a different convention"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "authorization_consistency",
+      "identifier": "ac-01",
+      "summary": "canvas_integration _upload_file_to_canvas() uses requests.post() directly for the upload step, bypassing the make_canvas_request() wrapper and its rate-limiting protection",
+      "confidence": "medium",
+      "suggestion": "Add time.sleep(config.RATE_LIMIT_DELAY) before line 213, or extract a _rate_limited_post() helper that applies only the rate-limiting concern without injecting the Authorization header (which is not appropriate for the pre-signed upload URL).",
+      "related_files": [
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "Line 213: 'upload_response = requests.post(upload_url, files=files)' \u2014 direct requests.post(), not make_canvas_request()",
+        "make_canvas_request() in utils.py applies time.sleep(config.RATE_LIMIT_DELAY) before every request \u2014 this is skipped for the file upload step",
+        "The upload URL is an external Canvas-provided URL, so the Bearer header from make_canvas_request() is not needed here (correct), but rate-limiting should still apply"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    }
+  ],
+  "review_quality": {
+    "batch_count": 20,
+    "dimension_coverage": 1.0,
+    "evidence_density": 2.543,
+    "high_score_missing_issue_note": 0,
+    "issue_pressure": 136.804,
+    "dimensions_with_issues": 20
+  },
+  "provenance": {
+    "kind": "blind_review_batch_import",
+    "blind": true,
+    "runner": "dry-run",
+    "run_stamp": "20260310_163711",
+    "created_at": "2026-03-10T16:45:30+00:00",
+    "batch_count": 20,
+    "batch_indexes": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "packet_path": "/Users/4d/Documents/GitHub/cr-bio/software/.desloppify/review_packet_blind.json",
+    "packet_sha256": "42fbf262b29e6cde974e55590c7ea7fb2762f91472b5ca00fb44de07efbb1474"
+  }
+}

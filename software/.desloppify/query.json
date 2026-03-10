@@ -1,0 +1,2238 @@
+{
+  "command": "next",
+  "items": [
+    {
+      "id": "god-files",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Decompose html_website and publish monolith files",
+      "member_count": 14,
+      "members": [
+        {
+          "id": "review::.::holistic::design_coherence::dc-01::092a4fc3",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "generate_module_website() is a 400-line god function mixing HTML construction, JavaScript embedding, and per-question-type dispatch",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::design_coherence::dc-01::092a4fc3\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::design_coherence::dc-02::2cda73be",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "publish/utils.py is a pipeline catch-all mixing flattening, cleaning, four copy operations, and category reorganization",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::design_coherence::dc-02::2cda73be\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::design_coherence::dc-03::70812e6c",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "legacy_import/main.py duplicates the chapter-map/copy/log pattern for full-slides and notes-slides within a single function",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::design_coherence::dc-03::70812e6c\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::high_level_elegance::HLE-01::8ee58e21",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "format_conversion is documented as a composition layer but bypassed entirely by the main pipeline, making its role invisible",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::high_level_elegance::HLE-01::8ee58e21\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::high_level_elegance::HLE-02::5570ddbb",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "canvas_integration.sync_module_structure is a public API stub that delegates entirely to upload_module_to_canvas with no distinct behavior",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::high_level_elegance::HLE-02::5570ddbb\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::high_level_elegance::HLE-03::1803c283",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "log_style.py is a fourth file type in batch_processing that breaks the package's own main/utils/config structural convention",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::high_level_elegance::HLE-03::1803c283\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::low_level_elegance::javascript_embedded_in_python_string::81e478bc",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "185-line JavaScript block embedded as raw string literal inside a Python function body",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::low_level_elegance::javascript_embedded_in_python_string::81e478bc\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::low_level_elegance::matching_question_always_true_placeholder::28b102e2",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "Matching question validation always returns isCorrect=true with a comment acknowledging it is a placeholder",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::low_level_elegance::matching_question_always_true_placeholder::28b102e2\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::low_level_elegance::website_monolith_400_line_function::92bc7713",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "generate_module_website() is a 400-line function accumulating HTML state through mutable string concatenation with no intermediate helpers",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::low_level_elegance::website_monolith_400_line_function::92bc7713\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::ai_generated_debt::template_content_in_function_body::034030a2",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "create_questions_directory() in legacy_import/utils.py embeds 100+ lines of README.md and AGENTS.md template strings in function body",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::ai_generated_debt::template_content_in_function_body::034030a2\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::design_coherence::dc-04::2398a6d2",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "publish_all.py silently skips slides when --skip-copy-extras is used, because step 6 shares step 5's gate with no independent flag",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::design_coherence::dc-04::2398a6d2\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::design_coherence::dc-05::de5a8bd9",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "format_conversion/main.py uses a string-keyed if/elif dispatch rather than a data-driven dispatch table",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::design_coherence::dc-05::de5a8bd9\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::high_level_elegance::HLE-04::993808ed",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "batch_processing/__init__.py re-exports the full internal API (18 symbols), eliminating package encapsulation",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::high_level_elegance::HLE-04::993808ed\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::package_organization::publish_utils_overloaded::8d52514e",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "publish/utils.py is a 593-line multi-concern file mixing flatten, copy, reorganize, and clean operations across 7 distinct operation families",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::package_organization::publish_utils_overloaded::8d52514e\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "god-files",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster god-files --count 10",
+      "action_steps": [
+        {
+          "title": "Extract JavaScript string literal from html_website/main.py to static file or separate module",
+          "detail": "Extract the 185-line embedded JS string literal from html_website/main.py into a separate file alongside the main module, loaded via Path.read_text() at runtime",
+          "issue_refs": [
+            "81e478bc"
+          ],
+          "effort": "medium",
+          "done": true
+        },
+        {
+          "title": "Split generate_module_website 400-line function into focused sub-functions",
+          "detail": "Split generate_module_website() into: _build_header_section(), _build_question_section(), _build_nav_section(), _build_lab_section(). Max 60 lines each.",
+          "issue_refs": [
+            "92bc7713",
+            "28b102e2"
+          ],
+          "effort": "medium",
+          "done": true
+        },
+        {
+          "title": "Split publish/utils.py into sub-modules by operation family (flatten, copy_labs, copy_slides, reorganize)",
+          "detail": "Split publish/utils.py into: publish/flatten.py, publish/copy_extras.py, publish/reorganize.py. Update publish/__init__.py to re-export.",
+          "issue_refs": [
+            "8d52514e",
+            "034030a2"
+          ],
+          "effort": "medium",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "logging-foundation",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix broken logging initialization and module-scope side effects",
+      "member_count": 5,
+      "members": [
+        {
+          "id": "review::.::holistic::initialization_coupling::get_logger_silent_ordering_dep::a9fbcdf0",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "Module-scope get_logger() calls in src modules silently return unconfigured loggers if imported before setup_logging() is called",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::initialization_coupling::get_logger_silent_ordering_dep::a9fbcdf0\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::initialization_coupling::logging_namespace_fragmentation::167dbcfa",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "Half of src modules log to __name__ namespaces not under 'batch_processing', silently bypassing the file handler configured by setup_logging()",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::initialization_coupling::logging_namespace_fragmentation::167dbcfa\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::initialization_coupling::module_scope_setup_logging_file_creation::db56b350",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "setup_logging() called at module scope in scripts creates a timestamped log file on disk as an import-time side effect",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::initialization_coupling::module_scope_setup_logging_file_creation::db56b350\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::api_surface_coherence::setup_logging_ordering_hidden::0659c3e1",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "get_logger() silently returns an unconfigured logger if called before setup_logging(), with no documented ordering requirement",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::api_surface_coherence::setup_logging_ordering_hidden::0659c3e1\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::initialization_coupling::lazy_imports_circular_pressure::b19073b7",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "Lazy function-body imports in legacy_import/main.py indicate latent circular dependency pressure in the import graph",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::initialization_coupling::lazy_imports_circular_pressure::b19073b7\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "logging-foundation",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster logging-foundation --count 10",
+      "action_steps": [
+        {
+          "title": "Move setup_logging call out of module scope in generate_all_outputs.py and import_legacy_materials.py",
+          "detail": "In generate_all_outputs.py and import_legacy_materials.py move setup_logging() call inside if __name__ == '__main__' guard",
+          "issue_refs": [
+            "db56b350",
+            "a9fbcdf0"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Fix logger hierarchy so batch_processing, publish, validation, legacy_import all log to configured handler",
+          "detail": "In setup_logging() use logging.getLogger() (root logger) or configure each module logger: src.publish, src.validation, src.legacy_import, src.batch_processing",
+          "issue_refs": [
+            "167dbcfa",
+            "0659c3e1"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Audit all getLogger calls for correct hierarchy",
+          "detail": "Audit all getLogger(__name__) calls. Ensure hierarchy aligns with setup_logging config. Convert deferred imports to top-level in batch_processing.",
+          "issue_refs": [
+            "b19073b7"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "type-annotations",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix type annotation gaps across validation and other modules",
+      "member_count": 5,
+      "members": [
+        {
+          "id": "review::.::holistic::type_safety::ts-01::ad739775",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "Three validation/main.py public functions annotate formats as List[str] but accept None \u2014 Optional wrapper missing",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::type_safety::ts-01::ad739775\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::type_safety::ts-02::71fccea1",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "canvas_integration upload results use Dict[str, Any] for a stable shape that should be a TypedDict",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::type_safety::ts-02::71fccea1\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::type_safety::ts-03::c45bd7bd",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "validation/utils.py check_lab_files() returns Dict[str, Any] for a fully specified stable shape",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::type_safety::ts-03::c45bd7bd\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::type_safety::ts-04::c1cd1619",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "batch_processing/utils.py get_courses_to_process() returns unparameterized List[tuple]",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::type_safety::ts-04::c1cd1619\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::type_safety::ts-05::c3a8f68a",
+          "kind": "issue",
+          "confidence": "low",
+          "detector": "review",
+          "file": ".",
+          "summary": "content_processing/main.py uses PEP 585 built-in tuple[bool, int] inconsistently with the rest of the codebase",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::type_safety::ts-05::c3a8f68a\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "type-annotations",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster type-annotations --count 10",
+      "action_steps": [
+        {
+          "title": "Add Optional[] to formats parameter in validation/main.py validate_outputs, generate_validation_report, _validate_module_outputs",
+          "detail": "In validation/main.py change formats: List[str] = None to formats: Optional[List[str]] = None in validate_outputs, generate_validation_report, _validate_module_outputs",
+          "issue_refs": [
+            "d072d611",
+            "ad739775"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Replace Dict[str,Any] return types with TypedDicts in canvas_integration",
+          "detail": "In canvas_integration define UploadResult TypedDict with fields: success, file_id, errors. Replace Dict[str,Any] return types.",
+          "issue_refs": [
+            "71fccea1",
+            "c45bd7bd"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Fix List[tuple] to List[Tuple[str,str]] in batch_processing/utils.py",
+          "detail": "In batch_processing/utils.py change List[tuple] to List[Tuple[str, str]] for file pair collections",
+          "issue_refs": [
+            "c1cd1619"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Audit remaining Dict[str,Any] usages for TypedDict candidates",
+          "detail": "Audit remaining Dict[str,Any] in validation/utils.py and batch_processing result dicts. Create TypedDicts where shape is stable.",
+          "issue_refs": [
+            "c3a8f68a"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "error-handling",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix silent errors and inconsistent error handling patterns",
+      "member_count": 11,
+      "members": [
+        {
+          "id": "review::.::holistic::ai_generated_debt::silent_exception_swallow_html::8c1a9aa5",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "Silent bare except in html_website/main.py swallows question-parsing errors with no logging",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::ai_generated_debt::silent_exception_swallow_html::8c1a9aa5\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::contract_coherence::cc-01::d072d611",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "validate_outputs(), generate_validation_report(), and _validate_module_outputs() annotate formats as List[str] but the parameter accepts None",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::contract_coherence::cc-01::d072d611\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::contract_coherence::cc-02::1a939d1a",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "canvas_integration/main.py upload_module_to_canvas() broad except clause hides error contract from callers",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::contract_coherence::cc-02::1a939d1a\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::contract_coherence::cc-04::1fed9794",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "batch_render_lab_manuals() silently swallows per-file errors, returning partial results with no indication of failure count",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::contract_coherence::cc-04::1fed9794\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::error_consistency::EC-01::a35d5d6a",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "html_website/main.py silently swallows JSON parse errors for questions file with bare `except Exception: pass`",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::error_consistency::EC-01::a35d5d6a\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::error_consistency::EC-02::a76ad472",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "process_module_to_pdf, process_module_to_audio, process_module_to_text in batch_processing use print() for errors while process_module_by_type uses logger.error \u2014 inconsistent error output within the same file",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::error_consistency::EC-02::a76ad472\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::authorization_consistency::ac-01::0c3d92b2",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "canvas_integration _upload_file_to_canvas() uses requests.post() directly for the upload step, bypassing the make_canvas_request() wrapper and its rate-limiting protection",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::authorization_consistency::ac-01::0c3d92b2\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::contract_coherence::cc-05::357343a8",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "batch_processing/utils.py get_courses_to_process() returns List[tuple] \u2014 the inner tuple type is undeclared",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::contract_coherence::cc-05::357343a8\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::error_consistency::EC-03::06645cf5",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "publish/utils.py copy_directory_contents logs errors but returns a potentially low count with no indication of partial failure to callers",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::error_consistency::EC-03::06645cf5\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::error_consistency::EC-04::c147b19b",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "canvas_integration uses a Result-accumulator dict error strategy while all other modules use raise-or-print \u2014 strategy is isolated to one module without documentation",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::error_consistency::EC-04::c147b19b\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::error_consistency::EC-05::85260ad2",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "file_validation/main.py check_file_sizes silently skips unreadable files with no log",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::error_consistency::EC-05::85260ad2\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "error-handling",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster error-handling --count 10",
+      "action_steps": [
+        {
+          "title": "Add logging to silent except in html_website/main.py question-parsing",
+          "detail": "In html_website/main.py replace bare except: pass around question JSON parsing with except (json.JSONDecodeError, KeyError) as e: logger.warning()",
+          "issue_refs": [
+            "8c1a9aa5"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Fix canvas_integration broad-except to log and re-raise or accumulate specific errors",
+          "detail": "In canvas_integration/main.py upload_module_to_canvas replace broad except with specific exceptions. Accumulate errors, return with error list in result dict.",
+          "issue_refs": [
+            "1a939d1a"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Fix batch_render_lab_manuals to return error count alongside results",
+          "detail": "In batch_render_lab_manuals return (results, errors) tuple or add 'failed_count' key to result dict. Fix copy_directory_contents to return (count, errors).",
+          "issue_refs": [
+            "1fed9794"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Add failure signal to publish/utils.py copy_directory_contents",
+          "detail": "Align generate_module_renderings.py to use logger.info/error instead of print(). Import the same logger as generate_all_outputs.py uses.",
+          "issue_refs": [
+            "a35d5d6a",
+            "a76ad472",
+            "06645cf5",
+            "c147b19b",
+            "85260ad2"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Align generate_module_renderings.py to use logger instead of print",
+          "detail": "Fix _upload_file_to_canvas second call to use make_canvas_request wrapper for rate-limiting and auth consistency.",
+          "issue_refs": [
+            "0c3d92b2",
+            "395a0a8d",
+            "357343a8"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "api-alignment",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix API shape inconsistencies and pure delegations",
+      "member_count": 7,
+      "members": [
+        {
+          "id": "review::.::holistic::api_surface_coherence::sync_alias_param_rename::68df898b",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "sync_module_structure is a documented public function that only forwards to upload_module_to_canvas with a renamed parameter",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::api_surface_coherence::sync_alias_param_rename::68df898b\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::api_surface_coherence::website_arity_deviation::0b4f08b4",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "process_module_website takes one path argument while all sibling process_module_to_* functions take two (module_path + output_dir)",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::api_surface_coherence::website_arity_deviation::0b4f08b4\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::mid_level_elegance::inconsistent_result_dict_schemas::c055c94e",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "process_* functions at the batch_processing boundary return inconsistently shaped dicts requiring callers to know internal structure",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::mid_level_elegance::inconsistent_result_dict_schemas::c055c94e\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::api_surface_coherence::missing_error_contract_orchestrators::8612bd5a",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "process_module_by_type and process_course_* family functions lack Raises documentation despite calling converters that raise ValueError/OSError",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::api_surface_coherence::missing_error_contract_orchestrators::8612bd5a\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::contract_coherence::cc-03::395a0a8d",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "sync_module_structure() copies the ValueError/RequestException raise contract but only delegates to upload_module_to_canvas() without adding any new raises",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::contract_coherence::cc-03::395a0a8d\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::mid_level_elegance::canvas_validation_dict_boundary_translation::00612409",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "canvas_integration/main.py inspects raw validation dict from file_validation inline instead of translating at one boundary point",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::mid_level_elegance::canvas_validation_dict_boundary_translation::00612409\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::mid_level_elegance::string_typed_path_api_boundary::5ce65f32",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "html_website/main.py and batch_processing functions accept str paths at public API boundary requiring immediate internal conversion to Path",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::mid_level_elegance::string_typed_path_api_boundary::5ce65f32\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "api-alignment",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster api-alignment --count 10",
+      "action_steps": [
+        {
+          "title": "Add output_dir parameter to process_module_website to match sibling functions",
+          "detail": "Add output_dir: Optional[Path] = None parameter to process_module_website() to match process_module_to_pdf/docx/etc sibling signatures",
+          "issue_refs": [
+            "0b4f08b4"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Either add policy to sync_module_structure or remove it and update callers",
+          "detail": "Remove sync_module_structure() and update callers to call upload_module_to_canvas() directly, OR add real policy (validation, logging, retry) to justify its existence",
+          "issue_refs": [
+            "68df898b",
+            "1bd51137"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Align process_* result dict schemas across modules and batch_render_lab_manuals",
+          "detail": "Standardize process_* result dicts: modules use {summary:{...}} nested, labs use flat {files:[...]}. Define ProcessResult TypedDict and use everywhere.",
+          "issue_refs": [
+            "c055c94e",
+            "00612409",
+            "5ce65f32",
+            "8612bd5a"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "cross-module",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix cross-module architecture: hub modules, deferred imports, boundaries",
+      "member_count": 7,
+      "members": [
+        {
+          "id": "review::.::holistic::cross_module_architecture::CMA-01::e851202c",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "batch_processing/main.py uses deferred function-level imports for all cross-module calls, hiding runtime dependencies from static analysis",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::cross_module_architecture::CMA-01::e851202c\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::cross_module_architecture::CMA-02::1ff9135d",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "format_conversion module duplicates markdown_to_pdf module's core responsibility with no documented boundary rationale",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::cross_module_architecture::CMA-02::1ff9135d\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::cross_module_architecture::CMA-03::ac60253a",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "publish/utils.py is a cross-cutting megafile absorbing flattening, copying, reorganization, and publication concerns",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::cross_module_architecture::CMA-03::ac60253a\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::cross_module_architecture::CMA-04::2b9cf823",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "html_website couples to batch_processing logging infrastructure rather than a shared logging utility",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::cross_module_architecture::CMA-04::2b9cf823\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::package_organization::batch_processing_hub_overload::10be6ae1",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "batch_processing re-exports 15+ symbols from downstream converters, acting as a God package that collapses architectural layers",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::package_organization::batch_processing_hub_overload::10be6ae1\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::cross_module_architecture::CMA-05::7c0aacbf",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "batch_processing/utils.py imports from module_organization creating a lateral Layer 0 dependency",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::cross_module_architecture::CMA-05::7c0aacbf\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::package_organization::flatten_script_redundant_entry_point::d01d9c94",
+          "kind": "issue",
+          "confidence": "low",
+          "detector": "review",
+          "file": ".",
+          "summary": "scripts/flatten_published.py is a redundant entry point after its logic was migrated to publish/utils.py, which publish_all.py already calls",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::package_organization::flatten_script_redundant_entry_point::d01d9c94\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "cross-module",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster cross-module --count 10",
+      "action_steps": [
+        {
+          "title": "Convert deferred imports in batch_processing to top-level",
+          "detail": "In batch_processing/main.py move all function-level imports to top of file. If cycles emerge, that reveals real architectural issues to fix.",
+          "issue_refs": [
+            "e851202c",
+            "1ff9135d"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Reduce batch_processing re-export surface",
+          "detail": "In batch_processing/__init__.py reduce re-exports to only the public API functions needed by external callers. Remove internal helpers.",
+          "issue_refs": [
+            "10be6ae1",
+            "ac60253a"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Move format_conversion to use proper composition layer",
+          "detail": "Ensure format_conversion is the composition layer for all PDF/DOCX/audio generation. Remove direct lower-level calls from batch_processing bypassing format_conversion.",
+          "issue_refs": [
+            "2b9cf823",
+            "7c0aacbf",
+            "d01d9c94"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "naming",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix naming quality issues across modules",
+      "member_count": 4,
+      "members": [
+        {
+          "id": "review::.::holistic::naming_quality::NQ-03::8a1a1eb2",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "ensure_output_directory (batch_processing, text_to_speech, markdown_to_pdf) vs ensure_directory_exists (module_organization) \u2014 vocabulary divergence for the same operation",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::naming_quality::NQ-03::8a1a1eb2\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::naming_quality::NQ-01::57032e3c",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "generate_module_media is a misleading name \u2014 the function generates PDF, audio, and text transcriptions, not 'media' in the conventional sense",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::naming_quality::NQ-01::57032e3c\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::naming_quality::NQ-02::0288785d",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "configure_voice_settings and configure_pdf_options imply a stateful setter but are pure factories returning new dicts",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::naming_quality::NQ-02::0288785d\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::naming_quality::NQ-04::957be967",
+          "kind": "issue",
+          "confidence": "low",
+          "detector": "review",
+          "file": ".",
+          "summary": "process_module_by_type uses 'type' generically when the domain term is 'curriculum element type'",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::naming_quality::NQ-04::957be967\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "naming",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster naming --count 10",
+      "action_steps": [
+        {
+          "title": "Rename generate_module_media to generate_module_outputs",
+          "detail": "Rename generate_module_media() to generate_module_outputs() everywhere it is defined and called",
+          "issue_refs": [
+            "57032e3c"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Rename configure_* factory functions to create_* or make_*",
+          "detail": "Rename configure_voice_settings() to make_voice_settings() and configure_pdf_options() to make_pdf_options() to signal pure factory semantics",
+          "issue_refs": [
+            "0288785d"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Standardize ensure_directory_exists vs ensure_output_directory vocabulary",
+          "detail": "Pick one: ensure_output_directory or ensure_directory_exists. Use it consistently across all 4 modules.",
+          "issue_refs": [
+            "8a1a1eb2"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Rename process_module_by_type to process_module_by_element_type",
+          "detail": "Rename process_module_by_type() to process_module_by_element_type() or process_module_by_curriculum_type()",
+          "issue_refs": [
+            "957be967"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "conventions",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix convention drift: inconsistent output strategies, placement, style",
+      "member_count": 4,
+      "members": [
+        {
+          "id": "review::.::holistic::convention_outlier::CO-01::8092bdf2",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "generate_module_renderings.py uses print() while generate_all_outputs.py uses the logger \u2014 sibling scripts have inconsistent output strategies",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::convention_outlier::CO-01::8092bdf2\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::convention_outlier::CO-02::501cf620",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "html_website/main.py defines create_section as a nested function instead of extracting it to utils.py per the established module convention",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::convention_outlier::CO-02::501cf620\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::convention_outlier::CO-03::dfb54766",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "canvas_integration/utils.py defines the mime_types lookup dict inside get_file_mime_type instead of config.py, breaking the config-for-constants convention",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::convention_outlier::CO-03::dfb54766\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::convention_outlier::CO-04::f9ba2216",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "publish/utils.py uses section-divider comment blocks not found in any other utils.py, creating a local organizational style island",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::convention_outlier::CO-04::f9ba2216\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "conventions",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster conventions --count 10",
+      "action_steps": [
+        {
+          "title": "Migrate generate_module_renderings.py print() to logger",
+          "detail": "In generate_module_renderings.py replace all print() calls with logger.info/error from the same logger setup as generate_all_outputs.py",
+          "issue_refs": [
+            "8092bdf2"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Extract nested helpers in html_website to utils.py",
+          "detail": "Extract nested _build_question_html() helper from html_website/main.py to html_website/utils.py",
+          "issue_refs": [
+            "501cf620"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Move mime-type dict in canvas_integration to config.py",
+          "detail": "Move MIME_TYPE_MAP dict from inside canvas_integration/utils.py function to module-level constant in canvas_integration/config.py",
+          "issue_refs": [
+            "dfb54766"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Remove section-divider comments from publish/utils.py",
+          "detail": "Remove section-divider comment headers (# === SECTION ===) from publish/utils.py to match the no-divider style used in all other modules",
+          "issue_refs": [
+            "f9ba2216"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "dependency-cleanup",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix dependency health: dead deps, undeclared system deps",
+      "member_count": 3,
+      "members": [
+        {
+          "id": "review::.::holistic::dependency_health::duplicate_markdown_libraries::d0e0c9af",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "Both 'markdown' and 'markdown2' declared as runtime dependencies; markdown2 appears unused",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::dependency_health::duplicate_markdown_libraries::d0e0c9af\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::dependency_health::undeclared_system_dependency_say_ffmpeg::38cbe77d",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "text_to_speech pipeline requires macOS 'say' and 'ffmpeg' system binaries not declared in pyproject.toml",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::dependency_health::undeclared_system_dependency_say_ffmpeg::38cbe77d\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::dependency_health::unused_import_docx_inches::8080f625",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "docx.shared.Inches imported in convert_markdown_to_docx() but never used",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::dependency_health::unused_import_docx_inches::8080f625\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "dependency-cleanup",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster dependency-cleanup --count 10",
+      "action_steps": [
+        {
+          "title": "Remove markdown2 from pyproject.toml dependencies",
+          "detail": "In pyproject.toml remove markdown2 from dependencies. Confirm with grep that only markdown (not markdown2) is imported anywhere in src/",
+          "issue_refs": [
+            "d0e0c9af"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Document system dependencies on macOS say and ffmpeg",
+          "detail": "Add comment in text_to_speech/config.py or README documenting that macOS say and ffmpeg are required system dependencies for TTS audio generation",
+          "issue_refs": [
+            "38cbe77d"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Remove unused Inches import in format_conversion",
+          "detail": "In src/format_conversion/utils.py remove the line 'from docx.shared import Inches' - it is imported but never used in that file",
+          "issue_refs": [
+            "8080f625"
+          ],
+          "effort": "trivial",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "logic-clarity",
+      "kind": "cluster",
+      "action_type": "refactor",
+      "summary": "Fix logic clarity issues: dead branches, falsy-zero bugs, always-true guards",
+      "member_count": 5,
+      "members": [
+        {
+          "id": "review::.::holistic::logic_clarity::lc-01::a8740650",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "publish/main.py: dead else branch \u2014 logger.warning is unreachable because source_path existence was already confirmed in the enclosing if block",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::logic_clarity::lc-01::a8740650\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::logic_clarity::lc-03::ce1bd946",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "validation/utils.py check_lab_files(): max_lab=0 is treated as 'no limit' due to falsy check",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::logic_clarity::lc-03::ce1bd946\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::logic_clarity::lc-04::7f887acb",
+          "kind": "issue",
+          "confidence": "high",
+          "detector": "review",
+          "file": ".",
+          "summary": "html_website/main.py: silent broad except around questions parsing suppresses all errors with no logging",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::logic_clarity::lc-04::7f887acb\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::logic_clarity::lc-02::2a9538c0",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "legacy_import/main.py: modules_created counter increments even when module creation failed and the file was skipped",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::logic_clarity::lc-02::2a9538c0\" --note \"<what you did>\" --confirm"
+        },
+        {
+          "id": "review::.::holistic::logic_clarity::lc-05::31364833",
+          "kind": "issue",
+          "confidence": "medium",
+          "detector": "review",
+          "file": ".",
+          "summary": "schedule/main.py generate_schedule_outputs(): intermediate markdown file is always written to disk even when 'md' is not in the requested formats",
+          "status": "open",
+          "primary_command": "desloppify plan resolve \"review::.::holistic::logic_clarity::lc-05::31364833\" --note \"<what you did>\" --confirm"
+        }
+      ],
+      "cluster_name": "logic-clarity",
+      "cluster_auto": false,
+      "detector": "review",
+      "primary_command": "desloppify next --cluster logic-clarity --count 10",
+      "action_steps": [
+        {
+          "title": "Remove unreachable else branch in publish/main.py",
+          "detail": "In publish/main.py find the unreachable else branch after existing guard and remove it",
+          "issue_refs": [
+            "a8740650"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Fix if max_lab: falsy-zero bug in validation/utils.py to if max_lab is not None",
+          "detail": "In validation/utils.py change if max_lab: to if max_lab is not None: to treat max_lab=0 as a valid limit",
+          "issue_refs": [
+            "ce1bd946"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Fix silent except in html_website for question parsing",
+          "detail": "In html_website/main.py fix the always-true question matching placeholder with proper implementation or clear TODO comment",
+          "issue_refs": [
+            "7f887acb"
+          ],
+          "effort": "small",
+          "done": true
+        },
+        {
+          "title": "Fix schedule/main.py intermediate file write",
+          "detail": "In schedule/main.py remove intermediate .md file write when it is not part of the requested output formats",
+          "issue_refs": [
+            "2a9538c0",
+            "31364833"
+          ],
+          "effort": "small",
+          "done": true
+        }
+      ]
+    }
+  ],
+  "queue": {
+    "total": 10
+  },
+  "narrative": {
+    "phase": "early_momentum",
+    "headline": "\u26a0 10 security issues \u2014 review before other cleanup. Score 63.8/100 with 434 issues open. Keep the momentum going. (74 review issues \u2014 run `desloppify show review --status open`)",
+    "dimensions": {
+      "lowest_dimensions": [
+        {
+          "name": "Error consistency",
+          "strict": 37.8,
+          "failing": 5,
+          "impact": 0.0,
+          "subjective": true,
+          "impact_description": "re-review to improve"
+        },
+        {
+          "name": "Abstraction fit",
+          "strict": 38.0,
+          "failing": 0,
+          "impact": 0.0,
+          "subjective": true,
+          "impact_description": "re-review to improve"
+        },
+        {
+          "name": "Cross-module arch",
+          "strict": 38.0,
+          "failing": 5,
+          "impact": 0.0,
+          "subjective": true,
+          "impact_description": "re-review to improve"
+        }
+      ],
+      "biggest_gap_dimensions": [],
+      "stagnant_dimensions": []
+    },
+    "actions": [
+      {
+        "type": "reorganize",
+        "detector": "orphaned",
+        "count": 10,
+        "description": "10 orphaned issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 1,
+        "clusters": [
+          "auto/orphaned"
+        ],
+        "cluster_count": 1,
+        "lane": "restructure"
+      },
+      {
+        "type": "reorganize",
+        "detector": "flat_dirs",
+        "count": 2,
+        "description": "2 flat_dirs issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 2,
+        "clusters": [
+          "auto/flat_dirs-overload"
+        ],
+        "cluster_count": 1,
+        "lane": "restructure"
+      },
+      {
+        "type": "reorganize",
+        "detector": "facade",
+        "count": 15,
+        "description": "15 facade issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 3,
+        "clusters": [
+          "auto/facade-file"
+        ],
+        "cluster_count": 1,
+        "lane": "restructure"
+      },
+      {
+        "type": "refactor",
+        "detector": "structural",
+        "count": 24,
+        "description": "24 structural issues in 3 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "File health",
+        "priority": 4,
+        "clusters": [
+          "auto/structural-main.py",
+          "auto/structural-config.py",
+          "auto/structural-utils.py"
+        ],
+        "cluster_count": 3,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "refactor",
+        "detector": "dupes",
+        "count": 1,
+        "description": "1 dupes issues \u2014 extract shared utility or consolidate duplicates",
+        "command": "desloppify show dupes --status open",
+        "impact": 0.0,
+        "dimension": "Duplication",
+        "priority": 5,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "refactor",
+        "detector": "dict_keys",
+        "count": 22,
+        "description": "22 dict_keys issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 6,
+        "clusters": [
+          "auto/dict_keys-overwritten_key"
+        ],
+        "cluster_count": 1,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "refactor",
+        "detector": "test_coverage",
+        "count": 13,
+        "description": "13 test_coverage issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Test health",
+        "priority": 7,
+        "clusters": [
+          "auto/test_coverage"
+        ],
+        "cluster_count": 1,
+        "lane": "test_coverage"
+      },
+      {
+        "type": "refactor",
+        "detector": "signature",
+        "count": 2,
+        "description": "2 signature issues \u2014 consolidate inconsistent function signatures",
+        "command": "desloppify show signature --status open",
+        "impact": 0.0,
+        "dimension": "Unknown",
+        "priority": 8,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "refactor",
+        "detector": "responsibility_cohesion",
+        "count": 12,
+        "description": "12 responsibility_cohesion issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 9,
+        "clusters": [
+          "auto/responsibility_cohesion-utils.py"
+        ],
+        "cluster_count": 1,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "refactor",
+        "detector": "boilerplate_duplication",
+        "count": 3,
+        "description": "3 boilerplate_duplication issues \u2014 extract shared boilerplate into reusable helpers or base classes",
+        "command": "desloppify show boilerplate_duplication --status open",
+        "impact": 0.0,
+        "dimension": "Duplication",
+        "priority": 10,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "refactor",
+        "detector": "review",
+        "count": 74,
+        "description": "74 review issues need investigation \u2014 run `desloppify show review --status open` to see them",
+        "command": "desloppify show review --status open",
+        "impact": 0.0,
+        "dimension": "Unknown",
+        "priority": 11,
+        "lane": "refactor_1"
+      },
+      {
+        "type": "manual_fix",
+        "detector": "unused",
+        "count": 84,
+        "description": "84 unused issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 12,
+        "clusters": [
+          "auto/unused"
+        ],
+        "cluster_count": 1,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "manual_fix",
+        "detector": "smells",
+        "count": 125,
+        "description": "125 smells issues in 14 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Code quality",
+        "priority": 13,
+        "clusters": [
+          "auto/smells-import_path_mutation",
+          "auto/smells-sys_exit_in_library",
+          "auto/smells-monster_function",
+          "auto/smells-silent_except",
+          "auto/smells-subprocess_no_timeout",
+          "auto/smells-swallowed_error",
+          "auto/smells-unsafe_file_write",
+          "auto/smells-high_cyclomatic_complexity",
+          "auto/smells-annotation_quality",
+          "auto/smells-optional_param_sprawl",
+          "auto/smells-import_runtime_init",
+          "auto/smells-deferred_import",
+          "auto/smells-magic_number",
+          "auto/smells-broad_except"
+        ],
+        "cluster_count": 14,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "manual_fix",
+        "detector": "security",
+        "count": 10,
+        "description": "10 security issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Security",
+        "priority": 14,
+        "clusters": [
+          "auto/security"
+        ],
+        "cluster_count": 1,
+        "lane": "refactor_0"
+      },
+      {
+        "type": "manual_fix",
+        "detector": "subjective_review",
+        "count": 37,
+        "description": "37 subjective_review issues in 1 cluster(s) \u2014 run `desloppify next`",
+        "command": "desloppify next",
+        "impact": 0.0,
+        "dimension": "Test health",
+        "priority": 15,
+        "clusters": [
+          "auto/subjective_review"
+        ],
+        "cluster_count": 1,
+        "lane": "refactor_0"
+      }
+    ],
+    "strategy": {
+      "fixer_leverage": {
+        "auto_fixable_count": 0,
+        "total_count": 582,
+        "coverage": 0.0,
+        "impact_ratio": 0.0,
+        "recommendation": "none"
+      },
+      "lanes": {
+        "restructure": {
+          "actions": [
+            1,
+            2,
+            3
+          ],
+          "file_count": 27,
+          "total_impact": 0.0,
+          "automation": "manual",
+          "run_first": false
+        },
+        "refactor_0": {
+          "actions": [
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            12,
+            13,
+            14,
+            15
+          ],
+          "file_count": 86,
+          "total_impact": 0.0,
+          "automation": "manual",
+          "run_first": false
+        },
+        "refactor_1": {
+          "actions": [
+            11
+          ],
+          "file_count": 1,
+          "total_impact": 0.0,
+          "automation": "manual",
+          "run_first": false
+        },
+        "test_coverage": {
+          "actions": [
+            7
+          ],
+          "file_count": 13,
+          "total_impact": 0.0,
+          "automation": "manual",
+          "run_first": false
+        }
+      },
+      "can_parallelize": true,
+      "hint": "4 independent workstreams, safe to parallelize. Rescan after each phase to verify. Review: 74 issue(s) \u2014 `desloppify show review --status open`."
+    },
+    "tools": {
+      "fixers": [],
+      "move": {
+        "available": true,
+        "relevant": true,
+        "reason": "10 orphaned files + 2 flat directories",
+        "usage": "desloppify move <source> <dest> [--dry-run]"
+      },
+      "plan": {
+        "command": "desloppify plan",
+        "description": "Generate prioritized markdown cleanup plan"
+      },
+      "badge": {
+        "generated": true,
+        "in_readme": false,
+        "path": "scorecard.png",
+        "recommendation": "Add to README: <img src=\"scorecard.png\" width=\"100%\">"
+      }
+    },
+    "debt": {
+      "overall_gap": 0.0,
+      "wontfix_count": 0,
+      "worst_dimension": null,
+      "worst_gap": 0.0,
+      "trend": "stable"
+    },
+    "milestone": null,
+    "primary_action": {
+      "command": "desloppify next",
+      "description": "10 orphaned issues in 1 cluster(s) \u2014 run `desloppify next`"
+    },
+    "why_now": "4 independent workstreams, safe to parallelize. Rescan after each phase to verify. Review: 74 issue(s) \u2014 `desloppify show review --status open`.",
+    "verification_step": {
+      "command": "desloppify scan",
+      "reason": "revalidate after changes"
+    },
+    "risk_flags": [],
+    "strict_target": {
+      "target": 95.0,
+      "current": 63.8,
+      "gap": 31.2,
+      "state": "below",
+      "warning": null
+    },
+    "reminders": [
+      {
+        "type": "review_issues_pending",
+        "message": "74 review issue(s) need investigation. Run `desloppify show review --status open` to see the work queue.",
+        "command": "desloppify show review --status open",
+        "priority": 1,
+        "severity": "high"
+      },
+      {
+        "type": "zone_classification",
+        "message": "63 of 111 files classified as non-production (15 config, 10 script, 38 test). Override with `desloppify zone set <file> production` if any are misclassified.",
+        "command": "desloppify zone show",
+        "priority": 2,
+        "severity": "medium"
+      }
+    ],
+    "reminder_history": {
+      "zone_classification": 2,
+      "report_scores": 1,
+      "review_issues_pending": 1
+    }
+  },
+  "agent_notes": [
+    "Do NOT use `desloppify plan skip` unless the user explicitly asks you to skip an item.",
+    "If you cannot fix an item, report it and move to the next one.",
+    "For cluster items: if the autofix_hint finds 0 results, drill into individual issues with the primary_command."
+  ],
+  "plan": {
+    "active": true,
+    "focus": null,
+    "clusters": [
+      {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "item_count": 84
+      },
+      {
+        "name": "auto/structural-main.py",
+        "description": "Review file size: main.py",
+        "item_count": 7
+      },
+      {
+        "name": "auto/structural-config.py",
+        "description": "Review file size: config.py",
+        "item_count": 2
+      },
+      {
+        "name": "auto/structural-utils.py",
+        "description": "Review file size: utils.py",
+        "item_count": 3
+      },
+      {
+        "name": "auto/flat_dirs-overload",
+        "description": "Fix 2 overload issues",
+        "item_count": 2
+      },
+      {
+        "name": "auto/responsibility_cohesion-utils.py",
+        "description": "Fix 8 utils.py issues",
+        "item_count": 8
+      },
+      {
+        "name": "auto/orphaned",
+        "description": "Fix 10 orphaned issues",
+        "item_count": 10
+      },
+      {
+        "name": "auto/facade-file",
+        "description": "Fix 15 file issues",
+        "item_count": 15
+      },
+      {
+        "name": "auto/test_coverage",
+        "description": "Fix 13 test coverage issues",
+        "item_count": 13
+      },
+      {
+        "name": "auto/smells-import_path_mutation",
+        "description": "Fix 10 import path mutation issues",
+        "item_count": 10
+      },
+      {
+        "name": "auto/smells-sys_exit_in_library",
+        "description": "Fix 8 sys exit in library issues",
+        "item_count": 8
+      },
+      {
+        "name": "auto/smells-monster_function",
+        "description": "Fix 6 monster function issues",
+        "item_count": 6
+      },
+      {
+        "name": "auto/smells-silent_except",
+        "description": "Fix 5 silent except issues",
+        "item_count": 5
+      },
+      {
+        "name": "auto/smells-subprocess_no_timeout",
+        "description": "Fix 2 subprocess no timeout issues",
+        "item_count": 2
+      },
+      {
+        "name": "auto/smells-swallowed_error",
+        "description": "Fix 2 swallowed error issues",
+        "item_count": 2
+      },
+      {
+        "name": "auto/smells-unsafe_file_write",
+        "description": "Fix 11 unsafe file write issues",
+        "item_count": 11
+      },
+      {
+        "name": "auto/smells-high_cyclomatic_complexity",
+        "description": "Fix 16 high cyclomatic complexity issues",
+        "item_count": 16
+      },
+      {
+        "name": "auto/smells-annotation_quality",
+        "description": "Fix 8 annotation quality issues",
+        "item_count": 8
+      },
+      {
+        "name": "auto/smells-optional_param_sprawl",
+        "description": "Fix 5 optional param sprawl issues",
+        "item_count": 5
+      },
+      {
+        "name": "auto/smells-import_runtime_init",
+        "description": "Fix 5 import runtime init issues",
+        "item_count": 5
+      },
+      {
+        "name": "auto/smells-deferred_import",
+        "description": "Fix 14 deferred import issues",
+        "item_count": 14
+      },
+      {
+        "name": "auto/smells-magic_number",
+        "description": "Fix 2 magic number issues",
+        "item_count": 2
+      },
+      {
+        "name": "auto/smells-broad_except",
+        "description": "Fix 24 broad except issues",
+        "item_count": 24
+      },
+      {
+        "name": "auto/security",
+        "description": "Fix 10 security issues",
+        "item_count": 10
+      },
+      {
+        "name": "auto/dict_keys-overwritten_key",
+        "description": "Fix 22 overwritten key issues",
+        "item_count": 22
+      },
+      {
+        "name": "auto/subjective_review",
+        "description": "Address 38 subjective_review review issues",
+        "item_count": 38
+      },
+      {
+        "name": "auto/initial-review",
+        "description": "Initial review of 20 unscored subjective dimensions",
+        "item_count": 0
+      },
+      {
+        "name": "shared-helpers",
+        "description": "Consolidate duplicated helper functions across modules into shared utils",
+        "item_count": 0
+      },
+      {
+        "name": "god-files",
+        "description": "Decompose html_website and publish monolith files",
+        "item_count": 14
+      },
+      {
+        "name": "logging-foundation",
+        "description": "Fix broken logging initialization and module-scope side effects",
+        "item_count": 5
+      },
+      {
+        "name": "type-annotations",
+        "description": "Fix type annotation gaps across validation and other modules",
+        "item_count": 6
+      },
+      {
+        "name": "error-handling",
+        "description": "Fix silent errors and inconsistent error handling patterns",
+        "item_count": 12
+      },
+      {
+        "name": "api-alignment",
+        "description": "Fix API shape inconsistencies and pure delegations",
+        "item_count": 7
+      },
+      {
+        "name": "mechanical",
+        "description": "Run autofix and fix remaining mechanical issues",
+        "item_count": 0
+      },
+      {
+        "name": "cross-module",
+        "description": "Fix cross-module architecture: hub modules, deferred imports, boundaries",
+        "item_count": 7
+      },
+      {
+        "name": "naming",
+        "description": "Fix naming quality issues across modules",
+        "item_count": 4
+      },
+      {
+        "name": "conventions",
+        "description": "Fix convention drift: inconsistent output strategies, placement, style",
+        "item_count": 4
+      },
+      {
+        "name": "dependency-cleanup",
+        "description": "Fix dependency health: dead deps, undeclared system deps",
+        "item_count": 3
+      },
+      {
+        "name": "logic-clarity",
+        "description": "Fix logic clarity issues: dead branches, falsy-zero bugs, always-true guards",
+        "item_count": 5
+      },
+      {
+        "name": "low-level",
+        "description": "Fix low-level elegance: non-deterministic hash, nested class, always-true placeholder",
+        "item_count": 3
+      },
+      {
+        "name": "test-coverage",
+        "description": "Improve test coverage for integration pipeline, result schemas, and TTS path",
+        "item_count": 4
+      },
+      {
+        "name": "incomplete-migration",
+        "description": "Address incomplete migrations and stranded modules",
+        "item_count": 2
+      }
+    ],
+    "total_ordered": 0,
+    "total_skipped": 0,
+    "plan_overrides_narrative": true
+  },
+  "overall_score": 63.8,
+  "objective_score": 86.2,
+  "strict_score": 63.8,
+  "scorecard_dimensions": [
+    {
+      "name": "File health",
+      "score": 86.4,
+      "strict": 86.4,
+      "checks": 58,
+      "failing": 13,
+      "tier": 3,
+      "subjective": false
+    },
+    {
+      "name": "AI generated debt",
+      "score": 41.0,
+      "strict": 41.0,
+      "checks": 10,
+      "failing": 2,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "ai_generated_debt"
+      ]
+    },
+    {
+      "name": "API coherence",
+      "score": 53.6,
+      "strict": 53.6,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "api_surface_coherence"
+      ]
+    },
+    {
+      "name": "Abstraction fit",
+      "score": 38.0,
+      "strict": 38.0,
+      "checks": 10,
+      "failing": 0,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "abstraction_fitness",
+        "delegation_density",
+        "definition_directness",
+        "type_discipline"
+      ]
+    },
+    {
+      "name": "Code quality",
+      "score": 74.7,
+      "strict": 74.7,
+      "checks": 424,
+      "failing": 196,
+      "tier": 3,
+      "subjective": false
+    },
+    {
+      "name": "Contracts",
+      "score": 53.4,
+      "strict": 53.4,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "contract_coherence"
+      ]
+    },
+    {
+      "name": "Convention drift",
+      "score": 59.5,
+      "strict": 59.5,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "convention_outlier"
+      ]
+    },
+    {
+      "name": "Cross-module arch",
+      "score": 38.0,
+      "strict": 38.0,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "cross_module_architecture"
+      ]
+    },
+    {
+      "name": "Dep health",
+      "score": 46.2,
+      "strict": 46.2,
+      "checks": 10,
+      "failing": 3,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "dependency_health"
+      ]
+    },
+    {
+      "name": "Design coherence",
+      "score": 46.4,
+      "strict": 46.4,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "design_coherence"
+      ]
+    },
+    {
+      "name": "Duplication",
+      "score": 98.5,
+      "strict": 98.5,
+      "checks": 205,
+      "failing": 4,
+      "tier": 3,
+      "subjective": false
+    },
+    {
+      "name": "Elegance",
+      "score": 47.0,
+      "strict": 47.0,
+      "checks": 30,
+      "failing": 13,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "high_level_elegance",
+        "mid_level_elegance",
+        "low_level_elegance"
+      ]
+    },
+    {
+      "name": "Error consistency",
+      "score": 37.8,
+      "strict": 37.8,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "error_consistency"
+      ]
+    },
+    {
+      "name": "Init coupling",
+      "score": 44.7,
+      "strict": 44.7,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "initialization_coupling"
+      ]
+    },
+    {
+      "name": "Naming quality",
+      "score": 58.7,
+      "strict": 58.7,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "naming_quality"
+      ]
+    },
+    {
+      "name": "Security",
+      "score": 97.8,
+      "strict": 97.8,
+      "checks": 169,
+      "failing": 10,
+      "tier": 4,
+      "subjective": false
+    },
+    {
+      "name": "Structure nav",
+      "score": 63.5,
+      "strict": 63.5,
+      "checks": 10,
+      "failing": 3,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "package_organization"
+      ]
+    },
+    {
+      "name": "Test health",
+      "score": 75.7,
+      "strict": 75.7,
+      "checks": 663,
+      "failing": 50,
+      "tier": 4,
+      "subjective": false
+    },
+    {
+      "name": "Test strategy",
+      "score": 45.8,
+      "strict": 45.8,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "test_strategy"
+      ]
+    },
+    {
+      "name": "Type safety",
+      "score": 43.8,
+      "strict": 43.8,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "type_safety"
+      ]
+    }
+  ],
+  "subjective_measures": [
+    {
+      "name": "AI generated debt",
+      "score": 41.0,
+      "strict": 41.0,
+      "checks": 10,
+      "failing": 2,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "ai_generated_debt"
+      ]
+    },
+    {
+      "name": "API coherence",
+      "score": 53.6,
+      "strict": 53.6,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "api_surface_coherence"
+      ]
+    },
+    {
+      "name": "Abstraction fit",
+      "score": 38.0,
+      "strict": 38.0,
+      "checks": 10,
+      "failing": 0,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "abstraction_fitness",
+        "delegation_density",
+        "definition_directness",
+        "type_discipline"
+      ]
+    },
+    {
+      "name": "Contracts",
+      "score": 53.4,
+      "strict": 53.4,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "contract_coherence"
+      ]
+    },
+    {
+      "name": "Convention drift",
+      "score": 59.5,
+      "strict": 59.5,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "convention_outlier"
+      ]
+    },
+    {
+      "name": "Cross-module arch",
+      "score": 38.0,
+      "strict": 38.0,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "cross_module_architecture"
+      ]
+    },
+    {
+      "name": "Dep health",
+      "score": 46.2,
+      "strict": 46.2,
+      "checks": 10,
+      "failing": 3,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "dependency_health"
+      ]
+    },
+    {
+      "name": "Design coherence",
+      "score": 46.4,
+      "strict": 46.4,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "design_coherence"
+      ]
+    },
+    {
+      "name": "Elegance",
+      "score": 47.0,
+      "strict": 47.0,
+      "checks": 30,
+      "failing": 13,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "high_level_elegance",
+        "mid_level_elegance",
+        "low_level_elegance"
+      ]
+    },
+    {
+      "name": "Error consistency",
+      "score": 37.8,
+      "strict": 37.8,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "error_consistency"
+      ]
+    },
+    {
+      "name": "Init coupling",
+      "score": 44.7,
+      "strict": 44.7,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "initialization_coupling"
+      ]
+    },
+    {
+      "name": "Naming quality",
+      "score": 58.7,
+      "strict": 58.7,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "naming_quality"
+      ]
+    },
+    {
+      "name": "Structure nav",
+      "score": 63.5,
+      "strict": 63.5,
+      "checks": 10,
+      "failing": 3,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "package_organization"
+      ]
+    },
+    {
+      "name": "Test strategy",
+      "score": 45.8,
+      "strict": 45.8,
+      "checks": 10,
+      "failing": 4,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "test_strategy"
+      ]
+    },
+    {
+      "name": "Type safety",
+      "score": 43.8,
+      "strict": 43.8,
+      "checks": 10,
+      "failing": 5,
+      "tier": 4,
+      "subjective": true,
+      "placeholder": false,
+      "cli_keys": [
+        "type_safety"
+      ]
+    }
+  ],
+  "config": {
+    "target_strict_score": 95,
+    "review_max_age_days": 30,
+    "review_batch_max_files": 80,
+    "holistic_max_age_days": 30,
+    "generate_scorecard": true,
+    "badge_path": "scorecard.png",
+    "exclude": [],
+    "ignore": [],
+    "ignore_metadata": {},
+    "zone_overrides": {},
+    "review_dimensions": [],
+    "large_files_threshold": 0,
+    "props_threshold": 0,
+    "issue_noise_budget": 10,
+    "issue_noise_global_budget": 0,
+    "execution_log_max_entries": 10000,
+    "needs_rescan": false,
+    "languages": {},
+    "commit_tracking_enabled": true,
+    "commit_pr": 0,
+    "commit_default_branch": "",
+    "commit_message_template": "desloppify: {status} {count} issue(s) \u2014 {summary}"
+  }
+}

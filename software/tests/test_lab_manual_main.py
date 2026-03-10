@@ -302,8 +302,9 @@ class TestBatchRenderLabManuals:
             output_format="html"
         )
         
-        assert len(results) == 2
-        for result in results:
+        assert len(results["files"]) == 2
+        assert results["errors"] == []
+        for result in results["files"]:
             assert Path(result).exists()
 
     def test_batch_empty_directory(self, temp_dir):
@@ -315,7 +316,8 @@ class TestBatchRenderLabManuals:
             str(output_dir)
         )
         
-        assert results == []
+        assert results["files"] == []
+        assert results["errors"] == []
 
     def test_batch_invalid_directory(self, temp_dir):
         """Raise error for invalid directory."""

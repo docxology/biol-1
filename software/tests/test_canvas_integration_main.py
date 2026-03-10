@@ -6,7 +6,6 @@ from pathlib import Path
 import pytest
 
 from src.canvas_integration.main import (
-    sync_module_structure,
     upload_module_to_canvas,
     validate_upload_readiness,
 )
@@ -62,24 +61,6 @@ def test_upload_module_to_canvas_invalid_module():
     """Test uploading invalid module raises error using real validation."""
     with pytest.raises(ValueError, match="Module path does not exist"):
         upload_module_to_canvas("/nonexistent/module", "course123", "api_key")
-
-
-def test_sync_module_structure_validation(sample_module_structure):
-    """Test sync module structure validation logic.
-
-    This test validates the structure validation that happens before sync.
-    Actual Canvas API sync requires credentials and is tested in integration environments.
-    """
-    # Test that validation works correctly
-    issues = validate_upload_readiness(str(sample_module_structure))
-    assert len(issues) == 0
-
-    # The sync function uses the same validation as upload
-    # We test the validation logic here
-    invalid_module = sample_module_structure.parent / "invalid-module"
-    invalid_module.mkdir()
-    issues = validate_upload_readiness(str(invalid_module))
-    assert len(issues) > 0
 
 
 def test_validate_upload_readiness_file_too_large(temp_dir):

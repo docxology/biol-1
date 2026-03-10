@@ -1,0 +1,105 @@
+{
+  "batch": "mid_level_elegance",
+  "batch_index": 9,
+  "assessments": {
+    "mid_level_elegance": 66.0
+  },
+  "dimension_notes": {
+    "mid_level_elegance": {
+      "evidence": [
+        "scripts/generate_all_outputs.py passes result dicts from process_course_modules(), process_course_syllabus(), process_course_labs() etc. and extracts total_files via ad-hoc dict key navigation (m['outputs']['summary'].values(), syl['results']['summary'].values(), len(labs.get('files', []))). The dict schema varies between callers — summary is nested two levels deep for modules but labs uses a flat 'files' list.",
+        "canvas_integration/main.py:upload_module_to_canvas() calls validate_module_files() from file_validation.main and then inspects the raw dict result (validation['valid'], validation.get('missing_files')) inline — the boundary translation is ad-hoc and lacks a single place where the validation dict is converted to a domain exception.",
+        "canvas_integration/main.py:sync_module_structure() delegates entirely to upload_module_to_canvas() — the seam between 'sync' and 'upload' operations exposes no distinguishable contract, so callers cannot predict what boundary semantics 'sync' provides vs 'upload'.",
+        "html_website/main.py:generate_module_website() receives a module_path: str and output_dir: Optional[str] — string-typed paths at the public API boundary, while internally it immediately converts to Path. The seam between caller and callee uses the wrong type, requiring a conversion at the top of every consumer.",
+        "scripts/generate_all_outputs.py:main() accumulates all_errors by calling .extend(results.get('errors', [])) on four different result shapes — the error list is the only consistent cross-boundary output contract, but each process_* function may or may not populate 'errors', 'files', 'summary', or 'processed' in different shapes.",
+        "batch_processing/main.py (from generate_all_outputs import): process_course_modules() returns a dict with 'modules' key containing a list of dicts each with optional 'outputs.summary' — but the caller must know this nested shape to count files. No typed result object exists at this seam.",
+        "scripts/flatten_published.py is a clean thin orchestrator that delegates entirely to src.publish.utils.flatten_published() — a well-designed seam where the script owns only argument parsing and the library owns logic.",
+        "scripts/generate_module_renderings.py delegates to process_module_by_type() and then accesses results['summary']['pdf'], results['by_type'] directly — the script couples to the internal dict layout of batch_processing output rather than a typed result."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high"
+    }
+  },
+  "dimension_judgment": {
+    "mid_level_elegance": {
+      "strengths": [
+        "scripts/flatten_published.py and scripts/generate_module_renderings.py are clean thin orchestrators that delegate promptly to library functions, exemplifying the desired script-library seam pattern.",
+        "batch_processing/__init__.py provides a stable public facade that scripts import from, avoiding direct sub-module imports in most call sites.",
+        "canvas_integration module isolates API credentials and rate-limiting in utils.py:make_canvas_request(), providing a clean cross-boundary concern for auth.",
+        "Error propagation across batch processing follows a consistent pattern: each process_* function returns a dict with 'errors' key, allowing the orchestrator to aggregate without try/except at each boundary."
+      ],
+      "issue_character": "The dominant seam problem is ad-hoc, inconsistently-shaped result dicts passed between the orchestration layer and the library layer, requiring callers to know the internal nested structure of results rather than working through a consistent typed interface.",
+      "score_rationale": "The codebase shows good seam discipline in the thin script orchestrators and the facade __init__ modules. However, the process_* family of functions returns four different dict shapes (modules with nested summary, syllabus with results.summary, labs with files list, practice_tests with files list), and callers must navigate these shapes with ad-hoc .get() access. The canvas integration's validate-then-inspect-dict pattern is a second area where boundary translation is scattered. These are real mid-level seam defects but they do not completely undermine the architecture — the overall composition is readable, placing the score in the mid-60s."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "mid_level_elegance",
+      "identifier": "inconsistent_result_dict_schemas",
+      "summary": "process_* functions at the batch_processing boundary return inconsistently shaped dicts requiring callers to know internal structure",
+      "related_files": [
+        "scripts/generate_all_outputs.py",
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "generate_all_outputs.py line 142: sum(m['outputs']['summary'].values()) — nested two levels for modules",
+        "Line 148: sum(syl['results']['summary'].values()) — different nesting for syllabus",
+        "Lines 154, 161, 167: len(labs.get('files', [])), len(practice_tests.get('files', [])), len(exams.get('files', [])) — flat list count for labs/practice/exams",
+        "No common result type or protocol is shared across these functions"
+      ],
+      "suggestion": "Define a ProcessResult dataclass or TypedDict with consistent fields (files_generated: int, errors: List[str], processed: bool) and have all process_* functions return it; remove the need for callers to navigate nested dict layouts.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "mid_level_elegance",
+      "identifier": "canvas_validation_dict_boundary_translation",
+      "summary": "canvas_integration/main.py inspects raw validation dict from file_validation inline instead of translating at one boundary point",
+      "related_files": [
+        "src/canvas_integration/main.py",
+        "src/file_validation/main.py"
+      ],
+      "evidence": [
+        "upload_module_to_canvas() lines 43-45: validation = validate_module_files(module_path); if not validation['valid']: raise ValueError(...)",
+        "validate_upload_readiness() lines 101-112: inspects validation.get('missing_files'), validation.get('missing_directories'), validation.get('naming_violations') with separate conditionals"
+      ],
+      "suggestion": "Create a single translation function (e.g., raise_if_invalid(validation_result)) in canvas_integration or file_validation that converts the dict to a typed exception — callers should not need to know which dict keys to inspect.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "mid_level_elegance",
+      "identifier": "string_typed_path_api_boundary",
+      "summary": "html_website/main.py and batch_processing functions accept str paths at public API boundary requiring immediate internal conversion to Path",
+      "related_files": [
+        "src/html_website/main.py",
+        "src/batch_processing/main.py",
+        "src/canvas_integration/main.py"
+      ],
+      "evidence": [
+        "generate_module_website(module_path: str, output_dir: Optional[str]) immediately does Path(module_path)",
+        "upload_module_to_canvas(module_path: str, ...) immediately does Path(module_path)",
+        "process_module_to_pdf(module_path: str, output_dir: str) immediately does Path(module_path)"
+      ],
+      "suggestion": "Accept Path at the public API boundary (Union[str, Path] with normalization is acceptable) to make the intended type explicit and eliminate the conversion boilerplate at every call site.",
+      "confidence": "medium",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "process_* functions were designed to return flexible dicts for easy extension rather than typed results, and the shapes diverged as the orchestration grew",
+      "The str-typed path API was likely established early and propagated through the codebase before Path became the standard"
+    ],
+    "likely_symptoms": [
+      "sync_module_structure — symptom of unclear seam contract between upload and sync operations"
+    ],
+    "possible_false_positives": [
+      "The string path API may be intentional for CLI ergonomics; if scripts always pass sys.argv values, str is the natural type at the outermost boundary"
+    ]
+  }
+}

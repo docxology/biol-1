@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List, Optional
 
 from . import config
-from src.shared.file_utils import find_files
+from src.shared.file_utils import ensure_output_directory, find_files  # noqa: F401
 
 logger = logging.getLogger(__name__)
 

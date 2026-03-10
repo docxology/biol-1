@@ -1,0 +1,130 @@
+{
+  "batch": "error_consistency",
+  "batch_index": 4,
+  "assessments": {
+    "error_consistency": 55.0
+  },
+  "dimension_notes": {
+    "error_consistency": {
+      "evidence": [
+        "batch_processing/main.py process_module_to_pdf (lines 69-71): `except Exception as e: print(f'Error converting {md_file} to PDF: {e}'); continue` — broad catch, logs via print (not logger), silently continues; same pattern in process_module_to_audio (134-136) and process_module_to_text (189-190)",
+        "batch_processing/main.py process_module_by_type (lines 388-392): improved pattern using `logger.error(error_msg, exc_info=True)` with specific error messages — but same file uses both print() and logger.error() for errors depending on function",
+        "markdown_to_pdf/main.py batch_render_markdown (lines 85-88): `except Exception as e: print(f'Error converting {md_file}: {e}'); continue` — same bare-except-then-print pattern, losing exception type information",
+        "text_to_speech/main.py batch_generate_speech (lines 94-97): `except Exception as e: print(f'Error generating speech for {text_file}: {e}'); continue` — consistent with other batch functions but still uses print not logger",
+        "format_conversion/main.py batch_convert (lines 127-130): `except Exception as e: print(f'Error converting {input_file}: {e}'); continue` — same pattern",
+        "html_website/main.py line 186: `except Exception: pass` — silent swallow of JSON parse errors for questions file; no log, no propagation, no indication to caller that questions were not loaded",
+        "canvas_integration/main.py upload_module_to_canvas (lines 77-79): catches Exception and adds to results['errors'] list — different error strategy (Result-like accumulator) compared to all other modules that either raise or print",
+        "canvas_integration/utils.py make_canvas_request: calls response.raise_for_status() which raises requests.HTTPError — this is propagated to callers, consistent within canvas_integration but inconsistent with the print-and-continue strategy used in batch functions",
+        "publish/utils.py copy_directory_contents (lines 74-78): `except Exception as e: logger.error(f'Failed to copy {item}: {e}')` — logs but does not propagate; caller receives a count that may be lower than expected with no signal of partial failure",
+        "file_validation/main.py check_file_sizes (lines 370-374): `except OSError: continue` — silent skip on unreadable files with no log",
+        "module_organization/main.py get_module_statistics (lines 237-240): catches ValueError and sets module_number = None silently — caller gets a result dict with None module_number and no error indication"
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high"
+    }
+  },
+  "dimension_judgment": {
+    "error_consistency": {
+      "strengths": [
+        "Most top-level public functions (render_markdown_to_pdf, generate_speech, validate_module_files) raise exceptions on invalid inputs — the raise-on-invalid-input pattern is followed consistently for entry-point validation",
+        "canvas_integration uses raise_for_status() to propagate HTTP errors, preserving error context at the network boundary",
+        "process_module_by_type uses logger.error with exc_info=True for format-generation errors — this is the best error-handling pattern in the codebase"
+      ],
+      "issue_character": "The codebase has three distinct error strategies in active use — (1) raise ValueError/OSError at validation boundaries, (2) broad except-and-print in batch loops silently continuing, (3) Result-accumulator dict in canvas_integration — with no documented rationale for the mixing, and at least one instance of a completely silent swallow (except Exception: pass).",
+      "score_rationale": "The score reflects a codebase where the input-validation layer has reasonable error propagation, but the processing layer has systematically chosen broad-catch-and-continue patterns that lose error type information, mix print() and logger.error() inconsistently, and in one case (html_website questions parsing) silently swallow failures entirely. The canvas_integration Result-accumulator pattern is reasonable for a network integration but is not used anywhere else, creating a strategy divergence. This level of inconsistency means a developer cannot predict how failures will surface or be handled without reading each function individually."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-01",
+      "summary": "html_website/main.py silently swallows JSON parse errors for questions file with bare `except Exception: pass`",
+      "related_files": ["src/html_website/main.py"],
+      "evidence": [
+        "Lines 127-187: the entire questions loading block is wrapped in `try: ... except Exception: pass`",
+        "If questions.json is malformed or parse_questions_json raises, the section is silently omitted from the generated website",
+        "No log message, no return value annotation, no way for the caller to know questions were not rendered"
+      ],
+      "suggestion": "Replace `except Exception: pass` with `except (FileNotFoundError, json.JSONDecodeError) as e: logger.warning(f'Could not load questions for {module_name}: {e}')`. This preserves the skip-section behavior while making the failure visible in logs.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "silent_swallow"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-02",
+      "summary": "process_module_to_pdf, process_module_to_audio, process_module_to_text in batch_processing use print() for errors while process_module_by_type uses logger.error — inconsistent error output within the same file",
+      "related_files": ["src/batch_processing/main.py"],
+      "evidence": [
+        "process_module_to_pdf line 70: `print(f'Error converting {md_file} to PDF: {e}')`",
+        "process_module_to_audio line 135: `print(f'Error converting {text_file} to audio: {e}')`",
+        "process_module_to_text line 189: `print(f'Error transcribing {audio_file}: {e}')`",
+        "process_module_by_type line 391: `logger.error(error_msg, exc_info=True)` — includes stack trace",
+        "The older functions use print(); the newer function uses logger — both exist in the same module"
+      ],
+      "suggestion": "Replace all print() error outputs in batch_processing/main.py with logger.error(). Add exc_info=True to preserve the stack trace. This aligns with the pattern already established in process_module_by_type.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "mixed_error_strategy"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-03",
+      "summary": "publish/utils.py copy_directory_contents logs errors but returns a potentially low count with no indication of partial failure to callers",
+      "related_files": ["src/publish/utils.py"],
+      "evidence": [
+        "Lines 74-78: `except Exception as e: logger.error(f'Failed to copy {item}: {e}')` then continues the loop",
+        "The function returns `count` — callers receive a count that may be less than expected but have no way to distinguish 'all files copied' from 'some files failed'",
+        "The copy functions (copy_labs_and_dashboards, copy_slides, etc.) log success counts via logger.info but do not surface partial-failure information to the publish pipeline"
+      ],
+      "suggestion": "Return a tuple (copied_count, failed_count) or a dataclass with both counts, so callers can decide whether to warn or abort on partial failure. Alternatively, accumulate failed paths and raise after the loop if any failures occurred.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "mixed_error_strategy"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-04",
+      "summary": "canvas_integration uses a Result-accumulator dict error strategy while all other modules use raise-or-print — strategy is isolated to one module without documentation",
+      "related_files": ["src/canvas_integration/main.py"],
+      "evidence": [
+        "upload_module_to_canvas returns `{'uploaded_files': [...], 'failed_files': [...], 'errors': [...]}` — callers must check results['failed_files'] to detect failures",
+        "No other module uses this Result-accumulator pattern — all other batch functions either raise or print-and-continue",
+        "A developer calling upload_module_to_canvas without checking 'failed_files' will silently accept partial uploads as success"
+      ],
+      "suggestion": "Document the Result-accumulator contract explicitly in the docstring: state that callers MUST check results['failed_files'] and results['errors']. Consider whether partial-upload-as-success is the intended contract, or whether any failed file should cause the function to raise after completing all attempts.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "mixed_error_strategy"
+    },
+    {
+      "dimension": "error_consistency",
+      "identifier": "EC-05",
+      "summary": "file_validation/main.py check_file_sizes silently skips unreadable files with no log",
+      "related_files": ["src/file_validation/main.py"],
+      "evidence": [
+        "Lines 370-374: `except OSError: continue` — files that cannot be stat'd are skipped with no message",
+        "The function is a validation utility — silently excluding unreadable files from a size check means the validation result may be incomplete without the caller knowing",
+        "A file that cannot be read is itself a validation concern that should be surfaced"
+      ],
+      "suggestion": "Change `except OSError: continue` to `except OSError as e: oversized_files.append(f'{file_path.relative_to(module_dir)} (unreadable: {e})')` or log a warning. The caller should know that some files could not be assessed.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "The older process_module_to_* functions were written before the logger infrastructure was established; they were not updated when logger was introduced in process_module_by_type",
+      "The canvas_integration Result-accumulator pattern was likely chosen to tolerate partial upload failures, but the rationale was not documented",
+      "html_website/main.py was written with a preference for silent graceful degradation that is appropriate for rendering but crosses into undetectable failure"
+    ],
+    "likely_symptoms": ["EC-02 and EC-03 are symptoms of the same root cause: inconsistent error discipline during incremental feature addition"],
+    "possible_false_positives": ["EC-04 could be a justified intentional design choice for the canvas integration layer — flag confidence is medium"]
+  }
+}

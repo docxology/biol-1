@@ -18,6 +18,7 @@ Examples:
 """
 
 import argparse
+import logging
 import sys
 from pathlib import Path
 
@@ -27,6 +28,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from scripts.utils import print_module_not_found
 from src.batch_processing.main import process_module_by_type
 from src.module_organization.utils import find_module_path
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+logger = logging.getLogger(__name__)
 
 
 def parse_args() -> argparse.Namespace:
@@ -77,38 +81,38 @@ def main() -> int:
 
     output_dir = module_path / "output"
 
-    print(f"Processing: {args.course}/course/{module_path.name}")
-    print(f"Output directory: {output_dir}")
+    logger.info(f"Processing: {args.course}/course/{module_path.name}")
+    logger.info(f"Output directory: {output_dir}")
 
     try:
         results = process_module_by_type(str(module_path), str(output_dir))
 
-        # Print summary
-        print("\n=== Generation Summary ===")
-        print(f"PDF files: {results['summary']['pdf']}")
-        print(f"Audio files (MP3): {results['summary']['mp3']}")
-        print(f"DOCX files: {results['summary']['docx']}")
-        print(f"HTML files: {results['summary']['html']}")
-        print(f"TXT files: {results['summary']['txt']}")
+        # Log summary
+        logger.info("=== Generation Summary ===")
+        logger.info(f"PDF files: {results['summary']['pdf']}")
+        logger.info(f"Audio files (MP3): {results['summary']['mp3']}")
+        logger.info(f"DOCX files: {results['summary']['docx']}")
+        logger.info(f"HTML files: {results['summary']['html']}")
+        logger.info(f"TXT files: {results['summary']['txt']}")
 
-        print("\n=== Files by Type ===")
+        logger.info("=== Files by Type ===")
         for file_type, files in results["by_type"].items():
             if files:
-                print(f"\n{file_type}/ ({len(files)} files):")
+                logger.info(f"{file_type}/ ({len(files)} files):")
                 for file_path in sorted(files):
-                    print(f"  - {Path(file_path).name}")
+                    logger.info(f"  - {Path(file_path).name}")
 
         if results["errors"]:
-            print("\n=== Errors ===")
+            logger.error("=== Errors ===")
             for error in results["errors"]:
-                print(f"  - {error}")
+                logger.error(f"  - {error}")
             return 1
 
-        print("\n✓ All renderings generated successfully!")
+        logger.info("All renderings generated successfully!")
         return 0
 
     except Exception as e:
-        print(f"Error: {e}")
+        logger.error(f"Error: {e}")
         return 1
 
 

@@ -13,6 +13,7 @@ from .utils import (
     flatten_module,
     flatten_published,
     get_course_config,
+    reorganize_to_categories,
 )
 
 __all__ = [
@@ -28,5 +29,6 @@ __all__ = [
     "flatten_module",
     "flatten_published",
     "get_course_config",
+    "reorganize_to_categories",
 ]
 

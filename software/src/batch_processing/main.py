@@ -1,6 +1,8 @@
 """Main functions for batch processing."""
 
+import re
 import shutil
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -8,13 +10,20 @@ from . import config
 from .logging_config import get_logger
 from .log_style import format_summary, FORMAT_EMOJI, STATUS_EMOJI, CONTENT_EMOJI
 from .utils import (
-    ensure_output_directory,
     find_audio_files,
     find_markdown_files,
     get_relative_output_path,
     should_process_file,
 )
-import time
+from src.shared.file_utils import ensure_output_directory
+from ..format_conversion.main import convert_file
+from ..html_website.main import generate_module_website
+from ..lab_manual.main import batch_render_lab_manuals
+from ..markdown_to_pdf.main import render_markdown_to_pdf
+from ..module_organization.utils import matches_module_number
+from ..speech_to_text.main import transcribe_audio
+from ..text_to_speech.main import generate_speech
+from ..text_to_speech.utils import extract_text_from_markdown, read_text_file
 
 logger = get_logger()
 
@@ -62,8 +71,6 @@ def process_module_to_pdf(module_path: str, output_dir: str) -> List[str]:
             ensure_output_directory(output_file.parent)
 
             # Convert to PDF
-            from ..markdown_to_pdf.main import render_markdown_to_pdf
-
             render_markdown_to_pdf(str(md_file), str(output_file))
             output_files.append(str(output_file))
         except Exception as e:
@@ -117,18 +124,11 @@ def process_module_to_audio(module_path: str, output_dir: str) -> List[str]:
             ensure_output_directory(output_file.parent)
 
             # Read and extract text
-            from ..text_to_speech.utils import (
-                extract_text_from_markdown,
-                read_text_file,
-            )
-
             content = read_text_file(text_file)
             if text_file.suffix in [".md", ".markdown"]:
                 content = extract_text_from_markdown(content)
 
             # Generate speech
-            from ..text_to_speech.main import generate_speech
-
             generate_speech(content, str(output_file))
             output_files.append(str(output_file))
         except Exception as e:
@@ -181,8 +181,6 @@ def process_module_to_text(module_path: str, output_dir: str) -> List[str]:
             ensure_output_directory(output_file.parent)
 
             # Transcribe audio
-            from ..speech_to_text.main import transcribe_audio
-
             transcribe_audio(str(audio_file), str(output_file))
             output_files.append(str(output_file))
         except Exception as e:
@@ -325,7 +323,12 @@ def process_module_by_type(
 
     logger.debug(f"Found {len(files_to_process)} markdown files to process")
 
+    # Result schema: success indicates no errors; by_type groups files by curriculum
+    # element; summary provides per-format counts. Differs from process_syllabus which
+    # uses by_format instead of by_type (intentional: modules organize by element type,
+    # syllabi organize by output format).
     results = {
+        "success": True,
         "by_type": {t: [] for t in type_mapping.values()},
         "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0, "md": 0},
         "errors": [],
@@ -380,8 +383,6 @@ def process_module_by_type(
             if "pdf" in active_formats:
                 try:
                     pdf_file = type_output_dir / f"{base_name}.pdf"
-                    from ..markdown_to_pdf.main import render_markdown_to_pdf
-
                     logger.debug(f"Generating PDF: {pdf_file.name}")
                     render_markdown_to_pdf(str(md_file), str(pdf_file))
                     results["by_type"][output_subdir].append(str(pdf_file))
@@ -395,12 +396,6 @@ def process_module_by_type(
             if "mp3" in active_formats:
                 try:
                     audio_file = type_output_dir / f"{base_name}.mp3"
-                    from ..text_to_speech.utils import (
-                        extract_text_from_markdown,
-                        read_text_file,
-                    )
-                    from ..text_to_speech.main import generate_speech
-
                     logger.debug(f"Generating MP3: {audio_file.name}")
                     content = read_text_file(md_file)
                     text_content = extract_text_from_markdown(content)
@@ -417,8 +412,6 @@ def process_module_by_type(
             if "docx" in active_formats:
                 try:
                     docx_file = type_output_dir / f"{base_name}.docx"
-                    from ..format_conversion.main import convert_file
-
                     logger.debug(f"Generating DOCX: {docx_file.name}")
                     convert_file(str(md_file), "docx", str(docx_file))
                     results["by_type"][output_subdir].append(str(docx_file))
@@ -432,9 +425,8 @@ def process_module_by_type(
             if "html" in active_formats:
                 try:
                     html_file = type_output_dir / f"{base_name}.html"
-                    from ..format_conversion.main import convert_file as convert_file_func
                     logger.debug(f"Generating HTML: {html_file.name}")
-                    convert_file_func(str(md_file), "html", str(html_file))
+                    convert_file(str(md_file), "html", str(html_file))
                     results["by_type"][output_subdir].append(str(html_file))
                     results["summary"]["html"] += 1
                 except Exception as e:
@@ -446,11 +438,6 @@ def process_module_by_type(
             if "txt" in active_formats:
                 try:
                     txt_file = type_output_dir / f"{base_name}.txt"
-                    from ..text_to_speech.utils import (
-                        extract_text_from_markdown,
-                        read_text_file,
-                    )
-
                     logger.debug(f"Generating TXT: {txt_file.name}")
                     content = read_text_file(md_file)
                     text_content = extract_text_from_markdown(content)
@@ -467,7 +454,6 @@ def process_module_by_type(
                 try:
                     md_output_file = type_output_dir / f"{base_name}.md"
                     logger.debug(f"Generating MD: {md_output_file.name}")
-                    import shutil
                     shutil.copy2(str(md_file), str(md_output_file))
                     results["by_type"][output_subdir].append(str(md_output_file))
                     results["summary"]["md"] += 1
@@ -481,6 +467,7 @@ def process_module_by_type(
             results["errors"].append(f"Processing failed for {md_file.name}: {e}")
 
     total_outputs = sum(results["summary"].values())
+    results["success"] = len(results["errors"]) == 0
     logger.info(f"Processed module {module_dir.name}: {len(files_to_process)} files, {total_outputs} outputs generated")
     if results["errors"]:
         logger.warning(f"Module processing completed with {len(results['errors'])} errors")
@@ -533,6 +520,7 @@ def process_syllabus(
     ]
 
     results = {
+        "success": True,
         "by_format": {"pdf": [], "mp3": [], "docx": [], "html": [], "txt": [], "md": []},
         "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0, "md": 0},
         "errors": [],
@@ -547,8 +535,6 @@ def process_syllabus(
             if "pdf" in active_formats:
                 try:
                     pdf_file = base_output / f"{base_name}.pdf"
-                    from ..markdown_to_pdf.main import render_markdown_to_pdf
-
                     logger.debug(f"Generating PDF: {pdf_file.name}")
                     render_markdown_to_pdf(str(md_file), str(pdf_file))
                     results["by_format"]["pdf"].append(str(pdf_file))
@@ -562,12 +548,6 @@ def process_syllabus(
             if "mp3" in active_formats:
                 try:
                     audio_file = base_output / f"{base_name}.mp3"
-                    from ..text_to_speech.utils import (
-                        extract_text_from_markdown,
-                        read_text_file,
-                    )
-                    from ..text_to_speech.main import generate_speech
-
                     logger.debug(f"Generating MP3: {audio_file.name}")
                     content = read_text_file(md_file)
                     text_content = extract_text_from_markdown(content)
@@ -584,8 +564,6 @@ def process_syllabus(
             if "docx" in active_formats:
                 try:
                     docx_file = base_output / f"{base_name}.docx"
-                    from ..format_conversion.main import convert_file
-
                     logger.debug(f"Generating DOCX: {docx_file.name}")
                     convert_file(str(md_file), "docx", str(docx_file))
                     results["by_format"]["docx"].append(str(docx_file))
@@ -599,9 +577,8 @@ def process_syllabus(
             if "html" in active_formats:
                 try:
                     html_file = base_output / f"{base_name}.html"
-                    from ..format_conversion.main import convert_file as convert_file_func
                     logger.debug(f"Generating HTML: {html_file.name}")
-                    convert_file_func(str(md_file), "html", str(html_file))
+                    convert_file(str(md_file), "html", str(html_file))
                     results["by_format"]["html"].append(str(html_file))
                     results["summary"]["html"] += 1
                 except Exception as e:
@@ -613,11 +590,6 @@ def process_syllabus(
             if "txt" in active_formats:
                 try:
                     txt_file = base_output / f"{base_name}.txt"
-                    from ..text_to_speech.utils import (
-                        extract_text_from_markdown,
-                        read_text_file,
-                    )
-
                     logger.debug(f"Generating TXT: {txt_file.name}")
                     content = read_text_file(md_file)
                     text_content = extract_text_from_markdown(content)
@@ -634,7 +606,6 @@ def process_syllabus(
                 try:
                     md_output_file = base_output / f"{base_name}.md"
                     logger.debug(f"Generating MD: {md_output_file.name}")
-                    import shutil
                     shutil.copy2(str(md_file), str(md_output_file))
                     results["by_format"]["md"].append(str(md_output_file))
                     results["summary"]["md"] += 1
@@ -647,6 +618,7 @@ def process_syllabus(
             logger.error(f"Processing failed for {md_file.name}: {e}", exc_info=True)
             results["errors"].append(f"Processing failed for {md_file.name}: {e}")
 
+    results["success"] = len(results["errors"]) == 0
     logger.info(f"Processed syllabus: {len(syllabus_files)} files, {sum(results['summary'].values())} outputs generated")
     if results["errors"]:
         logger.warning(f"Syllabus processing completed with {len(results['errors'])} errors")
@@ -770,8 +742,6 @@ def process_course_modules(
     Returns:
         Dictionary with processing results
     """
-    from ..module_organization.utils import matches_module_number
-
     course_dir = course_path / "course"
     if not course_dir.exists():
         logger.warning(f"Course directory not found: {course_dir}")
@@ -799,7 +769,6 @@ def process_course_modules(
     if max_module is not None:
         def get_module_number(name: str) -> int:
             """Extract module number from name like 'module-01-topic' or 'module-1'."""
-            import re
             match = re.search(r'module-(\d+)', name)
             return int(match.group(1)) if match else 999
         
@@ -955,9 +924,6 @@ def process_course_labs(
         results["processed"] = False
         return results
 
-    # Lazy import to avoid WeasyPrint load at module level
-    from ..lab_manual.main import batch_render_lab_manuals
-
     for fmt in lab_formats:
         try:
             fmt_output = output_dir / fmt
@@ -968,8 +934,10 @@ def process_course_labs(
                 course_name=course_name,
                 max_lab=max_lab,
             )
-            results["files"].extend(rendered)
-            logger.info(f"  {fmt.upper()}: {len(rendered)} lab files rendered")
+            results["files"].extend(rendered["files"])
+            if rendered["errors"]:
+                results["errors"].extend(rendered["errors"])
+            logger.info(f"  {fmt.upper()}: {len(rendered['files'])} lab files rendered")
         except Exception as e:
             error_msg = f"Lab {fmt} rendering failed: {e}"
             logger.error(error_msg, exc_info=True)
@@ -1037,9 +1005,6 @@ def process_course_practice_tests(
         logger.info(f"No practice test files found in {practice_tests_dir}")
         results["processed"] = False
         return results
-
-    # Lazy import to avoid load at module level
-    from ..markdown_to_pdf.main import render_markdown_to_pdf
 
     for md_file in md_files:
         try:
@@ -1127,15 +1092,11 @@ def process_course_exams(
         for fmt in exam_formats:
             try:
                 if fmt == "pdf":
-                    from ..markdown_to_pdf.main import render_markdown_to_pdf
-
                     out_file = output_dir / f"{md_file.stem}.pdf"
                     logger.debug(f"Generating PDF: {out_file.name}")
                     render_markdown_to_pdf(str(md_file), str(out_file))
                     results["files"].append(str(out_file))
                 elif fmt == "docx":
-                    from ..format_conversion.main import convert_file
-
                     out_file = output_dir / f"{md_file.stem}.docx"
                     logger.debug(f"Generating DOCX: {out_file.name}")
                     convert_file(str(md_file), "docx", str(out_file))
@@ -1168,8 +1129,6 @@ def process_module_website(module_path: str, output_dir: Optional[str] = None) -
         ValueError: If module path doesn't exist
         OSError: If website generation fails
     """
-    from ..html_website.main import generate_module_website
-
     logger.info(f"Generating website for module: {Path(module_path).name}")
     website_file = generate_module_website(module_path, output_dir)
     logger.info(f"Website generated: {website_file}")

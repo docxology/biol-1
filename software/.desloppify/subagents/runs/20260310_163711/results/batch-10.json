@@ -1,0 +1,124 @@
+{
+  "batch": "test_strategy",
+  "batch_index": 10,
+  "assessments": {
+    "test_strategy": 65.0
+  },
+  "dimension_notes": {
+    "test_strategy": {
+      "evidence": [
+        "Test suite has good per-module unit test coverage: test files exist for every src/ module (test_batch_processing_main.py, test_canvas_integration_main.py, test_html_website_utils.py, test_lab_manual_main.py, test_markdown_to_pdf_main.py, etc.).",
+        "test_integration.py covers only two cross-module workflows (module creation + validation, module with assignment validation) — very thin for a codebase with 15 modules and a 9-stage publishing pipeline.",
+        "test_orchestration.py covers test_complete_module_workflow (create→validate→stats) and test_format_conversion_chain, but neither tests the actual batch pipeline (process_course_modules, process_course_syllabus, process_course_labs) at the integration level.",
+        "The primary publishing pipeline script (scripts/generate_all_outputs.py) and publish_all.py have no corresponding test files — the 9-stage pipeline (clean → generate → publish → flatten → reorganize → validate → git_push) is entirely untested at integration level.",
+        "html_website/main.py:generate_module_website() — the most complex function in the codebase (400+ lines) — is tested in test_html_website_features.py and test_html_website_utils.py, but the embedded JavaScript and the matching question always-true placeholder are not covered by any test.",
+        "text_to_speech tests (test_text_to_speech_main.py) require internet and are gated with @pytest.mark.requires_internet — this is a correct pattern. However, the macOS 'say' path (the actual production path) is not tested at all since it calls subprocess system commands.",
+        "test_canvas_integration_main.py and test_canvas_integration_utils.py test Canvas API functions; since Canvas requires real API credentials, these tests appropriately validate structure/logic only.",
+        "test_real_implementations.py exists and is named to emphasize the no-mocks policy — this is a positive signal for coupling resistance.",
+        "No snapshot tests observed — snapshot overuse is not a concern here.",
+        "tests/conftest.py provides sample_module_structure and temp_dir fixtures used across many tests, which is good infrastructure, but sample_module_structure appears to create a minimal fixture not representative of the real biol-1/biol-8 module structure (with keys-to-success.md and questions.md)."
+      ],
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high"
+    }
+  },
+  "dimension_judgment": {
+    "test_strategy": {
+      "strengths": [
+        "Every src/ module has at least one corresponding test file — no module is entirely untested.",
+        "The @pytest.mark.requires_internet and @pytest.mark.requires_api markers correctly gate tests that need external services, allowing the suite to run cleanly offline.",
+        "No snapshot test overuse — the test suite relies on real assertions rather than snapshot comparisons.",
+        "test_real_implementations.py demonstrates commitment to testing against real library behavior (no mocks/stubs)."
+      ],
+      "issue_character": "The test suite has thorough unit coverage at the per-function level but nearly zero integration coverage for the high-value orchestration paths: the full publishing pipeline, the batch processing course loop, and the generate_all_outputs script are all untested end-to-end.",
+      "score_rationale": "Per-module unit tests are good, and the markers/fixtures infrastructure is well-organized. The critical gap is integration coverage: the 9-stage publishing pipeline, the batch course processing loop, and the major script entry points have no tests at all. Given that the real pipeline risk lies in how stages compose and pass data across boundaries (the inconsistent result dict shapes noted in mid_level_elegance), the absence of integration tests means these failure modes are entirely invisible to the test suite. This pattern — solid unit base, hollow integration layer — places the score mid-range at 65."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "test_strategy",
+      "identifier": "publishing_pipeline_no_integration_tests",
+      "summary": "The 9-stage publishing pipeline (generate_all_outputs, publish_all) has no integration tests",
+      "related_files": [
+        "scripts/generate_all_outputs.py",
+        "scripts/publish_all.py",
+        "src/batch_processing/main.py"
+      ],
+      "evidence": [
+        "No test file exists for scripts/generate_all_outputs.py or scripts/publish_all.py",
+        "test_batch_processing_orchestration.py exists but tests individual functions; no test exercises the full course processing loop (process_course_modules + process_course_syllabus + process_course_labs together)",
+        "The 9-stage pipeline configuration in publish.toml has no test coverage for stage sequencing"
+      ],
+      "suggestion": "Add an integration test that runs process_course_modules + process_course_syllabus against a minimal fixture course directory and verifies output file counts and error-list emptiness; add a dry-run integration test for the full pipeline using --dry-run mode.",
+      "confidence": "high",
+      "impact_scope": "codebase",
+      "fix_scope": "multi_file_refactor"
+    },
+    {
+      "dimension": "test_strategy",
+      "identifier": "result_dict_schema_not_tested",
+      "summary": "The inconsistent result dict schemas returned by process_* functions are not covered by contract tests",
+      "related_files": [
+        "src/batch_processing/main.py",
+        "tests/test_batch_processing_main.py",
+        "tests/test_batch_processing_orchestration.py"
+      ],
+      "evidence": [
+        "process_course_modules() returns dict with 'modules' key; process_course_labs() returns dict with 'files' key; process_course_syllabus() returns dict with 'results.summary' — none of these schemas are verified in tests",
+        "generate_all_outputs.py navigates these schemas at runtime with ad-hoc .get() calls; a schema change would be a silent runtime failure"
+      ],
+      "suggestion": "Add tests that assert the exact schema of each process_* return value (required keys, nested shapes); this acts as a contract test protecting the orchestration layer.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "test_strategy",
+      "identifier": "tts_subprocess_path_untested",
+      "summary": "The macOS 'say' + ffmpeg TTS path in text_to_speech/utils.py has no test coverage",
+      "related_files": [
+        "src/text_to_speech/utils.py",
+        "tests/test_text_to_speech_main.py"
+      ],
+      "evidence": [
+        "text_to_speech/utils.py:text_to_speech_audio() uses subprocess.run(['say', ...]) and subprocess.run(['ffmpeg', ...])",
+        "test_text_to_speech_main.py marks tests with @pytest.mark.requires_internet (original gTTS assumption); the subprocess path does not require internet but is not tested",
+        "Failure mode for missing ffmpeg binary is an opaque OSError with CalledProcessError"
+      ],
+      "suggestion": "Add a test that verifies text_to_speech_audio() raises OSError with a meaningful message when 'say' or 'ffmpeg' is absent, using @pytest.mark.skipif(shutil.which('ffmpeg') is None) to gate on environment.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    },
+    {
+      "dimension": "test_strategy",
+      "identifier": "html_website_js_logic_untested",
+      "summary": "Embedded JavaScript in generate_module_website() — including the always-true matching placeholder — has no test coverage",
+      "related_files": [
+        "src/html_website/main.py",
+        "tests/test_html_website_features.py"
+      ],
+      "evidence": [
+        "The 185-line JavaScript block is written into the HTML output but no test asserts its presence or correctness",
+        "The matching question always-correct placeholder (isCorrect = true) is a logic defect that cannot be caught by Python tests since it is embedded JavaScript"
+      ],
+      "suggestion": "Add an HTML output test that parses the generated index.html and verifies presence of key JS function names (checkQuestion, selectMultipleChoice); separately, fix the matching validation logic or mark matching questions as unscored with a visible UI indicator.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "single_edit"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "Unit tests were added as each module was built but no integration test layer was established for the pipeline as a whole",
+      "The publishing pipeline involves file system operations across multiple directories which makes integration testing harder to set up without a full fixture environment"
+    ],
+    "likely_symptoms": [
+      "result_dict_schema_not_tested — downstream symptom of the inconsistent dict schemas identified in mid_level_elegance"
+    ],
+    "possible_false_positives": [
+      "test_batch_processing_orchestration.py may have more pipeline coverage than sampled; would need to read the full file to confirm"
+    ]
+  }
+}

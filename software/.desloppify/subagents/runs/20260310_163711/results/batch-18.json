@@ -1,0 +1,120 @@
+{
+  "batch": "logic_clarity",
+  "batch_index": 18,
+  "assessments": {"logic_clarity": 76.0},
+  "dimension_notes": {
+    "logic_clarity": {
+      "evidence": [
+        "publish/main.py lines 78-82: double-check pattern — 'if not source_path.exists(): logger.warning(...); continue' is correctly guarded, but then 'if source_path.exists(): files_copied += copy_directory_contents(...)' immediately follows with the inverse check; the second check is always True at that point, making it dead conditional logic",
+        "publish/main.py lines 80-83: similarly 'else: logger.warning(...)' after 'if source_path.exists()' inside the block where source_path was already confirmed to exist — this else branch is unreachable dead code",
+        "html_website/main.py line 186-187: 'except Exception: pass' — broad silent exception swallow; if questions file parsing fails, the questions section is silently omitted with no log message, giving the developer no signal of the failure",
+        "validation/main.py _validate_module_outputs(): 'result[\"formats_checked\"] = formats or DEFAULT_REQUIRED_FORMATS' — this means when formats=[] (an empty list, falsy), it falls back to DEFAULT_REQUIRED_FORMATS instead of validating nothing; an empty list is a distinct caller intent from None, but both are treated identically",
+        "batch_processing/utils.py get_courses_to_process(): 'return [(c, n) for c, n in all_courses if c.endswith(course_arg)]' — if course_arg is 'biol-1', this also matches 'biol-11' or 'biol-21' if they were ever added; endswith() is an imprecise match for directory names",
+        "publish/utils.py reorganize_to_categories(): the match for slides uses 'fname.endswith(\".pdf\") and (\"slides\" in fname or fname.startswith(\"module \"))' — the second condition startswith(\"module \") is tested on fname.lower(), but fname = f.name.lower() is already lowercase, so startswith(\"module \") correctly handles that; no logic error but the mixed casing is confusing",
+        "schedule/main.py generate_schedule_outputs(): markdown_file is written unconditionally even when 'md' is not in the requested formats list (line 144-145: markdown_file.write_text(...) always runs); the intermediate markdown is always written to disk regardless of whether the caller requested it",
+        "legacy_import/main.py process_chapter_questions() lines 82-94: 'if not dry_run and not module_path.exists(): results[\"skipped\"].append(...)' followed immediately by 'if not module_path.exists() and not dry_run: results[\"summary\"][\"modules_created\"] += 1' — these two blocks have the same condition but different intent; the second block will execute immediately after the first skipped the file, so when module creation fails, both the 'skipped' path and the 'modules_created' counter are updated — the counter increment is incorrectly executed even when the module was NOT created",
+        "validation/utils.py check_lab_files(): 'if max_lab:' — treats max_lab=0 as falsy, meaning a caller passing max_lab=0 would not filter at all; should be 'if max_lab is not None:'"
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high"
+    }
+  },
+  "dimension_judgment": {
+    "logic_clarity": {
+      "strengths": [
+        "Most guard clauses use early returns correctly — validate_outputs(), validate_module_files(), check_file_sizes() all return early on non-existent paths",
+        "Boolean return functions (validate_module_structure, verify_required_structure, should_process_file) are direct without unnecessary branching",
+        "Error handling in legacy_import correctly separates ValueError from generic Exception with independent handlers",
+        "The dry_run pattern is consistently applied as a boolean gate with clear if/else branches throughout the codebase"
+      ],
+      "issue_character": "The predominant pattern of issues is dead conditional logic caused by double-checking already-established state (publish/main.py) and falsy-zero bugs in optional integer parameters (validation/utils.py, potentially batch functions).",
+      "score_rationale": "The codebase is largely logically clear — most branches are meaningful and control flow is readable. However, publish/main.py contains a confirmed dead-code branch (the else-logger warning after source_path was already confirmed to exist), legacy_import has a counter that increments incorrectly, and the max_lab=0 falsy check is a latent boundary bug. These are concrete logic defects, not style concerns, placing the score in the mid-70s."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-01",
+      "summary": "publish/main.py: dead else branch — logger.warning is unreachable because source_path existence was already confirmed in the enclosing if block",
+      "related_files": ["src/publish/main.py"],
+      "evidence": [
+        "Lines 66-82: outer guard 'if not source_path.exists(): logger.warning(...); continue' exits early when missing",
+        "Lines 79-82: inside the continuation, 'if source_path.exists(): files_copied += ...' is always True — the else branch 'logger.warning(...)' is dead code that can never execute"
+      ],
+      "suggestion": "Remove the redundant if/else check. After the early-return guard at line 68-70, source_path.exists() is guaranteed True. Simplify to: files_copied += copy_directory_contents(source_path, dest_path).",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "dead_conditional"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-02",
+      "summary": "legacy_import/main.py: modules_created counter increments even when module creation failed and the file was skipped",
+      "related_files": ["src/legacy_import/main.py"],
+      "evidence": [
+        "Lines 82-91: 'if not dry_run and not module_path.exists(): results[\"skipped\"].append(...); continue' — skips the file if module cannot be created",
+        "Lines 93-94: 'if not module_path.exists() and not dry_run: results[\"summary\"][\"modules_created\"] += 1' — this block executes immediately after the skip check; when module creation fails, the file is skipped (continue) so lines 93-94 never run for that file... but the guard condition on line 82 requires module_path to not exist, and then uses continue, so 93-94 are after a continue. Re-reading: the continue on line 88 means lines 93-94 are only reached if the file was NOT skipped. However, when module was freshly created (exists() is now True), the condition 'not module_path.exists()' is False. This counter will never fire for newly-created modules, making it effectively dead code."
+      ],
+      "suggestion": "Track module creation before ensure_module_exists() by checking 'existed_before = module_path.exists()', then after the call: 'if not existed_before and module_path.exists(): results[\"summary\"][\"modules_created\"] += 1'.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "state_check_ordering"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-03",
+      "summary": "validation/utils.py check_lab_files(): max_lab=0 is treated as 'no limit' due to falsy check",
+      "related_files": ["src/validation/utils.py"],
+      "evidence": [
+        "Line 197: 'if max_lab:' — evaluates max_lab=0 as False, skipping the filter; a caller passing max_lab=0 intending to validate no labs would instead validate all labs",
+        "Same pattern appears in validation/main.py line 109: 'if max_lab:'"
+      ],
+      "suggestion": "Replace 'if max_lab:' with 'if max_lab is not None:' in check_lab_files() and in validate_outputs(). This correctly handles the zero case.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "falsy_zero_bug"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-04",
+      "summary": "html_website/main.py: silent broad except around questions parsing suppresses all errors with no logging",
+      "related_files": ["src/html_website/main.py"],
+      "evidence": [
+        "Lines 186-187: 'except Exception: pass' — any exception during parse_questions_json() or question rendering is silently swallowed",
+        "No log.warning(), no fallback message in the HTML output — questions section is simply omitted with no developer signal"
+      ],
+      "suggestion": "Replace 'except Exception: pass' with 'except Exception as e: logger.warning(f\"Failed to render questions for {module_name}: {e}\")'. The questions section can still be omitted on error, but the failure should be observable.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "silent_exception_swallow"
+    },
+    {
+      "dimension": "logic_clarity",
+      "identifier": "lc-05",
+      "summary": "schedule/main.py generate_schedule_outputs(): intermediate markdown file is always written to disk even when 'md' is not in the requested formats",
+      "related_files": ["src/schedule/main.py"],
+      "evidence": [
+        "Lines 141-145: markdown_content is generated and markdown_file.write_text() is called unconditionally before the format loop",
+        "If the caller requests only ['pdf'], a markdown file is still written alongside the pdf — this is an unannounced side effect"
+      ],
+      "suggestion": "Either document that a .md file is always generated as an intermediate artifact, or gate the write behind 'if \"md\" in formats or any format conversion needed'. If the markdown is always needed as a build input, clean it up after use or keep it only in a temp location.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "unconditional_side_effect"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "Dead conditional in publish/main.py likely from a refactor that moved the early-return guard but left the inner check intact",
+      "Falsy-zero bugs (max_lab=0, max_module=0) are a recurring pattern where 'if limit:' was used as a shortcut for 'if limit is not None:'"
+    ],
+    "likely_symptoms": ["lc-02 counter defect has no user-visible symptom — it just means the summary count is always 0"],
+    "possible_false_positives": ["lc-05 may be intentional design — the .md file is the canonical intermediate; investigate if callers depend on it"]
+  }
+}

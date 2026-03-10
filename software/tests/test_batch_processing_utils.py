@@ -6,12 +6,12 @@ from src.batch_processing.utils import (
     find_markdown_files,
     find_audio_files,
     should_process_file,
-    ensure_output_directory,
     get_relative_output_path,
     get_courses_to_process,
     get_formats_to_process,
     generate_dry_run_report,
 )
+from src.shared.file_utils import ensure_output_directory
 from src.batch_processing import config
 
 
