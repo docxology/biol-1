@@ -11,7 +11,7 @@ course/
 ├── README.md                    # Course materials overview (student-facing)
 ├── AGENTS.md                    # This technical documentation
 │
-└── module-X/                    # 17 module directories
+└── module-X/                    # 14 module directories
     ├── for_upload/              # Distribution-ready materials
     ├── output/                  # Generated outputs
     ├── resources/               # Supplementary materials
@@ -30,14 +30,11 @@ Modules follow the pattern: `module-NN-topic-name/` where NN is the zero-padded 
 | 04 | `module-04-cells` |
 | 05 | `module-05-membranes` |
 | 06 | `module-06-metabolism` |
-| 07 | `module-07-photosynthesis` |
-| 08 | `module-08-cellular-respiration` |
-| 09 | `module-09-cell-division-mitosis` |
-| 10 | `module-10-meiosis-reproduction` |
-| 11 | `module-11-mendelian-genetics` |
-| 12 | `module-12-gene-expression` |
-| 13 | `module-13-gene-regulation` |
-| 14 | `module-14-biotechnology-genomics` |
+| 07 | `module-07-molecular-genetics` |
+| 08 | `module-08-cellular-genetics` |
+| 09 | `module-09-inheritance-genetics` |
+| 10 | `module-10-epigenetics` |
+| 11 | `module-11-genomics-biotechnology` |
 | 15 | `module-15-darwin-evolution` |
 | 16 | `module-16-microevolution` |
 | 17 | `module-17-speciation-macroevolution` |
