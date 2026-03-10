@@ -141,7 +141,8 @@ Before mitosis begins, each chromosome is copied.
 3. You now have 4 duplicated chromosomes (8 chromatids total) inside one cell.
 
 ```text
-    After S Phase — each chromosome is now an X-shaped pair of sister chromatids:
+    After S Phase — each chromosome is now an X-shaped pair of sister chromatids.
+    On your desk it should look like this: 
     ┌─────╥─────┐   ┌─────╥─────┐   ┌─────╥─────┐   ┌─────╥─────┐
     │  A  ║  A  │   │  a  ║  a  │   │  B  ║  B  │   │  b  ║  b  │
     │ RED ║ RED │   │BLUE ║BLUE │   │ RED ║ RED │   │BLUE ║BLUE │
