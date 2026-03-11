@@ -4,19 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 11 Dashboard: Skeletal System | BIOL-8</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
    RESET & BASE
    ═══════════════════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
-  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
-  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
-  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
-  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --bg: #0f0f17; --bg-card: #1a1a2e; --bg-card-hover: #222240;
+  --sidebar: #0d0d1a; --sidebar-hover: #1a1a2e;
+  --accent: #e63956; --accent-light: #ff4d6a; --accent-glow: rgba(230,57,86,0.15);
+  --blue: #3b82f6; --blue-light: #60a5fa; --blue-glow: rgba(59,130,246,0.12);
+  --green: #22c55e; --green-light: #4ade80; --amber: #f59e0b; --purple: #8b5cf6;
+  --teal: #14b8a6; --rose: #f43f5e;
+  --text: #e8e8f0; --text-muted: #8b8ba0; --text-bright: #ffffff;
+  --border: rgba(255,255,255,0.06); --border-hover: rgba(255,255,255,0.12);
+  --radius: 12px; --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+  --glass: rgba(255,255,255,0.03);
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
   --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
 }
 html { scroll-behavior: smooth; }
@@ -29,49 +36,51 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
 .sidebar {
   width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
   top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
-  display: flex; flex-direction: column;
+  display: flex; flex-direction: column; border-right: 1px solid var(--border);
 }
-.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
-.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid var(--border); }
+.sidebar-header h1 { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+.sidebar-header p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 .sidebar-nav { flex: 1; padding: 12px 0; }
 .sidebar-nav a {
   display: flex; align-items: center; gap: 10px; padding: 10px 20px;
-  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
-  transition: all 0.15s; border-left: 3px solid transparent;
+  color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.2s; border-left: 3px solid transparent;
 }
-.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
-.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: var(--text); }
+.sidebar-nav a.active { color: var(--text-bright); background: var(--sidebar-hover); border-left-color: var(--accent); }
 .sidebar-nav .nav-num {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
-  background: rgba(255,255,255,0.08); flex-shrink: 0;
+  width: 24px; height: 24px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.05); flex-shrink: 0;
 }
 .sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
-.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); }
 
 .main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
 
 /* ═══════════════════════════════════════════════════════════════════════
    CARDS & SECTIONS
    ═══════════════════════════════════════════════════════════════════════ */
-.section { margin-bottom: 40px; scroll-margin-top: 24px; }
-.section-header {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
-}
+.section { margin-bottom: 48px; scroll-margin-top: 24px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
 .section-num {
   display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+  width: 40px; height: 40px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), #a91535); color: #fff;
+  font-weight: 800; font-size: 16px; flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(230,57,86,0.3);
 }
-.section-title { font-size: 22px; font-weight: 700; }
+.section-title { font-size: 22px; font-weight: 800; color: var(--text-bright); }
 .section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
 
 .card {
-  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow);
   padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+  transition: border-color 0.2s;
 }
-.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card:hover { border-color: var(--border-hover); }
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; color: var(--text-bright); }
 .card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .card-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 @media (max-width: 900px) { .card-row, .card-row-3 { grid-template-columns: 1fr; } }
@@ -81,73 +90,75 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
    ═══════════════════════════════════════════════════════════════════════ */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
-  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+  padding: 10px 20px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.2s; font-family: var(--font);
 }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
-.btn-secondary { background: var(--blue); color: #fff; }
-.btn-secondary:hover { background: var(--blue-light); }
-.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
-.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary { background: linear-gradient(135deg, var(--accent), #c4173a); color: #fff; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(230,57,86,0.4); }
+.btn-secondary { background: linear-gradient(135deg, var(--blue), #2563eb); color: #fff; }
+.btn-secondary:hover { box-shadow: 0 6px 20px rgba(59,130,246,0.3); }
+.btn-outline { background: rgba(255,255,255,0.04); color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
 .btn-sm { padding: 6px 14px; font-size: 12px; }
 .btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
 
 .slider-group { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
-.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; }
-.slider-group input[type=range] { flex: 1; accent-color: var(--accent); }
-.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; }
+.slider-group label { font-size: 13px; font-weight: 600; min-width: 80px; color: var(--text-muted); }
+.slider-group input[type=range] { flex: 1; accent-color: var(--accent); background: transparent; }
+.slider-val { font-family: var(--mono); font-size: 14px; font-weight: 700; min-width: 50px; text-align: right; color: var(--accent); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    STATS & BADGES
    ═══════════════════════════════════════════════════════════════════════ */
 .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
 .stat-box {
-  text-align: center; padding: 14px 8px; border-radius: 8px;
-  background: #f8fafc; border: 1px solid var(--border);
+  text-align: center; padding: 16px 10px; border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.02); border: 1px solid var(--border);
 }
 .stat-box .stat-val { font-size: 28px; font-weight: 800; font-family: var(--mono); }
-.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-box .stat-label { font-size: 10px; color: var(--text-muted); margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
 .stat-accent .stat-val { color: var(--accent); }
 .stat-blue .stat-val { color: var(--blue); }
 .stat-green .stat-val { color: var(--green); }
 .stat-amber .stat-val { color: var(--amber); }
 .stat-purple .stat-val { color: var(--purple); }
+.stat-teal .stat-val { color: var(--teal); }
 
 .badge {
-  display: inline-block; padding: 2px 10px; border-radius: 20px;
+  display: inline-block; padding: 3px 12px; border-radius: 20px;
   font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
 }
-.badge-red { background: #fef2f2; color: var(--accent); }
-.badge-blue { background: #eff6ff; color: var(--blue); }
-.badge-green { background: #f0fdf4; color: var(--green); }
-.badge-amber { background: #fffbeb; color: var(--amber); }
-.badge-purple { background: #f5f3ff; color: var(--purple); }
+.badge-red { background: rgba(230,57,86,0.15); color: var(--accent); }
+.badge-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+.badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
+.badge-purple { background: rgba(139,92,246,0.15); color: var(--purple); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    CHART CONTAINERS
    ═══════════════════════════════════════════════════════════════════════ */
 .chart-wrap { position: relative; width: 100%; margin: 8px 0; }
-.chart-wrap canvas { width: 100% !important; display: block; border-radius: 6px; }
+.chart-wrap canvas { width: 100% !important; display: block; border-radius: var(--radius-sm); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    PROGRESS BAR
    ═══════════════════════════════════════════════════════════════════════ */
-.progress-bar { width: 100%; height: 12px; background: #e5e7eb; border-radius: 6px; overflow: hidden; margin: 8px 0; }
-.progress-fill { height: 100%; border-radius: 6px; transition: width 0.4s ease; }
+.progress-bar { width: 100%; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; margin: 8px 0; }
+.progress-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
 .progress-fill-accent { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
-.progress-fill-green { background: linear-gradient(90deg, var(--green), #22c55e); }
+.progress-fill-green { background: linear-gradient(90deg, var(--green), var(--green-light)); }
 .progress-fill-blue { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    INFO PANEL
    ═══════════════════════════════════════════════════════════════════════ */
 .info-panel {
-  background: #f8fafc; border-radius: 8px; padding: 16px; margin: 10px 0;
-  border-left: 4px solid var(--blue); font-size: 14px;
+  background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); padding: 16px; margin: 10px 0;
+  border-left: 4px solid var(--blue); font-size: 14px; color: var(--text);
 }
-.info-panel .info-title { font-weight: 700; margin-bottom: 6px; }
-.info-panel code { font-family: var(--mono); background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.info-panel .info-title { font-weight: 700; margin-bottom: 6px; color: var(--text-bright); }
+.info-panel .tt-desc { color: var(--text-muted); line-height: 1.6; }
+.info-panel code { font-family: var(--mono); background: rgba(255,255,255,0.08); padding: 1px 6px; border-radius: 4px; font-size: 13px; }
 .info-panel.info-green { border-left-color: var(--green); }
 .info-panel.info-amber { border-left-color: var(--amber); }
 .info-panel.info-accent { border-left-color: var(--accent); }
@@ -157,34 +168,94 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
    ═══════════════════════════════════════════════════════════════════════ */
 .tooltip-box {
   position: absolute; background: #1a1a2e; color: #fff; padding: 10px 14px;
-  border-radius: 8px; font-size: 13px; max-width: 280px; pointer-events: none;
+  border-radius: var(--radius-sm); font-size: 13px; max-width: 280px; pointer-events: none;
   box-shadow: var(--shadow-lg); z-index: 50; line-height: 1.5;
-  opacity: 0; transition: opacity 0.2s;
+  opacity: 0; transition: opacity 0.2s; border: 1px solid var(--border);
 }
 .tooltip-box.visible { opacity: 1; }
 .tooltip-box .tt-title { font-weight: 700; margin-bottom: 4px; font-size: 14px; }
-.tooltip-box .tt-desc { color: #cbd5e1; }
+.tooltip-box .tt-desc { color: var(--text-muted); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    HERO BANNER
    ═══════════════════════════════════════════════════════════════════════ */
 .hero {
-  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #3b1a2e 100%);
-  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px;
-  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%);
+  color: #fff; border-radius: var(--radius); padding: 40px; margin-bottom: 32px;
+  position: relative; overflow: hidden; border: 1px solid var(--border);
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
 }
 .hero::after {
-  content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(196,30,58,0.15) 0%, transparent 70%);
-  pointer-events: none;
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
 }
-.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
-.hero p { font-size: 15px; color: #cbd5e1; max-width: 600px; line-height: 1.7; }
-.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 { font-size: 32px; font-weight: 900; margin-bottom: 8px; position: relative; z-index: 1; }
+.hero h2 span { background: linear-gradient(135deg, var(--accent), #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 15px; color: var(--text-muted); max-width: 640px; line-height: 1.7; position: relative; z-index: 1; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; position: relative; z-index: 1; }
 .hero .bio-tag {
-  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
-  background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15);
+  padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.2s;
 }
+.hero .bio-tag:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BONE CELL CARDS
+   ═══════════════════════════════════════════════════════════════════════ */
+.cell-card {
+  background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); padding: 18px;
+  border: 1px solid var(--border); transition: all 0.3s; cursor: default;
+}
+.cell-card:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
+.cell-card .cell-icon { font-size: 28px; margin-bottom: 8px; }
+.cell-card .cell-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.cell-card .cell-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FUNCTION CARDS (Section 1)
+   ═══════════════════════════════════════════════════════════════════════ */
+.func-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.func-card {
+  background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); padding: 20px;
+  border: 1px solid var(--border); cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;
+}
+.func-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--blue)); opacity: 0; transition: opacity 0.3s;
+}
+.func-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.func-card:hover::before { opacity: 1; }
+.func-card.active { border-color: var(--accent); background: var(--accent-glow); }
+.func-card.active::before { opacity: 1; }
+.func-card .func-icon { font-size: 32px; margin-bottom: 10px; }
+.func-card .func-name { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+.func-card .func-brief { font-size: 12px; color: var(--text-muted); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMPARISON TABLE (Section 7)
+   ═══════════════════════════════════════════════════════════════════════ */
+.compare-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 12px 0; }
+.compare-table th, .compare-table td {
+  padding: 12px 16px; text-align: left; font-size: 13px; border-bottom: 1px solid var(--border);
+}
+.compare-table th { font-weight: 700; color: var(--text-bright); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(255,255,255,0.03); }
+.compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANIMATED SKELETON GLOW
+   ═══════════════════════════════════════════════════════════════════════ */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(230,57,86,0.1); }
+  50% { box-shadow: 0 0 25px rgba(230,57,86,0.2); }
+}
+.canvas-glow { animation: pulseGlow 4s ease-in-out infinite; border-radius: var(--radius-sm); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    RESPONSIVE
@@ -192,6 +263,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
 @media (max-width: 768px) {
   .sidebar { display: none; }
   .main { margin-left: 0; padding: 16px; }
+  .func-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .func-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -208,14 +283,16 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
   </div>
   <nav class="sidebar-nav">
     <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
-    <a href="#part1"><span class="nav-num">1</span> Skeleton Labeling</a>
-    <a href="#part2"><span class="nav-num">2</span> Bone Structure</a>
-    <a href="#part3"><span class="nav-num">3</span> Joint Classification</a>
-    <a href="#part4"><span class="nav-num">4</span> Growth &amp; Remodeling</a>
-    <a href="#part5"><span class="nav-num">5</span> Fracture &amp; Healing</a>
-    <a href="#part6"><span class="nav-num">6</span> Skeletal Quiz</a>
+    <a href="#part1"><span class="nav-num">1</span> Skeleton Functions</a>
+    <a href="#part2"><span class="nav-num">2</span> Skeleton Labeling</a>
+    <a href="#part3"><span class="nav-num">3</span> Bone Structure</a>
+    <a href="#part4"><span class="nav-num">4</span> Joint Classification</a>
+    <a href="#part5"><span class="nav-num">5</span> Growth &amp; Remodeling</a>
+    <a href="#part6"><span class="nav-num">6</span> Fracture &amp; Healing</a>
+    <a href="#part7"><span class="nav-num">7</span> Comparative Anatomy</a>
+    <a href="#part8"><span class="nav-num">8</span> Skeletal Quiz</a>
   </nav>
-  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 College of the Redwoods</div>
 </aside>
 
 <!-- ═══════════════════════════════════════════════════════════════════════
@@ -225,19 +302,66 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
 
 <!-- HERO -->
 <div class="hero" id="hero">
-  <h2>Skeletal System</h2>
-  <p>Explore the 206 bones of the human skeleton, bone tissue architecture, joint mechanics, growth and remodeling, fracture healing, and test your knowledge with interactive quizzes.</p>
+  <h2>The <span>Skeletal System</span></h2>
+  <p>Explore your 206 bones &mdash; from the microscopic osteon to full-body comparative anatomy. Discover how bone cells build, maintain, and repair the framework that protects your organs, stores minerals, and makes every movement possible.</p>
   <div class="bio-tags">
-    <span class="bio-tag">Bones</span>
-    <span class="bio-tag">Joints</span>
-    <span class="bio-tag">Skeletal Anatomy</span>
+    <span class="bio-tag">🦴 206 Bones</span>
+    <span class="bio-tag">🔬 Bone Tissue</span>
+    <span class="bio-tag">🔗 Joints &amp; Movement</span>
+    <span class="bio-tag">📈 Growth &amp; Remodeling</span>
+    <span class="bio-tag">🩻 Fracture Healing</span>
+    <span class="bio-tag">🐾 Comparative Anatomy</span>
   </div>
 </div>
 
-<!-- ═══════════════════════ PART 1: SKELETON LABELING ════════════════════ -->
+<!-- BONE CELL OVERVIEW -->
+<div class="card" style="margin-bottom:32px;">
+  <div class="card-title">🧬 Bone Cell Types &mdash; The Living Framework</div>
+  <div class="card-row-3">
+    <div class="cell-card" style="border-left: 3px solid var(--green);">
+      <div class="cell-icon">🏗️</div>
+      <div class="cell-name" style="color:var(--green);">Osteoblasts</div>
+      <div class="cell-desc">Build new bone matrix. Secrete collagen and minerals. Eventually become trapped as osteocytes.</div>
+    </div>
+    <div class="cell-card" style="border-left: 3px solid var(--blue);">
+      <div class="cell-icon">🔎</div>
+      <div class="cell-name" style="color:var(--blue);">Osteocytes</div>
+      <div class="cell-desc">Mature bone cells embedded in the matrix. Sense mechanical stress and coordinate remodeling signals.</div>
+    </div>
+    <div class="cell-card" style="border-left: 3px solid var(--accent);">
+      <div class="cell-icon">⛏️</div>
+      <div class="cell-name" style="color:var(--accent);">Osteoclasts</div>
+      <div class="cell-desc">Break down (resorb) bone tissue. Release stored calcium back into the bloodstream when needed.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ PART 1: FUNCTIONS OF THE SKELETON ════════════ -->
 <div class="section" id="part1">
   <div class="section-header">
     <div class="section-num">1</div>
+    <div><div class="section-title">Functions of the Skeleton</div>
+    <div class="section-subtitle">Five vital roles your skeleton plays every second</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Click a function to explore</div>
+    <div class="func-grid" id="func-grid"></div>
+  </div>
+  <div class="card">
+    <div class="card-title" id="func-detail-title">Select a function above</div>
+    <div class="chart-wrap"><canvas id="func-canvas" height="360"></canvas></div>
+    <div id="func-info" class="info-panel">
+      <div class="info-title">Skeletal Functions</div>
+      <div class="tt-desc">Your skeleton performs five essential functions: Support, Protection, Movement, Mineral Storage, and Hematopoiesis. Click any function card above to see an interactive visualization.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 2: SKELETON LABELING ════════════════════ -->
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
     <div><div class="section-title">Skeleton Labeling Tool</div>
     <div class="section-subtitle">Click bones on the anterior skeleton to identify and label them</div></div>
   </div>
@@ -261,7 +385,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
     <div class="card-title">Anterior Skeleton &mdash; Click a bone to identify it</div>
     <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">Axial bones are highlighted in <span style="color:var(--accent);font-weight:700;">red</span> and appendicular bones in <span style="color:var(--blue);font-weight:700;">blue</span>.</p>
     <div class="chart-wrap" style="position:relative;">
-      <canvas id="skeleton-canvas" height="720" style="cursor:pointer;"></canvas>
+      <canvas id="skeleton-canvas" height="720" style="cursor:pointer;" class="canvas-glow"></canvas>
       <div class="tooltip-box" id="skel-tooltip"></div>
     </div>
   </div>
@@ -271,10 +395,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
   </div>
 </div>
 
-<!-- ═══════════════════════ PART 2: BONE STRUCTURE ════════════════════════ -->
-<div class="section" id="part2">
+<!-- ═══════════════════════ PART 3: BONE STRUCTURE ════════════════════════ -->
+<div class="section" id="part3">
   <div class="section-header">
-    <div class="section-num">2</div>
+    <div class="section-num">3</div>
     <div><div class="section-title">Bone Structure Explorer</div>
     <div class="section-subtitle">Zoom into bone from gross anatomy to microscopic structure</div></div>
   </div>
@@ -307,10 +431,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
   </div>
 </div>
 
-<!-- ═══════════════════════ PART 3: JOINT CLASSIFICATION ═════════════════ -->
-<div class="section" id="part3">
+<!-- ═══════════════════════ PART 4: JOINT CLASSIFICATION ═════════════════ -->
+<div class="section" id="part4">
   <div class="section-header">
-    <div class="section-num">3</div>
+    <div class="section-num">4</div>
     <div><div class="section-title">Joint Classification</div>
     <div class="section-subtitle">Explore three main joint types and synovial subtypes</div></div>
   </div>
@@ -342,10 +466,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
   </div>
 </div>
 
-<!-- ═══════════════════════ PART 4: BONE GROWTH & REMODELING ═════════════ -->
-<div class="section" id="part4">
+<!-- ═══════════════════════ PART 5: BONE GROWTH & REMODELING ═════════════ -->
+<div class="section" id="part5">
   <div class="section-header">
-    <div class="section-num">4</div>
+    <div class="section-num">5</div>
     <div><div class="section-title">Bone Growth &amp; Remodeling</div>
     <div class="section-subtitle">Endochondral ossification, growth plates, and Wolff's law</div></div>
   </div>
@@ -377,10 +501,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
   </div>
 </div>
 
-<!-- ═══════════════════════ PART 5: FRACTURE TYPES & HEALING ════════════ -->
-<div class="section" id="part5">
+<!-- ═══════════════════════ PART 6: FRACTURE TYPES & HEALING ════════════ -->
+<div class="section" id="part6">
   <div class="section-header">
-    <div class="section-num">5</div>
+    <div class="section-num">6</div>
     <div><div class="section-title">Fracture Types &amp; Healing</div>
     <div class="section-subtitle">Six fracture types and the four stages of bone healing</div></div>
   </div>
@@ -420,10 +544,53 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
   </div>
 </div>
 
-<!-- ═══════════════════════ PART 6: SKELETAL QUIZ ════════════════════════ -->
-<div class="section" id="part6">
+<!-- ═══════════════════════ PART 7: COMPARATIVE ANATOMY ════════════════ -->
+<div class="section" id="part7">
   <div class="section-header">
-    <div class="section-num">6</div>
+    <div class="section-num">7</div>
+    <div><div class="section-title">Comparative Anatomy</div>
+    <div class="section-subtitle">Human vs. mammal skeletons &mdash; homologous structures and evolutionary adaptation</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">🐾 Interactive Comparison &mdash; Human vs. Quadruped Mammal</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" id="btn-comp-skull" onclick="setCompareRegion('skull')">Skull</button>
+      <button class="btn btn-secondary" id="btn-comp-spine" onclick="setCompareRegion('spine')">Vertebral Column</button>
+      <button class="btn btn-outline" id="btn-comp-forelimb" onclick="setCompareRegion('forelimb')">Forelimb</button>
+      <button class="btn btn-outline" id="btn-comp-hindlimb" onclick="setCompareRegion('hindlimb')">Hindlimb</button>
+      <button class="btn btn-outline" id="btn-comp-pelvis" onclick="setCompareRegion('pelvis')">Pelvis</button>
+    </div>
+    <div class="chart-wrap" style="position:relative;">
+      <canvas id="compare-canvas" height="480" style="cursor:pointer;"></canvas>
+    </div>
+    <div id="compare-info" class="info-panel" style="margin-top:12px;">
+      <div class="info-title">Homologous Structures</div>
+      <div class="tt-desc">Mammals share a common vertebrate ancestor. The same bones appear in every mammal skeleton — modified for different lifestyles. This is the concept of <strong>homology</strong>: structures with shared evolutionary origin, even if form and function differ.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Forelimb Homology Table</div>
+    <table class="compare-table">
+      <thead><tr><th>Human Bone</th><th>Location</th><th>Mammal Homolog</th><th>Adaptation</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--accent);font-weight:600;">Humerus</td><td>Upper arm</td><td>Same bone</td><td>Weight-bearing in quadrupeds</td></tr>
+        <tr><td style="color:var(--blue);font-weight:600;">Radius</td><td>Forearm (thumb side)</td><td>Same bone</td><td>Often fused with ulna in runners</td></tr>
+        <tr><td style="color:var(--blue);font-weight:600;">Ulna</td><td>Forearm (pinky side)</td><td>Same bone</td><td>Reduced in horses, full in primates</td></tr>
+        <tr><td style="color:var(--green);font-weight:600;">Carpals</td><td>Wrist (8 bones)</td><td>Same bones</td><td>Fused/reduced in hoofed animals</td></tr>
+        <tr><td style="color:var(--green);font-weight:600;">Phalanges</td><td>Fingers</td><td>Same bones</td><td>Hooves = modified phalanges</td></tr>
+      </tbody>
+    </table>
+    <div class="info-panel info-amber" style="margin-top:12px;">
+      <div class="info-title">Homologous vs. Analogous</div>
+      <div class="tt-desc"><strong>Homologous structures</strong> share evolutionary origin (e.g., human arm and whale flipper — same bones, different function). <strong>Analogous structures</strong> share function but NOT origin (e.g., bat wing and insect wing). Only homologous structures are evidence for common ancestry.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PART 8: SKELETAL QUIZ ════════════════════════ -->
+<div class="section" id="part8">
+  <div class="section-header">
+    <div class="section-num">8</div>
     <div><div class="section-title">Skeletal Quiz Challenge</div>
     <div class="section-subtitle">Test your knowledge of bone identification</div></div>
   </div>
@@ -483,102 +650,561 @@ function getCtx(id) {
   return ctx;
 }
 
-function drawBarChart(ctx, opts = {}) {
-  const { labels, values, expected, colors, maxVal, yLabel } = opts;
-  const W = ctx.W, H = ctx.H;
-  const pad = { top: 20, right: 20, bottom: 40, left: 50 };
-  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
-  const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
+// ══════════════════════════════════════════════════════════════════════════
+// PART 1: FUNCTIONS OF THE SKELETON
+// ══════════════════════════════════════════════════════════════════════════
+const SKEL_FUNCTIONS = [
+  { id:'support', name:'Support', icon:'🏛️', brief:'Framework holding the body upright',
+    desc:'The skeleton provides the structural framework that supports the body and maintains its shape. Without bony support, the body would collapse under gravitational force. The vertebral column\'s S-curve distributes weight efficiently for bipedal posture.',
+    activity:'Stand and relax all postural muscles for 3 seconds — notice how your body begins to slouch without active skeletal support.' },
+  { id:'protection', name:'Protection', icon:'🛡️', brief:'Shields vital organs from harm',
+    desc:'Bones form protective enclosures around vital organs. The skull protects the brain, the ribcage guards the heart and lungs, the vertebral column shields the spinal cord, and the pelvis cradles reproductive organs.',
+    activity:'Tap your skull, sternum, and hip crests — feel the hard bone shielding what lies beneath.' },
+  { id:'movement', name:'Movement', icon:'⚡', brief:'Bones act as levers for muscles',
+    desc:'Bones serve as levers that muscles pull on to create movement at joints. The skeletal and muscular systems work as an integrated unit: muscles provide force, tendons attach muscle to bone, and joints act as fulcrums.',
+    activity:'Flex your elbow while touching your bicep and tricep — which tightens? Which bone acts as the lever?' },
+  { id:'mineral', name:'Mineral Storage', icon:'💎', brief:'Calcium & phosphate reservoir',
+    desc:'Bones store 99% of the body\'s calcium and 85% of its phosphorus. When blood calcium drops, parathyroid hormone (PTH) stimulates osteoclasts to break down bone and release calcium. Calcitonin from the thyroid has the opposite effect.',
+    activity:'When blood calcium drops, which hormone and gland trigger bone resorption to restore levels?' },
+  { id:'hematopoiesis', name:'Hematopoiesis', icon:'🩸', brief:'Blood cell production in marrow',
+    desc:'Red bone marrow within spongy bone produces all blood cells: red blood cells (oxygen transport), white blood cells (immune defense), and platelets (clotting). In adults, active red marrow is found mainly in flat and irregular bones (pelvis, sternum, ribs, vertebrae, skull).',
+    activity:'In adults, which bones still contain red marrow — long limb bones or flat/irregular bones?' },
+];
 
-  ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+let activeFunction = null;
 
-  const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
-  for (let i = 0; i <= 4; i++) {
-    const y = pad.top + plotH * (1 - i/4);
-    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
-    ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
-  }
-
-  values.forEach((v, i) => {
-    const x = pad.left + (plotW / n) * i + gap/2;
-    const h = (v / mv) * plotH;
-    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
-    ctx.beginPath();
-    const r = 4;
-    ctx.moveTo(x, pad.top + plotH);
-    ctx.lineTo(x, pad.top + plotH - h + r);
-    ctx.quadraticCurveTo(x, pad.top + plotH - h, x + r, pad.top + plotH - h);
-    ctx.lineTo(x + barW - r, pad.top + plotH - h);
-    ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
-    ctx.lineTo(x + barW, pad.top + plotH);
-    ctx.closePath(); ctx.fill();
-    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
-    ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
-    if (v > 0) {
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
-      ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
-    }
-  });
-
-  if (expected) {
-    expected.forEach((ev, i) => {
-      const x = pad.left + (plotW / n) * i + gap/2;
-      const y = pad.top + plotH - (ev / mv) * plotH;
-      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
-      ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
-      ctx.setLineDash([]);
-    });
-  }
-}
-
-function drawLineChart(ctx, series, opts = {}) {
-  const W = ctx.W, H = ctx.H;
-  const pad = { top: 20, right: 20, bottom: 30, left: 50 };
-  const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
-  ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-
-  const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
-  const yRange = yMax - yMin;
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
-  for (let i = 0; i <= 4; i++) {
-    const y = pad.top + plotH * (1 - i/4);
-    ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
-    ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
-  }
-  if (refLine !== undefined) {
-    const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
-    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
-    ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
-    ctx.setLineDash([]);
-  }
-
-  series.forEach(s => {
-    if (!s.data.length) return;
-    const xMax = opts.xMax || s.data.length;
-    ctx.strokeStyle = s.color; ctx.lineWidth = s.width || 2;
-    ctx.beginPath();
-    s.data.forEach((v, i) => {
-      const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
-      const y = pad.top + plotH * (1 - (v - yMin) / yRange);
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    });
-    if (s.width !== 0) ctx.stroke();
-    if (s.dots && s.data.length < 80) {
-      s.data.forEach((v, i) => {
-        const x = pad.left + (i / Math.max(xMax - 1, 1)) * plotW;
-        const y = pad.top + plotH * (1 - (v - yMin) / yRange);
-        ctx.fillStyle = s.color; ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
-      });
-    }
+function initFunctionGrid() {
+  const grid = $('func-grid');
+  grid.innerHTML = '';
+  SKEL_FUNCTIONS.forEach(fn => {
+    const card = document.createElement('div');
+    card.className = 'func-card';
+    card.id = 'func-' + fn.id;
+    card.innerHTML = '<div class="func-icon">' + fn.icon + '</div><div class="func-name">' + fn.name + '</div><div class="func-brief">' + fn.brief + '</div>';
+    card.onclick = () => selectFunction(fn.id);
+    grid.appendChild(card);
   });
 }
 
+function selectFunction(id) {
+  activeFunction = SKEL_FUNCTIONS.find(f => f.id === id);
+  SKEL_FUNCTIONS.forEach(f => {
+    const el = $('func-' + f.id);
+    el.classList.toggle('active', f.id === id);
+  });
+  $('func-detail-title').textContent = activeFunction.icon + ' ' + activeFunction.name;
+  $('func-info').innerHTML = '<div class="info-title">' + activeFunction.name + '</div><div class="tt-desc">' + activeFunction.desc + '</div><div style="margin-top:10px;padding:10px;background:rgba(255,255,255,0.03);border-radius:6px;border-left:3px solid var(--amber);"><strong style="color:var(--amber);">Try This:</strong> <span style="color:var(--text-muted);">' + activeFunction.activity + '</span></div>';
+  drawFunctionCanvas();
+}
 
+function drawFunctionCanvas() {
+  const ctx = getCtx('func-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
+
+  if (!activeFunction) {
+    ctx.fillStyle = '#8b8ba0'; ctx.font = '15px Inter, system-ui'; ctx.textAlign = 'center';
+    ctx.fillText('Click a function card above to see an interactive visualization', W/2, H/2);
+    return;
+  }
+
+  const fn = activeFunction;
+  if (fn.id === 'support') drawSupportVis(ctx, W, H);
+  else if (fn.id === 'protection') drawProtectionVis(ctx, W, H);
+  else if (fn.id === 'movement') drawMovementVis(ctx, W, H);
+  else if (fn.id === 'mineral') drawMineralVis(ctx, W, H);
+  else if (fn.id === 'hematopoiesis') drawHematopoiesisVis(ctx, W, H);
+}
+
+function drawSupportVis(ctx, W, H) {
+  const cx = W/2;
+  // Draw upright figure with S-curve spine
+  ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
+  // Head
+  ctx.beginPath(); ctx.arc(cx, H*0.1, 20, 0, Math.PI*2); ctx.stroke();
+  // S-curve spine
+  ctx.beginPath(); ctx.moveTo(cx, H*0.13);
+  ctx.bezierCurveTo(cx+8, H*0.2, cx-8, H*0.35, cx+6, H*0.45);
+  ctx.bezierCurveTo(cx+10, H*0.50, cx-5, H*0.55, cx, H*0.60);
+  ctx.stroke();
+  // Pelvis
+  ctx.beginPath(); ctx.ellipse(cx, H*0.62, 30, 12, 0, 0, Math.PI); ctx.stroke();
+  // Legs
+  ctx.beginPath(); ctx.moveTo(cx-15, H*0.63); ctx.lineTo(cx-18, H*0.85); ctx.lineTo(cx-20, H*0.92); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx+15, H*0.63); ctx.lineTo(cx+18, H*0.85); ctx.lineTo(cx+20, H*0.92); ctx.stroke();
+  // Arms
+  ctx.beginPath(); ctx.moveTo(cx-5, H*0.16); ctx.lineTo(cx-35, H*0.35); ctx.lineTo(cx-30, H*0.50); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx+5, H*0.16); ctx.lineTo(cx+35, H*0.35); ctx.lineTo(cx+30, H*0.50); ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#e63956'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'left';
+  ctx.fillText('Cervical curve →', cx+30, H*0.18);
+  ctx.fillText('Thoracic curve →', cx+30, H*0.30);
+  ctx.fillText('Lumbar curve →', cx+30, H*0.48);
+  ctx.fillText('Sacral curve →', cx+30, H*0.60);
+
+  // Weight distribution arrows
+  ctx.strokeStyle = 'rgba(230,57,86,0.4)'; ctx.lineWidth = 1.5;
+  ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(cx, H*0.08); ctx.lineTo(cx-18, H*0.92); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, H*0.08); ctx.lineTo(cx+20, H*0.92); ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('S-curve distributes weight for bipedal posture', cx, H*0.97);
+
+  // Gravity arrow
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx-80, H*0.05); ctx.lineTo(cx-80, H*0.20); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx-84, H*0.17); ctx.lineTo(cx-80, H*0.20); ctx.lineTo(cx-76, H*0.17); ctx.fill();
+  ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 11px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('Gravity', cx-80, H*0.03);
+}
+
+function drawProtectionVis(ctx, W, H) {
+  const cx = W/2;
+  // Torso outline
+  ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2;
+
+  // Skull protecting brain
+  ctx.fillStyle = 'rgba(139,92,246,0.12)'; // brain
+  ctx.beginPath(); ctx.arc(cx, H*0.12, 28, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(cx, H*0.12, 32, 0, Math.PI*2); ctx.stroke();
+  ctx.fillStyle = '#8b5cf6'; ctx.font = '11px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('🧠 Brain', cx, H*0.12+4);
+
+  // Rib cage protecting heart/lungs
+  ctx.fillStyle = 'rgba(230,57,86,0.08)';
+  ctx.beginPath(); ctx.ellipse(cx, H*0.38, 55, 65, 0, 0, Math.PI*2); ctx.fill();
+  // Ribs
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
+  for (let i=0; i<6; i++) {
+    const y = H*0.28 + i*16;
+    const spread = 25 + i*7;
+    ctx.beginPath(); ctx.ellipse(cx, y, spread, 6, 0, 0, Math.PI); ctx.stroke();
+  }
+  ctx.fillStyle = '#e63956'; ctx.font = '11px Inter';
+  ctx.fillText('❤️ Heart & Lungs', cx, H*0.38);
+
+  // Spine protecting spinal cord
+  ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(cx, H*0.18); ctx.lineTo(cx, H*0.58); ctx.stroke();
+  ctx.fillStyle = 'rgba(34,197,94,0.12)';
+  ctx.beginPath(); ctx.roundRect(cx-4, H*0.18, 8, H*0.40, 4); ctx.fill();
+
+  // Pelvis protecting reproductive organs
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.ellipse(cx, H*0.68, 45, 30, 0, 0, Math.PI*2); ctx.stroke();
+  ctx.fillStyle = 'rgba(245,158,11,0.08)';
+  ctx.beginPath(); ctx.ellipse(cx, H*0.68, 45, 30, 0, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#f59e0b'; ctx.font = '11px Inter';
+  ctx.fillText('Reproductive organs', cx, H*0.70);
+
+  // Labels
+  ctx.fillStyle = '#e63956'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'left';
+  ctx.fillText('Skull → Brain', cx+50, H*0.12);
+  ctx.fillText('Ribcage → Heart & Lungs', cx+65, H*0.38);
+  ctx.fillStyle = '#22c55e';
+  ctx.fillText('Vertebrae → Spinal Cord', cx+50, H*0.45);
+  ctx.fillStyle = '#f59e0b';
+  ctx.fillText('Pelvis → Organs', cx+55, H*0.68);
+}
+
+function drawMovementVis(ctx, W, H) {
+  const cx = W/2, cy = H*0.4;
+  const t = Date.now() * 0.002;
+  const angle = Math.sin(t) * 0.8;
+
+  // Humerus (fixed upper arm)
+  ctx.fillStyle = '#2a2a45'; ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.roundRect(cx-12, cy-120, 24, 120, 8); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#3b82f6'; ctx.font = '11px Inter'; ctx.textAlign = 'right';
+  ctx.fillText('Humerus', cx-18, cy-60);
+
+  // Elbow joint
+  ctx.fillStyle = '#e63956';
+  ctx.beginPath(); ctx.arc(cx, cy, 8, 0, Math.PI*2); ctx.fill();
+
+  // Forearm (animated)
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(angle);
+  ctx.fillStyle = '#2a2a45'; ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.roundRect(-10, 4, 20, 110, 6); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#22c55e'; ctx.font = '11px Inter'; ctx.textAlign = 'left';
+  ctx.fillText('Radius/Ulna', 16, 60);
+  ctx.restore();
+
+  // Bicep (contracts on flexion)
+  const bicepBulge = Math.max(0, -Math.sin(t)) * 8;
+  ctx.strokeStyle = '#f43f5e'; ctx.lineWidth = 2 + bicepBulge * 0.3;
+  ctx.beginPath(); ctx.moveTo(cx-15, cy-100);
+  ctx.quadraticCurveTo(cx-25-bicepBulge, cy-50, cx-12, cy+5);
+  ctx.stroke();
+  ctx.fillStyle = '#f43f5e'; ctx.font = '10px Inter'; ctx.textAlign = 'right';
+  ctx.fillText('Bicep' + (Math.sin(t)<-0.3?' (contracting)':''), cx-30, cy-50);
+
+  // Tricep
+  const tricepBulge = Math.max(0, Math.sin(t)) * 6;
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2 + tricepBulge * 0.3;
+  ctx.beginPath(); ctx.moveTo(cx+15, cy-100);
+  ctx.quadraticCurveTo(cx+22+tricepBulge, cy-50, cx+12, cy+5);
+  ctx.stroke();
+  ctx.fillStyle = '#60a5fa'; ctx.font = '10px Inter'; ctx.textAlign = 'left';
+  ctx.fillText((Math.sin(t)>0.3?'(contracting) ':'') + 'Tricep', cx+28, cy-40);
+
+  // Fulcrum label
+  ctx.fillStyle = '#e63956'; ctx.font = 'bold 11px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('⚙ Fulcrum (Joint)', cx, cy+30);
+
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px Inter';
+  ctx.fillText('Bone = lever  ·  Muscle = force  ·  Joint = fulcrum', cx, H*0.95);
+
+  requestAnimationFrame(() => { if (activeFunction && activeFunction.id === 'movement') drawFunctionCanvas(); });
+}
+
+function drawMineralVis(ctx, W, H) {
+  const cx = W/2;
+  // Draw Ca²⁺ regulation diagram
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 16px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('Calcium Homeostasis', cx, H*0.08);
+
+  // Blood calcium level bar
+  ctx.fillStyle = '#1a1a2e'; ctx.beginPath(); ctx.roundRect(cx-120, H*0.15, 240, 30, 8); ctx.fill();
+  ctx.fillStyle = '#3b82f6'; ctx.beginPath(); ctx.roundRect(cx-118, H*0.155, 140, 22, 6); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 11px Inter';
+  ctx.fillText('Blood Ca²⁺ Level', cx, H*0.17+7);
+
+  // Low calcium path (left)
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx-60, H*0.21); ctx.lineTo(cx-120, H*0.32); ctx.stroke();
+  ctx.fillStyle = 'rgba(230,57,86,0.1)'; ctx.beginPath(); ctx.roundRect(cx-185, H*0.33, 130, 80, 8); ctx.fill();
+  ctx.strokeStyle = 'var(--accent)'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.fillStyle = '#e63956'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('Ca²⁺ LOW', cx-120, H*0.37);
+  ctx.fillStyle = '#e8e8f0'; ctx.font = '11px Inter';
+  ctx.fillText('Parathyroid gland', cx-120, H*0.42);
+  ctx.fillText('releases PTH →', cx-120, H*0.46);
+  ctx.fillStyle = '#f59e0b'; ctx.font = '10px Inter';
+  ctx.fillText('Osteoclasts resorb bone', cx-120, H*0.51);
+  ctx.fillText('→ Ca²⁺ enters blood', cx-120, H*0.55);
+
+  // Arrow back up
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 1.5; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(cx-120, H*0.60); ctx.lineTo(cx-80, H*0.21); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // High calcium path (right)
+  ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(cx+60, H*0.21); ctx.lineTo(cx+120, H*0.32); ctx.stroke();
+  ctx.fillStyle = 'rgba(34,197,94,0.1)'; ctx.beginPath(); ctx.roundRect(cx+55, H*0.33, 130, 80, 8); ctx.fill();
+  ctx.strokeStyle = 'var(--green)'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.fillStyle = '#22c55e'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('Ca²⁺ HIGH', cx+120, H*0.37);
+  ctx.fillStyle = '#e8e8f0'; ctx.font = '11px Inter';
+  ctx.fillText('Thyroid gland', cx+120, H*0.42);
+  ctx.fillText('releases Calcitonin →', cx+120, H*0.46);
+  ctx.fillStyle = '#3b82f6'; ctx.font = '10px Inter';
+  ctx.fillText('Osteoblasts build bone', cx+120, H*0.51);
+  ctx.fillText('→ Ca²⁺ stored in bone', cx+120, H*0.55);
+
+  // Arrow back up
+  ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 1.5; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(cx+120, H*0.60); ctx.lineTo(cx+80, H*0.21); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Bone graphic at bottom
+  ctx.fillStyle = '#2a2a45'; ctx.beginPath(); ctx.roundRect(cx-50, H*0.72, 100, 45, 8); ctx.fill();
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('🦴 Bone Matrix', cx, H*0.75+20);
+  ctx.fillStyle = '#8b8ba0'; ctx.font = '10px Inter';
+  ctx.fillText('99% of body calcium stored here', cx, H*0.92);
+}
+
+function drawHematopoiesisVis(ctx, W, H) {
+  const cx = W/2;
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 16px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('Hematopoiesis — Blood Cell Production', cx, H*0.07);
+
+  // Red marrow source
+  ctx.fillStyle = 'rgba(220,38,38,0.12)'; ctx.beginPath(); ctx.roundRect(cx-70, H*0.13, 140, 50, 10); ctx.fill();
+  ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.fillStyle = '#dc2626'; ctx.font = 'bold 13px Inter';
+  ctx.fillText('Red Bone Marrow', cx, H*0.16+10);
+  ctx.fillStyle = '#8b8ba0'; ctx.font = '10px Inter';
+  ctx.fillText('(Stem cells — pluripotent)', cx, H*0.16+24);
+
+  // Three lineages
+  const lineages = [
+    { x: cx-150, color: '#dc2626', name: 'Red Blood Cells', icon: '🔴', desc: 'Carry oxygen (O₂)', count: '~25 trillion' },
+    { x: cx, color: '#60a5fa', name: 'White Blood Cells', icon: '⚪', desc: 'Immune defense', count: '~35 billion' },
+    { x: cx+150, color: '#f59e0b', name: 'Platelets', icon: '🟡', desc: 'Blood clotting', count: '~1.5 trillion' },
+  ];
+
+  lineages.forEach(l => {
+    // Branch line
+    ctx.strokeStyle = l.color; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, H*0.22); ctx.lineTo(l.x, H*0.38); ctx.stroke();
+    // Cell icon
+    ctx.font = '28px serif'; ctx.textAlign = 'center';
+    ctx.fillText(l.icon, l.x, H*0.46);
+    // Labels
+    ctx.fillStyle = l.color; ctx.font = 'bold 12px Inter';
+    ctx.fillText(l.name, l.x, H*0.54);
+    ctx.fillStyle = '#8b8ba0'; ctx.font = '11px Inter';
+    ctx.fillText(l.desc, l.x, H*0.59);
+    ctx.font = '10px Inter'; ctx.fillStyle = '#6b7280';
+    ctx.fillText(l.count, l.x, H*0.64);
+  });
+
+  // Active marrow locations
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('Active Red Marrow Sites in Adults:', cx, H*0.76);
+  const sites = ['Pelvis', 'Sternum', 'Ribs', 'Vertebrae', 'Skull', 'Proximal femur/humerus'];
+  ctx.fillStyle = '#8b8ba0'; ctx.font = '11px Inter';
+  ctx.fillText(sites.join('  ·  '), cx, H*0.82);
+
+  ctx.fillStyle = '#6b7280'; ctx.font = '10px Inter';
+  ctx.fillText('Yellow marrow (fat) replaces red marrow in long bone shafts during adulthood', cx, H*0.92);
+}
+
+// ══════════════════════════════════════════════════════════════════════════
+// PART 7: COMPARATIVE ANATOMY
+// ══════════════════════════════════════════════════════════════════════════
+let compareRegion = 'skull';
+
+const COMPARE_DATA = {
+  skull: { title:'Skull / Cranium', human:'Large cranium relative to face; flat face; foramen magnum underneath (bipedal)', mammal:'Smaller cranium; elongated snout; foramen magnum at back (quadruped)', insight:'Large cranium = larger brain for cognition. Foramen magnum position indicates head balance over upright spine.' },
+  spine: { title:'Vertebral Column', human:'Vertical S-curve with 4 curvatures; load transmitted straight down to pelvis', mammal:'Horizontal arch; load suspended below spine like a bridge; simpler curvature', insight:'The S-curve is a uniquely human adaptation for bipedalism, distributing the compressive load of upright posture.' },
+  forelimb: { title:'Forelimb (Arm / Front Leg)', human:'Free limb specialized for manipulation; not weight-bearing; high mobility at shoulder', mammal:'Weight-bearing; reduced rotation; radius/ulna may be fused for stability', insight:'Same bones (humerus, radius, ulna) adapted for completely different functions — a textbook example of homology.' },
+  hindlimb: { title:'Hindlimb / Hind Foot', human:'Plantigrade (flat-footed); large calcaneus (heel); arched foot absorbs shock', mammal:'Digitigrade or unguligrade; elongated metatarsals for speed; smaller heel', insight:'Foot posture reflects locomotion: flat feet for bipedal stability vs. toe-running for quadrupedal speed.' },
+  pelvis: { title:'Pelvis', human:'Short, broad basin; supports viscera vertically; wide birth canal', mammal:'Long, narrow blade; oriented for horizontal load; narrower birth canal', insight:'The human pelvis is a compromise between bipedal walking efficiency and safe childbirth — the "obstetric dilemma."' },
+};
+
+function setCompareRegion(region) {
+  compareRegion = region;
+  ['skull','spine','forelimb','hindlimb','pelvis'].forEach(r => {
+    const el = $('btn-comp-' + r);
+    if (el) el.className = 'btn ' + (r === region ? 'btn-primary' : 'btn-outline');
+  });
+  drawCompareCanvas();
+  const data = COMPARE_DATA[region];
+  $('compare-info').innerHTML = '<div class="info-title">' + data.title + '</div><div class="tt-desc" style="margin-bottom:10px;">' + data.insight + '</div><table class="compare-table" style="margin:0;"><tr><th style="width:80px;"></th><th>Human</th><th>Quadruped Mammal</th></tr><tr><td style="font-weight:700;color:var(--accent);">Features</td><td style="color:var(--text-muted);">' + data.human + '</td><td style="color:var(--text-muted);">' + data.mammal + '</td></tr></table>';
+}
+
+function drawCompareCanvas() {
+  const ctx = getCtx('compare-canvas');
+  const W = ctx.W, H = ctx.H;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
+
+  const halfW = W/2;
+  // Dividing line
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+  ctx.setLineDash([6,4]);
+  ctx.beginPath(); ctx.moveTo(halfW, 30); ctx.lineTo(halfW, H-30); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Headers
+  ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 14px Inter'; ctx.textAlign = 'center';
+  ctx.fillText('HUMAN (Bipedal)', halfW/2, 24);
+  ctx.fillStyle = '#22c55e';
+  ctx.fillText('QUADRUPED MAMMAL', halfW + halfW/2, 24);
+
+  const region = compareRegion;
+  if (region === 'skull') {
+    // Human skull (frontal view simplified)
+    let hx = halfW/2, hy = H*0.45;
+    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.ellipse(hx, hy-20, 55, 65, 0, 0, Math.PI*2); ctx.stroke();
+    ctx.fillStyle = 'rgba(59,130,246,0.06)'; ctx.fill();
+    // Eyes
+    ctx.beginPath(); ctx.ellipse(hx-18, hy-10, 10, 6, 0, 0, Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(hx+18, hy-10, 10, 6, 0, 0, Math.PI*2); ctx.stroke();
+    // Nose
+    ctx.beginPath(); ctx.moveTo(hx, hy-5); ctx.lineTo(hx-6, hy+8); ctx.lineTo(hx+6, hy+8); ctx.stroke();
+    // Jaw
+    ctx.beginPath(); ctx.ellipse(hx, hy+30, 30, 18, 0, 0, Math.PI); ctx.stroke();
+    ctx.fillStyle = '#3b82f6'; ctx.font = '10px Inter';
+    ctx.fillText('Large cranium', hx, hy-90);
+    ctx.fillText('Flat face', hx, hy+60);
+    ctx.fillText('Foramen magnum below ↓', hx, hy+75);
+
+    // Mammal skull (side view, elongated)
+    let mx = halfW + halfW/2, my = H*0.45;
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2.5;
+    // Cranium (smaller)
+    ctx.beginPath(); ctx.ellipse(mx-20, my-15, 35, 40, 0, 0, Math.PI*2); ctx.stroke();
+    ctx.fillStyle = 'rgba(34,197,94,0.06)'; ctx.fill();
+    // Snout (elongated)
+    ctx.strokeStyle = '#22c55e';
+    ctx.beginPath(); ctx.moveTo(mx+15, my-25); ctx.lineTo(mx+70, my-10);
+    ctx.lineTo(mx+70, my+10); ctx.lineTo(mx+15, my+15); ctx.stroke();
+    // Eye
+    ctx.beginPath(); ctx.arc(mx-5, my-10, 5, 0, Math.PI*2); ctx.stroke();
+    // Jaw
+    ctx.beginPath(); ctx.moveTo(mx+15, my+15); ctx.lineTo(mx+65, my+15); ctx.stroke();
+    ctx.fillStyle = '#22c55e'; ctx.font = '10px Inter';
+    ctx.fillText('Smaller cranium', mx-20, my-60);
+    ctx.fillText('Long snout', mx+50, my-30);
+    ctx.fillText('Foramen magnum behind →', mx, my+50);
+
+  } else if (region === 'spine') {
+    // Human S-curve (vertical)
+    let hx = halfW/2, hy = H*0.5;
+    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(hx, H*0.12);
+    ctx.bezierCurveTo(hx+15, H*0.22, hx-15, H*0.38, hx+10, H*0.52);
+    ctx.bezierCurveTo(hx+15, H*0.60, hx-10, H*0.70, hx, H*0.85);
+    ctx.stroke();
+    // Vertebrae dots
+    for (let i = 0; i < 24; i++) {
+      const t = i/23, y = H*0.12 + t*(H*0.73);
+      const x = hx + Math.sin(t*Math.PI*2.5)*12;
+      ctx.fillStyle = 'rgba(59,130,246,0.4)';
+      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+    }
+    ctx.fillStyle = '#3b82f6'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Vertical S-curve', hx, H*0.92);
+
+    // Mammal arch (horizontal)
+    let mx = halfW + halfW/2, my = H*0.45;
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(mx-80, my);
+    ctx.quadraticCurveTo(mx, my-30, mx+80, my);
+    ctx.stroke();
+    // Vertebrae
+    for (let i = 0; i < 20; i++) {
+      const t = i/19, x = mx-80+t*160;
+      const y = my - Math.sin(t*Math.PI)*30;
+      ctx.fillStyle = 'rgba(34,197,94,0.4)';
+      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI*2); ctx.fill();
+    }
+    // Legs hanging down
+    ctx.strokeStyle = 'rgba(34,197,94,0.4)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(mx-60, my); ctx.lineTo(mx-55, my+80); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(mx-50, my); ctx.lineTo(mx-45, my+80); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(mx+50, my); ctx.lineTo(mx+45, my+80); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(mx+60, my); ctx.lineTo(mx+55, my+80); ctx.stroke();
+    ctx.fillStyle = '#22c55e'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Horizontal arch (bridge-like)', mx, H*0.92);
+
+  } else if (region === 'forelimb') {
+    // Human arm (vertical, free)
+    let hx = halfW/2, hy = H*0.15;
+    ctx.strokeStyle = '#e63956'; ctx.lineWidth = 3; // humerus
+    ctx.beginPath(); ctx.roundRect(hx-8, hy, 16, 100, 6); ctx.stroke();
+    ctx.fillStyle = '#e63956'; ctx.font = '10px Inter'; ctx.textAlign = 'left';
+    ctx.fillText('Humerus', hx+14, hy+50);
+    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2.5; // radius
+    ctx.beginPath(); ctx.roundRect(hx-12, hy+110, 10, 80, 4); ctx.stroke();
+    ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2.5; // ulna
+    ctx.beginPath(); ctx.roundRect(hx+2, hy+110, 10, 80, 4); ctx.stroke();
+    ctx.fillStyle = '#3b82f6'; ctx.font = '10px Inter';
+    ctx.fillText('Radius + Ulna', hx+16, hy+150);
+    // Hand
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.roundRect(hx-14, hy+195, 28, 25, 4); ctx.stroke();
+    ctx.fillStyle = '#22c55e'; ctx.font = '10px Inter';
+    ctx.fillText('Carpals/Metacarpals', hx+18, hy+210);
+    // Fingers
+    for (let i=0; i<5; i++) {
+      ctx.beginPath(); ctx.moveTo(hx-10+i*6, hy+220); ctx.lineTo(hx-12+i*7, hy+248); ctx.stroke();
+    }
+    ctx.fillStyle = '#8b8ba0'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Free limb — manipulation', hx, H*0.90);
+
+    // Mammal front leg (vertical, weight-bearing)
+    let mx = halfW + halfW/2, my = H*0.15;
+    ctx.strokeStyle = '#e63956'; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.roundRect(mx-10, my, 20, 90, 6); ctx.stroke();
+    ctx.fillStyle = '#e63956'; ctx.font = '10px Inter'; ctx.textAlign = 'left';
+    ctx.fillText('Humerus', mx+16, my+45);
+    // Fused/sturdy radius-ulna
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.roundRect(mx-8, my+100, 16, 80, 4); ctx.stroke();
+    ctx.fillStyle = '#22c55e'; ctx.font = '10px Inter';
+    ctx.fillText('Fused R+U', mx+14, my+140);
+    // Hoof/paw
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(mx-12, my+185, 24, 18, 6); ctx.stroke();
+    ctx.fillStyle = '#f59e0b'; ctx.font = '10px Inter';
+    ctx.fillText('Modified digits', mx+18, my+198);
+    // Ground line
+    ctx.strokeStyle = 'rgba(255,255,255,0.1)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(mx-50, my+210); ctx.lineTo(mx+50, my+210); ctx.stroke();
+    ctx.fillStyle = '#8b8ba0'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Weight-bearing — locomotion', mx, H*0.90);
+
+  } else if (region === 'pelvis') {
+    // Human pelvis (wide basin)
+    let hx = halfW/2, hy = H*0.45;
+    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(hx-60, hy-40); ctx.quadraticCurveTo(hx-50, hy-60, hx, hy-50);
+    ctx.quadraticCurveTo(hx+50, hy-60, hx+60, hy-40);
+    ctx.quadraticCurveTo(hx+55, hy+20, hx+15, hy+40);
+    ctx.lineTo(hx-15, hy+40);
+    ctx.quadraticCurveTo(hx-55, hy+20, hx-60, hy-40);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(59,130,246,0.06)'; ctx.fill();
+    ctx.fillStyle = '#3b82f6'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Short & broad', hx, hy-68);
+    ctx.fillText('Wide birth canal', hx, hy+55);
+    ctx.fillText('Basin-shaped for upright support', hx, hy+68);
+
+    // Mammal pelvis (long blade)
+    let mx = halfW + halfW/2, my = H*0.45;
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(mx-25, my-60); ctx.lineTo(mx+25, my-60);
+    ctx.lineTo(mx+30, my+50); ctx.lineTo(mx-30, my+50);
+    ctx.closePath(); ctx.stroke();
+    ctx.fillStyle = 'rgba(34,197,94,0.06)'; ctx.fill();
+    ctx.fillStyle = '#22c55e'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Long & narrow', mx, my-68);
+    ctx.fillText('Oriented for horizontal load', mx, my+65);
+
+  } else { // hindlimb
+    let hx = halfW/2, hy = H*0.12;
+    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(hx-10, hy, 20, 110, 6); ctx.stroke();
+    ctx.fillStyle = '#3b82f6'; ctx.font = '10px Inter'; ctx.textAlign = 'left';
+    ctx.fillText('Femur', hx+16, hy+55);
+    ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.roundRect(hx-8, hy+120, 16, 100, 4); ctx.stroke();
+    ctx.fillStyle = '#60a5fa'; ctx.fillText('Tibia/Fibula', hx+14, hy+170);
+    // Flat foot
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(hx-20, hy+225); ctx.lineTo(hx+25, hy+225); ctx.lineTo(hx+25, hy+218); ctx.stroke();
+    ctx.fillStyle = '#22c55e'; ctx.fillText('Flat foot (plantigrade)', hx-20, hy+245);
+    ctx.fillStyle = '#8b8ba0'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Stability for bipedal walking', hx, H*0.90);
+
+    let mx = halfW + halfW/2, my = H*0.12;
+    ctx.strokeStyle = '#22c55e'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(mx-10, my, 20, 80, 6); ctx.stroke();
+    ctx.fillStyle = '#22c55e'; ctx.font = '10px Inter'; ctx.textAlign = 'left';
+    ctx.fillText('Femur', mx+16, my+40);
+    ctx.strokeStyle = '#4ade80'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.roundRect(mx-8, my+90, 16, 70, 4); ctx.stroke();
+    ctx.fillStyle = '#4ade80'; ctx.fillText('Tibia/Fib', mx+14, my+125);
+    // Extended metatarsals
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.roundRect(mx-4, my+165, 8, 50, 3); ctx.stroke();
+    ctx.fillStyle = '#f59e0b'; ctx.fillText('Elongated metatarsals', mx+10, my+190);
+    // Toe tip
+    ctx.beginPath(); ctx.arc(mx, my+220, 5, 0, Math.PI*2); ctx.stroke();
+    ctx.fillText('Digit tip (digitigrade)', mx+10, my+225);
+    ctx.fillStyle = '#8b8ba0'; ctx.font = '10px Inter'; ctx.textAlign = 'center';
+    ctx.fillText('Speed for quadrupedal running', mx, H*0.90);
+  }
+}
+
+</script>
+
+<script>
 // ══════════════════════════════════════════════════════════════════════════
 // BONE DATABASE
 // ══════════════════════════════════════════════════════════════════════════
@@ -637,36 +1263,26 @@ const BONES = {
 };
 
 // ══════════════════════════════════════════════════════════════════════════
-// PART 1: SKELETON LABELING
+// PART 2: SKELETON LABELING
 // ══════════════════════════════════════════════════════════════════════════
-let skelState = {
-  mode: 'all', // 'axial', 'appendicular', 'all'
-  identified: new Set(),
-  score: 0
-};
+let skelState = { mode: 'all', identified: new Set(), score: 0 };
 
 function getVisibleBones() {
   if (skelState.mode === 'axial') return BONES.axial;
   if (skelState.mode === 'appendicular') return BONES.appendicular;
   return [...BONES.axial, ...BONES.appendicular];
 }
-
 function setSkeletonMode(mode) {
   skelState.mode = mode;
   $('btn-axial').className = 'btn ' + (mode === 'axial' ? 'btn-primary' : 'btn-outline');
   $('btn-appendicular').className = 'btn ' + (mode === 'appendicular' ? 'btn-secondary' : 'btn-outline');
-  drawSkeleton();
-  updateSkelStats();
+  drawSkeleton(); updateSkelStats();
 }
-
 function resetSkeleton() {
-  skelState.identified = new Set();
-  skelState.score = 0;
-  drawSkeleton();
-  updateSkelStats();
+  skelState.identified = new Set(); skelState.score = 0;
+  drawSkeleton(); updateSkelStats();
   $('skel-identified-list').innerHTML = 'Click bones on the skeleton above to identify them.';
 }
-
 function updateSkelStats() {
   const visible = getVisibleBones();
   const identified = [...skelState.identified].filter(id => visible.some(b => b.id === id)).length;
@@ -677,161 +1293,73 @@ function updateSkelStats() {
   $('skel-score').textContent = skelState.score;
   $('skel-progress').style.width = pct + '%';
 }
-
 function drawSkeleton() {
   const ctx = getCtx('skeleton-canvas');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-
-  // Draw body outline
+  ctx.clearRect(0,0,W,H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0,0,W,H);
   drawBodyOutline(ctx, W, H);
-
-  // Draw bone regions
   const allBones = [...BONES.axial, ...BONES.appendicular];
   allBones.forEach(bone => {
     const isAxial = BONES.axial.includes(bone);
     const isVisible = skelState.mode === 'all' || (skelState.mode === 'axial' && isAxial) || (skelState.mode === 'appendicular' && !isAxial);
     const isIdentified = skelState.identified.has(bone.id);
-
-    const bx = bone.x * W, by = bone.y * H;
-    const bw = bone.w * W, bh = bone.h * H;
-
-    if (!isVisible) {
-      ctx.fillStyle = 'rgba(200,200,200,0.2)';
-      ctx.strokeStyle = 'rgba(200,200,200,0.3)';
-    } else if (isIdentified) {
-      ctx.fillStyle = isAxial ? 'rgba(196,30,58,0.25)' : 'rgba(37,99,235,0.25)';
-      ctx.strokeStyle = isAxial ? '#c41e3a' : '#2563eb';
-    } else {
-      ctx.fillStyle = isAxial ? 'rgba(196,30,58,0.08)' : 'rgba(37,99,235,0.08)';
-      ctx.strokeStyle = isAxial ? 'rgba(196,30,58,0.4)' : 'rgba(37,99,235,0.4)';
-    }
-
+    const bx = bone.x*W, by = bone.y*H, bw = bone.w*W, bh = bone.h*H;
+    if (!isVisible) { ctx.fillStyle = 'rgba(100,100,120,0.08)'; ctx.strokeStyle = 'rgba(100,100,120,0.15)'; }
+    else if (isIdentified) { ctx.fillStyle = isAxial ? 'rgba(230,57,86,0.2)' : 'rgba(59,130,246,0.2)'; ctx.strokeStyle = isAxial ? '#e63956' : '#3b82f6'; }
+    else { ctx.fillStyle = isAxial ? 'rgba(230,57,86,0.05)' : 'rgba(59,130,246,0.05)'; ctx.strokeStyle = isAxial ? 'rgba(230,57,86,0.3)' : 'rgba(59,130,246,0.3)'; }
     ctx.lineWidth = isIdentified ? 2.5 : 1.5;
-    ctx.beginPath();
-    ctx.roundRect(bx - bw/2, by - bh/2, bw, bh, 4);
-    ctx.fill(); ctx.stroke();
-
-    // Label for identified bones
+    ctx.beginPath(); ctx.roundRect(bx-bw/2, by-bh/2, bw, bh, 4); ctx.fill(); ctx.stroke();
     if (isIdentified && isVisible) {
-      ctx.fillStyle = isAxial ? '#c41e3a' : '#2563eb';
-      ctx.font = 'bold 9px system-ui';
-      ctx.textAlign = 'center';
-      const label = bone.name.replace(/ \(.*\)/, '').substring(0, 14);
-      ctx.fillText(label, bx, by + bh/2 + 11);
+      ctx.fillStyle = isAxial ? '#e63956' : '#3b82f6';
+      ctx.font = 'bold 9px Inter, system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(bone.name.replace(/ \(.*\)/, '').substring(0,14), bx, by+bh/2+11);
     }
   });
-
-  // Title
-  ctx.fillStyle = '#374151';
-  ctx.font = 'bold 14px system-ui';
-  ctx.textAlign = 'center';
-  ctx.fillText('Anterior View - Human Skeleton', W/2, H - 10);
+  ctx.fillStyle = '#6b7280'; ctx.font = 'bold 13px Inter, system-ui'; ctx.textAlign = 'center';
+  ctx.fillText('Anterior View — Human Skeleton', W/2, H-10);
 }
-
 function drawBodyOutline(ctx, W, H) {
-  ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1.5; ctx.setLineDash([]);
-
-  // Head (oval)
+  ctx.strokeStyle = 'rgba(255,255,255,0.08)'; ctx.lineWidth = 1.5;
   ctx.beginPath(); ctx.ellipse(W*0.5, H*0.05, W*0.045, H*0.04, 0, 0, Math.PI*2); ctx.stroke();
-  // Neck
   ctx.beginPath(); ctx.moveTo(W*0.48, H*0.09); ctx.lineTo(W*0.48, H*0.12); ctx.moveTo(W*0.52, H*0.09); ctx.lineTo(W*0.52, H*0.12); ctx.stroke();
-  // Shoulders
   ctx.beginPath(); ctx.moveTo(W*0.35, H*0.14); ctx.quadraticCurveTo(W*0.42, H*0.13, W*0.48, H*0.13);
   ctx.moveTo(W*0.65, H*0.14); ctx.quadraticCurveTo(W*0.58, H*0.13, W*0.52, H*0.13); ctx.stroke();
-  // Torso
-  ctx.beginPath();
-  ctx.moveTo(W*0.35, H*0.14); ctx.lineTo(W*0.37, H*0.34); ctx.lineTo(W*0.40, H*0.45);
+  ctx.beginPath(); ctx.moveTo(W*0.35, H*0.14); ctx.lineTo(W*0.37, H*0.34); ctx.lineTo(W*0.40, H*0.45);
   ctx.moveTo(W*0.65, H*0.14); ctx.lineTo(W*0.63, H*0.34); ctx.lineTo(W*0.60, H*0.45); ctx.stroke();
-  // Pelvis
-  ctx.beginPath();
-  ctx.moveTo(W*0.40, H*0.45); ctx.quadraticCurveTo(W*0.50, H*0.50, W*0.60, H*0.45); ctx.stroke();
-  // Left arm
-  ctx.beginPath();
-  ctx.moveTo(W*0.35, H*0.15); ctx.lineTo(W*0.32, H*0.25); ctx.lineTo(W*0.30, H*0.36);
-  ctx.lineTo(W*0.28, H*0.46); ctx.lineTo(W*0.26, H*0.56); ctx.stroke();
-  // Right arm
-  ctx.beginPath();
-  ctx.moveTo(W*0.65, H*0.15); ctx.lineTo(W*0.68, H*0.25); ctx.lineTo(W*0.70, H*0.36);
-  ctx.lineTo(W*0.72, H*0.46); ctx.lineTo(W*0.74, H*0.56); ctx.stroke();
-  // Left leg
-  ctx.beginPath();
-  ctx.moveTo(W*0.44, H*0.50); ctx.lineTo(W*0.44, H*0.70); ctx.lineTo(W*0.44, H*0.86); ctx.lineTo(W*0.44, H*0.96); ctx.stroke();
-  // Right leg
-  ctx.beginPath();
-  ctx.moveTo(W*0.56, H*0.50); ctx.lineTo(W*0.56, H*0.70); ctx.lineTo(W*0.56, H*0.86); ctx.lineTo(W*0.56, H*0.96); ctx.stroke();
-
-  // Rib cage arcs
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 0.8;
-  for (let i = 0; i < 6; i++) {
-    const y = H * (0.17 + i * 0.022);
-    const spread = W * (0.04 + i * 0.012);
-    ctx.beginPath();
-    ctx.ellipse(W*0.5, y, spread, H*0.008, 0, 0, Math.PI);
-    ctx.stroke();
-  }
+  ctx.beginPath(); ctx.moveTo(W*0.40, H*0.45); ctx.quadraticCurveTo(W*0.50, H*0.50, W*0.60, H*0.45); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W*0.35, H*0.15); ctx.lineTo(W*0.32, H*0.25); ctx.lineTo(W*0.30, H*0.36); ctx.lineTo(W*0.28, H*0.46); ctx.lineTo(W*0.26, H*0.56); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W*0.65, H*0.15); ctx.lineTo(W*0.68, H*0.25); ctx.lineTo(W*0.70, H*0.36); ctx.lineTo(W*0.72, H*0.46); ctx.lineTo(W*0.74, H*0.56); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W*0.44, H*0.50); ctx.lineTo(W*0.44, H*0.70); ctx.lineTo(W*0.44, H*0.86); ctx.lineTo(W*0.44, H*0.96); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(W*0.56, H*0.50); ctx.lineTo(W*0.56, H*0.70); ctx.lineTo(W*0.56, H*0.86); ctx.lineTo(W*0.56, H*0.96); ctx.stroke();
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 0.8;
+  for (let i=0; i<6; i++) { const y=H*(0.17+i*0.022), spread=W*(0.04+i*0.012); ctx.beginPath(); ctx.ellipse(W*0.5, y, spread, H*0.008, 0, 0, Math.PI); ctx.stroke(); }
 }
-
-// Click handler for skeleton
 $('skeleton-canvas').addEventListener('click', function(e) {
   const rect = this.getBoundingClientRect();
-  const scaleX = this.offsetWidth, scaleY = this.offsetHeight;
-  const mx = (e.clientX - rect.left) / scaleX;
-  const my = (e.clientY - rect.top) / scaleY;
-
-  const visible = getVisibleBones();
-  let hit = null;
-  for (const bone of visible) {
-    const dx = Math.abs(mx - bone.x);
-    const dy = Math.abs(my - bone.y);
-    if (dx < bone.w/2 + 0.01 && dy < bone.h/2 + 0.01) {
-      hit = bone;
-      break;
-    }
-  }
-
+  const mx = (e.clientX-rect.left)/this.offsetWidth, my = (e.clientY-rect.top)/this.offsetHeight;
+  const visible = getVisibleBones(); let hit = null;
+  for (const bone of visible) { if (Math.abs(mx-bone.x)<bone.w/2+0.01 && Math.abs(my-bone.y)<bone.h/2+0.01) { hit=bone; break; } }
   if (hit) {
-    if (!skelState.identified.has(hit.id)) {
-      skelState.identified.add(hit.id);
-      skelState.score += 10;
-    }
-    // Show tooltip
+    if (!skelState.identified.has(hit.id)) { skelState.identified.add(hit.id); skelState.score += 10; }
     const tip = $('skel-tooltip');
-    tip.innerHTML = '<div class="tt-title">' + hit.name + '</div><div class="tt-desc">Region: ' + hit.region + '</div>';
-    tip.style.left = (e.clientX - rect.left + 10) + 'px';
-    tip.style.top = (e.clientY - rect.top - 40) + 'px';
-    tip.classList.add('visible');
-    setTimeout(() => tip.classList.remove('visible'), 2000);
-
-    drawSkeleton();
-    updateSkelStats();
-    updateIdentifiedList();
+    tip.innerHTML = '<div class="tt-title">'+hit.name+'</div><div class="tt-desc">Region: '+hit.region+'</div>';
+    tip.style.left = (e.clientX-rect.left+10)+'px'; tip.style.top = (e.clientY-rect.top-40)+'px';
+    tip.classList.add('visible'); setTimeout(() => tip.classList.remove('visible'), 2000);
+    drawSkeleton(); updateSkelStats(); updateIdentifiedList();
   }
 });
-
 function updateIdentifiedList() {
   const el = $('skel-identified-list');
-  if (skelState.identified.size === 0) {
-    el.innerHTML = 'Click bones on the skeleton above to identify them.';
-    return;
-  }
-  const allBones = [...BONES.axial, ...BONES.appendicular];
-  const groups = {};
-  skelState.identified.forEach(id => {
-    const bone = allBones.find(b => b.id === id);
-    if (bone) {
-      if (!groups[bone.region]) groups[bone.region] = [];
-      groups[bone.region].push(bone.name);
-    }
-  });
+  if (skelState.identified.size === 0) { el.innerHTML = 'Click bones on the skeleton above to identify them.'; return; }
+  const allBones = [...BONES.axial, ...BONES.appendicular], groups = {};
+  skelState.identified.forEach(id => { const bone = allBones.find(b => b.id === id); if (bone) { if (!groups[bone.region]) groups[bone.region]=[]; groups[bone.region].push(bone.name); } });
   let html = '';
-  for (const [region, names] of Object.entries(groups)) {
-    html += '<strong style="color:var(--text);">' + region + ':</strong> ' + names.join(', ') + '<br>';
-  }
+  for (const [region, names] of Object.entries(groups)) html += '<strong style="color:var(--text-bright);">'+region+':</strong> <span style="color:var(--text-muted);">'+names.join(', ')+'</span><br>';
   el.innerHTML = html;
 }
+</script>
 
+<script>
 // ══════════════════════════════════════════════════════════════════════════
 // PART 2: BONE STRUCTURE EXPLORER
 // ══════════════════════════════════════════════════════════════════════════
@@ -840,9 +1368,9 @@ let boneStructFound = { gross: new Set(), compact: new Set(), spongy: new Set() 
 
 const BONE_STRUCTURES = {
   gross: [
-    { id:'epiphysis_p', name:'Proximal Epiphysis', desc:'The rounded end of the bone closest to the body. Contains spongy bone filled with red marrow for blood cell production.', x:0.5, y:0.1, w:0.18, h:0.1, color:'#c41e3a' },
-    { id:'diaphysis', name:'Diaphysis (Shaft)', desc:'The long cylindrical shaft of the bone. Composed primarily of compact bone surrounding the medullary cavity.', x:0.5, y:0.42, w:0.08, h:0.36, color:'#2563eb' },
-    { id:'epiphysis_d', name:'Distal Epiphysis', desc:'The rounded end farthest from the body center. Also contains spongy bone and articular cartilage for joint surfaces.', x:0.5, y:0.85, w:0.18, h:0.1, color:'#c41e3a' },
+    { id:'epiphysis_p', name:'Proximal Epiphysis', desc:'The rounded end of the bone closest to the body. Contains spongy bone filled with red marrow for blood cell production.', x:0.5, y:0.1, w:0.18, h:0.1, color:'#e63956' },
+    { id:'diaphysis', name:'Diaphysis (Shaft)', desc:'The long cylindrical shaft of the bone. Composed primarily of compact bone surrounding the medullary cavity.', x:0.5, y:0.42, w:0.08, h:0.36, color:'#60a5fa' },
+    { id:'epiphysis_d', name:'Distal Epiphysis', desc:'The rounded end farthest from the body center. Also contains spongy bone and articular cartilage for joint surfaces.', x:0.5, y:0.85, w:0.18, h:0.1, color:'#e63956' },
     { id:'periosteum', name:'Periosteum', desc:'Dense fibrous membrane covering the outer surface of bone. Contains blood vessels, nerves, and osteoblasts for bone growth and repair.', x:0.35, y:0.42, w:0.02, h:0.36, color:'#16a34a' },
     { id:'medullary', name:'Medullary Cavity', desc:'The central hollow region within the diaphysis. Contains yellow marrow (fat storage) in adults and red marrow in children.', x:0.5, y:0.42, w:0.04, h:0.30, color:'#d97706' },
     { id:'articular_p', name:'Articular Cartilage (Proximal)', desc:'Smooth hyaline cartilage covering the joint surface. Reduces friction and absorbs shock during movement.', x:0.5, y:0.04, w:0.16, h:0.03, color:'#7c3aed' },
@@ -850,8 +1378,8 @@ const BONE_STRUCTURES = {
     { id:'epiphyseal_line', name:'Epiphyseal Line', desc:'Remnant of the growth plate in adults. In children, this is the active epiphyseal plate where bone elongation occurs.', x:0.5, y:0.19, w:0.15, h:0.015, color:'#ea580c' },
   ],
   compact: [
-    { id:'osteon', name:'Osteon (Haversian System)', desc:'The structural unit of compact bone. Concentric rings of bone matrix (lamellae) surrounding a central canal. Each osteon is about 200 micrometers in diameter.', x:0.5, y:0.45, w:0.25, h:0.25, color:'#c41e3a' },
-    { id:'haversian_canal', name:'Central (Haversian) Canal', desc:'Runs through the center of each osteon. Contains blood vessels and nerves that supply nutrients and sensation to osteocytes.', x:0.5, y:0.45, w:0.04, h:0.04, color:'#2563eb' },
+    { id:'osteon', name:'Osteon (Haversian System)', desc:'The structural unit of compact bone. Concentric rings of bone matrix (lamellae) surrounding a central canal. Each osteon is about 200 micrometers in diameter.', x:0.5, y:0.45, w:0.25, h:0.25, color:'#e63956' },
+    { id:'haversian_canal', name:'Central (Haversian) Canal', desc:'Runs through the center of each osteon. Contains blood vessels and nerves that supply nutrients and sensation to osteocytes.', x:0.5, y:0.45, w:0.04, h:0.04, color:'#60a5fa' },
     { id:'lamellae', name:'Concentric Lamellae', desc:'Rings of bone matrix arranged around the central canal, like tree rings. Each lamella contains collagen fibers oriented in different directions for maximum strength.', x:0.5, y:0.45, w:0.18, h:0.18, color:'#16a34a' },
     { id:'lacunae', name:'Lacunae & Osteocytes', desc:'Small cavities between lamellae that house osteocytes (mature bone cells). Connected by tiny channels called canaliculi for nutrient exchange.', x:0.62, y:0.38, w:0.04, h:0.04, color:'#d97706' },
     { id:'canaliculi', name:'Canaliculi', desc:'Microscopic channels radiating from each lacuna, connecting osteocytes to each other and to the central canal. Allow passage of nutrients and waste.', x:0.56, y:0.52, w:0.06, h:0.03, color:'#7c3aed' },
@@ -859,9 +1387,9 @@ const BONE_STRUCTURES = {
     { id:'interstitial', name:'Interstitial Lamellae', desc:'Fragments of old osteons that fill the spaces between complete osteons. Remnants of previous bone remodeling cycles.', x:0.30, y:0.30, w:0.08, h:0.08, color:'#64748b' },
   ],
   spongy: [
-    { id:'trabeculae', name:'Trabeculae', desc:'Thin, branching plates and rods of bone tissue that form a lattice-like network. Oriented along lines of stress per Wolff\'s law for maximum strength with minimum mass.', x:0.5, y:0.4, w:0.35, h:0.35, color:'#c41e3a' },
+    { id:'trabeculae', name:'Trabeculae', desc:'Thin, branching plates and rods of bone tissue that form a lattice-like network. Oriented along lines of stress per Wolff\'s law for maximum strength with minimum mass.', x:0.5, y:0.4, w:0.35, h:0.35, color:'#e63956' },
     { id:'red_marrow', name:'Red Bone Marrow', desc:'Fills the spaces between trabeculae. Site of hematopoiesis (blood cell production). Produces red blood cells, white blood cells, and platelets.', x:0.35, y:0.5, w:0.10, h:0.10, color:'#dc2626' },
-    { id:'marrow_spaces', name:'Marrow Spaces', desc:'Open spaces within the trabecular network that allow blood cell production and nutrient exchange. Much larger than the channels in compact bone.', x:0.65, y:0.4, w:0.10, h:0.10, color:'#2563eb' },
+    { id:'marrow_spaces', name:'Marrow Spaces', desc:'Open spaces within the trabecular network that allow blood cell production and nutrient exchange. Much larger than the channels in compact bone.', x:0.65, y:0.4, w:0.10, h:0.10, color:'#60a5fa' },
     { id:'endosteum', name:'Endosteum', desc:'Thin membrane lining the internal surfaces of bone, including trabeculae. Contains osteoblasts and osteoclasts for bone remodeling.', x:0.5, y:0.75, w:0.30, h:0.03, color:'#16a34a' },
     { id:'trabecular_osteocyte', name:'Osteocytes in Trabeculae', desc:'Mature bone cells embedded within the trabeculae. Monitor mechanical stress and coordinate bone remodeling through cell signaling.', x:0.55, y:0.55, w:0.06, h:0.06, color:'#d97706' },
   ]
@@ -888,7 +1416,7 @@ function drawBoneStructure() {
   const ctx = getCtx('bone-canvas');
   const W = ctx.W, H = ctx.H;
   ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   if (boneZoom === 'gross') drawGrossAnatomy(ctx, W, H);
   else if (boneZoom === 'compact') drawCompactBone(ctx, W, H);
@@ -916,11 +1444,11 @@ function drawGrossAnatomy(ctx, W, H) {
   // Long bone shape
   const cx = W * 0.5;
   // Proximal epiphysis
-  ctx.fillStyle = '#fde8e8';
+  ctx.fillStyle = '#2d1a24';
   ctx.beginPath(); ctx.ellipse(cx, H*0.1, W*0.09, H*0.06, 0, 0, Math.PI*2); ctx.fill();
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2; ctx.stroke();
   // Articular cartilage top
-  ctx.fillStyle = '#e0d4f5';
+  ctx.fillStyle = '#2a1e3a';
   ctx.beginPath(); ctx.ellipse(cx, H*0.04, W*0.08, H*0.015, 0, 0, Math.PI*2); ctx.fill();
   ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 1.5; ctx.stroke();
   // Epiphyseal line
@@ -933,7 +1461,7 @@ function drawGrossAnatomy(ctx, W, H) {
   ctx.moveTo(cx - W*0.04, H*0.17); ctx.lineTo(cx - W*0.035, H*0.75);
   ctx.lineTo(cx + W*0.035, H*0.75); ctx.lineTo(cx + W*0.04, H*0.17);
   ctx.closePath(); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2; ctx.stroke();
   // Periosteum outline (outer edge)
   ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 3;
   ctx.beginPath();
@@ -943,18 +1471,18 @@ function drawGrossAnatomy(ctx, W, H) {
   ctx.moveTo(cx + W*0.042, H*0.17); ctx.lineTo(cx + W*0.037, H*0.75);
   ctx.stroke();
   // Medullary cavity
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath();
   ctx.moveTo(cx - W*0.02, H*0.22); ctx.lineTo(cx - W*0.018, H*0.70);
   ctx.lineTo(cx + W*0.018, H*0.70); ctx.lineTo(cx + W*0.02, H*0.22);
   ctx.closePath(); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5; ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]);
   // Distal epiphysis
-  ctx.fillStyle = '#fde8e8';
+  ctx.fillStyle = '#2d1a24';
   ctx.beginPath(); ctx.ellipse(cx, H*0.85, W*0.09, H*0.06, 0, 0, Math.PI*2); ctx.fill();
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2; ctx.stroke();
   // Articular cartilage bottom
-  ctx.fillStyle = '#e0d4f5';
+  ctx.fillStyle = '#2a1e3a';
   ctx.beginPath(); ctx.ellipse(cx, H*0.93, W*0.08, H*0.015, 0, 0, Math.PI*2); ctx.fill();
   ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 1.5; ctx.stroke();
 
@@ -976,7 +1504,7 @@ function drawGrossAnatomy(ctx, W, H) {
   }
 
   // Title
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Gross Anatomy of a Long Bone', W/2, H - 8);
 }
 
@@ -984,9 +1512,9 @@ function drawCompactBone(ctx, W, H) {
   const cx = W * 0.5, cy = H * 0.45;
 
   // Background: compact bone matrix
-  ctx.fillStyle = '#fdf5e6';
+  ctx.fillStyle = '#1a1a2e';
   ctx.fillRect(W*0.1, H*0.05, W*0.8, H*0.85);
-  ctx.strokeStyle = '#d4a373'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#8b6e4e'; ctx.lineWidth = 2;
   ctx.strokeRect(W*0.1, H*0.05, W*0.8, H*0.85);
 
   // Draw multiple osteons
@@ -1010,9 +1538,9 @@ function drawCompactBone(ctx, W, H) {
       ctx.stroke();
     }
     // Central canal
-    ctx.fillStyle = '#dbeafe';
+    ctx.fillStyle = '#1a2a4a';
     ctx.beginPath(); ctx.arc(ox, oy, or * 0.15, 0, Math.PI*2); ctx.fill();
-    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 1.5; ctx.stroke();
     // Blood vessel dot
     ctx.fillStyle = '#dc2626'; ctx.beginPath(); ctx.arc(ox, oy, 3, 0, Math.PI*2); ctx.fill();
 
@@ -1043,26 +1571,26 @@ function drawCompactBone(ctx, W, H) {
   ctx.beginPath();
   ctx.moveTo(W*0.15, H*0.7); ctx.lineTo(W*0.85, H*0.7);
   ctx.stroke();
-  ctx.fillStyle = '#fde8e8';
+  ctx.fillStyle = '#2d1a24';
   ctx.beginPath(); ctx.arc(W*0.5, H*0.7, 4, 0, Math.PI*2); ctx.fill();
 
   // Interstitial lamellae (fragments between osteons)
-  ctx.fillStyle = 'rgba(100,116,139,0.15)';
-  ctx.strokeStyle = 'rgba(100,116,139,0.3)'; ctx.lineWidth = 0.8;
+  ctx.fillStyle = 'rgba(100,116,139,0.08)';
+  ctx.strokeStyle = 'rgba(100,116,139,0.15)'; ctx.lineWidth = 0.8;
   [[0.30,0.30],[0.70,0.30],[0.30,0.58],[0.70,0.58],[0.50,0.18]].forEach(([px,py]) => {
     ctx.beginPath();
     ctx.arc(px*W, py*H, W*0.03, Math.random()*2, Math.PI + Math.random()*2);
     ctx.fill(); ctx.stroke();
   });
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Compact Bone - Osteon (Haversian System) Detail', W/2, H - 8);
 }
 
 function drawSpongyBone(ctx, W, H) {
-  ctx.fillStyle = '#fff5f5';
+  ctx.fillStyle = '#1a1015';
   ctx.fillRect(W*0.05, H*0.05, W*0.9, H*0.85);
-  ctx.strokeStyle = '#fca5a5'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#5a2030'; ctx.lineWidth = 2;
   ctx.strokeRect(W*0.05, H*0.05, W*0.9, H*0.85);
 
   // Draw trabecular network
@@ -1094,7 +1622,7 @@ function drawSpongyBone(ctx, W, H) {
   });
 
   // Red marrow spaces (pink fill between trabeculae)
-  ctx.fillStyle = 'rgba(220,38,38,0.08)';
+  ctx.fillStyle = 'rgba(220,38,38,0.06)';
   ctx.fillRect(W*0.1, H*0.1, W*0.8, H*0.7);
 
   // Endosteum line at bottom
@@ -1105,7 +1633,7 @@ function drawSpongyBone(ctx, W, H) {
   ctx.fillStyle = '#16a34a'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Endosteum', W*0.5, H*0.75 - 8);
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Spongy (Cancellous) Bone - Trabecular Network', W/2, H - 8);
 }
 
@@ -1205,7 +1733,7 @@ function drawJoint() {
   const ctx = getCtx('joint-canvas');
   const W = ctx.W, H = ctx.H;
   ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   if (jointType === 'fibrous') drawFibrousJoint(ctx, W, H);
   else if (jointType === 'cartilaginous') drawCartilaginousJoint(ctx, W, H);
@@ -1222,7 +1750,7 @@ function drawJoint() {
 function drawFibrousJoint(ctx, W, H) {
   const cx = W/2, cy = H/2;
   // Two skull plates with interlocking suture
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   // Left plate
   ctx.beginPath();
   ctx.moveTo(cx - W*0.3, cy - H*0.2);
@@ -1239,7 +1767,7 @@ function drawFibrousJoint(ctx, W, H) {
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
 
   // Right plate
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath();
   ctx.moveTo(cx + W*0.3, cy - H*0.2);
   ctx.lineTo(cx + W*0.3, cy + H*0.2);
@@ -1250,10 +1778,10 @@ function drawFibrousJoint(ctx, W, H) {
     ctx.lineTo(cx + zigzag, y);
   }
   ctx.closePath(); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2; ctx.stroke();
 
   // Suture fibers
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 1;
   for (let i = 1; i < steps; i++) {
     const t = i / steps;
     const y = cy - H*0.2 + t * H*0.4;
@@ -1264,18 +1792,18 @@ function drawFibrousJoint(ctx, W, H) {
   }
 
   // Labels
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('SUTURE (Skull)', cx, cy - H*0.28);
   ctx.font = '12px system-ui';
   ctx.fillText('Fibrous connective tissue', cx, cy + H*0.28);
-  ctx.fillStyle = '#c41e3a'; ctx.fillText('No movement allowed', cx, cy + H*0.33);
+  ctx.fillStyle = '#e63956'; ctx.fillText('No movement allowed', cx, cy + H*0.33);
 
   // Arrow showing no movement
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(cx - 15, cy + H*0.22); ctx.lineTo(cx + 15, cy + H*0.22); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(cx - 10, cy + H*0.22 - 4); ctx.lineTo(cx - 15, cy + H*0.22); ctx.lineTo(cx - 10, cy + H*0.22 + 4); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(cx + 10, cy + H*0.22 - 4); ctx.lineTo(cx + 15, cy + H*0.22); ctx.lineTo(cx + 10, cy + H*0.22 + 4); ctx.stroke();
-  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 18px system-ui';
+  ctx.fillStyle = '#e63956'; ctx.font = 'bold 18px system-ui';
   ctx.fillText('X', cx, cy + H*0.22 + 6);
 }
 
@@ -1283,18 +1811,18 @@ function drawCartilaginousJoint(ctx, W, H) {
   const cx = W/2, cy = H/2;
   // Two vertebral bodies with disc
   // Upper vertebra
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.roundRect(cx - W*0.12, cy - H*0.22, W*0.24, H*0.12, 8); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   // Disc
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath(); ctx.roundRect(cx - W*0.13, cy - H*0.08, W*0.26, H*0.06, 6); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2; ctx.stroke();
   // Nucleus pulposus
-  ctx.fillStyle = '#bfdbfe';
+  ctx.fillStyle = '#1e3a5f';
   ctx.beginPath(); ctx.ellipse(cx, cy - H*0.05, W*0.05, H*0.018, 0, 0, Math.PI*2); ctx.fill();
   // Lower vertebra
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.roundRect(cx - W*0.12, cy + H*0.02, W*0.24, H*0.12, 8); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
 
@@ -1306,12 +1834,12 @@ function drawCartilaginousJoint(ctx, W, H) {
   ctx.restore();
 
   // Labels
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('INTERVERTEBRAL DISC', cx, cy - H*0.30);
   ctx.font = '12px system-ui';
   ctx.fillText('Vertebral body', cx + W*0.2, cy - H*0.16);
-  ctx.fillStyle = '#2563eb'; ctx.fillText('Fibrocartilage disc', cx + W*0.22, cy - H*0.05);
-  ctx.fillStyle = '#374151'; ctx.fillText('Vertebral body', cx + W*0.2, cy + H*0.08);
+  ctx.fillStyle = '#60a5fa'; ctx.fillText('Fibrocartilage disc', cx + W*0.22, cy - H*0.05);
+  ctx.fillStyle = '#e8e8f0'; ctx.fillText('Vertebral body', cx + W*0.2, cy + H*0.08);
   ctx.fillStyle = '#d97706'; ctx.font = 'bold 12px system-ui';
   ctx.fillText('Slight movement allowed', cx, cy + H*0.25);
 
@@ -1327,12 +1855,12 @@ function drawHingeJoint(ctx, W, H) {
   const angle = Math.sin(jointAnimFrame * 0.03) * 0.5;
 
   // Upper bone (humerus)
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.save(); ctx.translate(cx, cy - H*0.05);
   ctx.beginPath(); ctx.roundRect(-W*0.03, -H*0.28, W*0.06, H*0.25, 6); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   // Trochlea
-  ctx.fillStyle = '#fde68a';
+  ctx.fillStyle = '#3a3020';
   ctx.beginPath(); ctx.arc(0, 0, W*0.04, 0, Math.PI); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.stroke();
   ctx.restore();
@@ -1340,27 +1868,27 @@ function drawHingeJoint(ctx, W, H) {
   // Lower bone (ulna) - animates
   ctx.save(); ctx.translate(cx, cy - H*0.05);
   ctx.rotate(angle);
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath(); ctx.roundRect(-W*0.025, H*0.02, W*0.05, H*0.28, 6); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2; ctx.stroke();
   // Trochlear notch
-  ctx.fillStyle = '#bfdbfe';
+  ctx.fillStyle = '#1e3a5f';
   ctx.beginPath(); ctx.arc(0, H*0.02, W*0.035, Math.PI, Math.PI*2); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.stroke();
   ctx.restore();
 
   // Joint capsule outline
-  ctx.strokeStyle = 'rgba(124,58,237,0.3)'; ctx.lineWidth = 1.5; ctx.setLineDash([4,4]);
+  ctx.strokeStyle = 'rgba(139,92,246,0.3)'; ctx.lineWidth = 1.5; ctx.setLineDash([4,4]);
   ctx.beginPath(); ctx.ellipse(cx, cy - H*0.03, W*0.06, H*0.06, 0, 0, Math.PI*2); ctx.stroke();
   ctx.setLineDash([]);
 
   // Movement arrow
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
   ctx.beginPath(); ctx.arc(cx + W*0.12, cy, H*0.08, -0.5, 0.5); ctx.stroke();
-  ctx.fillStyle = '#c41e3a'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+  ctx.fillStyle = '#e63956'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
   ctx.fillText('Flexion/Extension', cx + W*0.15, cy);
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Hinge Joint - Elbow', cx, H*0.08);
 }
 
@@ -1369,17 +1897,17 @@ function drawBallSocketJoint(ctx, W, H) {
   const angle = Math.sin(jointAnimFrame * 0.02) * 0.4;
 
   // Socket (acetabulum)
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath(); ctx.arc(cx, cy, W*0.08, 0.3, Math.PI*2 - 0.3); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2.5; ctx.stroke();
 
   // Ball (femoral head) + shaft
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(angle);
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.arc(0, 0, W*0.055, 0, Math.PI*2); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   // Shaft
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.roundRect(-W*0.025, W*0.04, W*0.05, H*0.28, 6); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   ctx.restore();
@@ -1390,7 +1918,7 @@ function drawBallSocketJoint(ctx, W, H) {
   ctx.setLineDash([]);
 
   // Rotation arrows (multiple directions)
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1.5;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 1.5;
   const arrowR = W * 0.14;
   for (let a = 0; a < 4; a++) {
     const theta = a * Math.PI / 2;
@@ -1403,9 +1931,9 @@ function drawBallSocketJoint(ctx, W, H) {
     ctx.beginPath(); ctx.arc(ax, ay, 3, 0, Math.PI*2); ctx.fill();
   }
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Ball-and-Socket Joint - Hip/Shoulder', cx, H*0.08);
-  ctx.fillStyle = '#c41e3a'; ctx.font = '11px system-ui';
+  ctx.fillStyle = '#e63956'; ctx.font = '11px system-ui';
   ctx.fillText('Movement in all directions', cx, H*0.92);
 }
 
@@ -1415,34 +1943,34 @@ function drawPivotJoint(ctx, W, H) {
 
   // Atlas (C1) ring
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(angle);
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath(); ctx.ellipse(0, 0, W*0.14, H*0.1, 0, 0, Math.PI*2); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2.5; ctx.stroke();
   // Hollow center
-  ctx.fillStyle = '#f8fafc';
+  ctx.fillStyle = '#0f0f17';
   ctx.beginPath(); ctx.ellipse(0, 0, W*0.05, H*0.04, 0, 0, Math.PI*2); ctx.fill();
   ctx.restore();
 
   // Dens (axis peg) - stays fixed
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.arc(cx, cy, W*0.035, 0, Math.PI*2); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   // Axis body below
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.roundRect(cx - W*0.07, cy + H*0.08, W*0.14, H*0.06, 6); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
 
   // Rotation arrow
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
   ctx.beginPath(); ctx.arc(cx, cy, W*0.20, -0.8, 0.8); ctx.stroke();
-  ctx.fillStyle = '#c41e3a'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e63956'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Rotation (head shaking "no")', cx, cy - H*0.2);
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui';
   ctx.fillText('Pivot Joint - Atlas (C1) / Axis (C2)', cx, H*0.08);
 
   // Labels
-  ctx.fillStyle = '#2563eb'; ctx.font = '11px system-ui';
+  ctx.fillStyle = '#60a5fa'; ctx.font = '11px system-ui';
   ctx.fillText('Atlas (C1)', cx + W*0.18, cy - H*0.02);
   ctx.fillStyle = '#d97706';
   ctx.fillText('Dens of Axis', cx + W*0.08, cy + H*0.02);
@@ -1454,15 +1982,15 @@ function drawGlidingJoint(ctx, W, H) {
 
   // Upper flat bone
   ctx.save(); ctx.translate(offset, 0);
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.roundRect(cx - W*0.12, cy - H*0.12, W*0.24, H*0.08, 6); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   ctx.restore();
 
   // Lower flat bone
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath(); ctx.roundRect(cx - W*0.14, cy + H*0.02, W*0.28, H*0.08, 6); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2; ctx.stroke();
 
   // Articular surfaces
   ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
@@ -1470,12 +1998,12 @@ function drawGlidingJoint(ctx, W, H) {
   ctx.beginPath(); ctx.moveTo(cx - W*0.12, cy + H*0.02); ctx.lineTo(cx + W*0.12, cy + H*0.02); ctx.stroke();
 
   // Movement arrows
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
   ctx.beginPath(); ctx.moveTo(cx - W*0.18, cy - H*0.16); ctx.lineTo(cx + W*0.18, cy - H*0.16); ctx.stroke();
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Gliding (Plane) Joint - Carpals/Tarsals', cx, H*0.08);
-  ctx.fillStyle = '#c41e3a'; ctx.font = '11px system-ui';
+  ctx.fillStyle = '#e63956'; ctx.font = '11px system-ui';
   ctx.fillText('Side-to-side sliding', cx, H*0.92);
 }
 
@@ -1484,7 +2012,7 @@ function drawSaddleJoint(ctx, W, H) {
   const angle = Math.sin(jointAnimFrame * 0.03) * 0.3;
 
   // Draw saddle shape (concave/convex)
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath();
   ctx.moveTo(cx - W*0.15, cy);
   ctx.quadraticCurveTo(cx - W*0.05, cy + H*0.08, cx, cy);
@@ -1492,11 +2020,11 @@ function drawSaddleJoint(ctx, W, H) {
   ctx.lineTo(cx + W*0.15, cy + H*0.15);
   ctx.lineTo(cx - W*0.15, cy + H*0.15);
   ctx.closePath(); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2; ctx.stroke();
 
   // Upper saddle bone
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(angle);
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath();
   ctx.moveTo(-W*0.08, 0);
   ctx.quadraticCurveTo(0, -H*0.06, W*0.08, 0);
@@ -1506,9 +2034,9 @@ function drawSaddleJoint(ctx, W, H) {
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   ctx.restore();
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Saddle Joint - Thumb (CMC)', cx, H*0.08);
-  ctx.fillStyle = '#c41e3a'; ctx.font = '11px system-ui';
+  ctx.fillStyle = '#e63956'; ctx.font = '11px system-ui';
   ctx.fillText('Movement in two planes', cx, H*0.92);
 }
 
@@ -1517,28 +2045,28 @@ function drawCondyloidJoint(ctx, W, H) {
   const angle = Math.sin(jointAnimFrame * 0.03) * 0.35;
 
   // Elliptical socket
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath(); ctx.ellipse(cx, cy + H*0.04, W*0.10, H*0.05, 0, Math.PI, Math.PI*2); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2.5; ctx.stroke();
   // Socket body below
-  ctx.fillStyle = '#dbeafe';
+  ctx.fillStyle = '#1a2a4a';
   ctx.beginPath(); ctx.roundRect(cx - W*0.12, cy + H*0.06, W*0.24, H*0.16, 6); ctx.fill();
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke();
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2; ctx.stroke();
 
   // Condyle (oval head)
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(angle);
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.ellipse(0, 0, W*0.07, H*0.04, 0, 0, Math.PI*2); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   // Shaft above
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.roundRect(-W*0.025, -H*0.24, W*0.05, H*0.20, 6); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
   ctx.restore();
 
-  ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Condyloid (Ellipsoid) Joint - Wrist', cx, H*0.08);
-  ctx.fillStyle = '#c41e3a'; ctx.font = '11px system-ui';
+  ctx.fillStyle = '#e63956'; ctx.font = '11px system-ui';
   ctx.fillText('Biaxial movement + circumduction', cx, H*0.92);
 }
 
@@ -1594,7 +2122,7 @@ function drawGrowthChart(currentAge) {
   const W = ctx.W, H = ctx.H;
   const pad = { top: 30, right: 20, bottom: 40, left: 50 };
   const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   // Generate density curve
   const points = [];
@@ -1613,25 +2141,25 @@ function drawGrowthChart(currentAge) {
   }
 
   // Grid
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + plotH * (1 - i/4);
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
     ctx.fillText(Math.round(i * 25) + '%', pad.left - 6, y + 4);
   }
 
   // Age labels
   for (let age = 0; age <= 90; age += 10) {
     const x = pad.left + (age / 90) * plotW;
-    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
     ctx.fillText(age, x, H - pad.bottom + 16);
   }
-  ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Age (years)', pad.left + plotW/2, H - 4);
 
   // Density curve
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5;
+  ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 2.5;
   ctx.beginPath();
   points.forEach((d, age) => {
     const x = pad.left + (age / 90) * plotW;
@@ -1641,21 +2169,21 @@ function drawGrowthChart(currentAge) {
   ctx.stroke();
 
   // Osteoporosis threshold
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
   const threshY = pad.top + plotH * (1 - 50/100);
   ctx.beginPath(); ctx.moveTo(pad.left, threshY); ctx.lineTo(W - pad.right, threshY); ctx.stroke();
   ctx.setLineDash([]);
-  ctx.fillStyle = '#c41e3a'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillStyle = '#e63956'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
   ctx.fillText('Osteoporosis risk threshold', pad.left + 4, threshY - 6);
 
   // Current age marker
   if (currentAge !== undefined) {
     const cx = pad.left + (currentAge / 90) * plotW;
     const cy = pad.top + plotH * (1 - points[currentAge] / 100);
-    ctx.fillStyle = '#c41e3a';
+    ctx.fillStyle = '#e63956';
     ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI*2); ctx.fill();
     ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#e63956'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
     ctx.fillText('Age ' + currentAge, cx, cy - 12);
     ctx.fillText(Math.round(points[currentAge]) + '%', cx, cy + 18);
   }
@@ -1669,23 +2197,23 @@ function drawGrowthChart(currentAge) {
   // Phase labels
   ctx.globalAlpha = 0.1;
   ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left, pad.top, (18/90)*plotW, plotH);
-  ctx.fillStyle = '#2563eb'; ctx.fillRect(pad.left + (18/90)*plotW, pad.top, (17/90)*plotW, plotH);
+  ctx.fillStyle = '#60a5fa'; ctx.fillRect(pad.left + (18/90)*plotW, pad.top, (17/90)*plotW, plotH);
   ctx.fillStyle = '#d97706'; ctx.fillRect(pad.left + (35/90)*plotW, pad.top, (30/90)*plotW, plotH);
-  ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + (65/90)*plotW, pad.top, (25/90)*plotW, plotH);
+  ctx.fillStyle = '#e63956'; ctx.fillRect(pad.left + (65/90)*plotW, pad.top, (25/90)*plotW, plotH);
   ctx.globalAlpha = 1;
 
   ctx.font = '10px system-ui'; ctx.textAlign = 'center';
   ctx.fillStyle = '#16a34a'; ctx.fillText('Growth', pad.left + (9/90)*plotW, pad.top + 14);
-  ctx.fillStyle = '#2563eb'; ctx.fillText('Peak', pad.left + (26/90)*plotW, pad.top + 14);
+  ctx.fillStyle = '#60a5fa'; ctx.fillText('Peak', pad.left + (26/90)*plotW, pad.top + 14);
   ctx.fillStyle = '#d97706'; ctx.fillText('Maintenance', pad.left + (50/90)*plotW, pad.top + 14);
-  ctx.fillStyle = '#c41e3a'; ctx.fillText('Decline', pad.left + (77/90)*plotW, pad.top + 14);
+  ctx.fillStyle = '#e63956'; ctx.fillText('Decline', pad.left + (77/90)*plotW, pad.top + 14);
 }
 
 function drawOssificationCanvas(age) {
   const ctx = getCtx('ossification-canvas');
   const W = ctx.W, H = ctx.H;
   ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   // Draw 5 stages of endochondral ossification
   const stages = [
@@ -1704,9 +2232,9 @@ function drawOssificationCanvas(age) {
     const isPast = age > stage.ageRange[1];
 
     // Stage box
-    ctx.fillStyle = isActive ? 'rgba(196,30,58,0.05)' : (isPast ? 'rgba(22,163,74,0.05)' : '#fafafa');
+    ctx.fillStyle = isActive ? 'rgba(230,57,86,0.03)' : (isPast ? 'rgba(22,163,74,0.05)' : '#12121e');
     ctx.fillRect(sx + 4, H*0.06, stageW - 8, H*0.7);
-    ctx.strokeStyle = isActive ? '#c41e3a' : (isPast ? '#16a34a' : '#e5e7eb');
+    ctx.strokeStyle = isActive ? '#e63956' : (isPast ? '#16a34a' : 'rgba(255,255,255,0.06)');
     ctx.lineWidth = isActive ? 2 : 1;
     ctx.strokeRect(sx + 4, H*0.06, stageW - 8, H*0.7);
 
@@ -1715,43 +2243,43 @@ function drawOssificationCanvas(age) {
     // Draw bone shape at each stage
     if (i === 0) {
       // Pure cartilage model
-      ctx.fillStyle = '#bfdbfe';
+      ctx.fillStyle = '#1e3a5f';
       ctx.beginPath(); ctx.ellipse(cx, cy - H*0.12, stageW*0.15, H*0.06, 0, 0, Math.PI*2); ctx.fill();
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.07, cy - H*0.08, stageW*0.14, H*0.16, 4); ctx.fill();
       ctx.beginPath(); ctx.ellipse(cx, cy + H*0.12, stageW*0.15, H*0.06, 0, 0, Math.PI*2); ctx.fill();
       ctx.strokeStyle = '#93c5fd'; ctx.lineWidth = 1; ctx.stroke();
     } else if (i === 1) {
       // Bone collar forming
-      ctx.fillStyle = '#bfdbfe';
+      ctx.fillStyle = '#1e3a5f';
       ctx.beginPath(); ctx.ellipse(cx, cy - H*0.12, stageW*0.15, H*0.06, 0, 0, Math.PI*2); ctx.fill();
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.07, cy - H*0.08, stageW*0.14, H*0.16, 4); ctx.fill();
       ctx.beginPath(); ctx.ellipse(cx, cy + H*0.12, stageW*0.15, H*0.06, 0, 0, Math.PI*2); ctx.fill();
       // Bone collar
-      ctx.fillStyle = '#fef3c7';
+      ctx.fillStyle = '#2a2a45';
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.09, cy - H*0.06, stageW*0.18, H*0.12, 4); ctx.fill();
       ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
     } else if (i === 2) {
       // Primary ossification
-      ctx.fillStyle = '#bfdbfe';
+      ctx.fillStyle = '#1e3a5f';
       ctx.beginPath(); ctx.ellipse(cx, cy - H*0.12, stageW*0.15, H*0.06, 0, 0, Math.PI*2); ctx.fill();
       ctx.beginPath(); ctx.ellipse(cx, cy + H*0.12, stageW*0.15, H*0.06, 0, 0, Math.PI*2); ctx.fill();
       // Bone replacing center
-      ctx.fillStyle = '#fef3c7';
+      ctx.fillStyle = '#2a2a45';
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.09, cy - H*0.08, stageW*0.18, H*0.16, 4); ctx.fill();
       ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
       // Blood vessel
       ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(cx, cy - H*0.08); ctx.lineTo(cx, cy + H*0.08); ctx.stroke();
       // Medullary cavity starting
-      ctx.fillStyle = '#fde68a';
+      ctx.fillStyle = '#3a3020';
       ctx.beginPath(); ctx.ellipse(cx, cy, stageW*0.04, H*0.04, 0, 0, Math.PI*2); ctx.fill();
     } else if (i === 3) {
       // Secondary ossification centers
-      ctx.fillStyle = '#fef3c7';
+      ctx.fillStyle = '#2a2a45';
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.09, cy - H*0.15, stageW*0.18, H*0.30, 4); ctx.fill();
       ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
       // Remaining cartilage at epiphyses
-      ctx.fillStyle = '#bfdbfe';
+      ctx.fillStyle = '#1e3a5f';
       ctx.beginPath(); ctx.ellipse(cx, cy - H*0.13, stageW*0.12, H*0.04, 0, 0, Math.PI*2); ctx.fill();
       ctx.beginPath(); ctx.ellipse(cx, cy + H*0.13, stageW*0.12, H*0.04, 0, 0, Math.PI*2); ctx.fill();
       // Growth plates
@@ -1759,15 +2287,15 @@ function drawOssificationCanvas(age) {
       ctx.beginPath(); ctx.moveTo(cx - stageW*0.1, cy - H*0.08); ctx.lineTo(cx + stageW*0.1, cy - H*0.08); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(cx - stageW*0.1, cy + H*0.08); ctx.lineTo(cx + stageW*0.1, cy + H*0.08); ctx.stroke();
       // Medullary cavity
-      ctx.fillStyle = '#fde68a';
+      ctx.fillStyle = '#3a3020';
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.04, cy - H*0.06, stageW*0.08, H*0.12, 3); ctx.fill();
     } else {
       // Mature bone
-      ctx.fillStyle = '#fef3c7';
+      ctx.fillStyle = '#2a2a45';
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.09, cy - H*0.16, stageW*0.18, H*0.32, 4); ctx.fill();
       ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
       // Articular cartilage
-      ctx.fillStyle = '#e0d4f5';
+      ctx.fillStyle = '#2a1e3a';
       ctx.beginPath(); ctx.ellipse(cx, cy - H*0.15, stageW*0.08, H*0.015, 0, 0, Math.PI*2); ctx.fill();
       ctx.beginPath(); ctx.ellipse(cx, cy + H*0.15, stageW*0.08, H*0.015, 0, 0, Math.PI*2); ctx.fill();
       // Epiphyseal line (closed)
@@ -1775,15 +2303,15 @@ function drawOssificationCanvas(age) {
       ctx.beginPath(); ctx.moveTo(cx - stageW*0.08, cy - H*0.09); ctx.lineTo(cx + stageW*0.08, cy - H*0.09); ctx.stroke();
       ctx.setLineDash([]);
       // Medullary cavity
-      ctx.fillStyle = '#fde68a';
+      ctx.fillStyle = '#3a3020';
       ctx.beginPath(); ctx.roundRect(cx - stageW*0.04, cy - H*0.06, stageW*0.08, H*0.12, 3); ctx.fill();
     }
 
     // Stage label
-    ctx.fillStyle = isActive ? '#c41e3a' : '#374151';
+    ctx.fillStyle = isActive ? '#e63956' : '#e8e8f0';
     ctx.font = (isActive ? 'bold ' : '') + '10px system-ui'; ctx.textAlign = 'center';
     ctx.fillText(stage.label, cx, H*0.82);
-    ctx.fillStyle = '#6b7280'; ctx.font = '9px system-ui';
+    ctx.fillStyle = '#8b8ba0'; ctx.font = '9px system-ui';
     // Wrap desc
     const words = stage.desc.split(' ');
     let line1 = '', line2 = '';
@@ -1796,7 +2324,7 @@ function drawOssificationCanvas(age) {
   });
 
   // Arrow connecting stages
-  ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1;
+  ctx.strokeStyle = '#6b7280'; ctx.lineWidth = 1;
   for (let i = 0; i < 4; i++) {
     const x1 = stageW * (i+1) - 4;
     const x2 = stageW * (i+1) + 4;
@@ -1831,7 +2359,7 @@ function setFracture(type) {
 function drawFractureCanvas() {
   const ctx = getCtx('fracture-canvas');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   // Draw all 6 fracture types in a row
   const types = ['transverse', 'oblique', 'spiral', 'comminuted', 'greenstick', 'compound'];
@@ -1843,9 +2371,9 @@ function drawFractureCanvas() {
 
     // Background highlight
     if (isActive) {
-      ctx.fillStyle = 'rgba(196,30,58,0.05)';
+      ctx.fillStyle = 'rgba(230,57,86,0.03)';
       ctx.fillRect(fw * i + 2, 30, fw - 4, H - 70);
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+      ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
       ctx.strokeRect(fw * i + 2, 30, fw - 4, H - 70);
     }
 
@@ -1854,7 +2382,7 @@ function drawFractureCanvas() {
     const midY = (top + bot) / 2;
 
     // Draw bone based on fracture type
-    ctx.fillStyle = '#fef3c7'; ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2;
+    ctx.fillStyle = '#2a2a45'; ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2;
 
     if (type === 'transverse') {
       // Top portion
@@ -1862,16 +2390,16 @@ function drawFractureCanvas() {
       // Bottom portion
       ctx.beginPath(); ctx.roundRect(cx - boneW, midY + 4, boneW*2, bot - midY - 4, 4); ctx.fill(); ctx.stroke();
       // Fracture line
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.moveTo(cx - boneW - 4, midY); ctx.lineTo(cx + boneW + 4, midY); ctx.stroke();
     } else if (type === 'oblique') {
       ctx.beginPath(); ctx.roundRect(cx - boneW, top, boneW*2, midY - top - 8, 4); ctx.fill(); ctx.stroke();
       ctx.beginPath(); ctx.roundRect(cx - boneW, midY + 8, boneW*2, bot - midY - 8, 4); ctx.fill(); ctx.stroke();
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.moveTo(cx - boneW - 4, midY - 12); ctx.lineTo(cx + boneW + 4, midY + 12); ctx.stroke();
     } else if (type === 'spiral') {
       ctx.beginPath(); ctx.roundRect(cx - boneW, top, boneW*2, bot - top, 4); ctx.fill(); ctx.stroke();
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2.5;
       ctx.beginPath();
       for (let t = 0; t <= 1; t += 0.05) {
         const x = cx + Math.sin(t * Math.PI * 3) * boneW;
@@ -1893,9 +2421,9 @@ function drawFractureCanvas() {
       // Fragments
       frags.forEach(f => {
         ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.r);
-        ctx.fillStyle = '#fef3c7';
+        ctx.fillStyle = '#2a2a45';
         ctx.beginPath(); ctx.roundRect(-f.w/2, -f.h/2, f.w, f.h, 2); ctx.fill();
-        ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 1.5; ctx.stroke();
+        ctx.strokeStyle = '#e63956'; ctx.lineWidth = 1.5; ctx.stroke();
         ctx.restore();
       });
     } else if (type === 'greenstick') {
@@ -1910,7 +2438,7 @@ function drawFractureCanvas() {
       ctx.closePath(); ctx.fill();
       ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
       // Partial fracture on one side
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.moveTo(cx + boneW + 2, midY - 8); ctx.lineTo(cx, midY); ctx.stroke();
     } else if (type === 'compound') {
       // Bone protruding through skin
@@ -1918,11 +2446,11 @@ function drawFractureCanvas() {
       ctx.beginPath(); ctx.roundRect(cx - boneW, midY + 15, boneW*2, bot - midY - 15, 4); ctx.fill(); ctx.stroke();
       // Protruding fragment
       ctx.save(); ctx.translate(cx, midY); ctx.rotate(-0.3);
-      ctx.fillStyle = '#fef3c7';
+      ctx.fillStyle = '#2a2a45';
       ctx.beginPath();
       ctx.moveTo(-3, 0); ctx.lineTo(-5, -25); ctx.lineTo(5, -30); ctx.lineTo(3, 0);
       ctx.closePath(); ctx.fill();
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.stroke();
+      ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2; ctx.stroke();
       ctx.restore();
       // Skin tear (wavy line)
       ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5;
@@ -1940,7 +2468,7 @@ function drawFractureCanvas() {
     }
 
     // Label
-    ctx.fillStyle = isActive ? '#c41e3a' : '#374151';
+    ctx.fillStyle = isActive ? '#e63956' : '#e8e8f0';
     ctx.font = (isActive ? 'bold ' : '') + '11px system-ui'; ctx.textAlign = 'center';
     ctx.fillText(FRACTURE_INFO[type].name.split(' ')[0], cx, H - 20);
   });
@@ -1976,14 +2504,14 @@ function updateHealing() {
 function drawHealingCanvas(week) {
   const ctx = getCtx('healing-canvas');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   const cx = W/2, cy = H/2;
   const boneW = W * 0.06, boneH = H * 0.35;
 
   // Draw bone with fracture healing stages
   // Upper bone segment
-  ctx.fillStyle = '#fef3c7';
+  ctx.fillStyle = '#2a2a45';
   ctx.beginPath(); ctx.roundRect(cx - boneW, cy - boneH, boneW*2, boneH - 15, 6); ctx.fill();
   ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
 
@@ -1994,24 +2522,24 @@ function drawHealingCanvas(week) {
   // Fracture gap / healing region
   if (week === 0) {
     // Fresh fracture
-    ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+    ctx.strokeStyle = '#e63956'; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(cx - boneW - 5, cy); ctx.lineTo(cx + boneW + 5, cy); ctx.stroke();
   } else if (week <= 1) {
     // Hematoma (blood clot)
-    ctx.fillStyle = 'rgba(220,38,38,0.4)';
+    ctx.fillStyle = 'rgba(220,38,38,0.3)';
     ctx.beginPath(); ctx.ellipse(cx, cy, boneW*1.5, 18, 0, 0, Math.PI*2); ctx.fill();
     ctx.fillStyle = '#dc2626'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
     ctx.fillText('Hematoma', cx + boneW*2, cy);
   } else if (week <= 4) {
     // Fibrocartilage callus
     const progress = (week - 1) / 3;
-    ctx.fillStyle = 'rgba(59,130,246,0.2)';
+    ctx.fillStyle = 'rgba(59,130,246,0.12)';
     ctx.beginPath(); ctx.ellipse(cx, cy, boneW * (1.5 + progress*0.5), 15 + progress*10, 0, 0, Math.PI*2); ctx.fill();
-    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 1.5; ctx.stroke();
     // Internal fibrocartilage
     ctx.fillStyle = 'rgba(147,197,253,0.4)';
     ctx.beginPath(); ctx.ellipse(cx, cy, boneW * (1 + progress*0.3), 10 + progress*5, 0, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = '#2563eb'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#60a5fa'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
     ctx.fillText('Soft Callus', cx + boneW*2.5, cy);
     // New blood vessels
     ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 0.8;
@@ -2025,14 +2553,14 @@ function drawHealingCanvas(week) {
   } else if (week <= 8) {
     // Bony callus
     const progress = (week - 4) / 4;
-    ctx.fillStyle = 'rgba(234,179,8,0.25)';
+    ctx.fillStyle = 'rgba(234,179,8,0.15)';
     ctx.beginPath(); ctx.ellipse(cx, cy, boneW * (2 - progress*0.3), 25 - progress*5, 0, 0, Math.PI*2); ctx.fill();
     ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
     // Hard callus
-    ctx.fillStyle = 'rgba(253,224,71,0.3)';
+    ctx.fillStyle = 'rgba(253,224,71,0.15)';
     ctx.beginPath(); ctx.ellipse(cx, cy, boneW * (1.3 + progress*0.2), 15, 0, 0, Math.PI*2); ctx.fill();
     // Spongy bone forming
-    ctx.strokeStyle = 'rgba(180,130,60,0.4)'; ctx.lineWidth = 0.8;
+    ctx.strokeStyle = 'rgba(180,130,60,0.25)'; ctx.lineWidth = 0.8;
     for (let i = 0; i < 8; i++) {
       const rx = cx + (Math.random() - 0.5) * boneW * 2.5;
       const ry = cy + (Math.random() - 0.5) * 30;
@@ -2048,7 +2576,7 @@ function drawHealingCanvas(week) {
     ctx.fillStyle = 'rgba(234,179,8,0.15)';
     ctx.beginPath(); ctx.ellipse(cx, cy, boneW * callSize, 20 - progress*8, 0, 0, Math.PI*2); ctx.fill();
     // Compact bone replacing
-    ctx.fillStyle = '#fef3c7';
+    ctx.fillStyle = '#2a2a45';
     ctx.beginPath(); ctx.roundRect(cx - boneW, cy - 12, boneW*2, 24, 4); ctx.fill();
     ctx.strokeStyle = '#d97706'; ctx.lineWidth = 1.5; ctx.stroke();
     ctx.fillStyle = '#16a34a'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
@@ -2057,11 +2585,11 @@ function drawHealingCanvas(week) {
 
   // Timeline bar at bottom
   const tlY = H * 0.88, tlW = W * 0.8, tlX = W * 0.1;
-  ctx.fillStyle = '#e5e7eb';
+  ctx.fillStyle = 'rgba(255,255,255,0.06)';
   ctx.beginPath(); ctx.roundRect(tlX, tlY, tlW, 12, 6); ctx.fill();
 
   // Stage sections
-  const stageColors = ['#dc2626', '#3b82f6', '#d97706', '#16a34a'];
+  const stageColors = ['#dc2626', '#60a5fa', '#d97706', '#16a34a'];
   const stageWidths = [1/12, 3/12, 4/12, 4/12];
   let cumW = 0;
   stageColors.forEach((c, i) => {
@@ -2073,7 +2601,7 @@ function drawHealingCanvas(week) {
 
   // Progress marker
   const markerX = tlX + (week / 12) * tlW;
-  ctx.fillStyle = '#c41e3a';
+  ctx.fillStyle = '#e63956';
   ctx.beginPath(); ctx.arc(markerX, tlY + 6, 8, 0, Math.PI*2); ctx.fill();
   ctx.fillStyle = '#fff'; ctx.font = 'bold 9px system-ui'; ctx.textAlign = 'center';
   ctx.fillText(week, markerX, tlY + 9);
@@ -2081,7 +2609,7 @@ function drawHealingCanvas(week) {
   // Stage labels
   ctx.font = '9px system-ui'; ctx.textAlign = 'center';
   ctx.fillStyle = '#dc2626'; ctx.fillText('Hematoma', tlX + (0.5/12)*tlW, tlY + 24);
-  ctx.fillStyle = '#3b82f6'; ctx.fillText('Soft Callus', tlX + (2.5/12)*tlW, tlY + 24);
+  ctx.fillStyle = '#60a5fa'; ctx.fillText('Soft Callus', tlX + (2.5/12)*tlW, tlY + 24);
   ctx.fillStyle = '#d97706'; ctx.fillText('Bony Callus', tlX + (6/12)*tlW, tlY + 24);
   ctx.fillStyle = '#16a34a'; ctx.fillText('Remodeling', tlX + (10/12)*tlW, tlY + 24);
 }
@@ -2256,7 +2784,7 @@ function answerQuiz(idx) {
   } else {
     quizState.wrong++;
     $('quiz-opt-' + idx).className = 'btn btn-primary';
-    $('quiz-opt-' + idx).style.background = '#c41e3a';
+    $('quiz-opt-' + idx).style.background = '#e63956';
     // Highlight correct answer
     quizState.options.forEach((opt, i) => {
       if (opt.name === quizState.currentBone.name) {
@@ -2294,10 +2822,10 @@ function resetQuiz() {
 function drawQuizCanvas() {
   const ctx = getCtx('quiz-canvas');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   if (!quizState.active || !quizState.currentBone) {
-    ctx.fillStyle = '#9ca3af'; ctx.font = '16px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#6b7280'; ctx.font = '16px system-ui'; ctx.textAlign = 'center';
     ctx.fillText('Start the quiz to begin identifying bones', W/2, H/2);
     return;
   }
@@ -2325,17 +2853,17 @@ function drawQuizCanvas() {
   const pos = regionPositions[bone.region] || { x: 0.5, y: 0.5, r: 0.08 };
 
   // Pulsing highlight circle
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 3;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 3;
   ctx.setLineDash([6, 3]);
   ctx.beginPath(); ctx.arc(pos.x * W, pos.y * H, pos.r * W, 0, Math.PI*2); ctx.stroke();
   ctx.setLineDash([]);
 
   // Fill highlight
-  ctx.fillStyle = 'rgba(196,30,58,0.08)';
+  ctx.fillStyle = 'rgba(230,57,86,0.05)';
   ctx.beginPath(); ctx.arc(pos.x * W, pos.y * H, pos.r * W, 0, Math.PI*2); ctx.fill();
 
   // Arrow pointing to region
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
   const arrowStartX = pos.x * W + pos.r * W + 15;
   const arrowStartY = pos.y * H;
   ctx.beginPath();
@@ -2357,7 +2885,7 @@ function drawQuizCanvas() {
   ctx.fillText('Which bone is this?', arrowStartX + 80, arrowStartY - 2);
 
   // Difficulty badge
-  const diffColors = { easy: '#16a34a', medium: '#d97706', hard: '#c41e3a' };
+  const diffColors = { easy: '#16a34a', medium: '#d97706', hard: '#e63956' };
   let diff = 'easy';
   if (QUIZ_POOLS.medium.find(b => b.name === bone.name)) diff = 'medium';
   if (QUIZ_POOLS.hard.find(b => b.name === bone.name)) diff = 'hard';
@@ -2389,6 +2917,8 @@ window.addEventListener('scroll', updateSidebar);
 // INIT
 // ══════════════════════════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
+  initFunctionGrid();
+  drawFunctionCanvas();
   drawSkeleton();
   updateSkelStats();
   setBoneZoom('gross');
@@ -2396,10 +2926,12 @@ window.addEventListener('DOMContentLoaded', () => {
   updateAge();
   setFracture('transverse');
   updateHealing();
+  setCompareRegion('skull');
   drawQuizCanvas();
 });
 
 window.addEventListener('resize', () => {
+  drawFunctionCanvas();
   drawSkeleton();
   drawBoneStructure();
   drawJoint();
@@ -2407,6 +2939,7 @@ window.addEventListener('resize', () => {
   drawOssificationCanvas(parseInt($('age-slider').value));
   drawFractureCanvas();
   drawHealingCanvas(parseInt($('heal-slider').value));
+  drawCompareCanvas();
   drawQuizCanvas();
 });
 </script>
