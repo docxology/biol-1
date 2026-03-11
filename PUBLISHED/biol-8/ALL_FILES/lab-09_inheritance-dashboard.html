@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 9 Dashboard: Inheritance | BIOL-8</title>
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
     *,
     *::before,
     *::after {
@@ -15,24 +16,25 @@
     }
 
     :root {
-      --bg: #f0f2f5;
-      --card: #fff;
+      --bg: #0f0f17;
+      --card: #1a1a2e;
       --sidebar: #1a1a2e;
       --sidebar-hover: #252545;
-      --accent: #c41e3a;
-      --accent-light: #e8354f;
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --green: #16a34a;
-      --amber: #d97706;
-      --purple: #7c3aed;
-      --text: #1a1a1a;
-      --text-muted: #6b7280;
-      --border: #e5e7eb;
+      --accent: #e63956;
+      --accent-light: #ff4d6a;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --purple: #8b5cf6;
+      --text: #e8e8f0;
+      --text-bright: #ffffff;
+  --text-muted: #8b8ba0;
+      --border: rgba(255,255,255,0.06);
       --radius: 10px;
       --shadow: 0 1px 3px rgba(0, 0, 0, .08);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .1);
-      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
       --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace
     }
 
@@ -532,7 +534,35 @@
         padding: 16px
       }
     }
-  </style>
+  
+/* ═══════ DARK THEME ENHANCEMENTS ═══════ */
+.card:hover { border-color: rgba(255,255,255,0.12); }
+.hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%) !important;
+  color: #fff !important; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
+}
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 span, .hero .hero-accent { background: linear-gradient(135deg, #e63956, #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p, .hero .hero-desc { color: #8b8ba0 !important; }
+.hero .bio-tag, .hero .tag { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero .bio-tag:hover, .hero .tag:hover { background: rgba(255,255,255,0.1); border-color: #e63956; }
+.stat-box { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.info-panel { background: rgba(255,255,255,0.03) !important; }
+.btn-outline { background: rgba(255,255,255,0.04) !important; color: #e8e8f0 !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.btn-outline:hover { border-color: #e63956 !important; color: #e63956 !important; background: rgba(230,57,86,0.15) !important; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.chart-wrap canvas { border-radius: 8px; }
+</style>
 </head>
 
 <body>
@@ -861,15 +891,15 @@
     function getCtx(id) { const c = $(id); const dpr = window.devicePixelRatio || 1; const w = c.offsetWidth || c.width || 300; const h = c.offsetHeight || c.height || 150; c.width = w * dpr; c.height = h * dpr; const ctx = c.getContext('2d'); ctx.scale(dpr, dpr); ctx.W = w; ctx.H = h; return ctx }
     function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r); ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h); ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r); ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath() }
     function drawBarChart(ctx, labels, obs, exp, colors) {
-      const W = ctx.W, H = ctx.H, pad = { top: 20, right: 20, bottom: 40, left: 50 }; const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom; const n = labels.length, barW = plotW / n * .35, gap = plotW / n; ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; roundRect(ctx, 0, 0, W, H, 6); ctx.fill(); const mv = Math.max(...obs, ...exp) * 1.3 || 10; ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1; for (let i = 0; i <= 4; i++) { const y = pad.top + plotH * (1 - i / 4); ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke(); ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right'; ctx.fillText((mv * i / 4).toFixed(1), pad.left - 6, y + 4) }
-      obs.forEach((v, i) => { const x = pad.left + gap * i + gap * .1; const h = (v / mv) * plotH; ctx.fillStyle = colors[i] || '#c41e3a'; roundRect(ctx, x, pad.top + plotH - h, barW, h, 3); ctx.fill(); const ex = x + barW + 4; const eh = (exp[i] / mv) * plotH; ctx.fillStyle = 'rgba(37,99,235,.3)'; roundRect(ctx, ex, pad.top + plotH - eh, barW, eh, 3); ctx.fill(); ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center'; ctx.fillText(labels[i], x + barW + 2, H - pad.bottom + 16); if (v > 0) { ctx.fillStyle = '#1a1a1a'; ctx.fillText(v.toFixed(0), x + barW / 2, pad.top + plotH - h - 6) } })
+      const W = ctx.W, H = ctx.H, pad = { top: 20, right: 20, bottom: 40, left: 50 }; const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom; const n = labels.length, barW = plotW / n * .35, gap = plotW / n; ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; roundRect(ctx, 0, 0, W, H, 6); ctx.fill(); const mv = Math.max(...obs, ...exp) * 1.3 || 10; ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1; for (let i = 0; i <= 4; i++) { const y = pad.top + plotH * (1 - i / 4); ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke(); ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right'; ctx.fillText((mv * i / 4).toFixed(1), pad.left - 6, y + 4) }
+      obs.forEach((v, i) => { const x = pad.left + gap * i + gap * .1; const h = (v / mv) * plotH; ctx.fillStyle = colors[i] || '#e63956'; roundRect(ctx, x, pad.top + plotH - h, barW, h, 3); ctx.fill(); const ex = x + barW + 4; const eh = (exp[i] / mv) * plotH; ctx.fillStyle = 'rgba(37,99,235,.3)'; roundRect(ctx, ex, pad.top + plotH - eh, barW, eh, 3); ctx.fill(); ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center'; ctx.fillText(labels[i], x + barW + 2, H - pad.bottom + 16); if (v > 0) { ctx.fillStyle = '#e8e8f0'; ctx.fillText(v.toFixed(0), x + barW / 2, pad.top + plotH - h - 6) } })
     }
 
     // ── PART 1: FLASHCARDS & QUIZ ──
     const TERMS = [{ t: 'Gene', d: 'A segment of DNA that codes for a specific trait' }, { t: 'Allele', d: 'A version of a gene (e.g., brown-eye allele vs. blue-eye allele)' }, { t: 'Diploid', d: 'Having two copies of each chromosome — one from each parent' }, { t: 'Genotype', d: 'The alleles an organism carries, written with letters (e.g., Aa)' }, { t: 'Phenotype', d: 'The physical trait you can observe (e.g., "brown eyes")' }, { t: 'Homozygous', d: 'Two identical alleles (AA or aa)' }, { t: 'Heterozygous', d: 'Two different alleles (Aa) — also called a carrier' }, { t: 'Dominant', d: 'Allele expressed when at least one copy is present (capital letter)' }, { t: 'Recessive', d: 'Allele expressed only when two copies are present (lowercase)' }, { t: 'Punnett Square', d: 'A grid used to predict the offspring of a genetic cross' }];
     const QUIZ = [{ q: 'If someone has genotype Bb, are they homozygous or heterozygous?', a: 'heterozygous' }, { q: 'An organism with genotype aa shows the recessive trait. What genotype(s) show the dominant trait?', a: 'AA or Aa' }, { q: 'A person with genotype Aa is called a ___ for a recessive condition.', a: 'carrier' }, { q: 'Humans are ___, meaning they carry two copies of each gene.', a: 'diploid' }];
 
-    function initFlashcards() { const el = $('flashcards'); TERMS.forEach((t, i) => { const d = document.createElement('div'); d.style.cssText = 'background:#f8fafc;border:2px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;transition:all .3s;min-height:90px;display:flex;align-items:center;justify-content:center;text-align:center;'; d.innerHTML = `<div><div style="font-weight:800;font-size:16px;color:var(--accent);">${t.t}</div><div class="fc-def" style="display:none;font-size:13px;color:var(--text-muted);margin-top:6px;">${t.d}</div></div>`; d.onclick = () => { const def = d.querySelector('.fc-def'); def.style.display = def.style.display === 'none' ? 'block' : 'none'; d.style.borderColor = def.style.display === 'block' ? 'var(--accent)' : 'var(--border)'; d.style.background = def.style.display === 'block' ? '#fff' : '#f8fafc' }; el.appendChild(d) }) }
+    function initFlashcards() { const el = $('flashcards'); TERMS.forEach((t, i) => { const d = document.createElement('div'); d.style.cssText = 'background:#f8fafc;border:2px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;transition:all .3s;min-height:90px;display:flex;align-items:center;justify-content:center;text-align:center;'; d.innerHTML = `<div><div style="font-weight:800;font-size:16px;color:var(--accent);">${t.t}</div><div class="fc-def" style="display:none;font-size:13px;color:var(--text-muted);margin-top:6px;">${t.d}</div></div>`; d.onclick = () => { const def = d.querySelector('.fc-def'); def.style.display = def.style.display === 'none' ? 'block' : 'none'; d.style.borderColor = def.style.display === 'block' ? 'var(--accent)' : 'var(--border)'; d.style.background = def.style.display === 'block' ? '#1a1a2e' : '#0f0f17' }; el.appendChild(d) }) }
 
     function initQuiz() { const el = $('quiz-area'); el.innerHTML = QUIZ.map((q, i) => `<div style="margin-bottom:12px;padding:12px;background:#f8fafc;border-radius:8px;border:1px solid var(--border);"><div style="font-weight:600;font-size:14px;margin-bottom:6px;">${i + 1}. ${q.q}</div><input type="text" id="quiz-${i}" style="width:100%;padding:8px 12px;border:2px solid var(--border);border-radius:6px;font-size:14px;font-family:var(--font);" placeholder="Your answer..."></div>`).join('') }
     function checkQuiz() { let score = 0; QUIZ.forEach((q, i) => { const input = $(`quiz-${i}`); const v = input.value.trim().toLowerCase(); const correct = q.a.toLowerCase().split(' or ').some(a => v.includes(a.trim())); input.style.borderColor = correct ? 'var(--green)' : 'var(--accent)'; if (correct) score++ }); $('quiz-result').innerHTML = `<div class="analysis-result" style="border-left-color:${score === QUIZ.length ? 'var(--green)' : 'var(--amber)'}"><strong>${score}/${QUIZ.length} correct!</strong> ${score === QUIZ.length ? '🎉 Perfect score!' : 'Keep studying the terminology table above.'}</div>` }
@@ -881,11 +911,11 @@
     function coinReset() { coinData = { AA: 0, Aa: 0, aa: 0, history: [] }; coinUpdateUI() }
     function coinUpdateUI() {
       const t = coinData.AA + coinData.Aa + coinData.aa; $('coin-aa').textContent = coinData.AA; $('coin-Aa').textContent = coinData.Aa; $('coin-bb').textContent = coinData.aa; $('coin-total').textContent = t;
-      const ctx = getCtx('coin-bar'); if (t > 0) { drawBarChart(ctx, ['AA', 'Aa', 'aa'], [coinData.AA, coinData.Aa, coinData.aa], [t * .25, t * .5, t * .25], ['#c41e3a', '#d97706', '#2563eb']) } else { ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#f8fafc'; roundRect(ctx, 0, 0, ctx.W, ctx.H, 6); ctx.fill(); ctx.fillStyle = '#9ca3af'; ctx.font = '14px system-ui'; ctx.textAlign = 'center'; ctx.fillText('Click "Flip" to start', ctx.W / 2, ctx.H / 2) }
+      const ctx = getCtx('coin-bar'); if (t > 0) { drawBarChart(ctx, ['AA', 'Aa', 'aa'], [coinData.AA, coinData.Aa, coinData.aa], [t * .25, t * .5, t * .25], ['#e63956', '#d97706', '#3b82f6']) } else { ctx.clearRect(0, 0, ctx.W, ctx.H); ctx.fillStyle = '#0f0f17'; roundRect(ctx, 0, 0, ctx.W, ctx.H, 6); ctx.fill(); ctx.fillStyle = '#6b7280'; ctx.font = '14px system-ui'; ctx.textAlign = 'center'; ctx.fillText('Click "Flip" to start', ctx.W / 2, ctx.H / 2) }
       // convergence
-      const ctx2 = getCtx('coin-line'); ctx2.clearRect(0, 0, ctx2.W, ctx2.H); ctx2.fillStyle = '#f8fafc'; roundRect(ctx2, 0, 0, ctx2.W, ctx2.H, 6); ctx2.fill(); if (coinData.history.length > 1) {
-        const W = ctx2.W, H = ctx2.H, pad = { top: 20, right: 20, bottom: 30, left: 50 }, plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom; ctx2.strokeStyle = '#e5e7eb'; ctx2.lineWidth = 1; for (let i = 0; i <= 4; i++) { const y = pad.top + plotH * (1 - i / 4); ctx2.beginPath(); ctx2.moveTo(pad.left, y); ctx2.lineTo(W - pad.right, y); ctx2.stroke(); ctx2.fillStyle = '#9ca3af'; ctx2.font = '11px system-ui'; ctx2.textAlign = 'right'; ctx2.fillText((i * 25) + '%', pad.left - 6, y + 4) }
-        ctx2.strokeStyle = '#9ca3af'; ctx2.lineWidth = 1; ctx2.setLineDash([6, 4]); const refY = pad.top + plotH * .5; ctx2.beginPath(); ctx2.moveTo(pad.left, refY); ctx2.lineTo(W - pad.right, refY); ctx2.stroke(); ctx2.setLineDash([]); ctx2.fillStyle = '#9ca3af'; ctx2.font = '10px system-ui'; ctx2.textAlign = 'left'; ctx2.fillText('Expected 50%', pad.left + 4, refY - 6);
+      const ctx2 = getCtx('coin-line'); ctx2.clearRect(0, 0, ctx2.W, ctx2.H); ctx2.fillStyle = '#0f0f17'; roundRect(ctx2, 0, 0, ctx2.W, ctx2.H, 6); ctx2.fill(); if (coinData.history.length > 1) {
+        const W = ctx2.W, H = ctx2.H, pad = { top: 20, right: 20, bottom: 30, left: 50 }, plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom; ctx2.strokeStyle = 'rgba(255,255,255,0.06)'; ctx2.lineWidth = 1; for (let i = 0; i <= 4; i++) { const y = pad.top + plotH * (1 - i / 4); ctx2.beginPath(); ctx2.moveTo(pad.left, y); ctx2.lineTo(W - pad.right, y); ctx2.stroke(); ctx2.fillStyle = '#6b7280'; ctx2.font = '11px system-ui'; ctx2.textAlign = 'right'; ctx2.fillText((i * 25) + '%', pad.left - 6, y + 4) }
+        ctx2.strokeStyle = '#6b7280'; ctx2.lineWidth = 1; ctx2.setLineDash([6, 4]); const refY = pad.top + plotH * .5; ctx2.beginPath(); ctx2.moveTo(pad.left, refY); ctx2.lineTo(W - pad.right, refY); ctx2.stroke(); ctx2.setLineDash([]); ctx2.fillStyle = '#6b7280'; ctx2.font = '10px system-ui'; ctx2.textAlign = 'left'; ctx2.fillText('Expected 50%', pad.left + 4, refY - 6);
         ctx2.strokeStyle = 'var(--amber)'; ctx2.lineWidth = 2; ctx2.beginPath(); const d = coinData.history; d.forEach((v, i) => { const x = pad.left + (i / (d.length - 1)) * plotW; const y = pad.top + plotH * (1 - v); i === 0 ? ctx2.moveTo(x, y) : ctx2.lineTo(x, y) }); ctx2.stroke()
       }
       // analysis
@@ -899,7 +929,7 @@
       let html = '<div class="punnett-grid"><div class="pg-cell pg-corner"></div>'; html += `<div class="pg-cell pg-header">${a2[0]}</div><div class="pg-cell pg-header">${a2[1]}</div>`; for (let i = 0; i < 2; i++) { html += `<div class="pg-cell pg-header">${a1[i]}</div>`; for (let j = 0; j < 2; j++) { const gt = grid[i * 2 + j]; html += `<div class="pg-cell pg-${gt}">${gt}</div>` } } html += '</div>'; $('alb-dynamic-grid').innerHTML = html;
       const counts = { AA: 0, Aa: 0, aa: 0 }; grid.forEach(g => counts[g]++); const total = 4; $('alb-dynamic-stats').innerHTML = `<div class="stat-grid"><div class="stat-box stat-accent"><div class="stat-val">${(counts.AA / total * 100).toFixed(0)}%</div><div class="stat-label">AA</div></div><div class="stat-box stat-amber"><div class="stat-val">${(counts.Aa / total * 100).toFixed(0)}%</div><div class="stat-label">Aa</div></div><div class="stat-box stat-blue"><div class="stat-val">${(counts.aa / total * 100).toFixed(0)}%</div><div class="stat-label">aa</div></div></div>`
     }
-    function albSimulate(n) { const p1 = $('alb-p1').value, p2 = $('alb-p2').value; const a1 = p1.split(''), a2 = p2.split(''); for (let i = 0; i < n; i++) { const g = [a1[rand(0, 1)], a2[rand(0, 1)]].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())); const gt = g[0] === g[1] ? (g[0] === 'A' ? 'AA' : 'aa') : 'Aa'; albSim[gt]++ } const t = albSim.AA + albSim.Aa + albSim.aa; const ctx = getCtx('alb-sim-chart'); drawBarChart(ctx, ['AA', 'Aa', 'aa'], [albSim.AA, albSim.Aa, albSim.aa], [t * .25, t * .5, t * .25], ['#c41e3a', '#d97706', '#2563eb']) }
+    function albSimulate(n) { const p1 = $('alb-p1').value, p2 = $('alb-p2').value; const a1 = p1.split(''), a2 = p2.split(''); for (let i = 0; i < n; i++) { const g = [a1[rand(0, 1)], a2[rand(0, 1)]].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase())); const gt = g[0] === g[1] ? (g[0] === 'A' ? 'AA' : 'aa') : 'Aa'; albSim[gt]++ } const t = albSim.AA + albSim.Aa + albSim.aa; const ctx = getCtx('alb-sim-chart'); drawBarChart(ctx, ['AA', 'Aa', 'aa'], [albSim.AA, albSim.Aa, albSim.aa], [t * .25, t * .5, t * .25], ['#e63956', '#d97706', '#3b82f6']) }
     function albResetSim() { albSim = { AA: 0, Aa: 0, aa: 0 }; const ctx = getCtx('alb-sim-chart'); ctx.clearRect(0, 0, ctx.W, ctx.H) }
 
     // ── PART 4: COLOR BLINDNESS ──
@@ -907,11 +937,11 @@
     function cbUpdate() {
       const mom = $('cb-mom').value, dad = $('cb-dad').value; const mAlleles = mom === 'XCXC' ? ['XC', 'XC'] : mom === 'XCXc' ? ['XC', 'Xc'] : ['Xc', 'Xc']; const dAlleles = dad === 'XCY' ? ['XC', 'Y'] : ['Xc', 'Y']; const grid = []; for (let i = 0; i < 2; i++)for (let j = 0; j < 2; j++) { grid.push({ m: mAlleles[i], d: dAlleles[j] }) }
       let html = '<div class="punnett-grid"><div class="pg-cell pg-corner"></div>'; dAlleles.forEach(a => { html += `<div class="pg-cell pg-header">${a === 'Y' ? 'Y' : a.replace('X', 'X<sup>').replace('C', 'C</sup>').replace('c', 'c</sup>')}</div>` });
-      const colors = { normal: '#f0fdf4', carrier: '#fffbeb', affected: '#fef2f2' };
+      const colors = { normal: '#0d1f10', carrier: '#fffbeb', affected: '#fef2f2' };
       mAlleles.forEach((ma, i) => {
         html += `<div class="pg-cell pg-header">${ma.replace('X', 'X<sup>').replace('C', 'C</sup>').replace('c', 'c</sup>')}</div>`; dAlleles.forEach((da, j) => {
-          const child = grid[i * 2 + j]; const gt = child.m + child.d; let label, bg, textColor = '#1a1a1a'; if (da === 'Y') { if (child.m === 'XC') { label = 'X<sup>C</sup>Y'; bg = colors.normal } else { label = 'X<sup>c</sup>Y'; bg = colors.affected; textColor = 'var(--accent)' } } else { const alleles = [child.m, child.d].sort(); if (alleles[0] === 'XC' && alleles[1] === 'XC') { label = 'X<sup>C</sup>X<sup>C</sup>'; bg = colors.normal } else if (alleles.includes('XC') && alleles.includes('Xc')) { label = 'X<sup>C</sup>X<sup>c</sup>'; bg = colors.carrier } else { label = 'X<sup>c</sup>X<sup>c</sup>'; bg = colors.affected; textColor = 'var(--accent)' } }
-          html += `<div class="pg-cell" style="background:${bg};color:${textColor};border:2px solid ${bg === '#fef2f2' ? '#fca5a5' : bg === '#fffbeb' ? '#fcd34d' : '#86efac'};font-size:16px;">${label}</div>`
+          const child = grid[i * 2 + j]; const gt = child.m + child.d; let label, bg, textColor = '#e8e8f0'; if (da === 'Y') { if (child.m === 'XC') { label = 'X<sup>C</sup>Y'; bg = colors.normal } else { label = 'X<sup>c</sup>Y'; bg = colors.affected; textColor = 'var(--accent)' } } else { const alleles = [child.m, child.d].sort(); if (alleles[0] === 'XC' && alleles[1] === 'XC') { label = 'X<sup>C</sup>X<sup>C</sup>'; bg = colors.normal } else if (alleles.includes('XC') && alleles.includes('Xc')) { label = 'X<sup>C</sup>X<sup>c</sup>'; bg = colors.carrier } else { label = 'X<sup>c</sup>X<sup>c</sup>'; bg = colors.affected; textColor = 'var(--accent)' } }
+          html += `<div class="pg-cell" style="background:${bg};color:${textColor};border:2px solid ${bg === '#fef2f2' ? '#5a2030' : bg === '#fffbeb' ? '#fcd34d' : '#86efac'};font-size:16px;">${label}</div>`
         })
       });
       html += '</div>'; $('cb-punnett').innerHTML = html;
@@ -921,7 +951,7 @@
     }
     function cbSimulate(n) {
       const mom = $('cb-mom').value, dad = $('cb-dad').value; const mA = mom === 'XCXC' ? ['XC', 'XC'] : mom === 'XCXc' ? ['XC', 'Xc'] : ['Xc', 'Xc']; const dA = dad === 'XCY' ? ['XC', 'Y'] : ['Xc', 'Y']; cbSim = { normalSon: 0, affectedSon: 0, normalDau: 0, carrierDau: 0, affectedDau: 0 }; for (let i = 0; i < n; i++) { const m = mA[rand(0, 1)], d = dA[rand(0, 1)]; if (d === 'Y') { if (m === 'XC') cbSim.normalSon++; else cbSim.affectedSon++ } else { if (m === 'XC' && d === 'XC') cbSim.normalDau++; else if ((m === 'XC' && d === 'Xc') || (m === 'Xc' && d === 'XC')) cbSim.carrierDau++; else cbSim.affectedDau++ } }
-      const ctx = getCtx('cb-sim-chart'); const labels = ['Normal ♂', 'CB ♂', 'Normal ♀', 'Carrier ♀', 'CB ♀']; const vals = [cbSim.normalSon, cbSim.affectedSon, cbSim.normalDau, cbSim.carrierDau, cbSim.affectedDau]; const exp = [n * .25, n * .25, n * .25, n * .25, 0]; const cols = ['#16a34a', '#c41e3a', '#16a34a', '#d97706', '#c41e3a']; drawBarChart(ctx, labels, vals, exp, cols)
+      const ctx = getCtx('cb-sim-chart'); const labels = ['Normal ♂', 'CB ♂', 'Normal ♀', 'Carrier ♀', 'CB ♀']; const vals = [cbSim.normalSon, cbSim.affectedSon, cbSim.normalDau, cbSim.carrierDau, cbSim.affectedDau]; const exp = [n * .25, n * .25, n * .25, n * .25, 0]; const cols = ['#16a34a', '#e63956', '#16a34a', '#d97706', '#e63956']; drawBarChart(ctx, labels, vals, exp, cols)
     }
     function cbResetSim() { cbSim = {}; const ctx = getCtx('cb-sim-chart'); ctx.clearRect(0, 0, ctx.W, ctx.H) }
 
@@ -944,7 +974,7 @@
     function pedDraw() {
       const c = $('ped-canvas'); const dpr = window.devicePixelRatio || 1; const w = c.offsetWidth || 560; const h = 360; c.style.height = h + 'px'; c.width = w * dpr; c.height = h * dpr; const ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
       const sx = w / 560, sy = h / 360; function px(x) { return x * sx } function py(y) { return y * sy }
-      ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#f8fafc'; roundRect(ctx, 0, 0, w, h, 8); ctx.fill();
+      ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#0f0f17'; roundRect(ctx, 0, 0, w, h, 8); ctx.fill();
       // Scale people positions
       const positions = [{ id: 'frank', x: 200, y: 60 }, { id: 'gina', x: 340, y: 60 }, { id: 'maria', x: 100, y: 170 }, { id: 'tom', x: 200, y: 170 }, { id: 'carlos', x: 340, y: 170 }, { id: 'anna', x: 440, y: 170 }, { id: 'lily', x: 120, y: 280 }, { id: 'sam', x: 200, y: 280 }];
       positions.forEach(pos => { const p = pedPeople.find(pp => pp.id === pos.id); if (p) { p.dx = px(pos.x); p.dy = py(pos.y) } });
@@ -966,12 +996,12 @@
       // People
       const sz = Math.min(24 * sx, 24);
       pedPeople.forEach(p => {
-        if (!p.dx) return; const x = p.dx, y = p.dy; if (p.sex === 'M') { ctx.fillStyle = p.affected ? '#1a1a2e' : '#fff'; ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 3; ctx.fillRect(x - sz, y - sz, sz * 2, sz * 2); ctx.strokeRect(x - sz, y - sz, sz * 2, sz * 2) } else { ctx.fillStyle = p.affected ? '#1a1a2e' : '#fff'; ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, sz, 0, Math.PI * 2); ctx.fill(); ctx.stroke() }
-        ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center'; ctx.fillText(p.name, x, y + sz + 16);
-        if (pedShowGenotypes) { const gt = p.affected ? 'ff' : (p.id === 'frank' || p.id === 'gina') ? 'Ff' : 'F?'; ctx.fillStyle = p.affected ? '#fff' : '#d97706'; ctx.font = 'bold 12px system-ui'; ctx.fillText(gt, x, y + 4) }
+        if (!p.dx) return; const x = p.dx, y = p.dy; if (p.sex === 'M') { ctx.fillStyle = p.affected ? '#1a1a2e' : '#1a1a2e'; ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 3; ctx.fillRect(x - sz, y - sz, sz * 2, sz * 2); ctx.strokeRect(x - sz, y - sz, sz * 2, sz * 2) } else { ctx.fillStyle = p.affected ? '#1a1a2e' : '#1a1a2e'; ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, sz, 0, Math.PI * 2); ctx.fill(); ctx.stroke() }
+        ctx.fillStyle = '#e8e8f0'; ctx.font = '12px system-ui'; ctx.textAlign = 'center'; ctx.fillText(p.name, x, y + sz + 16);
+        if (pedShowGenotypes) { const gt = p.affected ? 'ff' : (p.id === 'frank' || p.id === 'gina') ? 'Ff' : 'F?'; ctx.fillStyle = p.affected ? '#1a1a2e' : '#d97706'; ctx.font = 'bold 12px system-ui'; ctx.fillText(gt, x, y + 4) }
       });
       // Legend
-      ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'left'; ctx.fillText('□/○ = Unaffected', w - 160, h - 40); ctx.fillText('■/● = Affected (CF)', w - 160, h - 22);
+      ctx.fillStyle = '#8b8ba0'; ctx.font = '11px system-ui'; ctx.textAlign = 'left'; ctx.fillText('□/○ = Unaffected', w - 160, h - 40); ctx.fillText('■/● = Affected (CF)', w - 160, h - 22);
       let html = '<div class="analysis-result" style="border-left-color:#16a34a"><strong>Pedigree Analysis:</strong><br>'; html += '• Carlos is affected → genotype <strong>ff</strong><br>'; html += '• Both parents are unaffected but have an affected child → both must be <strong>carriers (Ff)</strong><br>'; html += '• Maria, Anna, Lily, Sam could be FF or Ff — need genetic testing to know for certain'; html += '</div>'; $('ped-analysis').innerHTML = html
     }
 
@@ -981,7 +1011,7 @@
     let cfData = { FF: 0, Ff: 0, ff: 0 };
     function cfSimulate(n) { for (let i = 0; i < n; i++) { const a1 = Math.random() < .5 ? 'F' : 'f'; const a2 = Math.random() < .5 ? 'F' : 'f'; const g = [a1, a2].sort().join(''); if (g === 'FF') cfData.FF++; else if (g === 'Ff' || g === 'fF') cfData.Ff++; else cfData.ff++ } cfUpdateUI() }
     function cfReset() { cfData = { FF: 0, Ff: 0, ff: 0 }; cfUpdateUI() }
-    function cfUpdateUI() { $('cf-FF').textContent = cfData.FF; $('cf-Ff').textContent = cfData.Ff; $('cf-ff').textContent = cfData.ff; const t = cfData.FF + cfData.Ff + cfData.ff; if (t > 0) { const ctx = getCtx('cf-chart'); drawBarChart(ctx, ['FF', 'Ff', 'ff'], [cfData.FF, cfData.Ff, cfData.ff], [t * .25, t * .5, t * .25], ['#16a34a', '#d97706', '#c41e3a']) } }
+    function cfUpdateUI() { $('cf-FF').textContent = cfData.FF; $('cf-Ff').textContent = cfData.Ff; $('cf-ff').textContent = cfData.ff; const t = cfData.FF + cfData.Ff + cfData.ff; if (t > 0) { const ctx = getCtx('cf-chart'); drawBarChart(ctx, ['FF', 'Ff', 'ff'], [cfData.FF, cfData.Ff, cfData.ff], [t * .25, t * .5, t * .25], ['#16a34a', '#d97706', '#e63956']) } }
 
     // ── SIDEBAR SCROLL ──
     const navLinks = document.querySelectorAll('.sidebar-nav a'); const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { navLinks.forEach(l => l.classList.remove('active')); const id = e.target.id; const link = document.querySelector(`.sidebar-nav a[href="#${id}"]`); if (link) link.classList.add('active') } }) }, { threshold: 0.3, rootMargin: '-80px 0px' });

@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 5 Dashboard: Liquids Measurement | BIOL-8</title>
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
     *,
     *::before,
     *::after {
@@ -15,25 +16,26 @@
     }
 
     :root {
-      --bg: #f0f2f5;
-      --card: #fff;
+      --bg: #0f0f17;
+      --card: #1a1a2e;
       --sidebar: #1a1a2e;
       --sidebar-hover: #252545;
-      --accent: #c41e3a;
-      --accent-light: #e8354f;
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --green: #16a34a;
-      --amber: #d97706;
-      --purple: #7c3aed;
+      --accent: #e63956;
+      --accent-light: #ff4d6a;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --purple: #8b5cf6;
       --teal: #0d9488;
-      --text: #1a1a1a;
-      --text-muted: #6b7280;
-      --border: #e5e7eb;
+      --text: #e8e8f0;
+      --text-bright: #ffffff;
+  --text-muted: #8b8ba0;
+      --border: rgba(255,255,255,0.06);
       --radius: 10px;
       --shadow: 0 1px 3px rgba(0, 0, 0, .08);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .1);
-      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
       --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace
     }
 
@@ -539,7 +541,35 @@
         padding: 16px
       }
     }
-  </style>
+  
+/* ═══════ DARK THEME ENHANCEMENTS ═══════ */
+.card:hover { border-color: rgba(255,255,255,0.12); }
+.hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%) !important;
+  color: #fff !important; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
+}
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 span, .hero .hero-accent { background: linear-gradient(135deg, #e63956, #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p, .hero .hero-desc { color: #8b8ba0 !important; }
+.hero .bio-tag, .hero .tag { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero .bio-tag:hover, .hero .tag:hover { background: rgba(255,255,255,0.1); border-color: #e63956; }
+.stat-box { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.info-panel { background: rgba(255,255,255,0.03) !important; }
+.btn-outline { background: rgba(255,255,255,0.04) !important; color: #e8e8f0 !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.btn-outline:hover { border-color: #e63956 !important; color: #e63956 !important; background: rgba(230,57,86,0.15) !important; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.chart-wrap canvas { border-radius: 8px; }
+</style>
 </head>
 
 <body>
@@ -1129,25 +1159,25 @@
         ctx.fillStyle = phColors[ci];
         ctx.fillRect(i, barY, 1, barH);
       }
-      ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 2;
       ctx.strokeRect(0, barY, W, barH);
       // Labels
-      ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center'; ctx.fillStyle = '#374151';
+      ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center'; ctx.fillStyle = '#e8e8f0';
       for (let i = 0; i <= 14; i++) {
         const x = (i / 14) * W;
         ctx.fillText(i, x, barY + barH + 16);
-        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1;
+        ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(x, barY); ctx.lineTo(x, barY + barH); ctx.stroke();
       }
       // Marker
       const mx = (ph / 14) * W;
-      ctx.fillStyle = '#1a1a1a'; ctx.beginPath();
+      ctx.fillStyle = '#e8e8f0'; ctx.beginPath();
       ctx.moveTo(mx, barY - 2); ctx.lineTo(mx - 8, barY - 16); ctx.lineTo(mx + 8, barY - 16); ctx.closePath(); ctx.fill();
       ctx.font = 'bold 14px system-ui'; ctx.fillText('pH ' + ph.toFixed(1), mx, barY - 20);
       // Labels
-      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'left'; ctx.fillText('ACIDIC', 10, barY + barH + 40);
+      ctx.fillStyle = '#e63956'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'left'; ctx.fillText('ACIDIC', 10, barY + barH + 40);
       ctx.fillStyle = '#16a34a'; ctx.textAlign = 'center'; ctx.fillText('NEUTRAL', W / 2, barY + barH + 40);
-      ctx.fillStyle = '#2563eb'; ctx.textAlign = 'right'; ctx.fillText('BASIC', W - 10, barY + barH + 40);
+      ctx.fillStyle = '#3b82f6'; ctx.textAlign = 'right'; ctx.fillText('BASIC', W - 10, barY + barH + 40);
       // H+ visualization
       const numDots = Math.max(1, Math.round(Math.pow(10, 4 - Math.abs(ph - 7)) * (ph < 7 ? 1 : 0.1)));
       const dotCount = Math.min(200, numDots);
@@ -1164,16 +1194,16 @@
       const ctx = getCtx('ph-compare');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
-      const data = [{ label: 'Tap Water', val: 7, color: '#2563eb' }, { label: 'Lemon Juice', val: 2.3, color: '#c41e3a' }];
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
+      const data = [{ label: 'Tap Water', val: 7, color: '#3b82f6' }, { label: 'Lemon Juice', val: 2.3, color: '#e63956' }];
       const pad = { top: 25, bottom: 40, left: 60, right: 20 };
       const pw = W - pad.left - pad.right, ph2 = H - pad.top - pad.bottom;
       // Y axis (pH 0-14)
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 14; i += 2) {
         const y = pad.top + ph2 * (1 - i / 14);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
         ctx.fillText(i, pad.left - 8, y + 4);
       }
       ctx.fillStyle = '#64748b'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
@@ -1197,9 +1227,9 @@
         ctx.quadraticCurveTo(x, y, x + r, y); ctx.lineTo(x + barW - r, y);
         ctx.quadraticCurveTo(x + barW, y, x + barW, y + r); ctx.lineTo(x + barW, pad.top + ph2);
         ctx.closePath(); ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(d.val.toFixed(1), x + barW / 2, y + 20);
-        ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui';
         ctx.fillText(d.label, x + barW / 2, H - pad.bottom + 18);
       });
     }
@@ -1232,7 +1262,7 @@
       ctx.fillStyle = '#64748b';
       ctx.fillRect(W * 0.2 - 4, 20, 8, H - 40);
       ctx.fillRect(W * 0.8 - 4, 20, 8, H - 40);
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('(−)', W * 0.2, 14); ctx.fillText('(+)', W * 0.8, 14);
       // Ions
       const numIons = Math.min(80, Math.floor(uS / 12));
@@ -1242,7 +1272,7 @@
         const isPositive = i % 2 === 0;
         ctx.fillStyle = isPositive ? 'rgba(196,30,58,0.6)' : 'rgba(37,99,235,0.6)';
         ctx.beginPath(); ctx.arc(ix, iy, 4, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 7px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 7px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(isPositive ? '+' : '−', ix, iy + 3);
       }
       // Current arrows if conducting
@@ -1262,7 +1292,7 @@
         ctx.fillStyle = '#94a3b8'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
         ctx.fillText('No significant current', W / 2, H - 10);
       }
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
       ctx.fillText(uS + ' µS/cm', W / 2, H - 28);
     }
 
@@ -1288,21 +1318,21 @@
       const ctx = getCtx('temp-canvas');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
       // Thermometer (left half)
       const tx = W * 0.25, ty = 30, tw = 24, th = H - 80;
       const bulbR = 18; const bulbY = ty + th;
       // Tube
-      ctx.fillStyle = '#e5e7eb';
+      ctx.fillStyle = 'rgba(255,255,255,0.06)';
       ctx.beginPath(); ctx.roundRect(tx - tw / 2, ty, tw, th, 8); ctx.fill();
       // Liquid level
       const frac = clamp(temp / 100, 0, 1);
       const mercH = th * frac;
-      ctx.fillStyle = '#c41e3a';
+      ctx.fillStyle = '#e63956';
       ctx.fillRect(tx - tw / 2 + 3, ty + th - mercH, tw - 6, mercH);
       // Bulb
-      ctx.fillStyle = '#c41e3a'; ctx.beginPath(); ctx.arc(tx, bulbY, bulbR, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.beginPath(); ctx.roundRect(tx - tw / 2, ty, tw, th, 8); ctx.stroke();
+      ctx.fillStyle = '#e63956'; ctx.beginPath(); ctx.arc(tx, bulbY, bulbR, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = '#6b7280'; ctx.lineWidth = 1; ctx.beginPath(); ctx.roundRect(tx - tw / 2, ty, tw, th, 8); ctx.stroke();
       // Scale marks
       ctx.fillStyle = '#64748b'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
       for (let i = 0; i <= 100; i += 20) {
@@ -1352,7 +1382,7 @@
         const bx = (i * 137.5 + 30) % W;
         const by = (i * 97.3 + 20) % H;
         const br = 3 + Math.random() * 4;
-        ctx.fillStyle = 'rgba(37,99,235,0.15)';
+        ctx.fillStyle = 'rgba(59,130,246,0.12)';
         ctx.beginPath(); ctx.arc(bx, by, br, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = 'rgba(37,99,235,0.3)'; ctx.lineWidth = 1; ctx.stroke();
       }
@@ -1360,16 +1390,16 @@
       const gx = W / 2, gy = H - 40, gr = Math.min(W, H) * 0.32;
       const startA = Math.PI * 0.8, endA = Math.PI * 0.2;
       const range = (2 * Math.PI) - (startA - endA);
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 16; ctx.lineCap = 'round';
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 16; ctx.lineCap = 'round';
       ctx.beginPath(); ctx.arc(gx, gy, gr, startA, endA + 2 * Math.PI); ctx.stroke();
       // Filled arc
       const frac = clamp(doVal / 15, 0, 1);
       const fillEnd = startA + frac * range;
-      const gaugeColor = doVal < 4 ? '#c41e3a' : doVal < 7 ? '#d97706' : '#16a34a';
+      const gaugeColor = doVal < 4 ? '#e63956' : doVal < 7 ? '#d97706' : '#16a34a';
       ctx.strokeStyle = gaugeColor; ctx.lineWidth = 16;
       ctx.beginPath(); ctx.arc(gx, gy, gr, startA, fillEnd); ctx.stroke();
       // Value
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 28px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 28px system-ui'; ctx.textAlign = 'center';
       ctx.fillText(doVal.toFixed(1), gx, gy - 10);
       ctx.fillStyle = '#64748b'; ctx.font = '13px system-ui';
       ctx.fillText('mg/L Dissolved O₂', gx, gy + 12);
@@ -1401,19 +1431,19 @@
       const ctx = getCtx('color-canvas');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
       const wl = [430, 470, 565, 635];
-      const wlColors = ['#7c3aed', '#2563eb', '#16a34a', '#dc2626'];
+      const wlColors = ['#7c3aed', '#3b82f6', '#16a34a', '#dc2626'];
       const wlLabels = ['430nm\nViolet', '470nm\nBlue', '565nm\nGreen', '635nm\nRed'];
       const pad = { top: 30, bottom: 50, left: 55, right: 20 };
       const pw = W - pad.left - pad.right, ph2 = H - pad.top - pad.bottom;
       const maxAbs = 2.0;
       // Grid
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + ph2 * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
         ctx.fillText((maxAbs * i / 4).toFixed(1), pad.left - 8, y + 4);
       }
       ctx.fillStyle = '#64748b'; ctx.font = 'bold 11px system-ui';
@@ -1431,7 +1461,7 @@
           ctx.fillStyle = wlColors[i] + '44';
           ctx.fillRect(bx, pad.top + ph2 - bh, barW2, bh);
           ctx.strokeStyle = wlColors[i]; ctx.lineWidth = 1; ctx.strokeRect(bx, pad.top + ph2 - bh, barW2, bh);
-          if (v > 0.005) { ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center'; ctx.fillText(v.toFixed(2), bx + barW2 / 2, pad.top + ph2 - bh - 4); }
+          if (v > 0.005) { ctx.fillStyle = '#e8e8f0'; ctx.font = '10px system-ui'; ctx.textAlign = 'center'; ctx.fillText(v.toFixed(2), bx + barW2 / 2, pad.top + ph2 - bh - 4); }
         }
         if (showL) {
           const bx = showW ? gx + groupW2 * 0.55 : gx + (groupW2 - barW2) / 2;
@@ -1444,17 +1474,17 @@
           ctx.lineTo(bx + barW2 - r, pad.top + ph2 - bh);
           ctx.quadraticCurveTo(bx + barW2, pad.top + ph2 - bh, bx + barW2, pad.top + ph2 - bh + r);
           ctx.lineTo(bx + barW2, pad.top + ph2); ctx.closePath(); ctx.fill();
-          ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+          ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
           if (bh > 20) ctx.fillText(v.toFixed(2), bx + barW2 / 2, pad.top + ph2 - bh + 16);
         }
-        ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#e8e8f0'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(w + 'nm', gx + groupW2 / 2, H - pad.bottom + 16);
       });
       // Legend
       if (showW && showL) {
         ctx.fillStyle = '#2563eb44'; ctx.fillRect(W - 140, 8, 12, 12);
-        ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left'; ctx.fillText('Tap Water', W - 124, 18);
-        ctx.fillStyle = '#2563eb'; ctx.fillRect(W - 140, 24, 12, 12);
+        ctx.fillStyle = '#e8e8f0'; ctx.font = '11px system-ui'; ctx.textAlign = 'left'; ctx.fillText('Tap Water', W - 124, 18);
+        ctx.fillStyle = '#3b82f6'; ctx.fillRect(W - 140, 24, 12, 12);
         ctx.fillText('Lemon Juice', W - 124, 34);
       }
     }
@@ -1516,7 +1546,7 @@
         }
       }
       // Labels
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Light Source', cx / 2, H / 2 + 24);
       ctx.fillText('Sample', cx + cw / 2, cy - 6);
       ctx.fillText('Detector', cx + cw + (W - cx - cw) / 2, H / 2 + 24);
@@ -1571,10 +1601,10 @@
       if (idx === q.ans) {
         quizScore++;
         fb.textContent = '✓ Correct!';
-        fb.style.background = '#f0fdf4'; fb.style.color = '#16a34a';
+        fb.style.background = '#0d1f10'; fb.style.color = '#16a34a';
       } else {
         fb.textContent = '✗ Incorrect. The correct answer is ' + String.fromCharCode(65 + q.ans) + '.';
-        fb.style.background = '#fef2f2'; fb.style.color = '#c41e3a';
+        fb.style.background = '#fef2f2'; fb.style.color = '#e63956';
       }
       quizAnswered++;
       $('quiz-score').textContent = quizScore;

@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 10 Dashboard: Review | BIOL-8</title>
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
     /* ═══════════════════════════════════════════════════════════════════════
    RESET & BASE
    ═══════════════════════════════════════════════════════════════════════ */
@@ -18,24 +19,25 @@
     }
 
     :root {
-      --bg: #f0f2f5;
-      --card: #ffffff;
+      --bg: #0f0f17;
+      --card: #1a1a2e;
       --sidebar: #1a1a2e;
       --sidebar-hover: #252545;
-      --accent: #c41e3a;
-      --accent-light: #e8354f;
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --green: #16a34a;
-      --amber: #d97706;
-      --purple: #7c3aed;
-      --text: #1a1a1a;
-      --text-muted: #6b7280;
-      --border: #e5e7eb;
+      --accent: #e63956;
+      --accent-light: #ff4d6a;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --purple: #8b5cf6;
+      --text: #e8e8f0;
+      --text-bright: #ffffff;
+  --text-muted: #8b8ba0;
+      --border: rgba(255,255,255,0.06);
       --radius: 10px;
       --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
       --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     }
 
@@ -769,7 +771,35 @@
         padding: 16px;
       }
     }
-  </style>
+  
+/* ═══════ DARK THEME ENHANCEMENTS ═══════ */
+.card:hover { border-color: rgba(255,255,255,0.12); }
+.hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%) !important;
+  color: #fff !important; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
+}
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 span, .hero .hero-accent { background: linear-gradient(135deg, #e63956, #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p, .hero .hero-desc { color: #8b8ba0 !important; }
+.hero .bio-tag, .hero .tag { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero .bio-tag:hover, .hero .tag:hover { background: rgba(255,255,255,0.1); border-color: #e63956; }
+.stat-box { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.info-panel { background: rgba(255,255,255,0.03) !important; }
+.btn-outline { background: rgba(255,255,255,0.04) !important; color: #e8e8f0 !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.btn-outline:hover { border-color: #e63956 !important; color: #e63956 !important; background: rgba(230,57,86,0.15) !important; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.chart-wrap canvas { border-radius: 8px; }
+</style>
 </head>
 
 <body>
@@ -1235,21 +1265,21 @@
       const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
 
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const mv = maxVal || Math.max(...values, ...(expected || [0])) * 1.2 || 10;
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
         ctx.textAlign = 'right'; ctx.fillText((mv * i / 4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
       }
 
       values.forEach((v, i) => {
         const x = pad.left + (plotW / n) * i + gap / 2;
         const h = (v / mv) * plotH;
-        ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+        ctx.fillStyle = colors ? colors[i] : '#e63956';
         ctx.beginPath();
         const r = 4;
         ctx.moveTo(x, pad.top + plotH);
@@ -1259,10 +1289,10 @@
         ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
         ctx.lineTo(x + barW, pad.top + plotH);
         ctx.closePath(); ctx.fill();
-        ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(labels[i], x + barW / 2, H - pad.bottom + 16);
         if (v > 0) {
-          ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+          ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui';
           ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW / 2, pad.top + plotH - h - 6);
         }
       });
@@ -1271,7 +1301,7 @@
         expected.forEach((ev, i) => {
           const x = pad.left + (plotW / n) * i + gap / 2;
           const y = pad.top + plotH - (ev / mv) * plotH;
-          ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+          ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
           ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
           ctx.setLineDash([]);
         });
@@ -1283,20 +1313,20 @@
       const pad = { top: 20, right: 20, bottom: 30, left: 50 };
       const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
       const yRange = yMax - yMin;
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
         ctx.fillText((yMin + yRange * i / 4).toFixed(2), pad.left - 6, y + 4);
       }
       if (refLine !== undefined) {
         const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
-        ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6, 4]);
+        ctx.strokeStyle = '#6b7280'; ctx.lineWidth = 1; ctx.setLineDash([6, 4]);
         ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
         ctx.setLineDash([]);
       }
@@ -1381,7 +1411,7 @@
         ctx.beginPath(); ctx.arc(x, y, rand(3, 8), 0, Math.PI * 2); ctx.fill();
       }
       // Label
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Simple Squamous Epithelium', W / 2, 18);
     }
 
@@ -1406,7 +1436,7 @@
         ctx.fillStyle = 'rgba(180,140,100,0.2)';
         ctx.beginPath(); ctx.arc(x, y, rand(3, 6), 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Simple Cuboidal Epithelium', W / 2, 18);
     }
 
@@ -1443,7 +1473,7 @@
         ctx.fillStyle = 'rgba(180,140,100,0.2)';
         ctx.beginPath(); ctx.arc(x, y, rand(3, 6), 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Simple Columnar Epithelium', W / 2, 18);
     }
 
@@ -1484,7 +1514,7 @@
         ctx.fillStyle = 'rgba(180,140,100,0.2)';
         ctx.beginPath(); ctx.arc(x, y, rand(3, 6), 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Stratified Squamous Epithelium', W / 2, 18);
     }
 
@@ -1511,7 +1541,7 @@
         ctx.fillStyle = 'rgba(180,140,100,0.2)';
         ctx.beginPath(); ctx.arc(x, y, rand(3, 6), 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Stratified Cuboidal Epithelium', W / 2, 18);
     }
 
@@ -1544,7 +1574,7 @@
         ctx.fillStyle = 'rgba(180,140,100,0.2)';
         ctx.beginPath(); ctx.arc(x, y, rand(3, 6), 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Stratified Columnar Epithelium', W / 2, 18);
     }
 
@@ -1580,7 +1610,7 @@
         ctx.fillStyle = 'rgba(180,140,100,0.2)';
         ctx.beginPath(); ctx.arc(x, y, rand(3, 6), 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Pseudostratified Columnar Epithelium', W / 2, 18);
     }
 
@@ -1629,7 +1659,7 @@
         ctx.fillStyle = 'rgba(180,140,100,0.2)';
         ctx.beginPath(); ctx.arc(x, y, rand(3, 6), 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Transitional Epithelium', W / 2, 18);
     }
 
@@ -1674,7 +1704,7 @@
         }
         drawNucleus(ctx, x, y, 3, 3, '#6a2050');
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Areolar Connective Tissue', W / 2, 18);
     }
 
@@ -1690,14 +1720,14 @@
       }
       cells.forEach(cell => {
         // Lipid droplet (white)
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = '#1a1a2e';
         ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.radius, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = '#d4a574'; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.radius, 0, Math.PI * 2); ctx.stroke();
         // Nucleus pushed to edge
         drawNucleus(ctx, cell.x + cell.radius * 0.7, cell.y - cell.radius * 0.5, 4, 3, '#4a3a2a');
       });
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Adipose Tissue', W / 2, 18);
     }
 
@@ -1726,7 +1756,7 @@
         ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill();
         drawNucleus(ctx, x, y, 4, 3, '#1a2a5e');
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Reticular Connective Tissue', W / 2, 18);
     }
 
@@ -1748,7 +1778,7 @@
         const x = rand(20, W - 20), y = rand(30, H - 15);
         drawNucleus(ctx, x, y, 8, 3, '#3a2a1a');
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Dense Regular Connective Tissue', W / 2, 18);
     }
 
@@ -1770,7 +1800,7 @@
         const x = rand(20, W - 20), y = rand(30, H - 15);
         drawNucleus(ctx, x, y, 6, 4, '#3a2a1a');
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Dense Irregular Connective Tissue', W / 2, 18);
     }
 
@@ -1795,7 +1825,7 @@
       // Perichondrium at top
       ctx.fillStyle = 'rgba(200,180,160,0.3)';
       ctx.fillRect(0, 20, W, 15);
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Hyaline Cartilage', W / 2, 18);
     }
 
@@ -1823,7 +1853,7 @@
         ctx.beginPath(); ctx.ellipse(cx, cy, 10, 8, 0, 0, Math.PI * 2); ctx.fill();
         drawNucleus(ctx, cx, cy, 4, 3, '#3a2a6e');
       });
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Elastic Cartilage', W / 2, 18);
     }
 
@@ -1847,7 +1877,7 @@
         ctx.beginPath(); ctx.ellipse(cx, cy, 12, 10, 0, 0, Math.PI * 2); ctx.stroke();
         drawNucleus(ctx, cx, cy, 4, 3, '#2a4a7e');
       });
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Fibrocartilage', W / 2, 18);
     }
 
@@ -1886,7 +1916,7 @@
           }
         }
       });
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Compact (Cortical) Bone', W / 2, 18);
     }
 
@@ -1911,7 +1941,7 @@
       // Marrow spaces (red)
       ctx.fillStyle = 'rgba(220,160,160,0.15)';
       ctx.fillRect(0, 20, W, H - 20);
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Spongy (Cancellous) Bone', W / 2, 18);
     }
 
@@ -1949,7 +1979,7 @@
         ctx.fillStyle = 'rgba(180,140,200,0.5)';
         ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fill();
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Blood', W / 2, 18);
     }
 
@@ -1979,7 +2009,7 @@
           drawNucleus(ctx, nx, y + 5, 7, 3, '#4a2040');
         }
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Skeletal Muscle', W / 2, 16);
     }
 
@@ -2023,7 +2053,7 @@
         // Central single nucleus
         drawNucleus(ctx, W / 2 + rand(-20, 20), fib.y + fiberH / 2, 6, 4, '#4a2040');
       });
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Cardiac Muscle', W / 2, 14);
     }
 
@@ -2046,7 +2076,7 @@
           drawNucleus(ctx, cx, cy, 8 - phase * 2, 3, '#2a3a5a');
         }
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Smooth Muscle', W / 2, 16);
     }
 
@@ -2099,7 +2129,7 @@
         ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill();
         drawNucleus(ctx, x, y, 3, 3, '#2a4a3a');
       }
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Nervous Tissue', W / 2, 18);
     }
 
@@ -2313,11 +2343,11 @@
       drawBarChart(ctx, {
         labels: ['Fibers', 'Ground Substance', 'Cells'],
         values: [ct.fibers, ct.ground, ct.cells],
-        colors: ['#c41e3a', '#2563eb', '#16a34a'],
+        colors: ['#e63956', '#3b82f6', '#16a34a'],
         maxVal: 6
       });
       // Add current tissue name as subtitle
-      ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#8b8ba0'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Relative proportions for: ' + ct.name, ctx.W / 2, ctx.H - 4);
     }
 
@@ -2514,11 +2544,11 @@
       const ctx = canvas.getContext('2d');
       const W = canvas.width, H = canvas.height;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc';
+      ctx.fillStyle = '#0f0f17';
       ctx.fillRect(0, 0, W, H);
 
       // Simple body outline
-      ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 2;
       ctx.fillStyle = 'rgba(200,210,220,0.2)';
 
       // Head
@@ -2545,14 +2575,14 @@
       // Draw clickable regions
       bodyRegions.forEach((r, i) => {
         const isSelected = i === selectedBodyRegion;
-        ctx.fillStyle = isSelected ? 'rgba(196,30,58,0.3)' : 'rgba(37,99,235,0.15)';
-        ctx.strokeStyle = isSelected ? '#c41e3a' : '#2563eb';
+        ctx.fillStyle = isSelected ? 'rgba(196,30,58,0.3)' : 'rgba(59,130,246,0.12)';
+        ctx.strokeStyle = isSelected ? '#e63956' : '#3b82f6';
         ctx.lineWidth = isSelected ? 2.5 : 1.5;
         ctx.beginPath();
         ctx.roundRect(r.x, r.y, r.w, r.h, 6);
         ctx.fill(); ctx.stroke();
         // Label
-        ctx.fillStyle = isSelected ? '#c41e3a' : '#1e40af';
+        ctx.fillStyle = isSelected ? '#e63956' : '#1e40af';
         ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(r.name, r.x + r.w / 2, r.y + r.h / 2 + 4);
       });
@@ -2621,8 +2651,8 @@
       $('body-canvas').addEventListener('click', handleBodyClick);
       // Draw blank body tissue canvas
       const btCtx = getCtx('body-tissue-canvas');
-      btCtx.fillStyle = '#f8fafc'; btCtx.fillRect(0, 0, btCtx.W, btCtx.H);
-      btCtx.fillStyle = '#9ca3af'; btCtx.font = '13px system-ui'; btCtx.textAlign = 'center';
+      btCtx.fillStyle = '#0f0f17'; btCtx.fillRect(0, 0, btCtx.W, btCtx.H);
+      btCtx.fillStyle = '#6b7280'; btCtx.font = '13px system-ui'; btCtx.textAlign = 'center';
       btCtx.fillText('Click a body region to see its tissue', btCtx.W / 2, btCtx.H / 2);
       // Sidebar nav scroll tracking
       window.addEventListener('scroll', updateSidebarNav);

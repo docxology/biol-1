@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab 4 Dashboard: Diffusion and Membranes | BIOL-8</title>
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
         *,
         *::before,
         *::after {
@@ -15,24 +16,25 @@
         }
 
         :root {
-            --bg: #f0f2f5;
-            --card: #ffffff;
+            --bg: #0f0f17;
+            --card: #1a1a2e;
             --sidebar: #1a1a2e;
             --sidebar-hover: #252545;
-            --accent: #c41e3a;
-            --accent-light: #e8354f;
-            --blue: #2563eb;
-            --blue-light: #3b82f6;
-            --green: #16a34a;
-            --amber: #d97706;
-            --purple: #7c3aed;
-            --text: #1a1a1a;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
+            --accent: #e63956;
+            --accent-light: #ff4d6a;
+            --blue: #3b82f6;
+            --blue-light: #60a5fa;
+            --green: #22c55e;
+            --amber: #f59e0b;
+            --purple: #8b5cf6;
+            --text: #e8e8f0;
+            --text-bright: #ffffff;
+  --text-muted: #8b8ba0;
+            --border: rgba(255,255,255,0.06);
             --radius: 10px;
             --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
             --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
         }
 
@@ -532,7 +534,35 @@
                 padding: 16px;
             }
         }
-    </style>
+    
+/* ═══════ DARK THEME ENHANCEMENTS ═══════ */
+.card:hover { border-color: rgba(255,255,255,0.12); }
+.hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%) !important;
+  color: #fff !important; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
+}
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 span, .hero .hero-accent { background: linear-gradient(135deg, #e63956, #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p, .hero .hero-desc { color: #8b8ba0 !important; }
+.hero .bio-tag, .hero .tag { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero .bio-tag:hover, .hero .tag:hover { background: rgba(255,255,255,0.1); border-color: #e63956; }
+.stat-box { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.info-panel { background: rgba(255,255,255,0.03) !important; }
+.btn-outline { background: rgba(255,255,255,0.04) !important; color: #e8e8f0 !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.btn-outline:hover { border-color: #e63956 !important; color: #e63956 !important; background: rgba(230,57,86,0.15) !important; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.chart-wrap canvas { border-radius: 8px; }
+</style>
 </head>
 
 <body>
@@ -1387,7 +1417,7 @@
                 ctx.fillStyle = '#333';
                 ctx.fillRect(w / 2 - 2, 0, 4, h);
                 // Labels
-                ctx.fillStyle = '#fff';
+                ctx.fillStyle = '#1a1a2e';
                 ctx.font = 'bold 12px sans-serif';
                 ctx.textAlign = 'center';
                 ctx.fillText('MIXED (Purple)', w / 4, h / 2);
@@ -1408,7 +1438,7 @@
                 ctx.font = 'bold 12px sans-serif';
                 ctx.textAlign = 'center';
                 ctx.fillText('Hot (least dense) → TOP', w / 2, 20);
-                ctx.fillStyle = '#fff';
+                ctx.fillStyle = '#1a1a2e';
                 ctx.fillText('Purple (intermediate) → MIDDLE', w / 2, h / 2);
                 ctx.fillStyle = '#333';
                 ctx.fillText('Cold (most dense) → BOTTOM', w / 2, h - 10);
@@ -1681,7 +1711,7 @@
             const change = ((final - initial) / initial) * 100;
             const sign = change >= 0 ? '+' : '';
             $('calc-result').textContent = sign + change.toFixed(1) + '%';
-            $('calc-result').style.background = change >= 0 ? '#f0fdf4' : '#fef2f2';
+            $('calc-result').style.background = change >= 0 ? '#0d1f10' : '#fef2f2';
             $('calc-result').style.borderColor = change >= 0 ? 'var(--green)' : 'var(--accent)';
             $('calc-result').style.color = change >= 0 ? 'var(--green)' : 'var(--accent)';
         }

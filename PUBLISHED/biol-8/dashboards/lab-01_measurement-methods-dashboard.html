@@ -4,19 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 1 Dashboard: Scientific Measurement | BIOL-8</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
    RESET & BASE
    ═══════════════════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
-  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
-  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
-  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
-  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --bg: #0f0f17; --card: #1a1a2e; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #e63956; --accent-light: #ff4d6a; --blue: #3b82f6; --blue-light: #60a5fa;
+  --green: #22c55e; --amber: #f59e0b; --purple: #8b5cf6;
+  --text: #e8e8f0; --text-bright: #ffffff;
+  --text-muted: #8b8ba0; --border: rgba(255,255,255,0.06);
+  --radius: 10px; --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
   --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
 }
 html { scroll-behavior: smooth; }
@@ -232,6 +234,34 @@ input[type=number]:focus, select:focus { outline: none; border-color: var(--acce
   .sidebar { display: none; }
   .main { margin-left: 0; padding: 16px; }
 }
+
+/* ═══════ DARK THEME ENHANCEMENTS ═══════ */
+.card:hover { border-color: rgba(255,255,255,0.12); }
+.hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%) !important;
+  color: #fff !important; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
+}
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 span, .hero .hero-accent { background: linear-gradient(135deg, #e63956, #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p, .hero .hero-desc { color: #8b8ba0 !important; }
+.hero .bio-tag, .hero .tag { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero .bio-tag:hover, .hero .tag:hover { background: rgba(255,255,255,0.1); border-color: #e63956; }
+.stat-box { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.info-panel { background: rgba(255,255,255,0.03) !important; }
+.btn-outline { background: rgba(255,255,255,0.04) !important; color: #e8e8f0 !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.btn-outline:hover { border-color: #e63956 !important; color: #e63956 !important; background: rgba(230,57,86,0.15) !important; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.chart-wrap canvas { border-radius: 8px; }
 </style>
 </head>
 <body>
@@ -805,21 +835,21 @@ function drawBarChart(ctx, opts = {}) {
   const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
 
   ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   const mv = maxVal || Math.max(...values, ...(expected||[0])) * 1.2 || 10;
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + plotH * (1 - i/4);
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
     ctx.textAlign = 'right'; ctx.fillText((mv * i/4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
   }
 
   values.forEach((v, i) => {
     const x = pad.left + (plotW / n) * i + gap/2;
     const h = (v / mv) * plotH;
-    ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+    ctx.fillStyle = colors ? colors[i] : '#e63956';
     ctx.beginPath();
     const r = 4;
     ctx.moveTo(x, pad.top + plotH);
@@ -829,10 +859,10 @@ function drawBarChart(ctx, opts = {}) {
     ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
     ctx.lineTo(x + barW, pad.top + plotH);
     ctx.closePath(); ctx.fill();
-    ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
     ctx.fillText(labels[i], x + barW/2, H - pad.bottom + 16);
     if (v > 0) {
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui';
       ctx.fillText(v.toFixed(v % 1 ? 2 : 0), x + barW/2, pad.top + plotH - h - 6);
     }
     // error bars
@@ -840,7 +870,7 @@ function drawBarChart(ctx, opts = {}) {
       const cx = x + barW/2;
       const topY = pad.top + plotH - ((v + errorBars[i]) / mv) * plotH;
       const botY = pad.top + plotH - ((v - errorBars[i]) / mv) * plotH;
-      ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 2;
+      ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.moveTo(cx, topY); ctx.lineTo(cx, botY); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(cx-6, topY); ctx.lineTo(cx+6, topY); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(cx-6, botY); ctx.lineTo(cx+6, botY); ctx.stroke();
@@ -851,7 +881,7 @@ function drawBarChart(ctx, opts = {}) {
     expected.forEach((ev, i) => {
       const x = pad.left + (plotW / n) * i + gap/2;
       const y = pad.top + plotH - (ev / mv) * plotH;
-      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+      ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
       ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
       ctx.setLineDash([]);
     });
@@ -863,20 +893,20 @@ function drawLineChart(ctx, series, opts = {}) {
   const pad = { top: 20, right: 20, bottom: 30, left: 50 };
   const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
   ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   const { yMin = 0, yMax = 1, refLine, xLabel } = opts;
   const yRange = yMax - yMin;
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + plotH * (1 - i/4);
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
     ctx.fillText((yMin + yRange * i/4).toFixed(2), pad.left - 6, y + 4);
   }
   if (refLine !== undefined) {
     const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
-    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+    ctx.strokeStyle = '#6b7280'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
     ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
     ctx.setLineDash([]);
   }
@@ -991,7 +1021,7 @@ function drawBodyDiagram() {
   const ctx = getCtx('body-diagram');
   const W = ctx.W, H = ctx.H;
   ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   const h = parseFloat($('body-height').value) || 170;
   const as = parseFloat($('body-armspan').value) || h;
@@ -1012,7 +1042,7 @@ function drawBodyDiagram() {
   const forearmL = forearm * scale;
 
   // Body outline
-  ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+  ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 2;
 
   // Head
   const headCY = baseY - bodyH + headR;
@@ -1091,10 +1121,10 @@ function drawBodyDiagram() {
 function drawPopHistogram() {
   const ctx = getCtx('pop-histogram');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   if (!popData.length) {
-    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#6b7280'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
     ctx.fillText('Add measurements to see distribution', W / 2, H / 2);
     return;
   }
@@ -1116,30 +1146,30 @@ function drawPopHistogram() {
   const barW = plotW / bins.length - 2;
 
   // Grid
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + plotH * (1 - i / 4);
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
     ctx.fillText(Math.round(maxBin * i / 4), pad.left - 4, y + 4);
   }
 
   bins.forEach((b, i) => {
     const x = pad.left + i * (barW + 2);
     const h = (b / maxBin) * plotH;
-    ctx.fillStyle = '#c41e3a';
+    ctx.fillStyle = '#e63956';
     ctx.fillRect(x, pad.top + plotH - h, barW, h);
-    ctx.fillStyle = '#374151'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#e8e8f0'; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
     ctx.fillText(binLabels[i], x + barW / 2, H - pad.bottom + 14);
   });
 
   // Mean line
   const m = mean(heights);
   const mX = pad.left + ((m - minH) / (maxH - minH)) * plotW;
-  ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
+  ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.setLineDash([4,3]);
   ctx.beginPath(); ctx.moveTo(mX, pad.top); ctx.lineTo(mX, pad.top + plotH); ctx.stroke();
   ctx.setLineDash([]);
-  ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Mean: ' + m.toFixed(1), mX, pad.top - 4);
 }
 
@@ -1226,7 +1256,7 @@ function convertLen() {
 function drawScaleChart() {
   const ctx = getCtx('scale-chart');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   const pad = { top: 15, right: 20, bottom: 15, left: 20 };
   const barH = 18, gap = 8;
@@ -1234,10 +1264,10 @@ function drawScaleChart() {
 
   const scales = [
     { label: 'Cell (10 um)', size: 0.001, color: '#7c3aed' },
-    { label: 'Finger (2 cm)', size: 2, color: '#2563eb' },
+    { label: 'Finger (2 cm)', size: 2, color: '#3b82f6' },
     { label: 'Hand (18 cm)', size: 18, color: '#16a34a' },
     { label: 'Forearm (25 cm)', size: 25, color: '#d97706' },
-    { label: 'Height (170 cm)', size: 170, color: '#c41e3a' }
+    { label: 'Height (170 cm)', size: 170, color: '#e63956' }
   ];
 
   const maxSize = 170;
@@ -1247,7 +1277,7 @@ function drawScaleChart() {
     const w = Math.max(2, (Math.log10(s.size + 0.001) / Math.log10(maxSize + 0.001)) * plotW);
     ctx.fillStyle = s.color;
     ctx.fillRect(pad.left, y, Math.min(w, plotW), barH);
-    ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+    ctx.fillStyle = '#e8e8f0'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
     ctx.fillText(s.label, pad.left + Math.min(w, plotW) + 8, y + barH / 2 + 4);
   });
 }
@@ -1311,16 +1341,16 @@ function drawTarget() {
   ctx.clearRect(0, 0, W, H);
 
   // Rings
-  const ringColors = ['#fef2f2','#fee2e2','#fecaca','#fca5a5','#c41e3a'];
+  const ringColors = ['#fef2f2','#2d1a1a','#fecaca','#5a2030','#e63956'];
   const rings = [120, 96, 72, 48, 24];
   rings.forEach((r, i) => {
     ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fillStyle = ringColors[i]; ctx.fill();
-    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1; ctx.stroke();
   });
 
   // Crosshair
-  ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 0.5;
+  ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 0.5;
   ctx.beginPath(); ctx.moveTo(cx, cy - 120); ctx.lineTo(cx, cy + 120); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(cx - 120, cy); ctx.lineTo(cx + 120, cy); ctx.stroke();
 
@@ -1329,12 +1359,12 @@ function drawTarget() {
     const x = cx + p.x, y = cy + p.y;
     if (x >= 0 && x <= W && y >= 0 && y <= H) {
       ctx.fillStyle = 'rgba(37,99,235,0.7)'; ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 1; ctx.stroke();
     }
   });
 
   // Center dot
-  ctx.fillStyle = '#1a1a1a'; ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#e8e8f0'; ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI * 2); ctx.fill();
 }
 
 // Medical measurement trials
@@ -1384,11 +1414,11 @@ function medUpdateUI() {
 function drawMedChart() {
   const ctx = getCtx('med-chart');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   const r = medData.readings;
   if (!r.length) {
-    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#6b7280'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
     ctx.fillText('Take measurements to see results', W / 2, H / 2);
     return;
   }
@@ -1418,19 +1448,19 @@ function drawMedChart() {
 
   // Target line
   const targetY = pad.top + plotH * (1 - (sc.target - minV) / range);
-  ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
+  ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2; ctx.setLineDash([6,3]);
   ctx.beginPath(); ctx.moveTo(pad.left, targetY); ctx.lineTo(W - pad.right, targetY); ctx.stroke();
   ctx.setLineDash([]);
-  ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+  ctx.fillStyle = '#e63956'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
   ctx.fillText('Target: ' + sc.target, pad.left + 4, targetY - 4);
 
   // Y-axis grid
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + plotH * (1 - i / 4);
     const v = minV + range * i / 4;
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
     ctx.fillText(v.toFixed(1), pad.left - 4, y + 4);
   }
 
@@ -1439,7 +1469,7 @@ function drawMedChart() {
     const x = pad.left + (i / Math.max(r.length - 1, 1)) * plotW;
     const y = pad.top + plotH * (1 - (v - minV) / range);
     const inRange = v >= sc.rangeL && v <= sc.rangeH;
-    ctx.fillStyle = inRange ? '#2563eb' : '#c41e3a';
+    ctx.fillStyle = inRange ? '#3b82f6' : '#e63956';
     ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
   });
 
@@ -1447,21 +1477,21 @@ function drawMedChart() {
   if (r.length > 1) {
     const m = mean(r);
     const my = pad.top + plotH * (1 - (m - minV) / range);
-    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
+    ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(pad.left, my); ctx.lineTo(W - pad.right, my); ctx.stroke();
-    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
+    ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 10px system-ui'; ctx.textAlign = 'left';
     ctx.fillText('Mean: ' + m.toFixed(1), pad.left + plotW * 0.6, my - 6);
 
     // SD band
     const sd = stddev(r);
     const sdTop = pad.top + plotH * (1 - (m + sd - minV) / range);
     const sdBot = pad.top + plotH * (1 - (m - sd - minV) / range);
-    ctx.fillStyle = 'rgba(37,99,235,0.08)';
+    ctx.fillStyle = 'rgba(59,130,246,0.05)';
     ctx.fillRect(pad.left, sdTop, plotW, sdBot - sdTop);
   }
 
   // X-axis label
-  ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
   ctx.fillText('Trial Number', pad.left + plotW / 2, H - 6);
 }
 
@@ -1490,7 +1520,7 @@ function resUpdate() {
 function drawResChart(trueVal, bath, lab, anal) {
   const ctx = getCtx('res-chart');
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   const pad = { top: 20, right: 20, bottom: 20, left: 100 };
   const plotW = W - pad.left - pad.right;
@@ -1510,8 +1540,8 @@ function drawResChart(trueVal, bath, lab, anal) {
   ctx.fillText('True: ' + trueVal.toFixed(1), trueX, pad.top - 4);
 
   const instruments = [
-    { name: 'Bathroom Scale', val: bath, color: '#c41e3a', y: pad.top + 15 },
-    { name: 'Lab Balance', val: lab, color: '#2563eb', y: pad.top + 50 },
+    { name: 'Bathroom Scale', val: bath, color: '#e63956', y: pad.top + 15 },
+    { name: 'Lab Balance', val: lab, color: '#3b82f6', y: pad.top + 50 },
     { name: 'Analytical', val: anal, color: '#16a34a', y: pad.top + 85 }
   ];
 
@@ -1523,9 +1553,9 @@ function drawResChart(trueVal, bath, lab, anal) {
     // Point
     ctx.fillStyle = inst.color;
     ctx.beginPath(); ctx.arc(x, inst.y + 10, 6, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 1.5; ctx.stroke();
     // Label
-    ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'right';
     ctx.fillText(inst.name, pad.left - 8, inst.y + 14);
     // Error value
     const error = Math.abs(inst.val - trueVal);
@@ -1587,14 +1617,14 @@ function sigfigCheck(probIdx, answer) {
     resultEl.style.color = 'var(--green)';
     resultEl.textContent = 'Correct! ' + p.hint;
     $('sf-' + probIdx + '-' + answer).style.background = 'var(--green)';
-    $('sf-' + probIdx + '-' + answer).style.color = '#fff';
+    $('sf-' + probIdx + '-' + answer).style.color = '#1a1a2e';
   } else {
     resultEl.style.color = 'var(--accent)';
     resultEl.textContent = 'Answer: ' + p.sf + '. ' + p.hint;
     $('sf-' + probIdx + '-' + answer).style.background = 'var(--accent)';
-    $('sf-' + probIdx + '-' + answer).style.color = '#fff';
+    $('sf-' + probIdx + '-' + answer).style.color = '#1a1a2e';
     $('sf-' + probIdx + '-' + p.sf).style.background = 'var(--green)';
-    $('sf-' + probIdx + '-' + p.sf).style.color = '#fff';
+    $('sf-' + probIdx + '-' + p.sf).style.color = '#1a1a2e';
   }
   $('sigfig-score').innerHTML = `<span class="badge ${sigfigData.correct === sigfigData.total ? 'badge-green' : 'badge-red'}">${sigfigData.correct}/${sigfigData.total} correct</span>`;
 }
@@ -1787,8 +1817,8 @@ function daAnalyze() {
   }
 
   drawDABarChart(a, b, labelA, labelB);
-  drawDAHistogram('da-hist-a', a, labelA, '#c41e3a');
-  drawDAHistogram('da-hist-b', b, labelB, '#2563eb');
+  drawDAHistogram('da-hist-a', a, labelA, '#e63956');
+  drawDAHistogram('da-hist-b', b, labelB, '#3b82f6');
   daSignificance(a, b, labelA, labelB);
 }
 
@@ -1806,7 +1836,7 @@ function drawDABarChart(a, b, labelA, labelB) {
   drawBarChart(ctx, {
     labels: [labelA, labelB],
     values: [meanA, meanB],
-    colors: ['#c41e3a', '#2563eb'],
+    colors: ['#e63956', '#3b82f6'],
     maxVal: maxVal,
     errorBars: [sdA, sdB]
   });
@@ -1815,10 +1845,10 @@ function drawDABarChart(a, b, labelA, labelB) {
 function drawDAHistogram(canvasId, data, label, color) {
   const ctx = getCtx(canvasId);
   const W = ctx.W, H = ctx.H;
-  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+  ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
   if (!data.length) {
-    ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#6b7280'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
     ctx.fillText('No data', W / 2, H / 2);
     return;
   }
@@ -1842,11 +1872,11 @@ function drawDAHistogram(canvasId, data, label, color) {
   const barW = plotW / nBins - 1;
 
   // Grid
-  ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
     const y = pad.top + plotH * (1 - i / 4);
     ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-    ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
     ctx.fillText(Math.round(maxBin * i / 4), pad.left - 4, y + 4);
   }
 
@@ -1858,7 +1888,7 @@ function drawDAHistogram(canvasId, data, label, color) {
   });
 
   // X-axis labels
-  ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
   for (let i = 0; i <= nBins; i += Math.max(1, Math.floor(nBins / 5))) {
     const val = minV + i * binSize;
     const x = pad.left + i * (barW + 1);
@@ -1868,10 +1898,10 @@ function drawDAHistogram(canvasId, data, label, color) {
   // Mean line
   const m = mean(data);
   const mX = pad.left + ((m - minV) / range) * plotW;
-  ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+  ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
   ctx.beginPath(); ctx.moveTo(mX, pad.top); ctx.lineTo(mX, pad.top + plotH); ctx.stroke();
   ctx.setLineDash([]);
-  ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 10px system-ui';
+  ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 10px system-ui';
   ctx.fillText('Mean: ' + m.toFixed(1), mX, pad.top - 4);
 }
 
@@ -1941,9 +1971,9 @@ function daClear() {
   $('da-title-a').textContent = 'Group A Statistics';
   $('da-title-b').textContent = 'Group B Statistics';
   $('da-significance').innerHTML = '';
-  const ctx1 = getCtx('da-bar-chart'); ctx1.clearRect(0, 0, ctx1.W, ctx1.H); ctx1.fillStyle = '#f8fafc'; ctx1.fillRect(0, 0, ctx1.W, ctx1.H);
-  const ctx2 = getCtx('da-hist-a'); ctx2.clearRect(0, 0, ctx2.W, ctx2.H); ctx2.fillStyle = '#f8fafc'; ctx2.fillRect(0, 0, ctx2.W, ctx2.H);
-  const ctx3 = getCtx('da-hist-b'); ctx3.clearRect(0, 0, ctx3.W, ctx3.H); ctx3.fillStyle = '#f8fafc'; ctx3.fillRect(0, 0, ctx3.W, ctx3.H);
+  const ctx1 = getCtx('da-bar-chart'); ctx1.clearRect(0, 0, ctx1.W, ctx1.H); ctx1.fillStyle = '#0f0f17'; ctx1.fillRect(0, 0, ctx1.W, ctx1.H);
+  const ctx2 = getCtx('da-hist-a'); ctx2.clearRect(0, 0, ctx2.W, ctx2.H); ctx2.fillStyle = '#0f0f17'; ctx2.fillRect(0, 0, ctx2.W, ctx2.H);
+  const ctx3 = getCtx('da-hist-b'); ctx3.clearRect(0, 0, ctx3.W, ctx3.H); ctx3.fillStyle = '#0f0f17'; ctx3.fillRect(0, 0, ctx3.W, ctx3.H);
 }
 
 // ══════════════════════════════════════════════════════════════════════════

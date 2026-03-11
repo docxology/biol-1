@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab 2 Dashboard: Probability & Statistics | BIOL-8</title>
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
         *,
         *::before,
         *::after {
@@ -15,24 +16,25 @@
         }
 
         :root {
-            --bg: #f0f2f5;
-            --card: #ffffff;
+            --bg: #0f0f17;
+            --card: #1a1a2e;
             --sidebar: #1a1a2e;
             --sidebar-hover: #252545;
-            --accent: #c41e3a;
-            --accent-light: #e8354f;
-            --blue: #2563eb;
-            --blue-light: #3b82f6;
-            --green: #16a34a;
-            --amber: #d97706;
-            --purple: #7c3aed;
-            --text: #1a1a1a;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
+            --accent: #e63956;
+            --accent-light: #ff4d6a;
+            --blue: #3b82f6;
+            --blue-light: #60a5fa;
+            --green: #22c55e;
+            --amber: #f59e0b;
+            --purple: #8b5cf6;
+            --text: #e8e8f0;
+            --text-bright: #ffffff;
+  --text-muted: #8b8ba0;
+            --border: rgba(255,255,255,0.06);
             --radius: 10px;
             --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
             --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
         }
 
@@ -699,7 +701,35 @@
                 padding: 16px;
             }
         }
-    </style>
+    
+/* ═══════ DARK THEME ENHANCEMENTS ═══════ */
+.card:hover { border-color: rgba(255,255,255,0.12); }
+.hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%) !important;
+  color: #fff !important; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
+}
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 span, .hero .hero-accent { background: linear-gradient(135deg, #e63956, #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p, .hero .hero-desc { color: #8b8ba0 !important; }
+.hero .bio-tag, .hero .tag { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero .bio-tag:hover, .hero .tag:hover { background: rgba(255,255,255,0.1); border-color: #e63956; }
+.stat-box { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.info-panel { background: rgba(255,255,255,0.03) !important; }
+.btn-outline { background: rgba(255,255,255,0.04) !important; color: #e8e8f0 !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.btn-outline:hover { border-color: #e63956 !important; color: #e63956 !important; background: rgba(230,57,86,0.15) !important; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.chart-wrap canvas { border-radius: 8px; }
+</style>
 </head>
 
 <body>
@@ -1168,19 +1198,19 @@
             const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
             const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
             ctx.clearRect(0, 0, W, H);
-            ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
             const mv = maxVal || Math.max(...values, ...(expected || [0])) * 1.2 || 10;
-            ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+            ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
             for (let i = 0; i <= 4; i++) {
                 const y = pad.top + plotH * (1 - i / 4);
                 ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-                ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+                ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
                 ctx.textAlign = 'right'; ctx.fillText((mv * i / 4).toFixed(0), pad.left - 6, y + 4);
             }
             values.forEach((v, i) => {
                 const x = pad.left + (plotW / n) * i + gap / 2;
                 const h = (v / mv) * plotH;
-                ctx.fillStyle = colors ? colors[i % colors.length] : '#c41e3a';
+                ctx.fillStyle = colors ? colors[i % colors.length] : '#e63956';
                 ctx.beginPath();
                 const r = 4;
                 ctx.moveTo(x, pad.top + plotH);
@@ -1190,10 +1220,10 @@
                 ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
                 ctx.lineTo(x + barW, pad.top + plotH);
                 ctx.closePath(); ctx.fill();
-                ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+                ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
                 ctx.fillText(labels[i], x + barW / 2, H - pad.bottom + 16);
                 if (v > 0) {
-                    ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui';
+                    ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui';
                     ctx.fillText(v, x + barW / 2, pad.top + plotH - h - 6);
                 }
             });
@@ -1213,14 +1243,14 @@
             const pad = { top: 20, right: 20, bottom: 30, left: 50 };
             const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
             ctx.clearRect(0, 0, W, H);
-            ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
             const { yMin = 0, yMax = 1, refLine } = opts;
             const yRange = yMax - yMin;
-            ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+            ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
             for (let i = 0; i <= 4; i++) {
                 const y = pad.top + plotH * (1 - i / 4);
                 ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-                ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+                ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
                 ctx.fillText((yMin + yRange * i / 4).toFixed(0) + '%', pad.left - 6, y + 4);
             }
             if (refLine !== undefined) {
@@ -1293,7 +1323,7 @@
             const ctx1 = getCtx('coin-bar-chart');
             drawBarChart(ctx1, { labels: ['Heads', 'Tails'], values: [coinData.heads, coinData.tails], colors: ['#f59e0b', '#64748b'], expected: total ? [total / 2, total / 2] : null });
             const ctx2 = getCtx('coin-line-chart');
-            drawLineChart(ctx2, [{ data: coinData.pctHistory, color: '#c41e3a', width: 2 }], { yMin: 0, yMax: 100, refLine: 50 });
+            drawLineChart(ctx2, [{ data: coinData.pctHistory, color: '#e63956', width: 2 }], { yMin: 0, yMax: 100, refLine: 50 });
         }
 
         // SAMPLE SIZE COMPARISON
@@ -1310,7 +1340,7 @@
             const ctx = getCtx('sample-deviation-chart');
             const labels = ['10', '50', '100', '500', '1000'];
             const devs = labels.map(l => sampleResults[parseInt(l)]?.deviation || 0);
-            drawBarChart(ctx, { labels, values: devs, colors: ['#c41e3a', '#2563eb', '#16a34a', '#d97706', '#7c3aed'], maxVal: 30 });
+            drawBarChart(ctx, { labels, values: devs, colors: ['#e63956', '#3b82f6', '#16a34a', '#d97706', '#7c3aed'], maxVal: 30 });
             $('sample-analysis').style.display = 'block';
             $('sample-analysis').innerHTML = '<div class="ar-title">Analysis</div><p>Notice how the deviation from 50% generally decreases as sample size increases. With only 10 flips, results can vary wildly. With 1000 flips, results typically stay within a few percent of the expected 50%.</p>';
         }
@@ -1321,7 +1351,7 @@
             $('sample-analysis').style.display = 'none';
             const ctx = getCtx('sample-deviation-chart');
             ctx.clearRect(0, 0, ctx.W, ctx.H);
-            ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+            ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, ctx.W, ctx.H);
         }
 
         // DIE ROLLING
@@ -1361,7 +1391,7 @@
             for (let i = 1; i <= 6; i++) $('die-' + i).textContent = dieData.counts[i - 1];
             const ctx = getCtx('die-bar-chart');
             const expected = dieData.total ? Array(6).fill(dieData.total / 6) : null;
-            drawBarChart(ctx, { labels: ['1', '2', '3', '4', '5', '6'], values: dieData.counts, colors: ['#c41e3a', '#2563eb', '#16a34a', '#d97706', '#7c3aed', '#64748b'], expected });
+            drawBarChart(ctx, { labels: ['1', '2', '3', '4', '5', '6'], values: dieData.counts, colors: ['#e63956', '#3b82f6', '#16a34a', '#d97706', '#7c3aed', '#64748b'], expected });
         }
 
         // TWO DICE
@@ -1411,7 +1441,7 @@
             }
             const ctx = getCtx('dice-sum-chart');
             const expected = twoDiceData.total ? theoreticalProb.map(p => p * twoDiceData.total) : null;
-            drawBarChart(ctx, { labels: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], values: twoDiceData.sums, colors: ['#c41e3a'], expected });
+            drawBarChart(ctx, { labels: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], values: twoDiceData.sums, colors: ['#e63956'], expected });
         }
 
         // GENETIC CROSS
@@ -1447,7 +1477,7 @@
             $('gen-ratio').textContent = rec > 0 ? (dom / rec).toFixed(2) + ':1' : '-';
             const ctx = getCtx('genetic-chart');
             const expected = genData.total ? [genData.total * 0.25, genData.total * 0.5, genData.total * 0.25] : null;
-            drawBarChart(ctx, { labels: ['AA', 'Aa', 'aa'], values: [genData.AA, genData.Aa, genData.aa], colors: ['#7c3aed', '#2563eb', '#d97706'], expected });
+            drawBarChart(ctx, { labels: ['AA', 'Aa', 'aa'], values: [genData.AA, genData.Aa, genData.aa], colors: ['#7c3aed', '#3b82f6', '#d97706'], expected });
         }
 
         // COLOR COMBO GRID
@@ -1463,7 +1493,7 @@
                 const g = Math.round(30 * intensity + 240 * (1 - intensity));
                 const b = Math.round(58 * intensity + 240 * (1 - intensity));
                 cell.style.background = `rgb(${r}, ${g}, ${b})`;
-                cell.style.color = intensity > 0.5 ? '#ffffff' : '#1a1a1a';
+                cell.style.color = intensity > 0.5 ? '#1a1a2e' : '#e8e8f0';
             });
         }
 

@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 8 Dashboard: Enzymes | BIOL-8</title>
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
     /* ═══════════════════════════════════════════════════════════════════════
    RESET & BASE
    ═══════════════════════════════════════════════════════════════════════ */
@@ -18,24 +19,25 @@
     }
 
     :root {
-      --bg: #f0f2f5;
-      --card: #ffffff;
+      --bg: #0f0f17;
+      --card: #1a1a2e;
       --sidebar: #1a1a2e;
       --sidebar-hover: #252545;
-      --accent: #c41e3a;
-      --accent-light: #e8354f;
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --green: #16a34a;
-      --amber: #d97706;
-      --purple: #7c3aed;
-      --text: #1a1a1a;
-      --text-muted: #6b7280;
-      --border: #e5e7eb;
+      --accent: #e63956;
+      --accent-light: #ff4d6a;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --purple: #8b5cf6;
+      --text: #e8e8f0;
+      --text-bright: #ffffff;
+  --text-muted: #8b8ba0;
+      --border: rgba(255,255,255,0.06);
       --radius: 10px;
       --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-      --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
       --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     }
 
@@ -634,7 +636,35 @@
         padding: 16px;
       }
     }
-  </style>
+  
+/* ═══════ DARK THEME ENHANCEMENTS ═══════ */
+.card:hover { border-color: rgba(255,255,255,0.12); }
+.hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1030 30%, #2d1020 60%, #1a0d1a 100%) !important;
+  color: #fff !important; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(230,57,86,0.12) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none; animation: heroPulse 8s ease-in-out infinite reverse;
+}
+@keyframes heroPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+.hero h2 span, .hero .hero-accent { background: linear-gradient(135deg, #e63956, #ff6b81); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p, .hero .hero-desc { color: #8b8ba0 !important; }
+.hero .bio-tag, .hero .tag { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); }
+.hero .bio-tag:hover, .hero .tag:hover { background: rgba(255,255,255,0.1); border-color: #e63956; }
+.stat-box { background: rgba(255,255,255,0.02) !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.info-panel { background: rgba(255,255,255,0.03) !important; }
+.btn-outline { background: rgba(255,255,255,0.04) !important; color: #e8e8f0 !important; border: 1px solid rgba(255,255,255,0.06) !important; }
+.btn-outline:hover { border-color: #e63956 !important; color: #e63956 !important; background: rgba(230,57,86,0.15) !important; }
+.sidebar-footer { border-top: 1px solid rgba(255,255,255,0.06); }
+.chart-wrap canvas { border-radius: 8px; }
+</style>
 </head>
 
 <body>
@@ -1171,21 +1201,21 @@
       const n = values.length, barW = plotW / n * 0.6, gap = plotW / n * 0.4;
 
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const mv = maxVal || Math.max(...values, ...(expected || [0])) * 1.2 || 10;
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui';
         ctx.textAlign = 'right'; ctx.fillText((mv * i / 4).toFixed(mv > 10 ? 0 : 2), pad.left - 6, y + 4);
       }
 
       values.forEach((v, i) => {
         const x = pad.left + (plotW / n) * i + gap / 2;
         const h = (v / mv) * plotH;
-        ctx.fillStyle = colors ? colors[i] : '#c41e3a';
+        ctx.fillStyle = colors ? colors[i] : '#e63956';
         ctx.beginPath();
         const r = 4;
         ctx.moveTo(x, pad.top + plotH);
@@ -1195,10 +1225,10 @@
         ctx.quadraticCurveTo(x + barW, pad.top + plotH - h, x + barW, pad.top + plotH - h + r);
         ctx.lineTo(x + barW, pad.top + plotH);
         ctx.closePath(); ctx.fill();
-        ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(labels[i], x + barW / 2, H - pad.bottom + 16);
         if (v > 0) {
-          ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 12px system-ui';
+          ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui';
           ctx.fillText(v.toFixed(v % 1 ? 1 : 0), x + barW / 2, pad.top + plotH - h - 6);
         }
       });
@@ -1207,7 +1237,7 @@
         expected.forEach((ev, i) => {
           const x = pad.left + (plotW / n) * i + gap / 2;
           const y = pad.top + plotH - (ev / mv) * plotH;
-          ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
+          ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.setLineDash([4, 3]);
           ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x + barW + 4, y); ctx.stroke();
           ctx.setLineDash([]);
         });
@@ -1219,20 +1249,20 @@
       const pad = { top: 20, right: 20, bottom: 30, left: 50 };
       const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const { yMin = 0, yMax = 1, refLine, xLabels } = opts;
       const yRange = yMax - yMin;
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
         ctx.fillText((yMin + yRange * i / 4).toFixed(yMax > 10 ? 0 : 2), pad.left - 6, y + 4);
       }
       if (refLine !== undefined) {
         const ry = pad.top + plotH * (1 - (refLine - yMin) / yRange);
-        ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 1; ctx.setLineDash([6, 4]);
+        ctx.strokeStyle = '#6b7280'; ctx.lineWidth = 1; ctx.setLineDash([6, 4]);
         ctx.beginPath(); ctx.moveTo(pad.left, ry); ctx.lineTo(W - pad.right, ry); ctx.stroke();
         ctx.setLineDash([]);
       }
@@ -1260,7 +1290,7 @@
       });
 
       if (xLabels) {
-        ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
         xLabels.forEach((lbl, i) => {
           const x = pad.left + (i / Math.max(xLabels.length - 1, 1)) * plotW;
           ctx.fillText(lbl, x, H - 4);
@@ -1352,11 +1382,11 @@
     function catDrawBeaker(ctx, rate) {
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       // Beaker
       const bx = 60, by = 40, bw = 200, bh = H - 80;
-      ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
+      ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(bx, by); ctx.lineTo(bx, by + bh); ctx.lineTo(bx + bw, by + bh); ctx.lineTo(bx + bw, by);
       ctx.stroke();
@@ -1395,30 +1425,30 @@
 
       // Rate meter on right side
       const mx = 310, my = 60, mw = 30, mh = H - 120;
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       ctx.strokeRect(mx, my, mw, mh);
       const fillH = (rate / 120) * mh;
       const gradient = ctx.createLinearGradient(mx, my + mh, mx, my + mh - fillH);
       gradient.addColorStop(0, '#16a34a');
       gradient.addColorStop(0.5, '#d97706');
-      gradient.addColorStop(1, '#c41e3a');
+      gradient.addColorStop(1, '#e63956');
       ctx.fillStyle = gradient;
       ctx.fillRect(mx + 2, my + mh - fillH, mw - 4, fillH);
 
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Rate', mx + mw / 2, my - 6);
       ctx.fillText(rate.toFixed(0), mx + mw / 2, my + mh + 16);
 
       // Info text area
       const ix = 370;
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'left';
       ctx.fillText('Catalase Reaction', ix, 70);
-      ctx.font = '13px system-ui'; ctx.fillStyle = '#6b7280';
+      ctx.font = '13px system-ui'; ctx.fillStyle = '#8b8ba0';
       ctx.fillText('2 H\u2082O\u2082  \u2192  2 H\u2082O + O\u2082\u2191', ix, 95);
 
       const temp = parseInt($('cat-temp').value);
       if (temp > 55) {
-        ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 13px system-ui';
+        ctx.fillStyle = '#e63956'; ctx.font = 'bold 13px system-ui';
         ctx.fillText('ENZYME DENATURED!', ix, 130);
         ctx.font = '12px system-ui';
         ctx.fillText('Protein structure unfolded', ix, 148);
@@ -1430,7 +1460,7 @@
         ctx.fillStyle = '#d97706'; ctx.font = 'bold 13px system-ui';
         ctx.fillText('Moderate activity', ix, 130);
       } else {
-        ctx.fillStyle = '#6b7280'; ctx.font = 'bold 13px system-ui';
+        ctx.fillStyle = '#8b8ba0'; ctx.font = 'bold 13px system-ui';
         ctx.fillText('Low activity', ix, 130);
       }
     }
@@ -1442,7 +1472,7 @@
       for (let t = 0; t <= 80; t += 2) data.push(catGetRate(t, ph, sub));
       const ctx = getCtx('cat-temp-chart');
       drawLineChart(ctx, [
-        { data: data, color: '#c41e3a', width: 2.5, dots: false }
+        { data: data, color: '#e63956', width: 2.5, dots: false }
       ], {
         yMin: 0, yMax: Math.max(...data) * 1.15 || 120,
         xLabels: ['0\u00B0C', '10\u00B0C', '20\u00B0C', '30\u00B0C', '40\u00B0C', '50\u00B0C', '60\u00B0C', '70\u00B0C', '80\u00B0C']
@@ -1459,9 +1489,9 @@
       ctx.fillText('Optimal', (optX1 + optX2) / 2, padT + 14);
       // Denaturation zone
       const denX = padL + (55 / 80) * plotW;
-      ctx.fillStyle = 'rgba(196,30,58,0.08)';
+      ctx.fillStyle = 'rgba(230,57,86,0.05)';
       ctx.fillRect(denX, padT, W - padR - denX, plotH);
-      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 10px system-ui';
+      ctx.fillStyle = '#e63956'; ctx.font = 'bold 10px system-ui';
       ctx.fillText('Denaturation', (denX + W - padR) / 2, padT + 14);
     }
 
@@ -1472,7 +1502,7 @@
       for (let ph = 1; ph <= 14; ph += 0.5) data.push(catGetRate(temp, ph, sub));
       const ctx = getCtx('cat-ph-chart');
       drawLineChart(ctx, [
-        { data: data, color: '#2563eb', width: 2.5, dots: false }
+        { data: data, color: '#3b82f6', width: 2.5, dots: false }
       ], {
         yMin: 0, yMax: Math.max(...data) * 1.15 || 120,
         xLabels: ['pH 1', 'pH 4', 'pH 7', 'pH 10', 'pH 14']
@@ -1532,7 +1562,7 @@
       const levels = [1.2, 1.375, 1.55, 1.725, 1.9];
       const labels = ['Sedentary', 'Light', 'Moderate', 'Very Active', 'Extra Active'];
       const values = levels.map(l => Math.round(bmr * l));
-      const actColors = ['#6b7280', '#2563eb', '#16a34a', '#d97706', '#c41e3a'];
+      const actColors = ['#8b8ba0', '#3b82f6', '#16a34a', '#d97706', '#e63956'];
       const ctx = getCtx('bmr-activity-chart');
       drawBarChart(ctx, { labels, values, colors: actColors, maxVal: Math.max(...values) * 1.15 });
 
@@ -1544,11 +1574,11 @@
       const ctx = getCtx('bmr-pie-chart');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const data = [
-        { label: 'Brain', pct: 0.20, color: '#c41e3a' },
-        { label: 'Organs', pct: 0.29, color: '#2563eb' },
+        { label: 'Brain', pct: 0.20, color: '#e63956' },
+        { label: 'Organs', pct: 0.29, color: '#3b82f6' },
         { label: 'Muscles', pct: 0.25, color: '#16a34a' },
         { label: 'Heat', pct: 0.26, color: '#d97706' }
       ];
@@ -1570,7 +1600,7 @@
         const midAngle = (startAngle + endAngle) / 2;
         const lx = cx + Math.cos(midAngle) * (r * 0.65);
         const ly = cy + Math.sin(midAngle) * (r * 0.65);
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 12px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(d.label, lx, ly - 2);
         ctx.font = '11px system-ui';
         ctx.fillText(Math.round(d.pct * 100) + '%', lx, ly + 13);
@@ -1579,9 +1609,9 @@
       });
 
       // Inner circle for donut
-      ctx.fillStyle = '#f8fafc';
+      ctx.fillStyle = '#0f0f17';
       ctx.beginPath(); ctx.arc(cx, cy, r * 0.35, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 14px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Energy', cx, cy - 4);
       ctx.fillText('Use', cx, cy + 14);
     }
@@ -1629,20 +1659,20 @@
       // Background gradient based on intensity
       const gradient = ctx.createLinearGradient(0, 0, W, 0);
       if (intensity < 50) {
-        gradient.addColorStop(0, '#f0fdf4');
-        gradient.addColorStop(1, '#ecfdf5');
+        gradient.addColorStop(0, '#0d1f10');
+        gradient.addColorStop(1, '#0d1f15');
       } else if (intensity < 75) {
         gradient.addColorStop(0, '#fffbeb');
-        gradient.addColorStop(1, '#fef3c7');
+        gradient.addColorStop(1, '#2a2a45');
       } else {
         gradient.addColorStop(0, '#fef2f2');
-        gradient.addColorStop(1, '#fee2e2');
+        gradient.addColorStop(1, '#2d1a1a');
       }
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, W, H);
 
       // Ground
-      ctx.fillStyle = '#d1d5db';
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
       ctx.fillRect(0, H - 40, W, 40);
 
       // Runner (stick figure)
@@ -1652,7 +1682,7 @@
       const armSwing = Math.sin(exRunnerPhase + Math.PI) * (8 + intensity * 0.2);
       const bobY = Math.abs(Math.sin(exRunnerPhase)) * (2 + intensity * 0.05);
 
-      ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 3; ctx.lineCap = 'round';
+      ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 3; ctx.lineCap = 'round';
       // Body
       ctx.beginPath(); ctx.moveTo(rx, ry - bobY); ctx.lineTo(rx, ry - 40 - bobY); ctx.stroke();
       // Head
@@ -1676,7 +1706,7 @@
 
       // Energy system info panel (right side)
       const px = 260, py = 30;
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'left';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'left';
 
       const anaerobicPct = Math.max(0, Math.min(100, ((intensity - 50) / 40) * 100));
       const aerobicPct = 100 - anaerobicPct;
@@ -1684,21 +1714,21 @@
       // Aerobic bar
       ctx.fillStyle = '#16a34a'; ctx.font = 'bold 13px system-ui';
       ctx.fillText('Aerobic: ' + aerobicPct.toFixed(0) + '%', px, py + 20);
-      ctx.fillStyle = '#e5e7eb';
+      ctx.fillStyle = 'rgba(255,255,255,0.06)';
       ctx.fillRect(px, py + 28, 200, 16);
       ctx.fillStyle = '#16a34a';
       ctx.fillRect(px, py + 28, 200 * aerobicPct / 100, 16);
 
       // Anaerobic bar
-      ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 13px system-ui';
+      ctx.fillStyle = '#e63956'; ctx.font = 'bold 13px system-ui';
       ctx.fillText('Anaerobic: ' + anaerobicPct.toFixed(0) + '%', px, py + 65);
-      ctx.fillStyle = '#e5e7eb';
+      ctx.fillStyle = 'rgba(255,255,255,0.06)';
       ctx.fillRect(px, py + 73, 200, 16);
-      ctx.fillStyle = '#c41e3a';
+      ctx.fillStyle = '#e63956';
       ctx.fillRect(px, py + 73, 200 * anaerobicPct / 100, 16);
 
       // ATP equation
-      ctx.fillStyle = '#374151'; ctx.font = '12px system-ui';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = '12px system-ui';
       if (intensity < 50) {
         ctx.fillText('Glucose + O\u2082 \u2192 CO\u2082 + H\u2082O + 36 ATP', px, py + 120);
       } else if (intensity < 75) {
@@ -1706,20 +1736,20 @@
         ctx.fillText('ATP yield declining...', px, py + 138);
       } else {
         ctx.fillText('Glucose \u2192 Lactic Acid + 2 ATP', px, py + 120);
-        ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 12px system-ui';
+        ctx.fillStyle = '#e63956'; ctx.font = 'bold 12px system-ui';
         ctx.fillText('Lactic acid building up!', px, py + 138);
       }
 
       // Lactate meter
       const lactate = 0.8 + Math.max(0, 12 * Math.pow(Math.max(0, intensity - 50) / 50, 2.5));
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 12px system-ui';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 12px system-ui';
       ctx.fillText('Blood Lactate', px, py + 175);
-      ctx.fillStyle = '#e5e7eb';
+      ctx.fillStyle = 'rgba(255,255,255,0.06)';
       ctx.fillRect(px, py + 182, 200, 12);
       const lactPct = Math.min(1, lactate / 13);
-      ctx.fillStyle = lactate > 4 ? '#c41e3a' : lactate > 2 ? '#d97706' : '#16a34a';
+      ctx.fillStyle = lactate > 4 ? '#e63956' : lactate > 2 ? '#d97706' : '#16a34a';
       ctx.fillRect(px, py + 182, 200 * lactPct, 12);
-      ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui';
+      ctx.fillStyle = '#8b8ba0'; ctx.font = '10px system-ui';
       ctx.fillText(lactate.toFixed(1) + ' mmol/L', px + 205, py + 192);
 
       if (catAnimId === null && catRunning === false) {
@@ -1761,8 +1791,8 @@
       exDebtData = null;
       const ctx = getCtx('ex-debt-chart');
       ctx.clearRect(0, 0, ctx.W, ctx.H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, ctx.W, ctx.H);
-      ctx.fillStyle = '#9ca3af'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, ctx.W, ctx.H);
+      ctx.fillStyle = '#6b7280'; ctx.font = '13px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Click "Simulate 30-min Workout" to see oxygen debt', ctx.W / 2, ctx.H / 2);
     }
 
@@ -1773,17 +1803,17 @@
       const pad = { top: 20, right: 20, bottom: 35, left: 50 };
       const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const maxY = 2.8;
       const n = exDebtData.length;
 
       // Grid
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
         ctx.fillText((maxY * i / 4).toFixed(1) + ' L', pad.left - 6, y + 4);
       }
 
@@ -1833,7 +1863,7 @@
       ctx.closePath(); ctx.fill();
 
       // Demand line
-      ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2;
+      ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2;
       ctx.beginPath();
       exDebtData.forEach((d, i) => {
         const x = pad.left + (i / (n - 1)) * plotW;
@@ -1843,7 +1873,7 @@
       ctx.stroke();
 
       // Supply line
-      ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2;
+      ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2;
       ctx.beginPath();
       exDebtData.forEach((d, i) => {
         const x = pad.left + (i / (n - 1)) * plotW;
@@ -1853,7 +1883,7 @@
       ctx.stroke();
 
       // Phase labels
-      ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#8b8ba0'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('Warmup', pad.left + plotW * 2.5 / 35, H - 5);
       ctx.fillText('High Intensity', pad.left + plotW * 12.5 / 35, H - 5);
       ctx.fillText('Cooldown', pad.left + plotW * 22.5 / 35, H - 5);
@@ -1862,7 +1892,7 @@
       // Time axis
       for (let t = 0; t <= 35; t += 5) {
         const x = pad.left + (t / 35) * plotW;
-        ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(t + 'min', x, H - pad.bottom + 14);
       }
 
@@ -1880,12 +1910,12 @@
       const ctx = getCtx('atp-sankey');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const stages = [
         { label: 'Food\nIntake', x: 20, color: '#d97706', width: 80 },
         { label: 'Digestion', x: 140, color: '#ea580c', width: 70 },
-        { label: 'Cellular\nRespiration', x: 260, color: '#c41e3a', width: 60 },
+        { label: 'Cellular\nRespiration', x: 260, color: '#e63956', width: 60 },
         { label: 'ATP', x: 380, color: '#7c3aed', width: 50 }
       ];
 
@@ -1896,7 +1926,7 @@
       for (let i = 0; i < stages.length - 1; i++) {
         const s = stages[i], e = stages[i + 1];
         const sx = s.x + 60, ex = e.x;
-        ctx.fillStyle = 'rgba(196,30,58,0.08)';
+        ctx.fillStyle = 'rgba(230,57,86,0.05)';
         ctx.beginPath();
         ctx.moveTo(sx, cy - boxH / 2 * (1 - i * 0.1));
         ctx.bezierCurveTo(sx + 40, cy - boxH / 2, ex - 40, cy - boxH / 2, ex, cy - boxH / 2 * (1 - (i + 1) * 0.1));
@@ -1912,7 +1942,7 @@
         ctx.beginPath();
         ctx.roundRect(bx, by, 60, boxH, 8);
         ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
         const lines = s.label.split('\n');
         lines.forEach((line, li) => {
           ctx.fillText(line, bx + 30, cy + (li - (lines.length - 1) / 2) * 14 + 4);
@@ -1922,7 +1952,7 @@
       // Outputs from ATP
       const outputs = [
         { label: 'Muscle\nContraction', y: cy - 90, pct: '25%', color: '#16a34a' },
-        { label: 'Brain\nActivity', y: cy - 30, pct: '20%', color: '#2563eb' },
+        { label: 'Brain\nActivity', y: cy - 30, pct: '20%', color: '#3b82f6' },
         { label: 'Active\nTransport', y: cy + 30, pct: '15%', color: '#7c3aed' },
         { label: 'Heat\nLoss', y: cy + 90, pct: '40%', color: '#d97706' }
       ];
@@ -1959,9 +1989,9 @@
       });
 
       // Efficiency label
-      ctx.fillStyle = '#374151'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'left';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'left';
       ctx.fillText('Energy conversion efficiency: ~40%', 20, H - 20);
-      ctx.fillStyle = '#6b7280'; ctx.font = '12px system-ui';
+      ctx.fillStyle = '#8b8ba0'; ctx.font = '12px system-ui';
       ctx.fillText('60% released as heat (maintains body temperature at 37\u00B0C)', 20, H - 4);
     }
 
@@ -1990,7 +2020,7 @@
       // Budget chart
       const labels = ['Sleep', 'Sitting', 'Walking', 'Exercise'];
       const values = [sleep * rates.sleep, sit * rates.sit, walk * rates.walk, exer * rates.exer];
-      const budgetColors = ['#7c3aed', '#2563eb', '#16a34a', '#c41e3a'];
+      const budgetColors = ['#7c3aed', '#3b82f6', '#16a34a', '#e63956'];
       const ctx = getCtx('atp-budget-chart');
       drawBarChart(ctx, {
         labels, values, colors: budgetColors,
@@ -2054,27 +2084,27 @@
       const pad = { top: 25, right: 20, bottom: 40, left: 55 };
       const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const maxS = 200;
       const maxV = Vmax * 1.15;
 
       // Grid
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
         ctx.fillText(Math.round(maxV * i / 4), pad.left - 6, y + 4);
       }
 
       // X axis labels
       for (let i = 0; i <= 4; i++) {
         const x = pad.left + plotW * i / 4;
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(Math.round(maxS * i / 4), x, H - pad.bottom + 16);
       }
-      ctx.fillStyle = '#374151'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = '12px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('[Substrate]', pad.left + plotW / 2, H - 4);
       ctx.save(); ctx.translate(12, pad.top + plotH / 2);
       ctx.rotate(-Math.PI / 2); ctx.fillText('Reaction Rate (V)', 0, 0); ctx.restore();
@@ -2098,7 +2128,7 @@
 
       // Inhibited curve
       if (ekInhibitor !== 'none') {
-        ctx.strokeStyle = '#c41e3a'; ctx.lineWidth = 2.5;
+        ctx.strokeStyle = '#e63956'; ctx.lineWidth = 2.5;
         ctx.beginPath();
         for (let i = 0; i <= nPoints; i++) {
           const S = (i / nPoints) * maxS;
@@ -2152,18 +2182,18 @@
       const curV = ekMM(currentS, Vmax, Km, ekInhibitor);
       const dotX = pad.left + (currentS / maxS) * plotW;
       const dotY = pad.top + plotH * (1 - curV / maxV);
-      ctx.fillStyle = '#c41e3a'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+      ctx.fillStyle = '#e63956'; ctx.strokeStyle = '#1a1a2e'; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.arc(dotX, dotY, 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
       ctx.fillText('V=' + curV.toFixed(1), dotX + 10, dotY - 2);
 
       // Legend
       ctx.font = '11px system-ui'; ctx.textAlign = 'left';
       if (ekInhibitor !== 'none') {
         ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left + 5, 6, 20, 3);
-        ctx.fillStyle = '#374151'; ctx.fillText('Uninhibited', pad.left + 30, 12);
-        ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 110, 6, 20, 3);
-        ctx.fillStyle = '#374151';
+        ctx.fillStyle = '#e8e8f0'; ctx.fillText('Uninhibited', pad.left + 30, 12);
+        ctx.fillStyle = '#e63956'; ctx.fillRect(pad.left + 110, 6, 20, 3);
+        ctx.fillStyle = '#e8e8f0';
         ctx.fillText(ekInhibitor === 'competitive' ? 'Competitive Inhibitor' : 'Noncompetitive Inhibitor', pad.left + 135, 12);
       }
     }
@@ -2174,7 +2204,7 @@
       const pad = { top: 25, right: 20, bottom: 35, left: 55 };
       const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       // Lineweaver-Burk: 1/V vs 1/[S]
       // 1/V = (Km/Vmax) * (1/[S]) + 1/Vmax
@@ -2192,7 +2222,7 @@
       const minInvV = -maxInvV * 0.15;
 
       // Grid
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
@@ -2202,11 +2232,11 @@
       const zeroX = pad.left + (-minInvS / (maxInvS - minInvS)) * plotW;
       const zeroY = pad.top + plotH * (1 - (-minInvV) / (maxInvV - minInvV));
 
-      ctx.strokeStyle = '#374151'; ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#e8e8f0'; ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(pad.left, zeroY); ctx.lineTo(W - pad.right, zeroY); ctx.stroke();
       ctx.beginPath(); ctx.moveTo(zeroX, pad.top); ctx.lineTo(zeroX, pad.top + plotH); ctx.stroke();
 
-      ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = '11px system-ui'; ctx.textAlign = 'center';
       ctx.fillText('1/[S]', pad.left + plotW / 2, H - 4);
       ctx.save(); ctx.translate(12, pad.top + plotH / 2); ctx.rotate(-Math.PI / 2);
       ctx.fillText('1/V', 0, 0); ctx.restore();
@@ -2244,13 +2274,13 @@
 
       // Inhibited
       if (ekInhibitor === 'competitive') {
-        plotLB(Vmax, Km * 2, '#c41e3a', null);
+        plotLB(Vmax, Km * 2, '#e63956', null);
       } else if (ekInhibitor === 'noncompetitive') {
-        plotLB(Vmax / 2, Km, '#c41e3a', null);
+        plotLB(Vmax / 2, Km, '#e63956', null);
       }
 
       // Labels
-      ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
       ctx.fillText('Y-int = 1/Vmax', zeroX + 4, pad.top + 12);
       ctx.fillText('X-int = -1/Km', pad.left + 4, zeroY - 6);
     }
@@ -2345,7 +2375,7 @@
       const ctx = getCtx('pw-canvas');
       const W = ctx.W, H = ctx.H;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const stages = [
         { label: 'Glucose', sub: 'C\u2086H\u2081\u2082O\u2086', x: 60, y: 50, color: '#d97706', idx: 0 },
@@ -2355,7 +2385,7 @@
 
       const aerobicStages = [
         { label: 'Krebs Cycle', sub: 'Mito. Matrix', x: 280, y: 230, color: '#16a34a', idx: 3 },
-        { label: 'ETC', sub: 'Inner Membrane', x: 280, y: 320, color: '#2563eb', idx: 4 }
+        { label: 'ETC', sub: 'Inner Membrane', x: 280, y: 320, color: '#3b82f6', idx: 4 }
       ];
 
       const anaerobicStage = { label: 'Fermentation', sub: 'Cytoplasm', x: 440, y: 140, color: '#7c3aed', idx: 5 };
@@ -2369,11 +2399,11 @@
         ctx.lineWidth = highlight ? 3 : 1.5;
         ctx.beginPath(); ctx.roundRect(bx, by, boxW, boxH, 8); ctx.fill(); ctx.stroke();
 
-        ctx.fillStyle = highlight ? '#fff' : '#1a1a1a';
+        ctx.fillStyle = highlight ? '#1a1a2e' : '#e8e8f0';
         ctx.font = 'bold 13px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(s.label, bx + boxW / 2, by + 22);
         ctx.font = '11px system-ui';
-        ctx.fillStyle = highlight ? 'rgba(255,255,255,0.8)' : '#6b7280';
+        ctx.fillStyle = highlight ? 'rgba(255,255,255,0.8)' : '#8b8ba0';
         ctx.fillText(s.sub, bx + boxW / 2, by + 40);
       }
 
@@ -2391,7 +2421,7 @@
         // label
         if (label) {
           const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
-          ctx.fillStyle = '#374151'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
+          ctx.fillStyle = '#e8e8f0'; ctx.font = '10px system-ui'; ctx.textAlign = 'center';
           ctx.fillText(label, mx + 10, my - 4);
         }
         // ATP badge
@@ -2432,14 +2462,14 @@
 
         aerobicStages.forEach(s => drawBox(s, s.idx === pwSelectedStage));
 
-        drawArrow(350, 285, 350, 320, '#2563eb', '+2 FADH\u2082', '+2 ATP, +6 NADH');
+        drawArrow(350, 285, 350, 320, '#3b82f6', '+2 FADH\u2082', '+2 ATP, +6 NADH');
 
         // CO2 output
-        ctx.fillStyle = '#9ca3af'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
+        ctx.fillStyle = '#6b7280'; ctx.font = '10px system-ui'; ctx.textAlign = 'left';
         ctx.fillText('6 CO\u2082 \u2191', 425, 250);
 
         // O2 input
-        ctx.fillStyle = '#2563eb'; ctx.font = 'bold 10px system-ui';
+        ctx.fillStyle = '#3b82f6'; ctx.font = 'bold 10px system-ui';
         ctx.fillText('6 O\u2082 \u2192', 425, 340);
 
         // Water output
@@ -2449,7 +2479,7 @@
         // ATP total box
         ctx.fillStyle = '#16a34a';
         ctx.beginPath(); ctx.roundRect(260, H - 60, 180, 44, 8); ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
         ctx.fillText('Total: 36-38 ATP', 350, H - 32);
 
         // Draw animated glucose molecules if animating
@@ -2479,9 +2509,9 @@
         drawBox(anaerobicStage, anaerobicStage.idx === pwSelectedStage);
 
         // Lactic acid output
-        ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
+        ctx.fillStyle = '#e63956'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'left';
         ctx.fillText('Lactic Acid', 440, 210);
-        ctx.font = '10px system-ui'; ctx.fillStyle = '#6b7280';
+        ctx.font = '10px system-ui'; ctx.fillStyle = '#8b8ba0';
         ctx.fillText('(causes fatigue)', 440, 224);
         ctx.fillText('NAD+ recycled', 440, 240);
 
@@ -2491,14 +2521,14 @@
           drawBox(s, false);
           ctx.globalAlpha = 1;
         });
-        ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#e63956'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
         ctx.fillText('NO O\u2082', 350, 210);
         ctx.fillText('BLOCKED', 350, 226);
 
         // ATP total box
-        ctx.fillStyle = '#c41e3a';
+        ctx.fillStyle = '#e63956';
         ctx.beginPath(); ctx.roundRect(260, H - 60, 180, 44, 8); ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#1a1a2e'; ctx.font = 'bold 16px system-ui'; ctx.textAlign = 'center';
         ctx.fillText('Total: Only 2 ATP', 350, H - 32);
 
         if (pwAnimating) {
@@ -2521,17 +2551,17 @@
 
       // Net equation box at top right
       ctx.fillStyle = '#f1f5f9';
-      ctx.strokeStyle = '#e5e7eb';
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)';
       ctx.lineWidth = 1;
       ctx.beginPath(); ctx.roundRect(W - 260, 10, 250, 50, 6); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
       if (pwMode === 'aerobic') {
         ctx.fillText('C\u2086H\u2081\u2082O\u2086 + 6O\u2082 \u2192 6CO\u2082 + 6H\u2082O', W - 135, 30);
         ctx.fillStyle = '#16a34a'; ctx.font = 'bold 13px system-ui';
         ctx.fillText('+ 36-38 ATP', W - 135, 50);
       } else {
         ctx.fillText('C\u2086H\u2081\u2082O\u2086 \u2192 2 Lactic Acid', W - 135, 30);
-        ctx.fillStyle = '#c41e3a'; ctx.font = 'bold 13px system-ui';
+        ctx.fillStyle = '#e63956'; ctx.font = 'bold 13px system-ui';
         ctx.fillText('+ 2 ATP', W - 135, 50);
       }
     }
@@ -2546,7 +2576,7 @@
       const pad = { top: 25, right: 20, bottom: 40, left: 50 };
       const plotW = W - pad.left - pad.right, plotH = H - pad.top - pad.bottom;
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = '#f8fafc'; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0f0f17'; ctx.fillRect(0, 0, W, H);
 
       const n = labels.length;
       const groupW = plotW / n;
@@ -2554,11 +2584,11 @@
       const maxV = 42;
 
       // Grid
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
       for (let i = 0; i <= 4; i++) {
         const y = pad.top + plotH * (1 - i / 4);
         ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
-        ctx.fillStyle = '#9ca3af'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
+        ctx.fillStyle = '#6b7280'; ctx.font = '11px system-ui'; ctx.textAlign = 'right';
         ctx.fillText(Math.round(maxV * i / 4), pad.left - 6, y + 4);
       }
 
@@ -2569,28 +2599,28 @@
         ctx.fillStyle = '#16a34a';
         ctx.fillRect(cx - barW - 2, pad.top + plotH - ah, barW, ah);
         if (aerobic[i] > 0) {
-          ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+          ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
           ctx.fillText(aerobic[i], cx - barW / 2 - 2, pad.top + plotH - ah - 4);
         }
         // Anaerobic bar
         const anh = (anaerobic[i] / maxV) * plotH;
-        ctx.fillStyle = '#c41e3a';
+        ctx.fillStyle = '#e63956';
         ctx.fillRect(cx + 2, pad.top + plotH - anh, barW, anh);
         if (anaerobic[i] > 0) {
-          ctx.fillStyle = '#1a1a1a'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+          ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
           ctx.fillText(anaerobic[i], cx + 2 + barW / 2, pad.top + plotH - anh - 4);
         }
         // Label
-        ctx.fillStyle = '#374151'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#e8e8f0'; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
         ctx.fillText(label, cx, H - pad.bottom + 16);
       });
 
       // Legend
       ctx.fillStyle = '#16a34a'; ctx.fillRect(pad.left, 6, 12, 12);
-      ctx.fillStyle = '#374151'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
+      ctx.fillStyle = '#e8e8f0'; ctx.font = '11px system-ui'; ctx.textAlign = 'left';
       ctx.fillText('Aerobic', pad.left + 18, 16);
-      ctx.fillStyle = '#c41e3a'; ctx.fillRect(pad.left + 80, 6, 12, 12);
-      ctx.fillStyle = '#374151'; ctx.fillText('Anaerobic', pad.left + 98, 16);
+      ctx.fillStyle = '#e63956'; ctx.fillRect(pad.left + 80, 6, 12, 12);
+      ctx.fillStyle = '#e8e8f0'; ctx.fillText('Anaerobic', pad.left + 98, 16);
     }
 
     // ══════════════════════════════════════════════════════════════════════════
