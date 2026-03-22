@@ -6,23 +6,25 @@ Technical documentation for course management software utilities, including func
 
 ## Test Coverage
 
-**Overall: 81%** (614 tests, 608 passed, 6 skipped)
+**Overall: 85%** (612 tests, 607 passed, 5 skipped)
 
 | Module | Coverage | Notes |
 | ------ | -------- | ----- |
-| `batch_processing` | 78% | Main processing functions |
-| `canvas_integration` | 45% | External API (live API requires key; tests validate structure) |
+| `batch_processing` | 79% | Main processing functions |
+| `canvas_integration` | 52-73% | External API (live API requires key; tests validate structure) |
+| `content_processing` | 87-100% | Question processing and text normalization |
 | `file_validation` | 91-92% | Validation utilities |
-| `format_conversion` | 80-98% | Format-specific converters |
+| `format_conversion` | 80-99% | Format-specific converters |
 | `html_website` | 92-100% | Website generation |
-| `lab_manual` | 90-95% | Lab rendering |
-| `markdown_to_pdf` | 90-92% | PDF generation |
+| `lab_manual` | 83-92% | Lab rendering |
+| `markdown_to_pdf` | 86-92% | PDF generation |
 | `module_organization` | 78-93% | Module structure |
-| `publish` | 80-84% | Course publishing |
-| `schedule` | 93% | Schedule processing |
-| `speech_to_text` | 88-98% | Audio transcription |
-| `text_to_speech` | 89-91% | Audio generation |
-| `validation` | 31-64% | Output validation (syllabus, study guides) |
+| `publish` | 66-95% | Course publishing |
+| `schedule` | 94-100% | Schedule processing |
+| `shared` | 100% | Cross-module file utilities |
+| `speech_to_text` | 87-98% | Audio transcription |
+| `text_to_speech` | 89-90% | Audio generation |
+| `validation` | 74-95% | Output validation |
 
 ## Modular Architecture
 
@@ -343,6 +345,16 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 - `publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]` - Main publishing logic
 - `get_course_config(course_name: str) -> Dict[str, str]` - Get course-specific configuration
 - `copy_directory_contents(src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None) -> int` - Intelligent copy
+- `clean_directory(directory: Path) -> int` - Remove all files from directory
+- `clean_published(publish_root: Path, course: str) -> Dict[str, Any]` - Clean published directory
+- `copy_exams(course_path: Path, publish_path: Path) -> int` - Copy exam materials
+- `copy_labs_and_dashboards(course_path: Path, publish_path: Path) -> int` - Copy lab manuals
+- `copy_practice_tests(course_path: Path, publish_path: Path) -> int` - Copy practice tests
+- `copy_slides(course_path: Path, publish_path: Path) -> int` - Copy slides
+- `copy_slides_to_modules(course_path: Path, publish_path: Path) -> int` - Copy slides to modules
+- `flatten_module(module_path: Path) -> int` - Flatten module directory
+- `flatten_published(publish_root: Path) -> Dict[str, Any]` - Flatten all published directories
+- `reorganize_to_categories(publish_path: Path) -> Dict[str, Any]` - Reorganize to category dirs
 
 **Used by**: Publishing scripts
 
@@ -362,23 +374,55 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 - `validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]` - Validate syllabus outputs (flat structure)
 - `validate_published_directory(published_dir: Path, course: str) -> Dict[str, Any]` - Validate published directory
 - `run_validation(course: str, published_dir: Path) -> Dict[str, Any]` - Run full validation suite
-
-**Configuration** (`config.py`):
-
-- `EXPECTED_FORMATS`: Required output formats (`["pdf", "docx", "html", "txt"]`)
-- `EXPECTED_STUDY_GUIDE_FILES`: Required study guide files per module
-- `OPTIONAL_STUDY_GUIDE_FILES`: Optional files (e.g., MP3 audio narration)
-- `SYLLABUS_REQUIRED_FORMATS` / `SYLLABUS_OPTIONAL_FORMATS`: Format requirements for syllabus
-
-**Utility Functions** (`utils.py`):
-
-- `count_files_by_extension(directory: Path) -> Dict[str, int]` - Count files by extension
-- `get_module_directories(course_dir: Path) -> List[Path]` - Get all module directories
-- `check_study_guide_files(module_path: Path) -> Dict[str, bool]` - Check study guide files exist
-- `check_output_directory_structure(module_path: Path) -> Dict[str, Any]` - Validate output structure
-- `check_lab_outputs(labs_dir: Path) -> Dict[str, Any]` - Validate lab outputs
+- `generate_validation_report(course_name: str) -> Dict[str, Any]` - Generate validation report
+- `get_output_summary(course_dir: Path) -> Dict[str, Any]` - Get output file summary
 
 **Used by**: `scripts/validate_outputs.py`, `scripts/publish_all.py`
+
+### Content Processing
+
+**Purpose**: Content transformation and normalization
+
+**Location**: `src/content_processing/`
+
+**Standalone**: Yes - no dependencies on other modules
+
+**Dependencies**: None (pure text processing)
+
+**Key Functions**:
+
+- `process_questions_file(file_path: Path, dry_run: bool, verbose: bool) -> Tuple[bool, int]`
+- `renumber_questions_in_course(repo_root: Path, courses: List[str], dry_run: bool) -> Dict[str, Any]`
+
+**Utility Functions**:
+
+- `extract_questions_from_sectioned(content: str) -> List[str]`
+- `format_as_continuous(questions: List[str]) -> str`
+- `normalize_whitespace(content: str) -> str`
+- `extract_headers(content: str) -> List[Tuple[int, str]]`
+- `count_questions(content: str) -> Dict[str, int]`
+- `extract_numbered_items(content: str) -> List[str]`
+- `validate_question_format(content: str) -> Dict[str, Any]`
+
+**Used by**: `scripts/renumber_questions.py`
+
+### Shared Utilities
+
+**Purpose**: Cross-module file utility functions
+
+**Location**: `src/shared/`
+
+**Standalone**: Yes - no dependencies on other modules
+
+**Dependencies**: None (pathlib only)
+
+**Key Functions**:
+
+- `ensure_output_directory(output_path: Path) -> None` - Create output directories as needed
+- `read_markdown_file(file_path: Path) -> str` - Read markdown file with encoding
+- `find_files(directory: Path, patterns: List[str]) -> List[Path]` - Recursive file search
+
+**Used by**: Multiple modules across the codebase
 
 ## Code Organization
 
@@ -386,7 +430,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 ```text
 software/
-├── src/              # Source code (15 modules)
+├── src/              # Source code (16 modules)
 │   ├── batch_processing/
 │   ├── canvas_integration/
 │   ├── content_processing/
@@ -399,6 +443,7 @@ software/
 │   ├── module_organization/
 │   ├── publish/
 │   ├── schedule/
+│   ├── shared/
 │   ├── speech_to_text/
 │   ├── text_to_speech/
 │   └── validation/

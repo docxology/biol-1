@@ -1,6 +1,6 @@
 # Source Code Technical Documentation
 
-**Test Coverage: 81%** (614 tests passed, 6 skipped)
+**Test Coverage: 85%** (612 tests passed, 5 skipped)
 
 ## Code Structure
 
@@ -874,6 +874,116 @@ def get_lab_template(template_name: str = "basic") -> str:
     pass
 ```
 
+#### Content Processing Module
+
+**File**: `src/content_processing/main.py`
+
+```python
+def process_questions_file(file_path: Path, dry_run: bool = False, verbose: bool = False) -> Tuple[bool, int]:
+    """
+    Process a single questions.md file, converting sectioned numbering to continuous.
+    
+    Args:
+        file_path: Path to the questions.md file
+        dry_run: If True, don't modify the file
+        verbose: If True, print detailed progress
+    
+    Returns:
+        Tuple of (was_changed, question_count)
+    """
+    pass
+
+def renumber_questions_in_course(repo_root: Path, courses: List[str], dry_run: bool = False) -> Dict[str, Any]:
+    """
+    Process all questions files in specified courses.
+    
+    Args:
+        repo_root: Root path of the repository
+        courses: List of course identifiers (e.g., ['biol-1', 'biol-8'])
+        dry_run: If True, don't modify files
+    
+    Returns:
+        Dictionary with results per course
+    """
+    pass
+```
+
+**File**: `src/content_processing/utils.py`
+
+```python
+def extract_questions_from_sectioned(content: str) -> List[str]:
+    """Extract questions from sectioned bullet format."""
+    pass
+
+def format_as_continuous(questions: List[str]) -> str:
+    """Format questions as a continuously numbered list."""
+    pass
+
+def normalize_whitespace(content: str) -> str:
+    """Clean up whitespace in markdown content."""
+    pass
+
+def extract_headers(content: str) -> List[Tuple[int, str]]:
+    """Extract headers with their levels from markdown content."""
+    pass
+
+def count_questions(content: str) -> Dict[str, int]:
+    """Count questions by type (numbered, bulleted)."""
+    pass
+
+def extract_numbered_items(content: str) -> List[str]:
+    """Extract numbered list items from content."""
+    pass
+
+def validate_question_format(content: str) -> Dict[str, Any]:
+    """Validate questions.md format and return issues."""
+    pass
+```
+
+#### Shared Module
+
+**File**: `src/shared/file_utils.py`
+
+```python
+def ensure_output_directory(output_path: Path) -> None:
+    """
+    Ensure output directory exists, creating it if necessary.
+    Handles both file paths (creates parent dir) and directory paths.
+    
+    Args:
+        output_path: Path to output file or directory
+    """
+    pass
+
+def read_markdown_file(file_path: Path) -> str:
+    """
+    Read markdown file content.
+    
+    Args:
+        file_path: Path to markdown file
+    
+    Returns:
+        File content as string
+    
+    Raises:
+        FileNotFoundError: If file doesn't exist
+    """
+    pass
+
+def find_files(directory: Path, patterns: List[str]) -> List[Path]:
+    """
+    Find files matching any of the given glob patterns recursively.
+    
+    Args:
+        directory: Directory to search
+        patterns: List of glob patterns (e.g. ["*.md", "*.markdown"])
+    
+    Returns:
+        Sorted list of matching file paths
+    """
+    pass
+```
+
 #### Publish Module
 
 **File**: `src/publish/main.py`
@@ -903,33 +1013,51 @@ def publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]
 
 ```python
 def get_course_config(course_name: str) -> Dict[str, str]:
-    """
-    Get configuration for a specific course.
-    
-    Args:
-        course_name: Name of the course directory (e.g., 'biol-1')
-    
-    Returns:
-        Dictionary with configuration options
-    """
+    """Get configuration for a specific course."""
     pass
 
-def copy_directory_contents(
-    src: Path,
-    dst: Path,
-    exclude_patterns: Optional[List[str]] = None
-) -> int:
-    """
-    Copy contents of source directory to destination.
-    
-    Args:
-        src: Source directory path
-        dst: Destination directory path
-        exclude_patterns: List of glob patterns to exclude
-    
-    Returns:
-        Number of files copied
-    """
+def copy_directory_contents(src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None) -> int:
+    """Copy contents of source directory to destination. Returns number of files copied."""
+    pass
+
+def clean_directory(directory: Path) -> int:
+    """Remove all files from a directory. Returns count of removed files."""
+    pass
+
+def clean_published(publish_root: Path, course: str) -> Dict[str, Any]:
+    """Clean the published directory for a specific course."""
+    pass
+
+def copy_exams(course_path: Path, publish_path: Path) -> int:
+    """Copy exam materials to published directory."""
+    pass
+
+def copy_labs_and_dashboards(course_path: Path, publish_path: Path) -> int:
+    """Copy lab manuals and dashboards to published directory."""
+    pass
+
+def copy_practice_tests(course_path: Path, publish_path: Path) -> int:
+    """Copy practice tests to published directory."""
+    pass
+
+def copy_slides(course_path: Path, publish_path: Path) -> int:
+    """Copy slides to published directory."""
+    pass
+
+def copy_slides_to_modules(course_path: Path, publish_path: Path) -> int:
+    """Copy slides into their corresponding module directories."""
+    pass
+
+def flatten_module(module_path: Path) -> int:
+    """Flatten a module directory by moving files from subdirectories to root."""
+    pass
+
+def flatten_published(publish_root: Path) -> Dict[str, Any]:
+    """Flatten all published module directories."""
+    pass
+
+def reorganize_to_categories(publish_path: Path) -> Dict[str, Any]:
+    """Reorganize published materials into category-based directories."""
     pass
 ```
 

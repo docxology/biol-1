@@ -36,6 +36,8 @@ Scripts do NOT contain business logic. They:
 | `flatten_published.py` | `publish.utils` | Flatten directory structure |
 | `renumber_questions.py` | `content_processing` | Question renumbering |
 | `import_legacy_materials.py` | `legacy_import` | Import legacy format |
+| `utils.py` | (standalone) | Shared CLI helper functions |
+| `remediate_docs.py` | (standalone) | Batch generate missing README.md/AGENTS.md |
 
 ---
 

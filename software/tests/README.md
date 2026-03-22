@@ -6,7 +6,7 @@ This directory contains test files for validating software functionality. Test s
 
 ## Test Statistics
 
-- **614 tests collected** (verify with `uv run pytest --collect-only`)
+- **612 tests collected** (verify with `uv run pytest --collect-only`)
 - Coverage measured via `uv run pytest --cov=src --cov-report=html`
 
 ## Test Organization
@@ -18,21 +18,36 @@ Tests are organized to mirror the source code structure:
 | Test File | Coverage For |
 |-----------|--------------|
 | `test_batch_processing_main.py` | Batch processing functionality |
+| `test_batch_processing_orchestration.py` | Batch processing orchestration |
+| `test_batch_processing_utils.py` | Batch processing utility functions |
 | `test_canvas_integration_main.py` | Canvas LMS integration |
 | `test_canvas_integration_utils.py` | Canvas utility functions |
+| `test_content_processing_main.py` | Content processing functionality |
+| `test_content_processing_utils.py` | Content processing utility functions |
+| `test_content_processing_utils_extended.py` | Extended content processing utils |
 | `test_file_validation_main.py` | File validation functionality |
 | `test_file_validation_utils.py` | Validation utility functions |
 | `test_format_conversion_main.py` | Format conversion functionality |
+| `test_format_conversion_utils.py` | Format conversion utility functions |
 | `test_html_website_features.py` | HTML website configuration |
 | `test_html_website_utils.py` | HTML website utility functions |
+| `test_lab_manual_main.py` | Lab manual rendering |
+| `test_lab_manual_utils.py` | Lab manual utility functions |
+| `test_legacy_import_main.py` | Legacy import functionality |
+| `test_legacy_import_main_extended.py` | Extended legacy import tests |
+| `test_legacy_import_utils.py` | Legacy import utility functions |
 | `test_markdown_to_pdf_main.py` | PDF conversion |
 | `test_module_organization_main.py` | Module structure creation |
 | `test_module_organization_main_extended.py` | Extended module organization tests |
 | `test_module_organization_utils.py` | Module organization utilities |
+| `test_publish_main.py` | Publish functionality |
+| `test_publish_utils.py` | Publish utility functions |
 | `test_schedule_main.py` | Schedule processing functionality |
 | `test_schedule_utils.py` | Schedule utility functions |
 | `test_speech_to_text_main.py` | Speech-to-text functionality |
 | `test_text_to_speech_main.py` | Text-to-speech functionality |
+| `test_validation_main.py` | Validation functionality |
+| `test_validation_utils.py` | Validation utility functions |
 
 ### Integration and Verification Tests
 

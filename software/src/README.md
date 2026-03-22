@@ -8,8 +8,8 @@ Source code for course management software utilities.
 
 ## Statistics
 
-- **15 Modules** across 5 layers
-- **614 Tests** (81% coverage)
+- **16 Modules** across 5 layers
+- **612 Tests** (85% coverage)
 - **6 Output Formats**: PDF, DOCX, HTML, TXT, MD, MP3
 
 ---
@@ -30,7 +30,7 @@ Layer 2: Extended (format_conversion)
 Layer 1: Core (markdown_to_pdf, text_to_speech, speech_to_text)
               ↑
 Layer 0: Independent (module_organization, file_validation, publish, 
-         content_processing, validation, lab_manual, legacy_import)
+         content_processing, validation, lab_manual, legacy_import, shared)
 ```
 
 ### Module Reference
@@ -51,6 +51,7 @@ Layer 0: Independent (module_organization, file_validation, publish,
 | `schedule` | 3 | Schedule processing | `process_schedule()` |
 | `speech_to_text` | 1 | Audio transcription | `transcribe_audio()` |
 | `text_to_speech` | 1 | Audio generation | `generate_speech()` |
+| `shared` | 0 | Cross-module file utilities | `ensure_output_directory()` |
 | `validation` | 0 | Output validation | `validate_published_directory()` |
 
 ---
@@ -159,6 +160,7 @@ Each module has its own AGENTS.md with:
 | publish | [AGENTS.md](publish/AGENTS.md) |
 | schedule | [AGENTS.md](schedule/AGENTS.md) |
 | speech_to_text | [AGENTS.md](speech_to_text/AGENTS.md) |
+| shared | [file_utils.py](shared/file_utils.py) |
 | text_to_speech | [AGENTS.md](text_to_speech/AGENTS.md) |
 | validation | [AGENTS.md](validation/AGENTS.md) |
 
