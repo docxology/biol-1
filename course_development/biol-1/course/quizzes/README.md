@@ -6,7 +6,7 @@ This directory contains module quizzes for BIOL-1: Introduction to Biology (Peli
 
 ## Quiz Structure
 
-One quiz per module (14 total), each worth 10 points.
+One quiz per module (15 total), each worth 10 points.
 
 | Quiz | Module Topic |
 |------|--------------|
@@ -21,9 +21,10 @@ One quiz per module (14 total), each worth 10 points.
 | 09 | Inheritance Genetics |
 | 10 | Epigenetics |
 | 11 | Genomics & Biotechnology |
-| 15 | Darwin & Evolution |
-| 16 | Microevolution |
-| 17 | Speciation & Macroevolution |
+| 12 | Darwin & Evolution |
+| 13 | Microevolution |
+| 14 | Speciation & Macroevolution |
+| 15 | Ecology |
 
 ## File Naming Convention
 
@@ -57,8 +58,6 @@ One quiz per module (14 total), each worth 10 points.
 - [ ] module-13_quiz.md + key
 - [ ] module-14_quiz.md + key
 - [ ] module-15_quiz.md + key
-- [ ] module-16_quiz.md + key
-- [ ] module-17_quiz.md + key
 
 ## Template
 

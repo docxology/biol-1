@@ -6,7 +6,7 @@ This directory contains all public course materials for **BIOL-1: Biology 1** (P
 
 ## Course Structure
 
-The course covers 17 modules progressing through foundational biology concepts:
+The course covers 15 modules progressing through foundational biology concepts:
 
 ### Modules
 
@@ -23,9 +23,10 @@ The course covers 17 modules progressing through foundational biology concepts:
 | 09 | Inheritance Genetics | [module-09-inheritance-genetics](module-09-inheritance-genetics/) |
 | 10 | Epigenetics | [module-10-epigenetics](module-10-epigenetics/) |
 | 11 | Genomics & Biotechnology | [module-11-genomics-biotechnology](module-11-genomics-biotechnology/) |
-| 15 | Darwin & Evolution | [module-15-darwin-evolution](module-15-darwin-evolution/) |
-| 16 | Microevolution | [module-16-microevolution](module-16-microevolution/) |
-| 17 | Speciation & Macroevolution | [module-17-speciation-macroevolution](module-17-speciation-macroevolution/) |
+| 12 | Darwin & Evolution | [module-12-darwin-evolution](module-12-darwin-evolution/) |
+| 13 | Microevolution | [module-13-microevolution](module-13-microevolution/) |
+| 14 | Speciation & Macroevolution | [module-14-speciation-macroevolution](module-14-speciation-macroevolution/) |
+| 15 | Ecology | [module-15-ecology](module-15-ecology/) |
 
 ## Directory Organization
 

@@ -2,7 +2,7 @@
 
 **College of the Redwoods | Pelican Bay | Spring 2026**
 
-Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution. This course is structured as 17 weekly modules with integrated study materials, laboratory protocols, and assessments.
+Introductory biology course covering the fundamental principles of life science, from the molecular level through ecology. This course is structured as 15 weekly modules with integrated study materials, laboratory protocols, and assessments.
 
 ---
 
@@ -11,7 +11,7 @@ Introductory biology course covering the fundamental principles of life science,
 ```
 biol-1/
 ├── course/              # All course content organized by module
-│   ├── module-01 → 17/  # Weekly modules (keys-to-success + questions)
+│   ├── module-01 → 15/  # Weekly modules (keys-to-success + questions)
 │   ├── labs/            # Laboratory protocols and interactive dashboards
 │   ├── exams/           # Exam templates
 │   └── quizzes/         # Quiz templates
@@ -40,9 +40,10 @@ Each module contains two source files (`keys-to-success.md`, `questions.md`) and
 | 09 | [Inheritance Genetics](course/module-09-inheritance-genetics/) | Mendelian genetics, Punnett squares, polygenic traits, pedigrees | [Keys](course/module-09-inheritance-genetics/keys-to-success.md) · [Questions](course/module-09-inheritance-genetics/questions.md) |
 | 10 | [Epigenetics](course/module-10-epigenetics/) | Gene regulation, epigenetic mechanisms, methylation, histone modification | [Keys](course/module-10-epigenetics/keys-to-success.md) · [Questions](course/module-10-epigenetics/questions.md) |
 | 11 | [Genomics & Biotechnology](course/module-11-genomics-biotechnology/) | PCR, gel electrophoresis, CRISPR, genomic applications | [Keys](course/module-11-genomics-biotechnology/keys-to-success.md) · [Questions](course/module-11-genomics-biotechnology/questions.md) |
-| 15 | [Darwin & Evolution](course/module-15-darwin-evolution/) | Natural selection, evidence for evolution, Darwin's theory | [Keys](course/module-15-darwin-evolution/keys-to-success.md) · [Questions](course/module-15-darwin-evolution/questions.md) |
-| 16 | [Microevolution](course/module-16-microevolution/) | Population genetics, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-16-microevolution/keys-to-success.md) · [Questions](course/module-16-microevolution/questions.md) |
-| 17 | [Speciation & Macroevolution](course/module-17-speciation-macroevolution/) | Species concepts, speciation mechanisms, phylogenetics | [Keys](course/module-17-speciation-macroevolution/keys-to-success.md) · [Questions](course/module-17-speciation-macroevolution/questions.md) |
+| 12 | [Darwin & Evolution](course/module-12-darwin-evolution/) | Natural selection, evidence for evolution, Darwin's theory | [Keys](course/module-12-darwin-evolution/keys-to-success.md) · [Questions](course/module-12-darwin-evolution/questions.md) |
+| 13 | [Microevolution](course/module-13-microevolution/) | Population genetics, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-13-microevolution/keys-to-success.md) · [Questions](course/module-13-microevolution/questions.md) |
+| 14 | [Speciation & Macroevolution](course/module-14-speciation-macroevolution/) | Species concepts, speciation mechanisms, phylogenetics | [Keys](course/module-14-speciation-macroevolution/keys-to-success.md) · [Questions](course/module-14-speciation-macroevolution/questions.md) |
+| 15 | [Ecology](course/module-15-ecology/) | Populations, communities, ecosystems, biogeochemical cycles, biodiversity | [Keys](course/module-15-ecology/keys-to-success.md) · [Questions](course/module-15-ecology/questions.md) |
 
 ### Module Output Formats
 
@@ -159,9 +160,8 @@ Slides are in [`resources/slides/`](resources/slides/) as PDF files in two forma
 | 13 | [Full](resources/slides/module-13-slides-full.pdf) | [Notes](resources/slides/module-13-slides-notes.pdf) |
 | 14 | [Full](resources/slides/module-14-slides-full.pdf) | [Notes](resources/slides/module-14-slides-notes.pdf) |
 | 15 | [Full](resources/slides/module-15-slides-full.pdf) | [Notes](resources/slides/module-15-slides-notes.pdf) |
-| 16 | [Full](resources/slides/module-16-slides-full.pdf) | [Notes](resources/slides/module-16-slides-notes.pdf) |
 
-> Slides for modules 09 and 17 are not yet available.
+> Slides for modules 09 and some later modules are not yet available.
 
 ---
 
