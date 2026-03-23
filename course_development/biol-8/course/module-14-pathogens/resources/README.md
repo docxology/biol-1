@@ -6,4 +6,4 @@ This directory contains resources for Resources.
 
 ## Contents
 
-- `Module 13 - Pathogens.pdf`
+- `Module 14 - Pathogens.pdf`

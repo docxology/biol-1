@@ -1,4 +1,4 @@
-# Module 13: Pathogens — Keys to Success
+# Module 14: Pathogens — Keys to Success
 
 ## Key Learning Objectives
 

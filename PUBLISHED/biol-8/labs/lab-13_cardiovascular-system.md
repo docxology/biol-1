@@ -1,4 +1,4 @@
-# Lab Protocol: Module 14 — Cardiovascular System
+# Lab Protocol: Module 13 — Cardiovascular System
 
 ## Lab Title
 *[To be determined]*

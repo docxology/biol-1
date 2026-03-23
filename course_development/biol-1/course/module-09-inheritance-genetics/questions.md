@@ -8,7 +8,7 @@
 
 4. What is the difference between homozygous (AA, aa) and heterozygous (Aa)?
 
-5. Cross Tt × Tt using a Punnett square. What is the phenotypic ratio?
+5. Cross Tt × Tt using a Punnett square. What is the genotypic ratio?
 
 6. What is a test cross? What is it used for?
 
@@ -35,7 +35,3 @@
 17. How is the inheritance of human height different from the inheritance of pea plant height?
 
 18. True or False: If you know someone's genotype, you always know their phenotype. Explain.
-
-19. What is Mendel's Law of Segregation? How does it connect to meiosis?
-
-20. What is Mendel's Law of Independent Assortment?
