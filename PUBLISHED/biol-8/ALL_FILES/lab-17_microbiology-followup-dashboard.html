@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 17 Dashboard: Microbiology Follow-up | BIOL-8</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f17;--card:#1a1a2e;--accent:#2a9d8f;--blue:#3b82f6;
+  --text:#e8e8f0;--muted:#8b8ba0;--border:rgba(255,255,255,0.08);
+  --font:'Inter',system-ui,sans-serif;--radius:12px;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:260px;background:var(--card);position:fixed;top:0;left:0;height:100vh;padding:24px 20px;border-right:1px solid var(--border)}
+.sidebar h1{font-size:14px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.sidebar p{font-size:12px;color:var(--muted);margin-top:6px}
+.sidebar nav{margin-top:24px;display:flex;flex-direction:column;gap:4px}
+.sidebar a{color:var(--muted);text-decoration:none;font-size:13px;padding:8px 12px;border-radius:8px}
+.sidebar a:hover{background:rgba(255,255,255,0.05);color:var(--text)}
+.main{margin-left:260px;flex:1;padding:36px;max-width:900px}
+.hero{background:linear-gradient(135deg,#102820,#1a1030);border-radius:var(--radius);padding:36px;margin-bottom:32px;border:1px solid var(--border)}
+.hero h2{font-size:28px;font-weight:800;margin-bottom:10px}
+.hero p{color:var(--muted);max-width:640px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-size:12px;padding:6px 14px;border-radius:20px;background:rgba(255,255,255,0.06);border:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.mod{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.mod h3{font-size:15px;font-weight:700;margin-bottom:8px;color:#fff}
+.mod ul{margin-left:18px;font-size:13px;color:var(--muted)}
+.mod ul li{margin:4px 0}
+.note{margin-top:32px;padding:20px;border-left:4px solid var(--blue);background:rgba(59,130,246,0.08);border-radius:0 var(--radius) var(--radius) 0;font-size:14px}
+@media(max-width:768px){.sidebar{display:none}.main{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <h1>BIOL-8</h1>
+  <p>Lab 17 &mdash; Microbiology follow-up</p>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#focus">Interpretation focus</a>
+    <a href="#protocol">Lab protocol</a>
+  </nav>
+</aside>
+<main class="main">
+  <section class="hero" id="overview">
+    <h2>After incubation</h2>
+    <p>Use this dashboard with the printable protocol. You connect <strong>zones of inhibition</strong> on antibiotic discs to <strong>cell envelope type</strong> (Gram-positive vs. Gram-negative) and <strong>drug target classes</strong>. You also interpret <strong>environmental</strong> growth from air-exposure plates.</p>
+    <div class="tags">
+      <span class="tag">Lab 14 prerequisite</span>
+      <span class="tag">Disc diffusion</span>
+      <span class="tag">Gram logic</span>
+      <span class="tag">Colony morphology</span>
+    </div>
+  </section>
+  <section id="focus">
+    <h2 style="font-size:20px;margin-bottom:20px;font-weight:800">Interpretation focus</h2>
+    <div class="grid">
+      <div class="mod">
+        <h3>Part A &mdash; Discs</h3>
+        <ul>
+          <li>Match zones to recorded A&ndash;D antibiotics</li>
+          <li>Compare to typical Gram category of each strain</li>
+          <li>Separate &ldquo;drug can&rsquo;t reach target&rdquo; vs. resistance vs. technique</li>
+        </ul>
+      </div>
+      <div class="mod">
+        <h3>Part B &mdash; Air plates</h3>
+        <ul>
+          <li>Colony count, color, margin, elevation</li>
+          <li>Bacterial vs. fungal hints</li>
+          <li>Location-to-growth reasoning</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <p class="note" id="protocol">
+    <strong>Lab file:</strong> complete reflections in
+    <code style="background:rgba(0,0,0,0.25);padding:2px 8px;border-radius:4px">lab-17_microbiology-followup.md</code>
+    (PDF/HTML via the lab manual pipeline). Schedule aligns with <strong>Lab 14</strong> incubation return (see course <code>Schedule.md</code>).
+  </p>
+</main>
+</div>
+</body>
+</html>

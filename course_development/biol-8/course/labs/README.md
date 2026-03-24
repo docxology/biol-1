@@ -24,6 +24,7 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 | [Lab 14](lab-14_microbiology.md) | Microbiology | ✅ Complete | Module 14 |
 | [Lab 15](lab-15_cardiopulmonary.md) | Cardiopulmonary System | ✅ Complete | Module 15 |
 | [Lab 16](lab-16_exam-03-review.md) | Exam 03 Review | ✅ Complete | Modules 11-15 |
+| [Lab 17](lab-17_microbiology-followup.md) | Microbiology Follow-up | ✅ Complete | Lab 14 (after incubation) |
 
 ## Lab Format
 
@@ -76,7 +77,7 @@ Generated files are stored in `output/`:
 
 Labs follow the pattern: `lab-XX_topic-name.md`
 
-- `XX` = Two-digit lab number (01-16)
+- `XX` = Two-digit lab number (01-17)
 - `topic-name` = Hyphenated topic description
 
 ## Related Documentation

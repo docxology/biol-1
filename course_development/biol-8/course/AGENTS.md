@@ -26,7 +26,7 @@ course/
 │   ├── module-01_quiz_key.md   # Answer key
 │   └── ... (15 modules × 2 files)
 │
-├── labs/                        # Lab protocols (16 files; Lab 16 = Exam 03 review)
+├── labs/                        # Lab protocols (17 files; Lab 16 = Exam 03 review; Lab 17 = Microbiology follow-up)
 │   ├── lab-01_measurement-methods.md
 │   └── ... (see labs/README.md)
 │

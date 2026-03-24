@@ -40,6 +40,7 @@ Every dashboard corresponds 1:1 with a lab protocol file. Some labs have multipl
 | `lab-14_microbiology-dashboard.html` | Microbiology | — | Gram stain, microbe comparison |
 | `lab-15_cardiopulmonary-dashboard.html` | Cardiopulmonary | — | Heart, vessels, gas exchange |
 | `lab-16_exam-03-review-dashboard.html` | Exam 03 review | — | Modules 11–15 checklist |
+| `lab-17_microbiology-followup-dashboard.html` | Microbiology follow-up | — | Lab 14 disc + air plate interpretation |
 
 ---
 

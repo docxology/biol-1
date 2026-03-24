@@ -91,7 +91,7 @@ Answer keys include explanations for all questions.
 
 ### Labs
 
-Sixteen laboratory periods (Labs 01–16); Lab 16 is an Exam 03 review aligned with Modules 11–15.
+Seventeen laboratory periods (Labs 01–17); Lab 16 is an Exam 03 review aligned with Modules 11–15, and Lab 17 is the microbiology follow-up for Lab 14 after incubation (paired with Systems Integration week as scheduled).
 
 ## Module Contents
 

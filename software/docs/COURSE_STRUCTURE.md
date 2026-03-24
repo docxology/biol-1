@@ -133,10 +133,11 @@ course/labs/
 ├── lab-14_microbiology.md
 ├── lab-15_cardiopulmonary.md
 ├── lab-16_exam-03-review.md
+├── lab-17_microbiology-followup.md
 ├── dashboards/                    # Interactive HTML dashboards
 │   ├── lab-01_measurement-methods-dashboard.html
 │   ├── ...
-│   └── lab-16_exam-03-review-dashboard.html
+│   └── lab-17_microbiology-followup-dashboard.html
 └── output/                        # Generated PDFs and HTML
 ```
 

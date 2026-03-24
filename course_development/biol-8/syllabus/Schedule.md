@@ -20,7 +20,7 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 10 | 3/24 - 3/26 | Module 13: Nervous System & Lab 13: Nervous System | Module 14: Microbiology & Lab 14: Microbiology | |
 | 11 | 3/31 - 4/2 | No Class | Module 15: Cardiopulmonary System & Lab 15: Cardiopulmonary | Holiday (March 31) |
 | 12 | 4/7 - 4/9 | Lab 16: Exam 03 Review | **Exam 03** | Exam covers Modules 11-15 |
-| 13 | 4/14 - 4/16 | Systems Integration Lab | Comprehensive Review | |
+| 13 | 4/14 - 4/16 | Lab 17: Microbiology follow-up (Lab 14 cultures) & Systems Integration Lab | Comprehensive Review | |
 | 14 | 4/21 - 4/23 | Lab Practicum | Final Review | |
 | 15 | 4/28 - 4/30 | Final Review | Final Review | |
 | Finals | 5/5 - 5/7 | **Final Exam** | Course Wrap-up | Finals Week |

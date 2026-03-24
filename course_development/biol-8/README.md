@@ -87,6 +87,7 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 14 | [Lab 14](course/labs/lab-14_microbiology.md) | Microbiology | Complete |
 | 15 | [Lab 15](course/labs/lab-15_cardiopulmonary.md) | Cardiopulmonary System | Complete |
 | 16 | [Lab 16](course/labs/lab-16_exam-03-review.md) | Exam 03 Review | Complete |
+| 17 | [Lab 17](course/labs/lab-17_microbiology-followup.md) | Microbiology Follow-up | Complete |
 
 ### Lab Output
 
@@ -117,6 +118,7 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 | 14 | [Microbiology](course/labs/dashboards/lab-14_microbiology-dashboard.html) |
 | 15 | [Cardiopulmonary System](course/labs/dashboards/lab-15_cardiopulmonary-dashboard.html) |
 | 16 | [Exam 03 Review](course/labs/dashboards/lab-16_exam-03-review-dashboard.html) |
+| 17 | [Microbiology Follow-up](course/labs/dashboards/lab-17_microbiology-followup-dashboard.html) |
 
 ---
 

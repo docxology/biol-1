@@ -93,13 +93,13 @@ Answer in order. Each numbered item matches one response area below.
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**1.** Is this tissue more consistent with **PNS** (e.g., nerve) or **CNS** (e.g., spinal cord or brain)? What evidence supports your answer?
+**1.** **Location in the body:** Where is this tissue most likely found—**peripheral nerve**, **spinal cord**, **brain**, or a **ganglion** next to the cord? Name the region as specifically as you can (e.g., “dorsal root ganglion,” “outer cerebrum,” “nerve trunk in the arm”). What is **one main job** this tissue performs in that place?
 
-{fill:textarea rows=3}
+{fill:textarea rows=4}
 
-**2.** Name **one** structure you labeled and state its job in one sentence.
+**2.** **Structure and function:** Choose **one** structural detail you drew or saw (examples: myelin/sheath pattern, large round cell bodies, layered cortex, central canal, tight bundles of fibers). How does that **structure** help the tissue do its job (e.g., speed of signal, integration of many inputs, cushioning/protection)?
 
-{fill:textarea rows=2}
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---
@@ -133,13 +133,13 @@ Answer in order. Each numbered item matches one response area below.
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**3.** How does this slide **differ** from Slide 1 in overall organization (shape of regions, packing of cells, presence of a canal or fascicles)?
+**3.** **Compare structure and placement:** How does the **arrangement** of cells and fibers on Slide 2 differ from Slide 1 (e.g., layers vs. bundles, cell bodies clustered vs. elongated fibers, presence of a fluid space)? Given that arrangement, **where in the body** do you think Slide 2 comes from, and what **different** function does that region serve compared with Slide 1?
 
-{fill:textarea rows=3}
+{fill:textarea rows=5}
 
-**4.** What **one** lecture concept does this slide best illustrate?
+**4.** **Function in the whole organism:** Describe **one** way this tissue supports something you do every day—**sensation**, **voluntary movement**, **reflex**, **memory/thinking**, or **control of organs** (autonomic). Tie your answer to what you actually see on the slide.
 
-{fill:textarea rows=2}
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---
@@ -171,13 +171,13 @@ Answer in order. Each numbered item matches one response area below.
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**5.** If regions on this slide represent **gray matter** vs. **white matter**, how could you tell under the microscope?
+**5.** **Gray vs. white matter / CNS vs. PNS:** Using what you see (nuclei density, fiber texture, any canal or meningeal space), decide whether this sample is mainly **gray matter**, **white matter**, or **peripheral nerve/ganglion** tissue. **Where** in the brain or spinal cord (or PNS) would you expect to find *this* pattern, and what **role** does that region play (relay, motor output, sensory integration, etc.)?
 
-{fill:textarea rows=3}
+{fill:textarea rows=5}
 
-**6.** On your high-power sketch, add a **simple arrow** showing the direction information might travel *if* this were part of a reflex-related pathway (best-effort from what you see). In one sentence, explain your arrow.
+**6.** On your high-power sketch, draw a **simple arrow** for the most likely **direction of signal flow** (toward the CNS, away from it, or between regions inside the CNS). Then explain in **two or three sentences** what **effect** that pathway might produce for the body (e.g., muscle contraction, conscious feeling, hormone change)—even if your slide ID is uncertain, give your **best reasoning**.
 
-{fill:textarea rows=2}
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---

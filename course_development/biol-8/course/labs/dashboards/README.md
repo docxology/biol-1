@@ -24,3 +24,4 @@ Refer to the root `course/labs/README.md` for lab markdown directive syntax.
 - `lab-14_microbiology-dashboard.html`
 - `lab-15_cardiopulmonary-dashboard.html`
 - `lab-16_exam-03-review-dashboard.html`
+- `lab-17_microbiology-followup-dashboard.html`
