@@ -8,9 +8,9 @@
 
 ## Overview
 
-You will work in **two main parts**: (1) **microscopic anatomy** of nervous-system prepared slides—identify each slide, use the compound microscope, draw what you see, and answer focused questions; (2) **gross anatomy** of a **preserved sheep brain**—orient the specimen, identify major external and (if demonstrated) internal landmarks, and relate them to human neuroanatomy at a survey level.
+You will work in **two main parts**: (1) **microscopic anatomy** of **three** nervous-system prepared slides—identify each slide, use the compound microscope, draw what you see, and answer focused questions; (2) **gross anatomy** of a **preserved sheep brain**—orient the specimen, identify major **external** landmarks, then study a **midsagittal (pre-cut) half-brain** for internal landmarks, relating both to human neuroanatomy at a survey level.
 
-**Materials:** Compound microscope · Prepared nervous-system slides (set provided in lab) · Lens paper · Sheep brain (preserved) · Dissection tray · Gloves · Probe (optional)
+**Materials:** Compound microscope · **Three** prepared nervous-system slides · Lens paper · Sheep brain (preserved), including **midsagittal section** · Dissection tray · Gloves · Probe (optional)
 
 ---
 
@@ -22,7 +22,8 @@ By the end of this lab, you will be able to:
 2. **Identify and record** each slide by tissue/region and label key structures in your drawings.
 3. **Compare** features of peripheral nerve tissue vs. CNS tissue visible at the light-microscope level.
 4. **Orient** a sheep brain (dorsal/ventral, anterior/posterior, left/right) and name major external regions.
-5. **Relate** sheep brain landmarks to the human brain divisions discussed in lecture (cerebrum, cerebellum, brainstem).
+5. **Identify** major structures on a **midsagittal** brain section (e.g., corpus callosum, cerebellum, brainstem).
+6. **Relate** sheep brain landmarks to the human brain divisions discussed in lecture (cerebrum, cerebellum, brainstem).
 
 ---
 
@@ -41,26 +42,27 @@ Follow the same focusing sequence as in [Lab 03](lab-03_microscopy.md): **4× �
 
 ---
 
+## Questions 1–13 (throughout this lab)
+
+Answer in order. Each numbered item matches one response area below.
+
 <div style="page-break-after: always;"></div>
 
-## Part 1: Histology — Nervous System Slides
+## Part 1: Histology — Nervous System Slides (Questions 1–6)
 
-> **Goal:** For **each** slide your instructor assigns, write what the slide is, observe it with the microscope, **draw** representative fields, and answer the questions.
+> **Goal:** For **each of the three slides**, record what the slide is, observe with the microscope, **draw** representative fields, and answer **two** numbered questions per slide.
 
-### Slide inventory (fill in as you go)
+### Slide inventory (three slides)
 
-<!-- lab:data-table rows=6 title="Nervous system slides — record each slide" -->
+<!-- lab:data-table rows=3 title="Nervous system slides — record each slide" -->
 | # | Slide label / catalog name (as written on slide) | Tissue or organ (your identification) | Low-power mag (×) | High-power mag (×) |
 |---|------------------------------------------------|----------------------------------------|-------------------|---------------------|
 | 1 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 | 2 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 | 3 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| 4 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| 5 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| 6 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 <!-- /lab:data-table -->
 
-*Typical sets may include (your instructor will confirm): **peripheral nerve** (cross or longitudinal section, myelin/sheath patterns), **spinal cord** cross section (gray vs. white matter, central canal), **dorsal root ganglion**, **cerebral cortex** (layered gray matter), **cerebellum** (folia and branching cells). Adjust row count if fewer or more slides are used.*
+*Typical sets may include (your instructor will confirm): **peripheral nerve** (cross or longitudinal section), **spinal cord** cross section (gray vs. white matter, central canal), **dorsal root ganglion**, **cerebral cortex**, or **cerebellum**.*
 
 ---
 
@@ -91,13 +93,11 @@ Follow the same focusing sequence as in [Lab 03](lab-03_microscopy.md): **4× �
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**Questions — Slide 1**
-
-1. Is this tissue more consistent with **PNS** (e.g., nerve) or **CNS** (e.g., spinal cord or brain)? What evidence supports your answer?
+**1.** Is this tissue more consistent with **PNS** (e.g., nerve) or **CNS** (e.g., spinal cord or brain)? What evidence supports your answer?
 
 {fill:textarea rows=3}
 
-2. Name **one** structure you labeled and state its job in one sentence.
+**2.** Name **one** structure you labeled and state its job in one sentence.
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -133,13 +133,11 @@ Follow the same focusing sequence as in [Lab 03](lab-03_microscopy.md): **4× �
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**Questions — Slide 2**
-
-1. How does this slide **differ** from Slide 1 in overall organization (shape of regions, packing of cells, presence of a canal or fascicles)?
+**3.** How does this slide **differ** from Slide 1 in overall organization (shape of regions, packing of cells, presence of a canal or fascicles)?
 
 {fill:textarea rows=3}
 
-2. What **one** lecture concept does this slide best illustrate?
+**4.** What **one** lecture concept does this slide best illustrate?
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -173,36 +171,22 @@ Follow the same focusing sequence as in [Lab 03](lab-03_microscopy.md): **4× �
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**Questions — Slide 3**
-
-1. If this is **gray matter** vs. **white matter**, how could you tell under the microscope?
+**5.** If regions on this slide represent **gray matter** vs. **white matter**, how could you tell under the microscope?
 
 {fill:textarea rows=3}
 
-2. Draw a **simple arrow** on your high-power sketch showing the direction information might travel *if* this were a reflex-related pathway (best-effort based on what you see).
+**6.** On your high-power sketch, add a **simple arrow** showing the direction information might travel *if* this were part of a reflex-related pathway (best-effort from what you see). In one sentence, explain your arrow.
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-### Additional slides (optional — use if assigned)
-
-If your instructor assigns more than three slides, use the same pattern on separate paper **or** summarize here:
-
-<!-- lab:reflection -->
-**Slide 4+ notes (title, key structures seen, one comparison to another slide in lab):**
-
-{fill:textarea rows=8}
-<!-- /lab:reflection -->
-
----
-
 <div style="page-break-after: always;"></div>
 
-## Part 2: Gross Anatomy — Sheep Brain
+## Part 2: Gross Anatomy — Sheep Brain (Questions 7–13)
 
-> **Goal:** Orient the brain, identify **external** landmarks, then complete the **midsagittal** checklist if your instructor demonstrates or allows a cut specimen.
+> **Goal:** Orient the whole brain, complete the **external** checklist and drawing, then use the **midsagittal (pre-cut) half-brain** to locate internal landmarks and answer the final questions.
 
 ### External anatomy — orientation
 
@@ -213,7 +197,7 @@ With your gloved hands and the brain in the dissection tray:
 3. Confirm **left** vs. **right** hemisphere (mirror images across the longitudinal fissure).
 
 <!-- lab:reflection -->
-**Record your orientation checks (what you looked for on *your* specimen):**
+**7.** Briefly record what you looked for on **your** specimen to confirm anterior vs. posterior and dorsal vs. ventral.
 
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
@@ -260,13 +244,11 @@ Choose **one** standard view (instructor may assign). Sketch the whole brain and
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-**Questions — external anatomy**
-
-1. Which structure is **largest** on the sheep brain relative to the others you labeled, and what general function does that region serve in mammals?
+**8.** Which structure is **largest** on the sheep brain relative to the others you labeled, and what general function does that region serve in mammals?
 
 {fill:textarea rows=3}
 
-2. Name **one** way the sheep brain is similar to a human brain map from lecture, and **one** obvious difference in proportion or shape.
+**9.** Name **one** way the sheep brain is similar to a human brain map from lecture, and **one** obvious difference in proportion or shape.
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
@@ -275,9 +257,9 @@ Choose **one** standard view (instructor may assign). Sketch the whole brain and
 
 <div style="page-break-after: always;"></div>
 
-### Midsagittal section (if demonstrated or on pre-cut specimen)
+### Midsagittal section (pre-cut specimen)
 
-If your lab uses a **midsagittal half-brain**, locate the following. Check when found.
+The lab provides a **midsagittal half-brain**. Locate the following on the **cut surface** and check when found.
 
 **Midsagittal landmarks**
 
@@ -299,7 +281,7 @@ Sketch the **cut surface** and label **corpus callosum**, **cerebellum**, and **
 <!-- /lab:drawing-area -->
 
 <!-- lab:reflection -->
-Why is the corpus callosum classified as white matter, and what would happen to communication between hemispheres if it were severely damaged?
+**10.** Why is the corpus callosum classified as white matter, and what would happen to communication between hemispheres if it were severely damaged?
 
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
@@ -309,19 +291,19 @@ Why is the corpus callosum classified as white matter, and what would happen to 
 ## Synthesis — connect histology to gross anatomy
 
 <!-- lab:reflection -->
-1. Name **one** structure you saw on a **slide** today and the **gross** region it belongs to (e.g., cerebrum, spinal cord, peripheral nerve).
+**11.** Name **one** structure you saw on a **slide** today and the **gross** region it belongs to (e.g., cerebrum, spinal cord, peripheral nerve).
 
 {fill:textarea rows=3}
 
-2. What was the **most difficult** identification today (slide or brain), and what would you do differently next time?
+**12.** What was the **most difficult** identification today (slide or brain), and what would you do differently next time?
 
 {fill:textarea rows=3}
 
-3. List **two** Module 13 lecture topics this lab reinforced.
+**13.** List **two** Module 13 lecture topics this lab reinforced.
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
 
 ---
 
-*Lab 13 — Nervous System. Align slide set and brain specimens with your instructor’s station list before class.*
+*Lab 13 — Nervous System. Three slides; sheep brain with midsagittal section. Align slide set with your instructor’s station list before class.*
