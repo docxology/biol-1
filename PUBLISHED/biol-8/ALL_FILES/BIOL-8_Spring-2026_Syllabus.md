@@ -60,9 +60,9 @@ This course is organized into modules, each focusing on specific biological conc
 - **Module 10**: Tissues
 - **Module 11**: Skeletal System
 - **Module 12**: Muscular System
-- **Module 13**: Pathogens
-- **Module 14**: Cardiovascular System
-- **Module 15**: Respiratory System
+- **Module 13**: Nervous System
+- **Module 14**: Microbiology
+- **Module 15**: Cardiopulmonary System
 
 Each module contains:
 

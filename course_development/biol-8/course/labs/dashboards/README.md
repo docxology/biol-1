@@ -2,9 +2,9 @@
 
 ## Overview
 
-This directory contains laboratory materials for Dashboards.
+Interactive HTML companions for select lab protocols. See [software/docs/DASHBOARD_FORMAT.md](../../../../software/docs/DASHBOARD_FORMAT.md) for structure.
 
-Refer to the root `course/labs/README.md` for directive syntax.
+Refer to the root `course/labs/README.md` for lab markdown directive syntax.
 
 ## Contents
 
@@ -20,6 +20,7 @@ Refer to the root `course/labs/README.md` for directive syntax.
 - `lab-10_review-dashboard.html`
 - `lab-11_skeletal-system-dashboard.html`
 - `lab-12_muscular-system-dashboard.html`
-- `lab-13_pathogens-dashboard.html`
-- `lab-14_cardiovascular-system-dashboard.html`
-- `lab-15_respiratory-system-dashboard.html`
+- `lab-13_nervous-system-dashboard.html`
+- `lab-14_microbiology-dashboard.html`
+- `lab-15_cardiopulmonary-dashboard.html`
+- `lab-16_exam-03-review-dashboard.html`

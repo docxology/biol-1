@@ -129,13 +129,14 @@ course/labs/
 ├── lab-10_tissues.md
 ├── lab-11_skeletal-system.md
 ├── lab-12_muscular-system.md
-├── lab-13_pathogens.md
-├── lab-14_cardiovascular-system.md
-├── lab-15_respiratory-system.md
+├── lab-13_nervous-system.md
+├── lab-14_microbiology.md
+├── lab-15_cardiopulmonary.md
+├── lab-16_exam-03-review.md
 ├── dashboards/                    # Interactive HTML dashboards
 │   ├── lab-01_measurement-methods-dashboard.html
 │   ├── ...
-│   └── lab-15_respiratory-system-dashboard.html
+│   └── lab-16_exam-03-review-dashboard.html
 └── output/                        # Generated PDFs and HTML
 ```
 

@@ -1,4 +1,4 @@
-# Module 15 Quiz: Respiratory System — Answer Key
+# Module 15 Quiz: Cardiopulmonary System — Answer Key
 
 ---
 
@@ -6,38 +6,27 @@
 
 | Q# | Answer | Explanation |
 |----|--------|-------------|
-| 1 | C | Alveoli are gas exchange sites |
-| 2 | B | Diaphragm contracts during inhalation |
-| 3 | C | Hemoglobin carries oxygen |
-| 4 | B | CO₂ is primary breathing stimulus |
-| 5 | B | Surfactant reduces surface tension |
-| 6 | B | External resp = alveolar gas exchange |
-| 7 | C | Epiglottis covers trachea when swallowing |
+| 1 | B | Systemic venous return enters the right atrium |
+| 2 | B | SA node initiates the heartbeat |
+| 3 | C | Alveoli are the primary gas exchange surface |
+| 4 | B | Inhalation: diaphragm contracts, thoracic volume increases |
+| 5 | B | Hemoglobin carries the majority of O₂ |
+| 6 | B | Hypocapnia reduces ventilatory drive via chemoreceptor feedback |
+| 7 | B | Pulmonary circuit = heart ↔ lungs |
 
 ---
 
 ## Part B: Free Response (3 points)
 
-**8. Mechanics of Inhalation (1 point)**
-- Diaphragm contracts and flattens (moves down)
-- External intercostal muscles contract, lifting the ribs
-- Thoracic cavity volume increases
-- Pressure inside lungs decreases (below atmospheric pressure)
-- Air rushes into lungs to equalize pressure
-- Result: air flows into alveoli
+**8. Path to left atrium (1 point)**
+- Right atrium → tricuspid → right ventricle → pulmonary semilunar valve → pulmonary arteries → lung capillaries → pulmonary veins → left atrium.
+- Accept minor naming variants if sequence is correct.
 
-**9. Oxygen and CO₂ Transport (1 point)**
-- **Oxygen**: ~98% bound to hemoglobin in RBCs (as oxyhemoglobin); ~2% dissolved in plasma
-- **Carbon dioxide**: ~70% as bicarbonate ions (HCO₃⁻); ~23% bound to hemoglobin (as carbaminohemoglobin); ~7% dissolved in plasma
-- O₂ loading occurs in lungs; unloading in tissues
-- CO₂ loading occurs in tissues; unloading in lungs
+**9. Partial pressures (1 point)**
+- Gases diffuse down partial pressure gradients.
+- In lungs: O₂ moves alveolus → blood; CO₂ moves blood → alveolus.
+- In tissues: O₂ leaves blood; CO₂ enters blood.
 
-**10. Breathing Regulation (1 point)**
-- Respiratory control center in medulla oblongata sets breathing rhythm
-- Chemoreceptors (in medulla and aortic/carotid bodies) detect CO₂ and O₂ levels
-- When CO₂ increases:
-  - Blood pH decreases (more acidic)
-  - Chemoreceptors stimulate medulla
-  - Breathing rate and depth increase
-  - More CO₂ is exhaled, restoring balance
-- Feedback mechanism maintains homeostasis
+**10. Exercise (1 point)**
+- Higher muscle O₂ demand and CO₂ production increase cardiac output (heart rate/stroke volume) and ventilation.
+- Cardiovascular system delivers O₂ and removes wastes; respiratory system restores blood gases and pH.

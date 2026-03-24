@@ -12,7 +12,7 @@ BIOL-8 has 15 modules. The exam schedule follows this coverage:
 |------|---------|----------------|
 | Exam 01 | 01-07 | Scientific Method, Chemistry, Cells, Membranes, Metabolism, Genetics |
 | Exam 02 | 08-11 | Cell Division (Mitosis & Meiosis), Inheritance, Tissues, Skeletal System |
-| Exam 03 | 12-15 | Muscular, Pathogens, Cardiovascular, Respiratory |
+| Exam 03 | 11-15 | Skeletal, Muscular, Nervous, Microbiology, Cardiopulmonary |
 | Final | 01-15 | Comprehensive |
 
 ## File Naming Convention
@@ -33,6 +33,8 @@ BIOL-8 has 15 modules. The exam schedule follows this coverage:
 *Choose ONE essay option*
 ```
 
+Exam 03 in Spring 2026 uses a 50-point layout (30 MC + 11 fill-in + 9 free response) as defined in `exam-03.md`.
+
 ## Development Status
 
 - [x] exam-01.md + key
@@ -48,7 +50,7 @@ BIOL-8 has 15 modules. The exam schedule follows this coverage:
 | exam-01_key.md | Exam 1 Answer Key | ✅ Complete |
 | exam-02.md | Exam 2: Modules 08-11 | ✅ Complete |
 | exam-02_key.md | Exam 2 Answer Key | ✅ Complete |
-| exam-03.md | Exam 3: Modules 12-15 | ✅ Complete |
+| exam-03.md | Exam 3: Modules 11-15 | ✅ Complete |
 | exam-03_key.md | Exam 3 Answer Key | ✅ Complete |
 | final-exam.md | Final Exam: Comprehensive | ✅ Complete |
 | final-exam_key.md | Final Exam Answer Key | ✅ Complete |

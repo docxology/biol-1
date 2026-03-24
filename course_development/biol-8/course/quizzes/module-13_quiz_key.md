@@ -1,4 +1,4 @@
-# Module 13 Quiz: Pathogens — Answer Key
+# Module 13 Quiz: Nervous System — Answer Key
 
 ---
 
@@ -6,36 +6,29 @@
 
 | Q# | Answer | Explanation |
 |----|--------|-------------|
-| 1 | C | Viruses are not considered living |
-| 2 | B | Antibiotics only work on bacteria |
-| 3 | C | Skin and mucous membranes are first line |
-| 4 | B | Lytic = immediate destruction |
-| 5 | C | Fungi cause athlete's foot |
-| 6 | B | Resistant bacteria survive and reproduce |
-| 7 | B | Prions cause protein misfolding |
+| 1 | B | CNS = brain + spinal cord |
+| 2 | C | Schwann cells myelinate PNS axons; oligodendrocytes myelinate CNS |
+| 3 | C | Neurotransmitter release occurs at axon terminals |
+| 4 | C | Parasympathetic promotes rest-and-digest responses |
+| 5 | A | Cerebellum coordinates movement and balance |
+| 6 | B | CSF circulates in ventricles and subarachnoid space |
+| 7 | B | Reflex arc requires sensory input, integration, motor output |
 
 ---
 
 ## Part B: Free Response (3 points)
 
-**8. Pathogen Types Comparison (1 point)**
-- **Bacteria**: Prokaryotic single cells; can be treated with antibiotics
-- **Viruses**: Not living; require host cells to replicate; not killed by antibiotics
-- **Fungi**: Eukaryotic; include yeasts and molds; cause skin/systemic infections
-- **Parasites**: Protozoa (single-celled) or helminths (worms); live in/on host
-- **Prions**: Misfolded proteins; cause brain diseases; no treatment available
+**8. Sympathetic vs. parasympathetic (1 point)**
+- Sympathetic: “fight-or-flight”; example—increases heart rate, dilates bronchi, inhibits digestion.
+- Parasympathetic: “rest-and-digest”; example—slows heart rate, promotes digestion, constricts pupils.
+- Accept any accurate organ-level contrast.
 
-**9. Antibiotics vs. Viruses (1 point)**
-- Antibiotics target bacterial structures (cell walls, ribosomes, enzymes)
-- Viruses lack these structures; they use host cell machinery
-- Viruses are inside host cells, protected from antibiotics
-- Antiviral drugs target viral enzymes, but antibiotics cannot
-- Prevention with vaccines is more effective for viral diseases
+**9. Myelinated axon conduction (1 point)**
+- Action potentials regenerate at nodes of Ranvier (saltatory conduction).
+- Myelin insulates internodes so the signal jumps between nodes, speeding propagation.
+- Mention depolarization opening voltage-gated channels at the next node.
 
-**10. Inflammatory Response (1 point)**
-- Local response to infection or injury
-- Blood vessels dilate (vasodilation) → redness and heat
-- Capillaries become more permeable → swelling (edema)
-- White blood cells (phagocytes) migrate to area
-- Purpose: isolate, contain, and destroy pathogens; promote healing
-- Signs: redness, heat, swelling, pain
+**10. Spinal cord level (1 point)**
+- More cervical/trunk motor and sensory pathways run through upper cord to arms and diaphragm.
+- Lower lesions may spare upper limbs; higher lesions interrupt more descending and ascending tracts.
+- Accept answers referencing decussation and tract organization if accurate.

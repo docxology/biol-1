@@ -41,9 +41,9 @@ Each module contains two source files (`keys-to-success.md`, `questions.md`) and
 | 10 | [Tissues](course/module-10-tissues/) | Epithelial, connective, muscle, nervous tissue types | [Keys](course/module-10-tissues/keys-to-success.md) · [Questions](course/module-10-tissues/questions.md) |
 | 11 | [Skeletal System](course/module-11-skeletal-system/) | Bone structure, joints, skeletal divisions | [Keys](course/module-11-skeletal-system/keys-to-success.md) · [Questions](course/module-11-skeletal-system/questions.md) |
 | 12 | [Muscular System](course/module-12-muscular-system/) | Muscle types, contraction, skeletal muscle anatomy | [Keys](course/module-12-muscular-system/keys-to-success.md) · [Questions](course/module-12-muscular-system/questions.md) |
-| 13 | [Pathogens](course/module-13-pathogens/) | Bacteria, viruses, fungi, immune response | [Keys](course/module-13-pathogens/keys-to-success.md) · [Questions](course/module-13-pathogens/questions.md) |
-| 14 | [Cardiovascular System](course/module-14-cardiovascular-system/) | Heart, blood vessels, blood, circulation | [Keys](course/module-14-cardiovascular-system/keys-to-success.md) · [Questions](course/module-14-cardiovascular-system/questions.md) |
-| 15 | [Respiratory System](course/module-15-respiratory-system/) | Lungs, gas exchange, breathing mechanics | [Keys](course/module-15-respiratory-system/keys-to-success.md) · [Questions](course/module-15-respiratory-system/questions.md) |
+| 13 | [Nervous System](course/module-13-nervous-system/) | CNS/PNS, neurons, synapses, autonomic control | [Keys](course/module-13-nervous-system/keys-to-success.md) · [Questions](course/module-13-nervous-system/questions.md) |
+| 14 | [Microbiology](course/module-14-microbiology/) | Bacteria, viruses, staining, culture, host defenses | [Keys](course/module-14-microbiology/keys-to-success.md) · [Questions](course/module-14-microbiology/questions.md) |
+| 15 | [Cardiopulmonary System](course/module-15-cardiopulmonary-system/) | Heart, vessels, breathing, gas exchange, transport | [Keys](course/module-15-cardiopulmonary-system/keys-to-success.md) · [Questions](course/module-15-cardiopulmonary-system/questions.md) |
 
 ### Module Output Formats
 
@@ -83,9 +83,10 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 10 | [Lab 10](course/labs/lab-10_tissues.md) | Tissues | Complete |
 | 11 | [Lab 11](course/labs/lab-11_skeletal-system.md) | Skeletal System | Complete |
 | 12 | [Lab 12](course/labs/lab-12_muscular-system.md) | Muscular System | Complete |
-| 13 | [Lab 13](course/labs/lab-13_pathogens.md) | Pathogens | Stub |
-| 14 | [Lab 14](course/labs/lab-14_cardiovascular-system.md) | Cardiovascular System | Stub |
-| 15 | [Lab 15](course/labs/lab-15_respiratory-system.md) | Respiratory System | Stub |
+| 13 | [Lab 13](course/labs/lab-13_nervous-system.md) | Nervous System | Complete |
+| 14 | [Lab 14](course/labs/lab-14_microbiology.md) | Microbiology | Complete |
+| 15 | [Lab 15](course/labs/lab-15_cardiopulmonary.md) | Cardiopulmonary System | Complete |
+| 16 | [Lab 16](course/labs/lab-16_exam-03-review.md) | Exam 03 Review | Complete |
 
 ### Lab Output
 
@@ -112,9 +113,10 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 | 10 | [Tissues](course/labs/dashboards/lab-10_tissues-dashboard.html) |
 | 11 | [Skeletal System](course/labs/dashboards/lab-11_skeletal-system-dashboard.html) |
 | 12 | [Muscular System](course/labs/dashboards/lab-12_muscular-system-dashboard.html) |
-| 13 | [Pathogens](course/labs/dashboards/lab-13_pathogens-dashboard.html) |
-| 14 | [Cardiovascular System](course/labs/dashboards/lab-14_cardiovascular-system-dashboard.html) |
-| 15 | [Respiratory System](course/labs/dashboards/lab-15_respiratory-system-dashboard.html) |
+| 13 | [Nervous System](course/labs/dashboards/lab-13_nervous-system-dashboard.html) |
+| 14 | [Microbiology](course/labs/dashboards/lab-14_microbiology-dashboard.html) |
+| 15 | [Cardiopulmonary System](course/labs/dashboards/lab-15_cardiopulmonary-dashboard.html) |
+| 16 | [Exam 03 Review](course/labs/dashboards/lab-16_exam-03-review-dashboard.html) |
 
 ---
 

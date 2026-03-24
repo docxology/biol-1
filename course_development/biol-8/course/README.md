@@ -24,9 +24,9 @@ The course covers 15 modules progressing from foundational life science concepts
 | [10](module-10-tissues/) | Tissues | Epithelial, connective, muscle, nervous tissue |
 | [11](module-11-skeletal-system/) | Skeletal System | Bone structure, bone cells, joints |
 | [12](module-12-muscular-system/) | Muscular System | Muscle types, sliding filament theory, contraction |
-| [13](module-13-pathogens/) | Pathogens | Bacteria, viruses, fungi, immune defenses |
-| [14](module-14-cardiovascular-system/) | Cardiovascular System | Heart anatomy, blood flow, blood vessels |
-| [15](module-15-respiratory-system/) | Respiratory System | Breathing mechanics, gas exchange, transport |
+| [13](module-13-nervous-system/) | Nervous System | CNS/PNS, neurons, synapses, autonomic divisions |
+| [14](module-14-microbiology/) | Microbiology | Bacteria, viruses, staining, aseptic technique, host defenses |
+| [15](module-15-cardiopulmonary-system/) | Cardiopulmonary System | Heart, vessels, breathing, gas exchange, transport |
 
 ## Directory Organization
 
@@ -40,7 +40,7 @@ course/
 │   ├── exam-01_key.md
 │   ├── exam-02.md              # Exam 02: Modules 08-11
 │   ├── exam-02_key.md
-│   ├── exam-03.md              # Exam 03: Modules 12-15
+│   ├── exam-03.md              # Exam 03: Modules 11-15
 │   ├── exam-03_key.md
 │   ├── final-exam.md           # Comprehensive final
 │   └── final-exam_key.md
@@ -54,7 +54,7 @@ course/
 │   ├── README.md               # Labs documentation
 │   ├── lab-01_measurement-methods.md  # Full interactive lab
 │   ├── lab-02_probability-statistics.md  # Full interactive lab
-│   ├── ... (15 labs total)
+│   ├── ... (16 labs total)
 │   └── output/                 # Generated lab outputs (PDF, HTML)
 │
 ├── practice_tests/              # Practice tests with answer keys
@@ -76,7 +76,7 @@ course/
 |------|------|----------|--------|
 | Exam 01 | Feb 17, 2026 | Modules 01-07 | 50 MC + 30 SA + 20 Essay = 100 pts |
 | Exam 02 | Mar 10, 2026 | Modules 08-11 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Exam 03 | Apr 7, 2026 | Modules 12-15 | 50 MC + 30 SA + 20 Essay = 100 pts |
+| Exam 03 | Apr 9, 2026 | Modules 11-15 | 50 pts (see exam file for breakdown) |
 | Final | May 12, 2026 | Comprehensive | 75 MC + 45 SA + 30 Essay = 150 pts |
 
 ### Quizzes
@@ -91,7 +91,7 @@ Answer keys include explanations for all questions.
 
 ### Labs
 
-15 laboratory protocols (currently as stubs) covering hands-on experiments and activities aligned with each module topic.
+Sixteen laboratory periods (Labs 01–16); Lab 16 is an Exam 03 review aligned with Modules 11–15.
 
 ## Module Contents
 

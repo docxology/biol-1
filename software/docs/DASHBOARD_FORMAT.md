@@ -36,9 +36,10 @@ Every dashboard corresponds 1:1 with a lab protocol file. Some labs have multipl
 | `lab-10_tissues-dashboard.html` | Tissues | — | Tissue identification |
 | `lab-11_skeletal-system-dashboard.html` | Skeletal | — | Bone anatomy |
 | `lab-12_muscular-system-dashboard.html` | Muscular | — | Muscle contraction |
-| `lab-13_pathogens-dashboard.html` | Pathogens | — | Pathogen classification |
-| `lab-14_cardiovascular-system-dashboard.html` | Cardiovascular | — | Heart anatomy, blood flow |
-| `lab-15_respiratory-system-dashboard.html` | Respiratory | — | Gas exchange, spirometry |
+| `lab-13_nervous-system-dashboard.html` | Nervous | — | Neuron signaling, reaction time |
+| `lab-14_microbiology-dashboard.html` | Microbiology | — | Gram stain, microbe comparison |
+| `lab-15_cardiopulmonary-dashboard.html` | Cardiopulmonary | — | Heart, vessels, gas exchange |
+| `lab-16_exam-03-review-dashboard.html` | Exam 03 review | — | Modules 11–15 checklist |
 
 ---
 

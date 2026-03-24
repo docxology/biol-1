@@ -18,6 +18,6 @@ This directory contains resources for Slides.
 - `Module 10 - Tissues.pdf`
 - `Module 11 - Skeletal.pdf`
 - `Module 12 - Muscles.pdf`
-- `Module 13 - Pathogens.pdf`
-- `Module 14 - Cardiovascular.pdf`
-- `Module 15 - Respiratory.pdf`
+- `Module 13 - Nervous.pdf`
+- `Module 14 - Microbiology.pdf`
+- `Module 15 - Cardiopulmonary.pdf`

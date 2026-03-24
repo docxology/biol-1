@@ -16,7 +16,7 @@ course/
 │   ├── exam-01_key.md          # Answer key with explanations
 │   ├── exam-02.md              # Modules 08-11 (100 pts)
 │   ├── exam-02_key.md
-│   ├── exam-03.md              # Modules 12-15 (100 pts)
+│   ├── exam-03.md              # Modules 11-15 (50 pts; see exam file)
 │   ├── exam-03_key.md
 │   ├── final-exam.md           # Comprehensive (150 pts)
 │   └── final-exam_key.md
@@ -26,9 +26,9 @@ course/
 │   ├── module-01_quiz_key.md   # Answer key
 │   └── ... (15 modules × 2 files)
 │
-├── labs/                        # Lab protocols (15 stub files)
-│   ├── lab-01_exploring-life-science.md
-│   └── ... (one per module)
+├── labs/                        # Lab protocols (16 files; Lab 16 = Exam 03 review)
+│   ├── lab-01_measurement-methods.md
+│   └── ... (see labs/README.md)
 │
 └── module-XX-topic-name/        # 15 module directories
     ├── keys-to-success.md      # Learning objectives
@@ -54,9 +54,9 @@ Modules follow the pattern: `module-XX-topic-name/`
 | 10 | `module-10-tissues` |
 | 11 | `module-11-skeletal-system` |
 | 12 | `module-12-muscular-system` |
-| 13 | `module-13-pathogens` |
-| 14 | `module-14-cardiovascular-system` |
-| 15 | `module-15-respiratory-system` |
+| 13 | `module-13-nervous-system` |
+| 14 | `module-14-microbiology` |
+| 15 | `module-15-cardiopulmonary-system` |
 
 ## Content Specifications
 
@@ -136,7 +136,7 @@ Lab stubs include sections for:
 |------|---------|------|
 | Unit 1 | 01-07 | Exam 01 (Week 5) |
 | Unit 2 | 08-11 | Exam 02 (Week 8) |
-| Unit 3 | 12-15 | Exam 03 (Week 12) |
+| Unit 3–4 | 11-15 | Exam 03 (Week 12; Modules 11–15) |
 | All | 01-15 | Final Exam (Finals Week) |
 
 ## File Processing Workflow
@@ -166,7 +166,7 @@ The `software/` directory contains batch processing utilities for:
 - [x] Each module has `keys-to-success.md`, `questions.md`, `resources/`
 - [x] 4 exams with answer keys (8 files)
 - [x] 15 quizzes with answer keys (30 files)
-- [x] 15 lab protocol stubs
+- [x] 16 lab protocols (Labs 01–16)
 
 ### Coherence
 
