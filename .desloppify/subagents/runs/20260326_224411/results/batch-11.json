@@ -1,0 +1,191 @@
+{
+  "batch": "api_surface_coherence",
+  "batch_index": 11,
+  "assessments": {"api_surface_coherence": 58.0},
+  "dimension_notes": {
+    "api_surface_coherence": {
+      "evidence": [
+        "generate_speech(text, output_path, voice, lang, slow) uses str paths; transcribe_audio(audio_path, output_path, language) uses str paths but names the language param 'language' not 'lang' — symmetric sibling modules with divergent language param names.",
+        "render_markdown_to_pdf(input_path: str, output_path: str) accepts str; internal helpers like markdown_to_pdf/utils.py get_output_path accept Path — public layer uses str, private layer uses Path, no consistent boundary contract.",
+        "generate_speech has a 'voice' parameter documented as 'currently not used with gTTS' and text_to_speech_audio has 'lang' and 'slow' params documented as 'Ignored for local say' — phantom parameters in the public API that accept input but silently do nothing.",
+        "configure_voice_settings(voice, speed, pitch) and configure_pdf_options(template, options) both return Dict[str, Any] but are purely configuration-building helpers that are never consumed by the sibling single-file functions (generate_speech ignores the returned dict; render_markdown_to_pdf never calls configure_pdf_options) — disconnected public API surface.",
+        "batch_render_lab_manuals returns Dict[str, Any] with keys 'files' and 'errors'; batch_render_markdown returns List[str]; batch_generate_speech returns List[str]; batch_transcribe_audio returns List[str] — sibling batch functions have inconsistent return shapes (one returns a result dict, others return a flat list).",
+        "render_lab_manual returns str (the output path); render_markdown_to_pdf returns None; generate_speech returns None; transcribe_audio returns str — similar file-conversion functions have inconsistent return types across modules.",
+        "format_conversion/main.py convert_file is a dispatch function that routes via string key like 'md->pdf', with lazy imports for some converters (convert_markdown_to_docx, convert_pdf_to_text, convert_audio_to_text) at call site inside if/elif branches — overloaded interface mixing dispatch logic with lazy import side effects.",
+        "get_conversion_path in format_conversion/main.py is a thin public wrapper that only calls _get_conversion_path from utils — a passthrough with no added policy, making the public surface larger without benefit.",
+        "transcribe_from_markdown in speech_to_text/main.py does a lazy cross-module import from ..text_to_speech.utils at function body (not at top of file), hiding a coupling in what looks like a standalone public function."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "sub_axes": {
+        "abstraction_leverage": 55.0,
+        "indirection_cost": 50.0,
+        "interface_honesty": 40.0,
+        "delegation_density": 60.0,
+        "definition_directness": 65.0,
+        "type_discipline": 55.0
+      }
+    }
+  },
+  "dimension_judgment": {
+    "api_surface_coherence": {
+      "strengths": [
+        "All public functions carry explicit type annotations and docstrings with Raises sections, giving callers a documented error contract.",
+        "The str/Path boundary between public API and internal utilities is consistently applied within each individual module (public = str, internal = Path).",
+        "Batch functions across TTS, STT, PDF, and lab modules follow a recognizable structural pattern (validate dir, glob files, loop with per-file error swallowing, return list of paths), easing navigation."
+      ],
+      "issue_character": "The primary pattern of issues is phantom/inert parameters and mismatched return shapes across sibling modules — the public surface promises behavior it does not deliver (voice, lang, slow) and returns inconsistent shapes (None vs str vs List vs Dict) for functionally equivalent operations.",
+      "score_rationale": "The codebase sits in the lower-middle range because several public API contracts are actively misleading: parameters that are accepted but silently ignored erode trust in the API, and the inconsistent return types across sibling batch and render functions mean callers cannot treat them uniformly. These are not minor style issues — they require callers to consult each module's internals to understand real behavior. The structural pattern is mostly sound and error contracts are documented, which prevents a lower score, but the phantom-parameter and inconsistent-return-type problems are pervasive enough across the converter layer to hold the score well below 70."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "phantom_voice_lang_slow_params",
+      "summary": "generate_speech and text_to_speech_audio accept voice/lang/slow params that are documented as ignored at runtime",
+      "related_files": [
+        "software/src/text_to_speech/main.py",
+        "software/src/text_to_speech/utils.py"
+      ],
+      "evidence": [
+        "generate_speech docstring: 'voice: Voice identifier (default: \"default\", currently not used with gTTS)'",
+        "text_to_speech_audio docstring: 'lang: Language code (Ignored for local say, uses system default)' and 'slow: Whether to speak slowly (Ignored for local say)'",
+        "The function body of text_to_speech_audio never uses lang or slow; it calls subprocess 'say' with no voice/lang/slow flags."
+      ],
+      "suggestion": "Remove the phantom parameters from the public API entirely, or replace the implementation so the parameters have effect. Keeping dead parameters in a public API misleads callers into thinking they can control behavior they cannot.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "phantom_parameters"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "inconsistent_language_param_name",
+      "summary": "TTS uses 'lang' but STT sibling uses 'language' for the same language-code concept",
+      "related_files": [
+        "software/src/text_to_speech/main.py",
+        "software/src/speech_to_text/main.py"
+      ],
+      "evidence": [
+        "generate_speech(text, output_path, voice, lang=None, slow=False) — param is 'lang'",
+        "transcribe_audio(audio_path, output_path, language='en') — param is 'language'",
+        "Both params represent BCP-47/ISO 639-1 language codes and serve equivalent roles in their respective modules."
+      ],
+      "suggestion": "Standardize to a single name across both modules. 'language' is more readable and matches the STT convention; update TTS to match.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "naming_divergence"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "inconsistent_return_type_render_functions",
+      "summary": "Similar file-rendering public functions return inconsistent types: None vs str",
+      "related_files": [
+        "software/src/markdown_to_pdf/main.py",
+        "software/src/lab_manual/main.py",
+        "software/src/text_to_speech/main.py",
+        "software/src/speech_to_text/main.py"
+      ],
+      "evidence": [
+        "render_markdown_to_pdf(...) -> None",
+        "generate_speech(...) -> None",
+        "render_lab_manual(...) -> str  (returns output path)",
+        "transcribe_audio(...) -> str  (returns transcribed text)"
+      ],
+      "suggestion": "Standardize all single-file conversion functions to return the output path as str (or Path). This allows callers to chain operations and is already the pattern used by render_lab_manual and transcribe_audio.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "return_type_inconsistency"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "inconsistent_batch_return_shapes",
+      "summary": "Sibling batch functions return List[str] in most modules but Dict with 'files'+'errors' in lab_manual",
+      "related_files": [
+        "software/src/lab_manual/main.py",
+        "software/src/markdown_to_pdf/main.py",
+        "software/src/text_to_speech/main.py",
+        "software/src/speech_to_text/main.py"
+      ],
+      "evidence": [
+        "batch_render_markdown(...) -> List[str]",
+        "batch_generate_speech(...) -> List[str]",
+        "batch_transcribe_audio(...) -> List[str]",
+        "batch_render_lab_manuals(...) -> Dict[str, Any]  (keys: 'files', 'errors')"
+      ],
+      "suggestion": "Either adopt the richer Dict shape for all batch functions (providing error details alongside successes), or flatten batch_render_lab_manuals to List[str] to match siblings. The Dict shape is arguably better — standardize on it across all batch functions.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "return_type_inconsistency"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "disconnected_configure_helpers",
+      "summary": "configure_voice_settings and configure_pdf_options are public API functions whose returned dicts are never consumed by the sibling conversion functions",
+      "related_files": [
+        "software/src/text_to_speech/main.py",
+        "software/src/markdown_to_pdf/main.py"
+      ],
+      "evidence": [
+        "configure_voice_settings(voice, speed, pitch) -> Dict[str, Any] exists in text_to_speech/main.py, but generate_speech does not accept a settings dict — it accepts individual params voice/lang/slow.",
+        "configure_pdf_options(template, options) -> Dict[str, Any] exists in markdown_to_pdf/main.py, but render_markdown_to_pdf accepts pdf_options: Optional[Dict[str, Any]] and passes it to html_to_pdf — the configure helper's output shape is never passed in."
+      ],
+      "suggestion": "Either wire the configure_* helpers into the conversion function call paths (so generate_speech accepts a settings dict produced by configure_voice_settings), or remove these helpers from the public API if they have no active callers.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "phantom_parameters"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "convert_file_overloaded_dispatch",
+      "summary": "convert_file in format_conversion uses string-key dispatch with lazy imports, creating an overloaded interface that hides which converters are available",
+      "related_files": [
+        "software/src/format_conversion/main.py"
+      ],
+      "evidence": [
+        "convert_file routes via conversion_key = f'{input_ext}->{output_format_lower}' with a long if/elif chain",
+        "convert_markdown_to_docx, convert_pdf_to_text, and convert_audio_to_text are imported lazily inside the elif branches rather than at module top — their availability is non-obvious to callers",
+        "The function accepts input_path, output_format, output_path in that order — different from get_conversion_path(input_path, output_format) -> str, creating minor positional inconsistency"
+      ],
+      "suggestion": "Replace the if/elif dispatch table with a dict mapping conversion keys to converter callables (imported at top level). This makes available conversions explicit and eliminates hidden lazy imports in the function body.",
+      "confidence": "medium",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "overloaded_interface"
+    },
+    {
+      "dimension": "api_surface_coherence",
+      "identifier": "transcribe_from_markdown_hidden_coupling",
+      "summary": "transcribe_from_markdown in speech_to_text hides a cross-module lazy import of text_to_speech utilities inside the function body",
+      "related_files": [
+        "software/src/speech_to_text/main.py"
+      ],
+      "evidence": [
+        "Line 122: 'from ..text_to_speech.utils import extract_text_from_markdown, read_text_file' appears inside the function body of transcribe_from_markdown",
+        "This is the only function in speech_to_text/main.py that uses TTS utilities — the dependency is invisible from the module's import header and breaks the principle that a public function's dependencies are declared at module scope."
+      ],
+      "suggestion": "Move the import to the module top level, or refactor to use the shared file_utils path for markdown extraction to remove the cross-module dependency.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "hidden_coupling"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "Phantom parameters appear to be residue from an earlier gTTS-based implementation that was replaced with a macOS 'say' + ffmpeg approach; the parameter signatures were not cleaned up after the backend swap.",
+      "Return type inconsistency across sibling batch/render functions suggests modules were developed independently without a shared API contract document or interface review.",
+      "The configure_* helpers and the convert_file dispatch table pattern suggest copy-paste scaffolding where helper stubs were created speculatively but never wired into the call graph."
+    ],
+    "likely_symptoms": [
+      "phantom_voice_lang_slow_params — symptom of backend replacement without API cleanup",
+      "disconnected_configure_helpers — symptom of speculative API design without active callers"
+    ],
+    "possible_false_positives": []
+  }
+}

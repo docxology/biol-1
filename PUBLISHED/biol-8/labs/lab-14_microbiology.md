@@ -68,33 +68,30 @@ Mechanism summaries in this lab align with standard reviews of antimicrobial tar
 
 ## Reference: antibiotic discs available
 
-Your group will **choose four** of the following for quadrants **A–D** on each strain plate. Use the **same four** across all three plates so you can compare results. Record which four you chose in the data table.
+Your group will **choose four** of the following for quadrants **A–D** on each strain plate. Use the **same four** across all three plates so you can compare results.
 
-**Cell-wall targeting drugs:**
+**Gram-positive emphasis (G+):**
 
-- **Penicillin** — β-lactam; targets PBPs. Strong vs. Gram-positive; many Gram-negative resist (β-lactamases, outer membrane).
-- **Ampicillin** — β-lactam; broader than penicillin for some Gram-negative enterics, but resistance is common.
-- **Vancomycin** — glycopeptide; binds peptidoglycan precursors. Gram-positive emphasis — too large to cross Gram-negative outer membrane.
+- **Penicillin** — β-lactam; cell wall (PBPs). Many G− resist via β-lactamases / outer membrane.
+- **Vancomycin** — glycopeptide; cell wall precursors. Too large to cross G− outer membrane.
+- **Erythromycin** — macrolide; 50S ribosome. Porins/efflux limit most G− activity.
 
-**Ribosome-targeting drugs (protein synthesis):**
+**Gram-negative emphasis (G−):**
 
-- **Gentamicin** — aminoglycoside; 30S ribosome. Gram-negative aerobes often sensitive.
-- **Amikacin** — aminoglycoside; 30S ribosome. Broader against some resistant strains.
+- **Gentamicin** — aminoglycoside; 30S ribosome. G− aerobes often sensitive.
+- **Amikacin** — aminoglycoside; 30S ribosome. Broader vs. some resistant G− strains.
 - **Streptomycin** — aminoglycoside; 30S ribosome. Classic *M. tuberculosis* drug.
+- **Nalidixic acid** — quinolone (1st gen.); DNA gyrase. G− emphasis.
+
+**Broad-spectrum (G+ and G−):**
+
+- **Ampicillin** — β-lactam; cell wall (PBPs). Broader than penicillin for some G− enterics; resistance common.
+- **Ciprofloxacin** — fluoroquinolone; DNA gyrase. Good G− penetration; G+ activity varies.
 - **Chloramphenicol** — amphenicol; 50S ribosome. Broad in principle; resistance common.
 - **Tetracycline** — 30S ribosome. Broad bacteriostatic; efflux resistance common.
-- **Erythromycin** — macrolide; 50S ribosome. Gram-positive emphasis; porins/efflux limit Gram-negative activity.
+- **Sulfamethoxazole** — sulfonamide; folate synthesis. Broad in principle; resistance via bypass.
 
-**DNA-targeting drugs:**
-
-- **Ciprofloxacin** — fluoroquinolone; DNA gyrase. Broad; good Gram-negative penetration.
-- **Nalidixic acid** — quinolone (1st gen.); DNA gyrase. Gram-negative emphasis.
-
-**Folate-pathway drug:**
-
-- **Sulfamethoxazole** — sulfonamide; blocks folate synthesis. Broad in principle; resistance via bypass pathways.
-
-> **Tip:** For the best comparison, try to pick antibiotics from **different target categories** (e.g., one cell-wall drug, one ribosome drug, one DNA drug, and one other).
+> **Tip:** Pick antibiotics from **different categories** (e.g., one G+, one G−, one broad, one from a different target) for the most informative comparison.
 
 ---
 
@@ -138,17 +135,17 @@ Your instructor will assign **three strains** to your group — ideally **at lea
 
 1. On the **bottom** of each TSA plate (the side with the agar), use a marker to draw **two perpendicular lines** through the center so the plate is divided into **four quadrants**.  
 2. Label the quadrants **A**, **B**, **C**, and **D** on the **bottom** (same side as the agar).  
-3. Write the **strain name** and **Gram status** (from the reference table above) on the **bottom** of each plate.
+3. Write the **strain name**, **Gram status**, and your **group initials** on the **bottom** of each plate.
 
 ### A.3 Hypothesize before plating
 
 Before you begin plating, use the reference list above to **predict** which of your four chosen antibiotics will produce zones of inhibition for each of your three strains. Record your predictions below.
 
 <!-- lab:reflection -->
-**Hypothesis table** — For each strain, predict whether each antibiotic will be effective (zone) or ineffective (no zone), and give a brief reason based on Gram status and drug target.
+**Hypothesis table** — Predict: effective (zone) or ineffective (no zone)? Give a brief reason.
 
-| Strain | Gram status | Antibiotic A — predict | Antibiotic B — predict | Antibiotic C — predict | Antibiotic D — predict |
-|--------|-------------|------------------------|------------------------|------------------------|------------------------|
+| Strain | G+/G− | Antibiotic A | Antibiotic B | Antibiotic C | Antibiotic D |
+|--------|-------|--------------|--------------|--------------|--------------|
 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
@@ -224,19 +221,19 @@ Your group has **four additional TSA plates** (one per person when possible).
 ## Conclusion
 
 <!-- lab:reflection -->
-1. What part of **aseptic technique** was easiest for you, and what will you **focus on improving** next time?
+**Q1.** What part of **aseptic technique** was easiest for you, and what will you **focus on improving** next time?
 
 {fill:textarea rows=3}
 
-2. How does testing the **same four antibiotics** on each strain help you **compare susceptibility** across Gram-positive and Gram-negative bacteria?
+**Q2.** How does testing the **same four antibiotics** on each strain help you **compare susceptibility** across Gram-positive and Gram-negative bacteria?
 
 {fill:textarea rows=3}
 
-3. Look back at your **hypothesis table** (section A.3). Based on what you know about Gram status and drug targets, which of your predictions do you feel **most confident** about, and why?
+**Q3.** Look back at your **hypothesis table** (section A.3). Which prediction do you feel **most confident** about, and why?
 
 {fill:textarea rows=3}
 
-4. If a strain shows **no zone of inhibition** around a particular disc, does that automatically mean the organism is the wrong Gram type? What else could explain a lack of a zone?
+**Q4.** If a strain shows **no zone of inhibition** around a disc, does that automatically mean the organism is the wrong Gram type? What else could explain a missing zone?
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->

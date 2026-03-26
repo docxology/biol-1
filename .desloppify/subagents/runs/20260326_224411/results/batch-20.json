@@ -1,0 +1,58 @@
+{
+  "batch": "authorization_consistency",
+  "batch_index": 20,
+  "assessments": {"authorization_consistency": 88.0},
+  "dimension_notes": {
+    "authorization_consistency": {
+      "evidence": [
+        "make_canvas_request (canvas_integration/utils.py:53) centralizes Bearer token injection for all Canvas API calls — no sibling function makes raw requests without auth",
+        "api_key is always passed as a parameter (never read from global state or hardcoded), so callers control the credential",
+        "Canvas endpoints defined as constants in canvas_integration/config.py ENDPOINTS dict — no permission strings as magic literals scattered through call sites",
+        "Both upload_module_to_canvas and validate_upload_readiness call validate_module_files before operating — consistent input-validation pattern",
+        "_upload_file_to_canvas sends the Bearer token to the pre-signed upload URL via make_canvas_request — pre-signed URLs are self-authenticating, so the redundant auth header is unnecessary but harmless",
+        "No route handlers, no RLS, no permission decorators exist in this codebase — it is a local CLI pipeline, so the primary auth rubric concerns (inconsistent route auth, mixed trust boundaries across endpoints) have no surface to evaluate"
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "confidence": "medium",
+      "issues_preventing_higher_score": "The pre-signed URL upload step sends a redundant Bearer token header, which is a minor inconsistency in trust-boundary handling. No larger structural issues exist because the codebase has no user-facing auth surface beyond the Canvas integration.",
+      "sub_axes": null
+    }
+  },
+  "dimension_judgment": {
+    "authorization_consistency": {
+      "strengths": [
+        "All Canvas API requests flow through a single make_canvas_request function that unconditionally injects the Authorization header — no sibling codepath bypasses it",
+        "Canvas endpoints are constants in config.py, not scattered magic strings — the permission surface is auditable in one place",
+        "api_key is threaded as an explicit parameter through the call chain rather than read from global state, keeping the trust boundary visible",
+        "Both public-facing functions (upload_module_to_canvas and validate_upload_readiness) apply the same validate_module_files guard before touching Canvas — consistent input validation across the module's operations"
+      ],
+      "issue_character": "The single observable inconsistency is a minor trust-boundary slip: the pre-signed upload URL receives a redundant Bearer token header that pre-signed semantics do not require, blurring the distinction between owned-endpoint auth and delegated-URL auth.",
+      "score_rationale": "This codebase is a local batch-processing pipeline with no web server, no route handlers, no RLS, and no user session model — the authorization_consistency rubric's primary threat surface (inconsistent decorator coverage, magic permission literals, mixed trust boundaries across sibling endpoints) simply has no counterpart here. The one external auth surface, the Canvas integration, applies auth centrally and consistently with one minor redundancy on pre-signed URLs. Against the 90-anchor ('mostly consistent with limited, documented exceptions'), the codebase lands just below because the pre-signed URL case represents an undocumented trust-boundary inconsistency, not an intentional design choice."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "authorization_consistency",
+      "identifier": "canvas_presigned_url_auth_redundancy",
+      "summary": "Bearer token sent to pre-signed Canvas upload URL, conflating owned-endpoint auth with delegated-URL auth",
+      "related_files": ["software/src/canvas_integration/main.py", "software/src/canvas_integration/utils.py"],
+      "evidence": [
+        "_upload_file_to_canvas (main.py:198) calls make_canvas_request for the pre-signed upload_url, which always injects 'Authorization: Bearer {api_key}' (utils.py:53)",
+        "Pre-signed URLs carry their own auth credentials in the URL parameters; sending an additional Bearer token is unexpected and may interfere with some Canvas storage backends that reject unrecognized auth headers on pre-signed requests"
+      ],
+      "suggestion": "For the pre-signed URL upload step, bypass make_canvas_request and call requests.request directly (or use a separate helper that omits the Authorization header). Add a comment explaining that pre-signed URLs are self-authenticating. This makes the trust boundary explicit: owned Canvas endpoints use Bearer auth; delegated upload URLs use the embedded signature.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": null
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "The Canvas integration was authored with make_canvas_request as the only HTTP dispatch function, without distinguishing between Canvas-owned endpoints (needing Bearer auth) and pre-signed delegated URLs (self-authenticating). The abstraction does not model the two different trust contexts."
+    ],
+    "likely_symptoms": [],
+    "possible_false_positives": []
+  }
+}
