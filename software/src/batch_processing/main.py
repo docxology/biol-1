@@ -74,7 +74,7 @@ def process_module_to_pdf(module_path: str, output_dir: str) -> List[str]:
             render_markdown_to_pdf(str(md_file), str(output_file))
             output_files.append(str(output_file))
         except Exception as e:
-            print(f"Error converting {md_file} to PDF: {e}")
+            logger.error("Error converting %s to PDF: %s", md_file, e, exc_info=True)
             continue
 
     return output_files
@@ -132,7 +132,7 @@ def process_module_to_audio(module_path: str, output_dir: str) -> List[str]:
             generate_speech(content, str(output_file))
             output_files.append(str(output_file))
         except Exception as e:
-            print(f"Error converting {text_file} to audio: {e}")
+            logger.error("Error converting %s to audio: %s", text_file, e, exc_info=True)
             continue
 
     return output_files
@@ -184,7 +184,7 @@ def process_module_to_text(module_path: str, output_dir: str) -> List[str]:
             transcribe_audio(str(audio_file), str(output_file))
             output_files.append(str(output_file))
         except Exception as e:
-            print(f"Error transcribing {audio_file}: {e}")
+            logger.error("Error transcribing %s: %s", audio_file, e, exc_info=True)
             continue
 
     return output_files

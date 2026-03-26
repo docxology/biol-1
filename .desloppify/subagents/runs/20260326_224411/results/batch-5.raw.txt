@@ -1,0 +1,121 @@
+{
+  "batch": "naming_quality",
+  "batch_index": 5,
+  "assessments": {"naming_quality": 74.0},
+  "dimension_notes": {
+    "naming_quality": {
+      "evidence": [
+        "remediate_docs.py: `get_dir_context` is an accurate, intent-revealing name. `generate_readme` and `generate_agents` are equally direct. Variable `dir_type` (not `type`) avoids shadowing the builtin — a positive signal.",
+        "scripts/utils.py: `print_module_not_found` is very precise — verb, object, and condition all in the name. No ambiguity.",
+        "batch_processing/log_style.py: `format_summary`, `format_module_result`, `section_header`, `step_header`, `validation_status` are all sharply named. The module name `log_style` is slightly weak — it functions more as a logging-presentation or display-formatting module, but the name is acceptable.",
+        "publish/main.py: `publish_course` is clear. Internal variables `module_src_name`, `syllabus_src_name`, `course_conf`, `files_copied` are well chosen. `clean_directory` and `copy_directory_contents` in utils.py are explicit.",
+        "publish/flatten.py: `flatten_module`, `flatten_published`, `clean_published` are direct and unambiguous. `moved` (count of files moved) is a clear local variable.",
+        "html_website/main.py: `generate_module_website` is fine. BUT the local closure `create_section(id, title, content)` shadows the Python builtin `id` — a clear naming defect. Also `inner_html` is generic when `section_body_html` or `element_html` would be more specific.",
+        "html_website/main.py: Variables `q`, `q_id`, `q_type` inside the questions loop are minimally expressive but consistent with the HTML ID attribute domain. Acceptable abbreviations.",
+        "html_website/main.py: JavaScript embedded in a Python string uses `comp` for completed count (line 373 area). `comp` is a non-standard abbreviation when `completed_count` would be clear.",
+        "batch_processing/main.py: `process_module_by_type` — the word `process` is a generic verb (on the watch list). It dispatches to format renderers; `render_module_by_type` or `generate_module_renderings_by_type` would be more precise. The existing script is already named `generate_module_renderings.py`, so there is vocabulary divergence.",
+        "batch_processing/main.py: `process_module_to_pdf`, `process_module_to_audio`, `process_module_to_text` — all use `process` as the root verb. The codebase uses `generate`, `render`, and `convert` in sibling modules (e.g. `generate_speech`, `render_markdown_to_pdf`, `convert_file`). This is a vocabulary inconsistency across the core batch processing API.",
+        "batch_processing/main.py: `generate_module_media` — uses `generate` (good), but the function does more than media: it also transcribes audio to text, which is not media generation. The name slightly understates scope.",
+        "html_website/main.py: `camelCase` JavaScript function names embedded in the Python string (`toggleSidebar`, `updateThemeButtons`, `selectMultipleChoice`, etc.) are appropriate for JavaScript and do not indicate Python naming drift.",
+        "html_website/utils.py: `extract_quiz_questions` — this function scans markdown for lines starting with '1.'–'9.' and returns a list. The name `extract_quiz_questions` is fine but the function is not used anywhere in `html_website/main.py` — the live code calls `parse_questions_json` instead. The dead function has an accurate name but its presence misleads about the website's actual question-loading path.",
+        "format_conversion/main.py: `get_conversion_path` in main.py is a thin wrapper around `_get_conversion_path` from utils.py — the leading underscore convention signals 'private' but the public wrapper has no added value and the name duplication creates confusion about which to call.",
+        "scan evidence (conventions.naming_by_directory): html_website/ shows 12 camelCase vs 9 snake_case names — the only module with significant camelCase leakage into Python identifiers. All other modules are uniformly snake_case.",
+        "remediate_docs.py: uses `os.path` and `os.walk` while all other production scripts uniformly use `pathlib.Path`. Not a naming issue per se, but `get_dir_context` takes a raw string `path` parameter instead of `Path`, diverging from codebase conventions where `Path` objects are standard."
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "The `process_module_*` family in batch_processing/main.py uses the generic verb `process` inconsistently with the codebase's established vocabulary of `generate`, `render`, and `convert`. This divergence spans the primary batch API surface. Additionally, the `id` builtin shadow in html_website/main.py is a concrete naming defect. These are real but bounded issues; the majority of the codebase is well named."
+    }
+  },
+  "dimension_judgment": {
+    "naming_quality": {
+      "strengths": [
+        "Domain vocabulary is consistent and clear in most modules: `render_markdown_to_pdf`, `generate_speech`, `transcribe_audio`, `flatten_module`, `publish_course` — all communicate exactly one intent.",
+        "The `log_style.py` module introduces a coherent vocabulary for display formatting (`format_summary`, `format_module_result`, `section_header`, `step_header`, `validation_status`) that is used consistently across the pipeline.",
+        "CLI script names (`generate_module_renderings.py`, `generate_module_website.py`, `generate_all_outputs.py`) are precise and match the action performed.",
+        "`scripts/utils.py::print_module_not_found` is exemplary: verb, object, and condition all present in the name with zero ambiguity.",
+        "Publish-module names (`flatten_module`, `flatten_published`, `clean_published`, `copy_labs_and_dashboards`, `reorganize_to_categories`) are sharply descriptive and reveal both action and scope."
+      ],
+      "issue_character": "A small number of generic-verb names (`process_module_*`) diverge from the codebase's established `generate`/`render`/`convert` vocabulary, and a minor Python-builtin shadow (`id` param in `create_section`) creates a localized hazard; the rest of the codebase names things precisely.",
+      "score_rationale": "The codebase sits solidly in the 70–79 range. The vast majority of public API names are intent-revealing and domain-aligned, which earns a passing grade. However, the `process_module_*` family at the center of the batch API uses a generic verb that conflicts with sibling naming conventions (`generate`, `render`, `convert`), and the `html_website` module mixes camelCase Python names (12 occurrences) where every other module is uniformly snake_case. These are real friction points for a new developer navigating the codebase, but they are bounded in scope and do not represent a systemic collapse of naming discipline."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-01",
+      "summary": "`process_module_to_pdf/audio/text` and `process_module_by_type` use generic verb `process` while sibling APIs use `generate`, `render`, `convert`",
+      "related_files": ["software/src/batch_processing/main.py"],
+      "evidence": [
+        "`process_module_to_pdf` wraps `render_markdown_to_pdf` — caller sees `process` but the underlying action is `render`.",
+        "`process_module_by_type` dispatches to format renderers; script `generate_module_renderings.py` already uses `generate` vocabulary for the same operation.",
+        "Sibling module `format_conversion/main.py` uses `convert_file`; `text_to_speech/main.py` uses `generate_speech`; `markdown_to_pdf/main.py` uses `render_markdown_to_pdf`. The verb `process` appears nowhere in those modules."
+      ],
+      "suggestion": "Rename `process_module_to_pdf` → `render_module_to_pdf`, `process_module_to_audio` → `generate_module_audio`, `process_module_to_text` → `transcribe_module_audio`, and `process_module_by_type` → `generate_module_renderings_by_type` to match codebase vocabulary.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "generic_verb_naming"
+    },
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-02",
+      "summary": "`create_section` closure parameter named `id` shadows Python builtin",
+      "related_files": ["software/src/html_website/main.py"],
+      "evidence": [
+        "Line 54: `def create_section(id, title, content):` — `id` is a Python builtin function; shadowing it inside the function body silently disables the builtin for the closure's scope.",
+        "The parameter intends to convey an HTML element identifier; `section_id` or `element_id` would be accurate and avoid the shadow."
+      ],
+      "suggestion": "Rename the parameter to `section_id` throughout the closure definition and its call sites at lines 99 and 118.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "builtin_shadow"
+    },
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-03",
+      "summary": "html_website module has 12 camelCase Python function/variable names, the only module diverging from the codebase's uniform snake_case convention",
+      "related_files": ["software/src/html_website/main.py", "software/src/html_website/utils.py"],
+      "evidence": [
+        "Scan evidence (conventions.naming_by_directory): html_website/ shows 12 camelCase vs 9 snake_case names; every other module is 100% snake_case.",
+        "In html_website/main.py these camelCase names appear as JavaScript function identifiers embedded in a Python string (`toggleSidebar`, `updateThemeButtons`, etc.) — these are JavaScript, not Python identifiers, so most are expected. However the camelCase count is high enough to warrant inspection for any leaked Python-level camelCase names.",
+        "The local variable `inner_html` inside the element processing loop (line 82 area) uses snake_case correctly, but `section_html` fragments inside `create_section` are inconsistently named relative to outer scope."
+      ],
+      "suggestion": "Confirm that all 12 camelCase occurrences are strictly within the embedded JavaScript string literal. If any Python-level identifiers are camelCase, rename them to snake_case.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "convention_drift"
+    },
+    {
+      "dimension": "naming_quality",
+      "identifier": "NQ-04",
+      "summary": "`get_conversion_path` in format_conversion/main.py is a public alias that duplicates a private function name, creating confusion about which is canonical",
+      "related_files": ["software/src/format_conversion/main.py"],
+      "evidence": [
+        "Line 153–154: `def get_conversion_path(...): return _get_conversion_path(...)` — the public function is a transparent alias for `_get_conversion_path` in utils.py.",
+        "The name `get_conversion_path` appears in both files with identical signatures. A developer searching for the implementation must chase two files to find the real logic.",
+        "This pattern could be tolerated as a facade, but it is the only such alias in the module — all other functions in main.py contain real logic."
+      ],
+      "suggestion": "Remove the alias in main.py and have callers import directly from `.utils`, or rename the utils function to a non-private name and expose it as the canonical API entry point.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "generic_verb_naming"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "The `batch_processing` module was likely authored separately from the format-specific modules, resulting in a vocabulary gap (`process` vs `generate`/`render`/`convert`) that was never harmonized.",
+      "The `html_website/main.py` function is extremely long and generates both Python and embedded JavaScript in one pass; the camelCase leakage and `id` shadow are symptoms of the mixed-language context making naming discipline harder to maintain."
+    ],
+    "likely_symptoms": [
+      "NQ-03 (camelCase count) may be largely a JavaScript-in-Python-string artifact rather than true Python naming drift — flagged at medium confidence."
+    ],
+    "possible_false_positives": [
+      "NQ-03 may resolve entirely once the camelCase count is confirmed to be 100% within the embedded JS string literal."
+    ]
+  }
+}

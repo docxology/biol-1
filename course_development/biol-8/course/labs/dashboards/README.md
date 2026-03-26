@@ -20,6 +20,6 @@ Refer to the root `course/labs/README.md` for directive syntax.
 - `lab-10_review-dashboard.html`
 - `lab-11_skeletal-system-dashboard.html`
 - `lab-12_muscular-system-dashboard.html`
-- `lab-13_pathogens-dashboard.html`
+- `lab-13_microbiology-dashboard.html`
 - `lab-14_cardiovascular-system-dashboard.html`
 - `lab-15_respiratory-system-dashboard.html`

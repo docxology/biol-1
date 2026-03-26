@@ -1,0 +1,130 @@
+{
+  "batch": "abstraction_fitness",
+  "batch_index": 6,
+  "assessments": {"abstraction_fitness": 68.0},
+  "dimension_notes": {
+    "abstraction_fitness": {
+      "evidence": [
+        "file_validation/utils.py lines 71-128: Five functions (validate_assignment_name, validate_lecture_name, validate_lab_name, validate_study_guide_name, validate_quiz_name) are identical in structure: each calls matches_pattern(file_name, config.X_PATTERN). The matches_pattern function itself is just bool(pattern.match(name)). Together they form a two-hop wrapper chain with no policy: caller -> validate_X_name -> matches_pattern -> pattern.match.",
+        "batch_processing/utils.py lines 13-34: find_markdown_files and find_audio_files are pure pass-throughs to src.shared.file_utils.find_files with hardcoded glob lists. The only value is encoding the file-type globs, which could equivalently be a config constant.",
+        "format_conversion/utils.py lines 322-335: get_conversion_path is self-described in its docstring as a 'thin string-typed wrapper around get_output_path for callers that operate on string paths'. This is a pure type-coercion shim; the Path/str boundary could be resolved at the call site.",
+        "format_conversion/utils.py lines 43-50: convert_markdown_to_pdf is a one-liner that stringifies two Path args then calls render_markdown_to_pdf. The format_conversion module re-implements path stringification as indirection on top of an already-direct API.",
+        "lab_manual/main.py lines 152-177: generate_measurement_table passes all five parameters unchanged to create_measurement_table_html in utils.py with an identical signature. The scan correctly flags this as a pass-through wrapper (generate_measurement_table->create_measurement_table_html).",
+        "Duplicate markdown_to_html across three modules: markdown_to_pdf/utils.py (lines 11-32), html_website/utils.py (lines 11-21), and lab_manual/utils.py (implied by direct import of markdown). Each independently instantiates markdown.Markdown with a near-identical extension list. There is no shared src.shared.markdown_utils; each module maintains its own copy, creating divergence (html_website omits 'fenced_code'; lab_manual/utils adds its own invocation inline).",
+        "publish/utils.py lines 14-27: The module is explicitly a backward-compat re-export shim: imports from flatten.py and copy_extras.py and re-exports them via noqa: F401. This is an explicit migration artifact rather than a fitness issue (skip per rules); noted for completeness.",
+        "All 13 package __init__.py files have re_export_ratio=1.0 (20 total facade modules flagged). These are uniform, intentional facades stabilizing public import paths; they are correctly skipped per the dimension's skip rules.",
+        "batch_processing/utils.py generate_dry_run_report (lines 108-192) uses a lazy import inside the function body (from src.module_organization.utils import matches_module_number at line 129), fragmenting the module boundary definition. The function also takes 6 parameters, approaching param-bag territory, though each is distinct and named."
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "Five naming-alias wrappers in file_validation/utils.py create a three-hop call chain (caller -> validate_X -> matches_pattern -> pattern.match) with no added policy; a shared src.shared.markdown_utils.markdown_to_html would eliminate three nearly identical implementations; one explicit pass-through (generate_measurement_table) in lab_manual/main.py adds a public-API stub over an already-named util.",
+      "sub_axes": {
+        "abstraction_leverage": 72.0,
+        "indirection_cost": 55.0,
+        "interface_honesty": 85.0,
+        "delegation_density": 90.0,
+        "definition_directness": 58.0,
+        "type_discipline": 88.0
+      }
+    }
+  },
+  "dimension_judgment": {
+    "abstraction_fitness": {
+      "strengths": [
+        "All package __init__.py files are uniform, well-scoped facades that stabilize public import paths without adding spurious indirection — a deliberate and clean pattern.",
+        "The main.py / utils.py split across every module keeps domain logic (main.py) separated from low-level helpers (utils.py), preventing god functions.",
+        "format_conversion/main.py's convert_file dispatch table adds real policy (format validation, routing) that justifies the indirection layer.",
+        "lab_manual/utils.py uses proper dataclasses (TableConfig, MeasurementConfig, LabElement) instead of opaque dicts, giving config parameters named, bounded shapes.",
+        "No delegation-heavy classes were found (delegation_heavy_class_count=0), and no TypedDict violations, indicating the OOP surface is appropriately lean."
+      ],
+      "issue_character": "The codebase's abstraction problems are localized to naming-alias wrapper functions that add a call-chain hop without adding policy — most visible in file_validation/utils.py's five validate_X_name functions and in duplicated markdown_to_html implementations scattered across three modules instead of being shared.",
+      "score_rationale": "The codebase avoids the worst abstraction anti-patterns (no delegation-heavy classes, no god modules, intentional facades are clean) and sits solidly in the 60-75 range. The concrete deductions come from a cluster of shallow one-liner wrappers in file_validation (five functions that are just named aliases for matches_pattern), one explicit pass-through in lab_manual.main (generate_measurement_table), and three independent markdown_to_html implementations that should converge in a shared module. These are real costs to a developer tracing calls, but they are contained to specific modules rather than systemic, placing the score at 68 — below a 'mostly clean' 75 but well above a structurally indirected codebase."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "fv_validate_name_aliases",
+      "summary": "Five validate_X_name functions in file_validation/utils.py are pure aliases for matches_pattern with a config constant — a three-hop wrapper chain with no added policy",
+      "related_files": ["software/src/file_validation/utils.py"],
+      "evidence": [
+        "validate_assignment_name(file_name) at line 71 returns matches_pattern(file_name, config.ASSIGNMENT_PATTERN)",
+        "validate_lecture_name, validate_lab_name, validate_study_guide_name, validate_quiz_name follow the same pattern (lines 83, 95, 107, 119)",
+        "matches_pattern itself (line 33) is just bool(pattern.match(name))",
+        "Call chain from any caller: caller -> validate_X_name -> matches_pattern -> pattern.match — three hops with no policy added at any intermediate step"
+      ],
+      "suggestion": "Inline the pattern match at the call site, or replace all five with a single get_file_type(name) that switches on config patterns directly. If individual validators are needed for external readability, collapse the intermediate matches_pattern layer so each validate_X_name does bool(config.X_PATTERN.match(file_name)) directly.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "naming_alias_wrappers"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "duplicate_markdown_to_html",
+      "summary": "markdown_to_html is independently implemented in three modules (markdown_to_pdf/utils.py, html_website/utils.py, lab_manual/utils.py) instead of being shared",
+      "related_files": [
+        "software/src/markdown_to_pdf/utils.py",
+        "software/src/html_website/utils.py",
+        "software/src/lab_manual/utils.py"
+      ],
+      "evidence": [
+        "markdown_to_pdf/utils.py lines 11-32: markdown.Markdown(extensions=['extra','codehilite','tables','fenced_code'])",
+        "html_website/utils.py lines 11-21: markdown.Markdown(extensions=['extra','codehilite','tables']) — omits 'fenced_code'",
+        "lab_manual/utils.py imports markdown and invokes it inline in its own markdown_to_html (confirmed by lab_manual/main.py importing markdown_to_html from .utils)",
+        "Three diverged implementations; a developer adding an extension must update three files"
+      ],
+      "suggestion": "Consolidate into src/shared/markdown_utils.py with a single markdown_to_html(text, extensions=None) that defaults to the full extension list. The html_website variant's omission of 'fenced_code' can be passed as an optional override. All three modules import from the shared location.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "missing_shared_boundary"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "lab_manual_generate_measurement_passthrough",
+      "summary": "generate_measurement_table in lab_manual/main.py is a public-API stub that forwards all parameters unchanged to create_measurement_table_html in utils.py",
+      "related_files": ["software/src/lab_manual/main.py", "software/src/lab_manual/utils.py"],
+      "evidence": [
+        "lab_manual/main.py lines 152-177: generate_measurement_table(rows, aspects, include_device, include_unit, include_value) returns create_measurement_table_html(rows=rows, aspects=aspects, include_device=include_device, include_unit=include_unit, include_value=include_value)",
+        "Identical signatures; no pre-processing, validation, defaulting, or logging added",
+        "Scan confirms: pass_through_wrappers entry for lab_manual/main.py: generate_measurement_table->create_measurement_table_html"
+      ],
+      "suggestion": "Either re-export create_measurement_table_html directly from main.py under the public name, or fold the public function's name onto the util directly. If the separation of main/utils is the convention, add at least a MeasurementConfig construction step in main.py to mirror how generate_data_table builds a TableConfig before delegating.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "naming_alias_wrappers"
+    },
+    {
+      "dimension": "abstraction_fitness",
+      "identifier": "batch_find_files_thin_wrappers",
+      "summary": "find_markdown_files and find_audio_files in batch_processing/utils.py forward to shared find_files with hardcoded glob lists — the only contribution is encoding type-specific globs",
+      "related_files": ["software/src/batch_processing/utils.py"],
+      "evidence": [
+        "Line 22: find_markdown_files returns find_files(directory, ['*.md', '*.markdown'])",
+        "Line 34: find_audio_files returns find_files(directory, ['*.mp3', '*.wav', '*.m4a', '*.flac', '*.ogg'])",
+        "The glob lists could equally live in batch_processing/config.py as MARKDOWN_GLOBS and AUDIO_GLOBS, making callers direct: find_files(directory, config.MARKDOWN_GLOBS)"
+      ],
+      "suggestion": "Move the glob lists to batch_processing/config.py as named constants (MARKDOWN_GLOBS, AUDIO_GLOBS). This is lower priority than the other issues because the wrappers do provide type-meaningful names, but they add an unnecessary indirection layer when config constants would serve the same purpose with one fewer call hop.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "naming_alias_wrappers"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "Systematic application of a main.py/utils.py split without asking whether every utils function warrants a same-name wrapper in main.py — this mechanical pattern produced pass-through stubs (generate_measurement_table, validate_X_name aliases).",
+      "Absence of a src/shared/ markdown utility module led each package to implement markdown_to_html independently, creating three diverged copies of near-identical code."
+    ],
+    "likely_symptoms": [
+      "fv_validate_name_aliases is partly symptomatic of the broader main/utils split pattern; the underlying design policy (five distinct file types) is sound, only the indirection depth is unnecessary."
+    ],
+    "possible_false_positives": [
+      "The 20 facade __init__.py modules flagged by the scanner are intentional import-path stabilizers and are correctly excluded by the dimension's skip rules.",
+      "publish/utils.py's backward-compat re-export block is an explicit migration shim with documented rationale and should not be scored against abstraction_fitness."
+    ]
+  }
+}

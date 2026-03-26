@@ -3,7 +3,7 @@
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from . import config
 
@@ -75,7 +75,7 @@ def check_output_directory(module_path: Path) -> Tuple[bool, Dict[str, bool]]:
     return True, subdirs
 
 
-def check_study_guide_files(module_path: Path, formats: List[str] = None) -> Dict[str, bool]:
+def check_study_guide_files(module_path: Path, formats: Optional[List[str]] = None) -> Dict[str, bool]:
     """Check which study guide files exist for a module.
 
     Study guide files are named with module prefix, e.g.:
@@ -94,10 +94,7 @@ def check_study_guide_files(module_path: Path, formats: List[str] = None) -> Dic
     study_guides_path = module_path / "output" / config.OUTPUT_DIRS["study_guides"]
     
     # Get expected files based on formats
-    if formats is not None:
-        expected_files = config.get_expected_study_guide_files(formats)
-    else:
-        expected_files = config.EXPECTED_STUDY_GUIDE_FILES
+    expected_files = config.get_expected_study_guide_files(formats)
     
     if not study_guides_path.exists():
         return {f: False for f in expected_files}

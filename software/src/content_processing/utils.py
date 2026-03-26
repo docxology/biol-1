@@ -5,7 +5,7 @@ Functions migrated from scripts/renumber_questions.py.
 
 import re
 import logging
-from typing import List, Dict, Tuple
+from typing import Any, List, Dict, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -176,7 +176,7 @@ def extract_numbered_items(content: str) -> List[str]:
     return items
 
 
-def validate_question_format(content: str) -> Dict[str, any]:
+def validate_question_format(content: str) -> Dict[str, Any]:
     """Validate that a questions.md file has proper format.
 
     Args:

@@ -1,6 +1,6 @@
 """Configuration for validation module."""
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 # All supported output formats
 ALL_SUPPORTED_FORMATS = ["pdf", "docx", "html", "txt", "mp3", "md"]
@@ -11,22 +11,6 @@ DEFAULT_REQUIRED_FORMATS = ["pdf", "docx"]
 # Format-aware validation: These are the base file types (without extension)
 STUDY_GUIDE_BASE_TYPES = ["keys-to-success", "questions"]
 
-# Legacy: Expected output formats (kept for backwards compatibility)
-EXPECTED_FORMATS = ["pdf", "docx", "html", "txt", "mp3"]
-
-# Legacy: Required study guide files per module (MP3 is optional)
-# NOTE: Use get_expected_study_guide_files(formats) for format-aware validation
-EXPECTED_STUDY_GUIDE_FILES = [
-    "keys-to-success.pdf",
-    "keys-to-success.docx",
-    "keys-to-success.html",
-    "keys-to-success.txt",
-    "questions.pdf",
-    "questions.docx",
-    "questions.html",
-    "questions.txt",
-]
-
 # Optional study guide files (not counted toward validity)
 OPTIONAL_STUDY_GUIDE_FILES = [
     "keys-to-success.mp3",
@@ -34,7 +18,7 @@ OPTIONAL_STUDY_GUIDE_FILES = [
 ]
 
 
-def get_expected_study_guide_files(formats: List[str] = None) -> List[str]:
+def get_expected_study_guide_files(formats: Optional[List[str]] = None) -> List[str]:
     """Get expected study guide files based on requested formats.
     
     Args:
@@ -63,7 +47,7 @@ SYLLABUS_REQUIRED_FORMATS = ["pdf", "docx"]  # Minimum for syllabus
 SYLLABUS_OPTIONAL_FORMATS = ["html", "txt", "mp3", "md"]  # Nice to have
 
 
-def get_syllabus_required_formats(formats: List[str] = None) -> List[str]:
+def get_syllabus_required_formats(formats: Optional[List[str]] = None) -> List[str]:
     """Get required syllabus formats based on requested formats.
     
     Args:
@@ -105,9 +89,6 @@ COURSE_CONFIG: Dict[str, Dict] = {
         "module_prefix": "module-",
     },
 }
-
-# Syllabus expected outputs
-SYLLABUS_EXPECTED_FORMATS = ["pdf", "docx", "html", "txt", "mp3"]
 
 # Published directory name
 PUBLISHED_DIR_NAME = "PUBLISHED"

@@ -36,10 +36,6 @@ from src.legacy_import import (
     process_for_upload_all_modules,
 )
 
-# Setup logging
-logger = setup_logging()
-
-
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
@@ -85,6 +81,7 @@ Examples:
 
 def main() -> int:
     """Main entry point."""
+    logger = setup_logging()
     args = parse_args()
 
     # Paths

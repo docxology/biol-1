@@ -246,13 +246,14 @@ def get_module_statistics(module_path: str) -> Dict[str, Any]:
     assignments_dir = module_dir / "assignments"
     assignment_count = 0
     if assignments_dir.exists():
-        from ..file_validation.utils import validate_assignment_name
+        from ..file_validation.utils import matches_pattern
+        from ..file_validation.config import ASSIGNMENT_PATTERN
         assignment_count = sum(
             1
             for f in assignments_dir.iterdir()
             if f.is_file()
             and f.name not in ["README.md", "AGENTS.md"]
-            and validate_assignment_name(f.name)
+            and matches_pattern(f.name, ASSIGNMENT_PATTERN)
         )
 
     # Check required files

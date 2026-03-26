@@ -9,11 +9,7 @@ from .utils import (
     check_required_files_exist,
     is_kebab_case,
     is_valid_extension,
-    validate_assignment_name,
-    validate_lab_name,
-    validate_lecture_name,
-    validate_quiz_name,
-    validate_study_guide_name,
+    matches_pattern,
 )
 
 
@@ -66,14 +62,14 @@ def validate_module_files(module_path: str) -> Dict[str, Any]:
             if file_name.endswith((".md", ".pdf", ".pptx", ".docx")):
                 # Check if it's in assignments directory
                 if "assignments" in file_path.parts:
-                    if not validate_assignment_name(file_name):
+                    if not matches_pattern(file_name, config.ASSIGNMENT_PATTERN):
                         naming_violations.append(str(file_path.relative_to(module_dir)))
                 # Check other file types
                 elif not (
-                    validate_lecture_name(file_name)
-                    or validate_lab_name(file_name)
-                    or validate_study_guide_name(file_name)
-                    or validate_quiz_name(file_name)
+                    matches_pattern(file_name, config.LECTURE_PATTERN)
+                    or matches_pattern(file_name, config.LAB_PATTERN)
+                    or matches_pattern(file_name, config.STUDY_GUIDE_PATTERN)
+                    or matches_pattern(file_name, config.QUIZ_PATTERN)
                     or file_name in config.REQUIRED_FILES
                 ):
                     # Allow files that don't match specific patterns if they're in subdirectories
@@ -135,7 +131,7 @@ def check_naming_conventions(directory: str) -> List[str]:
 
             # For files in assignments directory, check assignment pattern
             if "assignments" in file_path.parts:
-                if not validate_assignment_name(file_name):
+                if not matches_pattern(file_name, config.ASSIGNMENT_PATTERN):
                     violations.append(str(file_path.relative_to(dir_path)))
 
     return violations

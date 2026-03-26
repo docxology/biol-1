@@ -45,9 +45,6 @@ from src.batch_processing.utils import (
     get_formats_to_process,
 )
 
-logger = setup_logging()
-
-
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
@@ -83,6 +80,7 @@ def parse_limits(limit_args: list) -> dict:
 
 def main() -> int:
     """Generate all outputs for all courses."""
+    logger = setup_logging()
     args = parse_args()
     start_time = time.time()
     repo_root = Path(__file__).parent.parent.parent

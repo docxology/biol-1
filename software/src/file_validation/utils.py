@@ -68,66 +68,6 @@ def is_valid_extension(file_path: Path) -> bool:
     return ext in config.VALID_EXTENSIONS
 
 
-def validate_assignment_name(file_name: str) -> bool:
-    """Validate assignment file name.
-
-    Args:
-        file_name: File name to validate
-
-    Returns:
-        True if name is valid, False otherwise
-    """
-    return matches_pattern(file_name, config.ASSIGNMENT_PATTERN)
-
-
-def validate_lecture_name(file_name: str) -> bool:
-    """Validate lecture file name.
-
-    Args:
-        file_name: File name to validate
-
-    Returns:
-        True if name is valid, False otherwise
-    """
-    return matches_pattern(file_name, config.LECTURE_PATTERN)
-
-
-def validate_lab_name(file_name: str) -> bool:
-    """Validate lab protocol file name.
-
-    Args:
-        file_name: File name to validate
-
-    Returns:
-        True if name is valid, False otherwise
-    """
-    return matches_pattern(file_name, config.LAB_PATTERN)
-
-
-def validate_study_guide_name(file_name: str) -> bool:
-    """Validate study guide file name.
-
-    Args:
-        file_name: File name to validate
-
-    Returns:
-        True if name is valid, False otherwise
-    """
-    return matches_pattern(file_name, config.STUDY_GUIDE_PATTERN)
-
-
-def validate_quiz_name(file_name: str) -> bool:
-    """Validate quiz file name.
-
-    Args:
-        file_name: File name to validate
-
-    Returns:
-        True if name is valid, False otherwise
-    """
-    return matches_pattern(file_name, config.QUIZ_PATTERN)
-
-
 def check_required_files_exist(module_path: Path) -> List[str]:
     """Check which required files are missing.
 
@@ -171,15 +111,15 @@ def get_file_type(file_name: str) -> str:
     Returns:
         File type: "assignment", "lecture", "lab", "study_guide", "quiz", or "unknown"
     """
-    if validate_assignment_name(file_name):
+    if matches_pattern(file_name, config.ASSIGNMENT_PATTERN):
         return "assignment"
-    elif validate_lecture_name(file_name):
+    elif matches_pattern(file_name, config.LECTURE_PATTERN):
         return "lecture"
-    elif validate_lab_name(file_name):
+    elif matches_pattern(file_name, config.LAB_PATTERN):
         return "lab"
-    elif validate_study_guide_name(file_name):
+    elif matches_pattern(file_name, config.STUDY_GUIDE_PATTERN):
         return "study_guide"
-    elif validate_quiz_name(file_name):
+    elif matches_pattern(file_name, config.QUIZ_PATTERN):
         return "quiz"
     else:
         return "unknown"

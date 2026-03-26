@@ -36,7 +36,7 @@ Every dashboard corresponds 1:1 with a lab protocol file. Some labs have multipl
 | `lab-10_tissues-dashboard.html` | Tissues | — | Tissue identification |
 | `lab-11_skeletal-system-dashboard.html` | Skeletal | — | Bone anatomy |
 | `lab-12_muscular-system-dashboard.html` | Muscular | — | Muscle contraction |
-| `lab-13_pathogens-dashboard.html` | Pathogens | — | Pathogen classification |
+| `lab-13_microbiology-dashboard.html` | Microbiology | — | Pathogen classification, Gram logic, immune response |
 | `lab-14_cardiovascular-system-dashboard.html` | Cardiovascular | — | Heart anatomy, blood flow |
 | `lab-15_respiratory-system-dashboard.html` | Respiratory | — | Gas exchange, spirometry |
 

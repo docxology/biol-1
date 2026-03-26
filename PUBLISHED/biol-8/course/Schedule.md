@@ -17,7 +17,7 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 7 | 3/3 - 3/5 | Lab 10: Module 07-10 Review | **Exam 02** | Exam covers Modules 07-10 |
 | 8 | 3/10 - 3/12 | Module 11: Skeletal System & Lab 11: Skeletal System | Module 12: Muscular System & Lab 12: Muscular System | |
 | 9 | 3/17 - 3/19 | No Class | No Class | Spring Break |
-| 10 | 3/24 - 3/26 | Module 13: Pathogens & Lab 13: Pathogens | Module 14: Cardiovascular System & Lab 14: Cardiovascular | |
+| 10 | 3/24 - 3/26 | Module 13: Pathogens & Lab 13: Microbiology | Module 14: Cardiovascular System & Lab 14: Cardiovascular | |
 | 11 | 3/31 - 4/2 | No Class | Review & Lab 15: Respiratory | Holiday (March 31) |
 | 12 | 4/7 - 4/9 | **Exam 03** | Module 15: Respiratory System | Exam covers Modules 11-14 |
 | 13 | 4/14 - 4/16 | Systems Integration Lab | Comprehensive Review | |

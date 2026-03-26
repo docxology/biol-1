@@ -15,13 +15,6 @@ import sys
 import tomllib
 from pathlib import Path
 
-# Set library path for macOS Homebrew (WeasyPrint needs GLib/GObject)
-if sys.platform == "darwin":
-    homebrew_lib = "/opt/homebrew/lib"
-    current = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "")
-    if homebrew_lib not in current:
-        os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = f"{homebrew_lib}:{current}" if current else homebrew_lib
-
 REPO_ROOT = Path(__file__).resolve().parent
 CONFIG_PATH = REPO_ROOT / "publish.toml"
 PUBLISH_SCRIPT = REPO_ROOT / "software" / "scripts" / "publish_all.py"
@@ -311,6 +304,13 @@ def flatten_all_files(config: dict) -> None:
 
 
 def main():
+    # Set library path for macOS Homebrew (WeasyPrint needs GLib/GObject)
+    if sys.platform == "darwin":
+        homebrew_lib = "/opt/homebrew/lib"
+        current = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "")
+        if homebrew_lib not in current:
+            os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = f"{homebrew_lib}:{current}" if current else homebrew_lib
+
     parser = argparse.ArgumentParser(description="Publish courses using publish.toml config")
     parser.add_argument("--dry-run", action="store_true", help="Show command without executing")
     parser.add_argument("--override-formats", type=str, default=None,

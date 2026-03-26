@@ -60,40 +60,29 @@ def test_transcribe_audio_nonexistent_file():
         transcribe_audio("/nonexistent/audio.mp3", "/output.txt")
 
 
+@pytest.mark.requires_internet
 def test_batch_transcribe_audio(temp_dir):
     """Test batch transcribing audio files."""
-    # Create a minimal audio file by generating speech
     from src.text_to_speech.main import generate_speech
 
     audio_file = temp_dir / "test.mp3"
-    try:
-        generate_speech("Test.", str(audio_file))
-        if not audio_file.exists():
-            pytest.skip("Audio generation failed, skipping batch transcription test")
+    generate_speech("Test.", str(audio_file))
 
-        output_dir = temp_dir / "output"
-        output_dir.mkdir()
+    output_dir = temp_dir / "output"
+    output_dir.mkdir()
 
-        result = batch_transcribe_audio(str(temp_dir), str(output_dir))
-        # Result might be empty if transcription fails, but we test the path
-        assert isinstance(result, list)
-    except Exception:
-        pytest.skip("Audio generation or transcription requires internet connection")
+    result = batch_transcribe_audio(str(temp_dir), str(output_dir))
+    assert isinstance(result, list)
 
 
 def test_transcribe_audio_error_handling(temp_dir):
-    """Test error handling in transcribe_audio."""
-    # Create an invalid audio file (empty or corrupted)
+    """Test that transcribe_audio raises an error for invalid audio data."""
     invalid_audio = temp_dir / "invalid.mp3"
     invalid_audio.write_bytes(b"invalid audio data")
 
     output_file = temp_dir / "output.txt"
-    try:
-        # This might fail, but we test the error handling path
+    with pytest.raises((OSError, Exception)):
         transcribe_audio(str(invalid_audio), str(output_file))
-    except (OSError, FileNotFoundError):
-        # Expected to fail, test passes
-        pass
 
 
 def test_read_audio_file_error():

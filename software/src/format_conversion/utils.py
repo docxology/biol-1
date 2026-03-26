@@ -41,12 +41,7 @@ def get_output_path(
 
 
 def convert_markdown_to_pdf(input_path: Path, output_path: Path) -> None:
-    """Convert Markdown file to PDF.
-
-    Args:
-        input_path: Path to input Markdown file
-        output_path: Path to output PDF file
-    """
+    """Convert Markdown file to PDF."""
     render_markdown_to_pdf(str(input_path), str(output_path))
 
 
@@ -210,9 +205,7 @@ def convert_docx_to_markdown(input_path: Path) -> str:
         style_name = paragraph.style.name.lower()
         if "heading" in style_name:
             level = 1
-            if "heading 1" in style_name or "title" in style_name:
-                level = 1
-            elif "heading 2" in style_name or "subtitle" in style_name:
+            if "heading 2" in style_name or "subtitle" in style_name:
                 level = 2
             elif "heading 3" in style_name:
                 level = 3

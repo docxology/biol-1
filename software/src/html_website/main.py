@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Optional
 
 from . import config
-from ..batch_processing.logging_config import get_logger
+import logging
 from .utils import (
     find_audio_file,
     find_questions_file,
@@ -15,7 +15,7 @@ from .utils import (
 )
 from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
-logger = get_logger("html_website")
+logger = logging.getLogger("html_website")
 
 
 def generate_module_website(
@@ -51,14 +51,14 @@ def generate_module_website(
     sidebar_links = []
 
     # Helper to create section HTML
-    def create_section(id, title, content):
-        section_html = f'<section id="{id}">\n'
-        section_html += f'<div class="section-header" onclick="toggleSection(\'{id}\')">\n'
+    def create_section(section_id, title, content):
+        section_html = f'<section id="{section_id}">\n'
+        section_html += f'<div class="section-header" onclick="toggleSection(\'{section_id}\')">\n'
         section_html += f'<h2>{title}</h2>\n'
         section_html += '<div class="section-controls">\n'
-        section_html += f'<button class="collapse-toggle" id="toggle-{id}" aria-label="Toggle section">▼</button>\n'
+        section_html += f'<button class="collapse-toggle" id="toggle-{section_id}" aria-label="Toggle section">▼</button>\n'
         section_html += '</div></div>\n'
-        section_html += f'<div class="section-content" id="content-{id}">\n'
+        section_html += f'<div class="section-content" id="content-{section_id}">\n'
         section_html += content
         section_html += '</div></section>\n'
         return section_html
@@ -180,8 +180,8 @@ def generate_module_website(
 
                 content_sections.append(create_section("questions", "Interactive Questions", q_html))
                 sidebar_links.append({"id": "questions", "title": "Interactive Questions"})
-        except Exception:
-            pass
+        except Exception as e:
+            logger.error("Failed to parse questions file %s: %s", questions_file, e, exc_info=True)
 
     # Generate Sidebar HTML
     sidebar_html = '<div class="nav-group"><div class="nav-group-title">Module Contents</div>\n'

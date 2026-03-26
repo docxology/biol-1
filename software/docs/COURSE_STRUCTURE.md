@@ -129,7 +129,7 @@ course/labs/
 ├── lab-10_tissues.md
 ├── lab-11_skeletal-system.md
 ├── lab-12_muscular-system.md
-├── lab-13_pathogens.md
+├── lab-13_microbiology.md
 ├── lab-14_cardiovascular-system.md
 ├── lab-15_respiratory-system.md
 ├── dashboards/                    # Interactive HTML dashboards

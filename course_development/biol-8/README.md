@@ -83,7 +83,7 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 10 | [Lab 10](course/labs/lab-10_tissues.md) | Tissues | Complete |
 | 11 | [Lab 11](course/labs/lab-11_skeletal-system.md) | Skeletal System | Complete |
 | 12 | [Lab 12](course/labs/lab-12_muscular-system.md) | Muscular System | Complete |
-| 13 | [Lab 13](course/labs/lab-13_pathogens.md) | Pathogens | Stub |
+| 13 | [Lab 13](course/labs/lab-13_microbiology.md) | Microbiology | Complete |
 | 14 | [Lab 14](course/labs/lab-14_cardiovascular-system.md) | Cardiovascular System | Stub |
 | 15 | [Lab 15](course/labs/lab-15_respiratory-system.md) | Respiratory System | Stub |
 
@@ -112,7 +112,7 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 | 10 | [Tissues](course/labs/dashboards/lab-10_tissues-dashboard.html) |
 | 11 | [Skeletal System](course/labs/dashboards/lab-11_skeletal-system-dashboard.html) |
 | 12 | [Muscular System](course/labs/dashboards/lab-12_muscular-system-dashboard.html) |
-| 13 | [Pathogens](course/labs/dashboards/lab-13_pathogens-dashboard.html) |
+| 13 | [Microbiology](course/labs/dashboards/lab-13_microbiology-dashboard.html) |
 | 14 | [Cardiovascular System](course/labs/dashboards/lab-14_cardiovascular-system-dashboard.html) |
 | 15 | [Respiratory System](course/labs/dashboards/lab-15_respiratory-system-dashboard.html) |
 

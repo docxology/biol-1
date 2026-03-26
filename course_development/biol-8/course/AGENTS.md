@@ -26,9 +26,9 @@ course/
 │   ├── module-01_quiz_key.md   # Answer key
 │   └── ... (15 modules × 2 files)
 │
-├── labs/                        # Lab protocols (15 stub files)
-│   ├── lab-01_exploring-life-science.md
-│   └── ... (one per module)
+├── labs/                        # Lab protocols (Markdown + dashboards/)
+│   ├── lab-01_measurement-methods.md
+│   └── ... (see labs/README.md; e.g. lab-13_microbiology.md with Module 13)
 │
 └── module-XX-topic-name/        # 15 module directories
     ├── keys-to-success.md      # Learning objectives
@@ -166,7 +166,7 @@ The `software/` directory contains batch processing utilities for:
 - [x] Each module has `keys-to-success.md`, `questions.md`, `resources/`
 - [x] 4 exams with answer keys (8 files)
 - [x] 15 quizzes with answer keys (30 files)
-- [x] 15 lab protocol stubs
+- [x] 15 lab protocols (`labs/`; e.g. `lab-13_microbiology.md` for Module 13)
 
 ### Coherence
 

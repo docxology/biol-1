@@ -24,7 +24,7 @@ The course covers 15 modules progressing from foundational life science concepts
 | [10](module-10-tissues/) | Tissues | Epithelial, connective, muscle, nervous tissue |
 | [11](module-11-skeletal-system/) | Skeletal System | Bone structure, bone cells, joints |
 | [12](module-12-muscular-system/) | Muscular System | Muscle types, sliding filament theory, contraction |
-| [13](module-13-pathogens/) | Pathogens | Bacteria, viruses, fungi, immune defenses |
+| [13](module-13-pathogens/) | Pathogens | Bacteria, viruses, fungi, immune defenses; hands-on [Lab 13: Microbiology](labs/lab-13_microbiology.md) |
 | [14](module-14-cardiovascular-system/) | Cardiovascular System | Heart anatomy, blood flow, blood vessels |
 | [15](module-15-respiratory-system/) | Respiratory System | Breathing mechanics, gas exchange, transport |
 

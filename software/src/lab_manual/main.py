@@ -156,15 +156,15 @@ def generate_measurement_table(
     include_unit: bool = True,
     include_value: bool = False,
 ) -> str:
-    """Generate HTML for a measurement table.
-    
+    """Generate HTML for a measurement recording table.
+
     Args:
-        rows: Number of rows
-        aspects: Optional list of pre-filled physical aspects
+        rows: Number of data rows
+        aspects: Optional pre-filled labels for the first column
         include_device: Include measurement device column
-        include_unit: Include measurement unit column
+        include_unit: Include unit column
         include_value: Include measured value column
-        
+
     Returns:
         HTML string for the measurement table
     """

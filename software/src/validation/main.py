@@ -45,7 +45,7 @@ def _get_module_number(module_name: str) -> int:
 
 def validate_outputs(
     course_path: str,
-    formats: List[str] = None,
+    formats: Optional[List[str]] = None,
     max_module: Optional[int] = None,
     max_lab: Optional[int] = None,
 ) -> Dict[str, Any]:
@@ -150,7 +150,7 @@ def validate_outputs(
     return results
 
 
-def _validate_module_outputs(module_path: Path, formats: List[str] = None) -> Dict[str, Any]:
+def _validate_module_outputs(module_path: Path, formats: Optional[List[str]] = None) -> Dict[str, Any]:
     """Validate outputs for a single module.
 
     Args:
@@ -207,7 +207,7 @@ def _validate_module_outputs(module_path: Path, formats: List[str] = None) -> Di
     return result
 
 
-def _validate_syllabus_outputs(course_dir: Path, formats: List[str] = None) -> Dict[str, Any]:
+def _validate_syllabus_outputs(course_dir: Path, formats: Optional[List[str]] = None) -> Dict[str, Any]:
     """Validate syllabus outputs for a course.
 
     Syllabus outputs are placed directly in the syllabus/output/ directory
@@ -320,7 +320,7 @@ def validate_published(published_path: str) -> Dict[str, Any]:
 def generate_validation_report(
     course_name: str,
     repo_root: Optional[str] = None,
-    formats: List[str] = None,
+    formats: Optional[List[str]] = None,
     max_module: Optional[int] = None,
     max_lab: Optional[int] = None,
 ) -> Dict[str, Any]:

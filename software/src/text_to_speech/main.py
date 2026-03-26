@@ -1,7 +1,7 @@
 """Main functions for text-to-speech generation."""
 
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 from . import config
 from .utils import (
@@ -98,26 +98,3 @@ def batch_generate_speech(input_dir: str, output_dir: str) -> List[str]:
     return output_files
 
 
-def configure_voice_settings(
-    voice: str, speed: float, pitch: float
-) -> Dict[str, Any]:
-    """Configure voice settings for speech generation.
-
-    Args:
-        voice: Voice identifier (currently not used with gTTS)
-        speed: Speech speed (0.5-2.0, currently not used with gTTS)
-        pitch: Speech pitch adjustment (currently not used with gTTS)
-
-    Returns:
-        Configuration dictionary
-
-    Note:
-        gTTS doesn't support speed/pitch adjustment directly.
-        These parameters are stored for potential future use with other TTS engines.
-    """
-    settings = config.DEFAULT_VOICE_SETTINGS.copy()
-    settings["voice"] = voice
-    settings["speed"] = max(0.5, min(2.0, speed))  # Clamp between 0.5 and 2.0
-    settings["pitch"] = max(0.5, min(2.0, pitch))  # Clamp between 0.5 and 2.0
-
-    return settings

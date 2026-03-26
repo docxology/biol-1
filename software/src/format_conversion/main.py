@@ -1,9 +1,12 @@
 """Main functions for format conversion."""
 
+import logging
 from pathlib import Path
 from typing import Dict, List
 
 from . import config
+
+logger = logging.getLogger(__name__)
 from .utils import (
     convert_html_to_pdf,
     convert_markdown_to_html,
@@ -125,7 +128,7 @@ def batch_convert(
             output_files.append(str(output_path))
         except Exception as e:
             # Log error but continue with other files
-            print(f"Error converting {input_file}: {e}")
+            logger.error("Error converting %s: %s", input_file, e, exc_info=True)
             continue
 
     return output_files
@@ -140,15 +143,3 @@ def get_supported_formats() -> Dict[str, list]:
     return config.SUPPORTED_CONVERSIONS.copy()
 
 
-def get_conversion_path(input_path: str, output_format: str) -> str:
-    """Generate output path for file conversion.
-
-    Args:
-        input_path: Path to input file
-        output_format: Target format (without dot)
-
-    Returns:
-        Output file path with new extension
-    """
-    from .utils import get_conversion_path as _get_conversion_path
-    return _get_conversion_path(input_path, output_format)

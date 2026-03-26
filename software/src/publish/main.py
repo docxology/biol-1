@@ -75,11 +75,7 @@ def publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]
             clean_directory(dest_path)
             
             # Primary Source
-            files_copied = 0
-            if source_path.exists():
-                files_copied += copy_directory_contents(source_path, dest_path)
-            else:
-                logger.warning(f"Source directory not found for {module_name}: {source_path}")
+            files_copied = copy_directory_contents(source_path, dest_path)
 
             # Additional Sources (e.g., slides)
             for extra_src in course_conf.get("additional_module_dirs", []):

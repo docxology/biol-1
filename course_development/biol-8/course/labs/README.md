@@ -20,7 +20,7 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 | [Lab 10](lab-10_review.md) | Module 07-10 Review | ✅ Complete | Modules 07-10 |
 | [Lab 11](lab-11_skeletal-system.md) | Skeletal System | ✅ Complete | Module 11 |
 | [Lab 12](lab-12_muscular-system.md) | Muscular System | ✅ Complete | Module 12 |
-| [Lab 13](lab-13_pathogens.md) | Pathogens | 📝 Stub | Module 13 |
+| [Lab 13](lab-13_microbiology.md) | Microbiology | ✅ Complete | Module 13 |
 | [Lab 14](lab-14_cardiovascular-system.md) | Cardiovascular System | 📝 Stub | Module 14 |
 | [Lab 15](lab-15_respiratory-system.md) | Respiratory System | 📝 Stub | Module 15 |
 

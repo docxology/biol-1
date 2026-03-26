@@ -43,7 +43,7 @@ def process_chapter_questions(
         "processed": [],
         "skipped": [],
         "errors": [],
-        "summary": {"converted": 0, "skipped": 0, "errors": 0, "modules_created": 0},
+        "summary": {"converted": 0, "skipped": 0, "errors": 0},
     }
 
     chapter_mapping = get_chapter_to_module_mapping()
@@ -89,9 +89,6 @@ def process_chapter_questions(
                 )
                 results["summary"]["skipped"] += 1
                 continue
-
-            if not module_path.exists() and not dry_run:
-                results["summary"]["modules_created"] += 1
 
             # Create comprehension questions file in resources directory
             create_comprehension_questions(module_path, module_num, dry_run)

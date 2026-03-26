@@ -1,0 +1,108 @@
+{
+  "batch": "cross_module_architecture",
+  "batch_index": 1,
+  "assessments": {"cross_module_architecture": 68.0},
+  "dimension_notes": {
+    "cross_module_architecture": {
+      "evidence": [
+        "html_website/main.py line 7 imports `from ..batch_processing.logging_config import get_logger`, while batch_processing/main.py line 20 imports `from ..html_website.main import generate_module_website` — a confirmed mutual import cycle between two Layer 3 modules.",
+        "speech_to_text/main.py line 122 contains a deferred (function-level) import `from ..text_to_speech.utils import extract_text_from_markdown, read_text_file` inside `transcribe_from_markdown()`. This is a cycle-pressure signal: speech_to_text depends on text_to_speech both at the module level (coupling_matrix shows the edge) and via this late import, suggesting the boundary between the two packages is not clean.",
+        "publish.py (root, 434 LOC) implements `flatten_all_files()` independently of the flatten logic in software/src/publish/flatten.py and software/scripts/publish_all.py. Two separate flattening strategies exist: `flatten_published()` from src.publish handles module-level flattening (called by publish_all.py Step 7), while `flatten_all_files()` in publish.py does an ALL_FILES aggregation (Step 7 in publish.py). Neither calls the other; they operate on different outputs but use identical file-walk patterns.",
+        "batch_processing imports from 7 distinct sibling packages (text_to_speech x2, markdown_to_pdf, format_conversion, module_organization, lab_manual, html_website, speech_to_text). This makes batch_processing a hub with a large blast radius — any interface change in any of these 7 packages ripples directly into batch_processing/main.py.",
+        "publish/utils.py explicitly re-exports from flatten.py and copy_extras.py as a backward-compatibility shim ('existing callers that import from src.publish.utils continue to work'). The shim is documented and honest but creates a permanent two-hop import path for publish_all.py: it imports from publish.utils rather than from the canonical submodules.",
+        "canvas_integration/main.py line 15: `from ..file_validation.main import validate_module_files` — a Layer 4 integration module depends on a Layer 0 utility module. Directionally correct per the documented layer hierarchy but canvas_integration is never imported by any other src module (avg_fan_in 0.7 for the package, and the only importer is likely a script). The package has no callers inside the production graph.",
+        "html_website/main.py imports `from src.shared.file_utils import ...` using an absolute src-rooted path, while most other modules use relative imports (e.g., `from ..batch_processing.logging_config import ...`). The inconsistency means the shared/ package has a mixed access pattern: some modules use `from src.shared`, others could use `from ..shared`. Confirmed mixed usage: format_conversion/utils.py line 8 also uses `from src.shared.file_utils`."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "The confirmed html_website ↔ batch_processing cycle means changes to batch_processing.logging_config must consider html_website as a consumer even though html_website is supposed to be an orchestration peer of batch_processing. The deferred import in speech_to_text is a code smell that signals boundary ambiguity between two sibling codec packages. The duplicate flatten logic in publish.py vs the src.publish module layer means the pipeline has two different definitions of 'flattening' with no shared abstraction."
+    }
+  },
+  "dimension_judgment": {
+    "cross_module_architecture": {
+      "strengths": [
+        "The Layer 0–4 hierarchy documented in CLAUDE.md is broadly respected: lower-level packages (markdown_to_pdf, text_to_speech, lab_manual) have no upward dependencies, and batch_processing correctly sits above them.",
+        "All __init__.py files are pure re-export facades with no logic, making the public API surface of each package explicit and stable.",
+        "The publish/utils.py backward-compat shim is honestly documented with a clear rationale, reducing the cost of the extra indirection for maintainers.",
+        "No god modules were detected by mechanical scan; the largest package (batch_processing at 1572 LOC) is disproportionately large but is the intentional orchestration hub.",
+        "canvas_integration correctly isolates external-API coupling behind its own package boundary and does not leak requests or Canvas-specific types into sibling modules."
+      ],
+      "issue_character": "The primary issues are two boundary leaks that create cycles: html_website consuming batch_processing's logging infrastructure (inverting the intended dependency direction), and speech_to_text reaching into text_to_speech utilities via a deferred import; these are accompanied by a duplicate flatten abstraction split across the root entrypoint and the src.publish module layer.",
+      "score_rationale": "The codebase scores above the midpoint because the documented layer hierarchy is largely followed, there are no detected god modules, and facades are clean. However, a confirmed mutual import between html_website and batch_processing (two Layer 3 peers) is a real architectural defect that blurs ownership and inflates blast radius. The deferred import in speech_to_text is a second signal of cycle pressure. Duplication of flatten logic between publish.py and src.publish/flatten.py indicates a missing or underused shared abstraction at the pipeline boundary. These three issues lower the score to the high-60s rather than the high-70s a well-layered codebase of this size would otherwise merit."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "html_batch_cycle",
+      "summary": "html_website and batch_processing mutually import each other, creating a confirmed Layer 3 cycle",
+      "related_files": [
+        "software/src/html_website/main.py",
+        "software/src/batch_processing/main.py",
+        "software/src/batch_processing/logging_config.py"
+      ],
+      "evidence": [
+        "html_website/main.py:7 — `from ..batch_processing.logging_config import get_logger`",
+        "batch_processing/main.py:20 — `from ..html_website.main import generate_module_website`",
+        "coupling_matrix confirms bidirectional edge: html_website → batch_processing and batch_processing → html_website"
+      ],
+      "suggestion": "Move get_logger (and the logging_config module) out of batch_processing into a standalone software/src/logging/ package, or into software/src/shared/. html_website and all other Layer 2–3 modules can then import from the shared logger without creating a cycle. batch_processing retains its import of html_website.main without any upward dependency.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "logging_infrastructure_misplaced"
+    },
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "stt_deferred_tts_import",
+      "summary": "speech_to_text.transcribe_from_markdown uses a deferred function-level import of text_to_speech.utils to avoid a top-level cycle",
+      "related_files": [
+        "software/src/speech_to_text/main.py",
+        "software/src/text_to_speech/utils.py"
+      ],
+      "evidence": [
+        "speech_to_text/main.py:122 — `from ..text_to_speech.utils import extract_text_from_markdown, read_text_file` is inside a function body, not at module top-level",
+        "The coupling_matrix shows speech_to_text → text_to_speech edge, and text_to_speech has no reverse edge — but the deferred import pattern indicates a prior or latent cycle was present",
+        "extract_text_from_markdown and read_text_file are pure text utilities with no audio concern; they do not belong in text_to_speech"
+      ],
+      "suggestion": "Move extract_text_from_markdown and read_text_file from text_to_speech/utils.py into software/src/shared/text_utils.py (or content_processing/utils.py which already handles text manipulation). speech_to_text can then import from shared without any cycle pressure, and the deferred import can be replaced with a normal top-level import.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "shared_utilities_misassigned"
+    },
+    {
+      "dimension": "cross_module_architecture",
+      "identifier": "duplicate_flatten_logic",
+      "summary": "publish.py implements flatten_all_files() independently of src.publish.flatten, creating two divergent flatten strategies with no shared abstraction",
+      "related_files": [
+        "publish.py",
+        "software/src/publish/flatten.py",
+        "software/scripts/publish_all.py"
+      ],
+      "evidence": [
+        "publish.py:262–310 — flatten_all_files() walks PUBLISHED/<course>/** and copies all files into ALL_FILES/ using its own file-walk and collision-prefix logic",
+        "software/src/publish/flatten.py — flatten_published() and flatten_module() handle the category-level flatten; these are called by publish_all.py Step 7",
+        "Both use identical patterns (sorted rglob, shutil.copy2) but neither calls the other; the ALL_FILES step is entirely absent from src.publish",
+        "pipeline config key 'all_files' exists only in publish.py's pipeline reader; there is no corresponding flag in publish_all.py"
+      ],
+      "suggestion": "Move flatten_all_files() into software/src/publish/flatten.py alongside flatten_published(). Expose it via the publish package's __init__.py. publish.py and publish_all.py both import and call it from the same location, eliminating the duplicate. The pipeline 'all_files' toggle can be passed as an argument to publish_all.py or handled in publish.py before delegating.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "pipeline_boundary_split_across_layers"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "Logging infrastructure was placed inside batch_processing rather than a shared layer, forcing any module that wants structured logging to either import from batch_processing (creating upward dependency) or duplicate the setup.",
+      "Pure text-manipulation utilities (extract_text_from_markdown, read_text_file) were placed in text_to_speech rather than a shared utilities layer, causing speech_to_text to reach across a sibling boundary.",
+      "The publish pipeline is split between two entrypoints (publish.py at repo root, publish_all.py in scripts/) that each implement different pipeline stages without a common shared pipeline abstraction, leading to logic duplication and inconsistent capability."
+    ],
+    "likely_symptoms": [],
+    "possible_false_positives": [
+      "The canvas_integration → file_validation edge looks like a potential violation but is directionally correct per the layer model and is low risk."
+    ]
+  }
+}

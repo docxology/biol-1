@@ -1,0 +1,91 @@
+{
+  "batch": "initialization_coupling",
+  "batch_index": 15,
+  "assessments": {"initialization_coupling": 78.0},
+  "dimension_notes": {
+    "initialization_coupling": {
+      "evidence": [
+        "publish.py lines 19-23: module-level `if sys.platform == 'darwin': os.environ['DYLD_FALLBACK_LIBRARY_PATH'] = ...` mutates the process environment unconditionally at import time. If publish.py is ever imported (rather than run as __main__), this side effect fires silently.",
+        "software/scripts/generate_all_outputs.py line 48 and software/scripts/import_legacy_materials.py line 40: `logger = setup_logging()` at module scope. setup_logging() performs real file I/O: it calls log_dir.mkdir() and opens a FileHandler that creates a timestamped .log file on disk. Any test or tool that imports these scripts (e.g., via importlib or subprocess-test instrumentation) will create an orphan log file and a `software/logs/` directory.",
+        "software/src/batch_processing/logging_config.py lines 51-57: setup_logging() always creates a new FileHandler and a new timestamped log file. There is no guard against being called multiple times. If both generate_all_outputs.py and import_legacy_materials.py are ever in the same process, two log files are created at import time.",
+        "software/src/batch_processing/main.py line 28: `logger = get_logger()` at module scope. get_logger() is just logging.getLogger('batch_processing'), which is safe. However, this logger may have no handlers configured yet when the module is first imported (before setup_logging() is called in the script), meaning early log messages could be silently dropped.",
+        "software/src/html_website/main.py line 18: `logger = get_logger('html_website')` at module scope — same no-handler-yet concern as above.",
+        "All config.py modules use immutable module-level constants (List literals, Dict literals, str literals). No environment variable reads at import time in production config files. No DB connections, no network calls at module scope.",
+        "The `REPO_ROOT`, `CONFIG_PATH`, and `PUBLISH_SCRIPT` constants in publish.py are computed at module scope using Path(__file__). These are stable, side-effect-free path derivations — not problematic.",
+        "No circular import dependencies detected in the module graph; the layer structure (batch_processing -> format_conversion/lab_manual/etc.) is acyclic."
+      ],
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "Two scripts call setup_logging() at module scope, which creates files and directories as a side effect of import. The os.environ mutation in publish.py fires at import time, not inside a guarded __main__ block or a setup function.",
+      "sub_axes": {
+        "abstraction_leverage": 80.0,
+        "indirection_cost": 70.0,
+        "interface_honesty": 75.0,
+        "delegation_density": 90.0,
+        "definition_directness": 70.0,
+        "type_discipline": 80.0
+      }
+    }
+  },
+  "dimension_judgment": {
+    "initialization_coupling": {
+      "strengths": [
+        "All production config.py modules define only immutable constants (lists, dicts, strings) — no environment variable reads, no file I/O, no network calls at module scope.",
+        "No circular import dependencies exist in the module graph; the layered architecture keeps init order unambiguous.",
+        "The majority of loggers are acquired via logging.getLogger(__name__) at module scope, which is a well-known, safe pattern that does not allocate resources.",
+        "Global singletons (REPO_ROOT, CONFIG_PATH, etc.) are computed purely from __file__, making them deterministic and side-effect-free."
+      ],
+      "issue_character": "The two main coupling defects are both I/O-at-import-time issues: setup_logging() — which creates a directory and a file — is called at module scope in two scripts, and publish.py mutates os.environ at module scope outside any __main__ guard.",
+      "score_rationale": "The codebase scores well on the structural aspects of initialization coupling (no circular inits, no global singletons with ordering dependencies, no env reads in config files). The score is held back by the two setup_logging() module-scope calls that perform real file I/O at import time, and by the os.environ mutation in publish.py that fires before any function is called. Both patterns violate the principle that importing a module should be side-effect-free, making automated testing and tooling fragile. These are moderate but real issues that affect any test harness or import-time analysis tool."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "initialization_coupling",
+      "identifier": "setup_logging_at_module_scope",
+      "summary": "setup_logging() called at module scope in two scripts, creating log files and directories as an import-time side effect",
+      "related_files": [
+        "software/scripts/generate_all_outputs.py",
+        "software/scripts/import_legacy_materials.py",
+        "software/src/batch_processing/logging_config.py"
+      ],
+      "evidence": [
+        "generate_all_outputs.py line 48: `logger = setup_logging()` at module scope",
+        "import_legacy_materials.py line 40: `logger = setup_logging()` at module scope",
+        "logging_config.py lines 51-57: setup_logging() calls log_dir.mkdir() and opens a FileHandler, creating a timestamped .log file on disk every time it is called"
+      ],
+      "suggestion": "Move `logger = setup_logging()` inside `if __name__ == '__main__':` or inside the `main()` function of each script. In module body, replace with `logger = logging.getLogger(__name__)`. setup_logging() should remain available to be called explicitly at program entry, not at import time.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "import_time_side_effects"
+    },
+    {
+      "dimension": "initialization_coupling",
+      "identifier": "os_environ_mutation_at_module_scope",
+      "summary": "publish.py mutates os.environ at module scope outside any __main__ guard",
+      "related_files": [
+        "publish.py"
+      ],
+      "evidence": [
+        "publish.py lines 19-23: `if sys.platform == 'darwin': os.environ['DYLD_FALLBACK_LIBRARY_PATH'] = ...` runs unconditionally when the module is imported, not only when run as a script"
+      ],
+      "suggestion": "Wrap the os.environ mutation inside `if __name__ == '__main__':` or inside a `setup_env()` function called explicitly from main(). This ensures the environment side effect is under caller control and does not surprise tools or tests that import the module.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "import_time_side_effects"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "Scripts are written as both importable modules and runnable programs, but their module-scope setup code assumes they will only be executed as __main__, leading to side effects on import."
+    ],
+    "likely_symptoms": [
+      "Tests or CI tools that import scripts indirectly (e.g., for introspection) accumulate orphan log files in software/logs/",
+      "Unexpected DYLD_FALLBACK_LIBRARY_PATH values if publish.py is imported in a non-macOS-Homebrew context"
+    ],
+    "possible_false_positives": []
+  }
+}
