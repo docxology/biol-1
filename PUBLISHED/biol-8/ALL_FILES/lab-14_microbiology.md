@@ -125,15 +125,33 @@ Your group will **choose four** of the following for quadrants **A–D** on each
 
 ## Part A — Plating and inoculating with antibiotic discs
 
-### A.1 Setup
+### A.1 Group assignments and chosen antibiotics
+
+**Group members:** {fill:text}
+
+**Your group's four antibiotics:**
+
+- A = {fill:text}
+- B = {fill:text}
+- C = {fill:text}
+- D = {fill:text}
+
+<!-- lab:data-table rows=4 title="Assigned strains and incubator log" -->
+| Strain (exact label) | Gram status | Incubator temp / date in |
+|----------------------|-------------|--------------------------|
+| Strain 1: {fill:text} | {fill:text} | {fill:text} |
+| Strain 2: {fill:text} | {fill:text} | {fill:text} |
+| Strain 3: {fill:text} | {fill:text} | {fill:text} |
+| (extra if needed) | {fill:text} | {fill:text} |
+<!-- /lab:data-table -->
+
+### A.2 Setup and prepare the Petri dishes
 
 1. **Clear and wash** the bench; disinfect when dry.  
 2. **Put on gloves.**  
 3. Review **Bunsen burner** safety, then **light** your burner.  
 
-### A.2 Prepare the Petri dishes (quadrants)
-
-Your instructor will assign **three strains** to your group — ideally **at least one Gram-positive** and **at least one Gram-negative** species. You will prepare **one plate per strain** (three plates total). Your group will choose **four antibiotics** from the reference list and use the **same four** on every plate.
+Your instructor will assign **three strains** to your group — ideally **at least one Gram-positive** and **at least one Gram-negative** species. You will prepare **one plate per strain** (three plates total). You will use the **same four antibiotics** listed in A.1 on every plate.
 
 1. On the **bottom** of each TSA plate (the side with the agar), use a marker to draw **two perpendicular lines** through the center so the plate is divided into **four quadrants**.  
 2. Label the quadrants **A**, **B**, **C**, and **D** on the **bottom** (same side as the agar).  
@@ -141,30 +159,30 @@ Your instructor will assign **three strains** to your group — ideally **at lea
 
 ### A.3 Hypothesize before plating
 
-Before plating, **predict** whether each of your four antibiotics will produce a zone of inhibition (effective) or no zone (ineffective) for each strain. Base your prediction on **Gram status** and **drug target**.
+Before plating, **predict** whether each of your four antibiotics (**A–D**) will produce a zone of inhibition (effective) or no zone (ineffective) for each strain. Base your prediction on **Gram status** and **drug target**.
 
 <!-- lab:reflection -->
 
 **Strain 1:** {fill:text} (G+ / G−: {fill:text})
 
-- A ({fill:text}): zone / no zone — because {fill:text}
-- B ({fill:text}): zone / no zone — because {fill:text}
-- C ({fill:text}): zone / no zone — because {fill:text}
-- D ({fill:text}): zone / no zone — because {fill:text}
+- A: zone / no zone — because {fill:text}
+- B: zone / no zone — because {fill:text}
+- C: zone / no zone — because {fill:text}
+- D: zone / no zone — because {fill:text}
 
 **Strain 2:** {fill:text} (G+ / G−: {fill:text})
 
-- A ({fill:text}): zone / no zone — because {fill:text}
-- B ({fill:text}): zone / no zone — because {fill:text}
-- C ({fill:text}): zone / no zone — because {fill:text}
-- D ({fill:text}): zone / no zone — because {fill:text}
+- A: zone / no zone — because {fill:text}
+- B: zone / no zone — because {fill:text}
+- C: zone / no zone — because {fill:text}
+- D: zone / no zone — because {fill:text}
 
 **Strain 3:** {fill:text} (G+ / G−: {fill:text})
 
-- A ({fill:text}): zone / no zone — because {fill:text}
-- B ({fill:text}): zone / no zone — because {fill:text}
-- C ({fill:text}): zone / no zone — because {fill:text}
-- D ({fill:text}): zone / no zone — because {fill:text}
+- A: zone / no zone — because {fill:text}
+- B: zone / no zone — because {fill:text}
+- C: zone / no zone — because {fill:text}
+- D: zone / no zone — because {fill:text}
 
 <!-- /lab:reflection -->
 
@@ -182,28 +200,6 @@ Before plating, **predict** whether each of your four antibiotics will produce a
 2. **Gently press** discs to contact agar if your instructor directs (do not smash).
 3. **Invert** the plate, **tape** if required for transport, and place in the **designated incubator** (temperature as posted, often **37 °C**).
 4. **Repeat** steps A.4–A.5 for each of your three assigned strains.
-
----
-
-### Data — Part A (one row per strain plate)
-
-**Group members:** {fill:text}
-
-**Your group's four antibiotics:**
-
-- A = {fill:text}
-- B = {fill:text}
-- C = {fill:text}
-- D = {fill:text}
-
-<!-- lab:data-table rows=4 title="Assigned strains and antibiotic layout" -->
-| Strain (exact label) | Gram status | Incubator temp / date in |
-|----------------------|-------------|--------------------------|
-| Strain 1: {fill:text} | {fill:text} | {fill:text} |
-| Strain 2: {fill:text} | {fill:text} | {fill:text} |
-| Strain 3: {fill:text} | {fill:text} | {fill:text} |
-| (extra if needed) | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
 
 > **After incubation:** Interpret zones, compare to **Gram category** and **drug class**, and complete air-plate colony work in **[Lab 17: Microbiology Follow-up](lab-17_microbiology-followup.md)**.
 
