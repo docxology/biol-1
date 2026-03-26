@@ -19,10 +19,10 @@ This lab uses **14 bacterial species** maintained on **tryptic soy agar (TSA)** 
 - Work with **BSL-1** cultures using **aseptic technique** (sterile tools, minimal open time).
 - **Prepare labeled Petri dishes** with **four quadrants** for multiple antibiotics on one lawn of a single strain.
 - **Inoculate** from broth using a **sterile dropper** and **spread** for a uniform lawn before placing antibiotic discs.
-- **Use the same four antibiotics** (Penicillin, Vancomycin, Gentamicin, Ciprofloxacin) across all three strain plates so that comparisons are **controlled**.
+- **Choose four antibiotics** from the reference list and use the **same four** across all three strain plates so comparisons are **controlled**.
 - **Hypothesize** which antibiotics will be effective against each strain **before** plating, based on Gram status and drug targets.
 - **Contrast Gram-positive and Gram-negative** cell envelopes (peptidoglycan thickness, outer membrane) and relate envelope structure to **why some antibiotic classes preferentially affect one category**.
-- **Map** each disc to its **drug class** and **primary molecular target** (sufficient to explain broad patterns, not clinical prescribing).
+- **Map** each disc to its **drug class** and **primary molecular target**.
 - Complete the **air-exposure** plate protocol and **hypothesize** what might grow after incubation; **defer** detailed colony interpretation to Lab 17.
 
 ---
@@ -68,28 +68,33 @@ Mechanism summaries in this lab align with standard reviews of antimicrobial tar
 
 ## Reference: antibiotic discs available
 
-All groups will use the **same four antibiotics** in quadrants **A–D** on every strain plate (see Part A). This standardized design lets you **compare** how Gram-positive and Gram-negative strains respond to each drug class side by side.
+Your group will **choose four** of the following for quadrants **A–D** on each strain plate. Use the **same four** across all three plates so you can compare results. Record which four you chose in the data table.
 
-<div style="font-size: 0.85em;">
+**Cell-wall targeting drugs:**
 
-| Antibiotic | Class | Primary target | Typical spectrum |
-|------------|-------|----------------|------------------|
-| Penicillin | β-lactam | Cell wall (peptidoglycan; PBPs) | Strong vs. many **Gram-positive**; many **Gram-negative** strains resist or exclude drug (β-lactamases, outer membrane) |
-| Ampicillin | β-lactam | Cell wall (PBPs) | **Broader** than penicillin among **Gram-negative enterics**, but still **uneven**; resistance common |
-| Vancomycin | Glycopeptide | Cell wall (precursor peptide terminus) | **Gram-positive** emphasis; **large molecule** does not cross typical **Gram-negative** outer membrane |
-| Gentamicin | Aminoglycoside | 30S ribosome | **Gram-negative** aerobes often sensitive; **Gram-positive** may need **metabolic help** for uptake |
-| Amikacin | Aminoglycoside | 30S ribosome | Similar aminoglycoside theme; often **broader** vs. some resistance enzymes |
-| Streptomycin | Aminoglycoside | 30S ribosome | Aminoglycoside pattern; historical *M. tuberculosis* drug—here used for general susceptibility |
-| Chloramphenicol | Amphenicol | 50S ribosome | **Broad** Gram+/Gram− in principle; **resistance** (e.g., acetylation) and safety concerns in real clinics |
-| Tetracycline | Tetracycline | 30S ribosome | **Broad** bacteriostatic; **efflux** and other resistance common |
-| Erythromycin | Macrolide | 50S ribosome | **Gram-positive** and some **Gram-negative** coverage; **porins/efflux** limit many Gram-negatives |
-| Ciprofloxacin | Fluoroquinolone | DNA gyrase / topoisomerase IV | **Broad**; good **Gram-negative** penetration; **Gram-positive** activity varies |
-| Nalidixic acid | Quinolone (1st gen.) | DNA gyrase | **Gram-negative** emphasis in classic comparisons; many **Gram-positive** are **less susceptible** |
-| Sulfamethoxazole | Sulfonamide | Folate synthesis (dihydropteroate synthase) | **Broad** in principle; **resistance** via bypass pathways is common |
+- **Penicillin** — β-lactam; targets PBPs. Strong vs. Gram-positive; many Gram-negative resist (β-lactamases, outer membrane).
+- **Ampicillin** — β-lactam; broader than penicillin for some Gram-negative enterics, but resistance is common.
+- **Vancomycin** — glycopeptide; binds peptidoglycan precursors. Gram-positive emphasis — too large to cross Gram-negative outer membrane.
 
-</div>
+**Ribosome-targeting drugs (protein synthesis):**
 
-> **For Part A**, all groups use the same four discs: **A = Penicillin**, **B = Vancomycin**, **C = Gentamicin**, **D = Ciprofloxacin**. These four target different molecular pathways and have contrasting Gram-positive vs. Gram-negative profiles, which makes them ideal for hypothesis testing.
+- **Gentamicin** — aminoglycoside; 30S ribosome. Gram-negative aerobes often sensitive.
+- **Amikacin** — aminoglycoside; 30S ribosome. Broader against some resistant strains.
+- **Streptomycin** — aminoglycoside; 30S ribosome. Classic *M. tuberculosis* drug.
+- **Chloramphenicol** — amphenicol; 50S ribosome. Broad in principle; resistance common.
+- **Tetracycline** — 30S ribosome. Broad bacteriostatic; efflux resistance common.
+- **Erythromycin** — macrolide; 50S ribosome. Gram-positive emphasis; porins/efflux limit Gram-negative activity.
+
+**DNA-targeting drugs:**
+
+- **Ciprofloxacin** — fluoroquinolone; DNA gyrase. Broad; good Gram-negative penetration.
+- **Nalidixic acid** — quinolone (1st gen.); DNA gyrase. Gram-negative emphasis.
+
+**Folate-pathway drug:**
+
+- **Sulfamethoxazole** — sulfonamide; blocks folate synthesis. Broad in principle; resistance via bypass pathways.
+
+> **Tip:** For the best comparison, try to pick antibiotics from **different target categories** (e.g., one cell-wall drug, one ribosome drug, one DNA drug, and one other).
 
 ---
 
@@ -111,7 +116,7 @@ All groups will use the **same four antibiotics** in quadrants **A–D** on ever
 - **Glass spreader** or bent **glass rod** (or disposable spreader, as provided)  
 - **70% ethanol** in beaker for dipping glass spreader between strains (if protocol uses shared spreader)  
 - **Bunsen burners**, striker  
-- **Antibiotic discs**: Penicillin, Vancomycin, Gentamicin, Ciprofloxacin  
+- **Antibiotic discs** (supply of agents listed above — each group chooses four)  
 - **Sharpie** for labeling **bottom** of plates (agar side)  
 - **Tape** for sealing take-home plates (Part B)
 
@@ -129,7 +134,7 @@ All groups will use the **same four antibiotics** in quadrants **A–D** on ever
 
 ### A.2 Prepare the Petri dishes (quadrants)
 
-Your instructor will assign **three strains** to your group — ideally **at least one Gram-positive** and **at least one Gram-negative** species. You will prepare **one plate per strain** (three plates total), all using the **same four antibiotics**.
+Your instructor will assign **three strains** to your group — ideally **at least one Gram-positive** and **at least one Gram-negative** species. You will prepare **one plate per strain** (three plates total). Your group will choose **four antibiotics** from the reference list and use the **same four** on every plate.
 
 1. On the **bottom** of each TSA plate (the side with the agar), use a marker to draw **two perpendicular lines** through the center so the plate is divided into **four quadrants**.  
 2. Label the quadrants **A**, **B**, **C**, and **D** on the **bottom** (same side as the agar).  
@@ -137,13 +142,13 @@ Your instructor will assign **three strains** to your group — ideally **at lea
 
 ### A.3 Hypothesize before plating
 
-Before you begin plating, use the reference tables above to **predict** which of the four antibiotics will produce zones of inhibition for each of your three strains. Record your predictions below.
+Before you begin plating, use the reference list above to **predict** which of your four chosen antibiotics will produce zones of inhibition for each of your three strains. Record your predictions below.
 
 <!-- lab:reflection -->
 **Hypothesis table** — For each strain, predict whether each antibiotic will be effective (zone) or ineffective (no zone), and give a brief reason based on Gram status and drug target.
 
-| Strain | Gram status | Penicillin (A) — predict | Vancomycin (B) — predict | Gentamicin (C) — predict | Ciprofloxacin (D) — predict |
-|--------|-------------|--------------------------|--------------------------|--------------------------|----------------------------|
+| Strain | Gram status | Antibiotic A — predict | Antibiotic B — predict | Antibiotic C — predict | Antibiotic D — predict |
+|--------|-------------|------------------------|------------------------|------------------------|------------------------|
 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
@@ -159,12 +164,8 @@ Before you begin plating, use the reference tables above to **predict** which of
 
 ### A.5 Antibiotic discs (same four on every plate)
 
-1. Using **sterile forceps** (dipped in alcohol and flamed, then cooled — or disposable forceps), place one disc into each quadrant:
-   - **A = Penicillin** (β-lactam; cell wall target)
-   - **B = Vancomycin** (glycopeptide; cell wall target)
-   - **C = Gentamicin** (aminoglycoside; 30S ribosome target)
-   - **D = Ciprofloxacin** (fluoroquinolone; DNA gyrase target)
-2. **Gently press** discs to contact agar if your instructor directs (do not smash).  
+1. Using **sterile forceps** (dipped in alcohol and flamed, then cooled — or disposable forceps), place **one disc** into each quadrant (**A**, **B**, **C**, **D**) using the four antibiotics your group chose.
+2. **Gently press** discs to contact agar if your instructor directs (do not smash).
 3. **Invert** the plate, **tape** if required for transport, and place in the **designated incubator** (temperature as posted, often **37 °C**).
 4. **Repeat** steps A.4–A.5 for each of your three assigned strains.
 
@@ -174,13 +175,15 @@ Before you begin plating, use the reference tables above to **predict** which of
 
 **Group members:** {fill:text}
 
+**Your group's four antibiotics:** A = {fill:text} · B = {fill:text} · C = {fill:text} · D = {fill:text}
+
 <!-- lab:data-table rows=4 title="Assigned strains and antibiotic layout" -->
-| Strain # and name (exact label from tube) | Gram status | A — Penicillin | B — Vancomycin | C — Gentamicin | D — Ciprofloxacin | Incubator temp / date in |
-|--------------------------------------------|-------------|----------------|----------------|----------------|-------------------|--------------------------|
-| Strain 1: {fill:text} | {fill:text} | ✓ placed | ✓ placed | ✓ placed | ✓ placed | {fill:text} |
-| Strain 2: {fill:text} | {fill:text} | ✓ placed | ✓ placed | ✓ placed | ✓ placed | {fill:text} |
-| Strain 3: {fill:text} | {fill:text} | ✓ placed | ✓ placed | ✓ placed | ✓ placed | {fill:text} |
-| (extra / redo if needed) | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
+| Strain (exact label) | Gram status | Incubator temp / date in |
+|----------------------|-------------|--------------------------|
+| Strain 1: {fill:text} | {fill:text} | {fill:text} |
+| Strain 2: {fill:text} | {fill:text} | {fill:text} |
+| Strain 3: {fill:text} | {fill:text} | {fill:text} |
+| (extra if needed) | {fill:text} | {fill:text} |
 <!-- /lab:data-table -->
 
 > **After incubation:** Interpret zones, compare to **Gram category** and **drug class**, and complete air-plate colony work in **[Lab 17: Microbiology Follow-up](lab-17_microbiology-followup.md)**.
@@ -225,15 +228,15 @@ Your group has **four additional TSA plates** (one per person when possible).
 
 {fill:textarea rows=3}
 
-1. How does testing the **same four antibiotics** on each strain help you **compare susceptibility** across Gram-positive and Gram-negative bacteria?
+2. How does testing the **same four antibiotics** on each strain help you **compare susceptibility** across Gram-positive and Gram-negative bacteria?
 
 {fill:textarea rows=3}
 
-1. Look back at your **hypothesis table** (section A.3). Based on what you know about Gram status and drug targets, which of your predictions do you feel **most confident** about, and why?
+3. Look back at your **hypothesis table** (section A.3). Based on what you know about Gram status and drug targets, which of your predictions do you feel **most confident** about, and why?
 
 {fill:textarea rows=3}
 
-1. If a strain shows **no zone of inhibition** around a particular disc, does that automatically mean the organism is the wrong Gram type? What else could explain a lack of a zone?
+4. If a strain shows **no zone of inhibition** around a particular disc, does that automatically mean the organism is the wrong Gram type? What else could explain a lack of a zone?
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
