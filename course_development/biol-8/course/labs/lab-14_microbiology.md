@@ -225,15 +225,15 @@ Your group has **four additional TSA plates** (one per person when possible).
 
 {fill:textarea rows=3}
 
-2. How does testing the **same four antibiotics** on each strain help you **compare susceptibility** across Gram-positive and Gram-negative bacteria?
+1. How does testing the **same four antibiotics** on each strain help you **compare susceptibility** across Gram-positive and Gram-negative bacteria?
 
 {fill:textarea rows=3}
 
-3. Look back at your **hypothesis table** (section A.3). Based on what you know about Gram status and drug targets, which of your predictions do you feel **most confident** about, and why?
+1. Look back at your **hypothesis table** (section A.3). Based on what you know about Gram status and drug targets, which of your predictions do you feel **most confident** about, and why?
 
 {fill:textarea rows=3}
 
-4. If a strain shows **no zone of inhibition** around a particular disc, does that automatically mean the organism is the wrong Gram type? What else could explain a lack of a zone?
+1. If a strain shows **no zone of inhibition** around a particular disc, does that automatically mean the organism is the wrong Gram type? What else could explain a lack of a zone?
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
