@@ -1,0 +1,107 @@
+{
+  "batch": "contract_coherence",
+  "batch_index": 17,
+  "assessments": {"contract_coherence": 74.5},
+  "dimension_notes": {
+    "contract_coherence": {
+      "evidence": [
+        "validate_question_format in content_processing/utils.py is annotated -> Dict[str, any] — lowercase 'any' is the builtin function, not the typing.Any generic. The declared return type is technically invalid as a type alias.",
+        "generate_module_website in html_website/main.py has a one-line docstring with no Returns, Raises, or parameter semantics documented, yet has complex behavior including file I/O and silent exception swallowing.",
+        "html_website/main.py line 183: 'except Exception: pass' silently discards all question-parsing failures with no log, no fallback signal in the return value, and no documented contract that this can be a no-op.",
+        "configure_voice_settings in text_to_speech/main.py accepts voice, speed, pitch parameters all documented as 'currently not used with gTTS' — the function name promises configuration but the docstring admits the parameters are ignored, creating a contract gap.",
+        "publish/main.py publish_course has a duplicate dead branch (source_path.exists() checked on lines 68-69 and again on lines 79-82 with duplicate warning logs) — the first branch makes the second unreachable in the success path, misleading readers about control flow.",
+        "batch_render_lab_manuals return type is Dict[str, Any] but docstring precisely specifies 'files' and 'errors' keys — positive example of contract honesty.",
+        "Most utils files (file_validation, validation, schedule, module_organization) have consistent, accurate docstrings with proper Raises clauses where applicable.",
+        "render_lab_manual correctly declares FileNotFoundError and ValueError raises and honors them in the implementation.",
+        "parse_questions_json correctly declares FileNotFoundError and json.JSONDecodeError in its Raises section and implements both faithfully."
+      ],
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "confidence": "high",
+      "issues_preventing_higher_score": "Two recurring patterns reduce trust: (1) the lowercase 'any' annotation error in content_processing appears to be a typo-class defect that any static checker would flag; (2) the silent 'except Exception: pass' in html_website/main.py is a clear contract violation — callers receive no signal that question processing failed entirely."
+    }
+  },
+  "dimension_judgment": {
+    "contract_coherence": {
+      "strengths": [
+        "The majority of utils modules have docstrings that accurately match their signatures — parameter names, return shapes, and Raises clauses are consistent and trustworthy in file_validation, validation, schedule, and module_organization.",
+        "Functions that raise errors (render_lab_manual, parse_questions_json, read_schedule_file, extract_chapter_number) correctly declare and honor their error contracts.",
+        "Return-type annotations and docstring descriptions of dict shapes match the actual returned dictionaries in batch_render_lab_manuals, process_chapter_questions, validate_outputs, and generate_validation_report.",
+        "The publish/utils.py re-export pattern is clearly commented as a backward-compatibility shim, honoring the implicit API stability contract for existing callers.",
+        "No functions named getX were found that mutate state; no isX functions return non-boolean values."
+      ],
+      "issue_character": "Isolated but impactful breaches: one type annotation uses the wrong symbol (any vs Any), one public function silently swallows all errors without documentation, and one configuration function advertises parameters it does not use.",
+      "score_rationale": "The codebase mostly honors its stated contracts — docstrings match signatures, raise declarations are implemented, and dict shapes are consistently described. The score is held below 80 by three discrete issues: the 'Dict[str, any]' annotation error in content_processing is a real static-type defect; the silent 'except Exception: pass' in html_website/main.py is an undocumented failure mode that callers cannot detect; and configure_voice_settings documents all three of its parameters as unused, leaving the function's contract unclear. None of these are systemic across the whole codebase, so this is a mid-range score rather than a low one."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc_any_lowercase_annotation",
+      "summary": "validate_question_format uses lowercase 'any' as return type annotation instead of typing.Any",
+      "related_files": ["software/src/content_processing/utils.py"],
+      "evidence": [
+        "Line 179: def validate_question_format(content: str) -> Dict[str, any]: — 'any' is the Python builtin function (returns bool), not typing.Any. mypy/pyright would flag this as an invalid type."
+      ],
+      "suggestion": "Change the return annotation to -> Dict[str, Any] and ensure 'Any' is imported from typing.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "annotation_typo"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc_silent_exception_swallow_html_website",
+      "summary": "generate_module_website silently discards all question-section errors with bare 'except Exception: pass'",
+      "related_files": ["software/src/html_website/main.py"],
+      "evidence": [
+        "Lines 183-184: 'except Exception: pass' — if parse_questions_json raises or any question HTML generation fails, the entire questions section is silently omitted from the output with no log entry, no flag in the return value, and no documented 'may silently omit questions' contract."
+      ],
+      "suggestion": "At minimum add a logger.warning() call inside the except block. Ideally add an 'warnings' key to the returned context or document in the docstring that question parsing failures are silently skipped.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "silent_error_swallow"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc_configure_voice_noop_params",
+      "summary": "configure_voice_settings documents all three parameters as 'currently not used' but accepts and stores them, creating a misleading contract",
+      "related_files": ["software/src/text_to_speech/main.py"],
+      "evidence": [
+        "Lines 101-123: voice, speed, pitch are all documented with '(currently not used with gTTS)' yet the function accepts them, clamps them, and returns them in the config dict. Callers cannot know whether passing non-default values has any effect."
+      ],
+      "suggestion": "Either remove the no-op parameters from the public signature (using **kwargs or a comment block), or clearly document what 'stored for potential future use' means for callers who depend on this API.",
+      "confidence": "medium",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "docstring_signature_divergence"
+    },
+    {
+      "dimension": "contract_coherence",
+      "identifier": "cc_publish_course_dead_branch",
+      "summary": "publish_course checks source_path.exists() twice with the second check being unreachable after the first guard",
+      "related_files": ["software/src/publish/main.py"],
+      "evidence": [
+        "Lines 68-69 check 'if not source_path.exists(): logger.warning(...); continue' — if this passes, source_path exists.",
+        "Lines 79-82 re-check 'if source_path.exists(): ... else: logger.warning(...)' — the else branch is dead code because the first guard already filtered the non-existing case."
+      ],
+      "suggestion": "Remove the redundant inner if/else and directly call copy_directory_contents(source_path, dest_path).",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "redundant_guard"
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "Annotation typos (any vs Any) suggest limited static type checking enforcement in CI — mypy would catch this at import time.",
+      "Silent exception swallowing in html_website suggests defensive coding that was not reviewed for observability — there is no logging at the catch site.",
+      "No-op parameters in configure_voice_settings suggest the function was designed ahead of a planned TTS engine swap that has not materialized, leaving the API in an ambiguous state."
+    ],
+    "likely_symptoms": [
+      "cc_configure_voice_noop_params — this is a mild contract confusion rather than a runtime defect; low severity"
+    ],
+    "possible_false_positives": []
+  }
+}

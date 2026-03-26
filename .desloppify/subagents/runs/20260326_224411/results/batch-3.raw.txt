@@ -1,0 +1,129 @@
+{
+  "batch": "convention_outlier",
+  "batch_index": 3,
+  "assessments": {"convention_outlier": 68.0},
+  "dimension_notes": {
+    "convention_outlier": {
+      "evidence": [
+        "remediate_docs.py is the only script in software/scripts/ without a shebang (#!/usr/bin/env python3), without argparse, without Path imports, and without type hints on any function — all 10 sibling scripts have shebangs and argparse/Path; this script is a structural outlier.",
+        "Logging setup is split two ways: html_website/main.py and batch_processing/main.py use `from ..batch_processing.logging_config import get_logger` (cross-module dep), while all other modules (content_processing, legacy_import, publish, validation, lab_manual) use `import logging; logger = logging.getLogger(__name__)` — the two-strategy split has no documented rationale.",
+        "publish/__init__.py re-exports 14 symbols drawn from three sub-files (main, flatten, copy_extras), making it the largest __init__.py surface in the codebase (next is 8 symbols). Other modules export only from main.py.",
+        "legacy_import/__init__.py declares `__all__: list[str] = [...]` (typed), while every other module in the codebase uses untyped `__all__ = [...]` — a single-file annotation style island.",
+        "batch_processing/log_style.py is flagged as a sibling outlier (missing Optional, Path) but is legitimately a pure constants/formatting module — this is intentional variation per the skip rule.",
+        "publish/main.py missing List, Optional, shutil compared to sibling publish files, but those types are genuinely not needed there — intentional difference.",
+        "html_website/ shows 12 camelCase names in scan evidence; these are JavaScript identifiers inside embedded Python string literals (module_script.js content + inline javascript variable), not Python function names — the camelCase is appropriate for JS scope but the co-location of JS logic inside a Python module is a style island."
+      ],
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "confidence": "high",
+      "issues_preventing_higher_score": "Three real convention gaps: (1) remediate_docs.py is a structural outlier in the scripts/ family — no shebang, no argparse, no Path, no type hints; (2) logging is initialized two different ways across sibling modules without documented rationale; (3) publish/__init__.py has a noticeably larger re-export surface than any other module, obscuring which sub-file owns what."
+    }
+  },
+  "dimension_judgment": {
+    "convention_outlier": {
+      "strengths": [
+        "All 15 source modules follow the same four-file layout (main.py, utils.py, config.py, __init__.py) with near-perfect consistency.",
+        "All scripts except one (remediate_docs.py) share the same structural pattern: shebang, argparse, Path, sys imports.",
+        "Python naming is uniformly snake_case across all src/ modules — no camelCase Python function or variable names detected anywhere.",
+        "__all__ is defined in every __init__.py, and re-export surfaces are generally tight (2–8 symbols) and sourced from main.py only."
+      ],
+      "issue_character": "The convention gaps are isolated outliers rather than systemic drift: one script that predates the established CLI pattern, one cross-module logging import that only two modules share, and one __init__.py whose size reflects sub-file proliferation rather than intentional API design.",
+      "score_rationale": "The codebase scores above average on convention consistency: the module layout, naming scheme, and __init__.py pattern are uniform across 15 packages. The deductions come from three localized but real gaps — remediate_docs.py missing the shared CLI boilerplate, the split logging-init strategy between two modules and thirteen others, and publish/__init__.py's unusually large re-export surface that blurs internal module ownership. These are meaningful but bounded issues that would not surprise a developer exploring a second module after the first; they score closer to a '68' (clearly above the midpoint but short of 'mostly consistent' territory at 75+)."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "convention_outlier",
+      "identifier": "remediate_docs_script_outlier",
+      "summary": "remediate_docs.py is the only script in software/scripts/ without shebang, argparse, Path, or type hints",
+      "related_files": ["software/scripts/remediate_docs.py"],
+      "evidence": [
+        "All 10 other scripts start with `#!/usr/bin/env python3`; remediate_docs.py starts with `import os`.",
+        "10 of 12 scripts import argparse; remediate_docs.py does not — it hardcodes `repo_root = \".\"` and has no CLI flags.",
+        "11 of 12 scripts import Path; remediate_docs.py uses `os.path` and `os.walk` instead.",
+        "No function in remediate_docs.py has type annotations; all public functions in sibling scripts are fully annotated.",
+        "Scan evidence: sibling_behavior outliers list remediate_docs.py as missing both Path and argparse."
+      ],
+      "suggestion": "Add shebang, migrate os.path usage to pathlib.Path, add an argparse CLI (e.g., --root and --dry-run flags), and add type hints on all three public functions to bring the file in line with the established scripts/ pattern.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "script_boilerplate_gap"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "logging_init_strategy_split",
+      "summary": "html_website and batch_processing use a cross-module get_logger() while all other modules use standard logging.getLogger(__name__)",
+      "related_files": [
+        "software/src/html_website/main.py",
+        "software/src/batch_processing/main.py",
+        "software/src/batch_processing/logging_config.py",
+        "software/src/content_processing/main.py",
+        "software/src/publish/main.py",
+        "software/src/legacy_import/main.py"
+      ],
+      "evidence": [
+        "html_website/main.py line 7: `from ..batch_processing.logging_config import get_logger`; line 18: `logger = get_logger(\"html_website\")`.",
+        "batch_processing/main.py line 10: `from .logging_config import get_logger`; line 28: `logger = get_logger()`.",
+        "content_processing, publish, legacy_import, validation all use `import logging; logger = logging.getLogger(__name__)` — the stdlib pattern.",
+        "No documentation in logging_config.py explains which modules should use it vs the stdlib approach.",
+        "html_website importing from batch_processing.logging_config creates an implicit cross-subsystem dependency purely for logger initialization."
+      ],
+      "suggestion": "Either adopt get_logger() from a shared location (e.g., src/shared/) for all modules, or retire it in favor of the stdlib pattern everywhere. Document the chosen strategy in CLAUDE.md or logging_config.py docstring.",
+      "confidence": "high",
+      "impact_scope": "subsystem",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "logging_convention_drift"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "publish_init_oversized_reexport",
+      "summary": "publish/__init__.py re-exports 14 symbols from three internal sub-files, making it the largest and most opaque __init__.py in the codebase",
+      "related_files": [
+        "software/src/publish/__init__.py",
+        "software/src/publish/utils.py",
+        "software/src/publish/flatten.py",
+        "software/src/publish/copy_extras.py"
+      ],
+      "evidence": [
+        "publish/__init__.py re-exports 14 symbols: publish_course (from main), clean_directory/copy_directory_contents/get_course_config (from utils), flatten_module/flatten_published/clean_published (from flatten via utils), and 6 copy_* functions (from copy_extras via utils).",
+        "All 14 other modules export 2–8 symbols sourced exclusively from main.py.",
+        "publish/utils.py itself already re-exports from flatten.py and copy_extras.py via noqa: F401 — creating a two-hop re-export chain that obscures which file actually owns each function.",
+        "scan evidence: publish/__init__.py re_export_ratio 1.0 with 14 re_exported_symbols, noted in facade_modules list."
+      ],
+      "suggestion": "Reduce __init__.py to export only the primary entry point (publish_course) and any 1-2 high-frequency utilities. Remove the transitive re-export chain through utils.py; callers that need flatten or copy functions should import directly from those sub-modules.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "multi_file_refactor",
+      "root_cause_cluster": "publish_sub_module_proliferation"
+    },
+    {
+      "dimension": "convention_outlier",
+      "identifier": "legacy_import_all_typed_annotation",
+      "summary": "legacy_import/__init__.py uses `__all__: list[str]` typed annotation; all other modules use untyped `__all__ = [...]`",
+      "related_files": ["software/src/legacy_import/__init__.py"],
+      "evidence": [
+        "legacy_import/__init__.py line 15: `__all__: list[str] = [`",
+        "Every other module in src/ declares `__all__ = [` without type annotation.",
+        "The typed form is valid Python 3.9+ but creates a visual inconsistency when reading across modules."
+      ],
+      "suggestion": "Change to `__all__ = [` to match the style used in every other package init file.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": null
+    }
+  ],
+  "retrospective": {
+    "root_causes": [
+      "remediate_docs.py was likely written as a quick one-off utility before the CLI boilerplate pattern was established in the scripts/ directory.",
+      "The get_logger pattern in batch_processing/logging_config.py appears to be an early design that was partially adopted (html_website) but not propagated to the rest of the codebase.",
+      "publish/ sub-module proliferation (flatten.py, copy_extras.py) happened without updating the __init__.py export philosophy, resulting in an oversized re-export surface."
+    ],
+    "likely_symptoms": [],
+    "possible_false_positives": [
+      "batch_processing/log_style.py flagged as outlier by scan — correctly skip, it is a pure constants module with no need for Path or Optional.",
+      "html_website/ camelCase count of 12 in scan evidence — these are JavaScript identifiers inside Python string literals, not Python naming violations."
+    ]
+  }
+}

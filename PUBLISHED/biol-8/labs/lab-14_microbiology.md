@@ -10,6 +10,8 @@
 
 This lab uses **14 bacterial species** maintained on **tryptic soy agar (TSA)** and in **tryptic soy broth (TSB)** (including **agar slants**). You will **plate and spread** assigned strains, then place **antibiotic-impregnated discs** in labeled quadrants to observe **antibiotic susceptibility** after incubation. In **Part B**, each student uses **take-home (or classroom) air-exposure plates** to grow whatever microbes settle from the environment.
 
+The skills you practice here — aseptic technique, forming and testing a hypothesis, and connecting molecular mechanisms to observable results — are foundational to clinical microbiology, food safety, and public-health laboratory work.
+
 **Interpretation after growth** (zones, colony types, Gram logic vs. what you see) is completed in **[Lab 17: Microbiology Follow-up](lab-17_microbiology-followup.md)** once plates have incubated.
 
 ---
@@ -142,13 +144,34 @@ Your instructor will assign **three strains** to your group — ideally **at lea
 Before you begin plating, use the reference list above to **predict** which of your four chosen antibiotics will produce zones of inhibition for each of your three strains. Record your predictions below.
 
 <!-- lab:reflection -->
-**Hypothesis table** — Predict: effective (zone) or ineffective (no zone)? Give a brief reason.
+**Hypothesis** — For each strain, predict whether each antibiotic will produce a zone (effective) or no zone (ineffective), and give a brief reason.
 
-| Strain | G+/G− | Antibiotic A | Antibiotic B | Antibiotic C | Antibiotic D |
-|--------|-------|--------------|--------------|--------------|--------------|
-| {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
+**Strain 1:** {fill:text} — Gram: {fill:text}
+
+| Antibiotic | Predict zone? | Reason |
+|------------|---------------|--------|
+| A: {fill:text} | {fill:text} | {fill:text} |
+| B: {fill:text} | {fill:text} | {fill:text} |
+| C: {fill:text} | {fill:text} | {fill:text} |
+| D: {fill:text} | {fill:text} | {fill:text} |
+
+**Strain 2:** {fill:text} — Gram: {fill:text}
+
+| Antibiotic | Predict zone? | Reason |
+|------------|---------------|--------|
+| A: {fill:text} | {fill:text} | {fill:text} |
+| B: {fill:text} | {fill:text} | {fill:text} |
+| C: {fill:text} | {fill:text} | {fill:text} |
+| D: {fill:text} | {fill:text} | {fill:text} |
+
+**Strain 3:** {fill:text} — Gram: {fill:text}
+
+| Antibiotic | Predict zone? | Reason |
+|------------|---------------|--------|
+| A: {fill:text} | {fill:text} | {fill:text} |
+| B: {fill:text} | {fill:text} | {fill:text} |
+| C: {fill:text} | {fill:text} | {fill:text} |
+| D: {fill:text} | {fill:text} | {fill:text} |
 <!-- /lab:reflection -->
 
 ### A.4 Sterile transfer and lawn
@@ -172,7 +195,12 @@ Before you begin plating, use the reference list above to **predict** which of y
 
 **Group members:** {fill:text}
 
-**Your group's four antibiotics:** A = {fill:text} · B = {fill:text} · C = {fill:text} · D = {fill:text}
+**Your group's four antibiotics:**
+
+- A = {fill:text}
+- B = {fill:text}
+- C = {fill:text}
+- D = {fill:text}
 
 <!-- lab:data-table rows=4 title="Assigned strains and antibiotic layout" -->
 | Strain (exact label) | Gram status | Incubator temp / date in |

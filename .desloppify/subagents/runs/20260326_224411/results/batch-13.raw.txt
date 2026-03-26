@@ -1,0 +1,69 @@
+{
+  "batch": "incomplete_migration",
+  "batch_index": 13,
+  "assessments": {"incomplete_migration": 88.0},
+  "dimension_notes": {
+    "incomplete_migration": {
+      "evidence": [
+        "legacy_import/__init__.py explicitly labels the module as 'One-time migration utility for bio_1_2025 source materials. Not part of the main publishing pipeline.' — migration scope is documented.",
+        "content_processing/utils.py header says 'Functions migrated from scripts/renumber_questions.py' and renumber_questions.py now delegates cleanly to src.content_processing — migration complete and tidy.",
+        "validation/config.py lines 14-28: EXPECTED_FORMATS and EXPECTED_STUDY_GUIDE_FILES are marked '# Legacy: ... kept for backwards compatibility'. EXPECTED_STUDY_GUIDE_FILES still has one active caller in validation/utils.py (line 100) as a fallback. EXPECTED_FORMATS and SYLLABUS_EXPECTED_FORMATS (line 110) have zero callers anywhere — they are dead legacy constants.",
+        "No @deprecated markers, no TODO/FIXME referencing 'migrate', 'legacy', 'old api', 'remove after' found in production code.",
+        "No mixed old/new API patterns found: the codebase is pure Python with a single consistent module layer pattern throughout."
+      ],
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "confidence": "high",
+      "issues_preventing_higher_score": "Two unused legacy constants (EXPECTED_FORMATS, SYLLABUS_EXPECTED_FORMATS) persist in validation/config.py with no callers, and EXPECTED_STUDY_GUIDE_FILES remains a live fallback path even though the format-aware replacement function (get_expected_study_guide_files) exists — the legacy path is still reachable by passing formats=None."
+    }
+  },
+  "dimension_judgment": {
+    "incomplete_migration": {
+      "strengths": [
+        "The legacy_import module is clearly labeled as a one-time utility, isolating migration-related code from the main publishing pipeline.",
+        "The renumber_questions migration from script to module is fully complete: the script is a thin delegating wrapper and the utils docstring marks the provenance without leaving dead code behind.",
+        "No deprecated-but-called symbols were found: no @deprecated annotations, no DEPRECATED markers, and no active code calling symbols labeled for removal.",
+        "No stale migration TODOs or FIXMEs referencing 'migrate', 'legacy', 'old api', or 'remove after' were found in production code."
+      ],
+      "issue_character": "The one real migration residue is localized to two unused legacy constants in a single config file (EXPECTED_FORMATS, SYLLABUS_EXPECTED_FORMATS) plus a legacy fallback path for EXPECTED_STUDY_GUIDE_FILES that remains reachable, not a systemic pattern.",
+      "score_rationale": "The codebase is nearly complete on this dimension: migrations are either finished and clean (renumber_questions) or deliberately scoped as one-time utilities (legacy_import). The only friction is two dead constants and a live legacy fallback in validation/config.py, which are local and easily removed. This sits comfortably at 90-anchor territory — mostly complete with minor legacy residue — but the live fallback path to EXPECTED_STUDY_GUIDE_FILES (the old static list) represents a real, if low-stakes, dual-path that a developer passing formats=None would encounter without understanding they're hitting legacy logic, nudging the score slightly below 90."
+    }
+  },
+  "issues": [
+    {
+      "dimension": "incomplete_migration",
+      "identifier": "dead_legacy_format_constants",
+      "summary": "EXPECTED_FORMATS and SYLLABUS_EXPECTED_FORMATS are marked legacy and have zero callers — dead constants",
+      "related_files": ["software/src/validation/config.py"],
+      "evidence": [
+        "validation/config.py line 15: EXPECTED_FORMATS = [\"pdf\", \"docx\", \"html\", \"txt\", \"mp3\"] marked '# Legacy: Expected output formats (kept for backwards compatibility)'",
+        "validation/config.py line 110: SYLLABUS_EXPECTED_FORMATS = [\"pdf\", \"docx\", \"html\", \"txt\", \"mp3\"] — no import of either constant found anywhere in the codebase"
+      ],
+      "suggestion": "Delete EXPECTED_FORMATS (line 15) and SYLLABUS_EXPECTED_FORMATS (line 110) from validation/config.py. They have no callers and the format-aware replacements (DEFAULT_REQUIRED_FORMATS, get_expected_study_guide_files, SYLLABUS_REQUIRED_FORMATS) already cover their use cases.",
+      "confidence": "high",
+      "impact_scope": "local",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "legacy_validation_constants"
+    },
+    {
+      "dimension": "incomplete_migration",
+      "identifier": "legacy_fallback_study_guide_files",
+      "summary": "check_study_guide_files falls back to legacy EXPECTED_STUDY_GUIDE_FILES when formats=None, bypassing the format-aware replacement",
+      "related_files": ["software/src/validation/utils.py", "software/src/validation/config.py"],
+      "evidence": [
+        "validation/utils.py lines 97-100: 'if formats is not None: expected_files = config.get_expected_study_guide_files(formats) else: expected_files = config.EXPECTED_STUDY_GUIDE_FILES'",
+        "EXPECTED_STUDY_GUIDE_FILES includes html and txt which may not be generated depending on pipeline configuration, making the fallback incorrect for non-default pipelines"
+      ],
+      "suggestion": "Replace the else branch in check_study_guide_files with 'expected_files = config.get_expected_study_guide_files(None)' so the fallback also goes through the format-aware function with DEFAULT_REQUIRED_FORMATS. Then EXPECTED_STUDY_GUIDE_FILES can be deleted from config.py.",
+      "confidence": "high",
+      "impact_scope": "module",
+      "fix_scope": "single_edit",
+      "root_cause_cluster": "legacy_validation_constants"
+    }
+  ],
+  "retrospective": {
+    "root_causes": ["Legacy validation constants were never cleaned up after the format-aware API was introduced — the new get_expected_study_guide_files function exists and is used, but the old static list was kept as a fallback instead of being routed through the new function."],
+    "likely_symptoms": ["dead_legacy_format_constants", "legacy_fallback_study_guide_files"],
+    "possible_false_positives": []
+  }
+}
