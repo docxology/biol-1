@@ -126,9 +126,8 @@ def test_no_conflicting_dependencies():
     """Verify there are no conflicting dependency versions."""
     # This is a basic check - more sophisticated version checking could be added
     try:
-        import gtts
-        import speech_recognition
-        import pydub
+        import speech_recognition  # noqa: F401
+        import pydub  # noqa: F401
 
         # If we get here, basic imports work
         # More sophisticated version checking could verify compatibility

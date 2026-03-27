@@ -2,274 +2,1772 @@
   "command": "next",
   "items": [
     {
-      "id": "auto/unused",
-      "kind": "cluster",
-      "action_type": "auto_fix",
-      "summary": "Remove 84 unused issues",
-      "member_count": 84,
-      "members": [
-        {
-          "id": "unused::scripts/flatten_published.py::src.publish.utils.flatten_module",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "scripts/flatten_published.py",
-          "summary": "Unused imports: src.publish.utils.flatten_module",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::scripts/flatten_published.py::src.publish.utils.flatten_module\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::scripts/generate_all_outputs.py::src.batch_processing.config.AVAILABLE_FORMATS",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "scripts/generate_all_outputs.py",
-          "summary": "Unused imports: src.batch_processing.config.AVAILABLE_FORMATS",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::scripts/generate_all_outputs.py::src.batch_processing.config.AVAILABLE_FORMATS\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::scripts/renumber_questions.py::src.content_processing.process_questions_file",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "scripts/renumber_questions.py",
-          "summary": "Unused imports: src.content_processing.process_questions_file",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::scripts/renumber_questions.py::src.content_processing.process_questions_file\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::scripts/validate_outputs.py::src.validation.validate_outputs",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "scripts/validate_outputs.py",
-          "summary": "Unused imports: src.validation.validate_outputs",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::scripts/validate_outputs.py::src.validation.validate_outputs\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::scripts/validate_outputs.py::src.validation.validate_published",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "scripts/validate_outputs.py",
-          "summary": "Unused imports: src.validation.validate_published",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::scripts/validate_outputs.py::src.validation.validate_published\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/canvas_integration/main.py::time",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/canvas_integration/main.py",
-          "summary": "Unused imports: time",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/canvas_integration/main.py::time\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/file_validation/main.py::.utils.get_file_extension",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/file_validation/main.py",
-          "summary": "Unused imports: .utils.get_file_extension",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/file_validation/main.py::.utils.get_file_extension\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/file_validation/main.py::.utils.has_module_prefix",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/file_validation/main.py",
-          "summary": "Unused imports: .utils.has_module_prefix",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/file_validation/main.py::.utils.has_module_prefix\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/file_validation/utils.py::re",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/file_validation/utils.py",
-          "summary": "Unused imports: re",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/file_validation/utils.py::re\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/format_conversion/utils.py::docx.shared.Inches",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/format_conversion/utils.py",
-          "summary": "Unused imports: docx.shared.Inches",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/format_conversion/utils.py::docx.shared.Inches\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/html_website/main.py::.utils.extract_quiz_questions",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/html_website/main.py",
-          "summary": "Unused imports: .utils.extract_quiz_questions",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/html_website/main.py::.utils.extract_quiz_questions\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/html_website/main.py::typing.Dict",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/html_website/main.py",
-          "summary": "Unused imports: typing.Dict",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/html_website/main.py::typing.Dict\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/html_website/main.py::typing.List",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/html_website/main.py",
-          "summary": "Unused imports: typing.List",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/html_website/main.py::typing.List\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/main.py::.utils.create_feasibility_html",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/main.py",
-          "summary": "Unused imports: .utils.create_feasibility_html",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.create_feasibility_html\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/main.py::.utils.create_reflection_html",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/main.py",
-          "summary": "Unused imports: .utils.create_reflection_html",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.create_reflection_html\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/main.py::.utils.parse_object_selection",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/main.py",
-          "summary": "Unused imports: .utils.parse_object_selection",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.parse_object_selection\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/main.py::.utils.parse_reflection",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/main.py",
-          "summary": "Unused imports: .utils.parse_reflection",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.parse_reflection\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/main.py::.utils.parse_table_directive",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/main.py",
-          "summary": "Unused imports: .utils.parse_table_directive",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.parse_table_directive\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/main.py::typing.Any",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/main.py",
-          "summary": "Unused imports: typing.Any",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::typing.Any\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/main.py::typing.Dict",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/main.py",
-          "summary": "Unused imports: typing.Dict",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::typing.Dict\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/lab_manual/utils.py::section_content",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/lab_manual/utils.py",
-          "summary": "Unused vars: section_content",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/lab_manual/utils.py::section_content\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/markdown_to_pdf/utils.py::html",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/markdown_to_pdf/utils.py",
-          "summary": "Unused imports: html",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/markdown_to_pdf/utils.py::html\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/module_organization/config.py::pathlib.Path",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/module_organization/config.py",
-          "summary": "Unused imports: pathlib.Path",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/module_organization/config.py::pathlib.Path\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/module_organization/config.py::typing.Dict",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/module_organization/config.py",
-          "summary": "Unused imports: typing.Dict",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/module_organization/config.py::typing.Dict\" --note \"<what you did>\" --confirm"
-        },
-        {
-          "id": "unused::src/module_organization/main.py::.utils.check_directory_exists",
-          "kind": "issue",
-          "confidence": "high",
-          "detector": "unused",
-          "file": "src/module_organization/main.py",
-          "summary": "Unused imports: .utils.check_directory_exists",
-          "status": "open",
-          "primary_command": "desloppify plan resolve \"unused::src/module_organization/main.py::.utils.check_directory_exists\" --note \"<what you did>\" --confirm"
-        }
-      ],
-      "cluster_name": "auto/unused",
-      "cluster_auto": true,
+      "id": "unused::scripts/flatten_published.py::src.publish.utils.flatten_module",
+      "kind": "issue",
+      "confidence": "high",
       "detector": "unused",
-      "members_truncated": true,
-      "members_sample_limit": 25,
-      "primary_command": "desloppify next --cluster auto/unused --count 10",
-      "autofix_hint": "desloppify autofix unused-imports --dry-run"
+      "file": "scripts/flatten_published.py",
+      "summary": "Unused imports: src.publish.utils.flatten_module",
+      "detail": {
+        "line": 19,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::scripts/flatten_published.py::src.publish.utils.flatten_module\" --note \"<what you did>\" --confirm",
+      "queue_position": 1,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::scripts/generate_all_outputs.py::src.batch_processing.config.AVAILABLE_FORMATS",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "scripts/generate_all_outputs.py",
+      "summary": "Unused imports: src.batch_processing.config.AVAILABLE_FORMATS",
+      "detail": {
+        "line": 32,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::scripts/generate_all_outputs.py::src.batch_processing.config.AVAILABLE_FORMATS\" --note \"<what you did>\" --confirm",
+      "queue_position": 2,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::scripts/renumber_questions.py::src.content_processing.process_questions_file",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "scripts/renumber_questions.py",
+      "summary": "Unused imports: src.content_processing.process_questions_file",
+      "detail": {
+        "line": 20,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::scripts/renumber_questions.py::src.content_processing.process_questions_file\" --note \"<what you did>\" --confirm",
+      "queue_position": 3,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::scripts/validate_outputs.py::src.validation.validate_outputs",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "scripts/validate_outputs.py",
+      "summary": "Unused imports: src.validation.validate_outputs",
+      "detail": {
+        "line": 30,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::scripts/validate_outputs.py::src.validation.validate_outputs\" --note \"<what you did>\" --confirm",
+      "queue_position": 4,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::scripts/validate_outputs.py::src.validation.validate_published",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "scripts/validate_outputs.py",
+      "summary": "Unused imports: src.validation.validate_published",
+      "detail": {
+        "line": 31,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::scripts/validate_outputs.py::src.validation.validate_published\" --note \"<what you did>\" --confirm",
+      "queue_position": 5,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/canvas_integration/main.py::time",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/canvas_integration/main.py",
+      "summary": "Unused imports: time",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/canvas_integration/main.py::time\" --note \"<what you did>\" --confirm",
+      "queue_position": 6,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/file_validation/main.py::.utils.get_file_extension",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/file_validation/main.py",
+      "summary": "Unused imports: .utils.get_file_extension",
+      "detail": {
+        "line": 10,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/file_validation/main.py::.utils.get_file_extension\" --note \"<what you did>\" --confirm",
+      "queue_position": 7,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/file_validation/main.py::.utils.has_module_prefix",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/file_validation/main.py",
+      "summary": "Unused imports: .utils.has_module_prefix",
+      "detail": {
+        "line": 11,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/file_validation/main.py::.utils.has_module_prefix\" --note \"<what you did>\" --confirm",
+      "queue_position": 8,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/file_validation/utils.py::re",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/file_validation/utils.py",
+      "summary": "Unused imports: re",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/file_validation/utils.py::re\" --note \"<what you did>\" --confirm",
+      "queue_position": 9,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/format_conversion/utils.py::docx.shared.Inches",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/format_conversion/utils.py",
+      "summary": "Unused imports: docx.shared.Inches",
+      "detail": {
+        "line": 156,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/format_conversion/utils.py::docx.shared.Inches\" --note \"<what you did>\" --confirm",
+      "queue_position": 10,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/html_website/main.py::.utils.extract_quiz_questions",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/html_website/main.py",
+      "summary": "Unused imports: .utils.extract_quiz_questions",
+      "detail": {
+        "line": 10,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/html_website/main.py::.utils.extract_quiz_questions\" --note \"<what you did>\" --confirm",
+      "queue_position": 11,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/html_website/main.py::typing.Dict",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/html_website/main.py",
+      "summary": "Unused imports: typing.Dict",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/html_website/main.py::typing.Dict\" --note \"<what you did>\" --confirm",
+      "queue_position": 12,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/html_website/main.py::typing.List",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/html_website/main.py",
+      "summary": "Unused imports: typing.List",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/html_website/main.py::typing.List\" --note \"<what you did>\" --confirm",
+      "queue_position": 13,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/main.py::.utils.create_feasibility_html",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/main.py",
+      "summary": "Unused imports: .utils.create_feasibility_html",
+      "detail": {
+        "line": 12,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.create_feasibility_html\" --note \"<what you did>\" --confirm",
+      "queue_position": 14,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/main.py::.utils.create_reflection_html",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/main.py",
+      "summary": "Unused imports: .utils.create_reflection_html",
+      "detail": {
+        "line": 16,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.create_reflection_html\" --note \"<what you did>\" --confirm",
+      "queue_position": 15,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/main.py::.utils.parse_object_selection",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/main.py",
+      "summary": "Unused imports: .utils.parse_object_selection",
+      "detail": {
+        "line": 22,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.parse_object_selection\" --note \"<what you did>\" --confirm",
+      "queue_position": 16,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/main.py::.utils.parse_reflection",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/main.py",
+      "summary": "Unused imports: .utils.parse_reflection",
+      "detail": {
+        "line": 23,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.parse_reflection\" --note \"<what you did>\" --confirm",
+      "queue_position": 17,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/main.py::.utils.parse_table_directive",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/main.py",
+      "summary": "Unused imports: .utils.parse_table_directive",
+      "detail": {
+        "line": 24,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::.utils.parse_table_directive\" --note \"<what you did>\" --confirm",
+      "queue_position": 18,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/main.py::typing.Any",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/main.py",
+      "summary": "Unused imports: typing.Any",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::typing.Any\" --note \"<what you did>\" --confirm",
+      "queue_position": 19,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/main.py::typing.Dict",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/main.py",
+      "summary": "Unused imports: typing.Dict",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/main.py::typing.Dict\" --note \"<what you did>\" --confirm",
+      "queue_position": 20,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/lab_manual/utils.py::section_content",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/lab_manual/utils.py",
+      "summary": "Unused vars: section_content",
+      "detail": {
+        "line": 103,
+        "category": "vars"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/lab_manual/utils.py::section_content\" --note \"<what you did>\" --confirm",
+      "queue_position": 21,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/markdown_to_pdf/utils.py::html",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/markdown_to_pdf/utils.py",
+      "summary": "Unused imports: html",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/markdown_to_pdf/utils.py::html\" --note \"<what you did>\" --confirm",
+      "queue_position": 22,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/module_organization/config.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/module_organization/config.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/module_organization/config.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 23,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/module_organization/config.py::typing.Dict",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/module_organization/config.py",
+      "summary": "Unused imports: typing.Dict",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/module_organization/config.py::typing.Dict\" --note \"<what you did>\" --confirm",
+      "queue_position": 24,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/module_organization/main.py::.utils.check_directory_exists",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/module_organization/main.py",
+      "summary": "Unused imports: .utils.check_directory_exists",
+      "detail": {
+        "line": 8,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/module_organization/main.py::.utils.check_directory_exists\" --note \"<what you did>\" --confirm",
+      "queue_position": 25,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/publish/config.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/publish/config.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/publish/config.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 26,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/publish/main.py::typing.List",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/publish/main.py",
+      "summary": "Unused imports: typing.List",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/publish/main.py::typing.List\" --note \"<what you did>\" --confirm",
+      "queue_position": 27,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/publish/utils.py::re",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/publish/utils.py",
+      "summary": "Unused imports: re",
+      "detail": {
+        "line": 309,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/publish/utils.py::re\" --note \"<what you did>\" --confirm",
+      "queue_position": 28,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/schedule/utils.py::typing.Tuple",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/schedule/utils.py",
+      "summary": "Unused imports: typing.Tuple",
+      "detail": {
+        "line": 6,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/schedule/utils.py::typing.Tuple\" --note \"<what you did>\" --confirm",
+      "queue_position": 29,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/speech_to_text/main.py::.config",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/speech_to_text/main.py",
+      "summary": "Unused imports: .config",
+      "detail": {
+        "line": 7,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/speech_to_text/main.py::.config\" --note \"<what you did>\" --confirm",
+      "queue_position": 30,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/speech_to_text/main.py::typing.Optional",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/speech_to_text/main.py",
+      "summary": "Unused imports: typing.Optional",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/speech_to_text/main.py::typing.Optional\" --note \"<what you did>\" --confirm",
+      "queue_position": 31,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/text_to_speech/utils.py::os",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/text_to_speech/utils.py",
+      "summary": "Unused imports: os",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/text_to_speech/utils.py::os\" --note \"<what you did>\" --confirm",
+      "queue_position": 32,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/text_to_speech/utils.py::shutil",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/text_to_speech/utils.py",
+      "summary": "Unused imports: shutil",
+      "detail": {
+        "line": 6,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/text_to_speech/utils.py::shutil\" --note \"<what you did>\" --confirm",
+      "queue_position": 33,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/validation/config.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/validation/config.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/validation/config.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 34,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/validation/main.py::.config.get_expected_study_guide_files",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/validation/main.py",
+      "summary": "Unused imports: .config.get_expected_study_guide_files",
+      "detail": {
+        "line": 15,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/validation/main.py::.config.get_expected_study_guide_files\" --note \"<what you did>\" --confirm",
+      "queue_position": 35,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/validation/main.py::datetime.datetime",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/validation/main.py",
+      "summary": "Unused imports: datetime.datetime",
+      "detail": {
+        "line": 9,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/validation/main.py::datetime.datetime\" --note \"<what you did>\" --confirm",
+      "queue_position": 36,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::src/validation/main.py::json",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "src/validation/main.py",
+      "summary": "Unused imports: json",
+      "detail": {
+        "line": 7,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::src/validation/main.py::json\" --note \"<what you did>\" --confirm",
+      "queue_position": 37,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_batch_processing_orchestration.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_batch_processing_orchestration.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_batch_processing_orchestration.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 38,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_batch_processing_orchestration.py::unittest.mock.MagicMock",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_batch_processing_orchestration.py",
+      "summary": "Unused imports: unittest.mock.MagicMock",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_batch_processing_orchestration.py::unittest.mock.MagicMock\" --note \"<what you did>\" --confirm",
+      "queue_position": 39,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_batch_processing_utils.py::src.batch_processing.config",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_batch_processing_utils.py",
+      "summary": "Unused imports: src.batch_processing.config",
+      "detail": {
+        "line": 15,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_batch_processing_utils.py::src.batch_processing.config\" --note \"<what you did>\" --confirm",
+      "queue_position": 40,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_batch_processing_utils.py::unittest.mock.MagicMock",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_batch_processing_utils.py",
+      "summary": "Unused imports: unittest.mock.MagicMock",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_batch_processing_utils.py::unittest.mock.MagicMock\" --note \"<what you did>\" --confirm",
+      "queue_position": 41,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_canvas_integration_main.py::issues",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_canvas_integration_main.py",
+      "summary": "Unused vars: issues",
+      "detail": {
+        "line": 99,
+        "category": "vars"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_canvas_integration_main.py::issues\" --note \"<what you did>\" --confirm",
+      "queue_position": 42,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_canvas_integration_main.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_canvas_integration_main.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_canvas_integration_main.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 43,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_canvas_integration_utils.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_canvas_integration_utils.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_canvas_integration_utils.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 44,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_cli.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_cli.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 7,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_cli.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 45,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_content_processing_main.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_content_processing_main.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_content_processing_main.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 46,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_content_processing_main.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_content_processing_main.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_content_processing_main.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 47,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_content_processing_utils.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_content_processing_utils.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_content_processing_utils.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 48,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_dependencies.py::gtts",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_dependencies.py",
+      "summary": "Unused imports: gtts",
+      "detail": {
+        "line": 129,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_dependencies.py::gtts\" --note \"<what you did>\" --confirm",
+      "queue_position": 49,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_dependencies.py::pydub",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_dependencies.py",
+      "summary": "Unused imports: pydub",
+      "detail": {
+        "line": 131,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_dependencies.py::pydub\" --note \"<what you did>\" --confirm",
+      "queue_position": 50,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_dependencies.py::speech_recognition",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_dependencies.py",
+      "summary": "Unused imports: speech_recognition",
+      "detail": {
+        "line": 130,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_dependencies.py::speech_recognition\" --note \"<what you did>\" --confirm",
+      "queue_position": 51,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_file_validation_main.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_file_validation_main.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_file_validation_main.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 52,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_file_validation_main.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_file_validation_main.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_file_validation_main.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 53,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_format_conversion_utils.py::content",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_format_conversion_utils.py",
+      "summary": "Unused vars: content",
+      "detail": {
+        "line": 87,
+        "category": "vars"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_format_conversion_utils.py::content\" --note \"<what you did>\" --confirm",
+      "queue_position": 54,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_format_conversion_utils.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_format_conversion_utils.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_format_conversion_utils.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 55,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_format_conversion_utils.py::src.format_conversion.utils.convert_audio_to_text",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_format_conversion_utils.py",
+      "summary": "Unused imports: src.format_conversion.utils.convert_audio_to_text",
+      "detail": {
+        "line": 19,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_format_conversion_utils.py::src.format_conversion.utils.convert_audio_to_text\" --note \"<what you did>\" --confirm",
+      "queue_position": 56,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_html_website_features.py::src.html_website.config.HTML_TEMPLATE",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_html_website_features.py",
+      "summary": "Unused imports: src.html_website.config.HTML_TEMPLATE",
+      "detail": {
+        "line": 233,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_html_website_features.py::src.html_website.config.HTML_TEMPLATE\" --note \"<what you did>\" --confirm",
+      "queue_position": 57,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_html_website_features.py::tempfile",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_html_website_features.py",
+      "summary": "Unused imports: tempfile",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_html_website_features.py::tempfile\" --note \"<what you did>\" --confirm",
+      "queue_position": 58,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_html_website_utils.py::tempfile",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_html_website_utils.py",
+      "summary": "Unused imports: tempfile",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_html_website_utils.py::tempfile\" --note \"<what you did>\" --confirm",
+      "queue_position": 59,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_imports.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_imports.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_imports.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 60,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_integration.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_integration.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_integration.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 61,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_lab_manual_utils.py::src.lab_manual.utils.LabElement",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_lab_manual_utils.py",
+      "summary": "Unused imports: src.lab_manual.utils.LabElement",
+      "detail": {
+        "line": 9,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_lab_manual_utils.py::src.lab_manual.utils.LabElement\" --note \"<what you did>\" --confirm",
+      "queue_position": 62,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_legacy_import_main.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_legacy_import_main.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_legacy_import_main.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 63,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_legacy_import_main.py::src.legacy_import.utils.create_comprehension_questions",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_legacy_import_main.py",
+      "summary": "Unused imports: src.legacy_import.utils.create_comprehension_questions",
+      "detail": {
+        "line": 10,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_legacy_import_main.py::src.legacy_import.utils.create_comprehension_questions\" --note \"<what you did>\" --confirm",
+      "queue_position": 64,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_legacy_import_main.py::src.legacy_import.utils.extract_chapter_number",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_legacy_import_main.py",
+      "summary": "Unused imports: src.legacy_import.utils.extract_chapter_number",
+      "detail": {
+        "line": 10,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_legacy_import_main.py::src.legacy_import.utils.extract_chapter_number\" --note \"<what you did>\" --confirm",
+      "queue_position": 65,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_legacy_import_main.py::types.ModuleType",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_legacy_import_main.py",
+      "summary": "Unused imports: types.ModuleType",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_legacy_import_main.py::types.ModuleType\" --note \"<what you did>\" --confirm",
+      "queue_position": 66,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_legacy_import_main_extended.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_legacy_import_main_extended.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_legacy_import_main_extended.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 67,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_legacy_import_main_extended.py::unittest.mock.MagicMock",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_legacy_import_main_extended.py",
+      "summary": "Unused imports: unittest.mock.MagicMock",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_legacy_import_main_extended.py::unittest.mock.MagicMock\" --note \"<what you did>\" --confirm",
+      "queue_position": 68,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_legacy_import_utils.py::unittest.mock.MagicMock",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_legacy_import_utils.py",
+      "summary": "Unused imports: unittest.mock.MagicMock",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_legacy_import_utils.py::unittest.mock.MagicMock\" --note \"<what you did>\" --confirm",
+      "queue_position": 69,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_module_organization_utils.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_module_organization_utils.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_module_organization_utils.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 70,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_publish_main.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_publish_main.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_publish_main.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 71,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_publish_main.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_publish_main.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_publish_main.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 72,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_publish_main.py::src.publish.config",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_publish_main.py",
+      "summary": "Unused imports: src.publish.config",
+      "detail": {
+        "line": 6,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_publish_main.py::src.publish.config\" --note \"<what you did>\" --confirm",
+      "queue_position": 73,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_publish_utils.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_publish_utils.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_publish_utils.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 74,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_publish_utils.py::pytest",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_publish_utils.py",
+      "summary": "Unused imports: pytest",
+      "detail": {
+        "line": 5,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_publish_utils.py::pytest\" --note \"<what you did>\" --confirm",
+      "queue_position": 75,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_publish_utils.py::shutil",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_publish_utils.py",
+      "summary": "Unused imports: shutil",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_publish_utils.py::shutil\" --note \"<what you did>\" --confirm",
+      "queue_position": 76,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_real_implementations.py::os",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_real_implementations.py",
+      "summary": "Unused imports: os",
+      "detail": {
+        "line": 104,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_real_implementations.py::os\" --note \"<what you did>\" --confirm",
+      "queue_position": 77,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_schedule_main.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_schedule_main.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_schedule_main.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 78,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_schedule_main.py::tempfile",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_schedule_main.py",
+      "summary": "Unused imports: tempfile",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_schedule_main.py::tempfile\" --note \"<what you did>\" --confirm",
+      "queue_position": 79,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_schedule_utils.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_schedule_utils.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 4,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_schedule_utils.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 80,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_schedule_utils.py::tempfile",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_schedule_utils.py",
+      "summary": "Unused imports: tempfile",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_schedule_utils.py::tempfile\" --note \"<what you did>\" --confirm",
+      "queue_position": 81,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_speech_to_text_main.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_speech_to_text_main.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 127,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_speech_to_text_main.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 82,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_validation_utils.py::pathlib.Path",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_validation_utils.py",
+      "summary": "Unused imports: pathlib.Path",
+      "detail": {
+        "line": 3,
+        "category": "imports"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_validation_utils.py::pathlib.Path\" --note \"<what you did>\" --confirm",
+      "queue_position": 83,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
+    },
+    {
+      "id": "unused::tests/test_validation_utils.py::result",
+      "kind": "issue",
+      "confidence": "high",
+      "detector": "unused",
+      "file": "tests/test_validation_utils.py",
+      "summary": "Unused vars: result",
+      "detail": {
+        "line": 217,
+        "category": "vars"
+      },
+      "status": "open",
+      "primary_command": "desloppify plan resolve \"unused::tests/test_validation_utils.py::result\" --note \"<what you did>\" --confirm",
+      "queue_position": 84,
+      "plan_cluster": {
+        "name": "auto/unused",
+        "description": "Remove 84 unused issues",
+        "total_items": 84,
+        "action_steps": []
+      }
     }
   ],
   "queue": {
-    "total": 1
+    "total": 84
   },
   "narrative": {
     "phase": "early_momentum",

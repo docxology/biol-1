@@ -13,7 +13,7 @@ from .utils import (
     convert_markdown_to_pdf,
     convert_text_to_html,
     convert_text_to_pdf,
-    get_conversion_path,
+    get_conversion_path,  # noqa: F401 — re-exported as part of public API
     get_file_extension,
     get_output_path,
 )
