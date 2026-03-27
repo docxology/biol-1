@@ -132,6 +132,18 @@ D) Are used primarily for posture
 
 ## Part B: Fill in the Blank
 
+**Word Bank:**
+* Acetylcholine
+* Actin
+* Calcium
+* Endomysium
+* Epimysium
+* Isometric
+* Isotonic
+* Myosin
+* Perimysium
+* Troponin
+
 **19.** The two proteins that make up the thick and thin filaments of the sarcomere are _______________ (thick) and _______________ (thin).
 
 **20.** The neurotransmitter that triggers muscle contraction at the neuromuscular junction is _______________.

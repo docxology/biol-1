@@ -27,30 +27,30 @@
 
 ## Part B: Fill in the Blank
 
-1. **Sympathetic**; **Parasympathetic**
-2. **Dendrites**; **Cell body** (soma); **Axon**
-3. **Myelin sheath**
-4. **Neurotransmitters**
-5. **Cerebrum**; **Cerebellum**; **Brainstem** (accept also: medulla, pons, midbrain as parts)
+**19.** **Sympathetic**; **Parasympathetic**
+**20.** **Dendrites**; **Cell body** (soma); **Axon**
+**21.** **Myelin sheath**
+**22.** **Neurotransmitters**
+**23.** **Cerebrum**; **Cerebellum**; **Brainstem** (accept also: medulla, pons, midbrain as parts)
 
 ## Part C: Short Answer
 
-1. **Signal Path Through a Neuron:**
+**24.** **Signal Path Through a Neuron:**
     - Signal enters through the **dendrites** (receives input from other neurons or sensory receptors).
     - Travels through the **cell body** (soma), where signals are integrated.
     - Travels along the **axon** as an action potential.
     - Exits at the **synaptic terminals** (axon terminals), where neurotransmitters are released to communicate with the next cell.
 
-2. **Sympathetic vs. Parasympathetic:**
+**25.** **Sympathetic vs. Parasympathetic:**
     - **Sympathetic ("fight or flight"):** Prepares the body for stress or danger. Example: increases heart rate, dilates bronchioles, diverts blood to skeletal muscles.
     - **Parasympathetic ("rest and digest"):** Promotes calming, maintenance functions. Example: slows heart rate, stimulates digestive activity, constricts pupils.
     - They often have opposing effects on the same organ, maintaining homeostasis.
 
-3. **Chemical Synapse — Step by Step:**
+**26.** **Chemical Synapse — Step by Step:**
     - (1) An action potential arrives at the presynaptic axon terminal.
     - (2) Voltage-gated calcium channels open; calcium enters the terminal.
     - (3) Calcium triggers vesicles containing neurotransmitter to fuse with the membrane and release neurotransmitter into the synaptic cleft.
     - (4) Neurotransmitter binds to receptors on the postsynaptic membrane, causing ion channels to open (excitatory or inhibitory effect). Neurotransmitter is then removed by reuptake, enzymatic breakdown, or diffusion.
 
-4. **Drugs and Neurotransmitters:**
+**27.** **Drugs and Neurotransmitters:**
     - Neurotransmitters like serotonin, dopamine, and norepinephrine regulate mood, alertness, and emotion. Reuptake inhibitors (e.g., SSRIs) block the reuptake of neurotransmitter from the synaptic cleft, leaving more neurotransmitter available to bind receptors. This increases the strength or duration of the signal. Because mood and alertness depend on neurotransmitter levels, changing those levels with drugs can directly alter how a person feels.

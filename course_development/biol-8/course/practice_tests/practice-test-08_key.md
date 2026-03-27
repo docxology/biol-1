@@ -27,28 +27,28 @@
 
 ## Part B: Fill in the Blank
 
-1. **Myosin** (thick); **Actin** (thin)
-2. **Acetylcholine** (ACh)
-3. **Calcium** (Ca²⁺) ions; **Troponin**
-4. **Isometric**; **Isotonic**
-5. **Epimysium** (outermost), **Perimysium** (middle), **Endomysium** (innermost)
+**19.** **Myosin** (thick); **Actin** (thin)
+**20.** **Acetylcholine** (ACh)
+**21.** **Calcium** (Ca²⁺) ions; **Troponin**
+**22.** **Isometric**; **Isotonic**
+**23.** **Epimysium** (outermost), **Perimysium** (middle), **Endomysium** (innermost)
 
 ## Part C: Short Answer
 
-1. **Cross-Bridge Cycle (4 steps):**
+**24.** **Cross-Bridge Cycle (4 steps):**
     - **Step 1 — Myosin binds actin:** The energized (cocked) myosin head attaches to an exposed binding site on actin, forming a cross-bridge.
     - **Step 2 — Power stroke:** The myosin head pivots, pulling the thin filament toward the center of the sarcomere. ADP and phosphate are released.
     - **Step 3 — ATP binds:** A new ATP molecule binds to the myosin head, causing it to detach from actin.
     - **Step 4 — Cocking:** ATP is hydrolyzed (→ ADP + P), and the energy re-cocks the myosin head into the high-energy position, ready to bind again.
 
-2. **Why Both ATP and Calcium Are Needed:**
+**25.** **Why Both ATP and Calcium Are Needed:**
     - **Calcium** is the "on switch": it removes the tropomyosin block from actin so myosin can bind. Without calcium, no cross-bridges form.
     - **ATP** is the energy source: it powers the cocking of the myosin head and causes the myosin head to release from actin. Without ATP, myosin remains locked onto actin (rigor).
 
-3. **Slow-Twitch vs. Fast-Twitch:**
+**26.** **Slow-Twitch vs. Fast-Twitch:**
     - **Slow-twitch (Type I):** Slower contraction speed, high endurance, many mitochondria, high myoglobin (red). Best for: marathon running, posture, walking.
     - **Fast-twitch (Type II):** Rapid contraction, powerful, fewer mitochondria, fatigue quickly. Best for: sprinting, jumping, heavy lifting.
     - Everyone has a mix of both; training can shift some fiber characteristics.
 
-4. **Isometric Contraction:**
+**27.** **Isometric Contraction:**
     - This is **isometric**: the bicep is generating force to hold the book steady, but the muscle is not changing length (no movement at the joint). In isotonic contractions, the muscle would shorten or lengthen while moving the load.

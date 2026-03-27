@@ -132,6 +132,17 @@ D) Excess vitamin D
 
 ## Part B: Fill in the Blank
 
+**Word Bank:**
+* Appendicular
+* Axial
+* Epiphyseal
+* Medullary
+* Osteoblasts
+* Osteoclasts
+* Osteocytes
+* Periosteum
+* Yellow
+
 **19.** The three types of bone cells are _______________ (build bone), _______________ (maintain bone), and _______________ (break down bone).
 
 **20.** The tough membrane covering the outer surface of bone is the _______________.

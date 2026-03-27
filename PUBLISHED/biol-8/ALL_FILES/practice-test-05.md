@@ -132,6 +132,16 @@ D) Synapse
 
 ## Part B: Fill in the Blank
 
+**Word Bank:**
+* Arteries
+* Capillaries
+* Cardiac
+* Motor
+* Sensory
+* Skeletal
+* Smooth
+* Veins
+
 **19.** In a negative feedback loop, the response _____________________ (opposes / amplifies) the original stimulus to bring the body back to normal.
 
 **20.** The three types of blood vessels are _____________________, _____________________, and _____________________.

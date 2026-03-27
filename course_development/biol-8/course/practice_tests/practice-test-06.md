@@ -128,6 +128,18 @@ D) 100%
 
 ## Part B: Fill in the Blank
 
+**Word Bank:**
+* Affected female
+* Affected male
+* Dihybrid
+* Dominant
+* Genotype
+* Phenotype
+* Recessive
+* Sex
+* XX
+* XY
+
 **19.** The allele that is expressed in the heterozygote is called _____________________, while the allele that is hidden (masked) is called _____________________.
 
 **20.** The physical appearance of an organism is its _____________________, and its genetic makeup is its _____________________.

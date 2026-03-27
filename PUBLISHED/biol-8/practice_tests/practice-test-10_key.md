@@ -27,29 +27,29 @@
 
 ## Part B: Fill in the Blank
 
-1. **Peptidoglycan** (thick in Gram-positive, thin in Gram-negative with an additional outer membrane)
-2. **Binary fission**; **identical** (clones)
-3. **Nucleic acid** (DNA or RNA); **Capsid**
-4. **Animals** (fungi are more closely related to animals than to plants)
-5. **Skin**; **Mucous membranes**; **Chemical secretions** (e.g., tears with lysozyme, stomach acid, saliva) — accept any three valid first-line barriers
+**19.** **Peptidoglycan** (thick in Gram-positive, thin in Gram-negative with an additional outer membrane)
+**20.** **Binary fission**; **identical** (clones)
+**21.** **Nucleic acid** (DNA or RNA); **Capsid**
+**22.** **Animals** (fungi are more closely related to animals than to plants)
+**23.** **Skin**; **Mucous membranes**; **Chemical secretions** (e.g., tears with lysozyme, stomach acid, saliva) — accept any three valid first-line barriers
 
 ## Part C: Short Answer
 
-1. **Gram-Positive vs. Gram-Negative:**
+**24.** **Gram-Positive vs. Gram-Negative:**
     - **Gram-positive:** Thick peptidoglycan layer, no outer membrane. Retains crystal violet (purple).
     - **Gram-negative:** Thin peptidoglycan layer, surrounded by an outer membrane containing lipopolysaccharide.
     - **Why it matters:** The outer membrane of Gram-negative bacteria acts as an extra barrier, blocking large antibiotic molecules like vancomycin. Gram-positive bacteria, lacking that barrier, are more accessible to drugs that target the cell wall. This structural difference helps clinicians choose appropriate antibiotics.
 
-2. **Antibiotic Resistance as Natural Selection:**
+**25.** **Antibiotic Resistance as Natural Selection:**
     - In any bacterial population there is **variation** — some bacteria carry genes that make them slightly more resistant to an antibiotic.
     - When an antibiotic is applied, it acts as a **selection** pressure: susceptible bacteria die, but resistant ones survive.
     - The surviving resistant bacteria **reproduce** (via binary fission), passing resistance genes to their offspring. Over time, the population shifts to mostly resistant individuals. This is why overuse or incomplete courses of antibiotics accelerate the problem.
 
-3. **Bacteria vs. Viruses vs. Fungi:**
+**26.** **Bacteria vs. Viruses vs. Fungi:**
     - **Bacteria:** Living prokaryotes. Reproduce by binary fission. Treated with antibiotics (e.g., penicillin, gentamicin).
     - **Viruses:** Considered non-living by many biologists. Reproduce only inside a host cell (lytic or lysogenic cycle). Treated with antiviral drugs; many prevented by vaccines. Antibiotics do not work.
     - **Fungi:** Living eukaryotes. Reproduce by spores (sexual or asexual). Treated with antifungal drugs (e.g., fluconazole). Antibiotics do not work because fungi are eukaryotes.
 
-4. **Prions:**
+**27.** **Prions:**
     - A prion is a **misfolded protein** that can cause normal proteins to misfold as well, leading to progressive brain damage (e.g., mad cow disease, Creutzfeldt-Jakob disease).
     - Unlike all other infectious agents, prions contain **no nucleic acid** (no DNA or RNA). They cannot be killed by standard sterilization methods that destroy nucleic acids. This makes them unique — they are neither living organisms like bacteria and fungi, nor do they have a genome like viruses.

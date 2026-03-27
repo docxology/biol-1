@@ -27,15 +27,15 @@
 
 ## Part B: Fill in the Blank
 
-1. **Dominant**; **Recessive**
-2. **Phenotype**; **Genotype**
-3. **Dihybrid** cross
-4. **Sex** chromosomes; **XX**; **XY**
-5. **Affected female**; **Affected male**
+**19.** **Dominant**; **Recessive**
+**20.** **Phenotype**; **Genotype**
+**21.** **Dihybrid** cross
+**22.** **Sex** chromosomes; **XX**; **XY**
+**23.** **Affected female**; **Affected male**
 
 ## Part C: Short Answer
 
-1. **Punnett Square: Aa × Aa**
+**24.** **Punnett Square: Aa × Aa**
 
     |   | **A** | **a** |
     |---|-------|-------|
@@ -45,12 +45,12 @@
     - **Genotypic ratio:** 1 AA : 2 Aa : 1 aa
     - **Phenotypic ratio:** 3 dominant : 1 recessive
 
-2. **Incomplete Dominance vs. Codominance:**
+**25.** **Incomplete Dominance vs. Codominance:**
     - **Incomplete dominance:** The heterozygous phenotype is a blend of the two homozygous phenotypes. Example: Red × White snapdragons → Pink offspring. Neither allele completely dominates.
     - **Codominance:** Both alleles are fully and simultaneously expressed in the heterozygote. Example: Blood type AB (I^A I^B) — both A and B antigens appear on the red blood cell surface.
     - Key difference: Incomplete dominance blends the two phenotypes into one intermediate; codominance shows both phenotypes side by side.
 
-3. **Color Blindness Cross: X^c Y × X^C X^c**
+**26.** **Color Blindness Cross: X^c Y × X^C X^c**
 
     |   | **X^C** | **X^c** |
     |---|---------|---------|
@@ -60,7 +60,7 @@
     - Probability of daughters being color blind: **50%** (1 out of 2 daughters)
     - Probability of sons being color blind: **50%** (1 out of 2 sons)
 
-4. **Definitions:**
+**27.** **Definitions:**
     - **Allele:** An alternate form of a gene found at the same position on a chromosome (e.g., T for tall, t for short).
     - **Genotype:** The genetic makeup of an organism — the specific combination of alleles it carries (e.g., Tt, AA, aa).
     - **Phenotype:** The observable physical traits of an organism that result from its genotype (e.g., tall, short, brown eyes).

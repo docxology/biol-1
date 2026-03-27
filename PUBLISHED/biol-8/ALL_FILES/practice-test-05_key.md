@@ -27,25 +27,25 @@
 
 ## Part B: Fill in the Blank
 
-1. **Opposes** — negative feedback reverses the change to restore balance.
-2. **Arteries**, **Veins**, **Capillaries**
-3. **Skeletal**, **Cardiac**, **Smooth**
-4. **Sensory**; **Motor**
+**19.** **Opposes** — negative feedback reverses the change to restore balance.
+**20.** **Arteries**, **Veins**, **Capillaries**
+**21.** **Skeletal**, **Cardiac**, **Smooth**
+**22.** **Sensory**; **Motor**
 
 ## Part C: Short Answer
 
-1. **Negative vs. Positive Feedback:**
+**23.** **Negative vs. Positive Feedback:**
     - **Negative feedback:** The response opposes the original change to bring the body back to its set point. Example: Body temperature — when you overheat, you sweat to cool down; when you are cold, you shiver to warm up.
     - **Positive feedback:** The response amplifies the original change, pushing the system further in the same direction until a specific event ends it. Example: Childbirth contractions — oxytocin increases contractions, which triggers more oxytocin, until the baby is delivered.
 
-2. **Path of Food:**
+**24.** **Path of Food:**
     - **Mouth:** Mechanical digestion (chewing) and chemical digestion (salivary amylase begins starch breakdown).
     - **Esophagus:** Moves food to the stomach via peristalsis (muscular contractions).
     - **Stomach:** Churns food (mechanical) and uses acid and enzymes (chemical) to break down proteins.
     - **Small intestine:** Main site of chemical digestion (with help from liver, pancreas, gallbladder) and nutrient absorption into the bloodstream.
     - **Large intestine:** Absorbs water and remaining minerals; compacts waste for elimination.
 
-3. **Three Muscle Types:**
+**25.** **Three Muscle Types:**
 
     | Feature | Skeletal | Cardiac | Smooth |
     |---------|----------|---------|--------|
@@ -54,7 +54,7 @@
     | Control | Voluntary | Involuntary | Involuntary |
     | Special Feature | Multinucleated | Intercalated discs | Spindle-shaped cells |
 
-4. **Hot Pan Response:**
+**26.** **Hot Pan Response:**
     - **Nervous system:** Sensory neurons in your hand detect the heat and send a pain signal through the peripheral nerves to the spinal cord. The spinal cord triggers a reflex arc — sending a motor signal back to your arm before the signal even reaches your brain. (This is why you pull away before you consciously feel the pain.)
     - **Muscular system:** Motor neurons stimulate skeletal muscles in your arm and hand to contract rapidly.
     - **Skeletal system:** The bones of your arm and hand act as levers, allowing the muscle contraction to pull your hand away from the pan.

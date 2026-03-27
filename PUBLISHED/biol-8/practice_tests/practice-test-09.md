@@ -130,6 +130,18 @@ D) It is always voluntary
 
 ## Part B: Fill in the Blank
 
+**Word Bank:**
+* Axon
+* Brainstem
+* Cell body
+* Cerebellum
+* Cerebrum
+* Dendrites
+* Myelin sheath
+* Neurotransmitters
+* Parasympathetic
+* Sympathetic
+
 **19.** The two divisions of the autonomic nervous system are the _______________ division ("fight or flight") and the _______________ division ("rest and digest").
 
 **20.** The three main parts of a neuron are _______________, _______________, and _______________.

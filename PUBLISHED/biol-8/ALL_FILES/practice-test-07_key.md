@@ -27,28 +27,28 @@
 
 ## Part B: Fill in the Blank
 
-1. **Osteoblasts**; **Osteocytes**; **Osteoclasts**
-2. **Periosteum**
-3. **Axial**; **Appendicular**
-4. **Epiphyseal** (growth) plate
-5. **Medullary** cavity; **Yellow** marrow (stores fat in adults; red marrow in children and in certain bones in adults)
+**19.** **Osteoblasts**; **Osteocytes**; **Osteoclasts**
+**20.** **Periosteum**
+**21.** **Axial**; **Appendicular**
+**22.** **Epiphyseal** (growth) plate
+**23.** **Medullary** cavity; **Yellow** marrow (stores fat in adults; red marrow in children and in certain bones in adults)
 
 ## Part C: Short Answer
 
-1. **Bone Cells:**
+**24.** **Bone Cells:**
     - **Osteoblasts** build new bone by secreting collagen and mineral matrix. They are essential for bone growth and repair.
     - **Osteocytes** are mature bone cells trapped in lacunae; they maintain the bone matrix and sense mechanical stress.
     - **Osteoclasts** break down bone tissue (resorption), releasing calcium and allowing remodeling. All three work together to keep bones strong and maintain calcium homeostasis.
 
-2. **Compact vs. Spongy Bone:**
+**25.** **Compact vs. Spongy Bone:**
     - **Compact bone** is dense, solid, and organized into osteons. It forms the outer layer of bones and the shaft of long bones, providing strength and protection.
     - **Spongy bone** has a porous, trabecular structure. It is found at the epiphyses and in the interior of flat bones. It is lighter and contains red marrow for blood cell production.
 
-3. **Two Functions with Structural Support:**
+**26.** **Two Functions with Structural Support:**
     - **Protection:** The skull (flat bones) forms a rigid case around the brain; the rib cage protects the heart and lungs. The dense compact bone provides the physical barrier.
     - **Movement:** Bones act as levers that muscles pull on at joints. The shape of long bones (long diaphysis, rounded epiphyses) allows efficient leverage and smooth joint surfaces.
 
-4. **Osteoporosis:**
+**27.** **Osteoporosis:**
     - A condition where bone resorption outpaces bone formation, resulting in decreased bone density and increased fracture risk.
     - Risk factors include aging, decreased estrogen (post-menopause), low calcium/vitamin D intake, sedentary lifestyle, and smoking.
     - Prevention: regular weight-bearing exercise stimulates osteoblast activity and helps maintain bone density.

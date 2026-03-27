@@ -130,6 +130,17 @@ D) Fungi are too small to be affected by drugs
 
 ## Part B: Fill in the Blank
 
+**Word Bank:**
+* Animals
+* Binary fission
+* Capsid
+* Chemical secretions
+* Identical
+* Mucous membranes
+* Nucleic acid
+* Peptidoglycan
+* Skin
+
 **19.** The cell wall component that distinguishes Gram-positive from Gram-negative bacteria is _______________.
 
 **20.** The primary mode of bacterial reproduction is _______________, which produces genetically _______________ offspring.
