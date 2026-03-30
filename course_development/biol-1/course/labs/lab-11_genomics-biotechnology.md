@@ -1,179 +1,141 @@
 # Lab 11: Genomics & Biotechnology
 
+**Name:** {fill:text} **Date:** {fill:text}
+
 ## Overview
 
-Biotechnology puts our knowledge of DNA to work. Today, scientists can **cut** DNA at precise locations, **copy** a single molecule into billions, **sort** fragments by size, **identify** individuals by their unique DNA fingerprint, and even **edit** genes to treat diseases. These tools have transformed medicine, forensics, agriculture, and our understanding of life itself.
+Biotechnology puts our knowledge of DNA to work. Today, scientists can **cut** DNA at precise locations, **copy** a single molecule into billions, **sort** fragments by size, **identify** individuals by their unique DNA fingerprint, and even **edit** genes to treat diseases. 
 
-In this lab, you will explore the core techniques of biotechnology — restriction enzymes, PCR, gel electrophoresis, DNA fingerprinting, genetic engineering, and CRISPR gene editing.
+In this lab, you will explore the core tools of biotechnology. Think of these as tools in a scientist's toolbox!
 
 ## Learning Objectives
 
-By the end of this lab, you will be able to:
-
-1. Explain how restriction enzymes and ligase create recombinant DNA.
-2. Describe the three steps of a PCR cycle and calculate DNA amplification.
-3. Interpret a gel electrophoresis result.
-4. Analyze a DNA fingerprint for a paternity test.
-5. Describe the goals and ethical considerations of gene therapy and CRISPR.
-
-## Materials
-
-- This worksheet
-- Ruler (optional, for gel diagram questions)
+1. Describe how scientists cut, copy, sort, and edit DNA.
+2. Explain how the universal genetic code makes GMOs possible.
+3. Apply DNA fingerprinting to forensic and inheritance scenarios.
+4. Synthesize concepts from past modules (inheritance, replication) with modern biotechnology.
 
 ---
 
-## Part 1: Cutting and Pasting DNA
+## Part 1: The Molecular Toolkit
 
-*In nature, restriction enzymes are bacterial defense weapons — they chop up invading viral DNA. Scientists figured out how to use them as precision molecular scissors to cut any DNA at specific sequences. DNA ligase acts as molecular glue to seal pieces back together.*
+*Before we dive into the details, let's look at the basic tools scientists use to manipulate DNA. Think of them by their **action verb**.*
 
 <!-- lab:reflection -->
-**1. What does a restriction enzyme do?**
+**1. Match the scientific tool (A-E) to its everyday analogy and its action verb.** 
+*Write the correct letter in the blank space.*
 
-{fill:textarea rows=2}
+**A.** Restriction Enzyme  
+**B.** DNA Ligase  
+**C.** PCR (Polymerase Chain Reaction)  
+**D.** Gel Electrophoresis  
+**E.** CRISPR-Cas9  
 
-**2. When a restriction enzyme cuts DNA, it often leaves short single-stranded overhangs called "sticky ends." Why are sticky ends useful for genetic engineering?**
+| Letter | Everyday Analogy | Action Verb |
+|---|---|---|
+| {fill:text} | Molecular scissors | **CUTS** DNA at specific sequences |
+| {fill:text} | Molecular glue | **GLUES** DNA pieces together |
+| {fill:text} | Molecular photocopier | **COPIES** DNA millions of times |
+| {fill:text} | Molecular size-sorter | **SORTS** DNA fragments by size |
+| {fill:text} | "Find-and-replace" | **EDITS** specific DNA sequences |
+<!-- /lab:reflection -->
 
-{fill:textarea rows=2}
+---
 
-**3. What does DNA ligase do?**
+## Part 2: PCR — Copying DNA in a Tube
 
-{fill:text}
+*PCR takes a tiny sample of DNA (from a crime scene, or a virus swab) and amplifies it. It works **just like DNA replication** in a cell, but controlled by a scientist changing the temperature!*
 
-**4. What is recombinant DNA?**
+<!-- lab:reflection -->
+**2. Connect the steps of PCR in a test tube to the natural enzymes from DNA Replication in a cell (Module 07).**
 
-{fill:textarea rows=2}
+| PCR Step (in a tube) | Temperature | What happens | Natural Enzyme Equivalent (in a cell) |
+|---|---|---|---|
+| **Denaturation** | ~95°C | Heat separates the DNA strands | {fill:text} *(Hint: What unzips DNA?)* |
+| **Annealing** | ~55°C | Cool to let short primers attach | {fill:text} *(Hint: What adds the RNA primer?)* |
+| **Extension** | ~72°C | Warm to let a special enzyme build | {fill:text} *(Hint: What builds the new DNA strand?)* |
 
-**5. Put these steps in the correct order (number 1-5) to create a GMO bacterium that makes human insulin:**
-
-| Step | Order (1-5) |
-|---|---|
-| Transform the recombinant plasmid into bacteria | |
-| Cut the plasmid AND the human insulin gene with the same restriction enzyme | |
-| Use DNA ligase to seal the human gene into the plasmid | |
-| Select for bacteria that successfully took up the plasmid | |
-| Mix the cut plasmid and cut human gene together so sticky ends match | |
+**3. DNA doubles with each PCR cycle. Fill in the math:**
+- Start: 1 copy
+- After cycle 1: 2 copies
+- After cycle 2: {fill:text} copies
+- After cycle 3: {fill:text} copies
+- After cycle 5: {fill:text} copies
+- After cycle 10: {fill:text} copies *(Hint: $2^{10}$)*
 <!-- /lab:reflection -->
 
 ---
 
 <div style="page-break-after: always;"></div>
 
-## Part 2: PCR — The Molecular Photocopier
+## Part 3: Gel Electrophoresis — Sorting
 
-*PCR (Polymerase Chain Reaction) can take a single molecule of DNA and make billions of copies in just a few hours. This is how forensic scientists can analyze a tiny drop of blood from a crime scene or how doctors can detect a virus in a patient's sample.*
+*Gel electrophoresis uses electricity to pull DNA through a gel matrix.*
 
 <!-- lab:reflection -->
-**6. Fill in what happens at each step of one PCR cycle:**
+**4. DNA has a negative charge (from its phosphate backbone). Will it move toward the positive (+) or negative (-) electrode?**
 
-| Step | Temperature | What Happens |
-|---|---|---|
-| **Denaturation** | ~95°C | {fill:text} |
-| **Annealing** | ~55°C | {fill:text} |
-| **Extension** | ~72°C | {fill:text} |
+{fill:text}
 
-**7. PCR uses Taq polymerase instead of normal human DNA polymerase. Why? (Hint: think about the denaturation temperature.)**
+**5. Imagine the gel is a thick forest of trees. If a giant bear and a small rabbit both try to run through the forest, the rabbit will get through faster. In a gel, which DNA fragments travel FARTHER — small pieces or large pieces?**
 
-{fill:textarea rows=2}
+{fill:text}
+<!-- /lab:reflection -->
 
-**8. DNA doubles with each PCR cycle. Fill in the table:**
+---
 
-| Cycle Number | Number of DNA Copies |
+## Part 4: DNA Fingerprinting & Inheritance
+
+*You learned in Module 09 that you inherit half your alleles from mom and half from dad. The same goes for **STRs** (Short Tandem Repeats) — non-coding regions that we use for DNA fingerprinting.*
+
+<!-- lab:reflection -->
+**6. Below is a mock DNA fingerprint for a paternity test. The child must inherit exactly half of their bands from the mother and half from the biological father.**
+
+*Child's Bands:* Position A, B, C, D  
+*Mother's Bands:* Position A, C  
+
+**a)** Which bands MUST have come from the father?  
+{fill:text}
+
+**b)** Suspect 1 has bands: B, D, E, F.  
+Suspect 2 has bands: A, B, G, H.  
+Who is the biological father?  
+{fill:text}
+<!-- /lab:reflection -->
+
+---
+
+## Part 5: GMOs and The Universal Code
+
+*To make human insulin in a lab, we cut the human insulin gene out, and paste it into a bacterial **plasmid** (a small circle of DNA). The bacteria then read the human gene and build the insulin protein.*
+
+<!-- lab:reflection -->
+**7. Step-by-Step GMO: Put these steps in order (number 1-4).**
+
+| Order (1-4) | Step |
 |---|---|
-| Start | 1 |
-| After cycle 1 | {fill:text} |
-| After cycle 2 | {fill:text} |
-| After cycle 3 | {fill:text} |
-| After cycle 5 | {fill:text} |
-| After cycle 10 | {fill:text} |
+| {fill:text} | The bacteria read the gene and manufacture human insulin |
+| {fill:text} | Use a **restriction enzyme** to cut the human insulin gene and the bacterial plasmid |
+| {fill:text} | Put the recombinant plasmid into a bacterium |
+| {fill:text} | Use **DNA ligase** to glue the human gene into the plasmid |
 
-**9. After 30 cycles, approximately how many copies would you have?** (Use 2³⁰)
+**8. The "So What?": Why is it possible for a bacterium to "read" a human gene and build the correct human protein? (Hint: Think back to Module 07—is the genetic code different for humans and bacteria?)**
 
-{fill:text}
-<!-- /lab:reflection -->
-
----
-
-## Part 3: Gel Electrophoresis — Sorting DNA by Size
-
-*Gel electrophoresis uses an electric field to pull DNA through a gel matrix (like a molecular obstacle course). Small pieces slip through easily and travel far. Large pieces get stuck and stay near the top.*
-
-<!-- lab:reflection -->
-**10. DNA has a negative charge (from its phosphate groups). In an electric field, does DNA migrate toward the positive (+) electrode or the negative (−) electrode?**
-
-{fill:text}
-
-**11. Which fragments travel FARTHER through the gel — small ones or large ones?**
-
-{fill:text}
-
-**12. You run four DNA samples on a gel. The results show:**
-
-- **Sample 1:** One band very close to the wells (top)
-- **Sample 2:** One band near the bottom of the gel
-- **Sample 3:** Three bands spread across the gel
-- **Sample 4:** Matches the pattern of Sample 3 exactly
-
-*Questions:*
-
-**a)** Which sample contains the LARGEST DNA fragment(s)? {fill:text}
-
-**b)** Which sample contains the SMALLEST DNA fragment(s)? {fill:text}
-
-**c)** Samples 3 and 4 have the same banding pattern. What does this tell you about their DNA? {fill:text}
-<!-- /lab:reflection -->
-
----
-
-## Part 4: DNA Fingerprinting
-
-*No two people (except identical twins) have exactly the same pattern of STRs (Short Tandem Repeats) — short DNA sequences repeated different numbers of times. This makes STR profiling the gold standard for forensic identification.*
-
-<!-- lab:reflection -->
-**13. What are STRs? Why are they useful for identifying individuals?**
-
-{fill:textarea rows=2}
-
-**14. Paternity test scenario: A child has STR bands at positions A, B, C, and D. The mother's bands are at positions A and C.**
-
-**a)** Which bands in the child MUST have come from the biological father? {fill:text}
-
-**b)** Suspect 1 has bands at B, D, E, and F. Suspect 2 has bands at B, D, G, and H. Which suspect is more likely to be the biological father? Explain. {fill:textarea rows=2}
-
-**15. A crime scene DNA sample produces bands at positions 2, 5, and 8. Three suspects are tested. Only Suspect C has bands at positions 2, 5, and 8. What can you conclude?**
-
-{fill:textarea rows=2}
+{fill:textarea rows=3}
 <!-- /lab:reflection -->
 
 ---
 
 <div style="page-break-after: always;"></div>
 
-## Part 5: Gene Therapy and CRISPR
+## Part 6: Putting It All Together
 
-*Gene therapy aims to treat genetic diseases by giving patients a working copy of a faulty gene. CRISPR-Cas9 takes this further — it can precisely find and edit specific DNA sequences, like "find and replace" for the genome.*
+*Let's synthesize what you've learned across the last few modules!*
 
 <!-- lab:reflection -->
-**16. What is gene therapy?**
+**9. A child is born with a genetic disorder caused by a single point mutation. The disorder follows an autosomal recessive inheritance pattern. Scientists want to explore using CRISPR to fix the broken gene.**
 
-{fill:textarea rows=2}
+**Explain how concepts from Module 07 (DNA & Mutations), Module 09 (Inheritance), and Module 11 (CRISPR Biotech) all connect in this scenario.** *(Write 3-4 clear sentences.)*
 
-**17. Compare ex vivo and in vivo gene therapy:**
-
-| | Ex Vivo | In Vivo |
-|---|---|---|
-| Where are cells modified? | {fill:text} | {fill:text} |
-| Are cells removed from the patient? | {fill:text} | {fill:text} |
-
-**18. What is CRISPR-Cas9? How does it differ from simply using restriction enzymes?**
-
-{fill:textarea rows=3}
-
-**19. What is the difference between somatic gene therapy and germline modification? Why is germline modification considered more ethically controversial?**
-
-{fill:textarea rows=3}
-
-**20. The genetic code is nearly universal — the same codons code for the same amino acids in bacteria, plants, animals, and humans. Explain why this universality makes biotechnology (like producing human insulin in bacteria) possible.**
-
-{fill:textarea rows=3}
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
