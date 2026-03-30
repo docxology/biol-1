@@ -4,16 +4,18 @@
 
 ## Overview
 
-Biotechnology puts our knowledge of DNA to work. Today, scientists can **cut** DNA at precise locations, **copy** a single molecule into billions, **sort** fragments by size, **identify** individuals by their unique DNA fingerprint, and even **edit** genes to treat diseases. 
+Biotechnology puts our knowledge of DNA to work. Today, scientists can **cut** DNA at precise locations, **copy** a single molecule into billions, **sort** fragments by size, **identify** individuals by their unique DNA fingerprint, and even **edit** genes to treat diseases. These powerful techniques have revolutionized fields like medicine, agriculture, and evolutionary biology, giving us unprecedented ability to understand and alter biological systems.
 
-In this lab, you will explore the core tools of biotechnology. Think of these as tools in a scientist's toolbox!
+In this lab, you will explore the core tools of biotechnology. Think of these as tools in a scientist's toolbox, allowing us to interact with the hidden world of molecules and cells!
 
 ## Learning Objectives
 
 1. Describe how scientists cut, copy, sort, and edit DNA.
 2. Explain how the universal genetic code makes GMOs possible.
-3. Apply DNA fingerprinting to forensic and inheritance scenarios.
+3. Apply DNA fingerprinting to identify unknown specimens and map inheritance scenarios.
 4. Synthesize concepts from past modules (inheritance, replication) with modern biotechnology.
+5. Trace how modifications at the molecular DNA level cascade into cellular and organismal traits.
+6. Evaluate the biological and ethical implications of editing genomes.
 
 ---
 
@@ -44,7 +46,7 @@ In this lab, you will explore the core tools of biotechnology. Think of these as
 
 ## Part 2: PCR — Copying DNA in a Tube
 
-*PCR takes a tiny sample of DNA (from a crime scene, or a virus swab) and amplifies it. It works **just like DNA replication** in a cell, but controlled by a scientist changing the temperature!*
+*PCR takes a tiny sample of DNA (from a drop of blood, an ancient fossil, or a virus swab) and amplifies it. It works **just like DNA replication** in a cell, but controlled by a scientist changing the temperature!*
 
 <!-- lab:reflection -->
 **2. Connect the steps of PCR in a test tube to the natural enzymes from DNA Replication in a cell (Module 07).**
@@ -97,8 +99,8 @@ In this lab, you will explore the core tools of biotechnology. Think of these as
 **a)** Which bands MUST have come from the father?  
 {fill:text}
 
-**b)** Suspect 1 has bands: B, D, E, F.  
-Suspect 2 has bands: A, B, G, H.  
+**b)** Potential Father 1 has bands: B, D, E, F.  
+Potential Father 2 has bands: A, B, G, H.  
 Who is the biological father?  
 {fill:text}
 <!-- /lab:reflection -->
@@ -133,7 +135,15 @@ Who is the biological father?
 *Let's synthesize what you've learned across the last few modules!*
 
 <!-- lab:reflection -->
-**9. A child is born with a genetic disorder caused by a single point mutation. The disorder follows an autosomal recessive inheritance pattern. Scientists want to explore using CRISPR to fix the broken gene.**
+**9. Trace the Central Dogma:** If scientists use CRISPR to successfully fix a broken gene in the nucleus, how does this molecular edit ultimately change the physical traits (phenotype) of the cell? *(Hint: Trace the path from DNA to the final cellular product).*
+
+{fill:textarea rows=3}
+
+**10. Inheritance & Somatic vs. Germline:** Imagine a genetic disorder is cured in a patient's lung cells using gene therapy. Will this cured, edited gene be passed on to their future children? Why or why not? *(Hint: Think about which type of cells must be altered for a trait to be inherited).*
+
+{fill:textarea rows=3}
+
+**11. The Grand Synthesis:** A child is born with a genetic disorder caused by a single point mutation. The disorder follows an autosomal recessive inheritance pattern. 
 
 **Explain how concepts from Module 07 (DNA & Mutations), Module 09 (Inheritance), and Module 11 (CRISPR Biotech) all connect in this scenario.** *(Write 3-4 clear sentences.)*
 
