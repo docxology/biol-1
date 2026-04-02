@@ -22,7 +22,7 @@ from typing import List, Optional
 
 # Add software directory to path
 software_dir = Path(__file__).resolve().parent.parent
-sys.path.append(str(software_dir))
+sys.path.insert(0, str(software_dir))
 
 from src.validation import (
     generate_validation_report,
