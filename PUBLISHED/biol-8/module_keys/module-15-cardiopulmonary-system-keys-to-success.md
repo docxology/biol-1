@@ -6,6 +6,7 @@
 - Identify the four chambers of the heart and the major vessels connected to them.
 - Trace the path of blood through the pulmonary and systemic circuits.
 - Understand the role of heart valves in preventing backflow and producing heart sounds ("lub-dup").
+- Explain the electrical conduction system of the heart (SA node, AV node, Purkinje fibers) that coordinates the heartbeat.
 
 ### 2. Blood Vessels and Blood Pressure
 - Distinguish between arteries, veins, and capillaries structurally and functionally.
@@ -35,3 +36,5 @@
 2. **Compare Vessels:** Build a table comparing arteries and veins in terms of wall thickness, pressure, and valves.
 3. **Connect to the Lab:** Reflect on how you measured your own vital capacity and blood pressure in the lab, and relate the tools to the physiological variables.
 4. **Think About Control:** Remember that breathing rate isn't primarily driven by a lack of oxygen, but by the necessity to clear carbon dioxide (lowering blood pH).
+5. **Listen to Your Heart:** Review the clinical significance of "lub-dup." "Lub" (S1) is the closing of AV valves, while "dup" (S2) is the closing of semilunar valves.
+6. **Understand Blood Pressure Numbers:** Keep in mind that *systolic* (the top number, ~120) is the pressure during active ventricular contraction, and *diastolic* (the bottom number, ~80) is the residual pressure when the heart is relaxed.
