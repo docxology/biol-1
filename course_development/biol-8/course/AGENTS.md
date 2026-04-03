@@ -24,7 +24,7 @@ course/
 ├── quizzes/                     # Module quizzes (30 files)
 │   ├── module-01_quiz.md       # Student version
 │   ├── module-01_quiz_key.md   # Answer key
-│   └── ... (15 modules × 2 files)
+│   └── ... (17 modules × 2 files)
 │
 ├── labs/                        # Lab protocols (Markdown + dashboards/)
 │   ├── lab-01_measurement-methods.md
@@ -56,7 +56,9 @@ Modules follow the pattern: `module-XX-topic-name/`
 | 12 | `module-12-muscular-system` |
 | 13 | `module-13-pathogens` |
 | 14 | `module-14-cardiovascular-system` |
-| 15 | `module-15-respiratory-system` |
+| 15 | `module-15-cardiopulmonary-system` |
+| 16 | `module-16-ecology` |
+| 17 | `module-17-evolution` |
 
 ## Content Specifications
 
@@ -136,8 +138,9 @@ Lab stubs include sections for:
 |------|---------|------|
 | Unit 1 | 01-07 | Exam 01 (Week 5) |
 | Unit 2 | 08-11 | Exam 02 (Week 8) |
-| Unit 3 | 12-15 | Exam 03 (Week 12) |
-| All | 01-15 | Final Exam (Finals Week) |
+| Unit 3 | 11-15 | Exam 03 (Week 13) |
+| Unit 4 | 16-17 | Final Exam (Finals Week) |
+| All | 01-17 | Final Exam (Finals Week) |
 
 ## File Processing Workflow
 
@@ -162,11 +165,11 @@ The `software/` directory contains batch processing utilities for:
 
 ### Completeness
 
-- [x] 15 module directories created
-- [x] Each module has `keys-to-success.md`, `questions.md`, `resources/`
-- [x] 4 exams with answer keys (8 files)
-- [x] 15 quizzes with answer keys (30 files)
-- [x] 15 lab protocols (`labs/`; e.g. `lab-13_microbiology.md` for Module 13)
+- [ ] 17 module directories created
+- [ ] Each module has `keys-to-success.md`, `questions.md`, `resources/`
+- [ ] 4 exams with answer keys (8 files)
+- [ ] 17 quizzes with answer keys (34 files)
+- [ ] 17 lab protocols (`labs/`; e.g. `lab-13_microbiology.md` for Module 13)
 
 ### Coherence
 

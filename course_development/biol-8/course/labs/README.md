@@ -23,6 +23,8 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 | [Lab 13](lab-13_microbiology.md) | Microbiology | ✅ Complete | Module 13 |
 | [Lab 14](lab-14_cardiovascular-system.md) | Cardiovascular System | 📝 Stub | Module 14 |
 | [Lab 15](lab-15_respiratory-system.md) | Respiratory System | 📝 Stub | Module 15 |
+| [Lab 16](lab-16_ecology.md) | Ecology | 📝 Stub | Module 16 |
+| [Lab 17](lab-17_evolution.md) | Evolution | 📝 Stub | Module 17 |
 
 ## Lab Format
 

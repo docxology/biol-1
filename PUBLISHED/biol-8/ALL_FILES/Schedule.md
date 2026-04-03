@@ -19,24 +19,24 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 9 | 3/17 - 3/19 | No Class | No Class | Spring Break |
 | 10 | 3/24 - 3/26 | Module 13: Nervous System & Lab 13: Nervous System | Module 14: Microbiology & Lab 14: Microbiology | |
 | 11 | 3/31 - 4/2 | No Class | Module 15: Cardiopulmonary & Lab 15: Cardiopulmonary | Holiday (March 31) |
-| 12 | 4/7 - 4/9 | Exam 03 Review | **Exam 03** | Exam covers Modules 11-15 |
-| 13 | 4/14 - 4/16 | Systems Integration Lab | Comprehensive Review | |
-| 14 | 4/21 - 4/23 | Lab Practicum | Final Review | |
-| 15 | 4/28 - 4/30 | Final Review | Final Review | |
-| Finals | 5/5 - 5/7 | **Final Exam** | Course Wrap-up | Finals Week |
+| 12 | 4/7 - 4/9 | Office Hours and Review | Office Hours and Review | |
+| 13 | 4/14 - 4/16 | Exam 03 Review | **Exam 03** | Exam covers Modules 11-15 |
+| 14 | 4/21 - 4/23 | Module 16: Ecology & Lab 16: Ecology | Module 17: Evolution & Lab 17: Evolution | |
+| 15 | 4/28 - 4/30 | Review & Extra Credit | Review & Extra Credit | Extra credit presentations |
+| Finals | 5/5 - 5/7 | **Final Exam** | No Class | Finals Week |
 
 ## Important Dates
 
 - **Classes Begin**: January 20, 2026
 - **Spring Break**: March 17-19, 2026 (No Classes)
 - **Final Examinations**: May 5, 2026
-- **Semester Ends**: May 7, 2026
+- **Semester Ends**: May 7, 2026 (No Class)
 
 ## Exam Schedule
 
 - **Exam 01**: Week 4 (February 12, 2026) - Modules 01-06
 - **Exam 02**: Week 7 (March 5, 2026) - Modules 07-10
-- **Exam 03**: Week 12 (April 9, 2026) - Modules 11-15
+- **Exam 03**: Week 13 (April 16, 2026) - Modules 11-15
 - **Final Exam**: Finals Week (May 5, 2026) - Comprehensive
 
 ## Module Distribution
@@ -46,4 +46,4 @@ Each class will consist of different proportions of lecture, discussion, and han
 | Unit 1 | 01-06 | Foundations: Life Science, Chemistry, Cells, Membranes, Metabolism |
 | Unit 2 | 07-10 | Genetics & Cell Biology: Genetics, Cell Division, Tissues, Inheritance |
 | Unit 3 | 11-14 | Body Systems: Skeletal, Muscular, Nervous System, Microbiology |
-| Unit 4 | 15 | Cardiopulmonary |
+| Unit 4 | 15-17 | Systems & Evolution: Cardiopulmonary, Ecology, Evolution |

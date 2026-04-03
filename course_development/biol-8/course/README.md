@@ -6,7 +6,7 @@ This directory contains all public course materials for **BIOL-8: Human Biology*
 
 ## Course Structure
 
-The course covers 15 modules progressing from foundational life science concepts to human body systems:
+The course covers 17 modules progressing from foundational life science concepts to human body systems, ecology, and evolution:
 
 ### Modules
 
@@ -26,7 +26,9 @@ The course covers 15 modules progressing from foundational life science concepts
 | [12](module-12-muscular-system/) | Muscular System | Muscle types, sliding filament theory, contraction |
 | [13](module-13-pathogens/) | Pathogens | Bacteria, viruses, fungi, immune defenses; hands-on [Lab 13: Microbiology](labs/lab-13_microbiology.md) |
 | [14](module-14-cardiovascular-system/) | Cardiovascular System | Heart anatomy, blood flow, blood vessels |
-| [15](module-15-respiratory-system/) | Respiratory System | Breathing mechanics, gas exchange, transport |
+| [15](module-15-cardiopulmonary-system/) | Respiratory System | Breathing mechanics, gas exchange, transport |
+| [16](module-16-ecology/) | Ecology | Biomes, populations, communities, ecosystems |
+| [17](module-17-evolution/) | Evolution | Natural selection, adaptation, speciation |
 
 ## Directory Organization
 
@@ -62,7 +64,7 @@ course/
 │   ├── practice-test-01_key.md
 │   └── ... (5 tests + 5 keys)
 │
-└── module-XX-topic-name/        # 15 module directories
+└── module-XX-topic-name/        # 17 module directories
     ├── keys-to-success.md      # Learning objectives and study tips
     ├── questions.md            # 18-20 study questions
     └── resources/              # Supplementary materials
@@ -74,10 +76,10 @@ course/
 
 | Exam | Date | Coverage | Format |
 |------|------|----------|--------|
-| Exam 01 | Feb 17, 2026 | Modules 01-07 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Exam 02 | Mar 10, 2026 | Modules 08-11 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Exam 03 | Apr 7, 2026 | Modules 12-15 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Final | May 12, 2026 | Comprehensive | 75 MC + 45 SA + 30 Essay = 150 pts |
+| Exam 01 | Feb 12, 2026 | Modules 01-06 | 50 MC + 30 SA + 20 Essay = 100 pts |
+| Exam 02 | Mar 5, 2026 | Modules 07-10 | 50 MC + 30 SA + 20 Essay = 100 pts |
+| Exam 03 | Apr 16, 2026 | Modules 11-15 | 50 MC + 30 SA + 20 Essay = 100 pts |
+| Final | May 5, 2026 | Comprehensive | 75 MC + 45 SA + 30 Essay = 150 pts |
 
 ### Quizzes
 
