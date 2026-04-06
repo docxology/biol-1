@@ -23,9 +23,11 @@ The course covers 17 modules progressing through foundational biology concepts:
 | 09 | Inheritance Genetics | [module-09-inheritance-genetics](module-09-inheritance-genetics/) |
 | 10 | Epigenetics | [module-10-epigenetics](module-10-epigenetics/) |
 | 11 | Genomics & Biotechnology | [module-11-genomics-biotechnology](module-11-genomics-biotechnology/) |
-| 15 | Darwin & Evolution | [module-15-darwin-evolution](module-15-darwin-evolution/) |
-| 16 | Microevolution | [module-16-microevolution](module-16-microevolution/) |
-| 17 | Speciation & Macroevolution | [module-17-speciation-macroevolution](module-17-speciation-macroevolution/) |
+| 12 | Darwin & Evolution | [module-12-darwin-evolution](module-12-darwin-evolution/) |
+| 13 | How Populations Evolve | [module-13-how-populations-evolve](module-13-how-populations-evolve/) |
+| 14 | Macroevolution | [module-14-macroevolution](module-14-macroevolution/) |
+| 15 | Population & Systems Ecology | [module-15-population-systems-ecology](module-15-population-systems-ecology/) |
+| 16 | History of Life | [module-16-history-of-life](module-16-history-of-life/) |
 
 ## Directory Organization
 

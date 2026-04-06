@@ -20,11 +20,11 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 | [Lab 10](lab-10_epigenetics.md) | Epigenetics | ✅ Complete | Module 10 |
 | [Lab 11](lab-11_genomics-biotechnology.md) | Genomics & Biotechnology | ✅ Complete | Module 11 |
 | [Lab 12](lab-12_exam-02-review.md) | Exam 02 Review | ✅ Complete | Review |
-| [Lab 13](lab-13_gene-regulation.md) | Gene Regulation | 📝 Stub | Module — |
-| [Lab 14](lab-14_biotechnology-genomics.md) | Biotechnology & Genomics | 📝 Stub | Module — |
-| [Lab 15](lab-15_darwin-evolution.md) | Darwin and Evolution | 📝 Stub | Module 15 |
-| [Lab 16](lab-16_microevolution.md) | Microevolution | 📝 Stub | Module 16 |
-| [Lab 17](lab-17_speciation-macroevolution.md) | Speciation and Macroevolution | 📝 Stub | Module 17 |
+| [Lab 13](lab-13_darwin-evolution.md) | Darwin & Evolution | 📝 Stub | Module 12 |
+| [Lab 14](lab-14_how-populations-evolve.md) | How Populations Evolve | 📝 Stub | Module 13 |
+| [Lab 15](lab-15_macroevolution.md) | Macroevolution | 📝 Stub | Module 14 |
+| [Lab 16](lab-16_population-systems-ecology.md) | Population and Systems Ecology | 📝 Stub | Module 15 |
+| [Lab 17](lab-17_history-of-life.md) | History of Life | 📝 Stub | Module 16 |
 
 **Status Summary:** 12 complete, 5 stubs
 

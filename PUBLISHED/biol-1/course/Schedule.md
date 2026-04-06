@@ -28,22 +28,22 @@
 | 11 | Wed | 4/1 | No Class | First Wednesday - Programs Canceled |
 | 12 | Mon | 4/6 | Module 7-11 Review; Lab 12: Exam 02 Review (Paper-based) | |
 | 12 | Wed | 4/8 | **Exam 02** (Modules 7-11) | Exam |
-| 13 | Mon | 4/13 | Module 15: Darwin and Evolution | Start of new unit |
-| 13 | Wed | 4/15 | Module 16: Evolution of Populations (Microevolution) | |
-| 14 | Mon | 4/20 | Module 17: Speciation and Macroevolution | |
-| 14 | Wed | 4/22 | Exam 03 Review (Modules 15-17) | |
-| 15 | Mon | 4/27 | **Exam 03** (Modules 15-17) | Exam |
-| 15 | Wed | 4/29 | Final Exam Review (Comprehensive) | |
-| 16 | Mon | 5/4 | Final Exam Review (Comprehensive) | |
+| 13 | Mon | 4/13 | Module 12: Darwin and Evolution; Lab 13 | Start of new unit |
+| 13 | Wed | 4/15 | Module 13: How Populations Evolve; Lab 14 | |
+| 14 | Mon | 4/20 | Module 14: Macroevolution; Lab 15 | |
+| 14 | Wed | 4/22 | Module 15: Population and Systems Ecology; Lab 16 | |
+| 15 | Mon | 4/27 | Module 16: History of Life; Lab 17 | |
+| 15 | Wed | 4/29 | Exam 03 Review (Modules 12-16) | |
+| 16 | Mon | 5/4 | **Exam 03** (Modules 12-16) | Exam |
 | 16 | Wed | 5/6 | No Class | First Wednesday - Programs Canceled |
-| 17 | Mon | 5/11 | **Final Exam (Exam 04)** | Final Exam |
-| 17 | Wed | 5/13 | No Class | |
+| 17 | Mon | 5/11 | Final Exam Review (Comprehensive) | |
+| 17 | Wed | 5/13 | **Final Exam (Exam 04)** | Final Exam |
 
 ## Important Dates
 
 - **Classes Begin**: January 17, 2026
 - **Spring Break**: March 16-21, 2026 (No Classes)
-- **Final Examinations**: May 11, 2026
+- **Final Examinations**: May 13, 2026
 - **Semester Ends**: May 15, 2026
 - **Programs Canceled (First Wednesday)**: February 4, March 4, April 1, May 6, 2026
 
@@ -51,5 +51,5 @@
 
 - **Exam 01**: Week 6 (February 25, 2026) - Modules 1-6
 - **Exam 02**: Week 12 (April 8, 2026) - Modules 7-11
-- **Exam 03**: Week 15 (April 27, 2026) - Modules 15-17
-- **Exam 04**: Week 17 (May 11, 2026) - Final Exam (Comprehensive)
+- **Exam 03**: Week 16 (May 4, 2026) - Modules 12-16
+- **Exam 04**: Week 17 (May 13, 2026) - Final Exam (Comprehensive)
