@@ -80,7 +80,7 @@ DNA → _________________ → _________________
 
 {fill:textarea rows=2}
 
-**10. What is the role of p53 in cancer prevention?**
+**10. What usually happens when the cell cycle loses its normal checkpoints and divides uncontrollably?**
 
 {fill:textarea rows=2}
 <!-- /lab:reflection -->
@@ -156,13 +156,13 @@ DNA → _________________ → _________________
 
 {fill:textarea rows=2}
 
-**22. Describe the three steps of one PCR cycle and the temperature used for each:**
+**22. Describe the three steps of one PCR cycle:**
 
-| Step | Temperature | What Happens |
-|---|---|---|
-| Denaturation | {fill:text} | {fill:text} |
-| Annealing | {fill:text} | {fill:text} |
-| Extension | {fill:text} | {fill:text} |
+| Step | What Happens |
+|---|---|
+| Denaturation | {fill:text} |
+| Annealing | {fill:text} |
+| Extension | {fill:text} |
 
 **23. In gel electrophoresis, do smaller or larger DNA fragments travel farther? Why?**
 
@@ -172,7 +172,7 @@ DNA → _________________ → _________________
 
 {fill:textarea rows=2}
 
-**25. What is the difference between somatic gene therapy and germline modification? Why is germline modification more controversial?**
+**25. What is a genetically modified organism (GMO)? Give one example from agriculture or medicine.**
 
 {fill:textarea rows=3}
 <!-- /lab:reflection -->
