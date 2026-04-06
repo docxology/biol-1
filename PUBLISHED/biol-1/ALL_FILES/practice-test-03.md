@@ -177,14 +177,23 @@ D) Transcription only works in eukaryotic laboratory cells.
 **Word Bank:** Biotechnology, Cytokinesis, Epigenetic, Heterozygous, Lethal, mRNA, Operon, Smaller, Trisomy, Uracil
 
 **26.** In RNA, the nitrogenous base __________ replaces the Thymine found in DNA.
+
 **27.** According to the Central Dogma of molecular biology, DNA is transcribed into __________, which is then translated into a protein.
+
 **28.** The division of the cytoplasm at the very end of mitosis or meiosis is called __________.
+
 **29.** The presence of three copies of a chromosome instead of the normal two is referred to as a __________.
+
 **30.** A gene variant that causes death when inherited in homozygous form is known as a __________ allele.
+
 **31.** An individual with two different alleles for a specific trait (e.g., Bb) is called __________.
+
 **32.** In gene regulation, a(n) __________ is a cluster of genes under the control of a single promoter, commonly found in prokaryotes.
+
 **33.** Identical twins have the exact same DNA sequence, but as they age, differences in their gene expression accumulate due to __________ changes.
+
 **34.** In gel electrophoresis, __________ fragments of DNA travel through the gel matrix faster and farther than larger fragments.
+
 **35.** The use of an organism, or a component of an organism, to make a product or process for human use is known as __________.
 
 ---
