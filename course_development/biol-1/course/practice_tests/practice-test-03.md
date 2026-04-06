@@ -174,6 +174,8 @@ D) Transcription only works in eukaryotic laboratory cells.
 
 ## Part B: Fill in the Blank (10 questions)
 
+**Word Bank:** Biotechnology, Cytokinesis, Epigenetic, Heterozygous, Lethal, mRNA, Operon, Smaller, Trisomy, Uracil
+
 **26.** In RNA, the nitrogenous base __________ replaces the Thymine found in DNA.
 **27.** According to the Central Dogma of molecular biology, DNA is transcribed into __________, which is then translated into a protein.
 **28.** The division of the cytoplasm at the very end of mitosis or meiosis is called __________.
