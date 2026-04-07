@@ -1,47 +1,21 @@
 # Module 15: Population and Systems Ecology — Questions
 
-## Quick Check
+## Introduction
+The following questions cover the fundamental interactions between organisms and their environments, from mathematical growth models to the movement of energy across global ecosystems. Use these to test your understanding of how biological systems operate and sustain themselves.
 
-**1. A population of rabbits is introduced to a large island with no predators and unlimited food. For the first five years, the population skyrockets, doubling in size every few months. This is an example of:**
-A) Logistic growth
-B) Exponential growth
-C) Carrying capacity
-D) The bottleneck effect
-
-**2. As a population of deer approaches the carrying capacity of its forest environment, which of the following is most likely to act as a density-dependent limiting factor to slow their growth?**
-A) A sudden forest fire
-B) An unusually harsh winter deep-freeze
-C) Starvation due to lack of grazing grass
-D) The amount of sunlight hitting the forest canopy
-
-**3. In a standard terrestrial food web, which trophic level generally has the largest total physical biomass (the most organic matter by weight)?**
-A) Producers
-B) Primary Consumers
-C) Secondary Consumers
-D) Tertiary (Apex) Predators
-
-**4. According to the 10% rule of energy transfer, what happens to the massive 90% of energy that is "lost" between trophic levels?**
-A) It is destroyed entirely.
-B) It is cycled back directly into the soil for plants to reuse.
-C) It is used for organismal metabolism and released largely as unrecoverable heat.
-D) It is stored permanently in the animal's fat.
-
-**5. True or False:** The Carbon Cycle relies heavily on photosynthesis to pull carbon dioxide out of the atmosphere and package it into organic sugars.
-- [ ] True
-- [ ] False
-
----
-
-## Reflection
-
-**6. Explain why top predators (like tigers, eagles, or killer whales) are always relatively rare in an ecosystem compared to the number of plants or herbivores.**
-
-{fill:textarea rows=4}
-
-**7. Why must "Matter cycle" but "Energy flow" in an ecosystem? Briefly contrast how carbon atoms and sunlight behave differently as they enter the biosphere.**
-
-{fill:textarea rows=4}
-
-**8. Draw or describe the difference between the "J-curve" and the "S-curve" in population ecology. What specifically causes a J-curve to flatten into an S-curve?**
-
-{fill:textarea rows=4}
+## Practice Questions
+1. What does a population graph experiencing exponential growth look like, and under what conditions does it occur?
+2. Why is exponential growth rarely sustained over long periods of time in the real world?
+3. Describe the shape of a logistic growth curve and explain what causes the curve to flatten out.
+4. Define the ecological concept of carrying capacity (often designated as K).
+5. Give three examples of density-dependent factors that can limit population growth as the population size approaches the carrying capacity.
+6. What is a density-independent factor, and how does it affect populations differently than density-dependent factors?
+7. Explain the role of primary producers at the base of an ecosystem's food web.
+8. Distinguish between a primary consumer, secondary consumer, and apex predator.
+9. What crucial ecological role do decomposers and detritivores play in nutrient cycling?
+10. State the 10% Rule of Energy Transfer in ecosystems.
+11. According to the 10% rule, why are there fundamentally fewer apex predators in a given area compared to plants or herbivores?
+12. Where does the "lost" 90% of energy primarily go as you move up each trophic level?
+13. How does the flow of energy through an ecosystem fundamentally differ from the cycling of vital chemical nutrients (like carbon, nitrogen, and phosphorus)?
+14. Briefly describe the role of photosynthesis and cellular respiration in the global Carbon Cycle.
+15. Why do farmers use fertilizer, knowing what we know about how elements like nitrogen cycle locally?

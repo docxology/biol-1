@@ -1,47 +1,21 @@
 # Module 14: Macroevolution — Questions
 
-## Quick Check
+## Introduction
+The following questions are designed to test your knowledge of macroevolution, the development of new species (speciation), and the reproductive barriers that keep biological groups genetically distinct. Use this simple list to verify your understanding of how macro-level changes emerge over long timeframes.
 
-**1. Under the Biological Species Concept, a species is defined primarily by:**
-A) Its physical appearance
-B) Its ability to successfully interbreed and produce fertile offspring
-C) Its geographic location
-D) Its position on a cladogram
-
-**2. Two species of closely related frogs live in the same pond. Species A mates exclusively in early March, while Species B mates exclusively in late May. This is an example of:**
-A) Mechanical Isolation
-B) Habitat Isolation
-C) Temporal Isolation
-D) Reduced Hybrid Fertility
-
-**3. A male lion and a female tiger mate in captivity to produce a "liger." Ligers are massive and generally healthy animals, but they are completely sterile and cannot have offspring. This is an example of a:**
-A) Prezygotic barrier
-B) Postzygotic barrier
-C) Gametic barrier
-D) Sympatric barrier
-
-**4. A deep canyon forms over millions of years, splitting a population of mice. The environments on either side of the canyon are slightly different, and the mice slowly adapt to their separate cliffs. If the mice are later reunited, they can no longer interbreed. This is an example of:**
-A) Allopatric speciation
-B) Sympatric speciation
-C) Artificial selection
-D) The founder effect
-
-**5. True or False:** Sympatric speciation requires a physical geographic barrier (like a mountain or ocean) to split the population.
-- [ ] True
-- [ ] False
-
----
-
-## Reflection
-
-**6. Explain why the Biological Species Concept cannot be used to classify a newly discovered fossil of a dinosaur.**
-
-{fill:textarea rows=3}
-
-**7. Differentiate between prezygotic and postzygotic barriers. Provide one unique real-world example of each.**
-
-{fill:textarea rows=4}
-
-**8. Imagine a massive hurricane blows ten birds from an island to a new, isolated island miles out to sea. Explain how this single event involves BOTH microevolution (Module 13) and macroevolution (Module 14) over the next two million years.**
-
-{fill:textarea rows=5}
+## Practice Questions
+1. How does the Biological Species Concept define a species?
+2. What is a reproductive barrier, and what is its role in keeping closely related species separate?
+3. What is the fundamental difference between prezygotic and postzygotic reproductive barriers?
+4. Give an example of a habitat (ecological) prezygotic isolation mechanism.
+5. Provide a real-world example of temporal isolation.
+6. How does behavioral isolation prevent reproduction between two groups?
+7. Describe mechanical isolation and explain why it stops mating before fertilization can occur.
+8. What is gametic isolation and in what types of organisms is it most commonly observed?
+9. Explain the concept of reduced hybrid viability (a postzygotic barrier).
+10. What occurs in the postzygotic barrier known as reduced hybrid fertility?
+11. Describe hybrid breakdown and how it impacts successive generations.
+12. What is allopatric speciation and what usually causes it?
+13. How does sympatric speciation occur without any geographic separation?
+14. How can polyploidy (having extra sets of chromosomes) lead to instant sympatric speciation in plants?
+15. In what way are the small, generation-to-generation changes of microevolution connected to the massive species-level shifts seen in macroevolution?

@@ -1,47 +1,21 @@
 # Module 13: How Populations Evolve — Questions
 
-## Quick Check
+## Introduction
+The following questions are designed to test your understanding of microevolution, the mechanisms that drive changes in allele frequencies, and the conceptual framework of the Hardy-Weinberg equilibrium. Use this as a study tool to ensure you have grasped the core forces that shape populations over time.
 
-**1. Microevolution is officially defined in biology as:**
-A) A change in allele frequencies in a population over generations.
-B) The sudden appearance of a brand new species.
-C) The process where an individual animal adapts to a new habitat.
-D) The extinction of a population due to disease.
-
-**2. A large population of lizards is dramatically reduced by a massive flash flood. The few surviving lizards happen to be overwhelmingly green, whereas the original population was a mix of green and brown. The future population will rebuild, but it will be mostly green. This is an example of:**
-A) The Founder Effect
-B) Gene Flow
-C) The Bottleneck Effect
-D) Disruptive Selection
-
-**3. Which of the following is the ONLY mechanism of microevolution that consistently results in populations becoming better adapted to their environments?**
-A) Genetic drift
-B) Mutation
-C) Natural selection
-D) Gene flow
-
-**4. A population of plants produces seeds that are eaten by birds. Extremely heavy seeds are too hard for birds to carry, and extremely light seeds blow away in the wind and die. Over time, the population almost exclusively produces medium-weight seeds. What type of selection is this?**
-A) Directional Selection
-B) Stablizing Selection
-C) Disruptive Selection
-D) Sexual Selection
-
-**5. True or False:** A population in Hardy-Weinberg equilibrium is actively evolving.
-- [ ] True
-- [ ] False
-
----
-
-## Reflection
-
-**6. Explain the core difference between Gene Flow and Genetic Drift.**
-
-{fill:textarea rows=3}
-
-**7. African cheetahs are incredibly similar genetically, to the point where skin grafts between unrelated individuals are rarely rejected. Scientists believe thousands of years ago, widespread climate changes nearly wiped them out, leaving only a tiny handful of survivors to repopulate the species. Which specific evolutionary mechanism does this describe, and why is this lack of genetic diversity a severe danger for cheetahs today?**
-
-{fill:textarea rows=4}
-
-**8. Draw or describe a scenario that represents Disruptive Selection in an animal population. Why are the extreme traits favored over the average trait?**
-
-{fill:textarea rows=4}
+## Practice Questions
+1. What is the official definition of microevolution in biology?
+2. What are the five main mechanisms (or "fingers") of microevolution?
+3. How does mutation act as the ultimate source of all genetic variation in a population?
+4. What is the core difference between gene flow and genetic drift?
+5. Why does genetic drift have a much more significant and unpredictable impact on smaller populations compared to larger ones?
+6. Describe the Bottleneck Effect and provide a real-world or hypothetical example of how it reduces genetic diversity.
+7. How does the Founder Effect lead to a new population with limited genetic diversity, and how does this differ from a bottleneck?
+8. Which mechanism of microevolution is the *only* one that consistently leads to adaptation, and why?
+9. What is directional selection, and what kind of environmental changes typically trigger it?
+10. How does stabilizing selection affect intermediate versus extreme variations of a physical trait?
+11. Describe a scenario that represents disruptive selection. Why are individuals with intermediate traits at a disadvantage in this scenario?
+12. What is non-random mating (sexual selection) and how can it change allele frequencies over time?
+13. Define the Hardy-Weinberg equilibrium conceptually. What does it represent?
+14. Why is a population in perfect Hardy-Weinberg equilibrium rarely (if ever) found in nature?
+15. How do scientists use the Hardy-Weinberg equilibrium as a baseline to measure how fast a population is evolving?

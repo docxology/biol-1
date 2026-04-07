@@ -1,47 +1,21 @@
 # Module 16: History of Life — Questions
 
-## Quick Check
+## Introduction
+The final module traces the billions of years of biological history on Earth. These questions will test your grasp of the chronological milestones of evolutionary history, the catastrophic resets of mass extinctions, and the principles of reading phylogenetic trees.
 
-**1. Place the following major milestones of life in chronological order from oldest (1) to most recent (4):**
-- ___ First Eukaryotes (cells with nuclei)
-- ___ First land animals
-- ___ First Prokaryotes (bacteria)
-- ___ The Cambrian Explosion
-
-**2. The process where a single ancestral species rapidly diversifies into many new species—usually because of a mass extinction event clearing out competition—is called:**
-A) Genetic Drift
-B) Adaptive Radiation
-C) Convergent Evolution
-D) Stabilizing Selection
-
-**3. On a phylogenetic tree, the point where a single branch splits into two represents:**
-A) A mass extinction event
-B) The most recent common ancestor of those two lineages
-C) An unfavored mutation
-D) A geographic boundary like a river
-
-**4. A scientifically valid "clade" must include:**
-A) Only the currently living species, not the extinct ones.
-B) An ancestor and ALL of its descendants.
-C) Animals that look physically similar.
-D) Animals that live in the same geographic region.
-
-**5. True or False:** In a phylogenetic tree, spinning the branches around a specific node (flipping the left/right order of the tips) changes the evolutionary relationships.
-- [ ] True
-- [ ] False
-
----
-
-## Reflection
-
-**6. Approximately 2.7 billion years ago, the "Oxygen Revolution" occurred. What type of organism caused this massive atmospheric shift, and what biological process were they performing to generate oxygen?**
-
-{fill:textarea rows=3}
-
-**7. Why did it take over 3 billion years for life to finally colonize dry land? (Hint: Think about what the oceans provide, and the danger of the sun's radiation before the ozone layer formed).**
-
-{fill:textarea rows=4}
-
-**8. If a student looks at the tips of a phylogenetic tree and says "A is closely related to B because they are printed next to each other at the top of the page," why is that student potentially incorrect? Explain the correct way to trace relatedness on a tree.**
-
-{fill:textarea rows=5}
+## Practice Questions
+1. Approximately how old is the Earth, and how quickly after its formation did the very first single-celled life (prokaryotes) emerge?
+2. What was the "Oxygen Revolution" and what biological process was primarily responsible for introducing massive amounts of oxygen into Earth's early atmosphere?
+3. Place the following milestones in sequential chronological order: Eukaryotes, Multicellular Life, Prokaryotes, Oxygenification, Colonization of Land.
+4. What is a mass extinction, as defined by the fossil record?
+5. How many major mass extinction events have significantly altered the trajectory of life on Earth?
+6. What is an adaptive radiation, and why does it frequently follow in the immediate aftermath of a mass extinction?
+7. By evaluating the fossil record, what makes the Permian mass extinction particularly notable?
+8. To what event do scientists largely attribute the Cretaceous mass extinction (the death of the non-avian dinosaurs)?
+9. What is phylogeny?
+10. When looking at a phylogenetic tree (cladogram), what does a "branch point" or "node" physically represent?
+11. Define what makes a biological group a true "clade" (a monophyletic group).
+12. What is a shared derived character, and how is it used to construct an evolutionary tree?
+13. Contrast a shared derived character with a shared ancestral character.
+14. Why do phylogenetic trees sometimes undergo massive revisions when new DNA sequence evidence is discovered?
+15. If two organisms are found located directly adjacent to one another on a terminal branch of a phylogenetic tree, what does that signify about their common ancestry relative to other organisms on the tree?
