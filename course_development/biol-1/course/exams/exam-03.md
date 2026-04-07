@@ -99,11 +99,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 09: Inheritance Genetics
 
-1. Mendel’s law of segregation is best explained by which cellular event?
-    - A) Crossing over between sister chromatids in mitosis
-    - B) Homologous chromosomes separating during meiosis I so each gamete gets one allele
-    - C) DNA replication during the S phase
-    - D) Translation of mRNA into protein
+1. In genetics, different versions of the same gene (for example, one version for type A blood and one for type O) are called:
+    - A) Chromosomes
+    - B) Alleles
+    - C) Phenotypes
+    - D) Mutations
 
 2. For a flower-color gene, B is dominant for purple and b is recessive for white. A plant with genotype Bb has purple flowers. Which statement correctly uses the terms genotype and phenotype?
     - A) Bb is the genotype; purple flowers are the phenotype
@@ -139,7 +139,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 1. Epigenetics is best defined as:
     - A) A change in the DNA sequence (A, T, G, C) of a gene
-    - B) Heritable changes in gene expression that do not change the underlying DNA sequence
+    - B) Changes in gene expression that do not change the underlying DNA sequence
     - C) Random mistakes during translation only
     - D) The central dogma operating in reverse
 
@@ -199,7 +199,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Identical in all humans
     - D) Found only in RNA
 
-5. CRISPR-Cas9 is often introduced at an introductory level as a tool that can:
+5. CRISPR-Cas9 is a recently developed tool that can:
     - A) Only stain chromosomes for microscopy
     - B) Target and cut DNA at a specific site, enabling edits to genes
     - C) Replace photosynthesis in plants
@@ -215,43 +215,31 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ## Part B: Fill in the Blank (11 points)
 
-*Complete each statement with the best biological term from the word bank below. Each question is worth 1 point.*
+*Questions 1–11. Complete each statement with the best biological term from the word bank. Each question is worth 1 point.*
 
-**Word Bank:**
+**Word bank:** Anticodon, Codominance, Diploid, Epigenetics, Heterozygous, Methylation, Nondisjunction, Plasmid, Restriction, Transcription, Translation
 
-- Anticodon
-- Codominance
-- Diploid
-- Epigenetics
-- Heterozygous
-- Methylation
-- Nondisjunction
-- Plasmid
-- Restriction
-- Transcription
-- Translation
+**1.** \_\_\_\_\_\_\_\_\_\_\_\_ is the process in which RNA polymerase synthesizes RNA using a DNA template.
 
-1. \_\_\_\_\_\_\_\_\_\_\_\_ is the process in which RNA polymerase synthesizes RNA using a DNA template.
+**2.** During protein synthesis, ribosomes read mRNA codons and carry out \_\_\_\_\_\_\_\_\_\_\_\_ to link amino acids into a polypeptide.
 
-2. During protein synthesis, ribosomes read mRNA codons and carry out \_\_\_\_\_\_\_\_\_\_\_\_ to link amino acids into a polypeptide.
+**3.** On a tRNA molecule, the three-base sequence that base-pairs with a complementary codon on mRNA is called the \_\_\_\_\_\_\_\_\_\_\_\_.
 
-3. On a tRNA molecule, the three-base sequence that base-pairs with a complementary codon on mRNA is called the \_\_\_\_\_\_\_\_\_\_\_\_.
+**4.** Adding methyl groups to DNA can help silence a gene without changing the order of A, T, G, and C; this chemical tagging is called DNA \_\_\_\_\_\_\_\_\_\_\_\_.
 
-4. Adding methyl groups to DNA can help silence a gene without changing the order of A, T, G, and C; this chemical tagging is called DNA \_\_\_\_\_\_\_\_\_\_\_\_.
+**5.** The study of changes in gene activity that do not change the DNA sequence is called \_\_\_\_\_\_\_\_\_\_\_\_.
 
-5. The study of changes in gene activity that do not change the DNA sequence is called \_\_\_\_\_\_\_\_\_\_\_\_.
+**6.** An organism with two different alleles for a gene (for example, Aa) is described as \_\_\_\_\_\_\_\_\_\_\_\_.
 
-6. An organism with two different alleles for a gene (for example, Aa) is described as \_\_\_\_\_\_\_\_\_\_\_\_.
+**7.** If chromosomes fail to separate properly during meiosis, the error is called \_\_\_\_\_\_\_\_\_\_\_\_ and may produce aneuploid gametes.
 
-7. If chromosomes fail to separate properly during meiosis, the error is called \_\_\_\_\_\_\_\_\_\_\_\_ and may produce aneuploid gametes.
+**8.** In the ABO system, type AB blood illustrates \_\_\_\_\_\_\_\_\_\_\_\_ because both A and B alleles are fully expressed.
 
-8. In the ABO system, type AB blood illustrates \_\_\_\_\_\_\_\_\_\_\_\_ because both A and B alleles are fully expressed.
+**9.** Bacterial genes are often cloned using a small circular piece of DNA called a \_\_\_\_\_\_\_\_\_\_\_\_.
 
-9. Bacterial genes are often cloned using a small circular piece of DNA called a \_\_\_\_\_\_\_\_\_\_\_\_.
+**10.** A \_\_\_\_\_\_\_\_\_\_\_\_ enzyme cuts DNA at a specific short sequence, creating “sticky” or blunt ends for cloning.
 
-10. A \_\_\_\_\_\_\_\_\_\_\_\_ enzyme cuts DNA at a specific short sequence, creating “sticky” or blunt ends for cloning.
-
-11. Human somatic cells are \_\_\_\_\_\_\_\_\_\_\_\_ (2n), containing two sets of chromosomes.
+**11.** Human somatic cells are \_\_\_\_\_\_\_\_\_\_\_\_ (2n), containing two sets of chromosomes.
 
 ---
 

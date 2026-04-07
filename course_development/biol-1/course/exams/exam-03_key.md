@@ -26,7 +26,7 @@
 
 **Module 09: Inheritance Genetics**
 
-13. **B** (Homologs separate in meiosis I; one allele per gamete)
+13. **B** (Alleles are alternative versions of the same gene)
 14. **A** (Bb is genotype; purple flowers are phenotype)
 15. **C** (3 : 1 phenotypic ratio for complete dominance)
 16. **B** (1 : 2 : 1 with a blended heterozygote in incomplete dominance)
