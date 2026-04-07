@@ -1,47 +1,18 @@
 # Module 12: Darwin and Evolution — Questions
 
-## Quick Check
-
-**1. Based on his observations in the Galápagos Islands, Charles Darwin concluded that:**
-A) Environment has no impact on physical traits.
-B) Organisms instinctively adapt to be perfect.
-C) Species can change over time as they adapt to different environments.
-D) All species were created at the exact same time and never change.
-
-**2. Which of the following is the best definition of "evolutionary fitness"?**
-A) The physical strength and speed of an organism
-B) The ability of an individual to survive and produce viable, fertile offspring relative to others
-C) The overall health and immune system of an animal
-D) The dominance of an animal in its social group
-
-**3. In biology, natural selection acts on:**
-A) Individuals, causing them to evolve during their lifetime
-B) Populations, causing genetic traits to shift over generations
-C) The environment, forcing it to change for the animals
-D) Acquired characteristics (like learning a behavior)
-
-**4. The forelimbs of a human, a cat, a whale, and a bat share the same internal bone structure, even though they are used for entirely different functions (grabbing, walking, swimming, flying). This is an example of:**
-A) Analogous structures
-B) Vestigial structures
-C) Homologous structures
-D) Convergent evolution
-
-**5. True or False:** Natural selection is a random process.
-- [ ] True
-- [ ] False
-
----
-
-## Reflection
-
-**6. Why is the phrase "survival of the fittest" often misleading to the general public? Explain what fitness actually means in an evolutionary context.**
-
-{fill:textarea rows=4}
-
-**7. A population of beetles has both green and brown individuals. They live in a lush green forest, and birds frequently eat the brown beetles because they stand out. Over time, the forest experiences a severe drought and the leaves turn brown. Explain step-by-step how the beetle population will evolve via natural selection in response to this environmental change.**
-
-{fill:textarea rows=5}
-
-**8. Briefly explain how molecular biology (DNA and proteins) provides evidence for evolution and common ancestry.**
-
-{fill:textarea rows=3}
+## Practice Questions
+1. From his observations in the Galápagos Islands, what did Darwin conclude about whether species can change over time and how they relate to their environments?
+2. In evolutionary biology, what does “fitness” mean? Why is it *not* the same as physical strength or being “healthy” in everyday language?
+3. In biology, natural selection acts on variation in traits within a population. Does it change individuals during their lifetimes, or change allele frequencies over generations? Explain in one or two sentences.
+4. The forelimbs of a human, a cat, a whale, and a bat share the same underlying bone pattern but serve different functions. What kind of structures are these, and what do they suggest about common ancestry?
+5. How are analogous structures different from homologous structures? Give a brief example of each type (you may use different examples than the book).
+6. Is natural selection a random process? Explain what is and is not random when natural selection occurs.
+7. Why is the phrase “survival of the fittest” often misleading to the public? Restate what “fitness” means in evolutionary terms.
+8. A beetle population includes green and brown individuals in a lush green forest; birds eat more brown beetles because they are easier to see. Later, drought browns the vegetation. Describe step-by-step how natural selection could shift the population’s color over generations.
+9. How do comparisons of DNA and proteins support the idea of common ancestry and evolution?
+10. What is meant by “descent with modification” in Darwin’s terms?
+11. How does artificial selection (for example, breeding plants or livestock) illustrate principles that also apply to natural selection?
+12. What is a vestigial structure, and why do biologists treat vestigial traits as evidence of evolutionary history?
+13. What is convergent evolution, and how does it produce similarities that are *not* due to recent common ancestry?
+14. In what ways does the fossil record support the idea that life on Earth has changed over long periods of time?
+15. In modern genetics, why do acquired traits during an organism’s life (for example, muscle built from exercise) not explain how populations evolve across generations?
