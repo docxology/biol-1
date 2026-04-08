@@ -20,7 +20,7 @@ pdf  = true         # PDF files (via WeasyPrint)
 docx = true         # Word documents (via Pandoc)
 html = false         # HTML files (via Pandoc)
 txt  = false         # Plain text (extracted from Markdown)
-md   = false          # Markdown copy (source files with standardized names)
+md   = true          # Markdown copy (source files with standardized names)
 mp3  = false        # Audio narration (via Google TTS, slower)
 
 # Course Configuration
