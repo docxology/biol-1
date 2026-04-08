@@ -1,81 +1,18 @@
-# Module 11: Skeletal System — Study Questions
+# Module 11: Skeletal System — Practice Questions
 
-## Functions of the Skeletal System
+## Overview
+The skeletal system forms the structural foundation of the human body. Comprised of bones, cartilage, ligaments, and joints, it provides support, movement, protection, blood cell production, and mineral storage. Understanding its function involves exploring bone tissue structure, the continuous process of bone remodeling, and the crucial connections between the axial and appendicular skeleton.
 
-1. What are the five major functions of the skeletal system?
-
-2. How do bones contribute to calcium homeostasis?
-
-3. Where does blood cell formation (hematopoiesis) occur in the skeletal system?
-
-4. Name an organ that bones protect and explain how.
-
-5. How does the skeletal system work with the muscular system to produce movement?
-
-## Bone Structure
-
-6. What are the main parts of a long bone?
-
-7. What is the difference between the diaphysis and the epiphysis?
-
-8. What is the periosteum, and what are its functions?
-
-9. Compare and contrast compact bone and spongy bone.
-
-10. What is an osteon (Haversian system), and what is its function?
-
-11. What is the medullary cavity, and what does it contain in adults?
-
-12. What makes bone both strong and somewhat flexible?
-
-## Bone Cells
-
-13. What are the three main types of bone cells?
-
-14. What is the function of osteoblasts?
-
-15. How do osteocytes differ from osteoblasts?
-
-16. What is the role of osteoclasts in bone remodeling?
-
-17. Why is bone remodeling important throughout life?
-
-18. How do bones respond to increased mechanical stress?
-
-## Bone Development and Growth
-
-19. What are the two types of bone formation (ossification)?
-
-20. Which bones form by intramembranous ossification?
-
-21. How do most bones in the body develop?
-
-22. What is the epiphyseal plate, and what role does it play in bone growth?
-
-23. What happens to the epiphyseal plate when a person stops growing?
-
-24. How do growth hormone and sex hormones affect bone development?
-
-## Divisions of the Skeleton
-
-25. What is the difference between the axial and appendicular skeleton?
-
-26. Name five bones that belong to the axial skeleton.
-
-27. Name five bones that belong to the appendicular skeleton.
-
-28. What are the three main types of joints based on movement?
-
-29. What is the most common type of freely movable joint?
-
-30. Give an example of a hinge joint and a ball-and-socket joint.
-
-## Skeletal Health and Disorders
-
-31. What is osteoporosis, and what are its risk factors?
-
-32. How can osteoporosis be prevented or reduced?
-
-33. What are the main steps in bone fracture healing?
-
-34. What is the difference between osteoarthritis and rheumatoid arthritis?
+## Practice Questions
+1. What are the primary functions of the skeletal system?
+2. How does the structure of compact bone differ from that of spongy bone?
+3. What role do osteoblasts, osteocytes, and osteoclasts play in bone remodeling?
+4. How do long bones grow in length during childhood and adolescence?
+5. What is the difference between the axial and the appendicular skeleton?
+6. Can you give examples of bones that belong to the axial skeleton?
+7. What are the main types of freely movable (synovial) joints in the human body?
+8. How does the skeletal system interact with the muscular system to produce movement?
+9. What role does bone marrow play in the human body?
+10. What is osteoporosis, and what are its primary risk factors?
+11. How does the body repair a fractured bone?
+12. Why is blood calcium regulation dependent on the skeletal system?

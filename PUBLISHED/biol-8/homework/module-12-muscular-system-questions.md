@@ -1,81 +1,18 @@
-# Module 12: Muscular System — Study Questions
+# Module 12: Muscular System — Practice Questions
 
-## Functions of the Muscular System
+## Overview
+The muscular system is responsible for producing movement, maintaining posture, generating heat, and stabilizing joints. It consists of three primary types of muscle tissue: skeletal, cardiac, and smooth muscle. Exploring the microscopic structure of a muscle fiber and the sliding filament theory provides the biological basis for how muscles contract and produce force in response to nerve signals.
 
-1. What are the major functions of the muscular system?
-
-2. How do muscles help maintain body temperature?
-
-3. How does the muscular system contribute to posture?
-
-4. Why is it important that muscles work in pairs?
-
-## Skeletal Muscle Structure
-
-5. Describe the hierarchical organization of a skeletal muscle from largest to smallest component.
-
-6. What is a muscle fiber, and how is it different from a typical cell?
-
-7. What is a myofibril?
-
-8. What is a sarcomere, and why is it considered the functional unit of muscle contraction?
-
-9. What are the thick and thin filaments in a sarcomere made of?
-
-10. What is the significance of the Z-lines in a sarcomere?
-
-11. What is the relationship between the A-band and I-band during muscle contraction?
-
-12. Name and describe the three connective tissue layers that organize skeletal muscle.
-
-## Sliding Filament Theory
-
-13. Describe the sliding filament theory of muscle contraction.
-
-14. During contraction, do the thick and thin filaments shorten or do they slide past each other?
-
-15. What is the cross-bridge cycle? Describe its main steps.
-
-16. What role does ATP play in muscle contraction?
-
-17. Why is calcium essential for muscle contraction?
-
-18. What are the functions of troponin and tropomyosin?
-
-19. What happens when calcium is removed from the muscle cell after contraction?
-
-## Neuromuscular Junction
-
-20. What is a neuromuscular junction?
-
-21. What neurotransmitter is released at the neuromuscular junction?
-
-22. How does an action potential in a motor neuron lead to muscle contraction?
-
-23. What is excitation-contraction coupling?
-
-24. What would happen if acetylcholine were not broken down after being released?
-
-## Muscle Mechanics
-
-25. What is a motor unit?
-
-26. How does the nervous system control the strength of muscle contraction?
-
-27. What is the difference between a muscle twitch and tetanus?
-
-28. What is summation in muscle contraction?
-
-29. What is the difference between isotonic and isometric contractions?
-
-30. What causes muscle fatigue, and how can it be reduced?
-
-## Muscle Fiber Types
-
-31. What are the differences between slow-twitch (Type I) and fast-twitch (Type II) muscle fibers?
-
-32. Which type of muscle fiber is more resistant to fatigue, and why?
-
-33. What types of activities are best suited for each fiber type?
-
-34. Can training change the proportion of muscle fiber types in your body?
+## Practice Questions
+1. What are the three types of muscle tissue found in the body?
+2. How does voluntary muscle differ from involuntary muscle?
+3. What is the basic functional unit of a muscle fiber?
+4. How do actin and myosin interact during muscle contraction?
+5. What role does ATP play in the process of muscle contraction?
+6. How is calcium utilized to trigger muscle contraction?
+7. What causes muscle fatigue during prolonged, strenuous exercise?
+8. What is the difference between a muscle origin and a muscle insertion?
+9. How do muscles work in antagonistic pairs (e.g., biceps and triceps)?
+10. What is a motor unit, and how does it relate to muscle strength?
+11. How does resistance training affect muscle fiber size?
+12. What are the main functions of smooth muscle in organ systems?
