@@ -43,7 +43,7 @@ include_practice_tests = true
 [publish.courses.biol-8]
 enabled = true
 max_module = 17      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
-max_lab = 15         # Generate labs 1 through max_lab (set lower to limit, e.g., 5)
+max_lab = 18         # Generate labs 1 through max_lab (BIOL-8: labs 01--18 incl. Exam 03 review, ecology, evolution)
 path = "course_development/biol-8"
 input_types = ["keys-to-success", "questions"]
 include_syllabus = true
