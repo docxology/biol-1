@@ -183,11 +183,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Left ventricle
     - D) Aorta
 
-2. The group of cells that usually starts each heartbeat (the heart's main pacemaker) is the:
-    - A) AV node
-    - B) SA node
-    - C) Bundle of His
-    - D) Purkinje fibers
+2. Which statement about **oxygen (O₂)** and **carbon dioxide (CO₂)** in the lungs is **true**?
+    - A) Oxygen moves from the blood into the air in the alveoli
+    - B) Carbon dioxide moves from the blood into the alveolar air so you can exhale it
+    - C) You breathe in carbon dioxide from the room air to feed the blood
+    - D) O₂ and CO₂ never cross between the air and the blood
 
 3. Which type of vessel carries blood **away from** the heart?
     - A) Veins
@@ -195,7 +195,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - C) Capillaries
     - D) Lymph vessels
 
-4. The first heart sound ("lub") is heard when the valves **between the atria and ventricles** close. Those are the:
+4. The first heart sound ("lub") is made when the valves **between the upper and lower heart chambers** close. Those valves are the:
     - A) Semilunar valves (at the exits to the big arteries)
     - B) AV (atrioventricular) valves
     - C) Valves in the leg veins

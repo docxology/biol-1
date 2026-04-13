@@ -175,9 +175,9 @@ A) Is small B) Cannot make its own energy or copy itself without a host C) H
 ### On the exam, expect
 
 - **Venous return** from body → **right atrium**.  
-- **SA node** = main **pacemaker**.  
+- **O₂ and CO₂ in the lungs:** O₂ moves from air into blood; CO₂ moves from blood into air to be exhaled (mainly in **alveoli**).  
 - **Arteries** = away from heart (exam may include a non-vessel distractor).  
-- First heart sound **“lub”** = **AV valves** closing (between atria and ventricles).  
+- First heart sound **“lub”** = **AV valves** closing between **upper and lower** heart chambers.  
 - Gas exchange in **alveoli**; most O₂ on **hemoglobin** in **RBCs**.  
 - Quiet **inhalation:** diaphragm moves **down**, chest volume **increases**.
 
@@ -186,14 +186,14 @@ A) Is small B) Cannot make its own energy or copy itself without a host C) H
 **1.** Blood from the body (low O₂) enters the heart first in the:  
 A) Left atrium B) Right atrium C) Left ventricle D) Aorta  
 
-**2.** The heart’s usual pacemaker is the:  
-A) AV node B) SA node C) Bundle of His D) Purkinje fibers  
+**2.** Which statement about **O₂** and **CO₂** in the lungs is **true**?  
+A) Oxygen moves from the blood into the alveolar air B) Carbon dioxide moves from the blood into the alveolar air so you can exhale it C) You take in CO₂ from room air to feed the blood D) O₂ and CO₂ never cross between air and blood  
 
 **3.** Vessels that carry blood **away from** the heart:  
 A) Veins B) Arteries C) Capillaries D) Lymph vessels  
 
-**4.** The first heart sound (“lub”) occurs when the valves between atria and ventricles close—the:  
-A) Semilunar valves B) AV valves C) Leg vein valves D) Lung-only valves  
+**4.** The “lub” sound is made when the valves **between the upper and lower heart chambers** close. Those valves are the:  
+A) Semilunar valves B) AV (atrioventricular) valves C) Leg vein valves D) Lung-only valves  
 
 **5.** Oxygen moves into the blood mainly in the:  
 A) Trachea B) Bronchi C) Alveoli D) Larynx  
@@ -279,7 +279,7 @@ A) Up (chest smaller) B) Down (chest larger) C) Sideways only D) Only on e
 | Recite muscle order to **sarcomere**, **myosin** thick filaments, **sliding filament**, **ACh** | [ ] |
 | Define **CNS/PNS**, **somatic**, **axon**, **myelin**, **spinal reflex** | [ ] |
 | State bacterial **no nucleus**, **shapes**, **Gram+ wall** idea, **binary fission**, **resistance**, **virus needs host** | [ ] |
-| Trace **RA → lungs → left heart**; name **SA node**, **arteries**, **lub/AV**, **alveoli**, **hemoglobin**, **diaphragm** | [ ] |
+| Trace **RA → lungs → left heart**; explain **O₂ in / CO₂ out** in lungs; name **arteries**, **lub/AV**, **alveoli**, **hemoglobin**, **diaphragm** | [ ] |
 
 **Two terms I still confuse:** {fill:textarea rows=2}
 

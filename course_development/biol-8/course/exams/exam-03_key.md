@@ -37,9 +37,9 @@
 | 23 | B | Survivors reproduce and pass resistance — natural selection (Practice Test 10 #10). |
 | 24 | B | Viruses need a host to copy themselves and do not carry out metabolism on their own (Practice Test 10 #13). |
 | 25 | B | Blood from the body returns to the **right atrium** first. |
-| 26 | B | The **SA node** sets the basic heart rate. |
+| 26 | B | In the lungs, CO₂ diffuses from blood into alveolar air to be exhaled; O₂ moves from air into blood (not A or C). |
 | 27 | B | **Arteries** carry blood away from the heart. |
-| 28 | B | “Lub” (first sound) = **AV valves** closing between atria and ventricles. |
+| 28 | B | “Lub” = **AV (atrioventricular) valves** closing between atria and ventricles (not semilunar). |
 | 29 | C | Gas exchange happens in the **alveoli**. |
 | 30 | B | Most oxygen is bound to **hemoglobin** in red blood cells. |
 | 31 | B | Inhaling: diaphragm moves **down** and the chest volume **increases**. |
