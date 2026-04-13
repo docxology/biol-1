@@ -8,49 +8,51 @@
 
 ## Purpose
 
-This session is a **structured review** for **Exam 03** (same coverage as [`../exams/exam-03.md`](../exams/exam-03.md); instructor key: [`../exams/exam-03_key.md`](../exams/exam-03_key.md)). Everything below is a **remix** of the ideas, skills, and question types on that exam—not extra topics.
+This lab is **practice** for the **skeletal, muscular, nervous, microbiology, and cardiopulmonary** material in **Modules 11–15**. It pulls together vocabulary, diagrams-in-words, and applied prompts so you can see what you know before the unit assessment.
+
+Optional: the exam **form** for this unit lives with other course exams ([`../exams/exam-03.md`](../exams/exam-03.md)). Use it for logistics (timing, instructions) your instructor confirms. **Answer keys** belong with instructional materials—build understanding from your notes and module files first.
 
 **How to use this lab**
 
-1. Work **without** notes first on the drills, then check `keys-to-success.md` or your text where you were stuck.  
-2. The **word bank sprint** matches Exam 03 Part B **exactly** (same terms and blanks)—high-value practice.  
-3. The **Part C prompts** match the exam’s five free-response options; the exam asks you to **choose three**.
+1. Try the drills **closed-book** first, then reopen notes only where you were unsure.  
+2. Use the **word bank** section as a **timed** vocabulary sprint—same terms appear in more than one format across the course; learn the *ideas*, not one sentence shape.  
+3. For **short answers**, draft at least **three** full responses in your own words (the unit exam typically asks you to choose several from a longer list—see your syllabus or exam instructions for the exact pick-one rules).
 
-> **Exam 03 at a glance**  
-> **50 points total** · **Part A:** 31 multiple choice (6+6+6+6+7 by module) · **Part B:** 10 fill-ins from one word bank · **Part C:** choose **3 of 5** short answers (3 points each)
+> **Format heads-up (check your syllabus)**  
+> Unit exams in this course often combine **multiple choice by module**, a **vocabulary / word-bank** block, and **short written responses** where you answer a subset of prompts. Point totals and section weights are listed on the exam paper you receive.
 
 ---
 
 ## Module 11 — Skeletal system
 
-### On the exam, expect
+### Focus ideas
 
-- One “**NOT** a function” of the skeleton (support, protection, blood cells, minerals—vs something the skeleton does *not* do).  
-- How **skeletal muscle and bone** work together at joints (levers; muscles **pull** on bones).  
-- **Hematopoiesis** in **red bone marrow**.  
-- **Epiphyseal (growth) plate** = **cartilage** (where long bones grow in length).  
-- **Axial** (skull, spine, ribs) vs **appendicular** (limbs, girdles)—including “which bone is **not** axial” (e.g., femur).  
-- **Synovial** = freely movable joints (e.g., knee, shoulder).
+- Roles of the skeleton (support, protection, blood cell formation, mineral storage—and what it does **not** do).  
+- How **skeletal muscle** attaches and **pulls** on **bones** at **joints** (levers).  
+- **Red bone marrow** and blood cell formation.  
+- **Growth plate** = **cartilage** at the ends of long bones.  
+- **Axial** (skull, spine, rib cage) vs **appendicular** (limbs, pectoral/pelvic girdles).  
+- **Synovial** joints = freely movable (e.g., knee, shoulder).
 
 ### Quick drill — write the letter (A–D) for the best answer
 
-**1.** Which is **NOT** a function of the skeletal system?  
-A) Hormone secretion for digestion B) Support C) Protection of internal organs D) Blood cell production  
+**1.** Which option is **least accurate** as a normal **function** of the adult human skeleton?  
+A) Protecting internal organs B) Storing minerals and supporting posture C) Secreting digestive hormones as a primary job D) Contributing to blood cell formation  
 
-**2.** Which best describes skeletal + muscular systems working together?  
-A) Bones contract and pull on muscles across joints B) Skeletal muscles contract and pull on bones across joints; bones act as levers C) Muscles push bones directly without using joints D) Only smooth muscle attaches to bones for voluntary movement  
+**2.** Voluntary movement at a joint is best described when:  
+A) Smooth muscle pulls directly on long bones without tendons B) Bones shorten to drag muscles C) Skeletal muscle contracts, pulls on bone across a joint, and the bone acts as a rigid lever D) Muscles push bones apart at the joint  
 
-**3.** Blood cell formation (hematopoiesis) occurs mainly in:  
-A) Compact bone only B) Yellow bone marrow only C) Red bone marrow D) Periosteum  
+**3.** In adults, **hematopoiesis** is mainly associated with:  
+A) Yellow marrow in the shafts of long bones only B) The periosteum only C) Red bone marrow D) Articular cartilage of synovial joints  
 
-**4.** The epiphyseal (growth) plate is made of:  
-A) Compact bone B) Spongy bone only C) Fibrous connective tissue only D) Cartilage  
+**4.** The **epiphyseal (growth) plate** at the ends of growing long bones consists mainly of:  
+A) Dense compact bone only B) Spongy bone without cartilage C) Hyaline cartilage D) Dense regular connective tissue like a tendon  
 
-**5.** The axial skeleton includes all **except**:  
-A) Femur B) Skull C) Vertebral column D) Rib cage  
+**5.** Which bone belongs with the **appendicular**, not the **axial**, skeleton?  
+A) Sternum B) Mandible C) Femur D) Sacrum  
 
-**6.** A freely movable joint such as the knee is:  
-A) Fibrous B) Synovial C) Cartilaginous D) Sutured  
+**6.** The knee is an example of a joint that allows a wide range of motion and has a joint cavity with synovial fluid. That class of joint is:  
+A) A synarthrosis (fibrous) B) Synovial C) A cartilaginous symphysis only D) A suture  
 
 <!-- lab:reflection -->
 **Reflect:** Which number was hardest? One sentence: what will you re-read?  
@@ -61,32 +63,33 @@ A) Fibrous B) Synovial C) Cartilaginous D) Sutured
 
 ## Module 12 — Muscular system
 
-### On the exam, expect
+### Focus ideas
 
-- **Skeletal muscle** functions: move skeleton, **generate heat** (not cardiac/smooth jobs in the distractors).  
-- **Order:** whole muscle → **fascicle** → **fiber** → **myofibril**; contractile unit = **sarcomere**.  
-- **Thick** filaments = **myosin**; sliding filament shortens the **sarcomere**.  
-- **Neuromuscular junction:** neurotransmitter = **acetylcholine (ACh)**.
+- **Skeletal muscle** vs other muscle types (location and jobs in distractors).  
+- Scale: whole muscle → **fascicle** → muscle **fiber** → **myofibril** → **sarcomere** as the repeating contractile unit.  
+- **Thick** filaments = **myosin**; **thin** = **actin** (plus regulatory proteins).  
+- **Sliding filament**: sarcomere shortens; filaments overlap more.  
+- **Neuromuscular junction**: motor neuron releases **acetylcholine (ACh)**.
 
 ### Quick drill — write the letter (A–D)
 
-**1.** A main function of skeletal muscle is:  
-A) Pumping blood (cardiac muscle) B) Lining the walls of blood vessels only C) Moving the skeleton and generating body heat D) Controlling pupil size only  
+**1.** Which option lists a **typical function of skeletal muscle** (not the best description of cardiac or smooth muscle here)?  
+A) Pumping blood to the lungs and body B) Moving the skeleton and producing body heat C) Controlling pupil diameter as a main job D) Lining hollow organs as its primary role  
 
-**2.** Largest → smallest:  
-A) Myofibril → Fiber → Fascicle → Muscle B) Fiber → Muscle → Fascicle → Myofibril C) Sarcomere → Muscle → Fascicle → Fiber D) Muscle → Fascicle → Fiber (cell) → Myofibril  
+**2.** From **largest** structure to **smallest**, which sequence is correct?  
+A) Sarcomere → myofibril → fiber → fascicle B) Muscle → fascicle → muscle fiber → myofibril C) Fascicle → muscle → sarcomere → fiber D) Fiber → fascicle → muscle → myofibril  
 
-**3.** The basic contractile unit is the:  
-A) Sarcomere B) Fascicle C) Myofibril D) Motor unit  
+**3.** The smallest **functional** contractile segment bordered by Z-lines is the:  
+A) Motor unit B) Fascicle C) Sarcomere D) Whole muscle  
 
-**4.** Thick filaments are made of:  
-A) Actin B) Myosin C) Troponin D) Tropomyosin  
+**4.** **Thick** filaments in the sarcomere are built from:  
+A) Actin B) Myosin C) Troponin only D) Titin only  
 
-**5.** During contraction (sliding filament):  
-A) The thick and thin filaments get shorter B) The sarcomere stretches apart C) The thin filaments slide past the thick filaments, shortening the sarcomere D) New filaments are synthesized  
+**5.** During contraction under the sliding-filament model:  
+A) Thick and thin filaments each shorten like telescoping rods B) The Z-lines move farther apart C) Thin filaments slide along thick filaments and the sarcomere shortens D) New actin is transcribed during each twitch  
 
-**6.** The neurotransmitter at the neuromuscular junction is:  
-A) Dopamine B) Serotonin C) Epinephrine D) Acetylcholine (ACh)  
+**6.** The chemical signal released from the motor neuron terminal to depolarize the muscle cell at the NMJ is:  
+A) Epinephrine B) Acetylcholine C) Serotonin D) Norepinephrine only  
 
 <!-- lab:reflection -->
 **Draw (optional):** In a few labels, sketch a **sarcomere** (Z-line, thick vs thin region).  
@@ -99,32 +102,33 @@ A) Dopamine B) Serotonin C) Epinephrine D) Acetylcholine (ACh)
 
 ## Module 13 — Nervous system
 
-### On the exam, expect
+### Focus ideas
 
-- **CNS** = brain + spinal cord; **PNS** = nerves/ganglia **outside** the CNS.  
-- **Somatic** = voluntary **skeletal** muscle.  
-- **Axon** carries signals **away** from the cell body; **myelin** speeds conduction.  
-- **Reflex:** can be routed through **spinal cord** so the **first** response does not require the brain.
+- **CNS** = brain + spinal cord; **PNS** = neural tissue **outside** the CNS (nerves, ganglia).  
+- **Somatic** motor → voluntary **skeletal** muscle.  
+- **Axon** = carries impulses **away** from soma; **dendrites** receive.  
+- **Myelin** increases speed of propagation along many axons.  
+- **Reflex arcs** can integrate in the **spinal cord** so a rapid motor output happens before conscious processing.
 
 ### Quick drill — write the letter (A–D)
 
-**1.** The CNS consists of:  
-A) The brain and spinal cord B) All nerves outside the brain C) The sensory organs only D) The autonomic nerves only  
+**1.** The **central** nervous system includes:  
+A) Cranial and spinal nerves only B) Autonomic ganglia only C) Brain and spinal cord D) Sensory receptors in skin only  
 
-**2.** The PNS includes:  
-A) The brain and spinal cord B) All nerves and ganglia outside the brain and spinal cord C) Only motor nerves D) Only the spinal cord  
+**2.** Ganglia and peripheral nerves (outside the brain and spinal cord) belong to the:  
+A) CNS B) PNS C) Meninges only D) Endocrine system  
 
-**3.** Voluntary control of skeletal muscle is the:  
-A) Autonomic nervous system B) Parasympathetic division C) Somatic nervous system D) Sympathetic division  
+**3.** Voluntary contraction of skeletal muscle is controlled mainly through the:  
+A) Sympathetic division B) Enteric division C) Somatic nervous system D) Parasympathetic division alone  
 
-**4.** Structure that carries signals **away** from the cell body:  
-A) Dendrite B) Soma C) Myelin sheath D) Axon  
+**4.** The process of carrying an action potential **away** from the neuron’s cell body toward the synapse is the main job of the:  
+A) Dendrite B) Axon C) Soma D) Nucleolus  
 
-**5.** Myelin mainly:  
-A) It insulates the axon and speeds up signal transmission B) It produces neurotransmitters C) It stores calcium ions in the soma D) It connects neurons to glands only  
+**5.** Myelin, when present, is important because it:  
+A) Speeds signal travel along many axons by saltatory conduction B) Manufactures neurotransmitters in the soma C) Is the site of neurotransmitter release D) Replaces the need for a resting potential  
 
-**6.** A reflex can happen before you “think” because:  
-A) It does not require a stimulus B) It can be processed at the spinal cord level so the initial response does not require the brain C) It only involves the cerebellum D) It is always voluntary  
+**6.** A **reflex arc** is unlike many voluntary movements because:  
+A) It never uses sensory neurons B) Initial integration can occur in the spinal cord without requiring the cerebrum for the first motor output C) It only happens in cranial nerves D) It requires conscious intent  
 
 <!-- lab:reflection -->
 **One sentence:** Sympathetic vs parasympathetic in plain words.  
@@ -135,33 +139,33 @@ A) It does not require a stimulus B) It can be processed at the spinal cord le
 
 ## Module 14 — Microbiology
 
-### On the exam, expect
+### Focus ideas
 
-- Bacteria vs human cells: **no membrane-bound nucleus** (DNA in nucleoid).  
-- Shapes: **cocci, bacilli, spirilla**.  
-- **Gram stain:** Gram+ often **thick wall**, **no outer membrane** (simplified wording on the exam).  
-- **Binary fission**; **antibiotic resistance** via **survival + reproduction** (natural selection).  
-- Viruses: **not** independent metabolism; need a **host** to replicate.
+- Prokaryotes: **no membrane-bound nucleus** (nucleoid).  
+- Shapes: **cocci**, **bacilli**, **spirilla**.  
+- **Gram stain** reflects cell wall structure (e.g., thick peptidoglycan vs outer membrane in many Gram-negative cells).  
+- **Binary fission**; **antibiotic resistance** as **selection** on heritable variation.  
+- Viruses: **obligate intracellular** replication; not independent cellular metabolism.
 
 ### Quick drill — write the letter (A–D)
 
-**1.** A bacterial cell differs from a plant or animal cell mainly because it:  
-A) Has no DNA B) Has no cytoplasm C) Has no membrane around its nucleus (its DNA is in the nucleoid region) D) Is always larger than a human cell  
+**1.** Compared with a typical human body cell, a bacterium is most distinct because it:  
+A) Lacks DNA B) Lacks a membrane-enclosed nucleus; DNA is in a nucleoid region C) Is always photosynthetic D) Uses meiosis every generation  
 
-**2.** Three common bacterial shapes:  
-A) Round, flat, and square B) Gram-positive, Gram-negative, and neutral C) Aerobic only, anaerobic only, and mixed D) Cocci (spheres), bacilli (rods), and spirilla (spirals)  
+**2.** Match the **shape** names: spheres, rods, and spirals correspond to:  
+A) Cocci, bacilli, spirilla B) Gram+, Gram−, neutral C) Aerobic, anaerobic, facultative D) Capsid, envelope, prion  
 
-**3.** Gram-positive bacteria usually stain purple because they:  
-A) Have a thick cell wall and no outer membrane B) Have no cell wall C) Have only a thin wall plus an outer membrane (typical of many Gram-negative bacteria) D) Are always harmless  
+**3.** Gram-positive cells often retain the crystal violet stain because their cell wall:  
+A) Lacks peptidoglycan B) Is thin with an outer membrane typical of many Gram-negative bacteria C) Includes a thick peptidoglycan layer and lacks an outer membrane like many Gram-negative cells D) Has no cell wall  
 
-**4.** One bacterium becomes two mostly by:  
-A) Mitosis B) Binary fission C) Meiosis D) Fertilization  
+**4.** Bacterial reproduction is most commonly:  
+A) Meiosis B) Binary fission C) Mitosis in pairs D) Budding only  
 
-**5.** After antibiotic use, resistant types can increase because:  
-A) The drug trains bacteria to "try harder" B) The immune system stops working C) Bacteria that survive can reproduce and pass resistance to the next generation D) All bacteria die at the same rate  
+**5.** After antibiotic treatment, resistant strains can increase in frequency because:  
+A) The drug teaches bacteria to “want” resistance B) Surviving bacteria reproduce and pass alleles to offspring C) All strains die at equal rates D) Resistance always comes only from new mutation during the patient’s fever  
 
-**6.** Many biologists say a virus is not a living cell because it:  
-A) Is too small to see B) Never has genetic material C) Only lives in soil D) Cannot make its own energy or copy itself without infecting a host cell  
+**6.** A virus is often excluded from “living cell” lists because it:  
+A) Lacks any genetic material B) Cannot carry out metabolism and replication independently of a host cell C) Is visible without a microscope D) Only infects plants  
 
 <!-- lab:reflection -->
 **In 2 sentences:** Why is incomplete antibiotic use risky for resistance?  
@@ -172,114 +176,114 @@ A) Is too small to see B) Never has genetic material C) Only lives in soil�
 
 ## Module 15 — Cardiopulmonary system
 
-### On the exam, expect
+### Focus ideas
 
-- **Venous return** from body → **right atrium**.  
-- **O₂ and CO₂ in the lungs:** O₂ moves from air into blood; CO₂ moves from blood into air to be exhaled (mainly in **alveoli**).  
-- **Arteries** = away from heart (exam may include a non-vessel distractor).  
-- First heart sound **“lub”** = **AV valves** closing between **upper and lower** heart chambers.  
-- Gas exchange in **alveoli**; most O₂ on **hemoglobin** in **RBCs**.  
-- Quiet **inhalation:** diaphragm moves **down**, chest volume **increases**.
+- Systemic venous return enters the **right atrium** first.  
+- In **alveoli**, O₂ tends to move into blood; CO₂ moves from blood into alveolar gas to be exhaled.  
+- **Arteries** = blood **away** from heart (oxygenation varies by vessel).  
+- First heart sound **“lub”**: **AV (atrioventricular)** valves closing.  
+- Most O₂ is carried bound to **hemoglobin** in **RBCs**.  
+- Quiet **inspiration**: diaphragm contracts **downward**, thoracic volume **increases**.
 
 ### Quick drill — write the letter (A–D)
 
-**1.** Blood from the body (low O₂) enters the heart first in the:  
-A) Right atrium B) Left atrium C) Left ventricle D) Aorta  
+**1.** Deoxygenated blood returning from the systemic circuit arrives in the heart at the:  
+A) Left ventricle B) Left atrium C) Right atrium D) Pulmonary veins  
 
-**2.** Which statement about **O₂** and **CO₂** in the lungs is **true**?  
-A) Oxygen moves from the blood into the air in the alveoli B) Carbon dioxide moves from the blood into the alveolar air so you can exhale it C) You breathe in carbon dioxide from the room air to feed the blood D) O₂ and CO₂ never cross between the air and the blood  
+**2.** Which statement best matches gas exchange between **alveolar air** and **pulmonary capillary blood** during normal breathing?  
+A) O₂ diffuses from blood into the alveoli B) CO₂ diffuses from blood into alveolar air to be exhaled C) You rely on inhaling CO₂ to raise blood pH D) O₂ and CO₂ do not cross the respiratory membrane  
 
-**3.** Vessels that carry blood **away from** the heart:  
-A) Veins B) Capillaries C) Arteries D) Lymph vessels  
+**3.** Vessels that carry blood **away from** the ventricles (general definition of this vessel class):  
+A) Veins B) Arteries C) Capillaries D) Sinuses only  
 
-**4.** The “lub” sound is made when the valves **between the upper and lower heart chambers** close. Those valves are the:  
-A) Semilunar valves (at the exits of the ventricles to the aorta and pulmonary artery) B) Valves in the leg veins C) Lung valves only D) AV (atrioventricular) valves  
+**4.** The **first heart sound** is associated with closure of the valves **between atria and ventricles**. Those are the:  
+A) Semilunar valves B) AV (atrioventricular) valves C) Venous valves in the limbs D) Valves of the nasal cavity  
 
-**5.** Oxygen moves into the blood mainly in the:  
-A) Alveoli B) Trachea C) Bronchi D) Larynx  
+**5.** The main site of O₂ diffusion into pulmonary blood is the:  
+A) Alveolus B) Larynx C) Trachea D) Pleural cavity alone  
 
-**6.** Most oxygen in the blood is:  
-A) Dissolved in the plasma B) Carried by hemoglobin in red blood cells C) Stored in white blood cells D) Attached to platelets  
+**6.** The majority of oxygen transported in arterial blood is:  
+A) Dissolved O₂ in plasma only B) Bound to hemoglobin inside erythrocytes C) Carried by platelets D) Bound to albumin only  
 
-**7.** When you breathe in quietly, the diaphragm contracts and moves:  
-A) Up, so the chest gets smaller B) Sideways only C) Down, so the chest gets larger D) Only when you breathe out  
+**7.** During quiet inspiration, contraction of the diaphragm tends to:  
+A) Flatten and move inferiorly, increasing thoracic volume B) Move superiorly only C) Relax until exhalation only D) Compress the lungs without rib movement  
 
 <!-- lab:reflection -->
-**Trace:** Right atrium → (list the next steps in order to left side of heart).  
+**Trace:** Right atrium → (list the next steps in order to blood entering the left atrium).  
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---
 
-## Word bank sprint (matches Exam 03 Part B)
+## Word bank sprint (vocabulary mix)
 
-*Same 10 terms and same blank lines as the exam—use this as a timed rehearsal.*
+*Use each term **once**. Same word bank as on the unit exam’s vocabulary section—here the sentences are **rephrased** so you practice meaning, not memorizing one blank.*
 
 **Word Bank:** *acetylcholine, actin, appendicular, axial, capsid, dendrites, peptidoglycan, periosteum, sympathetic, troponin*
 
 <!-- lab:reflection -->
-**1.** The tough membrane covering the outer surface of bone is the \_\_\_\_\_\_\_\_\_\_\_\_.
+**1.** The fibrous membrane wrapping the external surface of a bone is called the \_\_\_\_\_\_\_\_\_\_\_\_.
 
-**2.** The skull, vertebral column, and rib cage belong to the \_\_\_\_\_\_\_\_\_\_\_\_ skeleton.
+**2.** Ribs, vertebrae, and the skull are grouped in the \_\_\_\_\_\_\_\_\_\_\_\_ skeleton.
 
-**3.** The limbs and girdles belong to the \_\_\_\_\_\_\_\_\_\_\_\_ skeleton.
+**3.** Pectoral and pelvic girdles, plus the arms and legs, belong to the \_\_\_\_\_\_\_\_\_\_\_\_ skeleton.
 
-**4.** The thin filaments of the sarcomere are made mainly of the protein \_\_\_\_\_\_\_\_\_\_\_\_.
+**4.** The protein that forms the **thin** filaments alongside myosin in a sarcomere is \_\_\_\_\_\_\_\_\_\_\_\_.
 
-**5.** Calcium binds to \_\_\_\_\_\_\_\_\_\_\_\_, moving tropomyosin so that myosin can bind to actin.
+**5.** When calcium binds to \_\_\_\_\_\_\_\_\_\_\_\_, the position of tropomyosin shifts so myosin heads can attach to actin.
 
-**6.** The autonomic division that dominates during the "fight-or-flight" response is the \_\_\_\_\_\_\_\_\_\_\_\_ division.
+**6.** In acute stress, activity in the \_\_\_\_\_\_\_\_\_\_\_\_ division of the autonomic system often dominates.
 
-**7.** The branched structures that receive incoming signals from other cells are \_\_\_\_\_\_\_\_\_\_\_\_.
+**7.** Incoming signals from other neurons are received mainly on the \_\_\_\_\_\_\_\_\_\_\_\_ of a typical multipolar neuron.
 
-**8.** The cell wall component that is especially important when comparing Gram-positive and Gram-negative bacteria is \_\_\_\_\_\_\_\_\_\_\_\_.
+**8.** A major difference between many Gram-positive and Gram-negative bacterial envelopes involves the chemistry of \_\_\_\_\_\_\_\_\_\_\_\_ in the cell wall.
 
-**9.** A typical virus has a nucleic acid genome surrounded by a protein coat called the \_\_\_\_\_\_\_\_\_\_\_\_.
+**9.** The protein shell surrounding the viral genome is the \_\_\_\_\_\_\_\_\_\_\_\_.
 
-**10.** At the neuromuscular junction, the motor neuron releases \_\_\_\_\_\_\_\_\_\_\_\_ to start muscle contraction.
+**10.** Motor neurons release \_\_\_\_\_\_\_\_\_\_\_\_ into the synaptic cleft at the neuromuscular junction to initiate muscle fiber depolarization.
 <!-- /lab:reflection -->
 
 ---
 
-## Free response rehearsal (same five options as Exam 03 Part C)
+## Short-answer rehearsal (practice three or more)
 
-*On the exam you will **choose three** of five (3 points each). Here, practice at least **three**—use full sentences or labeled drawings where it helps.*
+*On the unit exam you will typically **choose a subset** of longer prompts—practice several here in your own words.*
 
 <!-- lab:reflection -->
-**1. Bone cells.** Compare osteoblasts, osteocytes, and osteoclasts. What does each cell type do, and why are all three important for bone health?
+**1. Bone remodeling.** For **osteoblasts**, **osteocytes**, and **osteoclasts**, state a main function of each. Why does healthy bone need both formation and removal over a lifetime?
 
 {fill:textarea rows=6}
 
-**2. ATP and calcium.** Explain why both ATP and calcium are required for skeletal muscle contraction. What happens if either is unavailable?
+**2. Energetics and regulation of contraction.** Why do skeletal muscle fibers need **ATP** and **calcium ions** for normal contraction and relaxation? What goes wrong if one is missing (conceptually)?
 
 {fill:textarea rows=6}
 
-**3. Autonomic divisions.** Explain the difference between the sympathetic and parasympathetic divisions. Give one example of how each affects an organ (for example, heart rate or digestion).
+**3. Autonomic contrast.** Contrast **sympathetic** (“fight-or-flight”) and **parasympathetic** (“rest-and-digest”) effects. Give **one concrete organ example** for each branch (e.g., heart rate, GI motility, pupil size).
 
 {fill:textarea rows=6}
 
-**4. Antibiotic resistance.** Explain in your own words why antibiotic resistance is an example of natural selection. Use the terms *variation*, *selection*, and *reproduction* in your answer.
+**4. Evolution of resistance.** Using the words **variation**, **selection**, and **reproduction**, explain how antibiotic use can change the proportion of resistant bacteria in a population over time.
 
 {fill:textarea rows=6}
 
-**5. Cardiopulmonary integration.** Trace the path of a drop of blood from the right atrium through the lungs and back to the left side of the heart. Then name one way the cardiovascular and respiratory systems work together during exercise.
+**5. Heart–lung circuit.** Starting at the **right atrium**, trace a drop of blood through the **pulmonary circuit** until it returns to the **left** side of the heart. Add **one sentence** linking **circulatory** and **respiratory** function during heavy exercise (oxygen delivery, CO₂ removal, or heart rate and breathing rate).
 
 {fill:textarea rows=6}
 <!-- /lab:reflection -->
 
 ---
 
-## Self-check before Exam 03
+## Self-check before the unit exam
 
 <!-- lab:reflection -->
 | I can… | ✓ |
 |--------|---|
-| Spot what is **not** a skeletal function and explain muscle–bone **levers** | [ ] |
-| Place **red marrow**, **epiphyseal plate (cartilage)**, **axial vs appendicular**, **synovial** | [ ] |
-| Recite muscle order to **sarcomere**, **myosin** thick filaments, **sliding filament**, **ACh** | [ ] |
-| Define **CNS/PNS**, **somatic**, **axon**, **myelin**, **spinal reflex** | [ ] |
-| State bacterial **no nucleus**, **shapes**, **Gram+ wall** idea, **binary fission**, **resistance**, **virus needs host** | [ ] |
-| Trace **RA → lungs → left heart**; explain **O₂ in / CO₂ out** in lungs; name **arteries**, **lub/AV**, **alveoli**, **hemoglobin**, **diaphragm** | [ ] |
+| Separate skeletal **functions** from distractors; explain **muscle pulling on bone** | [ ] |
+| Locate **red marrow**, **growth cartilage**, **axial vs appendicular**, **synovial** joints | [ ] |
+| Order muscle structure to **sarcomere**; name **myosin** vs **actin**; outline **sliding filament**; name **ACh** | [ ] |
+| Define **CNS/PNS**, **somatic**, **axon** vs **dendrite**, **myelin**, **reflex** pathways | [ ] |
+| Contrast prokaryotic **nucleoid** with eukaryotic nucleus; **shapes**; **Gram** logic; **binary fission**; **viral** replication | [ ] |
+| Follow **venous return** to the right heart; **alveolar** gas exchange; **arteries**; **lub**/AV valves; **hemoglobin**; **diaphragm** on inspiration | [ ] |
 
 **Two terms I still confuse:** {fill:textarea rows=2}
 
@@ -288,7 +292,7 @@ A) Up, so the chest gets smaller B) Sideways only C) Down, so the chest gets
 
 ---
 
-**This lab mirrors Exam 03** ([`exams/exam-03.md`](../exams/exam-03.md); key [`exams/exam-03_key.md`](../exams/exam-03_key.md)). It does not replace the exam—it rehearses the same structures, vocabulary, and question types.
+This lab is **study practice** for Modules **11–15**. It is **not** a duplicate of any exam form; use the official exam PDF from your instructor for rules, timing, and academic integrity expectations.
 
 ---
 
