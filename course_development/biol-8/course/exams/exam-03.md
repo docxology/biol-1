@@ -14,7 +14,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 ## Modules 11-15: Skeletal, Muscular, Nervous, Microbiology & Cardiopulmonary Systems
 
 **Date**: Thursday, April 16, 2026  
-**Time**: 5:30 PM PM  
+**Time**: 5:30 PM - 8:40 PM  
 **Total Points**: 50
 
 ---
@@ -25,155 +25,155 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 11: Skeletal System
 
-1. Which of the following is NOT typically listed as a major function of the skeletal system?
-    - A) Protection of internal organs
-    - B) Production of blood cells in red bone marrow
-    - C) Storage of minerals such as calcium
-    - D) Secretion of insulin for blood glucose control
+1. Which of the following is NOT a function of the skeletal system?
+    - A) Support
+    - B) Protection of internal organs
+    - C) Hormone secretion for digestion
+    - D) Blood cell production
 
-2. The structural unit of compact bone, organized around a central canal, is the:
-    - A) Trabecula
-    - B) Osteon (Haversian system)
-    - C) Epiphyseal plate
+2. Which statement best describes how the skeletal and muscular systems work together to produce body movement?
+    - A) Bones contract and pull on muscles across joints
+    - B) Skeletal muscles contract and pull on bones across joints; bones act as levers
+    - C) Muscles push bones directly without using joints
+    - D) Only smooth muscle attaches to bones for voluntary movement
+
+3. Where does hematopoiesis (blood cell formation) occur?
+    - A) Compact bone only
+    - B) Yellow bone marrow only
+    - C) Red bone marrow
     - D) Periosteum
 
-3. Which cells are primarily responsible for breaking down bone during remodeling?
-    - A) Osteoblasts
-    - B) Osteocytes
-    - C) Osteoclasts
-    - D) Chondrocytes
+4. The epiphyseal (growth) plate is made of:
+    - A) Compact bone
+    - B) Spongy bone only
+    - C) Cartilage
+    - D) Fibrous connective tissue only
 
-4. In a long bone, growth in length occurs mainly at the:
-    - A) Diaphysis (growth plate)
-    - B) Medullary cavity
-    - C) Marrow
-    - D) Articular cartilage (joint surface only)
+5. The axial skeleton includes all of the following EXCEPT:
+    - A) Skull
+    - B) Vertebral column
+    - C) Femur
+    - D) Rib cage
 
-5. The skull, vertebral column, and rib cage belong to the:
-    - A) Appendicular skeleton
-    - B) Axial skeleton
-    - C) Pelvic girdle only
-    - D) Pectoral girdle only
-
-6. Osteoporosis is best described as:
-    - A) Inflammation of a joint
-    - B) A break in a bone with abnormal healing
-    - C) Reduced bone mass and strength, increasing fracture risk
-    - D) Overgrowth of cartilage at the epiphyseal plate
+6. A freely movable joint (like the knee or shoulder) is classified as:
+    - A) Fibrous
+    - B) Cartilaginous
+    - C) Synovial
+    - D) Sutured
 
 ### Module 12: Muscular System
 
-1. The smallest contractile unit that gives striated muscle its banded appearance is the:
-    - A) Muscle fiber
-    - B) Fascicle
+1. Which of the following is a function of skeletal muscle?
+    - A) Pumping blood (cardiac muscle)
+    - B) Moving the skeleton and generating body heat
+    - C) Lining the walls of blood vessels only
+    - D) Controlling pupil size only
+
+2. The correct order from largest to smallest in skeletal muscle organization is:
+    - A) Myofibril → Fiber → Fascicle → Muscle
+    - B) Muscle → Fascicle → Fiber (cell) → Myofibril
+    - C) Fiber → Muscle → Fascicle → Myofibril
+    - D) Sarcomere → Muscle → Fascicle → Fiber
+
+3. The basic contractile unit of a muscle fiber is the:
+    - A) Fascicle
+    - B) Myofibril
     - C) Sarcomere
     - D) Motor unit
 
-2. The thick filaments of a sarcomere are composed mainly of:
+4. The thick filaments in a sarcomere are made of:
     - A) Actin
     - B) Myosin
-    - C) Troponin only
-    - D) Tropomyosin only
+    - C) Troponin
+    - D) Tropomyosin
 
-3. The neurotransmitter released by the motor neuron at the neuromuscular junction is:
-    - A) Acetylcholine
-    - B) Dopamine
-    - C) Serotonin
-    - D) Insulin
+5. According to the sliding filament theory, during contraction:
+    - A) The thick and thin filaments get shorter
+    - B) The thin filaments slide past the thick filaments, shortening the sarcomere
+    - C) The sarcomere stretches apart
+    - D) New filaments are synthesized
 
-4. In skeletal muscle contraction, a rise in which ion in the cytosol allows cross-bridge cycling to proceed?
-    - A) Sodium (Na⁺)
-    - B) Potassium (K⁺)
-    - C) Calcium (Ca²⁺)
-    - D) Chloride (Cl⁻)
-
-5. According to the sliding filament model, during contraction:
-    - A) Actin and myosin filaments shorten
-    - B) Thick and thin filaments slide past each other
-    - C) The A band disappears
-    - D) The Z-lines move farther apart
-
-6. A motor unit consists of:
-    - A) All the muscles that move one joint
-    - B) One motor neuron and all muscle fibers it innervates
-    - C) Only the neuromuscular junction
-    - D) One sarcomere and its blood supply
+6. The neurotransmitter released at the neuromuscular junction is:
+    - A) Dopamine
+    - B) Serotonin
+    - C) Acetylcholine (ACh)
+    - D) Epinephrine
 
 ### Module 13: Nervous System
 
-1. The brain and spinal cord make up the:
-    - A) Peripheral nervous system (PNS)
-    - B) Autonomic nervous system only
-    - C) Central nervous system (CNS)
-    - D) Somatic nervous system only
+1. The central nervous system (CNS) consists of:
+    - A) All nerves outside the brain
+    - B) The brain and spinal cord
+    - C) The sensory organs only
+    - D) The autonomic nerves only
 
-2. In a typical multipolar neuron, the structure that usually carries electrical signals *away* from the cell body toward other cells is the:
+2. The peripheral nervous system (PNS) includes:
+    - A) The brain and spinal cord
+    - B) All nerves and ganglia outside the brain and spinal cord
+    - C) Only motor nerves
+    - D) Only the spinal cord
+
+3. The division of the PNS that controls voluntary movements of skeletal muscles is the:
+    - A) Autonomic nervous system
+    - B) Parasympathetic division
+    - C) Somatic nervous system
+    - D) Sympathetic division
+
+4. The long extension of a neuron that carries signals away from the cell body is the:
     - A) Dendrite
     - B) Axon
-    - C) Cell body (soma)
-    - D) Synaptic cleft
+    - C) Soma
+    - D) Myelin sheath
 
-3. Myelin and nodes of Ranvier are important because they:
-    - A) Store neurotransmitters
-    - B) Speed up propagation of action potentials along many axons
-    - C) Produce cerebrospinal fluid
-    - D) Filter blood before it enters the brain
+5. What is the function of myelin?
+    - A) It produces neurotransmitters
+    - B) It insulates the axon and speeds up signal transmission
+    - C) It stores calcium ions in the soma
+    - D) It connects neurons to glands only
 
-4. The division of the autonomic nervous system often called "fight or flight" is the:
-    - A) Parasympathetic division
-    - B) Sympathetic division
-    - C) Somatic motor division
-    - D) Enteric division only
-
-5. The brain region most associated with balance and coordination of voluntary movements is the:
-    - A) Medulla oblongata
-    - B) Cerebellum
-    - C) Occipital lobe
-    - D) Hypothalamus
-
-6. At a chemical synapse, communication is usually one-way because:
-    - A) Action potentials travel in both directions equally
-    - B) Neurotransmitter is released from the presynaptic side and receptors are on the postsynaptic side
-    - C) Dendrites cannot respond to stimuli
-    - D) The synaptic cleft is too wide for any signal
+6. A reflex arc differs from conscious sensation because:
+    - A) It does not require a stimulus
+    - B) It can be processed at the spinal cord level so the initial response does not require the brain
+    - C) It only involves the cerebellum
+    - D) It is always voluntary
 
 ### Module 14: Microbiology
 
-1. Many biologists describe viruses as non-living mainly because viruses:
-    - A) Lack genetic material
-    - B) Cannot reproduce or carry out metabolism on their own; they require a host cell
-    - C) Are always larger than bacteria
-    - D) Never cause disease
+1. Prokaryotic cells differ from eukaryotic cells because prokaryotes:
+    - A) Are always pathogenic
+    - B) Lack a membrane-bound nucleus
+    - C) Are larger than eukaryotic cells
+    - D) Have mitochondria
 
-2. Antibiotics are generally effective against which group of pathogens?
-    - A) Viruses
-    - B) Bacteria
-    - C) Prions
-    - D) All pathogens equally
+2. The three basic shapes of bacteria are:
+    - A) Cocci, bacilli, and spirilla
+    - B) Round, flat, and cubic
+    - C) Gram-positive, Gram-negative, and Gram-neutral
+    - D) Aerobic, anaerobic, and facultative
 
-3. In the Gram stain procedure, Gram-positive bacteria appear purple/violet largely because they have:
-    - A) No cell wall
-    - B) A thick peptidoglycan layer that retains the crystal violet
-    - C) Only a plasma membrane and no wall
-    - D) An outer membrane like typical Gram-negative cells
+3. Gram-positive bacteria differ from Gram-negative bacteria because Gram-positive bacteria have:
+    - A) An outer membrane with lipopolysaccharide
+    - B) A thin peptidoglycan layer only
+    - C) A thick peptidoglycan layer and no outer membrane
+    - D) No cell wall at all
 
-4. Binary fission in bacteria produces offspring that are genetically:
-    - A) Identical clones (barring rare mutations)
-    - B) Always different from the parent
-    - C) Haploid and diploid in alternating generations
-    - D) Produced by meiosis
+4. Bacteria reproduce primarily by:
+    - A) Mitosis
+    - B) Meiosis
+    - C) Binary fission
+    - D) Budding
 
-5. A bacteriophage replicating rapidly and lysing the host cell is characteristic of the:
-    - A) Lysogenic cycle
-    - B) Lytic cycle
-    - C) Conjugation cycle
-    - D) Transformation cycle
+5. Antibiotic resistance develops primarily because:
+    - A) Antibiotics cause bacteria to mutate on purpose
+    - B) Natural selection favors bacteria that survive antibiotic exposure, and those bacteria reproduce
+    - C) Antibiotics make the immune system weaker
+    - D) Bacteria choose to become resistant
 
-6. Antibiotic resistance spreads in bacterial populations mainly because:
-    - A) Antibiotics permanently weaken after one use
-    - B) Resistant bacteria survive treatment and reproduce, passing resistance to offspring
-    - C) Humans develop immunity to antibiotics
-    - D) Viruses absorb antibiotic molecules
+6. Many biologists consider viruses to be non-living because viruses:
+    - A) Are very small
+    - B) Have no metabolism and cannot reproduce on their own
+    - C) Contain DNA or RNA
+    - D) Can infect bacteria
 
 ### Module 15: Cardiopulmonary System
 
@@ -225,27 +225,27 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 *Complete each statement with the correct term from the word bank. Each blank is worth 1 point.*
 
-**Word Bank**: *acetylcholine, alveoli, conjugation, epiphyseal, hemoglobin, lytic, myosin, osteon, parasympathetic, ventricle*
+**Word Bank**: *actin, appendicular, axial, capsid, dendrites, endomysium, peptidoglycan, periosteum, sympathetic, troponin*
 
-1. In a long bone, growth in length is associated with the \_\_\_\_\_\_\_\_\_\_\_\_ plate until the plate closes.
+1. The tough membrane covering the outer surface of bone is the \_\_\_\_\_\_\_\_\_\_\_\_.
 
-2. The structural unit of compact bone organized around a central canal is called an \_\_\_\_\_\_\_\_\_\_\_\_.
+2. The skull, vertebral column, and rib cage belong to the \_\_\_\_\_\_\_\_\_\_\_\_ skeleton.
 
-3. The protein that forms the thick filaments in a sarcomere is \_\_\_\_\_\_\_\_\_\_\_\_.
+3. The limbs and girdles belong to the \_\_\_\_\_\_\_\_\_\_\_\_ skeleton.
 
-4. The neurotransmitter that crosses the synaptic cleft at the neuromuscular junction is \_\_\_\_\_\_\_\_\_\_\_\_.
+4. The thin filaments of the sarcomere are made mainly of the protein \_\_\_\_\_\_\_\_\_\_\_\_.
 
-5. The division of the autonomic nervous system that dominates during "rest and digest" is the \_\_\_\_\_\_\_\_\_\_\_\_ division.
+5. Calcium binds to \_\_\_\_\_\_\_\_\_\_\_\_, moving tropomyosin so that myosin can bind to actin.
 
-6. Bacterial DNA can be transferred directly from one cell to another through the process of \_\_\_\_\_\_\_\_\_\_\_\_.
+6. The autonomic division that dominates during the "fight-or-flight" response is the \_\_\_\_\_\_\_\_\_\_\_\_ division.
 
-7. In the \_\_\_\_\_\_\_\_\_\_\_\_ cycle, many viruses replicate quickly and cause the host cell to burst.
+7. The branched structures that receive incoming signals from other cells are \_\_\_\_\_\_\_\_\_\_\_\_.
 
-8. The left \_\_\_\_\_\_\_\_\_\_\_\_ pumps oxygenated blood into the systemic circulation (e.g., toward the aorta).
+8. The cell wall component that is especially important when comparing Gram-positive and Gram-negative bacteria is \_\_\_\_\_\_\_\_\_\_\_\_.
 
-9. In the blood, most oxygen is transported bound to \_\_\_\_\_\_\_\_\_\_\_\_ inside red blood cells.
+9. A typical virus has a nucleic acid genome surrounded by a protein coat called the \_\_\_\_\_\_\_\_\_\_\_\_.
 
-10. Gas exchange between inspired air and pulmonary capillary blood occurs in the \_\_\_\_\_\_\_\_\_\_\_\_.
+10. The connective tissue layer that wraps each individual muscle fiber is the \_\_\_\_\_\_\_\_\_\_\_\_.
 
 ---
 
@@ -253,15 +253,15 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 *Choose THREE of the following five questions. Answer in the provided spaces below. You may write, draw, or both. Each response is worth 3 points.*
 
-1. **Bone remodeling.** Name the two main cell types that build bone and break down bone. Give one factor or condition that can negatively affect long-term bone health.
+1. **Bone cells.** Compare osteoblasts, osteocytes, and osteoclasts. What does each cell type do, and why are all three important for bone health?
 
-2. **Sarcomere sketch.** Draw and label a simplified sarcomere showing: Z-line, thick filament region (A-band), thin filaments, and where the H-zone is located (relative placement is enough).
+2. **ATP and calcium.** Explain why both ATP and calcium are required for skeletal muscle contraction. What happens if either is unavailable?
 
-3. **Reflex arc.** Describe the basic sequence of structures in a simple spinal reflex from stimulus to response (name at least four steps or structures in order).
+3. **Autonomic divisions.** Explain the difference between the sympathetic and parasympathetic divisions. Give one example of how each affects an organ (for example, heart rate or digestion).
 
-4. **Bacteria vs. viruses.** List two ways bacterial cells differ from viruses in structure or how they reproduce.
+4. **Antibiotic resistance.** Explain in your own words why antibiotic resistance is an example of natural selection. Use the terms *variation*, *selection*, and *reproduction* in your answer.
 
-5. **Blood flow and breathing.** Trace the path of a drop of blood from the right atrium to the lungs and back to the left side of the heart, then name one way the respiratory system and cardiovascular system work together during exercise.
+5. **Cardiopulmonary integration.** Trace the path of a drop of blood from the right atrium through the lungs and back to the left side of the heart. Then name one way the cardiovascular and respiratory systems work together during exercise.
 
 <br>
 

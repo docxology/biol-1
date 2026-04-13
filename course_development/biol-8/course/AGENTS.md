@@ -165,7 +165,7 @@ The `software/` directory contains batch processing utilities for:
 - [ ] Each module has `keys-to-success.md`, `questions.md`, `resources/`
 - [ ] 4 exams with answer keys (8 files)
 - [ ] 17 quizzes with answer keys (34 files)
-- [ ] 17 lab protocols (`labs/`; e.g. `lab-13_nervous-system.md`, `lab-14_microbiology.md`)
+- [ ] 18 lab protocols (`labs/`; e.g. `lab-16_exam-03-review.md`, `lab-17_ecology.md`, `lab-18_evolution.md`)
 
 ### Coherence
 

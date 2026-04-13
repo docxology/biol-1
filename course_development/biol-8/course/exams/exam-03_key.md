@@ -2,45 +2,47 @@
 
 ## Modules 11-15: Skeletal, Muscular, Nervous, Microbiology & Cardiopulmonary Systems
 
+*Multiple-choice items in Modules 11–14 align with Practice Tests 07–10 (same answers/rationale as those keys unless noted). Module 11 item 4 matches Practice Test 07 #12 (epiphyseal plate = cartilage).*
+
 ---
 
 ## Part A: Multiple Choice (31 points)
 
-*Question numbers below follow the exam order: Module 11 items 1–6 = exam Q1–Q6, Module 12 items 1–6 = Q7–Q12, Module 13 items 1–6 = Q13–Q18, Module 14 items 1–6 = Q19–Q24, Module 15 items 1–7 = Q25–Q31.*
+*Question numbers: Module 11 items 1–6 = Q1–Q6; Module 12 = Q7–Q12; Module 13 = Q13–Q18; Module 14 = Q19–Q24; Module 15 = Q25–Q31.*
 
 | Q# | Answer | Explanation |
-|----|--------|---------------|
-| 1 | D | The skeletal system does not secrete insulin; that is an endocrine (pancreas) function. |
-| 2 | B | The osteon (Haversian system) is the structural unit of compact bone. |
-| 3 | C | Osteoclasts break down bone matrix during remodeling. |
-| 4 | C | Longitudinal growth occurs at the epiphyseal plate. |
-| 5 | B | Skull, vertebrae, and ribs are part of the axial skeleton. |
-| 6 | C | Osteoporosis is loss of bone mass/strength with increased fracture risk. |
-| 7 | C | The sarcomere is the functional contractile unit between Z-lines. |
-| 8 | B | Thick filaments are composed mainly of myosin. |
-| 9 | A | Acetylcholine is the neurotransmitter at the neuromuscular junction. |
-| 10 | C | Calcium binds troponin, moving tropomyosin so myosin can bind actin. |
-| 11 | B | Sliding filament theory: filaments slide past each other; sarcomeres shorten. |
-| 12 | B | A motor unit = one motor neuron + all muscle fibers it innervates. |
-| 13 | C | The CNS consists of the brain and spinal cord. |
-| 14 | B | The axon conducts signals away from the cell body toward synapses. |
-| 15 | B | Myelin and nodes of Ranvier enable saltatory conduction, speeding signals. |
-| 16 | B | The sympathetic division mediates “fight or flight.” |
-| 17 | B | The cerebellum coordinates balance and fine motor control. |
-| 18 | B | Neurotransmitter release is presynaptic; receptors are postsynaptic—direction is one-way. |
-| 19 | B | Viruses lack independent metabolism and need a host to replicate. |
-| 20 | B | Antibiotics target bacterial processes (e.g., cell wall, ribosomes); not useful for viruses. |
-| 21 | B | Gram-positive cells retain crystal violet due to thick peptidoglycan. |
-| 22 | A | Binary fission yields two daughter cells that are clones (same genotype, barring mutation). |
-| 23 | B | The lytic cycle ends in host cell lysis after viral replication. |
-| 24 | B | Resistance spreads when survivors reproduce and pass resistance genes. |
+|----|--------|-------------|
+| 1 | C | The skeletal system does not secrete digestive hormones (Practice Test 07 #1). |
+| 2 | B | Muscles contract and pull on bones; bones act as levers at joints (see Practice Test 08 key #1 — muscles attach to bones for movement). |
+| 3 | C | Hematopoiesis occurs in red bone marrow (Practice Test 07 #2). |
+| 4 | C | The epiphyseal plate is hyaline cartilage where lengthwise growth occurs (Practice Test 07 #12). |
+| 5 | C | The femur is appendicular; the axial skeleton includes skull, vertebrae, ribs (Practice Test 07 #14). |
+| 6 | C | Synovial joints are freely movable (Practice Test 07 #16). |
+| 7 | B | Skeletal muscle moves the skeleton and generates heat (Practice Test 08 #1). |
+| 8 | B | Muscle → fascicle → muscle fiber → myofibril (Practice Test 08 #3). |
+| 9 | C | The sarcomere is the contractile unit between Z-lines (Practice Test 08 #4). |
+| 10 | B | Thick filaments are myosin (Practice Test 08 #5). |
+| 11 | B | Thin filaments slide relative to thick filaments; sarcomere shortens (Practice Test 08 #8). |
+| 12 | C | Acetylcholine is released at the neuromuscular junction (Practice Test 08 #11). |
+| 13 | B | CNS = brain + spinal cord (Practice Test 09 #1). |
+| 14 | B | PNS = nerves and ganglia outside the CNS (Practice Test 09 #2). |
+| 15 | C | Somatic division controls voluntary skeletal muscle (Practice Test 09 #3). |
+| 16 | B | The axon carries signals away from the cell body (Practice Test 09 #6). |
+| 17 | B | Myelin insulates and speeds saltatory conduction (Practice Test 09 #7). |
+| 18 | B | Reflexes can integrate in the spinal cord without conscious brain involvement for the initial response (Practice Test 09 #18). |
+| 19 | B | Prokaryotes lack a membrane-bound nucleus (Practice Test 10 #1). |
+| 20 | A | Cocci, bacilli, spirilla are basic shapes (Practice Test 10 #3). |
+| 21 | C | Gram-positive: thick peptidoglycan, no outer membrane (Practice Test 10 #4). |
+| 22 | C | Bacteria reproduce by binary fission (Practice Test 10 #6). |
+| 23 | B | Resistant survivors reproduce — natural selection (Practice Test 10 #10). |
+| 24 | B | Viruses lack independent metabolism and need a host to replicate (Practice Test 10 #13). |
 | 25 | B | Systemic venous return enters the right atrium. |
-| 26 | B | The SA node is the primary pacemaker of the heart. |
+| 26 | B | SA node is the primary pacemaker. |
 | 27 | B | Arteries carry blood away from the heart. |
-| 28 | B | “Lub” (S1) is closure of the atrioventricular (AV) valves. |
-| 29 | C | Gas exchange occurs between alveolar air and blood in the alveoli. |
-| 30 | B | Hemoglobin in RBCs carries most oxygen. |
-| 31 | B | Inhalation: diaphragm contracts and flattens downward, increasing thoracic volume. |
+| 28 | B | “Lub” (S1) = AV valves closing. |
+| 29 | C | Alveoli are the main site of pulmonary gas exchange. |
+| 30 | B | Hemoglobin carries most O₂ in RBCs. |
+| 31 | B | Inhalation: diaphragm contracts downward, thoracic volume increases. |
 
 ---
 
@@ -48,16 +50,16 @@
 
 | Q# | Answer | Notes |
 |----|--------|-------|
-| 1 | epiphyseal | Growth in length at the epiphyseal plate until closure |
-| 2 | osteon | Haversian system / central canal organization |
-| 3 | myosin | Thick filaments |
-| 4 | acetylcholine | NMJ neurotransmitter |
-| 5 | parasympathetic | “Rest and digest” autonomic division |
-| 6 | conjugation | Direct transfer of genetic material between bacteria |
-| 7 | lytic | Rapid replication and host cell lysis |
-| 8 | ventricle | Left ventricle pumps to systemic circulation |
-| 9 | hemoglobin | O₂ transport in RBCs |
-| 10 | alveoli | Site of pulmonary gas exchange |
+| 1 | periosteum | Outer fibrous covering of bone (Practice Test 07 Part B) |
+| 2 | axial | Skull, spine, ribs (Practice Test 07 Part B) |
+| 3 | appendicular | Limbs and girdles (Practice Test 07 Part B) |
+| 4 | actin | Thin filaments (Practice Test 08 Part B) |
+| 5 | troponin | Ca²⁺ binding shifts tropomyosin (Practice Test 08 Part B) |
+| 6 | sympathetic | “Fight or flight” (Practice Test 09 Part B) |
+| 7 | dendrites | Receive incoming signals (Practice Test 09 Part B) |
+| 8 | peptidoglycan | Cell wall chemistry; Gram stain distinction (Practice Test 10 Part B) |
+| 9 | capsid | Protein coat around viral genome (Practice Test 10 Part B) |
+| 10 | endomysium | Innermost connective layer around each fiber (Practice Test 08 Part B) |
 
 ---
 
@@ -65,31 +67,34 @@
 
 *Students choose 3 of 5 questions, 3 points each.*
 
-**1. Bone remodeling**
+**1. Bone cells (Practice Test 07 Part C style)**
 
-- Names **osteoblasts** (build/deposit bone) and **osteoclasts** (resorb/break down bone) correctly (1 pt)
-- Clear statement that remodeling balances formation and breakdown (or equivalent) (1 pt)
-- One valid risk factor or condition (e.g., inadequate calcium/vitamin D, aging, inactivity, hormonal changes, smoking—aligned with instruction) (1 pt)
+- **Osteoblasts** build bone (secrete matrix); **osteocytes** maintain bone in lacunae; **osteoclasts** resorb bone (1 pt)
+- Accurate description of at least two cell types (1 pt)
+- States why balance/remodeling matters for bone strength or calcium homeostasis (1 pt)
 
-**2. Sarcomere sketch**
+**2. ATP and calcium (Practice Test 08 Part C style)**
 
-- Diagram shows **Z-lines** at ends of the sarcomere (1 pt)
-- **Thick filaments** placed in **A-band** region; **thin filaments** extend toward center (I-band / overlap region concept) (1 pt)
-- **H-zone** indicated as the region of thick-only filaments (central lighter band when relaxed)—reasonable relative placement (1 pt)
+- **Calcium** exposes actin binding sites via troponin/tropomyosin (1 pt)
+- **ATP** powers myosin detachment/cross-bridge cycling and relaxation (1 pt)
+- If missing: e.g., no Ca²⁺ → no contraction; no ATP → rigor or cannot recycle cross-bridges (1 pt)
 
-**3. Reflex arc**
+**3. Autonomic divisions (Practice Test 09 Part C style)**
 
-- Ordered sequence includes **receptor → sensory neuron → integration (spinal cord/CNS) → motor neuron → effector** (or equivalent valid chain) (2 pts if complete; 1 pt if order mostly correct with one gap)
-- At least **four** distinct steps/structures named (1 pt)
+- **Sympathetic**: fight-or-flight; **parasympathetic**: rest-and-digest (1 pt)
+- One organ example for sympathetic (e.g., increases heart rate) (1 pt)
+- One organ example for parasympathetic (e.g., promotes digestion) (1 pt)
 
-**4. Bacteria vs. viruses**
+**4. Antibiotic resistance (Practice Test 10 Part C style)**
 
-- Two valid contrasts (1 pt each), e.g.: cells vs. acellular; metabolism vs. none; binary fission vs. host-dependent replication; DNA in cytoplasm/nucleoid vs. packaged in virion; treatment (antibiotics vs. not typically effective with antibiotics)
+- **Variation**: bacteria differ in sensitivity (1 pt)
+- **Selection**: antibiotics kill susceptible cells; resistant survive (1 pt)
+- **Reproduction**: survivors pass resistance to offspring (1 pt)
 
-**5. Blood flow and breathing**
+**5. Cardiopulmonary integration**
 
-- Trace: **right atrium → right ventricle → pulmonary artery → lungs (pulmonary capillaries) → pulmonary veins → left atrium → left ventricle** (2 pts if path correct; partial credit for major sequence errors fixed by student)
-- One integration example for exercise (e.g., increased cardiac output + increased ventilation to deliver O₂ and remove CO₂; faster breathing clears more CO₂) (1 pt)
+- Trace: right atrium → right ventricle → pulmonary arteries → lung capillaries (alveoli) → pulmonary veins → left atrium → left ventricle (2 pts if sequence correct; partial credit for minor gaps)
+- Exercise link: e.g., higher cardiac output with increased ventilation to supply O₂ and remove CO₂ (1 pt)
 
 ---
 

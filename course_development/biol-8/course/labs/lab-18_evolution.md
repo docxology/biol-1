@@ -1,4 +1,4 @@
-# Lab 17: Evolution — Mechanisms and Evidence
+# Lab 18: Evolution — Mechanisms and Evidence
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
@@ -64,4 +64,4 @@ This lab explores the mechanisms of **evolution**, including natural selection, 
 
 ---
 
-*Lab 17 — Evolution. Exploration of the mechanisms and evidence for common descent.*
+*Lab 18 — Evolution. Exploration of the mechanisms and evidence for common descent.*

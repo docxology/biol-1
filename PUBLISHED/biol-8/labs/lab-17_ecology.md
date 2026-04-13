@@ -1,4 +1,4 @@
-# Lab 16: Ecology — Ecosystem Dynamics and Biodiversity
+# Lab 17: Ecology — Ecosystem Dynamics and Biodiversity
 
 **BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
 
@@ -66,4 +66,4 @@ This lab introduces the study of **ecology**, the branch of biology that deals w
 
 ---
 
-*Lab 16 — Ecology. Introduction to population and community dynamics.*
+*Lab 17 — Ecology. Introduction to population and community dynamics.*
