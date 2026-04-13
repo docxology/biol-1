@@ -23,6 +23,24 @@ By the end of this lab, you should be able to:
 
 ---
 
+## Warm-up
+
+<!-- lab:reflection -->
+**W1.** In one sentence, what is a **population** in biology (the evolutionary meaning—not just “many animals in one place”)?  
+{fill:textarea rows=2}
+
+**W2. Gene vs alleles:** This lab follows one gene with two versions, **R** and **r**. In one sentence, what does it mean to say **R** and **r** are two **alleles**?  
+{fill:textarea rows=2}
+
+**W3. Allele frequency:** In one sentence, what does **allele frequency** measure—you count copies of an allele, whole individuals, or something else?  
+{fill:text}
+
+**W4. Diploid count:** One beetle has genotype **Rr**. How many **r** alleles does that one beetle carry? (enter a number)  
+{fill:text}
+<!-- /lab:reflection -->
+
+---
+
 ## Part 1: Lakeview Beetles — Baseline (Generation 0)
 
 *Gene **R** controls spot brightness: **RR** = bright, **Rr** = mottled, **rr** = dull. Population is at Hardy–Weinberg expectations for this generation.*
@@ -43,11 +61,11 @@ In **Generation 0**, scientists genotype **200** beetles:
 - Total alleles (diploid population): {fill:text}
 
 **2. Allele frequencies:**  
-- Frequency of **R** (call it \(p\)): {fill:text}  
-- Frequency of **r** (\(q\)): {fill:text}  
-- Check: does \(p + q = 1\)? {fill:text}
+- Frequency of **R** (call it *p*): {fill:text}  
+- Frequency of **r** (*q*): {fill:text}  
+- Check: does *p* + *q* = 1? {fill:text}
 
-**3. Null expectation:** If mating is random and nothing evolutionary happens, predict approximate genotype frequencies using \(p^2\), \(2pq\), and \(q^2\) (you may round to two decimals).  
+**3. Null expectation:** If mating is random and nothing evolutionary happens, predict approximate genotype frequencies using *p*², 2*pq*, and *q*² (you may round to two decimals).  
 - Expected **RR**: {fill:text} **Rr**: {fill:text} **rr**: {fill:text}
 
 **4. Quick check:** Do the observed counts (50 / 100 / 50) match your expectations **exactly**? **Yes / No.** (Real populations often deviate—your job is to notice.)  
@@ -67,13 +85,13 @@ In **Generation 0**, scientists genotype **200** beetles:
 | rr | 8 |
 
 <!-- lab:reflection -->
-**5. Prediction first:** Before you calculate, did you expect \(p\) to stay exactly **0.5**? **Yes / No.** One sentence why drift should or shouldn’t matter here:  
+**5. Prediction first:** Before you calculate, did you expect *p* to stay exactly **0.5**? **Yes / No.** One sentence why drift should or shouldn’t matter here:  
 {fill:textarea rows=2}
 
 **6. Calculate new allele frequencies among **survivors only** (20 individuals = 40 alleles).**  
 - Total **R** alleles: {fill:text}  
 - Total **r** alleles: {fill:text}  
-- New \(p\): {fill:text} New \(q\): {fill:text}
+- New *p*: {fill:text} New *q*: {fill:text}
 
 **7. Interpret:** Did the allele frequency change **because birds preferred bright beetles**? **Yes / No.** What **mechanism** caused the change in this part of the story?  
 {fill:textarea rows=3}
@@ -114,10 +132,10 @@ Circle one: **Directional / Stabilizing / Disruptive** — defend in two sentenc
 - Part 2: {fill:text}  
 - Part 3: {fill:text}
 
-**13. Independent practice:** A gene has dominant allele frequency \(p = 0.2\). Find \(q\), then **aa** frequency, then **Aa** heterozygote frequency.  
-- \(q =\) {fill:text}  
-- Freq(**aa**) = \(q^2 =\) {fill:text}  
-- Freq(**Aa**) = \(2pq =\) {fill:text}
+**13. Independent practice:** A gene has dominant allele frequency *p* = 0.2. Find *q*, then **aa** frequency, then **Aa** heterozygote frequency.  
+- *q* = {fill:text}  
+- Freq(**aa**) = *q*² = {fill:text}  
+- Freq(**Aa**) = 2*pq* = {fill:text}
 
 **14. Big picture (3 sentences):** Why is it useful to compare **real** genotype frequencies to **Hardy–Weinberg expectations** instead of memorizing “equilibrium” as magic?  
 {fill:textarea rows=4}

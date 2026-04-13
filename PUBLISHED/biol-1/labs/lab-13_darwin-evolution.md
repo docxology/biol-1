@@ -89,9 +89,9 @@ Two heterozygotes mate: **`Cc` × `Cc`**.
 
 | Genotype | Phenotype (charcoal or leaf-green) |
 |---|---|
-| `CC` | {fill:text} |
-| `Cc` | {fill:text} |
-| `cc` | {fill:text} |
+| **CC** | {fill:text} |
+| **Cc** | {fill:text} |
+| **cc** | {fill:text} |
 
 **8. Complete the Punnett square** for `Cc` × `Cc`. Each parent makes gametes **C** and **c**.
 
@@ -108,18 +108,18 @@ Two heterozygotes mate: **`Cc` × `Cc`**.
 
 **11. One generation on lava (differential survival).** Imagine **400** new zygotes in the exact proportions above: **100 `CC`, 200 `Cc`, 100 `cc`**. On open lava, bright green stands out to birds. Use these **relative survival** values (viability before reproduction):
 
-- `w_CC = 1.0` `w_Cc = 1.0` `w_cc = 0.25`
+- **w_CC** = 1.0; **w_Cc** = 1.0; **w_cc** = 0.25
 
 **Prediction:** Before you calculate, do you expect the frequency of the **`c`** allele among survivors to **go up**, **go down**, or **stay the same**? One sentence why.  
 {fill:textarea rows=2}
 
 **12. Count survivors** (multiply number of each genotype by its `w`):
 
-| Genotype | Number before selection | × `w` | Survivors (individuals) |
-|---|---|---|
-| `CC` | 100 | × 1.0 | {fill:text} |
-| `Cc` | 200 | × 1.0 | {fill:text} |
-| `cc` | 100 | × 0.25 | {fill:text} |
+| Genotype | Number before selection | × w | Survivors (individuals) |
+| --- | --- | --- | --- |
+| **CC** | 100 | × 1.0 | {fill:text} |
+| **Cc** | 200 | × 1.0 | {fill:text} |
+| **cc** | 100 | × 0.25 | {fill:text} |
 | **Total** | 400 | — | **{fill:text}** |
 
 **13. Allele counting among survivors only.** Each diploid individual carries **2** alleles.
@@ -130,10 +130,10 @@ Two heterozygotes mate: **`Cc` × `Cc`**.
 
 **14. Frequencies after selection (among survivors):**
 
-- Frequency of **c** (call it \(q_{\text{after}}\)): {fill:text} *( = total c alleles ÷ total alleles)*  
-- Frequency of **C** (\(p_{\text{after}}\)): {fill:text}
+- Frequency of **c** (call it *q* after selection): {fill:text} *( = total c alleles ÷ total alleles)*  
+- Frequency of **C** (*p* after selection): {fill:text}
 
-**15. Compare to the starting zygote pool** (before selection): there were **400 C** and **400 c** alleles in 400 individuals, so \(p = q = 0.5\). Did \(q\) **increase** or **decrease** after one generation on lava? Does that match Part 1’s lava story?  
+**15. Compare to the starting zygote pool** (before selection): there were **400 C** and **400 c** alleles in 400 individuals, so *p* = *q* = 0.5. Did *q* **increase** or **decrease** after one generation on lava? Does that match Part 1’s lava story?  
 {fill:textarea rows=3}
 
 **16. (Optional stretch)** On **moss**, suppose leaf-green blends in best. Sketch a pattern of relative survival (`w`) across genotypes that would favor **`cc`** *without* writing a full calculation.  
