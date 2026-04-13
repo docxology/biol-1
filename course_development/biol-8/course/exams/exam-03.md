@@ -139,85 +139,85 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 14: Microbiology
 
-1. Prokaryotic cells differ from eukaryotic cells because prokaryotes:
-    - A) Are always pathogenic
-    - B) Lack a membrane-bound nucleus
-    - C) Are larger than eukaryotic cells
-    - D) Have mitochondria
+1. A typical bacterial cell is different from a plant or animal cell mainly because it:
+    - A) Has no DNA
+    - B) Has no membrane around its nucleus (its DNA is in the nucleoid region)
+    - C) Has no cytoplasm
+    - D) Is always larger than a human cell
 
-2. The three basic shapes of bacteria are:
-    - A) Cocci, bacilli, and spirilla
-    - B) Round, flat, and cubic
-    - C) Gram-positive, Gram-negative, and Gram-neutral
-    - D) Aerobic, anaerobic, and facultative
+2. The three common shapes of bacteria are:
+    - A) Cocci (spheres), bacilli (rods), and spirilla (spirals)
+    - B) Round, flat, and square
+    - C) Gram-positive, Gram-negative, and neutral
+    - D) Aerobic only, anaerobic only, and mixed
 
-3. Gram-positive bacteria differ from Gram-negative bacteria because Gram-positive bacteria have:
-    - A) An outer membrane with lipopolysaccharide
-    - B) A thin peptidoglycan layer only
-    - C) A thick peptidoglycan layer and no outer membrane
-    - D) No cell wall at all
+3. In the Gram stain, Gram-positive bacteria usually look purple because they:
+    - A) Have no cell wall
+    - B) Have only a thin wall plus an outer membrane (typical of many Gram-negative bacteria)
+    - C) Have a thick cell wall and no outer membrane
+    - D) Are always harmless
 
-4. Bacteria reproduce primarily by:
+4. One bacterium splits into two mostly by:
     - A) Mitosis
     - B) Meiosis
     - C) Binary fission
-    - D) Budding
+    - D) Fertilization
 
-5. Antibiotic resistance develops primarily because:
-    - A) Antibiotics cause bacteria to mutate on purpose
-    - B) Natural selection favors bacteria that survive antibiotic exposure, and those bacteria reproduce
-    - C) Antibiotics make the immune system weaker
-    - D) Bacteria choose to become resistant
+5. After people use antibiotics, resistant bacteria can become more common because:
+    - A) The drug trains bacteria to "try harder"
+    - B) Bacteria that survive can reproduce and pass resistance to the next generation
+    - C) The immune system stops working
+    - D) All bacteria die at the same rate
 
-6. Many biologists consider viruses to be non-living because viruses:
-    - A) Are very small
-    - B) Have no metabolism and cannot reproduce on their own
-    - C) Contain DNA or RNA
-    - D) Can infect bacteria
+6. Many biologists say a virus is not a living cell because a virus:
+    - A) Is too small to see
+    - B) Cannot make its own energy or copy itself without infecting a host cell
+    - C) Never has genetic material
+    - D) Only lives in soil
 
 ### Module 15: Cardiopulmonary System
 
-1. Deoxygenated blood from the body returns to the heart and enters the:
+1. Blood coming back from the body (low in oxygen) enters the heart first in the:
     - A) Left atrium
     - B) Right atrium
     - C) Left ventricle
     - D) Aorta
 
-2. The normal pacemaker that initiates each heartbeat is the:
+2. The group of cells that usually starts each heartbeat (the heart's main pacemaker) is the:
     - A) AV node
     - B) SA node
     - C) Bundle of His
     - D) Purkinje fibers
 
-3. Blood vessels that carry blood *away from* the heart are:
+3. Which type of vessel carries blood **away from** the heart?
     - A) Veins
     - B) Arteries
     - C) Capillaries
-    - D) Venules
+    - D) Lymph vessels
 
-4. The first heart sound ("lub") is associated with the closing of the:
-    - A) Semilunar (aortic and pulmonary) valves
-    - B) Atrioventricular (AV) valves
-    - C) Venous valves in the limbs
-    - D) Valve of the coronary sinus
+4. The first heart sound ("lub") is heard when the valves **between the atria and ventricles** close. Those are the:
+    - A) Semilunar valves (at the exits to the big arteries)
+    - B) AV (atrioventricular) valves
+    - C) Valves in the leg veins
+    - D) Lung valves only
 
-5. Pulmonary gas exchange (between alveolar air and blood) occurs across the walls of the:
+5. In the lungs, oxygen moves into the blood mainly in the tiny air sacs called the:
     - A) Trachea
     - B) Bronchi
     - C) Alveoli
     - D) Larynx
 
-6. Most oxygen transported in the blood is:
-    - A) Dissolved freely in plasma
-    - B) Bound to hemoglobin in red blood cells
-    - C) Carried inside white blood cells
-    - D) Bound to platelets
+6. Most of the oxygen in your blood is:
+    - A) Dissolved in the plasma
+    - B) Carried by hemoglobin in red blood cells
+    - C) Stored in white blood cells
+    - D) Attached to platelets
 
-7. During quiet inhalation, the diaphragm contracts and moves:
-    - A) Upward, decreasing thoracic volume
-    - B) Downward, increasing thoracic volume
-    - C) Sideways without changing volume
-    - D) Only during exhalation
+7. When you breathe in quietly, the diaphragm contracts and moves:
+    - A) Up, so the chest gets smaller
+    - B) Down, so the chest gets larger
+    - C) Sideways only
+    - D) Only when you breathe out
 
 ---
 
@@ -225,7 +225,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 *Complete each statement with the correct term from the word bank. Each blank is worth 1 point.*
 
-**Word Bank**: *actin, appendicular, axial, capsid, dendrites, endomysium, peptidoglycan, periosteum, sympathetic, troponin*
+**Word Bank**: *acetylcholine, actin, appendicular, axial, capsid, dendrites, peptidoglycan, periosteum, sympathetic, troponin*
 
 1. The tough membrane covering the outer surface of bone is the \_\_\_\_\_\_\_\_\_\_\_\_.
 
@@ -245,7 +245,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 9. A typical virus has a nucleic acid genome surrounded by a protein coat called the \_\_\_\_\_\_\_\_\_\_\_\_.
 
-10. The connective tissue layer that wraps each individual muscle fiber is the \_\_\_\_\_\_\_\_\_\_\_\_.
+10. At the neuromuscular junction, the motor neuron releases \_\_\_\_\_\_\_\_\_\_\_\_ to start muscle contraction.
 
 ---
 

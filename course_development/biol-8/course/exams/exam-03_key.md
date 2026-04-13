@@ -30,19 +30,19 @@
 | 16 | B | The axon carries signals away from the cell body (Practice Test 09 #6). |
 | 17 | B | Myelin insulates and speeds saltatory conduction (Practice Test 09 #7). |
 | 18 | B | Reflexes can integrate in the spinal cord without conscious brain involvement for the initial response (Practice Test 09 #18). |
-| 19 | B | Prokaryotes lack a membrane-bound nucleus (Practice Test 10 #1). |
-| 20 | A | Cocci, bacilli, spirilla are basic shapes (Practice Test 10 #3). |
-| 21 | C | Gram-positive: thick peptidoglycan, no outer membrane (Practice Test 10 #4). |
-| 22 | C | Bacteria reproduce by binary fission (Practice Test 10 #6). |
-| 23 | B | Resistant survivors reproduce — natural selection (Practice Test 10 #10). |
-| 24 | B | Viruses lack independent metabolism and need a host to replicate (Practice Test 10 #13). |
-| 25 | B | Systemic venous return enters the right atrium. |
-| 26 | B | SA node is the primary pacemaker. |
-| 27 | B | Arteries carry blood away from the heart. |
-| 28 | B | “Lub” (S1) = AV valves closing. |
-| 29 | C | Alveoli are the main site of pulmonary gas exchange. |
-| 30 | B | Hemoglobin carries most O₂ in RBCs. |
-| 31 | B | Inhalation: diaphragm contracts downward, thoracic volume increases. |
+| 19 | B | Bacteria have no nucleus surrounded by a membrane; DNA is in the nucleoid (same idea as Practice Test 10 #1). |
+| 20 | A | Cocci, bacilli, and spirilla are the three common shapes (Practice Test 10 #3). |
+| 21 | C | Gram-positive cells retain crystal violet because of a thick cell wall and no outer membrane (Practice Test 10 #4). |
+| 22 | C | Binary fission is the usual bacterial division (Practice Test 10 #6). |
+| 23 | B | Survivors reproduce and pass resistance — natural selection (Practice Test 10 #10). |
+| 24 | B | Viruses need a host to copy themselves and do not carry out metabolism on their own (Practice Test 10 #13). |
+| 25 | B | Blood from the body returns to the **right atrium** first. |
+| 26 | B | The **SA node** sets the basic heart rate. |
+| 27 | B | **Arteries** carry blood away from the heart. |
+| 28 | B | “Lub” (first sound) = **AV valves** closing between atria and ventricles. |
+| 29 | C | Gas exchange happens in the **alveoli**. |
+| 30 | B | Most oxygen is bound to **hemoglobin** in red blood cells. |
+| 31 | B | Inhaling: diaphragm moves **down** and the chest volume **increases**. |
 
 ---
 
@@ -59,7 +59,7 @@
 | 7 | dendrites | Receive incoming signals (Practice Test 09 Part B) |
 | 8 | peptidoglycan | Cell wall chemistry; Gram stain distinction (Practice Test 10 Part B) |
 | 9 | capsid | Protein coat around viral genome (Practice Test 10 Part B) |
-| 10 | endomysium | Innermost connective layer around each fiber (Practice Test 08 Part B) |
+| 10 | acetylcholine | Neurotransmitter released by the motor neuron at the NMJ (Practice Test 08 Part B) |
 
 ---
 
