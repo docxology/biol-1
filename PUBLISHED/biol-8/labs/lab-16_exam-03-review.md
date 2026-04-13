@@ -35,22 +35,22 @@ This session is a **structured review** for **Exam 03** (same coverage as [`../e
 ### Quick drill — write the letter (A–D) for the best answer
 
 **1.** Which is **NOT** a function of the skeletal system?  
-A) Support B) Protection of organs C) Secretion of digestive hormones D) Blood cell production  
+A) Hormone secretion for digestion B) Support C) Protection of internal organs D) Blood cell production  
 
 **2.** Which best describes skeletal + muscular systems working together?  
-A) Bones contract and pull muscles B) Muscles contract and pull on bones at joints; bones act as levers C) Muscles push bones without joints D) Only smooth muscle attaches to bone for voluntary movement  
+A) Bones contract and pull on muscles across joints B) Skeletal muscles contract and pull on bones across joints; bones act as levers C) Muscles push bones directly without using joints D) Only smooth muscle attaches to bones for voluntary movement  
 
 **3.** Blood cell formation (hematopoiesis) occurs mainly in:  
-A) Compact bone only B) Yellow marrow only C) Red bone marrow D) Periosteum  
+A) Compact bone only B) Yellow bone marrow only C) Red bone marrow D) Periosteum  
 
 **4.** The epiphyseal (growth) plate is made of:  
-A) Compact bone B) Spongy bone only C) Cartilage D) Fibrous connective tissue only  
+A) Compact bone B) Spongy bone only C) Fibrous connective tissue only D) Cartilage  
 
 **5.** The axial skeleton includes all **except**:  
-A) Skull B) Vertebral column C) Femur D) Rib cage  
+A) Femur B) Skull C) Vertebral column D) Rib cage  
 
 **6.** A freely movable joint such as the knee is:  
-A) Fibrous B) Cartilaginous C) Synovial D) Sutured  
+A) Fibrous B) Synovial C) Cartilaginous D) Sutured  
 
 <!-- lab:reflection -->
 **Reflect:** Which number was hardest? One sentence: what will you re-read?  
@@ -71,22 +71,22 @@ A) Fibrous B) Cartilaginous C) Synovial D) Sutured
 ### Quick drill — write the letter (A–D)
 
 **1.** A main function of skeletal muscle is:  
-A) Pumping blood like the heart B) Moving the skeleton and producing body heat C) Only lining vessels D) Only pupil size  
+A) Pumping blood (cardiac muscle) B) Lining the walls of blood vessels only C) Moving the skeleton and generating body heat D) Controlling pupil size only  
 
 **2.** Largest → smallest:  
-A) Myofibril → Fiber → Fascicle → Muscle B) Muscle → Fascicle → Fiber → Myofibril C) Fiber → Muscle → Fascicle → Myofibril D) Sarcomere → Muscle → Fascicle → Fiber  
+A) Myofibril → Fiber → Fascicle → Muscle B) Fiber → Muscle → Fascicle → Myofibril C) Sarcomere → Muscle → Fascicle → Fiber D) Muscle → Fascicle → Fiber (cell) → Myofibril  
 
 **3.** The basic contractile unit is the:  
-A) Fascicle B) Myofibril C) Sarcomere D) Motor unit  
+A) Sarcomere B) Fascicle C) Myofibril D) Motor unit  
 
 **4.** Thick filaments are made of:  
 A) Actin B) Myosin C) Troponin D) Tropomyosin  
 
-**5.** During contraction, thin filaments slide past thick filaments and the sarcomere:  
-A) Shortens B) Stays the same C) Only the filaments “melt” D) Stretches longer  
+**5.** During contraction (sliding filament):  
+A) The thick and thin filaments get shorter B) The sarcomere stretches apart C) The thin filaments slide past the thick filaments, shortening the sarcomere D) New filaments are synthesized  
 
 **6.** The neurotransmitter at the neuromuscular junction is:  
-A) Dopamine B) Serotonin C) Acetylcholine D) Epinephrine  
+A) Dopamine B) Serotonin C) Epinephrine D) Acetylcholine (ACh)  
 
 <!-- lab:reflection -->
 **Draw (optional):** In a few labels, sketch a **sarcomere** (Z-line, thick vs thin region).  
@@ -109,22 +109,22 @@ A) Dopamine B) Serotonin C) Acetylcholine D) Epinephrine
 ### Quick drill — write the letter (A–D)
 
 **1.** The CNS consists of:  
-A) All nerves outside the brain B) Brain and spinal cord C) Sense organs only D) Autonomic nerves only  
+A) The brain and spinal cord B) All nerves outside the brain C) The sensory organs only D) The autonomic nerves only  
 
 **2.** The PNS includes:  
-A) Brain and spinal cord B) Nerves and ganglia outside the brain and spinal cord C) Motor nerves only D) Spinal cord only  
+A) The brain and spinal cord B) All nerves and ganglia outside the brain and spinal cord C) Only motor nerves D) Only the spinal cord  
 
 **3.** Voluntary control of skeletal muscle is the:  
-A) Autonomic system B) Parasympathetic C) Somatic nervous system D) Sympathetic  
+A) Autonomic nervous system B) Parasympathetic division C) Somatic nervous system D) Sympathetic division  
 
 **4.** Structure that carries signals **away** from the cell body:  
-A) Dendrite B) Axon C) Soma D) Myelin sheath  
+A) Dendrite B) Soma C) Myelin sheath D) Axon  
 
 **5.** Myelin mainly:  
-A) Makes neurotransmitters B) Insulates the axon and speeds signals C) Stores calcium in the soma D) Only connects to glands  
+A) It insulates the axon and speeds up signal transmission B) It produces neurotransmitters C) It stores calcium ions in the soma D) It connects neurons to glands only  
 
 **6.** A reflex can happen before you “think” because:  
-A) No stimulus is needed B) Integration can occur in the spinal cord for the initial response C) Only the cerebellum is used D) Reflexes are always voluntary  
+A) It does not require a stimulus B) It can be processed at the spinal cord level so the initial response does not require the brain C) It only involves the cerebellum D) It is always voluntary  
 
 <!-- lab:reflection -->
 **One sentence:** Sympathetic vs parasympathetic in plain words.  
@@ -146,22 +146,22 @@ A) No stimulus is needed B) Integration can occur in the spinal cord for the i
 ### Quick drill — write the letter (A–D)
 
 **1.** A bacterial cell differs from a plant or animal cell mainly because it:  
-A) Has no DNA B) Has no membrane around its nucleus C) Has no cytoplasm D) Is always larger than a human cell  
+A) Has no DNA B) Has no cytoplasm C) Has no membrane around its nucleus (its DNA is in the nucleoid region) D) Is always larger than a human cell  
 
 **2.** Three common bacterial shapes:  
-A) Cocci, bacilli, spirilla B) Round, flat, square C) Positive, negative, neutral D) Aerobic, anaerobic, mixed  
+A) Round, flat, and square B) Gram-positive, Gram-negative, and neutral C) Aerobic only, anaerobic only, and mixed D) Cocci (spheres), bacilli (rods), and spirilla (spirals)  
 
 **3.** Gram-positive bacteria usually stain purple because they:  
-A) Have no cell wall B) Have a thin wall plus outer membrane C) Have a thick cell wall and no outer membrane D) Are always harmless  
+A) Have a thick cell wall and no outer membrane B) Have no cell wall C) Have only a thin wall plus an outer membrane (typical of many Gram-negative bacteria) D) Are always harmless  
 
 **4.** One bacterium becomes two mostly by:  
-A) Mitosis B) Meiosis C) Binary fission D) Fertilization  
+A) Mitosis B) Binary fission C) Meiosis D) Fertilization  
 
 **5.** After antibiotic use, resistant types can increase because:  
-A) Drugs train bacteria on purpose B) Survivors reproduce and pass traits C) Immune system stops D) All die equally  
+A) The drug trains bacteria to "try harder" B) The immune system stops working C) Bacteria that survive can reproduce and pass resistance to the next generation D) All bacteria die at the same rate  
 
 **6.** Many biologists say a virus is not a living cell because it:  
-A) Is small B) Cannot make its own energy or copy itself without a host C) Has no genetic material D) Only lives in soil  
+A) Is too small to see B) Never has genetic material C) Only lives in soil D) Cannot make its own energy or copy itself without infecting a host cell  
 
 <!-- lab:reflection -->
 **In 2 sentences:** Why is incomplete antibiotic use risky for resistance?  
@@ -184,25 +184,25 @@ A) Is small B) Cannot make its own energy or copy itself without a host C) H
 ### Quick drill — write the letter (A–D)
 
 **1.** Blood from the body (low O₂) enters the heart first in the:  
-A) Left atrium B) Right atrium C) Left ventricle D) Aorta  
+A) Right atrium B) Left atrium C) Left ventricle D) Aorta  
 
 **2.** Which statement about **O₂** and **CO₂** in the lungs is **true**?  
-A) Oxygen moves from the blood into the alveolar air B) Carbon dioxide moves from the blood into the alveolar air so you can exhale it C) You take in CO₂ from room air to feed the blood D) O₂ and CO₂ never cross between air and blood  
+A) Oxygen moves from the blood into the air in the alveoli B) Carbon dioxide moves from the blood into the alveolar air so you can exhale it C) You breathe in carbon dioxide from the room air to feed the blood D) O₂ and CO₂ never cross between the air and the blood  
 
 **3.** Vessels that carry blood **away from** the heart:  
-A) Veins B) Arteries C) Capillaries D) Lymph vessels  
+A) Veins B) Capillaries C) Arteries D) Lymph vessels  
 
 **4.** The “lub” sound is made when the valves **between the upper and lower heart chambers** close. Those valves are the:  
-A) Semilunar valves B) AV (atrioventricular) valves C) Leg vein valves D) Lung-only valves  
+A) Semilunar valves (at the exits of the ventricles to the aorta and pulmonary artery) B) Valves in the leg veins C) Lung valves only D) AV (atrioventricular) valves  
 
 **5.** Oxygen moves into the blood mainly in the:  
-A) Trachea B) Bronchi C) Alveoli D) Larynx  
+A) Alveoli B) Trachea C) Bronchi D) Larynx  
 
 **6.** Most oxygen in the blood is:  
-A) Dissolved in plasma B) Bound to hemoglobin in red blood cells C) In white blood cells D) On platelets  
+A) Dissolved in the plasma B) Carried by hemoglobin in red blood cells C) Stored in white blood cells D) Attached to platelets  
 
 **7.** When you breathe in quietly, the diaphragm contracts and moves:  
-A) Up (chest smaller) B) Down (chest larger) C) Sideways only D) Only on exhale  
+A) Up, so the chest gets smaller B) Sideways only C) Down, so the chest gets larger D) Only when you breathe out  
 
 <!-- lab:reflection -->
 **Trace:** Right atrium → (list the next steps in order to left side of heart).  

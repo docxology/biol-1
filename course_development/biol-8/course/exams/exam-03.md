@@ -25,10 +25,10 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 11: Skeletal System
 
-1. Which of the following is NOT a function of the skeletal system?
-    - A) Support
-    - B) Protection of internal organs
-    - C) Hormone secretion for digestion
+1. Which of the following is **NOT** a function of the skeletal system?
+    - A) Hormone secretion for digestion
+    - B) Support
+    - C) Protection of internal organs
     - D) Blood cell production
 
 2. Which statement best describes how the skeletal and muscular systems work together to produce body movement?
@@ -46,39 +46,39 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 4. The epiphyseal (growth) plate is made of:
     - A) Compact bone
     - B) Spongy bone only
-    - C) Cartilage
-    - D) Fibrous connective tissue only
+    - C) Fibrous connective tissue only
+    - D) Cartilage
 
 5. The axial skeleton includes all of the following EXCEPT:
-    - A) Skull
-    - B) Vertebral column
-    - C) Femur
+    - A) Femur
+    - B) Skull
+    - C) Vertebral column
     - D) Rib cage
 
 6. A freely movable joint (like the knee or shoulder) is classified as:
     - A) Fibrous
-    - B) Cartilaginous
-    - C) Synovial
+    - B) Synovial
+    - C) Cartilaginous
     - D) Sutured
 
 ### Module 12: Muscular System
 
 1. Which of the following is a function of skeletal muscle?
     - A) Pumping blood (cardiac muscle)
-    - B) Moving the skeleton and generating body heat
-    - C) Lining the walls of blood vessels only
+    - B) Lining the walls of blood vessels only
+    - C) Moving the skeleton and generating body heat
     - D) Controlling pupil size only
 
 2. The correct order from largest to smallest in skeletal muscle organization is:
     - A) Myofibril → Fiber → Fascicle → Muscle
-    - B) Muscle → Fascicle → Fiber (cell) → Myofibril
-    - C) Fiber → Muscle → Fascicle → Myofibril
-    - D) Sarcomere → Muscle → Fascicle → Fiber
+    - B) Fiber → Muscle → Fascicle → Myofibril
+    - C) Sarcomere → Muscle → Fascicle → Fiber
+    - D) Muscle → Fascicle → Fiber (cell) → Myofibril
 
 3. The basic contractile unit of a muscle fiber is the:
-    - A) Fascicle
-    - B) Myofibril
-    - C) Sarcomere
+    - A) Sarcomere
+    - B) Fascicle
+    - C) Myofibril
     - D) Motor unit
 
 4. The thick filaments in a sarcomere are made of:
@@ -89,21 +89,21 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 5. According to the sliding filament theory, during contraction:
     - A) The thick and thin filaments get shorter
-    - B) The thin filaments slide past the thick filaments, shortening the sarcomere
-    - C) The sarcomere stretches apart
+    - B) The sarcomere stretches apart
+    - C) The thin filaments slide past the thick filaments, shortening the sarcomere
     - D) New filaments are synthesized
 
 6. The neurotransmitter released at the neuromuscular junction is:
     - A) Dopamine
     - B) Serotonin
-    - C) Acetylcholine (ACh)
-    - D) Epinephrine
+    - C) Epinephrine
+    - D) Acetylcholine (ACh)
 
 ### Module 13: Nervous System
 
 1. The central nervous system (CNS) consists of:
-    - A) All nerves outside the brain
-    - B) The brain and spinal cord
+    - A) The brain and spinal cord
+    - B) All nerves outside the brain
     - C) The sensory organs only
     - D) The autonomic nerves only
 
@@ -121,13 +121,13 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 4. The long extension of a neuron that carries signals away from the cell body is the:
     - A) Dendrite
-    - B) Axon
-    - C) Soma
-    - D) Myelin sheath
+    - B) Soma
+    - C) Myelin sheath
+    - D) Axon
 
 5. What is the function of myelin?
-    - A) It produces neurotransmitters
-    - B) It insulates the axon and speeds up signal transmission
+    - A) It insulates the axon and speeds up signal transmission
+    - B) It produces neurotransmitters
     - C) It stores calcium ions in the soma
     - D) It connects neurons to glands only
 
@@ -141,45 +141,45 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 1. A typical bacterial cell is different from a plant or animal cell mainly because it:
     - A) Has no DNA
-    - B) Has no membrane around its nucleus (its DNA is in the nucleoid region)
-    - C) Has no cytoplasm
+    - B) Has no cytoplasm
+    - C) Has no membrane around its nucleus (its DNA is in the nucleoid region)
     - D) Is always larger than a human cell
 
 2. The three common shapes of bacteria are:
-    - A) Cocci (spheres), bacilli (rods), and spirilla (spirals)
-    - B) Round, flat, and square
-    - C) Gram-positive, Gram-negative, and neutral
-    - D) Aerobic only, anaerobic only, and mixed
+    - A) Round, flat, and square
+    - B) Gram-positive, Gram-negative, and neutral
+    - C) Aerobic only, anaerobic only, and mixed
+    - D) Cocci (spheres), bacilli (rods), and spirilla (spirals)
 
 3. In the Gram stain, Gram-positive bacteria usually look purple because they:
-    - A) Have no cell wall
-    - B) Have only a thin wall plus an outer membrane (typical of many Gram-negative bacteria)
-    - C) Have a thick cell wall and no outer membrane
+    - A) Have a thick cell wall and no outer membrane
+    - B) Have no cell wall
+    - C) Have only a thin wall plus an outer membrane (typical of many Gram-negative bacteria)
     - D) Are always harmless
 
 4. One bacterium splits into two mostly by:
     - A) Mitosis
-    - B) Meiosis
-    - C) Binary fission
+    - B) Binary fission
+    - C) Meiosis
     - D) Fertilization
 
 5. After people use antibiotics, resistant bacteria can become more common because:
     - A) The drug trains bacteria to "try harder"
-    - B) Bacteria that survive can reproduce and pass resistance to the next generation
-    - C) The immune system stops working
+    - B) The immune system stops working
+    - C) Bacteria that survive can reproduce and pass resistance to the next generation
     - D) All bacteria die at the same rate
 
 6. Many biologists say a virus is not a living cell because a virus:
     - A) Is too small to see
-    - B) Cannot make its own energy or copy itself without infecting a host cell
-    - C) Never has genetic material
-    - D) Only lives in soil
+    - B) Never has genetic material
+    - C) Only lives in soil
+    - D) Cannot make its own energy or copy itself without infecting a host cell
 
 ### Module 15: Cardiopulmonary System
 
 1. Blood coming back from the body (low in oxygen) enters the heart first in the:
-    - A) Left atrium
-    - B) Right atrium
+    - A) Right atrium
+    - B) Left atrium
     - C) Left ventricle
     - D) Aorta
 
@@ -191,20 +191,20 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 3. Which type of vessel carries blood **away from** the heart?
     - A) Veins
-    - B) Arteries
-    - C) Capillaries
+    - B) Capillaries
+    - C) Arteries
     - D) Lymph vessels
 
 4. The first heart sound ("lub") is made when the valves **between the upper and lower heart chambers** close. Those valves are the:
-    - A) Semilunar valves (at the exits to the big arteries)
-    - B) AV (atrioventricular) valves
-    - C) Valves in the leg veins
-    - D) Lung valves only
+    - A) Semilunar valves (at the exits of the ventricles to the aorta and pulmonary artery)
+    - B) Valves in the leg veins
+    - C) Lung valves only
+    - D) AV (atrioventricular) valves
 
 5. In the lungs, oxygen moves into the blood mainly in the tiny air sacs called the:
-    - A) Trachea
-    - B) Bronchi
-    - C) Alveoli
+    - A) Alveoli
+    - B) Trachea
+    - C) Bronchi
     - D) Larynx
 
 6. Most of the oxygen in your blood is:
@@ -215,8 +215,8 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 7. When you breathe in quietly, the diaphragm contracts and moves:
     - A) Up, so the chest gets smaller
-    - B) Down, so the chest gets larger
-    - C) Sideways only
+    - B) Sideways only
+    - C) Down, so the chest gets larger
     - D) Only when you breathe out
 
 ---
