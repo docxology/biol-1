@@ -20,13 +20,13 @@ Technical documentation for the BIOL-1 laboratory protocol directory. Labs are M
 | `lab-10_epigenetics.md` | Epigenetics | ✅ Complete |
 | `lab-11_genomics-biotechnology.md` | Genomics & Biotechnology | ✅ Complete |
 | `lab-12_exam-02-review.md` | Exam 02 Review | ✅ Complete |
-| `lab-13_gene-regulation.md` | Gene Regulation | 📝 Stub |
-| `lab-14_biotechnology-genomics.md` | Biotechnology & Genomics | 📝 Stub |
-| `lab-15_darwin-evolution.md` | Darwin & Evolution | 📝 Stub |
-| `lab-16_microevolution.md` | Microevolution | 📝 Stub |
-| `lab-17_speciation-macroevolution.md` | Speciation & Macroevolution | 📝 Stub |
+| `lab-13_darwin-evolution.md` | Darwin & Evolution (Module 12) | ✅ Complete |
+| `lab-14_how-populations-evolve.md` | How Populations Evolve (Module 13) | ✅ Complete |
+| `lab-15_macroevolution.md` | Macroevolution (Module 14) | ✅ Complete |
+| `lab-16_population-systems-ecology.md` | Population & Systems Ecology (Module 15) | ✅ Complete |
+| `lab-17_history-of-life.md` | History of Life (Module 16) | ✅ Complete |
 
-**Status:** 12 complete, 5 stubs
+**Status:** 16 complete, 1 stub (`lab-04_liquid-chemistry.md`)
 
 ## Lab Naming Convention
 

@@ -11,14 +11,14 @@ course/
 ├── README.md                    # Course materials overview (student-facing)
 ├── AGENTS.md                    # This technical documentation
 │
-├── exams/                       # Examinations (8 files)
-│   ├── exam-01.md              # Modules 01-07 (100 pts)
+├── exams/                       # Unit exams + final (as authored)
+│   ├── exam-01.md              # Modules 01-06 (50 pts)
 │   ├── exam-01_key.md          # Answer key with explanations
-│   ├── exam-02.md              # Modules 08-11 (100 pts)
+│   ├── exam-02.md              # Modules 07-10 (50 pts)
 │   ├── exam-02_key.md
-│   ├── exam-03.md              # Modules 12-15 (100 pts)
+│   ├── exam-03.md              # Modules 11-15 (50 pts)
 │   ├── exam-03_key.md
-│   ├── final-exam.md           # Comprehensive (150 pts)
+│   ├── final-exam.md           # Comprehensive (when added)
 │   └── final-exam_key.md
 │
 ├── quizzes/                     # Module quizzes (30 files)
@@ -28,7 +28,7 @@ course/
 │
 ├── labs/                        # Lab protocols (Markdown + dashboards/)
 │   ├── lab-01_measurement-methods.md
-│   └── ... (see labs/README.md; e.g. lab-13_microbiology.md with Module 13)
+│   └── ... (see labs/README.md; e.g. lab-13_nervous-system.md, lab-14_microbiology.md)
 │
 └── module-XX-topic-name/        # 15 module directories
     ├── keys-to-success.md      # Learning objectives
@@ -54,8 +54,8 @@ Modules follow the pattern: `module-XX-topic-name/`
 | 10 | `module-10-tissues` |
 | 11 | `module-11-skeletal-system` |
 | 12 | `module-12-muscular-system` |
-| 13 | `module-13-pathogens` |
-| 14 | `module-14-cardiovascular-system` |
+| 13 | `module-13-nervous-system` |
+| 14 | `module-14-microbiology` |
 | 15 | `module-15-cardiopulmonary-system` |
 | 16 | `module-16-ecology` |
 | 17 | `module-17-evolution` |
@@ -105,20 +105,16 @@ Answer keys include:
 
 ### Exam Format
 
-Exams follow consistent structure:
+Unit exams (Exam 01–03) use **50 points** total. Typical layout:
 
 | Section | Points | Format |
 |---------|--------|--------|
-| Part A: Multiple Choice | 50 pts | 25 questions × 2 pts |
-| Part B: Short Answer | 30 pts | 6 questions × 5 pts |
-| Part C: Essay | 20 pts | 1 of 2 options |
-| **Total** | **100 pts** | |
+| Part A: Multiple Choice | ~30–31 pts | 1 pt each |
+| Part B: Fill in the Blank | 10–11 pts | Word bank; 1 pt per blank |
+| Part C: Free Response | 9 pts | Choose **3 of 5** short responses; 3 pts each |
+| **Total** | **50 pts** | |
 
-Final exam is scaled to 150 points:
-
-- Part A: 75 pts (50 questions × 1.5 pts)
-- Part B: 45 pts (9 questions × 5 pts)
-- Part C: 30 pts (2 essays × 15 pts each)
+A comprehensive final exam may use a different weighting when added (`final-exam.md`).
 
 ### Lab Protocol Format
 
@@ -136,8 +132,8 @@ Lab stubs include sections for:
 
 | Unit | Modules | Exam |
 |------|---------|------|
-| Unit 1 | 01-07 | Exam 01 (Week 5) |
-| Unit 2 | 08-11 | Exam 02 (Week 8) |
+| Unit 1 | 01-06 | Exam 01 (Week 5) |
+| Unit 2 | 07-10 | Exam 02 (Week 8) |
 | Unit 3 | 11-15 | Exam 03 (Week 13) |
 | Unit 4 | 16-17 | Final Exam (Finals Week) |
 | All | 01-17 | Final Exam (Finals Week) |
@@ -169,7 +165,7 @@ The `software/` directory contains batch processing utilities for:
 - [ ] Each module has `keys-to-success.md`, `questions.md`, `resources/`
 - [ ] 4 exams with answer keys (8 files)
 - [ ] 17 quizzes with answer keys (34 files)
-- [ ] 17 lab protocols (`labs/`; e.g. `lab-13_microbiology.md` for Module 13)
+- [ ] 17 lab protocols (`labs/`; e.g. `lab-13_nervous-system.md`, `lab-14_microbiology.md`)
 
 ### Coherence
 
@@ -193,4 +189,4 @@ The `software/` directory contains batch processing utilities for:
 
 ---
 
-*Last updated: January 2026*
+*Last updated: April 2026*
