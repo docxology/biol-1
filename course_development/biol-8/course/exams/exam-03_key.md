@@ -2,7 +2,7 @@
 
 ## Modules 11-15: Skeletal, Muscular, Nervous, Microbiology & Cardiopulmonary Systems
 
-*Multiple-choice items in Modules 11–14 match Practice Tests 07–10 in tested concepts and rationales; **answer letters (A–D) were reordered** on this exam for fairness, so a given letter here may not match the same letter on a practice test. Module 11 item 4 matches Practice Test 07 #12 (epiphyseal plate = cartilage).*
+*Multiple-choice items in Modules 11–15 match Practice Tests 07–11 in tested concepts and rationales; **answer letters (A–D) were reordered** on this exam for fairness, so a given letter here may not match the same letter on a practice test. Module 11 item 4 matches Practice Test 07 #12 (epiphyseal plate = cartilage).*
 
 ---
 
@@ -36,13 +36,13 @@
 | 22 | B | Binary fission is the usual bacterial division (Practice Test 10 #6). |
 | 23 | C | Survivors reproduce and pass resistance — natural selection (Practice Test 10 #10). |
 | 24 | D | Viruses need a host to copy themselves and do not carry out metabolism on their own (Practice Test 10 #13). |
-| 25 | A | Blood from the body returns to the **right atrium** first. |
-| 26 | B | In the lungs, CO₂ diffuses from blood into alveolar air to be exhaled; O₂ moves from air into blood (wrong options claim O₂ leaves blood into air or that you “feed” on inhaled CO₂). |
-| 27 | C | **Arteries** carry blood away from the heart. |
-| 28 | D | “Lub” = **AV (atrioventricular) valves** closing between atria and ventricles (not semilunar). |
-| 29 | A | Gas exchange happens in the **alveoli**. |
-| 30 | B | Most oxygen is bound to **hemoglobin** in red blood cells. |
-| 31 | C | Inhaling: diaphragm moves **down** and the chest volume **increases**. |
+| 25 | A | Blood from the body returns to the **right atrium** first (Practice Test 11 #1). |
+| 26 | B | In the lungs, CO₂ diffuses from blood into alveolar air to be exhaled; O₂ moves from air into blood (wrong options claim O₂ leaves blood into air or that you “feed” on inhaled CO₂) (Practice Test 11 #14). |
+| 27 | C | **Arteries** carry blood away from the heart (Practice Test 11 #5). |
+| 28 | D | “Lub” = **AV (atrioventricular) valves** closing between atria and ventricles (not semilunar) (Practice Test 11 #3). |
+| 29 | A | Gas exchange happens in the **alveoli** (Practice Test 11 #13). |
+| 30 | B | Most oxygen is bound to **hemoglobin** in red blood cells (Practice Test 11 #15). |
+| 31 | C | Inhaling: diaphragm moves **down** and the chest volume **increases** (Practice Test 11 #10). |
 
 ---
 
@@ -91,7 +91,7 @@
 - **Selection**: antibiotics kill susceptible cells; resistant survive (1 pt)
 - **Reproduction**: survivors pass resistance to offspring (1 pt)
 
-**5. Cardiopulmonary integration**
+**5. Cardiopulmonary integration (Practice Test 11 Part C #24)**
 
 - Trace: right atrium → right ventricle → pulmonary arteries → lung capillaries (alveoli) → pulmonary veins → left atrium → left ventricle (2 pts if sequence correct; partial credit for minor gaps)
 - Exercise link: e.g., higher cardiac output with increased ventilation to supply O₂ and remove CO₂ (1 pt)

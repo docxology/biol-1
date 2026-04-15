@@ -30,11 +30,11 @@
 | 12 | Wed | 4/8 | **Exam 02** (Modules 7-11) | Exam |
 | 13 | Mon | 4/13 | Module 12: Darwin and Evolution (Ch 15); Lab 13 | Start of new unit |
 | 13 | Wed | 4/15 | Module 13: How Populations Evolve (Ch 16); Lab 14 | |
-| 14 | Mon | 4/20 | Module 14: Macroevolution (Ch 17); Lab 15 | |
-| 14 | Wed | 4/22 | Module 15: Population and Systems Ecology (Ch 44 & 45); Lab 16 | |
-| 15 | Mon | 4/27 | Module 16: History of Life (Ch 18); Lab 17 | |
-| 15 | Wed | 4/29 | Exam 03 Review (Modules 12-16); Lab 18 | |
-| 16 | Mon | 5/4 | **Exam 03** (Modules 12-16) | Exam |
+| 14 | Mon | 4/20 | No Class | |
+| 14 | Wed | 4/22 | Module 14: Macroevolution (Ch 17); Lab 15 | |
+| 15 | Mon | 4/27 | Module 15: Population and Systems Ecology (Ch 44 & 45); Lab 16 | |
+| 15 | Wed | 4/29 | Exam 03 Review (Modules 12-15); Lab 18 | |
+| 16 | Mon | 5/4 | **Exam 03** (Modules 12-15) | Exam |
 | 16 | Wed | 5/6 | No Class | First Wednesday - Programs Canceled |
 | 17 | Mon | 5/11 | Recap, Review, and Extra credit opportunity | |
 | 17 | Wed | 5/13 | **Final Exam (Exam 04)** | Broad final exam |
@@ -51,5 +51,5 @@
 
 - **Exam 01**: Week 6 (February 25, 2026) - Modules 1-6
 - **Exam 02**: Week 12 (April 8, 2026) - Modules 7-11
-- **Exam 03**: Week 16 (May 4, 2026) - Modules 12-16
+- **Exam 03**: Week 16 (May 4, 2026) - Modules 12-15
 - **Exam 04**: Week 17 (May 13, 2026) - Final Exam (Comprehensive)
