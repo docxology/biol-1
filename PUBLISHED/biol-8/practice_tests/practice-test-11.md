@@ -151,7 +151,7 @@ D) Lower cardiac output
 
 <br><br><br>
 
-**25.** Briefly describe the roles of the **SA node**, **AV node**, and **Purkinje fibers** in the heart's electrical conduction system.
+**25.** **Name** the heart chamber that pumps **oxygen-rich** blood to the **body** (systemic circulation), and **name** the large **artery** that receives blood from that chamber.
 
 <br><br><br>
 

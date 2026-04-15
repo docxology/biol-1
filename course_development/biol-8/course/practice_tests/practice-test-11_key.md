@@ -60,10 +60,7 @@
    - Right atrium → tricuspid valve → **right ventricle** → pulmonary semilunar valve → **pulmonary trunk/arteries** → lung **capillaries** (around alveoli) → **pulmonary veins** → **left atrium** → mitral valve → **left ventricle** (and often mention aorta as next step is acceptable if the prompt’s “left side of the heart” is clearly satisfied).
    - **Exercise integration (any one valid):** e.g., increased **heart rate** and **stroke volume** raise cardiac output; **faster, deeper breathing** increases alveolar ventilation to match higher O₂ demand and CO₂ production; **more blood flow** to working muscles.
 
-**25.** **Conduction roles:**
-   - **SA node:** Initiates the impulse (“pacemaker”), sets basic heart rate.
-   - **AV node:** Brief delay at the atrioventricular junction; allows atria to finish emptying before ventricles contract; conducts the signal to the ventricles.
-   - **Purkinje fibers:** Rapid distribution of the impulse through the ventricular myocardium for coordinated ventricular contraction.
+**25.** **Left ventricle** pumps oxygen-rich blood into the **systemic** circulation; the **aorta** is the large artery that receives blood from the left ventricle (accept wording that clearly identifies left ventricle + aorta).
 
 **26.** **Blood pressure numbers:**
    - **Systolic:** Arterial pressure at **peak** ventricular **contraction** (ejection).
