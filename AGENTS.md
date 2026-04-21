@@ -167,6 +167,8 @@ See `software/docs/ORCHESTRATION.md` for the detailed flow.
 - Exam-review labs and similar prep should rephrase and reorder relevant ideas without claiming how closely they match the real exam.
 - Use one continuous ordered list (1–N) across `##` sections in `questions.md` and comparable worksheets unless a folder spec defines per-section numbering.
 - For BIOL-1 evolution and ecology labs, favor interactive, hypothesis-driven activities over textbook recap; section titles should be plain and descriptive.
+- For simulation- or game-based labs, state numeric parameters (prices, seasons, reproduction rules) in the source so published PDFs are self-explanatory.
+- For hands-on or tally-style data, use compact tables (for example trials as columns with per-level averages) when a long per-cup or per-replicate list mostly adds length.
 - When the user attaches an implementation plan, do not edit the plan file; work from existing todos and status updates only.
 
 ## Learned Workspace Facts

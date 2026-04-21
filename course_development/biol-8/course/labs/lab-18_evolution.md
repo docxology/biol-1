@@ -24,7 +24,7 @@ After each season, fish that were **not** caught can **reproduce** using a fixed
 By the end of this lab, you will be able to:
 
 - **Explain** the tragedy of the commons in your own words and relate it to a **shared** fish pool your group managed.
-- **Describe** how **rotating** who fishes each season and **rising prices** can change incentives from one round to the next.
+- **Describe** how **rotating** who fishes each season and **rising point values** (each season pays more per fish) can change incentives from one round to the next.
 - **Apply** the reproduction rule to update population sizes **per species** after a season.
 - **Connect** the simulation to **game theory** terms where appropriate: strategy, payoff, cooperation vs. short-term gain, and effects of **repeated** interaction across seasons.
 - **Compare** the **four species** by value: gold vs. silver and large vs. small.
@@ -54,7 +54,7 @@ Relative value (highest to lowest in this model):
 
 **Gold** types are worth more than **silver** types. **Large** types are worth more than **small** types, within the same “metal” group.
 
-**Prices and seasons:** Earnings are in **class points** per fish, using the **fixed schedule in the Data section** (Table: price per fish) unless your instructor posts different numbers. **Every** species earns **more points** in **season 2** than in **season 1**, and more again in **season 3**—so the pull to overharvest can grow each round if your group does not protect the stock.
+**Prices and seasons:** Earnings are in **class points** per fish, using the **fixed schedule** in the **Data** section below (**Table 2**), unless your instructor posts a different table. **Every** species earns **more points** in **season 2** than in **season 1**, and more again in **season 3**—so the pull to overharvest can grow each round if your group does not protect the stock.
 
 ### Reproduction rule (after each season, before the next)
 
@@ -96,7 +96,7 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 1. The **fisher** for that season “catches” by **taking** units from the pool as allowed by the rules your instructor gives (e.g. **maximum** number of fish, or a **time** limit, or a **fixed** haul). Record **only** the **number caught per species** in **Table 1** in the **Catch** row for that season.
 2. **After** the catch, compute **left** in the pool: **Start − catch** (per species) for that season. Enter under **Left after catch.**
 3. **Reproduction:** For **each** species, compute **add** = (**Left after catch**) / 2, **rounded down** to a whole number. New count before the next season = **Left after catch** + **add**. Enter under **Repro add** and **End (after repro).** The **End** row is the **Start** for the next season.
-4. **Earnings for this season:** For each species, **(catch) × (price for that species in this season)** from **Table 2**. Add the four products to get **group points** for the season. Do the same for seasons 2 and 3 using the **columns** for that season in the same table.
+4. **Earnings for this season:** For each species, **(catch) × (points for that species in this season)** from the **Table 2** price grid. Add the four products to get **group points** for the season. Do the same for seasons 2 and 3 using the **points columns** for that season in the same table.
 5. The **next** group member **fishes** the following season, starting from the new **Start** row.
 
 ### After season 3
@@ -116,79 +116,130 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 
 ### Group roster (fill in before Season 1)
 
-<!-- lab:data-table rows=4 title="Group roster" -->
-| Role | Name |
-|------|------|
-| Fisher — Season 1 | {fill:text} |
-| Fisher — Season 2 | {fill:text} |
-| Fisher — Season 3 | {fill:text} |
-| Other group members (if any) | {fill:text} |
-<!-- /lab:data-table -->
+<h3>Group roster</h3>
+<table class="lab-table">
+<thead>
+<tr><th scope="col">Role</th><th scope="col">Name</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Fisher — Season 1</th><td>{fill:text}</td></tr>
+<tr><th scope="row">Fisher — Season 2</th><td>{fill:text}</td></tr>
+<tr><th scope="row">Fisher — Season 3</th><td>{fill:text}</td></tr>
+<tr><th scope="row">Other group members (if any)</th><td>{fill:text}</td></tr>
+</tbody>
+</table>
 
 ### Table 1 — Population and catch (all three seasons)
 
 **Starting populations (from instructor)** go in the **Start — Season 1** row below.
 
-<!-- lab:data-table rows=5 title="Table 1 — Season 1 population and catch" -->
-| | Large gold (LG) | Small gold (SG) | Large silver (LS) | Small silver (SS) |
-|--|-----------------|-----------------|--------------------|--------------------|
-| **Start — Season 1** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Catch — Season 1** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Left after catch — S1** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Repro add — S1** (left / 2, round down) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **End after repro — S1** (= left + add) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+<h3>Table 1 — Season 1</h3>
+<table class="lab-table">
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col">Large gold (LG)</th>
+<th scope="col">Small gold (SG)</th>
+<th scope="col">Large silver (LS)</th>
+<th scope="col">Small silver (SS)</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Start — Season 1</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Catch — Season 1</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Left after catch — S1</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Repro add — S1 (left / 2, round down)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">End after repro — S1 (= left + add)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+</tbody>
+</table>
 
 **Season 2** — *Fisher (name):* {fill:text}
 
-<!-- lab:data-table rows=5 title="Table 1 (continued) — Season 2" -->
-| | LG | SG | LS | SS |
-|--|----|----|----|----|
-| **Start** (= end S1) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Catch** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Left after catch** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Repro add** (left / 2, round down) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **End after repro** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+<h3>Table 1 — Season 2</h3>
+<table class="lab-table">
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col">LG</th>
+<th scope="col">SG</th>
+<th scope="col">LS</th>
+<th scope="col">SS</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Start (= end S1)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Left after catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Repro add (left / 2, round down)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">End after repro</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+</tbody>
+</table>
 
 **Season 3** — *Fisher (name):* {fill:text}
 
-<!-- lab:data-table rows=5 title="Table 1 (continued) — Season 3" -->
-| | LG | SG | LS | SS |
-|--|----|----|----|----|
-| **Start** (= end S2) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Catch** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Left after catch** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **Repro add** (left / 2, round down) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| **End after repro** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+<h3>Table 1 — Season 3</h3>
+<table class="lab-table">
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col">LG</th>
+<th scope="col">SG</th>
+<th scope="col">LS</th>
+<th scope="col">SS</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Start (= end S2)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Left after catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Repro add (left / 2, round down)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">End after repro</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+</tbody>
+</table>
 
 ### Table 2 — Price schedule (class default) and earnings
 
 **Points per fish caught** — use these values for **earnings** unless your instructor replaces them. **Gold** rows earn more than **silver**; **large** more than **small**; each **season** pays more per fish than the last.
 
-| Species | Points — Season 1 | Points — Season 2 | Points — Season 3 |
-|---------|-------------------|-------------------|-------------------|
-| **LG** (large gold) | 8 | 12 | 18 |
-| **SG** (small gold) | 4 | 6 | 9 |
-| **LS** (large silver) | 2 | 3 | 5 |
-| **SS** (small silver) | 1 | 2 | 3 |
+<table class="lab-table">
+<thead>
+<tr>
+<th scope="col">Species</th>
+<th scope="col">Points — Season 1</th>
+<th scope="col">Points — Season 2</th>
+<th scope="col">Points — Season 3</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row"><strong>LG</strong> (large gold)</th><td>8</td><td>12</td><td>18</td></tr>
+<tr><th scope="row"><strong>SG</strong> (small gold)</th><td>4</td><td>6</td><td>9</td></tr>
+<tr><th scope="row"><strong>LS</strong> (large silver)</th><td>2</td><td>3</td><td>5</td></tr>
+<tr><th scope="row"><strong>SS</strong> (small silver)</th><td>1</td><td>2</td><td>3</td></tr>
+</tbody>
+</table>
 
 **Earnings** for a season = **sum** over the four species of **(number caught) × (points for that species in that season).**
 
 <!-- lab:reflection -->
-**Work space (one season, optional check):** Pick **one** season and write **(catch × price)** for each species, then the **sum** (should match the row you enter below).  
+**Work space (one season, optional check):** Pick **one** season and write **(catch × points)** for each species, then the **sum** (should match the row you enter in the Earnings table below).  
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
 
-<!-- lab:data-table rows=4 title="Table 2 — Earnings by season" -->
-| Season | Earnings (show work or subtotal) |
-|--------|------------------------------------|
-| 1 | {fill:text} |
-| 2 | {fill:text} |
-| 3 | {fill:text} |
-| **Total (all seasons)** | {fill:text} |
-<!-- /lab:data-table -->
+<h3>Table 2 — Earnings by season (points)</h3>
+<table class="lab-table">
+<thead>
+<tr>
+<th scope="col">Season</th>
+<th scope="col">Group earnings (show work or subtotal)</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">1</th><td>{fill:text}</td></tr>
+<tr><th scope="row">2</th><td>{fill:text}</td></tr>
+<tr><th scope="row">3</th><td>{fill:text}</td></tr>
+<tr><th scope="row">Total (all seasons)</th><td>{fill:text}</td></tr>
+</tbody>
+</table>
 
 ---
 
