@@ -22,7 +22,7 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 | [Lab 12](lab-12_exam-02-review.md) | Exam 02 Review | ✅ Complete | Review |
 | [Lab 13](lab-13_darwin-evolution.md) | Darwin & Evolution | 📝 Stub | Module 12 |
 | [Lab 14](lab-14_how-populations-evolve.md) | How Populations Evolve | 📝 Stub | Module 13 |
-| [Lab 15](lab-15_macroevolution.md) | Macroevolution | 📝 Stub | Module 14 |
+| [Lab 15](lab-15_macroevolution.md) | Macroevolution | ✅ Complete | Module 14 |
 | [Lab 16](lab-16_population-systems-ecology.md) | Population and Systems Ecology | 📝 Stub | Module 15 |
 | [Lab 17](lab-17_history-of-life.md) | History of Life | 📝 Stub | Module 16 |
 
@@ -33,7 +33,7 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 - ✅ **Complete**: Labs 01–03 (measurement, statistics, microscopy)
 - ✅ **Complete**: Labs 05–06 (viewing life, exam 01 review)
 - ✅ **Complete**: Labs 07–12 (molecular genetics through exam 02 review)
-- 📝 **Stubs**: Labs 04, 13–17 (placeholder structure with learning objectives)
+- 📝 **Stubs**: Labs 04, 13, 14, 16, 17
 
 ## Lab Format
 

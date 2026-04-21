@@ -29,6 +29,7 @@
 - **1 large cup** — osprey
 - **20 beads of one color** — producer biomass
 - **10 beads of a second color** — DDT (pesticide)
+- **Scratch paper** (optional) — tally DDT in each small/medium/large cup before you copy **summary** numbers into the data table
 
 **Total:** 30 beads in the shaker at the start, with **DDT making up 1/3** of the starting mixture (10 of 30 beads).
 
@@ -50,22 +51,22 @@ This lab explores **bioaccumulation** (buildup of contaminants within an individ
 ### Trophic level 1 → 2 (producers → stickleback)
 
 3. Remove **3 beads** from the shaker and place them into **each** of the **9** stickleback cups (27 beads moved).
-4. Record the **number of DDT beads** in **each** stickleback cup.
+4. Tally the **number of DDT beads in each of the 9** cups on **scratch paper** (or the margin) if you like. You do **not** need to list every cup on this handout. For **Trial 1**, compute the **average DDT per stickleback** = **(sum of DDT in all 9 cups) ÷ 9** and enter that **one number** in the **Data** table under **Trial 1** (see below).
 
 ### Trophic level 2 → 3 (stickleback → cutthroat trout)
 
 5. Each trout eats **2 stickleback** — empty **2 small cups** into **each** of the **3** medium (trout) cups.
-6. Record **DDT per trout**.
+6. Tally **DDT in each of the 3** trout cups if needed, then for **Trial 1** record **average DDT per trout** = **(sum of DDT in the 3 trout cups) ÷ 3** in the **Data** table.
 
 ### Trophic level 3 → 4 (trout → osprey)
 
 7. Each osprey eats **2 trout** — empty **2 medium cups** into the **large** (osprey) cup.
-8. Record **DDT in the osprey**.
+8. For **Trial 1**, record **total DDT in the osprey** (one **large** cup) in the **Data** table. (There is one osprey: “average DDT per osprey” is the **same** as that total.)
 
 ### Trials and calculations
 
-9. Repeat the **full procedure** for a total of **3 trials**.
-10. Calculate the **average** and **total** DDT for each organism where your instructor directs (e.g., per trophic level or per cup type).
+9. **Repeat** the full procedure (setup through osprey) for **Trials 2 and 3**. Each new trial, **replace** all 30 beads in the shaker, remix, and fill in the same rows for that trial’s column.  
+10. For each row, you may also compute a **mean across the three trials** in the last column. Use the **Data** table as your only required record on this page.
 
 ---
 
@@ -73,106 +74,27 @@ This lab explores **bioaccumulation** (buildup of contaminants within an individ
 
 ## Data
 
-### Trial 1
+Tally on **scratch paper** as needed. Enter **summary** values only: **one column per trial** (plus an optional **mean of 3** column).  
+**Averages for stickleback and trout** use **(sum in cups) ÷ 9** and **(sum in 3 fish) ÷ 3**, not per-cup columns on the handout.
 
-**Initial mixture (shaker):** DDT bead count **{fill:text}** / 30 total beads; fraction DDT **=** **{fill:text}** (expected about **1/3** by count, or 10/30)
-
-<!-- lab:data-table rows=9 title="Trial 1 — Stickleback cups (DDT beads per cup)" -->
-| Cup | DDT beads |
-|-----|-----------|
-| 1 | {fill:text} |
-| 2 | {fill:text} |
-| 3 | {fill:text} |
-| 4 | {fill:text} |
-| 5 | {fill:text} |
-| 6 | {fill:text} |
-| 7 | {fill:text} |
-| 8 | {fill:text} |
-| 9 | {fill:text} |
-<!-- /lab:data-table -->
-
-<!-- lab:data-table rows=4 title="Trial 1 — Trout and osprey" -->
-| Organism | Cup / role | DDT beads |
-|----------|------------|-----------|
-| Cutthroat trout | 1 | {fill:text} |
-| Cutthroat trout | 2 | {fill:text} |
-| Cutthroat trout | 3 | {fill:text} |
-| Osprey | 1 | {fill:text} |
-<!-- /lab:data-table -->
-
-### Trial 2
-
-**Initial mixture (shaker):** DDT bead count **{fill:text}** / 30; fraction DDT **=** **{fill:text}**
-
-<!-- lab:data-table rows=9 title="Trial 2 — Stickleback cups (DDT beads per cup)" -->
-| Cup | DDT beads |
-|-----|-----------|
-| 1 | {fill:text} |
-| 2 | {fill:text} |
-| 3 | {fill:text} |
-| 4 | {fill:text} |
-| 5 | {fill:text} |
-| 6 | {fill:text} |
-| 7 | {fill:text} |
-| 8 | {fill:text} |
-| 9 | {fill:text} |
-<!-- /lab:data-table -->
-
-<!-- lab:data-table rows=4 title="Trial 2 — Trout and osprey" -->
-| Organism | Cup / role | DDT beads |
-|----------|------------|-----------|
-| Cutthroat trout | 1 | {fill:text} |
-| Cutthroat trout | 2 | {fill:text} |
-| Cutthroat trout | 3 | {fill:text} |
-| Osprey | 1 | {fill:text} |
-<!-- /lab:data-table -->
-
-### Trial 3
-
-**Initial mixture (shaker):** DDT bead count **{fill:text}** / 30; fraction DDT **=** **{fill:text}**
-
-<!-- lab:data-table rows=9 title="Trial 3 — Stickleback cups (DDT beads per cup)" -->
-| Cup | DDT beads |
-|-----|-----------|
-| 1 | {fill:text} |
-| 2 | {fill:text} |
-| 3 | {fill:text} |
-| 4 | {fill:text} |
-| 5 | {fill:text} |
-| 6 | {fill:text} |
-| 7 | {fill:text} |
-| 8 | {fill:text} |
-| 9 | {fill:text} |
-<!-- /lab:data-table -->
-
-<!-- lab:data-table rows=4 title="Trial 3 — Trout and osprey" -->
-| Organism | Cup / role | DDT beads |
-|----------|------------|-----------|
-| Cutthroat trout | 1 | {fill:text} |
-| Cutthroat trout | 2 | {fill:text} |
-| Cutthroat trout | 3 | {fill:text} |
-| Osprey | 1 | {fill:text} |
-<!-- /lab:data-table -->
-
-### Summary — averages across trials
-
-<!-- lab:data-table rows=4 title="Summary — Average or total DDT (as directed)" -->
-| Metric | Trial 1 | Trial 2 | Trial 3 | Average across trials |
-|--------|---------|---------|---------|------------------------|
-| Average DDT per stickleback cup | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| Average DDT per trout | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| Total DDT in osprey | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
-| Other totals or notes | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
+<!-- lab:data-table rows=5 title="DDT summary — three trials (bead counts or averages)" -->
+| Metric | Trial 1 | Trial 2 | Trial 3 | Mean of 3 trials |
+|--------|---------|---------|---------|------------------|
+| Initial: DDT beads in shaker / 30; fraction DDT (expect ~1/3) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
+| Average DDT per stickleback: (sum in 9 small cups) ÷ 9 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
+| Average DDT per trout: (sum in 3 medium cups) ÷ 3 | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
+| Total DDT in osprey (1 large cup) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
+| Notes (optional) | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 <!-- /lab:data-table -->
 
 ---
 
 ## Analysis questions
 
-Answer in **complete sentences**. Refer to your **data tables** where a question asks for numbers or patterns.
+Answer in **complete sentences**. Use your **data table** where a question asks for numbers or patterns.
 
 <!-- lab:reflection -->
-**1.** For each of the three trials, calculate the **average DDT per organism** (as defined by your instructor for stickleback, trout, and osprey).
+**1.** Using the **Data** table (stickleback, trout, and osprey for each **trial**), state how **average DDT per organism** (or **total** for the osprey) **compared** across trophic levels. If your instructor wants **extra** work, run the averages in the **last column** only after all three trials are done.
 
 {fill:textarea rows=5}
 <!-- /lab:reflection -->

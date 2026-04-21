@@ -54,7 +54,7 @@ Relative value (highest to lowest in this model):
 
 **Gold** types are worth more than **silver** types. **Large** types are worth more than **small** types, within the same “metal” group.
 
-**Prices and seasons:** The **price per fish** (what your group “earns” for each type caught) **rises in season 2 and again in season 3** relative to the previous season, so the **temptation** to harvest heavily can **increase** over time unless your group’s strategy accounts for the **reproduction** step.
+**Prices and seasons:** Earnings are in **class points** per fish, using the **fixed schedule in the Data section** (Table: price per fish) unless your instructor posts different numbers. **Every** species earns **more points** in **season 2** than in **season 1**, and more again in **season 3**—so the pull to overharvest can grow each round if your group does not protect the stock.
 
 ### Reproduction rule (after each season, before the next)
 
@@ -73,11 +73,11 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 
 ---
 
-## Materials (check with your instructor)
+## Materials
 
-- **Shared pool** of countable units for four “species” (e.g. colored chips, small cards, or tallies) — **large gold**, **small gold**, **large silver**, **small silver**  
+- **Shared pool** of countable units for four “species** (e.g. colored chips, small cards, or tallies) — **large gold**, **small gold**, **large silver**, **small silver**  
 - A way to record **start**, **catch**, **left**, **reproduction add**, and **end** counts **per species, per season**  
-- **Price list** for each **species** in **each season** (instructor or board)  
+- The **point schedule** printed in this handout (Table 2) — *your instructor may substitute; use their values if so*  
 - This handout and writing tools  
 
 ---
