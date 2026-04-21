@@ -1,5 +1,6 @@
 """Utility functions for format conversion."""
 
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Optional
 
@@ -134,7 +135,12 @@ def convert_text_to_html(input_path: Path, output_path: Path) -> None:
 
 
 def convert_markdown_to_docx(input_path: Path, output_path: Path) -> None:
-    """Convert Markdown file to DOCX.
+    """Convert a Markdown file to DOCX.
+
+    Renders headings, paragraphs, ordered/unordered lists (including
+    nested lists and tight lists with no blank lines between items),
+    inline emphasis (``**bold**``, ``*italic*``, ``` `code` ```),
+    blockquotes, fenced code blocks, and simple tables.
 
     Args:
         input_path: Path to input Markdown file
@@ -142,44 +148,172 @@ def convert_markdown_to_docx(input_path: Path, output_path: Path) -> None:
     """
     from docx import Document
 
-    # imports moved to top-level
-
-    # Read and convert Markdown to HTML first
     markdown_content = read_markdown_file(input_path)
     html_content = markdown_to_html(markdown_content)
 
-    # Create DOCX document
     doc = Document()
-
-    # Parse HTML and add to document
-    # For simplicity, we'll extract text from HTML
-    from html.parser import HTMLParser
-
-    class TextExtractor(HTMLParser):
-        def __init__(self):
-            super().__init__()
-            self.text = []
-            self.current_para = []
-
-        def handle_data(self, data):
-            self.current_para.append(data.strip())
-
-        def handle_endtag(self, tag):
-            if tag in ["p", "h1", "h2", "h3", "h4", "h5", "h6"]:
-                text = " ".join(self.current_para).strip()
-                if text:
-                    self.text.append(text)
-                self.current_para = []
-
-    parser = TextExtractor()
-    parser.feed(html_content)
-
-    # Add paragraphs to document
-    for text in parser.text:
-        if text:
-            doc.add_paragraph(text)
-
+    walker = _MarkdownHtmlToDocx(doc)
+    walker.feed(html_content)
+    walker.close()
+    walker.finalize()
     doc.save(str(output_path))
+
+
+class _MarkdownHtmlToDocx(HTMLParser):
+    """Walk markdown-derived HTML and emit DOCX paragraphs and runs.
+
+    Treats ``p``, ``h1``-``h6``, ``li``, ``blockquote``, and ``pre`` as
+    block boundaries that flush their accumulated runs into a paragraph.
+    Maintains a stack for nested ordered/unordered lists so tight lists
+    (no blank lines between items) render correctly.
+    """
+
+    BLOCK_TAGS = {"p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "pre"}
+    EMPHASIS_TAGS = {"strong", "b", "em", "i", "code", "u"}
+
+    def __init__(self, doc) -> None:
+        super().__init__(convert_charrefs=True)
+        self._doc = doc
+        self._block_stack: list[str] = []
+        self._list_stack: list[dict] = []
+        self._fmt: dict[str, int] = {"bold": 0, "italic": 0, "code": 0, "underline": 0}
+        self._runs: list[tuple[str, dict]] = []
+        self._in_table = False
+        self._table_rows: list[list[str]] = []
+        self._current_row: list[str] = []
+        self._current_cell: list[str] = []
+
+    def finalize(self) -> None:
+        """Flush any trailing block content (e.g. unclosed paragraph)."""
+        if self._runs and self._block_stack:
+            self._flush_block(self._block_stack[-1])
+
+    def handle_starttag(self, tag: str, attrs) -> None:
+        if tag in ("ol", "ul"):
+            self._list_stack.append({"type": tag, "index": 0})
+            return
+        if tag == "li":
+            if self._list_stack:
+                self._list_stack[-1]["index"] += 1
+            self._block_stack.append("li")
+            return
+        if tag in self.BLOCK_TAGS:
+            self._block_stack.append(tag)
+            return
+        if tag in self.EMPHASIS_TAGS:
+            self._fmt[self._fmt_key(tag)] += 1
+            return
+        if tag == "br":
+            self._runs.append(("\n", self._snapshot_fmt()))
+            return
+        if tag == "table":
+            self._in_table = True
+            self._table_rows = []
+            return
+        if tag == "tr" and self._in_table:
+            self._current_row = []
+            return
+        if tag in ("td", "th") and self._in_table:
+            self._current_cell = []
+            return
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in ("ol", "ul"):
+            if self._list_stack:
+                self._list_stack.pop()
+            return
+        if tag in self.BLOCK_TAGS:
+            self._flush_block(tag)
+            if self._block_stack and self._block_stack[-1] == tag:
+                self._block_stack.pop()
+            return
+        if tag in self.EMPHASIS_TAGS:
+            key = self._fmt_key(tag)
+            if self._fmt[key] > 0:
+                self._fmt[key] -= 1
+            return
+        if tag in ("td", "th") and self._in_table:
+            self._current_row.append("".join(self._current_cell).strip())
+            self._current_cell = []
+            return
+        if tag == "tr" and self._in_table:
+            self._table_rows.append(self._current_row)
+            self._current_row = []
+            return
+        if tag == "table" and self._in_table:
+            self._emit_table(self._table_rows)
+            self._in_table = False
+            self._table_rows = []
+            return
+
+    def handle_data(self, data: str) -> None:
+        if self._in_table:
+            self._current_cell.append(data)
+            return
+        if not self._block_stack:
+            return
+        self._runs.append((data, self._snapshot_fmt()))
+
+    @staticmethod
+    def _fmt_key(tag: str) -> str:
+        if tag in ("strong", "b"):
+            return "bold"
+        if tag in ("em", "i"):
+            return "italic"
+        if tag == "u":
+            return "underline"
+        return "code"
+
+    def _snapshot_fmt(self) -> dict:
+        return {k: v > 0 for k, v in self._fmt.items()}
+
+    def _list_prefix(self) -> str:
+        if not self._list_stack:
+            return ""
+        ctx = self._list_stack[-1]
+        return f"{ctx['index']}. " if ctx["type"] == "ol" else "• "
+
+    def _flush_block(self, tag: str) -> None:
+        runs = self._runs
+        self._runs = []
+        if not any(text.strip() for text, _ in runs):
+            return
+
+        if len(tag) == 2 and tag[0] == "h" and tag[1].isdigit():
+            level = min(int(tag[1]), 6)
+            paragraph = self._doc.add_heading("", level=level)
+        elif tag == "blockquote":
+            try:
+                paragraph = self._doc.add_paragraph(style="Quote")
+            except KeyError:
+                paragraph = self._doc.add_paragraph()
+        else:
+            paragraph = self._doc.add_paragraph()
+
+        if tag == "li":
+            paragraph.add_run(self._list_prefix())
+
+        for text, fmt in runs:
+            if not text:
+                continue
+            run = paragraph.add_run(text)
+            if fmt.get("bold"):
+                run.bold = True
+            if fmt.get("italic"):
+                run.italic = True
+            if fmt.get("underline"):
+                run.underline = True
+            if fmt.get("code"):
+                run.font.name = "Courier New"
+
+    def _emit_table(self, rows: list[list[str]]) -> None:
+        if not rows:
+            return
+        n_cols = max(len(r) for r in rows)
+        table = self._doc.add_table(rows=len(rows), cols=n_cols)
+        for r_idx, row in enumerate(rows):
+            for c_idx in range(n_cols):
+                table.cell(r_idx, c_idx).text = row[c_idx] if c_idx < len(row) else ""
 
 
 def convert_docx_to_markdown(input_path: Path) -> str:

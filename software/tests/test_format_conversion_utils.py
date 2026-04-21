@@ -176,6 +176,95 @@ class TestConvertMarkdownToDocx:
 
         assert docx_file.exists()
 
+    def test_convert_markdown_to_docx_tight_ordered_list_preserves_items(self, temp_dir):
+        """Tight numbered lists (no blank lines between items) must render every item.
+
+        Regression test for the case where ``# H1`` followed by ``## H2`` and
+        a tight ``1. ... 2. ...`` ordered list produced a DOCX with only the
+        headings and no list content.
+        """
+        from docx import Document
+
+        md_file = temp_dir / "tight_list.md"
+        md_file.write_text(
+            "# Module 12: Darwin and Evolution — Questions\n"
+            "\n"
+            "## Practice Questions\n"
+            "1. First question about *fitness*.\n"
+            "2. Second question about **selection**.\n"
+            "3. Third question about descent.\n",
+            encoding="utf-8",
+        )
+        docx_file = temp_dir / "tight_list.docx"
+
+        convert_markdown_to_docx(md_file, docx_file)
+
+        doc = Document(str(docx_file))
+        text_blocks = [p.text for p in doc.paragraphs]
+        joined = "\n".join(text_blocks)
+        assert "First question about fitness." in joined
+        assert "Second question about selection." in joined
+        assert "Third question about descent." in joined
+        assert any(t.startswith("1. ") for t in text_blocks)
+        assert any(t.startswith("3. ") for t in text_blocks)
+
+    def test_convert_markdown_to_docx_preserves_inline_emphasis(self, temp_dir):
+        """Bold and italic markers should produce bold/italic runs in DOCX."""
+        from docx import Document
+
+        md_file = temp_dir / "emphasis.md"
+        md_file.write_text(
+            "A line with **bold word** and *italic word* together.\n", encoding="utf-8"
+        )
+        docx_file = temp_dir / "emphasis.docx"
+
+        convert_markdown_to_docx(md_file, docx_file)
+
+        doc = Document(str(docx_file))
+        runs = [r for p in doc.paragraphs for r in p.runs]
+        assert any(r.bold and "bold word" in r.text for r in runs)
+        assert any(r.italic and "italic word" in r.text for r in runs)
+
+    def test_convert_markdown_to_docx_headings_use_heading_style(self, temp_dir):
+        """``#``/``##`` headings must produce DOCX heading-styled paragraphs."""
+        from docx import Document
+
+        md_file = temp_dir / "headings.md"
+        md_file.write_text("# Title\n\n## Subtitle\n\nBody text.\n", encoding="utf-8")
+        docx_file = temp_dir / "headings.docx"
+
+        convert_markdown_to_docx(md_file, docx_file)
+
+        doc = Document(str(docx_file))
+        styles = [(p.text, p.style.name) for p in doc.paragraphs]
+        assert any(t == "Title" and "Heading" in s for t, s in styles)
+        assert any(t == "Subtitle" and "Heading" in s for t, s in styles)
+
+    def test_convert_markdown_to_docx_real_module_questions(self, temp_dir):
+        """Convert the real Module 12 questions and assert all 15 items render."""
+        from docx import Document
+
+        repo_root = Path(__file__).resolve().parents[2]
+        md_file = (
+            repo_root
+            / "course_development/biol-1/course/module-12-darwin-evolution/questions.md"
+        )
+        if not md_file.exists():
+            import pytest
+
+            pytest.skip("Module 12 source not available in this checkout")
+
+        docx_file = temp_dir / "module-12.docx"
+        convert_markdown_to_docx(md_file, docx_file)
+
+        doc = Document(str(docx_file))
+        text = "\n".join(p.text for p in doc.paragraphs)
+        assert "Galápagos" in text
+        assert "vestigial" in text
+        assert "convergent evolution" in text
+        numbered = [p.text for p in doc.paragraphs if p.text and p.text[0].isdigit()]
+        assert len(numbered) >= 15
+
 
 class TestConvertDocxToMarkdown:
     """Tests for convert_docx_to_markdown function."""
