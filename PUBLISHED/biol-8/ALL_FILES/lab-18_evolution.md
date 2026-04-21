@@ -6,6 +6,18 @@
 
 ---
 
+## Learning Objectives
+
+By the end of this lab, you will be able to:
+
+- **Explain** the tragedy of the commons in your own words and relate it to a **shared** fish pool your group managed.
+- **Describe** how **rotating** who fishes each season and **rising point values** (each season pays more per fish) can change incentives from one round to the next.
+- **Apply** the reproduction rule to update population sizes **per species** after a season.
+- **Connect** the simulation to **game theory** terms where appropriate: strategy, payoff, cooperation vs. short-term gain, and effects of **repeated** interaction across seasons.
+- **Compare** the **four species** by value: gold vs. silver and large vs. small.
+
+---
+
 ## Purpose
 
 You will work in a **group** to fish a **shared stock** of four kinds of fish over **three seasons.**
@@ -16,18 +28,6 @@ The activity connects **evolution and ecology** to **human behavior** in two way
 - **Game theory** — your payoff depends on others’ choices; **repeated** seasons change what looks like a good strategy.
 
 After each season, fish that were **not** caught can **reproduce** using a fixed rule. The pool can **recover** or **collapse**, depending on what the group harvests.
-
----
-
-## Learning objectives
-
-By the end of this lab, you will be able to:
-
-- **Explain** the tragedy of the commons in your own words and relate it to a **shared** fish pool your group managed.
-- **Describe** how **rotating** who fishes each season and **rising point values** (each season pays more per fish) can change incentives from one round to the next.
-- **Apply** the reproduction rule to update population sizes **per species** after a season.
-- **Connect** the simulation to **game theory** terms where appropriate: strategy, payoff, cooperation vs. short-term gain, and effects of **repeated** interaction across seasons.
-- **Compare** the **four species** by value: gold vs. silver and large vs. small.
 
 ---
 
@@ -131,32 +131,32 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 
 ### Table 1 — Population and catch (all three seasons)
 
-**Starting populations (from instructor)** go in the **Start — Season 1** row below.
+**Starting populations (from instructor)** go in **Start (S1)** in the Season 1 table. **Left** = after catch; **Repro add** and **End** follow the procedure (reproduction rule).
 
 <h3>Table 1 — Season 1</h3>
-<table class="lab-table">
+<table class="lab-table lab-table-compact">
 <thead>
 <tr>
 <th scope="col"></th>
-<th scope="col">Large gold (LG)</th>
-<th scope="col">Small gold (SG)</th>
-<th scope="col">Large silver (LS)</th>
-<th scope="col">Small silver (SS)</th>
+<th scope="col">LG</th>
+<th scope="col">SG</th>
+<th scope="col">LS</th>
+<th scope="col">SS</th>
 </tr>
 </thead>
 <tbody>
-<tr><th scope="row">Start — Season 1</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Catch — Season 1</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Left after catch — S1</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Repro add — S1 (left / 2, round down)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">End after repro — S1 (= left + add)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Start (S1)</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Catch</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Left</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Repro add</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">End</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
 </tbody>
 </table>
 
 **Season 2** — *Fisher (name):* {fill:text}
 
 <h3>Table 1 — Season 2</h3>
-<table class="lab-table">
+<table class="lab-table lab-table-compact">
 <thead>
 <tr>
 <th scope="col"></th>
@@ -167,18 +167,18 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 </tr>
 </thead>
 <tbody>
-<tr><th scope="row">Start (= end S1)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Left after catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Repro add (left / 2, round down)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">End after repro</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Start (= S1 end)</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Catch</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Left</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Repro add</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">End</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
 </tbody>
 </table>
 
 **Season 3** — *Fisher (name):* {fill:text}
 
 <h3>Table 1 — Season 3</h3>
-<table class="lab-table">
+<table class="lab-table lab-table-compact">
 <thead>
 <tr>
 <th scope="col"></th>
@@ -189,11 +189,11 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 </tr>
 </thead>
 <tbody>
-<tr><th scope="row">Start (= end S2)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Left after catch</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">Repro add (left / 2, round down)</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
-<tr><th scope="row">End after repro</th><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td><td>{fill:text}</td></tr>
+<tr><th scope="row">Start (= S2 end)</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Catch</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Left</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">Repro add</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
+<tr><th scope="row">End</th><td>{fill}</td><td>{fill}</td><td>{fill}</td><td>{fill}</td></tr>
 </tbody>
 </table>
 
@@ -249,6 +249,26 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 
 Answer in **complete sentences**. Use your **tables** for any question that refers to your group’s numbers.
 
+**Warm-up (introductory).** Orient yourself to the simulation before the numbered prompts.
+
+<!-- lab:reflection -->
+**A.** What exactly was **shared** by the whole group (the **commons**), and what could each fisher try to **take** during their season?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+<!-- lab:reflection -->
+**B.** List the four species abbreviations (**LG, SG, LS, SS**) and, in one sentence, how **gold vs. silver** and **large vs. small** relate to **point value** in this model.
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+<!-- lab:reflection -->
+**C.** After a season, fish that were **not** caught could contribute to **reproduction** before the next season. Why does leaving fish in the pool matter for whether the stock can **recover** instead of **collapse**?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
 <!-- lab:reflection -->
 **1. Tragedy of the commons.** In two or three sentences, did your group’s pool **trend toward depletion, stability, or recovery** for one or more species? Name **one** choice that made that outcome more likely.
 
@@ -276,6 +296,14 @@ Answer in **complete sentences**. Use your **tables** for any question that refe
 ---
 
 ## Conclusion
+
+**Introductory.** One look back at your **numbers** before the final synthesis.
+
+<!-- lab:reflection -->
+**D.** From **Table 1** or **Table 2**, name **one specific figure** (a count or an earnings value) that shows whether your group leaned toward **sustainability** or **heavy harvest**—and say why you picked it.
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
 
 <!-- lab:reflection -->
 **5. Human biology in one sentence:** Why might a **lecture** on evolution in humans include a **resource** and **incentive** story like this, not only DNA and fossils?

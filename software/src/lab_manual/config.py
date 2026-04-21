@@ -114,6 +114,23 @@ hr {
     background-color: #f0f0f0;
 }
 
+/* Opt-in: dense tables (many numeric columns) — avoids wide .fill-text min-width blowout */
+.lab-table.lab-table-compact {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.lab-table.lab-table-compact th,
+.lab-table.lab-table-compact td {
+    padding: 6px 8px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+.lab-table.lab-table-compact td.fillable {
+    min-width: 0;
+}
+
 /* Fillable Fields */
 .fill-text {
     display: inline-block;

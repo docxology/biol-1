@@ -85,6 +85,8 @@ The module extends Markdown with custom directives:
 <!-- /lab:data-table -->
 ```
 
+Raw HTML tables may use `class="lab-table lab-table-compact"` (`config.py`) for `table-layout: fixed` and smaller padding. Prefer `<td>{fill}</td>` (empty fillable cells) over `{fill:text}` inside tables when many narrow columns are needed — `.fill-text` has a large `min-width` and can overflow PDF pages.
+
 ### Object Selection
 
 ```markdown

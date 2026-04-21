@@ -2,6 +2,15 @@
 
 **Name:** {fill:text} **Date:** {fill:text}
 
+## Learning Objectives
+
+By the end of this lab, you should be able to:
+
+1. Apply the biological species concept to **predict** when **gene flow** can stop or reverse lineage splitting.
+2. Classify **prezygotic** vs **postzygotic** barriers and name sub-types from **messy** narratives.
+3. Contrast **allopatric** vs **sympatric** speciation with **plausible** mechanisms.
+4. Explain how microevolutionary change can add up to **reproductive isolation**.
+
 ## Overview
 
 **Where this sits:** In **Module 13** / **Lab 14**, you followed **allele frequencies** in **one** population (microevolution). In **Module 14** / **Lab 15**, the question shifts: **When does one lineage become two?** Reproductive **isolation** and **reduced gene flow** are the stars.
@@ -18,15 +27,6 @@ You are on the **Speciation Response Team**. A river canyon has split one ancest
 | **Postzygotic** | A zygote or hybrid has trouble surviving or **reproducing** (e.g. embryo dies, sterile hybrid). |
 | **Allopatric** | Isolation that starts with a **geographic** split. |
 | **Sympatric** | Speciation in the **same** area (e.g. **instant** isolation from a genome change in one plant). |
-
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-1. Apply the biological species concept to **predict** when **gene flow** can stop or reverse lineage splitting.
-2. Classify **prezygotic** vs **postzygotic** barriers and name sub-types from **messy** narratives.
-3. Contrast **allopatric** vs **sympatric** speciation with **plausible** mechanisms.
-4. Explain how microevolutionary change can add up to **reproductive isolation**.
 
 ## Materials Needed
 
@@ -94,6 +94,18 @@ By the end of this lab, you should be able to:
 | Hybrid zygotes form, but chromosome pairing fails in early mitosis so development stops. | {fill:text} |
 <!-- /lab:data-table -->
 
+<!-- lab:reflection -->
+**Stretch (Part 2).** Short answers—use the same four reports if helpful.
+
+**(a)** In one sentence: why does **behavioral isolation** (e.g. different firefly flash patterns) block gene flow **before** a zygote counts as “formed” for the pre/post split?
+
+**(b)** The **F1 salamanders** that survive but do not mate successfully: state **prezygotic or postzygotic** and the **sub-type** label you would use.
+
+**(c)** Suppose hybrids between two plant species **germinate** but **die** as seedlings before they flower. Is the main barrier **pre-** or **postzygotic**, and why?
+
+{fill:textarea rows=6}
+<!-- /lab:reflection -->
+
 ---
 
 <div style="page-break-after: always;"></div>
@@ -131,6 +143,12 @@ By the end of this lab, you should be able to:
 
 **9. Final verdict:** Under the biological species concept, if two groups still have **fertile hybrids** whenever they meet, are they **definitely** two separate species? **Gene flow** vs **diverging lineages** in 3–4 sentences.  
 {fill:textarea rows=5}
+
+**10. Pace of splitting:** Which path in this lab—**many generations** in separated valleys (**allopatric** mock-orange flies) or **one-generation** polyploidy in the **same** meadow—typically needs **more time** for **independent** evolution before the groups are reproductively isolated? **One short paragraph.**  
+{fill:textarea rows=5}
+
+**11. BSC limits:** Name **one situation** where the **biological species concept** is **hard to apply** in the field (hint: fossils-only lineages, bacteria, or strictly asexual groups). **Two or three sentences.**  
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---
@@ -143,6 +161,12 @@ By the end of this lab, you should be able to:
 
 **W2.** **Optional fun:** One **real** or **movie/TV** example of **isolation** (courtship, timing, or hybrid trouble)—**one** sentence, no need for perfect Latin names.  
 {fill:textarea rows=2}
+
+**W3.** **Looks aren’t enough:** When would using **appearance alone** be a **misleading** way to decide if two populations are **one** species or **two**?  
+{fill:textarea rows=3}
+
+**W4.** **Micro → macro:** In **Lab 14** you tracked **allele frequencies** in one population. If **migration** between North and South mock-orange flies were **zero** for a long time, how does that help the **two valleys** accumulate **different** genetic changes? **2–3 sentences.**  
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---

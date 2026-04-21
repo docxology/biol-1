@@ -6,18 +6,18 @@
 
 ---
 
-## Purpose
-
-**Bioaccumulation and biomagnification of DDT:** You will observe how a contaminant accumulates in organisms and becomes more concentrated at higher levels of a simple food web, using beads to model producers, fish, and a fish-eating bird.
-
----
-
-## Learning objectives
+## Learning Objectives
 
 - Explain **bioaccumulation** (buildup of a contaminant within an individual) and **biomagnification** (increasing concentration at higher trophic levels).
 - Track **DDT bead** counts through a model food chain: producers → stickleback → cutthroat trout → osprey.
 - Interpret bead data to describe how **DDT** moves and concentrates in a simplified aquatic web.
 - Connect **DDT** to documented effects on **top predators** (e.g., eggshell thinning in birds) and to **indirect** effects on other populations when a predator declines.
+
+---
+
+## Purpose
+
+**Bioaccumulation and biomagnification of DDT:** You will observe how a contaminant accumulates in organisms and becomes more concentrated at higher levels of a simple food web, using beads to model producers, fish, and a fish-eating bird.
 
 ---
 
@@ -74,55 +74,55 @@ This lab explores **bioaccumulation** (buildup of contaminants within an individ
 
 ## Data
 
-Tally on **scratch paper** as needed. Enter **summary** values only: **one column per trial** (plus an optional **mean of 3** column).  
-**Averages for stickleback and trout** use **(sum in cups) ÷ 9** and **(sum in 3 fish) ÷ 3**, not per-cup columns on the handout.
+Tally on **scratch paper** as needed. Enter **summary** values only: **one column per trial** (plus an optional **mean** column).  
+**Averages for stickleback and trout** use **(sum in cups) ÷ 9** and **(sum in 3 fish) ÷ 3**, not per-cup columns on the handout. **T1–T3** = trial columns; **Mean** = optional average after all three trials.
 
 <h3>DDT summary — three trials (bead counts or averages)</h3>
-<table class="lab-table">
+<table class="lab-table lab-table-compact">
 <thead>
 <tr>
-<th scope="col">Metric (see Procedure for math)</th>
-<th scope="col">Trial 1</th>
-<th scope="col">Trial 2</th>
-<th scope="col">Trial 3</th>
-<th scope="col">Mean of 3</th>
+<th scope="col">Metric</th>
+<th scope="col">T1</th>
+<th scope="col">T2</th>
+<th scope="col">T3</th>
+<th scope="col">Mean</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Initial</strong> — DDT in shaker / 30; fraction (expect ~1/3)</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
+<td><strong>Initial</strong> — DDT / 30 (~⅓)</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
 </tr>
 <tr>
-<td><strong>Stickleback</strong> — avg DDT; (sum in 9 cups) ÷ 9</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
+<td><strong>Stickleback</strong> — avg DDT (÷9)</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
 </tr>
 <tr>
-<td><strong>Trout</strong> — avg DDT; (sum in 3 fish) ÷ 3</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
+<td><strong>Trout</strong> — avg DDT (÷3)</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
 </tr>
 <tr>
-<td><strong>Osprey</strong> — total DDT in large cup</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
+<td><strong>Osprey</strong> — total DDT (large cup)</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
 </tr>
 <tr>
 <td>Notes (optional)</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
-<td>{fill:text}</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
+<td>{fill}</td>
 </tr>
 </tbody>
 </table>
@@ -132,6 +132,26 @@ Tally on **scratch paper** as needed. Enter **summary** values only: **one colum
 ## Analysis questions
 
 Answer in **complete sentences**. Use your **data table** where a question asks for numbers or patterns.
+
+**Warm-up (introductory).** Short prompts to connect the procedure to the questions below.
+
+<!-- lab:reflection -->
+**A.** In this model, what did the **producer-colored** beads represent, and what did the **DDT-colored** beads represent?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+<!-- lab:reflection -->
+**B.** Before you cite your table: in plain language, what is the difference between **bioaccumulation** (buildup in one organism) and **biomagnification** (change **up** the food chain) in this lab?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
+
+<!-- lab:reflection -->
+**C.** The handout asks for an **average** DDT per stickleback using all nine cups. Why is that average a better summary than writing down only **one** stickleback cup?
+
+{fill:textarea rows=3}
+<!-- /lab:reflection -->
 
 <!-- lab:reflection -->
 **1.** Using the **Data** table (stickleback, trout, and osprey for each **trial**), state how **average DDT per organism** (or **total** for the osprey) **compared** across trophic levels. If your instructor wants **extra** work, run the averages in the **last column** only after all three trials are done.
