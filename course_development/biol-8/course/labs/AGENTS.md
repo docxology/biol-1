@@ -12,7 +12,7 @@ There are **18** Markdown lab sources (`lab-01_*.md` … `lab-18_*.md`). Notable
 | File | Role |
 |------|------|
 | `lab-16_exam-03-review.md` | Paper review for Exam 03 (Modules 11–15); aligns with `../exams/exam-03.md` |
-| `lab-17_ecology.md` | Module 16 ecology — bead model of DDT bioaccumulation/biomagnification (producers → stickleback → cutthroat trout → osprey), three trials |
-| `lab-18_evolution.md` | Module 17 evolution — three-season shared-pool fishing (LG, SG, LS, SS); repro ⌊N/2⌋ per species; rising prices; data tables; tragedy of the commons + game theory |
+| `lab-17_ecology.md` | Module 16 ecology — DDT bead model, three trials; **one summary data table** (Trial 1–3 + mean): avg DDT per stickleback/trout, osprey total; scratch tallies optional |
+| `lab-18_evolution.md` | Module 17 evolution — three-season fishing; **printed point schedule** (LG/SG/LS/SS × 3 seasons); repro (left/2 round down); catch × points earnings; tragedy of the commons + game theory |
 
 See [README.md](README.md) for the full inventory.

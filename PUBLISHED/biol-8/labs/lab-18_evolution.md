@@ -39,7 +39,7 @@ When a **resource** (pasture, fishery, clean air) is **open to many users** and 
 
 ### Game theory in one paragraph
 
-**Game theory** models choices when your outcome depends on **others’** choices. In a **repeated** setting (here, **three seasons**), what pays off in season 1 can differ from what pays off after others respond in seasons 2 and 3. You may see **defection** (take a lot) vs. **cooperation** (leave fish for the group and the future) or a mix, depending on your group’s **norms** and the **incentives** your instructor set.
+**Game theory** models choices when your outcome depends on **others’** choices. In a **repeated** setting (here, **three seasons**), what pays off in season 1 can differ from what pays off after others respond in seasons 2 and 3. You may see **defection** (take a lot) vs. **cooperation** (leave fish for the group and the future) or a mix, depending on your group’s **norms** and the **rising point values** in the schedule.
 
 ### The four species and value (relative prices)
 
@@ -75,7 +75,7 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 
 ## Materials
 
-- **Shared pool** of countable units for four “species** (e.g. colored chips, small cards, or tallies) — **large gold**, **small gold**, **large silver**, **small silver**  
+- **Shared pool** of countable units for four species (e.g. colored chips, small cards, or tallies) — **large gold**, **small gold**, **large silver**, **small silver**  
 - A way to record **start**, **catch**, **left**, **reproduction add**, and **end** counts **per species, per season**  
 - The **point schedule** printed in this handout (Table 2) — *your instructor may substitute; use their values if so*  
 - This handout and writing tools  
@@ -89,14 +89,14 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 1. **Form groups** and write **all members’ names** in the roster below. You will use **three fishing seasons.**
 2. For **each season,** **one** group member is the **fisher** for that season (someone who was not the fisher the previous time). **Rotate** so **three different people** fish in seasons 1–3 (if the group has fewer than three people, your instructor will say how to handle rotation).
 3. Copy the **starting population** for each **species** from the instructor (or the board) into **Table 1** under **Start (Season 1).**
-4. Copy the **price per fish** for **each species in season 1** into **Table 2** (or record “see board” and keep your own clear notes).
+4. Use the **price schedule (points per fish)** printed in **Table 2** below for all earnings, **unless** your instructor gives a different table—then use theirs for every season.
 
 ### Each season (repeat for seasons 1, 2, and 3)
 
 1. The **fisher** for that season “catches” by **taking** units from the pool as allowed by the rules your instructor gives (e.g. **maximum** number of fish, or a **time** limit, or a **fixed** haul). Record **only** the **number caught per species** in **Table 1** in the **Catch** row for that season.
 2. **After** the catch, compute **left** in the pool: **Start − catch** (per species) for that season. Enter under **Left after catch.**
 3. **Reproduction:** For **each** species, compute **add** = (**Left after catch**) / 2, **rounded down** to a whole number. New count before the next season = **Left after catch** + **add**. Enter under **Repro add** and **End (after repro).** The **End** row is the **Start** for the next season.
-4. **Earnings for this season:** For each species, **(catch) × (price for that species in this season).** Sum to get **group earnings** for the season. Use **Table 2**; your instructor will give **season 2 and season 3** prices (higher than before).
+4. **Earnings for this season:** For each species, **(catch) × (price for that species in this season)** from **Table 2**. Add the four products to get **group points** for the season. Do the same for seasons 2 and 3 using the **columns** for that season in the same table.
 5. The **next** group member **fishes** the following season, starting from the new **Start** row.
 
 ### After season 3
@@ -111,6 +111,8 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 ## Data
 
 **Abbreviations:** LG = large gold, SG = small gold, LS = large silver, SS = small silver.
+
+*Show at least one season’s **earnings** as a sum of **(catch × points)** for each species (in **Table 2** or the work space below the price table).*
 
 ### Group roster (fill in before Season 1)
 
@@ -161,18 +163,23 @@ If your instructor uses a **different** reproduction rule, **follow their versio
 | **End after repro** | {fill:text} | {fill:text} | {fill:text} | {fill:text} |
 <!-- /lab:data-table -->
 
-### Table 2 — Prices by season, then earnings
+### Table 2 — Price schedule (class default) and earnings
 
-Copy **price per fish** from the instructor. **Earnings** for a season = sum over species of (catch that season) × (price that season for that species).
+**Points per fish caught** — use these values for **earnings** unless your instructor replaces them. **Gold** rows earn more than **silver**; **large** more than **small**; each **season** pays more per fish than the last.
 
-<!-- lab:data-table rows=4 title="Table 2 — Price per fish by season" -->
-| Species | Price — Season 1 | Price — Season 2 | Price — Season 3 |
-|--------|------------------|-----------------|-----------------|
-| LG | {fill:text} | {fill:text} | {fill:text} |
-| SG | {fill:text} | {fill:text} | {fill:text} |
-| LS | {fill:text} | {fill:text} | {fill:text} |
-| SS | {fill:text} | {fill:text} | {fill:text} |
-<!-- /lab:data-table -->
+| Species | Points — Season 1 | Points — Season 2 | Points — Season 3 |
+|---------|-------------------|-------------------|-------------------|
+| **LG** (large gold) | 8 | 12 | 18 |
+| **SG** (small gold) | 4 | 6 | 9 |
+| **LS** (large silver) | 2 | 3 | 5 |
+| **SS** (small silver) | 1 | 2 | 3 |
+
+**Earnings** for a season = **sum** over the four species of **(number caught) × (points for that species in that season).**
+
+<!-- lab:reflection -->
+**Work space (one season, optional check):** Pick **one** season and write **(catch × price)** for each species, then the **sum** (should match the row you enter below).  
+{fill:textarea rows=4}
+<!-- /lab:reflection -->
 
 <!-- lab:data-table rows=4 title="Table 2 — Earnings by season" -->
 | Season | Earnings (show work or subtotal) |
