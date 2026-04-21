@@ -6,7 +6,7 @@ This directory contains all public course materials for **BIOL-1: Biology 1** (P
 
 ## Course Structure
 
-The course covers 17 modules progressing through foundational biology concepts:
+The course covers 16 modules progressing through foundational biology concepts:
 
 ### Modules
 
@@ -44,24 +44,25 @@ course/
 ├── quizzes/                     # Quiz materials
 │
 └── module-XX-topic/             # Module directories
-    ├── for_upload/              # Materials ready for distribution
-    ├── output/                  # Generated outputs (PDF, MP3, etc.)
-    ├── resources/               # Supplementary materials
-    │   ├── module-X-comprehension-questions.md
-    │   └── module-X-keys-to-success.md
-    └── slides/                  # Presentation materials
+    ├── README.md
+    ├── AGENTS.md
+    ├── questions.md             # Practice questions (source)
+    ├── keys-to-success.md       # Study guide (source)
+    ├── resources/               # Optional module-local assets
+    └── output/                  # Generated — do not edit by hand
+        ├── study-guides/        # PDF, DOCX, HTML, TXT, MP3
+        └── website/             # index.html
 ```
+
+Lecture slide PDFs live under **[../resources/slides/](../resources/slides/)**, not inside each module.
 
 ## Module Contents
 
 Each module directory contains:
 
-- **for_upload/**: Materials formatted and ready for distribution
-- **output/**: Generated multi-format outputs (PDF, MP3, DOCX, HTML, TXT)
-- **resources/**: Supplementary study materials including:
-  - Comprehension questions
-  - Keys to success (study tips and learning objectives)
-- **slides/**: Lecture presentation materials
+- **questions.md** / **keys-to-success.md**: Source markdown for the publish pipeline
+- **output/**: Generated multi-format outputs (PDF, DOCX, HTML, TXT, MP3) and `website/index.html`
+- **resources/** (optional): Supplementary materials for that module only
 
 ## Related Documentation
 

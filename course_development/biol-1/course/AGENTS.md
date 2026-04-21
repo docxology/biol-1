@@ -1,29 +1,34 @@
 # BIOL-1 Course Materials — Technical Documentation
 
-## Overview
+Technical reference for the source materials under `course_development/biol-1/course/`.
 
-Technical documentation for BIOL-1 course materials organization, processing, and workflow management. This directory contains student-facing course materials organized by module.
-
-## Directory Structure
+## Layout
 
 ```
 course/
-├── README.md                    # Course materials overview (student-facing)
-├── AGENTS.md                    # This technical documentation
-│
-└── module-X/                    # 14 module directories
-    ├── for_upload/              # Distribution-ready materials
-    ├── output/                  # Generated outputs
-    ├── resources/               # Supplementary materials
-    └── slides/                  # Presentations
+├── README.md
+├── AGENTS.md                                # This file
+├── module-01-study-of-life/  …  module-16-history-of-life/
+│   ├── README.md
+│   ├── AGENTS.md
+│   ├── questions.md                          # Practice questions
+│   ├── keys-to-success.md                    # Module study guide
+│   ├── resources/                            # (optional) module-local assets
+│   └── output/                               # Generated; do not edit by hand
+│       ├── study-guides/
+│       │   ├── module-NN-name-questions.{md,pdf,docx,html,txt,mp3}
+│       │   └── module-NN-name-keys-to-success.{md,pdf,docx,html,txt,mp3}
+│       └── website/index.html
+├── labs/                                    # lab-NN_topic.md (1–17), with output/ + dashboards/
+├── exams/                                   # exam-NN.md, exam-NN_key.md, exam-template.md
+├── practice_tests/                          # practice-test-NN.md, practice-test-NN_key.md
+└── quizzes/                                 # quiz-template.md
 ```
 
-## Module Naming Convention
+## Module directories (16)
 
-Modules follow the pattern: `module-NN-topic-name/` where NN is the zero-padded module number.
-
-| Number | Directory Name |
-|--------|----------------|
+| # | Directory |
+|---|---|
 | 01 | `module-01-study-of-life` |
 | 02 | `module-02-basic-chemistry` |
 | 03 | `module-03-organic-molecules` |
@@ -35,112 +40,51 @@ Modules follow the pattern: `module-NN-topic-name/` where NN is the zero-padded 
 | 09 | `module-09-inheritance-genetics` |
 | 10 | `module-10-epigenetics` |
 | 11 | `module-11-genomics-biotechnology` |
-| 15 | `module-15-darwin-evolution` |
-| 16 | `module-16-microevolution` |
-| 17 | `module-17-speciation-macroevolution` |
+| 12 | `module-12-darwin-evolution` |
+| 13 | `module-13-how-populations-evolve` |
+| 14 | `module-14-macroevolution` |
+| 15 | `module-15-population-systems-ecology` |
+| 16 | `module-16-history-of-life` |
 
-## Module Content Specifications
+## File naming
 
-### Resources Directory
+- Module folders: `module-NN-topic-words/` (zero-padded `NN`, lowercase, hyphenated).
+- Source files at module root: `questions.md`, `keys-to-success.md`.
+- Generated outputs in `output/study-guides/` are prefixed with the full module slug:
+  - `module-NN-topic-words-questions.{md,pdf,docx,html,txt,mp3}`
+  - `module-NN-topic-words-keys-to-success.{md,pdf,docx,html,txt,mp3}`
 
-Each module's `resources/` directory contains:
+There is **no** `assignments/`, `for_upload/`, or per-module `slides/` subfolder in BIOL-1. Slide PDFs live centrally under `../resources/slides/`.
 
-| File | Description |
-|------|-------------|
-| `module-X-comprehension-questions.md` | Study questions for the module |
-| `module-X-keys-to-success.md` | Learning objectives and study tips |
-
-### Output Directory
-
-Generated outputs are organized by format:
-
-| Format | Extension | Description |
-|--------|-----------|-------------|
-| PDF | `.pdf` | Printable documents |
-| MP3 | `.mp3` | Audio versions for accessibility |
-| DOCX | `.docx` | Editable Word documents |
-| HTML | `.html` | Web-viewable versions |
-| TXT | `.txt` | Plain text versions |
-
-## File Naming Conventions
-
-### Module Files
-
-- **Resources**: `module-X-[description].md`
-  - Example: `module-1-comprehension-questions.md`
-  - Example: `module-1-keys-to-success.md`
-
-### Generated Outputs
-
-Output files maintain the source filename with the target extension:
-
-- Source: `module-1-keys-to-success.md`
-- Outputs: `module-1-keys-to-success.pdf`, `module-1-keys-to-success.mp3`, etc.
-
-## Workflow Processes
-
-### Content Development
-
-1. Create/edit source Markdown files in module directories
-2. Place distribution-ready files in `for_upload/`
-3. Generate multi-format outputs using software tools
-4. Outputs are saved to `output/` directory
-
-### Output Generation
-
-Use the software tools to generate outputs:
+## Generation
 
 ```bash
 cd software
+
+# Generate all BIOL-1 outputs
 uv run python scripts/generate_all_outputs.py --course biol-1
-```
 
-### Module Processing
+# Generate a specific module's outputs
+uv run python scripts/generate_module_renderings.py --course biol-1 --module 12
 
-Individual modules can be processed:
-
-```bash
+# Build the per-module HTML site
 uv run python scripts/generate_module_website.py \
-    --module course_development/biol-1/course/module-1
+    --module ../course_development/biol-1/course/module-12-darwin-evolution
 ```
 
-## Validation Checklist
+The end-to-end pipeline (`python publish.py`) at the repo root runs these steps for every module and pushes the results to `PUBLISHED/biol-1/` and the public subtree.
 
-Before distribution, verify:
+## Software dependencies
 
-- [ ] All source Markdown files are complete
-- [ ] Resources directory contains comprehension questions and keys to success
-- [ ] Outputs are generated in all required formats
-- [ ] Files in `for_upload/` are current
-- [ ] File naming follows conventions
+- `batch_processing` — drives per-module multi-format generation.
+- `html_website` — builds `output/website/index.html`.
+- `format_conversion` — md→pdf, md→docx, etc. (see `software/src/format_conversion/AGENTS.md`).
+- `text_to_speech` — generates `*.mp3` audio narration.
 
-## Integration Points
-
-### Software Dependencies
-
-- **batch_processing**: Multi-format output generation
-- **html_website**: Interactive module websites
-- **format_conversion**: Format transformations
-- **text_to_speech**: Audio generation
-
-### Related Documentation
+## Related docs
 
 | Document | Description |
-|----------|-------------|
-| [../README.md](../README.md) | Course overview |
-| [../AGENTS.md](../AGENTS.md) | Course-level technical docs |
-| [../../software/AGENTS.md](../../software/AGENTS.md) | Software documentation |
-
-## Quality Assurance
-
-### Content Validation
-
-- All Markdown files checked for proper formatting
-- Links validated for accessibility
-- File names follow naming conventions
-
-### Output Verification
-
-- PDF files render correctly
-- Audio files are audible and complete
-- HTML files display properly
+|---|---|
+| [`../README.md`](../README.md) | Course overview (student-facing) |
+| [`../AGENTS.md`](../AGENTS.md) | Course-level technical docs |
+| [`../../software/AGENTS.md`](../../software/AGENTS.md) | Software documentation |

@@ -4,10 +4,14 @@
 
 This directory contains test files for validating software functionality. Test structure mirrors the source code organization in `src/`.
 
-## Test Statistics
+## Test statistics
 
-- **614 tests collected** (verify with `uv run pytest --collect-only`)
-- Coverage measured via `uv run pytest --cov=src --cov-report=html`
+Recompute after any suite change (from `software/`):
+
+```bash
+uv run pytest --collect-only -q
+uv run pytest --cov=src --cov-report=html
+```
 
 ## Test Organization
 

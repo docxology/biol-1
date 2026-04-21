@@ -11,26 +11,25 @@ course/
 ├── README.md                    # Course materials overview (student-facing)
 ├── AGENTS.md                    # This technical documentation
 │
-├── exams/                       # Unit exams + final (as authored)
-│   ├── exam-01.md              # Modules 01-06 (50 pts)
+├── exams/                       # Unit exams (as authored)
+│   ├── exam-01.md              # Modules 01–06 (50 pts)
 │   ├── exam-01_key.md          # Answer key with explanations
-│   ├── exam-02.md              # Modules 07-10 (50 pts)
+│   ├── exam-02.md              # Modules 07–10 (50 pts)
 │   ├── exam-02_key.md
-│   ├── exam-03.md              # Modules 11-15 (50 pts)
+│   ├── exam-03.md              # Modules 11–15 (50 pts)
 │   ├── exam-03_key.md
-│   ├── final-exam.md           # Comprehensive (when added)
-│   └── final-exam_key.md
+│   └── (comprehensive final to be added)
 │
-├── quizzes/                     # Module quizzes (30 files)
+├── quizzes/                     # 34 files: 17 modules × (quiz + key)
 │   ├── module-01_quiz.md       # Student version
 │   ├── module-01_quiz_key.md   # Answer key
-│   └── ... (17 modules × 2 files)
+│   └── … module-17_quiz{,_key}.md
 │
 ├── labs/                        # Lab protocols (Markdown + dashboards/)
 │   ├── lab-01_measurement-methods.md
-│   └── ... (see labs/README.md; e.g. lab-13_nervous-system.md, lab-14_microbiology.md)
+│   └── ... (see labs/README.md; e.g. lab-13_nervous-system.md, lab-14_microbiology.md, lab-14_microbiology-followup.md)
 │
-└── module-XX-topic-name/        # 15 module directories
+└── module-XX-topic-name/        # 17 module directories (some include assignments/)
     ├── keys-to-success.md      # Learning objectives
     ├── questions.md            # Study questions
     └── resources/              # Supplementary materials
@@ -50,8 +49,8 @@ Modules follow the pattern: `module-XX-topic-name/`
 | 06 | `module-06-metabolism` |
 | 07 | `module-07-genetics` |
 | 08 | `module-08-cell-division` |
-| 09 | `module-09-inheritance` |
-| 10 | `module-10-tissues` |
+| 09 | `module-09-tissues` |
+| 10 | `module-10-inheritance` |
 | 11 | `module-11-skeletal-system` |
 | 12 | `module-12-muscular-system` |
 | 13 | `module-13-nervous-system` |
@@ -161,11 +160,11 @@ The `software/` directory contains batch processing utilities for:
 
 ### Completeness
 
-- [ ] 17 module directories created
-- [ ] Each module has `keys-to-success.md`, `questions.md`, `resources/`
-- [ ] 4 exams with answer keys (8 files)
-- [ ] 17 quizzes with answer keys (34 files)
-- [ ] 18 lab protocols (`labs/`; e.g. `lab-16_exam-03-review.md`, `lab-17_ecology.md`, `lab-18_evolution.md`)
+- [x] 17 module directories created (`module-01-…` through `module-17-…`)
+- [x] Each module has `keys-to-success.md`, `questions.md`, `resources/`
+- [x] 3 unit exams with answer keys (`exam-01`–`exam-03`, 6 files); final exam pending
+- [x] 17 quizzes with answer keys (34 files in `quizzes/`)
+- [x] 18 lab protocols in `labs/` (`lab-01_measurement-methods.md` … `lab-18_evolution.md`)
 
 ### Coherence
 
@@ -187,6 +186,3 @@ The `software/` directory contains batch processing utilities for:
 - **[../../software/](../../software/)**: Processing utilities
 - **[../../private/](../../private/)**: Non-student materials
 
----
-
-*Last updated: April 2026*

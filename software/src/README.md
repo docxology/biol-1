@@ -8,9 +8,9 @@ Source code for course management software utilities.
 
 ## Statistics
 
-- **15 Modules** across 5 layers
-- **614 Tests** (81% coverage)
-- **6 Output Formats**: PDF, DOCX, HTML, TXT, MD, MP3
+- **16 packages** under `src/` (see [AGENTS.md](AGENTS.md))
+- **Tests / coverage**: run `uv run pytest --collect-only -q` and `uv run pytest --cov=src --cov-report=term-missing` from `software/`
+- **6 output formats**: PDF, DOCX, HTML, TXT, MD, MP3
 
 ---
 
@@ -21,17 +21,19 @@ Source code for course management software utilities.
 Modules are organized in layers by dependency:
 
 ```
-Layer 4: Management (canvas_integration)
+Layer 4: canvas_integration
               ↑
-Layer 3: Orchestration (batch_processing, html_website, schedule)
+Layer 3: batch_processing, html_website, schedule
               ↑
-Layer 2: Extended (format_conversion)
+Layer 2: format_conversion
               ↑
-Layer 1: Core (markdown_to_pdf, text_to_speech, speech_to_text)
+Layer 1: markdown_to_pdf, text_to_speech, speech_to_text, lab_manual
               ↑
-Layer 0: Independent (module_organization, file_validation, publish, 
-         content_processing, validation, lab_manual, legacy_import)
+Layer 0: shared, module_organization, file_validation, legacy_import,
+         content_processing, validation, publish
 ```
+
+(See [../AGENTS.md](../AGENTS.md) for the canonical dependency story.)
 
 ### Module Reference
 
@@ -49,6 +51,7 @@ Layer 0: Independent (module_organization, file_validation, publish,
 | `module_organization` | 0 | Module structure creation | `create_module_structure()` |
 | `publish` | 0 | Publishing to PUBLISHED/ | `publish_course()` |
 | `schedule` | 3 | Schedule processing | `process_schedule()` |
+| `shared` | 0 | Cross-cutting helpers | `ensure_output_directory()` |
 | `speech_to_text` | 1 | Audio transcription | `transcribe_audio()` |
 | `text_to_speech` | 1 | Audio generation | `generate_speech()` |
 | `validation` | 0 | Output validation | `validate_published_directory()` |

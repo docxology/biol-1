@@ -6,7 +6,7 @@ This directory contains all public course materials for **BIOL-8: Human Biology*
 
 ## Course Structure
 
-The course covers 17 modules progressing from foundational life science concepts to human body systems, ecology, and evolution:
+The course covers 17 modules from foundational life science through human body systems, ecology, and evolution:
 
 ### Modules
 
@@ -20,13 +20,13 @@ The course covers 17 modules progressing from foundational life science concepts
 | [06](module-06-metabolism/) | Metabolism | ATP, enzymes, cellular respiration, fermentation |
 | [07](module-07-genetics/) | Genetics & Central Dogma | DNA structure, transcription, translation, genetic code |
 | [08](module-08-cell-division/) | Cell Division: Mitosis & Meiosis | Cell cycle, mitosis phases, meiosis I & II, genetic variation |
-| [09](module-09-inheritance/) | Inheritance | Mendelian genetics, Punnett squares, pedigrees |
-| [10](module-10-tissues/) | Tissues | Epithelial, connective, muscle, nervous tissue |
+| [09](module-09-tissues/) | Tissues | Epithelial, connective, muscle, nervous tissue |
+| [10](module-10-inheritance/) | Inheritance | Mendelian genetics, Punnett squares, pedigrees |
 | [11](module-11-skeletal-system/) | Skeletal System | Bone structure, bone cells, joints |
 | [12](module-12-muscular-system/) | Muscular System | Muscle types, sliding filament theory, contraction |
-| [13](module-13-pathogens/) | Pathogens | Bacteria, viruses, fungi, immune defenses; hands-on [Lab 13: Microbiology](labs/lab-13_microbiology.md) |
-| [14](module-14-cardiovascular-system/) | Cardiovascular System | Heart anatomy, blood flow, blood vessels |
-| [15](module-15-cardiopulmonary-system/) | Respiratory System | Breathing mechanics, gas exchange, transport |
+| [13](module-13-nervous-system/) | Nervous System | CNS/PNS, neuron and synapse survey, brain overview; [Lab 13](labs/lab-13_nervous-system.md) |
+| [14](module-14-microbiology/) | Microbiology | Aseptic technique, Gram logic, antibiotics; [Lab 14](labs/lab-14_microbiology.md) |
+| [15](module-15-cardiopulmonary-system/) | Cardiopulmonary System | Heart and vessels, breathing mechanics, gas exchange; [Lab 15](labs/lab-15_cardiopulmonary-system.md) |
 | [16](module-16-ecology/) | Ecology | Biomes, populations, communities, ecosystems |
 | [17](module-17-evolution/) | Evolution | Natural selection, adaptation, speciation |
 
@@ -56,7 +56,7 @@ course/
 │   ├── README.md               # Labs documentation
 │   ├── lab-01_measurement-methods.md  # Full interactive lab
 │   ├── lab-02_probability-statistics.md  # Full interactive lab
-│   ├── ... (15 labs total)
+│   ├── ... (18 lab `.md` files plus optional follow-up pages)
 │   └── output/                 # Generated lab outputs (PDF, HTML)
 │
 ├── practice_tests/              # Practice tests with answer keys
@@ -93,7 +93,7 @@ Answer keys include explanations for all questions.
 
 ### Labs
 
-15 laboratory protocols (currently as stubs) covering hands-on experiments and activities aligned with each module topic.
+Eighteen laboratory protocols (some ecology/evolution sections remain stubs) aligned with course topics and exams.
 
 ## Module Contents
 

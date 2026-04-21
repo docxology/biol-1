@@ -4,25 +4,18 @@
 
 Technical documentation for course management software utilities, including function signatures, module APIs, and code organization.
 
-## Test Coverage
+## Test status
 
-**Overall: 81%** (614 tests, 608 passed, 6 skipped)
+**612 tests collected; 607 passing, 5 skipped** (last verified after the `convert_markdown_to_docx` rewrite — see `software/src/format_conversion/AGENTS.md`).
 
-| Module | Coverage | Notes |
-| ------ | -------- | ----- |
-| `batch_processing` | 78% | Main processing functions |
-| `canvas_integration` | 45% | External API (live API requires key; tests validate structure) |
-| `file_validation` | 91-92% | Validation utilities |
-| `format_conversion` | 80-98% | Format-specific converters |
-| `html_website` | 92-100% | Website generation |
-| `lab_manual` | 90-95% | Lab rendering |
-| `markdown_to_pdf` | 90-92% | PDF generation |
-| `module_organization` | 78-93% | Module structure |
-| `publish` | 80-84% | Course publishing |
-| `schedule` | 93% | Schedule processing |
-| `speech_to_text` | 88-98% | Audio transcription |
-| `text_to_speech` | 89-91% | Audio generation |
-| `validation` | 31-64% | Output validation (syllabus, study guides) |
+Run the suite from the `software/` directory:
+
+```bash
+cd software && uv run pytest -q --no-cov   # fast pass
+cd software && uv run pytest                # with coverage report
+```
+
+Coverage is reported per-module on every run (`--cov-report=term-missing` is enabled in `pyproject.toml`). Numbers vary as tests evolve; check the most recent report rather than relying on a static table.
 
 ## Modular Architecture
 
@@ -44,20 +37,20 @@ module_name/
 
 Modules are organized in layers to minimize dependencies:
 
-- **Layer 0 (Independent)**: No dependencies on other modules
-  - `module_organization`, `file_validation`
+- **Layer 0 (foundation)**: No dependencies on sibling modules.
+  - `shared` (cross-cutting helpers), `module_organization`, `file_validation`, `legacy_import`, `content_processing`, `validation`, `publish`
 
-- **Layer 1 (Core)**: Depend only on external libraries
-  - `markdown_to_pdf`, `text_to_speech`, `speech_to_text`
+- **Layer 1 (core renderers)**: Depend on external libraries plus `shared`.
+  - `markdown_to_pdf`, `text_to_speech`, `speech_to_text`, `lab_manual`
 
-- **Layer 2 (Format)**: Depend on Layer 1 modules
+- **Layer 2 (format orchestration)**: Depend on Layer 1.
   - `format_conversion`
 
-- **Layer 3 (Orchestration)**: Compose lower-layer modules
-  - `batch_processing`, `html_website`, `schedule`
+- **Layer 3 (multi-format orchestration)**: Compose lower layers.
+  - `batch_processing`, `schedule`, `html_website`
 
-- **Layer 4 (Integration)**: Use validation and external services
-  - `canvas_integration`, `publish`
+- **Layer 4 (external integrations)**: Talk to outside services.
+  - `canvas_integration`
 
 ### Interface Contracts
 
@@ -346,6 +339,55 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 **Used by**: Publishing scripts
 
+### Content Processing
+
+**Purpose**: Transform and normalize markdown source content (question renumbering, whitespace normalization, header analysis).
+
+**Location**: `src/content_processing/`
+
+**Standalone**: Yes — pure text transformations.
+
+**Dependencies**: `shared` (file I/O).
+
+**Key Functions**:
+
+- `process_questions_file(path: Path) -> dict` — renumber questions in a single `questions.md`.
+- `renumber_questions_in_course(course_path: Path) -> dict` — sweep every module in a course.
+
+**Used by**: Authoring scripts and pre-publish content normalization.
+
+### Legacy Import
+
+**Purpose**: One-shot importers for older lesson archives that pre-date the current `module-NN-name/` layout.
+
+**Location**: `src/legacy_import/`
+
+**Standalone**: Yes — runs offline against an input directory.
+
+**Dependencies**: `shared`.
+
+**Key Functions**:
+
+- `import_legacy_course(source_dir: Path, target_course: Path) -> dict` — convert and place legacy artifacts into the current module structure.
+
+**Used by**: Manual one-time migrations; not invoked by `publish.py`.
+
+### Shared Helpers
+
+**Purpose**: Tiny, dependency-free helpers used by multiple `src/` modules.
+
+**Location**: `src/shared/`
+
+**Standalone**: Yes — has no sibling-module dependencies and only uses stdlib.
+
+**Key Functions** (`shared/file_utils.py`):
+
+- `ensure_output_directory(output_path: Path) -> None`
+- `read_markdown_file(file_path: Path) -> str`
+- `find_files(directory: Path, patterns: list[str]) -> list[Path]`
+
+**Used by**: `format_conversion`, `markdown_to_pdf`, `text_to_speech`, `speech_to_text`, `lab_manual`, `html_website`, `batch_processing`, `schedule`.
+
 ### Validation Module
 
 **Purpose**: Validate output files and directory structure for published courses
@@ -386,7 +428,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 ```text
 software/
-├── src/              # Source code (15 modules)
+├── src/              # Source code (16 packages)
 │   ├── batch_processing/
 │   ├── canvas_integration/
 │   ├── content_processing/
@@ -399,14 +441,14 @@ software/
 │   ├── module_organization/
 │   ├── publish/
 │   ├── schedule/
+│   ├── shared/                # Cross-cutting helpers (file_utils, …)
 │   ├── speech_to_text/
 │   ├── text_to_speech/
 │   └── validation/
-├── tests/            # Test files
-│   └── [mirrors src/ structure]
-├── scripts/          # Generation scripts
-└── docs/             # Documentation
-    └── [module-specific docs]
+├── tests/            # Pytest suite (mirrors src/ layout)
+├── scripts/          # CLI entry points (publish_all, generate_all_outputs, …)
+├── docs/             # Architecture, orchestration, quickstart
+└── logs/             # Pipeline run logs (git-ignored)
 ```
 
 ### Module Structure

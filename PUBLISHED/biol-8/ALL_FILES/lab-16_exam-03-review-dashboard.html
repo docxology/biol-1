@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 16 Dashboard: Exam 03 Review | BIOL-8</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1000px; }
+.section { margin-bottom: 36px; scroll-margin-top: 24px; }
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.section-num {
+  width: 36px; height: 36px; border-radius: 10px; background: var(--accent); color: #fff;
+  font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center;
+}
+.section-title { font-size: 20px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); }
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 20px; margin-bottom: 14px; border: 1px solid var(--border);
+}
+.card-title { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #3b1a2e 100%);
+  color: #fff; border-radius: var(--radius); padding: 32px; margin-bottom: 28px;
+}
+.hero h2 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+.hero p { color: #cbd5e1; font-size: 14px; max-width: 620px; }
+.checklist { list-style: none; }
+.checklist li { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.checklist input { margin-top: 4px; accent-color: var(--accent); }
+textarea {
+  width: 100%; min-height: 90px; padding: 12px; border: 2px solid var(--border);
+  border-radius: 8px; font-family: var(--font); font-size: 14px; resize: vertical;
+}
+textarea:focus { outline: none; border-color: var(--accent); }
+.input-group { margin-top: 12px; }
+.timer-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+.timer-val { font-family: ui-monospace, monospace; font-size: 28px; font-weight: 800; color: var(--accent); }
+.btn {
+  padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  border: none; cursor: pointer; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-outline { background: #fff; border: 2px solid var(--border); color: var(--text); }
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-8: Human Biology</h1>
+    <p>Lab 16 &mdash; Exam 03 review</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#m11"><span class="nav-num">11</span> Skeletal</a>
+    <a href="#m12"><span class="nav-num">12</span> Muscular</a>
+    <a href="#m13"><span class="nav-num">13</span> Nervous</a>
+    <a href="#m14"><span class="nav-num">14</span> Microbiology</a>
+    <a href="#m15"><span class="nav-num">15</span> Cardiopulmonary</a>
+    <a href="#timer"><span class="nav-num">&bull;</span> Sprint timer</a>
+  </nav>
+  <div class="sidebar-footer">Modules 11&ndash;15 &middot; &copy; 2026 BIOL-8</div>
+</aside>
+
+<div class="main">
+<div class="hero" id="hero">
+  <h2>Exam 03 practice</h2>
+  <p>Checklists mirror the lab workbook: use them closed-book first, then fill gaps from your notes. Open <code style="background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;">lab-16_exam-03-review.md</code> for full drills.</p>
+</div>
+
+<div class="section" id="m11">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div><div class="section-title">Skeletal system</div><div class="section-subtitle">Support, marrow, joint types</div></div>
+  </div>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="c11a" data-persist> <label for="c11a">Axial vs appendicular examples</label></li>
+      <li><input type="checkbox" id="c11b" data-persist> <label for="c11b">Red marrow &amp; blood cell formation</label></li>
+      <li><input type="checkbox" id="c11c" data-persist> <label for="c11c">Synovial joint = freely movable</label></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="m12">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div><div class="section-title">Muscular system</div><div class="section-subtitle">Types, sliding filament overview</div></div>
+  </div>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="c12a" data-persist> <label for="c12a">Skeletal vs cardiac vs smooth (control, striations)</label></li>
+      <li><input type="checkbox" id="c12b" data-persist> <label for="c12b">Sarcomere: actin / myosin roles</label></li>
+      <li><input type="checkbox" id="c12c" data-persist> <label for="c12c">Motor unit concept</label></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="m13">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <div><div class="section-title">Nervous system</div><div class="section-subtitle">Neuron, synapse, divisions</div></div>
+  </div>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="c13a" data-persist> <label for="c13a">CNS vs PNS</label></li>
+      <li><input type="checkbox" id="c13b" data-persist> <label for="c13b">Reflex arc sequence</label></li>
+      <li><input type="checkbox" id="c13c" data-persist> <label for="c13c">Major brain divisions (cerebrum, cerebellum, brainstem)</label></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="m14">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <div><div class="section-title">Microbiology</div><div class="section-subtitle">Gram logic, aseptic technique</div></div>
+  </div>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="c14a" data-persist> <label for="c14a">Gram+ vs Gram&minus; envelope differences</label></li>
+      <li><input type="checkbox" id="c14b" data-persist> <label for="c14b">Why some drugs are G+ vs G&minus; biased</label></li>
+      <li><input type="checkbox" id="c14c" data-persist> <label for="c14c">Zone of inhibition = susceptibility (qualitative)</label></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="m15">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <div><div class="section-title">Cardiopulmonary</div><div class="section-subtitle">Heart path, lungs, gas exchange</div></div>
+  </div>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="c15a" data-persist> <label for="c15a">Systemic vs pulmonary circulation</label></li>
+      <li><input type="checkbox" id="c15b" data-persist> <label for="c15b">Oxygen loading / CO<sub>2</sub> unloading (big picture)</label></li>
+      <li><input type="checkbox" id="c15c" data-persist> <label for="c15c">Vital capacity vs tidal volume (spirometry terms)</label></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="timer">
+  <div class="section-header">
+    <div class="section-num">&bull;</div>
+    <div><div class="section-title">Vocabulary sprint</div><div class="section-subtitle">Optional timer (local only)</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">5-minute word-bank sprint</div>
+    <div class="timer-row">
+      <div class="timer-val" id="tm-display">5:00</div>
+      <button type="button" class="btn btn-primary" id="tm-start">Start</button>
+      <button type="button" class="btn btn-outline" id="tm-reset">Reset</button>
+    </div>
+    <div class="input-group" style="margin-top:16px;">
+      <textarea id="sprint-notes" data-persist placeholder="Jot terms you missed…"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  const KEY = 'biol8-dashboard-lab-16-exam03';
+  function load() {
+    try {
+      const d = JSON.parse(localStorage.getItem(KEY) || '{}');
+      document.querySelectorAll('[data-persist]').forEach(el => {
+        if (!el.id || !(el.id in d)) return;
+        if (el.type === 'checkbox') el.checked = d[el.id];
+        else el.value = d[el.id];
+      });
+    } catch (e) {}
+  }
+  function save() {
+    const d = {};
+    document.querySelectorAll('[data-persist]').forEach(el => {
+      if (!el.id) return;
+      d[el.id] = el.type === 'checkbox' ? el.checked : el.value;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {}
+  }
+  document.querySelectorAll('[data-persist]').forEach(el => {
+    el.addEventListener('change', save);
+    el.addEventListener('input', save);
+  });
+  load();
+
+  let remain = 300, tick = null;
+  const disp = document.getElementById('tm-display');
+  function fmt(s) {
+    const m = Math.floor(s / 60), sec = s % 60;
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+  const startBtn = document.getElementById('tm-start');
+  startBtn.onclick = function () {
+    if (tick) { clearInterval(tick); tick = null; startBtn.textContent = 'Start'; return; }
+    startBtn.textContent = 'Pause';
+    tick = setInterval(() => {
+      remain = Math.max(0, remain - 1);
+      disp.textContent = fmt(remain);
+      if (remain === 0) { clearInterval(tick); tick = null; startBtn.textContent = 'Start'; }
+    }, 1000);
+  };
+  document.getElementById('tm-reset').onclick = function () {
+    if (tick) clearInterval(tick);
+    tick = null;
+    remain = 300;
+    disp.textContent = '5:00';
+    startBtn.textContent = 'Start';
+  };
+
+  function navScroll() {
+    const sections = document.querySelectorAll('.section, .hero');
+    const links = document.querySelectorAll('.sidebar-nav a');
+    let idx = 0;
+    sections.forEach((sec, i) => { if (sec.getBoundingClientRect().top < 160) idx = i; });
+    links.forEach((l, i) => l.classList.toggle('active', i === idx));
+  }
+  window.addEventListener('scroll', navScroll);
+  navScroll();
+})();
+</script>
+</body>
+</html>

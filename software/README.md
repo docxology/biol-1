@@ -230,12 +230,18 @@ These sample files can be used to test:
 
 All code in this software uses real methods and implementations. No mocks, stubs, or fake methods are used. Tests use real file operations, real library calls, and real validation logic. External API integrations use real API clients with proper error handling.
 
-## Test Coverage
+## Tests and coverage
 
-- **614 tests collected** (verify with `uv run pytest --collect-only`)
-- Tests cover all major functionality across 15 modules
-- Run tests with: `uv run pytest tests/ -v`
-- Measure coverage with: `uv run pytest --cov=src --cov-report=html`
+From `software/`:
+
+```bash
+uv run pytest --collect-only -q   # current test count
+uv run pytest tests/ -v           # full run
+uv run pytest -q --no-cov         # quick pass
+uv run pytest --cov=src --cov-report=html   # HTML coverage report
+```
+
+There are **16** packages under `src/`; see [`src/AGENTS.md`](src/AGENTS.md) for the index.
 
 ## Documentation
 

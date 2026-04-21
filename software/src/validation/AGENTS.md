@@ -101,8 +101,8 @@ def get_timestamp() -> str
 
 | Course | Expected Modules |
 |--------|------------------|
-| BIOL-1 | 17 |
-| BIOL-8 | 15 |
+| BIOL-1 | 16 |
+| BIOL-8 | 17 |
 
 ## Usage
 

@@ -299,10 +299,11 @@ See [Module Independence](#module-independence) for details on standalone usage.
 
 ```text
 software/
-├── src/                              # Source code (15 modules)
+├── src/                              # Source code (16 packages)
 │   ├── __init__.py
 │   ├── batch_processing/             # Module batch operations
 │   ├── canvas_integration/           # Canvas LMS upload
+│   ├── content_processing/           # Question renumbering, text normalize
 │   ├── file_validation/              # Content validation
 │   ├── format_conversion/            # Format transformations
 │   ├── html_website/                 # Interactive websites
@@ -312,6 +313,7 @@ software/
 │   ├── module_organization/          # Directory structure
 │   ├── publish/                      # Course publishing
 │   ├── schedule/                     # Schedule processing
+│   ├── shared/                       # Cross-cutting file_utils helpers
 │   ├── speech_to_text/               # Audio transcription
 │   ├── text_to_speech/               # Audio generation
 │   └── validation/                   # Output validation
@@ -758,10 +760,10 @@ See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generat
 
 | Document | Location | BIOL-1 | BIOL-8 | Format | Published |
 |----------|----------|--------|--------|--------|-----------|
-| **Exams** (`exam-XX.md` + key) | `course/exams/` | — | 4 + 4 keys | 50 MC + 30 SA + 20 Essay = 100 pts | ✅ Local PDF+DOCX (❌ Not published — teacher-only) |
-| **Quizzes** (`module-XX_quiz.md` + key) | `course/quizzes/` | Templates | 15 + 15 keys | 7 MC + 3 FR = 10 pts | ❌ Teacher-only |
+| **Exams** (`exam-XX.md` + key) | `course/exams/` | 2 exams + keys on disk (`exam-01`, `exam-03`) | 3 unit exams + keys (`exam-01`–`exam-03`) | Layout varies by file (see live `exam-*.md`) | Teacher-only / local render |
+| **Quizzes** (`module-XX_quiz.md` + key) | `course/quizzes/` | Templates only | 17 + 17 keys | 7 MC + 3 FR = 10 pts | Teacher-only |
 
-Exam structure: `exam-01.md` (Modules 01-07), `exam-02.md` (Modules 08-11), `exam-03.md` (Modules 12-15), `final-exam.md` (Comprehensive, 150 pts).
+BIOL-8 unit exam coverage (see course `AGENTS.md`): `exam-01` (modules 01–06), `exam-02` (07–10), `exam-03` (11–15); modules 16–17 and comprehensive final as scheduled. BIOL-1 exam README lists current on-disk exams and planned finals.
 
 #### Syllabus Materials
 
@@ -776,11 +778,11 @@ Exam structure: `exam-01.md` (Modules 01-07), `exam-02.md` (Modules 08-11), `exa
 
 | Property | BIOL-1 | BIOL-8 |
 |----------|--------|--------|
-| **Location** | `resources/slides/module-XX-slides-*.pdf` | `course/module-XX/resources/*.pdf` |
-| **Count** | 30 PDFs (15 modules × 2 versions; modules 9, 17 missing) | 15 PDFs |
-| **Versions** | `*-full.pdf` (complete), `*-notes.pdf` (with notes) | 1 per module |
+| **Location** | `resources/slides/module-N-slides-{full,notes}.pdf` | `resources/slides/*.pdf` (topic-titled files); optional PDFs under `course/module-*/resources/` |
+| **Count** | 30 PDFs = 15 module numbers × 2 variants (**module 9** has no slide pair in repo) | 15 PDFs under `resources/slides/` as of last inventory |
+| **Versions** | `*-full.pdf`, `*-notes.pdf` | Typically one PDF per slide set in `resources/slides/` |
 
-**Note:** Slides are pre-generated PDFs, not dynamically rendered.
+**Note:** Slides are pre-generated PDFs, not dynamically rendered. Re-count files on disk if modules are added.
 
 #### Interactive Website
 
@@ -836,18 +838,17 @@ course_development/
 │   │   │       ├── study-guides/
 │   │   │       └── website/
 │   │   ├── labs/
-│   │   │   ├── lab-01_measurement-methods.md  # Complete
-│   │   │   ├── lab-02_probability-statistics.md  # Complete
-│   │   │   └── ... (9 more stubs)
+│   │   │   ├── lab-01_measurement-methods.md … lab-18_evolution.md
+│   │   │   ├── dashboards/
+│   │   │   └── output/
 │   │   ├── exams/
 │   │   │   ├── exam-01.md + exam-01_key.md
 │   │   │   ├── exam-02.md + exam-02_key.md
 │   │   │   ├── exam-03.md + exam-03_key.md
-│   │   │   ├── final-exam.md + final-exam_key.md
 │   │   │   └── output/                  # PDF, DOCX (teacher-only)
 │   │   └── quizzes/
 │   │       ├── module-01_quiz.md + module-01_quiz_key.md
-│   │       └── ... (15 modules)
+│   │       └── ... (17 modules × 2 files)
 │   ├── syllabus/
 │   ├── resources/
 │   │   └── ConceptsofBiology-WEB.pdf    # Textbook
@@ -860,11 +861,8 @@ After running generation, each module's output directory contains:
 
 ```
 module-XX/output/
-├── assignments/        # Processed assignment files
-├── lab-protocols/      # Processed lab protocol files
-├── lecture-content/    # Processed lecture files
-├── study-guides/       # Processed study guide files
-└── website/           # HTML website (index.html)
+├── study-guides/       # questions + keys-to-success in each requested format
+└── website/            # index.html (interactive module site)
 ```
 
 ### Syllabus Output Directory

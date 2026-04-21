@@ -8,8 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 CR-BIO is a course management and content generation system for Biology courses at College of the Redwoods. It converts Markdown source files into multiple output formats (PDF, DOCX, HTML, TXT, MD, MP3, interactive websites) for two courses:
 
-- **BIOL-1**: Biology at Pelican Bay (17 modules)
-- **BIOL-8**: Human Biology at College of the Redwoods (15 modules)
+- **BIOL-1**: Biology at Pelican Bay (16 modules under `course/module-*`)
+- **BIOL-8**: Human Biology at College of the Redwoods (17 modules under `course/module-*`)
 
 ## Development Commands
 
@@ -81,7 +81,7 @@ course_development/          # Source content (Markdown)
     course/
       module-XX-topic/       # keys-to-success.md, questions.md, output/
       labs/                  # lab-XX_topic.md + dashboards/ (HTML)
-      exams/, quizzes/       # BIOL-8 only: assessment content
+      exams/, quizzes/, practice_tests/  # Assessment content (BIOL-8 has full quiz set; BIOL-1 varies)
     syllabus/                # Syllabus.md, Schedule.md, output/
     resources/               # Slides PDFs
     private/                 # Instructor-only (not published)
@@ -91,7 +91,7 @@ PUBLISHED/                   # Generated outputs (independent git repos per cour
   biol-8/                    # → github.com/docxology/biol-8
 
 software/
-  src/                       # 15 Python modules
+  src/                       # 16 Python packages
   scripts/                   # CLI orchestration scripts
   tests/                     # pytest test suite
 ```
@@ -100,7 +100,7 @@ software/
 
 Modules are in `software/src/`. Each has `__init__.py`, `main.py` (public API), `utils.py`, `config.py`.
 
-**Layer 0 - Independent:** `module_organization`, `file_validation`, `publish`, `validation`, `lab_manual`, `content_processing`, `legacy_import`
+**Layer 0 - Independent:** `shared`, `module_organization`, `file_validation`, `publish`, `validation`, `lab_manual`, `content_processing`, `legacy_import`
 
 **Layer 1 - Core converters:** `markdown_to_pdf` (WeasyPrint), `text_to_speech` (gTTS), `speech_to_text` (SpeechRecognition)
 
@@ -146,4 +146,4 @@ Labs use special directive syntax for interactive HTML dashboards:
 - Type hints on all functions, docstrings required
 - Black formatting (100 char lines), Ruff linting, mypy type checking
 - Module public API lives in `main.py`, internals in `utils.py`, constants in `config.py`
-- Two supported courses: `biol-1` (17 modules) and `biol-8` (15 modules) defined in `batch_processing/config.py` as `SUPPORTED_COURSES`
+- Two supported courses: `biol-1` and `biol-8` are listed in `batch_processing/config.py` as `SUPPORTED_COURSES`. Module counts (**16** for BIOL-1, **17** for BIOL-8) come from `course_development/`, not from that config.

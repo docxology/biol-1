@@ -22,6 +22,7 @@ This directory contains laboratory protocols for BIOL-8: Human Biology (College 
 | [Lab 12](lab-12_muscular-system.md) | Muscular System | ✅ Complete | Module 12 |
 | [Lab 13](lab-13_nervous-system.md) | Nervous System | ✅ Complete | Module 13 |
 | [Lab 14](lab-14_microbiology.md) | Microbiology | ✅ Complete | Module 14 |
+| [Lab 14 follow-up](lab-14_microbiology-followup.md) | Microbiology (post-incubation) | ✅ Complete | Module 14 |
 | [Lab 15](lab-15_cardiopulmonary-system.md) | Cardiopulmonary System | See file | Module 15 |
 | [Lab 16](lab-16_exam-03-review.md) | Exam 03 Review (Modules 11–15) | ✅ Complete | Exam 03 |
 | [Lab 17](lab-17_ecology.md) | Ecology | 📝 Stub | Module 16 |

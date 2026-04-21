@@ -12,7 +12,7 @@ This lab uses **14 bacterial species** maintained on **tryptic soy agar (TSA)** 
 
 The skills you practice here — aseptic technique, forming and testing a hypothesis, and connecting molecular mechanisms to observable results — are foundational to clinical microbiology, food safety, and public-health laboratory work.
 
-**Interpretation after growth** (zones, colony types, Gram logic vs. what you see) is completed in **[Lab 17: Microbiology Follow-up](lab-17_microbiology-followup.md)** once plates have incubated.
+**Interpretation after growth** (zones, colony types, Gram logic vs. what you see) is completed in **[Lab 14 follow-up](lab-14_microbiology-followup.md)** once plates have incubated.
 
 ---
 
@@ -201,7 +201,7 @@ Before plating, **predict** whether each of your four antibiotics (**A–D**) wi
 3. **Invert** the plate, **tape** if required for transport, and place in the **designated incubator** (temperature as posted, often **37 °C**).
 4. **Repeat** steps A.4–A.5 for each of your three assigned strains.
 
-> **After incubation:** Interpret zones, compare to **Gram category** and **drug class**, and complete air-plate colony work in **[Lab 17: Microbiology Follow-up](lab-17_microbiology-followup.md)**.
+> **After incubation:** Interpret zones, compare to **Gram category** and **drug class**, and complete air-plate colony work in **[Lab 14 follow-up](lab-14_microbiology-followup.md)**.
 
 ---
 
@@ -232,7 +232,7 @@ Your group has **four additional TSA plates** (one per person when possible).
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
 
-> **After growth:** Describe colonies and compare locations in **[Lab 17: Microbiology Follow-up](lab-17_microbiology-followup.md)**.
+> **After growth:** Describe colonies and compare locations in **[Lab 14 follow-up](lab-14_microbiology-followup.md)**.
 
 ---
 
@@ -258,4 +258,4 @@ Your group has **four additional TSA plates** (one per person when possible).
 
 ---
 
-*Lab 14 — Microbiology. Tryptic soy media; 14 teaching strains; standardized 4-antibiotic disc susceptibility + environmental air sampling. Pair with [Lab 17](lab-17_microbiology-followup.md) after incubation.*
+*Lab 14 — Microbiology. Tryptic soy media; 14 teaching strains; standardized 4-antibiotic disc susceptibility + environmental air sampling. Pair with [Lab 14 follow-up](lab-14_microbiology-followup.md) after incubation.*

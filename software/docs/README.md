@@ -6,8 +6,8 @@
 
 CR-BIO is an automated curriculum management system for Biology courses at College of the Redwoods. It transforms Markdown source files into multiple output formats (PDF, MP3, HTML, DOCX, TXT) and interactive websites for two courses:
 
-- **BIOL-1**: General Biology (17 modules) — Pelican Bay Prison
-- **BIOL-8**: Human Anatomy & Physiology (15 modules) — College of the Redwoods
+- **BIOL-1**: General Biology (16 modules) — Pelican Bay Prison
+- **BIOL-8**: Human Anatomy & Physiology (17 modules) — College of the Redwoods
 
 ```mermaid
 flowchart LR
@@ -35,18 +35,22 @@ flowchart LR
 
 ---
 
-## Project Statistics
+## Verify tests and coverage
 
-| Metric | Value | Last Updated |
-|--------|-------|--------------|
-| **Total Tests** | 608 passed, 6 skipped | 2026-02-23 |
-| **Modules** | 15 source modules | 2026-02-23 |
-| **Code Coverage** | 81% overall | 2026-02-23 |
+Counts change as the suite grows. From `software/`:
 
-### Supported Courses
+```bash
+uv run pytest --collect-only -q    # test count
+uv run pytest -q --no-cov            # pass/fail
+uv run pytest --cov=src --cov-report=term-missing   # coverage (terminal)
+```
 
-- **BIOL-1**: 17 modules (Spring 2026)
-- **BIOL-8**: 15 modules (Spring 2026)
+Structural facts (update if layout changes): **`software/src/`** holds **16** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
+
+### Supported courses
+
+- **BIOL-1**: 16 modules under `course_development/biol-1/course/module-*`
+- **BIOL-8**: 17 modules under `course_development/biol-8/course/module-*`
 
 ---
 
@@ -193,27 +197,25 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 ## Course Parity Matrix
 
-| Document Type | BIOL-1 | BIOL-8 | Status |
+| Document Type | BIOL-1 | BIOL-8 | Notes |
 |---------------|--------|--------|--------|
-| **keys-to-success.md** | 17 | 15 | ✅ Complete |
-| **questions.md** | 17 | 15 | ✅ Complete |
-| **Labs (complete)** | 11 | 11 | ✅ Labs 1-11 implemented for BIOL-8 and BIOL-1 |
-| **Labs (stubs)** | 6 | 4 | ✅ Both have stubs |
-| **Exams** | Templates | 4 + keys | ❌ BIOL-1 needs content |
-| **Quizzes** | Templates | 15 + keys | ❌ BIOL-1 needs content |
-| **Syllabus** | 2 files | 2 files | ✅ Complete |
-| **Schedule** | 1 file | 1 file | ✅ Complete |
-| **Slides** | 30 PDFs (modules 9, 17 missing) | 15 PDFs | ⚠️ BIOL-1 missing 2 modules |
-| **Module Resources** | Empty | 15 PDFs | ⚠️ BIOL-1 dirs empty |
-| **Website Output** | All modules | All modules | ✅ Complete |
+| **keys-to-success.md** | 16 | 17 | One per `course/module-*` |
+| **questions.md** | 16 | 17 | One per module |
+| **Labs** | 17 protocols + dashboards | 18 protocols + dashboards | See each course `course/labs/` |
+| **Exams** | 2 + keys on disk | 3 + keys on disk | Teacher-only; see `course/exams/` |
+| **Quizzes** | Templates | 17 × 2 files | BIOL-8 full set in `course/quizzes/` |
+| **Practice tests** | 3 + keys | 11 + keys (on disk) | `course/practice_tests/` |
+| **Syllabus** | 2 sources | 2 sources | + `syllabus/output/` |
+| **Schedule** | 1 source | 1 source | + rendered outputs |
+| **Slides** | 30 PDFs in `resources/slides/` (module **9** missing both variants) | 15 PDFs in `resources/slides/` | Pre-generated; not rendered by pipeline |
+| **Website output** | Per-module `output/website/` | Per-module `output/website/` | After generation |
 
-### Priority Actions
+### Priority actions (high level)
 
-1. **CRITICAL:** Create BIOL-1 exams (5 exams + 5 keys)
-2. **CRITICAL:** Create BIOL-1 quizzes (17 quizzes + 17 keys)
-3. **HIGH:** Develop remaining lab stubs into complete protocols (Labs 12-17)
-4. **MEDIUM:** Add BIOL-1 slides for modules 9 and 17
-5. **LOW:** Populate BIOL-1 module resource directories
+1. **BIOL-1 assessments:** Add unit coverage for modules 12–16 and/or final as the term requires; quizzes remain template-only unless the course adopts a BIOL-8-style quiz set.
+2. **Labs:** Finish any remaining lab stubs the instructor wants taught this term.
+3. **BIOL-1 slides:** Add module **9** full + notes PDFs if slides are required for that module.
+4. **Module `resources/`:** Populate optional per-module assets when needed.
 
 ---
 
@@ -390,7 +392,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 | 0.1.0 | 2026-02-23 | Comprehensive BIOL-1 Modules 7-11 Labs completion and repo-wide synchronization. |
 | 0.1.0 | 2026-02-08 | Documentation consolidation (absorbed HOW_IT_WORKS, GENERATION, DOCUMENT_TYPES) |
 | 0.1.0 | 2026-02-04 | Documentation synchronization (date updates, module count correction) |
-| 0.1.0 | 2026-02-03 | Documentation improvements (15 modules, scripts README, cross-references) |
+| 0.1.0 | 2026-02-03 | Documentation improvements (scripts README, cross-references) |
 | 0.1.0 | 2026-02-02 | Added versioning documentation to ARCHITECTURE.md and QUICKSTART.md |
 | 0.1.0 | 2026-02-01 | Updated statistics (420 tests, 74% coverage), added validation module |
 | 0.1.0 | 2026-01-15 | Updated statistics, corrected module count |

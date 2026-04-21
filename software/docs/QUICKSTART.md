@@ -344,35 +344,35 @@ uv run pytest tests/test_schedule_main.py -v
 uv run pytest tests/test_schedule_main.py::TestProcessSchedule::test_process_schedule_pdf_format -v
 ```
 
-### Current Statistics
+### Verify test count and coverage
 
-- **Tests**: 614 passed, 6 skipped
-- **Coverage**: 81% overall (measure with `uv run pytest --cov=src --cov-report=html`)
+Run from `software/`; numbers change over time:
+
+```bash
+uv run pytest --collect-only -q
+uv run pytest -q --no-cov
+uv run pytest --cov=src --cov-report=html tests/
+```
 
 ---
 
-## Expected Output Structure
+## Expected output structure
 
-After running `generate_all_outputs.py`:
+After running `generate_all_outputs.py` for a course module (e.g. `module-12-darwin-evolution/`):
 
 ```
-module-1/
-├── output/
-│   ├── assignments/
-│   │   ├── assignment-1.pdf
-│   │   ├── assignment-1.mp3
-│   │   ├── assignment-1.docx
-│   │   ├── assignment-1.html
-│   │   └── assignment-1.txt
-│   ├── lecture-content/
-│   │   ├── lecture.pdf
-│   │   ├── lecture.mp3
-│   │   └── lecture.docx
-│   ├── study-guides/
-│   │   └── study-guide.pdf
-│   └── website/
-│       └── index.html
+module-12-darwin-evolution/
+├── questions.md
+├── keys-to-success.md
+└── output/
+    ├── study-guides/
+    │   ├── module-12-darwin-evolution-questions.{pdf,docx,html,txt,md,mp3}
+    │   └── module-12-darwin-evolution-keys-to-success.{pdf,docx,html,txt,md,mp3}
+    └── website/
+        └── index.html
 ```
+
+Which formats appear depends on `publish.toml` / CLI (`--formats`, MP3 optional). Lab manuals render under `course/labs/output/` instead.
 
 ---
 

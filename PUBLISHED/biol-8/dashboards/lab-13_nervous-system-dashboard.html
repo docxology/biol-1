@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 13 Dashboard: Nervous System | BIOL-8</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
+  --accent: #c41e3a; --accent-light: #e8354f; --blue: #2563eb; --blue-light: #3b82f6;
+  --green: #16a34a; --amber: #d97706; --purple: #7c3aed;
+  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
+  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
+  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+}
+.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+.sidebar-nav { flex: 1; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
+  transition: all 0.15s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
+.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
+.sidebar-nav .nav-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.08); flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
+.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1200px; }
+.section { margin-bottom: 40px; scroll-margin-top: 24px; }
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.section-num {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0;
+}
+.section-title { font-size: 22px; font-weight: 700; }
+.section-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 24px; margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 900px) { .card-row { grid-template-columns: 1fr; } }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; transition: all 0.15s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-light); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.input-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.input-group label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+input[type=number], select {
+  padding: 8px 12px; border: 2px solid var(--border); border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 600; background: #fff; width: 100%;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+textarea {
+  width: 100%; min-height: 100px; padding: 12px; border: 2px solid var(--border);
+  border-radius: 8px; font-family: var(--font); font-size: 14px; resize: vertical;
+}
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 12px 0; }
+.stat-box {
+  text-align: center; padding: 14px 8px; border-radius: 8px;
+  background: #f8fafc; border: 1px solid var(--border);
+}
+.stat-box .stat-val { font-size: 24px; font-weight: 800; font-family: var(--mono); color: var(--accent); }
+.stat-box .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-weight: 600; text-transform: uppercase; }
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #1e3a4a 100%);
+  color: #fff; border-radius: var(--radius); padding: 36px; margin-bottom: 32px; position: relative; overflow: hidden;
+}
+.hero h2 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: #cbd5e1; max-width: 640px; line-height: 1.7; }
+.hero .bio-tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.hero .bio-tag {
+  padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+}
+.comp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+.comp-table th, .comp-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+.comp-table th { background: #f8fafc; font-weight: 700; font-size: 11px; text-transform: uppercase; color: var(--text-muted); }
+.checklist { list-style: none; }
+.checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.checklist input { margin-top: 4px; accent-color: var(--accent); }
+.chart-wrap canvas { width: 100%; max-width: 520px; display: block; border-radius: 8px; background: #f8fafc; }
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>BIOL-8: Human Biology</h1>
+    <p>Lab 13 &mdash; Nervous System</p>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
+    <a href="#part1"><span class="nav-num">1</span> Microscopy</a>
+    <a href="#part2"><span class="nav-num">2</span> Neuron &amp; synapse</a>
+    <a href="#part3"><span class="nav-num">3</span> Reflex arc</a>
+    <a href="#part4"><span class="nav-num">4</span> Brain landmarks</a>
+    <a href="#part5"><span class="nav-num">5</span> Lab notes</a>
+  </nav>
+  <div class="sidebar-footer">Interactive Lab Dashboard<br>&copy; 2026 BIOL-8</div>
+</aside>
+
+<div class="main">
+<div class="hero" id="hero">
+  <h2>Nervous System &mdash; Histology &amp; Sheep Brain</h2>
+  <p>Companion to the wet lab: total magnification, PNS vs CNS slide contrasts, synapse and reflex vocabulary, and midsagittal brain landmarks. Fields below save in your browser (local storage) for this file only.</p>
+  <div class="bio-tags">
+    <span class="bio-tag">Microscopy</span>
+    <span class="bio-tag">Neuron</span>
+    <span class="bio-tag">Neuroanatomy</span>
+  </div>
+</div>
+
+<div class="section" id="part1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div>
+      <div class="section-title">Magnification</div>
+      <div class="section-subtitle">Total mag = ocular &times; objective (same convention as Lab 03)</div>
+    </div>
+  </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Calculator</div>
+      <div class="input-group">
+        <label>Ocular (typical 10&times;)</label>
+        <input type="number" id="mag-ocular" data-persist value="10" min="1" step="1" oninput="updateMag()">
+      </div>
+      <div class="input-group">
+        <label>Objective</label>
+        <select id="mag-obj" data-persist onchange="updateMag()">
+          <option value="4">4&times;</option>
+          <option value="10" selected>10&times;</option>
+          <option value="40">40&times;</option>
+          <option value="100">100&times; (oil)</option>
+        </select>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="stat-val" id="mag-total">100&times;</div><div class="stat-label">Total</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Slide checklist</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">Track the three nervous-system slides from the protocol.</p>
+      <ul class="checklist">
+        <li><input type="checkbox" id="sl1" data-persist> <label for="sl1">Slide 1: ID + low &amp; high power drawings</label></li>
+        <li><input type="checkbox" id="sl2" data-persist> <label for="sl2">Slide 2: ID + low &amp; high power drawings</label></li>
+        <li><input type="checkbox" id="sl3" data-persist> <label for="sl3">Slide 3: ID + low &amp; high power drawings</label></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="part2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div>
+      <div class="section-title">Neuron &amp; synapse</div>
+      <div class="section-subtitle">Quick reference while labeling sketches</div>
+    </div>
+  </div>
+  <div class="card">
+    <table class="comp-table">
+      <thead><tr><th>Structure</th><th>Role (survey level)</th></tr></thead>
+      <tbody>
+        <tr><td>Dendrites</td><td>Receive signals from other cells; graded potentials toward soma.</td></tr>
+        <tr><td>Axon hillock / initial segment</td><td>Integrates input; initiates action potential if threshold reached.</td></tr>
+        <tr><td>Myelin (Schwann / oligodendrocyte)</td><td>Insulates axon; saltatory conduction at nodes of Ranvier.</td></tr>
+        <tr><td>Synapse</td><td>Presynaptic terminal &rarr; cleft &rarr; postsynaptic membrane; chemical or electrical.</td></tr>
+      </tbody>
+    </table>
+    <div class="chart-wrap"><canvas id="neuron-canvas" width="520" height="200"></canvas></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Schematic: dendrites (left), soma, myelinated axon with gaps (nodes), terminal branches.</p>
+  </div>
+</div>
+
+<div class="section" id="part3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div>
+      <div class="section-title">Reflex arc</div>
+      <div class="section-subtitle">Order the components you drew or discussed</div>
+    </div>
+  </div>
+  <div class="card">
+    <ol style="padding-left:20px;font-size:14px;line-height:1.8;">
+      <li>Receptor (stretch, pain, etc.)</li>
+      <li>Afferent (sensory) neuron</li>
+      <li>Integration center (spinal cord or brain)</li>
+      <li>Efferent (motor) neuron</li>
+      <li>Effector (muscle or gland)</li>
+    </ol>
+    <div class="input-group" style="margin-top:16px;">
+      <label>Your example from lab or lecture</label>
+      <textarea id="reflex-example" data-persist placeholder="e.g., patellar reflex — quadriceps stretch receptor → …"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="part4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div>
+      <div class="section-title">Sheep brain &mdash; midsagittal landmarks</div>
+      <div class="section-subtitle">Check off structures your instructor emphasized</div>
+    </div>
+  </div>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox" id="bm-cc" data-persist> <label for="bm-cc">Corpus callosum</label></li>
+      <li><input type="checkbox" id="bm-lv" data-persist> <label for="bm-lv">Lateral ventricle (space)</label></li>
+      <li><input type="checkbox" id="bm-th" data-persist> <label for="bm-th">Thalamus / hypothalamus region</label></li>
+      <li><input type="checkbox" id="bm-bs" data-persist> <label for="bm-bs">Brainstem (midbrain, pons, medulla)</label></li>
+      <li><input type="checkbox" id="bm-cb" data-persist> <label for="bm-cb">Cerebellum</label></li>
+      <li><input type="checkbox" id="bm-pit" data-persist> <label for="bm-pit">Pituitary region (if visible)</label></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="part5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div>
+      <div class="section-title">Lab notes</div>
+      <div class="section-subtitle">Questions for instructor or post-lab</div>
+    </div>
+  </div>
+  <div class="card">
+    <textarea id="lab-notes" data-persist placeholder="Write slide IDs, brain orientation notes, or vocabulary to review…"></textarea>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline" onclick="clearPersist()">Clear saved fields (this browser)</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  const KEY = 'biol8-dashboard-lab-13-nervous';
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      document.querySelectorAll('[data-persist]').forEach(el => {
+        const id = el.id;
+        if (!id || !(id in data)) return;
+        if (el.type === 'checkbox') el.checked = !!data[id];
+        else el.value = data[id];
+      });
+    } catch (e) { /* ignore */ }
+  }
+
+  function save() {
+    const data = {};
+    document.querySelectorAll('[data-persist]').forEach(el => {
+      if (!el.id) return;
+      if (el.type === 'checkbox') data[el.id] = el.checked;
+      else data[el.id] = el.value;
+    });
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { /* ignore */ }
+  }
+
+  window.updateMag = function () {
+    const oc = parseFloat(document.getElementById('mag-ocular').value) || 10;
+    const ob = parseFloat(document.getElementById('mag-obj').value) || 10;
+    document.getElementById('mag-total').textContent = (oc * ob) + '\u00d7';
+    save();
+  };
+
+  window.clearPersist = function () {
+    localStorage.removeItem(KEY);
+    location.reload();
+  };
+
+  function drawNeuron() {
+    const c = document.getElementById('neuron-canvas');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    const W = c.width, H = c.height;
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = '#374151';
+    ctx.lineWidth = 2;
+    ctx.fillStyle = '#dbeafe';
+    ctx.beginPath();
+    ctx.arc(90, 100, 35, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.fillStyle = '#1e40af';
+    ctx.font = '12px system-ui';
+    ctx.fillText('Soma', 68, 104);
+    ctx.strokeStyle = '#7c3aed';
+    ctx.beginPath();
+    ctx.moveTo(40, 60); ctx.lineTo(70, 85); ctx.lineTo(55, 40);
+    ctx.stroke();
+    ctx.fillStyle = '#6b21a8';
+    ctx.font = '11px system-ui';
+    ctx.fillText('Dendrites', 8, 35);
+    ctx.strokeStyle = '#2563eb';
+    ctx.beginPath();
+    ctx.moveTo(125, 100);
+    for (let x = 125; x < 420; x += 45) {
+      ctx.lineTo(x, 100 + (x % 90 === 35 ? 8 : -8));
+    }
+    ctx.stroke();
+    for (let x = 170; x < 400; x += 90) {
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillRect(x - 2, 92, 16, 16);
+    }
+    ctx.fillStyle = '#374151';
+    ctx.font = '11px system-ui';
+    ctx.fillText('Myelin segments', 200, 80);
+    ctx.strokeStyle = '#16a34a';
+    ctx.beginPath();
+    ctx.moveTo(420, 100); ctx.lineTo(500, 85); ctx.lineTo(500, 115); ctx.lineTo(515, 100);
+    ctx.stroke();
+    ctx.fillStyle = '#15803d';
+    ctx.fillText('Terminal branches', 430, 130);
+  }
+
+  document.querySelectorAll('[data-persist]').forEach(el => {
+    el.addEventListener('change', save);
+    el.addEventListener('input', save);
+  });
+
+  load();
+  window.updateMag();
+  drawNeuron();
+
+  function navScroll() {
+    const sections = document.querySelectorAll('.section, .hero');
+    const links = document.querySelectorAll('.sidebar-nav a');
+    let idx = 0;
+    sections.forEach((sec, i) => {
+      if (sec.getBoundingClientRect().top < 180) idx = i;
+    });
+    links.forEach((l, i) => l.classList.toggle('active', i === idx));
+  }
+  window.addEventListener('scroll', navScroll);
+  navScroll();
+})();
+</script>
+</body>
+</html>

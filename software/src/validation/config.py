@@ -81,11 +81,11 @@ LAB_OUTPUT_FORMATS = ["pdf", "html"]
 # Course configurations
 COURSE_CONFIG: Dict[str, Dict] = {
     "biol-1": {
-        "expected_modules": 17,
+        "expected_modules": 16,
         "module_prefix": "module-",
     },
     "biol-8": {
-        "expected_modules": 15,
+        "expected_modules": 17,
         "module_prefix": "module-",
     },
 }

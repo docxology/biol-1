@@ -1,5 +1,4 @@
 import os
-import sys
 
 def get_dir_context(path):
     """Determine context based on path to generate appropriate content."""
@@ -53,7 +52,11 @@ def generate_readme(path, context, files_in_dir):
         content += "> **Note**: All tests follow the 'Real Methods Policy' (no mocks/stubs).\n\n"
     elif dir_type == "lab":
         content += f"## Overview\n\nThis directory contains laboratory materials for {title}.\n\n"
-        content += "Refer to the root `course/labs/README.md` for directive syntax.\n\n"
+        content += (
+            "For lab markdown directives and generation, see `README.md` in the parent "
+            "`labs/` folder (e.g. `course_development/biol-1/course/labs/README.md` or "
+            "`course_development/biol-8/course/labs/README.md`).\n\n"
+        )
     else:
         content += f"## Overview\n\nThis directory contains resources for {title}.\n\n"
         
@@ -75,9 +78,24 @@ def generate_agents(path, context):
         content += "## Automation and Pipeline\n\n"
         content += "This module is processed by `software/scripts/generate_all_outputs.py`.\n"
         content += "It is subject to the continuous numbering mandate for study questions.\n\n"
-        content += "### Constraints\n\n"
-        content += "- Do not include `for_upload` or `slides` directories.\n"
-        content += "- Do not prefix filenames with the module number (e.g., use `questions.md`, not `module-01-questions.md`).\n"
+        content += "### Standard layout\n\n"
+        content += (
+            "- Source files at module root: `questions.md`, `keys-to-success.md`; "
+            "optional `resources/` for module-local assets; generated `output/` "
+            "(study-guides, website) — do not edit `output/` by hand.\n"
+        )
+        content += (
+            "- Slide PDFs: course-level `resources/slides/` (BIOL-1) or per-module "
+            "`resources/` (BIOL-8); follow a sibling module and the course `AGENTS.md`.\n"
+        )
+        content += (
+            "- A `for_upload/` directory is **not** part of the standard layout; it may "
+            "appear only after legacy import (`software/src/legacy_import/`).\n"
+        )
+        content += (
+            "- Do not prefix these filenames with the module slug (use `questions.md`, "
+            "not `module-01-questions.md`).\n"
+        )
     elif "software" in dir_type:
         content += "## Module Boundaries\n\n"
         content += f"**What this module does:**\n- Provides functionality for {title}\n\n"
@@ -94,7 +112,21 @@ def generate_agents(path, context):
 
 def main():
     repo_root = "."
-    skip_dirs = {".git", "__pycache__", "node_modules", "venv", "build", "dist", "assets", "media", "images", "output", "htmlcov", "PUBLISHED"}
+    skip_dirs = {
+        ".git",
+        "__pycache__",
+        "node_modules",
+        "venv",
+        ".venv",
+        "build",
+        "dist",
+        "assets",
+        "media",
+        "images",
+        "output",
+        "htmlcov",
+        "PUBLISHED",
+    }
     
     generated_count = 0
     

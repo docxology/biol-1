@@ -1,128 +1,78 @@
 # BIOL-1 Technical Documentation
 
-## Course Structure
+## Course
 
-### Directory Organization
+General Biology — College of the Redwoods, taught at Pelican Bay State Prison. 16 weekly modules covering molecular biology through ecology and the history of life.
+
+## Directory layout
 
 ```
 biol-1/
-├── course/           # Public course materials
-│   └── module-*/     # Individual course modules
-│       ├── assignments/
-│       ├── README.md
-│       └── AGENTS.md
-├── syllabus/         # Course syllabus materials
-│   ├── README.md
-│   ├── AGENTS.md
-│   ├── *.md          # Syllabus markdown files
-│   └── output/       # Processed syllabus outputs
-├── private/          # Instructor-only materials
-│   ├── README.md
-│   └── AGENTS.md
-└── resources/        # Supplementary resources
-    ├── README.md
-    └── AGENTS.md
+├── course/
+│   ├── module-01-study-of-life/        # 16 modules: each has questions.md +
+│   │   …                               #            keys-to-success.md + output/
+│   ├── module-16-history-of-life/
+│   ├── labs/                           # lab-NN_*.md (1–17), with output/ and dashboards/
+│   ├── exams/                          # exam-NN.md, exam-NN_key.md, exam-template.md
+│   ├── practice_tests/                 # practice-test-NN.md, practice-test-NN_key.md
+│   └── quizzes/                        # quiz-template.md
+├── syllabus/                           # syllabus + schedule (multi-format)
+├── resources/
+│   └── slides/                         # module-N-slides-{full,notes}.pdf
+├── private/                            # Instructor-only (not published)
+│   └── Pelican Bay/                    # Institution-specific PII (PBSP_Memos, …)
+├── README.md
+└── AGENTS.md
 ```
 
-### Syllabus Structure
+## Module structure
 
-The `syllabus/` directory contains:
-- **README.md**: Syllabus overview and available formats
-- **AGENTS.md**: Technical documentation for syllabus processing
-- **Syllabus markdown files**: Main syllabus content
-- **output/**: Processed syllabus files organized by format (pdf, mp3, docx, html, txt)
+Each `course/module-NN-name/` contains:
 
-Syllabus files are processed using `process_syllabus()` from the batch_processing module, generating all export formats for accessibility.
+- `README.md` — student-facing overview.
+- `AGENTS.md` — technical doc for tooling.
+- `questions.md` — practice questions.
+- `keys-to-success.md` — module study guide.
+- `resources/` (optional) — module-local images and datasets.
+- `output/` — generated artifacts:
+  - `output/study-guides/module-NN-name-questions.{md,pdf,docx,html,txt,mp3}`
+  - `output/study-guides/module-NN-name-keys-to-success.{md,pdf,docx,html,txt,mp3}`
+  - `output/website/index.html`
 
-### Module Structure
+There is **no** `assignments/` subfolder convention in BIOL-1.
 
-Each module in `course/` contains:
-- **assignments/**: Assignment files for students
-- **README.md**: Module overview and contents
-- **AGENTS.md**: Module-specific technical documentation
-- **Lecture Slides**: Presentation files
-- **Lab Protocols and Notes**: Laboratory instructions
-- **Study Guides**: Student study materials
-- **Quizzes**: Assessment materials
+## File naming
 
-## File Management
+| Artifact | Source path | Generated naming |
+|---|---|---|
+| Module questions | `course/module-NN-name/questions.md` | `module-NN-name-questions.{md,pdf,docx,…}` |
+| Module study guide | `course/module-NN-name/keys-to-success.md` | `module-NN-name-keys-to-success.{md,pdf,docx,…}` |
+| Lab | `course/labs/lab-NN_topic.md` | `lab-NN_topic.{pdf,html}` |
+| Lab dashboard | `course/labs/dashboards/lab-NN_topic-dashboard.html` | (already final HTML) |
+| Practice test | `course/practice_tests/practice-test-NN.md` | `practice-test-NN.{pdf,docx,…}` |
+| Exam | `course/exams/exam-NN.md` (+ `_key`) | `exam-NN.{pdf,docx,…}` |
+| Slides | `resources/slides/module-N-slides-{full,notes}.pdf` | (already final PDF) |
+| Syllabus | `syllabus/*.md` | `*.{pdf,docx,html,txt,mp3}` in `syllabus/output/` |
 
-### Naming Conventions
+## Pipeline integration
 
-- **Assignments**: `module-[N]-assignment-[number]-[description].md`
-- **Lectures**: `module-[N]-lecture-[topic].pdf` or `.pptx`
-- **Lab Protocols**: `module-[N]-lab-[number]-[topic].md`
-- **Study Guides**: `module-[N]-study-guide.md`
-- **Quizzes**: `module-[N]-quiz.md`
+```bash
+# Generate all BIOL-1 outputs
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
-### File Organization
+# Generate a single module
+cd software && uv run python scripts/generate_module_renderings.py --course biol-1 --module 12
 
-- All module materials follow consistent naming with module prefix
-- Assignments are stored in dedicated `assignments/` subfolder
-- Lecture materials use standard presentation formats (PDF, PPTX)
-- Lab protocols are in Markdown format for easy editing
+# Render syllabus
+cd software && uv run python scripts/generate_syllabus_renderings.py --course biol-1
 
-## Canvas Integration
+# Publish into PUBLISHED/biol-1/
+cd software && uv run python scripts/publish_course.py --course biol-1
+```
 
-### Upload Process
+The top-level `python publish.py` runs all of the above end-to-end and pushes `PUBLISHED/biol-1/` to its public subtree (`github.com/docxology/biol-1`).
 
-1. Module folders are uploaded to Canvas as complete units
-2. Maintain folder structure when uploading
-3. Ensure all required materials are present before upload
-4. Update Canvas links in module README files
+## Privacy
 
-### Material Organization
-
-- Public materials in `course/` are suitable for Canvas upload
-- Private materials in `private/` are never uploaded to Canvas
-- Module structure mirrors Canvas organization
-
-## Workflow Processes
-
-### Syllabus Processing
-
-1. Create or update syllabus markdown file in `syllabus/` directory
-2. Run processing script: `software/scripts/generate_syllabus_renderings.py`
-3. Verify outputs in `syllabus/output/` directory organized by format
-4. Upload processed syllabus to Canvas in appropriate format
-
-### Module Creation
-
-1. Create new module folder: `course/module-[N]/`
-2. Initialize with standard structure:
-   - `assignments/` folder
-   - `README.md` with module overview
-   - `AGENTS.md` with module documentation
-3. Add placeholder files for required materials
-4. Update course-level README.md with module reference
-
-### Assignment Management
-
-1. Create assignments in `module-[N]/assignments/`
-2. Use consistent naming convention
-3. Document in module README.md
-4. Update assignment index in AGENTS.md
-
-### Material Updates
-
-1. Update materials in appropriate module folder
-2. Maintain version control for major revisions
-3. Update module README.md when adding new materials
-4. Document changes in module AGENTS.md
-
-## Quality Assurance
-
-### Pre-Upload Checklist
-
-- [ ] All required folders present (assignments/)
-- [ ] README.md and AGENTS.md files exist
-- [ ] File naming conventions followed
-- [ ] Module structure matches standard template
-- [ ] No private materials in course/ directory
-
-### Validation
-
-- Regular structure validation
-- File naming convention compliance
-- Documentation completeness checks
-- Canvas upload readiness verification
+- `private/` is excluded from `PUBLISHED/`. Never link or copy material from `private/` into `course/`.
+- `private/Pelican Bay/` contains institution-specific PII (memos, accommodation forms). Treat as confidential.

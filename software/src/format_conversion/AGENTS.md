@@ -90,7 +90,31 @@ Convert Markdown file to HTML.
 
 #### `convert_markdown_to_docx(input_file: Path, output_file: Path) -> None`
 
-Convert Markdown file to DOCX.
+Convert Markdown file to DOCX. Internally renders the markdown to HTML via `markdown_to_pdf.utils.markdown_to_html`, then walks the HTML with `_MarkdownHtmlToDocx` to emit a `python-docx` document.
+
+**Supported markdown constructs:**
+- Headings `#` … `######` → DOCX heading styles (level 1–6).
+- Paragraphs (`<p>`) → standard paragraphs.
+- Ordered lists (numbered `1. … 2. …`) — including tight lists with no blank lines between items — emit numbered paragraphs (`1. `, `2. `, …).
+- Unordered lists (`- … * …`) emit bullet paragraphs (`• `).
+- Inline emphasis: `**bold**` / `__bold__` → bold runs; `*em*` / `_em_` → italic runs; `` `code` `` → Courier New runs; `<u>` → underlined runs.
+- Blockquotes (`> …`) → "Quote" style if available, otherwise plain paragraph.
+- Fenced code blocks (`` ``` ``) → plain paragraph with each line preserved.
+- Tables → DOCX tables (basic header + rows).
+
+**Why this matters:** earlier versions only flushed paragraphs on `</p>` / `</hN>`, so tight ordered lists silently dropped every list item. See test `test_convert_markdown_to_docx_tight_ordered_list_preserves_items` for a regression guard.
+
+### `_MarkdownHtmlToDocx(HTMLParser)`
+
+Internal HTML-walker class driving `convert_markdown_to_docx`. Maintains:
+
+- `_block_stack` — currently open block tags (`p`, `h1`–`h6`, `li`, `blockquote`, `pre`); a paragraph is flushed whenever a block tag closes.
+- `_list_stack` — `[{"type": "ol"|"ul", "index": int}, …]`; supports nested lists and provides `_list_prefix()` for tight-list numbering.
+- `_fmt` — counters for `bold`/`italic`/`code`/`underline` so nested emphasis stays correct.
+- `_runs` — buffer of `(text, fmt_snapshot)` tuples for the current block, flushed by `_flush_block(tag)`.
+- `_in_table` / `_table_rows` / `_current_row` / `_current_cell` — per-table buffers used by `_emit_table()`.
+
+Public methods inherited from `HTMLParser`: `feed`, `close`. Add a final call to `finalize()` to flush any unterminated trailing block.
 
 #### `convert_html_to_pdf(input_file: Path, output_file: Path) -> None`
 
@@ -136,15 +160,13 @@ Convert DOCX file to Markdown format.
 
 #### `get_file_extension(file_path: Path) -> str`
 
-Get file extension (lowercase, with dot).
+Get file extension as a lowercase string **without** the leading dot (e.g. `"pdf"`, `"md"`).
 
-#### `get_output_path(input_file: Path, output_format: str, base_dir: Path) -> Path`
+#### `get_output_path(input_path: Path, output_format: str, output_dir: Optional[Path] = None) -> Path`
 
-Generate output file path maintaining directory structure.
+Generate an output file path by replacing the suffix on `input_path` with `output_format`. If `output_dir` is `None`, the file stays in `input_path.parent`.
 
-#### `ensure_output_directory(output_file: Path) -> None`
-
-Ensure output directory exists, creating if necessary.
+> Note: `ensure_output_directory` is **not** defined in this module. It lives in `src.shared.file_utils` and is imported by `format_conversion.main` for use inside `convert_file()`.
 
 ## Configuration
 

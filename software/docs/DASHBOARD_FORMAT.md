@@ -14,31 +14,33 @@ Complete guide for building interactive lab dashboards. Dashboards are standalon
 | **Location** | `course_development/biol-8/course/labs/dashboards/` |
 | **Companion Lab** | `course/labs/lab-XX_topic.md` |
 
-Every dashboard corresponds 1:1 with a lab protocol file. Some labs have multiple specialized dashboards (e.g., Lab 07 has `cell-division-dashboard.html` and `mitosis-dashboard.html`).
+Each dashboard is named for its lab number and topic. **Lab 15** uses two HTML files (cardiovascular + respiratory) for one `lab-15_cardiopulmonary-system.md` protocol.
 
 ---
 
 ## Dashboard Inventory
 
-| Dashboard | Lab | Size | Key Features |
-|-----------|-----|------|-------------|
-| `lab-01_measurement-methods-dashboard.html` | Measurement | — | Unit converters, precision tools |
-| `lab-02_probability-statistics-dashboard.html` | Probability | — | Dice simulators, distributions |
-| `lab-03_microscopy-dashboard.html` | Microscopy | — | Virtual microscope, magnification |
-| `lab-04_diffusion-membranes-dashboard.html` | Diffusion | — | Osmosis simulator, density mixing |
-| `lab-05_ph-solutions-dashboard.html` | pH & Solutions | — | pH scale, buffer simulator |
-| `lab-06_central-dogma-dashboard.html` | Central Dogma | — | Transcription/translation |
-| `lab-07_cell-division-dashboard.html` | Cell Division | 26KB | Phase viewer, comparison table |
-| `lab-07_mitosis-dashboard.html` | Cell Division | 92KB | Phase animator, virtual microscope, wound healing |
-| `lab-08_inheritance-dashboard.html` | Inheritance | — | Punnett squares, pedigree |
-| `lab-08_meiosis-dashboard.html` | Inheritance | — | Meiosis animations |
-| `lab-09_enzymes-dashboard.html` | Enzymes | 107KB | Reaction rates, enzyme kinetics |
-| `lab-10_tissues-dashboard.html` | Tissues | — | Tissue identification |
-| `lab-11_skeletal-system-dashboard.html` | Skeletal | — | Bone anatomy |
-| `lab-12_muscular-system-dashboard.html` | Muscular | — | Muscle contraction |
-| `lab-13_microbiology-dashboard.html` | Microbiology | — | Pathogen classification, Gram logic, immune response |
-| `lab-14_cardiovascular-system-dashboard.html` | Cardiovascular | — | Heart anatomy, blood flow |
-| `lab-15_respiratory-system-dashboard.html` | Respiratory | — | Gas exchange, spirometry |
+| Dashboard | Lab `.md` | Key features |
+|-----------|-----------|----------------|
+| `lab-01_measurement-methods-dashboard.html` | `lab-01_measurement-methods.md` | Units, precision |
+| `lab-02_probability-statistics-dashboard.html` | `lab-02_probability-statistics.md` | Probability |
+| `lab-03_microscopy-dashboard.html` | `lab-03_microscopy.md` | Magnification |
+| `lab-04_diffusion-membranes-dashboard.html` | `lab-04_diffusion-membranes.md` | Diffusion / membranes |
+| `lab-05_ph-solutions-dashboard.html` | `lab-05_ph-solutions.md` | pH |
+| `lab-06_central-dogma-dashboard.html` | `lab-06_central-dogma.md` | Central dogma |
+| `lab-07_cell-division-dashboard.html` | `lab-07_cell-division.md` | Mitosis / meiosis |
+| `lab-08_enzymes-dashboard.html` | `lab-08_enzymes.md` | Enzymes |
+| `lab-09_inheritance-dashboard.html` | `lab-09_inheritance.md` | Inheritance |
+| `lab-10_review-dashboard.html` | `lab-10_review.md` | Module review |
+| `lab-11_skeletal-system-dashboard.html` | `lab-11_skeletal-system.md` | Skeletal |
+| `lab-12_muscular-system-dashboard.html` | `lab-12_muscular-system.md` | Muscular |
+| `lab-13_nervous-system-dashboard.html` | `lab-13_nervous-system.md` | Neuron / brain |
+| `lab-14_microbiology-dashboard.html` | `lab-14_microbiology.md` | Microbiology |
+| `lab-15_cardiovascular-system-dashboard.html` | `lab-15_cardiopulmonary-system.md` | Circulation |
+| `lab-15_respiratory-system-dashboard.html` | `lab-15_cardiopulmonary-system.md` | Respiration |
+| `lab-16_exam-03-review-dashboard.html` | `lab-16_exam-03-review.md` | Exam review |
+| `lab-17_ecology-dashboard.html` | `lab-17_ecology.md` | Population model |
+| `lab-18_evolution-dashboard.html` | `lab-18_evolution.md` | H–W, selection |
 
 ---
 

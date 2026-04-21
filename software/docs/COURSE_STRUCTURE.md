@@ -46,8 +46,8 @@ cr-bio/
 │   └── biol-8/                    # Human Biology (College of the Redwoods)
 │
 ├── software/                      # Processing pipeline
-│   ├── src/                       # 15 source modules
-│   ├── tests/                     # Test suite (614+ tests)
+│   ├── src/                       # 16 Python packages
+│   ├── tests/                     # Pytest suite (run --collect-only for current count)
 │   ├── scripts/                   # CLI orchestrators
 │   └── docs/                      # Documentation (YOU ARE HERE)
 │
@@ -129,13 +129,17 @@ course/labs/
 ├── lab-10_tissues.md
 ├── lab-11_skeletal-system.md
 ├── lab-12_muscular-system.md
-├── lab-13_microbiology.md
-├── lab-14_cardiovascular-system.md
-├── lab-15_respiratory-system.md
+├── lab-13_nervous-system.md
+├── lab-14_microbiology.md
+├── lab-14_microbiology-followup.md
+├── lab-15_cardiopulmonary-system.md
+├── lab-16_exam-03-review.md
+├── lab-17_ecology.md
+├── lab-18_evolution.md
 ├── dashboards/                    # Interactive HTML dashboards
 │   ├── lab-01_measurement-methods-dashboard.html
 │   ├── ...
-│   └── lab-15_respiratory-system-dashboard.html
+│   └── lab-18_evolution-dashboard.html
 └── output/                        # Generated PDFs and HTML
 ```
 
@@ -188,7 +192,7 @@ course/quizzes/
 ├── module-01_quiz_key.md
 ├── module-02_quiz.md
 ├── module-02_quiz_key.md
-└── ... (15 modules)
+└── ... (17 modules for BIOL-8; 16 for BIOL-1)
 ```
 
 | Component | Points | Count |

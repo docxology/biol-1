@@ -2,7 +2,7 @@
 
 **College of the Redwoods | Pelican Bay | Spring 2026**
 
-Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution. This course is structured as 17 weekly modules with integrated study materials, laboratory protocols, and assessments.
+Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution and ecology. This course is structured as 16 weekly modules with integrated study materials, laboratory protocols, and assessments.
 
 ---
 
@@ -11,11 +11,12 @@ Introductory biology course covering the fundamental principles of life science,
 ```
 biol-1/
 ├── course/              # All course content organized by module
-│   ├── module-01 → 17/  # Weekly modules (keys-to-success + questions)
+│   ├── module-01 → 16/  # Weekly modules (keys-to-success.md + questions.md)
 │   ├── labs/            # Laboratory protocols and interactive dashboards
-│   ├── exams/           # Exam templates
+│   ├── exams/           # Exams and answer keys
+│   ├── practice_tests/  # Practice tests
 │   └── quizzes/         # Quiz templates
-├── syllabus/            # Syllabus and schedule (5 output formats)
+├── syllabus/            # Syllabus and schedule (multi-format outputs)
 ├── resources/           # Lecture slides (PDF)
 ├── private/             # Instructor-only materials
 └── README.md            # ← You are here
@@ -40,9 +41,11 @@ Each module contains two source files (`keys-to-success.md`, `questions.md`) and
 | 09 | [Inheritance Genetics](course/module-09-inheritance-genetics/) | Mendelian genetics, Punnett squares, polygenic traits, pedigrees | [Keys](course/module-09-inheritance-genetics/keys-to-success.md) · [Questions](course/module-09-inheritance-genetics/questions.md) |
 | 10 | [Epigenetics](course/module-10-epigenetics/) | Gene regulation, epigenetic mechanisms, methylation, histone modification | [Keys](course/module-10-epigenetics/keys-to-success.md) · [Questions](course/module-10-epigenetics/questions.md) |
 | 11 | [Genomics & Biotechnology](course/module-11-genomics-biotechnology/) | PCR, gel electrophoresis, CRISPR, genomic applications | [Keys](course/module-11-genomics-biotechnology/keys-to-success.md) · [Questions](course/module-11-genomics-biotechnology/questions.md) |
-| 15 | [Darwin & Evolution](course/module-15-darwin-evolution/) | Natural selection, evidence for evolution, Darwin's theory | [Keys](course/module-15-darwin-evolution/keys-to-success.md) · [Questions](course/module-15-darwin-evolution/questions.md) |
-| 16 | [Microevolution](course/module-16-microevolution/) | Population genetics, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-16-microevolution/keys-to-success.md) · [Questions](course/module-16-microevolution/questions.md) |
-| 17 | [Speciation & Macroevolution](course/module-17-speciation-macroevolution/) | Species concepts, speciation mechanisms, phylogenetics | [Keys](course/module-17-speciation-macroevolution/keys-to-success.md) · [Questions](course/module-17-speciation-macroevolution/questions.md) |
+| 12 | [Darwin & Evolution](course/module-12-darwin-evolution/) | Natural selection, evidence for evolution, Darwin's theory | [Keys](course/module-12-darwin-evolution/keys-to-success.md) · [Questions](course/module-12-darwin-evolution/questions.md) |
+| 13 | [How Populations Evolve](course/module-13-how-populations-evolve/) | Microevolution, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-13-how-populations-evolve/keys-to-success.md) · [Questions](course/module-13-how-populations-evolve/questions.md) |
+| 14 | [Macroevolution](course/module-14-macroevolution/) | Species concepts, speciation, phylogenetics | [Keys](course/module-14-macroevolution/keys-to-success.md) · [Questions](course/module-14-macroevolution/questions.md) |
+| 15 | [Population, Systems & Ecology](course/module-15-population-systems-ecology/) | Population dynamics, community interactions, ecosystems | [Keys](course/module-15-population-systems-ecology/keys-to-success.md) · [Questions](course/module-15-population-systems-ecology/questions.md) |
+| 16 | [History of Life](course/module-16-history-of-life/) | Origins, deep time, major evolutionary transitions | [Keys](course/module-16-history-of-life/keys-to-success.md) · [Questions](course/module-16-history-of-life/questions.md) |
 
 ### Module Output Formats
 
@@ -71,11 +74,11 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 10 | [Lab 10](course/labs/lab-10_epigenetics.md) | Epigenetics | Complete |
 | 11 | [Lab 11](course/labs/lab-11_genomics-biotechnology.md) | Genomics & Biotechnology | Complete |
 | 12 | [Lab 12](course/labs/lab-12_exam-02-review.md) | Exam 02 Review | Complete |
-| 13 | [Lab 13](course/labs/lab-13_gene-regulation.md) | Gene Regulation | Stub |
-| 14 | [Lab 14](course/labs/lab-14_biotechnology-genomics.md) | Biotechnology & Genomics | Stub |
-| 15 | [Lab 15](course/labs/lab-15_darwin-evolution.md) | Darwin & Evolution | Stub |
-| 16 | [Lab 16](course/labs/lab-16_microevolution.md) | Microevolution | Stub |
-| 17 | [Lab 17](course/labs/lab-17_speciation-macroevolution.md) | Speciation & Macroevolution | Stub |
+| 13 | [Lab 13](course/labs/lab-13_darwin-evolution.md) | Darwin & Evolution | Complete |
+| 14 | [Lab 14](course/labs/lab-14_how-populations-evolve.md) | How Populations Evolve | Complete |
+| 15 | [Lab 15](course/labs/lab-15_macroevolution.md) | Macroevolution | Complete |
+| 16 | [Lab 16](course/labs/lab-16_population-systems-ecology.md) | Population, Systems & Ecology | Complete |
+| 17 | [Lab 17](course/labs/lab-17_history-of-life.md) | History of Life | Complete |
 
 ### Lab Output
 
@@ -114,8 +117,10 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 
 ### Exams
 
-Exam templates are in [`course/exams/`](course/exams/):
+Exams and answer keys are in [`course/exams/`](course/exams/):
 
+- [Exam 01](course/exams/exam-01.md) · [Key](course/exams/exam-01_key.md)
+- [Exam 03](course/exams/exam-03.md) · [Key](course/exams/exam-03_key.md)
 - [Exam Template](course/exams/exam-template.md)
 
 ### Quizzes

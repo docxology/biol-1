@@ -6,41 +6,42 @@ This directory contains exams for BIOL-1: Introduction to Biology (Pelican Bay S
 
 ## Exam Structure
 
-BIOL-1 has 17 modules. The exam schedule follows this coverage:
+BIOL-1 has **16** modules (`module-01` … `module-16`). The schedule below maps exams to module ranges as currently authored:
 
-| Exam | Modules | Topic Coverage |
+| Exam | Modules | Topic coverage |
 | --- | --- | --- |
-| Exam 01 | 01-06 | Scientific Method, Chemistry, Cells, Membranes, Metabolism |
-| Exam 03 | 07-11 | Molecular Genetics, Cellular Genetics, Inheritance Genetics, Epigenetics, Genomics & Biotechnology |
-| Exam 04 | 15-17 | Darwin & Evolution, Microevolution, Speciation & Macroevolution |
-| Final | 01-17 | Comprehensive |
+| Exam 01 | 01–06 | Scientific method, chemistry, cells, membranes, metabolism |
+| Exam 03 | 07–11 | Molecular genetics, cellular genetics, inheritance, epigenetics, genomics & biotechnology |
+| *(planned)* | 12–16 | Darwin & evolution through history of life (no separate `exam-04` on disk yet) |
+| Final | 01–16 | Comprehensive (when added) |
 
-Other module ranges (for example 12–14, 16) may appear on the final or future assessments, depending on the term schedule.
+Modules **12–16** are the evolution / ecology / deep-time sequence (Darwin, populations, macroevolution, population–systems ecology, history of life). They may appear on a future unit exam or the final, depending on the term schedule.
 
-## File Naming Convention
+## Files on disk
 
-- `exam-XX.md` - Exam questions
-- `exam-XX_key.md` - Answer key
+- `exam-01.md` + `exam-01_key.md`
+- `exam-03.md` + `exam-03_key.md`
+- `exam-template.md` — alternate full-exam scaffold (100-point style)
+
+## File naming convention
+
+- `exam-XX.md` — exam questions
+- `exam-XX_key.md` — answer key
 
 ## Format
 
-**Exam 01 and Exam 03** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response—choose three of five). See `exam-01.md` / `exam-03.md` for the live pattern.
+**Exam 01 and Exam 03** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of five). See `exam-01.md` / `exam-03.md` for the live pattern.
 
 The `exam-template.md` file describes an alternate **100-point** layout (25 MC at 2 points each, short answer, essay) for courses that adopt it.
 
-## Development Status
+## Development status
 
 - [x] exam-01.md + exam-01_key.md
 - [x] exam-03.md + exam-03_key.md
-- [ ] exam-02.md + key (filename reserved if a separate mid-course exam is added)
-- [ ] exam-04.md + key
-- [ ] final-exam.md + key
+- [ ] exam-02.md + key (reserved if a separate mid-course exam is added)
+- [ ] Unit exam for modules 12–16 (if split out from final)
+- [ ] final-exam.md + key (comprehensive)
 
 ## Template
 
 See `exam-template.md` for an alternate full-exam scaffold.
-
----
-
-*Created: 2026-01-28*  
-*Updated: 2026-04-07 — Exam 03 added for modules 07–11; evolution unit exams renumbered to Exam 04 in this table.*

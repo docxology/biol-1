@@ -4,7 +4,7 @@
 >
 > **Package**: `cr-bio-software` · **Current version**: `0.1.0` · **Date**: 2026-02-23
 >
-> **Scope**: Package-level engineering roadmap for all 15 modules under `software/src/`.  
+> **Scope**: Package-level engineering roadmap for all 16 packages under `software/src/`.  
 > This is *not* a course-content to-do; it concerns the Python software package only.
 
 ---
@@ -23,9 +23,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Modules | 15 across Layers 0–4 |
-| Tests | 614 passed, 6 skipped |
-| Coverage | 81% |
+| Packages | 16 across Layers 0–4 |
+| Tests / coverage | Measure with `uv run pytest --collect-only -q` and `uv run pytest --cov=src --cov-report=term-missing` (from `software/`) |
 | Formats | PDF, DOCX, HTML, TXT, MD, MP3 |
 | Features shipped | Selective Rendering, 6-stage pipeline, Lab dashboards, HTML websites with interactive quiz |
 | Known gaps | mypy not enforced in CI, coverage < 90%, `canvas_integration` requires live API, `speech_to_text` lacks offline fallback |
@@ -46,7 +45,7 @@
 
 ### v0.1.2 — Type Safety Pass
 
-- [ ] Run `mypy --strict` against all 15 modules; fix all errors in Layers 0–2
+- [ ] Run `mypy --strict` against all `src/` packages; fix all errors in Layers 0–2
 - [ ] Add `py.typed` marker file to `src/` to signal PEP 561 compliance
 - [ ] Fix Any-typed return values in `batch_processing/main.py` (`generate_module_media`, `process_module_by_type`)
 - [ ] Annotate `publish/main.py::publish_course` `publish_root` arg as `Optional[str]`
@@ -57,7 +56,7 @@
 - [ ] Add tests for `module_organization` edge cases: zero-module course, non-sequential module numbers
 - [ ] Add tests for `html_website` quiz-rendering logic (matching, true/false branches)
 - [ ] Add tests for `schedule` batch processing with malformed Markdown
-- [ ] Achieve ≥ 85% total coverage (currently 81%)
+- [ ] Achieve ≥ 85% total coverage (baseline: run `pytest --cov` and record in commit message)
 
 ---
 
@@ -148,7 +147,7 @@
 
 > **Graduation criteria** (all must be met):
 >
-> - [ ] Coverage ≥ 90% across all 15 modules
+> - [ ] Coverage ≥ 90% across all `src/` packages
 > - [ ] `mypy --strict` passes with zero errors across all modules
 > - [ ] CI (GitHub Actions) green on Python 3.11 and 3.12
 > - [ ] All public APIs documented with full docstrings + examples
@@ -186,8 +185,8 @@
 
 ## Completed (v0.1.0)
 
-- [x] 15-module layered architecture (Layers 0–4) with clean public interfaces
-- [x] 614 tests at 81% coverage across all modules
+- [x] Layered architecture (Layers 0–4) with clean public interfaces; 16 packages under `src/`
+- [x] Broad pytest coverage across packages (re-verify with `pytest --cov` after major changes)
 - [x] 6-stage publish pipeline (Clean → Generate → Publish → Extras → Flatten → Validate)
 - [x] Selective Rendering Boundaries (`max_module`, `max_lab`) in pipeline and validation
 - [x] 6 output formats: PDF, DOCX, HTML, TXT, MD, MP3
