@@ -159,25 +159,71 @@ def get_timestamp() -> str:
     return datetime.now().strftime(config.LOG_DATE_FORMAT)
 
 
-def check_lab_files(course_path: Path, max_lab: int = None) -> Dict[str, Any]:
+def _classify_lab_file(lab_path: Path) -> Tuple[Optional[int], bool]:
+    """Classify a lab markdown file as numbered/supplemental.
+
+    A "numbered" lab matches ``lab-NN_*.md`` and has no supplemental marker
+    (``followup``, ``follow-up``) in its stem. A supplemental lab is any other
+    ``lab-*.md`` file (e.g. ``lab-14_microbiology-followup.md``).
+
+    Args:
+        lab_path: Path to the lab markdown file.
+
+    Returns:
+        Tuple of ``(lab_number, is_numbered)``. ``lab_number`` is the integer
+        portion of ``lab-NN`` when present (``None`` for files like
+        ``lab-overview.md``). ``is_numbered`` is True only when the file is
+        a primary numbered protocol — supplemental files always return False.
+    """
+    import re
+
+    stem = lab_path.stem
+    match = re.match(r"lab-(\d+)", stem)
+    lab_number = int(match.group(1)) if match else None
+
+    supplemental_markers = ("followup", "follow-up")
+    lower_stem = stem.lower()
+    is_supplemental = any(marker in lower_stem for marker in supplemental_markers)
+
+    is_numbered = lab_number is not None and not is_supplemental
+    return lab_number, is_numbered
+
+
+def check_lab_files(
+    course_path: Path,
+    max_lab: Optional[int] = None,
+    formats: Optional[List[str]] = None,
+) -> Dict[str, Any]:
     """Check lab output files and dashboards for a course.
 
     Args:
-        course_path: Path to course directory
-        max_lab: Optional max lab number to check (e.g., 4 means only check labs 1-4)
+        course_path: Path to course directory.
+        max_lab: Optional max lab number to check (e.g., 4 means only labs 1-4).
+        formats: Optional list of output formats requested by the publish
+                 pipeline (e.g. ``["pdf", "docx", "md"]``). When provided,
+                 only formats that labs can render are counted; otherwise
+                 falls back to :data:`config.LAB_OUTPUT_FORMATS` for
+                 backward compatibility.
 
     Returns:
         Dictionary with lab validation results:
-        - source_labs: Number of source lab markdown files
-        - output_files: Dict mapping format to count of rendered files
-        - dashboards: Number of dashboard HTML files
-        - missing_outputs: List of labs missing rendered output
-        - issues: List of issues found
+
+        - ``source_labs``: Number of source lab markdown files in scope.
+        - ``source_labs_numbered``: Source labs that match ``lab-NN_*.md``
+          and are not marked as follow-ups.
+        - ``source_labs_supplemental``: Source labs that exist alongside a
+          numbered protocol (e.g. ``lab-14_microbiology-followup.md``).
+        - ``formats_checked``: Formats that were tallied for lab outputs.
+        - ``output_files``: Dict mapping format to count of rendered files.
+        - ``dashboards``: Number of dashboard HTML files.
+        - ``missing_outputs``: List of lab stems missing any rendered output.
+        - ``issues``: List of issues found.
     """
-    import re
-    
     result: Dict[str, Any] = {
         "source_labs": 0,
+        "source_labs_numbered": 0,
+        "source_labs_supplemental": 0,
+        "formats_checked": [],
         "output_files": {},
         "dashboards": 0,
         "missing_outputs": [],
@@ -188,52 +234,62 @@ def check_lab_files(course_path: Path, max_lab: int = None) -> Dict[str, Any]:
     if not labs_dir.exists():
         return result
 
-    # Count source lab files - filter by max_lab if specified
-    all_source_labs = list(labs_dir.glob("lab-*.md"))
-    
-    if max_lab:
-        # Filter to only labs 1 through max_lab
-        def get_lab_number(lab_path):
-            match = re.match(r'lab-(\d+)', lab_path.stem)
-            return int(match.group(1)) if match else 0
-        source_labs = [lab for lab in all_source_labs if get_lab_number(lab) <= max_lab]
+    lab_formats = config.get_lab_output_formats(formats)
+    result["formats_checked"] = lab_formats
+
+    all_source_labs = sorted(labs_dir.glob("lab-*.md"))
+
+    if max_lab is not None:
+        in_scope: List[Path] = []
+        for lab in all_source_labs:
+            lab_number, _ = _classify_lab_file(lab)
+            # Supplemental files (no number, or number ≤ max_lab) are kept
+            # alongside their numbered parent within scope.
+            if lab_number is None or lab_number <= max_lab:
+                in_scope.append(lab)
+        source_labs = in_scope
     else:
         source_labs = all_source_labs
-    
-    result["source_labs"] = len(source_labs)
 
-    # Check rendered output files (both flat output/*.fmt and subdirectory output/fmt/*.fmt)
+    numbered = 0
+    supplemental = 0
+    for lab in source_labs:
+        _, is_numbered = _classify_lab_file(lab)
+        if is_numbered:
+            numbered += 1
+        else:
+            supplemental += 1
+
+    result["source_labs"] = len(source_labs)
+    result["source_labs_numbered"] = numbered
+    result["source_labs_supplemental"] = supplemental
+
     output_dir = labs_dir / "output"
     if output_dir.exists():
-        for fmt in config.LAB_OUTPUT_FORMATS:
+        for fmt in lab_formats:
             count = 0
-            # Check subdirectory: output/{fmt}/*.{fmt}
             fmt_dir = output_dir / fmt
             if fmt_dir.exists():
                 count += len(list(fmt_dir.glob(f"*.{fmt}")))
-            # Check flat: output/*.{fmt}
             count += len(list(output_dir.glob(f"*.{fmt}")))
             result["output_files"][fmt] = count
     else:
-        for fmt in config.LAB_OUTPUT_FORMATS:
+        for fmt in lab_formats:
             result["output_files"][fmt] = 0
         if source_labs:
             result["issues"].append("Lab output directory not found")
 
-    # Check each source lab (filtered by max_lab) has at least one rendered output
     for lab_file in source_labs:
         lab_stem = lab_file.stem
         has_output = False
-        for fmt in config.LAB_OUTPUT_FORMATS:
-            if output_dir.exists():
-                # Check subdirectory: output/{fmt}/{lab_stem}.{fmt}
+        if output_dir.exists():
+            for fmt in lab_formats:
                 fmt_dir = output_dir / fmt
                 if fmt_dir.exists():
                     rendered = fmt_dir / f"{lab_stem}.{fmt}"
                     if rendered.exists() and rendered.stat().st_size > 0:
                         has_output = True
                         break
-                # Check flat: output/{lab_stem}.{fmt}
                 flat_rendered = output_dir / f"{lab_stem}.{fmt}"
                 if flat_rendered.exists() and flat_rendered.stat().st_size > 0:
                     has_output = True
@@ -241,13 +297,128 @@ def check_lab_files(course_path: Path, max_lab: int = None) -> Dict[str, Any]:
         if not has_output:
             result["missing_outputs"].append(lab_stem)
 
-    # Check dashboards
     dashboards_dir = labs_dir / "dashboards"
     if dashboards_dir.exists():
         dashboard_files = list(dashboards_dir.glob("*.html"))
         result["dashboards"] = len(dashboard_files)
-    else:
-        if source_labs:
-            result["issues"].append("Dashboards directory not found")
+    elif source_labs:
+        result["issues"].append("Dashboards directory not found")
+
+    return result
+
+
+def check_dashboard_invariant(
+    course_path: Path,
+    course_name: Optional[str] = None,
+    max_lab: Optional[int] = None,
+) -> Dict[str, Any]:
+    """Strict per-numbered-lab dashboard check.
+
+    For each numbered protocol ``lab-NN_*.md`` in ``course/labs/`` (with
+    ``NN`` ≤ ``max_lab`` when supplied), verify that
+    ``course/labs/dashboards/`` contains the expected number of
+    ``lab-NN_*-dashboard.html`` files according to the course's
+    ``dashboards`` config (default 1, with per-course overrides such as
+    BIOL-8 Lab 15 = 2).
+
+    This invariant is **opt-in** — call it from `validate_outputs` only
+    when the caller asks for strict dashboard validation, so other course
+    layouts that legitimately diverge are not broken.
+
+    Args:
+        course_path: Path to the course directory (e.g. ``course_development/biol-8``).
+        course_name: Course identifier for config lookup; defaults to
+            ``course_path.name``.
+        max_lab: Optional cap on numbered labs to check.
+
+    Returns:
+        Dict with:
+
+        - ``valid`` (bool): whether all in-scope labs satisfy the invariant.
+        - ``per_lab`` ({int: {"expected": int, "found": int, "files": [str]}}):
+            per-lab counts and discovered dashboard filenames.
+        - ``issues`` (List[str]): human-readable mismatch descriptions.
+        - ``checked_labs`` (List[int]): lab numbers actually evaluated.
+        - ``exempt_labs`` (List[int]): lab numbers skipped via config.
+    """
+    import re
+
+    name = course_name or course_path.name
+    cfg = config.get_dashboard_config(name)
+    default_per_lab = cfg["default_per_lab"]
+    overrides = {int(k): int(v) for k, v in cfg["overrides"].items()}
+    exempt = {int(n) for n in cfg["exempt"]}
+
+    result: Dict[str, Any] = {
+        "valid": True,
+        "per_lab": {},
+        "issues": [],
+        "checked_labs": [],
+        "exempt_labs": sorted(exempt),
+    }
+
+    labs_dir = course_path / "course" / "labs"
+    dashboards_dir = labs_dir / "dashboards"
+
+    if not labs_dir.exists():
+        return result
+
+    numbered_labs: Dict[int, Path] = {}
+    for lab_path in sorted(labs_dir.glob("lab-*.md")):
+        lab_number, is_numbered = _classify_lab_file(lab_path)
+        if not is_numbered or lab_number is None:
+            continue
+        if max_lab is not None and lab_number > max_lab:
+            continue
+        # Multiple .md files for the same NN are unusual; keep the first.
+        numbered_labs.setdefault(lab_number, lab_path)
+
+    if not numbered_labs:
+        return result
+
+    if not dashboards_dir.exists():
+        result["valid"] = False
+        result["issues"].append(
+            "Strict dashboard check: dashboards/ directory not found"
+        )
+        return result
+
+    dashboard_files = sorted(dashboards_dir.glob("*-dashboard.html"))
+
+    for lab_number in sorted(numbered_labs):
+        if lab_number in exempt:
+            continue
+
+        expected = overrides.get(lab_number, default_per_lab)
+        prefix = re.compile(rf"^lab-0*{lab_number}_.*-dashboard\.html$")
+        matches = [f for f in dashboard_files if prefix.match(f.name)]
+        found = len(matches)
+
+        result["checked_labs"].append(lab_number)
+        result["per_lab"][lab_number] = {
+            "expected": expected,
+            "found": found,
+            "files": [m.name for m in matches],
+        }
+
+        if found != expected:
+            result["valid"] = False
+            if found == 0:
+                msg = (
+                    f"Strict dashboard check: lab-{lab_number:02d} expects "
+                    f"{expected} dashboard(s), found none"
+                )
+            elif found < expected:
+                msg = (
+                    f"Strict dashboard check: lab-{lab_number:02d} expects "
+                    f"{expected} dashboard(s), found {found} ({', '.join(m.name for m in matches)})"
+                )
+            else:
+                msg = (
+                    f"Strict dashboard check: lab-{lab_number:02d} expects "
+                    f"{expected} dashboard(s), found {found} extras "
+                    f"({', '.join(m.name for m in matches)})"
+                )
+            result["issues"].append(msg)
 
     return result

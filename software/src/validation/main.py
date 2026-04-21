@@ -14,6 +14,7 @@ from .config import (
     DEFAULT_REQUIRED_FORMATS,
 )
 from .utils import (
+    check_dashboard_invariant,
     check_lab_files,
     check_output_directory,
     check_study_guide_files,
@@ -48,6 +49,7 @@ def validate_outputs(
     formats: Optional[List[str]] = None,
     max_module: Optional[int] = None,
     max_lab: Optional[int] = None,
+    strict_dashboards: bool = False,
 ) -> Dict[str, Any]:
     """Validate that all expected outputs exist for a course.
 
@@ -57,6 +59,9 @@ def validate_outputs(
                  If None, uses DEFAULT_REQUIRED_FORMATS from config.
         max_module: Optional max module number to validate (e.g., 6 means only validate 1-6)
         max_lab: Optional max lab number to validate (e.g., 4 means only validate labs 1-4)
+        strict_dashboards: If True, enforce per-numbered-lab dashboard invariant
+                 from the course's ``dashboards`` config (default 1 dashboard per
+                 numbered lab; per-course overrides such as BIOL-8 Lab 15 = 2).
 
     Returns:
         Dictionary with validation results:
@@ -67,6 +72,8 @@ def validate_outputs(
         - modules_valid: number of modules with complete outputs
         - modules: list of module validation details
         - syllabus_valid: bool for syllabus outputs
+        - labs: lab validation details (see check_lab_files)
+        - dashboard_invariant: present iff strict_dashboards=True
         - issues: list of issues found
     """
     course_dir = Path(course_path).resolve()
@@ -131,8 +138,8 @@ def validate_outputs(
     if not syllabus_result["valid"]:
         results["issues"].extend(syllabus_result.get("issues", []))
 
-    # Validate labs (with optional max_lab limit)
-    lab_result = check_lab_files(course_dir, max_lab=max_lab)
+    # Validate labs (format-aware; with optional max_lab limit)
+    lab_result = check_lab_files(course_dir, max_lab=max_lab, formats=formats)
     results["labs"] = lab_result
 
     if lab_result["missing_outputs"]:
@@ -142,10 +149,36 @@ def validate_outputs(
     if lab_result["issues"]:
         results["issues"].extend(lab_result["issues"])
 
-    # Log summary
-    logger.info(f"Validation complete: {results['modules_valid']}/{results['modules_checked']} modules valid")
+    logger.info(
+        f"Validation complete (source tree): "
+        f"{results['modules_valid']}/{results['modules_checked']} modules valid"
+    )
     if lab_result["source_labs"] > 0:
-        logger.info(f"Labs: {lab_result['source_labs']} source, outputs: {lab_result['output_files']}, dashboards: {lab_result['dashboards']}")
+        numbered = lab_result["source_labs_numbered"]
+        supplemental = lab_result["source_labs_supplemental"]
+        outputs = lab_result["output_files"]
+        outputs_str = ", ".join(f"{fmt}:{count}" for fmt, count in outputs.items()) or "none"
+        logger.info(
+            f"Labs (source tree): {lab_result['source_labs']} markdown "
+            f"({numbered} numbered + {supplemental} supplemental); "
+            f"outputs: {outputs_str}; dashboards: {lab_result['dashboards']}"
+        )
+
+    if strict_dashboards:
+        dashboard_result = check_dashboard_invariant(
+            course_dir, course_name=course_name, max_lab=max_lab
+        )
+        results["dashboard_invariant"] = dashboard_result
+        if not dashboard_result["valid"]:
+            results["valid"] = False
+            results["issues"].extend(dashboard_result["issues"])
+        checked = len(dashboard_result["checked_labs"])
+        status = "✓" if dashboard_result["valid"] else "✗"
+        logger.info(
+            f"Dashboard invariant ({course_name}, strict): "
+            f"{status} {checked} numbered labs checked, "
+            f"{len(dashboard_result['issues'])} issue(s)"
+        )
 
     return results
 
@@ -312,8 +345,11 @@ def validate_published(published_path: str) -> Dict[str, Any]:
                     "files": sum(mod_counts.values()),
                 })
                 
-    logger.info(f"Published validation complete: {results['total_files']} total files")
-    
+    logger.info(
+        f"Published validation complete (PUBLISHED/, pre-flatten, recursive): "
+        f"{results['total_files']} files across {len(results['courses'])} courses"
+    )
+
     return results
 
 
@@ -323,6 +359,7 @@ def generate_validation_report(
     formats: Optional[List[str]] = None,
     max_module: Optional[int] = None,
     max_lab: Optional[int] = None,
+    strict_dashboards: bool = False,
 ) -> Dict[str, Any]:
     """Generate comprehensive validation report for a course.
 
@@ -332,6 +369,8 @@ def generate_validation_report(
         formats: Optional list of formats to validate (e.g., ["pdf", "docx", "md"])
         max_module: Optional max module number to validate (e.g., 6 means only validate 1-6)
         max_lab: Optional max lab number to validate (e.g., 4 means only validate labs 1-4)
+        strict_dashboards: If True, also enforce per-numbered-lab dashboard
+            invariant during the source-tree validation.
 
     Returns:
         Dictionary with complete validation report
@@ -365,6 +404,7 @@ def generate_validation_report(
             formats=formats,
             max_module=max_module,
             max_lab=max_lab,
+            strict_dashboards=strict_dashboards,
         )
     else:
         report["source_validation"] = {

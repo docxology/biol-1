@@ -64,6 +64,8 @@ publish   = true    # Copy outputs to PUBLISHED/ directory
 copy_extras = true  # Copy labs and dashboards
 flatten   = true    # Flatten module subdirectory structure
 validate  = true    # Validate all outputs exist and are correct
+strict_dashboards = true  # Enforce per-numbered-lab dashboard invariant
+                          # (BIOL-1: 1/lab; BIOL-8: 1/lab + Lab 15 = 2)
 all_files = true    # Flatten all files into ALL_FILES/ per course
 git_push  = true    # Push to configured git repos after publish
 

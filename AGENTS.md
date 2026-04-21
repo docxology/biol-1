@@ -159,3 +159,16 @@ See `software/docs/ORCHESTRATION.md` for the detailed flow.
 - The publish pipeline runs `software/scripts/validate_outputs.py` automatically and refuses to declare success if the expected files are missing for any in-scope module.
 - Linter: `cd software && uv run ruff check .`
 - Type-check: `cd software && uv run mypy src` (settings in `pyproject.toml`).
+
+## Learned User Preferences
+
+- Prefer direct, simple wording in exams, keys, and practice items; keep multiple-choice options clearly labeled (for example A–D); number blanks or subparts when a part groups many items.
+- Keep answer keys self-contained: do not point to other files or note that the same question appears elsewhere.
+- Exam-review labs and similar prep should rephrase and reorder relevant ideas without claiming how closely they match the real exam.
+- Use one continuous ordered list (1–N) across `##` sections in `questions.md` and comparable worksheets unless a folder spec defines per-section numbering.
+- For BIOL-1 evolution and ecology labs, favor interactive, hypothesis-driven activities over textbook recap; section titles should be plain and descriptive.
+- When the user attaches an implementation plan, do not edit the plan file; work from existing todos and status updates only.
+
+## Learned Workspace Facts
+
+- BIOL-8 Exam 3 covers modules 11–15; keep the exam-review lab, practice tests, and syllabus dates aligned with that scope.

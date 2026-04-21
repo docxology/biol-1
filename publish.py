@@ -54,6 +54,8 @@ def build_args(config: dict, override_formats: str | None = None) -> list[str]:
         args.append("--skip-flatten")
     if not pipeline.get("validate", True):
         args.append("--skip-validate")
+    if pipeline.get("strict_dashboards", False):
+        args.append("--strict-dashboards")
 
     # Per-course lab settings: skip labs if ALL enabled courses have include_labs=false
     courses = pub.get("courses", {})
@@ -420,13 +422,20 @@ def main():
     courses_cfg = config["publish"].get("courses", {})
     log.info("  PUBLISH COMPLETE")
     log.info("="*70)
-    log.info(f"  Total files in PUBLISHED: {total}")
+    log.info(f"  PUBLISHED/ total files (recursive, includes ALL_FILES/ duplicates): {total}")
     for cname in courses_cfg:
         cdir = published / cname
         if cdir.is_dir():
             ccount = sum(1 for _ in cdir.rglob("*") if _.is_file())
-            all_count = sum(1 for _ in (cdir / "ALL_FILES").rglob("*") if _.is_file()) if (cdir / "ALL_FILES").is_dir() else 0
-            log.info(f"    {cname}: {ccount} files ({all_count} in ALL_FILES/)")
+            all_dir = cdir / "ALL_FILES"
+            all_count = sum(1 for _ in all_dir.rglob("*") if _.is_file()) if all_dir.is_dir() else 0
+            unique_count = ccount - all_count
+            log.info(
+                f"    {cname}: {ccount} files total "
+                f"({unique_count} unique + {all_count} duplicated in ALL_FILES/)"
+            )
+    log.info("  Note: validation 'Total files' line earlier counts the same tree")
+    log.info("        but BEFORE ALL_FILES/ was created; both numbers are correct.")
     log.info("="*70)
 
 

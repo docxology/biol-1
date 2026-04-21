@@ -8,7 +8,7 @@ from src.validation.main import (
     _validate_module_outputs,
     _validate_syllabus_outputs,
 )
-from src.validation.utils import check_lab_files
+from src.validation.utils import check_dashboard_invariant, check_lab_files
 
 
 class TestCheckLabFiles:
@@ -140,6 +140,239 @@ class TestCheckLabFiles:
         result = check_lab_files(temp_dir)
 
         assert "Dashboards directory not found" in result["issues"]
+
+    def test_default_formats_legacy(self, temp_dir):
+        """When formats is omitted, only pdf+html are tallied (legacy behavior)."""
+        labs_dir = temp_dir / "course" / "labs"
+        labs_dir.mkdir(parents=True)
+        (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
+
+        output_dir = labs_dir / "output"
+        output_dir.mkdir()
+        for ext in ("pdf", "docx", "md", "html"):
+            (output_dir / f"lab-01_intro.{ext}").write_text(f"{ext} content", encoding="utf-8")
+
+        result = check_lab_files(temp_dir)
+
+        assert set(result["formats_checked"]) == {"pdf", "html"}
+        assert result["output_files"] == {"pdf": 1, "html": 1}
+
+    def test_formats_aware_counts_pdf_docx_md(self, temp_dir):
+        """Format-aware counting tallies pdf, docx, and md when requested."""
+        labs_dir = temp_dir / "course" / "labs"
+        labs_dir.mkdir(parents=True)
+        (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
+
+        output_dir = labs_dir / "output"
+        output_dir.mkdir()
+        (output_dir / "lab-01_intro.pdf").write_text("pdf", encoding="utf-8")
+        (output_dir / "docx").mkdir()
+        (output_dir / "docx" / "lab-01_intro.docx").write_text("docx", encoding="utf-8")
+        (output_dir / "md").mkdir()
+        (output_dir / "md" / "lab-01_intro.md").write_text("md", encoding="utf-8")
+
+        dashboards_dir = labs_dir / "dashboards"
+        dashboards_dir.mkdir()
+
+        result = check_lab_files(temp_dir, formats=["pdf", "docx", "md"])
+
+        assert result["formats_checked"] == ["pdf", "docx", "md"]
+        assert result["output_files"]["pdf"] == 1
+        assert result["output_files"]["docx"] == 1
+        assert result["output_files"]["md"] == 1
+        assert "html" not in result["output_files"]
+        assert result["missing_outputs"] == []
+
+    def test_formats_aware_filters_unsupported(self, temp_dir):
+        """Requested formats outside the renderable set (e.g., mp3) are dropped."""
+        labs_dir = temp_dir / "course" / "labs"
+        labs_dir.mkdir(parents=True)
+        (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
+        output_dir = labs_dir / "output"
+        output_dir.mkdir()
+        (output_dir / "lab-01_intro.pdf").write_text("pdf", encoding="utf-8")
+
+        result = check_lab_files(temp_dir, formats=["pdf", "mp3"])
+
+        assert result["formats_checked"] == ["pdf"]
+        assert "mp3" not in result["output_files"]
+
+    def test_numbered_vs_supplemental_split(self, temp_dir):
+        """Numbered protocols and follow-up labs are counted separately."""
+        labs_dir = temp_dir / "course" / "labs"
+        labs_dir.mkdir(parents=True)
+        (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
+        (labs_dir / "lab-02_cells.md").write_text("# Lab 2\n", encoding="utf-8")
+        (labs_dir / "lab-14_microbiology-followup.md").write_text("# Follow-up\n", encoding="utf-8")
+        (labs_dir / "lab-overview.md").write_text("# Overview\n", encoding="utf-8")
+
+        output_dir = labs_dir / "output"
+        output_dir.mkdir()
+        (labs_dir / "dashboards").mkdir()
+
+        result = check_lab_files(temp_dir)
+
+        assert result["source_labs"] == 4
+        assert result["source_labs_numbered"] == 2
+        assert result["source_labs_supplemental"] == 2
+
+    def test_max_lab_keeps_supplemental_in_scope(self, temp_dir):
+        """max_lab limits numbered labs but keeps supplementals for in-scope numbers."""
+        labs_dir = temp_dir / "course" / "labs"
+        labs_dir.mkdir(parents=True)
+        (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
+        (labs_dir / "lab-14_microbiology.md").write_text("# Lab 14\n", encoding="utf-8")
+        (labs_dir / "lab-14_microbiology-followup.md").write_text("# Follow-up\n", encoding="utf-8")
+        (labs_dir / "lab-18_evolution.md").write_text("# Lab 18\n", encoding="utf-8")
+
+        output_dir = labs_dir / "output"
+        output_dir.mkdir()
+        (labs_dir / "dashboards").mkdir()
+
+        result = check_lab_files(temp_dir, max_lab=14)
+
+        assert result["source_labs"] == 3
+        assert result["source_labs_numbered"] == 2
+        assert result["source_labs_supplemental"] == 1
+
+
+class TestCheckDashboardInvariant:
+    """Tests for check_dashboard_invariant strict per-lab check."""
+
+    @staticmethod
+    def _scaffold(temp_dir, course_name, labs, dashboards):
+        course_dir = temp_dir / course_name
+        labs_dir = course_dir / "course" / "labs"
+        labs_dir.mkdir(parents=True)
+        for stem in labs:
+            (labs_dir / f"{stem}.md").write_text(f"# {stem}\n", encoding="utf-8")
+        if dashboards is not None:
+            dashboards_dir = labs_dir / "dashboards"
+            dashboards_dir.mkdir()
+            for stem in dashboards:
+                (dashboards_dir / f"{stem}.html").write_text("<html></html>", encoding="utf-8")
+        return course_dir
+
+    def test_no_labs_directory(self, temp_dir):
+        """Missing labs/ short-circuits to valid (nothing to check)."""
+        result = check_dashboard_invariant(temp_dir, course_name="biol-8")
+
+        assert result["valid"] is True
+        assert result["per_lab"] == {}
+        assert result["issues"] == []
+
+    def test_default_one_per_lab_passes(self, temp_dir):
+        """BIOL-1-style default: one dashboard per numbered lab passes."""
+        course_dir = self._scaffold(
+            temp_dir,
+            "biol-1",
+            labs=["lab-01_intro", "lab-02_cells"],
+            dashboards=[
+                "lab-01_intro-dashboard",
+                "lab-02_cells-dashboard",
+            ],
+        )
+
+        result = check_dashboard_invariant(course_dir)
+
+        assert result["valid"] is True
+        assert set(result["checked_labs"]) == {1, 2}
+        assert result["per_lab"][1]["found"] == 1
+        assert result["per_lab"][2]["found"] == 1
+
+    def test_biol8_lab15_requires_two_dashboards(self, temp_dir):
+        """BIOL-8 Lab 15 override requires exactly two dashboards."""
+        course_dir = self._scaffold(
+            temp_dir,
+            "biol-8",
+            labs=[
+                "lab-14_microbiology",
+                "lab-14_microbiology-followup",
+                "lab-15_cardiovascular-system",
+            ],
+            dashboards=[
+                "lab-14_microbiology-dashboard",
+                "lab-15_cardiovascular-system-dashboard",
+                "lab-15_respiratory-system-dashboard",
+            ],
+        )
+
+        result = check_dashboard_invariant(course_dir)
+
+        assert result["valid"] is True
+        assert result["per_lab"][15]["expected"] == 2
+        assert result["per_lab"][15]["found"] == 2
+        # Follow-up file must not appear as a numbered lab in checked_labs.
+        assert 15 in result["checked_labs"]
+        assert result["per_lab"][14]["expected"] == 1
+
+    def test_missing_dashboard_flagged(self, temp_dir):
+        """Numbered lab with no dashboard surfaces an issue and invalidates."""
+        course_dir = self._scaffold(
+            temp_dir,
+            "biol-1",
+            labs=["lab-01_intro", "lab-02_cells"],
+            dashboards=["lab-01_intro-dashboard"],
+        )
+
+        result = check_dashboard_invariant(course_dir)
+
+        assert result["valid"] is False
+        assert any("lab-02" in issue for issue in result["issues"])
+
+    def test_lab15_missing_second_dashboard_flagged(self, temp_dir):
+        """BIOL-8 Lab 15 with only one dashboard fails the override."""
+        course_dir = self._scaffold(
+            temp_dir,
+            "biol-8",
+            labs=["lab-15_cardiovascular-system"],
+            dashboards=["lab-15_cardiovascular-system-dashboard"],
+        )
+
+        result = check_dashboard_invariant(course_dir)
+
+        assert result["valid"] is False
+        assert any("lab-15" in issue and "found 1" in issue for issue in result["issues"])
+
+    def test_max_lab_caps_check(self, temp_dir):
+        """max_lab limits the strict check to numbered labs ≤ cap."""
+        course_dir = self._scaffold(
+            temp_dir,
+            "biol-1",
+            labs=["lab-01_intro", "lab-02_cells", "lab-03_microscopy"],
+            dashboards=["lab-01_intro-dashboard"],
+        )
+
+        result = check_dashboard_invariant(course_dir, max_lab=1)
+
+        assert result["valid"] is True
+        assert result["checked_labs"] == [1]
+
+    def test_missing_dashboards_directory(self, temp_dir):
+        """Numbered labs without a dashboards/ dir invalidates strictly."""
+        course_dir = temp_dir / "biol-1"
+        labs_dir = course_dir / "course" / "labs"
+        labs_dir.mkdir(parents=True)
+        (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
+
+        result = check_dashboard_invariant(course_dir)
+
+        assert result["valid"] is False
+        assert any("dashboards/ directory not found" in issue for issue in result["issues"])
+
+    def test_supplemental_only_lab_does_not_require_dashboard(self, temp_dir):
+        """A lab number that only has a follow-up file is not required to ship a dashboard."""
+        course_dir = self._scaffold(
+            temp_dir,
+            "biol-8",
+            labs=["lab-99_thought-experiment-followup"],
+            dashboards=[],
+        )
+
+        result = check_dashboard_invariant(course_dir)
+
+        assert result["valid"] is True
+        assert result["per_lab"] == {}
 
 
 class TestValidateOutputsWithLabs:

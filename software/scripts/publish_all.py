@@ -143,6 +143,12 @@ def main():
         '--max-lab', type=str, action='append', default=[],
         help='Max lab per course (format: course:number, e.g., biol-8:5)'
     )
+    parser.add_argument(
+        '--strict-dashboards', action='store_true',
+        help='Enforce per-numbered-lab dashboard invariant during validation '
+             '(default 1 dashboard per numbered lab; per-course overrides such '
+             'as BIOL-8 Lab 15 = 2).'
+    )
 
     args = parser.parse_args()
     
@@ -271,6 +277,8 @@ def main():
             validate_args.extend(['--max-module', limit])
         for limit in getattr(args, 'max_lab', []) or []:
             validate_args.extend(['--max-lab', limit])
+        if args.strict_dashboards:
+            validate_args.append('--strict-dashboards')
         if not run_script('validate_outputs.py', validate_args, args.verbose):
             logger.error("❌ Validation failed!")
             return 1

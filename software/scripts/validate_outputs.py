@@ -91,7 +91,14 @@ def main():
         default=[],
         help="Max lab per course (format: course:number, e.g., biol-8:4)"
     )
-    
+    parser.add_argument(
+        "--strict-dashboards",
+        action="store_true",
+        help="Enforce per-numbered-lab dashboard invariant from COURSE_CONFIG "
+             "(default 1 dashboard per numbered lab; per-course overrides such "
+             "as BIOL-8 Lab 15 = 2)."
+    )
+
     args = parser.parse_args()
     
     repo_root = software_dir.parent
@@ -138,6 +145,7 @@ def main():
             formats=formats,
             max_module=module_limits.get(course_name),
             max_lab=lab_limits.get(course_name),
+            strict_dashboards=args.strict_dashboards,
         )
         all_results[course_name] = report
         
@@ -154,6 +162,15 @@ def main():
         logger.info("\nSource Outputs:")
         logger.info(f"  Modules: {src.get('modules_valid', 0)}/{src.get('modules_checked', 0)} valid")
         logger.info(f"  Syllabus: {'✓' if src.get('syllabus_valid') else '✗'}")
+
+        invariant = src.get("dashboard_invariant")
+        if invariant:
+            checked = len(invariant.get("checked_labs", []))
+            issues = len(invariant.get("issues", []))
+            status = "✓" if invariant.get("valid") else "✗"
+            logger.info(
+                f"  Dashboard invariant (strict): {status} {checked} numbered labs, {issues} issue(s)"
+            )
         
         if args.verbose and src.get("modules"):
             logger.info("\n  Module Details:")
@@ -176,8 +193,8 @@ def main():
             course_pub = pub["courses"][course_name]
             n_modules = len(course_pub.get("modules", []))
             n_files = course_pub.get("total_files", 0)
-            logger.info("\nPublished Outputs:")
-            logger.info(f"  Total files: {n_files}  ({n_modules} modules)")
+            logger.info("\nPublished Outputs (PUBLISHED/{}/, recursive, pre-ALL_FILES flatten):".format(course_name))
+            logger.info(f"  Total files: {n_files}  ({n_modules} module subdirs)")
             
         # Output summary
         course_path = repo_root / "course_development" / course_name
@@ -211,11 +228,11 @@ def main():
     all_results["published"] = {"total_files": total_pub_files, "issues": all_pub_issues, "valid": all_pub_valid}
 
     logger.info(f"\n{'='*60}")
-    logger.info("PUBLISHED DIRECTORY SUMMARY")
+    logger.info("PUBLISHED DIRECTORY SUMMARY (pre-ALL_FILES flatten)")
     logger.info(f"{'='*60}")
-    logger.info(f"Total files: {total_pub_files}")
+    logger.info(f"Total files across all courses (recursive): {total_pub_files}")
     for cname, count in sorted(per_course_pub.items()):
-        logger.info(f"  {cname}: {count} files")
+        logger.info(f"  {cname}: {count} files (recursive)")
     for issue in all_pub_issues:
         logger.info(f"  ⚠ {issue}")
 

@@ -75,20 +75,85 @@ OUTPUT_DIRS = {
     "dashboards": "dashboards",
 }
 
-# Lab output formats (labs support PDF and HTML rendering)
+# Lab output formats: legacy default checked when no `formats` is supplied.
+# Kept for backward compatibility with callers that don't thread requested formats.
 LAB_OUTPUT_FORMATS = ["pdf", "html"]
 
+# Lab renderable formats: the full set the lab pipeline can produce.
+# Used by format-aware validation to intersect the user-requested formats
+# (e.g. publish.toml `--formats pdf,docx,md`) with what labs actually emit.
+LAB_RENDERABLE_FORMATS = ["pdf", "docx", "html", "md", "txt"]
+
+
+def get_lab_output_formats(formats: Optional[List[str]] = None) -> List[str]:
+    """Resolve the lab output formats to validate.
+
+    Args:
+        formats: List of requested formats (e.g. ["pdf", "docx", "md"]).
+                 If None, falls back to LAB_OUTPUT_FORMATS for backward
+                 compatibility with callers that pre-date format threading.
+
+    Returns:
+        List of formats that are both requested and renderable for labs.
+        Order is preserved from the input list.
+    """
+    if formats is None:
+        return list(LAB_OUTPUT_FORMATS)
+    renderable = set(LAB_RENDERABLE_FORMATS)
+    return [f for f in formats if f in renderable]
+
 # Course configurations
+#
+# `dashboards` describes the **strict** per-numbered-lab invariant that
+# `check_dashboard_invariant` enforces when `strict_dashboards=True`:
+#   - default_per_lab: required dashboards for each numbered protocol unless
+#     listed in `overrides` or `exempt`.
+#   - overrides: {lab_number: required_count} for labs that ship more (or
+#     fewer) than the default. BIOL-8's Lab 15 ships two — one for the
+#     cardiovascular and one for the respiratory portion of the lab.
+#   - exempt: lab numbers that are intentionally undocumented in the
+#     dashboard set (typically because the only `lab-NN_*.md` is a
+#     supplemental/follow-up page).
 COURSE_CONFIG: Dict[str, Dict] = {
     "biol-1": {
         "expected_modules": 16,
         "module_prefix": "module-",
+        "dashboards": {
+            "default_per_lab": 1,
+            "overrides": {},
+            "exempt": [],
+        },
     },
     "biol-8": {
         "expected_modules": 17,
         "module_prefix": "module-",
+        "dashboards": {
+            "default_per_lab": 1,
+            "overrides": {15: 2},
+            "exempt": [],
+        },
     },
 }
+
+
+def get_dashboard_config(course_name: str) -> Dict:
+    """Return the per-course dashboard invariant config (defaults if missing).
+
+    Args:
+        course_name: Course directory name (e.g. ``biol-8``).
+
+    Returns:
+        Dict with ``default_per_lab`` (int), ``overrides`` ({int: int}),
+        and ``exempt`` (List[int]). Returns sensible defaults for unknown
+        courses so the strict check degrades gracefully.
+    """
+    course_cfg = COURSE_CONFIG.get(course_name, {})
+    raw = course_cfg.get("dashboards", {}) or {}
+    return {
+        "default_per_lab": int(raw.get("default_per_lab", 1)),
+        "overrides": dict(raw.get("overrides", {}) or {}),
+        "exempt": list(raw.get("exempt", []) or []),
+    }
 
 # Published directory name
 PUBLISHED_DIR_NAME = "PUBLISHED"
