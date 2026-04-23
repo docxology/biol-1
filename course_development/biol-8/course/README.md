@@ -79,7 +79,7 @@ course/
 | Exam 01 | Feb 12, 2026 | Modules 01-06 | 50 MC + 30 SA + 20 Essay = 100 pts |
 | Exam 02 | Mar 5, 2026 | Modules 07-10 | 50 MC + 30 SA + 20 Essay = 100 pts |
 | Exam 03 | Apr 16, 2026 | Modules 11-15 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Final | May 5, 2026 | Comprehensive | 75 MC + 45 SA + 30 Essay = 150 pts |
+| Final | May 12, 2026 | Comprehensive | 75 MC + 45 SA + 30 Essay = 150 pts |
 
 ### Quizzes
 

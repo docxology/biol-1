@@ -23,21 +23,22 @@ Each class will consist of different proportions of lecture, discussion, and han
 | 13 | 4/14 - 4/16 | Exam 03 Review | **Exam 03** | Exam covers Modules 11-15 |
 | 14 | 4/21 - 4/23 | Module 16: Ecology & Lab 16: Ecology | Module 17: Evolution & Lab 17: Evolution | |
 | 15 | 4/28 - 4/30 | Review & Extra Credit | Review & Extra Credit | Extra credit presentations |
-| Finals | 5/5 - 5/7 | **Final Exam** | No Class | Finals Week |
+| Finals | 5/5 - 5/7 | Study and Review session | Make up labs | Last class meetings; comprehensive final on 5/12 |
+| Final exam | 5/12 | **Final Exam** | — | Comprehensive |
 
 ## Important Dates
 
 - **Classes Begin**: January 20, 2026
 - **Spring Break**: March 17-19, 2026 (No Classes)
-- **Final Examinations**: May 5, 2026
-- **Semester Ends**: May 7, 2026 (No Class)
+- **Last class / make-up labs**: May 7, 2026
+- **Final Examinations**: May 12, 2026
 
 ## Exam Schedule
 
 - **Exam 01**: Week 4 (February 12, 2026) - Modules 01-06
 - **Exam 02**: Week 7 (March 5, 2026) - Modules 07-10
 - **Exam 03**: Week 13 (April 16, 2026) - Modules 11-15
-- **Final Exam**: Finals Week (May 5, 2026) - Comprehensive
+- **Final Exam**: May 12, 2026 - Comprehensive
 
 ## Module Distribution
 
