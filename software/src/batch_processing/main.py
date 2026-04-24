@@ -515,8 +515,11 @@ def process_syllabus(
     # Find all markdown files in syllabus directory (excluding README and AGENTS)
     markdown_files = find_markdown_files(syllabus_dir)
     syllabus_files = [
-        f for f in markdown_files
-        if not f.name.startswith("README") and not f.name.startswith("AGENTS")
+        f
+        for f in markdown_files
+        if not f.name.startswith("README")
+        and not f.name.startswith("AGENTS")
+        and should_process_file(f, config.SKIP_DIRECTORIES + ["output"])
     ]
 
     results = {
