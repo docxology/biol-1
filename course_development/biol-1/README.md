@@ -2,7 +2,7 @@
 
 **College of the Redwoods | Pelican Bay | Spring 2026**
 
-Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution and ecology. This course is structured as 16 weekly modules with integrated study materials, laboratory protocols, and assessments.
+Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution and ecology. This course is structured as **15** content modules with integrated study materials, laboratory protocols, and assessments.
 
 ---
 
@@ -11,7 +11,7 @@ Introductory biology course covering the fundamental principles of life science,
 ```
 biol-1/
 ├── course/              # All course content organized by module
-│   ├── module-01 → 16/  # Weekly modules (keys-to-success.md + questions.md)
+│   ├── module-01 → 15/  # Content modules (keys-to-success.md + questions.md)
 │   ├── labs/            # Laboratory protocols and interactive dashboards
 │   ├── exams/           # Exams and answer keys
 │   ├── practice_tests/  # Practice tests
@@ -45,7 +45,6 @@ Each module contains two source files (`keys-to-success.md`, `questions.md`) and
 | 13 | [How Populations Evolve](course/module-13-how-populations-evolve/) | Microevolution, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-13-how-populations-evolve/keys-to-success.md) · [Questions](course/module-13-how-populations-evolve/questions.md) |
 | 14 | [Macroevolution](course/module-14-macroevolution/) | Species concepts, speciation, phylogenetics | [Keys](course/module-14-macroevolution/keys-to-success.md) · [Questions](course/module-14-macroevolution/questions.md) |
 | 15 | [Population, Systems & Ecology](course/module-15-population-systems-ecology/) | Population dynamics, community interactions, ecosystems | [Keys](course/module-15-population-systems-ecology/keys-to-success.md) · [Questions](course/module-15-population-systems-ecology/questions.md) |
-| 16 | [History of Life](course/module-16-history-of-life/) | Origins, deep time, major evolutionary transitions | [Keys](course/module-16-history-of-life/keys-to-success.md) · [Questions](course/module-16-history-of-life/questions.md) |
 
 ### Module Output Formats
 
@@ -78,7 +77,7 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 14 | [Lab 14](course/labs/lab-14_how-populations-evolve.md) | How Populations Evolve | Complete |
 | 15 | [Lab 15](course/labs/lab-15_macroevolution.md) | Macroevolution | Complete |
 | 16 | [Lab 16](course/labs/lab-16_population-systems-ecology.md) | Population, Systems & Ecology | Complete |
-| 17 | [Lab 17](course/labs/lab-17_history-of-life.md) | History of Life | Complete |
+| 17 | [Lab 17](course/labs/lab-17_exam-03-review.md) | Exam 03 Review (Modules 12–15) | Complete |
 
 ### Lab Output
 
@@ -109,7 +108,7 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 | 14 | [Biotechnology & Genomics](course/labs/dashboards/lab-14_biotechnology-genomics-dashboard.html) |
 | 15 | [Darwin & Evolution](course/labs/dashboards/lab-15_darwin-evolution-dashboard.html) |
 | 16 | [Microevolution](course/labs/dashboards/lab-16_microevolution-dashboard.html) |
-| 17 | [Speciation & Macroevolution](course/labs/dashboards/lab-17_speciation-macroevolution-dashboard.html) |
+| 17 | [Exam 03 review](course/labs/dashboards/lab-17_exam-03-review-dashboard.html) |
 
 ---
 
@@ -164,9 +163,7 @@ Slides are in [`resources/slides/`](resources/slides/) as PDF files in two forma
 | 13 | [Full](resources/slides/module-13-slides-full.pdf) | [Notes](resources/slides/module-13-slides-notes.pdf) |
 | 14 | [Full](resources/slides/module-14-slides-full.pdf) | [Notes](resources/slides/module-14-slides-notes.pdf) |
 | 15 | [Full](resources/slides/module-15-slides-full.pdf) | [Notes](resources/slides/module-15-slides-notes.pdf) |
-| 16 | [Full](resources/slides/module-16-slides-full.pdf) | [Notes](resources/slides/module-16-slides-notes.pdf) |
-
-> Slides for modules 09 and 17 are not yet available.
+> Slides for module 09 are not yet listed above.
 
 ---
 

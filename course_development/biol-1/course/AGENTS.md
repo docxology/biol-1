@@ -8,7 +8,7 @@ Technical reference for the source materials under `course_development/biol-1/co
 course/
 ├── README.md
 ├── AGENTS.md                                # This file
-├── module-01-study-of-life/  …  module-16-history-of-life/
+├── module-01-study-of-life/  …  module-15-population-systems-ecology/
 │   ├── README.md
 │   ├── AGENTS.md
 │   ├── questions.md                          # Practice questions
@@ -25,7 +25,7 @@ course/
 └── quizzes/                                 # quiz-template.md
 ```
 
-## Module directories (16)
+## Module directories (15)
 
 | # | Directory |
 |---|---|
@@ -44,7 +44,6 @@ course/
 | 13 | `module-13-how-populations-evolve` |
 | 14 | `module-14-macroevolution` |
 | 15 | `module-15-population-systems-ecology` |
-| 16 | `module-16-history-of-life` |
 
 ## File naming
 

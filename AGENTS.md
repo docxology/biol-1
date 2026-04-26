@@ -170,7 +170,12 @@ See `software/docs/ORCHESTRATION.md` for the detailed flow.
 - For simulation- or game-based labs, state numeric parameters (prices, seasons, reproduction rules) in the source so published PDFs are self-explanatory.
 - For hands-on or tally-style data, use compact tables (for example trials as columns with per-level averages) when a long per-cup or per-replicate list mostly adds length.
 - When the user attaches an implementation plan, do not edit the plan file; work from existing todos and status updates only.
+- Put **Learning Objectives** immediately after the name/date line (before Purpose or Overview), using the heading `## Learning Objectives`.
 
 ## Learned Workspace Facts
 
 - BIOL-8 Exam 3 covers modules 11–15; keep the exam-review lab, practice tests, and syllabus dates aligned with that scope.
+- BIOL-8 Spring 2026 calendar used in syllabus work: last class meetings **5/5–5/7** are study/review and make-up labs; **comprehensive final May 12**; keep `syllabus/Schedule.md`, Important Dates, exam schedule bullets, and the course README exam table aligned.
+- BIOL-1 has **15** on-disk content modules (final unit **12–15**; there is no `module-16` folder); **Exam 03** and **practice-test-04** target **Modules 12–15**; **Lab 17** is the Exam 03 review lab (schedule text should say Lab 17, not Lab 18). Pipeline settings such as `max_module` / `expected_modules` should stay **15** and final lab count **17** where applicable.
+- Syllabus batch processing excludes markdown under `course_development/<course>/syllabus/output/` from discovery so generated copies are not treated as extra sources (avoids duplicate renders and same-file MD copy errors).
+- For lab-manual PDFs, wide multi-column tables: use `class="lab-table lab-table-compact"` and `{fill}` in table data cells instead of `{fill:text}` where many columns would overflow (`.fill-text` uses a large min-width).

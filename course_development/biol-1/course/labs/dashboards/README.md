@@ -24,4 +24,4 @@ Refer to the root `course/labs/README.md` for directive syntax.
 - `lab-14_biotechnology-genomics-dashboard.html`
 - `lab-15_darwin-evolution-dashboard.html`
 - `lab-16_microevolution-dashboard.html`
-- `lab-17_speciation-macroevolution-dashboard.html`
+- `lab-17_exam-03-review-dashboard.html`

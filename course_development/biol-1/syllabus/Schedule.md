@@ -33,7 +33,7 @@
 | 14 | Mon | 4/20 | No Class | |
 | 14 | Wed | 4/22 | Module 14: Macroevolution (Ch 17); Lab 15 | |
 | 15 | Mon | 4/27 | Module 15: Population and Systems Ecology (Ch 44 & 45); Lab 16 | |
-| 15 | Wed | 4/29 | Exam 03 Review (Modules 12-15); Lab 18 | |
+| 15 | Wed | 4/29 | Exam 03 Review (Modules 12-15); Lab 17 | |
 | 16 | Mon | 5/4 | **Exam 03** (Modules 12-15) | Exam |
 | 16 | Wed | 5/6 | No Class | First Wednesday - Programs Canceled |
 | 17 | Mon | 5/11 | Recap, Review, and Extra credit opportunity | |

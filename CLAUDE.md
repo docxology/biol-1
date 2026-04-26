@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 CR-BIO is a course management and content generation system for Biology courses at College of the Redwoods. It converts Markdown source files into multiple output formats (PDF, DOCX, HTML, TXT, MD, MP3, interactive websites) for two courses:
 
-- **BIOL-1**: Biology at Pelican Bay (16 modules under `course/module-*`)
+- **BIOL-1**: Biology at Pelican Bay (15 content modules under `course/module-*`)
 - **BIOL-8**: Human Biology at College of the Redwoods (17 modules under `course/module-*`)
 
 ## Development Commands

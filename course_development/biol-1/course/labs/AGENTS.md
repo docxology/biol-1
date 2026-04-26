@@ -24,7 +24,7 @@ Technical documentation for the BIOL-1 laboratory protocol directory. Labs are M
 | `lab-14_how-populations-evolve.md` | How Populations Evolve (Module 13) | ✅ Complete |
 | `lab-15_macroevolution.md` | Macroevolution (Module 14) | ✅ Complete |
 | `lab-16_population-systems-ecology.md` | Population & Systems Ecology (Module 15) | ✅ Complete |
-| `lab-17_history-of-life.md` | History of Life (Module 16) | ✅ Complete |
+| `lab-17_exam-03-review.md` | Exam 03 Review (Modules 12–15) | ✅ Complete |
 
 **Status:** 16 complete, 1 stub (`lab-04_liquid-chemistry.md`)
 

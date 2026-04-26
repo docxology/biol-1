@@ -6,7 +6,7 @@
 
 CR-BIO is an automated curriculum management system for Biology courses at College of the Redwoods. It transforms Markdown source files into multiple output formats (PDF, MP3, HTML, DOCX, TXT) and interactive websites for two courses:
 
-- **BIOL-1**: General Biology (16 modules) — Pelican Bay Prison
+- **BIOL-1**: General Biology (15 content modules) — Pelican Bay Prison
 - **BIOL-8**: Human Anatomy & Physiology (17 modules) — College of the Redwoods
 
 ```mermaid
@@ -49,7 +49,7 @@ Structural facts (update if layout changes): **`software/src/`** holds **16** Py
 
 ### Supported courses
 
-- **BIOL-1**: 16 modules under `course_development/biol-1/course/module-*`
+- **BIOL-1**: 15 modules under `course_development/biol-1/course/module-*`
 - **BIOL-8**: 17 modules under `course_development/biol-8/course/module-*`
 
 ---

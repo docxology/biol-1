@@ -20,20 +20,20 @@ This directory contains laboratory protocols for BIOL-1: Biology (Pelican Bay Pr
 | [Lab 10](lab-10_epigenetics.md) | Epigenetics | ✅ Complete | Module 10 |
 | [Lab 11](lab-11_genomics-biotechnology.md) | Genomics & Biotechnology | ✅ Complete | Module 11 |
 | [Lab 12](lab-12_exam-02-review.md) | Exam 02 Review | ✅ Complete | Review |
-| [Lab 13](lab-13_darwin-evolution.md) | Darwin & Evolution | 📝 Stub | Module 12 |
-| [Lab 14](lab-14_how-populations-evolve.md) | How Populations Evolve | 📝 Stub | Module 13 |
+| [Lab 13](lab-13_darwin-evolution.md) | Darwin & Evolution | ✅ Complete | Module 12 |
+| [Lab 14](lab-14_how-populations-evolve.md) | How Populations Evolve | ✅ Complete | Module 13 |
 | [Lab 15](lab-15_macroevolution.md) | Macroevolution | ✅ Complete | Module 14 |
-| [Lab 16](lab-16_population-systems-ecology.md) | Population and Systems Ecology | 📝 Stub | Module 15 |
-| [Lab 17](lab-17_history-of-life.md) | History of Life | 📝 Stub | Module 16 |
+| [Lab 16](lab-16_population-systems-ecology.md) | Population and Systems Ecology | ✅ Complete | Module 15 |
+| [Lab 17](lab-17_exam-03-review.md) | Exam 03 Review (Modules 12–15) | ✅ Complete | Review |
 
-**Status Summary:** 12 complete, 5 stubs
+**Status Summary:** 16 complete, 1 stub
 
 ## Development Status
 
 - ✅ **Complete**: Labs 01–03 (measurement, statistics, microscopy)
 - ✅ **Complete**: Labs 05–06 (viewing life, exam 01 review)
 - ✅ **Complete**: Labs 07–12 (molecular genetics through exam 02 review)
-- 📝 **Stubs**: Labs 04, 13, 14, 16, 17
+- 📝 **Stubs**: Lab 04
 
 ## Lab Format
 

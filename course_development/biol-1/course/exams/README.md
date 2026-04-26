@@ -6,16 +6,16 @@ This directory contains exams for BIOL-1: Introduction to Biology (Pelican Bay S
 
 ## Exam Structure
 
-BIOL-1 has **16** modules (`module-01` … `module-16`). The schedule below maps exams to module ranges as currently authored:
+BIOL-1 has **15** content modules (`module-01` … `module-15`). The schedule maps unit exams to module ranges as follows (see `syllabus/Schedule.md`):
 
 | Exam | Modules | Topic coverage |
 | --- | --- | --- |
 | Exam 01 | 01–06 | Scientific method, chemistry, cells, membranes, metabolism |
-| Exam 03 | 07–11 | Molecular genetics, cellular genetics, inheritance, epigenetics, genomics & biotechnology |
-| *(planned)* | 12–16 | Darwin & evolution through history of life (no separate `exam-04` on disk yet) |
-| Final | 01–16 | Comprehensive (when added) |
+| Exam 02 | 07–11 | Molecular genetics, cellular genetics, inheritance, epigenetics, genomics & biotechnology |
+| Exam 03 | 12–15 | Darwin & evolution, populations evolve, macroevolution, population & systems ecology |
+| Final (Exam 04) | Comprehensive | Broad final (syllabus) |
 
-Modules **12–16** are the evolution / ecology / deep-time sequence (Darwin, populations, macroevolution, population–systems ecology, history of life). They may appear on a future unit exam or the final, depending on the term schedule.
+**Note:** The markdown file `exam-03.md` on disk may still carry an older header (e.g. “Modules 07–11”) from a prior numbering pass; align published PDFs and keys with the **schedule** (12–15 for the third unit exam) when updating exam source.
 
 ## Files on disk
 
@@ -37,9 +37,8 @@ The `exam-template.md` file describes an alternate **100-point** layout (25 MC a
 ## Development status
 
 - [x] exam-01.md + exam-01_key.md
-- [x] exam-03.md + exam-03_key.md
-- [ ] exam-02.md + key (reserved if a separate mid-course exam is added)
-- [ ] Unit exam for modules 12–16 (if split out from final)
+- [x] exam-03.md + exam-03_key.md (content and header should be reconciled with Exam 02 vs 03 as scheduled)
+- [ ] exam-02.md + key (if stored separately from the current `exam-03` file)
 - [ ] final-exam.md + key (comprehensive)
 
 ## Template

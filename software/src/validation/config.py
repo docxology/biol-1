@@ -116,7 +116,7 @@ def get_lab_output_formats(formats: Optional[List[str]] = None) -> List[str]:
 #     supplemental/follow-up page).
 COURSE_CONFIG: Dict[str, Dict] = {
     "biol-1": {
-        "expected_modules": 16,
+        "expected_modules": 15,
         "module_prefix": "module-",
         "dashboards": {
             "default_per_lab": 1,

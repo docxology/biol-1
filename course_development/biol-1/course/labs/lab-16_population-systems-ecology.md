@@ -72,6 +72,8 @@ By the end of this lab, you should be able to:
 {fill:textarea rows=4}
 <!-- /lab:reflection -->
 
+*Bridge:* **Trophic levels** connect **who limits whom** (Part 2) to **how much energy** reaches the top of the food web (Part 4).
+
 ---
 
 <div style="page-break-after: always;"></div>
@@ -88,7 +90,7 @@ By the end of this lab, you should be able to:
 - **Fungi & bacteria** decompose dead material  
 
 <!-- lab:reflection -->
-**7. Build one linear chain** with **four trophic levels** (producer → … → top carnivore). Use arrows **from food to eater**.  
+**7. Build one linear chain** with **four trophic levels** (producer → … → top carnivore). Use arrows **from food to eater**. *(Example format—your chain can differ: grass → grasshopper → ground-feeding bird → hawk.)*  
 {fill:textarea rows=2}
 
 **8. Label roles** for the chain you wrote (producer, primary consumer, secondary, tertiary):  
@@ -102,7 +104,7 @@ By the end of this lab, you should be able to:
 
 ## Part 4: Energy Audit — The 10% Rule
 
-*Use **~10%** transfer between trophic levels (textbook-style rounding).*
+*Use **~10%** transfer between trophic levels (textbook-style rounding). Each step, about **one-tenth** of the energy in the previous level is available at the next—round answers to a sensible number of digits.*
 
 **Given:** Plants fix **1,000,000 kcal** of chemical energy in tissues eaten by herbivores in a season.
 

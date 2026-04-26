@@ -6,7 +6,7 @@ This directory contains all public course materials for **BIOL-1: Biology 1** (P
 
 ## Course Structure
 
-The course covers 16 modules progressing through foundational biology concepts:
+The course covers **15** content modules progressing through foundational biology concepts:
 
 ### Modules
 
@@ -27,7 +27,6 @@ The course covers 16 modules progressing through foundational biology concepts:
 | 13 | How Populations Evolve | [module-13-how-populations-evolve](module-13-how-populations-evolve/) |
 | 14 | Macroevolution | [module-14-macroevolution](module-14-macroevolution/) |
 | 15 | Population & Systems Ecology | [module-15-population-systems-ecology](module-15-population-systems-ecology/) |
-| 16 | History of Life | [module-16-history-of-life](module-16-history-of-life/) |
 
 ## Directory Organization
 
