@@ -17,3 +17,10 @@ No special processing rules apply beyond the standard automated multi-format exp
 
 - Tight ordered lists in `questions.md` (no blank lines between numbered items) are supported by the DOCX/PDF/MD pipeline; see `software/src/format_conversion/utils.py::_MarkdownHtmlToDocx`.
 - Do not commit anything inside `output/`; it is regenerated on every publish.
+
+## Related documentation
+
+- **[`course/AGENTS.md`](../AGENTS.md)** — All modules: naming, `output/` layout, and `generate_all_outputs.py` / publish.
+- **[`biol-8/AGENTS.md`](../../AGENTS.md)** — Course-level path in the monorepo (slides, private, pipeline pointers).
+- **[`README.md`](README.md)** — Student-facing module overview.
+

@@ -1,18 +1,15 @@
-# Technical Documentation: Labs
+# Technical documentation: BIOL-8 `labs/`
 
-## Technical Specifications
+## Role
 
-This directory follows the standard `cr-bio` repository structure for `course` items.
-No special processing rules apply beyond the standard automated multi-format export pipeline.
+Lab protocols: `lab-NN_topic.md` plus per-lab generated outputs under `output/`. **Dashboards** live in `dashboards/` (see [dashboards/README.md](dashboards/README.md)). Lab 15 is special: two dashboard HTML files pair with the single `lab-15_cardiopulmonary-system.md` (cardiovascular + respiratory).
 
-## Lab numbering (Spring 2026)
+## Pipeline
 
-There are **18** Markdown lab sources (`lab-01_*.md` … `lab-18_*.md`). Notable pairings:
+- PDF/HTML via `lab_manual` (`render_lab_manual` / `batch_render_lab_manuals`); see [labs/README.md](README.md) for the directive vocabulary.
+- **Strict dashboard count** (when validation uses `--strict-dashboards`): for each numbered `lab-NN_*.md`, the expected `lab-NN_*-dashboard.html` count comes from [validation config](../../../../software/src/validation/config.py) (BIOL-8 can expect **2** for lab 15).
 
-| File | Role |
-|------|------|
-| `lab-16_exam-03-review.md` | Paper review for Exam 03 (Modules 11–15); aligns with `../exams/exam-03.md` |
-| `lab-17_ecology.md` | Module 16 ecology — DDT bead model, three trials; **HTML `table.lab-table lab-table-compact`** for summary (T1–T3 + Mean); data cells use `{fill}` (fillable) so PDF columns stay narrow — `{fill:text}` blows out width |
-| `lab-18_evolution.md` | Module 17 evolution — point schedule + **HTML `table.lab-table`** for roster; **Table 1** uses **`lab-table-compact`** + `<td>{fill}</td>` for LG/SG/LS/SS grids (three season blocks); Table 2 earnings; static price grid; not `lab:data-table` for labeled rows |
+## Related
 
-See [README.md](README.md) for the full inventory.
+- [../AGENTS.md](../AGENTS.md) — file naming and lab count (18 protocol files)
+- [dashboards/AGENTS.md](dashboards/AGENTS.md) or [dashboards/README.md](dashboards/README.md) — per-file inventory

@@ -29,7 +29,7 @@ Each course has:
 ## Conventions
 
 - **BIOL-1** module folders: `module-01-…` through `module-15-…` (no `module-16` in the current tree).
-- **Per-module** `AGENTS.md` files may only document the default pipeline; authoritative course layout and naming live in `biol-*/course/AGENTS.md` and the course `README.md`.
+- **Per-module** `AGENTS.md` and `module-*/resources/AGENTS.md` may stay short for the default pipeline; each file’s **Related documentation** section points to the authoritative `course/AGENTS.md` and `biol-*/AGENTS.md` for layout and publish commands.
 
 ## Privacy
 

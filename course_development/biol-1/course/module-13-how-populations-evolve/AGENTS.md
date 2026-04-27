@@ -20,3 +20,10 @@ This directory contains the core content for **How Populations Evolve**.
 
 ## Technical Notes
 - Follows universally standardized headings for `cr-bio` publisher pipeline.
+
+## Related documentation
+
+- **[`course/AGENTS.md`](../AGENTS.md)** — All modules: naming, `output/` layout, and `generate_all_outputs.py` / publish.
+- **[`biol-1/AGENTS.md`](../../AGENTS.md)** — Course-level path in the monorepo (slides, private, pipeline pointers).
+- **[`README.md`](README.md)** — Student-facing module overview.
+

@@ -17,7 +17,7 @@ Source markdown for unit exams and answer keys. The batch pipeline renders these
 ## Processing
 
 - PDF (and other formats) via `batch_processing` / `generate_all_outputs.py` when exams are included in the run; same multi-format path as other markdown under `course/`.
-- See [../../software/src/batch_processing/AGENTS.md](../../software/src/batch_processing/AGENTS.md) for the orchestration entry points.
+- See [../../../../software/src/batch_processing/AGENTS.md](../../../../software/src/batch_processing/AGENTS.md) for the orchestration entry points.
 
 ## Related
 

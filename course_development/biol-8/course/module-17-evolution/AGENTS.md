@@ -14,3 +14,10 @@ Technical documentation for Module 17 (Evolution). This module covers natural se
 - [ ] Quiz files generated in `quizzes/`.
 - [ ] Lab file created in `labs/`.
 - [ ] Learning Objectives defined.
+
+## Related documentation
+
+- **[`course/AGENTS.md`](../AGENTS.md)** — All modules: naming, `output/` layout, and `generate_all_outputs.py` / publish.
+- **[`biol-8/AGENTS.md`](../../AGENTS.md)** — Course-level path in the monorepo (slides, private, pipeline pointers).
+- **[`README.md`](README.md)** — Student-facing module overview.
+

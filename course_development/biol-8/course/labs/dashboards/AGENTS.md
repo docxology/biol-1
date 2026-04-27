@@ -34,4 +34,4 @@ Lab 15 shares two dashboards with one cardiopulmonary protocol.
 
 - Layout: fixed sidebar + main; section `id`s match in-page anchors.
 - Scripts: vanilla JS; optional `localStorage` keys prefixed `biol8-dashboard-lab-…` where used.
-- See `../../../../software/docs/DASHBOARD_FORMAT.md` for authoring patterns.
+- See `../../../../../software/docs/DASHBOARD_FORMAT.md` for authoring patterns.

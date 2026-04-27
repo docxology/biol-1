@@ -1,31 +1,11 @@
-# BIOL-8 Resources
+# BIOL-8 resources
 
-## Overview
-
-This directory contains supplementary resources for BIOL-8 that support course instruction and student learning.
+Course-level **lecture slide PDFs** for BIOL-8. Other course content lives under [`../course/`](../course/).
 
 ## Contents
 
-### Reference Materials
+- **[slides/](slides/)** — `module-N-slides-full.pdf` and `module-N-slides-notes.pdf` (see [slides README](slides/README.md))
 
-Textbooks, scientific papers, and other reference materials used in the course.
+## Technical documentation
 
-### Media Resources
-
-Videos, animations, interactive content, and other multimedia resources.
-
-### External Links
-
-Curated links to external websites, databases, and educational resources.
-
-### Templates
-
-Document templates, formatting guides, and reusable materials.
-
-## Usage
-
-These resources complement the materials in the `course/` directory and may be referenced in assignments, lectures, and study guides.
-
-## Documentation
-
-- **[AGENTS.md](AGENTS.md)**: Technical documentation for resources organization and management
+- [AGENTS.md](AGENTS.md) — actual directory layout and publishing behavior

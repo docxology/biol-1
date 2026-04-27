@@ -17,3 +17,10 @@ Introductory genomics and biotechnology for BIOL-1 (non-majors). Designed as the
 - CRISPR overview and ethics → connects to Module 07 (mutations) and Module 10 (gene regulation)
 
 **Excluded:** PCR temperatures, ex vivo/in vivo gene therapy, somatic vs germline editing details, transformation protocols, Human Genome Project history. These are covered in BIOL-8.
+
+## Related documentation
+
+- **[`course/AGENTS.md`](../AGENTS.md)** — All modules: naming, `output/` layout, and `generate_all_outputs.py` / publish.
+- **[`biol-1/AGENTS.md`](../../AGENTS.md)** — Course-level path in the monorepo (slides, private, pipeline pointers).
+- **[`README.md`](README.md)** — Student-facing module overview.
+

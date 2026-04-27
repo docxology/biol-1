@@ -17,3 +17,10 @@ Introductory epigenetics for BIOL-1 (non-majors). Content explicitly builds on M
 - Environmental influences on gene activity
 
 **Excluded:** operons, miRNA, alternative splicing, euchromatin/heterochromatin, multi-level regulation. These are covered in BIOL-8.
+
+## Related documentation
+
+- **[`course/AGENTS.md`](../AGENTS.md)** — All modules: naming, `output/` layout, and `generate_all_outputs.py` / publish.
+- **[`biol-1/AGENTS.md`](../../AGENTS.md)** — Course-level path in the monorepo (slides, private, pipeline pointers).
+- **[`README.md`](README.md)** — Student-facing module overview.
+

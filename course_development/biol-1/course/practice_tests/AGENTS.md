@@ -20,7 +20,7 @@ Optional practice tests and keys for exam preparation. The pipeline globs `*.md`
 
 ## Processing
 
-- From repo: `cd software && uv run python scripts/generate_all_outputs.py --course biol-1` (with practice tests enabled in [publish.toml](../../../publish.toml)).
+- From repo: `cd software && uv run python scripts/generate_all_outputs.py --course biol-1` (with practice tests enabled in [publish.toml](../../../../publish.toml)).
 - Publish step copies `practice_tests/` (and `output/`) into `PUBLISHED/biol-1/practice_tests/`.
 
 ## Related

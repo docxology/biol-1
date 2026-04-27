@@ -1,18 +1,18 @@
-# Practice Tests
-
-This directory contains practice tests for BIOL-8 (Human Anatomy & Physiology).
+# Practice tests (BIOL-8)
 
 ## Structure
 
-- `practice-test-XX.md` - Practice test with questions
-- `practice-test-XX_key.md` - Answer key with explanations
+- `practice-test-NN.md` — questions
+- `practice-test-NN_key.md` — answer key
 
-## Module Coverage
+## What exists in this tree
 
-- **Practice Test 01**: Modules 1-4 (Exploring Life through Cellular Function)
-- **Practice Test 02**: Modules 5-15 (Membranes through Respiratory System)
+**Practice tests 01 through 11** (each with a key). Use the heading and **Instructions** block inside each `practice-test-NN.md` for which modules or exam it targets.
 
 ## Usage
 
-Both practice tests and answer keys are published to `PUBLISHED/biol-8/practice_tests/`.
-Students can use these for self-assessment before exams.
+Generated PDFs and sources are published to `PUBLISHED/biol-8/practice_tests/` for student access.
+
+## Technical
+
+- [AGENTS.md](AGENTS.md) — pipeline and naming

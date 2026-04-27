@@ -10,14 +10,14 @@ Technical documentation for syllabus file processing and format generation.
 syllabus/
 ├── README.md                        # Syllabus overview
 ├── AGENTS.md                        # This file
-├── BIOL-8_Spring-2026_Syllabus.md  # Main syllabus markdown file
-└── output/                          # Processed output files (flat organization)
-    ├── BIOL-8_Spring-2026_Syllabus.pdf
-    ├── BIOL-8_Spring-2026_Syllabus.mp3
-    ├── BIOL-8_Spring-2026_Syllabus.docx
-    ├── BIOL-8_Spring-2026_Syllabus.html
-    └── BIOL-8_Spring-2026_Syllabus.txt
+├── BIOL-8_Spring-2026_Syllabus.md   # Main syllabus (source)
+├── Schedule.md                      # Term schedule (source)
+└── output/                          # Processed outputs (do not add new *source* .md here)
+    ├── BIOL-8_Spring-2026_Syllabus.{pdf,mp3,docx,html,txt,md}
+    └── Schedule.{pdf,mp3,docx,html,txt,md}
 ```
+
+`generate_syllabus_renderings.py` processes top-level `*.md` sources in this directory (not files under `output/`). Avoid treating `output/*.md` copies as additional sources.
 
 ## File Processing
 
