@@ -12,8 +12,8 @@ This lab is **practice** for the third unit: **evolution in populations**, **spe
 
 **How to use this lab**
 
-1. Try the multiple-choice and word-bank items **closed-book** first, then reopen notes only where you were stuck.  
-2. For **short answers**, write in full sentences (or labeled bullet lists where that matches your instructor’s expectations).  
+1. Do the **written** items **closed-book** first, then reopen notes only where you were stuck. A short **check** (A–D) list at the end of each module is optional—use it to verify you still recognize exam-style phrasing.  
+2. For **short answers**, write in full sentences (or labeled bullet lists where that matches your instructor’s expectations). **Definitions** should use **your** words, not a textbook sentence—then compare to the key terms list.  
 3. Ask your instructor for the **official exam** instructions, timing, and point breakdown—those rules override anything informal here.
 
 ---
@@ -27,48 +27,47 @@ This lab is **practice** for the third unit: **evolution in populations**, **spe
 - **Individuals** do not evolve; **populations** change in allele frequency over generations.  
 - **Evidence** from fossils, biogeography, comparative anatomy (homology), molecular comparisons.
 
-### Quick drill — write the letter (A–D)
+### Written practice (free response)
 
-**1.** In biology, **evolutionary fitness** is best defined as:  
+<!-- lab:reflection -->
+**1.** In **one** clear sentence, define **evolutionary fitness** the way a biologist uses the term in this unit (not “strongest” or “survives longest” unless you explain why that could still matter to fitness).
+
+{fill:textarea rows=3}
+
+**2.** In **2–3** sentences, explain **“descent with modification”** so a friend in another class would understand: ancestry, **change over time**, and why **not** all descendants look identical.
+
+{fill:textarea rows=4}
+
+**3. Scenario:** A tall plant and a short plant in the **same** population both survive a drought **equally well**, but the tall one produces more seeds. In **2–3** sentences, say what is acting as the **selective pressure**, what **variation** the selection is sorting, and what **differential reproductive success** means here.
+
+{fill:textarea rows=4}
+
+**4.** Name **one** line of **evidence** for evolution (fossil, comparative anatomy, biogeography, or molecular) and state **what pattern** that evidence shows—**two** sentences max.
+
+{fill:textarea rows=3}
+
+**5.** In **2–3** sentences, explain why “**populations** evolve, not individuals” using **allele frequencies** (or gene-pool change), not the word *fitness* alone.
+
+{fill:textarea rows=4}
+
+**6. Optional contrast:** **Acclimation** (one body over time) vs **evolution** (across generations). **One** sentence each.
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Quick check — write the letter (A–D) *optional*
+
+**A.** In biology, **evolutionary fitness** is best defined as:  
 A) Physical strength relative to other species  
 B) Survival time without food  
 C) Relative reproductive success (passing alleles to the next generation)  
 D) Ability to acclimate to cold weather in one lifetime  
 
-**2.** Which statement best matches **"descent with modification"**?  
-A) Offspring are identical to parents in every trait  
-B) Species share ancestry and accumulate differences in different environments over time  
-C) Individuals intentionally adapt their DNA when the environment changes  
-D) Only fossils evolve; living species do not  
-
-**3.** A tall plant and a short plant in the same population both survive drought equally well, but the tall one produces more seeds. Drought is selecting on **height**; the difference in seed number reflects:  
-A) Stabilizing selection only  
-B) Differential reproductive success despite similar survival here  
-C) No role for heritable variation  
-D) Acclimation of individuals without genetic change  
-
-**4.** Which is **strong** evidence of **common descent**?  
-A) Two species live on different continents, so they must be unrelated  
+**B.** Which is **strong** evidence of **common descent**?  
+A) Two species on different continents, so they must be unrelated  
 B) The same **homologous** bone layout in forelimbs of a whale, a bat, and a human, with different functions  
 C) Unrelated lineages that look alike because of convergent selection  
 D) A single individual that lived 200 years and changed its traits  
-
-**5.** "Survival of the fittest" is often misunderstood. The biologist’s "fittest" in this course usually ties most closely to:  
-A) Winning fights  
-B) Outliving all competitors to age 100  
-C) Producing more surviving offspring, on average, than other genotypes in that environment  
-D) The largest body size in the population  
-
-**6.** **Populations** evolve, not individuals, because evolution is:  
-A) A change in muscle size after weight training  
-B) A change in **allele frequencies in a population** across generations  
-C) A change in an organism’s learned behavior only  
-D) A single organism’s new mutation expressed in one body cell only  
-
-<!-- lab:reflection -->
-**Reflect:** In one sentence, name one line of **evidence** for evolution and what it shows.  
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
 
 ---
 
@@ -82,47 +81,45 @@ D) A single organism’s new mutation expressed in one body cell only
 - **Selection modes** on a continuous trait: **directional**, **stabilizing**, **disruptive**.  
 - **Hardy–Weinberg** = mathematical baseline of **no** evolution; real populations usually violate it.
 
-### Quick drill — write the letter (A–D)
+### Written practice (free response)
 
-**1.** Which option is a **mechanism of microevolution**?  
+<!-- lab:reflection -->
+**1. Mechanisms list:** List the **five** processes that can change **allele frequencies** in a population. Then circle (in your mind) the **two** that are **not** “selection’ in the usual sense; name those two in one sentence and say how they differ from each other in **one** more sentence.
+
+{fill:textarea rows=5}
+
+**2. Drift vs selection:** A hurricane **randomly** kills 90% of a moth population; survivors repopulate. In **2–3** sentences, say whether this is best viewed as **selection** or **drift** and name the specific **drift** label if it applies. Then give a **separate** two-sentence example where **differential survival of genotypes** is **selection**, not random sampling.
+
+{fill:textarea rows=5}
+
+**3. Founder vs bottleneck:** A few lizards **found** a new island population; a storm **bottlenecks** a large mainland population. In **2–3** sentences, contrast what each event does to **allele variety** in the long run (same? different? why?).
+
+{fill:textarea rows=4}
+
+**4. Selection shapes:** For **each** of **directional**, **stabilizing**, and **disruptive** selection, give **one** short phrase: what the environment favors (e.g. “favors the middle of a birth-weight range”).
+
+{fill:textarea rows=4}
+
+**5. Hardy–Weinberg:** In **2–3** sentences, say what the **equilibrium** is **used for** in this course (a word like **null** or **baseline** helps) and name **two** real-world violations that would break it (not a full list—**two** is enough).
+
+{fill:textarea rows=4}
+
+**6. Two terms you confuse (your words):** {fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Quick check — write the letter (A–D) *optional*
+
+**A.** Which option is a **mechanism of microevolution**?  
 A) A sunburn that is not passed to children  
 B) **Gene flow** when individuals enter the population and mate  
 C) A population count going up because of immigration without allele change  
 D) A species inventing a new organ when needed  
 
-**2.** A hurricane randomly kills 90% of a moth population. Surviving moths rebuild the next generation, but many alleles are gone forever. This scenario illustrates:  
-A) Stabilizing selection  
-B) The **bottleneck** effect (genetic drift)  
-C) Sympatric speciation  
-D) Density-independent **limit** that is not evolutionary  
-
-**3.** A few lizards are accidentally transported to a new island and found a new population. The island gene pool only reflects the alleles those few carried. This is:  
+**B.** A few lizards are accidentally transported to a new island; the new population only reflects the alleles the founders carried. This is:  
 A) The **founder** effect (genetic drift)  
 B) The bottleneck effect in the source population on the mainland  
 C) Convergent evolution  
 D) Interspecific competition  
-
-**4.** In **directional** selection on body size, the population typically:  
-A) Favors the middle of the size range and removes extremes  
-B) Splits to favor two opposite extremes and often weakens the middle  
-C) Shifts the average toward **one** extreme of the range  
-D) Stops all reproduction until Hardy–Weinberg holds  
-
-**5.** In **stabilizing** selection (e.g., human birth weight in some datasets):  
-A) The extremes are favored  
-B) **Intermediate** phenotypes are favored; extremes are selected against  
-C) The population must be on two islands  
-D) Only mutations matter; selection does not  
-
-**6.** The Hardy–Weinberg **equilibrium** is useful mainly as:  
-A) A proof that all populations stop evolving in nature  
-B) A baseline **null** model to compare to real data (infinite size, no drift, no mutation, no migration, random mating, no selection)  
-C) A law that only applies to bacteria  
-D) A replacement for the biological species concept  
-
-<!-- lab:reflection -->
-**Two terms you confuse:** {fill:textarea rows=2}
-<!-- /lab:reflection -->
 
 ---
 
@@ -137,48 +134,47 @@ D) A replacement for the biological species concept
 - **Postzygotic** barriers (after zygote): hybrid viability, hybrid fertility, hybrid breakdown.  
 - **Allopatric** speciation: geographic split then divergence. **Sympatric** speciation: same place (e.g. **polyploidy** in plants).
 
-### Quick drill — write the letter (A–D)
+### Written practice (free response)
 
-**1.** Two fish species that spawn in the same lake but in different **months** are separated mainly by:  
-A) A postzygotic barrier (hybrid sterility)  
-B) A **prezygotic** barrier (temporal isolation)  
-C) The Hardy–Weinberg theorem  
-D) Exponential growth only  
+<!-- lab:reflection -->
+**1. Prezygotic vs postzygotic:** For **(a)** different spawning months, **(b)** hybrid offspring sterile, and **(c)** different courtship songs, label each as **prezygotic** or **postzygotic** and give a **one-word** subtype where you can (temporal, behavioral, etc.).
 
-**2.** A horse and a donkey can produce a mule, but the mule is typically sterile. This outcome is:  
+{fill:textarea rows=5}
+
+**2. Horse × donkey → mule:** In **2–3** sentences, explain which kind of **reproductive barrier** the **sterile mule** represents and **why** that still **blocks** gene flow between the parent species over time.
+
+{fill:textarea rows=4}
+
+**3. Allopatric pattern:** A mountain range splits one species into two populations that no longer **exchange** genes. In **2–3** sentences, describe the **allopatric** story (geography + time + divergence) and one **kind** of difference that might accumulate in each lineage.
+
+{fill:textarea rows=4}
+
+**4. Sympatric in plants:** Explain **sympatric** speciation by **polyploidy** in **2–3** sentences: same place, new chromosome set, and why isolation can be **sudden** compared with slow geographic split.
+
+{fill:textarea rows=4}
+
+**5. Macroevolution definition:** In **2–3** sentences, explain why “macroevolution” in this course is **not** a separate *kind* of DNA magic from “microevolution” but **larger-scale** outcomes built from the same population-level processes.
+
+{fill:textarea rows=4}
+
+**6. Reproductive isolation and divergence:** In **2–3** sentences, explain why, once two lineages **do not** swap genes, they can **accumulate different** adaptations in different environments (use **allele** or **trait** change language).
+
+{fill:textarea rows=4}
+<!-- /lab:reflection -->
+
+### Quick check — write the letter (A–D) *optional*
+
+**A.** A horse and a donkey can produce a mule, but the mule is typically sterile. This outcome is:  
 A) A prezygotic gametic failure  
 B) A **postzygotic** barrier to gene flow (reduced hybrid fertility)  
 C) Stabilizing selection in horses  
 D) The founder effect  
 
-**3.** A mountain range forms and cuts a **single** species into two populations that no longer exchange genes; over time they diverge until they do not interbreed. This pattern fits:  
+**B.** A mountain range forms and cuts a **single** species into two populations that no longer exchange genes. Over time they diverge until they do not interbreed. This pattern fits:  
 A) **Allopatric** speciation  
 B) Only sympatric speciation with polyploidy  
 C) Macroevolution without microevolution  
 D) A species concept based only on appearance  
-
-**4.** In plants, a single generation can create reproductively isolated lineages with extra chromosome sets. That route is a classic example of:  
-A) The bottleneck effect only  
-B) **Sympatric** speciation via **polyploidy**  
-C) A prezygotic mechanical barrier in animals only  
-D) Stabilizing selection on flower color  
-
-**5.** Courtship songs differ between two close bird species, so they rarely attempt mating. This isolating mechanism is best described as:  
-A) Postzygotic hybrid breakdown  
-B) A **prezygotic** **behavioral** barrier  
-C) Exponential population growth  
-D) A density-independent limit  
-
-**6.** "Macroevolution" in this course is **not** a separate "kind" of evolution from microevolution; it refers to:  
-A) Only fossils, never DNA  
-B) Larger-scale results (e.g. new species, major diversity) that still build from the same **population**-level changes over time  
-C) Changes that only happen in one generation  
-D) Evolution that violates natural selection  
-
-<!-- lab:reflection -->
-**In two sentences:** Why does **reproductive isolation** allow two lineages to accumulate **different** adaptations over time?  
-{fill:textarea rows=4}
-<!-- /lab:reflection -->
 
 ---
 
@@ -191,56 +187,51 @@ D) Evolution that violates natural selection
 - **Trophic levels** and **~10% energy** transfer; **energy flows**, **nutrients** cycle.  
 - **Producers, consumers, decomposers**; food chains limited in length partly because of energy loss as **heat** and work.
 
-### Quick drill — write the letter (A–D)
+### Written practice (free response)
 
-**1.** A population that starts fast, then the growth **rate** slows as the population nears a stable cap, is best modeled by:  
-A) Unlimited exponential growth forever  
-B) A **logistic (S) curve** approaching **K**  
-C) A straight line of zero growth from year one  
-D) A crash to zero in every case  
+<!-- lab:reflection -->
+**1. J vs S and K:** In **3–4** sentences, describe how a **logistic** curve **differs** from unrestrained **exponential** growth, and what **K** means for a real population (you may use a short example: elk, plants, or bacteria).
 
-**2.** A disease spreads more easily when hosts are very crowded. That limiting factor is best classified as:  
+{fill:textarea rows=5}
+
+**2. Density (two examples):** Give **one** example of a **density-dependent** limit and **one** of a **density-independent** disturbance, each in a **full sentence** with **why** the label fits.
+
+{fill:textarea rows=4}
+
+**3. Energy vs nutrients:** Contrast **energy** flow and **nutrient** cycling in an ecosystem in **3–4** sentences, including decomposers and **why** sunlight is always the **new** energy input.
+
+{fill:textarea rows=5}
+
+**4. Ten percent in words:** With **~10%** transfer per trophic level, explain in **2–3** sentences why supporting **the same** number of people with **tuna** (long chain) generally requires **more** primary production than eating **closer to plants**—clear logic, no need for exact numbers if your reasoning is sound.
+
+{fill:textarea rows=4}
+
+**5. Connect *K* and energy (one sentence, your words):** Link **carrying capacity** to **trophic** levels—why a big base of **producers** supports **few** top consumers.
+
+{fill:textarea rows=2}
+<!-- /lab:reflection -->
+
+### Quick check — write the letter (A–D) *optional*
+
+**A.** A disease spreads more easily when hosts are very crowded. That limiting factor is best classified as:  
 A) Density-**independent**  
 B) Density-**dependent**  
 C) Only abiotic (never biological)  
 D) Not part of population ecology  
 
-**3.** A flash flood kills a similar **fraction** of a rare plant whether the local patch has 20 or 2,000 individuals. (Treat the event as a regulator that does not depend on **per-capita** crowding the way disease might.) The flood acts mainly as:  
-A) A density-dependent **biotic** limit only  
-B) A **density-independent** disturbance (still severe for the population)  
-C) Proof that K does not exist  
-D) Stabilizing selection on roots  
-
-**4.** The **~10% rule** between trophic levels implies that, compared with eating **plants** directly, a human food system that relies on many steps of long food chains to **tuna** would require:  
-A) **More** net primary production to deliver the same food calories to people  
-B) **Less** primary production because fish are more efficient than plants  
-C) The same amount of energy at every level  
-D) Decomposers to create new energy from nothing  
-
-**5.** In ecosystems, **chemical elements** (e.g. nitrogen, carbon in nutrients) are **cycled**, while **energy** is:  
+**B.** In ecosystems, **chemical elements** (e.g. nitrogen, carbon in nutrients) are **cycled**, while **energy** is:  
 A) Cycled the same way as nitrogen  
 B) **Lost as heat** along the way; not recycled to be photosynthesized again from dead matter in the same way sunlight is new input  
 C) Only stored in apex predators  
 D) Only found in the atmosphere, never in plants  
 
-**6.** Decomposers (fungi, bacteria) are critical because they:  
-A) Add new energy from the sun to dead matter  
-B) **Break down** organic material and return **nutrients** to forms producers can use again  
-C) Make trophic levels unnecessary  
-D) Only affect density-dependent limits  
-
-<!-- lab:reflection -->
-**Connect:** In one sentence, link **K** to **energy** (why many organisms at the top need a big base of producers).  
-{fill:textarea rows=2}
-<!-- /lab:reflection -->
-
 ---
 
 ## Word bank sprint
 
-*Use each term **once**. Practice meaning, not one memorized sentence shape.*
+*Use each term **once**. Practice **meaning** in context, not one memorized sentence shape.*
 
-**Word Bank:** *allele frequencies, allopatric, biological species, density-dependent, descent with modification, decomposers, directional selection, homologous, prezygotic, stabilizing selection*
+**Word bank:** *allele frequencies, allopatric, biological species, density-dependent, descent with modification, decomposers, directional selection, homologous, prezygotic, stabilizing selection*
 
 <!-- lab:reflection -->
 **1.** In formal terms, **microevolution** means a change in \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ from one generation to the next in a population.
@@ -268,7 +259,7 @@ D) Only affect density-dependent limits
 
 ## Short-answer rehearsal
 
-*Draft **at least three** in your own words. On your exam, you may answer a **subset** of longer prompts check your real instructions.*
+*Draft **at least three** in your own words. On your exam, you may answer a **subset** of longer prompts; check your real instructions.*
 
 <!-- lab:reflection -->
 **1. (Module 12)** Contrast how **individuals** can change in a lifetime with how **evolution** is defined in this course. Name **one** type of **evidence** for evolution in one sentence.
@@ -286,6 +277,14 @@ D) Only affect density-dependent limits
 **4. (Module 15)** Draw the distinction between **density-dependent** and **density-independent** limits, then use the **~10% rule** to explain why long food chains support **fewer** high-level consumers than a base of the same size could support if humans ate **primary producers** directly. (Equations optional; clear logic is enough.)
 
 {fill:textarea rows=6}
+
+**5. (Synthesis, Module 12–13)** A small island population of birds loses genetic diversity after a storm. In **2–3** sentences, explain **one** way this could be **drift** and **one** way a biologist would **not** call the same event “selection.”
+
+{fill:textarea rows=4}
+
+**6. (Synthesis, Module 14–15)** A **physical barrier** (new canyon) splits a fish population, and on one side, **prey** are scarce. In **2–3** sentences, tie **allopatric** divergence to how **K** or **trophic** pressure could **differ** between the two sides over time (conceptual, not a math problem).
+
+{fill:textarea rows=4}
 <!-- /lab:reflection -->
 
 ---
