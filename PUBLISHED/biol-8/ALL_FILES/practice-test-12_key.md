@@ -64,7 +64,7 @@
 
 29. **A** — The substrate binds at the enzyme active site.
 
-30. **B** — Energy cannot be created or destroyed—only transformed/moved.
+30. **C** — ATP releases usable energy when the bond to its terminal phosphate group is broken; cells continually recycle ADP back to ATP.
 
 31. **C** — DNA (deoxyribonucleic acid) carries the genetic instructions.
 
@@ -174,7 +174,7 @@
 
 84. **D** — Barriers to gene flow allow divergence—prezygotic or postzygotic mechanisms.
 
-85. **A** — Transitional similarities in anatomy align with descent with modification.
+85. **A** — Transitional fossils with intermediate body plans (e.g., *Tiktaalik*) align with descent with modification from shared ancestors.
 
 ---
 ## Part B: Fill in the Blank
@@ -211,9 +211,9 @@
 
 **101.** Accept **`meiosis`** (also `meiosis`).
 
-**102.** Accept **`barriers`** (also `barriers`, `barrier`).
+**102.** Accept **`negative`** (also `Negative`).
 
-**103.** Accept **`collagen`** (also `collagen`).
+**103.** Accept **`small`** (also `small`).
 
 **104.** Accept **`heterozygous`** (also `heterozygous`).
 
@@ -321,7 +321,7 @@
 - Ca²⁺ binds troponin → tropomyosin shift exposes actin sites for myosin.
 
 **143.** Sample points for full credit:
-- Additional fibers recruited until fused tetanus needed—size principle partially.
+- More motor units (and larger ones) are activated as needed; recruiting additional units increases the number of muscle fibers contracting and therefore the total force produced.
 
 **144.** Sample points for full credit:
 - Resting negative inside becomes less negative during Na⁺ influx—depolarization phase.
@@ -339,7 +339,7 @@
 - Pulmonary: right heart→lungs for oxygen pick-up; Systemic: left heart→body delivery.
 
 **149.** Sample points for full credit:
-- High alveolar PO₂ loads hemoglobin; elevated tissue PCO₂ favors CO₂ diffusion out.
+- In the alveoli, oxygen (O₂) diffuses from inhaled air into the blood, and carbon dioxide (CO₂) diffuses from the blood into the alveolar air to be exhaled. Each gas moves down its concentration gradient across the thin alveolar–capillary membrane.
 
 **150.** Sample points for full credit:
 - Energy enters as sunlight→ producers → herbivores → carnivores; nutrients cycle biogeochemically.

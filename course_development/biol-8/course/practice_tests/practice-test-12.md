@@ -226,12 +226,12 @@ B) Catalyst site
 C) Product site
 D) Allosteric site
 
-**30.** The First Law of Thermodynamics states that:
+**30.** Why is ATP often called the cell's "energy currency"?
 
-A) Heat is the most useful form of energy
-B) Energy cannot be created or destroyed, only transformed
-C) Entropy always increases
-D) Energy transfer is 100% efficient
+A) ATP permanently stores all of the cell's energy as fat
+B) ATP is identical to glucose
+C) ATP releases usable energy when its phosphate bonds are broken
+D) ATP is found only in red blood cells
 
 ### Module 07: Genetics
 
@@ -633,9 +633,9 @@ B) two populations share identical mates every generation
 C) hybrids always have higher fitness than parents
 D) barriers reduce successful mating or viable/fertile offspring
 
-**85.** Which fossil observation most directly supports common ancestry of vertebrates?
+**85.** Which fossil observation most directly supports common ancestry among vertebrates?
 
-A) Sequential limb/bone patterns consistent with modification from shared forms
+A) Transitional fossils showing intermediate body forms between major groups
 B) Species living at identical latitudes
 C) Same number of offspring per clutch
 D) Identical resting heart rates across all species
@@ -696,9 +696,9 @@ D) Identical resting heart rates across all species
 
 ### Module 09
 
-**102.** Epithelium often forms protective _______________ on body surfaces.
+**102.** _______________ feedback loops oppose changes and help restore the body's set point (e.g., a thermostat-like response).
 
-**103.** Bone stores calcium salts and flexible _______________ fibers for strength.
+**103.** Most chemical digestion and nutrient absorption occurs in the _______________ intestine.
 
 ### Module 10
 
@@ -846,7 +846,7 @@ D) Identical resting heart rates across all species
 
 <br><br><br>
 
-**143.** Describe recruitment of motor units as workload rises.
+**143.** Explain how motor unit recruitment lets a muscle generate more force as workload rises.
 
 <br><br><br>
 
@@ -870,7 +870,7 @@ D) Identical resting heart rates across all species
 
 <br><br><br>
 
-**149.** Relate partial pressures of oxygen/carbon dioxide to gas exchange at alveoli.
+**149.** Describe gas exchange in the alveoli — name which gas moves into the blood and which gas moves out.
 
 <br><br><br>
 
