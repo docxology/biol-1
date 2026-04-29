@@ -7,7 +7,7 @@
 
 ## What exists in this tree
 
-**Practice tests 01 through 11** (each with a key). Use the heading and **Instructions** block inside each `practice-test-NN.md` for which modules or exam it targets.
+**Practice tests 01 through 12** (each with a key). Use the heading and **Instructions** block inside each `practice-test-NN.md` for which modules or exam it targets.
 
 ## Usage
 

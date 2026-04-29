@@ -733,8 +733,8 @@ if not validation.get("changed_files"):
 
 | Document | Location | BIOL-1 | BIOL-8 | Output Formats | Output Location |
 |----------|----------|--------|--------|----------------|-----------------|
-| **keys-to-success.md** | `course/module-XX-*/` | 17 | 15 | PDF, DOCX, HTML, TXT, MP3 | `module-XX/output/study-guides/` |
-| **questions.md** | `course/module-XX-*/` | 17 | 15 | PDF, DOCX, HTML, TXT, MP3 | `module-XX/output/study-guides/` |
+| **keys-to-success.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MP3 | `module-XX/output/study-guides/` |
+| **questions.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MP3 | `module-XX/output/study-guides/` |
 
 #### Laboratory Protocols
 

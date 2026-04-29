@@ -15,7 +15,7 @@ BIOL-1 has **15** content modules (`module-01` … `module-15`). The schedule ma
 | Exam 03 | 12–15 | Darwin & evolution, populations evolve, macroevolution, population & systems ecology |
 | Final (Exam 04) | Comprehensive | Broad final (syllabus) |
 
-**Note:** The markdown file `exam-03.md` on disk may still carry an older header (e.g. “Modules 07–11”) from a prior numbering pass; align published PDFs and keys with the **schedule** (12–15 for the third unit exam) when updating exam source.
+**Note on filenames:** On disk, `exam-03.md` / `exam-03_key.md` are the **second** unit exam in the schedule (Exam **02**, modules **07–11**). The body and “Modules 07–11” coverage are correct for that exam. If the title line still reads “Exam 03”, treat that as a filename quirk: either rename the pair to `exam-02` / `exam-02_key` for clarity or retitle the H1 to match the schedule—do **not** retarget this file to modules **12–15**. For the **third** unit (12–15), author **new** files (for example `exam-04.md` + `exam-04_key.md`, after any rename of the current pair) and use [practice-test-04](../practice_tests/) for review until those exist.
 
 ## Files on disk
 
@@ -30,15 +30,15 @@ BIOL-1 has **15** content modules (`module-01` … `module-15`). The schedule ma
 
 ## Format
 
-**Exam 01 and Exam 03** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of five). See `exam-01.md` / `exam-03.md` for the live pattern.
+**`exam-01.md`** (Exam 01) and **`exam-03.md`** (schedule Exam 02; modules 07–11) both use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of five). See those files for the live pattern.
 
 The `exam-template.md` file describes an alternate **100-point** layout (25 MC at 2 points each, short answer, essay) for courses that adopt it.
 
 ## Development status
 
 - [x] exam-01.md + exam-01_key.md
-- [x] exam-03.md + exam-03_key.md (content and header should be reconciled with Exam 02 vs 03 as scheduled)
-- [ ] exam-02.md + key (if stored separately from the current `exam-03` file)
+- [x] exam-03.md + exam-03_key.md (second unit exam on schedule; same as Exam 02 — reconcile **filename / H1** with schedule if desired, not module range)
+- [ ] exam-02.md + key (optional duplicate if you rename the current `exam-03` pair to `exam-02`)
 - [ ] final-exam.md + key (comprehensive)
 
 ## Template

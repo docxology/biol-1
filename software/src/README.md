@@ -54,7 +54,7 @@ Layer 0: shared, module_organization, file_validation, legacy_import,
 | `shared` | 0 | Cross-cutting helpers | `ensure_output_directory()` |
 | `speech_to_text` | 1 | Audio transcription | `transcribe_audio()` |
 | `text_to_speech` | 1 | Audio generation | `generate_speech()` |
-| `validation` | 0 | Output validation | `validate_published_directory()` |
+| `validation` | 0 | Output validation | `validate_outputs()`, `validate_published()`, `validate_published_directory()` (alias) |
 
 ---
 

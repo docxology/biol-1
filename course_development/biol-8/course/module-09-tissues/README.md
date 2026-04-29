@@ -8,3 +8,7 @@ This directory contains resources for Module 09 Tissues.
 
 - `keys-to-success.md`
 - `questions.md`
+
+## Related materials
+
+- Slides: see [`../../resources/slides/`](../../resources/slides/).

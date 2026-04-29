@@ -9,3 +9,7 @@ This directory contains resources for Module 10 Inheritance.
 - `keys-to-success.md`
 - `overview.md`
 - `questions.md`
+
+## Related materials
+
+- Slides: see [`../../resources/slides/`](../../resources/slides/).

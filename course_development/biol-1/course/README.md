@@ -36,8 +36,9 @@ course/
 ├── AGENTS.md                    # Technical documentation
 │
 ├── exams/                       # Exam materials
-├── labs/                        # Laboratory protocols
+├── labs/                        # 17 laboratory protocols (lab-NN_topic.md)
 │   ├── lab-01_measurement-methods.md
+│   ├── dashboards/              # lab-NN_*-dashboard.html (one per numbered lab)
 │   └── output/                  # Generated lab outputs
 ├── practice_tests/              # Practice tests with answer keys
 ├── quizzes/                     # Quiz materials

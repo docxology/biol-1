@@ -6,7 +6,7 @@ Technical documentation for course management software utilities, including func
 
 ## Test status
 
-**612 tests collected; 607 passing, 5 skipped** (last verified after the `convert_markdown_to_docx` rewrite — see `software/src/format_conversion/AGENTS.md`).
+**621 tests passing, 5 skipped** (`uv run pytest -q --no-cov` from `software/`; counts change over time).
 
 Run the suite from the `software/` directory:
 
@@ -400,10 +400,11 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 **Key Functions**:
 
-- `validate_module_outputs(module_dir: Path) -> Dict[str, Any]` - Validate a module's output directory
-- `validate_syllabus_outputs(course_dir: Path) -> Dict[str, Any]` - Validate syllabus outputs (flat structure)
-- `validate_published_directory(published_dir: Path, course: str) -> Dict[str, Any]` - Validate published directory
-- `run_validation(course: str, published_dir: Path) -> Dict[str, Any]` - Run full validation suite
+- `validate_outputs(course_path: str, ...) -> Dict[str, Any]` — expected files in `course_development/<course>/` (modules, syllabus, labs)
+- `validate_published(published_path: str) -> Dict[str, Any]` — recurse `PUBLISHED/` tree (pre–`ALL_FILES/` semantics; see [`validation/AGENTS.md`](validation/AGENTS.md))
+- `validate_published_directory(published_path: str) -> Dict[str, Any]` — alias of `validate_published`
+- `generate_validation_report(course_name: str, ...) -> Dict[str, Any]` — combined source + published report
+- `get_output_summary(course_path: str) -> Dict[str, Any]` — extension tallies across module outputs
 
 **Configuration** (`config.py`):
 

@@ -37,14 +37,16 @@ uv sync
 
 ### 4. Set Environment Variable (macOS only)
 
+WeasyPrint loads Homebrew Cairo/Pango libraries using `DYLD_FALLBACK_LIBRARY_PATH` (the same variable [`publish.py`](../../publish.py) sets):
+
 ```bash
-export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_FALLBACK_LIBRARY_PATH:-}"
 ```
 
 Add to `~/.zshrc` for persistence:
 
 ```bash
-echo 'export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"' >> ~/.zshrc
+echo 'export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_FALLBACK_LIBRARY_PATH:-}"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
@@ -110,7 +112,7 @@ Documents the core development principle: **all code uses real implementations, 
 
 ### run_tests.sh
 
-Wrapper script for macOS that sets `DYLD_LIBRARY_PATH` for WeasyPrint:
+Wrapper script for macOS that sets `DYLD_FALLBACK_LIBRARY_PATH` for WeasyPrint (same convention as [`publish.py`](../../publish.py)):
 
 ```bash
 ./run_tests.sh              # Runs all tests
@@ -302,13 +304,13 @@ uv run python scripts/generate_all_outputs.py --course all
 ### Generate Module Website
 
 ```bash
-uv run python scripts/generate_module_website.py /path/to/module
+uv run python scripts/generate_module_website.py --course biol-8 --module 1
 ```
 
 ### Generate Syllabus Renderings
 
 ```bash
-uv run python scripts/generate_syllabus_renderings.py /path/to/syllabus.md
+uv run python scripts/generate_syllabus_renderings.py --course biol-8
 ```
 
 ---
@@ -324,7 +326,7 @@ uv run python scripts/generate_syllabus_renderings.py /path/to/syllabus.md
 Or manually:
 
 ```bash
-DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH" uv run pytest
+DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_FALLBACK_LIBRARY_PATH:-}" uv run pytest
 ```
 
 ### Run with Coverage
@@ -390,8 +392,8 @@ Which formats appear depends on `publish.toml` / CLI (`--formats`, MP3 optional)
 # Install dependencies
 brew install cairo pango gdk-pixbuf glib
 
-# Set library path
-export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+# Set library search path for Homebrew dylibs (same variable as publish.py)
+export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_FALLBACK_LIBRARY_PATH:-}"
 ```
 
 ### Module Not Found

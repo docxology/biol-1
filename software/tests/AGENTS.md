@@ -9,6 +9,7 @@ Test files mirror the source code structure:
 ```text
 tests/
 ├── conftest.py                                     # Shared fixtures
+├── canvas_stub_server.py                           # Local HTTP stub for Canvas API upload flows
 ├── test_imports.py                                 # Import verification
 ├── test_dependencies.py                            # Dependency version tests
 ├── test_real_implementations.py                    # Real implementation verification
@@ -186,8 +187,9 @@ Tests should run automatically on:
 
 - For external APIs (e.g., Canvas API), tests validate the logic and structure validation
 - Tests verify that validation works correctly before API calls
-- Actual API integration is tested in integration environments with real credentials
-- Tests focus on the real validation and error handling logic
+- `test_canvas_integration_main.py` includes `test_upload_module_to_canvas_uses_real_http_through_local_stub`, which monkeypatches the API base URL to a threaded `HTTPServer` in `canvas_stub_server.py` (real HTTP, real `requests`, no mocking of HTTP clients)
+- `test_optional_upload_module_to_canvas_requires_env_credentials` (`@pytest.mark.requires_api`) runs only when `CANVAS_API_KEY` and `CANVAS_COURSE_ID` are set for a live sandbox
+- `test_convert_audio_to_text` (`@pytest.mark.requires_internet`) uses real gTTS and Google Speech; if recognition returns “could not understand” for the generated clip, pytest skips rather than failing the suite
 
 ### Test Isolation
 

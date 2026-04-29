@@ -3,6 +3,7 @@
 from src.validation.main import (
     validate_outputs,
     validate_published,
+    validate_published_directory,
     generate_validation_report,
     get_output_summary,
     _validate_module_outputs,
@@ -623,6 +624,19 @@ class TestValidatePublished:
         if "biol-1" in result["courses"]:
             modules = result["courses"]["biol-1"]["modules"]
             assert len(modules) > 0
+
+    def test_validate_published_directory_alias_matches_validate_published(
+        self, temp_dir
+    ):
+        """validate_published_directory is an alias with identical behaviour."""
+        pub_dir = temp_dir / "PUBLISHED"
+        pub_dir.mkdir()
+
+        direct = validate_published(str(pub_dir))
+        aliased = validate_published_directory(str(pub_dir))
+        assert aliased["valid"] == direct["valid"]
+        assert aliased["path"] == direct["path"]
+        assert aliased["total_files"] == direct["total_files"]
 
 
 class TestGetOutputSummary:

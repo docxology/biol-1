@@ -1,6 +1,6 @@
 # Practice Tests
 
-This directory contains practice tests for BIOL-1 (Principles of Biology).
+This directory contains practice tests for **BIOL-1: Biology 1** (Pelican Bay Prison, Spring 2026).
 
 ## Structure
 
@@ -13,6 +13,7 @@ This directory contains practice tests for BIOL-1 (Principles of Biology).
 - **Practice Test 02**: Modules 5–6 (Membranes and Metabolism)
 - **Practice Test 03**: Modules 7–11 (Exam 02 preparation)
 - **Practice Test 04**: Modules 12–15 (Exam 03 preparation)
+- **Practice Test 05**: Modules 1–15 (comprehensive final review)
 
 ## Usage
 

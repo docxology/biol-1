@@ -353,6 +353,18 @@ def validate_published(published_path: str) -> Dict[str, Any]:
     return results
 
 
+def validate_published_directory(published_path: str) -> Dict[str, Any]:
+    """Validate the ``PUBLISHED/`` tree (alias for :func:`validate_published`).
+
+    Args:
+        published_path: Path to the repository ``PUBLISHED`` directory
+
+    Returns:
+        Same structure as :func:`validate_published`.
+    """
+    return validate_published(published_path)
+
+
 def generate_validation_report(
     course_name: str,
     repo_root: Optional[str] = None,

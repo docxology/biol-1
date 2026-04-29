@@ -157,17 +157,18 @@ uv run python scripts/validate_outputs.py --course all --verbose
 
 ### `generate_module_renderings.py` — Single Module Processing
 
-Process one module:
+Process one module by course name and module number:
 
 ```bash
-uv run python scripts/generate_module_renderings.py /path/to/module-01 --formats pdf,docx
+uv run python scripts/generate_module_renderings.py --course biol-8 --module 1
 ```
 
 | Option | Description |
 |--------|-------------|
-| `path` | Required: path to module directory |
-| `--formats` | Output formats (default: all) |
-| `--output-dir` | Custom output directory |
+| `--course` | `biol-1` or `biol-8` (default: `biol-1`) |
+| `--module` | Module number to process (default: `1`) |
+
+Output goes to that module's `output/` via `process_module_by_type`.
 
 **Module Used**: `src/batch_processing`
 
@@ -175,37 +176,34 @@ uv run python scripts/generate_module_renderings.py /path/to/module-01 --formats
 
 ### `generate_module_website.py` — Website Generation
 
-Generate interactive HTML website for a module:
+Delegates to **`batch_processing.process_module_website`** (which calls **`html_website.generate_module_website`**).
 
 ```bash
-uv run python scripts/generate_module_website.py /path/to/module-01
+uv run python scripts/generate_module_website.py --course biol-8 --module 1
 ```
 
 | Option | Description |
 |--------|-------------|
-| `path` | Required: path to module directory |
-| `--output-dir` | Custom output directory |
-| `--course-name` | Course name for display |
+| `--course` | `biol-1` or `biol-8` (default: `biol-1`) |
+| `--module` | Module number (default: `1`) |
 
-**Module Used**: `src/html_website`
+**Module Used**: `src/batch_processing` → `src/html_website`
 
 ---
 
 ### `generate_syllabus_renderings.py` — Syllabus Processing
 
-Generate outputs for syllabus files:
+Renders syllabus sources under ``course_development/<course>/syllabus/`` into ``syllabus/output/``.
 
 ```bash
-uv run python scripts/generate_syllabus_renderings.py /path/to/Schedule.md
+uv run python scripts/generate_syllabus_renderings.py --course biol-8
 ```
 
 | Option | Description |
 |--------|-------------|
-| `path` | Required: path to schedule file or directory |
-| `--formats` | Output formats (default: all) |
-| `--output-dir` | Custom output directory |
+| `--course` | `biol-1` or `biol-8` (default: `biol-1`) |
 
-**Module Used**: `src/schedule`, `src/batch_processing`
+**Module Used**: `src/batch_processing` (`process_syllabus`)
 
 ---
 
@@ -312,8 +310,8 @@ This ensures files remain identifiable when distributed or combined.
 # Required for PDF/DOCX generation
 brew install cairo pango gdk-pixbuf glib
 
-# Set library path (add to ~/.zshrc for persistence)
-export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
+# Set library path (add to ~/.zshrc for persistence; matches publish.py / CLAUDE.md)
+export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_FALLBACK_LIBRARY_PATH:-}"
 ```
 
 ### Python Dependencies

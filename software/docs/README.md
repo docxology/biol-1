@@ -27,10 +27,6 @@ flowchart LR
     CD --> SW
     SW --> PUB
     PUB --> PUBD
-    
-    style SOURCE fill:#fff9c4
-    style PROCESS fill:#e8f5e9
-    style OUTPUT fill:#c8e6c9
 ```
 
 ---
@@ -199,8 +195,8 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 | Document Type | BIOL-1 | BIOL-8 | Notes |
 |---------------|--------|--------|--------|
-| **keys-to-success.md** | 16 | 17 | One per `course/module-*` |
-| **questions.md** | 16 | 17 | One per module |
+| **keys-to-success.md** | 15 | 17 | One per `course/module-*` |
+| **questions.md** | 15 | 17 | One per module |
 | **Labs** | 17 protocols + dashboards | 18 protocols + dashboards | See each course `course/labs/` |
 | **Exams** | 2 + keys on disk | 3 + keys on disk | Teacher-only; see `course/exams/` |
 | **Quizzes** | Templates | 17 × 2 files | BIOL-8 full set in `course/quizzes/` |
@@ -212,7 +208,7 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 ### Priority actions (high level)
 
-1. **BIOL-1 assessments:** Add unit coverage for modules 12–16 and/or final as the term requires; quizzes remain template-only unless the course adopts a BIOL-8-style quiz set.
+1. **BIOL-1 assessments:** Add unit coverage for modules 12–15 and/or final as the term requires; quizzes remain template-only unless the course adopts a BIOL-8-style quiz set.
 2. **Labs:** Finish any remaining lab stubs the instructor wants taught this term.
 3. **BIOL-1 slides:** Add module **9** full + notes PDFs if slides are required for that module.
 4. **Module `resources/`:** Populate optional per-module assets when needed.

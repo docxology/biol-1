@@ -29,10 +29,10 @@ course/
 │   ├── lab-01_measurement-methods.md
 │   └── ... (see labs/README.md; e.g. lab-13_nervous-system.md, lab-14_microbiology.md, lab-14_microbiology-followup.md)
 │
-└── module-XX-topic-name/        # 17 module directories (some include assignments/)
+└── module-XX-topic-name/        # 17 module directories (optional assignments/, resources/)
     ├── keys-to-success.md      # Learning objectives
     ├── questions.md            # Study questions
-    └── resources/              # Supplementary materials
+    └── resources/              # Optional supplementary assets (several early modules)
 ```
 
 ## Module Naming Convention
@@ -75,9 +75,9 @@ Each module contains:
    - Continuous numbering (1 through 18-20)
    - Covers all learning objectives
 
-3. **`resources/`**
-   - Empty directory for supplementary materials
-   - Future: PDFs, images, external links
+3. **`resources/`** (optional)
+   - Used when the module ships figures or datasets alongside markdown (several modules **01–12** include this folder).
+   - Modules **13–17** currently omit `resources/` when there are no extra assets.
 
 ### Quiz Format
 
@@ -161,7 +161,7 @@ The `software/` directory contains batch processing utilities for:
 ### Completeness
 
 - [x] 17 module directories created (`module-01-…` through `module-17-…`)
-- [x] Each module has `keys-to-success.md`, `questions.md`, `resources/`
+- [x] Each module has `keys-to-success.md` and `questions.md`; `resources/` present where assets exist (optional otherwise)
 - [x] 3 unit exams with answer keys (`exam-01`–`exam-03`, 6 files); final exam pending
 - [x] 17 quizzes with answer keys (34 files in `quizzes/`)
 - [x] 18 lab protocols in `labs/` (`lab-01_measurement-methods.md` … `lab-18_evolution.md`)

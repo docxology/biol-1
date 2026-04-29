@@ -168,7 +168,7 @@ This is why a single run can show both `Total files: 421` (validation) and `Tota
 | `SYLLABUS_REQUIRED_FORMATS` / `SYLLABUS_OPTIONAL_FORMATS` | Per-format expectations for `syllabus/output/`. |
 | `EXPECTED_WEBSITE_FILES` | `index.html`. |
 | `OUTPUT_DIRS` | Logical → directory-name mapping. |
-| `COURSE_CONFIG` | Per-course expected module count (BIOL-1: 16, BIOL-8: 17). |
+| `COURSE_CONFIG` | Per-course expected module count (BIOL-1: 15, BIOL-8: 17). |
 | `PUBLISHED_DIR_NAME` | `PUBLISHED`. |
 
 Helpers:

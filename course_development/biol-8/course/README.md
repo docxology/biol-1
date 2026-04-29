@@ -38,19 +38,18 @@ course/
 ├── AGENTS.md                    # Technical documentation
 │
 ├── exams/                       # Course examinations
-│   ├── exam-01.md              # Exam 01: Modules 01-07
+│   ├── exam-01.md              # Exam 01: Modules 01–06 (50 pts)
 │   ├── exam-01_key.md
-│   ├── exam-02.md              # Exam 02: Modules 08-11
+│   ├── exam-02.md              # Exam 02: Modules 07–10 (50 pts)
 │   ├── exam-02_key.md
-│   ├── exam-03.md              # Exam 03: Modules 12-15
+│   ├── exam-03.md              # Exam 03: Modules 11–15 (50 pts)
 │   ├── exam-03_key.md
-│   ├── final-exam.md           # Comprehensive final
-│   └── final-exam_key.md
+│   └── (final exam markdown planned; see syllabus / exams/README.md)
 │
 ├── quizzes/                     # Module quizzes (7 MC + 3 FR each)
 │   ├── module-01_quiz.md
 │   ├── module-01_quiz_key.md
-│   └── ... (30 files total)
+│   └── … module-17 — **34 files** (17 × quiz + key)
 │
 ├── labs/                        # Laboratory protocols
 │   ├── README.md               # Labs documentation
@@ -62,24 +61,27 @@ course/
 ├── practice_tests/              # Practice tests with answer keys
 │   ├── practice-test-01.md
 │   ├── practice-test-01_key.md
-│   └── ... (5 tests + 5 keys)
+│   └── ... (**11** practice tests + keys; scope varies—see each file)
 │
 └── module-XX-topic-name/        # 17 module directories
     ├── keys-to-success.md      # Learning objectives and study tips
     ├── questions.md            # 18-20 study questions
-    └── resources/              # Supplementary materials
+    ├── resources/              # Optional: figures/datasets (present for several early modules)
+    └── assignments/            # Optional: only some modules include this folder
 ```
 
 ## Assessment Structure
 
 ### Exams
 
-| Exam | Date | Coverage | Format |
-|------|------|----------|--------|
-| Exam 01 | Feb 12, 2026 | Modules 01-06 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Exam 02 | Mar 5, 2026 | Modules 07-10 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Exam 03 | Apr 16, 2026 | Modules 11-15 | 50 MC + 30 SA + 20 Essay = 100 pts |
-| Final | May 12, 2026 | Comprehensive | 75 MC + 45 SA + 30 Essay = 150 pts |
+Unit exams **01–03** are **50 points** each (multiple choice, fill-in with word bank, free response—see `exams/exam-NN.md` headers). Dates and coverage match [Schedule](../syllabus/Schedule.md):
+
+| Exam | Date | Coverage |
+|------|------|----------|
+| Exam 01 | Feb 12, 2026 | Modules 01–06 |
+| Exam 02 | Mar 5, 2026 | Modules 07–10 |
+| Exam 03 | Apr 16, 2026 | Modules 11–15 |
+| Final | May 12, 2026 | Comprehensive (all modules; format per syllabus) |
 
 ### Quizzes
 
@@ -93,15 +95,16 @@ Answer keys include explanations for all questions.
 
 ### Labs
 
-Eighteen laboratory protocols (some ecology/evolution sections remain stubs) aligned with course topics and exams.
+Eighteen laboratory protocols aligned with course topics and exams (see `labs/README.md` for status).
 
 ## Module Contents
 
-Each module folder contains:
+Each module folder contains at minimum:
 
-1. **`keys-to-success.md`**: 5-6 key learning objectives organized by topic, plus study tips
-2. **`questions.md`**: 18-20 natural language study questions covering all module topics
-3. **`resources/`**: Empty directory for supplementary materials
+1. **`keys-to-success.md`**: key learning objectives organized by topic, plus study tips
+2. **`questions.md`**: study questions covering module topics
+
+Several modules also include **`resources/`** (figures or datasets), **`assignments/`**, or links to labs under `labs/`—see each module’s `README.md`. Lecture slide PDFs are course-wide under **[`../resources/slides/`](../resources/slides/)** (`module-N-slides-{full,notes}.pdf`).
 
 ## Related Documents
 

@@ -6,7 +6,7 @@ Practice tests and answer keys. The batch processor renders each `practice-test-
 
 ## Files on disk
 
-`practice-test-01` through `practice-test-11` (each with a `_key` file). **Module and exam scope** for each file is given in that file’s title and instructions—do not assume scope from the number alone (authoring has evolved by term).
+`practice-test-01` through `practice-test-12` (each with a `_key` file). **Module and exam scope** for each file is given in that file’s title and instructions—do not assume scope from the number alone (authoring has evolved by term).
 
 ## Related
 

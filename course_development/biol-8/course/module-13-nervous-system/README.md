@@ -12,6 +12,6 @@ This module covers the structure and function of the nervous system: neurons and
 
 ## Related materials
 
-- Lab: `../labs/lab-13_nervous-system.md` (when present).
-- Slides: see `course_development/biol-8/resources/slides/`.
-- Practice tests covering this module: see `../practice_tests/`.
+- Lab: [`../labs/lab-13_nervous-system.md`](../labs/lab-13_nervous-system.md).
+- Slides: see [`../../resources/slides/`](../../resources/slides/).
+- Practice tests: [`../practice_tests/`](../practice_tests/).

@@ -1,13 +1,24 @@
 """Tests for canvas_integration main functions."""
 
+from __future__ import annotations
+
 import os
+import sys
+from pathlib import Path
 
 import pytest
 
+import src.canvas_integration.config as canvas_config
 from src.canvas_integration.main import (
     upload_module_to_canvas,
     validate_upload_readiness,
 )
+
+_TESTS_DIR = Path(__file__).resolve().parent
+if str(_TESTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_TESTS_DIR))
+
+from canvas_stub_server import start_canvas_stub_http, stop_canvas_stub
 
 
 def test_validate_upload_readiness_valid(sample_module_structure):
@@ -91,34 +102,6 @@ def test_upload_module_to_canvas_invalid_structure(temp_dir):
         upload_module_to_canvas(str(module_dir), "course123", "api_key")
 
 
-def test_upload_module_to_canvas_with_credentials(sample_module_structure):
-    """Test upload_module_to_canvas with credentials from environment variables."""
-    # Check for Canvas credentials in environment
-    canvas_api_key = os.getenv("CANVAS_API_KEY")
-    canvas_course_id = os.getenv("CANVAS_COURSE_ID")
-    canvas_domain = os.getenv("CANVAS_DOMAIN", "canvas.instructure.com")
-
-    if not canvas_api_key or not canvas_course_id:
-        pytest.skip("Canvas API credentials not available in environment variables")
-
-    # Test actual upload with real credentials
-    try:
-        result = upload_module_to_canvas(
-            str(sample_module_structure),
-            canvas_course_id,
-            canvas_api_key,
-            canvas_domain,
-        )
-        assert isinstance(result, dict)
-        assert "uploaded_files" in result
-        assert "failed_files" in result
-        assert "errors" in result
-    except Exception as e:
-        # If upload fails due to network/API issues, that's okay for testing
-        # We're testing that the code path is executed
-        pytest.skip(f"Canvas API call failed: {e}")
-
-
 def test_validate_upload_readiness_with_large_file(temp_dir):
     """Test validate_upload_readiness with file size validation."""
     module_dir = temp_dir / "module-1"
@@ -133,82 +116,69 @@ def test_validate_upload_readiness_with_large_file(temp_dir):
     assert isinstance(issues, list)
 
 
-def test_upload_module_to_canvas_file_upload_loop(sample_module_structure):
-    """Test upload_module_to_canvas file upload loop."""
-    # Check for Canvas credentials
-    canvas_api_key = os.getenv("CANVAS_API_KEY")
-    canvas_course_id = os.getenv("CANVAS_COURSE_ID")
-    canvas_domain = os.getenv("CANVAS_DOMAIN", "canvas.instructure.com")
+def test_upload_module_to_canvas_uses_real_http_through_local_stub(
+    monkeypatch,
+    sample_module_structure,
+):
+    """Exercise Canvas upload flow against localhost (real sockets + requests).
 
-    if not canvas_api_key or not canvas_course_id:
-        pytest.skip("Canvas API credentials not available")
+    Mirrors Canvas list/create folder + initiate upload + multipart step without mocks
+    on the HTTP client (`requests`).
+    """
+
+    srv = start_canvas_stub_http()
+    monkeypatch.setattr(canvas_config, "RATE_LIMIT_DELAY", 0.0)
+    _, port = srv.server_address
+
+    import src.canvas_integration.main as canvas_main
+
+    def get_canvas_api_url_stub(domain: str, endpoint: str, **kwargs: object) -> str:
+        endpoint_path = endpoint.format(**kwargs)
+        return f"http://127.0.0.1:{port}/api/v1{endpoint_path}"
+
+    monkeypatch.setattr(canvas_main, "get_canvas_api_url", get_canvas_api_url_stub)
 
     try:
         result = upload_module_to_canvas(
             str(sample_module_structure),
-            canvas_course_id,
-            canvas_api_key,
-            canvas_domain,
+            "98765",
+            "test-token-unused-by-stub",
+            f"127.0.0.1:{port}",
         )
-        # Test that file upload loop executes
+
         assert isinstance(result, dict)
         assert "uploaded_files" in result
         assert "failed_files" in result
         assert "errors" in result
-    except Exception as e:
-        pytest.skip(f"Canvas API call failed: {e}")
+
+        uploaded = len(result["uploaded_files"])
+        failures = len(result["failed_files"])
+        assert uploaded >= 1
+        assert uploaded + failures >= 1
+    finally:
+        stop_canvas_stub(srv)
 
 
-def test_upload_module_to_canvas_file_too_large(sample_module_structure):
-    """Test upload_module_to_canvas with file too large."""
-    # Create a large file (simulate by checking validation)
-    large_file = sample_module_structure / "large.bin"
-    # Create file larger than MAX_FILE_SIZE (50MB)
-    # For testing, we'll create a smaller file but test the validation path
-    large_file.write_bytes(b"x" * 100)
-
+@pytest.mark.requires_api
+def test_optional_upload_module_to_canvas_requires_env_credentials(
+    sample_module_structure,
+):
+    """Runs against Canvas only when CANVAS_* env vars are set; otherwise skipped."""
     canvas_api_key = os.getenv("CANVAS_API_KEY")
     canvas_course_id = os.getenv("CANVAS_COURSE_ID")
     canvas_domain = os.getenv("CANVAS_DOMAIN", "canvas.instructure.com")
 
     if not canvas_api_key or not canvas_course_id:
-        pytest.skip("Canvas API credentials not available")
+        pytest.skip("Set CANVAS_API_KEY and CANVAS_COURSE_ID for live Canvas test")
 
-    try:
-        result = upload_module_to_canvas(
-            str(sample_module_structure),
-            canvas_course_id,
-            canvas_api_key,
-            canvas_domain,
-        )
-        # Large files should be in failed_files
-        assert isinstance(result, dict)
-    except Exception as e:
-        pytest.skip(f"Canvas API call failed: {e}")
-
-
-def test_upload_module_to_canvas_upload_errors(sample_module_structure):
-    """Test upload_module_to_canvas error handling during upload."""
-    canvas_api_key = os.getenv("CANVAS_API_KEY")
-    canvas_course_id = os.getenv("CANVAS_COURSE_ID")
-    canvas_domain = os.getenv("CANVAS_DOMAIN", "canvas.instructure.com")
-
-    if not canvas_api_key or not canvas_course_id:
-        pytest.skip("Canvas API credentials not available")
-
-    try:
-        result = upload_module_to_canvas(
-            str(sample_module_structure),
-            canvas_course_id,
-            canvas_api_key,
-            canvas_domain,
-        )
-        # Test error collection
-        assert isinstance(result, dict)
-        assert "errors" in result
-    except Exception as e:
-        # If upload fails, errors should be collected
-        pytest.skip(f"Canvas API call failed: {e}")
+    result = upload_module_to_canvas(
+        str(sample_module_structure),
+        canvas_course_id,
+        canvas_api_key,
+        canvas_domain,
+    )
+    assert isinstance(result, dict)
+    assert {"uploaded_files", "failed_files", "errors"} <= result.keys()
 
 
 def test_validate_upload_readiness_naming_violations(temp_dir):

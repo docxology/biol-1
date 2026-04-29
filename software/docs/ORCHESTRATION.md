@@ -386,22 +386,20 @@ validate = true     # Validate all outputs
 **Programmatic Usage**:
 
 ```python
-from src.publish.main import publish_course
-from src.validation.main import validate_published_directory
 from pathlib import Path
+
+from src.publish.main import publish_course
+from src.validation import validate_published_directory
 
 # Publish a course
 result = publish_course(
     course_path="/path/to/course_development/biol-8",
-    publish_root="/path/to/PUBLISHED"
+    publish_root="/path/to/PUBLISHED",
 )
-print(f"Published {result['files_copied']} files")
+print(f"Published {result['total_files']} files")
 
-# Validate the published outputs
-validation = validate_published_directory(
-    published_dir=Path("/path/to/PUBLISHED"),
-    course="biol-8"
-)
+# Validate the entire published tree (all courses under PUBLISHED/)
+validation = validate_published_directory(str(Path("/path/to/PUBLISHED")))
 print(f"Validation passed: {validation['valid']}")
 ```
 
@@ -710,17 +708,12 @@ results = process_module_by_type(module_path, output_dir, formats=["pdf", "html"
 results = process_module_by_type(module_path, output_dir)  # Default: all
 ```
 
-### Process Specific File Types
+### Narrowing scope
 
-```python
-from src.batch_processing.main import process_module_by_type
+`process_module_by_type` does not filter by curriculum type. To limit work:
 
-# Only lectures
-results = process_module_by_type(module_path, output_dir, file_types=["lectures"])
-
-# Only assessments
-results = process_module_by_type(module_path, output_dir, file_types=["assessments"])
-```
+- Pass **`formats`** (for example ``["pdf", "html"]``) to skip slow or unwanted outputs.
+- For a single source file, use **`convert_file`** from **`format_conversion`** (or **`render_markdown_to_pdf`** for PDF only).
 
 ### Parallel Processing (Advanced)
 
@@ -772,41 +765,39 @@ from pathlib import Path
 
 # PDF output (fillable fields rendered as styled inputs)
 render_lab_manual(
-    Path("course_development/biol-8/course/labs/lab-01_measurement-methods.md"),
-    Path("output/lab-01.pdf"),
-    format="pdf"
+    "course_development/biol-8/course/labs/lab-01_measurement-methods.md",
+    "output/lab-01.pdf",
+    output_format="pdf",
 )
 
-# HTML output (interactive dashboard with data tables)
+# HTML output (interactive layout with data tables)
 render_lab_manual(
-    Path("course_development/biol-8/course/labs/lab-01_measurement-methods.md"),
-    Path("output/lab-01.html"),
-    format="html"
+    "course_development/biol-8/course/labs/lab-01_measurement-methods.md",
+    "output/lab-01.html",
+    output_format="html",
 )
 ```
 
 ### Batch Lab Generation
 
-```bash
-# Generate all labs for a course via CLI
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --include-labs
+Labs run when **`--skip-labs` is omitted** and **`--module` is not set** (whole-course pass). Outputs go under ``course/labs/output/<pdf|html>/``.
 
-# Generate labs only (skip module content)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --labs-only
+```bash
+# Full course run including labs (omit --skip-labs)
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+
+# Skip lab rendering entirely
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --skip-labs
 ```
 
 ### Lab Dashboard Generation
 
-Lab dashboards are interactive HTML pages with:
+Interactive lab HTML under ``course/labs/dashboards/`` (``*-dashboard.html``) complements protocol PDF/HTML in ``course/labs/output/``. The batch pipeline validates dashboard counts against course config when ``strict_dashboards`` is enabled; there is **no** per-lab flag on **`generate_module_website.py`** (that script builds **module** websites under ``module-*/output/website/``, not lab dashboards).
 
-- 📊 Fillable data tables
-- ✍️ Reflection boxes
-- 📝 Text input fields
-- 🔬 Object selection menus
+Lab protocol PDF/HTML is produced during the whole-course **`generate_all_outputs.py`** run with labs enabled (see [Batch Lab Generation](#batch-lab-generation)).
 
 ```bash
-# Generate dashboards for a specific lab
-cd software && uv run python scripts/generate_module_website.py --course biol-8 --lab 1
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
 ```
 
 ---

@@ -3,12 +3,40 @@
 from pathlib import Path
 
 import pytest
+import speech_recognition as sr
 
 from src.format_conversion.main import (
     batch_convert,
     convert_file,
     get_supported_formats,
 )
+
+try:
+    from gtts.tts import gTTSError as GTTSError
+except ImportError:
+
+    class GTTSError(Exception):  # type: ignore[no-redef]
+        """Fallback if gtts is absent."""
+
+        pass
+
+
+def _is_optional_network_exc(exc: BaseException) -> bool:
+    """True for transient gTTS / Google Speech failures."""
+    if isinstance(exc, sr.RequestError):
+        return True
+    if isinstance(exc, GTTSError):
+        return True
+    msg = str(exc).lower()
+    return "429" in msg or "timed out" in msg or "connection" in msg
+
+
+def _is_flaky_sr_utterance(exc: BaseException) -> bool:
+    """Google Speech may return UnknownValueError surfaced as OSError for short/noisy clips."""
+    if isinstance(exc, OSError):
+        m = str(exc).lower()
+        return "could not understand audio" in m or "failed to transcribe audio" in m
+    return False
 
 
 def test_convert_file_md_to_pdf(sample_markdown_file, temp_dir):
@@ -167,24 +195,33 @@ def test_convert_txt_to_html(temp_dir):
     assert "html" in content.lower()
 
 
+@pytest.mark.requires_internet
 def test_convert_audio_to_text(temp_dir):
-    """Test converting audio to text."""
-    # First create a minimal audio file by generating speech
+    """Round-trip: gTTS -> MP3, then speech_to_text via convert_file (internet for both)."""
     from src.text_to_speech.main import generate_speech
 
     audio_file = temp_dir / "test.mp3"
     try:
-        generate_speech("Test.", str(audio_file))
-        if not audio_file.exists():
-            pytest.skip("Audio generation failed, skipping audio->text test")
+        generate_speech(
+            "Biology lecture test one two three hello world transcription sample.",
+            str(audio_file),
+        )
+    except Exception as e:
+        if _is_optional_network_exc(e):
+            pytest.skip(str(e))
+        raise
+    if not audio_file.exists():
+        pytest.skip("gTTS did not write MP3")
 
-        txt_file = temp_dir / "test.txt"
+    txt_file = temp_dir / "test.txt"
+    try:
         convert_file(str(audio_file), "txt", str(txt_file))
+    except OSError as e:
+        if _is_optional_network_exc(e) or _is_flaky_sr_utterance(e):
+            pytest.skip(str(e))
+        raise
 
-        # Transcription might fail, but we test the path
-        assert isinstance(txt_file.exists(), bool)
-    except Exception:
-        pytest.skip("Audio generation or transcription requires internet connection")
+    assert txt_file.exists()
 
 
 def test_batch_convert_unsupported_format(temp_dir):

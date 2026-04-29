@@ -13,7 +13,7 @@ BIOL-8 unit exams (Exam 01–03) use **50 points** total. Coverage:
 | Exam 01 | 01-06 | Scientific Method through Metabolism (see exam header) |
 | Exam 02 | 07-10 | Genetics, Cell Division, Tissues, Inheritance |
 | Exam 03 | 11-15 | Skeletal, Muscular, Nervous, Microbiology, Cardiopulmonary |
-| Final | 01-15 | Comprehensive |
+| Final | 01–17 | Comprehensive (see syllabus); `final-exam.md` not yet in this folder |
 
 ## File Naming Convention
 

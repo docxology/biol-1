@@ -2,68 +2,21 @@
 
 ## Overview
 
-This directory contains module quizzes for BIOL-1: Introduction to Biology (Pelican Bay State Prison).
+This folder holds a **quiz template** for ad hoc or instructor-built quizzes. Unlike BIOL-8, BIOL-1 does **not** ship a full set of per-module quiz markdown files here.
 
-## Quiz Structure
+Student-facing practice items for each module are authored in that module’s **`questions.md`** (and study narrative in **`keys-to-success.md**`). See [course README](../README.md) and [course AGENTS.md](../AGENTS.md) for layout and publishing.
 
-One quiz per module (14 total), each worth 10 points.
+## On disk
 
-| Quiz | Module Topic |
-|------|--------------|
-| 01 | Study of Life |
-| 02 | Basic Chemistry |
-| 03 | Organic Molecules |
-| 04 | Cells |
-| 05 | Membranes |
-| 06 | Metabolism |
-| 07 | Molecular Genetics |
-| 08 | Cellular Genetics |
-| 09 | Inheritance Genetics |
-| 10 | Epigenetics |
-| 11 | Genomics & Biotechnology |
-| 15 | Darwin & Evolution |
-| 16 | Microevolution |
-| 17 | Speciation & Macroevolution |
+- **`quiz-template.md`** — copy this when adding a new quiz in this directory.
 
-## File Naming Convention
+If you add more files, keep naming consistent (for example `module-NN_quiz.md` and `module-NN_quiz_key.md`) and document them in [AGENTS.md](AGENTS.md).
 
-- `module-XX_quiz.md` - Quiz questions
-- `module-XX_quiz_key.md` - Answer key
+## Pipeline
 
-## Format (10 points standard)
+The main publish pipeline renders per-module `questions.md` / `keys-to-success.md`, not this folder, unless you add a dedicated generation step for new quiz markdown here.
 
-```markdown
-## Part A: Multiple Choice (7 points)
-*1 point each, 7 questions*
+## Related
 
-## Part B: Free Response (3 points)
-*1 point each, 3 questions*
-```
-
-## Development Status
-
-- [ ] module-01_quiz.md + key
-- [ ] module-02_quiz.md + key
-- [ ] module-03_quiz.md + key
-- [ ] module-04_quiz.md + key
-- [ ] module-05_quiz.md + key
-- [ ] module-06_quiz.md + key
-- [ ] module-07_quiz.md + key
-- [ ] module-08_quiz.md + key
-- [ ] module-09_quiz.md + key
-- [ ] module-10_quiz.md + key
-- [ ] module-11_quiz.md + key
-- [ ] module-12_quiz.md + key
-- [ ] module-13_quiz.md + key
-- [ ] module-14_quiz.md + key
-- [ ] module-15_quiz.md + key
-- [ ] module-16_quiz.md + key
-- [ ] module-17_quiz.md + key
-
-## Template
-
-See `quiz-template.md` for the standard format.
-
----
-
-*Created: 2026-01-28*
+- [AGENTS.md](AGENTS.md) — technical notes for authors and tooling
+- [../AGENTS.md](../AGENTS.md) — full course tree and file naming

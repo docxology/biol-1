@@ -7,6 +7,7 @@ generated correctly and published to the expected locations.
 from .main import (
     validate_outputs,
     validate_published,
+    validate_published_directory,
     generate_validation_report,
     get_output_summary,
 )
@@ -14,6 +15,7 @@ from .main import (
 __all__ = [
     "validate_outputs",
     "validate_published",
+    "validate_published_directory",
     "generate_validation_report",
     "get_output_summary",
 ]

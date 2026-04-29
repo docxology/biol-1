@@ -12,6 +12,6 @@ This module covers the biology of microorganisms — bacteria, viruses, fungi, a
 
 ## Related materials
 
-- Lab: `../labs/lab-14_microbiology.md` (when present).
-- Slides: see `course_development/biol-8/resources/slides/`.
-- Practice tests covering this module: see `../practice_tests/`.
+- Lab: [`../labs/lab-14_microbiology.md`](../labs/lab-14_microbiology.md).
+- Slides: see [`../../resources/slides/`](../../resources/slides/).
+- Practice tests: [`../practice_tests/`](../practice_tests/).

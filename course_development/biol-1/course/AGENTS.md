@@ -86,4 +86,4 @@ The end-to-end pipeline (`python publish.py`) at the repo root runs these steps 
 |---|---|
 | [`../README.md`](../README.md) | Course overview (student-facing) |
 | [`../AGENTS.md`](../AGENTS.md) | Course-level technical docs |
-| [`../../software/AGENTS.md`](../../software/AGENTS.md) | Software documentation |
+| [`../../../software/AGENTS.md`](../../../software/AGENTS.md) | Software documentation |
