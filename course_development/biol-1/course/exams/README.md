@@ -15,7 +15,7 @@ BIOL-1 has **15** content modules (`module-01` … `module-15`). The schedule ma
 | Exam 03 | 12–15 | Darwin & evolution, populations evolve, macroevolution, population & systems ecology |
 | Final | Comprehensive | Broad final (syllabus) |
 
-**Comprehensive final:** `final-exam.md` + `final-exam_key.md` — **100 points** (45 MC, 15 fill-in with word bank, five integrated short answers, one essay chosen from three prompts). Longer and broader than the **50-point** unit exams.
+**Comprehensive final:** `final-exam.md` + `final-exam_key.md` — **100 points** (45 MC, 15 fill-in with word bank, **seven** integrated short-answer prompts with **five**- or **seven**-question formats for **25** pts, one essay chosen from three prompts). Longer and broader than the **50-point** unit exams.
 
 **Filenames match the schedule:** `exam-02.md` / `exam-02_key.md` cover modules **07–11**; `exam-03.md` / `exam-03_key.md` cover modules **12–15**.
 
@@ -37,9 +37,9 @@ BIOL-1 has **15** content modules (`module-01` … `module-15`). The schedule ma
 
 **`exam-01.md`**, **`exam-02.md`**, and **`exam-03.md`** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of five). Exam **02** uses **six** MC items per module (**07–11**). Exam **03** uses **eight** MC items for modules **12** and **13**, and **seven** each for modules **14** and **15**, for **30** total MC items across four modules.
 
-**`final-exam.md`** uses **100 points:** Part A **45** MC (three per module, modules **01–15**), Part B **15** fill-in terms drawn from a **19-word** bank (**four** decoys), Part C **five** short answers (**25** points), Part D **one** essay (**15** points) from three options.
+**`final-exam.md`** uses **100 points:** Part A **45** MC (three per module, modules **01–15**), Part B **15** fill-in terms drawn from a **19-word** bank (**four** decoys), Part C **seven** integrated short-answer prompts (**25** points total—**pick any five** worth **5** pts each, **or** answer **all seven** with points divided evenly), Part D **one** essay (**15** points) from three options.
 
-**Part A shuffle:** Multiple-choice answer letters are **not** kept in a fixed cycle. They are laid out with `software/scripts/shuffle_final_exam_mc.py` using **`FINAL_MC_SEED = 20260203`**. The keyed multiset is **12×A, 11×B, 11×C, 11×D**; distractors within each stem use `Random(FINAL_MC_SEED + question_number)`. Re-run that script after editing Part A option text so `final-exam_key.md` stays aligned.
+**Part A shuffle:** Multiple-choice answer letters are **not** kept in a fixed cycle. They are laid out with `software/scripts/shuffle_final_exam_mc.py` using **`FINAL_MC_SEED = 20260203`**. The keyed multiset is **12×A, 11×B, 11×C, 11×D**; distractors within each stem use `Random(FINAL_MC_SEED + question_number)`. Re-run that script after editing Part A option text so `final-exam_key.md` stays aligned. Use **`--spacing-only`** on that script to insert blank lines after stems and between options **without** reshuffling.
 
 The `exam-template.md` file describes another **100-point** scaffold (25 MC at 2 points each, short answer, essay) for courses that adopt it.
 

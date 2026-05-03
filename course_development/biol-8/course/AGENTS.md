@@ -114,7 +114,7 @@ Unit exams (Exam 01–03) use **50 points** total. Typical layout:
 | Part C: Free Response | 9 pts | Choose **3 of 5** short responses; 3 pts each |
 | **Total** | **50 pts** | |
 
-**Comprehensive final** (`final-exam.md` + `final-exam_key.md`): **100** points cumulative — Part A **51** multiple choice (**3 × 17** modules); Part B **15** blanks (word bank); Part C **five** prompts × **5** points; Part D **choose one** of **three** essay prompts (**9** points).
+**Comprehensive final** (`final-exam.md` + `final-exam_key.md`): **100** points cumulative — Part A **51** multiple choice (**3 × 17** modules); Part B **15** blanks (word bank); Part C **seven** prompts × **5** points each — students submit **five** answers (**25** max); Part D **choose one** of **three** essay prompts (**9** points).
 ### Lab Protocol Format
 
 Lab stubs include sections for:

@@ -26,7 +26,7 @@ BIOL-8 unit exams (Exam 01–03) use **50 points** total. Coverage:
 
 - **Part A:** 51 multiple choice (**three per module**) — **51** pts  
 - **Part B:** 15 fill-in blanks with word bank — **15** pts  
-- **Part C:** five integrated short answers — **25** pts (**5 × 5**)  
+- **Part C:** seven integrated short prompts; students answer **any five** — **25** pts (**5 × 5**)  
 - **Part D:** essay — **choose one** of three prompts — **9** pts  
 
 See the live markdown files for wording and keys.

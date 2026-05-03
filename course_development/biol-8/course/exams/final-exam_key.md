@@ -88,7 +88,9 @@
 
 ## Part C: Integrated Short Answer Rubric (25 points)
 
-*Five prompts × **5 points** each.*
+*Students submit **five** answers chosen from **seven** prompts (**5 × 5 = 25** max).*
+
+**Grading.** Score only **five** responses. Use each prompt’s numbered rubric below. If question numbers conflict between the headline list and the **Question number** line on each **Response**, follow the labeled Response spaces (or reconcile with the student). Award **0** for a sixth graded response—extra answers beyond five are not scored.
 
 ### Generic per-prompt ladder
 
@@ -114,20 +116,32 @@
 
 ### 3. Sliding filament + denervation reasoning (key points)
 
-- Calcium exposes myosin-binding sites on regulated thin filaments; **ATP** powers myosin cross-bridge cycling; filaments slide, sarcomeres shorten \(\mathrm{Z}\)-to-\(\mathrm{Z}\).
+- Calcium exposes myosin-binding sites on regulated thin filaments; **ATP** powers myosin cross-bridge cycling; filaments slide, sarcomeres shorten **Z-disc to Z-disc**.
 - Motor-neuron lesion blocks **excitation–contraction coupling** at NMJ/end-plate—even with circulating ATP, skeletal fibers may not depolarize or recruit calcium properly to contract.
 
 ### 4. Pulmonary vs systemic + gas exchange (key points)
 
 - Pulmonary loop: right heart → pulmonary arteries → lung capillaries → pulmonary veins → left atrium (intro map).
 - Systemic loop: left ventricle → aorta → systemic arteries → capillary beds → systemic veins → right atrium.
-- \(\mathrm{O_2}\) loads from alveolar air into pulmonary capillary blood; \(\mathrm{CO_2}\) unloads from pulmonary capillary blood into alveolar air for exhalation.
+- **Oxygen** loads from alveolar air into pulmonary capillary blood; **carbon dioxide** unloads from pulmonary capillary blood into alveolar air for exhalation.
 
 ### 5. Antibiotic resistance + selection (key points)
 
 - Pre-existing **genetic variation** in tolerance.
 - Drug imposes **selection**—tolerant survivors reproduce preferentially.
 - Heritable resistance **spreads** clonally / via plasmids (if introduced) within hospital transmission networks—population trait frequencies shift, not training of individuals.
+
+### 6. Carrying capacity and population growth curves (key points)
+
+- **K** framed as approximate ceiling where births ≈ deaths / growth slows because limiting resources, space, waste buildup, etc. constrain increase (acceptable paraphrases).
+- **Exponential**: growth rate high when far below limits; unchecked multiplicative phase in simple models (**J-shaped** acceptable wording).
+- **Logistic**: growth slows markedly as **N → K**; **S-shaped** saturation language; contrast “steep climb when small N” versus “flattening near K.”
+
+### 7. Population evolution and natural selection (key points)
+
+- Evolution as **allele-frequency change in populations over generations**, not individual “improvement” or lifetime training alone.
+- **Natural selection**: heritable variants differ in survival/reproduction; advantageous traits tend to spread over generations (**frequency change** articulated).
+- Accept brief link to antibiotic-resistance vignette **only if** framed as populations, not individual learning.
 
 ---
 

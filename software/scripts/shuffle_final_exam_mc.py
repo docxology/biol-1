@@ -6,6 +6,7 @@ then assigns target keyed letters using FINAL_MC_SEED and per-question distracto
 
 Usage:
     uv run python scripts/shuffle_final_exam_mc.py [--dry-run]
+    uv run python scripts/shuffle_final_exam_mc.py --spacing-only
 
 Paths default to course_development/biol-1/course/exams/final-exam*.md under repo root.
 """
@@ -138,6 +139,8 @@ def parse_part_a_questions(
 
         options: dict[str, str] = {}
         for _ in range(4):
+            while i < len(lines) and lines[i].strip() == "":
+                i += 1
             if i >= len(lines):
                 raise ValueError(f"Q{digits}: fewer than four option lines.")
             om = _OPTION_LINE.match(lines[i])
@@ -191,8 +194,12 @@ def shuffle_question_options(q: MCQuestion, target: str, sub_seed: int) -> MCQue
 
 def render_question(q: MCQuestion, indent: str = "    ") -> str:
     lines: list[str] = list(q.preamble_lines)
-    for L in ("A", "B", "C", "D"):
+    lines.append("")
+    letters = ("A", "B", "C", "D")
+    for idx, L in enumerate(letters):
         lines.append(f"{indent}- {L}) {q.options[L]}")
+        if idx < len(letters) - 1:
+            lines.append("")
     return "\n".join(lines)
 
 
@@ -310,6 +317,44 @@ def histogram_report(keyed: list[str]) -> str:
     return f"A={c['A']} B={c['B']} C={c['C']} D={c['D']}"
 
 
+_KEY_ROW_RE = re.compile(r"^\|\s*(\d+)\s*\|\s*\*\*([ABCD])\*\*\s*\|")
+
+
+def part_a_keyed_letters_from_key(key_md: str) -> list[str]:
+    """Return Part A answer letters Q1–Q45 from the markdown key table."""
+    pairs: list[tuple[int, str]] = []
+    for line in key_md.splitlines():
+        m = _KEY_ROW_RE.match(line)
+        if m:
+            qn = int(m.group(1))
+            if 1 <= qn <= 45:
+                pairs.append((qn, m.group(2)))
+    pairs.sort(key=lambda t: t[0])
+    nums = [t[0] for t in pairs]
+    if nums != list(range(1, 46)):
+        raise ValueError(f"Key Part A rows must cover Q1–Q45 once; got {nums}")
+    return [ltr for _, ltr in pairs]
+
+
+def reshape_part_a_spacing(md: str, keyed: list[str]) -> str:
+    """Re-render Part A with blank lines after the stem and between options (no reordering)."""
+    crosswalk_verify(md, keyed)
+    head, part_a, tail = _split_part_a(md)
+    idx = part_a.find("\n**1.**")
+    if idx < 0:
+        raise ValueError("Could not find first MC question **1.** in Part A.")
+    intro = part_a[: idx + 1]
+    body_from_q1 = part_a[idx + 1 :]
+    questions, trailing = parse_part_a_questions(body_from_q1.lstrip("\n"))
+    rebuilt_blocks = "\n\n".join(render_question(q) for q in questions)
+    new_part_a = intro.rstrip("\n") + "\n\n" + rebuilt_blocks + "\n"
+    if trailing.strip():
+        new_part_a += "\n" + trailing.lstrip("\n")
+    out = head + new_part_a + tail
+    crosswalk_verify(out, keyed)
+    return out
+
+
 def repo_root_from_scripts() -> Path:
     return Path(__file__).resolve().parents[2]
 
@@ -318,6 +363,14 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--dry-run", action="store_true", help="Compute shuffle only; do not write files."
+    )
+    parser.add_argument(
+        "--spacing-only",
+        action="store_true",
+        help=(
+            "Re-render Part A with blank lines after stems and between options only "
+            "(keep current option order and key untouched)."
+        ),
     )
     parser.add_argument(
         "--seed", type=int, default=FINAL_MC_SEED, help="RNG seed (default FINAL_MC_SEED)."
@@ -329,6 +382,16 @@ def main(argv: list[str] | None = None) -> int:
     key_path = root / "course_development/biol-1/course/exams/final-exam_key.md"
     exam_text = exam_path.read_text(encoding="utf-8")
     key_text = key_path.read_text(encoding="utf-8")
+
+    if args.spacing_only:
+        keyed = part_a_keyed_letters_from_key(key_text)
+        new_exam = reshape_part_a_spacing(exam_text, keyed)
+        print("Part A: reformatted spacing only (stem gap + blank lines between options).")
+        if args.dry_run:
+            return 0
+        exam_path.write_text(new_exam, encoding="utf-8")
+        print(f"Wrote {exam_path.relative_to(root)}.")
+        return 0
 
     new_exam, keyed = shuffle_exam_markdown(exam_text, seed=args.seed)
     crosswalk_verify(new_exam, keyed)

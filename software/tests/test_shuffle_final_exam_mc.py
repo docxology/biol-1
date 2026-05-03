@@ -61,6 +61,22 @@ def test_parse_part_a_preserves_module_heading(sm) -> None:
     assert trailing == ""
 
 
+def test_parse_part_a_skips_blank_lines_between_options(sm) -> None:
+    body = """**1.** Stem
+
+    - A) a
+
+    - B) b
+
+    - C) c
+
+    - D) d
+"""
+    qs, _ = sm.parse_part_a_questions(body, validate_span=False)
+    assert len(qs) == 1
+    assert qs[0].options == {"A": "a", "B": "b", "C": "c", "D": "d"}
+
+
 _ROW_RE = re.compile(r"^\|\s*(\d+)\s*\|\s*\*\*([ABCD])\*\*\s*\|")
 
 

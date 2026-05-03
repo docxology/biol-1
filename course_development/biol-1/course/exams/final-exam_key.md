@@ -82,7 +82,7 @@
 
 ## Part C: Integrated Short Answer (25 points)
 
-*5 points each. Award partial credit.*
+*Five-question format: **5 points** each for **five** answered prompts (any five of seven). Seven-question format: **25** points **total** divided **evenly** across **seven** items (~**3.57** points each); award partial credit per prompt.*
 
 **1. Mitosis vs. meiosis.**
 
@@ -112,6 +112,18 @@
 - **Logistic (S):** growth rate declines as **N** → **K**; **K** = carrying capacity (environment-supported equilibrium-ish ceiling).
 - **Density-dependent:** disease spreading with crowding; competition for food when scarce—intensifies with density.
 - **Density-independent:** storm/fire/freeze framing that kills similar fraction regardless of density (idealized textbook contrast).
+
+**6. Photosynthesis vs. cellular respiration.**
+
+- **Photosynthesis:** overview—uses light energy to build sugars from CO₂ and water in producers (chloroplasts in many eukaryotes); outputs O₂ as by-product in oxygenic overview.
+- **Cellular respiration:** overview—oxidizes fuel (often glucose) to harvest usable energy with O₂ in many eukaryotes; mitochondria central for aerobic harvest.
+- **Relationship:** products of one are substrates/context for the other at ecosystem scale; ATP/NADPH vs ATP from glucose contrasts acceptable at intro level.
+
+**7. Species concept + isolation barriers.**
+
+- **BSC (intro):** groups interbreeding (or potentially interbreeding) natural populations reproductively isolated from others; fertile/viable offspring framing as taught.
+- **Prezygotic example:** temporal / behavioral / habitat / mechanical / gametic isolation blocking mating or fertilization **before** zygote.
+- **Postzygotic example:** hybrid inviability, hybrid sterility (e.g., mule), or hybrid breakdown **after** zygote forms.
 
 ---
 

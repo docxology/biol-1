@@ -15,7 +15,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 **Total Points**: **100**
 
-Answer **every** question in Parts A–C. For Part D, choose **one** essay prompt.
+Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly five** of the **seven** prompts (each is worth **5** points). For **Part D**, choose **one** essay prompt.
 
 ---
 
@@ -490,20 +490,87 @@ Answer **every** question in Parts A–C. For Part D, choose **one** essay promp
 
 ## Part C: Integrated Short Answer (25 points)
 
-*Answer **all five**. Each prompt is worth **5** points. Use complete sentences.*
+*Choose **five** of the following **seven** questions. Write each answer in the matching **Response** space below (five responses total). Each response is worth **5** points. Use complete sentences.*
+
+**Question numbers you are answering (list five):** \_\_\_ \_\_\_ \_\_\_ \_\_\_ \_\_\_
 
 **1.** Contrast **mitosis** and **meiosis** for a diploid animal cell: number of divisions, ploidy of products, crossing over involvement, genetic similarity among products, and **one** organ-level reason each process matters medically or physiologically.
 
-**2.** Outline the **central dogma** \(\mathrm{DNA}\rightarrow \mathrm{RNA}\rightarrow \mathrm{protein}\). Name **two** enzymes or molecular machines (**other than ribosomes**) with distinct roles along the pathway. Explain **briefly** how a nonsense **mutation** upstream can alter the working protein (**loss-of-function framing** adequate).
+**2.** Outline the **central dogma** (DNA → RNA → protein). Name **two** enzymes or molecular machines (**other than ribosomes**) with distinct roles along the pathway. Explain **briefly** how a nonsense **mutation** upstream can alter the working protein (**loss-of-function framing** adequate).
 
-**3.** Describe **sliding-filament** contraction in skeletal muscle, explicitly mentioning \(\mathrm{Ca^{2+}}\), \(\mathrm{ATP}\), actin/myosin, and shortening at the \(\mathrm{Z}\)-disc scale. Explain briefly why paralysis of motor neurons can stop contraction even though \(\mathrm{ATP}\) may still circulate.
-
+**3.** Describe **sliding-filament** contraction in skeletal muscle, explicitly mentioning **calcium (Ca²⁺)**, **ATP**, actin and myosin, and shortening that brings **Z discs** closer together. Explain briefly why paralysis of motor neurons can stop contraction even though ATP may still circulate in the blood.
 
 **4.** Explain **pulmonary** circulation (movement of blood through lung capillary beds where carbon dioxide exits toward alveolar air and oxygen enters blood) versus **systemic** circulation (oxygenated blood from the left ventricle travels through arteries to tissues through capillary beds, then veins return blood toward the right atrium).
 
-Identify where oxygen principally diffuses from alveolar air into pulmonary capillary blood **and** where carbon dioxide principally diffuses from pulmonary capillary blood toward alveolar air.
+Identify where **oxygen** principally diffuses from alveolar air into pulmonary capillary blood **and** where **carbon dioxide** principally diffuses from pulmonary capillary blood toward alveolar air.
 
 **5.** Explain why **antibiotic resistance** can increase in hospitals using **heritable variation**, **differences in survival** when antimicrobial drugs are used, and **differences in reproductive success** among survivors (population-level change, not an individual organism learning).
+
+**6.** Define **carrying capacity (K)** in your own words for a population in a habitat with limited resources. Contrast **exponential (J-shaped)** growth with **logistic (S-shaped)** growth when a population is **far below K** versus when it is **near K**.
+
+**7.** Explain why introductory biology ties **evolution** to **change in allele frequencies in a population over generations**, not to individual organisms “getting stronger.” Using **natural selection**, briefly connect **heritable variation**, **differences in survival or reproduction**, and **how trait frequencies can shift** across generations.
+
+<br>
+
+**Response 1**  
+**Question number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+**Response 2**  
+**Question number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+**Response 3**  
+**Question number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+**Response 4**  
+**Question number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+**Response 5**  
+**Question number:** \_\_\_\_\_
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Part D: Essay (9 points)
 
