@@ -20,7 +20,7 @@ course/
 │       │   └── module-NN-name-keys-to-success.{md,pdf,docx,html,txt,mp3}
 │       └── website/index.html
 ├── labs/                                    # lab-NN_topic.md (1–17), with output/ + dashboards/
-├── exams/                                   # exam-NN.md, exam-NN_key.md, exam-template.md
+├── exams/                                   # exam-NN.md, exam-NN_key.md, final-exam.md, exam-template.md
 ├── practice_tests/                          # practice-test-NN.md, practice-test-NN_key.md
 └── quizzes/                                 # quiz-template.md
 ```

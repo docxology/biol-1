@@ -171,7 +171,7 @@ course/exams/
 
 **BIOL-1 (verify on disk):** **Two** exams with keys are common (e.g. `exam-01`, `exam-03`). **`exam-03` is the second-unit exam spanning modules 07–11**, not necessarily “modules 12–15” — course numbering is not interchangeable with BIOL-8 or generic templates.
 
-**BIOL-8:** **Three** unit exams with keys (`exam-01` … `exam-03`); scopes are modules **01–06**, **07–10**, and **11–15** (typically **50 points** each — see headers in each file). Comprehensive final per syllabus; **`final-exam.md`** may appear only when authored.
+**BIOL-8:** **Three** unit exams with keys (`exam-01` … `exam-03`; scopes **01–06**, **07–10**, **11–15**; typically **50 points** each — see headers). **`final-exam.md`** + key cover **modules 01–17** at **100** points (see `course_development/biol-8/course/exams/README.md`).
 
 > ⚠️ Exams and answer keys are **never published** to public student-facing repositories.
 

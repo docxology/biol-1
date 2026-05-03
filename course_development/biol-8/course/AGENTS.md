@@ -18,7 +18,8 @@ course/
 │   ├── exam-02_key.md
 │   ├── exam-03.md              # Modules 11–15 (50 pts)
 │   ├── exam-03_key.md
-│   └── (comprehensive final to be added)
+│   ├── final-exam.md            # Comprehensive final (modules 01–17, 100 pts)
+│   └── final-exam_key.md
 │
 ├── quizzes/                     # 34 files: 17 modules × (quiz + key)
 │   ├── module-01_quiz.md       # Student version
@@ -113,8 +114,7 @@ Unit exams (Exam 01–03) use **50 points** total. Typical layout:
 | Part C: Free Response | 9 pts | Choose **3 of 5** short responses; 3 pts each |
 | **Total** | **50 pts** | |
 
-A comprehensive final exam may use a different weighting when added (`final-exam.md`).
-
+**Comprehensive final** (`final-exam.md` + `final-exam_key.md`): **100** points cumulative — Part A **51** multiple choice (**3 × 17** modules); Part B **15** blanks (word bank); Part C **five** prompts × **5** points; Part D **choose one** of **three** essay prompts (**9** points).
 ### Lab Protocol Format
 
 Lab stubs include sections for:
@@ -162,7 +162,7 @@ The `software/` directory contains batch processing utilities for:
 
 - [x] 17 module directories created (`module-01-…` through `module-17-…`)
 - [x] Each module has `keys-to-success.md` and `questions.md`; `resources/` present where assets exist (optional otherwise)
-- [x] 3 unit exams with answer keys (`exam-01`–`exam-03`, 6 files); final exam pending
+- [x] 3 unit exams + comprehensive final (`exam-01`–`exam-03` + keys, **plus** `final-exam*` = **10** markdown files total)
 - [x] 17 quizzes with answer keys (34 files in `quizzes/`)
 - [x] 18 lab protocols in `labs/` (`lab-01_measurement-methods.md` … `lab-18_evolution.md`)
 

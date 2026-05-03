@@ -13,12 +13,25 @@ BIOL-8 unit exams (Exam 01–03) use **50 points** total. Coverage:
 | Exam 01 | 01-06 | Scientific Method through Metabolism (see exam header) |
 | Exam 02 | 07-10 | Genetics, Cell Division, Tissues, Inheritance |
 | Exam 03 | 11-15 | Skeletal, Muscular, Nervous, Microbiology, Cardiopulmonary |
-| Final | 01–17 | Comprehensive (see syllabus); `final-exam.md` not yet in this folder |
+| Final | 01–17 | Comprehensive (**100 pts** layout in `final-exam.md`; see syllabus) |
 
 ## File Naming Convention
 
 - `exam-XX.md` - Exam questions
 - `exam-XX_key.md` - Answer key
+
+## Format (final: 100 points)
+
+`final-exam.md` is **comprehensive (modules 01–17)** and uses:
+
+- **Part A:** 51 multiple choice (**three per module**) — **51** pts  
+- **Part B:** 15 fill-in blanks with word bank — **15** pts  
+- **Part C:** five integrated short answers — **25** pts (**5 × 5**)  
+- **Part D:** essay — **choose one** of three prompts — **9** pts  
+
+See the live markdown files for wording and keys.
+
+---
 
 ## Format (unit exams: 50 points)
 
@@ -40,7 +53,7 @@ Exams 01–03 follow this pattern (exact counts may vary slightly by exam):
 - [x] exam-01.md + key
 - [x] exam-02.md + key
 - [x] exam-03.md + key
-- [ ] final-exam.md + key *(add when authored)*
+- [x] final-exam.md + key
 
 ## Contents
 
@@ -52,8 +65,8 @@ Exams 01–03 follow this pattern (exact counts may vary slightly by exam):
 | exam-02_key.md | Exam 2 Answer Key | Complete |
 | exam-03.md | Exam 3: Modules 11-15 | Complete |
 | exam-03_key.md | Exam 3 Answer Key | Complete |
-| final-exam.md | Final Exam: Comprehensive | Pending |
-| final-exam_key.md | Final Exam Answer Key | Pending |
+| final-exam.md | Final Exam: Modules 01–17 (100 pts) | Complete |
+| final-exam_key.md | Final Exam Answer Key | Complete |
 
 ---
 
@@ -67,4 +80,4 @@ Both exam questions and answer keys are rendered for teacher use.
 
 ---
 
-*Created: 2026-01-29 · Updated: 2026-04*
+*Created: 2026-01-29 · Updated: 2026-05*

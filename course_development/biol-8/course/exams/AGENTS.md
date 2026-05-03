@@ -7,9 +7,10 @@
 | `exam-01`, `exam-01_key` | Modules 01–06 |
 | `exam-02`, `exam-02_key` | Modules 07–10 |
 | `exam-03`, `exam-03_key` | Modules 11–15 |
+| `final-exam`, `final-exam_key` | Modules **01–17** (100 pts cumulative layout) |
 | `exam-template.md` | Optional alternate layout / scaffold |
 
-Point totals and part breakdowns are described in the live markdown files and in [../AGENTS.md](../AGENTS.md) under **Exam format**.
+Point totals and part breakdowns are described in the live markdown files (unit exams versus `final-exam.md`) and in [../AGENTS.md](../AGENTS.md) under **Exam format**.
 
 ## Processing
 

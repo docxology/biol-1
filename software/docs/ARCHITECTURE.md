@@ -784,10 +784,10 @@ See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generat
 
 | Document | Location | BIOL-1 | BIOL-8 | Format | Published |
 |----------|----------|--------|--------|--------|-----------|
-| **Exams** (`exam-XX.md` + key) | `course/exams/` | 3 unit exams + keys (`exam-01`–`exam-03`) | 3 unit exams + keys (`exam-01`–`exam-03`) | Layout varies by file (see live `exam-*.md`) | Teacher-only / local render |
+| **Exams** (`exam-XX.md` + key) | `course/exams/` | 3 unit exams + keys + `final-exam` (`exam-01`–`exam-03`, `final-exam`) | 3 unit exams + keys + `final-exam` (`exam-01`–`exam-03`, `final-exam`) | Layout varies by file (see live `exam-*.md` + `final-exam.md`) | Teacher-only / local render |
 | **Quizzes** (`module-XX_quiz.md` + key) | `course/quizzes/` | Templates only | 17 + 17 keys | 7 MC + 3 FR = 10 pts | Teacher-only |
 
-BIOL-8 unit exam coverage (see course `AGENTS.md`): `exam-01` (modules 01–06), `exam-02` (07–10), `exam-03` (11–15); modules 16–17 and comprehensive final as scheduled. BIOL-1 exam README lists current on-disk exams and planned finals.
+BIOL-8 unit exams: `exam-01` (01–06), `exam-02` (07–10), `exam-03` (11–15); comprehensive **`final-exam.md`** (**01–17**, 100 pts — see `course_development/biol-8/course/exams/README.md`). BIOL-1 cumulative final: `course_development/biol-1/course/exams/final-exam.md` (+ key).
 
 #### Syllabus Materials
 
