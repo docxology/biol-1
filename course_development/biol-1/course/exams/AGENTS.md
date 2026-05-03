@@ -6,13 +6,14 @@ Source markdown for unit exams and answer keys. The batch pipeline renders these
 
 ## Artifacts (on disk)
 
-| Files | Intent (per Spring 2026 schedule) | Notes |
-|-------|-----------------------------------|--------|
-| `exam-01.md`, `exam-01_key.md` | Exam 01 — modules **01–06** | — |
-| `exam-03.md`, `exam-03_key.md` | **Filename** `exam-03` is the **second** unit exam in this folder (schedule: **Exam 02**, modules **07–11**) | The markdown header in `exam-03.md` may still read “Modules 07–11”; align file body with the syllabus when editing. |
-| `exam-template.md` | Scaffolding / alternate 100-pt style | — |
+| Files | Schedule exam | Module coverage |
+|-------|----------------|-----------------|
+| `exam-01.md`, `exam-01_key.md` | Exam 01 | **01–06** |
+| `exam-02.md`, `exam-02_key.md` | Exam 02 | **07–11** |
+| `exam-03.md`, `exam-03_key.md` | Exam 03 | **12–15** |
+| `exam-template.md` | — | Scaffold / alternate 100-pt style |
 
-**Exam 03** in the **syllabus** (third unit) covers modules **12–15**; there is not necessarily a same-named `exam-0X` file for that range yet. See [README.md](README.md) and [`../practice_tests/AGENTS.md`](../practice_tests/AGENTS.md) for review materials (`practice-test-04`).
+Unit exams use a **50-point** layout: Part A **30** MC, Part B **11** fill-in (word bank), Part C **9** points free response (choose **three** of **five**).
 
 ## Processing
 
@@ -22,4 +23,5 @@ Source markdown for unit exams and answer keys. The batch pipeline renders these
 ## Related
 
 - [../AGENTS.md](../AGENTS.md) — course materials layout
-- [README.md](README.md) — exam file inventory and exam vs schedule note
+- [README.md](README.md) — exam inventory and schedule alignment
+- [`../practice_tests/AGENTS.md`](../practice_tests/AGENTS.md) — practice-test parity (`practice-test-03` ↔ Exam 02; `practice-test-04` ↔ Exam 03)

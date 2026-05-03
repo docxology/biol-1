@@ -4,23 +4,23 @@
 
 ## Overview
 
-CR-BIO is an automated curriculum management system for Biology courses at College of the Redwoods. It transforms Markdown source files into multiple output formats (PDF, MP3, HTML, DOCX, TXT) and interactive websites for two courses:
+CR-BIO is an automated curriculum management system for Biology courses at College of the Redwoods. It transforms Markdown source files into multiple output formats (PDF, MP3, HTML, DOCX, TXT, optional normalized **Markdown** copies, and interactive websites) for two courses:
 
 - **BIOL-1**: General Biology (15 content modules) — Pelican Bay Prison
 - **BIOL-8**: Human Anatomy & Physiology (17 modules) — College of the Redwoods
 
 ```mermaid
 flowchart LR
-    subgraph SOURCE["📝 Source (Private)"]
+    subgraph SOURCE["Source (Private)"]
         CD[course_development/]
     end
     
-    subgraph PROCESS["⚙️ Processing"]
+    subgraph PROCESS["Processing"]
         SW[software/]
         PUB[publish.py]
     end
     
-    subgraph OUTPUT["📤 Output (Public)"]
+    subgraph OUTPUT["Output (Public)"]
         PUBD[PUBLISHED/]
     end
     
@@ -40,6 +40,8 @@ uv run pytest --collect-only -q    # test count
 uv run pytest -q --no-cov            # pass/fail
 uv run pytest --cov=src --cov-report=term-missing   # coverage (terminal)
 ```
+
+Example run (**2026-05-03**): **624** tests collected → **622** passed, **2** skipped (`uv run pytest -q --no-cov`). Treat **`--collect-only`** as the source of truth for counts; rerun after adding tests.
 
 Structural facts (update if layout changes): **`software/src/`** holds **16** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
 
@@ -107,7 +109,7 @@ Structural facts (update if layout changes): **`software/src/`** holds **16** Py
 | **[OUTPUT_PDF.md](OUTPUT_PDF.md)** | PDF generation via WeasyPrint | Developers, Authors |
 | **[OUTPUT_AUDIO.md](OUTPUT_AUDIO.md)** | MP3 audio generation via gTTS | Developers, Authors |
 | **[OUTPUT_DOCX.md](OUTPUT_DOCX.md)** | Word document generation | Developers, Authors |
-| **[OUTPUT_HTML.md](OUTPUT_HTML.md)** | All HTML output types (4 variants) | Developers, Authors |
+| **[OUTPUT_HTML.md](OUTPUT_HTML.md)** | Study-guide HTML, interactive sites, lab HTML, dashboards (**+ normalized MD copies**, not HTML; see guide) | Developers, Authors |
 
 ### Technical Reference
 
@@ -147,14 +149,14 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHE
 
 | Module | Purpose | Key Function | Standalone | Dependencies |
 |--------|---------|--------------|------------|--------------|
-| [markdown_to_pdf](../src/markdown_to_pdf/) | Markdown → PDF via WeasyPrint | `render_markdown_to_pdf()` | Yes | WeasyPrint only |
-| [text_to_speech](../src/text_to_speech/) | Text → MP3 via gTTS | `generate_speech()` | Yes | gTTS only |
-| [speech_to_text](../src/speech_to_text/) | Audio → Text transcription | `transcribe_audio()` | Yes | SpeechRecognition only |
-| [format_conversion](../src/format_conversion/) | Multi-format conversion | `convert_file()` | Yes | Core converters |
-| [batch_processing](../src/batch_processing/) | Batch module processing | `process_module_by_type()` | Yes | Core/format modules |
-| [html_website](../src/html_website/) | Interactive HTML websites | `generate_module_website()` | Yes | batch_processing, format_conversion |
-| [schedule](../src/schedule/) | Schedule file processing | `process_schedule()` | Yes | Core/format modules |
-| [lab_manual](../src/lab_manual/) | Rich lab manual rendering | `render_lab_manual()` | Yes | markdown, weasyprint |
+| [markdown_to_pdf](../src/markdown_to_pdf/) | Markdown → PDF via WeasyPrint | `render_markdown_to_pdf()` | Yes | WeasyPrint, [`shared`](../src/shared/) |
+| [text_to_speech](../src/text_to_speech/) | Text → MP3 via gTTS | `generate_speech()` | Yes | gTTS |
+| [speech_to_text](../src/speech_to_text/) | Audio → Text transcription | `transcribe_audio()` | Yes | SpeechRecognition |
+| [format_conversion](../src/format_conversion/) | Multi-format conversion | `convert_file()` | Yes | Dispatches PDF/DOCX/HTML/TXT/MP3 backends (see [`format_conversion/AGENTS.md`](../src/format_conversion/AGENTS.md)) |
+| [batch_processing](../src/batch_processing/) | Batch module processing | `process_module_by_type()` | Yes | [`format_conversion`](../src/format_conversion/), website/lab/scheduling callers |
+| [html_website](../src/html_website/) | Interactive HTML websites | `generate_module_website()` | Yes | `batch_processing`, `format_conversion` |
+| [schedule](../src/schedule/) | Schedule file processing | `process_schedule()` | Yes | Via `format_conversion` / converters |
+| [lab_manual](../src/lab_manual/) | Rich lab manual rendering | `render_lab_manual()` | Yes | Markdown pipeline, WeasyPrint (formats vary) |
 
 ### Course Management
 
@@ -186,6 +188,7 @@ Scripts in `scripts/` are thin orchestrators that call src modules:
 | `flatten_published.py` | Flatten directories | `publish.utils` |
 | `renumber_questions.py` | Question renumbering | `content_processing` |
 | `import_legacy_materials.py` | Import legacy | `legacy_import` |
+| `assemble_practice_test_12.py` | Assemble BIOL-8 `practice-test-12` from slices | ad hoc (see script docstring) |
 
 See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
@@ -200,7 +203,7 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 | **Labs** | 17 protocols + dashboards | 18 protocols + dashboards | See each course `course/labs/` |
 | **Exams** | 2 + keys on disk | 3 + keys on disk | Teacher-only; see `course/exams/` |
 | **Quizzes** | Templates | 17 × 2 files | BIOL-8 full set in `course/quizzes/` |
-| **Practice tests** | 3 + keys | 11 + keys (on disk) | `course/practice_tests/` |
+| **Practice tests** | 3 + keys | 12 + keys (on disk) | `course/practice_tests/` |
 | **Syllabus** | 2 sources | 2 sources | + `syllabus/output/` |
 | **Schedule** | 1 source | 1 source | + rendered outputs |
 | **Slides** | 30 PDFs in `resources/slides/` (module **9** missing both variants) | 15 PDFs in `resources/slides/` | Pre-generated; not rendered by pipeline |
@@ -219,45 +222,63 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 ### publish.toml
 
-The main configuration file controls the entire pipeline:
+The root [`publish.toml`](../../publish.toml) is the source of truth. Below matches the **shape** of the file; defaults (each boolean) can differ—open the TOML before assuming toggles.
+
+Generation uses **Python libraries** in `software/src/` (WeasyPrint, `python-docx`, `markdown2`, `gTTS`, etc.), not external Pandoc.
 
 ```toml
 [publish]
-clean = true        # Clear outputs before generation
-verbose = false     # Enable verbose logging
+clean = true
+verbose = true
 
 [publish.formats]
-pdf  = true         # PDF files (via WeasyPrint)
-docx = true         # Word documents
-html = true         # HTML files
-txt  = true         # Plain text
-mp3  = false        # Audio narration (slower, ~30s per file)
+pdf  = true
+docx = true
+html = false       # Toggle per repo needs
+txt  = false
+md   = true        # Normalized Markdown copies beside other study-guide formats
+mp3  = false
 
 [publish.courses.biol-1]
 enabled = true
+max_module = 15
+max_lab = 17
 include_labs = true
-include_syllabus = true
+include_dashboards = true
+include_practice_tests = true
 
 [publish.courses.biol-8]
 enabled = true
+max_module = 17
+max_lab = 18
+include_exams = true      # Local render only; exams never pushed to public trees
 include_labs = true
-# Note: Exams are NOT published (teacher-only materials)
+include_dashboards = true
+include_practice_tests = true
 
 [publish.pipeline]
-generate = true     # Generate outputs from source
-publish  = true     # Copy to PUBLISHED/
-flatten  = true     # Flatten and reorganize to categories
-validate = true     # Validate all outputs
+generate     = true
+publish      = true
+copy_extras  = true
+flatten      = true
+validate     = true
+strict_dashboards = true  # See ORCHESTRATION.md + validation module
+all_files    = true
+git_push     = true
 ```
+
+Full nine-stage flow and CLI flags are documented in [ORCHESTRATION.md](ORCHESTRATION.md#the-publish-pipeline).
 
 ### Key Settings
 
-| Setting | Purpose | Default |
-|---------|---------|---------|
-| `publish.clean` | Clear existing outputs first | `true` |
-| `publish.formats.mp3` | Generate audio (slow) | `false` |
-| `publish.courses.*.enabled` | Enable/disable specific course | `true` |
-| `publish.pipeline.validate` | Run validation after generation | `true` |
+| Setting | Purpose |
+|---------|---------|
+| `publish.formats.*` | Per-format enable (pdf, docx, html, txt, md, mp3) |
+| `publish.courses.*.max_module` / `max_lab` | Scope generation for testing or term rollout |
+| `publish.pipeline.strict_dashboards` | Enforce expected `labs/dashboards/*.html` counts |
+| `publish.pipeline.all_files` | Populate per-course `ALL_FILES/` mirror |
+| `publish.pipeline.git_push` | Run subtree push after successful publish |
+| `publish.clean` | Remove stale outputs before generation |
 
 ---
 
@@ -304,8 +325,17 @@ software/
 │   ├── README.md          → Test suite overview
 │   └── AGENTS.md          → Testing standards
 └── scripts/
-    ├── generate_all_outputs.py   → Generate all course outputs
-    └── generate_module_website.py → Generate single module website
+    ├── publish_all.py
+    ├── generate_all_outputs.py
+    ├── generate_module_renderings.py
+    ├── generate_module_website.py
+    ├── generate_syllabus_renderings.py
+    ├── publish_course.py
+    ├── validate_outputs.py
+    ├── flatten_published.py
+    ├── renumber_questions.py
+    ├── import_legacy_materials.py
+    └── assemble_practice_test_12.py
 ```
 
 ---
@@ -358,8 +388,8 @@ software/
 
 1. **Navigation Headers**: Every doc links to related docs
 2. **Consistent Structure**: Standardized sections across all docs
-3. **Working Code Examples**: All examples are tested and runnable
-4. **Current Statistics**: Test counts and coverage updated regularly
+3. **Working Code Examples**: Examples should be runnable from `software/` with `uv run` where applicable
+4. **Evolving statistics**: Prefer `uv run pytest --collect-only -q` over hard-coded test counts in prose
 5. **Cross-References**: Links between related content
 
 See [AGENTS.md](AGENTS.md) for complete documentation standards.
@@ -390,7 +420,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 | 0.1.0 | 2026-02-04 | Documentation synchronization (date updates, module count correction) |
 | 0.1.0 | 2026-02-03 | Documentation improvements (scripts README, cross-references) |
 | 0.1.0 | 2026-02-02 | Added versioning documentation to ARCHITECTURE.md and QUICKSTART.md |
-| 0.1.0 | 2026-02-01 | Updated statistics (420 tests, 74% coverage), added validation module |
+| 0.1.0 | 2026-02-01 | Validation module documentation; use pytest for current counts |
 | 0.1.0 | 2026-01-15 | Updated statistics, corrected module count |
 | 0.1.0 | 2026-01-09 | Updated test counts and coverage tracking |
 | 0.1.0 | 2026-01-08 | Enhanced documentation modularity and signposting |

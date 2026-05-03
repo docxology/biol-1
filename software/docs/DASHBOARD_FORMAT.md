@@ -11,8 +11,10 @@ Complete guide for building interactive lab dashboards. Dashboards are standalon
 | Convention | Example |
 |-----------|---------|
 | **Pattern** | `lab-XX_topic-dashboard.html` |
-| **Location** | `course_development/biol-8/course/labs/dashboards/` |
-| **Companion Lab** | `course/labs/lab-XX_topic.md` |
+| **Location** | `course_development/biol-{1,8}/course/labs/dashboards/` |
+| **Companion Lab** | `course/labs/lab-XX_topic.md` (relative to the same course tree) |
+
+The **dashboard inventory** table below lists **BIOL-8** files as a reference; BIOL-1 uses the same naming pattern with course-specific topics and counts from [`publish.toml`](../../publish.toml).
 
 Each dashboard is named for its lab number and topic. **Lab 15** uses two HTML files (cardiovascular + respiratory) for one `lab-15_cardiopulmonary-system.md` protocol.
 

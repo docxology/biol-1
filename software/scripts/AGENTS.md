@@ -16,6 +16,7 @@ Thin CLI orchestrators that wrap `software/src/` packages. Scripts contain only 
 | `validate_outputs.py` | `validation` | `main()` | Verify expected files exist for every in-scope module. |
 | `renumber_questions.py` | `content_processing` | `main()` | Convert section-based question numbering to continuous. |
 | `import_legacy_materials.py` | `legacy_import` | `main()` | Import an older lesson archive into the current module layout. |
+| `assemble_practice_test_12.py` | (stdlib; BIOL-8 content) | `main()` | Rebuild `practice-test-12.md` / `_key.md` from PT01–11 slices (`course_development/biol-8/course/practice_tests/`). |
 | `utils.py` | (helpers) | n/a | Shared CLI helpers (course resolution, formatter setup). |
 
 ## CLI conventions

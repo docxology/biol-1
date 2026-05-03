@@ -12,9 +12,9 @@ Complete guide for authoring lab protocols. Labs are Markdown files processed by
 |-----------|---------|
 | **Pattern** | `lab-XX_topic-name.md` |
 | **Location** | `course_development/biol-{1,8}/course/labs/` |
-| **Dashboards** | `course/labs/dashboards/lab-XX_topic-dashboard.html` |
+| **Dashboards** | `course_development/biol-{1,8}/course/labs/dashboards/` (same relative path under each course) |
 
-Number labs with zero-padded two-digit prefixes (`01`–`15`). Use lowercase kebab-case for the topic slug.
+Number labs with zero-padded two-digit prefixes. **Expected numbered protocol ranges** track `publish.toml`: **BIOL-1** labs `01`–`17` (`max_lab = 17`); **BIOL-8** labs `01`–`18` (`max_lab = 18`), plus optional supplemental `lab-*.md` files (for example follow-up readings). Use lowercase kebab-case for the topic slug.
 
 ---
 
@@ -311,12 +311,14 @@ render_lab_manual('course_development/biol-8/course/labs/lab-01_measurement-meth
 ### Batch Generation
 
 ```bash
-# All labs for a course
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --labs-only
+# Lab manuals run as part of the standard course-wide script (omit --skip-labs)
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
 
-# With lab count limit
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab 5
+# Limit how many numbered labs are rendered for that course
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab biol-8:5
 ```
+
+There is no `--labs-only` flag on `generate_all_outputs.py`; use `render_lab_manual` (above) or the orchestration helpers for narrower runs.
 
 See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generation) for advanced options.
 

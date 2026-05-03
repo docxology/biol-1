@@ -66,48 +66,59 @@ Each module can be tested independently without requiring other modules to be pr
 ```mermaid
 graph TB
     subgraph entryPoints[Entry Points]
-        CLI["scripts/generate_all_outputs.py"]
+        CLI["scripts/*.py publish.py"]
         PY["Python API"]
     end
 
-    subgraph coreConverters[Core Converters]
+    subgraph coreConverters[Core Converters Layer1]
         M2P["markdown_to_pdf"]
         TTS["text_to_speech"]
         STT["speech_to_text"]
+        LM["lab_manual"]
         FC["format_conversion"]
     end
 
-    subgraph orchestration[Orchestration Layer]
+    subgraph orchestration[Orchestration Layer3]
         BP["batch_processing"]
         HW["html_website"]
         SCH["schedule"]
     end
 
-    subgraph courseManagement[Course Management]
+    subgraph foundation[Independent Layer0]
+        SH["shared"]
         MO["module_organization"]
         FV["file_validation"]
-        CI["canvas_integration"]
+        VAL["validation"]
         PUB["publish"]
+        CP["content_processing"]
+    end
+
+    subgraph integrationLayer[Integration Layer4]
+        CI["canvas_integration"]
     end
 
     CLI --> BP
     PY --> BP
     PY --> M2P
+    PY --> LM
     PY --> TTS
     PY --> SCH
     PY --> HW
-    
+
     BP --> M2P
     BP --> TTS
     BP --> FC
+    BP --> LM
     BP --> HW
-    
+
     SCH --> M2P
     SCH --> TTS
     SCH --> FC
-    
+
     HW --> FC
-    
+    M2P --> SH
+    FC --> SH
+
     CI --> FV
 ```
 
@@ -130,6 +141,7 @@ flowchart LR
         TTS["text_to_speech"]
         STT["speech_to_text"]
         FC["format_conversion"]
+        LM["lab_manual"]
     end
 
     subgraph output[Output]
@@ -138,12 +150,15 @@ flowchart LR
         HTML["HTML"]
         DOCX["DOCX"]
         TXTO["TXT"]
+        MDOUT["Markdown copy"]
         WEB["Website"]
     end
 
     MD --> M2P --> PDF
     MD --> FC --> HTML
     MD --> FC --> DOCX
+    MD --> FC --> MDOUT
+    MD --> LM --> PDF
     MD --> TTS --> MP3
     TXT --> TTS --> MP3
     AUDIO --> STT --> TXTO
@@ -162,6 +177,7 @@ flowchart TD
     PROCESS --> DOCX["DOCX Files"]
     PROCESS --> HTML["HTML Files"]
     PROCESS --> TXT["Text Files"]
+    PROCESS --> MDOUT["Markdown copies"]
     PROCESS --> WEB["Website"]
 ```
 
@@ -181,13 +197,17 @@ module_name/
 
 ### Layer Definitions
 
+Canonical numbering matches [`../src/AGENTS.md`](../src/AGENTS.md).
+
 | Layer | Modules | Description |
 |-------|---------|-------------|
-| **Core** | markdown_to_pdf, text_to_speech, speech_to_text, lab_manual | Single-purpose converters |
-| **Format** | format_conversion | Multi-format transformations |
-| **Orchestration** | batch_processing, html_website, schedule | Combine multiple converters |
-| **Management** | module_organization, file_validation, validation | Course/module structure and validation |
-| **Integration** | canvas_integration, publish | External services and publishing |
+| **0 — Independent** | `shared`, `module_organization`, `file_validation`, `validation`, `publish`, `legacy_import`, `content_processing` | No imports from sibling packages (stdlib / `shared` only) |
+| **1 — Core renderers** | `markdown_to_pdf`, `text_to_speech`, `speech_to_text`, `lab_manual` | Single-purpose conversion; external libraries + `shared` |
+| **2 — Format** | `format_conversion` | Dispatches Markdown/audio/PDF ↔ multiple formats |
+| **3 — Orchestration** | `batch_processing`, `html_website`, `schedule` | Composes Layers 1–2 |
+| **4 — Integration** | `canvas_integration` | External LMS; uses `file_validation` |
+
+Publishing to `PUBLISHED/` remains **Layer 0** (`publish`); it is filesystem copy only.
 
 ---
 
@@ -195,58 +215,61 @@ module_name/
 
 ```mermaid
 graph LR
-    subgraph layer0[Layer 0: Independent]
+    subgraph layer0[Layer 0 Independent]
+        SH["shared"]
         FV["file_validation"]
         MO["module_organization"]
         CP["content_processing"]
         VAL["validation"]
-        LM["lab_manual"]
         PUB["publish"]
         LI["legacy_import"]
     end
 
-    subgraph layer1[Layer 1: Core]
+    subgraph layer1[Layer 1 Core]
         M2P["markdown_to_pdf"]
         TTS["text_to_speech"]
         STT["speech_to_text"]
+        LM["lab_manual"]
     end
 
-    subgraph layer2[Layer 2: Format]
+    subgraph layer2[Layer 2 Format]
         FC["format_conversion"]
     end
 
-    subgraph layer3[Layer 3: Orchestration]
+    subgraph layer3[Layer 3 Orchestration]
         BP["batch_processing"]
         HW["html_website"]
         SCH["schedule"]
     end
 
-    subgraph layer4[Layer 4: Integration]
+    subgraph layer4[Layer 4 Integration]
         CI["canvas_integration"]
     end
 
+    SH --> M2P
+    SH --> FC
     M2P --> FC
     TTS --> FC
-    
+
     M2P --> BP
     TTS --> BP
     FC --> BP
     HW --> BP
-    
+
     M2P --> SCH
     TTS --> SCH
     FC --> SCH
-    
+
+    LM --> BP
+
     FV --> BP
     FV --> CI
 ```
 
 ### Dependency Rules
 
-1. **Core converters** (Layer 1) depend only on external libraries
-   - Can be used completely independently
-   - No dependencies on other modules
-   - Examples: `markdown_to_pdf`, `text_to_speech`, `speech_to_text`
+1. **Core converters** (Layer 1) use external libraries and may import `shared` helpers — not Layer 3 orchestration packages
+   - Examples: `markdown_to_pdf`, `text_to_speech`, `speech_to_text`, `lab_manual`
 
 2. **Format conversion** (Layer 2) uses core converters
    - Depends on Layer 1 modules for functionality
@@ -258,15 +281,10 @@ graph LR
    - Can use any combination of lower-layer modules
    - Examples: `batch_processing`, `html_website`, `schedule`
 
-4. **Management** (Layer 0) is independent
-   - No dependencies on other modules
-   - Can be used standalone
-   - Examples: `module_organization`, `file_validation`
+4. **Independent** (Layer 0) packages do not import other course packages (`shared` only among siblings)
+   - Examples: `module_organization`, `file_validation`, `validation`, `publish`, `content_processing`, `legacy_import`
 
-5. **Integration** (Layer 4) uses validation before external calls
-   - Depends on validation modules for safety
-   - Interfaces with external systems
-   - Examples: `canvas_integration`, `publish`
+5. **Integration** (Layer 4): `canvas_integration` depends on `file_validation` before external LMS calls.
 
 ### Using Modules Independently
 
@@ -318,12 +336,9 @@ software/
 │   ├── text_to_speech/               # Audio generation
 │   └── validation/                   # Output validation
 │
-├── tests/                            # Test suite
+├── tests/                            # Test suite (mirrors src/)
 │   ├── conftest.py                   # Shared fixtures
-│   ├── test_batch_processing_main.py # 25+ tests
-│   ├── test_format_conversion_utils.py # 20+ tests
-│   ├── test_schedule_main.py         # 28 tests
-│   ├── test_html_website_features.py # 30+ tests
+│   ├── test_*_main.py etc.           # Module tests
 │   └── ...
 │
 ├── scripts/                          # CLI scripts
@@ -332,11 +347,10 @@ software/
 │   └── generate_syllabus_renderings.py
 │
 ├── docs/                             # Documentation
-│   ├── README.md                     # Overview (start here)
-│   ├── ARCHITECTURE.md               # This file
-│   ├── ORCHESTRATION.md              # Workflow patterns
-│   ├── QUICKSTART.md                 # Installation/setup
-│   └── AGENTS.md                     # Documentation standards
+│   ├── README.md AGENTS.md           # Index and standards
+│   ├── ARCHITECTURE.md ORCHESTRATION.md QUICKSTART.md
+│   ├── LAB_FORMAT.md DASHBOARD_FORMAT.md COURSE_STRUCTURE.md
+│   └── OUTPUT_*.md                   # PDF, HTML, DOCX, AUDIO
 │
 ├── README.md                         # Project overview
 ├── AGENTS.md                         # API reference
@@ -450,18 +464,13 @@ See [ORCHESTRATION.md](ORCHESTRATION.md) for examples of composing modules toget
 
 ## Testing Architecture
 
-Tests are organized to mirror source structure:
+Tests live under [`../tests/`](../tests/) with names mirroring packages (`test_<package>_*.py`). Counts drift as the suite grows.
 
-| Test File | Module | Test Count |
-|-----------|--------|------------|
-| test_batch_processing_main.py | batch_processing | 25+ |
-| test_format_conversion_utils.py | format_conversion | 20+ |
-| test_schedule_main.py | schedule | 28 |
-| test_schedule_utils.py | schedule | 26 |
-| test_html_website_features.py | html_website | 30+ |
-| test_html_website_utils.py | html_website | 28 |
+```bash
+cd software && uv run pytest --collect-only -q   # current test inventory
+```
 
-**Coverage Goal**: 100% for all modules
+Per-file targets and markers are summarized in [`../tests/README.md`](../tests/README.md). Coverage defaults are configured in `pyproject.toml` (`pytest-cov` per run).
 
 ---
 
@@ -472,10 +481,10 @@ Tests are organized to mirror source structure:
 [uv](https://github.com/astral-sh/uv) manages dependencies and virtual environments:
 
 ```bash
-uv sync              # Install all dependencies
-uv run pytest        # Run commands in venv
-uv lock              # Regenerate uv.lock
-uv add <package>     # Add new dependency
+uv sync --extra dev  # Runtime + pytest/black/ruff/mypy (typical contributor setup)
+uv run pytest       # Run commands in venv
+uv lock             # Regenerate uv.lock
+uv add <package>    # Add new dependency
 ```
 
 ### Testing (pytest)
@@ -581,21 +590,38 @@ The project follows [Semantic Versioning](https://semver.org/) (SemVer):
 All public API functions are documented with versioned signatures in [../AGENTS.md](../AGENTS.md). Key functions:
 
 ```python
-# Core Converters (Stable since 0.1.0)
-render_markdown_to_pdf(markdown_path: str, output_path: str) -> str
-generate_speech(text: str, output_path: str, lang: str = "en") -> str
-convert_file(input_path: str, output_path: str) -> str
-transcribe_audio(audio_path: str) -> str
+# Core converters (Stable since 0.1.0) — see ../AGENTS.md for full signatures
+render_markdown_to_pdf(
+    input_path: str, output_path: str,
+    css_content: Optional[str] = None, pdf_options: Optional[Dict[str, Any]] = None,
+) -> None
 
-# Orchestration (Stable since 0.1.0)  
-process_module_by_type(module_path: str, output_dir: str, formats: list[str] = None) -> dict
-generate_module_website(module_path: str, output_dir: str) -> str
-process_schedule(schedule_path: str, output_dir: str) -> dict
+generate_speech(
+    text: str, output_path: str,
+    voice: str = "default", lang: Optional[str] = None, slow: bool = False,
+) -> None
 
-# Course Management (Stable since 0.1.0)
-create_module_structure(course_path: str, module_number: int) -> Path
-validate_module_files(module_path: str) -> dict
-publish_course(course: str, formats: list[str]) -> dict
+convert_file(input_path: str, output_format: str, output_path: str) -> None
+
+transcribe_audio(audio_path: str, output_path: str, language: str = "en") -> str
+
+# Orchestration (Stable since 0.1.0)
+process_module_by_type(
+    module_path: str, output_dir: str, formats: Optional[List[str]] = None,
+) -> Dict[str, Any]
+
+generate_module_website(
+    module_path: str, output_dir: Optional[str] = None, course_name: Optional[str] = None,
+) -> str
+
+process_schedule(
+    schedule_path: str, output_dir: str, formats: Optional[List[str]] = None,
+) -> Dict[str, Any]
+
+# Course management / publishing (Stable since 0.1.0)
+create_module_structure(course_path: str, module_number: int) -> str
+validate_module_files(module_path: str) -> Dict[str, Any]
+publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]
 ```
 
 ### Dependency Versioning
@@ -679,15 +705,16 @@ def safe_generate_audio(text: str, output_path: str) -> bool:
 
 ## Performance Considerations
 
+Illustrative order-of-magnitude only—measure on your machine and check `software/logs/` for real timings.
+
 ### Processing Time Estimates
 
 | Operation | Time per File | Notes |
 |-----------|--------------|-------|
-| PDF generation | ~0.5-1s | Local, fast |
-| HTML conversion | ~0.1s | Local, very fast |
-| DOCX conversion | ~0.2s | Local, fast |
-| Audio (gTTS) | ~2-5s | Network-bound, slowest |
-| Website generation | ~3-5s | Includes bundling |
+| PDF generation | order of 1s | Local; depends on page count |
+| HTML / DOCX | sub-second typical | Local |
+| Audio (gTTS) | several seconds | Network-bound; rate limits apply |
+| Website generation | multi-second | Bundles assets and intermediate formats |
 
 ### Optimization Strategies
 
@@ -706,12 +733,7 @@ if not validation.get("changed_files"):
 
 ### Resource Usage
 
-| Resource | Typical Usage | Peak Usage |
-|----------|--------------|------------|
-| Memory | ~200 MB | ~500 MB (large PDFs) |
-| CPU | Single core | Multi-core (parallel) |
-| Network | None (except gTTS) | gTTS: ~50 KB/min audio |
-| Disk I/O | Moderate | High during batch ops |
+Varies widely by batch size and formats; profile locally if optimizing. gTTS is the main network consumer when MP3 is enabled.
 
 ---
 
@@ -719,13 +741,15 @@ if not validation.get("changed_files"):
 
 ### Input → Output Matrix
 
-| Input Type | PDF | DOCX | HTML | TXT | MP3 | Website |
-|------------|-----|------|------|-----|-----|---------|
-| **Markdown (.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Plain Text (.txt)** | ✅ | - | ✅ | - | ✅ | - |
-| **HTML (.html)** | ✅ | - | - | ✅ | - | - |
-| **PDF (.pdf)** | - | - | - | ✅ | - | - |
-| **Audio (.mp3/.wav/.m4a)** | - | - | - | ✅ | - | - |
+| Input Type | PDF | DOCX | HTML | TXT | MD copy | MP3 | Website |
+|------------|-----|------|------|-----|---------|-----|---------|
+| **Markdown (.md)** | ✅ | ✅ | ✅ | ✅ | ✅* | ✅ | ✅ |
+| **Plain Text (.txt)** | ✅ | - | ✅ | - | - | ✅ | - |
+| **HTML (.html)** | ✅ | - | - | - | - | - | - |
+| **PDF (.pdf)** | - | - | - | ✅ | - | - | - |
+| **Audio (.mp3/.wav/.m4a)** | - | - | - | ✅ | - | - | - |
+
+\*Normalized `.md` copies under `study-guides/` when `[publish.formats].md = true`; see [`publish.toml`](../../publish.toml).
 
 ### Document Type Catalog
 
@@ -733,17 +757,17 @@ if not validation.get("changed_files"):
 
 | Document | Location | BIOL-1 | BIOL-8 | Output Formats | Output Location |
 |----------|----------|--------|--------|----------------|-----------------|
-| **keys-to-success.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MP3 | `module-XX/output/study-guides/` |
-| **questions.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MP3 | `module-XX/output/study-guides/` |
+| **keys-to-success.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MD, MP3 | `module-XX/output/study-guides/` |
+| **questions.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MD, MP3 | `module-XX/output/study-guides/` |
 
 #### Laboratory Protocols
 
 | Property | Value |
 |----------|-------|
-| **Location** | `course/labs/lab-XX_*.md` |
-| **BIOL-1 Count** | 11 complete, 6 stubs |
-| **BIOL-8 Count** | 11 complete, 4 stubs |
-| **Output Formats** | PDF (fillable), HTML (interactive) |
+| **Location** | `course_development/biol-{1,8}/course/labs/lab-XX_*.md` |
+| **Expected numbered protocols** | BIOL-1: labs **01–17** (`publish.toml`: `max_lab = 17`); BIOL-8: labs **01–18** (`max_lab = 18`), plus supplemental `lab-*.md` where present |
+| **Verification** | Count `lab-NN_*.md` on disk rather than trusting historical “stub” tables; dashboards live in `course/labs/dashboards/` |
+| **Output Formats** | PDF (fillable), DOCX/HTML/TXT/MD when enabled in `[publish.formats]` (labs use `lab_manual` + `format_conversion`) |
 | **Output Location** | `course/labs/output/` |
 
 **Lab Directives Supported:**
@@ -760,7 +784,7 @@ See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generat
 
 | Document | Location | BIOL-1 | BIOL-8 | Format | Published |
 |----------|----------|--------|--------|--------|-----------|
-| **Exams** (`exam-XX.md` + key) | `course/exams/` | 2 exams + keys on disk (`exam-01`, `exam-03`) | 3 unit exams + keys (`exam-01`–`exam-03`) | Layout varies by file (see live `exam-*.md`) | Teacher-only / local render |
+| **Exams** (`exam-XX.md` + key) | `course/exams/` | 3 unit exams + keys (`exam-01`–`exam-03`) | 3 unit exams + keys (`exam-01`–`exam-03`) | Layout varies by file (see live `exam-*.md`) | Teacher-only / local render |
 | **Quizzes** (`module-XX_quiz.md` + key) | `course/quizzes/` | Templates only | 17 + 17 keys | 7 MC + 3 FR = 10 pts | Teacher-only |
 
 BIOL-8 unit exam coverage (see course `AGENTS.md`): `exam-01` (modules 01–06), `exam-02` (07–10), `exam-03` (11–15); modules 16–17 and comprehensive final as scheduled. BIOL-1 exam README lists current on-disk exams and planned finals.
@@ -769,8 +793,8 @@ BIOL-8 unit exam coverage (see course `AGENTS.md`): `exam-01` (modules 01–06),
 
 | Document | Location | Output Formats | Output Location |
 |----------|----------|----------------|-----------------|
-| **Syllabus.md** | `syllabus/BIOL-X_*.md` | PDF, DOCX, HTML, TXT, MP3 | `syllabus/output/` |
-| **Schedule.md** | `syllabus/Schedule.md` | PDF, DOCX, HTML, TXT, MP3 | `syllabus/output/` |
+| **Syllabus.md** | `syllabus/BIOL-X_*.md` | PDF, DOCX, HTML, TXT, MD, MP3 | `syllabus/output/` |
+| **Schedule.md** | `syllabus/Schedule.md` | PDF, DOCX, HTML, TXT, MD, MP3 | `syllabus/output/` |
 
 **Note:** Syllabus outputs use a flat structure (files directly in output/, not subdirectories).
 
@@ -813,7 +837,7 @@ course_development/
 │   │   │   ├── questions.md             # Source
 │   │   │   ├── resources/               # Supplementary materials
 │   │   │   └── output/
-│   │   │       ├── study-guides/        # PDF, DOCX, HTML, TXT, MP3
+│   │   │       ├── study-guides/        # Per-format outputs incl. md when enabled
 │   │   │       └── website/             # index.html
 │   │   ├── labs/
 │   │   │   ├── lab-01_measurement-methods.md

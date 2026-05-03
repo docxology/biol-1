@@ -36,6 +36,7 @@ Scripts do NOT contain business logic. They:
 | `flatten_published.py` | `publish.utils` | Flatten directory structure |
 | `renumber_questions.py` | `content_processing` | Question renumbering |
 | `import_legacy_materials.py` | `legacy_import` | Import legacy format |
+| `assemble_practice_test_12.py` | (stdlib; BIOL-8 practice tests) | Rebuild cumulative `practice-test-12` + key |
 
 ---
 
@@ -273,6 +274,16 @@ uv run python scripts/import_legacy_materials.py /path/to/legacy --course biol-1
 
 **Module Used**: `src/legacy_import`
 
+### `assemble_practice_test_12.py` — BIOL-8 practice-test-12 assembler
+
+Rebuilds student and key Markdown for the cumulative **`practice-test-12`** set from scripted slices of earlier practice tests. Logic lives entirely in this file (paths under `course_development/biol-8/course/practice_tests/`).
+
+```bash
+cd software && uv run python scripts/assemble_practice_test_12.py
+```
+
+Read the script docstring before editing `SPEC` or output paths.
+
 ---
 
 ## Output Formats
@@ -320,7 +331,7 @@ All managed via `uv` and `pyproject.toml`:
 
 ```bash
 cd software
-uv sync
+uv sync --extra dev
 ```
 
 ---

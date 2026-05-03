@@ -119,6 +119,7 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 Exams and answer keys are in [`course/exams/`](course/exams/):
 
 - [Exam 01](course/exams/exam-01.md) · [Key](course/exams/exam-01_key.md)
+- [Exam 02](course/exams/exam-02.md) · [Key](course/exams/exam-02_key.md)
 - [Exam 03](course/exams/exam-03.md) · [Key](course/exams/exam-03_key.md)
 - [Exam Template](course/exams/exam-template.md)
 

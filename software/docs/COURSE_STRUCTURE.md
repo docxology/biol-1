@@ -10,17 +10,17 @@ Complete reference for the cr-bio course content directory layout, file organiza
 
 ```mermaid
 flowchart LR
-    subgraph PRIVATE["🔒 Development (Private)"]
+    subgraph PRIVATE[Development]
         CD[course_development/]
     end
     
-    subgraph PIPELINE["⚙️ Pipeline"]
+    subgraph PIPELINE[Pipeline]
         PUB[publish.py]
     end
     
-    subgraph PUBLIC["🌐 Published (Public)"]
-        B1[biol-1 repo]
-        B8[biol-8 repo]
+    subgraph PUBLIC[Published]
+        B1[biol-1_repo]
+        B8[biol-8_repo]
     end
     
     CD --> PUB
@@ -31,7 +31,7 @@ flowchart LR
 | Tier | Repository | Visibility | Contents |
 |------|-----------|-----------|----------|
 | **Development** | `cr-bio` (this repo) | Private | Source Markdown, software, exams, answer keys |
-| **Published** | `biol-1`, `biol-8` | Public | Generated PDFs, DOCX, HTML, MP3, websites |
+| **Published** | `biol-1`, `biol-8` | Public | Generated PDFs, DOCX, HTML, TXT, MD, MP3, websites |
 
 The pipeline transforms source content into multiple output formats and pushes to the public repositories. Teacher-only materials (exams, answer keys) are **never published**.
 
@@ -100,18 +100,20 @@ module-01-exploring-life-science/
 ├── resources/                     # Module-specific resources
 │   └── *.pdf                      # Lecture slides, readings
 └── output/                        # Generated outputs
-    ├── study-guides/              # PDF, DOCX, HTML, TXT, MP3
+    ├── study-guides/              # PDF, DOCX, HTML, TXT, MD, MP3 (per publish.toml)
     └── website/                   # index.html (interactive)
 ```
 
 | File | Purpose | Output Formats |
 |------|---------|----------------|
-| `keys-to-success.md` | Student study guide | PDF, DOCX, HTML, TXT, MP3 |
-| `questions.md` | Review questions | PDF, DOCX, HTML, TXT, MP3 |
+| `keys-to-success.md` | Student study guide | PDF, DOCX, HTML, TXT, MD, MP3 |
+| `questions.md` | Review questions | PDF, DOCX, HTML, TXT, MD, MP3 |
 
 ---
 
 ## Lab Structure
+
+Paths below are relative to `course_development/biol-{1,8}/`. The long example lists **BIOL-8** labs through **18** plus a supplemental follow-up page; **BIOL-1** stops at **17** numbered protocols but uses the same folder layout (`course/labs/`, `course/labs/dashboards/`, `course/labs/output/`).
 
 ### Source Files
 
@@ -158,48 +160,38 @@ See [LAB_FORMAT.md](LAB_FORMAT.md) and [DASHBOARD_FORMAT.md](DASHBOARD_FORMAT.md
 
 ### Exams (Teacher-Only)
 
+Common on-disk layout under `course_development/biol-X/course/exams/`:
+
 ```
 course/exams/
-├── exam-01.md                     # Modules 01-07
-├── exam-01_key.md                 # Answer key
-├── exam-02.md                     # Modules 08-11
-├── exam-02_key.md
-├── exam-03.md                     # Modules 12-15
-├── exam-03_key.md
-├── final-exam.md                  # Comprehensive (150 pts)
-├── final-exam_key.md
-└── output/                        # Local PDF/DOCX only
+├── exam-NN.md
+├── exam-NN_key.md
+└── output/                        # Local renders (PDF, DOCX, etc.); never published publicly
 ```
 
-> ⚠️ Exams and answer keys are **never published** to public repositories.
+**BIOL-1 (verify on disk):** **Two** exams with keys are common (e.g. `exam-01`, `exam-03`). **`exam-03` is the second-unit exam spanning modules 07–11**, not necessarily “modules 12–15” — course numbering is not interchangeable with BIOL-8 or generic templates.
 
-### Exam Point Structure
+**BIOL-8:** **Three** unit exams with keys (`exam-01` … `exam-03`); scopes are modules **01–06**, **07–10**, and **11–15** (typically **50 points** each — see headers in each file). Comprehensive final per syllabus; **`final-exam.md`** may appear only when authored.
 
-| Component | Points | Count |
-|-----------|--------|-------|
-| Multiple Choice | 50 | 50 questions × 1 pt |
-| Short Answer | 30 | 10 questions × 3 pts |
-| Essay | 20 | 2 questions × 10 pts |
-| **Total** | **100** | per exam |
+> ⚠️ Exams and answer keys are **never published** to public student-facing repositories.
 
-Final exam: 150 points (comprehensive).
+### Quiz point layouts
+
+Per-quiz totals **vary by file** — when present, BIOL-8 module quizzes sometimes follow layouts such as ~7 pts multiple choice + ~3 pts free response; always read the live markdown.
 
 ### Quizzes (Teacher-Only)
+
+**BIOL-8** — full per-module quiz set:
 
 ```
 course/quizzes/
 ├── module-01_quiz.md
 ├── module-01_quiz_key.md
-├── module-02_quiz.md
-├── module-02_quiz_key.md
-└── ... (17 modules for BIOL-8; 16 for BIOL-1)
+├── ...
+└── (17 modules × 2 files)
 ```
 
-| Component | Points | Count |
-|-----------|--------|-------|
-| Multiple Choice | 7 | 7 × 1 pt |
-| Free Response | 3 | 1 × 3 pts |
-| **Total** | **10** | per quiz |
+**BIOL-1** — `course/quizzes/` is **template-only** (e.g. `quiz-template.md`). Routine practice sits in each module **`questions.md`**, not in parallel `module-NN_quiz` files per module.
 
 ---
 
@@ -258,14 +250,13 @@ The `flatten` pipeline stage reorganizes outputs into these categories.
 | Feature | BIOL-1 | BIOL-8 |
 |---------|--------|--------|
 | **Setting** | Pelican Bay Prison | CR Del Norte Campus |
-| **Modules** | 17 | 15 |
-| **Slide format** | 2 versions per module (full + notes) | 1 per module |
-| **Slide location** | `resources/slides/` | `course/module-XX/resources/` |
-| **Labs complete** | 11 | 11 |
-| **Exams** | Templates only | 4 complete + keys |
-| **Quizzes** | Templates only | 15 complete + keys |
-| **Dashboards** | None | 17 |
-| **Private directory** | Facility-specific docs | Standard |
+| **Content modules (`module-*`)** | 15 | 17 |
+| **Slides** | 30 PDFs in course `resources/slides/` (module **9** may lack full + notes pair) | 15 PDFs in course `resources/slides/` |
+| **Labs (+ dashboards)** | 17 protocols + dashboards | 18 protocols + dashboards |
+| **Exams (on disk)** | 2 + keys (`course/exams/`) | 3 + keys (unit exams **01–03**) |
+| **Quizzes (`course/quizzes/`)** | Template(s) only | 17 × 2 (student + key) |
+| **Practice tests** | 3 + keys | 12 + keys (verify on disk) |
+| **Private directory** | Includes facility-specific material | Standard private layout |
 
 ---
 

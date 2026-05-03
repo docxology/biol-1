@@ -362,25 +362,30 @@ python publish.py --dry-run
 python publish.py --override-formats pdf,html,docx
 ```
 
-**Configuration Options** (`publish.toml`):
+**Configuration Options** (`publish.toml`; see repo root file for live defaults):
 
 ```toml
 [publish.formats]
-pdf  = true         # PDF files via WeasyPrint
-docx = true         # Word documents
-html = true         # HTML files
-txt  = true         # Plain text
-mp3  = false        # Audio narration (slower, ~30s per file)
+pdf  = true
+docx = true
+html = false       # Example: toggle as needed
+txt  = false
+md   = true        # Normalized Markdown copies alongside other formats
+mp3  = false
 
 [publish.courses.biol-8]
 enabled = true
 include_labs = true
-include_syllabus = true
 
 [publish.pipeline]
-generate = true     # Generate outputs from source
-publish  = true     # Copy to PUBLISHED/
-validate = true     # Validate all outputs
+generate     = true
+publish      = true
+copy_extras  = true
+flatten      = true
+validate     = true
+strict_dashboards = true    # Mirrors validate_outputs --strict-dashboards
+all_files    = true
+git_push     = true
 ```
 
 **Programmatic Usage**:
@@ -596,6 +601,7 @@ The `scripts/` directory contains CLI orchestrators that follow the "thin orches
 | `flatten_published.py` | `publish.utils` | Flatten directory structure |
 | `renumber_questions.py` | `content_processing` | Question renumbering |
 | `import_legacy_materials.py` | `legacy_import` | Import legacy format |
+| `assemble_practice_test_12.py` | (ad hoc) | Assemble BIOL-8 cumulative practice-test-12 |
 
 ### Relationship to Top-Level publish.py
 
@@ -810,23 +816,14 @@ The publish pipeline is the automated process that transforms source content int
 
 ```mermaid
 flowchart LR
-    CLN["1. Clean"] --> CLNS["2. Clean-Source"]
-    CLNS --> GEN["3. Generate"]
-    GEN --> PUB["4. Publish"]
-    PUB --> COPY["5. Copy Extras"]
-    COPY --> FLAT["6. Flatten"]
-    FLAT --> REORG["7. Reorganize"]
-    REORG --> VAL["8. Validate"]
-    VAL --> GIT["9. Git Push"]
-    
-    style CLN fill:#fce4ec
-    style CLNS fill:#fce4ec
-    style GEN fill:#e1f5ff
-    style PUB fill:#fff9c4
-    style FLAT fill:#e8f5e9
-    style REORG fill:#e8f5e9
-    style VAL fill:#c8e6c9
-    style GIT fill:#f3e5f5
+    CLN["1_Clean"] --> CLNS["2_CleanSource"]
+    CLNS --> GEN["3_Generate"]
+    GEN --> PUB["4_Publish"]
+    PUB --> COPY["5_CopyExtras"]
+    COPY --> FLAT["6_Flatten"]
+    FLAT --> REORG["7_Reorganize"]
+    REORG --> VAL["8_Validate"]
+    VAL --> GIT["9_GitPush"]
 ```
 
 | Stage | Script | Description |
@@ -880,7 +877,11 @@ cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --m
 
 ### Pipeline Configuration
 
-See [README.md#configuration-reference](README.md#configuration-reference) for the full `publish.toml` reference.
+See [README.md#configuration-reference](README.md#configuration-reference) for the annotated `publish.toml` reference. Strict dashboard validation can also be run ad hoc:
+
+```bash
+cd software && uv run python scripts/validate_outputs.py --course all --strict-dashboards
+```
 
 ---
 

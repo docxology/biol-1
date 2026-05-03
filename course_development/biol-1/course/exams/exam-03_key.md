@@ -6,97 +6,99 @@
 
 *1 point each.*
 
-**Module 07: Molecular Genetics**
+**Module 12: Darwin and Evolution**
 
-1. **C** (DNA → RNA → Protein)
-2. **C** (Adenine pairs with thymine)
-3. **B** (A in DNA pairs with U in RNA during transcription)
-4. **C** (DNA polymerase)
-5. **B** (Ribosomes in the cytoplasm / on rough ER)
-6. **B** (Frameshift mutation)
+1. **C** (Shared ancestors; heritable change over generations)
+2. **A** (Relative genetic contribution / reproductive success → next generation)
+3. **B** (Overproduction of offspring)
+4. **B** (Shared structure, modified function → homology)
+5. **C** (Convergent evolution / similar selection pressures)
+6. **B** (Allele-frequency change in populations across generations)
+7. **B** (Acclimation within life vs heritable evolution across generations)
+8. **B** (Biogeography paired with evolutionary reasoning)
 
-**Module 08: Cellular Genetics**
+**Module 13: How Populations Evolve**
 
-7. **B** (Haploid, n = 23)
-8. **B** (Two genetically identical diploid daughter cells)
-9. **B** (Homologous chromosomes separate in meiosis I)
-10. **B** (Prophase I of meiosis)
-11. **B** (Random alignment creates many allele combinations)
-12. **B** (Failure of proper separation; may yield aneuploidy)
+9. **B** (Allele-frequency change over time)
+10. **C** (Gene flow)
+11. **B** (Bottleneck / drift from random catastrophe)
+12. **B** (Founder effect)
+13. **C** (Stabilizing selection)
+14. **C** (Disruptive selection)
+15. **B** (Mathematical baseline / null model)
+16. **B** (Mechanisms that can change allele frequencies)
 
-**Module 09: Inheritance Genetics**
+**Module 14: Macroevolution**
 
-13. **B** (Alleles are alternative versions of the same gene)
-14. **A** (Bb is genotype; purple flowers are phenotype)
-15. **C** (3 : 1 phenotypic ratio for complete dominance)
-16. **B** (1 : 2 : 1 with a blended heterozygote in incomplete dominance)
-17. **B** (Codominance for type AB)
-18. **B** (Two unaffected parents can have an affected child—classic autosomal recessive clue)
+17. **C** (Biological species concept / isolation + interbreeding)
+18. **B** (Prezygotic temporal isolation)
+19. **B** (Postzygotic reduced hybrid viability)
+20. **C** (Postzygotic reduced hybrid fertility)
+21. **B** (Allopatric speciation)
+22. **B** (Sympatric speciation via polyploidy)
+23. **B** (Macroevolution as accumulated population-level processes)
 
-**Module 10: Epigenetics**
+**Module 15: Population and Systems Ecology**
 
-19. **B** (Gene expression changes without DNA sequence change)
-20. **B** (Silences / turns gene off or down)
-21. **B** (Looser chromatin; favors gene activity / turning genes on)
-22. **B** (Mutation changes sequence; epigenetics changes use of same sequence)
-23. **B** (Barr body)
-24. **B** (Different cell types express different genes)
-
-**Module 11: Genomics & Biotechnology**
-
-25. **B** (Amplify / copy a targeted DNA region)
-26. **B** (Toward positive electrode; smaller fragments usually travel farther)
-27. **B** (Universal / nearly universal genetic code allows translation of the gene)
-28. **B** (STR alleles inherited from parents)
-29. **B** (Targeted DNA cut / gene editing)
-30. **B** (DNA ligase joins fragments)
+24. **D** (Exponential / J-shaped phase)
+25. **A** (Carrying capacity)
+26. **C** (Density-dependent limitation)
+27. **D** (Density-independent disturbance in this idealization)
+28. **A** (More primary production needed with more trophic transfers / ~10% rule)
+29. **C** (Energy dissipated largely as heat between trophic transfers)
+30. **D** (Decomposers in nutrient cycling)
 
 ---
 
 ## Part B: Fill in the Blank (11 points)
 
-*1 point each. Minor spelling errors are acceptable as long as the intent is clear.*
+*1 point each. Minor spelling errors are acceptable when intent is clear.*
 
-1. **Transcription**
-2. **Translation**
-3. **Anticodon**
-4. **Methylation** (accept DNA methylation)
-5. **Epigenetics**
-6. **Heterozygous**
-7. **Nondisjunction**
-8. **Codominance**
-9. **Plasmid**
-10. **Restriction** (accept restriction enzyme)
-11. **Diploid**
+1. **Allele frequencies** (accept allele frequency)
+2. **Gene flow**
+3. **Genetic drift**
+4. **Homologous**
+5. **Allopatric**
+6. **Sympatric**
+7. **Prezygotic** (accept pre-zygotic)
+8. **Postzygotic** (accept post-zygotic)
+9. **Hardy–Weinberg** (accept Hardy Weinberg)
+10. **Directional selection**
+11. **Decomposers**
 
 ---
 
 ## Part C: Free Response (9 points)
 
 *Choose THREE out of five. Each question is worth 3 points.*  
-*Award partial credit as appropriate for incomplete but partially correct concepts.*
+*Award partial credit as appropriate.*
 
-1. **Information Flow and Regulation.**
-    - *Key concepts:* **Transcription** (DNA → mRNA, nucleus in eukaryotes); **Translation** (mRNA → protein on ribosomes); mention tRNA/amino acids if present.
-    - *Regulation hook:* **Epigenetics** (methylation, histones) or **gene regulation / transcription factors** turning genes on or off **without changing DNA sequence**; different cell types use different subsets of genes.
+1. **Natural Selection and Evidence.**
+    - *Natural selection:* heritable **variation**; **more offspring produced than survive/reproduce** (overproduction); **unequal survival/reproduction** tied to traits → changes in allele frequencies when heritable.
+    - *Evidence:* **fossils** (change over time); **homology** (shared structure, different function); **biogeography** (related forms in regionally sensible patterns); **molecular** similarities—student names **one** pattern clearly.
 
-2. **Mitosis vs. Meiosis.**
-    - **Mitosis:** one division → **2** daughter cells; **diploid** (2n) in humans for somatic cells; genetically **identical** (barring mutation); purposes include **growth and repair**.
-    - **Meiosis:** **two** divisions → **4** cells; **haploid** (n) gametes; **genetically different** from each other (crossing over, independent assortment, random fertilization); purpose is **gamete production / sexual reproduction**.
+2. **Drift, Flow, and Selection.**
+    - **Drift:** random sampling of alleles; strongest in **small** populations; **not** “for” adaptive fit by itself.
+    - **Selection:** consistent differences in survival/reproduction tied to **heritable** traits → adaptive directional/stabilizing/disruptive patterns.
+    - **Bottleneck:** catastrophe randomly wipes most individuals; survivors may have skewed allele frequencies.
+    - **Founder:** small group starts new population; gene pool reflects founders’ alleles.
+    - **Gene flow:** alleles move **between** populations via migration/mating—can increase similarity or introduce variation.
 
-3. **Inheritance in Words.**
-    - **Genotype:** allele combination (e.g., RR, Rr, rr). **Phenotype:** observable trait.
-    - **Incomplete dominance:** heterozygote is **intermediate / blended** (e.g., red × white → pink), not a clear dominant masking recessive in the same way as complete dominance.
+3. **Reproductive Isolation and Speciation.**
+    - **Reproductive isolation:** reduced or blocked **gene flow** between groups (biological species framing: viable fertile offspring within group vs barriers **between** groups).
+    - **Prezygotic example:** temporal isolation, behavioral differences, habitat separation, mechanical mismatch, gametic incompatibility—any valid example.
+    - **Postzygotic example:** hybrid inviability, hybrid sterility (mule), hybrid breakdown—any valid example.
+    - **Allopatric:** geographic separation first, then divergence. **Sympatric:** divergence **without** geographic isolation (e.g., polyploid plants).
 
-4. **Epigenetics vs. Mutation.**
-    - **Epigenetics:** changes **gene expression** (on/off, more/less) **without** changing the DNA letter sequence; often reversible in principle.
-    - **Mutation:** change in **DNA sequence**.
-    - *Environment example:* **diet** (methyl donors), **chronic stress**, **exercise**, or **toxins** altering regulation—any one explained briefly is sufficient.
+4. **Population Growth and Regulation.**
+    - **Exponential:** rapid increase when resources abundant (J curve). **Logistic:** growth slows as resources tighten; approaches **K** (S curve).
+    - **K:** **carrying capacity**—environment-limited population size over time.
+    - **Density-dependent:** disease/contacts/competition intensify with crowding—student gives plausible example.
+    - **Density-independent:** fire/freeze/storm kills regardless of density (idealized)—student gives plausible example.
 
-5. **Biotechnology Toolkit.**
-    - **PCR path:** rapidly **amplifies** a specific DNA segment (many copies from a tiny sample); connects to **denature / prime / extend** logic at intro level.
-    - **Gel path:** separates fragments **by size**; **smaller** fragments migrate farther; compares **band patterns** (e.g., STR profiles).
-    - **Plasmid / universal code path:** foreign gene inserted into **plasmid**; host reads gene because **codons specify the same amino acids** across species (universal genetic code), so **transcription/translation** can produce the protein.
+5. **Energy and Nutrients.**
+    - **Nutrients** cycle (producers ↔ consumers ↔ **decomposers**); **energy** enters as sunlight (photosynthesis), passes through trophic levels, and leaves largely as **heat**—not recycled like atoms.
+    - **~10% rule:** roughly ~10% of energy passes each trophic step; long chains lose repeated fractions at each transfer, so supporting carnivores/tuna diets needs **more** net primary production than eating plants directly for the same usable human calories.
 
 ---
 *End of exam key.*

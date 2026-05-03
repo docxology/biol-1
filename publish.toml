@@ -16,10 +16,10 @@ verbose = true     # Enable verbose logging
 # Toggle each format on/off as needed. MP3 is time-consuming (~30s per file)
 # and requires internet access for Google TTS.
 [publish.formats]
-pdf  = true         # PDF files (via WeasyPrint)
-docx = true         # Word documents (via Pandoc)
-html = false         # HTML files (via Pandoc)
-txt  = false         # Plain text (extracted from Markdown)
+pdf  = true         # PDF files (via WeasyPrint / markdown_to_pdf)
+docx = true         # Word documents (via format_conversion / python-docx)
+html = false         # HTML study-guide copies (via format_conversion / markdown2)
+txt  = false         # Plain text (via format_conversion)
 md   = true          # Markdown copy (source files with standardized names)
 mp3  = false        # Audio narration (via Google TTS, slower)
 

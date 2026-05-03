@@ -32,7 +32,8 @@ sudo apt-get install python3-cairo python3-pango libgdk-pixbuf2.0-dev libffi-dev
 
 ```bash
 cd software
-uv sync
+uv sync --extra dev   # runtime + pytest, black, ruff, mypy (recommended)
+# uv sync             # runtime only — insufficient for pytest in this repo
 ```
 
 ### 4. Set Environment Variable (macOS only)
@@ -177,7 +178,7 @@ The quick commands below use single modules. No orchestration or composition is 
 
 ### Convert Markdown to PDF {#convert-markdown-to-pdf}
 
-**Module**: `markdown_to_pdf` (standalone, no dependencies)
+**Module**: `markdown_to_pdf` (WeasyPrint + system Cairo/Pango; uses `shared` helpers)
 
 ```bash
 uv run python -c "
@@ -244,7 +245,7 @@ convert_file('input.md', 'html', 'output.html')
 
 ## Full Publish Pipeline (Recommended)
 
-The primary entry point is the top-level `publish.py` script with configuration via `publish.toml`:
+The primary entry point is the top-level `publish.py` script with configuration via [`publish.toml`](../../publish.toml). Generation is implemented in **Python** (`software/src/`: WeasyPrint, `python-docx`, `markdown2`, `gTTS`, etc.); format toggles in the TOML are authoritative (some comments in the file may mention other tools—trust the `src/` stack).
 
 ```bash
 # From the repository root (not software/)
@@ -257,20 +258,23 @@ python publish.py
 python publish.py --dry-run
 
 # Override formats on command line
-python publish.py --override-formats pdf,html
+python publish.py --override-formats pdf,html,md
 
-# Include MP3 audio generation (slower, ~30s per file)
-python publish.py --override-formats pdf,docx,html,txt,mp3
+# Include MP3 audio generation (slower; network)
+python publish.py --override-formats pdf,docx,html,txt,md,mp3
 ```
 
 **Configuration** (`publish.toml`):
 
 | Setting | Description |
 |---------|-------------|
+| `publish.formats.*` | pdf, docx, html, txt, **md** (normalized copies), mp3 |
 | `publish.formats.mp3` | Enable/disable audio generation |
 | `publish.clean` | Clear outputs before generation |
 | `publish.courses.*.enabled` | Enable/disable specific courses |
-| `publish.pipeline.*` | Toggle pipeline stages |
+| `publish.pipeline.*` | Stages including `strict_dashboards`, `all_files`, `git_push` |
+
+Defaults for `html` / `txt` / `md` change over time—read the repo’s `publish.toml` after pull.
 
 ---
 
@@ -295,7 +299,7 @@ uv run python scripts/generate_all_outputs.py --course all
 |--------|-------------|
 | `--course` | Course: `biol-1`, `biol-8`, or `all` |
 | `--module` | Specific module number (optional) |
-| `--formats` | Output formats: pdf, mp3, docx, html, txt (default: all) |
+| `--formats` | Output formats: pdf, mp3, docx, html, txt, **md** (default: all supported) |
 | `--dry-run` | Preview without generating files |
 | `--skip-clear` | Don't clear existing outputs |
 | `--no-website` | Skip website generation |
@@ -538,14 +542,17 @@ cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --m
 ### Lab Manual Generation
 
 ```bash
-# Generate all labs for a course
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --include-labs
+# Full course run includes lab manuals unless you pass --skip-labs
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8
 
-# Generate labs only (skip module content)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --labs-only
+# Omit lab manuals (faster iteration on modules/syllabus)
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --skip-labs
+
+# Limit numbered labs rendered (combine with --formats if needed)
+cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab biol-8:5
 ```
 
-See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generation) for Python API and dashboard generation.
+`generate_all_outputs.py` does **not** support `--labs-only` / `--include-labs`; use the Python API in [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generation) for single-file renders.
 
 ---
 
