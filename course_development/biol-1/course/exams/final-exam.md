@@ -15,7 +15,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 **Total Points**: 100  
 
-**Instructions:** Answer **every** question in Parts **A** and **B**. In Part **C**, answer either **five** or **seven** short prompts as your instructor specifies (see Part C header). For Part **D**, follow the prompt. Budget time so Part D receives a full essay-level answer.
+**Instructions:** Answer **every** question in Parts **A** and **B**. In Part **C**, choose **any five** of the **seven** prompts (**5** points each). For Part **D**, follow the prompt. Budget time so Part D receives a full essay-level answer.
 
 ---
 
@@ -635,26 +635,98 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ## Part C: Integrated Short Answer (25 points)
 
-*Section total: **25** points. Your instructor will use **one** of these formats:*
-
-- **Five-question format:** Choose **any five** of the **seven** numbered prompts below. **5 points each.**
-- **Seven-question format:** Answer **all seven** prompts. **25 points** for the section **total**, divided **evenly** across the seven items (award partial credit per prompt).
-
-*Label answers by prompt number. Write clearly in **complete sentences**.*
+*Choose **any five** of the **seven** numbered prompts below. **5 points each.** Label each answer with its prompt number. Write clearly in **complete sentences** in the space provided.*
 
 **1.** Compare **mitosis** and **meiosis** for a diploid animal cell: number of divisions, number of nuclear products, **ploidy** of products, genetic similarity among products, and **one** biological purpose for each process.
 
+*Answer:*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 **2.** Trace **information flow** from a gene to a functional protein (major stages). Add **one** sentence on how **epigenetic** marking could reduce protein output **without** changing the DNA sequence.
+
+*Answer:*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 **3.** Explain **natural selection** using **variation**, **overproduction**, and **differential reproductive success**. Then distinguish **analogous** versus **homologous** structures in **two** sentences.
 
+*Answer:*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 **4.** Contrast **genetic drift** and **natural selection** as mechanisms changing allele frequencies. Give **one** example each of **bottleneck** and **founder** effects in plain language.
+
+*Answer:*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 **5.** Compare **exponential** versus **logistic** population growth and define **carrying capacity (K)**. Give **one** **density-dependent** and **one** **density-independent** limiting factor (full sentences).
 
+*Answer:*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 **6.** Compare **photosynthesis** and **cellular respiration** at an overview level: **what** each process broadly accomplishes for the cell, **where** much of each pathway occurs in many eukaryotic cells, and **one** sentence on how the two pathways relate as complementary parts of energy and carbon flow.
 
+*Answer:*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 **7.** State the **biological species concept** at an introductory level. Then give **one** example of a **prezygotic** barrier and **one** example of a **postzygotic** barrier (full sentences; names of barrier categories are fine).
+
+*Answer:*
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ---
 

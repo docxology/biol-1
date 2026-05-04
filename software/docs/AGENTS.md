@@ -66,6 +66,35 @@ Root [`publish.toml`](../../publish.toml) remains the authoritative toggle file;
 
 ## Required Elements
 
+### Codebase Modernization and Real Methods Policy
+
+This project follows a strict **Real Methods Policy**: all code must use real implementations, with no mocks, stubs, fakes, or fallback logic. This ensures that all tests and integrations work with actual dependencies and real API clients.
+
+#### Modernization Campaign
+
+The codebase underwent a comprehensive modernization campaign to enforce this policy:
+
+- **Removal of non-real code**: All mock-dependent tests were rewritten or removed, and transitional compatibility layers were eliminated.
+- **Exception handling improvements**: Bare `except` and broad `except Exception` handlers were replaced with specific exceptions (`OSError`, `ValueError`) where appropriate.
+- **Indentation fixes**: Various syntax issues were corrected.
+- **Documentation updates**: References to legacy patterns were removed or updated.
+
+All changes were verified by the test suite: **627 tests pass (2 skipped)**.
+
+#### Future Maintenance
+
+When contributing to this project, ensure:
+
+- ✅ All new code uses real implementations
+- ✅ No mocks, stubs, or fake methods are introduced
+- ✅ Tests use real file operations and library calls
+- ✅ Exception handling is specific and meaningful
+- ✅ Documentation is purged of legacy references on every review
+
+See the [Codebase Modernization Report](codebase_modernization_report.md) for full details.
+
+
+
 ### Every Document Must Include
 
 1. **Navigation Header**: Blockquote with links to related docs

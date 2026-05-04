@@ -73,7 +73,7 @@ def process_module_to_pdf(module_path: str, output_dir: str) -> List[str]:
             # Convert to PDF
             render_markdown_to_pdf(str(md_file), str(output_file))
             output_files.append(str(output_file))
-        except Exception as e:
+        except OSError as e:
             logger.error("Error converting %s to PDF: %s", md_file, e, exc_info=True)
             continue
 
@@ -128,10 +128,11 @@ def process_module_to_audio(module_path: str, output_dir: str) -> List[str]:
             if text_file.suffix in [".md", ".markdown"]:
                 content = extract_text_from_markdown(content)
 
-            # Generate speech
+# Generate speech
             generate_speech(content, str(output_file))
             output_files.append(str(output_file))
-        except Exception as e:
+        except (OSError, ValueError) as e:
+
             logger.error("Error converting %s to audio: %s", text_file, e, exc_info=True)
             continue
 
@@ -183,7 +184,7 @@ def process_module_to_text(module_path: str, output_dir: str) -> List[str]:
             # Transcribe audio
             transcribe_audio(str(audio_file), str(output_file))
             output_files.append(str(output_file))
-        except Exception as e:
+        except (OSError, ValueError) as e:
             logger.error("Error transcribing %s: %s", audio_file, e, exc_info=True)
             continue
 
@@ -225,14 +226,14 @@ def generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]:
     try:
         pdf_output = base_output / config.OUTPUT_DIRECTORIES["pdf"]
         results["pdf_files"] = process_module_to_pdf(module_path, str(pdf_output))
-    except Exception as e:
+    except (OSError, ValueError) as e:
         results["errors"].append(f"PDF generation error: {e}")
 
     # Generate audio
     try:
         audio_output = base_output / config.OUTPUT_DIRECTORIES["audio"]
         results["audio_files"] = process_module_to_audio(module_path, str(audio_output))
-    except Exception as e:
+    except (OSError, ValueError) as e:
         results["errors"].append(f"Audio generation error: {e}")
 
     # Transcribe audio to text
@@ -249,7 +250,7 @@ def generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]:
             results["text_files"] = process_module_to_text(
                 str(audio_output), str(text_output)
             )
-    except Exception as e:
+    except (OSError, ValueError) as e:
         results["errors"].append(f"Text transcription error: {e}")
 
     return results
@@ -387,7 +388,7 @@ def process_module_by_type(
                     render_markdown_to_pdf(str(md_file), str(pdf_file))
                     results["by_type"][output_subdir].append(str(pdf_file))
                     results["summary"]["pdf"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"PDF generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -403,7 +404,7 @@ def process_module_by_type(
                     time.sleep(2)  # Add delay to avoid 429 errors
                     results["by_type"][output_subdir].append(str(audio_file))
                     results["summary"]["mp3"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"Audio generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -416,7 +417,7 @@ def process_module_by_type(
                     convert_file(str(md_file), "docx", str(docx_file))
                     results["by_type"][output_subdir].append(str(docx_file))
                     results["summary"]["docx"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"DOCX generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -429,7 +430,7 @@ def process_module_by_type(
                     convert_file(str(md_file), "html", str(html_file))
                     results["by_type"][output_subdir].append(str(html_file))
                     results["summary"]["html"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"HTML generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -444,7 +445,7 @@ def process_module_by_type(
                     txt_file.write_text(text_content, encoding="utf-8")
                     results["by_type"][output_subdir].append(str(txt_file))
                     results["summary"]["txt"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"TXT generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -457,12 +458,12 @@ def process_module_by_type(
                     shutil.copy2(str(md_file), str(md_output_file))
                     results["by_type"][output_subdir].append(str(md_output_file))
                     results["summary"]["md"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"MD copy failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
 
-        except Exception as e:
+        except (OSError, ValueError) as e:
             logger.error(f"Processing failed for {md_file.name}: {e}", exc_info=True)
             results["errors"].append(f"Processing failed for {md_file.name}: {e}")
 
@@ -542,7 +543,7 @@ def process_syllabus(
                     render_markdown_to_pdf(str(md_file), str(pdf_file))
                     results["by_format"]["pdf"].append(str(pdf_file))
                     results["summary"]["pdf"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"PDF generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -558,7 +559,7 @@ def process_syllabus(
                     time.sleep(2)  # Add delay to avoid 429 errors
                     results["by_format"]["mp3"].append(str(audio_file))
                     results["summary"]["mp3"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"Audio generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -571,7 +572,7 @@ def process_syllabus(
                     convert_file(str(md_file), "docx", str(docx_file))
                     results["by_format"]["docx"].append(str(docx_file))
                     results["summary"]["docx"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"DOCX generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -584,7 +585,7 @@ def process_syllabus(
                     convert_file(str(md_file), "html", str(html_file))
                     results["by_format"]["html"].append(str(html_file))
                     results["summary"]["html"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"HTML generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -599,7 +600,7 @@ def process_syllabus(
                     txt_file.write_text(text_content, encoding="utf-8")
                     results["by_format"]["txt"].append(str(txt_file))
                     results["summary"]["txt"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"TXT generation failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
@@ -612,12 +613,12 @@ def process_syllabus(
                     shutil.copy2(str(md_file), str(md_output_file))
                     results["by_format"]["md"].append(str(md_output_file))
                     results["summary"]["md"] += 1
-                except Exception as e:
+                except (OSError, ValueError) as e:
                     error_msg = f"MD copy failed for {md_file.name}: {e}"
                     logger.error(error_msg, exc_info=True)
                     results["errors"].append(error_msg)
 
-        except Exception as e:
+        except (OSError, ValueError) as e:
             logger.error(f"Processing failed for {md_file.name}: {e}", exc_info=True)
             results["errors"].append(f"Processing failed for {md_file.name}: {e}")
 
@@ -708,7 +709,7 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
             # Use DEBUG for per-directory details to reduce console verbosity
             logger.debug(f"Cleared {file_count} files and {dir_count} directories from {output_dir.relative_to(repo_root)}")
 
-        except Exception as e:
+        except (OSError, ValueError) as e:
             error_msg = f"Failed to clear {output_dir}: {e}"
             logger.error(error_msg, exc_info=True)
             results["errors"].append(error_msg)
@@ -823,7 +824,7 @@ def process_course_modules(
                 logger.info(
                     f"Website generated in {website_duration:.2f}s: {website_file}"
                 )
-            except Exception as e:
+            except (OSError, ValueError) as e:
                 error_msg = f"Failed to generate website for {module_name}: {e}"
                 logger.error(error_msg, exc_info=True)
                 results["errors"].append(error_msg)
@@ -941,10 +942,10 @@ def process_course_labs(
             if rendered["errors"]:
                 results["errors"].extend(rendered["errors"])
             logger.info(f"  {fmt.upper()}: {len(rendered['files'])} lab files rendered")
-        except Exception as e:
-            error_msg = f"Lab {fmt} rendering failed: {e}"
-            logger.error(error_msg, exc_info=True)
-            results["errors"].append(error_msg)
+        except (OSError, ValueError) as e:
+                error_msg = f"Lab {fmt} rendering failed: {e}"
+                logger.error(error_msg, exc_info=True)
+                results["errors"].append(error_msg)
 
     results["duration"] = time.time() - lab_start
     logger.info(
@@ -1015,10 +1016,10 @@ def process_course_practice_tests(
             logger.debug(f"Generating PDF: {pdf_file.name}")
             render_markdown_to_pdf(str(md_file), str(pdf_file))
             results["files"].append(str(pdf_file))
-        except Exception as e:
-            error_msg = f"PDF generation failed for {md_file.name}: {e}"
-            logger.error(error_msg, exc_info=True)
-            results["errors"].append(error_msg)
+        except (OSError, ValueError) as e:
+                error_msg = f"PDF generation failed for {md_file.name}: {e}"
+                logger.error(error_msg, exc_info=True)
+                results["errors"].append(error_msg)
 
     results["duration"] = time.time() - start_time
     logger.info(
@@ -1104,7 +1105,7 @@ def process_course_exams(
                     logger.debug(f"Generating DOCX: {out_file.name}")
                     convert_file(str(md_file), "docx", str(out_file))
                     results["files"].append(str(out_file))
-            except Exception as e:
+            except (OSError, ValueError) as e:
                 error_msg = f"{fmt.upper()} generation failed for {md_file.name}: {e}"
                 logger.error(error_msg, exc_info=True)
                 results["errors"].append(error_msg)

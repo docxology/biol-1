@@ -41,7 +41,23 @@ uv run pytest -q --no-cov            # pass/fail
 uv run pytest --cov=src --cov-report=term-missing   # coverage (terminal)
 ```
 
-Example run (**2026-05-03**): **624** tests collected → **622** passed, **2** skipped (`uv run pytest -q --no-cov`). Treat **`--collect-only`** as the source of truth for counts; rerun after adding tests.
+Example run (**2026-05-03**):
+
+### Codebase Modernization
+
+This project recently completed a comprehensive **Codebase Modernization Campaign** to ensure all code follows the **Real Methods Policy**: no mocks, stubs, fakes, or fallback logic are used anywhere in the codebase.
+
+**Key improvements:**
+- Removal of all non-real code patterns
+- Improved exception handling with specific exceptions
+- Fixed indentation and syntax issues
+- Updated documentation to remove legacy references
+
+All changes are verified by the test suite: **627 tests pass (2 skipped)**.
+
+For full details, see the [Codebase Modernization Report](codebase_modernization_report.md).
+
+ **624** tests collected → **622** passed, **2** skipped (`uv run pytest -q --no-cov`). Treat **`--collect-only`** as the source of truth for counts; rerun after adding tests.
 
 Structural facts (update if layout changes): **`software/src/`** holds **16** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
 

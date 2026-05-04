@@ -82,7 +82,7 @@
 
 ## Part C: Integrated Short Answer (25 points)
 
-*Five-question format: **5 points** each for **five** answered prompts (any five of seven). Seven-question format: **25** points **total** divided **evenly** across **seven** items (~**3.57** points each); award partial credit per prompt.*
+*Student submits **any five** of seven prompts; **5 points** each. Award partial credit.*
 
 **1. Mitosis vs. meiosis.**
 

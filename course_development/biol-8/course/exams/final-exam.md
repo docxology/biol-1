@@ -589,8 +589,25 @@ Connect **reproductive isolation** ideas to how populations can diverge toward s
 
 <br>
 
-**Essay option letter** (A, B, or C): \______
+**Essay option letter** (A, B, or C): \______  
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 
 ---

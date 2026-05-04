@@ -75,7 +75,7 @@ OUTPUT_DIRS = {
     "dashboards": "dashboards",
 }
 
-# Lab output formats: legacy default checked when no `formats` is supplied.
+# Lab output formats: default used when no `formats` is supplied (backward compatibility).
 # Kept for backward compatibility with callers that don't thread requested formats.
 LAB_OUTPUT_FORMATS = ["pdf", "html"]
 

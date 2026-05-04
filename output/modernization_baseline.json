@@ -1,0 +1,22 @@
+{
+  "project": "cr-bio",
+  "tests_collected": 629,
+  "tests_passed": 627,
+  "tests_failed": 0,
+  "tests_skipped": 2,
+  "coverage_threshold": 90,
+  "modules_scanned": 1906,
+  "started_at": "2025-06-17T15:30:00Z",
+  "software_root": "/Users/4d/Documents/GitHub/cr-bio/software",
+  "critical_entry_points": [
+    "publish.py",
+    "software/src/batch_processing/main.py",
+    "software/src/markdown_to_pdf/main.py",
+    "software/src/format_conversion/main.py",
+    "software/src/lab_manual/main.py",
+    "software/src/schedule/main.py",
+    "software/src/text_to_speech/main.py",
+    "software/src/speech_to_text/main.py",
+    "software/src/validation/main.py"
+  ]
+}

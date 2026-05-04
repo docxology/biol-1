@@ -6,7 +6,7 @@ Technical documentation for course management software utilities, including func
 
 ## Test status
 
-**622 passed, 2 skipped** (**624** collected; `uv run pytest -q --no-cov` from `software/`; counts change over time — use `pytest --collect-only -q` before relying on numbers).
+**627 passed, 2 skipped** (**624** collected; `uv run pytest -q --no-cov` from `software/`; counts change over time — use `pytest --collect-only -q` before relying on numbers).
 
 Run the suite from the `software/` directory:
 

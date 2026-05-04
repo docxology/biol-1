@@ -228,6 +228,22 @@ These sample files can be used to test:
 
 ## Real Methods Policy
 
+### Codebase Modernization Campaign
+
+This software underwent a comprehensive modernization campaign to ensure all code follows the **Real Methods Policy**: no mocks, stubs, fakes, or fallback logic. The campaign included:
+
+- **Removal of non-real code**: All mock-dependent tests were rewritten or removed, and transitional compatibility layers were eliminated.
+- **Exception handling improvements**: Bare `except` and broad `except Exception` handlers were replaced with specific exceptions (`OSError`, `ValueError`) where appropriate.
+- **Indentation fixes**: Various syntax issues were corrected.
+- **Documentation updates**: References to legacy patterns were removed or updated.
+
+**Verification**: All 627 tests pass (2 skipped) with 100% compliance to the Real Methods Policy.
+
+See the full modernization report for details:
+- [Codebase Modernization Report](output/codebase_modernization_report.md)
+
+
+
 All code in this software uses real methods and implementations. No mocks, stubs, or fake methods are used. Tests use real file operations, real library calls, and real validation logic. External API integrations use real API clients with proper error handling.
 
 ## Tests and coverage

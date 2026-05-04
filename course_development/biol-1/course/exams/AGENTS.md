@@ -14,7 +14,7 @@ Source markdown for unit exams and answer keys. The batch pipeline renders these
 | `final-exam.md`, `final-exam_key.md` | Comprehensive final | **01–15** |
 | `exam-template.md` | — | Scaffold / alternate 100-pt style |
 
-Unit exams use a **50-point** layout: Part A **30** MC, Part B **11** fill-in (word bank), Part C **9** points free response (choose **three** of **five**). The **final** uses **100** points: Part A **45** MC (three per module), Part B **15** fill-in (19-term bank, four distractors), Part C **seven** short-answer prompts (**25** pts—**five**- or **seven**-question administration per instructor), Part D **one** essay (**15** pts) chosen from three prompts.
+Unit exams use a **50-point** layout: Part A **30** MC, Part B **11** fill-in (word bank), Part C **9** points free response (choose **three** of **five**). The **final** uses **100** points: Part A **45** MC (three per module), Part B **15** fill-in (19-term bank, four distractors), Part C **seven** prompts—students **choose any five** (**25** pts; **5** each), Part D **one** essay (**15** pts) chosen from three prompts.
 
 ## Processing
 
