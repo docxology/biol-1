@@ -33,31 +33,15 @@ flowchart LR
 
 ## Verify tests and coverage
 
-Counts change as the suite grows. From `software/`:
+Treat counts as dynamic. From `software/`:
 
 ```bash
-uv run pytest --collect-only -q    # test count
-uv run pytest -q --no-cov            # pass/fail
-uv run pytest --cov=src --cov-report=term-missing   # coverage (terminal)
+uv run pytest --collect-only -q    # authoritative inventory
+uv run pytest -q --no-cov            # pass/fail (+ skipped markers)
+uv run pytest --cov=src --cov-report=term-missing   # coverage on default run (pyproject `addopts`)
 ```
 
-Example run (**2026-05-03**):
-
-### Codebase Modernization
-
-This project recently completed a comprehensive **Codebase Modernization Campaign** to ensure all code follows the **Real Methods Policy**: no mocks, stubs, fakes, or fallback logic are used anywhere in the codebase.
-
-**Key improvements:**
-- Removal of all non-real code patterns
-- Improved exception handling with specific exceptions
-- Fixed indentation and syntax issues
-- Updated documentation to remove legacy references
-
-All changes are verified by the test suite: **627 tests pass (2 skipped)**.
-
-For full details, see the [Codebase Modernization Report](codebase_modernization_report.md).
-
- **624** tests collected → **622** passed, **2** skipped (`uv run pytest -q --no-cov`). Treat **`--collect-only`** as the source of truth for counts; rerun after adding tests.
+The suite follows the **Real Methods Policy**: no mocks, stubs, or fakes ([`.cursorrules`](../../.cursorrules), [docs/AGENTS.md](AGENTS.md)).
 
 Structural facts (update if layout changes): **`software/src/`** holds **16** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
 
@@ -217,13 +201,13 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 | **keys-to-success.md** | 15 | 17 | One per `course/module-*` |
 | **questions.md** | 15 | 17 | One per module |
 | **Labs** | 17 protocols + dashboards | 18 protocols + dashboards | See each course `course/labs/` |
-| **Exams** | 2 + keys on disk | 3 + keys on disk | Teacher-only; see `course/exams/` |
+| **Exams** | Unit `exam-01`–`exam-03` + `final-exam` + keys (+ `exam-template`); `include_exams` not used in BIOL-1 slice of `publish.toml`—render when wired | `exam-01`–`exam-03` + `final-exam` + keys (`publish.toml`: `include_exams`) | Teacher-only; never pushed to public course repos |
 | **Quizzes** | Templates | 17 × 2 files | BIOL-8 full set in `course/quizzes/` |
 | **Practice tests** | 3 + keys | 12 + keys (on disk) | `course/practice_tests/` |
 | **Syllabus** | 2 sources | 2 sources | + `syllabus/output/` |
 | **Schedule** | 1 source | 1 source | + rendered outputs |
 | **Slides** | 30 PDFs in `resources/slides/` (module **9** missing both variants) | 15 PDFs in `resources/slides/` | Pre-generated; not rendered by pipeline |
-| **Website output** | Per-module `output/website/` | Per-module `output/website/` | After generation |
+| **Website output** | `module-*/output/website/index.html` after generation | Same | **Not** retained in public `PUBLISHED/<course>/` layout: `reorganize_to_categories` removes per-module `index.html` when building `homework/` + `module_keys/` (see [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md#published-directory-structure)) |
 
 ### Priority actions (high level)
 
@@ -316,6 +300,8 @@ See [../../.cursorrules](../../.cursorrules) for the complete policy statement.
 ---
 
 ## Documentation Map
+
+Authoritative doc set under `software/docs/`: README (this file), AGENTS (standards), ARCHITECTURE, ORCHESTRATION, QUICKSTART, COURSE_STRUCTURE, LAB_FORMAT, DASHBOARD_FORMAT, OUTPUT_PDF, OUTPUT_DOCX, OUTPUT_HTML, OUTPUT_AUDIO.
 
 ```
 software/
@@ -430,6 +416,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 0.1.0 | 2026-05-04 | `software/docs/` pass: publish pipeline steps aligned with `publish_all.py`/`publish.py`; `PUBLISHED/` layout, BIOL-8 lab filenames, exam inventory, website publish behavior. |
 | 0.1.0 | 2026-02-23 | Pipeline logging improvements: 9-step renumber, per-step timing, publish_course collapse, validate_published scan reduction. TO-DO-PACKAGE.md added to `software/src/`. |
 | 0.1.0 | 2026-02-23 | Comprehensive BIOL-1 Modules 7-11 Labs completion and repo-wide synchronization. |
 | 0.1.0 | 2026-02-08 | Documentation consolidation (absorbed HOW_IT_WORKS, GENERATION, DOCUMENT_TYPES) |

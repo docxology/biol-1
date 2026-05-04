@@ -6,13 +6,14 @@ Technical documentation for course management software utilities, including func
 
 ## Test status
 
-**627 passed, 2 skipped** (**624** collected; `uv run pytest -q --no-cov` from `software/`; counts change over time — use `pytest --collect-only -q` before relying on numbers).
+**628 passed, 2 skipped** (**630** collected with `uv run pytest --collect-only -q -o addopts=''` from `software/`; counts change over time — use `pytest --collect-only` before relying on numbers).
 
 Run the suite from the `software/` directory:
 
 ```bash
-cd software && uv run pytest -q --no-cov   # fast pass
-cd software && uv run pytest                # with coverage report
+cd software && uv run pytest -q -o addopts=''   # fast pass without coverage hooks (clean totals)
+cd software && uv run pytest -q --no-cov        # fast pass; honors pyproject addopts where applicable
+cd software && uv run pytest                    # full run with term-missing coverage (pyproject addopts)
 ```
 
 Coverage is reported per-module on every run (`--cov-report=term-missing` is enabled in `pyproject.toml`). Numbers vary as tests evolve; check the most recent report rather than relying on a static table.

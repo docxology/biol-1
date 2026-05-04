@@ -1,6 +1,6 @@
 # Dashboard Format Guide
 
-> **Navigation**: [← Lab Format](LAB_FORMAT.md) | [README](README.md) | [Architecture](ARCHITECTURE.md) | [Output HTML](OUTPUT_HTML.md)
+> **Navigation**: [← Lab Format](LAB_FORMAT.md) | [README](README.md) | [Course Structure](COURSE_STRUCTURE.md) | [Architecture](ARCHITECTURE.md) | [Output HTML](OUTPUT_HTML.md)
 
 Complete guide for building interactive lab dashboards. Dashboards are standalone HTML pages with Canvas-based visualizations, simulations, and interactive learning tools that complement each lab protocol.
 

@@ -61,6 +61,21 @@ def test_parse_part_a_preserves_module_heading(sm) -> None:
     assert trailing == ""
 
 
+def test_parse_part_a_plain_ordered_list_stem(sm) -> None:
+    body = """### Module 01 — X
+
+1. Stem line
+    - A) a
+    - B) b
+    - C) c
+    - D) d
+"""
+    qs, _ = sm.parse_part_a_questions(body, validate_span=False)
+    assert len(qs) == 1
+    assert qs[0].number == 1
+    assert "**1.** Stem line" in qs[0].preamble_lines
+
+
 def test_parse_part_a_skips_blank_lines_between_options(sm) -> None:
     body = """**1.** Stem
 

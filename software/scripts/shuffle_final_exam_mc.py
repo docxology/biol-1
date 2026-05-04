@@ -4,6 +4,8 @@
 Reads canonical correct-letter positions from the legacy (pre-shuffle) exam layout,
 then assigns target keyed letters using FINAL_MC_SEED and per-question distractor shuffles.
 
+Part A stems may be authored as `**N.**` or plain ordered-list `N.` (both are parsed).
+
 Usage:
     uv run python scripts/shuffle_final_exam_mc.py [--dry-run]
     uv run python scripts/shuffle_final_exam_mc.py --spacing-only
@@ -84,6 +86,9 @@ class MCQuestion:
 
 
 _OPTION_LINE = re.compile(r"^(\s*)-\s([A-D])\)\s(.*)$")
+_QUESTION_HEADER_BOLD = re.compile(r"^(\*\*(\d+)\.\*\*)(.*)$")
+# Ordered list style used in current `final-exam.md` (plain `1.` … `45.`, not `**1.**`).
+_QUESTION_HEADER_PLAIN = re.compile(r"^(\d+)\.\s+(.*)$")
 
 
 def _norm_txt(s: str) -> str:
@@ -106,27 +111,52 @@ def _split_part_a(md: str) -> tuple[str, str, str]:
     return head, part_a, tail
 
 
+def _part_a_split_at_question_one(part_a: str) -> tuple[str, str]:
+    """Split Part A into intro (through newline before Q1) and body starting at Q1 line."""
+    bold = re.search(r"\n\*\*1\.\*\*", part_a)
+    plain = re.search(r"\n1\.\s+", part_a)
+    candidates: list[tuple[int, str]] = []
+    if bold:
+        candidates.append((bold.start(), "bold"))
+    if plain:
+        candidates.append((plain.start(), "plain"))
+    if not candidates:
+        raise ValueError(
+            "Could not find question 1 in Part A (expected a line starting with **1.** or plain '1. ')."
+        )
+    idx = min(c[0] for c in candidates)
+    intro = part_a[: idx + 1]
+    body_from_q1 = part_a[idx + 1 :]
+    return intro, body_from_q1
+
+
 def parse_part_a_questions(
     part_a_body: str, *, validate_span: bool = True
 ) -> tuple[list[MCQuestion], str]:
-    """Parse MC question blocks starting at **1.** through **45.** plus trailing lines (e.g. rule)."""
+    """Parse MC blocks for questions 1–45 (stems as **N.** or plain ordered-list `N.`)."""
     lines = part_a_body.splitlines()
     questions: list[MCQuestion] = []
     buffer: list[str] = []
     i = 0
 
     while i < len(lines):
-        mnum = re.match(r"^(\*\*\d+\.\*\*)(.*)$", lines[i])
+        mnum = _QUESTION_HEADER_BOLD.match(lines[i])
+        plain_m: re.Match[str] | None = None
         if not mnum:
+            plain_m = _QUESTION_HEADER_PLAIN.match(lines[i])
+        if not mnum and not plain_m:
             buffer.append(lines[i])
             i += 1
             continue
 
-        digits_m = re.search(r"\d+", mnum.group(1))
-        if digits_m is None:
-            raise ValueError(f"Malformed question header: {lines[i]!r}")
-        digits = int(digits_m.group())
-        preamble = buffer + [mnum.group(1) + mnum.group(2)]
+        if mnum:
+            digits = int(mnum.group(2))
+            stem_line = mnum.group(1) + mnum.group(3)
+        else:
+            assert plain_m is not None
+            digits = int(plain_m.group(1))
+            stem_line = f"**{digits}.** {plain_m.group(2)}"
+        preamble = buffer + [stem_line]
         buffer = []
         i += 1
 
@@ -205,11 +235,7 @@ def render_question(q: MCQuestion, indent: str = "    ") -> str:
 
 def shuffle_exam_markdown(md: str, seed: int = FINAL_MC_SEED) -> tuple[str, list[str]]:
     head, part_a, tail = _split_part_a(md)
-    idx = part_a.find("\n**1.**")
-    if idx < 0:
-        raise ValueError("Could not find first MC question **1.** in Part A.")
-    intro = part_a[: idx + 1]
-    body_from_q1 = part_a[idx + 1 :]
+    intro, body_from_q1 = _part_a_split_at_question_one(part_a)
     questions, trailing = parse_part_a_questions(body_from_q1.lstrip("\n"))
 
     targets = target_letters(seed)
@@ -297,8 +323,7 @@ _LEGACY_CORRECT_TEXTS: Final[dict[int, str]] = {
 
 def crosswalk_verify(shuffled_md: str, keyed: list[str]) -> None:
     _, part_a, _ = _split_part_a(shuffled_md)
-    idx = part_a.find("\n**1.**")
-    body_from_q1 = part_a[idx + 1 :] if idx >= 0 else part_a
+    _, body_from_q1 = _part_a_split_at_question_one(part_a)
     questions, _ = parse_part_a_questions(body_from_q1.lstrip("\n"))
     for q, ans in zip(questions, keyed, strict=True):
         at_letter = _norm_txt(q.options[ans])
@@ -340,11 +365,7 @@ def reshape_part_a_spacing(md: str, keyed: list[str]) -> str:
     """Re-render Part A with blank lines after the stem and between options (no reordering)."""
     crosswalk_verify(md, keyed)
     head, part_a, tail = _split_part_a(md)
-    idx = part_a.find("\n**1.**")
-    if idx < 0:
-        raise ValueError("Could not find first MC question **1.** in Part A.")
-    intro = part_a[: idx + 1]
-    body_from_q1 = part_a[idx + 1 :]
+    intro, body_from_q1 = _part_a_split_at_question_one(part_a)
     questions, trailing = parse_part_a_questions(body_from_q1.lstrip("\n"))
     rebuilt_blocks = "\n\n".join(render_question(q) for q in questions)
     new_part_a = intro.rstrip("\n") + "\n\n" + rebuilt_blocks + "\n"

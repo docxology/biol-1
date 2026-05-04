@@ -100,6 +100,8 @@ The first two lines are always:
 1. **H1 title**: `# Lab X: Title — Subtitle`
 2. **Course line**: `**BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus`
 
+For **BIOL-1** labs, substitute the Pelican Bay / BIOL-1 course line used in sibling labs so the subtitle matches deployment context.
+
 The `lab_manual` module strips these when `include_header=True` (default) to avoid duplicating the rendered header block.
 
 ---

@@ -126,9 +126,9 @@ course/labs/
 ├── lab-05_ph-solutions.md
 ├── lab-06_central-dogma.md
 ├── lab-07_cell-division.md
-├── lab-08_inheritance.md
-├── lab-09_enzymes.md
-├── lab-10_tissues.md
+├── lab-08_enzymes.md
+├── lab-09_inheritance.md
+├── lab-10_review.md
 ├── lab-11_skeletal-system.md
 ├── lab-12_muscular-system.md
 ├── lab-13_nervous-system.md
@@ -138,11 +138,10 @@ course/labs/
 ├── lab-16_exam-03-review.md
 ├── lab-17_ecology.md
 ├── lab-18_evolution.md
-├── dashboards/                    # Interactive HTML dashboards
+├── dashboards/
 │   ├── lab-01_measurement-methods-dashboard.html
-│   ├── ...
-│   └── lab-18_evolution-dashboard.html
-└── output/                        # Generated PDFs and HTML
+│   └── …
+└── output/
 ```
 
 ### File Naming
@@ -169,9 +168,9 @@ course/exams/
 └── output/                        # Local renders (PDF, DOCX, etc.); never published publicly
 ```
 
-**BIOL-1 (verify on disk):** **Two** exams with keys are common (e.g. `exam-01`, `exam-03`). **`exam-03` is the second-unit exam spanning modules 07–11**, not necessarily “modules 12–15” — course numbering is not interchangeable with BIOL-8 or generic templates.
+**BIOL-1:** On-disk unit exams **`exam-01`**, **`exam-02`**, **`exam-03`** (with keys); cumulative **`final-exam.md`** + key; **`exam-template.md`** scaffold. Naming vs unit order is course-specific ([`course/exams/AGENTS.md`](../../course_development/biol-1/course/exams/AGENTS.md)). BIOL-1 `publish.toml` does not set `include_exams` — local renders follow whatever the generation script includes.
 
-**BIOL-8:** **Three** unit exams with keys (`exam-01` … `exam-03`; scopes **01–06**, **07–10**, **11–15**; typically **50 points** each — see headers). **`final-exam.md`** + key cover **modules 01–17** at **100** points (see `course_development/biol-8/course/exams/README.md`).
+**BIOL-8:** **Three** unit exams with keys (`exam-01` … `exam-03`; scopes **01–06**, **07–10**, **11–15**; typically **50 points** each — see headers). **`final-exam.md`** + key cover **modules 01–17** at **100** points ([`course/exams/README.md`](../../course_development/biol-8/course/exams/README.md)). `publish.toml`: `include_exams = true` renders into `course/exams/output/` locally.
 
 > ⚠️ Exams and answer keys are **never published** to public student-facing repositories.
 
@@ -214,34 +213,25 @@ syllabus/
 
 ---
 
-## Published Directory Structure
+## Published directory structure {#published-directory-structure}
 
-After the publish pipeline runs, the `PUBLISHED/` directory contains:
+After **`publish_all.py`** (steps **7–8**) and root **`publish.py`** aggregation, each `PUBLISHED/biol-{1,8}/` tree is **category-first**, not nested `modules/` websites:
 
 ```
-PUBLISHED/
-├── biol-1/
-│   ├── modules/                   # Study guides and questions
-│   │   ├── module-01/
-│   │   │   ├── keys-to-success.pdf
-│   │   │   ├── keys-to-success.docx
-│   │   │   ├── questions.pdf
-│   │   │   └── questions.docx
-│   │   └── ...
-│   ├── labs/                      # Lab protocols
-│   ├── syllabus/                  # Syllabus and schedule
-│   ├── slides/                    # Lecture slides
-│   └── websites/                  # Interactive websites
-│
-└── biol-8/
-    ├── modules/
-    ├── labs/
-    ├── syllabus/
-    ├── slides/
-    └── websites/
+PUBLISHED/biol-X/
+├── homework/           # flattened *questions* study-guide artifacts
+├── module_keys/        # flattened *keys-to-success* artifacts
+├── labs/               # lab PDF/HTML (and related) copies
+├── dashboards/         # lab dashboard HTML
+├── slides/             # slide PDF mirrors
+├── practice_tests/     # copied practice assessments
+├── course/             # syllabus + schedule outputs (merged from published syllabus/)
+├── ALL_FILES/          # optional duplicate flat mirror (`publish.toml` pipeline.all_files)
+└── …                   # other copies as the publish scripts evolve
 ```
 
-The `flatten` pipeline stage reorganizes outputs into these categories.
+- Per-module **`index.html`** sites exist under **`course_development/.../module-*/output/website/`** after generation. **`reorganize_to_categories()`** deletes `index.html` from temporary `module-*` folders inside `PUBLISHED/` while building **`homework/`** and **`module_keys/`**, so student-facing repos do **not** retain those interactive bundle files unless the pipeline changes.
+- Exact folder set can drift slightly; authoritative behavior is **`software/src/publish/copy_extras.py`** (`reorganize_to_categories`) and **`publish.py`** (`flatten_all_files`).
 
 ---
 
@@ -251,9 +241,9 @@ The `flatten` pipeline stage reorganizes outputs into these categories.
 |---------|--------|--------|
 | **Setting** | Pelican Bay Prison | CR Del Norte Campus |
 | **Content modules (`module-*`)** | 15 | 17 |
-| **Slides** | 30 PDFs in course `resources/slides/` (module **9** may lack full + notes pair) | 15 PDFs in course `resources/slides/` |
+| **Slides** | Central `resources/slides/` (BIOL-1: numbered `module-N-*` pairs; module **9** may lack pair) | Central `resources/slides/` (+ optional PDFs under `module-*/resources/`) |
 | **Labs (+ dashboards)** | 17 protocols + dashboards | 18 protocols + dashboards |
-| **Exams (on disk)** | 2 + keys (`course/exams/`) | 3 + keys (unit exams **01–03**) |
+| **Exams (on disk)** | Unit `exam-01`–`exam-03`, cumulative `final-exam`, keys (+ template) | `exam-01`–`exam-03`, `final-exam`, keys |
 | **Quizzes (`course/quizzes/`)** | Template(s) only | 17 × 2 (student + key) |
 | **Practice tests** | 3 + keys | 12 + keys (verify on disk) |
 | **Private directory** | Includes facility-specific material | Standard private layout |
@@ -264,8 +254,8 @@ The `flatten` pipeline stage reorganizes outputs into these categories.
 
 | Document | Description |
 |----------|-------------|
-| [LAB_FORMAT.md](LAB_FORMAT.md) | Lab protocol authoring guide |
+| [README.md](README.md) | Course parity + config index |
 | [DASHBOARD_FORMAT.md](DASHBOARD_FORMAT.md) | Dashboard format guide |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Software architecture |
-| [ORCHESTRATION.md](ORCHESTRATION.md) | Pipeline workflows |
+| [ORCHESTRATION.md](ORCHESTRATION.md#the-publish-pipeline) | Canonical `publish_all.py` steps and root `publish.py` behavior |
 | [QUICKSTART.md](QUICKSTART.md) | Setup and quick commands |

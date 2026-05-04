@@ -228,23 +228,13 @@ These sample files can be used to test:
 
 ## Real Methods Policy
 
-### Codebase Modernization Campaign
+### Codebase maintenance
 
-This software underwent a comprehensive modernization campaign to ensure all code follows the **Real Methods Policy**: no mocks, stubs, fakes, or fallback logic. The campaign included:
+The **Real Methods Policy** applies throughout `src/` and `tests/`: real libraries, real I/O, no mocks in tests (see [`.cursorrules`](../../.cursorrules)). Production code avoids stubs; tests exercise real file operations and converters. External integrations use real clients and handle errors explicitly.
 
-- **Removal of non-real code**: All mock-dependent tests were rewritten or removed, and transitional compatibility layers were eliminated.
-- **Exception handling improvements**: Bare `except` and broad `except Exception` handlers were replaced with specific exceptions (`OSError`, `ValueError`) where appropriate.
-- **Indentation fixes**: Various syntax issues were corrected.
-- **Documentation updates**: References to legacy patterns were removed or updated.
+Orchestration code uses **specific exception types** in inner loops where recovery is clear, and **broad handlers at batch boundaries** where one bad file should not abort an entire course run.
 
-**Verification**: All 627 tests pass (2 skipped) with 100% compliance to the Real Methods Policy.
-
-See the full modernization report for details:
-- [Codebase Modernization Report](output/codebase_modernization_report.md)
-
-
-
-All code in this software uses real methods and implementations. No mocks, stubs, or fake methods are used. Tests use real file operations, real library calls, and real validation logic. External API integrations use real API clients with proper error handling.
+**Verification**: from `software/`, run `uv run pytest -o addopts=''` (or the commands under **Tests and coverage** below). See [Codebase modernization notes](output/codebase_modernization_report.md) for a concise change summary; measure pass/skip totals with `pytest` rather than quoting fixed counts in docs.
 
 ## Tests and coverage
 

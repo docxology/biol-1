@@ -264,6 +264,8 @@ python publish.py --override-formats pdf,html,md
 python publish.py --override-formats pdf,docx,html,txt,md,mp3
 ```
 
+After a successful run, root [`publish.py`](../../publish.py) may also build per-course **`ALL_FILES/`** duplicates and perform git operations—see [ORCHESTRATION.md#the-publish-pipeline](ORCHESTRATION.md#the-publish-pipeline).
+
 **Configuration** (`publish.toml`):
 
 | Setting | Description |

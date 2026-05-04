@@ -34,16 +34,16 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **2.** Typical levels inside one multicellular vertebrate ascend from grouped cells upward as:
 
-- A) Lysosome toward ecosystem falsely  
-- B) Allele toward gamete falsely  
+- A) Lysosome toward ecosystem
+- B) Allele toward gamete
 - C) Cell toward tissue toward organ toward organ system  
-- D) Chloroplast toward virus falsely  
+- D) Chloroplast toward virus
 
 **3.** Natural selection reshapes allele frequencies largely through:
 
 - A) Osmosis replacing meiosis  
 - B) Lysosomes stripping chromosomes nightly  
-- C) Chlorophyll in human erythrocytes falsely  
+- C) Chlorophyll in human erythrocytes
 - D) Uneven survival and reproduction linked to heritable variants  
 
 ---
@@ -53,7 +53,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 **4.** Atomic **mass number** for a stated isotope counts:
 
 - A) Ionic charge squared  
-- B) Electron shells minus neutrons falsely  
+- B) Electron shells minus neutrons
 - C) Nuclear protons **plus** nuclear neutrons in that nucleus  
 - D) Molecular weight of seawater only  
 
@@ -102,24 +102,24 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **10.** Rough endoplasmic reticulum appears studded with cytosolic:
 
-- A) Lysosomes digesting the nucleus falsely  
+- A) Lysosomes digesting the nucleus
 - B) Ribosomes co-translating secretory and membrane proteins  
-- C) Chloroplast DNA replication in all animal cells falsely  
-- D) Mitochondrial ribosomes attaching to Golgi falsely  
+- C) Chloroplast DNA replication in all animal cells
+- D) Mitochondrial ribosomes attaching to Golgi
 
 **11.** Lysosomes mainly:
 
-- A) Produce bulk aerobic ATP falsely  
-- B) Carry photosynthetic pigments falsely  
-- C) Fuse only with mitochondria falsely  
+- A) Produce bulk aerobic ATP
+- B) Carry photosynthetic pigments
+- C) Fuse only with mitochondria
 - D) House acidic hydrolytic enzymes degrading engulfed material and aging organelles  
 
 **12.** Compared with spinach mesophyll cells, typical mammal skeletal muscle fibers lack prominent:
 
-- A) Genetic material falsely  
+- A) Genetic material
 - B) Chloroplast-containing photosynthesis organelles  
-- C) Plasma membranes falsely  
-- D) Translating ribosomes falsely  
+- C) Plasma membranes
+- D) Translating ribosomes
 
 ---
 
@@ -127,21 +127,21 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **13.** The **fluid mosaic** model summarizes plasma membranes as:
 
-- A) Mosaic virus coats only falsely  
-- B) Calcium phosphate trabecula only falsely  
+- A) Mosaic virus coats only
+- B) Calcium phosphate trabecula only
 - C) Lipid bilayer with drifting proteins plus diverse surface carbohydrate trees  
-- D) Peptidoglycan bacterial walls falsely  
+- D) Peptidoglycan bacterial walls
 
 **14.** **Osmosis** refers especially to:
 
-- A) Chloride hopping channels mis-called osmosis  
+- A) Net diffusion of chloride ions through open membrane channels only  
 - B) Genetic drift sampling  
 - C) Oxygen bound to hemoglobin  
 - D) Diffusion of water toward osmotic balance across selective barriers  
 
 **15.** **Isotonic** bathing fluid relative to mammal red blood cells in intro cartoons minimizes:
 
-- A) Osmosis falsely stopping completely  
+- A) Osmosis stopping completely  
 - B) Large-scale cell swelling versus pure water extremes or large-scale shrinking versus very salty extremes  
 - C) All membrane protein motion  
 - D) Gene transcription entirely  
@@ -159,8 +159,8 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **17.** Much **aerobic** ATP yield localizes to mitochondria because those organelles organize:
 
-- A) Chlorophyll photochemistry in human liver falsely  
-- B) Binary fission spindles falsely  
+- A) Chlorophyll photochemistry in human liver
+- B) Binary fission spindles
 - C) Electron transport and chemiosmotic ATP synthase coupling  
 - D) Rough ER translation alone  
 
@@ -168,7 +168,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 - A) Melting nuclear lamins  
 - B) Binding the active site so substrate enters less often  
-- C) Digesting all substrates with lysozyme falsely  
+- C) Digesting all substrates with lysozyme
 - D) Denaturing every protein permanently at once  
 
 ---
@@ -192,7 +192,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 **21.** A standard chemical contrast between RNA and DNA bases is that many RNA transcripts include **uracil** where complementary DNA shows **thymine**. That means RNA often pairs adenine with:
 
 - A) Uracil  
-- B) Thymine on the same RNA strand falsely  
+- B) Thymine on the same RNA strand
 - C) Peptide bonds  
 - D) Only guanine exclusively  
 
@@ -216,7 +216,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **24.** Human sperm and egg are ordinarily **haploid (n)** relative to **diploid (2n)** somatic cells because:
 
-- A) Mitosis doubles chromosome number in gonads falsely  
+- A) Mitosis doubles chromosome number in gonads
 - B) Meiosis partitions homologs into gametes before fertilization restores zygote ploidy  
 - C) Lysosomes strip one copy nightly  
 - D) Viruses remove chromosomes  
@@ -236,8 +236,8 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 - A) Mechanical digestion with chemical digestion  
 - B) Only endocrine signaling  
-- C) Mitosis with cytokinesis falsely  
-- D) Meiosis with binary fission falsely  
+- C) Mitosis with cytokinesis
+- D) Meiosis with binary fission
 
 **27.** In standard maps, **arteries** carry blood:
 
@@ -260,7 +260,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 **29.** For one gene with complete dominance, a monohybrid **Aa × Aa** cross often yields offspring phenotypes near:
 
 - A) 1 dominant : 3 recessive  
-- B) 9 : 3 : 3 : 1 for one gene falsely  
+- B) 9 : 3 : 3 : 1 for one gene
 - C) 3 dominant-looking : 1 recessive-looking  
 - D) All recessive  
 
@@ -277,10 +277,10 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **31.** In adults, **hematopoiesis** mainly occurs in:
 
-- A) Compact bone shafts only falsely  
-- B) Yellow marrow exclusively for all blood lineages falsely  
+- A) Compact bone shafts only
+- B) Yellow marrow exclusively for all blood lineages
 - C) Red bone marrow in spongy bone regions  
-- D) Synovial fluid only falsely  
+- D) Synovial fluid only
 
 **32.** Which skeleton category includes skull bones, vertebrae, and rib cage?
 
@@ -292,9 +292,9 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 **33.** Freely movable joints such as elbow and knee with synovial fluid lubrication classify as:
 
 - A) Fibrous sutures cranial-only  
-- B) Syndesmoses without movement falsely  
+- B) Syndesmoses without movement
 - C) Synovial (diarthroses) permitting varied motion ranges  
-- D) Physeal cartilage after epiphyseal closure falsely  
+- D) Physeal cartilage after epiphyseal closure
 
 ---
 
@@ -305,7 +305,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 - A) Actin  
 - B) Troponin only  
 - C) Myosin  
-- D) Titin scaffolding only falsely  
+- D) Titin scaffolding only
 
 **35.** Sliding filament explanation of contraction holds that shortening occurs because:
 
@@ -317,7 +317,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 **36.** The neuromuscular junction releases which neurotransmitter to initiate skeletal muscle fiber depolarization?
 
 - A) Dopamine  
-- B) Norepinephrine only universally falsely  
+- B) Norepinephrine only universally
 - C) Glycine  
 - D) Acetylcholine  
 
@@ -337,7 +337,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 - A) Dendrite  
 - B) Astrocyte foot  
 - C) Axon  
-- D) Synovial fold falsely  
+- D) Synovial fold
 
 **39.** The **sympathetic** autonomic division is associated with mobilizing the body for stress (“fight-or-flight”), including effects such as:
 
@@ -352,9 +352,9 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **40.** A typical bacterial cell differs from a human cell mainly because bacterial DNA lacks:
 
-- A) Ribosomes falsely  
-- B) Plasma membrane falsely  
-- C) Cytoplasm falsely  
+- A) Ribosomes
+- B) Plasma membrane
+- C) Cytoplasm
 - D) Membrane enclosing a nucleus (DNA in a nucleoid region)  
 
 **41.** Common bacterial growth by one cell becoming two daughters is termed:
@@ -366,9 +366,9 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **42.** Introductory rationales classify viruses as non-cellular partly because viruses:
 
-- A) Lack genetic material falsely  
-- B) Carry out transcription without hosts always falsely  
-- C) Are invisible to microscopy falsely  
+- A) Lack genetic material
+- B) Carry out transcription without hosts always
+- C) Are invisible to microscopy
 - D) Depend on host cell machinery for replication  
 
 ---
@@ -378,21 +378,21 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 **43.** Oxygen-poor systemic venous return enters the heart first in the:
 
 - A) Right atrium  
-- B) Left atrium falsely  
-- C) Left ventricle falsely  
-- D) Pulmonary veins falsely  
+- B) Left atrium
+- C) Left ventricle
+- D) Pulmonary veins
 
 **44.** In alveoli, **carbon dioxide** moves predominantly:
 
-- A) From inhaled air into arteries falsely  
+- A) From inhaled air into arteries
 - B) From pulmonary capillary blood into alveolar air to be exhaled  
-- C) From neurons into saliva falsely  
-- D) Against partial pressure gradients always without diffusion falsely  
+- C) From neurons into saliva
+- D) Against partial pressure gradients always without diffusion
 
 **45.** Most **oxygen** in arterial blood is carried bound to:
 
 - A) Plasma albumin exclusively  
-- B) Platelet granules falsely  
+- B) Platelet granules
 - C) Hemoglobin  
 - D) Cortisol  
 
@@ -402,7 +402,7 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **46.** Compared with exponential (**J-shaped**) growth unchecked, logistic (**S-shaped**) growth differs mainly because:
 
-- A) Carrying capacity is always zero falsely  
+- A) Carrying capacity is always zero
 - B) Population increase slows as abundance approaches limiting resources / **K**  
 - C) Death rate exceeds birth rate instantly always  
 - D) Density-dependent factors disappear  
@@ -411,14 +411,14 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 - A) Competitive exclusion pairwise  
 - B) Mutualism (both organisms benefit overall)  
-- C) Ammensalism universally falsely  
+- C) Amensalism universally
 - D) Primary succession only  
 
 **48.** Passing energy through successive trophic levels, relative biomass and usable energy reaching top consumers tends to remain low because much energy between transfers is:
 
 - A) Stored perfectly at apex carnivores only  
-- B) Increased without thermodynamic losses falsely  
-- C) Converted wholly into biomass at each step falsely  
+- B) Increased without thermodynamic losses
+- C) Converted wholly into biomass at each step
 - D) Lost heavily as metabolic heat degrading achievable biomass at upper levels versus producers  
 
 ---
@@ -427,21 +427,21 @@ Answer **all** questions in **Parts A and B**. In **Part C**, answer **exactly f
 
 **49.** Individuals do not evolve in the population genetics sense mainly because evolution tracks:
 
-- A) Lysosomal fusion rates falsely  
-- B) Osmosis rewriting DNA falsely  
-- C) Chloroplast segregation falsely  
+- A) Lysosomal fusion rates
+- B) Osmosis rewriting DNA
+- C) Chloroplast segregation
 - D) Allele-frequency change across generations  
 
 **50.** Dolphins (mammals) and sharks (fish) show streamlined shapes suited to marine life owing to which pattern—similar traits evolving independently rather than reflecting recent shared limb blueprints alone?
 
-- A) Phylogeny without adaptation falsely  
+- A) Phylogeny without adaptation
 - B) Genetic drift dominating ocean basins exclusively  
 - C) Convergent evolution producing analogous forms  
 - D) Sympatric speciation always  
 
 **51.** **Homology** in comparative biology commonly signals:
 
-- A) Identical DNA sequences in every species falsely  
+- A) Identical DNA sequences in every species
 - B) Shared ancestry underlying similar structures even if functions diverge  
 - C) Traits matching only by chance with zero shared history always  
 - D) Convergent evolution always  

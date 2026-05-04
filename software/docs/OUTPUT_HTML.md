@@ -87,6 +87,8 @@ module-XX/output/
     └── index.html   ← Interactive website
 ```
 
+**`PUBLISHED/` mirror:** Category reorganization (**`reorganize_to_categories`**) removes per-module `index.html` from the published tree while moving study guides into **`homework/`** and **`module_keys/`**. Treat the interactive site as a **development artifact** unless you add a separate deploy path.
+
 ---
 
 ## 3. Lab HTML

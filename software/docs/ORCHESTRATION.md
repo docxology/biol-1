@@ -810,35 +810,47 @@ cd software && uv run python scripts/generate_all_outputs.py --course biol-8
 
 ## The Publish Pipeline
 
-The publish pipeline is the automated process that transforms source content into distribution-ready materials. It is controlled by `publish.toml` at the repository root.
+The automated path from Markdown sources to `PUBLISHED/` is driven by **`publish.toml`** ([root `publish.toml`](../../publish.toml)) and two entrypoints:
 
-### Pipeline Stages
+| Entry | Responsibility |
+|-------|----------------|
+| **`python publish.py`** (repo root) | Builds CLI args from TOML, runs `software/scripts/publish_all.py`, then—on success—optionally aggregates **`ALL_FILES/`** (`pipeline.all_files`) and runs **git commit / subtree push** (`pipeline.git_push`). |
+| **`software/scripts/publish_all.py`** | Steps **1–9** below (clean → generate → filesystem layout → validate). |
+
+### `publish_all.py` steps
 
 ```mermaid
 flowchart LR
-    CLN["1_Clean"] --> CLNS["2_CleanSource"]
+    CLN["1_CleanPublished"] --> CLNS["2_CleanSourceOutputs"]
     CLNS --> GEN["3_Generate"]
-    GEN --> PUB["4_Publish"]
-    PUB --> COPY["5_CopyExtras"]
-    COPY --> FLAT["6_Flatten"]
-    FLAT --> REORG["7_Reorganize"]
-    REORG --> VAL["8_Validate"]
-    VAL --> GIT["9_GitPush"]
+    GEN --> PUB["4_PublishCourse"]
+    PUB --> LBD["5_LabsDashboards"]
+    LBD --> SPT["6_SlidesPracticeTests"]
+    SPT --> FLAT["7_FlattenModules"]
+    FLAT --> REO["8_ReorganizeCats"]
+    REO --> VAL["9_Validate"]
 ```
 
-| Stage | Script | Description |
-|-------|--------|-------------|
-| **1. Clean** | `publish_all.py` | Remove old output/ directories |
-| **2. Clean-Source** | `publish_all.py` | Remove stale source outputs |
-| **3. Generate** | `generate_all_outputs.py` | Convert Markdown → PDF, DOCX, HTML, TXT, MD, MP3 |
-| **4. Publish** | `publish_course.py` | Copy to `PUBLISHED/biol-{1,8}/` |
-| **5. Copy Extras** | `publish_all.py` | Copy slides, syllabus, labs, resources |
-| **6. Flatten** | `flatten_published.py` | Reorganize into flat structure by category |
-| **7. Reorganize** | `publish_all.py` | Final directory restructure |
-| **8. Validate** | `validate_outputs.py` | Check all expected outputs exist |
-| **9. Git Push** | `publish.py` | Commit and push to public repos |
+| Step | Implemented in | What happens |
+|------|----------------|----------------|
+| **1** | `clean_published` | Clears **`PUBLISHED/`** when root config passes **`--clean`**. |
+| **2** | `clear_all_outputs` | Clears `course_development/**/output/` when **`--clean-source-outputs`** is passed (wired from **`publish.clean`** via root `publish.py`). |
+| **3** | `generate_all_outputs.py` | Renders modules, syllabus, labs, practice tests, exams (per course toggles). |
+| **4** | `publish_course.py` | Copies artifacts into **`PUBLISHED/biol-{1,8}/`** (initial module-centric tree). |
+| **5** | `copy_labs_and_dashboards` | Copies **`course/labs/output/`** + **`dashboards/`** into `PUBLISHED`. |
+| **6** | `copy_slides`, `copy_slides_to_modules`, `copy_practice_tests` | Copies slide PDFs and practice tests (**exams are teacher-only**, not pushed publicly). |
+| **7** | `flatten_published` | Moves nested study-guide files upward inside each `module-*` folder (skips labs, dashboards, syllabus, slides, exams, …). |
+| **8** | `reorganize_to_categories` | Builds **`homework/`**, **`module_keys/`**, **`course/`**, removes stray **`index.html`** under module folders ([`publish/copy_extras.py`](../src/publish/copy_extras.py)). |
+| **9** | `validate_outputs.py` | Validates expected artifacts for in-scope modules/labs (optional **`--strict-dashboards`**). |
 
-### Running the Pipeline
+### After `publish_all.py`: root-only steps
+
+| Step | When | What happens |
+|------|------|----------------|
+| **`ALL_FILES/`** | `pipeline.all_files` (default **true**) | Root [`publish.py`](../../publish.py) walks `PUBLISHED/<course>/` and copies **all** files into **`ALL_FILES/`** (duplicate flat mirror). |
+| **Git** | `pipeline.git_push` **and** not `--skip-git` | Commit + subtree push configured in **`[publish.git.repos]`**. |
+
+Dry-run previews the `uv run python scripts/publish_all.py …` command; it does **not** execute the root-only **`ALL_FILES`** or git phases.
 
 ```bash
 # Full pipeline (recommended)
