@@ -2,7 +2,7 @@
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional, cast
 
 import markdown
 
@@ -82,10 +82,10 @@ def extract_quiz_questions(markdown_content: str) -> List[dict]:
     Returns:
         List of question dictionaries with 'question' and 'options' keys
     """
-    questions = []
+    questions: List[Dict[str, Any]] = []
     lines = markdown_content.split("\n")
     in_questions = False
-    current_question = None
+    current_question: Optional[Dict[str, Any]] = None
 
     for line in lines:
         line_lower = line.lower()
@@ -142,7 +142,7 @@ def parse_questions_json(questions_file: Path) -> List[Dict]:
     if "questions" not in data:
         return []
 
-    return data["questions"]
+    return cast(List[Dict[str, Any]], data["questions"])
 
 
 def find_questions_file(module_dir: Path) -> Optional[Path]:

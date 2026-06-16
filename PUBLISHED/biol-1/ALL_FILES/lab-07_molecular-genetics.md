@@ -1,14 +1,10 @@
 # Lab 7: Molecular Genetics — From DNA to Protein
 
-## Overview
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
-Every living cell follows the same basic recipe to turn genetic information into a working molecule:
+**Name:** {fill:text} **Date:** {fill:text}
 
-> **DNA → RNA → Protein**
-
-This is the **Central Dogma** of molecular biology. It means your DNA is like a master cookbook that never leaves the kitchen (the nucleus). When a protein needs to be made, the cell copies just the recipe it needs into a messenger (mRNA), which travels to the ribosome — the cell's protein-building machine.
-
-In this lab you will **be the cell**. You'll copy DNA into mRNA (*transcription*), decode mRNA into amino acids (*translation*), and discover what happens when the recipe gets a typo (*mutations*).
+---
 
 ## Learning Objectives
 
@@ -18,6 +14,16 @@ By the end of this lab, you will be able to:
 2. Translate an mRNA sequence into amino acids using a codon table.
 3. Predict the effects of point mutations and frameshift mutations on a protein.
 4. Explain the Central Dogma in your own words.
+
+## Overview
+
+Every living cell follows the same basic recipe to turn genetic information into a working molecule:
+
+> **DNA → RNA → Protein**
+
+This is the **Central Dogma** of molecular biology. It means your DNA is like a master cookbook that never leaves the kitchen (the nucleus). When a protein needs to be made, the cell copies just the recipe it needs into a messenger (mRNA), which travels to the ribosome — the cell's protein-building machine.
+
+In this lab you will **be the cell**. You'll copy DNA into mRNA (*transcription*), decode mRNA into amino acids (*translation*), and discover what happens when the recipe gets a typo (*mutations*).
 
 ## Materials
 

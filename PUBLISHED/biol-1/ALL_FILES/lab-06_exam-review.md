@@ -1,8 +1,10 @@
 # Lab 6: Exam 01 Review — Comprehensive Study Session
 
-## Overview
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
-This lab session is dedicated to reviewing Modules 1-6 in preparation for Exam 01. It is a paper-based, collaborative study session designed to help you connect the dots between the "Big Picture" of life, the molecular building blocks, and the cellular machinery.
+**Name:** {fill:text} **Date:** {fill:text}
+
+---
 
 ## Learning Objectives
 
@@ -12,6 +14,10 @@ By the end of this lab, you will be able to:
 2. Visually represent biological structures and processes through scientific drawing.
 3. Collaborate with peers to explain and clarify complex topics.
 4. Identify specific areas for further study before the exam.
+
+## Overview
+
+This lab session is dedicated to reviewing Modules 1-6 in preparation for Exam 01. It is a paper-based, collaborative study session designed to help you connect the dots between the "Big Picture" of life, the molecular building blocks, and the cellular machinery.
 
 ## Materials
 

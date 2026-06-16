@@ -24,6 +24,7 @@ from .utils import (
     get_module_directories,
     get_timestamp,
 )
+from src.shared.course_config import active_course_names
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +55,7 @@ def validate_outputs(
     """Validate that all expected outputs exist for a course.
 
     Args:
-        course_path: Path to course directory (e.g., course_development/biol-8)
+        course_path: Path to course directory (e.g., course_development/biol-1)
         formats: Optional list of formats to validate (e.g., ["pdf", "docx", "md"]).
                  If None, uses DEFAULT_REQUIRED_FORMATS from config.
         max_module: Optional max module number to validate (e.g., 6 means only validate 1-6)
@@ -158,10 +159,13 @@ def validate_outputs(
         supplemental = lab_result["source_labs_supplemental"]
         outputs = lab_result["output_files"]
         outputs_str = ", ".join(f"{fmt}:{count}" for fmt, count in outputs.items()) or "none"
+        skipped = lab_result.get("formats_skipped", [])
+        skipped_str = f"; skipped incompatible formats: {', '.join(skipped)}" if skipped else ""
         logger.info(
             f"Labs (source tree): {lab_result['source_labs']} markdown "
             f"({numbered} numbered + {supplemental} supplemental); "
             f"outputs: {outputs_str}; dashboards: {lab_result['dashboards']}"
+            f"{skipped_str}"
         )
 
     if strict_dashboards:
@@ -195,7 +199,7 @@ def _validate_module_outputs(module_path: Path, formats: Optional[List[str]] = N
     """
     module_name = module_path.name
     
-    result = {
+    result: Dict[str, Any] = {
         "name": module_name,
         "valid": True,
         "has_output_dir": False,
@@ -253,7 +257,7 @@ def _validate_syllabus_outputs(course_dir: Path, formats: Optional[List[str]] = 
     Returns:
         Dictionary with syllabus validation results
     """
-    result = {
+    result: Dict[str, Any] = {
         "valid": True,
         "formats_checked": formats,
         "files": {},
@@ -316,8 +320,10 @@ def validate_published(published_path: str) -> Dict[str, Any]:
         results["issues"].append("Published directory does not exist")
         return results
         
-    # Check each expected course
-    for course_name in config.COURSE_CONFIG.keys():
+    # Check each active published course. Archived courses remain under archive/
+    # and are not required in live PUBLISHED/.
+    active_courses = active_course_names(pub_dir.parent)
+    for course_name in active_courses:
         course_dir = pub_dir / course_name
         
         if not course_dir.exists():

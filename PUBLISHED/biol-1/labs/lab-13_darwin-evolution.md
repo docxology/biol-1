@@ -1,10 +1,10 @@
 # Lab 13: Darwin & Evolution (Module 12)
 
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
+
 **Name:** {fill:text} **Date:** {fill:text}
 
-## Overview
-
-You are not rehearsing definitions today—you are **playing biologist**. Each part is a **mini scenario**: you will make a **prediction**, watch a **story outcome** (on paper), and then **defend** whether natural selection, evidence, or “common sense” actually fits. Part 3 adds a simple **genetic model** so you can connect **Mendelian ratios** to **allele frequency change** after selection. The thread is simple: evolution is **population-level**, **evidence-based**, and **mechanistic**, not a ladder of “better animals.”
+---
 
 ## Learning Objectives
 
@@ -15,6 +15,10 @@ By the end of this lab, you should be able to:
 3. Apply the biological meaning of **fitness** to messy, realistic vignettes.
 4. Choose which **line of evidence** tests which kind of claim about history and relatedness.
 5. Explain why **individuals do not evolve** while **populations** can.
+
+## Overview
+
+You are not rehearsing definitions today—you are **playing biologist**. Each part is a **mini scenario**: you will make a **prediction**, watch a **story outcome** (on paper), and then **defend** whether natural selection, evidence, or “common sense” actually fits. Part 3 adds a simple **genetic model** so you can connect **Mendelian ratios** to **allele frequency change** after selection. The thread is simple: evolution is **population-level**, **evidence-based**, and **mechanistic**, not a ladder of “better animals.”
 
 ## Materials Needed
 

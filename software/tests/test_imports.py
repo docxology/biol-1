@@ -114,7 +114,7 @@ def test_html_website_imports():
 
 
 def test_text_to_speech_utils_imports():
-    """Verify text_to_speech utils can be imported and use real gTTS."""
+    """Verify text_to_speech utils can be imported."""
     try:
         from src.text_to_speech.utils import (
             extract_text_from_markdown,
@@ -124,12 +124,8 @@ def test_text_to_speech_utils_imports():
         assert extract_text_from_markdown is not None
         assert read_text_file is not None
         assert text_to_speech_audio is not None
-
-        # Verify gTTS is imported (real implementation)
-        from gtts import gTTS
-        assert gTTS is not None
     except ImportError as e:
-        pytest.fail(f"Failed to import text_to_speech utils or gTTS: {e}")
+        pytest.fail(f"Failed to import text_to_speech utils: {e}")
 
 
 def test_speech_to_text_utils_imports():

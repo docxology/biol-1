@@ -5,7 +5,7 @@ Publish All Courses - Complete Pipeline
 Thin orchestrator - delegates to src.publish and src.batch_processing modules.
 
 This script orchestrates the full course publishing workflow:
-1. Generate all outputs (PDF, DOCX, HTML, TXT, MP3) for all courses
+1. Generate configured outputs for active courses (PDF, DOCX, MD by default)
 2. Publish outputs to PUBLISHED/ directory
 3. Copy labs and dashboards
 4. Flatten module structure (remove subfolders)
@@ -27,7 +27,11 @@ from pathlib import Path
 software_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(software_dir))
 
-from src.batch_processing.main import clear_all_outputs
+from src.shared.runtime import configure_runtime_environment  # noqa: E402
+
+configure_runtime_environment()
+
+from src.batch_processing.main import clear_all_outputs  # noqa: E402
 from src.publish.utils import (
     clean_published,
     copy_labs_and_dashboards,
@@ -36,7 +40,8 @@ from src.publish.utils import (
     copy_slides_to_modules,
     flatten_published,
     reorganize_to_categories,
-)
+)  # noqa: E402
+from src.shared.course_config import active_course_names  # noqa: E402
 
 # Setup logging
 logging.basicConfig(
@@ -105,7 +110,7 @@ def main():
     )
     parser.add_argument(
         '--formats', type=str, default='all',
-        help='Comma-separated formats: pdf,mp3,docx,html,txt (default: all)'
+        help='Comma-separated formats: pdf,mp3,docx,html,txt,md (default: all)'
     )
     parser.add_argument(
         '--verbose', '-v', action='store_true',
@@ -137,17 +142,17 @@ def main():
     )
     parser.add_argument(
         '--max-module', type=str, action='append', default=[],
-        help='Max module per course (format: course:number, e.g., biol-8:6)'
+        help='Max module per course (format: course:number, e.g., biol-1:6)'
     )
     parser.add_argument(
         '--max-lab', type=str, action='append', default=[],
-        help='Max lab per course (format: course:number, e.g., biol-8:5)'
+        help='Max lab per course (format: course:number, e.g., biol-1:5)'
     )
     parser.add_argument(
         '--strict-dashboards', action='store_true',
         help='Enforce per-numbered-lab dashboard invariant during validation '
-             '(default 1 dashboard per numbered lab; per-course overrides such '
-             'as BIOL-8 Lab 15 = 2).'
+             '(default 1 dashboard per numbered lab; per-course overrides come '
+             'from validation config).'
     )
 
     args = parser.parse_args()
@@ -155,7 +160,7 @@ def main():
     start_time = time.time()
     repo_root = get_repo_root()
     published_dir = repo_root / 'PUBLISHED'
-    courses = ['biol-1', 'biol-8']
+    courses = active_course_names(repo_root)
     
     print("\n" + "=" * 70)
     print("  PUBLISH ALL COURSES - Complete Pipeline")
@@ -187,12 +192,12 @@ def main():
         t_step = time.time()
         logger.info("\n⚙️  STEP 3: Generating all outputs")
 
-        # Build generation args
+        # Build generation args. `all` means all active courses.
         gen_args = ['--course', 'all']
 
         # Handle format options
         if args.skip_mp3:
-            gen_args.extend(['--formats', 'pdf,docx,html,txt'])
+            gen_args.extend(['--formats', 'pdf,docx,html,txt,md'])
             logger.info("  Skipping MP3 generation (--skip-mp3)")
         elif args.formats != 'all':
             gen_args.extend(['--formats', args.formats])

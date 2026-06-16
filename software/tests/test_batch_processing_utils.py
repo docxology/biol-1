@@ -2,6 +2,8 @@
 
 from pathlib import Path
 from unittest.mock import patch
+import pytest
+
 from src.batch_processing.utils import (
     find_markdown_files,
     find_audio_files,
@@ -12,6 +14,7 @@ from src.batch_processing.utils import (
     generate_dry_run_report,
 )
 from src.shared.file_utils import ensure_output_directory
+from src.shared.course_config import CourseSelectionError
 
 
 def test_find_markdown_files(temp_dir):
@@ -76,15 +79,10 @@ def test_get_relative_output_path():
 
 def test_get_courses_to_process():
     """Test course selection logic."""
-    # Mock available courses to ensure stable test
-    with patch("src.batch_processing.config.AVAILABLE_COURSES", ["biol-1"]):
-        assert get_courses_to_process("all") == [("course_development/biol-1", "BIOL-1")]
-        assert get_courses_to_process("biol-1") == [("course_development/biol-1", "BIOL-1")]
-        assert get_courses_to_process("biol-1") == [("course_development/biol-1", "BIOL-1")]
-        # "biol" matches ends_with so it won't match "biol-1" correctly unless exact?
-        # logic is: if c.endswith(course_arg)
-        # "biol-1".endswith("biol-1") is True.
-        assert get_courses_to_process("invalid") == []
+    assert get_courses_to_process("all") == [("course_development/biol-1", "BIOL-1")]
+    assert get_courses_to_process("biol-1") == [("course_development/biol-1", "BIOL-1")]
+    with pytest.raises(CourseSelectionError):
+        get_courses_to_process("invalid")
 
 
 def test_get_formats_to_process(caplog):

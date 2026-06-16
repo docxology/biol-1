@@ -2,11 +2,11 @@
 """Script to validate course outputs.
 
 Usage:
-    uv run python scripts/validate_outputs.py --course {biol-1|biol-8|all}
+    uv run python scripts/validate_outputs.py --course {biol-1|all}
     uv run python scripts/validate_outputs.py --course all --formats pdf,docx,md
     
 Options:
-    --course    Course to validate (biol-1, biol-8, or all)
+    --course    Active course to validate (biol-1 or all)
     --formats   Comma-separated list of formats to validate (default: pdf,docx)
                 Only validates that these formats exist, ignoring others.
     --json      Output results as JSON
@@ -24,11 +24,16 @@ from typing import List, Optional
 software_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(software_dir))
 
+from src.shared.runtime import configure_runtime_environment  # noqa: E402
+
+configure_runtime_environment()
+
 from src.validation import (
     generate_validation_report,
     get_output_summary,
-)
-from src.validation.config import DEFAULT_REQUIRED_FORMATS, ALL_SUPPORTED_FORMATS
+)  # noqa: E402
+from src.validation.config import DEFAULT_REQUIRED_FORMATS, ALL_SUPPORTED_FORMATS  # noqa: E402
+from src.shared.course_config import CourseSelectionError, resolve_course_selection  # noqa: E402
 
 # Configure logging
 logging.basicConfig(
@@ -53,13 +58,7 @@ def parse_formats(formats_str: Optional[str]) -> Optional[List[str]]:
 
 def main():
     parser = argparse.ArgumentParser(description="Validate course outputs.")
-    parser.add_argument(
-        "--course",
-        type=str,
-        choices=["biol-1", "biol-8", "all"],
-        required=True,
-        help="Course to validate"
-    )
+    parser.add_argument("--course", type=str, required=True, help="Active course to validate, or all")
     parser.add_argument(
         "--formats",
         type=str,
@@ -82,21 +81,20 @@ def main():
         type=str,
         action="append",
         default=[],
-        help="Max module per course (format: course:number, e.g., biol-8:6)"
+        help="Max module per course (format: course:number, e.g., biol-1:6)"
     )
     parser.add_argument(
         "--max-lab",
         type=str,
         action="append",
         default=[],
-        help="Max lab per course (format: course:number, e.g., biol-8:4)"
+        help="Max lab per course (format: course:number, e.g., biol-1:4)"
     )
     parser.add_argument(
         "--strict-dashboards",
         action="store_true",
         help="Enforce per-numbered-lab dashboard invariant from COURSE_CONFIG "
-             "(default 1 dashboard per numbered lab; per-course overrides such "
-             "as BIOL-8 Lab 15 = 2)."
+             "(default 1 dashboard per numbered lab; per-course overrides when configured)."
     )
 
     args = parser.parse_args()
@@ -117,11 +115,10 @@ def main():
             course, num = limit.split(':', 1)
             lab_limits[course.lower()] = int(num)
     
-    courses_to_validate = []
-    if args.course == "all":
-        courses_to_validate = ["biol-1", "biol-8"]
-    else:
-        courses_to_validate = [args.course]
+    try:
+        courses_to_validate = resolve_course_selection(args.course, repo_root)
+    except CourseSelectionError as exc:
+        parser.error(str(exc))
     
     # Log validation scope
     logger.info(f"\n{'='*60}")
@@ -252,4 +249,3 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-

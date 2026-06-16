@@ -5,7 +5,7 @@ Usage:
     uv run python scripts/generate_module_website.py [OPTIONS]
 
 Options:
-    --course COURSE    Course: biol-1 or biol-8 (default: biol-1)
+    --course COURSE    Active course (default: biol-1)
     --module MODULE    Module number to process (default: 1)
     --help             Show this help message
 
@@ -13,8 +13,8 @@ Examples:
     # Generate website for biol-1 module-1 (default)
     uv run python scripts/generate_module_website.py
 
-    # Generate website for biol-8 module-2
-    uv run python scripts/generate_module_website.py --course biol-8 --module 2
+    # Generate website for biol-1 module-2
+    uv run python scripts/generate_module_website.py --course biol-1 --module 2
 """
 
 import argparse
@@ -24,9 +24,14 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from scripts.utils import print_module_not_found
-from src.batch_processing.main import process_module_website
-from src.module_organization.utils import find_module_path
+from src.shared.runtime import configure_runtime_environment  # noqa: E402
+
+configure_runtime_environment()
+
+from scripts.utils import print_module_not_found  # noqa: E402
+from src.batch_processing.main import process_module_website  # noqa: E402
+from src.module_organization.utils import find_module_path  # noqa: E402
+from src.shared.course_config import CourseSelectionError, active_course_names, resolve_course_selection  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -37,16 +42,16 @@ def parse_args() -> argparse.Namespace:
         epilog="""
 Examples:
   %(prog)s                         Generate for biol-1/module-1 (default)
-  %(prog)s --course biol-8         Generate for biol-8/module-1
+  %(prog)s --course biol-1         Generate for biol-1/module-1
   %(prog)s --module 2              Generate for biol-1/module-2
         """,
     )
 
+    active = ", ".join(active_course_names()) or "none"
     parser.add_argument(
         "--course",
-        choices=["biol-1", "biol-8"],
         default="biol-1",
-        help="Course to process (default: biol-1)",
+        help=f"Active course to process (active: {active}; default: biol-1)",
     )
 
     parser.add_argument(
@@ -62,19 +67,24 @@ Examples:
 def main() -> int:
     """Generate HTML website for a module."""
     args = parse_args()
+    try:
+        [course_name] = resolve_course_selection(args.course)
+    except CourseSelectionError as exc:
+        print(f"Error: {exc}")
+        return 2
 
     # Paths
     repo_root = Path(__file__).parent.parent.parent
-    course_path = repo_root / "course_development" / args.course
+    course_path = repo_root / "course_development" / course_name
 
     # Find module path (supports both module-N and module-NN-topic patterns)
     module_path = find_module_path(course_path, args.module)
 
     if module_path is None:
-        print_module_not_found(course_path, args.course, args.module)
+        print_module_not_found(course_path, course_name, args.module)
         return 1
 
-    print(f"Generating website for: {args.course}/course/{module_path.name}")
+    print(f"Generating website for: {course_name}/course/{module_path.name}")
 
     try:
         html_file = process_module_website(str(module_path))
@@ -92,4 +102,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

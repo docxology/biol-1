@@ -11,7 +11,7 @@ Complete guide for building interactive lab dashboards. Dashboards are standalon
 | Convention | Example |
 |-----------|---------|
 | **Pattern** | `lab-XX_topic-dashboard.html` |
-| **Location** | `course_development/biol-{1,8}/course/labs/dashboards/` |
+| **Location** | `course_development/biol-1/course/labs/dashboards/` |
 | **Companion Lab** | `course/labs/lab-XX_topic.md` (relative to the same course tree) |
 
 The **dashboard inventory** table below lists **BIOL-8** files as a reference; BIOL-1 uses the same naming pattern with course-specific topics and counts from [`publish.toml`](../../publish.toml).
@@ -172,7 +172,7 @@ Every dashboard uses a standard set of CSS custom properties:
 ```html
 <aside class="sidebar">
   <div class="sidebar-header">
-    <h1>BIOL-8: Human Biology</h1>
+    <h1>BIOL-1: General Biology</h1>
     <p>Lab X &mdash; Topic Name</p>
   </div>
   <nav class="sidebar-nav">
@@ -183,7 +183,7 @@ Every dashboard uses a standard set of CSS custom properties:
     <a href="#part2"><span class="nav-num">2</span> Section Name</a>
   </nav>
   <div class="sidebar-footer">
-    Interactive Lab Dashboard<br>&copy; 2026 BIOL-8
+    Interactive Lab Dashboard<br>&copy; 2026 BIOL-1
   </div>
 </aside>
 ```

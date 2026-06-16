@@ -10,7 +10,8 @@ Source code for course management software utilities.
 
 - **16 packages** under `src/` (see [AGENTS.md](AGENTS.md))
 - **Tests / coverage**: run `uv run pytest --collect-only -q` and `uv run pytest --cov=src --cov-report=term-missing` from `software/`
-- **6 output formats**: PDF, DOCX, HTML, TXT, MD, MP3
+- **Default generated formats**: PDF, DOCX, MD
+- **Opt-in generated formats**: HTML, TXT, MP3
 
 ---
 
@@ -172,7 +173,7 @@ Each module has its own AGENTS.md with:
 - **Python PEP 8**: Style guidelines followed
 - **Type Hints**: All functions have type annotations
 - **Docstrings**: All public functions documented
-- **Real Methods**: No mocks or stubs (see [.cursorrules](.cursorrules))
+- **Real Methods**: Production code has no mocks or stubs (see [.cursorrules](.cursorrules))
 - **Modular**: Self-contained, reusable modules
 - **Logged**: Operations logged for debugging
 

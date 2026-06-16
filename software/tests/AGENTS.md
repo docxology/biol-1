@@ -155,7 +155,7 @@ Tests should run automatically on:
 - Critical functions: > 90%
 - Utility functions: > 70%
 
-> **Note**: Run `bash run_tests.sh` (or `uv run pytest`) from `software/` to generate a fresh `.coverage` report. The `uv run coverage report` against the last `.coverage` snapshot reflects only the subset exercised in that run.
+> **Note**: Run `./run_tests.sh` or `./run_tests.sh --fast` from `software/` for the fast offline gate, `./run_tests.sh --full` for the complete suite, or `uv run pytest` directly when you need custom pytest flags. Coverage reflects only the subset exercised in that run.
 
 ### Test Quality
 
@@ -174,14 +174,15 @@ Tests should run automatically on:
 
 ### Core Principle
 
-**All tests use real methods and implementations - no mocks, stubs, or fake methods.**
+**Tests use real methods and implementations by default.**
 
 ### Real Implementations
 
 - All file operations use real file system operations
-- All library calls use real library implementations (gTTS, weasyprint, etc.)
+- All library/tool calls use real implementations (local TTS, ffmpeg, weasyprint, etc.)
 - All validation logic uses real validation functions
 - All module operations use real module creation and validation
+- Test doubles are allowed only for external-service boundaries or expensive orchestration seams, and the boundary must be clear in the test
 
 ### External API Testing
 
@@ -189,7 +190,7 @@ Tests should run automatically on:
 - Tests verify that validation works correctly before API calls
 - `test_canvas_integration_main.py` includes `test_upload_module_to_canvas_uses_real_http_through_local_stub`, which monkeypatches the API base URL to a threaded `HTTPServer` in `canvas_stub_server.py` (real HTTP, real `requests`, no mocking of HTTP clients)
 - `test_optional_upload_module_to_canvas_requires_env_credentials` (`@pytest.mark.requires_api`) runs only when `CANVAS_API_KEY` and `CANVAS_COURSE_ID` are set for a live sandbox
-- `test_convert_audio_to_text` (`@pytest.mark.requires_internet`) uses real gTTS and Google Speech; if recognition returns “could not understand” for the generated clip, pytest skips rather than failing the suite
+- `test_convert_audio_to_text` (`@pytest.mark.requires_internet`, `@pytest.mark.audio`, `@pytest.mark.slow`) uses local TTS plus Google Speech; if recognition returns “could not understand” for the generated clip, pytest skips rather than failing the suite
 
 ### Test Isolation
 

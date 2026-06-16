@@ -1,12 +1,10 @@
 # Lab 5: Viewing Life — Observing Structure and Function
 
-## Overview
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
-Biology is the study of life. In this lab, you will move beyond the textbook and observe living systems directly. You will be provided with three unknown biological samples: **Sample A**, **Sample B**, and **Sample C**.
+**Name:** {fill:text} **Date:** {fill:text}
 
-These samples were collected by your classmates and brought into the lab, representing a "mystery box" of biodiversity. We do not know exactly what they are or where they came from. This mimics the real-world work of biologists who often encounter unknown organisms in the field and must use observation to understand them.
-
-Your task is to observe them—first with your naked eye, then with a microscope—and deduce what they might be and how they live. This lab focuses on **careful observation**, **scientific inference**, and **connecting structure to function**.
+---
 
 ## Learning Objectives
 
@@ -16,6 +14,14 @@ By the end of this lab, you will be able to:
 2. Make detailed macroscopic (visible to eye) and microscopic observations.
 3. Infer the lifestyle and adaptations of an organism based on its structure.
 4. Appreciate the diversity of life forms.
+
+## Overview
+
+Biology is the study of life. In this lab, you will move beyond the textbook and observe living systems directly. You will be provided with three unknown biological samples: **Sample A**, **Sample B**, and **Sample C**.
+
+These samples were collected by your classmates and brought into the lab, representing a "mystery box" of biodiversity. We do not know exactly what they are or where they came from. This mimics the real-world work of biologists who often encounter unknown organisms in the field and must use observation to understand them.
+
+Your task is to observe them—first with your naked eye, then with a microscope—and deduce what they might be and how they live. This lab focuses on **careful observation**, **scientific inference**, and **connecting structure to function**.
 
 ## Materials
 

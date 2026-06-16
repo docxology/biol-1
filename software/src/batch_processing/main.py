@@ -15,6 +15,7 @@ from .utils import (
     get_relative_output_path,
     should_process_file,
 )
+from src.shared.course_config import active_course_names, find_repo_root
 from src.shared.file_utils import ensure_output_directory
 from ..format_conversion.main import convert_file
 from ..html_website.main import generate_module_website
@@ -215,7 +216,7 @@ def generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]:
     base_output = Path(output_dir)
     ensure_output_directory(base_output)
 
-    results = {
+    results: Dict[str, List[str]] = {
         "pdf_files": [],
         "audio_files": [],
         "text_files": [],
@@ -261,16 +262,16 @@ def process_module_by_type(
     output_dir: str,
     formats: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
-    """Process module files by curriculum element type and generate all format renderings.
+    """Process module files by curriculum element type and generate requested renderings.
 
     Organizes outputs by curriculum element type (assignments, lab-protocols,
-    lecture-content, study-guides) with all formats (PDF, MP3, DOCX, HTML, TXT).
+    lecture-content, study-guides) using the requested format set.
 
     Args:
         module_path: Path to module directory
         output_dir: Base output directory for all renderings
-        formats: Optional list of formats to generate (e.g. ["pdf", "html"]).
-                 When None, all formats are generated.
+        formats: Optional list of formats to generate (e.g. ["pdf", "docx", "md"]).
+                 When None, all supported study-guide formats are generated.
 
     Returns:
         Dictionary with results:
@@ -328,7 +329,7 @@ def process_module_by_type(
     # element; summary provides per-format counts. Differs from process_syllabus which
     # uses by_format instead of by_type (intentional: modules organize by element type,
     # syllabi organize by output format).
-    results = {
+    results: Dict[str, Any] = {
         "success": True,
         "by_type": {t: [] for t in type_mapping.values()},
         "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0, "md": 0},
@@ -481,16 +482,16 @@ def process_syllabus(
     output_dir: str,
     formats: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
-    """Process syllabus files and generate all format renderings.
+    """Process syllabus files and generate requested renderings.
 
     Organizes outputs flat in the output directory (same structure as module assignments),
-    with all formats (PDF, MP3, DOCX, HTML, TXT) in the same directory.
+    with requested formats in the same directory.
 
     Args:
         syllabus_path: Path to syllabus directory
         output_dir: Base output directory for all renderings
-        formats: Optional list of formats to generate (e.g. ["pdf", "html"]).
-                 When None, all formats are generated.
+        formats: Optional list of formats to generate (e.g. ["pdf", "docx", "md"]).
+                 When None, all supported syllabus formats are generated.
 
     Returns:
         Dictionary with results:
@@ -646,16 +647,18 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
         - errors: List of errors encountered
     """
     logger.info("Starting output clearing process")
-    results = {
-        "cleared_directories": [],
-        "total_files_removed": 0,
-        "errors": [],
-    }
+    cleared_directories: List[str] = []
+    total_files_removed = 0
+    errors: List[str] = []
 
-    # Find all output directories
-    output_dirs = []
-    for course_dir in config.SUPPORTED_COURSES:
-        course_path = repo_root / course_dir
+    # Find all output directories. Callers historically passed either the repo
+    # root or course_development/; support both and only clear active courses.
+    output_dirs: List[Path] = []
+    course_parent = repo_root / "course_development" if (repo_root / "course_development").exists() else repo_root
+    config_root = find_repo_root(course_parent)
+    course_names = active_course_names(config_root) or config.SUPPORTED_COURSES
+    for course_dir in course_names:
+        course_path = course_parent / course_dir
         if not course_path.exists():
             logger.debug(f"Course directory not found: {course_path}")
             continue
@@ -703,8 +706,8 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
                 elif item.is_dir():
                     shutil.rmtree(item)
 
-            results["cleared_directories"].append(str(output_dir))
-            results["total_files_removed"] += file_count
+            cleared_directories.append(str(output_dir))
+            total_files_removed += file_count
 
             # Use DEBUG for per-directory details to reduce console verbosity
             logger.debug(f"Cleared {file_count} files and {dir_count} directories from {output_dir.relative_to(repo_root)}")
@@ -712,17 +715,28 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
         except (OSError, ValueError) as e:
             error_msg = f"Failed to clear {output_dir}: {e}"
             logger.error(error_msg, exc_info=True)
-            results["errors"].append(error_msg)
+            errors.append(error_msg)
 
     # Compact course-level summary
-    biol1_count = sum(1 for d in results["cleared_directories"] if "biol-1" in d)
-    biol8_count = sum(1 for d in results["cleared_directories"] if "biol-8" in d)
-    logger.info(f"  BIOL-1: {biol1_count} directories | BIOL-8: {biol8_count} directories")
-    logger.info(f"Output clearing completed: {len(results['cleared_directories'])} directories, {results['total_files_removed']} files removed")
-    if results["errors"]:
-        logger.warning(f"Output clearing completed with {len(results['errors'])} errors")
+    course_counts = {
+        course: sum(1 for d in cleared_directories if course in d)
+        for course in course_names
+    }
+    summary = " | ".join(f"{course.upper()}: {count} directories" for course, count in course_counts.items())
+    if summary:
+        logger.info(f"  {summary}")
+    logger.info(
+        f"Output clearing completed: {len(cleared_directories)} directories, "
+        f"{total_files_removed} files removed"
+    )
+    if errors:
+        logger.warning(f"Output clearing completed with {len(errors)} errors")
 
-    return results
+    return {
+        "cleared_directories": cleared_directories,
+        "total_files_removed": total_files_removed,
+        "errors": errors,
+    }
 
 
 def process_course_modules(

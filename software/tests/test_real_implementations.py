@@ -7,34 +7,28 @@ import pytest
 
 # Import real libraries to verify they're used
 try:
-    from gtts import gTTS
     import speech_recognition as sr
     from pydub import AudioSegment
 except ImportError:
     # Skip all tests if dependencies aren't available
-    pytest.skip("Required dependencies (gtts, speech_recognition, pydub) not available", allow_module_level=True)
+    pytest.skip("Required dependencies (speech_recognition, pydub) not available", allow_module_level=True)
 
 
-def test_text_to_speech_uses_real_gtts():
-    """Verify text_to_speech module uses real gTTS implementation."""
+def test_text_to_speech_uses_real_local_tools():
+    """Verify text_to_speech module uses real local command-line tooling."""
     from src.text_to_speech.utils import text_to_speech_audio
 
     # Check that the function exists and is callable
     assert callable(text_to_speech_audio)
 
-    # Verify gTTS is the real class, not a mock
-    assert gTTS is not None
-    assert inspect.isclass(gTTS)
-    assert hasattr(gTTS, "__init__")
-
-    # Check that text_to_speech_audio would use gTTS or macOS say command (by inspecting source if possible)
+    # Check that text_to_speech_audio uses local command execution.
     try:
         source = inspect.getsource(text_to_speech_audio)
-        # Accept either gTTS (cross-platform) or say command (macOS native)
-        assert "gTTS" in source or "gtts" in source or "say" in source, \
-            "text_to_speech_audio should use gTTS or macOS say command"
+        assert "subprocess.run" in source
+        assert "say" in source
+        assert "ffmpeg" in source
     except OSError:
-        # Source not available, but we verified gTTS is imported
+        # Source not available, but callable import succeeded.
         pass
 
 

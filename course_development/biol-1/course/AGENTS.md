@@ -16,8 +16,8 @@ course/
 │   ├── resources/                            # (optional) module-local assets
 │   └── output/                               # Generated; do not edit by hand
 │       ├── study-guides/
-│       │   ├── module-NN-name-questions.{md,pdf,docx,html,txt,mp3}
-│       │   └── module-NN-name-keys-to-success.{md,pdf,docx,html,txt,mp3}
+│       │   ├── module-NN-name-questions.{md,pdf,docx}
+│       │   └── module-NN-name-keys-to-success.{md,pdf,docx}
 │       └── website/index.html
 ├── labs/                                    # lab-NN_topic.md (1–17), with output/ + dashboards/
 ├── exams/                                   # exam-NN.md, exam-NN_key.md, final-exam.md, exam-template.md
@@ -50,8 +50,11 @@ course/
 - Module folders: `module-NN-topic-words/` (zero-padded `NN`, lowercase, hyphenated).
 - Source files at module root: `questions.md`, `keys-to-success.md`.
 - Generated outputs in `output/study-guides/` are prefixed with the full module slug:
-  - `module-NN-topic-words-questions.{md,pdf,docx,html,txt,mp3}`
-  - `module-NN-topic-words-keys-to-success.{md,pdf,docx,html,txt,mp3}`
+  - `module-NN-topic-words-questions.{md,pdf,docx}`
+  - `module-NN-topic-words-keys-to-success.{md,pdf,docx}`
+
+HTML, TXT, and MP3 study-guide outputs are supported opt-in formats, not part
+of the default local publish profile.
 
 There is **no** `assignments/`, `for_upload/`, or per-module `slides/` subfolder in BIOL-1. Slide PDFs live centrally under `../resources/slides/`.
 
@@ -68,7 +71,7 @@ uv run python scripts/generate_module_renderings.py --course biol-1 --module 12
 
 # Build the per-module HTML site
 uv run python scripts/generate_module_website.py \
-    --module ../course_development/biol-1/course/module-12-darwin-evolution
+    --course biol-1 --module 12
 ```
 
 The end-to-end pipeline (`python publish.py`) at the repo root runs these steps for every module and pushes the results to `PUBLISHED/biol-1/` and the public subtree.
@@ -78,7 +81,7 @@ The end-to-end pipeline (`python publish.py`) at the repo root runs these steps 
 - `batch_processing` — drives per-module multi-format generation.
 - `html_website` — builds `output/website/index.html`.
 - `format_conversion` — md→pdf, md→docx, etc. (see `software/src/format_conversion/AGENTS.md`).
-- `text_to_speech` — generates `*.mp3` audio narration.
+- `text_to_speech` — generates opt-in `*.mp3` audio narration.
 
 ## Related docs
 

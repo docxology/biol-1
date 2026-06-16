@@ -42,12 +42,12 @@ def test_optional_weasyprint_available():
         pytest.skip("WeasyPrint not available (PDF generation will not work)")
 
 
-def test_gtts_version():
-    """Verify gTTS is installed and can be imported."""
+def test_gtts_available_for_speech_fixture():
+    """Verify gTTS is installed for internet-marked speech fixture generation."""
     try:
         import gtts
 
-        # Verify it's the real gTTS, not a mock
+        # Verify it is the real dependency, not a mock.
         assert hasattr(gtts, "gTTS")
         assert callable(gtts.gTTS)
     except ImportError:
@@ -103,7 +103,7 @@ def test_python_docx_available():
 def test_all_dependencies_are_real_implementations():
     """Verify that all dependencies are real implementations, not mocks."""
     dependency_checks: List[Tuple[str, str, str]] = [
-        ("gtts", "gTTS", "gTTS class"),
+        ("gtts", "gTTS", "gTTS class for speech fixtures"),
         ("speech_recognition", "Recognizer", "Recognizer class"),
         ("pydub", "AudioSegment", "AudioSegment class"),
         ("markdown", "markdown", "markdown function"),

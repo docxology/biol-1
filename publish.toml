@@ -5,7 +5,7 @@
 # Usage:
 #   python publish.py              # Full pipeline with config settings
 #   python publish.py --dry-run    # Preview what would be generated
-#   python publish.py --override-formats pdf,html  # Override formats
+#   python publish.py --override-formats pdf,docx,md  # Override formats
 
 [publish]
 clean = true        # Clean output directories before generation
@@ -13,15 +13,15 @@ verbose = true     # Enable verbose logging
 
 # Output Format Configuration
 # --------------------------
-# Toggle each format on/off as needed. MP3 is time-consuming (~30s per file)
-# and requires internet access for Google TTS.
+# Toggle each format on/off as needed. MP3 uses local TTS tooling and is
+# time-consuming, so keep it disabled for routine publish runs.
 [publish.formats]
 pdf  = true         # PDF files (via WeasyPrint / markdown_to_pdf)
 docx = true         # Word documents (via format_conversion / python-docx)
 html = false         # HTML study-guide copies (via format_conversion / markdown2)
 txt  = false         # Plain text (via format_conversion)
 md   = true          # Markdown copy (source files with standardized names)
-mp3  = false        # Audio narration (via Google TTS, slower)
+mp3  = false        # Audio narration (local TTS + ffmpeg, slower)
 
 # Course Configuration
 # -------------------
@@ -42,10 +42,11 @@ include_slides = true
 include_practice_tests = true
 
 [publish.courses.biol-8]
-enabled = true
+enabled = false
 max_module = 17      # Generate modules 1 through max_module (set lower to limit, e.g., 6)
 max_lab = 18         # Generate labs 1 through max_lab (BIOL-8: labs 01--18 incl. Exam 03 review, ecology, evolution)
 path = "course_development/biol-8"
+archive_path = "archive/spring-2026/course_development/biol-8"
 input_types = ["keys-to-success", "questions"]
 include_syllabus = true
 include_labs = true
@@ -100,5 +101,5 @@ remote = "biol-8"
 url = "https://github.com/docxology/biol-8.git"
 branch = "main"
 prefix = "PUBLISHED/biol-8"         # Subtree prefix for push
-push = true
+push = false
 force = true                        # Use force push for subtree

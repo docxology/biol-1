@@ -94,7 +94,7 @@ from src.publish.main import publish_course
 from src.publish.utils import copy_slides_to_modules, flatten_published
 
 # Publish a course
-results = publish_course("course_development/biol-8")
+results = publish_course("course_development/biol-1")
 print(f"Published {results['modules_published']} modules")
 
 # Copy slides to module folders

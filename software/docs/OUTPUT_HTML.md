@@ -134,7 +134,7 @@ Standalone Canvas-based interactive visualizations. These are **manually authore
 | Property | Value |
 |----------|-------|
 | **Extension** | `.html` |
-| **Location** | `course_development/biol-{1,8}/course/labs/dashboards/` (relative to course root) |
+| **Location** | `course_development/biol-1/course/labs/dashboards/` (relative to course root) |
 | **Generator** | Manual authoring |
 | **Features** | Canvas animations, simulations, quizzes |
 
@@ -191,16 +191,16 @@ html = false   # Example: simple study-guide HTML off; website generation is sep
 
 ```bash
 # Default: modules, syllabus, labs, practice tests, exams, websites (unless disabled below)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Skip per-module websites
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --no-website
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --no-website
 
 # Skip lab manual rendering (PDF/HTML/DOCX for labs)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --skip-labs
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --skip-labs
 
 # Cap how many numbered labs are processed (per-course)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab biol-8:5
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --max-lab biol-1:5
 ```
 
 For a **single** lab file, call `render_lab_manual` as in [§ Lab HTML](#3-lab-html) or see [ORCHESTRATION.md](ORCHESTRATION.md#lab-manual-generation).

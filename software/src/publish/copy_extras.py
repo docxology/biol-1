@@ -11,8 +11,14 @@ from pathlib import Path
 from typing import List, Optional
 
 from . import config
+from src.shared.course_config import active_course_names
 
 logger = logging.getLogger(__name__)
+
+
+def _active_courses(repo_root: Path) -> List[str]:
+    """Return active course ids for publish helpers."""
+    return active_course_names(repo_root) or ["biol-1"]
 
 
 def copy_labs_and_dashboards(
@@ -24,14 +30,14 @@ def copy_labs_and_dashboards(
 
     Args:
         repo_root: Path to the repository root
-        courses: List of course names (default: ['biol-1', 'biol-8'])
+        courses: List of course names (default: active courses from publish.toml)
         verbose: If True, log detailed operations
 
     Returns:
         Number of files copied
     """
     if courses is None:
-        courses = ['biol-1', 'biol-8']
+        courses = _active_courses(repo_root)
 
     published_dir = repo_root / config.PUBLISH_ROOT_NAME
     total_copied = 0
@@ -87,14 +93,14 @@ def copy_slides(
 
     Args:
         repo_root: Path to the repository root
-        courses: List of course names (default: ['biol-1', 'biol-8'])
+        courses: List of course names (default: active courses from publish.toml)
         verbose: If True, log detailed operations
 
     Returns:
         Number of files copied
     """
     if courses is None:
-        courses = ['biol-1', 'biol-8']
+        courses = _active_courses(repo_root)
 
     published_dir = repo_root / config.PUBLISH_ROOT_NAME
     total_copied = 0
@@ -135,14 +141,14 @@ def copy_slides_to_modules(
 
     Args:
         repo_root: Path to the repository root
-        courses: List of course names (default: ['biol-1', 'biol-8'])
+        courses: List of course names (default: active courses from publish.toml)
         verbose: If True, log detailed operations
 
     Returns:
         Number of files copied
     """
     if courses is None:
-        courses = ['biol-1', 'biol-8']
+        courses = _active_courses(repo_root)
 
     published_dir = repo_root / config.PUBLISH_ROOT_NAME
     total_copied = 0
@@ -169,7 +175,7 @@ def copy_slides_to_modules(
                 continue
 
             # Try multiple slide naming patterns
-            matching_slides = []
+            matching_slides: List[Path] = []
 
             # Pattern 1: module-{num}-slides-*.pdf (biol-1 style, no leading zeros)
             pattern1 = f"module-{module_num}-slides-*.pdf"
@@ -257,14 +263,14 @@ def copy_practice_tests(
 
     Args:
         repo_root: Path to the repository root
-        courses: List of course names (default: ['biol-1', 'biol-8'])
+        courses: List of course names (default: active courses from publish.toml)
         verbose: If True, log detailed operations
 
     Returns:
         Number of files copied
     """
     if courses is None:
-        courses = ['biol-1', 'biol-8']
+        courses = _active_courses(repo_root)
 
     published_dir = repo_root / config.PUBLISH_ROOT_NAME
     total_copied = 0
@@ -321,14 +327,14 @@ def reorganize_to_categories(
 
     Args:
         published_dir: Path to the PUBLISHED directory
-        courses: List of course names (default: ['biol-1', 'biol-8'])
+        courses: List of course names (default: active courses from publish.toml)
         verbose: If True, log detailed operations
 
     Returns:
         Total number of files reorganized
     """
     if courses is None:
-        courses = ['biol-1', 'biol-8']
+        courses = _active_courses(published_dir.parent)
 
     total_moved = 0
 

@@ -2,7 +2,7 @@
 
 ## Real Methods Policy
 
-**Always use real methods and implementations - no mocks, stubs, or fake methods.**
+**Source code always uses real methods and implementations - no mocks, stubs, or fake methods.**
 
 ### Implementation Standards
 - All functions use real library implementations
@@ -16,7 +16,7 @@
 - Minimal dependencies between modules
 
 ### Code Quality
-- Type hints for all functions
+- Type hints for public functions and all new helpers
 - Comprehensive docstrings
 - Error handling with appropriate exceptions
 - Modular, reusable code

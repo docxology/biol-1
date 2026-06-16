@@ -1,6 +1,12 @@
 # Lab 1: Introduction to Scientific Measurement
 
-## Objectives
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
+
+**Name:** {fill:text} **Date:** {fill:text}
+
+---
+
+## Learning Objectives
 
 By the end of this lab, you will be able to:
 

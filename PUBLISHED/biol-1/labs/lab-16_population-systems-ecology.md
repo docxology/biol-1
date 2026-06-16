@@ -1,6 +1,10 @@
 # Lab 16: Population & Systems Ecology (Module 15)
 
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
+
 **Name:** {fill:text} **Date:** {fill:text}
+
+---
 
 ## Learning Objectives
 

@@ -5,9 +5,9 @@ Usage:
     uv run python scripts/generate_all_outputs.py [OPTIONS]
 
 Options:
-    --course COURSE    Course to process: biol-1, biol-8, or all (default: all)
+    --course COURSE    Active course to process, or all (default: all)
     --module MODULE    Specific module number to process (default: all)
-    --formats FORMATS  Comma-separated list of formats: pdf,mp3,docx,html,txt (default: all)
+    --formats FORMATS  Comma-separated list of formats: pdf,mp3,docx,html,txt,md (default: all)
     --dry-run          Show what would be generated without actually generating
     --skip-clear       Skip clearing existing outputs before generation
     --no-website       Skip website generation
@@ -17,20 +17,24 @@ Options:
 Examples:
     uv run python scripts/generate_all_outputs.py
     uv run python scripts/generate_all_outputs.py --course biol-1
-    uv run python scripts/generate_all_outputs.py --course biol-8 --module 1
-    uv run python scripts/generate_all_outputs.py --formats mp3,txt
+    uv run python scripts/generate_all_outputs.py --course biol-1 --module 1
+    uv run python scripts/generate_all_outputs.py --formats pdf,docx,md
     uv run python scripts/generate_all_outputs.py --dry-run
 """
 
 import argparse
+import logging
 import sys
 import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.batch_processing.config import AVAILABLE_COURSES
-from src.batch_processing.logging_config import setup_logging
+from src.shared.runtime import configure_runtime_environment  # noqa: E402
+
+configure_runtime_environment()
+
+from src.batch_processing.logging_config import setup_logging  # noqa: E402
 from src.batch_processing.main import (
     clear_all_outputs,
     process_course_exams,
@@ -38,12 +42,15 @@ from src.batch_processing.main import (
     process_course_modules,
     process_course_practice_tests,
     process_course_syllabus,
-)
+)  # noqa: E402
 from src.batch_processing.utils import (
     generate_dry_run_report,
     get_courses_to_process,
     get_formats_to_process,
-)
+)  # noqa: E402
+from src.shared.course_config import CourseSelectionError, active_course_names  # noqa: E402
+
+logger = logging.getLogger(__name__)
 
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
@@ -51,7 +58,12 @@ def parse_args() -> argparse.Namespace:
         description="Generate all outputs for course modules and syllabi.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("--course", choices=AVAILABLE_COURSES + ["all"], default="all")
+    active = ", ".join(active_course_names()) or "none"
+    parser.add_argument(
+        "--course",
+        default="all",
+        help=f"Active course to process, or all (active: {active}; default: all)",
+    )
     parser.add_argument("--module", type=int)
     parser.add_argument("--formats", type=str, default="all")
     parser.add_argument("--dry-run", action="store_true")
@@ -59,13 +71,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-website", action="store_true")
     parser.add_argument("--skip-labs", action="store_true")
     parser.add_argument("--max-module", type=str, action="append", default=[],
-                        help="Max module per course (course:number, e.g., biol-8:6)")
+                        help="Max module per course (course:number, e.g., biol-1:6)")
     parser.add_argument("--max-lab", type=str, action="append", default=[],
-                        help="Max lab per course (course:number, e.g., biol-8:5)")
+                        help="Max lab per course (course:number, e.g., biol-1:5)")
     return parser.parse_args()
 
 
-def parse_limits(limit_args: list) -> dict:
+def parse_limits(limit_args: list[str]) -> dict[str, int]:
     """Parse course:number limits into {course: number} dict."""
     limits = {}
     for limit in limit_args:
@@ -85,7 +97,11 @@ def main() -> int:
     start_time = time.time()
     repo_root = Path(__file__).parent.parent.parent
 
-    courses = get_courses_to_process(args.course)
+    try:
+        courses = get_courses_to_process(args.course)
+    except CourseSelectionError as exc:
+        logger.error(str(exc))
+        return 2
     formats = get_formats_to_process(args.formats)
 
     logger.info("=" * 60)

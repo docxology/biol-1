@@ -40,7 +40,8 @@ class TestGenerateAllOutputsCLI:
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
-        assert "invalid choice" in result.stderr.lower()
+        output = result.stdout + result.stderr
+        assert "unknown course" in output.lower()
 
     def test_dry_run_mode(self):
         """Test that dry-run mode doesn't generate files."""
@@ -107,7 +108,26 @@ class TestGenerateModuleRenderingsCLI:
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
-        assert "invalid choice" in result.stderr.lower()
+        output = result.stdout + result.stderr
+        assert "unknown course" in output.lower()
+
+    def test_archived_course_shows_archive_path(self):
+        """Archived courses fail with an actionable archive path."""
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(SCRIPTS_DIR / "generate_module_renderings.py"),
+                "--course",
+                "biol-8",
+            ],
+            capture_output=True,
+            text=True,
+            cwd=str(SOFTWARE_DIR),
+        )
+        output = result.stdout + result.stderr
+        assert result.returncode != 0
+        assert "archived/inactive" in output.lower()
+        assert "archive/spring-2026/course_development/biol-8" in output
 
     def test_invalid_module_shows_available(self):
         """Test that invalid module number shows available modules."""
@@ -153,7 +173,8 @@ class TestGenerateSyllabusRenderingsCLI:
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
-        assert "invalid choice" in result.stderr.lower()
+        output = result.stdout + result.stderr
+        assert "unknown course" in output.lower()
 
 
 class TestGenerateModuleWebsiteCLI:
@@ -181,7 +202,8 @@ class TestGenerateModuleWebsiteCLI:
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
-        assert "invalid choice" in result.stderr.lower()
+        output = result.stdout + result.stderr
+        assert "unknown course" in output.lower()
 
     def test_invalid_module_shows_available(self):
         """Test that invalid module number shows available modules."""
@@ -190,7 +212,7 @@ class TestGenerateModuleWebsiteCLI:
                 sys.executable,
                 str(SCRIPTS_DIR / "generate_module_website.py"),
                 "--course",
-                "biol-8",
+                "biol-1",
                 "--module",
                 "999",
             ],

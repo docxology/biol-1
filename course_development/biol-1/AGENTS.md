@@ -2,7 +2,7 @@
 
 ## Course
 
-General Biology — College of the Redwoods, taught at Pelican Bay State Prison. **15** content modules covering molecular biology through evolution and ecology.
+General Biology — College of the Redwoods, taught at Pelican Bay. **15** content modules covering molecular biology through evolution and ecology.
 
 ## Directory layout
 
@@ -34,8 +34,9 @@ Each `course/module-NN-name/` contains:
 - `keys-to-success.md` — module study guide.
 - `resources/` (optional) — module-local images and datasets.
 - `output/` — generated artifacts:
-  - `output/study-guides/module-NN-name-questions.{md,pdf,docx,html,txt,mp3}`
-  - `output/study-guides/module-NN-name-keys-to-success.{md,pdf,docx,html,txt,mp3}`
+  - `output/study-guides/module-NN-name-questions.{md,pdf,docx}` by default
+  - `output/study-guides/module-NN-name-keys-to-success.{md,pdf,docx}` by default
+  - HTML, TXT, and MP3 are supported opt-in formats
   - `output/website/index.html`
 
 There is **no** `assignments/` subfolder convention in BIOL-1.
@@ -51,7 +52,7 @@ There is **no** `assignments/` subfolder convention in BIOL-1.
 | Practice test | `course/practice_tests/practice-test-NN.md` | `practice-test-NN.{pdf,docx,…}` |
 | Exam | `course/exams/exam-NN.md` (+ `_key`) | `exam-NN.{pdf,docx,…}` |
 | Slides | `resources/slides/module-N-slides-{full,notes}.pdf` | (already final PDF) |
-| Syllabus | `syllabus/*.md` | `*.{pdf,docx,html,txt,mp3}` in `syllabus/output/` |
+| Syllabus | `syllabus/*.md` | `*.{pdf,docx,md}` by default in `syllabus/output/`; HTML, TXT, and MP3 are opt-in |
 
 ## Pipeline integration
 

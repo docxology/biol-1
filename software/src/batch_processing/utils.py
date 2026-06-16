@@ -4,8 +4,10 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 
-from . import config
 from src.shared.file_utils import ensure_output_directory, find_files  # noqa: F401
+from src.shared.course_config import active_course_paths, resolve_course_selection
+
+from . import config
 
 logger = logging.getLogger(__name__)
 
@@ -70,19 +72,20 @@ def get_courses_to_process(course_arg: str) -> List[tuple]:
     """Get list of courses to process based on argument.
 
     Args:
-        course_arg: Course name ("biol-1", "biol-8") or "all"
+        course_arg: Active course name or "all"
 
     Returns:
         List of (relative_path, display_name) tuples
     """
-    all_courses = [
-        (f"course_development/{c}", c.upper()) for c in config.AVAILABLE_COURSES
-    ]
-
     if course_arg == "all":
-        return all_courses
+        return active_course_paths()
 
-    return [(c, n) for c, n in all_courses if c.endswith(course_arg)]
+    selected = set(resolve_course_selection(course_arg))
+    return [
+        (relative_path, display_name)
+        for relative_path, display_name in active_course_paths()
+        if relative_path.rsplit("/", 1)[-1] in selected
+    ]
 
 
 def get_formats_to_process(formats_arg: str) -> List[str]:

@@ -91,14 +91,18 @@ uv run pytest tests/test_real_implementations.py -v
 
 ### Tests Requiring Internet
 
-Some tests require internet connection for external APIs (gTTS, speech recognition). These tests will be skipped if internet is unavailable:
+The default wrapper runs the fast offline gate and excludes audio, slow, internet, and API tests:
 
 ```bash
-# Run all tests (skips internet-required tests if offline)
-uv run pytest tests/
+# Fast offline gate
+./run_tests.sh
+./run_tests.sh --fast
 
-# Skip tests requiring internet
-uv run pytest tests/ -m "not requires_internet"
+# Full suite
+./run_tests.sh --full
+
+# Local audio/TTS tests
+./run_tests.sh --audio
 ```
 
 ## Test Standards
@@ -107,7 +111,7 @@ uv run pytest tests/ -m "not requires_internet"
 - Follow AAA pattern (Arrange, Act, Assert)
 - Include both unit and integration tests
 - Maintain high test coverage (>70%)
-- Use real implementations - no mocks
+- Use real implementations by default; document any test double at an external or orchestration boundary
 
 ## Test Markers
 
@@ -115,6 +119,8 @@ uv run pytest tests/ -m "not requires_internet"
 |--------|-------------|
 | `requires_internet` | Tests requiring internet connection |
 | `requires_api` | Tests requiring external API access |
+| `audio` | Tests invoking local audio/TTS tools |
+| `slow` | Tests excluded from the fast local gate |
 
 ## Fixtures
 

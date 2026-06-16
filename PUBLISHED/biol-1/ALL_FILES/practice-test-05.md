@@ -2,7 +2,7 @@
 
 ## Comprehensive Final Review (Modules 01–15)
 
-**College of the Redwoods — BIOL-1: Biology 1 (Pelican Bay, Spring 2026)**
+**College of the Redwoods — BIOL-1: General Biology (Pelican Bay, Fall 2026)**
 
 **Instructions:** This practice test samples **big ideas** from every module. Work through Parts A–C. For Part C, answer in complete sentences.
 

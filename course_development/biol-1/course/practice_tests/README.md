@@ -1,6 +1,6 @@
 # Practice Tests
 
-This directory contains practice tests for **BIOL-1: Biology 1** (Pelican Bay Prison, Spring 2026).
+This directory contains practice tests for **BIOL-1: General Biology** (Pelican Bay, Fall 2026).
 
 ## Structure
 

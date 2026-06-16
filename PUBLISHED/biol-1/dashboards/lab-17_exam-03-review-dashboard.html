@@ -5,243 +5,145 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 17 Dashboard: Exam 03 Review | BIOL-1</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #f0f2f5; --card: #ffffff; --sidebar: #1a1a2e; --sidebar-hover: #252545;
-  --accent: #0f766e; --accent-light: #14b8a6; --blue: #2563eb;
-  --text: #1a1a1a; --text-muted: #6b7280; --border: #e5e7eb;
-  --radius: 10px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
-  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --bg: #f5f7fb;
+  --ink: #18202f;
+  --muted: #5f6b7a;
+  --card: #ffffff;
+  --line: #d9e1ec;
+  --accent: #b42338;
+  --blue: #1d4ed8;
+  --green: #15803d;
 }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
-.layout { display: flex; min-height: 100vh; }
-.sidebar {
-  width: 260px; background: var(--sidebar); color: #e2e8f0; position: fixed;
-  top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100;
-  display: flex; flex-direction: column;
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
 }
-.sidebar-header { padding: 24px 20px 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.sidebar-header h1 { font-size: 15px; font-weight: 700; color: #fff; }
-.sidebar-header p { font-size: 12px; color: #94a3b8; margin-top: 4px; }
-.sidebar-nav { flex: 1; padding: 12px 0; }
-.sidebar-nav a {
-  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
-  color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500;
-  border-left: 3px solid transparent;
+header {
+  background: #152033;
+  color: white;
+  padding: 24px;
 }
-.sidebar-nav a:hover { background: var(--sidebar-hover); color: #e2e8f0; }
-.sidebar-nav a.active { color: #fff; background: var(--sidebar-hover); border-left-color: var(--accent); }
-.sidebar-nav .nav-num {
-  width: 22px; height: 22px; border-radius: 6px; font-size: 11px; font-weight: 700;
-  background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center;
-}
-.sidebar-nav a.active .nav-num { background: var(--accent); color: #fff; }
-.sidebar-footer { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: #64748b; }
-.main { margin-left: 260px; flex: 1; padding: 32px; max-width: 1000px; }
-.section { margin-bottom: 36px; scroll-margin-top: 24px; }
-.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.section-num {
-  width: 36px; height: 36px; border-radius: 10px; background: var(--accent); color: #fff;
-  font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center;
-}
-.section-title { font-size: 20px; font-weight: 700; }
-.section-subtitle { font-size: 13px; color: var(--text-muted); }
+header p { color: #c9d4e5; margin: 4px 0 0; }
+main { max-width: 980px; margin: 0 auto; padding: 24px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .card {
-  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-  padding: 20px; margin-bottom: 14px; border: 1px solid var(--border);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
 }
-.checklist { list-style: none; }
-.checklist li { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
-.checklist input { margin-top: 4px; accent-color: var(--accent); }
-.hero {
-  background: linear-gradient(135deg, #134e4a 0%, #1a1a2e 100%);
-  color: #fff; border-radius: var(--radius); padding: 32px; margin-bottom: 28px;
-}
-.hero h2 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
-.hero p { color: #cbd5e1; font-size: 14px; max-width: 620px; }
-.card-title { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+.label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+h1 { margin: 0; font-size: 28px; }
+h2 { margin: 0 0 10px; font-size: 20px; }
+ul { margin: 8px 0 0; padding-left: 20px; }
+label { display: block; font-weight: 700; margin: 10px 0; }
+label span { display: block; margin-bottom: 4px; }
 textarea {
-  width: 100%; min-height: 90px; padding: 12px; border: 2px solid var(--border);
-  border-radius: 8px; font-family: var(--font); font-size: 14px; resize: vertical;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 72px;
+  font: inherit;
 }
-textarea:focus { outline: none; border-color: var(--accent); }
-.input-group { margin-top: 12px; }
-.timer-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
-.timer-val { font-family: ui-monospace, monospace; font-size: 28px; font-weight: 800; color: var(--accent); }
-.btn {
-  padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
-  border: none; cursor: pointer; font-family: var(--font);
+input[type="checkbox"] { transform: translateY(1px); }
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--blue);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
 }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-outline { background: #fff; border: 2px solid var(--border); color: var(--text); }
-@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .main { margin-left: 0; padding: 16px; }
+.pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #eaf1ff;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+  margin: 3px 4px 3px 0;
 }
+.status { color: var(--green); font-weight: 700; margin-left: 10px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } main { padding: 14px; } }
 </style>
 </head>
 <body>
-<div class="layout">
-<aside class="sidebar">
-  <div class="sidebar-header">
-    <h1>BIOL-1: General Biology</h1>
-    <p>Lab 17 &mdash; Exam 03 review</p>
-  </div>
-  <nav class="sidebar-nav">
-    <a href="#hero" class="active"><span class="nav-num">&bull;</span> Overview</a>
-    <a href="#m12"><span class="nav-num">12</span> Darwin &amp; evolution</a>
-    <a href="#m13"><span class="nav-num">13</span> Populations evolve</a>
-    <a href="#m14"><span class="nav-num">14</span> Macroevolution</a>
-    <a href="#m15"><span class="nav-num">15</span> Ecology</a>
-    <a href="#timer"><span class="nav-num">&bull;</span> Sprint timer</a>
-  </nav>
-  <div class="sidebar-footer">Modules 12&ndash;15 &middot; &copy; 2026 BIOL-1</div>
-</aside>
-
-<div class="main">
-<div class="hero" id="hero">
-  <h2>Exam 03 practice</h2>
-  <p>Checklists mirror the lab workbook: use them closed-book first, then fill gaps from your notes. Open <code style="background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;">lab-17_exam-03-review.md</code> for full drills.</p>
-</div>
-
-<div class="section" id="m12">
-  <div class="section-header">
-    <div class="section-num">12</div>
-    <div><div class="section-title">Darwin and evolution</div><div class="section-subtitle">Natural selection, evidence, common descent</div></div>
-  </div>
-  <div class="card">
-    <ul class="checklist">
-      <li><input type="checkbox" id="c12a" data-persist> <label for="c12a">Variation, overproduction, unequal contribution to the next generation</label></li>
-      <li><input type="checkbox" id="c12b" data-persist> <label for="c12b">Fitness = relative reproductive success (not &ldquo;strongest&rdquo;)</label></li>
-      <li><input type="checkbox" id="c12c" data-persist> <label for="c12c">Individuals don&rsquo;t evolve; populations change allele frequencies</label></li>
-    </ul>
-  </div>
-</div>
-
-<div class="section" id="m13">
-  <div class="section-header">
-    <div class="section-num">13</div>
-    <div><div class="section-title">How populations evolve</div><div class="section-subtitle">Mechanisms, drift, selection patterns</div></div>
-  </div>
-  <div class="card">
-    <ul class="checklist">
-      <li><input type="checkbox" id="c13a" data-persist> <label for="c13a">Microevolution = change in <strong>allele frequencies</strong></label></li>
-      <li><input type="checkbox" id="c13b" data-persist> <label for="c13b">Bottleneck vs founder (both drift; small N)</label></li>
-      <li><input type="checkbox" id="c13c" data-persist> <label for="c13c">Directional / stabilizing / disruptive selection; Hardy&ndash;Weinberg as null baseline</label></li>
-    </ul>
-  </div>
-</div>
-
-<div class="section" id="m14">
-  <div class="section-header">
-    <div class="section-num">14</div>
-    <div><div class="section-title">Macroevolution</div><div class="section-subtitle">Species, barriers, speciation</div></div>
-  </div>
-  <div class="card">
-    <ul class="checklist">
-      <li><input type="checkbox" id="c14a" data-persist> <label for="c14a">Biological species concept; reproductive isolation</label></li>
-      <li><input type="checkbox" id="c14b" data-persist> <label for="c14b">Prezygotic vs postzygotic examples</label></li>
-      <li><input type="checkbox" id="c14c" data-persist> <label for="c14c">Allopatric vs sympatric (e.g. polyploidy in plants)</label></li>
-    </ul>
-  </div>
-</div>
-
-<div class="section" id="m15">
-  <div class="section-header">
-    <div class="section-num">15</div>
-    <div><div class="section-title">Population and systems ecology</div><div class="section-subtitle">Growth curves, limits, energy and nutrients</div></div>
-  </div>
-  <div class="card">
-    <ul class="checklist">
-      <li><input type="checkbox" id="c15a" data-persist> <label for="c15a">Exponential (J) vs logistic (S); carrying capacity <em>K</em></label></li>
-      <li><input type="checkbox" id="c15b" data-persist> <label for="c15b">Density-dependent vs density-independent regulation</label></li>
-      <li><input type="checkbox" id="c15c" data-persist> <label for="c15c">Trophic levels; ~10% energy transfer; energy flows, nutrients cycle</label></li>
-    </ul>
-  </div>
-</div>
-
-<div class="section" id="timer">
-  <div class="section-header">
-    <div class="section-num">&bull;</div>
-    <div><div class="section-title">Vocabulary sprint</div><div class="section-subtitle">Optional timer (local only)</div></div>
-  </div>
-  <div class="card">
-    <div class="card-title">5-minute word-bank sprint</div>
-    <div class="timer-row">
-      <div class="timer-val" id="tm-display">5:00</div>
-      <button type="button" class="btn btn-primary" id="tm-start">Start</button>
-      <button type="button" class="btn btn-outline" id="tm-reset">Reset</button>
+<header>
+  <div class="label">BIOL-1 General Biology</div>
+  <h1>Lab 17: Exam 03 Review</h1>
+  <p>Review: Modules 12-15 companion dashboard</p>
+</header>
+<main>
+  <section class="card">
+    <h2>Focus</h2>
+    <p>Prepare for the evolution and ecology unit exam with evidence-based review.</p>
+    <div>
+      <span class="pill">evolution</span><span class="pill">selection</span><span class="pill">speciation</span><span class="pill">ecology</span>
     </div>
-    <div class="input-group" style="margin-top:16px;">
-      <textarea id="sprint-notes" data-persist placeholder="Jot terms you missed…"></textarea>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+  </section>
 
+  <section class="grid">
+    <div class="card">
+      <div class="label">Observe</div>
+      <p>What do you see, count, measure, or compare?</p>
+    </div>
+    <div class="card">
+      <div class="label">Explain</div>
+      <p>What biological idea explains the evidence?</p>
+    </div>
+    <div class="card">
+      <div class="label">Check</div>
+      <p>What uncertainty or alternate explanation remains?</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Evidence Capture</h2>
+    <label><span>Evolution concept</span><textarea rows="3"></textarea></label>
+<label><span>Ecology concept</span><textarea rows="3"></textarea></label>
+<label><span>Practice target</span><textarea rows="3"></textarea></label>
+    <button type="button" id="save">Save Notes</button><span class="status" id="status"></span>
+  </section>
+
+  <section class="card">
+    <h2>Concept Check</h2>
+    <label><input type="checkbox"> <span>Use the four-module checklist.</span></label>
+<label><input type="checkbox"> <span>Explain mechanisms in plain language.</span></label>
+<label><input type="checkbox"> <span>Write one full free-response answer.</span></label>
+  </section>
+
+  <section class="card">
+    <h2>Key Terms</h2>
+    <ul>
+      <li>evolution</li>
+<li>selection</li>
+<li>speciation</li>
+<li>ecology</li>
+    </ul>
+  </section>
+</main>
 <script>
-(function () {
-  const KEY = 'biol1-dashboard-lab-17-exam03';
-  function load() {
-    try {
-      const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-      document.querySelectorAll('[data-persist]').forEach(el => {
-        if (!el.id || !(el.id in d)) return;
-        if (el.type === 'checkbox') el.checked = d[el.id];
-        else el.value = d[el.id];
-      });
-    } catch (e) {}
-  }
-  function save() {
-    const d = {};
-    document.querySelectorAll('[data-persist]').forEach(el => {
-      if (!el.id) return;
-      d[el.id] = el.type === 'checkbox' ? el.checked : el.value;
-    });
-    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch (e) {}
-  }
-  document.querySelectorAll('[data-persist]').forEach(el => {
-    el.addEventListener('change', save);
-    el.addEventListener('input', save);
-  });
-  load();
-
-  let remain = 300, tick = null;
-  const disp = document.getElementById('tm-display');
-  function fmt(s) {
-    const m = Math.floor(s / 60), sec = s % 60;
-    return m + ':' + (sec < 10 ? '0' : '') + sec;
-  }
-  const startBtn = document.getElementById('tm-start');
-  startBtn.onclick = function () {
-    if (tick) { clearInterval(tick); tick = null; startBtn.textContent = 'Start'; return; }
-    startBtn.textContent = 'Pause';
-    tick = setInterval(() => {
-      remain = Math.max(0, remain - 1);
-      disp.textContent = fmt(remain);
-      if (remain === 0) { clearInterval(tick); tick = null; startBtn.textContent = 'Start'; }
-    }, 1000);
-  };
-  document.getElementById('tm-reset').onclick = function () {
-    if (tick) clearInterval(tick);
-    tick = null;
-    remain = 300;
-    disp.textContent = '5:00';
-    startBtn.textContent = 'Start';
-  };
-
-  function navScroll() {
-    const sections = document.querySelectorAll('.section, .hero');
-    const links = document.querySelectorAll('.sidebar-nav a');
-    let idx = 0;
-    sections.forEach((sec, i) => { if (sec.getBoundingClientRect().top < 160) idx = i; });
-    links.forEach((l, i) => l.classList.toggle('active', i === idx));
-  }
-  window.addEventListener('scroll', navScroll);
-  navScroll();
-})();
+const key = "biol1-lab-17-dashboard";
+const fields = Array.from(document.querySelectorAll("textarea"));
+try {
+  const saved = JSON.parse(localStorage.getItem(key) || "[]");
+  fields.forEach((field, index) => { field.value = saved[index] || ""; });
+} catch (error) {
+  console.warn("Could not load saved dashboard notes", error);
+}
+document.getElementById("save").addEventListener("click", () => {
+  localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
+  document.getElementById("status").textContent = "Saved in this browser";
+});
 </script>
 </body>
 </html>

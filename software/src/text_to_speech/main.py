@@ -25,7 +25,7 @@ def generate_speech(
     Args:
         text: Text content to convert
         output_path: Path for output audio file
-        voice: Voice identifier (default: "default", currently not used with gTTS)
+        voice: Voice identifier (default: "default", reserved for future backend selection)
         lang: Language code (default: "en")
         slow: Whether to speak slowly (default: False)
 
@@ -96,5 +96,4 @@ def batch_generate_speech(input_dir: str, output_dir: str) -> List[str]:
             continue
 
     return output_files
-
 

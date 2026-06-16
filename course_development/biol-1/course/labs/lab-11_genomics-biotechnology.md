@@ -1,12 +1,10 @@
 # Lab 11: Genomics & Biotechnology
 
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
+
 **Name:** {fill:text} **Date:** {fill:text}
 
-## Overview
-
-Biotechnology puts our knowledge of DNA to work. Today, scientists can **cut** DNA at precise locations, **copy** a single molecule into billions, **sort** fragments by size, **identify** individuals by their unique DNA fingerprint, and even **edit** genes to treat diseases. These powerful techniques have revolutionized fields like medicine, agriculture, and evolutionary biology, giving us unprecedented ability to understand and alter biological systems.
-
-In this lab, you will explore the core tools of biotechnology. Think of these as tools in a scientist's toolbox, allowing us to interact with the hidden world of molecules and cells!
+---
 
 ## Learning Objectives
 
@@ -16,6 +14,12 @@ In this lab, you will explore the core tools of biotechnology. Think of these as
 4. Synthesize concepts from past modules (inheritance, replication) with modern biotechnology.
 5. Trace how modifications at the molecular DNA level cascade into cellular and organismal traits.
 6. Evaluate the biological and ethical implications of editing genomes.
+
+## Overview
+
+Biotechnology puts our knowledge of DNA to work. Today, scientists can **cut** DNA at precise locations, **copy** a single molecule into billions, **sort** fragments by size, **identify** individuals by their unique DNA fingerprint, and even **edit** genes to treat diseases. These powerful techniques have revolutionized fields like medicine, agriculture, and evolutionary biology, giving us unprecedented ability to understand and alter biological systems.
+
+In this lab, you will explore the core tools of biotechnology. Think of these as tools in a scientist's toolbox, allowing us to interact with the hidden world of molecules and cells!
 
 ---
 

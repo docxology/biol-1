@@ -3,12 +3,11 @@
 
 Supports automatic git operations:
 - Commit PUBLISHED changes to cr-bio
-- Subtree push to biol-1 and biol-8 public repos
+- Subtree push active PUBLISHED course prefixes to public repos
 """
 
 import argparse
 import logging
-import os
 import shutil
 import subprocess
 import sys
@@ -16,8 +15,14 @@ import tomllib
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent
+SOFTWARE_DIR = REPO_ROOT / "software"
 CONFIG_PATH = REPO_ROOT / "publish.toml"
-PUBLISH_SCRIPT = REPO_ROOT / "software" / "scripts" / "publish_all.py"
+PUBLISH_SCRIPT = SOFTWARE_DIR / "scripts" / "publish_all.py"
+
+sys.path.insert(0, str(SOFTWARE_DIR))
+from src.shared.runtime import configure_runtime_environment  # noqa: E402
+
+configure_runtime_environment()
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 log = logging.getLogger(__name__)
@@ -306,17 +311,10 @@ def flatten_all_files(config: dict) -> None:
 
 
 def main():
-    # Set library path for macOS Homebrew (WeasyPrint needs GLib/GObject)
-    if sys.platform == "darwin":
-        homebrew_lib = "/opt/homebrew/lib"
-        current = os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "")
-        if homebrew_lib not in current:
-            os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = f"{homebrew_lib}:{current}" if current else homebrew_lib
-
     parser = argparse.ArgumentParser(description="Publish courses using publish.toml config")
     parser.add_argument("--dry-run", action="store_true", help="Show command without executing")
     parser.add_argument("--override-formats", type=str, default=None,
-                        help="Override config formats (comma-separated, e.g. pdf,html)")
+                        help="Override config formats (comma-separated, e.g. pdf,docx,md)")
     parser.add_argument("--setup-git", action="store_true", 
                         help="Set up git remotes from config and exit")
     parser.add_argument("--git-only", action="store_true",
@@ -366,7 +364,8 @@ def main():
             print(f"  {name}: enabled={course.get('enabled', True)}, "
                   f"labs={course.get('include_labs', True)}, "
                   f"syllabus={course.get('include_syllabus', True)}, "
-                  f"dashboards={course.get('include_dashboards', True)}")
+                  f"dashboards={course.get('include_dashboards', True)}, "
+                  f"archive={course.get('archive_path', '')}")
         
         # Show git config
         if git_cfg.get("enabled", True):
@@ -423,7 +422,9 @@ def main():
     log.info("  PUBLISH COMPLETE")
     log.info("="*70)
     log.info(f"  PUBLISHED/ total files (recursive, includes ALL_FILES/ duplicates): {total}")
-    for cname in courses_cfg:
+    for cname, course_cfg in courses_cfg.items():
+        if not course_cfg.get("enabled", True):
+            continue
         cdir = published / cname
         if cdir.is_dir():
             ccount = sum(1 for _ in cdir.rglob("*") if _.is_file())

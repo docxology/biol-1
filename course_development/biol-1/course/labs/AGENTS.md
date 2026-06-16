@@ -11,7 +11,7 @@ Technical documentation for the BIOL-1 laboratory protocol directory. Labs are M
 | `lab-01_measurement-methods.md` | Introduction to Scientific Measurement | ✅ Complete |
 | `lab-02_probability-statistics.md` | Probability and Statistics | ✅ Complete |
 | `lab-03_microscopy.md` | Introduction to Microscopy | ✅ Complete |
-| `lab-04_liquid-chemistry.md` | Liquid Chemistry | 📝 Stub |
+| `lab-04_liquid-chemistry.md` | Liquid Chemistry | ✅ Complete |
 | `lab-05_viewing-life.md` | Viewing Life | ✅ Complete |
 | `lab-06_exam-review.md` | Exam 01 Review (Paper-based) | ✅ Complete |
 | `lab-07_molecular-genetics.md` | Molecular Genetics | ✅ Complete |
@@ -26,7 +26,7 @@ Technical documentation for the BIOL-1 laboratory protocol directory. Labs are M
 | `lab-16_population-systems-ecology.md` | Population & Systems Ecology (Module 15) | ✅ Complete |
 | `lab-17_exam-03-review.md` | Exam 03 Review (Modules 12–15) | ✅ Complete |
 
-**Status:** 16 complete, 1 stub (`lab-04_liquid-chemistry.md`)
+**Status:** 17 complete, 0 stubs
 
 ## Lab Naming Convention
 
@@ -50,6 +50,11 @@ Labs use specialized HTML comment directives for interactive elements processed 
 | `{fill:textarea rows=N}` | Multi-line fillable area |
 | `**Name:** {fill:text} **Date:** {fill:text}` | Standard identification block (stripped from PDF header) |
 
+Each BIOL-1 lab starts with `# Lab N`, the exact course subtitle
+`**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay`, the
+exact name/date line, and then `## Learning Objectives` before any Overview or
+Purpose section. `validate_repo_contracts.py` enforces this contract.
+
 See `lab-01_measurement-methods.md` as the reference implementation.
 
 ## Output Generation
@@ -64,9 +69,9 @@ uv run python -c "
 from src.lab_manual.main import render_lab_manual
 render_lab_manual(
     '../course_development/biol-1/course/labs/lab-01_measurement-methods.md',
-    '../course_development/biol-1/course/labs/output/lab-01_measurement-methods.pdf',
+    '../course_development/biol-1/course/labs/output/pdf/lab-01_measurement-methods.pdf',
     'pdf',
-    course_name='BIOL-1: Biology'
+    course_name='BIOL-1: General Biology'
 )
 "
 
@@ -77,7 +82,7 @@ batch_render_lab_manuals(
     '../course_development/biol-1/course/labs',
     '../course_development/biol-1/course/labs/output',
     'pdf',
-    course_name='BIOL-1: Biology'
+    course_name='BIOL-1: General Biology'
 )
 "
 ```
@@ -86,8 +91,8 @@ batch_render_lab_manuals(
 
 Generated files are stored in `output/`:
 
-- `*.pdf` — Printable lab worksheets
-- `*.html` — Interactive web versions with auto-saving fillable fields
+- `output/pdf/*.pdf` — Printable lab worksheets
+- `output/html/*.html` — Interactive web versions with auto-saving fillable fields when HTML lab rendering is requested
 
 ## Related Documentation
 
@@ -95,4 +100,4 @@ Generated files are stored in `output/`:
 |----------|-------------|
 | [../README.md](../README.md) | Course materials overview |
 | [../AGENTS.md](../AGENTS.md) | Course-level technical documentation |
-| [../../../software/src/lab_manual/README.md](../../../software/src/lab_manual/README.md) | Lab manual module technical docs |
+| [../../../../software/src/lab_manual/README.md](../../../../software/src/lab_manual/README.md) | Lab manual module technical docs |

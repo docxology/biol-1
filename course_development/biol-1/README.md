@@ -1,6 +1,6 @@
 # BIOL-1: General Biology
 
-**College of the Redwoods | Pelican Bay | Spring 2026**
+**College of the Redwoods | Pelican Bay | Fall 2026**
 
 Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution and ecology. This course is structured as **15** content modules with integrated study materials, laboratory protocols, and assessments.
 
@@ -26,7 +26,7 @@ biol-1/
 
 ## Modules
 
-Each module contains two source files (`keys-to-success.md`, `questions.md`) and an `output/` directory with generated study guides (PDF, DOCX, HTML, TXT, MP3) and an interactive website (`index.html`).
+Each module contains two source files (`keys-to-success.md`, `questions.md`) and an `output/` directory with generated study guides (PDF, DOCX, MD in the current publish profile) and an interactive website (`index.html`).
 
 | # | Module | Topic | Source |
 |---|--------|-------|--------|
@@ -50,7 +50,7 @@ Each module contains two source files (`keys-to-success.md`, `questions.md`) and
 
 Each module's `output/` directory contains:
 
-- **Study Guides** (`output/study-guides/`): PDF, DOCX, HTML, TXT, MP3
+- **Study Guides** (`output/study-guides/`): PDF, DOCX, MD in the current publish profile; HTML, TXT, and MP3 are optional formats.
 - **Interactive Website** (`output/website/index.html`): Self-contained HTML study portal
 
 ---
@@ -64,7 +64,7 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 01 | [Lab 01](course/labs/lab-01_measurement-methods.md) | Introduction to Scientific Measurement | Complete |
 | 02 | [Lab 02](course/labs/lab-02_probability-statistics.md) | Probability and Statistics | Complete |
 | 03 | [Lab 03](course/labs/lab-03_microscopy.md) | Introduction to Microscopy | Complete |
-| 04 | [Lab 04](course/labs/lab-04_liquid-chemistry.md) | Liquid Chemistry | Stub |
+| 04 | [Lab 04](course/labs/lab-04_liquid-chemistry.md) | Liquid Chemistry | Complete |
 | 05 | [Lab 05](course/labs/lab-05_viewing-life.md) | Viewing Life | Complete |
 | 06 | [Lab 06](course/labs/lab-06_exam-review.md) | Exam 01 Review | Complete |
 | 07 | [Lab 07](course/labs/lab-07_molecular-genetics.md) | Molecular Genetics | Complete |
@@ -83,8 +83,8 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 
 Generated lab outputs are in [`course/labs/output/`](course/labs/output/):
 
-- [Lab 01 PDF](course/labs/output/lab-01_measurement-methods.pdf) · [Lab 01 HTML](course/labs/output/lab-01_measurement-methods.html)
-- [Lab 02 PDF](course/labs/output/lab-02_probability-statistics.pdf) · [Lab 02 HTML](course/labs/output/lab-02_probability-statistics.html)
+- [Lab 01 PDF](course/labs/output/pdf/lab-01_measurement-methods.pdf)
+- [Lab 02 PDF](course/labs/output/pdf/lab-02_probability-statistics.pdf)
 
 ### Interactive Dashboards
 
@@ -95,19 +95,19 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 | 01 | [Measurement Methods](course/labs/dashboards/lab-01_measurement-methods-dashboard.html) |
 | 02 | [Probability & Statistics](course/labs/dashboards/lab-02_probability-statistics-dashboard.html) |
 | 03 | [Microscopy](course/labs/dashboards/lab-03_microscopy-dashboard.html) |
-| 04 | [Cells](course/labs/dashboards/lab-04_cells-dashboard.html) |
-| 05 | [Membranes](course/labs/dashboards/lab-05_membranes-dashboard.html) |
-| 06 | [Metabolism](course/labs/dashboards/lab-06_metabolism-dashboard.html) |
-| 07 | [Photosynthesis](course/labs/dashboards/lab-07_photosynthesis-dashboard.html) |
-| 08 | [Cellular Respiration](course/labs/dashboards/lab-08_cellular-respiration-dashboard.html) |
-| 09 | [Cell Division & Mitosis](course/labs/dashboards/lab-09_cell-division-mitosis-dashboard.html) |
-| 10 | [Meiosis & Reproduction](course/labs/dashboards/lab-10_meiosis-reproduction-dashboard.html) |
-| 11 | [Mendelian Genetics](course/labs/dashboards/lab-11_mendelian-genetics-dashboard.html) |
-| 12 | [Gene Expression](course/labs/dashboards/lab-12_gene-expression-dashboard.html) |
-| 13 | [Gene Regulation](course/labs/dashboards/lab-13_gene-regulation-dashboard.html) |
-| 14 | [Biotechnology & Genomics](course/labs/dashboards/lab-14_biotechnology-genomics-dashboard.html) |
-| 15 | [Darwin & Evolution](course/labs/dashboards/lab-15_darwin-evolution-dashboard.html) |
-| 16 | [Microevolution](course/labs/dashboards/lab-16_microevolution-dashboard.html) |
+| 04 | [Liquid Chemistry](course/labs/dashboards/lab-04_liquid-chemistry-dashboard.html) |
+| 05 | [Viewing Life](course/labs/dashboards/lab-05_viewing-life-dashboard.html) |
+| 06 | [Exam 01 Review](course/labs/dashboards/lab-06_exam-review-dashboard.html) |
+| 07 | [Molecular Genetics](course/labs/dashboards/lab-07_molecular-genetics-dashboard.html) |
+| 08 | [Cellular Genetics](course/labs/dashboards/lab-08_cellular-genetics-dashboard.html) |
+| 09 | [Inheritance Genetics](course/labs/dashboards/lab-09_inheritance-genetics-dashboard.html) |
+| 10 | [Epigenetics](course/labs/dashboards/lab-10_epigenetics-dashboard.html) |
+| 11 | [Genomics & Biotechnology](course/labs/dashboards/lab-11_genomics-biotechnology-dashboard.html) |
+| 12 | [Exam 02 Review](course/labs/dashboards/lab-12_exam-02-review-dashboard.html) |
+| 13 | [Darwin & Evolution](course/labs/dashboards/lab-13_darwin-evolution-dashboard.html) |
+| 14 | [How Populations Evolve](course/labs/dashboards/lab-14_how-populations-evolve-dashboard.html) |
+| 15 | [Macroevolution](course/labs/dashboards/lab-15_macroevolution-dashboard.html) |
+| 16 | [Population and Systems Ecology](course/labs/dashboards/lab-16_population-systems-ecology-dashboard.html) |
 | 17 | [Exam 03 review](course/labs/dashboards/lab-17_exam-03-review-dashboard.html) |
 
 ---
@@ -136,10 +136,10 @@ Quiz templates are in [`course/quizzes/`](course/quizzes/):
 
 Source files and multi-format outputs are in [`syllabus/`](syllabus/).
 
-| Document | Source | PDF | DOCX | HTML | TXT | MP3 |
-|----------|--------|-----|------|------|-----|-----|
-| Syllabus | [Source](syllabus/BIOL-1_Spring-2026_Syllabus.md) | [PDF](syllabus/output/BIOL-1_Spring-2026_Syllabus.pdf) | [DOCX](syllabus/output/BIOL-1_Spring-2026_Syllabus.docx) | [HTML](syllabus/output/BIOL-1_Spring-2026_Syllabus.html) | [TXT](syllabus/output/BIOL-1_Spring-2026_Syllabus.txt) | [MP3](syllabus/output/BIOL-1_Spring-2026_Syllabus.mp3) |
-| Schedule | [Source](syllabus/Schedule.md) | [PDF](syllabus/output/Schedule.pdf) | [DOCX](syllabus/output/Schedule.docx) | [HTML](syllabus/output/Schedule.html) | [TXT](syllabus/output/Schedule.txt) | [MP3](syllabus/output/Schedule.mp3) |
+| Document | Source | PDF | DOCX | MD |
+|----------|--------|-----|------|----|
+| Syllabus | [Source](syllabus/BIOL-1_Fall-2026_Syllabus.md) | [PDF](syllabus/output/BIOL-1_Fall-2026_Syllabus.pdf) | [DOCX](syllabus/output/BIOL-1_Fall-2026_Syllabus.docx) | [MD](syllabus/output/BIOL-1_Fall-2026_Syllabus.md) |
+| Schedule | [Source](syllabus/Schedule.md) | [PDF](syllabus/output/Schedule.pdf) | [DOCX](syllabus/output/Schedule.docx) | [MD](syllabus/output/Schedule.md) |
 
 ---
 
@@ -158,14 +158,15 @@ Slides are in [`resources/slides/`](resources/slides/) as PDF files in two forma
 | 05 | [Full](resources/slides/module-5-slides-full.pdf) | [Notes](resources/slides/module-5-slides-notes.pdf) |
 | 06 | [Full](resources/slides/module-6-slides-full.pdf) | [Notes](resources/slides/module-6-slides-notes.pdf) |
 | 07 | [Full](resources/slides/module-7-slides-full.pdf) | [Notes](resources/slides/module-7-slides-notes.pdf) |
-| 08 | [Full](resources/slides/module-8-slides-full.pdf) | [Notes](resources/slides/module-8-slides-notes.pdf) |
+| 08 | [Cell cycle full](resources/slides/module-8-slides-cell-cycle-full.pdf) | [Cell cycle notes](resources/slides/module-8-slides-cell-cycle-notes.pdf) |
+| 08 | [Meiosis full](resources/slides/module-8-slides-meiosis-full.pdf) | [Meiosis notes](resources/slides/module-8-slides-meiosis-notes.pdf) |
+| 09 | [Full](resources/slides/module-9-slides-full.pdf) | [Notes](resources/slides/module-9-slides-notes.pdf) |
 | 10 | [Full](resources/slides/module-10-slides-full.pdf) | [Notes](resources/slides/module-10-slides-notes.pdf) |
 | 11 | [Full](resources/slides/module-11-slides-full.pdf) | [Notes](resources/slides/module-11-slides-notes.pdf) |
-| 12 | [Full](resources/slides/module-12-slides-full.pdf) | [Notes](resources/slides/module-12-slides-notes.pdf) |
-| 13 | [Full](resources/slides/module-13-slides-full.pdf) | [Notes](resources/slides/module-13-slides-notes.pdf) |
+| 12 | Not available | Not available |
+| 13 | Not available | Not available |
 | 14 | [Full](resources/slides/module-14-slides-full.pdf) | [Notes](resources/slides/module-14-slides-notes.pdf) |
-| 15 | [Full](resources/slides/module-15-slides-full.pdf) | [Notes](resources/slides/module-15-slides-notes.pdf) |
-> Slides for module 09 are not yet listed above.
+| 15 | Not available | Not available |
 
 ---
 

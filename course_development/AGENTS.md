@@ -2,20 +2,20 @@
 
 ## Purpose
 
-`course_development/` is the **authoring tree** for CR-BIO courses. Humans edit markdown and assets here; `python publish.py` (from the repo root) generates `PUBLISHED/<course>/` and can push per-course public subtrees.
+`course_development/` is the **authoring tree** for active CR-BIO courses. Humans edit markdown and assets here; `python publish.py` (from the repo root) generates active `PUBLISHED/<course>/` subtrees.
 
 ## Layout
 
 | Path | Role |
 |------|------|
-| [`biol-1/`](biol-1/AGENTS.md) | General Biology (Pelican Bay): **15** content modules, labs 01–17, exams, practice tests, syllabus. |
-| [`biol-8/`](biol-8/AGENTS.md) | Human Biology (Del Norte): **17** modules, labs 01–18, unit exams, quizzes, syllabus. |
+| [`biol-1/`](biol-1/AGENTS.md) | General Biology (Pelican Bay, Fall 2026): **15** content modules, labs 01–17, exams, practice tests, syllabus. |
+| [`../archive/spring-2026/`](../archive/spring-2026/AGENTS.md) | Spring 2026 archive: historical BIOL-1 and BIOL-8 source trees plus generated snapshots. |
 
 Each course has:
 
 - `course/` — modules (`module-NN-…/`), `labs/`, `exams/`, `practice_tests/`, `quizzes/` (as applicable)
 - `syllabus/` — markdown sources; outputs go to `syllabus/output/` (not second sources for batch discovery)
-- `resources/` — course-level resources (in practice, **`resources/slides/`** PDFs for both courses; see per-course `resources/README.md`)
+- `resources/` — course-level resources (in practice, **`resources/slides/`** PDFs)
 - `private/` — instructor-only; excluded from `PUBLISHED/`
 - `README.md` / `AGENTS.md` — student vs tooling docs
 
@@ -39,6 +39,6 @@ Each course has:
 
 | Document | Use |
 |----------|-----|
-| [README.md](README.md) | Short index of the two courses |
+| [README.md](README.md) | Short index of active course and archive |
 | [../software/docs/ORCHESTRATION.md](../software/docs/ORCHESTRATION.md) | Pipeline stages |
 | [../AGENTS.md](../AGENTS.md) | Repository-wide course + publish overview |

@@ -4,10 +4,11 @@
 
 ## Overview
 
-CR-BIO is an automated curriculum management system for Biology courses at College of the Redwoods. It transforms Markdown source files into multiple output formats (PDF, MP3, HTML, DOCX, TXT, optional normalized **Markdown** copies, and interactive websites) for two courses:
+CR-BIO is an automated curriculum management system for Biology courses at College of the Redwoods. It transforms Markdown source files into multiple output formats (PDF, DOCX, normalized Markdown by default; HTML, TXT, MP3 by opt-in profile; plus interactive websites). The active course is:
 
-- **BIOL-1**: General Biology (15 content modules) — Pelican Bay Prison
-- **BIOL-8**: Human Anatomy & Physiology (17 modules) — College of the Redwoods
+- **BIOL-1**: General Biology (15 content modules) — Pelican Bay, Fall 2026
+
+Spring 2026 BIOL-1 and BIOL-8 source and generated snapshots are archived under [`../../archive/spring-2026/`](../../archive/spring-2026/README.md).
 
 ```mermaid
 flowchart LR
@@ -41,14 +42,13 @@ uv run pytest -q --no-cov            # pass/fail (+ skipped markers)
 uv run pytest --cov=src --cov-report=term-missing   # coverage on default run (pyproject `addopts`)
 ```
 
-The suite follows the **Real Methods Policy**: no mocks, stubs, or fakes ([`.cursorrules`](../../.cursorrules), [docs/AGENTS.md](AGENTS.md)).
+The suite follows the **Real Methods Policy**: production code has no mocks, stubs, or fakes; tests use real files/libraries by default and may patch only documented external or orchestration boundaries ([`.cursorrules`](../../.cursorrules), [docs/AGENTS.md](AGENTS.md)).
 
 Structural facts (update if layout changes): **`software/src/`** holds **16** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
 
-### Supported courses
+### Active Course
 
 - **BIOL-1**: 15 modules under `course_development/biol-1/course/module-*`
-- **BIOL-8**: 17 modules under `course_development/biol-8/course/module-*`
 
 ---
 
@@ -75,7 +75,7 @@ Structural facts (update if layout changes): **`software/src/`** holds **16** Py
 | **Dashboard Authoring** | [DASHBOARD_FORMAT.md](DASHBOARD_FORMAT.md) | Interactive dashboard architecture |
 | **Course Structure** | [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md) | Directory layout, content organization |
 | **PDF Output** | [OUTPUT_PDF.md](OUTPUT_PDF.md) | PDF generation via WeasyPrint |
-| **Audio Output** | [OUTPUT_AUDIO.md](OUTPUT_AUDIO.md) | MP3 generation via gTTS |
+| **Audio Output** | [OUTPUT_AUDIO.md](OUTPUT_AUDIO.md) | MP3 generation via local TTS |
 | **DOCX Output** | [OUTPUT_DOCX.md](OUTPUT_DOCX.md) | Word document generation |
 | **HTML Output** | [OUTPUT_HTML.md](OUTPUT_HTML.md) | All HTML output types |
 | **API Reference** | [../AGENTS.md](../AGENTS.md) | All function signatures |
@@ -107,7 +107,7 @@ Structural facts (update if layout changes): **`software/src/`** holds **16** Py
 | Document | Description | Audience |
 |----------|-------------|----------|
 | **[OUTPUT_PDF.md](OUTPUT_PDF.md)** | PDF generation via WeasyPrint | Developers, Authors |
-| **[OUTPUT_AUDIO.md](OUTPUT_AUDIO.md)** | MP3 audio generation via gTTS | Developers, Authors |
+| **[OUTPUT_AUDIO.md](OUTPUT_AUDIO.md)** | MP3 audio generation via local TTS | Developers, Authors |
 | **[OUTPUT_DOCX.md](OUTPUT_DOCX.md)** | Word document generation | Developers, Authors |
 | **[OUTPUT_HTML.md](OUTPUT_HTML.md)** | Study-guide HTML, interactive sites, lab HTML, dashboards (**+ normalized MD copies**, not HTML; see guide) | Developers, Authors |
 
@@ -150,7 +150,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed design principles and [ORCHE
 | Module | Purpose | Key Function | Standalone | Dependencies |
 |--------|---------|--------------|------------|--------------|
 | [markdown_to_pdf](../src/markdown_to_pdf/) | Markdown → PDF via WeasyPrint | `render_markdown_to_pdf()` | Yes | WeasyPrint, [`shared`](../src/shared/) |
-| [text_to_speech](../src/text_to_speech/) | Text → MP3 via gTTS | `generate_speech()` | Yes | gTTS |
+| [text_to_speech](../src/text_to_speech/) | Text → MP3 via local TTS | `generate_speech()` | Yes | `say` + `ffmpeg` |
 | [speech_to_text](../src/speech_to_text/) | Audio → Text transcription | `transcribe_audio()` | Yes | SpeechRecognition |
 | [format_conversion](../src/format_conversion/) | Multi-format conversion | `convert_file()` | Yes | Dispatches PDF/DOCX/HTML/TXT/MP3 backends (see [`format_conversion/AGENTS.md`](../src/format_conversion/AGENTS.md)) |
 | [batch_processing](../src/batch_processing/) | Batch module processing | `process_module_by_type()` | Yes | [`format_conversion`](../src/format_conversion/), website/lab/scheduling callers |
@@ -185,33 +185,34 @@ Scripts in `scripts/` are thin orchestrators that call src modules:
 | `generate_syllabus_renderings.py` | Syllabus processing | `schedule`, `batch_processing` |
 | `publish_course.py` | Publish to PUBLISHED/ | `publish` |
 | `validate_outputs.py` | Validate outputs | `validation` |
+| `validate_repo_contracts.py` | Validate repo/documentation contracts | `validation.repo_contracts` |
 | `flatten_published.py` | Flatten directories | `publish.utils` |
 | `renumber_questions.py` | Question renumbering | `content_processing` |
 | `import_legacy_materials.py` | Import legacy | `legacy_import` |
-| `assemble_practice_test_12.py` | Assemble BIOL-8 `practice-test-12` from slices | ad hoc (see script docstring) |
+| `assemble_practice_test_12.py` | Assemble archived Spring 2026 BIOL-8 `practice-test-12` from slices | ad hoc (see script docstring) |
 
 See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 ---
 
-## Course Parity Matrix
+## Active Course Matrix
 
-| Document Type | BIOL-1 | BIOL-8 | Notes |
-|---------------|--------|--------|--------|
-| **keys-to-success.md** | 15 | 17 | One per `course/module-*` |
-| **questions.md** | 15 | 17 | One per module |
-| **Labs** | 17 protocols + dashboards | 18 protocols + dashboards | See each course `course/labs/` |
-| **Exams** | Unit `exam-01`–`exam-03` + `final-exam` + keys (+ `exam-template`); `include_exams` not used in BIOL-1 slice of `publish.toml`—render when wired | `exam-01`–`exam-03` + `final-exam` + keys (`publish.toml`: `include_exams`) | Teacher-only; never pushed to public course repos |
-| **Quizzes** | Templates | 17 × 2 files | BIOL-8 full set in `course/quizzes/` |
-| **Practice tests** | 3 + keys | 12 + keys (on disk) | `course/practice_tests/` |
-| **Syllabus** | 2 sources | 2 sources | + `syllabus/output/` |
-| **Schedule** | 1 source | 1 source | + rendered outputs |
-| **Slides** | 30 PDFs in `resources/slides/` (module **9** missing both variants) | 15 PDFs in `resources/slides/` | Pre-generated; not rendered by pipeline |
-| **Website output** | `module-*/output/website/index.html` after generation | Same | **Not** retained in public `PUBLISHED/<course>/` layout: `reorganize_to_categories` removes per-module `index.html` when building `homework/` + `module_keys/` (see [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md#published-directory-structure)) |
+| Document Type | BIOL-1 | Notes |
+|---------------|--------|--------|
+| **keys-to-success.md** | 15 | One per `course/module-*` |
+| **questions.md** | 15 | One per module |
+| **Labs** | 17 protocols + dashboards | See `course/labs/` |
+| **Exams** | Unit `exam-01`-`exam-03` + `final-exam` + keys (+ `exam-template`) | Teacher-only; never pushed to public course repos |
+| **Quizzes** | Template-only | `course/quizzes/quiz-template.md` |
+| **Practice tests** | 5 + keys | `course/practice_tests/` |
+| **Syllabus** | 2 sources | `BIOL-1_Fall-2026_Syllabus.md` and `Schedule.md` |
+| **Schedule** | 1 source | + rendered outputs |
+| **Slides** | PDFs in `resources/slides/` | Pre-generated; not rendered by pipeline |
+| **Website output** | `module-*/output/website/index.html` after generation | **Not** retained in public `PUBLISHED/<course>/` layout: `reorganize_to_categories` removes per-module `index.html` when building `homework/` + `module_keys/` (see [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md#published-directory-structure)) |
 
 ### Priority actions (high level)
 
-1. **BIOL-1 assessments:** Add unit coverage for modules 12–15 and/or final as the term requires; quizzes remain template-only unless the course adopts a BIOL-8-style quiz set.
+1. **BIOL-1 Fall 2026 assessments:** Keep exams, practice tests, and syllabus dates aligned with the Fall 2026 schedule.
 2. **Labs:** Finish any remaining lab stubs the instructor wants taught this term.
 3. **BIOL-1 slides:** Add module **9** full + notes PDFs if slides are required for that module.
 4. **Module `resources/`:** Populate optional per-module assets when needed.
@@ -224,7 +225,7 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 The root [`publish.toml`](../../publish.toml) is the source of truth. Below matches the **shape** of the file; defaults (each boolean) can differ—open the TOML before assuming toggles.
 
-Generation uses **Python libraries** in `software/src/` (WeasyPrint, `python-docx`, `markdown2`, `gTTS`, etc.), not external Pandoc.
+Generation uses **Python libraries and local tools** in `software/src/` (WeasyPrint, `python-docx`, `markdown2`, local TTS helpers, etc.), not external Pandoc.
 
 ```toml
 [publish]
@@ -286,14 +287,14 @@ Full nine-stage flow and CLI flags are documented in [ORCHESTRATION.md](ORCHESTR
 
 > ⚠️ **Important**: This repository follows a strict Real Methods Policy.
 
-**All code uses real implementations—no mocks, stubs, or fake methods.**
+**Production code uses real implementations--no mocks, stubs, or fake methods.**
 
 This applies to:
 
-- ✅ All library implementations (WeasyPrint, gTTS, etc.)
+- ✅ All library/tool implementations (WeasyPrint, local TTS, ffmpeg, etc.)
 - ✅ All file operations (real file system)
 - ✅ All validation logic
-- ✅ All tests (no mocking)
+- Test doubles only for documented external-service boundaries or expensive orchestration seams
 
 See [../../.cursorrules](../../.cursorrules) for the complete policy statement.
 
@@ -334,6 +335,7 @@ software/
     ├── generate_syllabus_renderings.py
     ├── publish_course.py
     ├── validate_outputs.py
+    ├── validate_repo_contracts.py
     ├── flatten_published.py
     ├── renumber_questions.py
     ├── import_legacy_materials.py
@@ -379,7 +381,7 @@ software/
 |---------|----------|
 | `OSError: cannot load library 'pangocairo'` | [QUICKSTART.md#pdf-generation-fails](QUICKSTART.md#pdf-generation-fails) |
 | `ModuleNotFoundError: No module named 'src'` | [QUICKSTART.md#module-not-found](QUICKSTART.md#module-not-found) |
-| `gTTSError: 429 (Too Many Requests)` | [QUICKSTART.md#audio-generation-fails](QUICKSTART.md#audio-generation-fails) |
+| Local TTS or ffmpeg timeout | [QUICKSTART.md#audio-generation-fails](QUICKSTART.md#audio-generation-fails) |
 | Pipeline fails mid-way | [ORCHESTRATION.md#error-recovery-patterns](ORCHESTRATION.md#error-recovery-patterns) |
 | Slow processing | [ORCHESTRATION.md#batch-processing-tips](ORCHESTRATION.md#batch-processing-tips) |
 | Environment setup issues | [QUICKSTART.md#environment-verification-checklist](QUICKSTART.md#environment-verification-checklist) |
@@ -403,7 +405,7 @@ See [AGENTS.md](AGENTS.md) for complete documentation standards.
 | Resource | URL |
 |----------|-----|
 | BIOL-1 Public Repository | [github.com/docxology/biol-1](https://github.com/docxology/biol-1) |
-| BIOL-8 Public Repository | [github.com/docxology/biol-8](https://github.com/docxology/biol-8) |
+| Spring 2026 Archive | [archive/spring-2026](../../archive/spring-2026/README.md) |
 | Dr. Daniel Ari Friedman | [@docxology](https://github.com/docxology) |
 
 ---

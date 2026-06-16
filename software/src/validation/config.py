@@ -79,10 +79,11 @@ OUTPUT_DIRS = {
 # Kept for backward compatibility with callers that don't thread requested formats.
 LAB_OUTPUT_FORMATS = ["pdf", "html"]
 
-# Lab renderable formats: the full set the lab pipeline can produce.
-# Used by format-aware validation to intersect the user-requested formats
-# (e.g. publish.toml `--formats pdf,docx,md`) with what labs actually emit.
-LAB_RENDERABLE_FORMATS = ["pdf", "docx", "html", "md", "txt"]
+# Lab renderable formats: the current lab pipeline can produce PDF and HTML.
+# Module, syllabus, practice-test, and exam pipelines support additional
+# formats; lab validation records those as skipped instead of pretending they
+# are generated.
+LAB_RENDERABLE_FORMATS = ["pdf", "html"]
 
 
 def get_lab_output_formats(formats: Optional[List[str]] = None) -> List[str]:

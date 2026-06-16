@@ -20,7 +20,7 @@ Every package follows the same shape:
 
 | Package | Layer | Purpose | Docs |
 |---|---|---|---|
-| `shared` | 0 | Cross-cutting helpers (`file_utils`). | [`shared/AGENTS.md`](shared/AGENTS.md) |
+| `shared` | 0 | Cross-cutting file and runtime helpers. | [`shared/AGENTS.md`](shared/AGENTS.md) |
 | `module_organization` | 0 | Create and inspect course module folders. | [`module_organization/AGENTS.md`](module_organization/AGENTS.md) |
 | `file_validation` | 0 | Per-file naming and structure checks. | [`file_validation/AGENTS.md`](file_validation/AGENTS.md) |
 | `validation` | 0 | Output completeness checks for published courses. | [`validation/AGENTS.md`](validation/AGENTS.md) |
@@ -28,7 +28,7 @@ Every package follows the same shape:
 | `legacy_import` | 0 | One-off importers for older lesson archives. | [`legacy_import/AGENTS.md`](legacy_import/AGENTS.md) |
 | `content_processing` | 0 | Text transformations (question renumbering, normalization). | [`content_processing/AGENTS.md`](content_processing/AGENTS.md) |
 | `markdown_to_pdf` | 1 | Markdown → PDF via WeasyPrint. | [`markdown_to_pdf/AGENTS.md`](markdown_to_pdf/AGENTS.md) |
-| `text_to_speech` | 1 | Text → audio (gTTS). | [`text_to_speech/AGENTS.md`](text_to_speech/AGENTS.md) |
+| `text_to_speech` | 1 | Text → audio via local TTS and ffmpeg. | [`text_to_speech/AGENTS.md`](text_to_speech/AGENTS.md) |
 | `speech_to_text` | 1 | Audio → text. | [`speech_to_text/AGENTS.md`](speech_to_text/AGENTS.md) |
 | `lab_manual` | 1 | Lab manual rendering with fillable directives. | [`lab_manual/AGENTS.md`](lab_manual/AGENTS.md) |
 | `format_conversion` | 2 | Cross-format dispatch (md ⇄ html ⇄ pdf ⇄ docx; pdf → txt; audio → txt). | [`format_conversion/AGENTS.md`](format_conversion/AGENTS.md) |
@@ -44,14 +44,14 @@ Layer numbers indicate the dependency hierarchy used in `software/AGENTS.md`. A 
 When packages interact, they follow these conventions:
 
 - **Public API lives in `main.py`.** Tests and other packages should import from there or from the package's `__init__.py`. `utils.py` is treated as private.
-- **Type hints required.** `pyproject.toml` enables `disallow_untyped_defs`.
+- **Type hints preferred for public APIs.** The current mypy profile permits legacy untyped internals while keeping source checks enabled.
 - **Result dicts have stable shapes.** Where functions return summaries, the keys are documented in the package's `AGENTS.md` (typically `{"summary": dict, "errors": list[str], …}`).
 - **Errors:** missing input → `FileNotFoundError`; bad input → `ValueError`; failed conversions → `OSError`. Network calls handle their own retries and surface meaningful messages.
 - **Side effects are explicit.** File-writing functions take an explicit `output_path`/`output_dir`; nothing writes to surprising locations.
 
 ## Real-implementation policy
 
-The repo runs against real libraries and real files. There are no mock objects in tests; instead, tests use temp directories, real markdown samples, and real renderer calls. External services (Canvas, gTTS) are exercised against fixture data; live API tests are tagged with the `requires_internet` / `requires_api` pytest markers and skipped by default in CI.
+The repo runs against real libraries, local tools, and real files. Production code must remain mock-free. Tests use temp directories, real markdown samples, and real renderer calls by default; limited test doubles are allowed only for external services or expensive orchestration seams. External services such as Canvas and Google Speech are exercised only in explicitly marked tests; the default wrapper excludes `requires_internet`, `requires_api`, `audio`, and `slow`.
 
 ## Adding a new package
 

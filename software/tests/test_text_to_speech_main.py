@@ -1,18 +1,21 @@
 """Tests for text_to_speech main functions."""
 
 from pathlib import Path
+import subprocess
 
 import pytest
 
+from src.text_to_speech import utils as tts_utils
 from src.text_to_speech.main import (
     batch_generate_speech,
     generate_speech,
 )
 
 
-@pytest.mark.requires_internet
+@pytest.mark.audio
+@pytest.mark.slow
 def test_generate_speech(temp_dir):
-    """Test generating speech from text using real gTTS implementation."""
+    """Test generating speech from text using the local TTS backend."""
     output_path = temp_dir / "output.mp3"
     text = "Test."
 
@@ -21,7 +24,8 @@ def test_generate_speech(temp_dir):
     assert output_path.suffix == ".mp3"
 
 
-@pytest.mark.requires_internet
+@pytest.mark.audio
+@pytest.mark.slow
 def test_batch_generate_speech(temp_dir):
     """Test batch generating speech from text files."""
     txt1 = temp_dir / "file1.txt"
@@ -42,7 +46,8 @@ def test_batch_generate_speech_nonexistent_directory():
         batch_generate_speech("/nonexistent/dir", "/output")
 
 
-@pytest.mark.requires_internet
+@pytest.mark.audio
+@pytest.mark.slow
 def test_batch_generate_speech_error_handling(temp_dir):
     """Test error handling in batch_generate_speech with empty file."""
     invalid_file = temp_dir / "invalid.txt"
@@ -55,9 +60,23 @@ def test_batch_generate_speech_error_handling(temp_dir):
     assert isinstance(result, list)
 
 
-@pytest.mark.requires_internet
+@pytest.mark.audio
+@pytest.mark.slow
 def test_generate_speech_creates_parent_dirs(temp_dir):
     """Test that generate_speech creates missing parent directories."""
     output_path = temp_dir / "nonexistent" / "output.mp3"
     generate_speech("Test.", str(output_path))
     assert output_path.exists()
+
+
+def test_text_to_speech_audio_timeout_raises_oserror(temp_dir, monkeypatch):
+    """Local TTS subprocess timeouts are bounded and surfaced as OSError."""
+    output_path = temp_dir / "timeout.mp3"
+
+    def fake_run(*args, **kwargs):
+        raise subprocess.TimeoutExpired(cmd=args[0], timeout=kwargs["timeout"])
+
+    monkeypatch.setattr(tts_utils.subprocess, "run", fake_run)
+
+    with pytest.raises(OSError, match="timed out"):
+        tts_utils.text_to_speech_audio("Test.", output_path, timeout_seconds=1)

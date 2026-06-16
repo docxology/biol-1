@@ -23,7 +23,7 @@ output = render_lab_manual(
     "resources/lab-1-measurement-methods.md",
     "output/lab-1.pdf",
     output_format="pdf",
-    course_name="BIOL-1: Introduction to Biology"
+    course_name="BIOL-1: General Biology"
 )
 
 # Render to HTML (interactive)

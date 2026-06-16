@@ -11,7 +11,12 @@ from pathlib import Path
 software_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(software_dir))
 
-from src.publish.main import publish_course
+from src.shared.runtime import configure_runtime_environment  # noqa: E402
+
+configure_runtime_environment()
+
+from src.publish.main import publish_course  # noqa: E402
+from src.shared.course_config import CourseSelectionError, resolve_course_selection  # noqa: E402
 
 # Configure logging
 logging.basicConfig(
@@ -24,23 +29,15 @@ logger = logging.getLogger(__name__)
 
 def main():
     parser = argparse.ArgumentParser(description="Publish course materials.")
-    parser.add_argument(
-        "--course", 
-        type=str, 
-        choices=["biol-1", "biol-8", "all"],
-        required=True, 
-        help="Course to publish"
-    )
+    parser.add_argument("--course", type=str, required=True, help="Active course to publish, or all")
     
     args = parser.parse_args()
     
     repo_root = software_dir.parent
-    
-    courses_to_process = []
-    if args.course == "all":
-        courses_to_process = ["biol-1", "biol-8"]
-    else:
-        courses_to_process = [args.course]
+    try:
+        courses_to_process = resolve_course_selection(args.course, repo_root)
+    except CourseSelectionError as exc:
+        parser.error(str(exc))
         
     for course_name in courses_to_process:
         course_path = repo_root / "course_development" / course_name

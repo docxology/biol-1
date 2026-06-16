@@ -8,7 +8,7 @@ compatibility so that existing callers (scripts, tests) that import from
 
 import shutil
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 import logging
 
 from . import config
@@ -29,7 +29,7 @@ from .copy_extras import (  # noqa: F401
 logger = logging.getLogger(__name__)
 
 
-def get_course_config(course_name: str) -> Dict[str, str]:
+def get_course_config(course_name: str) -> Dict[str, Any]:
     """Get configuration for a specific course.
 
     Args:

@@ -7,7 +7,15 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-PT_DIR = ROOT / "course_development" / "biol-8" / "course" / "practice_tests"
+PT_DIR = (
+    ROOT
+    / "archive"
+    / "spring-2026"
+    / "course_development"
+    / "biol-8"
+    / "course"
+    / "practice_tests"
+)
 STUDENT_OUT = PT_DIR / "practice-test-12.md"
 KEY_OUT = PT_DIR / "practice-test-12_key.md"
 PART_BC = PT_DIR / "pt12_part_bc_fragment.md"

@@ -5,6 +5,7 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 
+from . import config
 
 
 def read_text_file(file_path: Path) -> str:
@@ -67,6 +68,7 @@ def text_to_speech_audio(
     output_path: Path,
     lang: str = "en",
     slow: bool = False,
+    timeout_seconds: int = config.COMMAND_TIMEOUT_SECONDS,
 ) -> None:
     """Generate speech audio from text using macOS 'say' and 'ffmpeg'.
     
@@ -86,9 +88,12 @@ def text_to_speech_audio(
         # Write text to temp file to handle large content/special chars
         tmp_txt.write_text(text, encoding='utf-8')
         
-        # 1. Generate AIFF using 'say'
-        # -v Alex is a good default, or system default
-        subprocess.run(["say", "--input-file", str(tmp_txt), "--output-file", str(tmp_aiff)], check=True)
+        # 1. Generate AIFF using the system voice.
+        subprocess.run(
+            ["say", "--input-file", str(tmp_txt), "--output-file", str(tmp_aiff)],
+            check=True,
+            timeout=timeout_seconds,
+        )
         
         # 2. Convert to MP3 using ffmpeg
         # -y to overwrite, -acodec libmp3lame, -q:a 2 (high quality)
@@ -98,10 +103,12 @@ def text_to_speech_audio(
             "-acodec", "libmp3lame",
             "-q:a", "2",
             str(output_path)
-        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout_seconds)
         
     except subprocess.CalledProcessError as e:
         raise OSError(f"Local TTS generation failed: {e}") from e
+    except subprocess.TimeoutExpired as e:
+        raise OSError(f"Local TTS generation timed out after {timeout_seconds}s") from e
     finally:
         # Cleanup temp files
         if tmp_aiff.exists():

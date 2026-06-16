@@ -5,8 +5,6 @@ from pathlib import Path
 from typing import Dict, List
 
 from . import config
-
-logger = logging.getLogger(__name__)
 from .utils import (
     convert_html_to_pdf,
     convert_markdown_to_html,
@@ -18,6 +16,8 @@ from .utils import (
     get_output_path,
 )
 from src.shared.file_utils import ensure_output_directory
+
+logger = logging.getLogger(__name__)
 
 
 def convert_file(input_path: str, output_format: str, output_path: str) -> None:
@@ -142,5 +142,4 @@ def get_supported_formats() -> Dict[str, list]:
         Dictionary mapping input formats to supported output formats
     """
     return config.SUPPORTED_CONVERSIONS.copy()
-
 

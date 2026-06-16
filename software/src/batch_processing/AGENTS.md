@@ -2,7 +2,7 @@
 
 ## Overview
 
-Batch processing utilities for converting entire course modules to multiple media formats (PDF, audio, DOCX, HTML, TXT, MD).
+Batch processing utilities for converting entire course modules to configured media formats. The active publish profile generates PDF, DOCX, and MD by default; HTML, TXT, and MP3 remain opt-in.
 
 ## Module Purpose
 
@@ -231,7 +231,7 @@ Generate all media formats for a module (PDF, audio, text transcriptions).
 
 Process module files by curriculum element type and generate all format renderings.
 
-Organizes outputs by curriculum element type (assignments, lab-protocols, lecture-content, study-guides) with all formats (PDF, MP3, DOCX, HTML, TXT, MD).
+Organizes outputs by curriculum element type (assignments, lab-protocols, lecture-content, study-guides) with the requested format set.
 
 **Args**:
 

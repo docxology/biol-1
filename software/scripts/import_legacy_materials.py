@@ -5,7 +5,7 @@ Usage:
     uv run python scripts/import_legacy_materials.py [OPTIONS]
 
 Options:
-    --course COURSE    Course: biol-1 or biol-8 (default: biol-1)
+    --course COURSE    Active course (default: biol-1)
     --dry-run          Show what would be imported without importing
     --skip-questions   Skip importing chapter questions
     --skip-slides      Skip importing slides
@@ -35,6 +35,7 @@ from src.legacy_import import (
     process_slides,
     process_for_upload_all_modules,
 )
+from src.shared.course_config import CourseSelectionError, resolve_course_selection
 
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
@@ -47,15 +48,14 @@ Examples:
   %(prog)s --dry-run                Preview what would be imported
   %(prog)s --skip-questions         Import only slides
   %(prog)s --skip-slides            Import only chapter questions
-  %(prog)s --course biol-8          Import for biol-8
+  %(prog)s --course biol-1          Import for biol-1
         """,
     )
 
     parser.add_argument(
         "--course",
-        choices=["biol-1", "biol-8"],
         default="biol-1",
-        help="Course to process (default: biol-1)",
+        help="Active course to process (default: biol-1)",
     )
 
     parser.add_argument(
@@ -86,12 +86,18 @@ def main() -> int:
 
     # Paths
     repo_root = Path(__file__).parent.parent.parent
+    try:
+        [course_name] = resolve_course_selection(args.course, repo_root)
+    except CourseSelectionError as exc:
+        logger.error(str(exc))
+        return 2
+
     source_questions_dir = repo_root / "bio_1_2025" / "files" / "Chapter Questions"
     source_slides_full_dir = repo_root / "bio_1_2025" / "files" / "Slides" / "Slides_Full"
     source_slides_notes_dir = (
         repo_root / "bio_1_2025" / "files" / "Slides" / "Slides_Notes"
     )
-    course_root = repo_root / args.course  # Course root (e.g., biol-1)
+    course_root = repo_root / "course_development" / course_name
     course_dir = course_root / "course"  # Course directory (e.g., biol-1/course)
 
     if args.dry_run:

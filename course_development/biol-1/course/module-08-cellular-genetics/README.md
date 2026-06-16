@@ -1,8 +1,8 @@
-# Module 09 Cell Division
+# Module 08 Cellular Genetics
 
 ## Overview
 
-This directory contains resources for Module 09 Cell Division.
+This directory contains resources for Module 08 Cellular Genetics.
 
 ## Contents
 

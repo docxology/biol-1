@@ -1,10 +1,10 @@
 # Lab 9: Inheritance Genetics — Genetics Problem Solving
 
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
+
 **Name:** {fill:text} **Date:** {fill:text}
 
-## Overview
-
-Gregor Mendel discovered that traits are inherited in predictable patterns. By crossing pea plants and counting offspring, he uncovered the rules of genetics — rules that apply to all living things, including humans. In this lab, you will apply **Mendel's laws**, use **Punnett squares** to predict offspring, explore **blood types**, analyze **sex-linked traits**, interpret a **pedigree**, and examine the genetic basis of complex traits.
+---
 
 ## Learning Objectives
 
@@ -17,6 +17,10 @@ By the end of this lab, you will be able to:
 5. Predict outcomes of X-linked trait crosses.
 6. Analyze a pedigree to determine the pattern of inheritance.
 7. Explain polygenic traits and how environment affects phenotype.
+
+## Overview
+
+Gregor Mendel discovered that traits are inherited in predictable patterns. By crossing pea plants and counting offspring, he uncovered the rules of genetics — rules that apply to all living things, including humans. In this lab, you will apply **Mendel's laws**, use **Punnett squares** to predict offspring, explore **blood types**, analyze **sex-linked traits**, interpret a **pedigree**, and examine the genetic basis of complex traits.
 
 ## Materials
 

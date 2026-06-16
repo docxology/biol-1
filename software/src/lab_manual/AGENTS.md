@@ -165,7 +165,7 @@ All functions use real implementations:
 - Real Markdown parsing via `markdown` library
 - Real PDF generation via `weasyprint`
 - Real file I/O operations
-- No mocks or stubs
+- No mocks or stubs in production code
 
 ## Error Handling
 

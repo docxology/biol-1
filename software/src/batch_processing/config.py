@@ -17,11 +17,12 @@ OUTPUT_DIRECTORIES: Dict[str, str] = {
     "media": "media_output",
 }
 
-# Supported course directory names
-SUPPORTED_COURSES: List[str] = ["biol-1", "biol-8"]
+# Supported active course directory names. Keep this fallback in sync with
+# publish.toml; scripts use src.shared.course_config as the source of truth.
+SUPPORTED_COURSES: List[str] = ["biol-1"]
 
-# Available courses with their directory paths (relative to repo root)
-AVAILABLE_COURSES: List[str] = ["biol-1", "biol-8"]
+# Available active courses with their directory paths (relative to repo root).
+AVAILABLE_COURSES: List[str] = ["biol-1"]
 
 # Available output formats
 AVAILABLE_FORMATS: List[str] = ["pdf", "mp3", "docx", "html", "txt", "md"]

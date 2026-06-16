@@ -135,7 +135,7 @@ def generate_schedule_outputs(
         OSError: If file generation fails
     """
     ensure_output_directory(output_dir)
-    outputs = {fmt: [] for fmt in formats}
+    outputs: Dict[str, List[str]] = {fmt: [] for fmt in formats}
 
     # Generate markdown first (used as source for other formats)
     markdown_content = generate_schedule_markdown(
@@ -215,7 +215,7 @@ def batch_process_schedules(
 
     schedule_files = find_schedule_files(directory_path)
 
-    results = {
+    results: Dict[str, Any] = {
         "processed_files": [],
         "outputs": {},
         "summary": {},

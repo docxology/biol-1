@@ -1,36 +1,35 @@
-# Biology at College of the Redwoods (Del Norte, CA)
+# Biology at College of the Redwoods
 
-This is a private repository for Biology courses at College of the Redwoods (Del Norte, CA), organized by Dr. Daniel Ari Friedman ([@docxology](https://github.com/docxology) on GitHub).
+This is a private repository for Biology courses at College of the Redwoods, organized by Dr. Daniel Ari Friedman ([@docxology](https://github.com/docxology) on GitHub). The active course is BIOL-1 at Pelican Bay for Fall 2026; Spring 2026 courses are preserved under [`archive/spring-2026/`](archive/spring-2026/README.md).
 
 ## Repository Structure
 
 The repository is organized into three main areas:
 
 1. **`course_development/`**: The "Back Office" for private curriculum development.
-2. **`PUBLISHED/`**: Public, ready-to-upload course materials.
-3. **`software/`**: Automation tools and documentation.
+2. **`PUBLISHED/`**: Generated, tracked public-ready materials for active subtree publishing.
+3. **`archive/`**: Historical course/source and generated snapshots.
+4. **`software/`**: Automation tools and documentation.
 
 ```mermaid
 graph TD
     Root[cr-bio/] --> Dev[course_development/]
     Root --> Pub[PUBLISHED/]
+    Root --> Archive[archive/]
     Root --> Software[software/]
     
     Dev --> Biol1[biol-1/]
-    Dev --> Biol8[biol-8/]
-    
     Pub --> PubBiol1[biol-1/]
-    Pub --> PubBiol8[biol-8/]
+    Archive --> Spring2026[spring-2026/]
     
     Biol1 --> Biol1Source[Source Markdown & Private Files]
-    Biol8 --> Biol8Source[Source Markdown & Private Files]
-    
-    PubBiol1 --> PubBiol1M["Generated Output: PDF, MP3, HTML, DOCX, TXT, MD"]
-    PubBiol8 --> PubBiol8M["Generated Output: PDF, MP3, HTML, DOCX, TXT, MD"]
+    PubBiol1 --> PubBiol1M["Generated Output: PDF, DOCX, MD, labs, dashboards, slides"]
+    Spring2026 --> ArchivedCourses["Archived BIOL-1 and BIOL-8 source + PUBLISHED snapshots"]
     
     style Root fill:#e1f5ff
     style Dev fill:#fff9c4
     style Pub fill:#c8e6c9
+    style Archive fill:#eeeeee
     style Software fill:#e8f5e9
 ```
 
@@ -66,12 +65,12 @@ graph TD
 
 ## 🏗️ Course Development (`course_development/`)
 
-This is the working directory for instructors. It contains the source of truth for all course content.
+This is the working directory for instructors. It contains the source of truth for active course content.
 
 ### Courses
 
-- **[BIOL-1](course_development/biol-1/)**: Biology 1 at Pelican Bay Prison
-- **[BIOL-8](course_development/biol-8/)**: Biology 8 at College of the Redwoods
+- **[BIOL-1](course_development/biol-1/)**: General Biology at Pelican Bay, Fall 2026
+- **[Spring 2026 archive](archive/spring-2026/README.md)**: Historical BIOL-1 and BIOL-8 source trees plus generated snapshots
 
 ### Structure
 
@@ -86,19 +85,20 @@ Each course folder contains:
 
 ## 📤 Published Outputs (`PUBLISHED/`)
 
-Final rendered materials for public distribution. **Each course is a separate public GitHub repository:**
+Final rendered materials for public distribution. Active subtrees are pushed to public GitHub repositories:
 
 | Course | Public Repository | Description |
 |--------|-------------------|-------------|
-| BIOL-1 | [github.com/docxology/biol-1](https://github.com/docxology/biol-1) | General Biology - Pelican Bay Prison |
-| BIOL-8 | [github.com/docxology/biol-8](https://github.com/docxology/biol-8) | Human Anatomy & Physiology - CR Del Norte |
+| BIOL-1 | [github.com/docxology/biol-1](https://github.com/docxology/biol-1) | General Biology - Pelican Bay |
+
+BIOL-8 is archived for Spring 2026 and is not an active publish target.
 
 ### Architecture
 
-- `PUBLISHED/` is **excluded from cr-bio** (via `.gitignore`)
-- Each subfolder (`biol-1/`, `biol-8/`) is an independent git repo
-- Use `software/scripts/publish_all.py` to generate and validate outputs
-- Use `git push` within each subfolder to update the public repos
+- `PUBLISHED/` is generated and **tracked in cr-bio** so `git subtree split --prefix=PUBLISHED/<course>` can publish each public course repository.
+- Each active subfolder (currently `biol-1/`) is a subtree prefix, not a nested git checkout.
+- Use `python publish.py --dry-run` to inspect the configured pipeline, `python publish.py --skip-git` for local regeneration, and full `python publish.py` only when you intend to commit/push.
+- Use `software/scripts/publish_all.py` for lower-level generation/publish debugging.
 
 **Note**: Do not edit files here directly. Edit source in `course_development/` and regenerate.
 
@@ -117,14 +117,17 @@ The automation engine for the repository.
 The primary entry point is the top-level `publish.py` script with configuration via `publish.toml`:
 
 ```bash
-# Full publish pipeline (recommended)
+# Full publish pipeline, including configured git operations
 python publish.py
 
 # Dry run to see what would be generated
 python publish.py --dry-run
 
+# Generate and validate locally without committing or pushing
+python publish.py --skip-git
+
 # Override formats on command line
-python publish.py --override-formats pdf,html
+python publish.py --override-formats pdf,docx,md
 ```
 
 #### Configuration (`publish.toml`)
@@ -159,14 +162,17 @@ git_push    = true  # Push to public repos
 #### Direct Script Access
 
 ```bash
-# Generate outputs for a specific course
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+# Generate outputs for the active course
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Generate only specific formats
-cd software && uv run python scripts/generate_all_outputs.py --formats pdf,html
+cd software && uv run python scripts/generate_all_outputs.py --formats pdf,docx,md
 
 # Validate outputs
 cd software && uv run python scripts/validate_outputs.py --course all
+
+# Validate repository/documentation contracts
+cd software && uv run python scripts/validate_repo_contracts.py
 ```
 
 See [software/docs/README.md](software/docs/README.md) for comprehensive documentation.

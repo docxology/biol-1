@@ -31,7 +31,7 @@ flowchart LR
 | Tier | Repository | Visibility | Contents |
 |------|-----------|-----------|----------|
 | **Development** | `cr-bio` (this repo) | Private | Source Markdown, software, exams, answer keys |
-| **Published** | `biol-1`, `biol-8` | Public | Generated PDFs, DOCX, HTML, TXT, MD, MP3, websites |
+| **Published** | `biol-1`, `biol-8` | Public | Generated PDF/DOCX/MD study guides plus labs, dashboards, slides, and practice tests |
 
 The pipeline transforms source content into multiple output formats and pushes to the public repositories. Teacher-only materials (exams, answer keys) are **never published**.
 
@@ -41,9 +41,8 @@ The pipeline transforms source content into multiple output formats and pushes t
 
 ```
 cr-bio/
-├── course_development/            # All course content
-│   ├── biol-1/                    # General Biology (Pelican Bay)
-│   └── biol-8/                    # Human Biology (College of the Redwoods)
+├── course_development/            # Active course content
+│   └── biol-1/                    # General Biology (Pelican Bay, Fall 2026)
 │
 ├── software/                      # Processing pipeline
 │   ├── src/                       # 16 Python packages
@@ -51,9 +50,11 @@ cr-bio/
 │   ├── scripts/                   # CLI orchestrators
 │   └── docs/                      # Documentation (YOU ARE HERE)
 │
-├── PUBLISHED/                     # Generated output (gitignored)
-│   ├── biol-1/                    # Published BIOL-1 content
-│   └── biol-8/                    # Published BIOL-8 content
+├── PUBLISHED/                     # Generated output tracked for subtree publishing
+│   └── biol-1/                    # Published BIOL-1 content
+│
+├── archive/
+│   └── spring-2026/               # Historical BIOL-1 and BIOL-8 source + PUBLISHED snapshots
 │
 ├── publish.py                     # Top-level publish script
 ├── publish.toml                   # Pipeline configuration
@@ -64,7 +65,7 @@ cr-bio/
 
 ## Course Directory Anatomy
 
-Each course follows an identical structure:
+Each active course follows this structure:
 
 ```
 course_development/biol-X/
@@ -100,20 +101,20 @@ module-01-exploring-life-science/
 ├── resources/                     # Module-specific resources
 │   └── *.pdf                      # Lecture slides, readings
 └── output/                        # Generated outputs
-    ├── study-guides/              # PDF, DOCX, HTML, TXT, MD, MP3 (per publish.toml)
+    ├── study-guides/              # PDF, DOCX, MD by default; HTML/TXT/MP3 optional
     └── website/                   # index.html (interactive)
 ```
 
 | File | Purpose | Output Formats |
 |------|---------|----------------|
-| `keys-to-success.md` | Student study guide | PDF, DOCX, HTML, TXT, MD, MP3 |
-| `questions.md` | Review questions | PDF, DOCX, HTML, TXT, MD, MP3 |
+| `keys-to-success.md` | Student study guide | PDF, DOCX, MD by default; HTML/TXT/MP3 optional |
+| `questions.md` | Review questions | PDF, DOCX, MD by default; HTML/TXT/MP3 optional |
 
 ---
 
 ## Lab Structure
 
-Paths below are relative to `course_development/biol-{1,8}/`. The long example lists **BIOL-8** labs through **18** plus a supplemental follow-up page; **BIOL-1** stops at **17** numbered protocols but uses the same folder layout (`course/labs/`, `course/labs/dashboards/`, `course/labs/output/`).
+Paths below are relative to `course_development/biol-1/`. BIOL-1 has **17** numbered protocols and uses the standard folder layout (`course/labs/`, `course/labs/dashboards/`, `course/labs/output/`). Spring 2026 BIOL-8 examples remain in the archive for reference.
 
 ### Source Files
 
@@ -170,17 +171,17 @@ course/exams/
 
 **BIOL-1:** On-disk unit exams **`exam-01`**, **`exam-02`**, **`exam-03`** (with keys); cumulative **`final-exam.md`** + key; **`exam-template.md`** scaffold. Naming vs unit order is course-specific ([`course/exams/AGENTS.md`](../../course_development/biol-1/course/exams/AGENTS.md)). BIOL-1 `publish.toml` does not set `include_exams` — local renders follow whatever the generation script includes.
 
-**BIOL-8:** **Three** unit exams with keys (`exam-01` … `exam-03`; scopes **01–06**, **07–10**, **11–15**; typically **50 points** each — see headers). **`final-exam.md`** + key cover **modules 01–17** at **100** points ([`course/exams/README.md`](../../course_development/biol-8/course/exams/README.md)). `publish.toml`: `include_exams = true` renders into `course/exams/output/` locally.
+**Archived BIOL-8:** Spring 2026 BIOL-8 exams are preserved under [`archive/spring-2026/course_development/biol-8/course/exams/`](../../archive/spring-2026/course_development/biol-8/course/exams/README.md). They are historical reference material and are not an active publish target.
 
 > ⚠️ Exams and answer keys are **never published** to public student-facing repositories.
 
 ### Quiz point layouts
 
-Per-quiz totals **vary by file** — when present, BIOL-8 module quizzes sometimes follow layouts such as ~7 pts multiple choice + ~3 pts free response; always read the live markdown.
+Per-quiz totals **vary by file**. BIOL-1 currently ships a quiz template rather than a full per-module quiz set.
 
 ### Quizzes (Teacher-Only)
 
-**BIOL-8** — full per-module quiz set:
+**Archived BIOL-8** — full Spring 2026 per-module quiz set:
 
 ```
 course/quizzes/
@@ -215,7 +216,7 @@ syllabus/
 
 ## Published directory structure {#published-directory-structure}
 
-After **`publish_all.py`** (steps **7–8**) and root **`publish.py`** aggregation, each `PUBLISHED/biol-{1,8}/` tree is **category-first**, not nested `modules/` websites:
+After **`publish_all.py`** (steps **7–8**) and root **`publish.py`** aggregation, each `PUBLISHED/biol-1/` tree is **category-first**, not nested `modules/` websites:
 
 ```
 PUBLISHED/biol-X/
@@ -235,17 +236,17 @@ PUBLISHED/biol-X/
 
 ---
 
-## BIOL-1 vs BIOL-8 Differences
+## BIOL-1 vs Archived BIOL-8 Differences
 
 | Feature | BIOL-1 | BIOL-8 |
 |---------|--------|--------|
-| **Setting** | Pelican Bay Prison | CR Del Norte Campus |
+| **Setting** | Pelican Bay | CR Del Norte Campus |
 | **Content modules (`module-*`)** | 15 | 17 |
-| **Slides** | Central `resources/slides/` (BIOL-1: numbered `module-N-*` pairs; module **9** may lack pair) | Central `resources/slides/` (+ optional PDFs under `module-*/resources/`) |
+| **Slides** | Central `resources/slides/` (numbered `module-N-*` pairs; modules **12**, **13**, and **15** are documented gaps) | Central `resources/slides/` (+ optional PDFs under `module-*/resources/`) |
 | **Labs (+ dashboards)** | 17 protocols + dashboards | 18 protocols + dashboards |
 | **Exams (on disk)** | Unit `exam-01`–`exam-03`, cumulative `final-exam`, keys (+ template) | `exam-01`–`exam-03`, `final-exam`, keys |
 | **Quizzes (`course/quizzes/`)** | Template(s) only | 17 × 2 (student + key) |
-| **Practice tests** | 3 + keys | 12 + keys (verify on disk) |
+| **Practice tests** | 5 + keys | 12 + keys (archived snapshot; verify before reuse) |
 | **Private directory** | Includes facility-specific material | Standard private layout |
 
 ---

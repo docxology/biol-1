@@ -336,7 +336,8 @@ def convert_docx_to_markdown(input_path: Path) -> str:
             continue
 
         # Check if paragraph is a heading
-        style_name = paragraph.style.name.lower()
+        style = paragraph.style
+        style_name = style.name.lower() if style is not None and style.name else ""
         if "heading" in style_name:
             level = 1
             if "heading 2" in style_name or "subtitle" in style_name:

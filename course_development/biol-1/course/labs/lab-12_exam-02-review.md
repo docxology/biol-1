@@ -1,8 +1,10 @@
 # Lab 12: Modules 7–11 Review — Exam 02 Preparation
 
-## Overview
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
-This lab is your comprehensive review of **Modules 7–11** in preparation for Exam 02. It covers the major concepts from Molecular Genetics, Cellular Genetics, Inheritance Genetics, Epigenetics, and Genomics & Biotechnology. Use this as a self-assessment: if you can answer these questions confidently, you are ready for the exam.
+**Name:** {fill:text} **Date:** {fill:text}
+
+---
 
 ## Learning Objectives
 
@@ -13,6 +15,10 @@ By completing this review, you will:
 3. Solve genetics problems using Punnett squares.
 4. Explain how gene expression is regulated and what epigenetics means.
 5. Describe the tools of biotechnology (PCR, gel electrophoresis, CRISPR).
+
+## Overview
+
+This lab is your comprehensive review of **Modules 7–11** in preparation for Exam 02. It covers the major concepts from Molecular Genetics, Cellular Genetics, Inheritance Genetics, Epigenetics, and Genomics & Biotechnology. Use this as a self-assessment: if you can answer these questions confidently, you are ready for the exam.
 
 ## Materials
 

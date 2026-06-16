@@ -47,9 +47,10 @@ class TestProcessModuleToPdf:
 class TestProcessModuleToAudio:
     """Tests for process_module_to_audio function."""
 
-    @pytest.mark.requires_internet
+    @pytest.mark.audio
+    @pytest.mark.slow
     def test_process_module_to_audio_success(self, sample_module_structure):
-        """Test converting module text to audio (requires internet for gTTS)."""
+        """Test converting module text to audio with local TTS tooling."""
         output_dir = sample_module_structure.parent / "audio_output"
         
         result = process_module_to_audio(str(sample_module_structure), str(output_dir))
@@ -427,4 +428,3 @@ class TestProcessSyllabusMdFormat:
         md_files = list(output_dir.rglob("*.md"))
         assert len(md_files) >= 1
         assert result["summary"]["md"] >= 1
-

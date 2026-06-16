@@ -99,9 +99,9 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 **Location**: `src/text_to_speech/`
 
-**Standalone**: Yes - can be used independently (requires internet for gTTS)
+**Standalone**: Yes - can be used independently when local TTS tooling and `ffmpeg` are available
 
-**Dependencies**: gTTS (external library), audio file handling
+**Dependencies**: macOS `say`, `ffmpeg`, audio file handling
 
 **Key Functions**:
 
@@ -402,7 +402,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 **Key Functions**:
 
 - `validate_outputs(course_path: str, ...) -> Dict[str, Any]` — expected files in `course_development/<course>/` (modules, syllabus, labs)
-- `validate_published(published_path: str) -> Dict[str, Any]` — recurse `PUBLISHED/` tree (pre–`ALL_FILES/` semantics; see [`validation/AGENTS.md`](validation/AGENTS.md))
+- `validate_published(published_path: str) -> Dict[str, Any]` — recurse `PUBLISHED/` tree (pre–`ALL_FILES/` semantics; see [`src/validation/AGENTS.md`](src/validation/AGENTS.md))
 - `validate_published_directory(published_path: str) -> Dict[str, Any]` — alias of `validate_published`
 - `generate_validation_report(course_name: str, ...) -> Dict[str, Any]` — combined source + published report
 - `get_output_summary(course_path: str) -> Dict[str, Any]` — extension tallies across module outputs
@@ -474,20 +474,21 @@ Test files in `tests/` mirror the source structure:
 
 ### Core Principle
 
-**All code uses real methods and implementations - no mocks, stubs, or fake methods.**
+**Production code uses real methods and implementations - no mocks, stubs, or fake methods.**
 
 ### Implementation Standards
 
-- All functions use real library implementations (weasyprint, gTTS, requests, etc.)
+- All functions use real library/tool implementations (weasyprint, local TTS, ffmpeg, requests, etc.)
 - All file operations use real file system operations
 - All validation uses real validation logic
 - All API integrations use real API clients (with proper error handling)
 
 ### Testing Standards
 
-- Tests use real file operations and real library calls
-- No mocks or stubs in test code
-- External API tests validate structure/logic, not actual API calls
+- Tests use real file operations and real library calls by default
+- Test doubles are allowed only at external-service boundaries or expensive orchestration seams
+- Any mock, monkeypatch, or local stub must be explicit in the test name or surrounding comments
+- External API tests validate structure/logic locally unless clearly marked for live API access
 - Integration tests that require external services are clearly marked
 
 ### External Dependencies
@@ -503,7 +504,7 @@ Test files in `tests/` mirror the source structure:
 
 1. Create module directory in `src/`
 2. Implement core functionality following module structure using real methods
-3. Write tests in `tests/` mirroring source structure using real implementations
+3. Write tests in `tests/` mirroring source structure using real implementations by default
 4. Document in module-specific docs
 5. Update this AGENTS.md with function signatures
 
@@ -512,7 +513,7 @@ Test files in `tests/` mirror the source structure:
 1. Run unit tests: `pytest tests/`
 2. Run integration tests: `pytest tests/test_integration.py`
 3. Validate code coverage: `pytest --cov=src tests/`
-4. All tests must use real methods - no mocks or stubs
+4. Keep production code mock-free; use test doubles only for documented external or orchestration boundaries
 
 ### Documentation
 

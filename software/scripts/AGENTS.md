@@ -14,14 +14,15 @@ Thin CLI orchestrators that wrap `software/src/` packages. Scripts contain only 
 | `publish_course.py` | `publish` | `main()` | Copy generated artifacts into `PUBLISHED/<course>/`. |
 | `flatten_published.py` | `publish.utils` | `main()` | Move per-module outputs into flat `homework/`, `module_keys/`, … buckets. |
 | `validate_outputs.py` | `validation` | `main()` | Verify expected files exist for every in-scope module. |
+| `generate_biol1_lab_dashboards.py` | (stdlib; BIOL-1 lab specs) | `main()` | Regenerate exact-stem BIOL-1 lab dashboards from the active lab list. |
 | `renumber_questions.py` | `content_processing` | `main()` | Convert section-based question numbering to continuous. |
 | `import_legacy_materials.py` | `legacy_import` | `main()` | Import an older lesson archive into the current module layout. |
-| `assemble_practice_test_12.py` | (stdlib; BIOL-8 content) | `main()` | Rebuild `practice-test-12.md` / `_key.md` from PT01–11 slices (`course_development/biol-8/course/practice_tests/`). |
+| `assemble_practice_test_12.py` | (stdlib; archived BIOL-8 content) | `main()` | Rebuild Spring 2026 `practice-test-12.md` / `_key.md` from PT01–11 slices (`archive/spring-2026/course_development/biol-8/course/practice_tests/`). |
 | `utils.py` | (helpers) | n/a | Shared CLI helpers (course resolution, formatter setup). |
 
 ## CLI conventions
 
-- Every script exposes `--course {biol-1, biol-8, all}` where the operation is course-scoped, and `--dry-run` for preview-only runs.
+- Course-scoped publish/generation scripts expose `--course {biol-1, all}` for active courses. Archived BIOL-8 is not a live target.
 - Format selection uses `--formats pdf,docx,html,txt,md,mp3` (comma-separated; defaults vary per script).
 - Most scripts also accept `--verbose` to enable `INFO`-level logging.
 - Exit codes: `0` = success, non-zero = at least one error; per-file errors are collected and reported in the summary even when the run continues.

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Text-to-speech generation utilities using real TTS libraries.
+Text-to-speech generation utilities using local TTS tooling.
 
 ## Module Purpose
 
@@ -21,7 +21,7 @@ Generate speech audio from text.
 **Args**:
 - `text`: Text content to convert
 - `output_path`: Path for output audio file
-- `voice`: Voice identifier (default: "default", currently not used with gTTS)
+- `voice`: Voice identifier (default: "default", currently reserved for future backend selection)
 - `lang`: Language code (default: "en")
 - `slow`: Whether to speak slowly (default: False)
 
@@ -29,7 +29,8 @@ Generate speech audio from text.
 - `OSError`: If audio generation fails
 
 **Dependencies**:
-- gTTS (Google Text-to-Speech) library
+- macOS `say` command for local speech synthesis
+- `ffmpeg` for MP3 encoding
 
 #### `batch_generate_speech(input_dir: str, output_dir: str) -> List[str]`
 
@@ -55,24 +56,23 @@ Batch generate speech from text files in a directory.
 Configure voice settings for speech generation.
 
 **Args**:
-- `voice`: Voice identifier (currently not used with gTTS)
-- `speed`: Speech speed (0.5-2.0, currently not used with gTTS)
-- `pitch`: Speech pitch adjustment (currently not used with gTTS)
+- `voice`: Voice identifier (currently reserved for future backend selection)
+- `speed`: Speech speed (0.5-2.0, currently reserved for future backend selection)
+- `pitch`: Speech pitch adjustment (currently reserved for future backend selection)
 
 **Returns**:
 - Configuration dictionary
 
 **Note**:
-- gTTS doesn't support speed/pitch adjustment directly
-- Parameters are stored for potential future use with other TTS engines
+- Parameters are stored for potential future use with configurable TTS backends
 
 ### Utility Functions
 
 **File**: `src/text_to_speech/utils.py`
 
-#### `text_to_speech_audio(text: str, output_path: Path, lang: str = "en", slow: bool = False) -> None`
+#### `text_to_speech_audio(text: str, output_path: Path, lang: str = "en", slow: bool = False, timeout_seconds: int = 30) -> None`
 
-Generate speech audio from text using gTTS.
+Generate speech audio from text using local `say` plus `ffmpeg`.
 
 #### `read_text_file(file_path: Path) -> str`
 
@@ -114,22 +114,23 @@ Generate output audio path from input text file.
 
 ### External Dependencies
 
-- **gTTS**: Google Text-to-Speech library
-- **pydub**: Audio file handling (for format conversion if needed)
+- **say**: macOS system speech synthesis command
+- **ffmpeg**: MP3 encoding
+- **pydub**: Audio file handling for adjacent conversion workflows if needed
 
 ## Error Handling
 
 - Validates input file existence
 - Creates output directories automatically
 - Continues batch processing after individual file errors
-- Handles network errors for gTTS API calls
+- Raises bounded `OSError` failures for local command errors or timeouts
 
 ## Generation Process
 
 1. Read text content (from string or file)
 2. Extract plain text from Markdown if needed
-3. Generate speech using gTTS
-4. Save audio file (MP3 format)
+3. Generate AIFF speech using `say`
+4. Convert AIFF to MP3 using `ffmpeg`
 
 ## Supported Input Formats
 
@@ -142,4 +143,4 @@ Generate output audio path from input text file.
 
 ## Language Support
 
-Supports all languages supported by gTTS. Default is English ("en").
+Language and voice arguments are accepted for API stability, but the current local backend uses the system voice defaults.

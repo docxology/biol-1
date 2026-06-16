@@ -398,7 +398,7 @@ from src.validation import validate_published_directory
 
 # Publish a course
 result = publish_course(
-    course_path="/path/to/course_development/biol-8",
+    course_path="/path/to/course_development/biol-1",
     publish_root="/path/to/PUBLISHED",
 )
 print(f"Published {result['total_files']} files")
@@ -513,7 +513,7 @@ graph TD
 | Issue | Cause | Solution |
 |-------|-------|----------|
 | PDF generation fails | Missing WeasyPrint deps | `brew install cairo pango gdk-pixbuf glib` |
-| Audio generation fails | gTTS rate limit | Wait a few minutes, process smaller batches |
+| Audio generation fails | Local TTS/ffmpeg error or timeout | Confirm tools are installed, process smaller batches, or disable MP3 |
 | Module not found | Wrong directory | Run from `software/` directory |
 | Validation errors | Missing files | Check required files in module structure |
 | Website missing audio | Audio not generated first | Run `process_module_by_type` before `generate_module_website` |
@@ -543,7 +543,7 @@ def test_file_validation_standalone():
 
 ### Integration Testing
 
-When testing module interactions, use real implementations (no mocks):
+When testing module interactions, use real implementations by default:
 
 ```python
 # Integration test: validation + processing
@@ -577,7 +577,7 @@ def test_module_boundaries():
 1. **Unit Tests**: Test each module's functions independently
 2. **Integration Tests**: Test module interactions with real implementations
 3. **Boundary Tests**: Verify modules don't break encapsulation
-4. **Composition Tests**: Test orchestration patterns with real modules
+4. **Composition Tests**: Test orchestration patterns with real modules, or document bounded seam patching when isolating expensive renderers or external services
 
 See [../tests/README.md](../tests/README.md) for test organization and [../tests/AGENTS.md](../tests/AGENTS.md) for testing standards.
 
@@ -598,6 +598,7 @@ The `scripts/` directory contains CLI orchestrators that follow the "thin orches
 | `generate_syllabus_renderings.py` | `schedule`, `batch_processing` | Syllabus processing |
 | `publish_course.py` | `publish` | Publish to PUBLISHED/ |
 | `validate_outputs.py` | `validation` | Validate generated outputs |
+| `validate_repo_contracts.py` | `validation.repo_contracts` | Validate repository/documentation contracts |
 | `flatten_published.py` | `publish.utils` | Flatten directory structure |
 | `renumber_questions.py` | `content_processing` | Question renumbering |
 | `import_legacy_materials.py` | `legacy_import` | Import legacy format |
@@ -710,7 +711,7 @@ results = process_module_by_type(module_path, output_dir, formats=["pdf"])
 # Medium: Skip audio but include other formats
 results = process_module_by_type(module_path, output_dir, formats=["pdf", "html", "docx"])
 
-# Full: All formats including audio (slowest due to network calls)
+# Full: All formats including audio (slowest due to local TTS/ffmpeg calls)
 results = process_module_by_type(module_path, output_dir)  # Default: all
 ```
 
@@ -753,7 +754,7 @@ def process_all_parallel(modules: list, output_base: str, max_workers: int = 4):
     return results
 ```
 
-> **Note**: Parallel processing can trigger gTTS rate limits. Use `formats=["pdf", "html"]` to avoid.
+> **Note**: Audio generation is intentionally slower and invokes local TTS/ffmpeg. Use `formats=["pdf", "html"]` to avoid MP3 work.
 
 ---
 
@@ -771,14 +772,14 @@ from pathlib import Path
 
 # PDF output (fillable fields rendered as styled inputs)
 render_lab_manual(
-    "course_development/biol-8/course/labs/lab-01_measurement-methods.md",
+    "course_development/biol-1/course/labs/lab-01_measurement-methods.md",
     "output/lab-01.pdf",
     output_format="pdf",
 )
 
 # HTML output (interactive layout with data tables)
 render_lab_manual(
-    "course_development/biol-8/course/labs/lab-01_measurement-methods.md",
+    "course_development/biol-1/course/labs/lab-01_measurement-methods.md",
     "output/lab-01.html",
     output_format="html",
 )
@@ -790,10 +791,10 @@ Labs run when **`--skip-labs` is omitted** and **`--module` is not set** (whole-
 
 ```bash
 # Full course run including labs (omit --skip-labs)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Skip lab rendering entirely
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --skip-labs
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --skip-labs
 ```
 
 ### Lab Dashboard Generation
@@ -803,7 +804,7 @@ Interactive lab HTML under ``course/labs/dashboards/`` (``*-dashboard.html``) co
 Lab protocol PDF/HTML is produced during the whole-course **`generate_all_outputs.py`** run with labs enabled (see [Batch Lab Generation](#batch-lab-generation)).
 
 ```bash
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 ```
 
 ---
@@ -836,12 +837,13 @@ flowchart LR
 | **1** | `clean_published` | Clears **`PUBLISHED/`** when root config passes **`--clean`**. |
 | **2** | `clear_all_outputs` | Clears `course_development/**/output/` when **`--clean-source-outputs`** is passed (wired from **`publish.clean`** via root `publish.py`). |
 | **3** | `generate_all_outputs.py` | Renders modules, syllabus, labs, practice tests, exams (per course toggles). |
-| **4** | `publish_course.py` | Copies artifacts into **`PUBLISHED/biol-{1,8}/`** (initial module-centric tree). |
+| **4** | `publish_course.py` | Copies artifacts into **`PUBLISHED/biol-1/`** (initial module-centric tree). |
 | **5** | `copy_labs_and_dashboards` | Copies **`course/labs/output/`** + **`dashboards/`** into `PUBLISHED`. |
 | **6** | `copy_slides`, `copy_slides_to_modules`, `copy_practice_tests` | Copies slide PDFs and practice tests (**exams are teacher-only**, not pushed publicly). |
 | **7** | `flatten_published` | Moves nested study-guide files upward inside each `module-*` folder (skips labs, dashboards, syllabus, slides, exams, …). |
 | **8** | `reorganize_to_categories` | Builds **`homework/`**, **`module_keys/`**, **`course/`**, removes stray **`index.html`** under module folders ([`publish/copy_extras.py`](../src/publish/copy_extras.py)). |
 | **9** | `validate_outputs.py` | Validates expected artifacts for in-scope modules/labs (optional **`--strict-dashboards`**). |
+| **10** | `validate_repo_contracts.py` | Optional local gate for docs, source counts, tracked `PUBLISHED/`, and production mock-free contracts. |
 
 ### After `publish_all.py`: root-only steps
 
@@ -878,13 +880,13 @@ Control what gets generated using `publish.toml` or CLI flags:
 cd software && uv run python scripts/generate_all_outputs.py --formats pdf,html
 
 # Only generate specific course
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Limit module range (for testing)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-module 3
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --max-module 3
 
 # Limit lab count
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab 2
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --max-lab 2
 ```
 
 ### Pipeline Configuration
@@ -908,15 +910,15 @@ from pathlib import Path
 
 # Process schedule into multiple formats
 process_schedule(
-    Path("course_development/biol-8/syllabus/Schedule.md"),
-    Path("course_development/biol-8/syllabus/output/"),
+    Path("course_development/biol-1/syllabus/Schedule.md"),
+    Path("course_development/biol-1/syllabus/output/"),
     formats=["pdf", "html", "txt"]
 )
 ```
 
 ```bash
 # Via CLI
-cd software && uv run python scripts/generate_syllabus_renderings.py --course biol-8
+cd software && uv run python scripts/generate_syllabus_renderings.py --course biol-1
 ```
 
 ---

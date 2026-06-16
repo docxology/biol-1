@@ -5,6 +5,10 @@ from pathlib import Path
 
 import pytest
 
+from src.shared.runtime import configure_runtime_environment
+
+configure_runtime_environment()
+
 
 @pytest.fixture
 def temp_dir():

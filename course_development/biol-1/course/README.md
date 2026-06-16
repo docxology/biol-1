@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains all public course materials for **BIOL-1: Biology 1** (Pelican Bay Prison, Spring 2026), organized by module. All materials in this directory are suitable for distribution to students.
+This directory contains all public course materials for **BIOL-1: General Biology** (Pelican Bay, Fall 2026), organized by module. All materials in this directory are suitable for distribution to students.
 
 ## Course Structure
 
@@ -50,7 +50,7 @@ course/
     ├── keys-to-success.md       # Study guide (source)
     ├── resources/               # Optional module-local assets
     └── output/                  # Generated — do not edit by hand
-        ├── study-guides/        # PDF, DOCX, HTML, TXT, MP3
+        ├── study-guides/        # PDF, DOCX, MD by default
         └── website/             # index.html
 ```
 
@@ -61,7 +61,7 @@ Lecture slide PDFs live under **[../resources/slides/](../resources/slides/)**, 
 Each module directory contains:
 
 - **questions.md** / **keys-to-success.md**: Source markdown for the publish pipeline
-- **output/**: Generated multi-format outputs (PDF, DOCX, HTML, TXT, MP3) and `website/index.html`
+- **output/**: Generated multi-format outputs (PDF, DOCX, MD by default; HTML, TXT, and MP3 are opt-in) and `website/index.html`
 - **resources/** (optional): Supplementary materials for that module only
 
 ## Related Documentation

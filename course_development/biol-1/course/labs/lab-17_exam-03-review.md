@@ -1,10 +1,19 @@
 # Lab 17: Exam 03 Review — Modules 12–15
 
-**BIOL-1: General Biology (Pelican Bay)** | College of the Redwoods
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
 **Name:** {fill:text} **Date:** {fill:text}
 
 ---
+
+## Learning Objectives
+
+By the end of this review lab, you will be able to:
+
+1. Connect the major ideas from Modules 12–15 across evolution, speciation, and ecology.
+2. Explain key terms in your own words before checking notes or answer keys.
+3. Practice short-answer reasoning for the third unit without relying on memorized wording.
+4. Identify which concepts need more review before Exam 03.
 
 ## Purpose
 
@@ -308,4 +317,4 @@ D) Only found in the atmosphere, never in plants
 
 ---
 
-*Lab 17 — Exam 03 review, Modules 12–15. BIOL-1: General Biology (Pelican Bay), Spring 2026 — College of the Redwoods*
+*Lab 17 — Exam 03 review, Modules 12–15. BIOL-1: General Biology (Pelican Bay), Fall 2026 — College of the Redwoods*

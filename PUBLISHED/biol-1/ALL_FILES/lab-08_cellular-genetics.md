@@ -1,8 +1,8 @@
 # Lab 8: Cellular Genetics — Mitosis and Meiosis
 
-**BIOL-1: Introduction to Biology** | College of the Redwoods, Del Norte Campus
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
-**Name:** {fill:text} **Date:** {fill:text} **Lab Section:** {fill:text}
+**Name:** {fill:text} **Date:** {fill:text}
 
 ---
 
@@ -333,8 +333,8 @@ Chromosomes condense. **Homologous chromosomes pair up** side by side — this i
 
 ---
 
-*Lab 8 — BIOL-1: Introduction to Biology | Cellular Genetics*
-*College of the Redwoods, Del Norte Campus | Spring 2026*
+*Lab 8 — BIOL-1: General Biology | Cellular Genetics*
+*College of the Redwoods, Pelican Bay | Fall 2026*
 
 <div style="page-break-before: always;"></div>
 

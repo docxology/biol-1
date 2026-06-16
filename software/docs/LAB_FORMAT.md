@@ -11,10 +11,10 @@ Complete guide for authoring lab protocols. Labs are Markdown files processed by
 | Convention | Example |
 |-----------|---------|
 | **Pattern** | `lab-XX_topic-name.md` |
-| **Location** | `course_development/biol-{1,8}/course/labs/` |
-| **Dashboards** | `course_development/biol-{1,8}/course/labs/dashboards/` (same relative path under each course) |
+| **Location** | `course_development/biol-1/course/labs/` |
+| **Dashboards** | `course_development/biol-1/course/labs/dashboards/` |
 
-Number labs with zero-padded two-digit prefixes. **Expected numbered protocol ranges** track `publish.toml`: **BIOL-1** labs `01`–`17` (`max_lab = 17`); **BIOL-8** labs `01`–`18` (`max_lab = 18`), plus optional supplemental `lab-*.md` files (for example follow-up readings). Use lowercase kebab-case for the topic slug.
+Number labs with zero-padded two-digit prefixes. **Expected numbered protocol ranges** track `publish.toml`: the active Fall 2026 **BIOL-1** course has labs `01`–`17` (`max_lab = 17`), plus optional supplemental `lab-*.md` files if needed. Spring 2026 BIOL-8 lab formats are historical reference material under [`../../archive/spring-2026/course_development/biol-8/course/labs/`](../../archive/spring-2026/course_development/biol-8/course/labs/). Use lowercase kebab-case for the topic slug.
 
 ---
 
@@ -25,7 +25,7 @@ Every lab protocol must follow this section order:
 ```markdown
 # Lab X: Title — Subtitle
 
-**BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
 ---
 
@@ -98,9 +98,7 @@ Question text
 The first two lines are always:
 
 1. **H1 title**: `# Lab X: Title — Subtitle`
-2. **Course line**: `**BIOL-8: Human Biology** | College of the Redwoods, Del Norte Campus`
-
-For **BIOL-1** labs, substitute the Pelican Bay / BIOL-1 course line used in sibling labs so the subtitle matches deployment context.
+2. **Course line**: `**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay`
 
 The `lab_manual` module strips these when `include_header=True` (default) to avoid duplicating the rendered header block.
 
@@ -298,15 +296,15 @@ Path("new-lab.md").write_text(template)
 # PDF
 cd software && uv run python -c "
 from src.lab_manual.main import render_lab_manual
-render_lab_manual('course_development/biol-8/course/labs/lab-01_measurement-methods.md',
-                  'output/lab-01.pdf', output_format='pdf', course_name='BIOL-8')
+render_lab_manual('course_development/biol-1/course/labs/lab-01_measurement-methods.md',
+                  'output/lab-01.pdf', output_format='pdf', course_name='BIOL-1')
 "
 
 # HTML (interactive)
 cd software && uv run python -c "
 from src.lab_manual.main import render_lab_manual
-render_lab_manual('course_development/biol-8/course/labs/lab-01_measurement-methods.md',
-                  'output/lab-01.html', output_format='html', course_name='BIOL-8')
+render_lab_manual('course_development/biol-1/course/labs/lab-01_measurement-methods.md',
+                  'output/lab-01.html', output_format='html', course_name='BIOL-1')
 "
 ```
 
@@ -314,10 +312,10 @@ render_lab_manual('course_development/biol-8/course/labs/lab-01_measurement-meth
 
 ```bash
 # Lab manuals run as part of the standard course-wide script (omit --skip-labs)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Limit how many numbered labs are rendered for that course
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab biol-8:5
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --max-lab biol-1:5
 ```
 
 There is no `--labs-only` flag on `generate_all_outputs.py`; use `render_lab_manual` (above) or the orchestration helpers for narrower runs.

@@ -6,7 +6,7 @@ Thin orchestrator - delegates to src.content_processing.
 Usage:
     uv run python scripts/renumber_questions.py --course all
     uv run python scripts/renumber_questions.py --course biol-1
-    uv run python scripts/renumber_questions.py --course biol-8 --module module-03
+    uv run python scripts/renumber_questions.py --course biol-1 --module module-03
     uv run python scripts/renumber_questions.py --course all --dry-run --verbose
 """
 
@@ -18,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.content_processing import renumber_questions_in_course
+from src.shared.course_config import CourseSelectionError, resolve_course_selection
 
 
 def main():
@@ -28,9 +29,8 @@ def main():
     parser.add_argument(
         "--course",
         type=str,
-        choices=["biol-1", "biol-8", "all"],
         default="all",
-        help="Course to process (default: all)"
+        help="Active course to process, or all (default: all)"
     )
     parser.add_argument(
         "--module",
@@ -53,10 +53,10 @@ def main():
 
     repo_root = Path(__file__).parent.parent.parent
 
-    if args.course == "all":
-        courses = ['biol-1', 'biol-8']
-    else:
-        courses = [args.course]
+    try:
+        courses = resolve_course_selection(args.course, repo_root)
+    except CourseSelectionError as exc:
+        parser.error(str(exc))
 
     prefix = "[DRY RUN] " if args.dry_run else ""
 

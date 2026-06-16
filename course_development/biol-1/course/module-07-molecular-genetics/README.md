@@ -1,8 +1,8 @@
-# Module 08 Central Dogma
+# Module 07 Molecular Genetics
 
 ## Overview
 
-This directory contains resources for Module 08 Central Dogma.
+This directory contains resources for Module 07 Molecular Genetics.
 
 ## Contents
 

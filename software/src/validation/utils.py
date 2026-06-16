@@ -224,6 +224,7 @@ def check_lab_files(
         "source_labs_numbered": 0,
         "source_labs_supplemental": 0,
         "formats_checked": [],
+        "formats_skipped": [],
         "output_files": {},
         "dashboards": 0,
         "missing_outputs": [],
@@ -236,6 +237,8 @@ def check_lab_files(
 
     lab_formats = config.get_lab_output_formats(formats)
     result["formats_checked"] = lab_formats
+    if formats is not None:
+        result["formats_skipped"] = [fmt for fmt in formats if fmt not in lab_formats]
 
     all_source_labs = sorted(labs_dir.glob("lab-*.md"))
 
@@ -326,7 +329,7 @@ def check_dashboard_invariant(
     layouts that legitimately diverge are not broken.
 
     Args:
-        course_path: Path to the course directory (e.g. ``course_development/biol-8``).
+        course_path: Path to the course directory (e.g. ``course_development/biol-1``).
         course_name: Course identifier for config lookup; defaults to
             ``course_path.name``.
         max_lab: Optional cap on numbered labs to check.

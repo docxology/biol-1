@@ -28,7 +28,7 @@ def validate_outputs(
 
 Validate a course's source-tree outputs.
 
-- `course_path`: directory like `course_development/biol-8`.
+- `course_path`: directory like `course_development/biol-1`.
 - `formats`: formats requested by the publish pipeline (e.g. `["pdf", "docx", "md"]`). When provided it is threaded through to module, syllabus, and **lab** checks so the log only reports formats that were actually requested. Defaults to `DEFAULT_REQUIRED_FORMATS` (`pdf`, `docx`).
 - `max_module` / `max_lab`: optional caps used during partial test runs.
 
@@ -185,8 +185,8 @@ Helpers:
 ```bash
 cd software
 uv run python scripts/validate_outputs.py --course all
-uv run python scripts/validate_outputs.py --course biol-8 --formats pdf,docx,md
-uv run python scripts/validate_outputs.py --course biol-8 --max-lab biol-8:14 --verbose
+uv run python scripts/validate_outputs.py --course biol-1 --formats pdf,docx,md
+uv run python scripts/validate_outputs.py --course biol-1 --max-lab biol-1:14 --verbose
 uv run python scripts/validate_outputs.py --course all --strict-dashboards
 ```
 
@@ -196,7 +196,7 @@ uv run python scripts/validate_outputs.py --course all --strict-dashboards
 from src.validation import validate_outputs, generate_validation_report
 
 results = validate_outputs(
-    "../course_development/biol-8",
+    "../course_development/biol-1",
     formats=["pdf", "docx", "md"],
 )
 labs = results["labs"]

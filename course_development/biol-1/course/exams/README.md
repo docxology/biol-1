@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains exams for BIOL-1: Introduction to Biology (Pelican Bay State Prison).
+This directory contains exams for BIOL-1: General Biology at Pelican Bay.
 
 ## Exam Structure
 

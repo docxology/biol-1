@@ -19,7 +19,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 **macOS (Homebrew)**:
 
 ```bash
-brew install cairo pango gdk-pixbuf libffi glib
+brew install cairo pango gdk-pixbuf libffi glib ffmpeg
 ```
 
 **Ubuntu/Debian**:
@@ -71,7 +71,7 @@ uv run python -c "from src.format_conversion.main import convert_file; print('�
 | `uv.lock` | Locked dependency versions for reproducibility |
 | `.gitignore` | Git exclusion patterns |
 | `.cursorrules` | Real Methods Policy for AI assistants |
-| `run_tests.sh` | macOS-compatible test runner wrapper |
+| `software/run_tests.sh` | macOS-compatible test runner wrapper with fast/default and opt-in full/audio profiles |
 
 ### pyproject.toml
 
@@ -80,7 +80,7 @@ Defines project dependencies and tool configuration:
 ```toml
 [project]
 requires-python = ">=3.11"
-dependencies = ["markdown", "weasyprint", "gtts", "requests", ...]
+dependencies = ["markdown", "weasyprint", "speechrecognition", "requests", ...]
 
 [project.optional-dependencies]
 dev = ["pytest", "pytest-cov", "black", "mypy", "ruff"]
@@ -88,7 +88,7 @@ dev = ["pytest", "pytest-cov", "black", "mypy", "ruff"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = ["--cov=src", "--cov-report=html", "-v"]
-markers = ["requires_internet", "requires_api"]
+markers = ["requires_internet", "requires_api", "audio", "slow"]
 ```
 
 ### .python-version
@@ -109,15 +109,19 @@ uv lock
 
 ### .cursorrules (Real Methods Policy)
 
-Documents the core development principle: **all code uses real implementations, no mocks or stubs**.
+Documents the core development principle: production code uses real implementations, and tests use real files/libraries by default with only documented boundary doubles.
 
-### run_tests.sh
+### software/run_tests.sh
 
-Wrapper script for macOS that sets `DYLD_FALLBACK_LIBRARY_PATH` for WeasyPrint (same convention as [`publish.py`](../../publish.py)):
+Wrapper script for macOS that sets `DYLD_FALLBACK_LIBRARY_PATH` for WeasyPrint (same convention as [`publish.py`](../../publish.py)). The default profile is fast and offline; audio, slow, network, and API tests are opt-in:
 
 ```bash
-./run_tests.sh              # Runs all tests
-./run_tests.sh tests/test_imports.py -v  # Run specific test
+cd software
+./run_tests.sh                          # Fast offline gate
+./run_tests.sh --fast                   # Same fast offline gate, explicit profile
+./run_tests.sh tests/test_imports.py -v # Fast gate scoped to a path
+./run_tests.sh --audio                  # Local TTS/audio tests
+./run_tests.sh --full                   # Full suite
 ```
 
 ---
@@ -133,7 +137,8 @@ python --version
 
 # Check key dependency versions
 uv run python -c "import weasyprint; print(f'WeasyPrint: {weasyprint.__version__}')"
-uv run python -c "import gtts; print(f'gTTS: {gtts.__version__}')"
+say --version 2>/dev/null || true
+ffmpeg -version | head -1
 ```
 
 ---
@@ -189,7 +194,7 @@ render_markdown_to_pdf('input.md', 'output.pdf')
 
 ### Generate Audio from Text {#generate-audio}
 
-**Module**: `text_to_speech` (standalone, requires internet for gTTS)
+**Module**: `text_to_speech` (standalone; on macOS uses local `say` plus `ffmpeg`)
 
 ```bash
 uv run python -c "
@@ -245,7 +250,7 @@ convert_file('input.md', 'html', 'output.html')
 
 ## Full Publish Pipeline (Recommended)
 
-The primary entry point is the top-level `publish.py` script with configuration via [`publish.toml`](../../publish.toml). Generation is implemented in **Python** (`software/src/`: WeasyPrint, `python-docx`, `markdown2`, `gTTS`, etc.); format toggles in the TOML are authoritative (some comments in the file may mention other tools—trust the `src/` stack).
+The primary entry point is the top-level `publish.py` script with configuration via [`publish.toml`](../../publish.toml). Generation is implemented in **Python** (`software/src/`: WeasyPrint, `python-docx`, `markdown2`, local TTS helpers, etc.); format toggles in the TOML are authoritative.
 
 ```bash
 # From the repository root (not software/)
@@ -260,7 +265,7 @@ python publish.py --dry-run
 # Override formats on command line
 python publish.py --override-formats pdf,html,md
 
-# Include MP3 audio generation (slower; network)
+# Include MP3 audio generation (slower; local TTS/ffmpeg)
 python publish.py --override-formats pdf,docx,html,txt,md,mp3
 ```
 
@@ -288,10 +293,10 @@ Defaults for `html` / `txt` / `md` change over time—read the repo’s `publish
 cd software
 
 # Generate all outputs for a course
-uv run python scripts/generate_all_outputs.py --course biol-8
+uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Dry run (preview only)
-uv run python scripts/generate_all_outputs.py --course biol-8 --dry-run
+uv run python scripts/generate_all_outputs.py --course biol-1 --dry-run
 
 # All courses
 uv run python scripts/generate_all_outputs.py --course all
@@ -310,13 +315,13 @@ uv run python scripts/generate_all_outputs.py --course all
 ### Generate Module Website
 
 ```bash
-uv run python scripts/generate_module_website.py --course biol-8 --module 1
+uv run python scripts/generate_module_website.py --course biol-1 --module 1
 ```
 
 ### Generate Syllabus Renderings
 
 ```bash
-uv run python scripts/generate_syllabus_renderings.py --course biol-8
+uv run python scripts/generate_syllabus_renderings.py --course biol-1
 ```
 
 ---
@@ -326,7 +331,7 @@ uv run python scripts/generate_syllabus_renderings.py --course biol-8
 ### Run All Tests
 
 ```bash
-./run_tests.sh
+cd software && ./run_tests.sh
 ```
 
 Or manually:
@@ -415,17 +420,17 @@ uv run python scripts/generate_all_outputs.py
 
 ### Audio Generation Fails
 
-**Error**: `gTTSError: 429 (Too Many Requests)`
+**Error**: local TTS or `ffmpeg` command fails or times out
 
 **Solution**:
 
-- Wait a few minutes and retry
-- Use `--skip-audio` flag if available
+- Confirm `say` is available on macOS and `ffmpeg` is installed
+- Set `mp3 = false` in `publish.toml` for routine local/publish gates
 - Process smaller batches
 
-### Audio Generation Requires Internet
+### Audio Tests Are Opt-In
 
-**Note**: gTTS requires an active internet connection to generate audio files.
+**Note**: MP3 generation is intentionally excluded from the fast local test gate.
 
 ### WeasyPrint CSS Warnings
 
@@ -478,8 +483,9 @@ uv sync
 # 4. WeasyPrint working
 uv run python -c "from weasyprint import HTML; print('✓ WeasyPrint OK')"
 
-# 5. gTTS working
-uv run python -c "from gtts import gTTS; print('✓ gTTS OK')"
+# 5. Local audio tooling available
+say --version 2>/dev/null || true
+ffmpeg -version | head -1
 
 # 6. All modules importable
 uv run python -c "from src import __version__; print(f'✓ cr-bio v{__version__}')"
@@ -497,13 +503,10 @@ uv run pytest tests/ -x -q --tb=no
 ### Full Course Generation
 
 ```bash
-# BIOL-8: Generate all outputs
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
-
-# BIOL-1: Generate all outputs  
+# BIOL-1: Generate all outputs
 cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
-# Both courses
+# All active courses
 cd software && uv run python scripts/generate_all_outputs.py --course all
 ```
 
@@ -511,10 +514,10 @@ cd software && uv run python scripts/generate_all_outputs.py --course all
 
 ```bash
 # Generate single module (fast iteration)
-cd software && uv run python scripts/generate_module_renderings.py --course biol-8 --module 1
+cd software && uv run python scripts/generate_module_renderings.py --course biol-1 --module 1
 
 # Generate website for module
-cd software && uv run python scripts/generate_module_website.py --course biol-8 --module 1
+cd software && uv run python scripts/generate_module_website.py --course biol-1 --module 1
 ```
 
 ### Full Publish Pipeline (Recommended)
@@ -523,7 +526,7 @@ cd software && uv run python scripts/generate_module_website.py --course biol-8 
 # From repository root (reads publish.toml for configuration)
 python publish.py                          # Full pipeline
 python publish.py --dry-run                # Preview without executing
-python publish.py --override-formats pdf,html  # Override formats
+python publish.py --override-formats pdf,docx,md  # Override formats
 python publish.py --git-only               # Skip generation, just push
 python publish.py --skip-git               # Run pipeline but skip push
 ```
@@ -532,26 +535,26 @@ python publish.py --skip-git               # Run pipeline but skip push
 
 ```bash
 # Generate specific formats only
-cd software && uv run python scripts/generate_all_outputs.py --formats pdf,html
+cd software && uv run python scripts/generate_all_outputs.py --formats pdf,docx,md
 
 # Generate specific course only
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Limit modules for testing
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-module 3
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --max-module 3
 ```
 
 ### Lab Manual Generation
 
 ```bash
 # Full course run includes lab manuals unless you pass --skip-labs
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 
 # Omit lab manuals (faster iteration on modules/syllabus)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --skip-labs
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --skip-labs
 
 # Limit numbered labs rendered (combine with --formats if needed)
-cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --max-lab biol-8:5
+cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --max-lab biol-1:5
 ```
 
 `generate_all_outputs.py` does **not** support `--labs-only` / `--include-labs`; use the Python API in [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generation) for single-file renders.
@@ -590,4 +593,4 @@ cd software && uv run python scripts/generate_all_outputs.py --course biol-8 --m
 |--------|---------|
 | `generate_all_outputs.py` | Generate all course outputs |
 | `generate_module_website.py` | Single module website |
-| `run_tests.sh` | Run test suite |
+| `software/run_tests.sh` | Run fast, full, or audio test profiles |

@@ -1,7 +1,7 @@
 """Main functions for Canvas integration."""
 
 from pathlib import Path
-from typing import Any, Dict, List, TypedDict
+from typing import Any, Dict, List, TypedDict, cast
 
 import requests
 
@@ -199,4 +199,4 @@ def _upload_file_to_canvas(
             "POST", upload_url, api_key, files=files
         )
 
-    return upload_response.json()
+    return cast(Dict[str, Any], upload_response.json())

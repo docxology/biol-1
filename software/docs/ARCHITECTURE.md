@@ -57,7 +57,7 @@ Each module can be tested independently without requiring other modules to be pr
 - **Unit Tests**: Test individual module functions in isolation
 - **Integration Tests**: Test module interactions explicitly
 - **No Hidden Dependencies**: All dependencies are explicit and can be verified
-- **Mock-Free Testing**: Tests use real implementations, not mocks
+- **Real-First Testing**: Tests use real implementations by default; limited doubles are reserved for external-service boundaries and expensive orchestration seams
 
 ---
 
@@ -356,7 +356,7 @@ software/
 ├── README.md                         # Project overview
 ├── AGENTS.md                         # API reference
 ├── pyproject.toml                    # Dependencies and config
-└── run_tests.sh                      # Test runner script
+└── run_tests.sh                      # Test runner script under software/
 ```
 
 ---
@@ -389,7 +389,7 @@ SCHEDULE_COLUMNS = ["Week", "Date", "Topic", "Notes"]
 | Module | External Library | Purpose |
 |--------|-----------------|---------|
 | markdown_to_pdf | WeasyPrint | PDF rendering |
-| text_to_speech | gTTS | Google TTS |
+| text_to_speech | local TTS + ffmpeg | MP3 narration |
 | speech_to_text | SpeechRecognition | Audio transcription |
 | format_conversion | python-docx, pypdf | DOCX/PDF handling |
 | html_website | markdown2 | HTML conversion |
@@ -405,7 +405,7 @@ These modules can be used without any other modules:
 | Module | Purpose | Standalone Usage |
 |--------|---------|------------------|
 | `markdown_to_pdf` | Convert Markdown to PDF | Yes - only needs WeasyPrint |
-| `text_to_speech` | Generate audio from text | Yes - only needs gTTS |
+| `text_to_speech` | Generate audio from text | Yes - needs local TTS tooling and ffmpeg |
 | `speech_to_text` | Transcribe audio to text | Yes - only needs SpeechRecognition |
 | `module_organization` | Create module structures | Yes - no dependencies |
 | `file_validation` | Validate module files | Yes - no dependencies |
@@ -503,7 +503,7 @@ Configuration in `pyproject.toml`:
 ```bash
 uv run pytest                    # All tests
 uv run pytest -v tests/          # Verbose
-./run_tests.sh                   # macOS wrapper
+cd software && ./run_tests.sh    # Fast offline macOS wrapper
 ```
 
 ### Coverage Reporting
@@ -633,7 +633,8 @@ External dependencies are pinned to minimum versions in `pyproject.toml`:
 dependencies = [
     "markdown>=3.5.0",
     "weasyprint>=60.0",
-    "gtts>=2.5.0",
+    "speechrecognition>=3.10.0",
+    "pydub>=0.25.1",
     "pypdf>=4.0.0",
     "python-docx>=1.1.0",
 ]
@@ -657,7 +658,7 @@ Each module raises specific exceptions that can be caught and handled:
 |--------|-----------|-------|
 | `markdown_to_pdf` | `OSError` | Missing WeasyPrint dependencies |
 | `markdown_to_pdf` | `FileNotFoundError` | Input file not found |
-| `text_to_speech` | `gTTSError` | Rate limiting or network issues |
+| `text_to_speech` | `OSError` | Local TTS/ffmpeg failure or timeout |
 | `format_conversion` | `ValueError` | Unsupported format |
 | `file_validation` | Returns `{"valid": False}` | Validation failure (no exception) |
 | `batch_processing` | `FileNotFoundError` | Module directory not found |
@@ -714,7 +715,7 @@ Illustrative order-of-magnitude only—measure on your machine and check `softwa
 |-----------|--------------|-------|
 | PDF generation | order of 1s | Local; depends on page count |
 | HTML / DOCX | sub-second typical | Local |
-| Audio (gTTS) | several seconds | Network-bound; rate limits apply |
+| Audio (local TTS) | several seconds | Local command-bound; timeout-protected |
 | Website generation | multi-second | Bundles assets and intermediate formats |
 
 ### Optimization Strategies
@@ -732,12 +733,12 @@ process_module_by_type(
 
 ```bash
 # 2. Process single module from software/
-uv run python scripts/generate_module_renderings.py --course biol-8 --module 1
+uv run python scripts/generate_module_renderings.py --course biol-1 --module 1
 ```
 
 ### Resource Usage
 
-Varies widely by batch size and formats; profile locally if optimizing. gTTS is the main network consumer when MP3 is enabled.
+Varies widely by batch size and formats; profile locally if optimizing. Local TTS/ffmpeg is the slow path when MP3 is enabled.
 
 ---
 
@@ -759,19 +760,19 @@ Varies widely by batch size and formats; profile locally if optimizing. gTTS is 
 
 #### Module Content
 
-| Document | Location | BIOL-1 | BIOL-8 | Output Formats | Output Location |
-|----------|----------|--------|--------|----------------|-----------------|
-| **keys-to-success.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MD, MP3 | `module-XX/output/study-guides/` |
-| **questions.md** | `course/module-XX-*/` | 15 | 17 | PDF, DOCX, HTML, TXT, MD, MP3 | `module-XX/output/study-guides/` |
+| Document | Location | Active BIOL-1 Count | Default Output Formats | Opt-in Output Formats | Output Location |
+|----------|----------|---------------------|------------------------|-----------------------|-----------------|
+| **keys-to-success.md** | `course/module-XX-*/` | 15 | PDF, DOCX, MD | HTML, TXT, MP3 | `module-XX/output/study-guides/` |
+| **questions.md** | `course/module-XX-*/` | 15 | PDF, DOCX, MD | HTML, TXT, MP3 | `module-XX/output/study-guides/` |
 
 #### Laboratory Protocols
 
 | Property | Value |
 |----------|-------|
-| **Location** | `course_development/biol-{1,8}/course/labs/lab-XX_*.md` |
-| **Expected numbered protocols** | BIOL-1: labs **01–17** (`publish.toml`: `max_lab = 17`); BIOL-8: labs **01–18** (`max_lab = 18`), plus supplemental `lab-*.md` where present |
+| **Location** | `course_development/biol-1/course/labs/lab-XX_*.md` |
+| **Expected numbered protocols** | Active BIOL-1: labs **01–17** (`publish.toml`: `max_lab = 17`), plus supplemental `lab-*.md` where present |
 | **Verification** | Count `lab-NN_*.md` on disk rather than trusting historical “stub” tables; dashboards live in `course/labs/dashboards/` |
-| **Output Formats** | PDF (fillable), DOCX/HTML/TXT/MD when enabled in `[publish.formats]` (labs use `lab_manual` + `format_conversion`) |
+| **Output Formats** | PDF by default for lab protocols; HTML lab rendering is supported by `lab_manual`; DOCX/TXT/MD lab copies require explicit format-conversion support and are not part of the active artifact gate |
 | **Output Location** | `course/labs/output/` |
 
 **Lab Directives Supported:**
@@ -786,19 +787,19 @@ See [ORCHESTRATION.md#lab-manual-generation](ORCHESTRATION.md#lab-manual-generat
 
 #### Assessments
 
-| Document | Location | BIOL-1 | BIOL-8 | Format | Published |
-|----------|----------|--------|--------|--------|-----------|
-| **Exams** (`exam-XX.md` + key) | `course/exams/` | 3 unit exams + keys + `final-exam` (`exam-01`–`exam-03`, `final-exam`) | 3 unit exams + keys + `final-exam` (`exam-01`–`exam-03`, `final-exam`) | Layout varies by file (see live `exam-*.md` + `final-exam.md`) | Teacher-only / local render |
-| **Quizzes** (`module-XX_quiz.md` + key) | `course/quizzes/` | Templates only | 17 + 17 keys | 7 MC + 3 FR = 10 pts | Teacher-only |
+| Document | Location | Active BIOL-1 | Format | Published |
+|----------|----------|---------------|--------|-----------|
+| **Exams** (`exam-XX.md` + key) | `course/exams/` | 3 unit exams + keys + `final-exam` (`exam-01`–`exam-03`, `final-exam`) | Layout varies by file (see live `exam-*.md` + `final-exam.md`) | Teacher-only / local render |
+| **Quizzes** (`module-XX_quiz.md` + key) | `course/quizzes/` | Templates only | Local template | Teacher-only |
 
-BIOL-8 unit exams: `exam-01` (01–06), `exam-02` (07–10), `exam-03` (11–15); comprehensive **`final-exam.md`** (**01–17**, 100 pts — see `course_development/biol-8/course/exams/README.md`). BIOL-1 cumulative final: `course_development/biol-1/course/exams/final-exam.md` (+ key).
+Spring 2026 BIOL-8 exams and quizzes are archived under [`../../archive/spring-2026/course_development/biol-8/course/`](../../archive/spring-2026/course_development/biol-8/course/). BIOL-1 cumulative final: `course_development/biol-1/course/exams/final-exam.md` (+ key).
 
 #### Syllabus Materials
 
 | Document | Location | Output Formats | Output Location |
 |----------|----------|----------------|-----------------|
-| **Syllabus.md** | `syllabus/BIOL-X_*.md` | PDF, DOCX, HTML, TXT, MD, MP3 | `syllabus/output/` |
-| **Schedule.md** | `syllabus/Schedule.md` | PDF, DOCX, HTML, TXT, MD, MP3 | `syllabus/output/` |
+| **Syllabus.md** | `syllabus/BIOL-X_*.md` | PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in | `syllabus/output/` |
+| **Schedule.md** | `syllabus/Schedule.md` | PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in | `syllabus/output/` |
 
 **Note:** Syllabus outputs use a flat structure (files directly in output/, not subdirectories).
 

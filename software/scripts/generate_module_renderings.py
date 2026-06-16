@@ -5,7 +5,7 @@ Usage:
     uv run python scripts/generate_module_renderings.py [OPTIONS]
 
 Options:
-    --course COURSE    Course: biol-1 or biol-8 (default: biol-1)
+    --course COURSE    Active course (default: biol-1)
     --module MODULE    Module number to process (default: 1)
     --help             Show this help message
 
@@ -13,8 +13,8 @@ Examples:
     # Generate renderings for biol-1 module-1 (default)
     uv run python scripts/generate_module_renderings.py
 
-    # Generate renderings for biol-8 module-2
-    uv run python scripts/generate_module_renderings.py --course biol-8 --module 2
+    # Generate renderings for biol-1 module-2
+    uv run python scripts/generate_module_renderings.py --course biol-1 --module 2
 """
 
 import argparse
@@ -25,9 +25,14 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from scripts.utils import print_module_not_found
-from src.batch_processing.main import process_module_by_type
-from src.module_organization.utils import find_module_path
+from src.shared.runtime import configure_runtime_environment  # noqa: E402
+
+configure_runtime_environment()
+
+from scripts.utils import print_module_not_found  # noqa: E402
+from src.batch_processing.main import process_module_by_type  # noqa: E402
+from src.module_organization.utils import find_module_path  # noqa: E402
+from src.shared.course_config import CourseSelectionError, active_course_names, resolve_course_selection  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -41,17 +46,17 @@ def parse_args() -> argparse.Namespace:
         epilog="""
 Examples:
   %(prog)s                         Generate for biol-1/module-1 (default)
-  %(prog)s --course biol-8         Generate for biol-8/module-1
+  %(prog)s --course biol-1         Generate for biol-1/module-1
   %(prog)s --module 2              Generate for biol-1/module-2
-  %(prog)s --course biol-8 --module 3   Generate for biol-8/module-3
+  %(prog)s --course biol-1 --module 3   Generate for biol-1/module-3
         """,
     )
 
+    active = ", ".join(active_course_names()) or "none"
     parser.add_argument(
         "--course",
-        choices=["biol-1", "biol-8"],
         default="biol-1",
-        help="Course to process (default: biol-1)",
+        help=f"Active course to process (active: {active}; default: biol-1)",
     )
 
     parser.add_argument(
@@ -67,21 +72,26 @@ Examples:
 def main() -> int:
     """Generate all renderings for a module."""
     args = parse_args()
+    try:
+        [course_name] = resolve_course_selection(args.course)
+    except CourseSelectionError as exc:
+        logger.error(str(exc))
+        return 2
 
     # Paths
     repo_root = Path(__file__).parent.parent.parent
-    course_path = repo_root / "course_development" / args.course
+    course_path = repo_root / "course_development" / course_name
 
     # Find module path (supports both module-N and module-NN-topic patterns)
     module_path = find_module_path(course_path, args.module)
 
     if module_path is None:
-        print_module_not_found(course_path, args.course, args.module)
+        print_module_not_found(course_path, course_name, args.module)
         return 1
 
     output_dir = module_path / "output"
 
-    logger.info(f"Processing: {args.course}/course/{module_path.name}")
+    logger.info(f"Processing: {course_name}/course/{module_path.name}")
     logger.info(f"Output directory: {output_dir}")
 
     try:
@@ -118,4 +128,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

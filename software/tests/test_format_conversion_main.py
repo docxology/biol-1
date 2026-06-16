@@ -11,21 +11,9 @@ from src.format_conversion.main import (
     get_supported_formats,
 )
 
-try:
-    from gtts.tts import gTTSError as GTTSError
-except ImportError:
-
-    class GTTSError(Exception):  # type: ignore[no-redef]
-        """Fallback if gtts is absent."""
-
-        pass
-
-
 def _is_optional_network_exc(exc: BaseException) -> bool:
-    """True for transient gTTS / Google Speech failures."""
+    """True for transient Google Speech or network failures."""
     if isinstance(exc, sr.RequestError):
-        return True
-    if isinstance(exc, GTTSError):
         return True
     msg = str(exc).lower()
     return "429" in msg or "timed out" in msg or "connection" in msg
@@ -196,8 +184,10 @@ def test_convert_txt_to_html(temp_dir):
 
 
 @pytest.mark.requires_internet
+@pytest.mark.audio
+@pytest.mark.slow
 def test_convert_audio_to_text(temp_dir):
-    """Round-trip: gTTS -> MP3, then speech_to_text via convert_file (internet for both)."""
+    """Round-trip: local TTS MP3, then Google Speech via convert_file."""
     from src.text_to_speech.main import generate_speech
 
     audio_file = temp_dir / "test.mp3"
@@ -211,7 +201,7 @@ def test_convert_audio_to_text(temp_dir):
             pytest.skip(str(e))
         raise
     if not audio_file.exists():
-        pytest.skip("gTTS did not write MP3")
+        pytest.skip("Local TTS did not write MP3")
 
     txt_file = temp_dir / "test.txt"
     try:

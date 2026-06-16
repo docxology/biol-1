@@ -25,7 +25,7 @@
 |--------|-------|
 | Packages | 16 across Layers 0–4 |
 | Tests / coverage | Measure with `uv run pytest --collect-only -q` and `uv run pytest --cov=src --cov-report=term-missing` (from `software/`) |
-| Formats | PDF, DOCX, HTML, TXT, MD, MP3 |
+| Formats | PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in |
 | Features shipped | Selective Rendering, 6-stage pipeline, Lab dashboards, HTML websites with interactive quiz |
 | Known gaps | mypy not enforced in CI, coverage < 90%, `canvas_integration` requires live API, `speech_to_text` lacks offline fallback |
 
@@ -189,9 +189,9 @@
 - [x] Broad pytest coverage across packages (re-verify with `pytest --cov` after major changes)
 - [x] 6-stage publish pipeline (Clean → Generate → Publish → Extras → Flatten → Validate)
 - [x] Selective Rendering Boundaries (`max_module`, `max_lab`) in pipeline and validation
-- [x] 6 output formats: PDF, DOCX, HTML, TXT, MD, MP3
+- [x] Configurable output formats: PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in
 - [x] Interactive HTML module websites with quiz engine
-- [x] Lab dashboard HTML generation for BIOL-8
+- [x] Lab dashboard HTML generation for active BIOL-1; Spring 2026 BIOL-8 dashboards archived
 - [x] Canvas LMS upload (basic, requires live API)
 - [x] `publish.toml`-driven configuration for per-course, per-format control
 - [x] Consistent module structure: `__init__.py`, `main.py`, `utils.py`, `config.py`, `AGENTS.md`

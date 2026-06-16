@@ -1,6 +1,8 @@
 # Lab 4: Liquid Chemistry
 
-**Goal:** Perform simplified experiments to observe diffusion, viscosity, redox reactions, and serial dilutions using minimal reagents.
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
+
+**Name:** {fill:text} **Date:** {fill:text}
 
 ---
 
@@ -10,6 +12,10 @@
 2. **Observe viscosity** directly by comparing fluid motion in water versus methyl cellulose.
 3. **Demonstrate redox reactions** using a common oxidizer (bleach) and an indicator dye.
 4. **Perform serial dilutions** to create a concentration gradient and understand how visual color relates to solute amount.
+
+## Purpose
+
+Perform simplified experiments to observe diffusion, viscosity, redox reactions, and serial dilutions using minimal reagents.
 
 ## Connections to Biology
 

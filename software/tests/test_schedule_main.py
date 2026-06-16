@@ -155,9 +155,10 @@ class TestProcessSchedule:
         docx_files = list((output_dir).glob("*.docx"))
         assert len(docx_files) >= 1
 
-    @pytest.mark.requires_internet
+    @pytest.mark.audio
+    @pytest.mark.slow
     def test_process_schedule_mp3_format(self, sample_schedule_file, temp_dir):
-        """Test processing schedule with MP3 format (requires internet for gTTS)."""
+        """Test processing schedule with MP3 format using local TTS tooling."""
         output_dir = temp_dir / "output"
 
         result = process_schedule(

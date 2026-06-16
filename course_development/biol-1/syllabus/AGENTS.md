@@ -10,11 +10,11 @@ Technical documentation for syllabus file processing and format generation.
 syllabus/
 ├── README.md                        # Syllabus overview
 ├── AGENTS.md                        # This file
-├── BIOL-1_Spring-2026_Syllabus.md   # Main syllabus (source)
+├── BIOL-1_Fall-2026_Syllabus.md   # Main syllabus (source)
 ├── Schedule.md                      # Term schedule (source)
 └── output/                          # Processed outputs (do not add new *source* .md here)
-    ├── BIOL-1_Spring-2026_Syllabus.{pdf,docx,html,txt,mp3,md}
-    └── Schedule.{pdf,docx,html,txt,mp3,md}
+    ├── BIOL-1_Fall-2026_Syllabus.{pdf,docx,md}
+    └── Schedule.{pdf,docx,md}
 ```
 
 `generate_syllabus_renderings.py` processes **only** top-level `*.md` in this directory that are not under `output/`. The batch layer should not treat `output/*.md` copies as second sources.
@@ -27,47 +27,21 @@ syllabus/
 
 **Function**: `process_syllabus(syllabus_path: str, output_dir: str) -> Dict[str, Any]`
 
-Processes all markdown files in the syllabus directory and generates multiple output formats.
+Processes all markdown files in the syllabus directory and generates the requested output formats.
 
 ### Processing Pipeline
 
-For each markdown file in the syllabus directory:
-
-       1. **PDF Generation**
-          - Function: `markdown_to_pdf.main.render_markdown_to_pdf()`
-          - Input: Markdown file path
-          - Output: PDF file in `output/` directory
-
-       2. **MP3 Audio Generation**
-          - Function: `text_to_speech.main.generate_speech()`
-          - Process: Extract text from markdown → Generate speech
-          - Utilities: `text_to_speech.utils.extract_text_from_markdown()`, `read_text_file()`
-          - Output: MP3 file in `output/` directory
-
-       3. **DOCX Generation**
-          - Function: `format_conversion.main.convert_file()`
-          - Conversion: `md->docx`
-          - Output: DOCX file in `output/` directory
-
-       4. **HTML Generation**
-          - Function: `format_conversion.main.convert_file()`
-          - Conversion: `md->html`
-          - Output: HTML file in `output/` directory
-
-       5. **TXT Generation**
-          - Process: Extract text from markdown → Write plain text
-          - Utilities: `text_to_speech.utils.extract_text_from_markdown()`, `read_text_file()`
-          - Output: TXT file in `output/` directory
+For each markdown file in the syllabus directory, the default publish profile
+generates PDF, DOCX, and MD outputs. HTML, TXT, and MP3 are supported opt-in
+formats requested through `publish.toml` or `python publish.py --override-formats`.
 
 ### Output Structure
 
 ```
 output/
 ├── [filename].pdf
-├── [filename].mp3
 ├── [filename].docx
-├── [filename].html
-└── [filename].txt
+└── [filename].md
 ```
 
 All output files are organized flat in the `output/` directory, matching the structure used for module assignments.
@@ -77,13 +51,13 @@ All output files are organized flat in the `output/` directory, matching the str
 ### Source Files
 
 - Markdown files in syllabus directory are processed
-- Primary syllabus file: `BIOL-1_Spring-2026_Syllabus.md`
+- Primary syllabus file: `BIOL-1_Fall-2026_Syllabus.md`
 - Additional syllabus-related files can be added as needed
 
 ### Output Files
 
 - **Base Name**: Derived from source markdown filename (without extension)
-- **Extensions**: `.pdf`, `.mp3`, `.docx`, `.html`, `.txt`
+- **Extensions**: `.pdf`, `.docx`, `.md` by default; `.html`, `.txt`, and `.mp3` when requested
 - **Location**: Flat in `output/` directory (same structure as module assignments)
 
 ## Processing Script
@@ -92,7 +66,7 @@ All output files are organized flat in the `output/` directory, matching the str
 
 **Usage**: Processes all markdown files in the syllabus directory
 
-**Output**: All format renderings organized by format type
+**Output**: Requested format renderings organized by format type
 
 ## Dependencies
 
@@ -100,8 +74,8 @@ All output files are organized flat in the `output/` directory, matching the str
 
 - **batch_processing**: Main orchestration module
 - **markdown_to_pdf**: PDF generation from markdown
-- **text_to_speech**: Audio generation from text
-- **format_conversion**: Format conversions (DOCX, HTML)
+- **text_to_speech**: Opt-in audio generation from text
+- **format_conversion**: Format conversions (DOCX, MD, HTML, TXT)
 
 ### Utility Functions
 

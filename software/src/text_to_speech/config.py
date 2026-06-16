@@ -21,3 +21,6 @@ SUPPORTED_LANGUAGES: Dict[str, str] = {
 
 # Default output format
 OUTPUT_FORMAT: str = "mp3"
+
+# Local command timeout for macOS ``say`` and ffmpeg conversion.
+COMMAND_TIMEOUT_SECONDS: int = 30

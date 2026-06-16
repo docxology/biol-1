@@ -2,13 +2,14 @@
 
 ## Real Methods Policy
 
-**All tests use real methods and implementations - no mocks, stubs, or fake methods.**
+**Tests use real methods and implementations by default.**
 
 ### Test Implementation
 - All file operations use real file system operations
-- All library calls use real library implementations (gTTS, weasyprint, etc.)
+- All library/tool calls use real implementations (local TTS, ffmpeg, weasyprint, etc.)
 - All validation logic uses real validation functions
 - All module operations use real module creation and validation
+- Test doubles are allowed only for external-service boundaries or expensive orchestration seams, and the boundary must be clear in the test
 
 ### External API Testing
 - For external APIs (e.g., Canvas API), tests validate the logic and structure validation
@@ -25,5 +26,5 @@
 ### Test Quality
 - Clear test names describing scenario
 - Comprehensive docstrings
-- Test real functionality, not mocked behavior
+- Test real functionality by default; document any bounded external or orchestration test double
 - Handle network failures gracefully when testing external services

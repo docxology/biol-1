@@ -1,10 +1,10 @@
 # Lab 10: Epigenetics — Gene Regulation
 
-## Overview
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
-You have about 20,000 genes — but a brain cell only uses a fraction of them, and a muscle cell uses a different fraction. **Gene regulation** is how cells decide which genes to turn on and which to keep silent. **Epigenetics** takes this one step further: it studies how cells can change gene expression *without changing the DNA sequence itself* — through chemical tags on DNA and its packaging proteins.
+**Name:** {fill:text} **Date:** {fill:text}
 
-In this lab, you will explore how bacteria regulate genes using the **lac operon**, how human cells use **epigenetic mechanisms** like DNA methylation and histone modification, and how the environment can influence which of your genes are active.
+---
 
 ## Learning Objectives
 
@@ -15,6 +15,12 @@ By the end of this lab, you will be able to:
 3. Explain how DNA methylation and histone acetylation control gene expression.
 4. Describe X-inactivation and its visible effects (calico cats).
 5. Give examples of how environment influences gene expression.
+
+## Overview
+
+You have about 20,000 genes — but a brain cell only uses a fraction of them, and a muscle cell uses a different fraction. **Gene regulation** is how cells decide which genes to turn on and which to keep silent. **Epigenetics** takes this one step further: it studies how cells can change gene expression *without changing the DNA sequence itself* — through chemical tags on DNA and its packaging proteins.
+
+In this lab, you will explore how bacteria regulate genes using the **lac operon**, how human cells use **epigenetic mechanisms** like DNA methylation and histone modification, and how the environment can influence which of your genes are active.
 
 ## Materials
 

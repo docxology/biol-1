@@ -175,7 +175,7 @@ def find_schedule_files(directory: Path) -> List[Path]:
     Returns:
         List of schedule file paths
     """
-    schedule_files = []
+    schedule_files: List[Path] = []
     for pattern in config.SCHEDULE_FILE_PATTERNS:
         if "*" in pattern:
             # Handle glob patterns
@@ -205,5 +205,4 @@ def read_schedule_file(file_path: Path) -> str:
         raise FileNotFoundError(f"Schedule file not found: {file_path}")
 
     return file_path.read_text(encoding="utf-8")
-
 

@@ -1,7 +1,7 @@
 """Main logic for the publish module."""
 
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict, Optional
 import logging
 
 from . import config
@@ -10,7 +10,7 @@ from .utils import get_course_config, clean_directory, copy_directory_contents
 logger = logging.getLogger(__name__)
 
 
-def publish_course(course_path: str, publish_root: str = None) -> Dict[str, Any]:
+def publish_course(course_path: str, publish_root: Optional[str] = None) -> Dict[str, Any]:
     """Publish course materials to the published directory.
 
     Args:

@@ -1,10 +1,10 @@
 # Lab 14: How Populations Evolve (Module 13)
 
+**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
+
 **Name:** {fill:text} **Date:** {fill:text}
 
-## Overview
-
-Today you run a **paper simulation** of one imaginary beetle population across **three generations of story time**. You will track **allele frequencies**, watch **random catastrophe** reshuffle them (drift), then watch **non-random survival** (selection) change the distribution. The point is not algebra tricks—it is to feel **when chance matters** and **when the environment steers evolution**.
+---
 
 ## Learning Objectives
 
@@ -14,6 +14,10 @@ By the end of this lab, you should be able to:
 2. Explain how a **bottleneck** can change allele frequencies **without** selection.
 3. Classify **directional / stabilizing / disruptive** selection from a before-and-after phenotype distribution.
 4. Use Hardy–Weinberg expectations as a **null model** (“what if nothing evolutionary happened?”).
+
+## Overview
+
+Today you run a **paper simulation** of one imaginary beetle population across **three generations of story time**. You will track **allele frequencies**, watch **random catastrophe** reshuffle them (drift), then watch **non-random survival** (selection) change the distribution. The point is not algebra tricks—it is to feel **when chance matters** and **when the environment steers evolution**.
 
 ## Materials Needed
 

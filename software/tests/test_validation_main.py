@@ -159,7 +159,7 @@ class TestCheckLabFiles:
         assert result["output_files"] == {"pdf": 1, "html": 1}
 
     def test_formats_aware_counts_pdf_docx_md(self, temp_dir):
-        """Format-aware counting tallies pdf, docx, and md when requested."""
+        """Format-aware lab counting only tallies currently supported lab formats."""
         labs_dir = temp_dir / "course" / "labs"
         labs_dir.mkdir(parents=True)
         (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
@@ -167,21 +167,15 @@ class TestCheckLabFiles:
         output_dir = labs_dir / "output"
         output_dir.mkdir()
         (output_dir / "lab-01_intro.pdf").write_text("pdf", encoding="utf-8")
-        (output_dir / "docx").mkdir()
-        (output_dir / "docx" / "lab-01_intro.docx").write_text("docx", encoding="utf-8")
-        (output_dir / "md").mkdir()
-        (output_dir / "md" / "lab-01_intro.md").write_text("md", encoding="utf-8")
 
         dashboards_dir = labs_dir / "dashboards"
         dashboards_dir.mkdir()
 
         result = check_lab_files(temp_dir, formats=["pdf", "docx", "md"])
 
-        assert result["formats_checked"] == ["pdf", "docx", "md"]
+        assert result["formats_checked"] == ["pdf"]
+        assert result["formats_skipped"] == ["docx", "md"]
         assert result["output_files"]["pdf"] == 1
-        assert result["output_files"]["docx"] == 1
-        assert result["output_files"]["md"] == 1
-        assert "html" not in result["output_files"]
         assert result["missing_outputs"] == []
 
     def test_formats_aware_filters_unsupported(self, temp_dir):
@@ -749,4 +743,3 @@ class TestGenerateValidationReport:
         assert "source_modules_valid" in summary
         assert "published_valid" in summary
         assert "published_files" in summary
-

@@ -1,7 +1,7 @@
 """Utility functions for speech-to-text transcription."""
 
 from pathlib import Path
-from typing import Optional
+from typing import Optional, cast
 
 import speech_recognition as sr
 from pydub import AudioSegment
@@ -71,7 +71,7 @@ def transcribe_audio_segment(audio_path: Path, language: str = "en") -> str:
         # This uses real Google Speech Recognition API
         try:
             text = recognizer.recognize_google(audio_data, language=language)
-            return text
+            return cast(str, text)
         except sr.UnknownValueError:
             raise OSError("Speech recognition could not understand audio")
         except sr.RequestError as e:

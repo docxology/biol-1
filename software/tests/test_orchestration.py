@@ -63,6 +63,8 @@ def test_format_conversion_chain(temp_dir):
     assert len(content) > 0
 
 
+@pytest.mark.audio
+@pytest.mark.slow
 def test_batch_processing_workflow(temp_dir):
     """Test batch processing entire module."""
     # Create module with content
@@ -86,6 +88,8 @@ def test_batch_processing_workflow(temp_dir):
     assert isinstance(results["audio_files"], list)
 
 
+@pytest.mark.audio
+@pytest.mark.slow
 def test_validation_and_processing_integration(temp_dir):
     """Test validation before processing."""
     course_path = str(temp_dir)
@@ -125,6 +129,8 @@ def test_supported_formats_orchestration():
     assert "pdf" in formats  # Can convert from PDF
 
 
+@pytest.mark.audio
+@pytest.mark.slow
 def test_module_statistics_and_validation(temp_dir):
     """Test using module statistics for validation decisions."""
     course_path = str(temp_dir)
@@ -168,6 +174,8 @@ def test_error_handling_in_orchestration(temp_dir):
         get_module_statistics("/nonexistent/module")
 
 
+@pytest.mark.audio
+@pytest.mark.slow
 def test_text_to_speech_workflow(temp_dir):
     """Test text-to-speech generation workflow."""
     # Generate speech from minimal text for faster testing
