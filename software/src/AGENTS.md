@@ -21,6 +21,7 @@ Every package follows the same shape:
 | Package | Layer | Purpose | Docs |
 |---|---|---|---|
 | `shared` | 0 | Cross-cutting file and runtime helpers. | [`shared/AGENTS.md`](shared/AGENTS.md) |
+| `module_content` | 0 | Typed BIOL-1 module manifests, generated Markdown, quizzes, and SVG assets. | [`module_content/AGENTS.md`](module_content/AGENTS.md) |
 | `module_organization` | 0 | Create and inspect course module folders. | [`module_organization/AGENTS.md`](module_organization/AGENTS.md) |
 | `file_validation` | 0 | Per-file naming and structure checks. | [`file_validation/AGENTS.md`](file_validation/AGENTS.md) |
 | `validation` | 0 | Output completeness checks for published courses. | [`validation/AGENTS.md`](validation/AGENTS.md) |

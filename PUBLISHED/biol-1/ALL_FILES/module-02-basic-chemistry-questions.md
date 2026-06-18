@@ -1,41 +1,25 @@
-# Module 2: Basic Chemistry — Study Questions
+<!-- Generated from module.toml; edit the manifest, not this file. -->
 
-1. What are the three subatomic particles? Describe their location, mass, and charge.
+# Module 2: Basic Chemistry - Learning Questions
 
-2. What determines the identity of an element (atomic number)?
 
-3. What is an isotope? How are isotopes used in biology?
 
-4. Explain the Octet Rule. Why do atoms form bonds?
+1. How do protons, neutrons, and electrons differ?
 
-5. What is the difference between an ionic bond and a covalent bond?
+2. Why do electrons matter for chemical bonding?
 
-6. What is the difference between polar and non-polar covalent bonds?
+3. What distinguishes covalent, ionic, and hydrogen bonds?
 
-7. What are hydrogen bonds? Why are they important in biology?
+4. Why does water dissolve salt but not all nonpolar molecules?
 
-8. Why is water a polar molecule?
+5. How does polarity explain water cohesion?
 
-9. How does hydrogen bonding give water its unique properties?
+6. What does a low pH mean about hydrogen ions?
 
-10. Define cohesion, adhesion, and surface tension.
+7. Why are buffers important in living systems?
 
-11. What is specific heat? Why does water have a high specific heat?
+8. How are atoms conserved during chemical reactions?
 
-12. Why is water called the "universal solvent"?
+9. How can chemical shape affect biological function?
 
-13. What is the difference between hydrophilic and hydrophobic molecules?
-
-14. What is pH? What is the pH scale?
-
-15. What is the difference between an acid and a base?
-
-16. A solution with pH 3 is how many times more acidic than a solution with pH 6?
-
-17. What are buffers? Why are they important in biological systems?
-
-18. What would happen if blood pH dropped from 7.4 to 6.8?
-
-19. Why are noble gases largely unreactive?
-
-20. How does ice floating affect aquatic ecosystems?
+10. What evidence would show that a substance is acidic or basic?

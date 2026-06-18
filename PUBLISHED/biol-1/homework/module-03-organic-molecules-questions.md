@@ -1,41 +1,25 @@
-# Module 3: Organic Molecules — Study Questions
+<!-- Generated from module.toml; edit the manifest, not this file. -->
 
-1. What makes a molecule "organic"?
+# Module 3: Organic Molecules - Learning Questions
 
-2. Why is carbon called the "backbone" of life?
 
-3. What is a functional group? Give three examples.
 
-4. What is the difference between a monomer and a polymer?
+1. Why can carbon make many different biological molecules?
 
-5. What is dehydration synthesis? What does it produce?
+2. How are dehydration synthesis and hydrolysis opposite processes?
 
-6. What is hydrolysis? What does it break down?
+3. What distinguishes a monomer from a polymer?
 
-7. What are carbohydrates made of? What is their main function?
+4. How do carbohydrates and lipids differ in structure and function?
 
-8. What is the difference between monosaccharides, disaccharides, and polysaccharides?
+5. Why are phospholipids useful in membranes?
 
-9. Give examples of storage polysaccharides (starch, glycogen) and structural polysaccharides (cellulose, chitin).
+6. How does amino acid order influence protein shape?
 
-10. What are the main functions of lipids?
+7. What can denature a protein?
 
-11. What is the difference between saturated and unsaturated fatty acids?
+8. How do DNA and RNA store information?
 
-12. Why are trans fats considered unhealthy?
+9. How can a molecule be both structural and informational?
 
-13. What are amino acids? How many are there?
-
-14. What type of bond links amino acids together?
-
-15. Describe the four levels of protein structure (primary, secondary, tertiary, quaternary).
-
-16. What is denaturation? What causes it?
-
-17. What are nucleic acids? What are the two types?
-
-18. What are the components of a nucleotide?
-
-19. Why can humans digest starch but not cellulose?
-
-20. Why is ATP called the "energy currency" of the cell?
+10. Which evidence would show that a protein lost its function?

@@ -13,26 +13,25 @@ Technical documentation for the BIOL-1 laboratory protocol directory. Labs are M
 | `lab-03_microscopy.md` | Introduction to Microscopy | ✅ Complete |
 | `lab-04_liquid-chemistry.md` | Liquid Chemistry | ✅ Complete |
 | `lab-05_viewing-life.md` | Viewing Life | ✅ Complete |
-| `lab-06_exam-review.md` | Exam 01 Review (Paper-based) | ✅ Complete |
-| `lab-07_molecular-genetics.md` | Molecular Genetics | ✅ Complete |
-| `lab-08_cellular-genetics.md` | Cellular Genetics (Mitosis & Meiosis) | ✅ Complete |
-| `lab-09_inheritance-genetics.md` | Inheritance Genetics | ✅ Complete |
-| `lab-10_epigenetics.md` | Epigenetics | ✅ Complete |
-| `lab-11_genomics-biotechnology.md` | Genomics & Biotechnology | ✅ Complete |
-| `lab-12_exam-02-review.md` | Exam 02 Review | ✅ Complete |
-| `lab-13_darwin-evolution.md` | Darwin & Evolution (Module 12) | ✅ Complete |
-| `lab-14_how-populations-evolve.md` | How Populations Evolve (Module 13) | ✅ Complete |
-| `lab-15_macroevolution.md` | Macroevolution (Module 14) | ✅ Complete |
-| `lab-16_population-systems-ecology.md` | Population & Systems Ecology (Module 15) | ✅ Complete |
-| `lab-17_exam-03-review.md` | Exam 03 Review (Modules 12–15) | ✅ Complete |
+| `lab-06_metabolism.md` | Metabolism (Module 06) | ✅ Complete |
+| `lab-07_molecular-genetics.md` | Molecular Genetics (Module 07) | ✅ Complete |
+| `lab-08_cellular-genetics.md` | Cellular Genetics (Mitosis & Meiosis, Module 08) | ✅ Complete |
+| `lab-09_inheritance-genetics.md` | Inheritance Genetics (Module 09) | ✅ Complete |
+| `lab-10_epigenetics.md` | Epigenetics (Module 10) | ✅ Complete |
+| `lab-11_genomics-biotechnology.md` | Genomics & Biotechnology (Module 11) | ✅ Complete |
+| `lab-12_darwin-evolution.md` | Darwin & Evolution (Module 12) | ✅ Complete |
+| `lab-13_how-populations-evolve.md` | How Populations Evolve (Module 13) | ✅ Complete |
+| `lab-14_macroevolution.md` | Macroevolution (Module 14) | ✅ Complete |
+| `lab-15_population-systems-ecology.md` | Population & Systems Ecology (Module 15) | ✅ Complete |
+| `lab-16_capstone-systems-synthesis.md` | Capstone Systems Synthesis (Module 16) | ✅ Complete |
 
-**Status:** 17 complete, 0 stubs
+**Status:** 16 primary labs complete, 0 stubs. Exam-review worksheets live in `../review_materials/`.
 
 ## Lab Naming Convention
 
 Files follow the pattern: `lab-XX_topic-name.md`
 
-- `XX` = Zero-padded lab number (01–17)
+- `XX` = Zero-padded lab number (01–16)
 - `topic-name` = Hyphenated topic description (matches module topic)
 
 ## Lab Markdown Directive Syntax

@@ -11,8 +11,8 @@ Optional practice tests and keys for exam preparation. The pipeline globs `*.md`
 | `practice-test-01.md` + `_key.md` | Modules 1–4 |
 | `practice-test-02.md` + `_key.md` | Modules 5–6 |
 | `practice-test-03.md` + `_key.md` | Modules 7–11 (Exam 02 prep) |
-| `practice-test-04.md` + `_key.md` | Modules 12–15 (Exam 03 prep) |
-| `practice-test-05.md` + `_key.md` | Modules 1–15 (comprehensive final prep) |
+| `practice-test-04.md` + `_key.md` | Modules 12–16 (Exam 03 prep) |
+| `practice-test-05.md` + `_key.md` | Modules 1–16 (comprehensive final prep) |
 
 ### Practice Test 05 — layout
 
@@ -20,15 +20,15 @@ Optional practice tests and keys for exam preparation. The pipeline globs `*.md`
 
 | Part | Item numbers | Per-module pattern |
 |------|----------------|-------------------|
-| A — Multiple choice | **1–75** | Module **N** (1–15): **(N−1)×5 + 1** through **N×5** |
+| A — Multiple choice | **1–80** | Module **N** (1–16): **(N−1)×5 + 1** through **N×5** |
 | B — Fill in the blank | **76–105** | Module **N**: **76 + 2(N−1)** and **77 + 2(N−1)** |
 | C — Free response | **106–135** | Module **N**: **106 + 2(N−1)** and **107 + 2(N−1)** |
 
-Section headings in Part A match module titles (`module-01-study-of-life` … `module-15-population-systems-ecology`) via [`course/AGENTS.md`](../AGENTS.md).
+Section headings in Part A match module titles (`module-01-study-of-life` … `module-16-capstone-systems-synthesis`) via [`course/AGENTS.md`](../AGENTS.md).
 
 ### Traceability crosswalk (`practice-test-05` ↔ modules)
 
-**Method.** Each module’s PT05 block was matched to that folder’s `keys-to-success.md` learning objectives and key terms (spot-checked Modules **01**, **05**, **12**, **15**) and title alignment across **02–04**, **06–11**, **13–14** via topic headings versus MC stems.
+**Method.** Each module’s PT05 block was matched to that folder’s `keys-to-success.md` learning objectives and key terms (spot-checked Modules **01**, **05**, **12**, **16**) and title alignment across **02–04**, **06–11**, **13–14** via topic headings versus MC stems.
 
 **Spot-check.**
 

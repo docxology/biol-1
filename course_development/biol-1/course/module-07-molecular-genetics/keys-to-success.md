@@ -1,82 +1,56 @@
-# Module 7: Molecular Genetics — Keys to Success
+<!-- Generated from module.toml; edit the manifest, not this file. -->
+# Module 7: Molecular Genetics - Keys to Success
 
 ## Learning Objectives
 
 By the end of this module, you should be able to:
 
-1. Describe the structure of DNA (double helix, nucleotides, base pairing)
-2. Explain how DNA is copied (replication)
-3. Explain how DNA is read to make RNA (transcription)
-4. Explain how RNA is read to make a protein (translation)
-5. Use a codon table to figure out amino acid sequences
-6. Describe what mutations are and how they affect proteins
+1. Describe DNA structure and base-pairing rules.
+2. Explain why DNA replication is semiconservative.
+3. Compare transcription and translation.
+4. Use codons to connect mRNA sequence to amino acid sequence.
+5. Explain how mutation can alter protein and trait outcomes.
 
-## The Big Picture: The Central Dogma
+## Topics
 
-> **DNA → RNA → Protein**
-> This is the flow of genetic information in all living things.
+- DNA structure
+- Replication
+- Transcription
+- Translation
+- Mutation and gene expression evidence
 
-- **DNA** = the instruction book (stored in the nucleus)
-- **RNA** = the copy of one instruction (carries it to the ribosome)
-- **Protein** = the finished product (does the actual work in the cell)
+## Key Terms to Know
 
-## Key Terms
+- **DNA** - Nucleic acid that stores hereditary information.
+- **Nucleotide** - DNA or RNA subunit with sugar, phosphate, and base.
+- **Replication** - Process that copies DNA.
+- **Transcription** - Synthesis of RNA from a DNA template.
+- **Translation** - Synthesis of protein from mRNA codons.
+- **Codon** - Three-base mRNA sequence read during translation.
+- **Mutation** - Change in DNA sequence.
+- **Gene expression** - Use of genetic information to make RNA or protein.
 
-### DNA Structure
+## Core Contents
 
-- **Nucleotide** — The building block of DNA: a phosphate + a sugar + a base
-- **Four DNA Bases** — Adenine (A), Thymine (T), Guanine (G), Cytosine (C)
-- **Base Pairing** — A pairs with T (2 bonds); G pairs with C (3 bonds)
-- **Double Helix** — Two strands twisted around each other, running in opposite directions
-- **Gene** — A section of DNA that codes for one protein
-- **Chromosome** — A long DNA molecule packaged with proteins
-
-### DNA Replication (Copying DNA)
-
-- **Helicase** — Unzips the double helix
-- **DNA Polymerase** — Builds the new strand by matching bases (only works 5′→3′)
-- **Leading Strand** — Built continuously (smooth and easy)
-- **Lagging Strand** — Built in short pieces called **Okazaki fragments**
-- **Primase** — Lays down a short RNA starter (primer)
-- **Ligase** — Glues the fragments together
-- **Semi-conservative** — Each new DNA molecule has one old strand and one new strand
-
-### Transcription (DNA → RNA)
-
-- **RNA Polymerase** — Reads DNA and builds mRNA
-- **mRNA** — The messenger; carries the gene's code to the ribosome
-- **RNA uses Uracil (U) instead of Thymine (T)** — So A pairs with U in RNA
-- **Promoter** — The "start here" signal on DNA
-- In eukaryotes: **introns are removed**, **exons stay** (EX-ons are EX-pressed)
-
-### Translation (RNA → Protein)
-
-- **Codon** — A 3-letter code on mRNA (e.g., AUG = start)
-- **Start codon** — AUG (codes for methionine)
-- **Stop codons** — UAA, UAG, UGA (no amino acid; translation stops)
-- **tRNA** — Carries the right amino acid; has an anticodon that matches the mRNA codon
-- **Ribosome** — The machine that reads mRNA and builds the protein
-- **A site** — New tRNA arrives here
-- **P site** — Growing protein chain is held here
-- **E site** — Empty tRNA exits here
-
-## Quick Comparison
-
-| | Replication | Transcription | Translation |
-|---|---|---|---|
-| **Makes** | DNA copy | mRNA | Protein |
-| **Enzyme** | DNA Polymerase | RNA Polymerase | Ribosome |
-| **Where** | Nucleus | Nucleus | Cytoplasm |
-
-## Mutations
-
-- **Point mutation** — One base is changed → may or may not change the protein
-- **Frameshift mutation** — A base is added or deleted → shifts ALL the codons → usually devastating
+1. DNA stores information in nucleotide sequences and complementary base pairing.
+2. Replication copies DNA using each strand as a template.
+3. Transcription produces RNA from a DNA gene.
+4. Translation uses mRNA codons and ribosomes to build proteins.
+5. Mutations and expression patterns connect molecular changes to traits.
 
 ## Study Tips
 
-1. **Know the Central Dogma** — DNA → RNA → Protein
-2. **Practice base pairing** — DNA: A-T, G-C. RNA: A-U, G-C
-3. **Practice with the codon table** — Start with DNA, write the mRNA, then look up amino acids
-4. **Remember the enzymes** — Helicase unzips, Polymerase builds, Ligase glues
-5. **EX-ons EX-pressed, IN-trons stay IN** — Easy way to remember splicing
+1. Start with the module's central claim before memorizing vocabulary.
+2. Use the same-numbered lab as the evidence check for the module.
+3. Explain one mechanism in words, then redraw it as a simple diagram.
+4. Answer retrieval questions without notes, then revise with the terms list.
+
+## Connected Lab
+
+- `lab-07_molecular-genetics.md`
+
+## Generated Visuals
+
+- [Module 07: Molecular Genetics Concept Map](resources/generated/module-07-concept-map.svg)
+- [Module 07: Molecular Genetics Process Model](resources/generated/module-07-process-model.svg)
+- [Module 07: Molecular Genetics Retrieval Card](resources/generated/module-07-retrieval-card.svg)

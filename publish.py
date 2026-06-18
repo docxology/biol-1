@@ -21,6 +21,7 @@ PUBLISH_SCRIPT = SOFTWARE_DIR / "scripts" / "publish_all.py"
 
 sys.path.insert(0, str(SOFTWARE_DIR))
 from src.shared.runtime import configure_runtime_environment  # noqa: E402
+from src.shared.course_config import enabled_publish_formats  # noqa: E402
 
 configure_runtime_environment()
 
@@ -34,7 +35,7 @@ def load_config() -> dict:
 
 
 def enabled_formats(config: dict) -> list[str]:
-    return [fmt for fmt, on in config["publish"]["formats"].items() if on]
+    return enabled_publish_formats(REPO_ROOT)
 
 
 def build_args(config: dict, override_formats: str | None = None) -> list[str]:
@@ -379,6 +380,7 @@ def main():
                 print(f"  {name}: {repo.get('remote')} → {repo.get('branch')} [{push_status}{force_status}]{prefix}")
         
         print("\nWould run (cwd: software/):")
+        print("  uv run python scripts/generate_module_materials.py --course all --dry-run")
         print(f"  {' '.join(cmd)}")
         return
 

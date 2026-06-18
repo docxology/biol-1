@@ -77,6 +77,17 @@ def test_get_relative_output_path():
     assert result == Path("/out/a/file.md")
 
 
+def test_get_relative_output_path_rejects_traversal(temp_dir):
+    """Source files outside the source directory are rejected."""
+    source_dir = temp_dir / "src"
+    source_dir.mkdir()
+    outside_file = temp_dir / "outside.md"
+    outside_file.write_text("# Outside\n", encoding="utf-8")
+
+    with pytest.raises(ValueError, match="outside source directory"):
+        get_relative_output_path(outside_file, source_dir, temp_dir / "out")
+
+
 def test_get_courses_to_process():
     """Test course selection logic."""
     assert get_courses_to_process("all") == [("course_development/biol-1", "BIOL-1")]
@@ -85,15 +96,14 @@ def test_get_courses_to_process():
         get_courses_to_process("invalid")
 
 
-def test_get_formats_to_process(caplog):
+def test_get_formats_to_process():
     """Test format parsing logic."""
-    with patch("src.batch_processing.config.AVAILABLE_FORMATS", {"pdf", "html"}):
+    with patch("src.batch_processing.utils.enabled_publish_formats", return_value=["pdf", "html"]):
         assert set(get_formats_to_process("all")) == {"pdf", "html"}
         assert get_formats_to_process("pdf") == ["pdf"]
         assert get_formats_to_process("PDF, html") == ["pdf", "html"]
-        assert get_formats_to_process("pdf, invalid") == ["pdf"]
-        
-        assert "Unknown formats will be ignored" in caplog.text
+        with pytest.raises(ValueError, match="Unsupported output format"):
+            get_formats_to_process("pdf, invalid")
 
 
 def test_generate_dry_run_report(temp_dir):
@@ -108,8 +118,6 @@ def test_generate_dry_run_report(temp_dir):
     (module_dir / "test.md").touch()
     
     # Assignments
-    (module_dir / "assignments").mkdir()
-    (module_dir / "assignments" / "assign.md").touch()
     
     # Syllabus
     syllabus_dir = course_path / "syllabus"
@@ -139,7 +147,7 @@ def test_generate_dry_run_report(temp_dir):
     assert "BIOL-1" in report
     assert "module-01" in report
     assert "1 root files" in report
-    assert "1 assignments" in report
+    assert "structured BIOL-1 module source" in report
     assert "website/index.html" in report
     assert "Syllabus: 1 files" in report
     assert "Labs: 1 files" in report
@@ -167,3 +175,21 @@ def test_generate_dry_run_report_filter(temp_dir):
         
     # Should not show any modules
     assert "module-01" not in report
+
+
+def test_generate_dry_run_report_skips_website_when_html_not_requested(temp_dir):
+    """Website generation is listed only for explicit HTML output requests."""
+    repo_root = temp_dir
+    course_path = repo_root / "course_development/biol-1"
+    module_dir = course_path / "course" / "module-01"
+    module_dir.mkdir(parents=True)
+    (module_dir / "questions.md").touch()
+
+    report = generate_dry_run_report(
+        repo_root,
+        [("course_development/biol-1", "BIOL-1")],
+        ["pdf", "docx"],
+        generate_website=True,
+    )
+
+    assert "website/index.html" not in report

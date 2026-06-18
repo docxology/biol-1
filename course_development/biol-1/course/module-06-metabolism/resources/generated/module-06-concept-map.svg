@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Module 06: Metabolism Concept Map</title>
+  <desc id="desc">Concept map for Module 6: Metabolism. Metabolism is best learned as a connected explanation linking energy and thermodynamics, atp as cellular coupling, and lab evidence.</desc>
+  <style>
+    .bg { fill: #ecf4f2; }
+    .halo { fill: url(#wash); opacity: 0.92; }
+    .frame { fill: #fbfffd; stroke: #172d35; stroke-width: 3; }
+    .eyebrow { fill: #1f7a6d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #172d35; font: 800 38px Georgia, serif; }
+    .footer { fill: #4f6670; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fbfffd; stroke: #172d35; stroke-width: 2.5; filter: url(#shadow); }
+    .claim-kicker, .card-kicker { fill: #1f7a6d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #172d35; font: 700 25px Georgia, serif; }
+    .node { fill: #fbfffd; stroke: #b55f24; stroke-width: 3; filter: url(#shadow); }
+    .node-label { fill: #172d35; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #4f6670; font: 14px Georgia, serif; }
+    .edge { stroke: #1f7a6d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #1f7a6d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #ecf4f2; stroke-width: 4; }
+    .stage { fill: #fbfffd; stroke: #1f7a6d; stroke-width: 5; filter: url(#shadow); }
+    .stage-num { fill: #b55f24; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #172d35; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #4f6670; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b55f24; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrowhead); }
+    .prompt-text { fill: #172d35; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #1f7a6d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbfffd" />
+      <stop offset="1" stop-color="#b55f24" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#172d35" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b55f24" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M80 100 C260 20 458 88 610 62 C848 20 1052 74 1148 214 L1148 656 L52 656 L52 178 C64 142 70 118 80 100 Z" />
+  <text x="70" y="72" class="eyebrow">Module 06 / Concept Map</text>
+  <text x="70" y="118" class="title-text">Module 06: Metabolism Concept Map</text>
+  <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
+  <text x="600" y="322" class="claim-kicker">Central claim</text>
+  <text x="600.0" y="366.0" class="claim-text" text-anchor="middle"><tspan x="600.0" dy="0">Metabolism is best learned as a connected</tspan><tspan x="600.0" dy="25">explanation linking energy and thermodynamics,</tspan><tspan x="600.0" dy="25">atp as cellular coupling, and lab evidence.</tspan></text>
+  <path d="M 600.0 175.0 L 942.4 306.3" class="edge" /><text x="771.2" y="240.6" class="edge-label">constrains</text><path d="M 942.4 306.3 L 811.6 518.7" class="edge" /><text x="877.0" y="412.5" class="edge-label">tested by</text><path d="M 811.6 518.7 L 388.4 518.7" class="edge" /><text x="600.0" y="518.7" class="edge-label">uses</text><path d="M 388.4 518.7 L 257.6 306.3" class="edge" /><text x="323.0" y="412.5" class="edge-label">supports</text><path d="M 257.6 306.3 L 600.0 175.0" class="edge" /><text x="428.8" y="240.6" class="edge-label">revises</text>
+  <g class="node-group"><rect x="480.0" y="127.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="163.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Energy and</tspan><tspan x="600.0" dy="20">thermodynamics</tspan></text><text x="600.0" y="197.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Cells transform energy</tspan><tspan x="600.0" dy="14">while obeying thermodynamic...</tspan></text></g><g class="node-group"><rect x="822.4" y="258.3" width="240" height="96" rx="22" class="node" /><text x="942.4" y="294.3" class="node-label" text-anchor="middle"><tspan x="942.4" dy="0">ATP as cellular</tspan><tspan x="942.4" dy="20">coupling</tspan></text><text x="942.4" y="328.3" class="node-detail" text-anchor="middle"><tspan x="942.4" dy="0">ATP couples</tspan><tspan x="942.4" dy="14">energy-releasing reactions...</tspan></text></g><g class="node-group"><rect x="691.6" y="470.7" width="240" height="96" rx="22" class="node" /><text x="811.6" y="506.7" class="node-label" text-anchor="middle"><tspan x="811.6" dy="0">Lab evidence</tspan></text><text x="811.6" y="540.7" class="node-detail" text-anchor="middle"><tspan x="811.6" dy="0">Metabolism turns the module</tspan><tspan x="811.6" dy="14">claim into observable...</tspan></text></g><g class="node-group"><rect x="268.4" y="470.7" width="240" height="96" rx="22" class="node" /><text x="388.4" y="506.7" class="node-label" text-anchor="middle"><tspan x="388.4" dy="0">Metabolism</tspan></text><text x="388.4" y="540.7" class="node-detail" text-anchor="middle"><tspan x="388.4" dy="0">All chemical reactions in a</tspan><tspan x="388.4" dy="14">cell or organism.</tspan></text></g><g class="node-group"><rect x="137.6" y="258.3" width="240" height="96" rx="22" class="node" /><text x="257.6" y="294.3" class="node-label" text-anchor="middle"><tspan x="257.6" dy="0">Photosynthesis and</tspan><tspan x="257.6" dy="20">respiration as linked</tspan><tspan x="257.6" dy="20">pathways</tspan></text><text x="257.6" y="328.3" class="node-detail" text-anchor="middle"><tspan x="257.6" dy="0">Photosynthesis builds sugar</tspan><tspan x="257.6" dy="14">while respiration breaks...</tspan></text></g>
+  <text x="70" y="672" class="footer">Linked lab: lab-06_metabolism.md / Generated from explicit module.toml visual schema</text>
+</svg>

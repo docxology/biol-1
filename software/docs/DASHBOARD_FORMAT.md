@@ -41,8 +41,8 @@ Each dashboard is named for its lab number and topic. **Lab 15** uses two HTML f
 | `lab-15_cardiovascular-system-dashboard.html` | `lab-15_cardiopulmonary-system.md` | Circulation |
 | `lab-15_respiratory-system-dashboard.html` | `lab-15_cardiopulmonary-system.md` | Respiration |
 | `lab-16_exam-03-review-dashboard.html` | `lab-16_exam-03-review.md` | Exam review |
-| `lab-17_ecology-dashboard.html` | `lab-17_ecology.md` | Population model |
-| `lab-18_evolution-dashboard.html` | `lab-18_evolution.md` | H–W, selection |
+| `lab-15_population-systems-ecology-dashboard.html` | `lab-15_population-systems-ecology.md` | Population model |
+| `lab-16_capstone-systems-synthesis-dashboard.html` | `lab-16_capstone-systems-synthesis.md` | H–W, selection |
 
 ---
 

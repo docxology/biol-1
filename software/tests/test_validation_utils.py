@@ -113,6 +113,18 @@ class TestGetModuleDirectories:
         assert len(result) == 3
         assert [m.name for m in result] == ["module-01", "module-02", "module-03"]
 
+    def test_multiple_modules_sorted_numerically(self, temp_dir):
+        """Module sorting is numeric, not lexical."""
+        course_dir = temp_dir / "course"
+        course_dir.mkdir()
+        (course_dir / "module-10").mkdir()
+        (course_dir / "module-2").mkdir()
+        (course_dir / "module-1").mkdir()
+
+        result = get_module_directories(temp_dir)
+
+        assert [m.name for m in result] == ["module-1", "module-2", "module-10"]
+
     def test_ignores_non_module_dirs(self, temp_dir):
         """Non-module directories are ignored."""
         course_dir = temp_dir / "course"

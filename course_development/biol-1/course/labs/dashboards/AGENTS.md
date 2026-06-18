@@ -2,7 +2,7 @@
 
 ## Role
 
-One **standalone HTML** file per numbered lab, named `lab-NN_description-dashboard.html`, shipped alongside the lab PDF. Open in a browser. Files are generated from the active BIOL-1 lab list by `software/scripts/generate_biol1_lab_dashboards.py`; edit that generator rather than hand-editing generated dashboard HTML. Content should align with the matching `../lab-NN_*.md` (or exam-review labs such as `lab-17_exam-03-review`).
+One **standalone HTML** file per numbered lab, named `lab-NN_description-dashboard.html`, shipped alongside the lab PDF. Open in a browser. Files are generated from the active BIOL-1 lab list by `software/scripts/generate_biol1_lab_dashboards.py`; edit that generator rather than hand-editing generated dashboard HTML. Content should align with the matching `../lab-NN_*.md`; exam-review worksheets live under `../../review_materials/` and do not have primary numbered dashboards.
 
 ## Invariant
 

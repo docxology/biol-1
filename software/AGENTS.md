@@ -196,7 +196,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 **Utility Functions**:
 
-- `get_file_type(file_name: str) -> str` - Determine file type (assignment, lecture, etc.)
+- `get_file_type(file_name: str) -> str` - Determine file type for legacy validation/import helpers.
 - `extract_module_number_from_filename(file_name: str) -> int` - Extract module number from filename
 - `validate_file_name_structure(file_name: str) -> dict` - Comprehensive file name validation
 

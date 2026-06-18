@@ -31,11 +31,10 @@ Create standard module folder structure.
 
 **Creates**:
 - Module directory: `course/module-{number}/`
-- `assignments/` subdirectory
 - `README.md` file
 - `AGENTS.md` file
-- `assignments/README.md` file
-- `assignments/AGENTS.md` file
+- `questions.md` file
+- `keys-to-success.md` file
 
 #### `validate_module_structure(module_path: str) -> bool`
 
@@ -98,10 +97,10 @@ Get statistics about a module.
 
 **Returns**:
 - Dictionary with module statistics:
-  - `module_number`: Module number (or None if cannot be extracted)
-  - `total_files`: Total number of files
-  - `total_directories`: Total number of directories
-  - `assignment_count`: Number of assignment files
+- `module_number`: Module number (or None if cannot be extracted)
+- `total_files`: Total number of files
+- `total_directories`: Total number of directories
+- `assignment_count`: Number of optional legacy assignment files
   - `has_readme`: Whether README.md exists
   - `has_agents`: Whether AGENTS.md exists
   - `is_valid`: Whether module structure is valid
@@ -218,10 +217,10 @@ Get the next available module number for a course.
 
 - `README_TEMPLATE`: Template for module README.md
 - `AGENTS_TEMPLATE`: Template for module AGENTS.md
-- `ASSIGNMENTS_README_TEMPLATE`: Template for assignments/README.md
-- `ASSIGNMENTS_AGENTS_TEMPLATE`: Template for assignments/AGENTS.md
 - `REQUIRED_FILES`: List of required files in each module
-- `REQUIRED_DIRECTORIES`: List of required directories in each module
+- `REQUIRED_DIRECTORIES`: List of required directories in each module (`[]` for BIOL-1)
+- `KEYS_TO_SUCCESS_TEMPLATE`: Template for module study guide files
+- `QUESTIONS_TEMPLATE`: Template for practice question files
 
 ## Integration Points
 
@@ -243,9 +242,8 @@ Created modules follow this structure:
 module-{number}/
 ├── README.md
 ├── AGENTS.md
-└── assignments/
-    ├── README.md
-    └── AGENTS.md
+├── questions.md
+└── keys-to-success.md
 ```
 
 ## Error Handling

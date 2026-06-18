@@ -1,66 +1,56 @@
-# Module 10: Epigenetics — Keys to Success
+<!-- Generated from module.toml; edit the manifest, not this file. -->
+# Module 10: Epigenetics - Keys to Success
 
 ## Learning Objectives
 
 By the end of this module, you should be able to:
 
-1. Explain why cells with the same DNA look and act differently
-2. Define epigenetics and explain how it is different from a mutation
-3. Describe how DNA methylation and histone acetylation work
-4. Give examples of how diet, stress, or other environmental factors can change gene activity
+1. Explain gene regulation as control of gene activity.
+2. Describe DNA methylation at an introductory level.
+3. Connect chromatin structure to gene accessibility.
+4. Give a careful example of environmental influence on expression.
+5. Distinguish epigenetic regulation from mutation.
 
-## The Big Picture
+## Topics
 
-> In Module 07 you learned: **DNA → RNA → Protein**. But here's the key question — does every cell make every protein? **No.** A muscle cell only uses muscle genes. A nerve cell only uses nerve genes. Something is deciding which genes to turn on. That "something" is **gene regulation**, and one of the most important forms of it is **epigenetics**.
+- Gene regulation as control
+- DNA methylation
+- Histone and chromatin change
+- Environment and expression
+- Epigenetics versus mutation
 
-## Key Terms
+## Key Terms to Know
 
-### Why Don't All Genes Turn On?
+- **Gene regulation** - Control of when and how strongly genes are used.
+- **Epigenetics** - Heritable or persistent expression changes without DNA sequence change.
+- **DNA methylation** - Chemical marking of DNA often associated with reduced transcription.
+- **Histone** - Protein around which DNA is packaged.
+- **Chromatin** - DNA-protein complex that can be open or compact.
+- **Transcription factor** - Protein that helps control transcription.
+- **Mutation** - Change in DNA sequence.
+- **Expression** - Use of gene information to make RNA or protein.
 
-- **Gene expression** — When a cell actually uses a gene to make its protein (remember: transcription + translation from Module 07)
-- **Gene regulation** — The process of turning genes on or off
-- **Transcription factor** — A protein that attaches near a gene and helps turn it on or off (remember: transcription starts at the **promoter** — Module 07)
+## Core Contents
 
-> **Simple analogy:** Your DNA is a giant recipe book. Gene regulation is deciding which recipes to cook today. Every cell has the whole book, but a liver cell only cooks liver recipes.
-
-### Epigenetics — Changing the Volume, Not the Song
-
-- **Epigenetics** — Changes that turn genes on or off **without changing the DNA sequence**
-- This is NOT a mutation — a mutation changes the letters of DNA (Module 07); epigenetics changes whether the gene gets *read* or *ignored*
-- Epigenetic changes can be **reversed** (mutations usually cannot)
-
-### Two Main Epigenetic Tools
-
-| Tool | What It Does | Memory Trick |
-|------|-------------|--------------|
-| **DNA Methylation** | Adds a chemical tag to DNA → gene is **silenced** (OFF) | **M**ethylation = **M**uting |
-| **Histone Acetylation** | Adds a chemical tag to histones → DNA loosens → gene is **active** (ON) | **A**cetylation = **A**ctivation |
-
-- **Histones** are the spool-like proteins that DNA wraps around (like thread on a spool)
-- When histones are **tightly wound** → DNA is closed → gene is OFF
-- When histones are **loosened** → DNA is open → gene is ON
-
-### X-Inactivation — You Can See Epigenetics
-
-- Females have two X chromosomes (XX). Early in development, one X in each cell is randomly shut down → it becomes a dense blob called a **Barr body**
-- **Calico cats** — The patches of orange and black fur happen because different cells randomly shut down different X chromosomes
-- This is a real, visible example of epigenetics — same DNA, different outcome depending on which X is silenced
-
-## How the Environment Affects Your Genes
-
-Remember from Module 09 that phenotype = genotype + environment? Epigenetics is one of the main ways environment influences phenotype:
-
-- **Diet** — Nutrients like folic acid provide methyl groups that can silence or activate genes
-- **Stress** — Chronic stress can change which genes are active, especially in the brain
-- **Exercise** — Can turn on genes involved in metabolism
-- **Toxins** — Pollutants can disrupt normal epigenetic patterns
-
-> **Your genes are not your destiny.** Even identical twins (same DNA from Module 08 — mitosis produces identical copies) can develop different traits as they age because of epigenetic differences.
+1. Cells regulate which genes are active rather than using every gene equally.
+2. DNA methylation can reduce transcription without changing base sequence.
+3. Histone and chromatin changes alter access to DNA.
+4. Environmental conditions can influence gene expression patterns.
+5. Epigenetic change affects gene activity, while mutation changes DNA sequence.
 
 ## Study Tips
 
-1. **Start from Module 07** — If you understand DNA → RNA → Protein, then epigenetics is just: "what decides whether that arrow gets used or not"
-2. **Methylation = Muting** — both start with M; methylation silences genes
-3. **Acetylation = Activation** — both start with A; acetylation opens DNA up
-4. **Epigenetics ≠ mutation** — Mutations change the recipe. Epigenetics closes the recipe book to that page.
-5. **Calico cats** — The single best example to remember; visible proof that same DNA → different outcomes
+1. Start with the module's central claim before memorizing vocabulary.
+2. Use the same-numbered lab as the evidence check for the module.
+3. Explain one mechanism in words, then redraw it as a simple diagram.
+4. Answer retrieval questions without notes, then revise with the terms list.
+
+## Connected Lab
+
+- `lab-10_epigenetics.md`
+
+## Generated Visuals
+
+- [Module 10: Epigenetics Concept Map](resources/generated/module-10-concept-map.svg)
+- [Module 10: Epigenetics Process Model](resources/generated/module-10-process-model.svg)
+- [Module 10: Epigenetics Retrieval Card](resources/generated/module-10-retrieval-card.svg)

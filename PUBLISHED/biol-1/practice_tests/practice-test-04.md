@@ -1,8 +1,8 @@
 # BIOL-1 Practice Test 04
 
-## Exam 03 Preparation (Modules 12–15)
+## Exam 03 Preparation (Modules 12–16)
 
-**Instructions:** This practice test covers material from **Module 12** (Darwin and Evolution) through **Module 15** (Population and Systems Ecology). Answer all questions to the best of your ability to prepare for Exam 03.
+**Instructions:** This practice test covers material from **Module 12** (Darwin and Evolution) through **Module 16** (Capstone Systems Synthesis). Answer all questions to the best of your ability to prepare for Exam 03.
 
 ---
 
@@ -211,6 +211,10 @@ D) Decomposers are always apex predators in every web
 <br><br><br><br><br><br>
 
 **39.** **(Module 15)** Contrast **density-dependent** and **density-independent** limiting factors with one **example of each** (one sentence on each type). In two sentences, use the **~10%** energy rule to explain **why** food chains with many links support **fewer** apex consumers than a short chain from the same primary production.
+
+<br><br><br><br><br><br>
+
+**40.** **(Module 16)** Build a short systems explanation: choose one biological scenario from this unit and connect **one evolutionary idea**, **one population/ecology idea**, and **one piece of evidence** into a single cause-and-effect explanation.
 
 <br><br><br><br><br><br>
 

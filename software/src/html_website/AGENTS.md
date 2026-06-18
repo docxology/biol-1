@@ -6,7 +6,7 @@ HTML website generation utilities for creating comprehensive, accessible module 
 
 ## Module Purpose
 
-Generate single-page HTML websites for course modules that combine all module materials (lecture content, lab protocols, study guides, assignments) with audio files, text versions, and interactive quiz elements in a simple grayscale design.
+Generate single-page HTML websites for BIOL-1 modules from structured `module.toml` content, generated Markdown, deterministic assets, and optional audio/text renderings. Legacy sample lecture/lab/study-guide fixtures are supported only when a module has no typed manifest.
 
 ## Function Signatures
 
@@ -31,7 +31,7 @@ Generate HTML website for a module.
 - `OSError`: If website generation fails
 
 **Process**:
-1. Reads markdown source files from module directory
+1. Reads markdown source files from module directory, including BIOL-1 root `keys-to-success.md` and `questions.md`
 2. Finds corresponding audio and text files from output directory
 3. Converts markdown to HTML
 4. Reads questions from `questions/questions.json` if available
@@ -85,7 +85,7 @@ Find audio file for a given base name and curriculum type.
 **Args**:
 - `base_name`: Base filename without extension
 - `output_dir`: Output directory to search
-- `curriculum_type`: Type of curriculum element (assignments, lecture-content, etc.)
+- `curriculum_type`: Type of curriculum element for legacy/sample media lookup.
 
 **Returns**:
 - Path to audio file if found, None otherwise
@@ -170,7 +170,7 @@ Ensure output directory exists.
 1. **Lecture Content**: Full lecture materials with embedded audio player
 2. **Lab Protocol**: Laboratory instructions and procedures
 3. **Study Guide**: Study materials and review content
-4. **Assignments**: All assignment files with audio versions
+4. **Structured assets**: typed module assets and deterministic generated visuals
 5. **Interactive Questions**: Questions from `questions/questions.json` with full interactivity
 
 ### Design Features

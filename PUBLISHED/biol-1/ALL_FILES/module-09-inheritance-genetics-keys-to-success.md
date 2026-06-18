@@ -1,79 +1,56 @@
-# Module 9: Inheritance Genetics — Keys to Success
+<!-- Generated from module.toml; edit the manifest, not this file. -->
+# Module 9: Inheritance Genetics - Keys to Success
 
 ## Learning Objectives
 
 By the end of this module, you should be able to:
 
-1. Explain Mendel's two laws
-2. Use Punnett squares to predict offspring traits
-3. Solve problems with incomplete dominance, codominance, and blood types
-4. Analyze pedigrees
-5. Explain polygenic traits and how environment affects phenotype
+1. Distinguish gene, allele, genotype, and phenotype.
+2. Use segregation to explain monohybrid inheritance.
+3. Build and interpret Punnett-square probabilities.
+4. Recognize inheritance patterns beyond complete dominance.
+5. Use pedigree evidence to reason about traits.
 
-## The Big Picture
+## Topics
 
-> Mendel discovered that traits are passed from parents to offspring in predictable patterns. By understanding these patterns, we can predict the probability of traits in offspring.
+- Alleles and genotype
+- Mendelian patterns
+- Punnett-square prediction
+- Beyond simple dominance
+- Pedigrees and probability
 
-## Key Terms
+## Key Terms to Know
 
-### Basic Genetics Vocabulary
+- **Gene** - DNA sequence contributing to a trait or functional product.
+- **Allele** - Variant form of a gene.
+- **Genotype** - Allele combination of an organism.
+- **Phenotype** - Observable trait or characteristic.
+- **Dominant** - Allele effect visible with one copy in simple dominance.
+- **Recessive** - Allele effect masked by dominant allele in heterozygotes.
+- **Punnett square** - Tool for modeling inheritance probabilities.
+- **Pedigree** - Family diagram used to infer inheritance patterns.
 
-- **Gene** — A segment of DNA that codes for a trait
-- **Allele** — A version of a gene (e.g., "B" for brown, "b" for blue)
-- **Genotype** — The alleles an organism has (e.g., Bb)
-- **Phenotype** — What the organism looks like (e.g., brown eyes)
-- **Homozygous** — Two same alleles (AA or aa)
-- **Heterozygous** — Two different alleles (Aa)
-- **Dominant** — The allele that shows up in the heterozygote (masks the recessive)
-- **Recessive** — The allele that is hidden unless homozygous (aa)
-- **Carrier** — A person who is Aa for a recessive disorder (has it but doesn't show it)
+## Core Contents
 
-### Mendel's Laws
-
-- **Law of Segregation** — Each parent gives one allele to each offspring (alleles separate during meiosis)
-- **Law of Independent Assortment** — Genes on different chromosomes are inherited independently
-
-## Important Ratios to Know
-
-| Cross | Ratio |
-|---|---|
-| **Monohybrid** (Aa × Aa) | 3 dominant : 1 recessive |
-| **Test cross** (Aa × aa) | 1 dominant : 1 recessive |
-| **Dihybrid** (AaBb × AaBb) | 9:3:3:1 |
-| **Incomplete dominance** (Rr × Rr) | 1:2:1 (red : pink : white) |
-
-## Beyond Simple Dominance
-
-- **Incomplete Dominance** — Heterozygote is a blend (red + white = **pink**)
-- **Codominance** — Both alleles fully show (Type A + Type B = **Type AB**)
-- **Sex-linked (X-linked)** — Gene is on the X chromosome; males only have one X, so one recessive allele = affected
-
-### ABO Blood Types
-
-| Genotype | Blood Type |
-|---|---|
-| Iᴬ Iᴬ or Iᴬ i | Type A |
-| Iᴮ Iᴮ or Iᴮ i | Type B |
-| Iᴬ Iᴮ | Type AB |
-| i i | Type O |
-
-## Pedigree Clues
-
-- **Autosomal recessive** — Can skip generations; two unaffected parents → affected child
-- **Autosomal dominant** — Appears every generation; affected child must have an affected parent
-- **X-linked recessive** — More males affected; never father-to-son; carrier mothers pass to sons
-
-## Polygenic Traits
-
-- Controlled by **many genes** (not just one)
-- Produce a **range** of phenotypes (bell curve), not just two categories
-- Examples: height, skin color, weight
-- **Environment also matters** — nutrition affects height, sunlight affects skin color
+1. Alleles are gene variants that contribute to genotype and phenotype.
+2. Mendelian inheritance predicts patterns when alleles segregate into gametes.
+3. Punnett squares model probability, not guaranteed outcomes.
+4. Incomplete dominance, codominance, polygenic traits, and environment complicate simple patterns.
+5. Pedigrees use family evidence to infer inheritance patterns.
 
 ## Study Tips
 
-1. **Practice Punnett squares** — Do them until they're automatic
-2. **Memorize the ratios** — 3:1, 9:3:3:1, 1:2:1
-3. **Blood types are a favorite exam topic** — Know the Iᴬ, Iᴮ, i system
-4. **For pedigrees, ask two questions** — Dominant or recessive? Autosomal or X-linked?
-5. **Connect to Module 8** — Segregation = homologs separating in Meiosis I
+1. Start with the module's central claim before memorizing vocabulary.
+2. Use the same-numbered lab as the evidence check for the module.
+3. Explain one mechanism in words, then redraw it as a simple diagram.
+4. Answer retrieval questions without notes, then revise with the terms list.
+
+## Connected Lab
+
+- `lab-09_inheritance-genetics.md`
+
+## Generated Visuals
+
+- [Module 09: Inheritance Genetics Concept Map](resources/generated/module-09-concept-map.svg)
+- [Module 09: Inheritance Genetics Process Model](resources/generated/module-09-process-model.svg)
+- [Module 09: Inheritance Genetics Retrieval Card](resources/generated/module-09-retrieval-card.svg)

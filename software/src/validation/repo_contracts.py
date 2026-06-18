@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from src.module_content.main import ModuleContentError, load_module_content
 from src.shared.course_config import active_course_names, archived_course_paths
 
 
@@ -40,8 +41,6 @@ ACTIVE_BIOL1_FORBIDDEN_TEXT = (
     "Exam 04",
     "Lab 18",
     "lab-18",
-    "module-16",
-    "Module 16",
     "Introduction to Biology",
     "BIOL-1: Biology 1",
     "Pelican Bay Prison",
@@ -277,6 +276,7 @@ def _check_active_course_materials(root: Path, report: RepoContractReport) -> No
         _check_slide_numbering(root, course, course_root, expected_modules, report)
         if course == "biol-1":
             _check_biol1_active_text(root, course_root, report)
+            _check_biol1_quiz_policy(root, course_root, report)
 
 
 def _check_module_materials(
@@ -301,7 +301,13 @@ def _check_module_materials(
         module_number = _module_number(module_dir)
         if module_number is None:
             continue
-        for rel_file in ("README.md", "keys-to-success.md", "questions.md"):
+        manifest_path = module_dir / "module.toml"
+        if not manifest_path.exists():
+            report.add_issue(f"{manifest_path.relative_to(root)} missing")
+        elif course == "biol-1":
+            _check_module_manifest(root, course_root, module_dir, report)
+
+        for rel_file in ("README.md", "keys-to-success.md", "questions.md", "practice-quiz.md"):
             path = module_dir / rel_file
             if not path.exists():
                 report.add_issue(f"{path.relative_to(root)} missing")
@@ -313,9 +319,92 @@ def _check_module_materials(
                     f"{path.relative_to(root)} heading says module {heading_number}, "
                     f"expected {module_number}"
                 )
+            _check_single_top_heading(root, path, report)
         questions_path = module_dir / "questions.md"
         if questions_path.exists():
             _check_continuous_numbered_items(root, questions_path, report)
+        keys_path = module_dir / "keys-to-success.md"
+        if keys_path.exists():
+            _check_keys_learning_objectives(root, keys_path, report)
+        if (module_dir / "assignments").exists() and course == "biol-1":
+            report.add_issue(
+                f"{(module_dir / 'assignments').relative_to(root)} is not part of the "
+                "active BIOL-1 Fall 2026 module contract"
+            )
+
+
+def _check_module_manifest(
+    root: Path,
+    course_root: Path,
+    module_dir: Path,
+    report: RepoContractReport,
+) -> None:
+    """Require typed module manifests and generated assets for BIOL-1."""
+    try:
+        module = load_module_content(module_dir)
+    except ModuleContentError as exc:
+        report.add_issue(f"{(module_dir / 'module.toml').relative_to(root)} invalid: {exc}")
+        return
+
+    lab_path = course_root / "course" / "labs" / module.lab
+    if module.lab and not lab_path.exists():
+        report.add_issue(
+            f"{(module_dir / 'module.toml').relative_to(root)} links missing lab: {module.lab}"
+        )
+    for image in module.generated_images:
+        image_path = module_dir / image.output
+        if not image_path.exists():
+            report.add_issue(
+                f"{(module_dir / 'module.toml').relative_to(root)} generated image missing: "
+                f"{image.output}"
+            )
+    lab_number = _lab_number(Path(module.lab)) if module.lab else None
+    if lab_number != module.number:
+        report.add_issue(
+            f"{(module_dir / 'module.toml').relative_to(root)} links lab {lab_number}, "
+            f"expected lab {module.number}"
+        )
+    generated_dir = module_dir / "resources" / "generated"
+    for doc_name in ("README.md", "AGENTS.md", "asset-index.md"):
+        if not (generated_dir / doc_name).exists():
+            report.add_issue(f"{(generated_dir / doc_name).relative_to(root)} missing")
+
+
+def _check_keys_learning_objectives(
+    root: Path,
+    keys_path: Path,
+    report: RepoContractReport,
+) -> None:
+    """Require keys files to put Learning Objectives before prose sections."""
+    headings = [
+        line.strip()
+        for line in keys_path.read_text(encoding="utf-8", errors="ignore").splitlines()
+        if line.strip().startswith("## ")
+    ]
+    if not headings:
+        report.add_issue(f"{keys_path.relative_to(root)} has no level-2 sections")
+        return
+    if headings[0] != "## Learning Objectives":
+        report.add_issue(
+            f"{keys_path.relative_to(root)} first section is {headings[0]!r}; "
+            "expected '## Learning Objectives'"
+        )
+
+
+def _check_single_top_heading(
+    root: Path,
+    path: Path,
+    report: RepoContractReport,
+) -> None:
+    headings = [
+        line
+        for line in path.read_text(encoding="utf-8", errors="ignore").splitlines()
+        if line.startswith("# ")
+    ]
+    if len(headings) != 1:
+        report.add_issue(
+            f"{path.relative_to(root)} has {len(headings)} top-level headings; expected 1"
+        )
 
 
 def _check_lab_materials(
@@ -451,6 +540,52 @@ def _check_assessment_materials(
                 report.add_issue(f"{course} assessment file missing: {path.relative_to(root)}")
     if (exams_dir / "exam-04.md").exists():
         report.add_issue(f"{course} has exam-04.md; use final-exam.md for the final")
+    if course == "biol-1":
+        _check_biol1_assessment_scope(root, course_root, report)
+
+
+def _check_biol1_assessment_scope(
+    root: Path,
+    course_root: Path,
+    report: RepoContractReport,
+) -> None:
+    """Check stable BIOL-1 assessment coverage labels."""
+    expected_markers = {
+        Path("course/practice_tests/practice-test-04.md"): ("Modules 12", "16"),
+        Path("course/practice_tests/practice-test-05.md"): ("Modules 01", "16"),
+        Path("course/exams/exam-03.md"): ("Modules 12", "16"),
+        Path("course/exams/final-exam.md"): ("Modules 01", "16"),
+    }
+    for rel_path, markers in expected_markers.items():
+        path = course_root / rel_path
+        if not path.exists():
+            report.add_issue(f"biol-1 assessment scope file missing: {path.relative_to(root)}")
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        missing = [marker for marker in markers if marker not in text]
+        if missing:
+            report.add_issue(
+                f"{path.relative_to(root)} missing expected BIOL-1 scope marker(s): "
+                f"{', '.join(missing)}"
+            )
+
+
+def _check_biol1_quiz_policy(
+    root: Path,
+    course_root: Path,
+    report: RepoContractReport,
+) -> None:
+    """BIOL-1 course/quizzes is template-only."""
+    quizzes_dir = course_root / "course" / "quizzes"
+    if not quizzes_dir.exists():
+        report.add_issue("biol-1 missing course/quizzes directory")
+        return
+    allowed = {"README.md", "AGENTS.md", "quiz-template.md"}
+    for path in sorted(quizzes_dir.glob("*.md")):
+        if path.name not in allowed:
+            report.add_issue(
+                f"{path.relative_to(root)} violates BIOL-1 template-only quiz policy"
+            )
 
 
 def _check_schedule_references(

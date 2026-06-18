@@ -15,7 +15,7 @@ from .utils import (
     get_relative_output_path,
     should_process_file,
 )
-from src.shared.course_config import active_course_names, find_repo_root
+from src.shared.course_config import active_course_names, find_repo_root, validate_supported_formats
 from src.shared.file_utils import ensure_output_directory
 from ..format_conversion.main import convert_file
 from ..html_website.main import generate_module_website
@@ -27,6 +27,18 @@ from ..text_to_speech.main import generate_speech
 from ..text_to_speech.utils import extract_text_from_markdown, read_text_file
 
 logger = get_logger()
+
+
+def _active_formats(formats: Optional[List[str]]) -> set[str]:
+    """Return validated active formats for direct batch-processing callers."""
+    if formats is None:
+        return set(config.AVAILABLE_FORMATS)
+    return set(validate_supported_formats(formats))
+
+
+def _module_sort_key(module_dir: Path) -> tuple[int, str]:
+    match = re.search(r"module-(\d+)", module_dir.name)
+    return (int(match.group(1)) if match else 9999, module_dir.name)
 
 
 def process_module_to_pdf(module_path: str, output_dir: str) -> List[str]:
@@ -264,7 +276,7 @@ def process_module_by_type(
 ) -> Dict[str, Any]:
     """Process module files by curriculum element type and generate requested renderings.
 
-    Organizes outputs by curriculum element type (assignments, lab-protocols,
+    Organizes outputs by active curriculum element type (lab-protocols,
     lecture-content, study-guides) using the requested format set.
 
     Args:
@@ -291,12 +303,10 @@ def process_module_by_type(
     ensure_output_directory(base_output)
 
     # Determine which formats to generate
-    all_formats = {"pdf", "mp3", "docx", "html", "txt", "md"}
-    active_formats = set(formats) if formats is not None else all_formats
+    active_formats = _active_formats(formats)
 
     # Curriculum element type mapping
     type_mapping = {
-        "assignment": "assignments",
         "lab-protocol": "lab-protocols",
         "lecture-content": "lecture-content",
         "study-guide": "study-guides",
@@ -304,23 +314,21 @@ def process_module_by_type(
 
     # Find all sample markdown files
     markdown_files = find_markdown_files(module_dir)
-    files_to_process = [f for f in markdown_files if f.name.startswith(config.SAMPLE_FILE_PREFIX)]
+    files_to_process = sorted(
+        f for f in markdown_files if f.name.startswith(config.SAMPLE_FILE_PREFIX)
+    )
     
     # Process root-level source files (keys-to-success.md, questions.md)
-    root_md_files = [f for f in module_dir.glob("*.md") 
-                     if not f.name.startswith("README") and not f.name.startswith("AGENTS")]
+    root_md_files = sorted(
+        f for f in module_dir.glob("*.md")
+        if not f.name.startswith("README") and not f.name.startswith("AGENTS")
+    )
     files_to_process.extend(root_md_files)
     
-    # Process assignment files
-    assignments_dir = module_dir / "assignments"
-    if assignments_dir.exists():
-        assignment_files = list(assignments_dir.glob("*.md"))
-        files_to_process.extend(assignment_files)
-
     # Process resource files
     resources_dir = module_dir / "resources"
     if resources_dir.exists():
-        resource_files = list(resources_dir.glob("*.md"))
+        resource_files = sorted(resources_dir.glob("*.md"))
         files_to_process.extend(resource_files)
 
     logger.debug(f"Found {len(files_to_process)} markdown files to process")
@@ -342,10 +350,7 @@ def process_module_by_type(
             file_type = None
             output_subdir = None
 
-            if "assignment" in md_file.name:
-                file_type = "assignment"
-                output_subdir = "assignments"
-            elif "lab-protocol" in md_file.name:
+            if "lab-protocol" in md_file.name:
                 file_type = "lab-protocol"
                 output_subdir = "lab-protocols"
             elif "lecture-content" in md_file.name:
@@ -360,10 +365,6 @@ def process_module_by_type(
             elif md_file.name == config.QUESTIONS_FILENAME:
                 file_type = "study-guide"
                 output_subdir = "study-guides"
-            elif md_file.parent.name == "assignments":
-                file_type = "assignment"
-                output_subdir = "assignments"
-
             if not output_subdir:
                 logger.debug(f"Skipping file (no type match): {md_file.name}")
                 continue  # Skip files that don't match known types
@@ -484,7 +485,7 @@ def process_syllabus(
 ) -> Dict[str, Any]:
     """Process syllabus files and generate requested renderings.
 
-    Organizes outputs flat in the output directory (same structure as module assignments),
+    Organizes outputs flat in the output directory (same flat syllabus output structure),
     with requested formats in the same directory.
 
     Args:
@@ -511,8 +512,7 @@ def process_syllabus(
     ensure_output_directory(base_output)
 
     # Determine which formats to generate
-    all_formats = {"pdf", "mp3", "docx", "html", "txt", "md"}
-    active_formats = set(formats) if formats is not None else all_formats
+    active_formats = _active_formats(formats)
 
     # Find all markdown files in syllabus directory (excluding README and AGENTS)
     markdown_files = find_markdown_files(syllabus_dir)
@@ -773,7 +773,8 @@ def process_course_modules(
 
     # Find all modules
     modules = sorted(
-        [d for d in course_dir.iterdir() if d.is_dir() and d.name.startswith("module-")]
+        [d for d in course_dir.iterdir() if d.is_dir() and d.name.startswith("module-")],
+        key=_module_sort_key,
     )
 
     # Filter by module number if specified
@@ -792,6 +793,9 @@ def process_course_modules(
         
         modules = [m for m in modules if get_module_number(m.name) <= max_module]
         logger.info(f"Filtering to modules 1-{max_module}: {len(modules)} modules")
+
+    active_formats = _active_formats(formats)
+    should_generate_website = generate_website and "html" in active_formats
 
     for module_dir in modules:
         module_name = module_dir.name
@@ -830,7 +834,7 @@ def process_course_modules(
             continue
 
         # Generate website (if enabled)
-        if generate_website:
+        if should_generate_website:
             website_start = time.time()
             try:
                 website_file = process_module_website(str(module_dir))

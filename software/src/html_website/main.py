@@ -1,5 +1,6 @@
 """Main functions for HTML website generation."""
 
+import html as html_lib
 from pathlib import Path
 from typing import Optional
 
@@ -13,6 +14,7 @@ from .utils import (
     markdown_to_html,
     parse_questions_json,
 )
+from src.module_content.main import ModuleContentError, load_module_content
 from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 logger = logging.getLogger("html_website")
@@ -40,12 +42,40 @@ def generate_module_website(
     if not course_name:
         course_name = config.DEFAULT_COURSE_NAME
 
-    # Curriculum elements configuration
-    curriculum_elements = {
-        "lecture-content": {"source": "sample_lecture-content.md", "title": "Lecture Content"},
-        "lab-protocols": {"source": "sample_lab-protocol.md", "title": "Lab Protocol"},
-        "study-guides": {"source": "sample_study-guide.md", "title": "Study Guide"},
-    }
+    # Curriculum elements configuration. BIOL-1 source modules use root-level
+    # keys-to-success.md and questions.md; older fixtures may still use sample_*.
+    curriculum_elements = [
+        {
+            "section_id": "lecture_content",
+            "element_type": "lecture-content",
+            "source": "sample_lecture-content.md",
+            "title": "Lecture Content",
+        },
+        {
+            "section_id": "lab_protocols",
+            "element_type": "lab-protocols",
+            "source": "sample_lab-protocol.md",
+            "title": "Lab Protocol",
+        },
+        {
+            "section_id": "study_guides",
+            "element_type": "study-guides",
+            "source": "sample_study-guide.md",
+            "title": "Study Guide",
+        },
+        {
+            "section_id": "keys_to_success",
+            "element_type": "study-guides",
+            "source": "keys-to-success.md",
+            "title": "Keys to Success",
+        },
+        {
+            "section_id": "practice_questions",
+            "element_type": "study-guides",
+            "source": "questions.md",
+            "title": "Practice Questions",
+        },
+    ]
 
     content_sections = []
     sidebar_links = []
@@ -63,60 +93,127 @@ def generate_module_website(
         section_html += '</div></section>\n'
         return section_html
 
-    # Process Curriculum Elements
-    for element_type, info in curriculum_elements.items():
-        source_file = module_dir / info["source"]
-        if not source_file.exists():
-            continue
+    try:
+        structured_module = load_module_content(module_dir)
+    except ModuleContentError:
+        structured_module = None
 
-        markdown_content = read_markdown_file(source_file)
-        html_content = markdown_to_html(markdown_content)
-        
-        # Audio/Text files
-        base_name = source_file.stem
-        output_base = module_dir / "output"
-        audio_file = find_audio_file(base_name, output_base, element_type)
-        text_file = find_text_file(base_name, output_base, element_type)
+    if structured_module:
+        structured_sections = [
+            (
+                "topics",
+                "Topics",
+                "\n".join(f"- {topic}" for topic in structured_module.topics),
+            ),
+            (
+                "contents",
+                "Contents",
+                "\n".join(
+                    f"{idx}. {content}"
+                    for idx, content in enumerate(structured_module.contents, 1)
+                ),
+            ),
+            (
+                "terms",
+                "Terms",
+                "\n".join(
+                    ["| Term | Definition |", "|---|---|"]
+                    + [
+                        f"| **{term.name}** | {term.definition} |"
+                        for term in structured_module.terms
+                    ]
+                ),
+            ),
+            (
+                "learning_questions",
+                "Learning Questions",
+                "\n".join(
+                    f"{idx}. {question}"
+                    for idx, question in enumerate(structured_module.learning_questions, 1)
+                ),
+            ),
+            (
+                "practice_quiz",
+                "Practice Quiz",
+                read_markdown_file(module_dir / "practice-quiz.md")
+                if (module_dir / "practice-quiz.md").exists()
+                else "",
+            ),
+            (
+                "lab",
+                "Lab",
+                f"Connected lab: `{structured_module.lab}`"
+                if structured_module.lab
+                else "No linked lab configured.",
+            ),
+        ]
+        for section_id, title, markdown_content in structured_sections:
+            content_sections.append(
+                create_section(section_id, title, markdown_to_html(markdown_content))
+            )
+            sidebar_links.append({"id": section_id, "title": title})
+        if structured_module.generated_images or structured_module.assets:
+            asset_html = ""
+            for image in structured_module.generated_images:
+                image_path = module_dir / image.output
+                relative_image = html_lib.escape(get_relative_path(image_path, website_output))
+                asset_html += (
+                    f'<figure><img src="{relative_image}" alt="{html_lib.escape(image.title)}" '
+                    'style="max-width:100%;height:auto;">'
+                    f'<figcaption>{html_lib.escape(image.title)}</figcaption></figure>'
+                )
+            for asset in structured_module.assets:
+                asset_path = html_lib.escape(asset.path)
+                asset_html += (
+                    f"<p><strong>{html_lib.escape(asset.kind)}:</strong> "
+                    f"<code>{asset_path}</code> - {html_lib.escape(asset.description)}</p>"
+                )
+            content_sections.append(create_section("assets", "Assets", asset_html))
+            sidebar_links.append({"id": "assets", "title": "Assets"})
+    else:
+        # Process legacy/sample curriculum elements only when no typed manifest exists.
+        for info in curriculum_elements:
+            element_type = info["element_type"]
+            source_file = module_dir / info["source"]
+            if not source_file.exists():
+                continue
 
-        inner_html = ""
-        if audio_file:
-            audio_path = get_relative_path(audio_file, website_output)
-            inner_html += '<div class="audio-section">\n'
-            inner_html += '<h3>Audio Version</h3>\n'
-            inner_html += f'<audio controls><source src="{audio_path}" type="audio/mpeg">Your browser does not support audio element.</audio>\n'
-            inner_html += '</div>\n'
-
-        inner_html += f'<div>{html_content}</div>\n'
-
-        if text_file:
-            text_content = text_file.read_text(encoding="utf-8")
-            text_path = get_relative_path(text_file, website_output)
-            inner_html += '<div class="code-block">\n'
-            inner_html += f'<h3>Plain Text Version</h3><pre>{text_content[:500]}...</pre>\n'
-            inner_html += f'<p><a href="{text_path}" download>Download Full Text</a></p></div>\n'
-
-        section_id = element_type.replace("-", "_")
-        content_sections.append(create_section(section_id, info["title"], inner_html))
-        sidebar_links.append({"id": section_id, "title": info["title"]})
-
-    # Process Assignments
-    assignments_dir = module_dir / "assignments"
-    if assignments_dir.exists() and list(assignments_dir.glob("*.md")):
-        assignment_content = ""
-        for assignment_file in sorted(assignments_dir.glob("*.md")):
-            a_content = markdown_to_html(read_markdown_file(assignment_file))
-            audio_file = find_audio_file(assignment_file.stem, module_dir / "output", "assignments")
+            markdown_content = read_markdown_file(source_file)
+            html_content = markdown_to_html(markdown_content)
             
-            assignment_content += '<div class="assignment-item">\n'
-            assignment_content += a_content
+            # Audio/Text files
+            base_name = source_file.stem
+            output_base = module_dir / "output"
+            prefixed_base_name = f"{module_name}-{base_name}"
+            audio_file = (
+                find_audio_file(base_name, output_base, element_type)
+                or find_audio_file(prefixed_base_name, output_base, element_type)
+            )
+            text_file = (
+                find_text_file(base_name, output_base, element_type)
+                or find_text_file(prefixed_base_name, output_base, element_type)
+            )
+
+            inner_html = ""
             if audio_file:
                 audio_path = get_relative_path(audio_file, website_output)
-                assignment_content += '<div class="audio-section"><h4>Audio Version</h4>'
-                assignment_content += f'<audio controls><source src="{audio_path}" type="audio/mpeg"></audio></div>'
-            assignment_content += '</div><hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">\n'
+                inner_html += '<div class="audio-section">\n'
+                inner_html += '<h3>Audio Version</h3>\n'
+                inner_html += f'<audio controls><source src="{audio_path}" type="audio/mpeg">Your browser does not support audio element.</audio>\n'
+                inner_html += '</div>\n'
 
-        content_sections.append(create_section("assignments", "Assignments", assignment_content))
-        sidebar_links.append({"id": "assignments", "title": "Assignments"})
+            inner_html += f'<div>{html_content}</div>\n'
+
+            if text_file:
+                text_content = text_file.read_text(encoding="utf-8")
+                text_path = get_relative_path(text_file, website_output)
+                inner_html += '<div class="code-block">\n'
+                inner_html += f'<h3>Plain Text Version</h3><pre>{text_content[:500]}...</pre>\n'
+                inner_html += f'<p><a href="{text_path}" download>Download Full Text</a></p></div>\n'
+
+            section_id = info["section_id"]
+            content_sections.append(create_section(section_id, info["title"], inner_html))
+            sidebar_links.append({"id": section_id, "title": info["title"]})
 
     # Process Questions
     questions_file = find_questions_file(module_dir)
@@ -394,4 +491,3 @@ def generate_module_website(
     
     logger.info(f"Website generated: {html_file}")
     return str(html_file)
-

@@ -1,0 +1,186 @@
+[module]
+number = 11
+slug = "module-11-genomics-biotechnology"
+title = "Genomics and Biotechnology"
+lab = "lab-11_genomics-biotechnology.md"
+topics = ["Genomes as data", "PCR and amplification", "Gel electrophoresis and comparison", "Genetic engineering tools", "Biotechnology decisions and ethics"]
+contents = ["A genome is the full DNA information set of an organism or sample.", "PCR amplifies chosen DNA regions so they can be analyzed.", "Gel electrophoresis separates DNA fragments by size.", "Biotechnology tools can copy, edit, compare, or move genetic information.", "Applications require evidence, risk reasoning, and ethical judgment."]
+learning_objectives = ["Define genome and genomics.", "Explain why PCR amplification is useful.", "Interpret basic gel electrophoresis fragment patterns.", "Describe what genetic engineering tools can do.", "Evaluate biotechnology claims using evidence and ethical considerations."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["What is a genome?", "Why does genomics require comparison?", "What does PCR amplify?", "Why are primers necessary?", "How does gel electrophoresis separate DNA fragments?", "Why do smaller fragments move farther in a gel?", "What can CRISPR do in general terms?", "How is a GMO defined in biotechnology?", "What evidence should support a biotechnology claim?", "What ethical questions can biotechnology raise?"]
+
+[[terms]]
+name = "Genome"
+definition = "Complete DNA information of an organism or sample."
+
+[[terms]]
+name = "Genomics"
+definition = "Study of whole genomes and their patterns."
+
+[[terms]]
+name = "PCR"
+definition = "Technique for amplifying selected DNA sequences."
+
+[[terms]]
+name = "Primer"
+definition = "Short DNA sequence that starts PCR copying."
+
+[[terms]]
+name = "Gel electrophoresis"
+definition = "Method that separates DNA fragments by size."
+
+[[terms]]
+name = "CRISPR"
+definition = "Gene-editing system adapted from bacterial defense."
+
+[[terms]]
+name = "GMO"
+definition = "Organism with genetic material altered by biotechnology."
+
+[[terms]]
+name = "Bioethics"
+definition = "Reasoning about benefits, harms, rights, and responsibilities in biology."
+
+[[practice_quiz]]
+question = "Which statement best defines Genome in Module 11?"
+options = ["Complete DNA information of an organism or sample.", "Study of whole genomes and their patterns.", "Technique for amplifying selected DNA sequences.", "Short DNA sequence that starts PCR copying."]
+answer = "A"
+explanation = "Genome anchors the genomes as data partition of Genomics and Biotechnology."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the pcr and amplification partition?"
+options = ["Define genome and genomics.", "Explain why PCR amplification is useful.", "Interpret basic gel electrophoresis fragment patterns.", "Describe what genetic engineering tools can do."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Genomics Biotechnology support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for gel electrophoresis and comparison.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Genomics and Biotechnology?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is a genome? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 11: Genomics and Biotechnology Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-11-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Genomics and Biotechnology is best learned as a connected explanation linking genomes as data, pcr and amplification, and lab evidence."
+clusters = ["Genomes as data", "PCR and amplification", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Genomes as data"
+detail = "A genome is the full DNA information set of an organism or sample."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "PCR and amplification"
+detail = "PCR amplifies chosen DNA regions so they can be analyzed."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Genomics Biotechnology turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Genome"
+detail = "Complete DNA information of an organism or sample."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Biotechnology decisions and ethics"
+detail = "Applications require evidence, risk reasoning, and ethical judgment."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 11: Genomics and Biotechnology Process Model"
+kind = "process-model"
+output = "resources/generated/module-11-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Genomes as data", "PCR and amplification", "Gel electrophoresis and comparison"]
+outputs = ["Define genome and genomics.", "Explain why PCR amplification is useful.", "Interpret basic gel electrophoresis fragment patterns."]
+feedbacks = ["Genomics Biotechnology evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["A genome is the full DNA information set of an organism or sample.", "Applications require evidence, risk reasoning, and ethical judgment."]
+
+[[generated_images.stages]]
+label = "Genomes as data"
+detail = "A genome is the full DNA information set of an organism or sample."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "PCR and amplification"
+detail = "PCR amplifies chosen DNA regions so they can be analyzed."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Gel electrophoresis and comparison"
+detail = "Gel electrophoresis separates DNA fragments by size."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Genetic engineering tools"
+detail = "Biotechnology tools can copy, edit, compare, or move genetic information."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Biotechnology decisions and ethics"
+detail = "Applications require evidence, risk reasoning, and ethical judgment."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 11: Genomics and Biotechnology Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-11-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Genome", "Genomics", "PCR", "Primer", "Gel electrophoresis"]
+lab_connection = "Genomics Biotechnology gives concrete evidence for Module 11: Genomics and Biotechnology."
+
+[[generated_images.prompts]]
+prompt = "What is a genome?"
+check = "Define genome and genomics."
+
+[[generated_images.prompts]]
+prompt = "Why does genomics require comparison?"
+check = "Explain why PCR amplification is useful."
+
+[[generated_images.prompts]]
+prompt = "What does PCR amplify?"
+check = "Interpret basic gel electrophoresis fragment patterns."
+
+[[generated_images.prompts]]
+prompt = "Why are primers necessary?"
+check = "Describe what genetic engineering tools can do."

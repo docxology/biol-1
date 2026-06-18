@@ -1,44 +1,56 @@
-# Module 3: Organic Molecules — Keys to Success
+<!-- Generated from module.toml; edit the manifest, not this file. -->
+# Module 3: Organic Molecules - Keys to Success
 
 ## Learning Objectives
 
 By the end of this module, you should be able to:
 
-1. Explain why carbon is central to organic chemistry
-2. Distinguish between monomers and polymers
-3. Describe dehydration synthesis and hydrolysis
-4. Compare the four classes of biomolecules
-5. Explain protein structure and denaturation
+1. Explain why carbon is central to biological molecule diversity.
+2. Distinguish monomers, polymers, dehydration synthesis, and hydrolysis.
+3. Compare the functions of carbohydrates and lipids.
+4. Connect protein shape to protein function and denaturation.
+5. Describe how nucleic acids encode biological information.
+
+## Topics
+
+- Carbon skeletons
+- Building and breaking polymers
+- Carbohydrates and lipids
+- Proteins and shape
+- Nucleic acids and information
 
 ## Key Terms to Know
 
-- **Organic Molecule** — Carbon-based molecule
-- **Functional Group** — Chemical group that determines molecule properties
-- **Monomer** — Single building block unit
-- **Polymer** — Chain of monomers
-- **Dehydration Synthesis** — Building polymers by removing water
-- **Hydrolysis** — Breaking polymers by adding water
-- **Carbohydrate** — Sugars and starches; quick energy source
-- **Lipid** — Fats, oils, waxes; long-term energy storage
-- **Protein** — Amino acid polymers; structure, enzymes, transport
-- **Nucleic Acid** — DNA and RNA; genetic information
-- **Amino Acid** — Monomer of proteins (20 types)
-- **Peptide Bond** — Bond between amino acids
-- **Denaturation** — Loss of protein shape and function
-- **ATP** — Adenosine triphosphate; energy currency
+- **Organic molecule** - Carbon-based molecule associated with living systems.
+- **Monomer** - Small building block that can join into a polymer.
+- **Polymer** - Large molecule built from repeating subunits.
+- **Carbohydrate** - Sugar or sugar polymer used for energy or structure.
+- **Lipid** - Hydrophobic molecule including fats, phospholipids, and steroids.
+- **Protein** - Polymer of amino acids that performs cellular work.
+- **Nucleic acid** - DNA or RNA polymer made of nucleotides.
+- **Denaturation** - Loss of protein shape that often destroys function.
 
-## Key Comparisons
+## Core Contents
 
-| Biomolecule | Monomer | Function | Example |
-|-------------|---------|----------|---------|
-| Carbohydrate | Monosaccharide | Energy | Glucose, starch |
-| Lipid | Fatty acid + glycerol | Energy storage | Fat, oil |
-| Protein | Amino acid | Structure, enzymes | Hemoglobin |
-| Nucleic Acid | Nucleotide | Genetic info | DNA, RNA |
+1. Carbon forms diverse skeletons that make biological molecules possible.
+2. Dehydration synthesis builds polymers, and hydrolysis breaks them down.
+3. Carbohydrates and lipids store energy and provide structure in different ways.
+4. Protein function depends on amino acid sequence and three-dimensional shape.
+5. DNA and RNA store and move information using nucleotide sequences.
 
 ## Study Tips
 
-1. **Know the monomers** — Monosaccharide, amino acid, nucleotide
-2. **Understand the reactions** — Dehydration = build; Hydrolysis = break
-3. **Draw protein structure levels** — Primary through quaternary
-4. **Compare starch vs. cellulose** — Same monomer, different linkage
+1. Start with the module's central claim before memorizing vocabulary.
+2. Use the same-numbered lab as the evidence check for the module.
+3. Explain one mechanism in words, then redraw it as a simple diagram.
+4. Answer retrieval questions without notes, then revise with the terms list.
+
+## Connected Lab
+
+- `lab-03_microscopy.md`
+
+## Generated Visuals
+
+- [Module 03: Organic Molecules Concept Map](resources/generated/module-03-concept-map.svg)
+- [Module 03: Organic Molecules Process Model](resources/generated/module-03-process-model.svg)
+- [Module 03: Organic Molecules Retrieval Card](resources/generated/module-03-retrieval-card.svg)

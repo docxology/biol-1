@@ -42,10 +42,6 @@ def create_module_structure(course_path: str, module_number: int) -> str:
     # Create module directory
     ensure_directory_exists(module_path)
 
-    # Create assignments directory
-    assignments_dir = module_path / "assignments"
-    ensure_directory_exists(assignments_dir)
-
     # Create README.md
     readme_path = module_path / "README.md"
     write_template_file(
@@ -58,20 +54,18 @@ def create_module_structure(course_path: str, module_number: int) -> str:
         agents_path, config.AGENTS_TEMPLATE, module_number=module_number
     )
 
-    # Create assignments/README.md
-    assignments_readme_path = assignments_dir / "README.md"
+    # Create keys-to-success.md
+    keys_path = module_path / "keys-to-success.md"
     write_template_file(
-        assignments_readme_path,
-        config.ASSIGNMENTS_README_TEMPLATE,
+        keys_path,
+        config.KEYS_TO_SUCCESS_TEMPLATE,
         module_number=module_number,
     )
 
-    # Create assignments/AGENTS.md
-    assignments_agents_path = assignments_dir / "AGENTS.md"
+    # Create questions.md
+    questions_path = module_path / "questions.md"
     write_template_file(
-        assignments_agents_path,
-        config.ASSIGNMENTS_AGENTS_TEMPLATE,
-        module_number=module_number,
+        questions_path, config.QUESTIONS_TEMPLATE, module_number=module_number
     )
 
     return str(module_path)
@@ -144,26 +138,20 @@ def initialize_module_files(module_path: str, template: str) -> None:
             agents_path, config.AGENTS_TEMPLATE, module_number=module_number
         )
 
-    # Ensure assignments directory exists
-    assignments_dir = module_dir / "assignments"
-    ensure_directory_exists(assignments_dir)
-
-    # Create assignments/README.md if it doesn't exist
-    assignments_readme_path = assignments_dir / "README.md"
-    if not check_file_exists(assignments_readme_path):
+    # Create keys-to-success.md if it doesn't exist
+    keys_path = module_dir / "keys-to-success.md"
+    if not check_file_exists(keys_path):
         write_template_file(
-            assignments_readme_path,
-            config.ASSIGNMENTS_README_TEMPLATE,
+            keys_path,
+            config.KEYS_TO_SUCCESS_TEMPLATE,
             module_number=module_number,
         )
 
-    # Create assignments/AGENTS.md if it doesn't exist
-    assignments_agents_path = assignments_dir / "AGENTS.md"
-    if not check_file_exists(assignments_agents_path):
+    # Create questions.md if it doesn't exist
+    questions_path = module_dir / "questions.md"
+    if not check_file_exists(questions_path):
         write_template_file(
-            assignments_agents_path,
-            config.ASSIGNMENTS_AGENTS_TEMPLATE,
-            module_number=module_number,
+            questions_path, config.QUESTIONS_TEMPLATE, module_number=module_number
         )
 
 

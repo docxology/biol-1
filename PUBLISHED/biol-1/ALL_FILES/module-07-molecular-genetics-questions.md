@@ -1,41 +1,25 @@
-# Module 7: Molecular Genetics — Study Questions
+<!-- Generated from module.toml; edit the manifest, not this file. -->
 
-1. What are the three parts of a nucleotide?
+# Module 7: Molecular Genetics - Learning Questions
 
-2. What are the base pairing rules for DNA? (A pairs with ___, G pairs with___)
 
-3. What does "semi-conservative" mean in DNA replication?
 
-4. What does helicase do during DNA replication?
+1. How does DNA structure store information?
 
-5. What does DNA polymerase do during DNA replication?
+2. Why does complementary base pairing matter?
 
-6. What is the difference between the leading strand and the lagging strand?
+3. What does semiconservative replication mean?
 
-7. If a DNA strand reads 5′-ATCG-3′, what is the complementary strand?
+4. How is transcription different from translation?
 
-8. What is transcription? Where does it happen?
+5. What does a codon specify?
 
-9. How is RNA different from DNA? (Name two differences.)
+6. How do ribosomes participate in protein synthesis?
 
-10. Given the DNA template strand 3′-TACGGC-5′, write the mRNA.
+7. How can a mutation change a protein?
 
-11. What are the three types of RNA and what does each do?
+8. Why do some mutations have no visible effect?
 
-12. What is a codon? How many bases does it have?
+9. How does gene expression connect genotype to phenotype?
 
-13. What is the start codon? What amino acid does it code for?
-
-14. Name the three stop codons.
-
-15. What is the job of tRNA during translation?
-
-16. What happens at the A site, P site, and E site of the ribosome?
-
-17. Using a codon table, translate this mRNA: AUG-GCA-UAA. What is the amino acid sequence?
-
-18. What is a point mutation? What is a frameshift mutation?
-
-19. Why are frameshift mutations usually more harmful than point mutations?
-
-20. Summarize the Central Dogma: DNA → ___→___
+10. What evidence would show that a gene is being expressed?

@@ -31,6 +31,7 @@ def test_module_with_assignment_validation(temp_dir):
 
     # Add a properly named assignment
     assignments_dir = Path(module_path) / "assignments"
+    assignments_dir.mkdir()
     assignment_file = assignments_dir / "module-1-assignment-1-intro.md"
     assignment_file.write_text("# Assignment 1\n", encoding="utf-8")
 

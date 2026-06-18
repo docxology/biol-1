@@ -150,6 +150,13 @@
 - **Postzygotic:** hybrid inviability / sterility / breakdown—zygote forms but gene flow blocked afterward.
 - **Allopatric:** geography splits populations then divergence. **Sympatric:** divergence without geographic isolation—**polyploidy** classic plant example.
 
+### Option D — Capstone systems synthesis
+
+- Strong essays organize a scenario across **at least three scales**, such as DNA/gene expression, cell function, organism traits, population allele or abundance change, community interactions, and ecosystem energy/matter limits.
+- Must include a real **feedback loop or constraint**, such as carrying capacity, density dependence, enzyme limits, membrane constraints, or trophic energy loss.
+- Must name evidence that would test the explanation, such as trait measurements, survival/reproduction data, allele-frequency change, microscopy, gel/electrophoresis data, population counts, or ecosystem observations.
+- Highest-credit answers explain links rather than merely listing vocabulary.
+
 ---
 
 *End of comprehensive final exam key.*

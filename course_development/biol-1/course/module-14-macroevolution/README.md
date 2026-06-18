@@ -8,7 +8,7 @@ Welcome to Module 14! So far, we have looked at how evolution changes a single p
    - Unpack the Biological Species Concept and map the invisible barriers (prezygotic and postzygotic) that keep species genetically isolated.
 2. **[Practice Questions](questions.md)**
    - Test your ability to identify distinct reproductive barriers and the mechanisms of speciation in real-world scenarios.
-3. **[Lab 15 — Macroevolution](../labs/lab-15_macroevolution.md)**
+3. **[Lab 14 — Macroevolution](../labs/lab-14_macroevolution.md)**
    - Paper-based “Speciation Response Team” worksheet: canyon scenario, barrier diagnosis, allopatric vs sympatric, micro to macro.
 
 ## Learning Objectives

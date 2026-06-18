@@ -48,6 +48,10 @@ from src.batch_processing.utils import (
     get_courses_to_process,
     get_formats_to_process,
 )  # noqa: E402
+from src.module_content.main import (
+    describe_course_module_materials,
+    render_course_module_materials,
+)  # noqa: E402
 from src.shared.course_config import CourseSelectionError, active_course_names  # noqa: E402
 
 logger = logging.getLogger(__name__)
@@ -119,13 +123,34 @@ def main() -> int:
         logger.info(f"Max lab limits: {max_lab_limits}")
 
     if args.dry_run:
+        for course_dir, _course_name in courses:
+            course_path = repo_root / course_dir
+            if (course_path / "course").exists():
+                logger.info(describe_course_module_materials(course_path, args.module))
         report = generate_dry_run_report(
-            repo_root, courses, formats, args.module, not args.no_website, args.skip_labs
+            repo_root,
+            courses,
+            formats,
+            args.module,
+            (not args.no_website and "html" in formats),
+            args.skip_labs,
         )
         logger.info(report)
         return 0
 
     clear_results = {"total_files_removed": 0}
+    for course_dir, course_name in courses:
+        course_path = repo_root / course_dir
+        if not course_path.exists():
+            continue
+        module_materials = render_course_module_materials(course_path, args.module)
+        logger.info(
+            "%s structured module materials: %s modules, %s files written",
+            course_name,
+            module_materials["module_count"],
+            module_materials["written"],
+        )
+
     if not args.skip_clear:
         clear_results = clear_all_outputs(repo_root)
         # Only log if there was actually something cleared (avoids noise when
@@ -147,7 +172,7 @@ def main() -> int:
         max_lab = max_lab_limits.get(course_key)
 
         module_results = process_course_modules(
-            course_path, course_name, args.module, not args.no_website, formats,
+            course_path, course_name, args.module, (not args.no_website and "html" in formats), formats,
             max_module=max_module
         )
         all_errors.extend(module_results.get("errors", []))

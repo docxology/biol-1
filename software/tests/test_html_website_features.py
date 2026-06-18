@@ -62,12 +62,11 @@ class TestGenerateModuleWebsite:
         html_content = Path(result).read_text()
         assert "BIOL-8" in html_content
 
-    def test_generate_module_website_with_assignments(self, temp_dir):
-        """Test generating website with assignments directory."""
+    def test_generate_module_website_ignores_active_assignments(self, temp_dir):
+        """Active BIOL-1 websites do not expose legacy assignments folders."""
         module_dir = temp_dir / "module-1"
         module_dir.mkdir()
 
-        # Create assignments directory
         assignments_dir = module_dir / "assignments"
         assignments_dir.mkdir()
         (assignments_dir / "assignment-1.md").write_text(
@@ -78,7 +77,25 @@ class TestGenerateModuleWebsite:
         result = generate_module_website(str(module_dir), str(output_dir))
 
         html_content = Path(result).read_text()
-        assert "Assignment" in html_content or "assignment" in html_content
+        assert "Assignment 1" not in html_content
+
+    def test_generate_module_website_includes_root_learning_objectives(self, temp_dir):
+        """BIOL-1 root study-guide headings propagate into index.html."""
+        module_dir = temp_dir / "module-13-how-populations-evolve"
+        module_dir.mkdir()
+        (module_dir / "keys-to-success.md").write_text(
+            "# Module 13: How Populations Evolve\n\n"
+            "## Learning Objectives\n\n"
+            "1. Define microevolution.\n",
+            encoding="utf-8",
+        )
+
+        result = generate_module_website(str(module_dir), str(temp_dir / "website"))
+
+        html_content = Path(result).read_text()
+        assert "Keys to Success" in html_content
+        assert "Learning Objectives" in html_content
+        assert "Define microevolution" in html_content
 
     def test_generate_module_website_with_questions(self, temp_dir):
         """Test generating website with questions JSON."""
@@ -288,4 +305,3 @@ class TestEnhancedAccessibilityFeatures:
         from src.html_website.config import HTML_TEMPLATE
         assert "toggleSidebar()" in HTML_TEMPLATE
         assert "mobile-menu-btn" in HTML_TEMPLATE
-

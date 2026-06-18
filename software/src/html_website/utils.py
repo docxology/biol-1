@@ -27,7 +27,7 @@ def find_audio_file(base_name: str, output_dir: Path, curriculum_type: str) -> O
     Args:
         base_name: Base filename without extension
         output_dir: Output directory to search
-        curriculum_type: Type of curriculum element (assignments, lecture-content, etc.)
+        curriculum_type: Type of curriculum element for media lookup.
 
     Returns:
         Path to audio file if found, None otherwise

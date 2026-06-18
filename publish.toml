@@ -29,9 +29,9 @@ mp3  = false        # Audio narration (local TTS + ffmpeg, slower)
 
 [publish.courses.biol-1]
 enabled = true
-modules = 15
-max_module = 15      # Generate modules 1 through max_module (BIOL-1: 15 content modules; module 16 removed)
-max_lab = 17         # Generate labs 1 through max_lab (BIOL-1: labs 01–17)
+modules = 16
+max_module = 16      # Generate modules 1 through max_module (BIOL-1: 16 content modules)
+max_lab = 16         # Generate labs 1 through max_lab (BIOL-1: labs 01-16, one lab per module)
 
 path = "course_development/biol-1"
 input_types = ["keys-to-success", "questions"]

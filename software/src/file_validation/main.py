@@ -50,7 +50,9 @@ def validate_module_files(module_path: str) -> Dict[str, Any]:
         if file_path.is_file():
             file_name = file_path.name
 
-            # Skip required files (README.md, AGENTS.md) from naming checks
+            # Skip required root files from naming checks. BIOL-1 source files
+            # intentionally use stable names; output files receive module
+            # prefixes during rendering.
             if file_name in config.REQUIRED_FILES:
                 continue
 
@@ -65,6 +67,8 @@ def validate_module_files(module_path: str) -> Dict[str, Any]:
                     if not matches_pattern(file_name, config.ASSIGNMENT_PATTERN):
                         naming_violations.append(str(file_path.relative_to(module_dir)))
                 # Check other file types
+                elif file_path.parent == module_dir and file_name in config.ROOT_CONTENT_FILES:
+                    continue
                 elif not (
                     matches_pattern(file_name, config.LECTURE_PATTERN)
                     or matches_pattern(file_name, config.LAB_PATTERN)
@@ -119,7 +123,7 @@ def check_naming_conventions(directory: str) -> List[str]:
         if file_path.is_file():
             file_name = file_path.name
 
-            # Skip required files
+            # Skip required root files
             if file_name in config.REQUIRED_FILES:
                 continue
 

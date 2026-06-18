@@ -3,11 +3,22 @@
 import re
 from typing import List, Pattern
 
-# Required files in each module
-REQUIRED_FILES: List[str] = ["README.md", "AGENTS.md"]
+# Required files in each active BIOL-1-style module
+REQUIRED_FILES: List[str] = [
+    "README.md",
+    "AGENTS.md",
+    "questions.md",
+    "keys-to-success.md",
+]
 
-# Required directories in each module
-REQUIRED_DIRECTORIES: List[str] = ["assignments"]
+# Required directories in each module. BIOL-1 modules do not require an
+# assignments/ directory; assignment naming checks remain opt-in when that
+# legacy folder exists.
+REQUIRED_DIRECTORIES: List[str] = []
+
+# Root-level content files that use stable BIOL-1 names instead of module
+# prefixes. They are rendered to standardized output names by the pipeline.
+ROOT_CONTENT_FILES: List[str] = ["questions.md", "keys-to-success.md"]
 
 # Naming convention patterns
 KEBAB_CASE_PATTERN: Pattern[str] = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")

@@ -231,7 +231,7 @@ Generate all media formats for a module (PDF, audio, text transcriptions).
 
 Process module files by curriculum element type and generate all format renderings.
 
-Organizes outputs by curriculum element type (assignments, lab-protocols, lecture-content, study-guides) with the requested format set.
+Organizes outputs by active curriculum element type (lab-protocols, lecture-content, study-guides) with the requested format set.
 
 **Args**:
 

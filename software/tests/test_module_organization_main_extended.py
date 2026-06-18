@@ -69,7 +69,7 @@ def test_get_module_statistics(sample_module_structure):
 
     assert stats["module_number"] == 1
     assert stats["total_files"] > 0
-    assert stats["total_directories"] > 0
+    assert stats["total_directories"] == 0
     assert stats["has_readme"] is True
     assert stats["has_agents"] is True
     assert stats["is_valid"] is True
@@ -82,14 +82,15 @@ def test_get_module_statistics_with_assignments(temp_dir):
     course_path = str(temp_dir)
     module_path = create_module_structure(course_path, 1)
 
-    # Add an assignment
+    # Add optional legacy assignment content.
     assignments_dir = Path(module_path) / "assignments"
+    assignments_dir.mkdir()
     assignment_file = assignments_dir / "module-1-assignment-1-test.md"
     assignment_file.write_text("# Assignment\n", encoding="utf-8")
 
     stats = get_module_statistics(module_path)
     assert stats["assignment_count"] == 1
-    assert stats["total_files"] >= 5  # README, AGENTS, assignments README, AGENTS, assignment
+    assert stats["total_files"] >= 5  # README, AGENTS, questions, keys, assignment
 
 
 def test_get_module_statistics_nonexistent():

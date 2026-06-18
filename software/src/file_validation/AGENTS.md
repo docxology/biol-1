@@ -13,7 +13,7 @@ Validate course module structure, file naming conventions, extensions, and provi
 **What this module does:**
 - Validates module file structure and organization
 - Checks file naming conventions
-- Verifies required files and directories exist
+- Verifies required module source files exist
 - Provides detailed validation reports
 - Checks file sizes and extensions
 
@@ -363,8 +363,9 @@ Validate and analyze file name structure.
 
 **File**: `src/file_validation/config.py`
 
-- `REQUIRED_FILES`: List of required files in each module (`["README.md", "AGENTS.md"]`)
-- `REQUIRED_DIRECTORIES`: List of required directories (`["assignments"]`)
+- `REQUIRED_FILES`: List of required files in each active BIOL-1-style module (`["README.md", "AGENTS.md", "questions.md", "keys-to-success.md"]`)
+- `REQUIRED_DIRECTORIES`: List of required directories (`[]`; BIOL-1 modules do not require `assignments/`)
+- `ROOT_CONTENT_FILES`: Root-level BIOL-1 source names exempt from module-prefixed output naming checks
 - `KEBAB_CASE_PATTERN`: Regex pattern for kebab-case validation
 - `MODULE_PREFIX_PATTERN`: Regex pattern for module prefix (`^module-\d+-`)
 - `VALID_EXTENSIONS`: List of valid file extensions (`[".md", ".pdf", ".pptx", ".docx", ".txt", ".html"]`)
@@ -386,10 +387,11 @@ Validate and analyze file name structure.
 
 ### File Naming Conventions
 
-- All course material files must have module prefix: `module-N-`
-- Files must follow kebab-case naming
+- Generated course material files must have module prefix: `module-N-`
+- Source files must follow the BIOL-1 module contract or kebab-case resource naming
 - Specific patterns for different file types:
-  - Assignments: `module-N-assignment-M[-description].(md|pdf)`
+  - Root source files: `questions.md`, `keys-to-success.md`
+  - Optional legacy assignments: `module-N-assignment-M[-description].(md|pdf)` when an `assignments/` folder exists
   - Lectures: `module-N-lecture-description.(pdf|pptx)`
   - Lab protocols: `module-N-lab-M-description.md`
   - Study guides: `module-N-study-guide.(md|pdf)`
@@ -400,7 +402,8 @@ Validate and analyze file name structure.
 - Module directory must contain:
   - `README.md` file
   - `AGENTS.md` file
-  - `assignments/` directory
+  - `questions.md` file
+  - `keys-to-success.md` file
 
 ### File Extensions
 

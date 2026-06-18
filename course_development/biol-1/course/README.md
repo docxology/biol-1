@@ -6,7 +6,7 @@ This directory contains all public course materials for **BIOL-1: General Biolog
 
 ## Course Structure
 
-The course covers **15** content modules progressing through foundational biology concepts:
+The course covers **16** content modules progressing through foundational biology concepts:
 
 ### Modules
 
@@ -27,6 +27,7 @@ The course covers **15** content modules progressing through foundational biolog
 | 13 | How Populations Evolve | [module-13-how-populations-evolve](module-13-how-populations-evolve/) |
 | 14 | Macroevolution | [module-14-macroevolution](module-14-macroevolution/) |
 | 15 | Population & Systems Ecology | [module-15-population-systems-ecology](module-15-population-systems-ecology/) |
+| 16 | Capstone Systems Synthesis | [module-16-capstone-systems-synthesis](module-16-capstone-systems-synthesis/) |
 
 ## Directory Organization
 
@@ -36,18 +37,21 @@ course/
 ├── AGENTS.md                    # Technical documentation
 │
 ├── exams/                       # Exam materials
-├── labs/                        # 17 laboratory protocols (lab-NN_topic.md)
+├── labs/                        # 16 laboratory protocols (lab-NN_topic.md)
 │   ├── lab-01_measurement-methods.md
 │   ├── dashboards/              # lab-NN_*-dashboard.html (one per numbered lab)
 │   └── output/                  # Generated lab outputs
 ├── practice_tests/              # Practice tests with answer keys
 ├── quizzes/                     # Quiz materials
+├── review_materials/            # Non-primary exam review worksheets
 │
 └── module-XX-topic/             # Module directories
     ├── README.md
     ├── AGENTS.md
-    ├── questions.md             # Practice questions (source)
-    ├── keys-to-success.md       # Study guide (source)
+    ├── module.toml              # Canonical typed source
+    ├── questions.md             # Generated learning questions
+    ├── keys-to-success.md       # Generated study guide
+    ├── practice-quiz.md         # Generated practice quiz
     ├── resources/               # Optional module-local assets
     └── output/                  # Generated — do not edit by hand
         ├── study-guides/        # PDF, DOCX, MD by default
@@ -60,7 +64,7 @@ Lecture slide PDFs live under **[../resources/slides/](../resources/slides/)**, 
 
 Each module directory contains:
 
-- **questions.md** / **keys-to-success.md**: Source markdown for the publish pipeline
+- **module.toml**: Canonical typed source for topics, contents, terms, learning questions, quiz items, linked lab, and generated visuals
 - **output/**: Generated multi-format outputs (PDF, DOCX, MD by default; HTML, TXT, and MP3 are opt-in) and `website/index.html`
 - **resources/** (optional): Supplementary materials for that module only
 

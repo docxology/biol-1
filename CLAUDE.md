@@ -1,149 +1,80 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-> **Complete Documentation**: See [software/docs/README.md](software/docs/README.md) for visual diagrams, the full documentation map, and system architecture.
+This file provides guidance to Claude Code (claude.ai/code) when working with this repository. See [software/docs/README.md](software/docs/README.md) for the full documentation map and architecture.
 
 ## Project Overview
 
-CR-BIO is a course management and content generation system for Biology courses at College of the Redwoods. It converts Markdown source files into multiple output formats (PDF, DOCX, HTML, TXT, MD, MP3, interactive websites) for two courses:
-
-- **BIOL-1**: Biology at Pelican Bay (15 content modules under `course/module-*`)
-- **BIOL-8**: Human Biology at College of the Redwoods (17 modules under `course/module-*`)
+CR-BIO is the private source and generation repository for College of the Redwoods biology materials. The active Fall 2026 course model is **BIOL-1: General Biology at Pelican Bay** with 16 content modules. Spring 2026 BIOL-1 and BIOL-8 materials are historical snapshots under `archive/spring-2026/` and are not active publish targets.
 
 ## Development Commands
 
-All Python commands run from `software/` using `uv` as the package manager.
+All Python commands run from `software/` using `uv` unless noted.
 
 ```bash
-# Install dependencies
 cd software && uv sync --extra dev
-
-# System deps for WeasyPrint (macOS)
-brew install cairo pango gdk-pixbuf glib
-export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+uv run pytest
+uv run ruff check .
+uv run mypy src
+uv run python scripts/validate_repo_contracts.py
 ```
 
-Note: `publish.py` auto-sets `DYLD_FALLBACK_LIBRARY_PATH` on macOS, so manual export is only needed when running scripts directly.
+`publish.py` auto-sets the macOS WeasyPrint runtime path; manual `DYLD_FALLBACK_LIBRARY_PATH` export is only needed for direct low-level experiments.
 
-### Testing
+## Structured Module Source
+
+BIOL-1 module authoring is centered on `course_development/biol-1/course/module-XX-*/module.toml`. This typed manifest is the source of truth for:
+
+- module number, slug, title, and linked lab
+- topics and content sequence
+- learning objectives and key terms
+- learning questions and generated practice quiz items
+- module-local assets and deterministic generated SVG concept cards
+
+Generated files include `keys-to-success.md`, `questions.md`, `practice-quiz.md`, and `resources/generated/*`. Edit `module.toml`, then regenerate. Do not hand-edit generated module Markdown as canonical source.
 
 ```bash
 cd software
-uv run pytest tests/ -v                                    # All tests
-uv run pytest tests/test_batch_processing_main.py -v       # Single file
-uv run pytest tests/test_batch_processing_main.py::test_name -v  # Single test
-uv run pytest -m "not requires_internet"                   # Skip network tests
-uv run pytest --cov=src --cov-report=html                  # Coverage report
+uv run python scripts/generate_module_materials.py --course biol-1
+uv run python scripts/generate_module_materials.py --course biol-1 --module 13 --dry-run
 ```
 
-Note: `pyproject.toml` already configures `--cov=src`, `--cov-report=term-missing`, and `-v` via `addopts`.
-
-### Linting & Formatting
+## Publishing
 
 ```bash
-cd software
-uv run black src/ tests/ --check   # Format check (line-length=100, py311)
-uv run ruff check src/ tests/      # Lint (line-length=100, py311)
-uv run mypy src/                   # Type check (disallow_untyped_defs=true)
-```
-
-### Content Generation
-
-```bash
-# Full publishing pipeline from repo root (reads publish.toml config)
+# From repo root
+python publish.py --dry-run
+python publish.py --skip-git
 python publish.py
-python publish.py --dry-run                    # Preview without executing
-python publish.py --override-formats pdf,html  # Override formats
 
-# Git operations
-python publish.py --git-only     # Skip generation, commit + push only
-python publish.py --skip-git     # Run pipeline but skip git push
-python publish.py --setup-git    # Configure git remotes from publish.toml
-
-# Direct script access from software/
+# Direct generation from software/
 cd software
-uv run python scripts/generate_all_outputs.py --course biol-8        # One course
-uv run python scripts/generate_module_renderings.py --course biol-8 --module 1  # Single module
-uv run python scripts/generate_module_website.py --course biol-8 --module 1     # Single website
-uv run python scripts/generate_syllabus_renderings.py --course biol-8           # Syllabus
-uv run python scripts/publish_course.py --course all                 # Publish to PUBLISHED/
-uv run python scripts/validate_outputs.py --course all               # Validate outputs
+uv run python scripts/generate_all_outputs.py --course biol-1
+uv run python scripts/generate_all_outputs.py --course biol-1 --module 1
+uv run python scripts/validate_outputs.py --course all
 ```
+
+The publish flow regenerates structured module materials before format conversion, then writes tracked artifacts under `PUBLISHED/biol-1/` for subtree publishing to `github.com/docxology/biol-1`.
 
 ## Architecture
 
-### Directory Layout
-
 ```text
-course_development/          # Source content (Markdown)
-  biol-{1,8}/
-    course/
-      module-XX-topic/       # keys-to-success.md, questions.md, output/
-      labs/                  # lab-XX_topic.md + dashboards/ (HTML)
-      exams/, quizzes/, practice_tests/  # Assessment content (BIOL-8 has full quiz set; BIOL-1 varies)
-    syllabus/                # Syllabus.md, Schedule.md, output/
-    resources/               # Slides PDFs
-    private/                 # Instructor-only (not published)
+course_development/biol-1/
+  course/
+    module-XX-topic/       # module.toml source; generated keys/questions/quiz/assets
+    labs/                  # lab-XX_topic.md + dashboards/
+    exams/, practice_tests/, quizzes/
+  syllabus/
+  resources/               # slides and shared assets
+  private/                 # instructor-only, not published
 
-PUBLISHED/                   # Generated outputs (independent git repos per course)
-  biol-1/                    # → github.com/docxology/biol-1
-  biol-8/                    # → github.com/docxology/biol-8
-
-software/
-  src/                       # 16 Python packages
-  scripts/                   # CLI orchestration scripts
-  tests/                     # pytest test suite
+archive/spring-2026/       # historical BIOL-1 and BIOL-8 snapshots
+PUBLISHED/biol-1/          # generated tracked public subtree
+software/src/              # module_content + renderers/converters/publish validation
 ```
 
-### Software Module Layers
+## Conventions
 
-Modules are in `software/src/`. Each has `__init__.py`, `main.py` (public API), `utils.py`, `config.py`.
-
-**Layer 0 - Independent:** `shared`, `module_organization`, `file_validation`, `publish`, `validation`, `lab_manual`, `content_processing`, `legacy_import`
-
-**Layer 1 - Core converters:** `markdown_to_pdf` (WeasyPrint), `text_to_speech` (gTTS), `speech_to_text` (SpeechRecognition)
-
-**Layer 2 - Composition:** `format_conversion`
-
-**Layer 3 - Orchestration:** `batch_processing`, `html_website`, `schedule`
-
-**Layer 4 - Integration:** `canvas_integration`
-
-### Publishing Pipeline
-
-Configured via `publish.toml` at repo root. Nine stages: clean → clean-source → generate → publish → copy_extras → flatten → reorganize → validate → git_push. The top-level `publish.py` reads this config and delegates to `software/scripts/publish_all.py`.
-
-Available formats: `pdf`, `docx`, `html`, `txt`, `md`, `mp3`. Per-course module/lab limits are configurable via `max_module` and `max_lab` in `publish.toml`.
-
-PUBLISHED/ subdirectories are independent git repos. `publish.py` uses `git subtree push` to deploy each course to its public repo (configured in `publish.toml [publish.git.repos.*]`).
-
-### Content Structure
-
-Each module contains two source files:
-
-- `keys-to-success.md` - Learning objectives, key concepts, study tips
-- `questions.md` - Study/review questions
-
-Labs use special directive syntax for interactive HTML dashboards:
-
-- `{fill:text}`, `{fill:textarea rows=N}` - Fillable fields
-- `<!-- lab:data-table rows=N -->` - Data tables
-- `<!-- lab:reflection -->` - Reflection boxes
-
-## Real Methods Policy
-
-**No mocks, stubs, or fakes anywhere in the codebase.** This is enforced in `.cursorrules`:
-
-- All functions use real library implementations (WeasyPrint, gTTS, etc.)
-- All tests use real file operations and real library calls
-- External API tests validate structure/logic only, not actual API calls
-- Integration tests requiring external services are marked with `@pytest.mark.requires_internet` or `@pytest.mark.requires_api`
-
-## Key Conventions
-
-- Python 3.11+, managed with `uv`
-- Type hints on all functions, docstrings required
-- Black formatting (100 char lines), Ruff linting, mypy type checking
-- Module public API lives in `main.py`, internals in `utils.py`, constants in `config.py`
-- Two supported courses: `biol-1` and `biol-8` are listed in `batch_processing/config.py` as `SUPPORTED_COURSES`. Module counts (**16** for BIOL-1, **17** for BIOL-8) come from `course_development/`, not from that config.
+- Python 3.11+, `uv`, Ruff, mypy, pytest.
+- Public APIs live in package `main.py`; docs live in package `README.md` and `AGENTS.md`.
+- Production code must stay mock-free; tests use real temp files and mark external/slow tests explicitly.
+- BIOL-1 active modules do not use `assignments/` folders. Legacy import code may reference old assignment conventions only as archive/import compatibility.

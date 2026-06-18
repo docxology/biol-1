@@ -1,86 +1,56 @@
-# Module 8: Cellular Genetics — Keys to Success
+<!-- Generated from module.toml; edit the manifest, not this file. -->
+# Module 8: Cellular Genetics - Keys to Success
 
 ## Learning Objectives
 
 By the end of this module, you should be able to:
 
-1. Describe the stages of the cell cycle (interphase and mitosis)
-2. List the phases of mitosis in order (PMAT)
-3. Compare mitosis and meiosis
-4. Explain how meiosis creates genetic diversity
-5. Describe what happens when cell division goes wrong (cancer, nondisjunction)
+1. Relate chromosomes to DNA organization.
+2. Compare the purpose and products of mitosis and meiosis.
+3. Explain how meiosis reduces chromosome number.
+4. Describe how crossing over and independent assortment increase variation.
+5. Interpret chromosome number errors at an introductory level.
 
-## The Big Picture
+## Topics
 
-> Cells divide for two reasons: **Mitosis** = growth and repair (identical copies). **Meiosis** = making sex cells/gametes (unique combinations).
+- Chromosomes and cell cycle
+- Mitosis for growth and repair
+- Meiosis for gametes
+- Variation from recombination and assortment
+- Errors and genetic consequences
 
-## Key Terms
+## Key Terms to Know
 
-### Chromosome Basics
+- **Chromosome** - DNA-protein structure carrying genes.
+- **Cell cycle** - Ordered sequence of cell growth, DNA replication, and division.
+- **Mitosis** - Nuclear division producing identical daughter nuclei.
+- **Meiosis** - Division process producing haploid gametes.
+- **Gamete** - Haploid reproductive cell.
+- **Crossing over** - Exchange of DNA between homologous chromosomes.
+- **Independent assortment** - Random orientation of chromosome pairs in meiosis.
+- **Nondisjunction** - Failure of chromosomes to separate correctly.
 
-- **Chromatin** — Loose DNA (what it looks like between divisions)
-- **Chromosome** — Tightly packed DNA (what it looks like during division)
-- **Sister Chromatids** — Two identical copies of one chromosome, joined at the centromere
-- **Homologous Chromosomes** — Matching pair (one from mom, one from dad); same genes, may have different alleles
-- **Diploid (2n)** — Two sets of chromosomes (body cells); humans: 2n = 46
-- **Haploid (n)** — One set of chromosomes (sex cells); humans: n = 23
+## Core Contents
 
-### Cell Cycle
-
-- **G₁** — Cell grows
-- **S** — DNA is copied (replicated)
-- **G₂** — Cell prepares to divide
-- **M Phase** — Mitosis + cytokinesis
-
-### Mitosis (PMAT)
-
-| Phase | What Happens |
-|---|---|
-| **Prophase** | Chromosomes condense; nuclear envelope breaks down |
-| **Metaphase** | Chromosomes line up in the Middle |
-| **Anaphase** | Sister chromatids are pulled Apart |
-| **Telophase** | Two new nuclei form; chromosomes relax |
-| **Cytokinesis** | Cell splits in two |
-
-- Animals: **cleavage furrow** (pinches)
-- Plants: **cell plate** (builds a wall)
-- Result: **2 identical diploid cells**
-
-### Meiosis
-
-- Two rounds of division: Meiosis I and Meiosis II
-- **Meiosis I** — Homologs separate (reduction division)
-- **Meiosis II** — Sister chromatids separate (like mitosis)
-- Result: **4 unique haploid cells**
-
-## Mitosis vs. Meiosis
-
-| | Mitosis | Meiosis |
-|---|---|---|
-| **Divisions** | 1 | 2 |
-| **Daughter cells** | 2 | 4 |
-| **Ploidy** | Diploid (2n) | Haploid (n) |
-| **Identical to parent?** | Yes | No |
-| **Purpose** | Growth, repair | Make gametes |
-| **Crossing over?** | No | Yes |
-
-## Three Sources of Genetic Variation
-
-1. **Crossing over** (Prophase I) — Homologs swap pieces of DNA
-2. **Independent assortment** (Metaphase I) — Homologs line up randomly
-3. **Random fertilization** — Any sperm + any egg
-
-## When Things Go Wrong
-
-- **Nondisjunction** — Chromosomes don't separate correctly → wrong number of chromosomes
-- **Aneuploidy** — Having too many or too few chromosomes (e.g., Down syndrome = trisomy 21)
-- **Cancer** — Cell cycle checkpoints fail → uncontrolled cell division
-- **p53** — A tumor suppressor protein; when it's mutated, cells don't stop dividing
+1. Chromosomes organize DNA so cells can divide accurately.
+2. Mitosis produces genetically identical daughter cells for growth and repair.
+3. Meiosis produces haploid gametes for sexual reproduction.
+4. Crossing over and independent assortment create genetic variation.
+5. Nondisjunction and other errors can change chromosome number.
 
 ## Study Tips
 
-1. **PMAT** — Prophase, Metaphase, Anaphase, Telophase
-2. **"Homologs in I, Sisters in II"** — What separates in each meiosis division
-3. **Draw it** — Sketch a cell going through mitosis next to one going through meiosis
-4. **Think about WHY** — Mitosis = copies, Meiosis = variety
-5. **Cancer = broken brakes** — Checkpoints are the brakes; oncogenes are stuck accelerators
+1. Start with the module's central claim before memorizing vocabulary.
+2. Use the same-numbered lab as the evidence check for the module.
+3. Explain one mechanism in words, then redraw it as a simple diagram.
+4. Answer retrieval questions without notes, then revise with the terms list.
+
+## Connected Lab
+
+- `lab-08_cellular-genetics.md`
+
+## Generated Visuals
+
+- [Module 08: Cellular Genetics Concept Map](resources/generated/module-08-concept-map.svg)
+- [Module 08: Cellular Genetics Process Model](resources/generated/module-08-process-model.svg)
+- [Module 08: Cellular Genetics Retrieval Card](resources/generated/module-08-retrieval-card.svg)

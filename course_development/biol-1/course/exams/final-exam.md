@@ -11,7 +11,7 @@ Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-## Modules 01–15 (cumulative)
+## Modules 01–16 (cumulative)
 
 **Total Points**: 100  
 
@@ -472,9 +472,11 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 **Option C — Speciation and isolation.** Summarize the **biological species concept** at an introductory level. Compare **prezygotic** and **postzygotic** barriers with **two** examples total (one of each type). Explain **allopatric** versus **sympatric** speciation and give **one** plant-focused example for sympatric routes.
 
+**Option D — Capstone systems synthesis.** Choose one biological scenario and explain it across at least **three scales** (for example molecule/cell/organism/population/ecosystem). Include one feedback loop or constraint and describe what evidence would make your explanation stronger.
+
 <br>
 
-**Essay Option Letter (A, B, or C):** \_\_\_\_\_  
+**Essay Option Letter (A, B, C, or D):** \_\_\_\_\_  
 
 <br>
 <br>

@@ -387,7 +387,7 @@ module-12-darwin-evolution/
 
 Which formats appear depends on `publish.toml` / CLI (`--formats`, MP3 optional). Lab manuals render under `course/labs/output/` instead.
 
-> **Lab counting note**: BIOL-8 ships **18 numbered lab protocols** (`lab-01_*` … `lab-18_*`) plus an optional **follow-up** page (`lab-14_microbiology-followup.md`) for reading the microbiology plates after incubation. Validation reports both counts separately, e.g. `Labs (source tree): 19 markdown (18 numbered + 1 supplemental)`. BIOL-1 has **17 numbered labs** today.
+> **Lab counting note**: BIOL-8 ships **18 numbered lab protocols** (`lab-01_*` … `lab-18_*`) plus an optional **follow-up** page (`lab-14_microbiology-followup.md`) for reading the microbiology plates after incubation. Validation reports both counts separately, e.g. `Labs (source tree): 19 markdown (18 numbered + 1 supplemental)`. BIOL-1 has **16 numbered primary labs** today; exam-review worksheets live under `review_materials/`.
 
 ---
 

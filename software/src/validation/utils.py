@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from . import config
+from src.shared.file_utils import is_within_directory
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +26,11 @@ def count_files_by_extension(directory: Path) -> Dict[str, int]:
         return counts
         
     for file_path in directory.rglob("*"):
-        if file_path.is_file() and not file_path.name.startswith("."):
+        if (
+            file_path.is_file()
+            and not file_path.name.startswith(".")
+            and is_within_directory(file_path, directory)
+        ):
             ext = file_path.suffix.lower().lstrip(".")
             if ext:
                 counts[ext] = counts.get(ext, 0) + 1
@@ -47,10 +52,19 @@ def get_module_directories(course_path: Path) -> List[Path]:
     if not modules_path.exists():
         return []
         
-    return sorted([
-        d for d in modules_path.iterdir()
-        if d.is_dir() and d.name.startswith("module-")
-    ])
+    def sort_key(path: Path) -> tuple[int, str]:
+        import re
+
+        match = re.match(r"module-(\d+)", path.name)
+        return (int(match.group(1)) if match else 9999, path.name)
+
+    return sorted(
+        [
+            d for d in modules_path.iterdir()
+            if d.is_dir() and d.name.startswith("module-")
+        ],
+        key=sort_key,
+    )
 
 
 def check_output_directory(module_path: Path) -> Tuple[bool, Dict[str, bool]]:

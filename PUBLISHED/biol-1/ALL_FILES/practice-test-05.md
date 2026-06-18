@@ -1,6 +1,6 @@
 # BIOL-1 Practice Test 05
 
-## Comprehensive Final Review (Modules 01–15)
+## Comprehensive Final Review (Modules 01–16)
 
 **College of the Redwoods — BIOL-1: General Biology (Pelican Bay, Fall 2026)**
 
@@ -787,6 +787,14 @@ D) Flows through and ends largely as heat (not recycled like chemical elements i
 <br><br><br><br><br><br>
 
 **135.** **(Module 15)** Explain the **10% energy rule** and **why** long food chains support fewer top predators than short chains from the same plant base.
+
+<br><br><br><br><br><br>
+
+**136.** **(Module 16)** In one paragraph, connect **DNA or genes**, **natural selection**, and **ecosystem limits** in a single biological system.
+
+<br><br><br><br><br><br>
+
+**137.** **(Module 16)** Explain why a strong biology answer often needs to name the **scale** of the evidence: molecule, cell, organism, population, community, or ecosystem.
 
 <br><br><br><br><br><br>
 

@@ -1,0 +1,186 @@
+[module]
+number = 7
+slug = "module-07-molecular-genetics"
+title = "Molecular Genetics"
+lab = "lab-07_molecular-genetics.md"
+topics = ["DNA structure", "Replication", "Transcription", "Translation", "Mutation and gene expression evidence"]
+contents = ["DNA stores information in nucleotide sequences and complementary base pairing.", "Replication copies DNA using each strand as a template.", "Transcription produces RNA from a DNA gene.", "Translation uses mRNA codons and ribosomes to build proteins.", "Mutations and expression patterns connect molecular changes to traits."]
+learning_objectives = ["Describe DNA structure and base-pairing rules.", "Explain why DNA replication is semiconservative.", "Compare transcription and translation.", "Use codons to connect mRNA sequence to amino acid sequence.", "Explain how mutation can alter protein and trait outcomes."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["How does DNA structure store information?", "Why does complementary base pairing matter?", "What does semiconservative replication mean?", "How is transcription different from translation?", "What does a codon specify?", "How do ribosomes participate in protein synthesis?", "How can a mutation change a protein?", "Why do some mutations have no visible effect?", "How does gene expression connect genotype to phenotype?", "What evidence would show that a gene is being expressed?"]
+
+[[terms]]
+name = "DNA"
+definition = "Nucleic acid that stores hereditary information."
+
+[[terms]]
+name = "Nucleotide"
+definition = "DNA or RNA subunit with sugar, phosphate, and base."
+
+[[terms]]
+name = "Replication"
+definition = "Process that copies DNA."
+
+[[terms]]
+name = "Transcription"
+definition = "Synthesis of RNA from a DNA template."
+
+[[terms]]
+name = "Translation"
+definition = "Synthesis of protein from mRNA codons."
+
+[[terms]]
+name = "Codon"
+definition = "Three-base mRNA sequence read during translation."
+
+[[terms]]
+name = "Mutation"
+definition = "Change in DNA sequence."
+
+[[terms]]
+name = "Gene expression"
+definition = "Use of genetic information to make RNA or protein."
+
+[[practice_quiz]]
+question = "Which statement best defines DNA in Module 07?"
+options = ["Nucleic acid that stores hereditary information.", "DNA or RNA subunit with sugar, phosphate, and base.", "Process that copies DNA.", "Synthesis of RNA from a DNA template."]
+answer = "A"
+explanation = "DNA anchors the dna structure partition of Molecular Genetics."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the replication partition?"
+options = ["Describe DNA structure and base-pairing rules.", "Explain why DNA replication is semiconservative.", "Compare transcription and translation.", "Use codons to connect mRNA sequence to amino acid sequence."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Molecular Genetics support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for transcription.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Molecular Genetics?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How does DNA structure store information? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 07: Molecular Genetics Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-07-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 07: Molecular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Molecular Genetics is best learned as a connected explanation linking dna structure, replication, and lab evidence."
+clusters = ["DNA structure", "Replication", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "DNA structure"
+detail = "DNA stores information in nucleotide sequences and complementary base pairing."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Replication"
+detail = "Replication copies DNA using each strand as a template."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Molecular Genetics turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "DNA"
+detail = "Nucleic acid that stores hereditary information."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Mutation and gene expression evidence"
+detail = "Mutations and expression patterns connect molecular changes to traits."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 07: Molecular Genetics Process Model"
+kind = "process-model"
+output = "resources/generated/module-07-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 07: Molecular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["DNA structure", "Replication", "Transcription"]
+outputs = ["Describe DNA structure and base-pairing rules.", "Explain why DNA replication is semiconservative.", "Compare transcription and translation."]
+feedbacks = ["Molecular Genetics evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["DNA stores information in nucleotide sequences and complementary base pairing.", "Mutations and expression patterns connect molecular changes to traits."]
+
+[[generated_images.stages]]
+label = "DNA structure"
+detail = "DNA stores information in nucleotide sequences and complementary base pairing."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Replication"
+detail = "Replication copies DNA using each strand as a template."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Transcription"
+detail = "Transcription produces RNA from a DNA gene."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Translation"
+detail = "Translation uses mRNA codons and ribosomes to build proteins."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Mutation and gene expression evidence"
+detail = "Mutations and expression patterns connect molecular changes to traits."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 07: Molecular Genetics Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-07-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 07: Molecular Genetics; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["DNA", "Nucleotide", "Replication", "Transcription", "Translation"]
+lab_connection = "Molecular Genetics gives concrete evidence for Module 07: Molecular Genetics."
+
+[[generated_images.prompts]]
+prompt = "How does DNA structure store information?"
+check = "Describe DNA structure and base-pairing rules."
+
+[[generated_images.prompts]]
+prompt = "Why does complementary base pairing matter?"
+check = "Explain why DNA replication is semiconservative."
+
+[[generated_images.prompts]]
+prompt = "What does semiconservative replication mean?"
+check = "Compare transcription and translation."
+
+[[generated_images.prompts]]
+prompt = "How is transcription different from translation?"
+check = "Use codons to connect mRNA sequence to amino acid sequence."

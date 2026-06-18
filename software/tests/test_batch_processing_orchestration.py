@@ -54,6 +54,25 @@ class TestProcessCourseModules:
         assert mock_process_by_type.call_count == 2
         assert mock_process_website.call_count == 2
 
+    def test_process_course_modules_skips_website_without_html(
+        self, temp_dir, mock_process_by_type, mock_process_website
+    ):
+        """Website generation is gated by explicit HTML format request."""
+        course_dir = temp_dir / "course"
+        course_dir.mkdir()
+        (course_dir / "module-01").mkdir()
+
+        result = process_course_modules(
+            temp_dir,
+            "Test Course",
+            generate_website=True,
+            formats=["pdf", "docx"],
+        )
+
+        assert len(result["modules"]) == 1
+        assert mock_process_by_type.call_count == 1
+        assert mock_process_website.call_count == 0
+
     def test_process_course_modules_missing_dir(self, temp_dir):
         """Test processing with missing course directory."""
         result = process_course_modules(temp_dir, "Test Course")

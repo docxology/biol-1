@@ -1,6 +1,6 @@
 # BIOL-1 Practice Test 05 — Answer Key
 
-## Comprehensive Final Review (Modules 01–15)
+## Comprehensive Final Review (Modules 01–16)
 
 ---
 
@@ -186,6 +186,10 @@ Scoring: accept reasonable wording; require the **bold ideas** in each rubric fo
 **134. (Module 15) Exponential vs logistic:** **Exponential**: rapid **unlimited-phase** growth; **logistic**: growth **slows** as it approaches **carrying capacity K** (resources/limits).
 
 **135. (Module 15) 10% rule & chains:** **~10%** energy **transferred** to **next trophic level** (rest **heat** / metabolism); **more links** → **more loss** → **fewer** top predators supported from the same **producer base**.
+
+**136. (Module 16) Cross-scale system:** A complete response links **genetic information/variation** to a trait or process, explains how **selection** can change trait frequency over generations, and ties the result to **resource limits**, trophic interactions, carrying capacity, or nutrient/energy constraints.
+
+**137. (Module 16) Evidence scale:** Strong responses state the scale because different evidence answers different questions: molecules show mechanisms, cells show processes, organisms show traits, populations show allele or abundance change, communities show interactions, and ecosystems show energy/matter constraints.
 
 ---
 

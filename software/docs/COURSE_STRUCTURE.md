@@ -137,8 +137,8 @@ course/labs/
 ├── lab-14_microbiology-followup.md
 ├── lab-15_cardiopulmonary-system.md
 ├── lab-16_exam-03-review.md
-├── lab-17_ecology.md
-├── lab-18_evolution.md
+├── lab-15_population-systems-ecology.md
+├── lab-16_capstone-systems-synthesis.md
 ├── dashboards/
 │   ├── lab-01_measurement-methods-dashboard.html
 │   └── …

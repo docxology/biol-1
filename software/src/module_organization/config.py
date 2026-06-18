@@ -2,11 +2,16 @@
 
 from typing import List
 
-# Required files in each module
-REQUIRED_FILES: List[str] = ["README.md", "AGENTS.md"]
+# Required files in each active BIOL-1-style module
+REQUIRED_FILES: List[str] = [
+    "README.md",
+    "AGENTS.md",
+    "questions.md",
+    "keys-to-success.md",
+]
 
-# Required directories in each module
-REQUIRED_DIRECTORIES: List[str] = ["assignments"]
+# BIOL-1 modules do not require module-local subdirectories.
+REQUIRED_DIRECTORIES: List[str] = []
 
 # Template content for README.md
 README_TEMPLATE: str = """# Module {module_number}
@@ -17,17 +22,13 @@ Module {module_number} course materials.
 
 ## Contents
 
-### Assignments
-
-Assignments for this module are located in the [`assignments/`](assignments/) directory.
-
 ### Course Materials
 
 This module includes:
-- **Lecture Slides**: Presentation materials for module topics
-- **Lab Protocols and Notes**: Laboratory instructions and documentation
-- **Study Guides**: Student study materials
-- **Quizzes**: Assessment materials
+- **questions.md**: Practice questions and self-check prompts
+- **keys-to-success.md**: Study guide and key ideas for the module
+- Optional **resources/**: Module-local datasets or images
+- Generated **output/**: Rendered study guide and website artifacts
 
 ## Documentation
 
@@ -43,45 +44,28 @@ AGENTS_TEMPLATE: str = """# Module {module_number} Technical Documentation
 
 ```
 module-{module_number}/
-├── assignments/      # Assignment files
-├── README.md         # Module overview
-└── AGENTS.md         # This file
+├── README.md             # Module overview
+├── AGENTS.md             # This file
+├── questions.md          # Practice questions
+├── keys-to-success.md    # Study guide / keys
+├── resources/            # Optional module-local assets
+└── output/               # Generated artifacts
 ```
 
 ### File Types
 
-- **Assignments**: Markdown or PDF files in `assignments/` directory
-- **Lecture Slides**: PDF or PowerPoint files
-- **Lab Protocols**: Markdown files
-- **Study Guides**: Markdown or PDF files
-- **Quizzes**: Markdown or PDF files
+- **Practice Questions**: `questions.md`
+- **Study Guide**: `keys-to-success.md`
+- **Resources**: Optional module-local datasets and images
+- **Generated Output**: Created by the publish pipeline, not edited by hand
 
 ## File Naming Conventions
 
-### Assignments
-- Format: `module-{module_number}-assignment-[number]-[description].md`
-- Example: `module-{module_number}-assignment-1-introduction.md`
-
-### Lecture Materials
-- Format: `module-{module_number}-lecture-[topic].pdf` or `.pptx`
-- Example: `module-{module_number}-lecture-introduction.pdf`
-
-### Lab Protocols
-- Format: `module-{module_number}-lab-[number]-[topic].md`
-- Example: `module-{module_number}-lab-1-safety.md`
-
-### Study Guides
-- Format: `module-{module_number}-study-guide.md`
-
-### Quizzes
-- Format: `module-{module_number}-quiz.md`
+- Source files use stable names: `README.md`, `AGENTS.md`, `questions.md`, and `keys-to-success.md`.
+- Generated output filenames are prefixed with the module folder name by the publish pipeline.
+- Optional resource filenames should use lowercase kebab-case.
 
 ## File Management
-
-### Assignment Organization
-- All assignments stored in `assignments/` subdirectory
-- Numbered sequentially
-- Descriptive names for easy identification
 
 ### Material Updates
 - Maintain version control for major revisions
@@ -93,7 +77,7 @@ module-{module_number}/
 ### Preparation
 - Verify all required files are present
 - Check file naming conventions
-- Ensure folder structure matches Canvas organization
+- Ensure generated output is refreshed before upload
 - Validate that no private materials are included
 
 ### Upload Process
@@ -102,71 +86,47 @@ module-{module_number}/
 - Update Canvas links after upload
 """
 
-# Template content for assignments/README.md
-ASSIGNMENTS_README_TEMPLATE: str = """# Module {module_number} Assignments
+# Template content for keys-to-success.md
+KEYS_TO_SUCCESS_TEMPLATE: str = """# Module {module_number}: Keys to Success
 
-## Overview
+## Learning Objectives
 
-This directory contains assignment files for Module {module_number}.
+By the end of this module, you should be able to:
 
-## Assignment Files
+1. Describe the central concepts for Module {module_number}.
+2. Apply those concepts to representative BIOL-1 examples.
+3. Explain how the module connects to earlier course material.
 
-Assignment files will be added to this directory as they are created.
+## Introduction and Big Picture
 
-## File Naming
+Add the module overview here.
 
-Assignments follow the naming convention: `module-{module_number}-assignment-[number]-[description].md`
+## Key Information and Concepts
 
-## Documentation
+Add numbered concept sections here.
 
-- **[AGENTS.md](AGENTS.md)**: Technical documentation for assignment management processes
+## Strategic Tips for Studying
+
+Add study tips here.
 """
 
-# Template content for assignments/AGENTS.md
-ASSIGNMENTS_AGENTS_TEMPLATE: str = """# Module {module_number} Assignments Technical Documentation
+# Template content for questions.md
+QUESTIONS_TEMPLATE: str = """# Module {module_number}: Practice Questions
 
-## Assignment Management
+## Multiple Choice
 
-### File Organization
+1. Add a module-aligned multiple-choice question here.
 
-- All assignments stored in this directory
-- Sequential numbering: `module-{module_number}-assignment-1`, `module-{module_number}-assignment-2`, etc.
-- Descriptive suffixes for topic identification
+A. Option A
+B. Option B
+C. Option C
+D. Option D
 
-### Naming Convention
+## Fill in the Blank
 
-- Format: `module-{module_number}-assignment-[number]-[description].md`
-- Number: Sequential assignment number
-- Description: Brief topic or title identifier
+2. Add a concise fill-in prompt here: ________
 
-### File Structure
+## Free Response
 
-Assignment files should include:
-- Assignment title
-- Instructions
-- Requirements
-- Submission guidelines
-- Due dates
-
-## Workflow
-
-### Creating Assignments
-
-1. Create file with proper naming convention
-2. Include standard assignment sections
-3. Update parent module README.md with assignment reference
-4. Document in this AGENTS.md file
-
-### Updating Assignments
-
-1. Maintain version history for major changes
-2. Update assignment index in README.md
-3. Document changes in this file
-
-## Quality Checks
-
-- Verify naming convention compliance
-- Ensure all required sections are present
-- Check for consistency across assignments
-- Validate file format and structure
+3. Add a short free-response prompt here.
 """

@@ -4,10 +4,13 @@ import logging
 from pathlib import Path
 from typing import List, Optional
 
-from src.shared.file_utils import ensure_output_directory, find_files  # noqa: F401
-from src.shared.course_config import active_course_paths, resolve_course_selection
-
-from . import config
+from src.shared.file_utils import ensure_output_directory, find_files, is_within_directory  # noqa: F401
+from src.shared.course_config import (
+    active_course_paths,
+    enabled_publish_formats,
+    validate_supported_formats,
+    resolve_course_selection,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +49,8 @@ def should_process_file(file_path: Path, skip_dirs: List[str]) -> bool:
     Returns:
         True if file should be processed, False otherwise
     """
+    if file_path.is_symlink():
+        return False
     for part in file_path.parts:
         if part in skip_dirs:
             return False
@@ -63,7 +68,9 @@ def get_relative_output_path(source_file: Path, source_dir: Path, output_dir: Pa
     Returns:
         Output file path maintaining relative structure
     """
-    relative_path = source_file.relative_to(source_dir)
+    if not is_within_directory(source_file, source_dir):
+        raise ValueError(f"Source file is outside source directory: {source_file}")
+    relative_path = source_file.resolve().relative_to(source_dir.resolve())
     output_file = output_dir / relative_path
     return output_file
 
@@ -98,14 +105,10 @@ def get_formats_to_process(formats_arg: str) -> List[str]:
         List of valid format strings
     """
     if formats_arg == "all":
-        return list(config.AVAILABLE_FORMATS)
+        return enabled_publish_formats()
 
     formats = [f.strip().lower() for f in formats_arg.split(",")]
-    invalid = [f for f in formats if f not in config.AVAILABLE_FORMATS]
-    if invalid:
-        logger.warning(f"Unknown formats will be ignored: {invalid}")
-
-    return [f for f in formats if f in config.AVAILABLE_FORMATS]
+    return validate_supported_formats(formats)
 
 
 def generate_dry_run_report(
@@ -161,17 +164,12 @@ def generate_dry_run_report(
 
             for module_dir in modules:
                 md_files = list(module_dir.glob("*.md"))
-                assignment_files = (
-                    list((module_dir / "assignments").glob("*.md"))
-                    if (module_dir / "assignments").exists()
-                    else []
-                )
                 lines.append(
                     f"  {module_dir.name}: {len(md_files)} root files, "
-                    f"{len(assignment_files)} assignments"
+                    "structured BIOL-1 module source"
                 )
                 lines.append(f"    Would generate: {', '.join(formats)}")
-                if generate_website:
+                if generate_website and "html" in formats:
                     lines.append("    Would generate: website/index.html")
 
         syllabus_dir = course_path / "syllabus"

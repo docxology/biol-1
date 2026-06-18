@@ -1,0 +1,186 @@
+[module]
+number = 8
+slug = "module-08-cellular-genetics"
+title = "Cellular Genetics"
+lab = "lab-08_cellular-genetics.md"
+topics = ["Chromosomes and cell cycle", "Mitosis for growth and repair", "Meiosis for gametes", "Variation from recombination and assortment", "Errors and genetic consequences"]
+contents = ["Chromosomes organize DNA so cells can divide accurately.", "Mitosis produces genetically identical daughter cells for growth and repair.", "Meiosis produces haploid gametes for sexual reproduction.", "Crossing over and independent assortment create genetic variation.", "Nondisjunction and other errors can change chromosome number."]
+learning_objectives = ["Relate chromosomes to DNA organization.", "Compare the purpose and products of mitosis and meiosis.", "Explain how meiosis reduces chromosome number.", "Describe how crossing over and independent assortment increase variation.", "Interpret chromosome number errors at an introductory level."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["Why do cells package DNA into chromosomes?", "What is the purpose of mitosis?", "What is the purpose of meiosis?", "How do the products of mitosis and meiosis differ?", "Why must gametes be haploid?", "How does crossing over create variation?", "How does independent assortment create variation?", "What can happen if chromosomes fail to separate?", "How does cell division connect to inheritance?", "What evidence would distinguish mitosis from meiosis?"]
+
+[[terms]]
+name = "Chromosome"
+definition = "DNA-protein structure carrying genes."
+
+[[terms]]
+name = "Cell cycle"
+definition = "Ordered sequence of cell growth, DNA replication, and division."
+
+[[terms]]
+name = "Mitosis"
+definition = "Nuclear division producing identical daughter nuclei."
+
+[[terms]]
+name = "Meiosis"
+definition = "Division process producing haploid gametes."
+
+[[terms]]
+name = "Gamete"
+definition = "Haploid reproductive cell."
+
+[[terms]]
+name = "Crossing over"
+definition = "Exchange of DNA between homologous chromosomes."
+
+[[terms]]
+name = "Independent assortment"
+definition = "Random orientation of chromosome pairs in meiosis."
+
+[[terms]]
+name = "Nondisjunction"
+definition = "Failure of chromosomes to separate correctly."
+
+[[practice_quiz]]
+question = "Which statement best defines Chromosome in Module 08?"
+options = ["DNA-protein structure carrying genes.", "Ordered sequence of cell growth, DNA replication, and division.", "Nuclear division producing identical daughter nuclei.", "Division process producing haploid gametes."]
+answer = "A"
+explanation = "Chromosome anchors the chromosomes and cell cycle partition of Cellular Genetics."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the mitosis for growth and repair partition?"
+options = ["Relate chromosomes to DNA organization.", "Compare the purpose and products of mitosis and meiosis.", "Explain how meiosis reduces chromosome number.", "Describe how crossing over and independent assortment increase variation."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Cellular Genetics support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for meiosis for gametes.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Cellular Genetics?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: Why do cells package DNA into chromosomes? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 08: Cellular Genetics Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-08-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 08: Cellular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Cellular Genetics is best learned as a connected explanation linking chromosomes and cell cycle, mitosis for growth and repair, and lab evidence."
+clusters = ["Chromosomes and cell cycle", "Mitosis for growth and repair", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Chromosomes and cell cycle"
+detail = "Chromosomes organize DNA so cells can divide accurately."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Mitosis for growth and repair"
+detail = "Mitosis produces genetically identical daughter cells for growth and repair."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Cellular Genetics turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Chromosome"
+detail = "DNA-protein structure carrying genes."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Errors and genetic consequences"
+detail = "Nondisjunction and other errors can change chromosome number."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 08: Cellular Genetics Process Model"
+kind = "process-model"
+output = "resources/generated/module-08-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 08: Cellular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Chromosomes and cell cycle", "Mitosis for growth and repair", "Meiosis for gametes"]
+outputs = ["Relate chromosomes to DNA organization.", "Compare the purpose and products of mitosis and meiosis.", "Explain how meiosis reduces chromosome number."]
+feedbacks = ["Cellular Genetics evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Chromosomes organize DNA so cells can divide accurately.", "Nondisjunction and other errors can change chromosome number."]
+
+[[generated_images.stages]]
+label = "Chromosomes and cell cycle"
+detail = "Chromosomes organize DNA so cells can divide accurately."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Mitosis for growth and repair"
+detail = "Mitosis produces genetically identical daughter cells for growth and repair."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Meiosis for gametes"
+detail = "Meiosis produces haploid gametes for sexual reproduction."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Variation from recombination and assortment"
+detail = "Crossing over and independent assortment create genetic variation."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Errors and genetic consequences"
+detail = "Nondisjunction and other errors can change chromosome number."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 08: Cellular Genetics Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-08-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 08: Cellular Genetics; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Chromosome", "Cell cycle", "Mitosis", "Meiosis", "Gamete"]
+lab_connection = "Cellular Genetics gives concrete evidence for Module 08: Cellular Genetics."
+
+[[generated_images.prompts]]
+prompt = "Why do cells package DNA into chromosomes?"
+check = "Relate chromosomes to DNA organization."
+
+[[generated_images.prompts]]
+prompt = "What is the purpose of mitosis?"
+check = "Compare the purpose and products of mitosis and meiosis."
+
+[[generated_images.prompts]]
+prompt = "What is the purpose of meiosis?"
+check = "Explain how meiosis reduces chromosome number."
+
+[[generated_images.prompts]]
+prompt = "How do the products of mitosis and meiosis differ?"
+check = "Describe how crossing over and independent assortment increase variation."

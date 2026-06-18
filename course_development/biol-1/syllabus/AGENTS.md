@@ -44,7 +44,7 @@ output/
 └── [filename].md
 ```
 
-All output files are organized flat in the `output/` directory, matching the structure used for module assignments.
+All output files are organized flat in the `output/` directory, matching the flat syllabus output structure.
 
 ## File Naming
 
@@ -58,7 +58,7 @@ All output files are organized flat in the `output/` directory, matching the str
 
 - **Base Name**: Derived from source markdown filename (without extension)
 - **Extensions**: `.pdf`, `.docx`, `.md` by default; `.html`, `.txt`, and `.mp3` when requested
-- **Location**: Flat in `output/` directory (same structure as module assignments)
+- **Location**: Flat in `output/` directory (same flat syllabus output structure)
 
 ## Processing Script
 

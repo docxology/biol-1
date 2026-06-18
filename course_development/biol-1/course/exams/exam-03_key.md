@@ -70,7 +70,7 @@
 
 ## Part C: Free Response (9 points)
 
-*Choose THREE out of five. Each question is worth 3 points.*  
+*Choose THREE out of six. Each question is worth 3 points.*  
 *Award partial credit as appropriate.*
 
 1. **Natural Selection and Evidence.**
@@ -99,6 +99,10 @@
 5. **Energy and Nutrients.**
     - **Nutrients** cycle (producers ↔ consumers ↔ **decomposers**); **energy** enters as sunlight (photosynthesis), passes through trophic levels, and leaves largely as **heat**—not recycled like atoms.
     - **~10% rule:** roughly ~10% of energy passes each trophic step; long chains lose repeated fractions at each transfer, so supporting carnivores/tuna diets needs **more** net primary production than eating plants directly for the same usable human calories.
+
+6. **Capstone Systems Synthesis.**
+    - Accept scenarios that connect multiple course ideas rather than list terms separately.
+    - Award credit for a clear **cause** (e.g., genetic variation, disturbance, resource change), a **constraint or feedback** (e.g., carrying capacity, trophic energy loss, density dependence), and a named **evidence type** (counts, trait data, allele-frequency data, food-web observation, fossil/comparative/molecular evidence as appropriate).
 
 ---
 *End of exam key.*

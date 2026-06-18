@@ -16,7 +16,7 @@ Introductory epigenetics for BIOL-1 (non-majors). Content explicitly builds on M
 - X-inactivation and calico cats
 - Environmental influences on gene activity
 
-**Excluded:** operons, miRNA, alternative splicing, euchromatin/heterochromatin, multi-level regulation. These are covered in BIOL-8.
+**Excluded:** operons, miRNA, alternative splicing, euchromatin/heterochromatin, multi-level regulation. These are outside the active BIOL-1 Fall 2026 scope and remain only in archived/higher-detail reference material.
 
 ## Related documentation
 

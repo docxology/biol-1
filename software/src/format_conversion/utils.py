@@ -197,6 +197,8 @@ class _MarkdownHtmlToDocx(HTMLParser):
                 self._list_stack[-1]["index"] += 1
             self._block_stack.append("li")
             return
+        if tag == "p" and self._block_stack and self._block_stack[-1] == "li":
+            return
         if tag in self.BLOCK_TAGS:
             self._block_stack.append(tag)
             return
@@ -221,6 +223,8 @@ class _MarkdownHtmlToDocx(HTMLParser):
         if tag in ("ol", "ul"):
             if self._list_stack:
                 self._list_stack.pop()
+            return
+        if tag == "p" and self._block_stack and self._block_stack[-1] == "li":
             return
         if tag in self.BLOCK_TAGS:
             self._flush_block(tag)

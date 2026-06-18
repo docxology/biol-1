@@ -476,6 +476,40 @@ class TestValidateModuleOutputs:
         assert result["has_output_dir"] is True
         assert "website" in result
 
+    def test_module_website_skipped_without_html_format(self, temp_dir):
+        """Website output is optional unless HTML is explicitly requested."""
+        module_dir = temp_dir / "module-01"
+        sg_dir = module_dir / "output" / "study-guides"
+        sg_dir.mkdir(parents=True)
+        for base in ("keys-to-success", "questions"):
+            for ext in ("pdf", "docx"):
+                (sg_dir / f"module-01-{base}.{ext}").write_text(
+                    f"{base} {ext}", encoding="utf-8"
+                )
+
+        result = _validate_module_outputs(module_dir, formats=["pdf", "docx"])
+
+        assert result["valid"] is True
+        assert result["website"] == {"index.html": "skipped (html not in formats)"}
+
+    def test_module_website_required_with_html_format(self, temp_dir):
+        """HTML validation requires website/index.html."""
+        module_dir = temp_dir / "module-01"
+        sg_dir = module_dir / "output" / "study-guides"
+        sg_dir.mkdir(parents=True)
+        for base in ("keys-to-success", "questions"):
+            for ext in ("pdf", "docx", "html"):
+                (sg_dir / f"module-01-{base}.{ext}").write_text(
+                    f"{base} {ext}", encoding="utf-8"
+                )
+
+        result = _validate_module_outputs(
+            module_dir, formats=["pdf", "docx", "html"]
+        )
+
+        assert result["valid"] is False
+        assert "website/index.html" in result["missing_files"]
+
 
 class TestValidateSyllabusOutputs:
     """Tests for _validate_syllabus_outputs function."""

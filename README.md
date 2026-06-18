@@ -22,7 +22,7 @@ graph TD
     Pub --> PubBiol1[biol-1/]
     Archive --> Spring2026[spring-2026/]
     
-    Biol1 --> Biol1Source[Source Markdown & Private Files]
+    Biol1 --> Biol1Source[Typed module.toml + generated Markdown + Private Files]
     PubBiol1 --> PubBiol1M["Generated Output: PDF, DOCX, MD, labs, dashboards, slides"]
     Spring2026 --> ArchivedCourses["Archived BIOL-1 and BIOL-8 source + PUBLISHED snapshots"]
     
@@ -76,10 +76,10 @@ This is the working directory for instructors. It contains the source of truth f
 
 Each course folder contains:
 
-- **`course/`**: Working modules with source Markdown files
+- **`course/`**: Working modules with typed `module.toml` source plus generated Markdown files
 - **`syllabus/`**: Syllabus source files
 - **`private/`**: Instructor-only materials (Tests, Accommodations)
-- **`resources/`**: References, Templates, Media
+- **`resources/`**: References, templates, media, slides, and deterministic generated module visuals
 
 ---
 
@@ -108,7 +108,7 @@ BIOL-8 is archived for Spring 2026 and is not an active publish target.
 
 The automation engine for the repository.
 
-- **`src/`**: Python modules (markdown_to_pdf, text_to_speech, etc.)
+- **`src/`**: Python modules (`module_content`, markdown_to_pdf, text_to_speech, etc.)
 - **`scripts/`**: CLI tools (generate_all_outputs.py, publish_course.py)
 - **`docs/`**: [Documentation](software/docs/README.md) for the software system
 
@@ -162,6 +162,9 @@ git_push    = true  # Push to public repos
 #### Direct Script Access
 
 ```bash
+# Regenerate typed module Markdown/SVG assets
+cd software && uv run python scripts/generate_module_materials.py --course biol-1
+
 # Generate outputs for the active course
 cd software && uv run python scripts/generate_all_outputs.py --course biol-1
 

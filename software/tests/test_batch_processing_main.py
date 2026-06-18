@@ -115,7 +115,6 @@ class TestProcessModuleByType:
         assert "by_type" in result
         assert "summary" in result
         assert "errors" in result
-        assert "assignments" in result["by_type"]
         assert "lecture-content" in result["by_type"]
 
     def test_process_module_by_type_nonexistent(self, temp_dir):
@@ -123,8 +122,8 @@ class TestProcessModuleByType:
         with pytest.raises(ValueError, match="does not exist"):
             process_module_by_type(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
 
-    def test_process_module_by_type_with_assignments(self, temp_dir):
-        """Test processing module with assignments directory."""
+    def test_process_module_by_type_ignores_assignments(self, temp_dir):
+        """Active module processing ignores legacy assignments directories."""
         module_dir = temp_dir / "module"
         module_dir.mkdir()
         assignments_dir = module_dir / "assignments"
@@ -136,6 +135,7 @@ class TestProcessModuleByType:
         
         assert "by_type" in result
         assert "errors" in result
+        assert "assignments" not in result["by_type"]
 
     def test_process_module_by_type_curriculum_types(self, temp_dir):
         """Test processing module with various curriculum types."""
@@ -259,8 +259,8 @@ class TestProcessModuleByTypeFormats:
         assert result["summary"]["docx"] == 0
         assert result["summary"]["html"] == 0
 
-    def test_formats_unrecognized_ignored(self, temp_dir):
-        """Unrecognized format in list is silently ignored."""
+    def test_formats_unrecognized_rejected(self, temp_dir):
+        """Unrecognized format in list raises a clear error."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
         (module_dir / "keys-to-success.md").write_text(
@@ -268,20 +268,13 @@ class TestProcessModuleByTypeFormats:
         )
 
         output_dir = temp_dir / "output"
-        result = process_module_by_type(
-            str(module_dir), str(output_dir), formats=["txt", "xyz"]
-        )
-
-        # TXT should have outputs, xyz does nothing
-        assert result["summary"]["txt"] >= 1
-        # Standard formats not requested should be zero
-        assert result["summary"]["pdf"] == 0
-        assert result["summary"]["mp3"] == 0
-        assert result["summary"]["docx"] == 0
-        assert result["summary"]["html"] == 0
+        with pytest.raises(ValueError, match="Unsupported output format"):
+            process_module_by_type(
+                str(module_dir), str(output_dir), formats=["txt", "xyz"]
+            )
 
     def test_formats_empty_list(self, temp_dir):
-        """formats=[] generates nothing."""
+        """formats=[] raises a clear error."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
         (module_dir / "keys-to-success.md").write_text(
@@ -289,9 +282,8 @@ class TestProcessModuleByTypeFormats:
         )
 
         output_dir = temp_dir / "output"
-        result = process_module_by_type(str(module_dir), str(output_dir), formats=[])
-
-        assert sum(result["summary"].values()) == 0
+        with pytest.raises(ValueError, match="No output formats requested"):
+            process_module_by_type(str(module_dir), str(output_dir), formats=[])
 
 
 class TestProcessSyllabusFormats:

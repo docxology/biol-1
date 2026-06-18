@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Module 03: Organic Molecules Retrieval Card</title>
+  <desc id="desc">Retrieval card for Module 3: Organic Molecules.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#shadow); }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage { fill: #fffafd; stroke: #7b4f9d; stroke-width: 5; filter: url(#shadow); }
+    .stage-num { fill: #b36b2c; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M44 72 H1156 V648 H44 Z" />
+  <text x="82" y="92" class="eyebrow">Module 03 / Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 03: Organic Molecules Retrieval Card</text>
+  <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">Why can carbon make many different biological</tspan><tspan x="120.0" dy="17">molecules?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain why carbon is central to biological...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">How are dehydration synthesis and hydrolysis</tspan><tspan x="632.0" dy="17">opposite processes?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Distinguish monomers, polymers, dehydration...</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What distinguishes a monomer from a polymer?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Compare the functions of carbohydrates and...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How do carbohydrates and lipids differ in</tspan><tspan x="632.0" dy="17">structure and function?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Connect protein shape to protein function and...</tspan></text>
+  <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
+  <text x="120" y="582" class="card-kicker">Terms to use</text>
+  <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Organic molecule, Monomer, Polymer, Carbohydrate,</tspan><tspan x="120.0" dy="17">Lipid</tspan></text>
+  <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
+  <text x="632" y="582" class="card-kicker">Lab connection</text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">Microscopy gives concrete evidence for Module 03: Organic</tspan><tspan x="632.0" dy="17">Molecules.</tspan></text>
+  <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
+</svg>

@@ -16,7 +16,7 @@ Introductory genomics and biotechnology for BIOL-1 (non-majors). Designed as the
 - GMOs → connects to Module 07 (universal genetic code = central dogma works across species)
 - CRISPR overview and ethics → connects to Module 07 (mutations) and Module 10 (gene regulation)
 
-**Excluded:** PCR temperatures, ex vivo/in vivo gene therapy, somatic vs germline editing details, transformation protocols, Human Genome Project history. These are covered in BIOL-8.
+**Excluded:** PCR temperatures, ex vivo/in vivo gene therapy, somatic vs germline editing details, transformation protocols, Human Genome Project history. These are outside the active BIOL-1 Fall 2026 scope and remain only in archived/higher-detail reference material.
 
 ## Related documentation
 

@@ -1,0 +1,186 @@
+[module]
+number = 15
+slug = "module-15-population-systems-ecology"
+title = "Population and Systems Ecology"
+lab = "lab-15_population-systems-ecology.md"
+topics = ["Population growth models", "Limits and carrying capacity", "Community interactions", "Energy flow through trophic levels", "Matter cycling and systems feedback"]
+contents = ["Population size changes through births, deaths, immigration, and emigration.", "Exponential growth describes rapid increase; logistic growth includes carrying capacity.", "Density-dependent and density-independent factors limit populations differently.", "Energy flows through producers, consumers, and decomposers with loss at transfers.", "Matter cycles through ecosystems while energy must continually enter."]
+learning_objectives = ["Compare exponential and logistic population growth.", "Explain carrying capacity and limiting factors.", "Distinguish density-dependent and density-independent regulation.", "Use trophic levels and the 10 percent rule to explain energy limits.", "Contrast energy flow with nutrient cycling."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["What changes population size?", "How do exponential and logistic growth differ?", "What does carrying capacity mean?", "How do density-dependent and density-independent factors differ?", "Why do food chains have energy limits?", "What does the 10 percent rule describe?", "How do producers, consumers, and decomposers interact?", "Why does energy flow but matter cycle?", "How can feedback regulate a population?", "What evidence would show a population is near carrying capacity?"]
+
+[[terms]]
+name = "Population"
+definition = "Members of one species in an area."
+
+[[terms]]
+name = "Exponential growth"
+definition = "Growth pattern with increasing rate under abundant resources."
+
+[[terms]]
+name = "Logistic growth"
+definition = "Growth that slows as population approaches carrying capacity."
+
+[[terms]]
+name = "Carrying capacity"
+definition = "Approximate environment-supported population size."
+
+[[terms]]
+name = "Density-dependent factor"
+definition = "Limiting factor whose impact changes with crowding."
+
+[[terms]]
+name = "Density-independent factor"
+definition = "Limiting factor not directly tied to density."
+
+[[terms]]
+name = "Trophic level"
+definition = "Feeding position in an energy pathway."
+
+[[terms]]
+name = "Decomposer"
+definition = "Organism that breaks down dead material and recycles nutrients."
+
+[[practice_quiz]]
+question = "Which statement best defines Population in Module 15?"
+options = ["Members of one species in an area.", "Growth pattern with increasing rate under abundant resources.", "Growth that slows as population approaches carrying capacity.", "Approximate environment-supported population size."]
+answer = "A"
+explanation = "Population anchors the population growth models partition of Population and Systems Ecology."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the limits and carrying capacity partition?"
+options = ["Compare exponential and logistic population growth.", "Explain carrying capacity and limiting factors.", "Distinguish density-dependent and density-independent regulation.", "Use trophic levels and the 10 percent rule to explain energy limits."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Population Systems Ecology support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for community interactions.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Population and Systems Ecology?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What changes population size? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 15: Population and Systems Ecology Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-15-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 15: Population and Systems Ecology; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Population and Systems Ecology is best learned as a connected explanation linking population growth models, limits and carrying capacity, and lab."
+clusters = ["Population growth models", "Limits and carrying capacity", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Population growth models"
+detail = "Population size changes through births, deaths, immigration, and emigration."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Limits and carrying capacity"
+detail = "Exponential growth describes rapid increase; logistic growth includes carrying capacity."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Population Systems Ecology turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Population"
+detail = "Members of one species in an area."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Matter cycling and systems feedback"
+detail = "Matter cycles through ecosystems while energy must continually enter."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 15: Population and Systems Ecology Process Model"
+kind = "process-model"
+output = "resources/generated/module-15-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 15: Population and Systems Ecology; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Population growth models", "Limits and carrying capacity", "Community interactions"]
+outputs = ["Compare exponential and logistic population growth.", "Explain carrying capacity and limiting factors.", "Distinguish density-dependent and density-independent regulation."]
+feedbacks = ["Population Systems Ecology evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Population size changes through births, deaths, immigration, and emigration.", "Matter cycles through ecosystems while energy must continually enter."]
+
+[[generated_images.stages]]
+label = "Population growth models"
+detail = "Population size changes through births, deaths, immigration, and emigration."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Limits and carrying capacity"
+detail = "Exponential growth describes rapid increase; logistic growth includes carrying capacity."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Community interactions"
+detail = "Density-dependent and density-independent factors limit populations differently."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Energy flow through trophic levels"
+detail = "Energy flows through producers, consumers, and decomposers with loss at transfers."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Matter cycling and systems feedback"
+detail = "Matter cycles through ecosystems while energy must continually enter."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 15: Population and Systems Ecology Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-15-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 15: Population and Systems Ecology; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Population", "Exponential growth", "Logistic growth", "Carrying capacity", "Density-dependent factor"]
+lab_connection = "Population Systems Ecology gives concrete evidence for Module 15: Population and Systems Ecology."
+
+[[generated_images.prompts]]
+prompt = "What changes population size?"
+check = "Compare exponential and logistic population growth."
+
+[[generated_images.prompts]]
+prompt = "How do exponential and logistic growth differ?"
+check = "Explain carrying capacity and limiting factors."
+
+[[generated_images.prompts]]
+prompt = "What does carrying capacity mean?"
+check = "Distinguish density-dependent and density-independent regulation."
+
+[[generated_images.prompts]]
+prompt = "How do density-dependent and density-independent factors differ?"
+check = "Use trophic levels and the 10 percent rule to explain energy limits."

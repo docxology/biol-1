@@ -1,0 +1,186 @@
+[module]
+number = 13
+slug = "module-13-how-populations-evolve"
+title = "How Populations Evolve"
+lab = "lab-13_how-populations-evolve.md"
+topics = ["Allele frequencies as the unit of change", "Sources of variation", "Five mechanisms of microevolution", "Genetic drift and selection", "Hardy-Weinberg as a baseline"]
+contents = ["Microevolution is change in allele frequencies across generations.", "Mutation creates new variation, while recombination reshuffles existing variation.", "Mutation, gene flow, genetic drift, nonrandom mating, and natural selection can change populations.", "Genetic drift is random and strongest in small populations; selection is nonrandom and tied to fitness.", "Hardy-Weinberg equilibrium is a null model for detecting evolutionary change."]
+learning_objectives = ["Define microevolution using allele frequencies.", "Compare the five mechanisms that change allele frequencies.", "Distinguish bottleneck and founder effects.", "Interpret directional, stabilizing, and disruptive selection.", "Use Hardy-Weinberg as a non-evolving baseline."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["What is an allele frequency?", "How is microevolution measured?", "Which mechanisms can change allele frequencies?", "How does mutation differ from gene flow?", "Why is genetic drift stronger in small populations?", "How do bottleneck and founder effects differ?", "Why is natural selection not random?", "How do directional, stabilizing, and disruptive selection differ?", "What does Hardy-Weinberg equilibrium represent?", "How can a null model help detect evolution?"]
+
+[[terms]]
+name = "Allele frequency"
+definition = "Proportion of a particular allele in a population."
+
+[[terms]]
+name = "Microevolution"
+definition = "Allele-frequency change across generations."
+
+[[terms]]
+name = "Mutation"
+definition = "DNA sequence change that can create new alleles."
+
+[[terms]]
+name = "Gene flow"
+definition = "Movement of alleles between populations."
+
+[[terms]]
+name = "Genetic drift"
+definition = "Random allele-frequency change, strongest in small populations."
+
+[[terms]]
+name = "Bottleneck effect"
+definition = "Drift after a sharp population reduction."
+
+[[terms]]
+name = "Founder effect"
+definition = "Drift when a new population starts from few individuals."
+
+[[terms]]
+name = "Hardy-Weinberg equilibrium"
+definition = "Null model for allele frequencies when no evolution occurs."
+
+[[practice_quiz]]
+question = "Which statement best defines Allele frequency in Module 13?"
+options = ["Proportion of a particular allele in a population.", "Allele-frequency change across generations.", "DNA sequence change that can create new alleles.", "Movement of alleles between populations."]
+answer = "A"
+explanation = "Allele frequency anchors the allele frequencies as the unit of change partition of How Populations Evolve."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the sources of variation partition?"
+options = ["Define microevolution using allele frequencies.", "Compare the five mechanisms that change allele frequencies.", "Distinguish bottleneck and founder effects.", "Interpret directional, stabilizing, and disruptive selection."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should How Populations Evolve support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for five mechanisms of microevolution.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for How Populations Evolve?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is an allele frequency? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 13: How Populations Evolve Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-13-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "How Populations Evolve is best learned as a connected explanation linking allele frequencies as the unit of change, sources of variation, and lab."
+clusters = ["Allele frequencies as the unit of change", "Sources of variation", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Allele frequencies as the unit of change"
+detail = "Microevolution is change in allele frequencies across generations."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Sources of variation"
+detail = "Mutation creates new variation, while recombination reshuffles existing variation."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "How Populations Evolve turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Allele frequency"
+detail = "Proportion of a particular allele in a population."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Hardy-Weinberg as a baseline"
+detail = "Hardy-Weinberg equilibrium is a null model for detecting evolutionary change."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 13: How Populations Evolve Process Model"
+kind = "process-model"
+output = "resources/generated/module-13-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Allele frequencies as the unit of change", "Sources of variation", "Five mechanisms of microevolution"]
+outputs = ["Define microevolution using allele frequencies.", "Compare the five mechanisms that change allele frequencies.", "Distinguish bottleneck and founder effects."]
+feedbacks = ["How Populations Evolve evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Microevolution is change in allele frequencies across generations.", "Hardy-Weinberg equilibrium is a null model for detecting evolutionary change."]
+
+[[generated_images.stages]]
+label = "Allele frequencies as the unit of change"
+detail = "Microevolution is change in allele frequencies across generations."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Sources of variation"
+detail = "Mutation creates new variation, while recombination reshuffles existing variation."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Five mechanisms of microevolution"
+detail = "Mutation, gene flow, genetic drift, nonrandom mating, and natural selection can change populations."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Genetic drift and selection"
+detail = "Genetic drift is random and strongest in small populations; selection is nonrandom and tied to fitness."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Hardy-Weinberg as a baseline"
+detail = "Hardy-Weinberg equilibrium is a null model for detecting evolutionary change."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 13: How Populations Evolve Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-13-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Allele frequency", "Microevolution", "Mutation", "Gene flow", "Genetic drift"]
+lab_connection = "How Populations Evolve gives concrete evidence for Module 13: How Populations Evolve."
+
+[[generated_images.prompts]]
+prompt = "What is an allele frequency?"
+check = "Define microevolution using allele frequencies."
+
+[[generated_images.prompts]]
+prompt = "How is microevolution measured?"
+check = "Compare the five mechanisms that change allele frequencies."
+
+[[generated_images.prompts]]
+prompt = "Which mechanisms can change allele frequencies?"
+check = "Distinguish bottleneck and founder effects."
+
+[[generated_images.prompts]]
+prompt = "How does mutation differ from gene flow?"
+check = "Interpret directional, stabilizing, and disruptive selection."

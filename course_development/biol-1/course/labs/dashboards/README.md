@@ -28,18 +28,17 @@ Patterns for tables, reflections, and fillable UI live in [`../../../../../softw
 - `lab-03_microscopy-dashboard.html`
 - `lab-04_liquid-chemistry-dashboard.html`
 - `lab-05_viewing-life-dashboard.html`
-- `lab-06_exam-review-dashboard.html`
+- `lab-06_metabolism-dashboard.html`
 - `lab-07_molecular-genetics-dashboard.html`
 - `lab-08_cellular-genetics-dashboard.html`
 - `lab-09_inheritance-genetics-dashboard.html`
 - `lab-10_epigenetics-dashboard.html`
 - `lab-11_genomics-biotechnology-dashboard.html`
-- `lab-12_exam-02-review-dashboard.html`
-- `lab-13_darwin-evolution-dashboard.html`
-- `lab-14_how-populations-evolve-dashboard.html`
-- `lab-15_macroevolution-dashboard.html`
-- `lab-16_population-systems-ecology-dashboard.html`
-- `lab-17_exam-03-review-dashboard.html`
+- `lab-12_darwin-evolution-dashboard.html`
+- `lab-13_how-populations-evolve-dashboard.html`
+- `lab-14_macroevolution-dashboard.html`
+- `lab-15_population-systems-ecology-dashboard.html`
+- `lab-16_capstone-systems-synthesis-dashboard.html`
 
 ## Related
 

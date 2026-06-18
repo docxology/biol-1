@@ -18,6 +18,24 @@ def test_validate_module_files_valid(sample_module_structure):
     assert len(result["missing_directories"]) == 0
 
 
+def test_validate_module_files_biol1_without_assignments(temp_dir):
+    """BIOL-1-style modules do not require an assignments/ directory."""
+    module_dir = temp_dir / "module-13-how-populations-evolve"
+    module_dir.mkdir()
+    (module_dir / "README.md").write_text("# Module 13\n", encoding="utf-8")
+    (module_dir / "AGENTS.md").write_text("# Docs\n", encoding="utf-8")
+    (module_dir / "questions.md").write_text("# Module 13: Questions\n", encoding="utf-8")
+    (module_dir / "keys-to-success.md").write_text(
+        "# Module 13: Keys to Success\n\n## Learning Objectives\n\n1. Define microevolution.\n",
+        encoding="utf-8",
+    )
+
+    result = validate_module_files(str(module_dir))
+
+    assert result["valid"] is True
+    assert result["missing_directories"] == []
+
+
 def test_validate_module_files_missing_files(temp_dir):
     """Test validating module with missing required files."""
     module_dir = temp_dir / "module-1"
@@ -42,6 +60,7 @@ def test_validate_module_files_nonexistent():
 def test_check_naming_conventions_valid(sample_module_structure):
     """Test checking naming conventions for valid files."""
     # Create a properly named assignment file
+    (sample_module_structure / "assignments").mkdir()
     assignment_file = sample_module_structure / "assignments" / "module-1-assignment-1-test.md"
     assignment_file.write_text("# Assignment\n", encoding="utf-8")
 
@@ -52,6 +71,7 @@ def test_check_naming_conventions_valid(sample_module_structure):
 def test_check_naming_conventions_invalid(sample_module_structure):
     """Test checking naming conventions for invalid files."""
     # Create an improperly named file
+    (sample_module_structure / "assignments").mkdir()
     bad_file = sample_module_structure / "assignments" / "bad_file_name.md"
     bad_file.write_text("# Bad\n", encoding="utf-8")
 
@@ -69,7 +89,7 @@ def test_verify_required_structure_invalid(temp_dir):
     """Test verifying required structure for invalid module."""
     module_dir = temp_dir / "module-1"
     module_dir.mkdir()
-    # Missing assignments directory
+    # Missing required module files
 
     result = verify_required_structure(str(module_dir))
     assert result is False
@@ -101,8 +121,8 @@ def test_validate_course_structure(temp_dir):
     module1.mkdir()
     (module1 / "README.md").write_text("# Module 1\n", encoding="utf-8")
     (module1 / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
-    assignments = module1 / "assignments"
-    assignments.mkdir()
+    (module1 / "questions.md").write_text("# Module 1: Questions\n", encoding="utf-8")
+    (module1 / "keys-to-success.md").write_text("# Module 1: Keys\n", encoding="utf-8")
 
     result = validate_course_structure(str(temp_dir))
     assert "modules" in result
@@ -119,8 +139,8 @@ def test_get_validation_report(temp_dir):
     module_dir.mkdir()
     (module_dir / "README.md").write_text("# Module 1\n", encoding="utf-8")
     (module_dir / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
-    assignments = module_dir / "assignments"
-    assignments.mkdir()
+    (module_dir / "questions.md").write_text("# Module 1: Questions\n", encoding="utf-8")
+    (module_dir / "keys-to-success.md").write_text("# Module 1: Keys\n", encoding="utf-8")
 
     report = get_validation_report(str(module_dir))
     assert "module_path" in report
@@ -285,14 +305,16 @@ def test_validate_course_structure_with_modules(temp_dir):
     module1.mkdir()
     (module1 / "README.md").write_text("# Module 1\n", encoding="utf-8")
     (module1 / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
-    (module1 / "assignments").mkdir()
+    (module1 / "questions.md").write_text("# Module 1: Questions\n", encoding="utf-8")
+    (module1 / "keys-to-success.md").write_text("# Module 1: Keys\n", encoding="utf-8")
 
     # Module 2 - valid
     module2 = course_dir / "module-2"
     module2.mkdir()
     (module2 / "README.md").write_text("# Module 2\n", encoding="utf-8")
     (module2 / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
-    (module2 / "assignments").mkdir()
+    (module2 / "questions.md").write_text("# Module 2: Questions\n", encoding="utf-8")
+    (module2 / "keys-to-success.md").write_text("# Module 2: Keys\n", encoding="utf-8")
 
     result = validate_course_structure(str(temp_dir))
     assert "modules" in result

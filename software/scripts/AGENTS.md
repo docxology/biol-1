@@ -8,6 +8,7 @@ Thin CLI orchestrators that wrap `software/src/` packages. Scripts contain only 
 |---|---|---|---|
 | `publish_all.py` | `batch_processing`, `publish`, `validation` | `main()` | End-to-end pipeline (generate → publish → validate). |
 | `generate_all_outputs.py` | `batch_processing` | `main()` | Generate all output formats for one or all courses. |
+| `generate_module_materials.py` | `module_content` | `main()` | Generate BIOL-1 Markdown, practice quizzes, and deterministic SVG assets from `module.toml`. |
 | `generate_module_renderings.py` | `batch_processing` | `main()` | Run generation for a single module path. |
 | `generate_module_website.py` | `html_website` | `main()` | Build a per-module interactive HTML site. |
 | `generate_syllabus_renderings.py` | `schedule`, `batch_processing` | `main()` | Render syllabus / schedule documents. |

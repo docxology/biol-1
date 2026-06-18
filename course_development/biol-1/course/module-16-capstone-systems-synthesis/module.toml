@@ -1,0 +1,186 @@
+[module]
+number = 16
+slug = "module-16-capstone-systems-synthesis"
+title = "Capstone Systems Synthesis"
+lab = "lab-16_capstone-systems-synthesis.md"
+topics = ["Biology across scales", "Mechanism chains", "Feedback and constraint", "Evidence from multiple modules", "Capstone explanation and revision"]
+contents = ["Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems.", "Mechanism chains show how one change can produce effects across scales.", "Feedback loops and constraints explain why biological systems do not change without limits.", "Evidence from labs, models, and observations must match the scale of the claim.", "Capstone reasoning combines concepts into a clear claim that can be tested and revised."]
+learning_objectives = ["Connect concepts from at least three modules in one explanation.", "Trace a mechanism across biological scales.", "Identify feedback loops, constraints, and tradeoffs.", "Match evidence types to claims at different scales.", "Revise a systems explanation using new evidence."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["How can a molecular change affect an ecosystem?", "Why does scale matter in biological explanation?", "What is a mechanism chain?", "How can feedback limit or amplify change?", "Why are tradeoffs common in biology?", "How do constraints shape biological systems?", "What evidence belongs at molecular, organismal, or ecosystem scale?", "How can a lab result support a capstone explanation?", "How should an explanation change when evidence conflicts?", "What makes a synthesis stronger than a list of facts?"]
+
+[[terms]]
+name = "System"
+definition = "Interacting parts whose relationships shape outcomes."
+
+[[terms]]
+name = "Scale"
+definition = "Level of biological organization."
+
+[[terms]]
+name = "Mechanism"
+definition = "Causal process that explains how something happens."
+
+[[terms]]
+name = "Feedback loop"
+definition = "Circular causal relationship that amplifies or reduces change."
+
+[[terms]]
+name = "Constraint"
+definition = "Limit that shapes what a system can do."
+
+[[terms]]
+name = "Tradeoff"
+definition = "Benefit in one function paired with cost elsewhere."
+
+[[terms]]
+name = "Synthesis"
+definition = "Combining ideas into a coherent explanation."
+
+[[terms]]
+name = "Evidence chain"
+definition = "Linked evidence supporting each step of a claim."
+
+[[practice_quiz]]
+question = "Which statement best defines System in Module 16?"
+options = ["Interacting parts whose relationships shape outcomes.", "Level of biological organization.", "Causal process that explains how something happens.", "Circular causal relationship that amplifies or reduces change."]
+answer = "A"
+explanation = "System anchors the biology across scales partition of Capstone Systems Synthesis."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the mechanism chains partition?"
+options = ["Connect concepts from at least three modules in one explanation.", "Trace a mechanism across biological scales.", "Identify feedback loops, constraints, and tradeoffs.", "Match evidence types to claims at different scales."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Capstone Systems Synthesis support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for feedback and constraint.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Capstone Systems Synthesis?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How can a molecular change affect an ecosystem? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 16: Capstone Systems Synthesis Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-16-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 16: Capstone Systems Synthesis; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Capstone Systems Synthesis is best learned as a connected explanation linking biology across scales, mechanism chains, and lab evidence."
+clusters = ["Biology across scales", "Mechanism chains", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Biology across scales"
+detail = "Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Mechanism chains"
+detail = "Mechanism chains show how one change can produce effects across scales."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Capstone Systems Synthesis turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "System"
+detail = "Interacting parts whose relationships shape outcomes."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Capstone explanation and revision"
+detail = "Capstone reasoning combines concepts into a clear claim that can be tested and revised."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 16: Capstone Systems Synthesis Process Model"
+kind = "process-model"
+output = "resources/generated/module-16-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 16: Capstone Systems Synthesis; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Biology across scales", "Mechanism chains", "Feedback and constraint"]
+outputs = ["Connect concepts from at least three modules in one explanation.", "Trace a mechanism across biological scales.", "Identify feedback loops, constraints, and tradeoffs."]
+feedbacks = ["Capstone Systems Synthesis evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems.", "Capstone reasoning combines concepts into a clear claim that can be tested and revised."]
+
+[[generated_images.stages]]
+label = "Biology across scales"
+detail = "Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Mechanism chains"
+detail = "Mechanism chains show how one change can produce effects across scales."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Feedback and constraint"
+detail = "Feedback loops and constraints explain why biological systems do not change without limits."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Evidence from multiple modules"
+detail = "Evidence from labs, models, and observations must match the scale of the claim."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Capstone explanation and revision"
+detail = "Capstone reasoning combines concepts into a clear claim that can be tested and revised."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 16: Capstone Systems Synthesis Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-16-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 16: Capstone Systems Synthesis; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["System", "Scale", "Mechanism", "Feedback loop", "Constraint"]
+lab_connection = "Capstone Systems Synthesis gives concrete evidence for Module 16: Capstone Systems Synthesis."
+
+[[generated_images.prompts]]
+prompt = "How can a molecular change affect an ecosystem?"
+check = "Connect concepts from at least three modules in one explanation."
+
+[[generated_images.prompts]]
+prompt = "Why does scale matter in biological explanation?"
+check = "Trace a mechanism across biological scales."
+
+[[generated_images.prompts]]
+prompt = "What is a mechanism chain?"
+check = "Identify feedback loops, constraints, and tradeoffs."
+
+[[generated_images.prompts]]
+prompt = "How can feedback limit or amplify change?"
+check = "Match evidence types to claims at different scales."

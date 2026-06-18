@@ -869,7 +869,7 @@ course_development/
 │   │   │       ├── study-guides/
 │   │   │       └── website/
 │   │   ├── labs/
-│   │   │   ├── lab-01_measurement-methods.md … lab-18_evolution.md
+│   │   │   ├── lab-01_measurement-methods.md … lab-16_capstone-systems-synthesis.md
 │   │   │   ├── dashboards/
 │   │   │   └── output/
 │   │   ├── exams/

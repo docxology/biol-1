@@ -2,7 +2,7 @@
 
 **College of the Redwoods | Pelican Bay | Fall 2026**
 
-Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution and ecology. This course is structured as **15** content modules with integrated study materials, laboratory protocols, and assessments.
+Introductory biology course covering the fundamental principles of life science, from the molecular level through evolution and ecology. This course is structured as **16** content modules with integrated study materials, laboratory protocols, and assessments.
 
 ---
 
@@ -11,7 +11,7 @@ Introductory biology course covering the fundamental principles of life science,
 ```
 biol-1/
 ├── course/              # All course content organized by module
-│   ├── module-01 → 15/  # Content modules (keys-to-success.md + questions.md)
+│   ├── module-01 → 16/  # Content modules (module.toml → generated study materials)
 │   ├── labs/            # Laboratory protocols and interactive dashboards
 │   ├── exams/           # Exams and answer keys
 │   ├── practice_tests/  # Practice tests
@@ -45,6 +45,7 @@ Each module contains two source files (`keys-to-success.md`, `questions.md`) and
 | 13 | [How Populations Evolve](course/module-13-how-populations-evolve/) | Microevolution, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-13-how-populations-evolve/keys-to-success.md) · [Questions](course/module-13-how-populations-evolve/questions.md) |
 | 14 | [Macroevolution](course/module-14-macroevolution/) | Species concepts, speciation, phylogenetics | [Keys](course/module-14-macroevolution/keys-to-success.md) · [Questions](course/module-14-macroevolution/questions.md) |
 | 15 | [Population, Systems & Ecology](course/module-15-population-systems-ecology/) | Population dynamics, community interactions, ecosystems | [Keys](course/module-15-population-systems-ecology/keys-to-success.md) · [Questions](course/module-15-population-systems-ecology/questions.md) |
+| 16 | [Capstone Systems Synthesis](course/module-16-capstone-systems-synthesis/) | Cross-scale synthesis, feedback loops, evidence-based explanations | [Keys](course/module-16-capstone-systems-synthesis/keys-to-success.md) · [Questions](course/module-16-capstone-systems-synthesis/questions.md) |
 
 ### Module Output Formats
 
@@ -66,18 +67,17 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 03 | [Lab 03](course/labs/lab-03_microscopy.md) | Introduction to Microscopy | Complete |
 | 04 | [Lab 04](course/labs/lab-04_liquid-chemistry.md) | Liquid Chemistry | Complete |
 | 05 | [Lab 05](course/labs/lab-05_viewing-life.md) | Viewing Life | Complete |
-| 06 | [Lab 06](course/labs/lab-06_exam-review.md) | Exam 01 Review | Complete |
+| 06 | [Lab 06](course/labs/lab-06_metabolism.md) | Metabolism | Complete |
 | 07 | [Lab 07](course/labs/lab-07_molecular-genetics.md) | Molecular Genetics | Complete |
 | 08 | [Lab 08](course/labs/lab-08_cellular-genetics.md) | Cellular Genetics (Mitosis & Meiosis) | Complete |
 | 09 | [Lab 09](course/labs/lab-09_inheritance-genetics.md) | Inheritance Genetics | Complete |
 | 10 | [Lab 10](course/labs/lab-10_epigenetics.md) | Epigenetics | Complete |
 | 11 | [Lab 11](course/labs/lab-11_genomics-biotechnology.md) | Genomics & Biotechnology | Complete |
-| 12 | [Lab 12](course/labs/lab-12_exam-02-review.md) | Exam 02 Review | Complete |
-| 13 | [Lab 13](course/labs/lab-13_darwin-evolution.md) | Darwin & Evolution | Complete |
-| 14 | [Lab 14](course/labs/lab-14_how-populations-evolve.md) | How Populations Evolve | Complete |
-| 15 | [Lab 15](course/labs/lab-15_macroevolution.md) | Macroevolution | Complete |
-| 16 | [Lab 16](course/labs/lab-16_population-systems-ecology.md) | Population, Systems & Ecology | Complete |
-| 17 | [Lab 17](course/labs/lab-17_exam-03-review.md) | Exam 03 Review (Modules 12–15) | Complete |
+| 12 | [Lab 12](course/labs/lab-12_darwin-evolution.md) | Darwin & Evolution | Complete |
+| 13 | [Lab 13](course/labs/lab-13_how-populations-evolve.md) | How Populations Evolve | Complete |
+| 14 | [Lab 14](course/labs/lab-14_macroevolution.md) | Macroevolution | Complete |
+| 15 | [Lab 15](course/labs/lab-15_population-systems-ecology.md) | Population, Systems & Ecology | Complete |
+| 16 | [Lab 16](course/labs/lab-16_capstone-systems-synthesis.md) | Capstone Systems Synthesis | Complete |
 
 ### Lab Output
 
@@ -97,18 +97,17 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 | 03 | [Microscopy](course/labs/dashboards/lab-03_microscopy-dashboard.html) |
 | 04 | [Liquid Chemistry](course/labs/dashboards/lab-04_liquid-chemistry-dashboard.html) |
 | 05 | [Viewing Life](course/labs/dashboards/lab-05_viewing-life-dashboard.html) |
-| 06 | [Exam 01 Review](course/labs/dashboards/lab-06_exam-review-dashboard.html) |
+| 06 | [Metabolism](course/labs/dashboards/lab-06_metabolism-dashboard.html) |
 | 07 | [Molecular Genetics](course/labs/dashboards/lab-07_molecular-genetics-dashboard.html) |
 | 08 | [Cellular Genetics](course/labs/dashboards/lab-08_cellular-genetics-dashboard.html) |
 | 09 | [Inheritance Genetics](course/labs/dashboards/lab-09_inheritance-genetics-dashboard.html) |
 | 10 | [Epigenetics](course/labs/dashboards/lab-10_epigenetics-dashboard.html) |
 | 11 | [Genomics & Biotechnology](course/labs/dashboards/lab-11_genomics-biotechnology-dashboard.html) |
-| 12 | [Exam 02 Review](course/labs/dashboards/lab-12_exam-02-review-dashboard.html) |
-| 13 | [Darwin & Evolution](course/labs/dashboards/lab-13_darwin-evolution-dashboard.html) |
-| 14 | [How Populations Evolve](course/labs/dashboards/lab-14_how-populations-evolve-dashboard.html) |
-| 15 | [Macroevolution](course/labs/dashboards/lab-15_macroevolution-dashboard.html) |
-| 16 | [Population and Systems Ecology](course/labs/dashboards/lab-16_population-systems-ecology-dashboard.html) |
-| 17 | [Exam 03 review](course/labs/dashboards/lab-17_exam-03-review-dashboard.html) |
+| 12 | [Darwin & Evolution](course/labs/dashboards/lab-12_darwin-evolution-dashboard.html) |
+| 13 | [How Populations Evolve](course/labs/dashboards/lab-13_how-populations-evolve-dashboard.html) |
+| 14 | [Macroevolution](course/labs/dashboards/lab-14_macroevolution-dashboard.html) |
+| 15 | [Population and Systems Ecology](course/labs/dashboards/lab-15_population-systems-ecology-dashboard.html) |
+| 16 | [Capstone Systems Synthesis](course/labs/dashboards/lab-16_capstone-systems-synthesis-dashboard.html) |
 
 ---
 
@@ -167,6 +166,7 @@ Slides are in [`resources/slides/`](resources/slides/) as PDF files in two forma
 | 13 | Not available | Not available |
 | 14 | [Full](resources/slides/module-14-slides-full.pdf) | [Notes](resources/slides/module-14-slides-notes.pdf) |
 | 15 | Not available | Not available |
+| 16 | Not available | Not available |
 
 ---
 

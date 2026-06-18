@@ -1,41 +1,25 @@
-# Module 9: Inheritance Genetics — Study Questions
+<!-- Generated from module.toml; edit the manifest, not this file. -->
 
-1. Who is Gregor Mendel? What organism did he study?
+# Module 9: Inheritance Genetics - Learning Questions
 
-2. What is the difference between a dominant allele and a recessive allele?
 
-3. What is the difference between genotype and phenotype?
 
-4. What is the difference between homozygous (AA, aa) and heterozygous (Aa)?
+1. How are genes and alleles related?
 
-5. Cross Tt × Tt using a Punnett square. What is the phenotypic ratio?
+2. How do genotype and phenotype differ?
 
-6. What is a test cross? What is it used for?
+3. What does heterozygous mean?
 
-7. What phenotypic ratio do you expect from a dihybrid cross (AaBb × AaBb)?
+4. How does allele segregation explain a monohybrid cross?
 
-8. What is incomplete dominance? Give an example.
+5. What does a Punnett square predict?
 
-9. What is codominance? Give an example.
+6. Why are probabilities not guarantees?
 
-10. Explain the ABO blood type system. What are the possible genotypes for Type A blood?
+7. How do incomplete dominance and codominance differ?
 
-11. Can two parents with Type A and Type B blood have a Type O child? Explain.
+8. Why are many traits polygenic?
 
-12. Why are X-linked recessive disorders more common in males?
+9. How can environment influence phenotype?
 
-13. A carrier mother (X^B X^b) and a normal father (X^B Y) have children. What fraction of sons will be colorblind?
-
-14. Two unaffected parents have an affected child. Is the trait dominant or recessive?
-
-15. What is a pedigree? What can it tell you?
-
-16. What is a polygenic trait? Give one example.
-
-17. How is the inheritance of human height different from the inheritance of pea plant height?
-
-18. True or False: If you know someone's genotype, you always know their phenotype. Explain.
-
-19. What is Mendel's Law of Segregation? How does it connect to meiosis?
-
-20. What is Mendel's Law of Independent Assortment?
+10. What evidence in a pedigree suggests recessive inheritance?

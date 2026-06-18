@@ -1,0 +1,186 @@
+[module]
+number = 1
+slug = "module-01-study-of-life"
+title = "Biology - The Study of Life"
+lab = "lab-01_measurement-methods.md"
+topics = ["What counts as life", "Science as a way of testing", "Organization from cells to ecosystems", "Evidence, variables, and measurement", "How biological explanations improve"]
+contents = ["Life is recognized by shared properties: cells, energy use, response, reproduction, regulation, and evolution.", "Scientific claims are tested with observations, comparisons, variables, and repeatable reasoning.", "Biological systems are organized across scales from molecules to biosphere.", "Data become useful when measurements are tied to a clear question and source of error.", "Strong explanations connect evidence to a claim and stay open to revision."]
+learning_objectives = ["Distinguish living systems from nonliving examples using multiple characteristics.", "Separate hypotheses, predictions, observations, and conclusions in a scientific test.", "Place biological examples at the correct scale of organization.", "Identify variables and evidence in a simple investigation.", "Revise a biological explanation when new evidence appears."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["Which characteristics together make something count as alive?", "How is a hypothesis different from a prediction?", "What variable is changed, measured, or controlled in a simple test?", "Why does biology need both observation and experiment?", "How do cells, organisms, populations, and ecosystems differ as scales?", "What kind of evidence would challenge a claim about life?", "Why is a scientific theory stronger than a guess?", "How can measurement error change an interpretation?", "What makes an explanation biological rather than just descriptive?", "How should a claim change when new evidence appears?"]
+
+[[terms]]
+name = "Cell"
+definition = "Basic unit of life bounded by a membrane."
+
+[[terms]]
+name = "Homeostasis"
+definition = "Regulation that keeps internal conditions within a workable range."
+
+[[terms]]
+name = "Metabolism"
+definition = "All chemical reactions that move matter and energy through life."
+
+[[terms]]
+name = "Hypothesis"
+definition = "Testable explanation for an observed pattern."
+
+[[terms]]
+name = "Variable"
+definition = "Factor that can change in an investigation."
+
+[[terms]]
+name = "Evidence"
+definition = "Observation or measurement used to support or challenge a claim."
+
+[[terms]]
+name = "Theory"
+definition = "Broad explanation supported by many lines of evidence."
+
+[[terms]]
+name = "Evolution"
+definition = "Change in heritable traits of populations across generations."
+
+[[practice_quiz]]
+question = "Which statement best defines Cell in Module 01?"
+options = ["Basic unit of life bounded by a membrane.", "Regulation that keeps internal conditions within a workable range.", "All chemical reactions that move matter and energy through life.", "Testable explanation for an observed pattern."]
+answer = "A"
+explanation = "Cell anchors the what counts as life partition of Biology - The Study of Life."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the science as a way of testing partition?"
+options = ["Distinguish living systems from nonliving examples using multiple characteristics.", "Separate hypotheses, predictions, observations, and conclusions in a scientific test.", "Place biological examples at the correct scale of organization.", "Identify variables and evidence in a simple investigation."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Measurement Methods support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for organization from cells to ecosystems.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Biology - The Study of Life?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: Which characteristics together make something count as alive? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 01: Biology - The Study of Life Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-01-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 01: Biology - The Study of Life; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Biology - The Study of Life is best learned as a connected explanation linking what counts as life, science as a way of testing, and lab evidence."
+clusters = ["What counts as life", "Science as a way of testing", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "What counts as life"
+detail = "Life is recognized by shared properties: cells, energy use, response, reproduction, regulation, and evolution."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Science as a way of testing"
+detail = "Scientific claims are tested with observations, comparisons, variables, and repeatable reasoning."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Measurement Methods turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Cell"
+detail = "Basic unit of life bounded by a membrane."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "How biological explanations improve"
+detail = "Strong explanations connect evidence to a claim and stay open to revision."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 01: Biology - The Study of Life Process Model"
+kind = "process-model"
+output = "resources/generated/module-01-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 01: Biology - The Study of Life; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["What counts as life", "Science as a way of testing", "Organization from cells to ecosystems"]
+outputs = ["Distinguish living systems from nonliving examples using multiple characteristics.", "Separate hypotheses, predictions, observations, and conclusions in a scientific test.", "Place biological examples at the correct scale of organization."]
+feedbacks = ["Measurement Methods evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Life is recognized by shared properties: cells, energy use, response, reproduction, regulation, and evolution.", "Strong explanations connect evidence to a claim and stay open to revision."]
+
+[[generated_images.stages]]
+label = "What counts as life"
+detail = "Life is recognized by shared properties: cells, energy use, response, reproduction, regulation, and evolution."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Science as a way of testing"
+detail = "Scientific claims are tested with observations, comparisons, variables, and repeatable reasoning."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Organization from cells to ecosystems"
+detail = "Biological systems are organized across scales from molecules to biosphere."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Evidence, variables, and measurement"
+detail = "Data become useful when measurements are tied to a clear question and source of error."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "How biological explanations improve"
+detail = "Strong explanations connect evidence to a claim and stay open to revision."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 01: Biology - The Study of Life Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-01-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 01: Biology - The Study of Life; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Cell", "Homeostasis", "Metabolism", "Hypothesis", "Variable"]
+lab_connection = "Measurement Methods gives concrete evidence for Module 01: Biology - The Study of Life."
+
+[[generated_images.prompts]]
+prompt = "Which characteristics together make something count as alive?"
+check = "Distinguish living systems from nonliving examples using multiple characteristics."
+
+[[generated_images.prompts]]
+prompt = "How is a hypothesis different from a prediction?"
+check = "Separate hypotheses, predictions, observations, and conclusions in a scientific test."
+
+[[generated_images.prompts]]
+prompt = "What variable is changed, measured, or controlled in a simple test?"
+check = "Place biological examples at the correct scale of organization."
+
+[[generated_images.prompts]]
+prompt = "Why does biology need both observation and experiment?"
+check = "Identify variables and evidence in a simple investigation."

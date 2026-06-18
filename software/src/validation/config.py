@@ -2,8 +2,10 @@
 
 from typing import Dict, List, Optional
 
+from src.shared.course_config import SUPPORTED_OUTPUT_FORMATS, validate_supported_formats
+
 # All supported output formats
-ALL_SUPPORTED_FORMATS = ["pdf", "docx", "html", "txt", "mp3", "md"]
+ALL_SUPPORTED_FORMATS = list(SUPPORTED_OUTPUT_FORMATS)
 
 # Default required formats when no --formats specified (minimum viable output)
 DEFAULT_REQUIRED_FORMATS = ["pdf", "docx"]
@@ -30,6 +32,8 @@ def get_expected_study_guide_files(formats: Optional[List[str]] = None) -> List[
     """
     if formats is None:
         formats = DEFAULT_REQUIRED_FORMATS
+    else:
+        formats = validate_supported_formats(formats)
     
     # Filter to only formats that produce study guide files (not md which is just a copy)
     renderable_formats = [f for f in formats if f in ["pdf", "docx", "html", "txt"]]
@@ -59,6 +63,7 @@ def get_syllabus_required_formats(formats: Optional[List[str]] = None) -> List[s
     """
     if formats is None:
         return SYLLABUS_REQUIRED_FORMATS
+    formats = validate_supported_formats(formats)
     
     # Only require formats that were actually requested AND are renderable
     renderable = ["pdf", "docx", "html", "txt"]

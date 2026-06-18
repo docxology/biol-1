@@ -1,0 +1,186 @@
+[module]
+number = 2
+slug = "module-02-basic-chemistry"
+title = "Basic Chemistry"
+lab = "lab-02_probability-statistics.md"
+topics = ["Atoms and elements", "Bonding and molecular shape", "Water as a biological solvent", "pH and chemical balance", "Chemical reactions in cells"]
+contents = ["Atoms form elements, and their electrons shape bonding behavior.", "Covalent, ionic, and hydrogen bonds create different molecular properties.", "Water polarity explains cohesion, temperature buffering, and dissolving ions or polar molecules.", "pH tracks hydrogen ion concentration and affects biological molecules.", "Cells depend on chemical reactions that rearrange matter without destroying atoms."]
+learning_objectives = ["Use atomic structure to explain basic bonding patterns.", "Distinguish covalent, ionic, and hydrogen bonding in biological examples.", "Explain why water properties matter for cells and organisms.", "Interpret pH as a chemical condition that affects biology.", "Track atoms through a simple chemical reaction."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["How do protons, neutrons, and electrons differ?", "Why do electrons matter for chemical bonding?", "What distinguishes covalent, ionic, and hydrogen bonds?", "Why does water dissolve salt but not all nonpolar molecules?", "How does polarity explain water cohesion?", "What does a low pH mean about hydrogen ions?", "Why are buffers important in living systems?", "How are atoms conserved during chemical reactions?", "How can chemical shape affect biological function?", "What evidence would show that a substance is acidic or basic?"]
+
+[[terms]]
+name = "Atom"
+definition = "Smallest unit of an element that keeps that element identity."
+
+[[terms]]
+name = "Element"
+definition = "Pure substance defined by proton number."
+
+[[terms]]
+name = "Covalent bond"
+definition = "Bond formed when atoms share electrons."
+
+[[terms]]
+name = "Ionic bond"
+definition = "Attraction between oppositely charged ions."
+
+[[terms]]
+name = "Hydrogen bond"
+definition = "Weak attraction involving polar hydrogen and electronegative atoms."
+
+[[terms]]
+name = "Polarity"
+definition = "Uneven charge distribution across a molecule."
+
+[[terms]]
+name = "pH"
+definition = "Measure of hydrogen ion concentration."
+
+[[terms]]
+name = "Buffer"
+definition = "Chemical system that resists pH change."
+
+[[practice_quiz]]
+question = "Which statement best defines Atom in Module 02?"
+options = ["Smallest unit of an element that keeps that element identity.", "Pure substance defined by proton number.", "Bond formed when atoms share electrons.", "Attraction between oppositely charged ions."]
+answer = "A"
+explanation = "Atom anchors the atoms and elements partition of Basic Chemistry."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the bonding and molecular shape partition?"
+options = ["Use atomic structure to explain basic bonding patterns.", "Distinguish covalent, ionic, and hydrogen bonding in biological examples.", "Explain why water properties matter for cells and organisms.", "Interpret pH as a chemical condition that affects biology."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Probability Statistics support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for water as a biological solvent.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Basic Chemistry?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How do protons, neutrons, and electrons differ? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 02: Basic Chemistry Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-02-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 02: Basic Chemistry; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Basic Chemistry is best learned as a connected explanation linking atoms and elements, bonding and molecular shape, and lab evidence."
+clusters = ["Atoms and elements", "Bonding and molecular shape", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Atoms and elements"
+detail = "Atoms form elements, and their electrons shape bonding behavior."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Bonding and molecular shape"
+detail = "Covalent, ionic, and hydrogen bonds create different molecular properties."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Probability Statistics turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Atom"
+detail = "Smallest unit of an element that keeps that element identity."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Chemical reactions in cells"
+detail = "Cells depend on chemical reactions that rearrange matter without destroying atoms."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 02: Basic Chemistry Process Model"
+kind = "process-model"
+output = "resources/generated/module-02-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 02: Basic Chemistry; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Atoms and elements", "Bonding and molecular shape", "Water as a biological solvent"]
+outputs = ["Use atomic structure to explain basic bonding patterns.", "Distinguish covalent, ionic, and hydrogen bonding in biological examples.", "Explain why water properties matter for cells and organisms."]
+feedbacks = ["Probability Statistics evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Atoms form elements, and their electrons shape bonding behavior.", "Cells depend on chemical reactions that rearrange matter without destroying atoms."]
+
+[[generated_images.stages]]
+label = "Atoms and elements"
+detail = "Atoms form elements, and their electrons shape bonding behavior."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Bonding and molecular shape"
+detail = "Covalent, ionic, and hydrogen bonds create different molecular properties."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Water as a biological solvent"
+detail = "Water polarity explains cohesion, temperature buffering, and dissolving ions or polar molecules."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "pH and chemical balance"
+detail = "pH tracks hydrogen ion concentration and affects biological molecules."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Chemical reactions in cells"
+detail = "Cells depend on chemical reactions that rearrange matter without destroying atoms."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 02: Basic Chemistry Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-02-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 02: Basic Chemistry; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Atom", "Element", "Covalent bond", "Ionic bond", "Hydrogen bond"]
+lab_connection = "Probability Statistics gives concrete evidence for Module 02: Basic Chemistry."
+
+[[generated_images.prompts]]
+prompt = "How do protons, neutrons, and electrons differ?"
+check = "Use atomic structure to explain basic bonding patterns."
+
+[[generated_images.prompts]]
+prompt = "Why do electrons matter for chemical bonding?"
+check = "Distinguish covalent, ionic, and hydrogen bonding in biological examples."
+
+[[generated_images.prompts]]
+prompt = "What distinguishes covalent, ionic, and hydrogen bonds?"
+check = "Explain why water properties matter for cells and organisms."
+
+[[generated_images.prompts]]
+prompt = "Why does water dissolve salt but not all nonpolar molecules?"
+check = "Interpret pH as a chemical condition that affects biology."

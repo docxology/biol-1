@@ -1,35 +1,56 @@
-# Module 2: Basic Chemistry — Keys to Success
+<!-- Generated from module.toml; edit the manifest, not this file. -->
+# Module 2: Basic Chemistry - Keys to Success
 
 ## Learning Objectives
 
 By the end of this module, you should be able to:
 
-1. Describe atomic structure and subatomic particles
-2. Explain how atoms form bonds (ionic, covalent, hydrogen)
-3. Distinguish between polar and non-polar molecules
-4. Explain water's properties and their importance for life
-5. Use the pH scale and explain buffers
+1. Use atomic structure to explain basic bonding patterns.
+2. Distinguish covalent, ionic, and hydrogen bonding in biological examples.
+3. Explain why water properties matter for cells and organisms.
+4. Interpret pH as a chemical condition that affects biology.
+5. Track atoms through a simple chemical reaction.
+
+## Topics
+
+- Atoms and elements
+- Bonding and molecular shape
+- Water as a biological solvent
+- pH and chemical balance
+- Chemical reactions in cells
 
 ## Key Terms to Know
 
-- **Atom** — Smallest unit of matter retaining element properties
-- **Proton** — Positive charge, in nucleus, determines atomic number
-- **Neutron** — No charge, in nucleus, determines isotope
-- **Electron** — Negative charge, orbits nucleus, determines bonding
-- **Ionic Bond** — Transfer of electrons between atoms
-- **Covalent Bond** — Sharing of electrons between atoms
-- **Polar Molecule** — Unequal sharing of electrons (e.g., water)
-- **Hydrogen Bond** — Weak attraction between H and electronegative atoms
-- **Cohesion** — Water molecules sticking to each other
-- **Adhesion** — Water sticking to other surfaces
-- **Specific Heat** — Energy to raise temperature; water's is high
-- **Solvent** — Substance that dissolves others; water is universal solvent
-- **pH Scale** — Measures acidity/alkalinity (0-14)
-- **Buffer** — Substance that resists pH changes
+- **Atom** - Smallest unit of an element that keeps that element identity.
+- **Element** - Pure substance defined by proton number.
+- **Covalent bond** - Bond formed when atoms share electrons.
+- **Ionic bond** - Attraction between oppositely charged ions.
+- **Hydrogen bond** - Weak attraction involving polar hydrogen and electronegative atoms.
+- **Polarity** - Uneven charge distribution across a molecule.
+- **pH** - Measure of hydrogen ion concentration.
+- **Buffer** - Chemical system that resists pH change.
+
+## Core Contents
+
+1. Atoms form elements, and their electrons shape bonding behavior.
+2. Covalent, ionic, and hydrogen bonds create different molecular properties.
+3. Water polarity explains cohesion, temperature buffering, and dissolving ions or polar molecules.
+4. pH tracks hydrogen ion concentration and affects biological molecules.
+5. Cells depend on chemical reactions that rearrange matter without destroying atoms.
 
 ## Study Tips
 
-1. **Remember COHN** — Carbon, Oxygen, Hydrogen, Nitrogen are the four most common elements in living things
-2. **Draw water molecules** — Show hydrogen bonds between them
-3. **Use the pH scale** — 7 is neutral, <7 is acidic, >7 is basic
-4. **Know that pH is logarithmic** — Each number is 10× change
+1. Start with the module's central claim before memorizing vocabulary.
+2. Use the same-numbered lab as the evidence check for the module.
+3. Explain one mechanism in words, then redraw it as a simple diagram.
+4. Answer retrieval questions without notes, then revise with the terms list.
+
+## Connected Lab
+
+- `lab-02_probability-statistics.md`
+
+## Generated Visuals
+
+- [Module 02: Basic Chemistry Concept Map](resources/generated/module-02-concept-map.svg)
+- [Module 02: Basic Chemistry Process Model](resources/generated/module-02-process-model.svg)
+- [Module 02: Basic Chemistry Retrieval Card](resources/generated/module-02-retrieval-card.svg)

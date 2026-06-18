@@ -1,6 +1,6 @@
 # BIOL-1 Practice Test 04 — Answer Key
 
-## Exam 03 Preparation (Modules 12–15)
+## Exam 03 Preparation (Modules 12–16)
 
 ---
 
@@ -72,6 +72,10 @@
 **39. (Module 15) Limits and energy:**  
 - **Density-dependent:** impact **per** organism or transmission rate can rise with **crowding** (e.g. some diseases, competition for food). **Density-independent:** a similar **fraction** hit regardless of density (e.g. many fire/freeze/drought examples as framed).  
 - **10% rule:** only ~**one-tenth** of energy stored at one level is passed to the next; many steps mean **exponential** loss; apex consumers need a **huge** base of primary production compared with eating **producers** directly for the same food energy.
+
+**40. (Module 16) Capstone systems synthesis:**
+- Strong answers connect at least three ideas in a chain, for example: genetic variation affects a trait; the trait changes survival/reproduction under a specific environment; population changes then alter resource use or trophic interactions.
+- Require an explicit evidence statement such as observed trait frequencies, survival/reproduction data, food-web observations, or population counts.
 
 ---
 

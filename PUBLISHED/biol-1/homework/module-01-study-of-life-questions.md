@@ -1,41 +1,25 @@
-# Module 1: Biology — The Study of Life — Study Questions
+<!-- Generated from module.toml; edit the manifest, not this file. -->
 
-1. What are the seven characteristics shared by all living things?
+# Module 1: Biology - The Study of Life - Learning Questions
 
-2. Define each level of biological organization from atom to biosphere.
 
-3. Which level of organization is considered the fundamental unit of life? Why?
 
-4. What is the primary purpose of biological classification (taxonomy)?
+1. Which characteristics together make something count as alive?
 
-5. List the eight taxonomic ranks from most inclusive to most specific.
+2. How is a hypothesis different from a prediction?
 
-6. What is binomial nomenclature? Why do scientists use scientific names rather than common names?
+3. What variable is changed, measured, or controlled in a simple test?
 
-7. What are the steps of the scientific method?
+4. Why does biology need both observation and experiment?
 
-8. What is the difference between a hypothesis and a theory?
+5. How do cells, organisms, populations, and ecosystems differ as scales?
 
-9. Define homeostasis and give a biological example.
+6. What kind of evidence would challenge a claim about life?
 
-10. What is the difference between a control group and an experimental group?
+7. Why is a scientific theory stronger than a guess?
 
-11. Contrast how autotrophs and heterotrophs acquire energy.
+8. How can measurement error change an interpretation?
 
-12. What is the difference between the flow of energy and the cycling of nutrients through an ecosystem?
+9. What makes an explanation biological rather than just descriptive?
 
-13. How does natural selection lead to evolution?
-
-14. What are the three domains of life? Give an example organism from each.
-
-15. Explain the difference between a scientific theory and a scientific law.
-
-16. Why is the phrase "structure determines function" considered a unifying theme in biology?
-
-17. What makes something "alive" versus "non-living"?
-
-18. How do organisms maintain homeostasis when their environment changes?
-
-19. Design a simple experiment: Identify the independent variable, dependent variable, and control.
-
-20. Why is it important to have a large sample size in a scientific experiment?
+10. How should a claim change when new evidence appears?

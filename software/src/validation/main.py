@@ -24,7 +24,7 @@ from .utils import (
     get_module_directories,
     get_timestamp,
 )
-from src.shared.course_config import active_course_names
+from src.shared.course_config import active_course_names, validate_supported_formats
 
 logger = logging.getLogger(__name__)
 
@@ -79,10 +79,14 @@ def validate_outputs(
     """
     course_dir = Path(course_path).resolve()
     course_name = course_dir.name
+    if not course_dir.exists() or not course_dir.is_dir():
+        raise ValueError(f"Course path does not exist or is not a directory: {course_path}")
     
     # Determine formats to validate
     if formats is None:
-        formats = DEFAULT_REQUIRED_FORMATS
+        formats = list(DEFAULT_REQUIRED_FORMATS)
+    else:
+        formats = validate_supported_formats(formats)
     
     logger.info(f"Validating outputs for {course_name}")
     logger.info(f"  Formats: {', '.join(formats)}")
@@ -122,6 +126,7 @@ def validate_outputs(
         results["issues"].append(
             f"Expected {expected_modules} modules, found {len(modules)}"
         )
+        results["valid"] = False
     
     for module_path in modules:
         module_result = _validate_module_outputs(module_path, formats)
@@ -137,6 +142,7 @@ def validate_outputs(
     results["syllabus_valid"] = syllabus_result["valid"]
 
     if not syllabus_result["valid"]:
+        results["valid"] = False
         results["issues"].extend(syllabus_result.get("issues", []))
 
     # Validate labs (format-aware; with optional max_lab limit)
@@ -144,10 +150,12 @@ def validate_outputs(
     results["labs"] = lab_result
 
     if lab_result["missing_outputs"]:
+        results["valid"] = False
         results["issues"].extend(
             [f"Lab missing rendered output: {lab}" for lab in lab_result["missing_outputs"]]
         )
     if lab_result["issues"]:
+        results["valid"] = False
         results["issues"].extend(lab_result["issues"])
 
     logger.info(
@@ -199,11 +207,17 @@ def _validate_module_outputs(module_path: Path, formats: Optional[List[str]] = N
     """
     module_name = module_path.name
     
+    checked_formats = (
+        list(DEFAULT_REQUIRED_FORMATS)
+        if formats is None
+        else validate_supported_formats(formats)
+    )
+
     result: Dict[str, Any] = {
         "name": module_name,
         "valid": True,
         "has_output_dir": False,
-        "formats_checked": formats or DEFAULT_REQUIRED_FORMATS,
+        "formats_checked": checked_formats,
         "study_guides": {},
         "website": {},
         "missing_files": [],
@@ -219,7 +233,7 @@ def _validate_module_outputs(module_path: Path, formats: Optional[List[str]] = N
         return result
         
     # Check study guide files (format-aware)
-    study_guide_files = check_study_guide_files(module_path, formats)
+    study_guide_files = check_study_guide_files(module_path, checked_formats)
     result["study_guides"] = study_guide_files
     
     missing_sg = [f for f, exists in study_guide_files.items() if not exists]
@@ -229,7 +243,7 @@ def _validate_module_outputs(module_path: Path, formats: Optional[List[str]] = N
         
     # Check website files (index.html is always required if html format requested)
     # Website is optional unless html is in the formats list
-    if formats is None or "html" in formats:
+    if "html" in checked_formats:
         website_files = check_website_files(module_path)
         result["website"] = website_files
         
@@ -257,9 +271,15 @@ def _validate_syllabus_outputs(course_dir: Path, formats: Optional[List[str]] = 
     Returns:
         Dictionary with syllabus validation results
     """
+    checked_formats = (
+        list(DEFAULT_REQUIRED_FORMATS)
+        if formats is None
+        else validate_supported_formats(formats)
+    )
+
     result: Dict[str, Any] = {
         "valid": True,
-        "formats_checked": formats,
+        "formats_checked": checked_formats,
         "files": {},
         "issues": [],
     }
@@ -272,7 +292,7 @@ def _validate_syllabus_outputs(course_dir: Path, formats: Optional[List[str]] = 
         return result
     
     # Get required formats based on what was requested
-    required_formats = get_syllabus_required_formats(formats)
+    required_formats = get_syllabus_required_formats(checked_formats)
     optional_formats = ["mp3", "md"]  # Always optional
     
     # Track what we're checking

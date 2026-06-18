@@ -173,10 +173,13 @@ def validate_file_name_structure(file_name: str) -> Dict[str, Any]:
         "issues": [],
     }
 
-    # Check if it's a required file first (README.md, AGENTS.md)
-    # These don't need module prefix
+    # Check if it's a required root file first. These don't need module prefix.
     if file_name in config.REQUIRED_FILES:
-        result["file_type"] = "required_file"
+        result["file_type"] = (
+            "study_guide" if file_name == "keys-to-success.md"
+            else "questions" if file_name == "questions.md"
+            else "required_file"
+        )
         result["valid"] = True
         result["issues"] = []
         return result

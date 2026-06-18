@@ -1,0 +1,186 @@
+[module]
+number = 14
+slug = "module-14-macroevolution"
+title = "Macroevolution"
+lab = "lab-14_macroevolution.md"
+topics = ["Species concepts", "Reproductive isolation", "Prezygotic barriers", "Postzygotic barriers", "Speciation patterns and phylogeny"]
+contents = ["Species concepts define lineages using reproductive, morphological, or evolutionary criteria.", "Reproductive isolation reduces gene flow between populations.", "Prezygotic barriers prevent mating or fertilization before a zygote forms.", "Postzygotic barriers reduce hybrid survival or fertility after a zygote forms.", "Speciation can occur allopatrically or sympatrically and is represented in phylogenies."]
+learning_objectives = ["State the biological species concept and its limits.", "Explain reproductive isolation as reduced gene flow.", "Classify examples as prezygotic or postzygotic barriers.", "Compare allopatric and sympatric speciation.", "Interpret speciation as population-level divergence over time."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["What does the biological species concept emphasize?", "Why does reproductive isolation matter for speciation?", "What is a prezygotic barrier?", "What is a postzygotic barrier?", "How do allopatric and sympatric speciation differ?", "Why is polyploidy important in some plant speciation?", "How does reduced gene flow permit divergence?", "What does a phylogeny represent?", "How does macroevolution build from microevolution?", "What evidence would support a speciation claim?"]
+
+[[terms]]
+name = "Species"
+definition = "Lineage or group identified by a species concept."
+
+[[terms]]
+name = "Biological species concept"
+definition = "Species defined by interbreeding and reproductive isolation."
+
+[[terms]]
+name = "Reproductive isolation"
+definition = "Barriers that reduce gene flow between groups."
+
+[[terms]]
+name = "Prezygotic barrier"
+definition = "Barrier before fertilization."
+
+[[terms]]
+name = "Postzygotic barrier"
+definition = "Barrier after fertilization."
+
+[[terms]]
+name = "Allopatric speciation"
+definition = "Speciation with geographic separation."
+
+[[terms]]
+name = "Sympatric speciation"
+definition = "Speciation without geographic separation."
+
+[[terms]]
+name = "Phylogeny"
+definition = "Evolutionary relationship history among lineages."
+
+[[practice_quiz]]
+question = "Which statement best defines Species in Module 14?"
+options = ["Lineage or group identified by a species concept.", "Species defined by interbreeding and reproductive isolation.", "Barriers that reduce gene flow between groups.", "Barrier before fertilization."]
+answer = "A"
+explanation = "Species anchors the species concepts partition of Macroevolution."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the reproductive isolation partition?"
+options = ["State the biological species concept and its limits.", "Explain reproductive isolation as reduced gene flow.", "Classify examples as prezygotic or postzygotic barriers.", "Compare allopatric and sympatric speciation."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Macroevolution support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for prezygotic barriers.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Macroevolution?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What does the biological species concept emphasize? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 14: Macroevolution Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-14-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 14: Macroevolution; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Macroevolution is best learned as a connected explanation linking species concepts, reproductive isolation, and lab evidence."
+clusters = ["Species concepts", "Reproductive isolation", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Species concepts"
+detail = "Species concepts define lineages using reproductive, morphological, or evolutionary criteria."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Reproductive isolation"
+detail = "Reproductive isolation reduces gene flow between populations."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Macroevolution turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Species"
+detail = "Lineage or group identified by a species concept."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Speciation patterns and phylogeny"
+detail = "Speciation can occur allopatrically or sympatrically and is represented in phylogenies."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 14: Macroevolution Process Model"
+kind = "process-model"
+output = "resources/generated/module-14-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 14: Macroevolution; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Species concepts", "Reproductive isolation", "Prezygotic barriers"]
+outputs = ["State the biological species concept and its limits.", "Explain reproductive isolation as reduced gene flow.", "Classify examples as prezygotic or postzygotic barriers."]
+feedbacks = ["Macroevolution evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Species concepts define lineages using reproductive, morphological, or evolutionary criteria.", "Speciation can occur allopatrically or sympatrically and is represented in phylogenies."]
+
+[[generated_images.stages]]
+label = "Species concepts"
+detail = "Species concepts define lineages using reproductive, morphological, or evolutionary criteria."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Reproductive isolation"
+detail = "Reproductive isolation reduces gene flow between populations."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Prezygotic barriers"
+detail = "Prezygotic barriers prevent mating or fertilization before a zygote forms."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Postzygotic barriers"
+detail = "Postzygotic barriers reduce hybrid survival or fertility after a zygote forms."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Speciation patterns and phylogeny"
+detail = "Speciation can occur allopatrically or sympatrically and is represented in phylogenies."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 14: Macroevolution Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-14-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 14: Macroevolution; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Species", "Biological species concept", "Reproductive isolation", "Prezygotic barrier", "Postzygotic barrier"]
+lab_connection = "Macroevolution gives concrete evidence for Module 14: Macroevolution."
+
+[[generated_images.prompts]]
+prompt = "What does the biological species concept emphasize?"
+check = "State the biological species concept and its limits."
+
+[[generated_images.prompts]]
+prompt = "Why does reproductive isolation matter for speciation?"
+check = "Explain reproductive isolation as reduced gene flow."
+
+[[generated_images.prompts]]
+prompt = "What is a prezygotic barrier?"
+check = "Classify examples as prezygotic or postzygotic barriers."
+
+[[generated_images.prompts]]
+prompt = "What is a postzygotic barrier?"
+check = "Compare allopatric and sympatric speciation."

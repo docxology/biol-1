@@ -2,6 +2,8 @@
 
 from typing import Dict, List
 
+from src.shared.course_config import SUPPORTED_OUTPUT_FORMATS
+
 # File patterns to process
 MARKDOWN_PATTERNS: List[str] = ["*.md", "*.markdown"]
 AUDIO_PATTERNS: List[str] = ["*.mp3", "*.wav", "*.m4a"]
@@ -17,15 +19,11 @@ OUTPUT_DIRECTORIES: Dict[str, str] = {
     "media": "media_output",
 }
 
-# Supported active course directory names. Keep this fallback in sync with
-# publish.toml; scripts use src.shared.course_config as the source of truth.
+# Compatibility constants for older callers. Runtime course selection and the
+# default "all" format set are resolved from publish.toml.
 SUPPORTED_COURSES: List[str] = ["biol-1"]
-
-# Available active courses with their directory paths (relative to repo root).
 AVAILABLE_COURSES: List[str] = ["biol-1"]
-
-# Available output formats
-AVAILABLE_FORMATS: List[str] = ["pdf", "mp3", "docx", "html", "txt", "md"]
+AVAILABLE_FORMATS: List[str] = list(SUPPORTED_OUTPUT_FORMATS)
 
 # File selection patterns for batch processing
 SAMPLE_FILE_PREFIX: str = "sample_"

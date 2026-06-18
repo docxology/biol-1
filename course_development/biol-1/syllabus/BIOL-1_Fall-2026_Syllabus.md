@@ -30,10 +30,10 @@ An introductory course in life science dealing with basic biological concepts in
 
 This Fall 2026 Pelican Bay offering uses one active, continuous BIOL-1 sequence:
 
-- **Modules 01-15**: module study guides and practice questions.
+- **Modules 01-16**: module study guides and practice questions.
 - **Labs 01-17**: hands-on or paper-based labs; Labs 06, 12, and 17 are unit-review labs.
-- **Practice Tests 01-05**: Practice Test 01 covers Modules 1-4; Practice Test 02 covers Modules 5-6; Practice Test 03 covers Modules 7-11; Practice Test 04 covers Modules 12-15; Practice Test 05 is comprehensive review for Modules 1-15.
-- **Assessments**: Exam 01 covers Modules 1-6; Exam 02 covers Modules 7-11; Exam 03 covers Modules 12-15; the comprehensive final covers Modules 1-15.
+- **Practice Tests 01-05**: Practice Test 01 covers Modules 1-4; Practice Test 02 covers Modules 5-6; Practice Test 03 covers Modules 7-11; Practice Test 04 covers Modules 12-16; Practice Test 05 is comprehensive review for Modules 1-16.
+- **Assessments**: Exam 01 covers Modules 1-6; Exam 02 covers Modules 7-11; Exam 03 covers Modules 12-16; the comprehensive final covers Modules 1-16.
 
 ## Fall 2026 Calendar Anchors
 

@@ -2,14 +2,14 @@
 
 ## Course
 
-General Biology — College of the Redwoods, taught at Pelican Bay. **15** content modules covering molecular biology through evolution and ecology.
+General Biology — College of the Redwoods, taught at Pelican Bay. **16** content modules covering molecular biology through evolution and ecology.
 
 ## Directory layout
 
 ```
 biol-1/
 ├── course/
-│   ├── module-01-study-of-life/        # 15 modules: each has questions.md +
+│   ├── module-01-study-of-life/        # 16 modules: each has questions.md +
 │   │   …                               #            keys-to-success.md + output/
 │   ├── labs/                           # lab-NN_*.md (1–17), with output/ and dashboards/
 │   ├── exams/                          # exam-NN.md, exam-NN_key.md, exam-template.md

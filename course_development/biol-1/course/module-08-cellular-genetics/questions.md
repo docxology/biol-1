@@ -1,41 +1,25 @@
-# Module 8: Cellular Genetics — Study Questions
+<!-- Generated from module.toml; edit the manifest, not this file. -->
 
-1. What are the three stages of interphase? What happens in each?
+# Module 8: Cellular Genetics - Learning Questions
 
-2. What happens during S phase?
 
-3. What is the difference between sister chromatids and homologous chromosomes?
 
-4. List the four phases of mitosis in order.
+1. Why do cells package DNA into chromosomes?
 
-5. What happens during metaphase?
+2. What is the purpose of mitosis?
 
-6. What separates during anaphase of mitosis?
+3. What is the purpose of meiosis?
 
-7. How many daughter cells does mitosis produce? Are they identical to the parent?
+4. How do the products of mitosis and meiosis differ?
 
-8. What is the difference between a cleavage furrow and a cell plate?
+5. Why must gametes be haploid?
 
-9. What is the purpose of meiosis? Where does it happen in humans?
+6. How does crossing over create variation?
 
-10. How many daughter cells does meiosis produce? Are they diploid or haploid?
+7. How does independent assortment create variation?
 
-11. What separates during Anaphase I? What separates during Anaphase II?
+8. What can happen if chromosomes fail to separate?
 
-12. What is crossing over? When does it happen?
+9. How does cell division connect to inheritance?
 
-13. What is independent assortment?
-
-14. Why is it important that gametes are haploid?
-
-15. Complete: Mitosis makes ___cells that are___. Meiosis makes ___cells that are___.
-
-16. What is nondisjunction? Give one example of what it causes.
-
-17. What are the three sources of genetic variation in sexual reproduction?
-
-18. What are cell cycle checkpoints? Why are they important?
-
-19. What is the difference between a proto-oncogene and an oncogene?
-
-20. Why are siblings from the same parents not identical?
+10. What evidence would distinguish mitosis from meiosis?

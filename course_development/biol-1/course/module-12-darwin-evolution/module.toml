@@ -1,0 +1,186 @@
+[module]
+number = 12
+slug = "module-12-darwin-evolution"
+title = "Darwin and Evolution"
+lab = "lab-12_darwin-evolution.md"
+topics = ["Historical explanation for adaptation", "Variation and heritability", "Natural selection mechanism", "Evidence for common ancestry", "Fitness as reproductive success"]
+contents = ["Darwinian evolution explains adaptation through descent with modification.", "Natural selection requires variation, heritability, and unequal reproductive success.", "Fitness means relative reproductive success in a particular environment.", "Fossils, homology, biogeography, and molecular evidence support common ancestry.", "Evolution changes populations over generations, not individual organisms during life."]
+learning_objectives = ["Explain natural selection using variation, heritability, and reproductive success.", "Define fitness in evolutionary terms.", "Distinguish individual change from population evolution.", "Use multiple evidence types to support common ancestry.", "Apply natural selection to a concrete trait example."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["What are the required ingredients for natural selection?", "Why does natural selection act on existing variation?", "What does evolutionary fitness mean?", "Why do populations evolve rather than individuals?", "How do fossils support evolution?", "How do homologous and vestigial structures support common ancestry?", "How can DNA comparisons support relatedness?", "What is descent with modification?", "How can environment change which traits are favored?", "How did Galápagos observations help Darwin reason about adaptation?", "How can convergent evolution and artificial selection clarify natural selection?", "Why is adaptation not the same as individual effort?", "What evidence would support an adaptation claim?", "How can a trait be helpful in one environment but harmful in another?", "How should an evolutionary explanation connect variation, heritability, and reproduction?"]
+
+[[terms]]
+name = "Evolution"
+definition = "Change in heritable traits of populations across generations."
+
+[[terms]]
+name = "Natural selection"
+definition = "Nonrandom differences in survival or reproduction tied to heritable traits."
+
+[[terms]]
+name = "Adaptation"
+definition = "Heritable trait shaped by selection in a context."
+
+[[terms]]
+name = "Fitness"
+definition = "Relative reproductive success."
+
+[[terms]]
+name = "Common ancestry"
+definition = "Shared origin of lineages through descent."
+
+[[terms]]
+name = "Homology"
+definition = "Similarity due to shared ancestry."
+
+[[terms]]
+name = "Fossil"
+definition = "Preserved evidence of past life."
+
+[[terms]]
+name = "Biogeography"
+definition = "Study of geographic patterns in life."
+
+[[practice_quiz]]
+question = "Which statement best defines Evolution in Module 12?"
+options = ["Change in heritable traits of populations across generations.", "Nonrandom differences in survival or reproduction tied to heritable traits.", "Heritable trait shaped by selection in a context.", "Relative reproductive success."]
+answer = "A"
+explanation = "Evolution anchors the historical explanation for adaptation partition of Darwin and Evolution."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the variation and heritability partition?"
+options = ["Explain natural selection using variation, heritability, and reproductive success.", "Define fitness in evolutionary terms.", "Distinguish individual change from population evolution.", "Use multiple evidence types to support common ancestry."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Darwin Evolution support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for natural selection mechanism.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Darwin and Evolution?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What are the required ingredients for natural selection? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 12: Darwin and Evolution Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-12-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 12: Darwin and Evolution; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Darwin and Evolution is best learned as a connected explanation linking historical explanation for adaptation, variation and heritability, and lab."
+clusters = ["Historical explanation for adaptation", "Variation and heritability", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Historical explanation for adaptation"
+detail = "Darwinian evolution explains adaptation through descent with modification."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "Variation and heritability"
+detail = "Natural selection requires variation, heritability, and unequal reproductive success."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Darwin Evolution turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Evolution"
+detail = "Change in heritable traits of populations across generations."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Fitness as reproductive success"
+detail = "Evolution changes populations over generations, not individual organisms during life."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 12: Darwin and Evolution Process Model"
+kind = "process-model"
+output = "resources/generated/module-12-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 12: Darwin and Evolution; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Historical explanation for adaptation", "Variation and heritability", "Natural selection mechanism"]
+outputs = ["Explain natural selection using variation, heritability, and reproductive success.", "Define fitness in evolutionary terms.", "Distinguish individual change from population evolution."]
+feedbacks = ["Darwin Evolution evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Darwinian evolution explains adaptation through descent with modification.", "Evolution changes populations over generations, not individual organisms during life."]
+
+[[generated_images.stages]]
+label = "Historical explanation for adaptation"
+detail = "Darwinian evolution explains adaptation through descent with modification."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "Variation and heritability"
+detail = "Natural selection requires variation, heritability, and unequal reproductive success."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Natural selection mechanism"
+detail = "Fitness means relative reproductive success in a particular environment."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Evidence for common ancestry"
+detail = "Fossils, homology, biogeography, and molecular evidence support common ancestry."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Fitness as reproductive success"
+detail = "Evolution changes populations over generations, not individual organisms during life."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 12: Darwin and Evolution Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-12-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 12: Darwin and Evolution; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Evolution", "Natural selection", "Adaptation", "Fitness", "Common ancestry"]
+lab_connection = "Darwin Evolution gives concrete evidence for Module 12: Darwin and Evolution."
+
+[[generated_images.prompts]]
+prompt = "What are the required ingredients for natural selection?"
+check = "Explain natural selection using variation, heritability, and reproductive success."
+
+[[generated_images.prompts]]
+prompt = "Why does natural selection act on existing variation?"
+check = "Define fitness in evolutionary terms."
+
+[[generated_images.prompts]]
+prompt = "What does evolutionary fitness mean?"
+check = "Distinguish individual change from population evolution."
+
+[[generated_images.prompts]]
+prompt = "Why do populations evolve rather than individuals?"
+check = "Use multiple evidence types to support common ancestry."

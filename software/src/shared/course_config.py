@@ -10,9 +10,15 @@ import tomllib
 from pathlib import Path
 from typing import Any
 
+SUPPORTED_OUTPUT_FORMATS: tuple[str, ...] = ("pdf", "docx", "html", "txt", "md", "mp3")
+
 
 class CourseSelectionError(ValueError):
     """Raised when a requested course is not an active course."""
+
+
+class PublishConfigError(ValueError):
+    """Raised when ``publish.toml`` is malformed or unsupported."""
 
 
 def find_repo_root(start: Path | None = None) -> Path:
@@ -31,15 +37,73 @@ def load_publish_config(repo_root: Path | None = None) -> dict[str, Any]:
     root = repo_root or find_repo_root()
     config_path = root / "publish.toml"
     if not config_path.exists():
-        return {"publish": {"courses": _fallback_course_config()}}
+        return {
+            "publish": {
+                "formats": {"pdf": True, "docx": True, "md": True},
+                "courses": _fallback_course_config(),
+            }
+        }
     with config_path.open("rb") as handle:
         return tomllib.load(handle)
 
 
+def _publish_section(repo_root: Path | None = None) -> dict[str, Any]:
+    """Return the validated top-level publish section."""
+    config = load_publish_config(repo_root)
+    publish = config.get("publish")
+    if not isinstance(publish, dict):
+        raise PublishConfigError("publish.toml is missing required [publish] section")
+    return publish
+
+
+def enabled_publish_formats(repo_root: Path | None = None) -> list[str]:
+    """Return output formats enabled in ``publish.toml``.
+
+    Raises:
+        PublishConfigError: If the formats section is missing, malformed,
+            declares unsupported formats, or enables no formats.
+    """
+    publish = _publish_section(repo_root)
+    raw_formats = publish.get("formats")
+    if not isinstance(raw_formats, dict):
+        raise PublishConfigError("publish.toml is missing required [publish.formats] section")
+
+    unsupported = sorted(str(fmt) for fmt in raw_formats if fmt not in SUPPORTED_OUTPUT_FORMATS)
+    if unsupported:
+        supported = ", ".join(SUPPORTED_OUTPUT_FORMATS)
+        bad = ", ".join(unsupported)
+        raise PublishConfigError(
+            f"Unsupported format(s) in publish.toml: {bad}. Supported formats: {supported}"
+        )
+
+    enabled = [fmt for fmt in SUPPORTED_OUTPUT_FORMATS if bool(raw_formats.get(fmt, False))]
+    if not enabled:
+        raise PublishConfigError("publish.toml enables no output formats")
+    return enabled
+
+
+def validate_supported_formats(formats: list[str] | tuple[str, ...]) -> list[str]:
+    """Normalize and validate an explicit format list."""
+    normalized = [str(fmt).strip().lower() for fmt in formats if str(fmt).strip()]
+    if not normalized:
+        raise PublishConfigError("No output formats requested")
+
+    unsupported = [fmt for fmt in normalized if fmt not in SUPPORTED_OUTPUT_FORMATS]
+    if unsupported:
+        supported = ", ".join(SUPPORTED_OUTPUT_FORMATS)
+        bad = ", ".join(sorted(set(unsupported)))
+        raise PublishConfigError(
+            f"Unsupported output format(s): {bad}. Supported formats: {supported}"
+        )
+    return normalized
+
+
 def course_configs(repo_root: Path | None = None) -> dict[str, dict[str, Any]]:
     """Return course configuration keyed by course id."""
-    publish = load_publish_config(repo_root).get("publish", {})
-    courses = publish.get("courses", {})
+    publish = _publish_section(repo_root)
+    courses = publish.get("courses")
+    if not isinstance(courses, dict):
+        raise PublishConfigError("publish.toml is missing required [publish.courses] section")
     return {str(name): dict(cfg) for name, cfg in courses.items()}
 
 

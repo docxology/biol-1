@@ -11,7 +11,7 @@ Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-## Modules 12-15
+## Modules 12-16
 
 **Total Points**: 50
 
@@ -243,7 +243,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ## Part C: Free Response (9 points)
 
-*Choose THREE of the following five questions. Answer clearly in the space provided. Each response is worth 3 points.*
+*Choose THREE of the following six questions. Answer clearly in the space provided. Each response is worth 3 points.*
 
 1. **Natural Selection and Evidence.** State what biologists mean by **natural selection** using the ideas of heritable **variation**, **overproduction** of offspring, and **differential reproductive success**. Then name **one** type of evidence for evolution (fossil, comparative anatomy, biogeography, or molecular) and state briefly what pattern it highlights.
 
@@ -254,6 +254,8 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 4. **Population Growth and Regulation.** Compare **exponential** versus **logistic** population growth curves and state what **K** represents. Then give **one** example of a **density-dependent** limiting factor and **one** example of a **density-independent** disturbance (each in a full sentence).
 
 5. **Energy and Nutrients.** Contrast **energy flow** through trophic levels with **nutrient cycling** (include producers and decomposers). Use the **~10% rule** to explain why diets rich in **high trophic-level** fish can demand **more** primary production than feeding humans closer to **primary producers**.
+
+6. **Capstone Systems Synthesis.** Choose one scenario from evolution or ecology and explain it as a system. Your answer must include **one cause**, **one feedback or constraint**, and **one type of evidence** that would help test the explanation.
 
 <br>
 

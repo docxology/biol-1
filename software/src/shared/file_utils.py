@@ -32,7 +32,22 @@ def read_markdown_file(file_path: Path) -> str:
     """
     if not file_path.exists():
         raise FileNotFoundError(f"Markdown file not found: {file_path}")
+    if file_path.suffix.lower() not in {".md", ".markdown"}:
+        raise ValueError(f"Not a Markdown file: {file_path}")
     return file_path.read_text(encoding="utf-8")
+
+
+def is_within_directory(path: Path, directory: Path) -> bool:
+    """Return True when ``path`` resolves inside ``directory``.
+
+    This guards recursive processing against symlinks that point outside the
+    trusted course tree and against caller-supplied traversal paths.
+    """
+    try:
+        path.resolve().relative_to(directory.resolve())
+        return True
+    except (OSError, ValueError):
+        return False
 
 
 def find_files(directory: Path, patterns: List[str]) -> List[Path]:
@@ -45,7 +60,12 @@ def find_files(directory: Path, patterns: List[str]) -> List[Path]:
     Returns:
         Sorted list of matching file paths
     """
+    if not directory.exists() or not directory.is_dir():
+        return []
+
     found: List[Path] = []
     for pattern in patterns:
-        found.extend(directory.rglob(pattern))
+        for path in directory.rglob(pattern):
+            if path.is_file() and is_within_directory(path, directory):
+                found.append(path)
     return sorted(found)

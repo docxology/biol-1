@@ -1,66 +1,56 @@
-# Module 12: Darwin and Evolution — Keys to Success
+<!-- Generated from module.toml; edit the manifest, not this file. -->
+# Module 12: Darwin and Evolution - Keys to Success
 
 ## Learning Objectives
 
 By the end of this module, you should be able to:
 
-1. Explain what Darwin meant by "descent with modification."
-2. Describe the logical steps of natural selection (variation, overproduction, differential reproductive success).
-3. List and explain the primary lines of evidence for evolution (fossils, biogeography, comparative anatomy, molecular biology).
-4. Explain why *individuals do not evolve*, but *populations do*.
+1. Explain natural selection using variation, heritability, and reproductive success.
+2. Define fitness in evolutionary terms.
+3. Distinguish individual change from population evolution.
+4. Use multiple evidence types to support common ancestry.
+5. Apply natural selection to a concrete trait example.
 
-## The Big Picture
+## Topics
 
-> "Nothing in biology makes sense except in the light of evolution." — Theodosius Dobzhansky
-> 
-> Evolution is the unifying thread of all biology. It explains both the immense diversity of life on Earth (how things are different) and the profound unity of life (why all life uses the exact same DNA code, as we saw in Module 07).
+- Historical explanation for adaptation
+- Variation and heritability
+- Natural selection mechanism
+- Evidence for common ancestry
+- Fitness as reproductive success
 
-## Key Terms & Concepts
+## Key Terms to Know
 
-### 1. Natural Selection (The "How" of Evolution)
+- **Evolution** - Change in heritable traits of populations across generations.
+- **Natural selection** - Nonrandom differences in survival or reproduction tied to heritable traits.
+- **Adaptation** - Heritable trait shaped by selection in a context.
+- **Fitness** - Relative reproductive success.
+- **Common ancestry** - Shared origin of lineages through descent.
+- **Homology** - Similarity due to shared ancestry.
+- **Fossil** - Preserved evidence of past life.
+- **Biogeography** - Study of geographic patterns in life.
 
-Many people before Darwin thought species might change over time, but Charles Darwin (along with Alfred Russel Wallace) provided a logical mechanism for *how* it happens: **Natural Selection**.
+## Core Contents
 
-It works like a simple logic puzzle based on three observations:
-- **Observation 1: Variation.** Individuals in a population vary in their traits (due to genetics).
-- **Observation 2: Overproduction.** More offspring are born than the environment can support, leading to competition.
-- **Conclusion: Differential Reproductive Success.** Individuals with traits best suited to the current environment are more likely to survive and reproduce, passing those advantageous traits to the next generation.
-
-Over many generations, the population adapts to its environment.
-
-### 2. "Survival of the Fittest" – A Misunderstanding
-
-The phrase "survival of the fittest" is often misunderstood to mean the biggest, strongest, or most aggressive survive. 
-
-In biology, **Evolutionary Fitness** has a very specific definition: *It is simply a measure of an individual's relative reproductive success.* 
-- If a tiny, camouflage-colored insect hides well, survives, and has 100 offspring, it is *highly fit*.
-- If a massive, strong, brightly colored insect gets eaten by a bird before reproducing, its fitness is *zero*.
-- **Fitness = babies.**
-
-### 3. Descent with Modification
-
-Darwin didn't initially use the word "evolution." He called it "descent with modification." This phrase beautifully captures two ideas:
-1. **Descent:** All living things share common ancestors (unity of life).
-2. **Modification:** As descendants move into different habitats, they accumulate adaptations to those specific environments over millions of years (diversity of life).
-
-### 4. Individuals Do Not Evolve!
-
-This is a classic trap! Note the difference:
-- **Individuals acclimate or develop.** (If you lift weights, you get stronger muscles, but you won't pass those muscles to your children. Your DNA didn't change!)
-- **Populations evolve.** Evolution is the changing of genetic trait frequencies across an entire population over generations.
-
-## Evidence for Evolution
-
-Scientists don't just "guess" evolution happens; it is supported by overwhelming evidence from multiple independent fields of science:
-
-| Line of Evidence | What it Shows | Example |
-|------------------|---------------|---------|
-| **Fossil Record** | Shows the historical sequence of life and transitional forms. | Fossils showing the slow transition from land mammals to modern whales. |
-| **Comparative Anatomy** | Homologous structures (similar bones in different animals) show modification from a common ancestor. | A human arm, a bat wing, and a whale flipper all have the exact same bone layout. |
-| **Biogeography** | The geographic distribution of species aligns with geological history. | Marsupials are almost entirely isolated in Australia because the continent broke away early. |
-| **Molecular Biology** | All life shares the same genetic code (DNA); closely related species have more similar DNA sequences. | Humans and chimpanzees share ~98.8% of their identical DNA code. |
+1. Darwinian evolution explains adaptation through descent with modification.
+2. Natural selection requires variation, heritability, and unequal reproductive success.
+3. Fitness means relative reproductive success in a particular environment.
+4. Fossils, homology, biogeography, and molecular evidence support common ancestry.
+5. Evolution changes populations over generations, not individual organisms during life.
 
 ## Study Tips
 
-1. **Evolution is an editor, not a creator.** Natural selection can only act on trait variations that *already exist* in a population. It doesn't magically create what is needed on demand.
-2. **Keep the environment in mind.** A trait that is highly advantageous in one environment might be a death sentence in another. Evolution is not "goal-oriented" toward a perfect being; it's simply adapting to the *current* local environment.
+1. Start with the module's central claim before memorizing vocabulary.
+2. Use the same-numbered lab as the evidence check for the module.
+3. Explain one mechanism in words, then redraw it as a simple diagram.
+4. Answer retrieval questions without notes, then revise with the terms list.
+
+## Connected Lab
+
+- `lab-12_darwin-evolution.md`
+
+## Generated Visuals
+
+- [Module 12: Darwin and Evolution Concept Map](resources/generated/module-12-concept-map.svg)
+- [Module 12: Darwin and Evolution Process Model](resources/generated/module-12-process-model.svg)
+- [Module 12: Darwin and Evolution Retrieval Card](resources/generated/module-12-retrieval-card.svg)

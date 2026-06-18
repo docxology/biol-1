@@ -1,7 +1,7 @@
 """Configuration for the content_processing module."""
 
 # Default courses to process
-DEFAULT_COURSES = ["biol-1", "biol-8"]
+DEFAULT_COURSES = ["biol-1"]
 
 # Course development directory name
 COURSE_DEV_DIR = "course_development"

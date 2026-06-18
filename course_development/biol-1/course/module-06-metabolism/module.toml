@@ -1,0 +1,186 @@
+[module]
+number = 6
+slug = "module-06-metabolism"
+title = "Metabolism"
+lab = "lab-06_metabolism.md"
+topics = ["Energy and thermodynamics", "ATP as cellular coupling", "Enzymes and activation energy", "Regulation by conditions and inhibitors", "Photosynthesis and respiration as linked pathways"]
+contents = ["Cells transform energy while obeying thermodynamic constraints.", "ATP couples energy-releasing reactions to energy-requiring cellular work.", "Enzymes lower activation energy without being consumed.", "Temperature, pH, substrate concentration, and inhibitors alter enzyme function.", "Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy."]
+learning_objectives = ["Apply thermodynamic ideas to living cells.", "Explain ATP as an energy-coupling molecule.", "Describe how enzymes change reaction rates.", "Predict how environmental conditions affect enzyme activity.", "Connect photosynthesis and cellular respiration in matter and energy flow."]
+study_tips = ["Start with the module's central claim before memorizing vocabulary.", "Use the same-numbered lab as the evidence check for the module.", "Explain one mechanism in words, then redraw it as a simple diagram.", "Answer retrieval questions without notes, then revise with the terms list."]
+learning_questions = ["How do the laws of thermodynamics constrain cells?", "Why is ATP useful for cellular work?", "How do enzymes lower activation energy?", "Why does enzyme shape matter?", "How can temperature or pH change enzyme function?", "What is the difference between competitive and noncompetitive inhibition?", "How are photosynthesis and respiration related?", "Where does matter move in the photosynthesis-respiration cycle?", "Where does energy enter and leave biological systems?", "What evidence would show that an enzyme is denatured?"]
+
+[[terms]]
+name = "Metabolism"
+definition = "All chemical reactions in a cell or organism."
+
+[[terms]]
+name = "ATP"
+definition = "Cellular energy-coupling molecule."
+
+[[terms]]
+name = "Activation energy"
+definition = "Energy required to start a reaction."
+
+[[terms]]
+name = "Enzyme"
+definition = "Protein or RNA catalyst that speeds a reaction."
+
+[[terms]]
+name = "Substrate"
+definition = "Reactant that binds an enzyme active site."
+
+[[terms]]
+name = "Denaturation"
+definition = "Loss of shape that disrupts function."
+
+[[terms]]
+name = "Photosynthesis"
+definition = "Process that uses light energy to build sugars."
+
+[[terms]]
+name = "Cellular respiration"
+definition = "Process that harvests usable energy from fuel molecules."
+
+[[practice_quiz]]
+question = "Which statement best defines Metabolism in Module 06?"
+options = ["All chemical reactions in a cell or organism.", "Cellular energy-coupling molecule.", "Energy required to start a reaction.", "Protein or RNA catalyst that speeds a reaction."]
+answer = "A"
+explanation = "Metabolism anchors the energy and thermodynamics partition of Metabolism."
+
+[[practice_quiz]]
+question = "Which learning goal best matches the atp as cellular coupling partition?"
+options = ["Apply thermodynamic ideas to living cells.", "Explain ATP as an energy-coupling molecule.", "Describe how enzymes change reaction rates.", "Predict how environmental conditions affect enzyme activity."]
+answer = "B"
+explanation = "The correct option names the specific reasoning target for that partition."
+
+[[practice_quiz]]
+question = "How should Metabolism support this module?"
+options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for enzymes and activation energy.", "By removing the need to compare observations."]
+answer = "C"
+explanation = "The lab is the concrete evidence surface for the same-numbered module."
+
+[[practice_quiz]]
+question = "Which retrieval move best prepares a student for Metabolism?"
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How do the laws of thermodynamics constrain cells? Then justify the answer with evidence."]
+answer = "D"
+explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+
+[[generated_images]]
+id = "concept-map"
+title = "Module 06: Metabolism Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-06-concept-map.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 06: Metabolism; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
+central_claim = "Metabolism is best learned as a connected explanation linking energy and thermodynamics, atp as cellular coupling, and lab evidence."
+clusters = ["Energy and thermodynamics", "ATP as cellular coupling", "Evidence", "Synthesis"]
+
+[[generated_images.nodes]]
+id = "core"
+label = "Energy and thermodynamics"
+detail = "Cells transform energy while obeying thermodynamic constraints."
+
+[[generated_images.nodes]]
+id = "mechanism"
+label = "ATP as cellular coupling"
+detail = "ATP couples energy-releasing reactions to energy-requiring cellular work."
+
+[[generated_images.nodes]]
+id = "evidence"
+label = "Lab evidence"
+detail = "Metabolism turns the module claim into observable evidence."
+
+[[generated_images.nodes]]
+id = "term"
+label = "Metabolism"
+detail = "All chemical reactions in a cell or organism."
+
+[[generated_images.nodes]]
+id = "synthesis"
+label = "Photosynthesis and respiration as linked pathways"
+detail = "Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy."
+
+[[generated_images.edges]]
+source = "core"
+target = "mechanism"
+label = "constrains"
+
+[[generated_images.edges]]
+source = "mechanism"
+target = "evidence"
+label = "tested by"
+
+[[generated_images.edges]]
+source = "evidence"
+target = "term"
+label = "uses"
+
+[[generated_images.edges]]
+source = "term"
+target = "synthesis"
+label = "supports"
+
+[[generated_images.edges]]
+source = "synthesis"
+target = "core"
+label = "revises"
+
+[[generated_images]]
+id = "process-model"
+title = "Module 06: Metabolism Process Model"
+kind = "process-model"
+output = "resources/generated/module-06-process-model.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 06: Metabolism; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
+inputs = ["Energy and thermodynamics", "ATP as cellular coupling", "Enzymes and activation energy"]
+outputs = ["Apply thermodynamic ideas to living cells.", "Explain ATP as an energy-coupling molecule.", "Describe how enzymes change reaction rates."]
+feedbacks = ["Metabolism evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
+constraints = ["Cells transform energy while obeying thermodynamic constraints.", "Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy."]
+
+[[generated_images.stages]]
+label = "Energy and thermodynamics"
+detail = "Cells transform energy while obeying thermodynamic constraints."
+emphasis = "Step 1"
+
+[[generated_images.stages]]
+label = "ATP as cellular coupling"
+detail = "ATP couples energy-releasing reactions to energy-requiring cellular work."
+emphasis = "Step 2"
+
+[[generated_images.stages]]
+label = "Enzymes and activation energy"
+detail = "Enzymes lower activation energy without being consumed."
+emphasis = "Step 3"
+
+[[generated_images.stages]]
+label = "Regulation by conditions and inhibitors"
+detail = "Temperature, pH, substrate concentration, and inhibitors alter enzyme function."
+emphasis = "Step 4"
+
+[[generated_images.stages]]
+label = "Photosynthesis and respiration as linked pathways"
+detail = "Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy."
+emphasis = "Step 5"
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Module 06: Metabolism Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-06-retrieval-card.svg"
+prompt = "Deterministic high-design SVG for BIOL-1 Module 06: Metabolism; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+terms = ["Metabolism", "ATP", "Activation energy", "Enzyme", "Substrate"]
+lab_connection = "Metabolism gives concrete evidence for Module 06: Metabolism."
+
+[[generated_images.prompts]]
+prompt = "How do the laws of thermodynamics constrain cells?"
+check = "Apply thermodynamic ideas to living cells."
+
+[[generated_images.prompts]]
+prompt = "Why is ATP useful for cellular work?"
+check = "Explain ATP as an energy-coupling molecule."
+
+[[generated_images.prompts]]
+prompt = "How do enzymes lower activation energy?"
+check = "Describe how enzymes change reaction rates."
+
+[[generated_images.prompts]]
+prompt = "Why does enzyme shape matter?"
+check = "Predict how environmental conditions affect enzyme activity."

@@ -210,14 +210,12 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for design principles and [docs
 
 Sample biology course materials are available in `course_development/`:
 
-- **biol-1** and **biol-8** courses
+- **biol-1** active Fall 2026 course; BIOL-8 only in archived Spring 2026 snapshots
 - **module-1, module-2, module-3** in each course
 - Files prefixed with `sample_` for testing:
   - `sample_lecture-content.md`
   - `sample_study-guide.md`
   - `sample_lab-protocol.md`
-  - `sample_assignment-1-introduction.md`
-  - `sample_assignment-2-research.md`
 
 These sample files can be used to test:
 

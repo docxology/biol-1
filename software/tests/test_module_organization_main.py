@@ -28,10 +28,10 @@ def test_create_module_structure(temp_dir):
     assert (Path(module_path) / "README.md").exists()
     assert (Path(module_path) / "AGENTS.md").exists()
 
-    # Verify assignments directory exists
-    assert (Path(module_path) / "assignments").exists()
-    assert (Path(module_path) / "assignments" / "README.md").exists()
-    assert (Path(module_path) / "assignments" / "AGENTS.md").exists()
+    # Verify BIOL-1 source files exist and no assignments folder is required
+    assert (Path(module_path) / "questions.md").exists()
+    assert (Path(module_path) / "keys-to-success.md").exists()
+    assert not (Path(module_path) / "assignments").exists()
 
 
 def test_create_module_structure_existing_module(temp_dir):
@@ -64,9 +64,6 @@ def test_validate_module_structure_missing_files(temp_dir):
     module_dir = temp_dir / "module-1"
     module_dir.mkdir()
 
-    # Create assignments directory but no README.md
-    (module_dir / "assignments").mkdir()
-
     result = validate_module_structure(str(module_dir))
     assert result is False
 
@@ -86,6 +83,8 @@ def test_initialize_module_files(sample_module_structure):
 
     # Verify README.md was created
     assert (sample_module_structure / "README.md").exists()
+    assert (sample_module_structure / "questions.md").exists()
+    assert (sample_module_structure / "keys-to-success.md").exists()
 
 
 def test_initialize_module_files_invalid_template(sample_module_structure):
