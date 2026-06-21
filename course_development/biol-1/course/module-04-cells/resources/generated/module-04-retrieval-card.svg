@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
-  <title id="title">Module 04: Cells Retrieval Card</title>
-  <desc id="desc">Retrieval card for Module 4: Cells.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 04: Cells Retrieval and Lab Check">
+  <title>Module 04: Cells Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 4: Cells.</desc>
   <style>
     .bg { fill: #f4f1e6; }
     .halo { fill: url(#wash); opacity: 0.92; }
@@ -40,13 +40,13 @@
   <rect class="bg" width="1200" height="720" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module 04 / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">Module 04: Cells Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 04: Cells Retrieval and Lab Check</text>
   <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">What does cell theory claim?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: State the core claims of cell theory.</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">How does a prokaryotic cell differ from a</tspan><tspan x="632.0" dy="17">eukaryotic cell?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Compare prokaryotic and eukaryotic cells...</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">Why does cell size matter for exchange with</tspan><tspan x="120.0" dy="17">the environment?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain how membranes and compartments...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How do membranes create useful boundaries?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Match major organelles to their roles.</tspan></text>
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
   <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Cell theory, Prokaryote, Eukaryote, Organelle, Nucleus</tspan></text>
   <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
   <text x="632" y="582" class="card-kicker">Lab connection</text>
-  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">Liquid Chemistry gives concrete evidence for Module 04:</tspan><tspan x="632.0" dy="17">Cells.</tspan></text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-04_liquid-chemistry.md supplies evidence for liquid</tspan><tspan x="632.0" dy="17">chemistry conditions that affect cellular systems.</tspan></text>
   <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
 </svg>

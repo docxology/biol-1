@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 03: Organic Molecules Concept Map** (`resources/generated/module-03-concept-map.svg`) - concept-map
-  - Purpose: Organic Molecules is best learned as a connected explanation linking carbon skeletons, building and breaking polymers, and lab evidence.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 03: Organic Molecules; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 03: Organic Molecules Process Model** (`resources/generated/module-03-process-model.svg`) - process-model
+- **Module 03: Organic Molecules Evidence Map** (`resources/generated/module-03-concept-map.svg`) - concept-map
+  - Purpose: Organic Molecules explains carbon chemistry with polymer assembly and biological molecule evidence.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 03 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 03: Organic Molecules Reasoning Sequence** (`resources/generated/module-03-process-model.svg`) - process-model
   - Purpose: Carbon skeletons -> Building and breaking polymers -> Carbohydrates and lipids -> Proteins and shape
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 03: Organic Molecules; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 03: Organic Molecules Retrieval Card** (`resources/generated/module-03-retrieval-card.svg`) - retrieval-card
-  - Purpose: Microscopy gives concrete evidence for Module 03: Organic Molecules.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 03: Organic Molecules; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 03 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 03: Organic Molecules Retrieval and Lab Check** (`resources/generated/module-03-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-03_microscopy.md supplies evidence for microscopy evidence for biological structure.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 03 retrieval prompts with answer checks, required terms, and the linked lab.

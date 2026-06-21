@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Property of allowing some substances through more easily than others.
    - D. Net movement from high to low concentration.
    - Answer: A
-   - Why: Phospholipid anchors the phospholipid bilayer structure partition of Membranes.
+   - Why: Phospholipid names the module's starting idea: phospholipid bilayer structure must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the selective permeability partition?
+2. Which learning goal best supports the topic "Selective permeability"?
    - A. Describe how phospholipid structure creates a bilayer.
    - B. Predict which molecules cross membranes easily.
    - C. Compare passive and active transport.
    - D. Use concentration gradients to explain movement across membranes.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through selective permeability as part of the module's mechanism.
 
-3. How should Viewing Life support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for passive transport.
-   - D. By removing the need to compare observations.
+3. How should lab-05_viewing-life.md support Module 05?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for viewing life through structure, boundary, and environment evidence.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for membrane structure with gradients, transport, and cell survival predictions.
 
 4. Which retrieval move best prepares a student for Membranes?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Why do phospholipids form bilayers in water? Then justify the answer with evidence.
+   - D. Answer: Why do phospholipids form bilayers in water? Then check the answer against terms, evidence, and lab-05_viewing-life.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

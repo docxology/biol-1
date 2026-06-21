@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 11: Genomics and Biotechnology Concept Map** (`resources/generated/module-11-concept-map.svg`) - concept-map
-  - Purpose: Genomics and Biotechnology is best learned as a connected explanation linking genomes as data, pcr and amplification, and lab evidence.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 11: Genomics and Biotechnology Process Model** (`resources/generated/module-11-process-model.svg`) - process-model
+- **Module 11: Genomics and Biotechnology Evidence Map** (`resources/generated/module-11-concept-map.svg`) - concept-map
+  - Purpose: Genomics and Biotechnology explains genomes as data interpreted through PCR, gels, tools, and ethical limits.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 11 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 11: Genomics and Biotechnology Reasoning Sequence** (`resources/generated/module-11-process-model.svg`) - process-model
   - Purpose: Genomes as data -> PCR and amplification -> Gel electrophoresis and comparison -> Genetic engineering tools
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 11: Genomics and Biotechnology Retrieval Card** (`resources/generated/module-11-retrieval-card.svg`) - retrieval-card
-  - Purpose: Genomics Biotechnology gives concrete evidence for Module 11: Genomics and Biotechnology.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 11 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 11: Genomics and Biotechnology Retrieval and Lab Check** (`resources/generated/module-11-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-11_genomics-biotechnology.md supplies evidence for genomics and biotechnology evidence from DNA comparison tools.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 11 retrieval prompts with answer checks, required terms, and the linked lab.

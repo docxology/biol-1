@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 13: How Populations Evolve Concept Map](resources/generated/module-13-concept-map.svg)
-- [Module 13: How Populations Evolve Process Model](resources/generated/module-13-process-model.svg)
-- [Module 13: How Populations Evolve Retrieval Card](resources/generated/module-13-retrieval-card.svg)
+- [Module 13: How Populations Evolve Evidence Map](resources/generated/module-13-concept-map.svg)
+- [Module 13: How Populations Evolve Reasoning Sequence](resources/generated/module-13-process-model.svg)
+- [Module 13: How Populations Evolve Retrieval and Lab Check](resources/generated/module-13-retrieval-card.svg)

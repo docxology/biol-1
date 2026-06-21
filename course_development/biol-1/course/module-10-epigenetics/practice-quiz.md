@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Chemical marking of DNA often associated with reduced transcription.
    - D. Protein around which DNA is packaged.
    - Answer: A
-   - Why: Gene regulation anchors the gene regulation as control partition of Epigenetics.
+   - Why: Gene regulation names the module's starting idea: gene regulation as control must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the dna methylation partition?
+2. Which learning goal best supports the topic "DNA methylation"?
    - A. Explain gene regulation as control of gene activity.
    - B. Describe DNA methylation at an introductory level.
    - C. Connect chromatin structure to gene accessibility.
    - D. Give a careful example of environmental influence on expression.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through dna methylation as part of the module's mechanism.
 
-3. How should Epigenetics support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for histone and chromatin change.
-   - D. By removing the need to compare observations.
+3. How should lab-10_epigenetics.md support Module 10?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for epigenetics evidence from expression without sequence change.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for gene regulation through chromatin, environment, and expression evidence.
 
 4. Which retrieval move best prepares a student for Epigenetics?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Why do cells regulate genes? Then justify the answer with evidence.
+   - D. Answer: Why do cells regulate genes? Then check the answer against terms, evidence, and lab-10_epigenetics.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

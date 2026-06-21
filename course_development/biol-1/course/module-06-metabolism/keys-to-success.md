@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 06: Metabolism Concept Map](resources/generated/module-06-concept-map.svg)
-- [Module 06: Metabolism Process Model](resources/generated/module-06-process-model.svg)
-- [Module 06: Metabolism Retrieval Card](resources/generated/module-06-retrieval-card.svg)
+- [Module 06: Metabolism Evidence Map](resources/generated/module-06-concept-map.svg)
+- [Module 06: Metabolism Reasoning Sequence](resources/generated/module-06-process-model.svg)
+- [Module 06: Metabolism Retrieval and Lab Check](resources/generated/module-06-retrieval-card.svg)

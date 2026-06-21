@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 07: Molecular Genetics Concept Map](resources/generated/module-07-concept-map.svg)
-- [Module 07: Molecular Genetics Process Model](resources/generated/module-07-process-model.svg)
-- [Module 07: Molecular Genetics Retrieval Card](resources/generated/module-07-retrieval-card.svg)
+- [Module 07: Molecular Genetics Evidence Map](resources/generated/module-07-concept-map.svg)
+- [Module 07: Molecular Genetics Reasoning Sequence](resources/generated/module-07-process-model.svg)
+- [Module 07: Molecular Genetics Retrieval and Lab Check](resources/generated/module-07-retrieval-card.svg)

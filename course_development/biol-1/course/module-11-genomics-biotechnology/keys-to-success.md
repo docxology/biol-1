@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 11: Genomics and Biotechnology Concept Map](resources/generated/module-11-concept-map.svg)
-- [Module 11: Genomics and Biotechnology Process Model](resources/generated/module-11-process-model.svg)
-- [Module 11: Genomics and Biotechnology Retrieval Card](resources/generated/module-11-retrieval-card.svg)
+- [Module 11: Genomics and Biotechnology Evidence Map](resources/generated/module-11-concept-map.svg)
+- [Module 11: Genomics and Biotechnology Reasoning Sequence](resources/generated/module-11-process-model.svg)
+- [Module 11: Genomics and Biotechnology Retrieval and Lab Check](resources/generated/module-11-retrieval-card.svg)

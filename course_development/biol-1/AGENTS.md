@@ -17,7 +17,7 @@ biol-1/
 │   └── quizzes/                        # quiz-template.md
 ├── syllabus/                           # syllabus + schedule (multi-format)
 ├── resources/
-│   └── slides/                         # module-N-slides-{full,notes}.pdf
+│   └── slides/                         # generated module-N-slides-{full,notes}.pdf + generated HTML sources
 ├── private/                            # Instructor-only (not published)
 │   └── Pelican Bay/                    # Institution-specific PII (PBSP_Memos, …)
 ├── README.md
@@ -51,7 +51,7 @@ There is **no** `assignments/` subfolder convention in BIOL-1.
 | Lab dashboard | `course/labs/dashboards/lab-NN_topic-dashboard.html` | (already final HTML) |
 | Practice test | `course/practice_tests/practice-test-NN.md` | `practice-test-NN.{pdf,docx,…}` |
 | Exam | `course/exams/exam-NN.md` (+ `_key`) | `exam-NN.{pdf,docx,…}` |
-| Slides | `resources/slides/module-N-slides-{full,notes}.pdf` | (already final PDF) |
+| Slides | `resources/slides/module-N-slides-{full,notes}.pdf` | generated from module.toml via `generate_slide_decks.py` |
 | Syllabus | `syllabus/*.md` | `*.{pdf,docx,md}` by default in `syllabus/output/`; HTML, TXT, and MP3 are opt-in |
 
 ## Pipeline integration
@@ -76,3 +76,7 @@ The top-level `python publish.py` runs all of the above end-to-end and pushes `P
 
 - `private/` is excluded from `PUBLISHED/`. Never link or copy material from `private/` into `course/`.
 - `private/Pelican Bay/` contains institution-specific PII (memos, accommodation forms). Treat as confidential.
+
+## Generated slide decks
+
+Generated slide decks are active Fall 2026 outputs. Edit `course/module-*/module.toml`, then run `cd software && uv run python scripts/generate_slide_decks.py --course biol-1` or the full publish pipeline. Legacy imported decks live under `archive/fall-2026-legacy-slides/`.

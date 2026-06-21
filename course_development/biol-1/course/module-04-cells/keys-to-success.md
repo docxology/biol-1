@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 04: Cells Concept Map](resources/generated/module-04-concept-map.svg)
-- [Module 04: Cells Process Model](resources/generated/module-04-process-model.svg)
-- [Module 04: Cells Retrieval Card](resources/generated/module-04-retrieval-card.svg)
+- [Module 04: Cells Evidence Map](resources/generated/module-04-concept-map.svg)
+- [Module 04: Cells Reasoning Sequence](resources/generated/module-04-process-model.svg)
+- [Module 04: Cells Retrieval and Lab Check](resources/generated/module-04-retrieval-card.svg)

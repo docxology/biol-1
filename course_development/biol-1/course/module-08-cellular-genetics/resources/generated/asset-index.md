@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 08: Cellular Genetics Concept Map** (`resources/generated/module-08-concept-map.svg`) - concept-map
-  - Purpose: Cellular Genetics is best learned as a connected explanation linking chromosomes and cell cycle, mitosis for growth and repair, and lab evidence.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 08: Cellular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 08: Cellular Genetics Process Model** (`resources/generated/module-08-process-model.svg`) - process-model
+- **Module 08: Cellular Genetics Evidence Map** (`resources/generated/module-08-concept-map.svg`) - concept-map
+  - Purpose: Cellular Genetics explains chromosome behavior across mitosis, meiosis, variation, and errors.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 08 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 08: Cellular Genetics Reasoning Sequence** (`resources/generated/module-08-process-model.svg`) - process-model
   - Purpose: Chromosomes and cell cycle -> Mitosis for growth and repair -> Meiosis for gametes -> Variation from recombination and assortment
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 08: Cellular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 08: Cellular Genetics Retrieval Card** (`resources/generated/module-08-retrieval-card.svg`) - retrieval-card
-  - Purpose: Cellular Genetics gives concrete evidence for Module 08: Cellular Genetics.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 08: Cellular Genetics; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 08 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 08: Cellular Genetics Retrieval and Lab Check** (`resources/generated/module-08-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-08_cellular-genetics.md supplies evidence for cellular genetics evidence from chromosome models.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 08 retrieval prompts with answer checks, required terms, and the linked lab.

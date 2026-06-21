@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Allele combination of an organism.
    - D. Observable trait or characteristic.
    - Answer: A
-   - Why: Gene anchors the alleles and genotype partition of Inheritance Genetics.
+   - Why: Gene names the module's starting idea: alleles and genotype must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the mendelian patterns partition?
+2. Which learning goal best supports the topic "Mendelian patterns"?
    - A. Distinguish gene, allele, genotype, and phenotype.
    - B. Use segregation to explain monohybrid inheritance.
    - C. Build and interpret Punnett-square probabilities.
    - D. Recognize inheritance patterns beyond complete dominance.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through mendelian patterns as part of the module's mechanism.
 
-3. How should Inheritance Genetics support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for punnett-square prediction.
-   - D. By removing the need to compare observations.
+3. How should lab-09_inheritance-genetics.md support Module 09?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for inheritance genetics evidence from crosses and family patterns.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for allele segregation with probability, phenotype prediction, and pedigree evidence.
 
 4. Which retrieval move best prepares a student for Inheritance Genetics?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: How are genes and alleles related? Then justify the answer with evidence.
+   - D. Answer: How are genes and alleles related? Then check the answer against terms, evidence, and lab-09_inheritance-genetics.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

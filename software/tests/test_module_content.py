@@ -317,3 +317,17 @@ def test_non_svg_generated_image_output_fails(temp_dir):
 
     with pytest.raises(ModuleContentError, match="expected resources/generated/module-01-retrieval-card.svg"):
         load_module_content(module_dir)
+
+
+def test_rendered_svgs_have_plain_accessible_title_and_description(temp_dir):
+    module_dir = make_module(temp_dir)
+    render_module_materials(module_dir)
+
+    for svg_path in sorted((module_dir / "resources" / "generated").glob("*.svg")):
+        text = svg_path.read_text(encoding="utf-8")
+        assert 'role="img"' in text
+        assert 'aria-label=' in text
+        assert "<title>" in text
+        assert "</title>" in text
+        assert "<desc>" in text
+        assert "</desc>" in text

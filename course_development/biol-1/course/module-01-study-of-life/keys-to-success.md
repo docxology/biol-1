@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 01: Biology - The Study of Life Concept Map](resources/generated/module-01-concept-map.svg)
-- [Module 01: Biology - The Study of Life Process Model](resources/generated/module-01-process-model.svg)
-- [Module 01: Biology - The Study of Life Retrieval Card](resources/generated/module-01-retrieval-card.svg)
+- [Module 01: Biology - The Study of Life Evidence Map](resources/generated/module-01-concept-map.svg)
+- [Module 01: Biology - The Study of Life Reasoning Sequence](resources/generated/module-01-process-model.svg)
+- [Module 01: Biology - The Study of Life Retrieval and Lab Check](resources/generated/module-01-retrieval-card.svg)

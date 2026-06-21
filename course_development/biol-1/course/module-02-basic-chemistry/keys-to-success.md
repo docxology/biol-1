@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 02: Basic Chemistry Concept Map](resources/generated/module-02-concept-map.svg)
-- [Module 02: Basic Chemistry Process Model](resources/generated/module-02-process-model.svg)
-- [Module 02: Basic Chemistry Retrieval Card](resources/generated/module-02-retrieval-card.svg)
+- [Module 02: Basic Chemistry Evidence Map](resources/generated/module-02-concept-map.svg)
+- [Module 02: Basic Chemistry Reasoning Sequence](resources/generated/module-02-process-model.svg)
+- [Module 02: Basic Chemistry Retrieval and Lab Check](resources/generated/module-02-retrieval-card.svg)

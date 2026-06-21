@@ -277,6 +277,12 @@ def test_biol1_modules_have_explicit_generated_visual_specs():
 
     repo_root = Path(__file__).resolve().parents[2]
     modules = sorted((repo_root / "course_development" / "biol-1" / "course").glob("module-*"))
+    generic_phrases = (
+        "best learned as a connected explanation",
+        "partition",
+        "turns the module claim into observable evidence",
+        "gives concrete evidence for Module",
+    )
 
     assert len(modules) == 16
     for module_dir in modules:
@@ -286,3 +292,58 @@ def test_biol1_modules_have_explicit_generated_visual_specs():
         assert images["concept-map"].concept_map is not None
         assert images["process-model"].process_model is not None
         assert images["retrieval-card"].retrieval_card is not None
+        manifest_text = (module_dir / "module.toml").read_text(encoding="utf-8")
+        for phrase in generic_phrases:
+            assert phrase.lower() not in manifest_text.lower()
+        retrieval = images["retrieval-card"].retrieval_card
+        assert retrieval is not None
+        questions = {question.lower() for question in module.learning_questions}
+        objectives = {objective.lower() for objective in module.learning_objectives}
+        assert module.lab in retrieval.lab_connection
+        for prompt in retrieval.prompts:
+            assert prompt.prompt.lower() in questions or prompt.check.lower() in objectives
+
+
+def test_slide_contract_requires_full_and_notes_for_every_active_biol1_module(temp_dir):
+    from pathlib import Path
+
+    from src.validation import repo_contracts
+
+    root = Path(temp_dir)
+    course_root = root / "course_development" / "biol-1"
+    slides_dir = course_root / "resources" / "slides"
+    generated_dir = slides_dir / "generated"
+    generated_dir.mkdir(parents=True)
+    (slides_dir / "module-1-slides-full.pdf").write_bytes(b"%PDF-1.4\n")
+    for variant in ("full", "notes"):
+        (generated_dir / f"module-1-slides-{variant}.html").write_text(
+            "Module 01 Learning objectives Lab file: data-slide-role data-visual-kind "
+            "module-01-concept-map.svg module-01-process-model.svg module-01-retrieval-card.svg "
+            + 'data-visual-kind="embedded-svg"' * 3
+            + '<section class="slide"></section>' * 10,
+            encoding="utf-8",
+        )
+
+    report = repo_contracts.RepoContractReport()
+    repo_contracts._check_slide_numbering(root, "biol-1", course_root, 1, report)
+
+    assert not report.valid
+    assert any("full and notes PDFs" in issue for issue in report.issues)
+
+
+def test_slide_contract_rejects_legacy_active_slide_names(temp_dir):
+    from pathlib import Path
+
+    from src.validation import repo_contracts
+
+    root = Path(temp_dir)
+    course_root = root / "course_development" / "biol-1"
+    slides_dir = course_root / "resources" / "slides"
+    slides_dir.mkdir(parents=True)
+    (slides_dir / "module-8-slides-meiosis-full.pdf").write_bytes(b"%PDF-1.4\n")
+
+    report = repo_contracts.RepoContractReport()
+    repo_contracts._check_slide_numbering(root, "biol-1", course_root, 16, report)
+
+    assert not report.valid
+    assert any("does not follow module-N-slides-full|notes.pdf" in issue for issue in report.issues)

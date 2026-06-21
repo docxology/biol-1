@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Technique for amplifying selected DNA sequences.
    - D. Short DNA sequence that starts PCR copying.
    - Answer: A
-   - Why: Genome anchors the genomes as data partition of Genomics and Biotechnology.
+   - Why: Genome names the module's starting idea: genomes as data must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the pcr and amplification partition?
+2. Which learning goal best supports the topic "PCR and amplification"?
    - A. Define genome and genomics.
    - B. Explain why PCR amplification is useful.
    - C. Interpret basic gel electrophoresis fragment patterns.
    - D. Describe what genetic engineering tools can do.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through pcr and amplification as part of the module's mechanism.
 
-3. How should Genomics Biotechnology support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for gel electrophoresis and comparison.
-   - D. By removing the need to compare observations.
+3. How should lab-11_genomics-biotechnology.md support Module 11?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for genomics and biotechnology evidence from DNA comparison tools.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for genomes as data interpreted through PCR, gels, tools, and ethical limits.
 
 4. Which retrieval move best prepares a student for Genomics and Biotechnology?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: What is a genome? Then justify the answer with evidence.
+   - D. Answer: What is a genome? Then check the answer against terms, evidence, and lab-11_genomics-biotechnology.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

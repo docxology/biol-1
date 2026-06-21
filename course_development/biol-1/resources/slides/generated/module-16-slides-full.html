@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Module 16: Capstone Systems Synthesis Slides (full)</title>
+<style>
+@page { size: 16in 9in; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4efe4; color: #17211c; font-family: Avenir Next, Trebuchet MS, sans-serif; }
+.slide { page-break-after: always; width: 16in; height: 9in; padding: .44in; position: relative; overflow: hidden; background: radial-gradient(circle at 12% 18%, #fff7d6 0, transparent 28%), linear-gradient(135deg, #f7efe1 0%, #d7e6dc 100%); }
+.slide::after { content: ""; position: absolute; right: -.5in; bottom: -.55in; width: 5.4in; height: 5.4in; border-radius: 50%; background: rgba(25, 92, 75, .12); }
+.slide-ribbon { position: absolute; top: .2in; right: .35in; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #41564f; }
+.slide-grid { display: grid; grid-template-columns: 5.05in 1fr; gap: .36in; height: 100%; align-items: stretch; }
+.slide-copy { border-left: .08in solid #bb5a3a; padding: .38in .18in .2in .28in; z-index: 1; }
+.eyebrow { margin: 0 0 .18in; font-size: 13pt; text-transform: uppercase; letter-spacing: .11em; color: #79513c; }
+h1 { margin: 0 0 .28in; font-family: Georgia, serif; font-size: 34pt; line-height: 1.02; color: #102820; }
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .14in; }
+li { font-size: 15pt; line-height: 1.25; padding-left: .2in; position: relative; }
+li::before { content: ""; position: absolute; left: 0; top: .28em; width: .08in; height: .08in; border-radius: 50%; background: #bb5a3a; }
+.visual-frame { z-index: 1; min-height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.embedded-svg svg { width: 100%; max-height: 7.25in; display: block; }
+.module-orbit { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: .18in; align-content: center; }
+.module-orbit strong { grid-column: 1 / -1; font: 700 34pt Georgia, serif; color: #195c4b; }
+.module-orbit span, .module-orbit em, .step-card, .term-grid div, .flow-cell, .contrast div { background: #fff9ea; border: 1px solid rgba(187,90,58,.35); border-radius: .16in; padding: .16in; font-size: 15pt; line-height: 1.22; }
+.module-orbit em { grid-column: 1 / -1; color: #66422f; }
+.ordered-cards { display: grid; gap: .12in; width: 100%; }
+.step-card b, .term-grid b, .flow-cell b, .contrast b { display: block; color: #bb5a3a; margin-bottom: .04in; text-transform: uppercase; letter-spacing: .06em; font-size: 10pt; }
+.term-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .14in; width: 100%; }
+.term-grid span, .step-card span, .flow-cell span, .contrast span { display: block; }
+.flow-diagram, .contrast { display: grid; grid-template-columns: repeat(3, 1fr); gap: .18in; align-items: center; width: 100%; }
+.contrast { grid-template-columns: repeat(2, 1fr); }
+.speaker-note { position: absolute; left: .55in; right: .55in; bottom: .18in; z-index: 2; background: #102820; color: #fff7d6; border-radius: .12in; padding: .11in .16in; font-size: 11pt; }
+.speaker-note{display:none}
+</style>
+</head>
+<body>
+<section class="slide slide-title-map" data-slide-role="title-map" data-visual-kind="module-map">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 01</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Module map</h1>
+      <ul><li>Module 16: Capstone Systems Synthesis</li><li>Connected lab: lab-16_capstone-systems-synthesis.md</li><li>Use this deck as the visual path through the module&#x27;s evidence and retrieval work.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="module-map"><div class="module-orbit"><strong>Module 16</strong><span>Biology across scales</span><span>Mechanism chains</span><span>Feedback and constraint</span><span>Evidence from multiple modules</span><span>Capstone explanation and revision</span><em>lab-16_capstone-systems-synthesis.md</em></div></div>
+  </div>
+  
+</section>
+<section class="slide slide-objectives" data-slide-role="objectives" data-visual-kind="objective-ladder">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 02</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Learning objectives</h1>
+      <ul><li>Connect concepts from at least three modules in one explanation.</li><li>Trace a mechanism across biological scales.</li><li>Identify feedback loops, constraints, and tradeoffs.</li><li>Match evidence types to claims at different scales.</li><li>Revise a systems explanation using new evidence.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="objective-ladder"><div class="ordered-cards"><div class="step-card"><b>Objective 1</b><span>Connect concepts from at least three modules in one explanation.</span></div><div class="step-card"><b>Objective 2</b><span>Trace a mechanism across biological scales.</span></div><div class="step-card"><b>Objective 3</b><span>Identify feedback loops, constraints, and tradeoffs.</span></div><div class="step-card"><b>Objective 4</b><span>Match evidence types to claims at different scales.</span></div><div class="step-card"><b>Objective 5</b><span>Revise a systems explanation using new evidence.</span></div></div></div>
+  </div>
+  
+</section>
+<section class="slide slide-topics" data-slide-role="topics" data-visual-kind="topic-sequence">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 03</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Topic sequence</h1>
+      <ul><li>Biology across scales: Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems.</li><li>Mechanism chains: Mechanism chains show how one change can produce effects across scales.</li><li>Feedback and constraint: Feedback loops and constraints explain why biological systems do not change without limits.</li><li>Evidence from multiple modules: Evidence from labs, models, and observations must match the scale of the claim.</li><li>Capstone explanation and revision: Capstone reasoning combines concepts into a clear claim that can be tested and revised.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="topic-sequence"><div class="ordered-cards"><div class="step-card"><b>Topic 1</b><span>Biology across scales</span></div><div class="step-card"><b>Topic 2</b><span>Mechanism chains</span></div><div class="step-card"><b>Topic 3</b><span>Feedback and constraint</span></div><div class="step-card"><b>Topic 4</b><span>Evidence from multiple modules</span></div><div class="step-card"><b>Topic 5</b><span>Capstone explanation and revision</span></div></div></div>
+  </div>
+  
+</section>
+<section class="slide slide-concept-map" data-slide-role="concept-map" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 04</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Module 16: Capstone Systems Synthesis Evidence Map</h1>
+      <ul><li>Module focus: Capstone Systems Synthesis</li><li>Central claim: Capstone Systems Synthesis explains cross-scale biological explanation through mechanisms, evidence chains, and revision.</li><li>Key nodes to connect: Biology across scales, Mechanism chains, Lab evidence</li><li>Reasoning move: use &#x27;requires&#x27; to explain relationships, not memorize terms.</li><li>Lab connection: lab-16_capstone-systems-synthesis.md supplies an evidence surface for the map.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-16-concept-map.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 16: Capstone Systems Synthesis Evidence Map">
+  <title>Module 16: Capstone Systems Synthesis Evidence Map</title>
+  <desc>Concept map for Module 16: Capstone Systems Synthesis. Capstone Systems Synthesis explains cross-scale biological explanation through mechanisms, evidence chains, and revision.</desc>
+  <style>
+    .bg { fill: #f4f1e6; }
+    .halo { fill: url(#m16-concept-map-wash); opacity: 0.92; }
+    .frame { fill: #fffdf5; stroke: #2c2517; stroke-width: 3; }
+    .eyebrow { fill: #9b3f2f; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #2c2517; font: 800 38px Georgia, serif; }
+    .footer { fill: #6a614d; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffdf5; stroke: #2c2517; stroke-width: 2.5; filter: url(#m16-concept-map-shadow); }
+    .claim-kicker, .card-kicker { fill: #9b3f2f; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #2c2517; font: 700 25px Georgia, serif; }
+    .node { fill: #fffdf5; stroke: #2f6f4e; stroke-width: 3; filter: url(#m16-concept-map-shadow); }
+    .node-label { fill: #2c2517; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #6a614d; font: 14px Georgia, serif; }
+    .edge { stroke: #9b3f2f; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #9b3f2f; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f4f1e6; stroke-width: 4; }
+    .stage { fill: #fffdf5; stroke: #9b3f2f; stroke-width: 5; filter: url(#m16-concept-map-shadow); }
+    .stage-num { fill: #2f6f4e; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #2c2517; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #6a614d; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #2f6f4e; stroke-width: 5; stroke-linecap: round; marker-end: url(#m16-concept-map-arrowhead); }
+    .prompt-text { fill: #2c2517; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #9b3f2f; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m16-concept-map-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffdf5" />
+      <stop offset="1" stop-color="#2f6f4e" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m16-concept-map-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#2c2517" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m16-concept-map-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#2f6f4e" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M80 100 C260 20 458 88 610 62 C848 20 1052 74 1148 214 L1148 656 L52 656 L52 178 C64 142 70 118 80 100 Z" />
+  <text x="70" y="72" class="eyebrow">Module 16 / Concept Map</text>
+  <text x="70" y="118" class="title-text">Module 16: Capstone Systems Synthesis Evidence Map</text>
+  <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
+  <text x="600" y="322" class="claim-kicker">Central claim</text>
+  <text x="600.0" y="366.0" class="claim-text" text-anchor="middle"><tspan x="600.0" dy="0">Capstone Systems Synthesis explains cross-scale</tspan><tspan x="600.0" dy="25">biological explanation through mechanisms,</tspan><tspan x="600.0" dy="25">evidence chains, and revision.</tspan></text>
+  <path d="M 600.0 175.0 L 911.8 270.0" class="edge" /><text x="755.9" y="222.5" class="edge-label">requires</text><path d="M 911.8 270.0 L 911.8 460.0" class="edge" /><text x="911.8" y="365.0" class="edge-label">tested by</text><path d="M 911.8 460.0 L 600.0 555.0" class="edge" /><text x="755.9" y="507.5" class="edge-label">uses</text><path d="M 600.0 555.0 L 288.2 460.0" class="edge" /><text x="444.1" y="507.5" class="edge-label">supports</text><path d="M 288.2 460.0 L 288.2 270.0" class="edge" /><text x="288.2" y="365.0" class="edge-label">rules out</text><path d="M 288.2 270.0 L 600.0 175.0" class="edge" /><text x="444.1" y="222.5" class="edge-label">revises</text>
+  <g class="node-group"><rect x="480.0" y="127.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="163.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Biology across scales</tspan></text><text x="600.0" y="197.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Biological explanations</tspan><tspan x="600.0" dy="14">become stronger when they...</tspan></text></g><g class="node-group"><rect x="791.8" y="222.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="258.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Mechanism chains</tspan></text><text x="911.8" y="292.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">Mechanism chains show how</tspan><tspan x="911.8" dy="14">one change can produce...</tspan></text></g><g class="node-group"><rect x="791.8" y="412.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="448.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Lab evidence</tspan></text><text x="911.8" y="482.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">lab-16_capstone-systems-synthesis.md</tspan><tspan x="911.8" dy="14">focuses students on...</tspan></text></g><g class="node-group"><rect x="480.0" y="507.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="543.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">System</tspan></text><text x="600.0" y="577.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Interacting parts whose</tspan><tspan x="600.0" dy="14">relationships shape...</tspan></text></g><g class="node-group"><rect x="168.2" y="412.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="448.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Capstone explanation</tspan><tspan x="288.2" dy="20">and revision</tspan></text><text x="288.2" y="482.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Build and revise a claim</tspan><tspan x="288.2" dy="14">using evidence from...</tspan></text></g><g class="node-group"><rect x="168.2" y="222.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="258.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Misconception check</tspan></text><text x="288.2" y="292.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">A synthesis is more than a</tspan><tspan x="288.2" dy="14">list; it links mechanisms...</tspan></text></g>
+  <text x="70" y="672" class="footer">Linked lab: lab-16_capstone-systems-synthesis.md / Generated from explicit module.toml visual schema</text>
+</svg>
+</div></div>
+  </div>
+  
+</section>
+<section class="slide slide-process-model" data-slide-role="process-model" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 05</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Module 16: Capstone Systems Synthesis Reasoning Sequence</h1>
+      <ul><li>Module focus: Capstone Systems Synthesis</li><li>Trace the model: Biology across scales -&gt; Mechanism chains -&gt; Feedback and constraint -&gt; Evidence from multiple modules</li><li>Inputs become outputs: Biology across scales, Mechanism chains -&gt; Connect concepts from at least three modules in one explanation., Trace a mechanism across biological scales.</li><li>Feedback check: lab-16_capstone-systems-synthesis.md evidence checks whether students can explain feedback and constraint.</li><li>Lab connection: lab-16_capstone-systems-synthesis.md gives students a process to observe or test.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-16-process-model.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 16: Capstone Systems Synthesis Reasoning Sequence">
+  <title>Module 16: Capstone Systems Synthesis Reasoning Sequence</title>
+  <desc>Process model for Module 16: Capstone Systems Synthesis.</desc>
+  <style>
+    .bg { fill: #f4f1e6; }
+    .halo { fill: url(#m16-process-model-wash); opacity: 0.92; }
+    .frame { fill: #fffdf5; stroke: #2c2517; stroke-width: 3; }
+    .eyebrow { fill: #9b3f2f; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #2c2517; font: 800 38px Georgia, serif; }
+    .footer { fill: #6a614d; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffdf5; stroke: #2c2517; stroke-width: 2.5; filter: url(#m16-process-model-shadow); }
+    .claim-kicker, .card-kicker { fill: #9b3f2f; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #2c2517; font: 700 25px Georgia, serif; }
+    .node { fill: #fffdf5; stroke: #2f6f4e; stroke-width: 3; filter: url(#m16-process-model-shadow); }
+    .node-label { fill: #2c2517; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #6a614d; font: 14px Georgia, serif; }
+    .edge { stroke: #9b3f2f; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #9b3f2f; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f4f1e6; stroke-width: 4; }
+    .stage { fill: #fffdf5; stroke: #9b3f2f; stroke-width: 5; filter: url(#m16-process-model-shadow); }
+    .stage-num { fill: #2f6f4e; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #2c2517; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #6a614d; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #2f6f4e; stroke-width: 5; stroke-linecap: round; marker-end: url(#m16-process-model-arrowhead); }
+    .prompt-text { fill: #2c2517; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #9b3f2f; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m16-process-model-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffdf5" />
+      <stop offset="1" stop-color="#2f6f4e" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m16-process-model-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#2c2517" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m16-process-model-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#2f6f4e" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
+  <text x="84" y="100" class="eyebrow">Module 16 / Process Model</text>
+  <text x="84" y="148" class="title-text">Module 16: Capstone Systems Synthesis Reasoning Sequence</text>
+  <rect x="84" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="110" y="216" class="card-kicker">Inputs</text>
+  <text x="110.0" y="244.0" class="mini-text"><tspan x="110.0" dy="0">• Biology across scales</tspan></text><text x="110.0" y="259.0" class="mini-text"><tspan x="110.0" dy="0">• Mechanism chains</tspan></text><text x="110.0" y="274.0" class="mini-text"><tspan x="110.0" dy="0">• Evidence from</tspan><tspan x="110.0" dy="15">lab-16_capstone-systems-synthesis.md</tspan></text>
+  <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="824" y="216" class="card-kicker">Outputs</text>
+  <text x="824.0" y="244.0" class="mini-text"><tspan x="824.0" dy="0">• Connect concepts from at</tspan><tspan x="824.0" dy="15">least three modules in one</tspan><tspan x="824.0" dy="15">explanation.</tspan></text><text x="824.0" y="259.0" class="mini-text"><tspan x="824.0" dy="0">• Trace a mechanism across</tspan><tspan x="824.0" dy="15">biological scales.</tspan></text><text x="824.0" y="274.0" class="mini-text"><tspan x="824.0" dy="0">• Revise a systems explanation</tspan><tspan x="824.0" dy="15">using new evidence.</tspan></text>
+  <path d="M 238.0 330.0 C 278.0 288.0, 262.0 395.0, 302.0 405.0" class="arrow" /><path d="M 458.0 405.0 C 498.0 363.0, 482.0 340.0, 522.0 330.0" class="arrow" /><path d="M 678.0 330.0 C 718.0 288.0, 702.0 395.0, 742.0 405.0" class="arrow" /><path d="M 898.0 405.0 C 938.0 363.0, 922.0 340.0, 962.0 330.0" class="arrow" />
+  <g><circle cx="160.0" cy="330.0" r="70" class="stage" /><text x="160.0" y="248.0" class="stage-num">01</text><text x="160.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="160.0" dy="0">Biology across</tspan><tspan x="160.0" dy="18">scales</tspan></text><text x="160.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="160.0" dy="0">Biological</tspan><tspan x="160.0" dy="13">explanations become...</tspan></text></g><g><circle cx="380.0" cy="405.0" r="70" class="stage" /><text x="380.0" y="323.0" class="stage-num">02</text><text x="380.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="380.0" dy="0">Mechanism chains</tspan></text><text x="380.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="380.0" dy="0">Mechanism chains show</tspan><tspan x="380.0" dy="13">how one change can...</tspan></text></g><g><circle cx="600.0" cy="330.0" r="70" class="stage" /><text x="600.0" y="248.0" class="stage-num">03</text><text x="600.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="600.0" dy="0">Feedback and</tspan><tspan x="600.0" dy="18">constraint</tspan></text><text x="600.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="600.0" dy="0">Feedback loops and</tspan><tspan x="600.0" dy="13">constraints explain...</tspan></text></g><g><circle cx="820.0" cy="405.0" r="70" class="stage" /><text x="820.0" y="323.0" class="stage-num">04</text><text x="820.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="820.0" dy="0">Evidence from</tspan><tspan x="820.0" dy="18">multiple modules</tspan></text><text x="820.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="820.0" dy="0">Evidence from labs,</tspan><tspan x="820.0" dy="13">models, and...</tspan></text></g><g><circle cx="1040.0" cy="330.0" r="70" class="stage" /><text x="1040.0" y="248.0" class="stage-num">05</text><text x="1040.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="1040.0" dy="0">Capstone</tspan><tspan x="1040.0" dy="18">explanation and...</tspan></text><text x="1040.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="1040.0" dy="0">Capstone reasoning</tspan><tspan x="1040.0" dy="13">combines concepts into...</tspan></text></g>
+  <rect x="84" y="562" width="1032" height="70" rx="22" class="feedback-card" />
+  <text x="112" y="590" class="card-kicker">Feedbacks and constraints</text>
+  <text x="112.0" y="618.0" class="mini-text"><tspan x="112.0" dy="0">lab-16_capstone-systems-synthesis.md evidence checks whether students can explain feedback and constraint.;</tspan><tspan x="112.0" dy="16">Retrieval questions reveal whether terms are connected to evidence.; A synthesis is more than a list; it links...</tspan></text>
+  <text x="84" y="668" class="footer">Linked lab: lab-16_capstone-systems-synthesis.md</text>
+</svg>
+</div></div>
+  </div>
+  
+</section>
+<section class="slide slide-terms" data-slide-role="terms" data-visual-kind="term-grid">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 06</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Terms as evidence handles</h1>
+      <ul><li>System: Interacting parts whose relationships shape outcomes.</li><li>Scale: Level of biological organization.</li><li>Mechanism: Causal process that explains how something happens.</li><li>Feedback loop: Circular causal relationship that amplifies or reduces change.</li><li>Constraint: Limit that shapes what a system can do.</li><li>Tradeoff: Benefit in one function paired with cost elsewhere.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="term-grid"><div class="term-grid"><div><b>System</b><span>Interacting parts whose relationships shape outcomes.</span></div><div><b>Scale</b><span>Level of biological organization.</span></div><div><b>Mechanism</b><span>Causal process that explains how something happens.</span></div><div><b>Feedback loop</b><span>Circular causal relationship that amplifies or reduces change.</span></div><div><b>Constraint</b><span>Limit that shapes what a system can do.</span></div><div><b>Tradeoff</b><span>Benefit in one function paired with cost elsewhere.</span></div></div></div>
+  </div>
+  
+</section>
+<section class="slide slide-lab" data-slide-role="lab" data-visual-kind="lab-flow">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 07</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Lab connection</h1>
+      <ul><li>Lab file: lab-16_capstone-systems-synthesis.md</li><li>Lab evidence should test or illustrate: Feedback and constraint</li><li>Students should leave with a concrete observation, comparison, or model tied to the module claim.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="lab-flow"><div class="flow-diagram"><div class="flow-cell"><b>Question</b><span>Biology across scales</span></div><div class="flow-cell"><b>Evidence</b><span>lab-16_capstone-systems-synthesis.md</span></div><div class="flow-cell"><b>Claim</b><span>Connect concepts from at least three modules in one explanation.</span></div></div></div>
+  </div>
+  
+</section>
+<section class="slide slide-contrast" data-slide-role="contrast" data-visual-kind="contrast-panel">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 08</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Contrast check</h1>
+      <ul><li>Do not stop at: Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems.</li><li>Stronger explanation: Capstone reasoning combines concepts into a clear claim that can be tested and revised.</li><li>The goal is to move from a named idea to a testable biological explanation.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="contrast-panel"><div class="contrast"><div><b>Surface</b><span>Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems.</span></div><div><b>Deeper</b><span>Capstone reasoning combines concepts into a clear claim that can be tested and revised.</span></div></div></div>
+  </div>
+  
+</section>
+<section class="slide slide-retrieval" data-slide-role="retrieval" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 09</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Module 16: Capstone Systems Synthesis Retrieval and Lab Check</h1>
+      <ul><li>Module focus: Capstone Systems Synthesis</li><li>Retrieval prompt: How can a molecular change affect an ecosystem?</li><li>Answer check: Connect concepts from at least three modules in one explanation.</li><li>Required terms: System, Scale, Mechanism</li><li>Lab connection: lab-16_capstone-systems-synthesis.md; lab-16_capstone-systems-synthesis.md supplies evidence for capstone synthesis evidence from lab-to-course integration.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-16-retrieval-card.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 16: Capstone Systems Synthesis Retrieval and Lab Check">
+  <title>Module 16: Capstone Systems Synthesis Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 16: Capstone Systems Synthesis.</desc>
+  <style>
+    .bg { fill: #f4f1e6; }
+    .halo { fill: url(#m16-retrieval-wash); opacity: 0.92; }
+    .frame { fill: #fffdf5; stroke: #2c2517; stroke-width: 3; }
+    .eyebrow { fill: #9b3f2f; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #2c2517; font: 800 38px Georgia, serif; }
+    .footer { fill: #6a614d; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffdf5; stroke: #2c2517; stroke-width: 2.5; filter: url(#m16-retrieval-shadow); }
+    .claim-kicker, .card-kicker { fill: #9b3f2f; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #2c2517; font: 700 25px Georgia, serif; }
+    .node { fill: #fffdf5; stroke: #2f6f4e; stroke-width: 3; filter: url(#m16-retrieval-shadow); }
+    .node-label { fill: #2c2517; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #6a614d; font: 14px Georgia, serif; }
+    .edge { stroke: #9b3f2f; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #9b3f2f; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f4f1e6; stroke-width: 4; }
+    .stage { fill: #fffdf5; stroke: #9b3f2f; stroke-width: 5; filter: url(#m16-retrieval-shadow); }
+    .stage-num { fill: #2f6f4e; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #2c2517; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #6a614d; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #2f6f4e; stroke-width: 5; stroke-linecap: round; marker-end: url(#m16-retrieval-arrowhead); }
+    .prompt-text { fill: #2c2517; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #9b3f2f; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m16-retrieval-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffdf5" />
+      <stop offset="1" stop-color="#2f6f4e" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m16-retrieval-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#2c2517" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m16-retrieval-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#2f6f4e" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M44 72 H1156 V648 H44 Z" />
+  <text x="82" y="92" class="eyebrow">Module 16 / Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 16: Capstone Systems Synthesis Retrieval and Lab Check</text>
+  <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">How can a molecular change affect an</tspan><tspan x="120.0" dy="17">ecosystem?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Connect concepts from at least three modules...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">Why does scale matter in biological</tspan><tspan x="632.0" dy="17">explanation?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Trace a mechanism across biological scales.</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What is a mechanism chain?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Identify feedback loops, constraints, and...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How can feedback limit or amplify change?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Match evidence types to claims at different...</tspan></text>
+  <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
+  <text x="120" y="582" class="card-kicker">Terms to use</text>
+  <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">System, Scale, Mechanism, Feedback loop, Constraint</tspan></text>
+  <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
+  <text x="632" y="582" class="card-kicker">Lab connection</text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-16_capstone-systems-synthesis.md supplies evidence for</tspan><tspan x="632.0" dy="17">capstone synthesis evidence from lab-to-course...</tspan></text>
+  <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
+</svg>
+</div></div>
+  </div>
+  
+</section>
+<section class="slide slide-quiz" data-slide-role="quiz" data-visual-kind="quiz-bridge">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 10</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Practice quiz bridge</h1>
+      <ul><li>1. Which statement best defines System in Module 16?</li><li>2. Which learning goal best supports the topic &quot;Mechanism chains&quot;?</li><li>3. How should lab-16_capstone-systems-synthesis.md support Module 16?</li><li>4. Which retrieval move best prepares a student for Capstone Systems Synthesis?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="quiz-bridge"><div class="ordered-cards"><div class="step-card"><b>Quiz 1</b><span>A</span></div><div class="step-card"><b>Quiz 2</b><span>B</span></div><div class="step-card"><b>Quiz 3</b><span>C</span></div><div class="step-card"><b>Quiz 4</b><span>D</span></div></div></div>
+  </div>
+  
+</section>
+<section class="slide slide-synthesis" data-slide-role="synthesis" data-visual-kind="exit-ticket">
+  <div class="slide-ribbon">BIOL-1 · Module 16 · Slide 11</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Capstone Systems Synthesis</p>
+      <h1>Synthesis and exit ticket</h1>
+      <ul><li>Exit claim: explain biology across scales using evidence from lab-16_capstone-systems-synthesis.md.</li><li>Must include: System, Scale, Mechanism.</li><li>Revision prompt: what evidence would change your explanation?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="exit-ticket"><div class="flow-diagram"><div class="flow-cell"><b>Claim</b><span>Biology across scales</span></div><div class="flow-cell"><b>Evidence</b><span>lab-16_capstone-systems-synthesis.md</span></div><div class="flow-cell"><b>Revision</b><span>What would change your mind?</span></div></div></div>
+  </div>
+  
+</section>
+</body>
+</html>

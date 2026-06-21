@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 03: Organic Molecules Concept Map](resources/generated/module-03-concept-map.svg)
-- [Module 03: Organic Molecules Process Model](resources/generated/module-03-process-model.svg)
-- [Module 03: Organic Molecules Retrieval Card](resources/generated/module-03-retrieval-card.svg)
+- [Module 03: Organic Molecules Evidence Map](resources/generated/module-03-concept-map.svg)
+- [Module 03: Organic Molecules Reasoning Sequence](resources/generated/module-03-process-model.svg)
+- [Module 03: Organic Molecules Retrieval and Lab Check](resources/generated/module-03-retrieval-card.svg)

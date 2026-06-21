@@ -424,9 +424,9 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
             f'{_svg_wrapped_text(node.detail, x, y + 22, 27, 14, "node-detail", anchor="middle", max_lines=2)}'
             f'</g>'
         )
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-labelledby="title desc">
-  <title id="title">{title}</title>
-  <desc id="desc">{desc}</desc>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
+  <title>{title}</title>
+  <desc>{desc}</desc>
   <style>{_svg_style(palette)}</style>
   <defs>{_svg_defs(palette)}</defs>
   <rect class="bg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" />
@@ -470,9 +470,9 @@ def _render_process_model_svg(module: ModuleContent, image: GeneratedImage) -> s
                 f'{x_values[idx + 1] - 118:.1f} {395 if y == 330 else 340:.1f}, '
                 f'{x_values[idx + 1] - 78:.1f} {405 if y == 330 else 330:.1f}" class="arrow" />'
             )
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-labelledby="title desc">
-  <title id="title">{title}</title>
-  <desc id="desc">{desc}</desc>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
+  <title>{title}</title>
+  <desc>{desc}</desc>
   <style>{_svg_style(palette)}</style>
   <defs>{_svg_defs(palette)}</defs>
   <rect class="bg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" />
@@ -512,9 +512,9 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
             f'{_svg_wrapped_text(prompt.prompt, x + 28, y + 66, 45, 17, "prompt-text", max_lines=2)}'
             f'{_svg_wrapped_text("Check: " + prompt.check, x + 28, y + 112, 52, 13, "check-text", max_lines=1)}'
         )
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-labelledby="title desc">
-  <title id="title">{title}</title>
-  <desc id="desc">{desc}</desc>
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
+  <title>{title}</title>
+  <desc>{desc}</desc>
   <style>{_svg_style(palette)}</style>
   <defs>{_svg_defs(palette)}</defs>
   <rect class="bg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" />

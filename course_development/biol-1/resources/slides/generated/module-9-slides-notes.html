@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Module 09: Inheritance Genetics Slides (notes)</title>
+<style>
+@page { size: 16in 9in; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4efe4; color: #17211c; font-family: Avenir Next, Trebuchet MS, sans-serif; }
+.slide { page-break-after: always; width: 16in; height: 9in; padding: .44in; position: relative; overflow: hidden; background: radial-gradient(circle at 12% 18%, #fff7d6 0, transparent 28%), linear-gradient(135deg, #f7efe1 0%, #d7e6dc 100%); }
+.slide::after { content: ""; position: absolute; right: -.5in; bottom: -.55in; width: 5.4in; height: 5.4in; border-radius: 50%; background: rgba(25, 92, 75, .12); }
+.slide-ribbon { position: absolute; top: .2in; right: .35in; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #41564f; }
+.slide-grid { display: grid; grid-template-columns: 5.05in 1fr; gap: .36in; height: 100%; align-items: stretch; }
+.slide-copy { border-left: .08in solid #bb5a3a; padding: .38in .18in .2in .28in; z-index: 1; }
+.eyebrow { margin: 0 0 .18in; font-size: 13pt; text-transform: uppercase; letter-spacing: .11em; color: #79513c; }
+h1 { margin: 0 0 .28in; font-family: Georgia, serif; font-size: 34pt; line-height: 1.02; color: #102820; }
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .14in; }
+li { font-size: 15pt; line-height: 1.25; padding-left: .2in; position: relative; }
+li::before { content: ""; position: absolute; left: 0; top: .28em; width: .08in; height: .08in; border-radius: 50%; background: #bb5a3a; }
+.visual-frame { z-index: 1; min-height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.embedded-svg svg { width: 100%; max-height: 7.25in; display: block; }
+.module-orbit { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: .18in; align-content: center; }
+.module-orbit strong { grid-column: 1 / -1; font: 700 34pt Georgia, serif; color: #195c4b; }
+.module-orbit span, .module-orbit em, .step-card, .term-grid div, .flow-cell, .contrast div { background: #fff9ea; border: 1px solid rgba(187,90,58,.35); border-radius: .16in; padding: .16in; font-size: 15pt; line-height: 1.22; }
+.module-orbit em { grid-column: 1 / -1; color: #66422f; }
+.ordered-cards { display: grid; gap: .12in; width: 100%; }
+.step-card b, .term-grid b, .flow-cell b, .contrast b { display: block; color: #bb5a3a; margin-bottom: .04in; text-transform: uppercase; letter-spacing: .06em; font-size: 10pt; }
+.term-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .14in; width: 100%; }
+.term-grid span, .step-card span, .flow-cell span, .contrast span { display: block; }
+.flow-diagram, .contrast { display: grid; grid-template-columns: repeat(3, 1fr); gap: .18in; align-items: center; width: 100%; }
+.contrast { grid-template-columns: repeat(2, 1fr); }
+.speaker-note { position: absolute; left: .55in; right: .55in; bottom: .18in; z-index: 2; background: #102820; color: #fff7d6; border-radius: .12in; padding: .11in .16in; font-size: 11pt; }
+</style>
+</head>
+<body>
+<section class="slide slide-title-map" data-slide-role="title-map" data-visual-kind="module-map">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 01</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Module map</h1>
+      <ul><li>Module 09: Inheritance Genetics</li><li>Connected lab: lab-09_inheritance-genetics.md</li><li>Use this deck as the visual path through the module&#x27;s evidence and retrieval work.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="module-map"><div class="module-orbit"><strong>Module 09</strong><span>Alleles and genotype</span><span>Mendelian patterns</span><span>Punnett-square prediction</span><span>Beyond simple dominance</span><span>Pedigrees and probability</span><em>lab-09_inheritance-genetics.md</em></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Open by naming the module claim and pointing students to the lab as the evidence surface.</aside>
+</section>
+<section class="slide slide-objectives" data-slide-role="objectives" data-visual-kind="objective-ladder">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 02</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Learning objectives</h1>
+      <ul><li>Distinguish gene, allele, genotype, and phenotype.</li><li>Use segregation to explain monohybrid inheritance.</li><li>Build and interpret Punnett-square probabilities.</li><li>Recognize inheritance patterns beyond complete dominance.</li><li>Use pedigree evidence to reason about traits.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="objective-ladder"><div class="ordered-cards"><div class="step-card"><b>Objective 1</b><span>Distinguish gene, allele, genotype, and phenotype.</span></div><div class="step-card"><b>Objective 2</b><span>Use segregation to explain monohybrid inheritance.</span></div><div class="step-card"><b>Objective 3</b><span>Build and interpret Punnett-square probabilities.</span></div><div class="step-card"><b>Objective 4</b><span>Recognize inheritance patterns beyond complete dominance.</span></div><div class="step-card"><b>Objective 5</b><span>Use pedigree evidence to reason about traits.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Frame objectives as actions students should be able to perform, not facts to copy.</aside>
+</section>
+<section class="slide slide-topics" data-slide-role="topics" data-visual-kind="topic-sequence">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 03</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Topic sequence</h1>
+      <ul><li>Alleles and genotype: Alleles are gene variants that contribute to genotype and phenotype.</li><li>Mendelian patterns: Mendelian inheritance predicts patterns when alleles segregate into gametes.</li><li>Punnett-square prediction: Punnett squares model probability, not guaranteed outcomes.</li><li>Beyond simple dominance: Incomplete dominance, codominance, polygenic traits, and environment complicate simple patterns.</li><li>Pedigrees and probability: Pedigrees use family evidence to infer inheritance patterns.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="topic-sequence"><div class="ordered-cards"><div class="step-card"><b>Topic 1</b><span>Alleles and genotype</span></div><div class="step-card"><b>Topic 2</b><span>Mendelian patterns</span></div><div class="step-card"><b>Topic 3</b><span>Punnett-square prediction</span></div><div class="step-card"><b>Topic 4</b><span>Beyond simple dominance</span></div><div class="step-card"><b>Topic 5</b><span>Pedigrees and probability</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Show the module as an ordered explanation so students can locate each new idea.</aside>
+</section>
+<section class="slide slide-concept-map" data-slide-role="concept-map" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 04</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Module 09: Inheritance Genetics Evidence Map</h1>
+      <ul><li>Module focus: Inheritance Genetics</li><li>Central claim: Inheritance Genetics explains allele segregation with probability, phenotype prediction, and pedigree evidence.</li><li>Key nodes to connect: Alleles and genotype, Mendelian patterns, Lab evidence</li><li>Reasoning move: use &#x27;requires&#x27; to explain relationships, not memorize terms.</li><li>Lab connection: lab-09_inheritance-genetics.md supplies an evidence surface for the map.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-09-concept-map.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 09: Inheritance Genetics Evidence Map">
+  <title>Module 09: Inheritance Genetics Evidence Map</title>
+  <desc>Concept map for Module 9: Inheritance Genetics. Inheritance Genetics explains allele segregation with probability, phenotype prediction, and pedigree evidence.</desc>
+  <style>
+    .bg { fill: #f7efe2; }
+    .halo { fill: url(#m9-concept-map-wash); opacity: 0.92; }
+    .frame { fill: #fffaf0; stroke: #1f2a24; stroke-width: 3; }
+    .eyebrow { fill: #c45f35; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #1f2a24; font: 800 38px Georgia, serif; }
+    .footer { fill: #59685f; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffaf0; stroke: #1f2a24; stroke-width: 2.5; filter: url(#m9-concept-map-shadow); }
+    .claim-kicker, .card-kicker { fill: #c45f35; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #1f2a24; font: 700 25px Georgia, serif; }
+    .node { fill: #fffaf0; stroke: #245f73; stroke-width: 3; filter: url(#m9-concept-map-shadow); }
+    .node-label { fill: #1f2a24; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #59685f; font: 14px Georgia, serif; }
+    .edge { stroke: #c45f35; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #c45f35; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f7efe2; stroke-width: 4; }
+    .stage { fill: #fffaf0; stroke: #c45f35; stroke-width: 5; filter: url(#m9-concept-map-shadow); }
+    .stage-num { fill: #245f73; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #1f2a24; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #59685f; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #245f73; stroke-width: 5; stroke-linecap: round; marker-end: url(#m9-concept-map-arrowhead); }
+    .prompt-text { fill: #1f2a24; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #c45f35; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m9-concept-map-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffaf0" />
+      <stop offset="1" stop-color="#245f73" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m9-concept-map-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#1f2a24" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m9-concept-map-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#245f73" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M80 100 C260 20 458 88 610 62 C848 20 1052 74 1148 214 L1148 656 L52 656 L52 178 C64 142 70 118 80 100 Z" />
+  <text x="70" y="72" class="eyebrow">Module 09 / Concept Map</text>
+  <text x="70" y="118" class="title-text">Module 09: Inheritance Genetics Evidence Map</text>
+  <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
+  <text x="600" y="322" class="claim-kicker">Central claim</text>
+  <text x="600.0" y="366.0" class="claim-text" text-anchor="middle"><tspan x="600.0" dy="0">Inheritance Genetics explains allele segregation</tspan><tspan x="600.0" dy="25">with probability, phenotype prediction, and</tspan><tspan x="600.0" dy="25">pedigree evidence.</tspan></text>
+  <path d="M 600.0 175.0 L 911.8 270.0" class="edge" /><text x="755.9" y="222.5" class="edge-label">requires</text><path d="M 911.8 270.0 L 911.8 460.0" class="edge" /><text x="911.8" y="365.0" class="edge-label">tested by</text><path d="M 911.8 460.0 L 600.0 555.0" class="edge" /><text x="755.9" y="507.5" class="edge-label">uses</text><path d="M 600.0 555.0 L 288.2 460.0" class="edge" /><text x="444.1" y="507.5" class="edge-label">supports</text><path d="M 288.2 460.0 L 288.2 270.0" class="edge" /><text x="288.2" y="365.0" class="edge-label">rules out</text><path d="M 288.2 270.0 L 600.0 175.0" class="edge" /><text x="444.1" y="222.5" class="edge-label">revises</text>
+  <g class="node-group"><rect x="480.0" y="127.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="163.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Alleles and genotype</tspan></text><text x="600.0" y="197.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Alleles are gene variants</tspan><tspan x="600.0" dy="14">that contribute to genotype...</tspan></text></g><g class="node-group"><rect x="791.8" y="222.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="258.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Mendelian patterns</tspan></text><text x="911.8" y="292.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">Mendelian inheritance</tspan><tspan x="911.8" dy="14">predicts patterns when...</tspan></text></g><g class="node-group"><rect x="791.8" y="412.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="448.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Lab evidence</tspan></text><text x="911.8" y="482.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">lab-09_inheritance-genetics.md</tspan><tspan x="911.8" dy="14">focuses students on...</tspan></text></g><g class="node-group"><rect x="480.0" y="507.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="543.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Gene</tspan></text><text x="600.0" y="577.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">DNA sequence contributing</tspan><tspan x="600.0" dy="14">to a trait or functional...</tspan></text></g><g class="node-group"><rect x="168.2" y="412.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="448.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Pedigrees and</tspan><tspan x="288.2" dy="20">probability</tspan></text><text x="288.2" y="482.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Use crosses and pedigrees</tspan><tspan x="288.2" dy="14">to support inheritance...</tspan></text></g><g class="node-group"><rect x="168.2" y="222.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="258.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Misconception check</tspan></text><text x="288.2" y="292.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Punnett squares show</tspan><tspan x="288.2" dy="14">probabilities, not...</tspan></text></g>
+  <text x="70" y="672" class="footer">Linked lab: lab-09_inheritance-genetics.md / Generated from explicit module.toml visual schema</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Ask students to explain one edge in their own words before moving on.</aside>
+</section>
+<section class="slide slide-process-model" data-slide-role="process-model" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 05</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Module 09: Inheritance Genetics Reasoning Sequence</h1>
+      <ul><li>Module focus: Inheritance Genetics</li><li>Trace the model: Alleles and genotype -&gt; Mendelian patterns -&gt; Punnett-square prediction -&gt; Beyond simple dominance</li><li>Inputs become outputs: Alleles and genotype, Mendelian patterns -&gt; Distinguish gene, allele, genotype, and phenotype., Use segregation to explain monohybrid inheritance.</li><li>Feedback check: lab-09_inheritance-genetics.md evidence checks whether students can explain punnett-square prediction.</li><li>Lab connection: lab-09_inheritance-genetics.md gives students a process to observe or test.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-09-process-model.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 09: Inheritance Genetics Reasoning Sequence">
+  <title>Module 09: Inheritance Genetics Reasoning Sequence</title>
+  <desc>Process model for Module 9: Inheritance Genetics.</desc>
+  <style>
+    .bg { fill: #f7efe2; }
+    .halo { fill: url(#m9-process-model-wash); opacity: 0.92; }
+    .frame { fill: #fffaf0; stroke: #1f2a24; stroke-width: 3; }
+    .eyebrow { fill: #c45f35; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #1f2a24; font: 800 38px Georgia, serif; }
+    .footer { fill: #59685f; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffaf0; stroke: #1f2a24; stroke-width: 2.5; filter: url(#m9-process-model-shadow); }
+    .claim-kicker, .card-kicker { fill: #c45f35; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #1f2a24; font: 700 25px Georgia, serif; }
+    .node { fill: #fffaf0; stroke: #245f73; stroke-width: 3; filter: url(#m9-process-model-shadow); }
+    .node-label { fill: #1f2a24; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #59685f; font: 14px Georgia, serif; }
+    .edge { stroke: #c45f35; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #c45f35; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f7efe2; stroke-width: 4; }
+    .stage { fill: #fffaf0; stroke: #c45f35; stroke-width: 5; filter: url(#m9-process-model-shadow); }
+    .stage-num { fill: #245f73; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #1f2a24; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #59685f; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #245f73; stroke-width: 5; stroke-linecap: round; marker-end: url(#m9-process-model-arrowhead); }
+    .prompt-text { fill: #1f2a24; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #c45f35; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m9-process-model-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffaf0" />
+      <stop offset="1" stop-color="#245f73" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m9-process-model-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#1f2a24" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m9-process-model-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#245f73" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
+  <text x="84" y="100" class="eyebrow">Module 09 / Process Model</text>
+  <text x="84" y="148" class="title-text">Module 09: Inheritance Genetics Reasoning Sequence</text>
+  <rect x="84" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="110" y="216" class="card-kicker">Inputs</text>
+  <text x="110.0" y="244.0" class="mini-text"><tspan x="110.0" dy="0">• Alleles and genotype</tspan></text><text x="110.0" y="259.0" class="mini-text"><tspan x="110.0" dy="0">• Mendelian patterns</tspan></text><text x="110.0" y="274.0" class="mini-text"><tspan x="110.0" dy="0">• Evidence from</tspan><tspan x="110.0" dy="15">lab-09_inheritance-genetics.md</tspan></text>
+  <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="824" y="216" class="card-kicker">Outputs</text>
+  <text x="824.0" y="244.0" class="mini-text"><tspan x="824.0" dy="0">• Distinguish gene, allele,</tspan><tspan x="824.0" dy="15">genotype, and phenotype.</tspan></text><text x="824.0" y="259.0" class="mini-text"><tspan x="824.0" dy="0">• Use segregation to explain</tspan><tspan x="824.0" dy="15">monohybrid inheritance.</tspan></text><text x="824.0" y="274.0" class="mini-text"><tspan x="824.0" dy="0">• Use pedigree evidence to</tspan><tspan x="824.0" dy="15">reason about traits.</tspan></text>
+  <path d="M 238.0 330.0 C 278.0 288.0, 262.0 395.0, 302.0 405.0" class="arrow" /><path d="M 458.0 405.0 C 498.0 363.0, 482.0 340.0, 522.0 330.0" class="arrow" /><path d="M 678.0 330.0 C 718.0 288.0, 702.0 395.0, 742.0 405.0" class="arrow" /><path d="M 898.0 405.0 C 938.0 363.0, 922.0 340.0, 962.0 330.0" class="arrow" />
+  <g><circle cx="160.0" cy="330.0" r="70" class="stage" /><text x="160.0" y="248.0" class="stage-num">01</text><text x="160.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="160.0" dy="0">Alleles and</tspan><tspan x="160.0" dy="18">genotype</tspan></text><text x="160.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="160.0" dy="0">Alleles are gene</tspan><tspan x="160.0" dy="13">variants that...</tspan></text></g><g><circle cx="380.0" cy="405.0" r="70" class="stage" /><text x="380.0" y="323.0" class="stage-num">02</text><text x="380.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="380.0" dy="0">Mendelian patterns</tspan></text><text x="380.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="380.0" dy="0">Mendelian inheritance</tspan><tspan x="380.0" dy="13">predicts patterns when...</tspan></text></g><g><circle cx="600.0" cy="330.0" r="70" class="stage" /><text x="600.0" y="248.0" class="stage-num">03</text><text x="600.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="600.0" dy="0">Punnett-square</tspan><tspan x="600.0" dy="18">prediction</tspan></text><text x="600.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="600.0" dy="0">Punnett squares model</tspan><tspan x="600.0" dy="13">probability, not...</tspan></text></g><g><circle cx="820.0" cy="405.0" r="70" class="stage" /><text x="820.0" y="323.0" class="stage-num">04</text><text x="820.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="820.0" dy="0">Beyond simple</tspan><tspan x="820.0" dy="18">dominance</tspan></text><text x="820.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="820.0" dy="0">Incomplete dominance,</tspan><tspan x="820.0" dy="13">codominance, polygenic...</tspan></text></g><g><circle cx="1040.0" cy="330.0" r="70" class="stage" /><text x="1040.0" y="248.0" class="stage-num">05</text><text x="1040.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="1040.0" dy="0">Pedigrees and</tspan><tspan x="1040.0" dy="18">probability</tspan></text><text x="1040.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="1040.0" dy="0">Pedigrees use family</tspan><tspan x="1040.0" dy="13">evidence to infer...</tspan></text></g>
+  <rect x="84" y="562" width="1032" height="70" rx="22" class="feedback-card" />
+  <text x="112" y="590" class="card-kicker">Feedbacks and constraints</text>
+  <text x="112.0" y="618.0" class="mini-text"><tspan x="112.0" dy="0">lab-09_inheritance-genetics.md evidence checks whether students can explain punnett-square prediction.; Retrieval</tspan><tspan x="112.0" dy="16">questions reveal whether terms are connected to evidence.; Punnett squares show probabilities, not guaranteed...</tspan></text>
+  <text x="84" y="668" class="footer">Linked lab: lab-09_inheritance-genetics.md</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Emphasize where the process can fail, slow down, or be revised by evidence.</aside>
+</section>
+<section class="slide slide-terms" data-slide-role="terms" data-visual-kind="term-grid">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 06</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Terms as evidence handles</h1>
+      <ul><li>Gene: DNA sequence contributing to a trait or functional product.</li><li>Allele: Variant form of a gene.</li><li>Genotype: Allele combination of an organism.</li><li>Phenotype: Observable trait or characteristic.</li><li>Dominant: Allele effect visible with one copy in simple dominance.</li><li>Recessive: Allele effect masked by dominant allele in heterozygotes.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="term-grid"><div class="term-grid"><div><b>Gene</b><span>DNA sequence contributing to a trait or functional product.</span></div><div><b>Allele</b><span>Variant form of a gene.</span></div><div><b>Genotype</b><span>Allele combination of an organism.</span></div><div><b>Phenotype</b><span>Observable trait or characteristic.</span></div><div><b>Dominant</b><span>Allele effect visible with one copy in simple dominance.</span></div><div><b>Recessive</b><span>Allele effect masked by dominant allele in heterozygotes.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Treat terms as handles for reasoning. Each term should help explain a claim or observation.</aside>
+</section>
+<section class="slide slide-lab" data-slide-role="lab" data-visual-kind="lab-flow">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 07</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Lab connection</h1>
+      <ul><li>Lab file: lab-09_inheritance-genetics.md</li><li>Lab evidence should test or illustrate: Punnett-square prediction</li><li>Students should leave with a concrete observation, comparison, or model tied to the module claim.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="lab-flow"><div class="flow-diagram"><div class="flow-cell"><b>Question</b><span>Alleles and genotype</span></div><div class="flow-cell"><b>Evidence</b><span>lab-09_inheritance-genetics.md</span></div><div class="flow-cell"><b>Claim</b><span>Distinguish gene, allele, genotype, and phenotype.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Make the lab connection explicit before students encounter the activity.</aside>
+</section>
+<section class="slide slide-contrast" data-slide-role="contrast" data-visual-kind="contrast-panel">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 08</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Contrast check</h1>
+      <ul><li>Do not stop at: Alleles are gene variants that contribute to genotype and phenotype.</li><li>Stronger explanation: Pedigrees use family evidence to infer inheritance patterns.</li><li>The goal is to move from a named idea to a testable biological explanation.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="contrast-panel"><div class="contrast"><div><b>Surface</b><span>Alleles are gene variants that contribute to genotype and phenotype.</span></div><div><b>Deeper</b><span>Pedigrees use family evidence to infer inheritance patterns.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use this slide to prevent shallow vocabulary-only learning.</aside>
+</section>
+<section class="slide slide-retrieval" data-slide-role="retrieval" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 09</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Module 09: Inheritance Genetics Retrieval and Lab Check</h1>
+      <ul><li>Module focus: Inheritance Genetics</li><li>Retrieval prompt: How are genes and alleles related?</li><li>Answer check: Distinguish gene, allele, genotype, and phenotype.</li><li>Required terms: Gene, Allele, Genotype</li><li>Lab connection: lab-09_inheritance-genetics.md; lab-09_inheritance-genetics.md supplies evidence for inheritance genetics evidence from crosses and family patterns.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-09-retrieval-card.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 09: Inheritance Genetics Retrieval and Lab Check">
+  <title>Module 09: Inheritance Genetics Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 9: Inheritance Genetics.</desc>
+  <style>
+    .bg { fill: #f7efe2; }
+    .halo { fill: url(#m9-retrieval-wash); opacity: 0.92; }
+    .frame { fill: #fffaf0; stroke: #1f2a24; stroke-width: 3; }
+    .eyebrow { fill: #c45f35; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #1f2a24; font: 800 38px Georgia, serif; }
+    .footer { fill: #59685f; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffaf0; stroke: #1f2a24; stroke-width: 2.5; filter: url(#m9-retrieval-shadow); }
+    .claim-kicker, .card-kicker { fill: #c45f35; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #1f2a24; font: 700 25px Georgia, serif; }
+    .node { fill: #fffaf0; stroke: #245f73; stroke-width: 3; filter: url(#m9-retrieval-shadow); }
+    .node-label { fill: #1f2a24; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #59685f; font: 14px Georgia, serif; }
+    .edge { stroke: #c45f35; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #c45f35; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f7efe2; stroke-width: 4; }
+    .stage { fill: #fffaf0; stroke: #c45f35; stroke-width: 5; filter: url(#m9-retrieval-shadow); }
+    .stage-num { fill: #245f73; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #1f2a24; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #59685f; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #245f73; stroke-width: 5; stroke-linecap: round; marker-end: url(#m9-retrieval-arrowhead); }
+    .prompt-text { fill: #1f2a24; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #c45f35; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m9-retrieval-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffaf0" />
+      <stop offset="1" stop-color="#245f73" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m9-retrieval-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#1f2a24" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m9-retrieval-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#245f73" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M44 72 H1156 V648 H44 Z" />
+  <text x="82" y="92" class="eyebrow">Module 09 / Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 09: Inheritance Genetics Retrieval and Lab Check</text>
+  <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">How are genes and alleles related?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Distinguish gene, allele, genotype, and...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">How do genotype and phenotype differ?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Use segregation to explain monohybrid...</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What does heterozygous mean?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Build and interpret Punnett-square...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How does allele segregation explain a</tspan><tspan x="632.0" dy="17">monohybrid cross?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Recognize inheritance patterns beyond...</tspan></text>
+  <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
+  <text x="120" y="582" class="card-kicker">Terms to use</text>
+  <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Gene, Allele, Genotype, Phenotype, Dominant</tspan></text>
+  <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
+  <text x="632" y="582" class="card-kicker">Lab connection</text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-09_inheritance-genetics.md supplies evidence for</tspan><tspan x="632.0" dy="17">inheritance genetics evidence from crosses and family...</tspan></text>
+  <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Pause here. Students answer first without notes, then compare to the checks.</aside>
+</section>
+<section class="slide slide-quiz" data-slide-role="quiz" data-visual-kind="quiz-bridge">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 10</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Practice quiz bridge</h1>
+      <ul><li>1. Which statement best defines Gene in Module 09?</li><li>2. Which learning goal best supports the topic &quot;Mendelian patterns&quot;?</li><li>3. How should lab-09_inheritance-genetics.md support Module 09?</li><li>4. Which retrieval move best prepares a student for Inheritance Genetics?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="quiz-bridge"><div class="ordered-cards"><div class="step-card"><b>Quiz 1</b><span>A</span></div><div class="step-card"><b>Quiz 2</b><span>B</span></div><div class="step-card"><b>Quiz 3</b><span>C</span></div><div class="step-card"><b>Quiz 4</b><span>D</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use the quiz as formative feedback. Answer key: 1=A, 2=B, 3=C, 4=D</aside>
+</section>
+<section class="slide slide-synthesis" data-slide-role="synthesis" data-visual-kind="exit-ticket">
+  <div class="slide-ribbon">BIOL-1 · Module 09 · Slide 11</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Inheritance Genetics</p>
+      <h1>Synthesis and exit ticket</h1>
+      <ul><li>Exit claim: explain alleles and genotype using evidence from lab-09_inheritance-genetics.md.</li><li>Must include: Gene, Allele, Genotype.</li><li>Revision prompt: what evidence would change your explanation?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="exit-ticket"><div class="flow-diagram"><div class="flow-cell"><b>Claim</b><span>Alleles and genotype</span></div><div class="flow-cell"><b>Evidence</b><span>lab-09_inheritance-genetics.md</span></div><div class="flow-cell"><b>Revision</b><span>What would change your mind?</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> End with a claim-evidence-reasoning exit ticket connected to the same module data.</aside>
+</section>
+</body>
+</html>

@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 12: Darwin and Evolution Concept Map](resources/generated/module-12-concept-map.svg)
-- [Module 12: Darwin and Evolution Process Model](resources/generated/module-12-process-model.svg)
-- [Module 12: Darwin and Evolution Retrieval Card](resources/generated/module-12-retrieval-card.svg)
+- [Module 12: Darwin and Evolution Evidence Map](resources/generated/module-12-concept-map.svg)
+- [Module 12: Darwin and Evolution Reasoning Sequence](resources/generated/module-12-process-model.svg)
+- [Module 12: Darwin and Evolution Retrieval and Lab Check](resources/generated/module-12-retrieval-card.svg)

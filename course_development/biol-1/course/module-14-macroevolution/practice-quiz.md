@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Barriers that reduce gene flow between groups.
    - D. Barrier before fertilization.
    - Answer: A
-   - Why: Species anchors the species concepts partition of Macroevolution.
+   - Why: Species names the module's starting idea: species concepts must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the reproductive isolation partition?
+2. Which learning goal best supports the topic "Reproductive isolation"?
    - A. State the biological species concept and its limits.
    - B. Explain reproductive isolation as reduced gene flow.
    - C. Classify examples as prezygotic or postzygotic barriers.
    - D. Compare allopatric and sympatric speciation.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through reproductive isolation as part of the module's mechanism.
 
-3. How should Macroevolution support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for prezygotic barriers.
-   - D. By removing the need to compare observations.
+3. How should lab-14_macroevolution.md support Module 14?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for macroevolution evidence from isolation and lineage patterns.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for speciation as reduced gene flow, reproductive isolation, and phylogenetic divergence.
 
 4. Which retrieval move best prepares a student for Macroevolution?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: What does the biological species concept emphasize? Then justify the answer with evidence.
+   - D. Answer: What does the biological species concept emphasize? Then check the answer against terms, evidence, and lab-14_macroevolution.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

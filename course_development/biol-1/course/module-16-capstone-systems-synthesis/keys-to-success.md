@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 16: Capstone Systems Synthesis Concept Map](resources/generated/module-16-concept-map.svg)
-- [Module 16: Capstone Systems Synthesis Process Model](resources/generated/module-16-process-model.svg)
-- [Module 16: Capstone Systems Synthesis Retrieval Card](resources/generated/module-16-retrieval-card.svg)
+- [Module 16: Capstone Systems Synthesis Evidence Map](resources/generated/module-16-concept-map.svg)
+- [Module 16: Capstone Systems Synthesis Reasoning Sequence](resources/generated/module-16-process-model.svg)
+- [Module 16: Capstone Systems Synthesis Retrieval and Lab Check](resources/generated/module-16-retrieval-card.svg)

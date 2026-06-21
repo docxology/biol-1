@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 07: Molecular Genetics Concept Map** (`resources/generated/module-07-concept-map.svg`) - concept-map
-  - Purpose: Molecular Genetics is best learned as a connected explanation linking dna structure, replication, and lab evidence.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 07: Molecular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 07: Molecular Genetics Process Model** (`resources/generated/module-07-process-model.svg`) - process-model
+- **Module 07: Molecular Genetics Evidence Map** (`resources/generated/module-07-concept-map.svg`) - concept-map
+  - Purpose: Molecular Genetics explains DNA information flow from sequence to RNA, protein, and trait evidence.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 07 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 07: Molecular Genetics Reasoning Sequence** (`resources/generated/module-07-process-model.svg`) - process-model
   - Purpose: DNA structure -> Replication -> Transcription -> Translation
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 07: Molecular Genetics; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 07: Molecular Genetics Retrieval Card** (`resources/generated/module-07-retrieval-card.svg`) - retrieval-card
-  - Purpose: Molecular Genetics gives concrete evidence for Module 07: Molecular Genetics.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 07: Molecular Genetics; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 07 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 07: Molecular Genetics Retrieval and Lab Check** (`resources/generated/module-07-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-07_molecular-genetics.md supplies evidence for molecular genetics evidence from sequence and expression reasoning.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 07 retrieval prompts with answer checks, required terms, and the linked lab.

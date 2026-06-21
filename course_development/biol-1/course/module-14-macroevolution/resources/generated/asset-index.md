@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 14: Macroevolution Concept Map** (`resources/generated/module-14-concept-map.svg`) - concept-map
-  - Purpose: Macroevolution is best learned as a connected explanation linking species concepts, reproductive isolation, and lab evidence.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 14: Macroevolution; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 14: Macroevolution Process Model** (`resources/generated/module-14-process-model.svg`) - process-model
+- **Module 14: Macroevolution Evidence Map** (`resources/generated/module-14-concept-map.svg`) - concept-map
+  - Purpose: Macroevolution explains speciation as reduced gene flow, reproductive isolation, and phylogenetic divergence.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 14 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 14: Macroevolution Reasoning Sequence** (`resources/generated/module-14-process-model.svg`) - process-model
   - Purpose: Species concepts -> Reproductive isolation -> Prezygotic barriers -> Postzygotic barriers
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 14: Macroevolution; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 14: Macroevolution Retrieval Card** (`resources/generated/module-14-retrieval-card.svg`) - retrieval-card
-  - Purpose: Macroevolution gives concrete evidence for Module 14: Macroevolution.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 14: Macroevolution; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 14 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 14: Macroevolution Retrieval and Lab Check** (`resources/generated/module-14-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-14_macroevolution.md supplies evidence for macroevolution evidence from isolation and lineage patterns.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 14 retrieval prompts with answer checks, required terms, and the linked lab.

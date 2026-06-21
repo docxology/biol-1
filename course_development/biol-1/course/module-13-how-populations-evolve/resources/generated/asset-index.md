@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 13: How Populations Evolve Concept Map** (`resources/generated/module-13-concept-map.svg`) - concept-map
-  - Purpose: How Populations Evolve is best learned as a connected explanation linking allele frequencies as the unit of change, sources of variation, and lab.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 13: How Populations Evolve Process Model** (`resources/generated/module-13-process-model.svg`) - process-model
+- **Module 13: How Populations Evolve Evidence Map** (`resources/generated/module-13-concept-map.svg`) - concept-map
+  - Purpose: How Populations Evolve explains allele-frequency change through drift, gene flow, selection, and baseline models.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 13 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 13: How Populations Evolve Reasoning Sequence** (`resources/generated/module-13-process-model.svg`) - process-model
   - Purpose: Allele frequencies as the unit of change -> Sources of variation -> Five mechanisms of microevolution -> Genetic drift and selection
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 13: How Populations Evolve Retrieval Card** (`resources/generated/module-13-retrieval-card.svg`) - retrieval-card
-  - Purpose: How Populations Evolve gives concrete evidence for Module 13: How Populations Evolve.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 13 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 13: How Populations Evolve Retrieval and Lab Check** (`resources/generated/module-13-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-13_how-populations-evolve.md supplies evidence for population evolution evidence from frequency changes.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 13 retrieval prompts with answer checks, required terms, and the linked lab.

@@ -45,64 +45,75 @@ definition = "Process that harvests usable energy from fuel molecules."
 question = "Which statement best defines Metabolism in Module 06?"
 options = ["All chemical reactions in a cell or organism.", "Cellular energy-coupling molecule.", "Energy required to start a reaction.", "Protein or RNA catalyst that speeds a reaction."]
 answer = "A"
-explanation = "Metabolism anchors the energy and thermodynamics partition of Metabolism."
+explanation = "Metabolism names the module's starting idea: energy and thermodynamics must be explained with evidence, not memorized alone."
 
 [[practice_quiz]]
-question = "Which learning goal best matches the atp as cellular coupling partition?"
+question = "Which learning goal best supports the topic \"ATP as cellular coupling\"?"
 options = ["Apply thermodynamic ideas to living cells.", "Explain ATP as an energy-coupling molecule.", "Describe how enzymes change reaction rates.", "Predict how environmental conditions affect enzyme activity."]
 answer = "B"
-explanation = "The correct option names the specific reasoning target for that partition."
+explanation = "This objective asks students to reason through atp as cellular coupling as part of the module's mechanism."
 
 [[practice_quiz]]
-question = "How should Metabolism support this module?"
-options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for enzymes and activation energy.", "By removing the need to compare observations."]
+question = "How should lab-06_metabolism.md support Module 06?"
+options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for metabolism evidence from reaction rate and condition changes.", "By removing the need to compare observations or predictions."]
 answer = "C"
-explanation = "The lab is the concrete evidence surface for the same-numbered module."
+explanation = "The lab is the evidence surface for energy transformations with ATP coupling, enzymes, and linked pathways."
 
 [[practice_quiz]]
 question = "Which retrieval move best prepares a student for Metabolism?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How do the laws of thermodynamics constrain cells? Then justify the answer with evidence."]
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How do the laws of thermodynamics constrain cells? Then check the answer against terms, evidence, and lab-06_metabolism.md."]
 answer = "D"
-explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
 
 [[generated_images]]
 id = "concept-map"
-title = "Module 06: Metabolism Concept Map"
+title = "Module 06: Metabolism Evidence Map"
 kind = "concept-map"
 output = "resources/generated/module-06-concept-map.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 06: Metabolism; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
-central_claim = "Metabolism is best learned as a connected explanation linking energy and thermodynamics, atp as cellular coupling, and lab evidence."
-clusters = ["Energy and thermodynamics", "ATP as cellular coupling", "Evidence", "Synthesis"]
+prompt = "Deterministic BIOL-1 SVG showing how Module 06 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision."
+central_claim = "Metabolism explains energy transformations with ATP coupling, enzymes, and linked pathways."
+clusters = ["Claim", "Mechanism", "Evidence", "Application", "Revision"]
 
 [[generated_images.nodes]]
 id = "core"
 label = "Energy and thermodynamics"
 detail = "Cells transform energy while obeying thermodynamic constraints."
+cluster = "Claim"
 
 [[generated_images.nodes]]
 id = "mechanism"
 label = "ATP as cellular coupling"
 detail = "ATP couples energy-releasing reactions to energy-requiring cellular work."
+cluster = "Mechanism"
 
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "Metabolism turns the module claim into observable evidence."
+detail = "lab-06_metabolism.md focuses students on metabolism evidence from reaction rate and condition changes."
+cluster = "Evidence"
 
 [[generated_images.nodes]]
 id = "term"
 label = "Metabolism"
 detail = "All chemical reactions in a cell or organism."
+cluster = "Vocabulary"
 
 [[generated_images.nodes]]
-id = "synthesis"
+id = "application"
 label = "Photosynthesis and respiration as linked pathways"
-detail = "Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy."
+detail = "Predict how conditions alter enzyme activity and energy flow."
+cluster = "Application"
+
+[[generated_images.nodes]]
+id = "misconception"
+label = "Misconception check"
+detail = "Enzymes change reaction rates; they do not create energy or get used up."
+cluster = "Revision"
 
 [[generated_images.edges]]
 source = "core"
 target = "mechanism"
-label = "constrains"
+label = "requires"
 
 [[generated_images.edges]]
 source = "mechanism"
@@ -116,24 +127,29 @@ label = "uses"
 
 [[generated_images.edges]]
 source = "term"
-target = "synthesis"
+target = "application"
 label = "supports"
 
 [[generated_images.edges]]
-source = "synthesis"
+source = "application"
+target = "misconception"
+label = "rules out"
+
+[[generated_images.edges]]
+source = "misconception"
 target = "core"
 label = "revises"
 
 [[generated_images]]
 id = "process-model"
-title = "Module 06: Metabolism Process Model"
+title = "Module 06: Metabolism Reasoning Sequence"
 kind = "process-model"
 output = "resources/generated/module-06-process-model.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 06: Metabolism; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
-inputs = ["Energy and thermodynamics", "ATP as cellular coupling", "Enzymes and activation energy"]
-outputs = ["Apply thermodynamic ideas to living cells.", "Explain ATP as an energy-coupling molecule.", "Describe how enzymes change reaction rates."]
-feedbacks = ["Metabolism evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
-constraints = ["Cells transform energy while obeying thermodynamic constraints.", "Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy."]
+prompt = "Deterministic BIOL-1 SVG tracing the Module 06 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs."
+inputs = ["Energy and thermodynamics", "ATP as cellular coupling", "Evidence from lab-06_metabolism.md"]
+outputs = ["Apply thermodynamic ideas to living cells.", "Explain ATP as an energy-coupling molecule.", "Connect photosynthesis and cellular respiration in matter and energy flow."]
+feedbacks = ["lab-06_metabolism.md evidence checks whether students can explain enzymes and activation energy.", "Retrieval questions reveal whether terms are connected to evidence."]
+constraints = ["Enzymes change reaction rates; they do not create energy or get used up.", "Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy."]
 
 [[generated_images.stages]]
 label = "Energy and thermodynamics"
@@ -162,12 +178,12 @@ emphasis = "Step 5"
 
 [[generated_images]]
 id = "retrieval-card"
-title = "Module 06: Metabolism Retrieval Card"
+title = "Module 06: Metabolism Retrieval and Lab Check"
 kind = "retrieval-card"
 output = "resources/generated/module-06-retrieval-card.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 06: Metabolism; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+prompt = "Deterministic BIOL-1 SVG pairing Module 06 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Metabolism", "ATP", "Activation energy", "Enzyme", "Substrate"]
-lab_connection = "Metabolism gives concrete evidence for Module 06: Metabolism."
+lab_connection = "lab-06_metabolism.md supplies evidence for metabolism evidence from reaction rate and condition changes."
 
 [[generated_images.prompts]]
 prompt = "How do the laws of thermodynamics constrain cells?"

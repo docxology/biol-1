@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Bond formed when atoms share electrons.
    - D. Attraction between oppositely charged ions.
    - Answer: A
-   - Why: Atom anchors the atoms and elements partition of Basic Chemistry.
+   - Why: Atom names the module's starting idea: atoms and elements must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the bonding and molecular shape partition?
+2. Which learning goal best supports the topic "Bonding and molecular shape"?
    - A. Use atomic structure to explain basic bonding patterns.
    - B. Distinguish covalent, ionic, and hydrogen bonding in biological examples.
    - C. Explain why water properties matter for cells and organisms.
    - D. Interpret pH as a chemical condition that affects biology.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through bonding and molecular shape as part of the module's mechanism.
 
-3. How should Probability Statistics support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for water as a biological solvent.
-   - D. By removing the need to compare observations.
+3. How should lab-02_probability-statistics.md support Module 02?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for probability and statistics for chemical evidence claims.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for atomic structure with water, pH, and biological molecule behavior.
 
 4. Which retrieval move best prepares a student for Basic Chemistry?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: How do protons, neutrons, and electrons differ? Then justify the answer with evidence.
+   - D. Answer: How do protons, neutrons, and electrons differ? Then check the answer against terms, evidence, and lab-02_probability-statistics.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

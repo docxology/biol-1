@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
-  <title id="title">Module 02: Basic Chemistry Retrieval Card</title>
-  <desc id="desc">Retrieval card for Module 2: Basic Chemistry.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 02: Basic Chemistry Retrieval and Lab Check">
+  <title>Module 02: Basic Chemistry Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 2: Basic Chemistry.</desc>
   <style>
     .bg { fill: #ecf4f2; }
     .halo { fill: url(#wash); opacity: 0.92; }
@@ -40,13 +40,13 @@
   <rect class="bg" width="1200" height="720" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module 02 / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">Module 02: Basic Chemistry Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 02: Basic Chemistry Retrieval and Lab Check</text>
   <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">How do protons, neutrons, and electrons</tspan><tspan x="120.0" dy="17">differ?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Use atomic structure to explain basic bonding...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">Why do electrons matter for chemical bonding?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Distinguish covalent, ionic, and hydrogen...</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What distinguishes covalent, ionic, and</tspan><tspan x="120.0" dy="17">hydrogen bonds?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain why water properties matter for cells...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">Why does water dissolve salt but not all</tspan><tspan x="632.0" dy="17">nonpolar molecules?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Interpret pH as a chemical condition that...</tspan></text>
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
   <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Atom, Element, Covalent bond, Ionic bond, Hydrogen</tspan><tspan x="120.0" dy="17">bond</tspan></text>
   <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
   <text x="632" y="582" class="card-kicker">Lab connection</text>
-  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">Probability Statistics gives concrete evidence for Module</tspan><tspan x="632.0" dy="17">02: Basic Chemistry.</tspan></text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-02_probability-statistics.md supplies evidence for</tspan><tspan x="632.0" dy="17">probability and statistics for chemical evidence claims.</tspan></text>
   <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
 </svg>

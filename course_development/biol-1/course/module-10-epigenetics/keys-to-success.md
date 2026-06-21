@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 10: Epigenetics Concept Map](resources/generated/module-10-concept-map.svg)
-- [Module 10: Epigenetics Process Model](resources/generated/module-10-process-model.svg)
-- [Module 10: Epigenetics Retrieval Card](resources/generated/module-10-retrieval-card.svg)
+- [Module 10: Epigenetics Evidence Map](resources/generated/module-10-concept-map.svg)
+- [Module 10: Epigenetics Reasoning Sequence](resources/generated/module-10-process-model.svg)
+- [Module 10: Epigenetics Retrieval and Lab Check](resources/generated/module-10-retrieval-card.svg)

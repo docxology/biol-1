@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 14: Macroevolution Concept Map](resources/generated/module-14-concept-map.svg)
-- [Module 14: Macroevolution Process Model](resources/generated/module-14-process-model.svg)
-- [Module 14: Macroevolution Retrieval Card](resources/generated/module-14-retrieval-card.svg)
+- [Module 14: Macroevolution Evidence Map](resources/generated/module-14-concept-map.svg)
+- [Module 14: Macroevolution Reasoning Sequence](resources/generated/module-14-process-model.svg)
+- [Module 14: Macroevolution Retrieval and Lab Check](resources/generated/module-14-retrieval-card.svg)

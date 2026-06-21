@@ -45,64 +45,75 @@ definition = "Family diagram used to infer inheritance patterns."
 question = "Which statement best defines Gene in Module 09?"
 options = ["DNA sequence contributing to a trait or functional product.", "Variant form of a gene.", "Allele combination of an organism.", "Observable trait or characteristic."]
 answer = "A"
-explanation = "Gene anchors the alleles and genotype partition of Inheritance Genetics."
+explanation = "Gene names the module's starting idea: alleles and genotype must be explained with evidence, not memorized alone."
 
 [[practice_quiz]]
-question = "Which learning goal best matches the mendelian patterns partition?"
+question = "Which learning goal best supports the topic \"Mendelian patterns\"?"
 options = ["Distinguish gene, allele, genotype, and phenotype.", "Use segregation to explain monohybrid inheritance.", "Build and interpret Punnett-square probabilities.", "Recognize inheritance patterns beyond complete dominance."]
 answer = "B"
-explanation = "The correct option names the specific reasoning target for that partition."
+explanation = "This objective asks students to reason through mendelian patterns as part of the module's mechanism."
 
 [[practice_quiz]]
-question = "How should Inheritance Genetics support this module?"
-options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for punnett-square prediction.", "By removing the need to compare observations."]
+question = "How should lab-09_inheritance-genetics.md support Module 09?"
+options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for inheritance genetics evidence from crosses and family patterns.", "By removing the need to compare observations or predictions."]
 answer = "C"
-explanation = "The lab is the concrete evidence surface for the same-numbered module."
+explanation = "The lab is the evidence surface for allele segregation with probability, phenotype prediction, and pedigree evidence."
 
 [[practice_quiz]]
 question = "Which retrieval move best prepares a student for Inheritance Genetics?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How are genes and alleles related? Then justify the answer with evidence."]
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How are genes and alleles related? Then check the answer against terms, evidence, and lab-09_inheritance-genetics.md."]
 answer = "D"
-explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
 
 [[generated_images]]
 id = "concept-map"
-title = "Module 09: Inheritance Genetics Concept Map"
+title = "Module 09: Inheritance Genetics Evidence Map"
 kind = "concept-map"
 output = "resources/generated/module-09-concept-map.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 09: Inheritance Genetics; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
-central_claim = "Inheritance Genetics is best learned as a connected explanation linking alleles and genotype, mendelian patterns, and lab evidence."
-clusters = ["Alleles and genotype", "Mendelian patterns", "Evidence", "Synthesis"]
+prompt = "Deterministic BIOL-1 SVG showing how Module 09 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision."
+central_claim = "Inheritance Genetics explains allele segregation with probability, phenotype prediction, and pedigree evidence."
+clusters = ["Claim", "Mechanism", "Evidence", "Application", "Revision"]
 
 [[generated_images.nodes]]
 id = "core"
 label = "Alleles and genotype"
 detail = "Alleles are gene variants that contribute to genotype and phenotype."
+cluster = "Claim"
 
 [[generated_images.nodes]]
 id = "mechanism"
 label = "Mendelian patterns"
 detail = "Mendelian inheritance predicts patterns when alleles segregate into gametes."
+cluster = "Mechanism"
 
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "Inheritance Genetics turns the module claim into observable evidence."
+detail = "lab-09_inheritance-genetics.md focuses students on inheritance genetics evidence from crosses and family patterns."
+cluster = "Evidence"
 
 [[generated_images.nodes]]
 id = "term"
 label = "Gene"
 detail = "DNA sequence contributing to a trait or functional product."
+cluster = "Vocabulary"
 
 [[generated_images.nodes]]
-id = "synthesis"
+id = "application"
 label = "Pedigrees and probability"
-detail = "Pedigrees use family evidence to infer inheritance patterns."
+detail = "Use crosses and pedigrees to support inheritance claims."
+cluster = "Application"
+
+[[generated_images.nodes]]
+id = "misconception"
+label = "Misconception check"
+detail = "Punnett squares show probabilities, not guaranteed offspring."
+cluster = "Revision"
 
 [[generated_images.edges]]
 source = "core"
 target = "mechanism"
-label = "constrains"
+label = "requires"
 
 [[generated_images.edges]]
 source = "mechanism"
@@ -116,24 +127,29 @@ label = "uses"
 
 [[generated_images.edges]]
 source = "term"
-target = "synthesis"
+target = "application"
 label = "supports"
 
 [[generated_images.edges]]
-source = "synthesis"
+source = "application"
+target = "misconception"
+label = "rules out"
+
+[[generated_images.edges]]
+source = "misconception"
 target = "core"
 label = "revises"
 
 [[generated_images]]
 id = "process-model"
-title = "Module 09: Inheritance Genetics Process Model"
+title = "Module 09: Inheritance Genetics Reasoning Sequence"
 kind = "process-model"
 output = "resources/generated/module-09-process-model.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 09: Inheritance Genetics; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
-inputs = ["Alleles and genotype", "Mendelian patterns", "Punnett-square prediction"]
-outputs = ["Distinguish gene, allele, genotype, and phenotype.", "Use segregation to explain monohybrid inheritance.", "Build and interpret Punnett-square probabilities."]
-feedbacks = ["Inheritance Genetics evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
-constraints = ["Alleles are gene variants that contribute to genotype and phenotype.", "Pedigrees use family evidence to infer inheritance patterns."]
+prompt = "Deterministic BIOL-1 SVG tracing the Module 09 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs."
+inputs = ["Alleles and genotype", "Mendelian patterns", "Evidence from lab-09_inheritance-genetics.md"]
+outputs = ["Distinguish gene, allele, genotype, and phenotype.", "Use segregation to explain monohybrid inheritance.", "Use pedigree evidence to reason about traits."]
+feedbacks = ["lab-09_inheritance-genetics.md evidence checks whether students can explain punnett-square prediction.", "Retrieval questions reveal whether terms are connected to evidence."]
+constraints = ["Punnett squares show probabilities, not guaranteed offspring.", "Pedigrees use family evidence to infer inheritance patterns."]
 
 [[generated_images.stages]]
 label = "Alleles and genotype"
@@ -162,12 +178,12 @@ emphasis = "Step 5"
 
 [[generated_images]]
 id = "retrieval-card"
-title = "Module 09: Inheritance Genetics Retrieval Card"
+title = "Module 09: Inheritance Genetics Retrieval and Lab Check"
 kind = "retrieval-card"
 output = "resources/generated/module-09-retrieval-card.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 09: Inheritance Genetics; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+prompt = "Deterministic BIOL-1 SVG pairing Module 09 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Gene", "Allele", "Genotype", "Phenotype", "Dominant"]
-lab_connection = "Inheritance Genetics gives concrete evidence for Module 09: Inheritance Genetics."
+lab_connection = "lab-09_inheritance-genetics.md supplies evidence for inheritance genetics evidence from crosses and family patterns."
 
 [[generated_images.prompts]]
 prompt = "How are genes and alleles related?"

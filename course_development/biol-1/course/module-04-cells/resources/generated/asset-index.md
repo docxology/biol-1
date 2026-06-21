@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 04: Cells Concept Map** (`resources/generated/module-04-concept-map.svg`) - concept-map
-  - Purpose: Cells is best learned as a connected explanation linking cell theory, prokaryotic and eukaryotic organization, and lab evidence.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 04: Cells; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 04: Cells Process Model** (`resources/generated/module-04-process-model.svg`) - process-model
+- **Module 04: Cells Evidence Map** (`resources/generated/module-04-concept-map.svg`) - concept-map
+  - Purpose: Cells explains cell theory with compartmental structure and microscopy evidence.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 04 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 04: Cells Reasoning Sequence** (`resources/generated/module-04-process-model.svg`) - process-model
   - Purpose: Cell theory -> Prokaryotic and eukaryotic organization -> Membranes and compartments -> Organelles and division of labor
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 04: Cells; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 04: Cells Retrieval Card** (`resources/generated/module-04-retrieval-card.svg`) - retrieval-card
-  - Purpose: Liquid Chemistry gives concrete evidence for Module 04: Cells.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 04: Cells; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 04 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 04: Cells Retrieval and Lab Check** (`resources/generated/module-04-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-04_liquid-chemistry.md supplies evidence for liquid chemistry conditions that affect cellular systems.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 04 retrieval prompts with answer checks, required terms, and the linked lab.

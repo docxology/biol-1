@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Module 11: Genomics and Biotechnology Slides (notes)</title>
+<style>
+@page { size: 16in 9in; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4efe4; color: #17211c; font-family: Avenir Next, Trebuchet MS, sans-serif; }
+.slide { page-break-after: always; width: 16in; height: 9in; padding: .44in; position: relative; overflow: hidden; background: radial-gradient(circle at 12% 18%, #fff7d6 0, transparent 28%), linear-gradient(135deg, #f7efe1 0%, #d7e6dc 100%); }
+.slide::after { content: ""; position: absolute; right: -.5in; bottom: -.55in; width: 5.4in; height: 5.4in; border-radius: 50%; background: rgba(25, 92, 75, .12); }
+.slide-ribbon { position: absolute; top: .2in; right: .35in; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #41564f; }
+.slide-grid { display: grid; grid-template-columns: 5.05in 1fr; gap: .36in; height: 100%; align-items: stretch; }
+.slide-copy { border-left: .08in solid #bb5a3a; padding: .38in .18in .2in .28in; z-index: 1; }
+.eyebrow { margin: 0 0 .18in; font-size: 13pt; text-transform: uppercase; letter-spacing: .11em; color: #79513c; }
+h1 { margin: 0 0 .28in; font-family: Georgia, serif; font-size: 34pt; line-height: 1.02; color: #102820; }
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .14in; }
+li { font-size: 15pt; line-height: 1.25; padding-left: .2in; position: relative; }
+li::before { content: ""; position: absolute; left: 0; top: .28em; width: .08in; height: .08in; border-radius: 50%; background: #bb5a3a; }
+.visual-frame { z-index: 1; min-height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.embedded-svg svg { width: 100%; max-height: 7.25in; display: block; }
+.module-orbit { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: .18in; align-content: center; }
+.module-orbit strong { grid-column: 1 / -1; font: 700 34pt Georgia, serif; color: #195c4b; }
+.module-orbit span, .module-orbit em, .step-card, .term-grid div, .flow-cell, .contrast div { background: #fff9ea; border: 1px solid rgba(187,90,58,.35); border-radius: .16in; padding: .16in; font-size: 15pt; line-height: 1.22; }
+.module-orbit em { grid-column: 1 / -1; color: #66422f; }
+.ordered-cards { display: grid; gap: .12in; width: 100%; }
+.step-card b, .term-grid b, .flow-cell b, .contrast b { display: block; color: #bb5a3a; margin-bottom: .04in; text-transform: uppercase; letter-spacing: .06em; font-size: 10pt; }
+.term-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .14in; width: 100%; }
+.term-grid span, .step-card span, .flow-cell span, .contrast span { display: block; }
+.flow-diagram, .contrast { display: grid; grid-template-columns: repeat(3, 1fr); gap: .18in; align-items: center; width: 100%; }
+.contrast { grid-template-columns: repeat(2, 1fr); }
+.speaker-note { position: absolute; left: .55in; right: .55in; bottom: .18in; z-index: 2; background: #102820; color: #fff7d6; border-radius: .12in; padding: .11in .16in; font-size: 11pt; }
+</style>
+</head>
+<body>
+<section class="slide slide-title-map" data-slide-role="title-map" data-visual-kind="module-map">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 01</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Module map</h1>
+      <ul><li>Module 11: Genomics and Biotechnology</li><li>Connected lab: lab-11_genomics-biotechnology.md</li><li>Use this deck as the visual path through the module&#x27;s evidence and retrieval work.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="module-map"><div class="module-orbit"><strong>Module 11</strong><span>Genomes as data</span><span>PCR and amplification</span><span>Gel electrophoresis and comparison</span><span>Genetic engineering tools</span><span>Biotechnology decisions and ethics</span><em>lab-11_genomics-biotechnology.md</em></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Open by naming the module claim and pointing students to the lab as the evidence surface.</aside>
+</section>
+<section class="slide slide-objectives" data-slide-role="objectives" data-visual-kind="objective-ladder">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 02</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Learning objectives</h1>
+      <ul><li>Define genome and genomics.</li><li>Explain why PCR amplification is useful.</li><li>Interpret basic gel electrophoresis fragment patterns.</li><li>Describe what genetic engineering tools can do.</li><li>Evaluate biotechnology claims using evidence and ethical considerations.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="objective-ladder"><div class="ordered-cards"><div class="step-card"><b>Objective 1</b><span>Define genome and genomics.</span></div><div class="step-card"><b>Objective 2</b><span>Explain why PCR amplification is useful.</span></div><div class="step-card"><b>Objective 3</b><span>Interpret basic gel electrophoresis fragment patterns.</span></div><div class="step-card"><b>Objective 4</b><span>Describe what genetic engineering tools can do.</span></div><div class="step-card"><b>Objective 5</b><span>Evaluate biotechnology claims using evidence and ethical considerations.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Frame objectives as actions students should be able to perform, not facts to copy.</aside>
+</section>
+<section class="slide slide-topics" data-slide-role="topics" data-visual-kind="topic-sequence">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 03</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Topic sequence</h1>
+      <ul><li>Genomes as data: A genome is the full DNA information set of an organism or sample.</li><li>PCR and amplification: PCR amplifies chosen DNA regions so they can be analyzed.</li><li>Gel electrophoresis and comparison: Gel electrophoresis separates DNA fragments by size.</li><li>Genetic engineering tools: Biotechnology tools can copy, edit, compare, or move genetic information.</li><li>Biotechnology decisions and ethics: Applications require evidence, risk reasoning, and ethical judgment.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="topic-sequence"><div class="ordered-cards"><div class="step-card"><b>Topic 1</b><span>Genomes as data</span></div><div class="step-card"><b>Topic 2</b><span>PCR and amplification</span></div><div class="step-card"><b>Topic 3</b><span>Gel electrophoresis and comparison</span></div><div class="step-card"><b>Topic 4</b><span>Genetic engineering tools</span></div><div class="step-card"><b>Topic 5</b><span>Biotechnology decisions and ethics</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Show the module as an ordered explanation so students can locate each new idea.</aside>
+</section>
+<section class="slide slide-concept-map" data-slide-role="concept-map" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 04</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Module 11: Genomics and Biotechnology Evidence Map</h1>
+      <ul><li>Module focus: Genomics and Biotechnology</li><li>Central claim: Genomics and Biotechnology explains genomes as data interpreted through PCR, gels, tools, and ethical limits.</li><li>Key nodes to connect: Genomes as data, PCR and amplification, Lab evidence</li><li>Reasoning move: use &#x27;requires&#x27; to explain relationships, not memorize terms.</li><li>Lab connection: lab-11_genomics-biotechnology.md supplies an evidence surface for the map.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-11-concept-map.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 11: Genomics and Biotechnology Evidence Map">
+  <title>Module 11: Genomics and Biotechnology Evidence Map</title>
+  <desc>Concept map for Module 11: Genomics and Biotechnology. Genomics and Biotechnology explains genomes as data interpreted through PCR, gels, tools, and ethical limits.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#m11-concept-map-wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#m11-concept-map-shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#m11-concept-map-shadow); }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage { fill: #fffafd; stroke: #7b4f9d; stroke-width: 5; filter: url(#m11-concept-map-shadow); }
+    .stage-num { fill: #b36b2c; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#m11-concept-map-arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m11-concept-map-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m11-concept-map-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m11-concept-map-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M80 100 C260 20 458 88 610 62 C848 20 1052 74 1148 214 L1148 656 L52 656 L52 178 C64 142 70 118 80 100 Z" />
+  <text x="70" y="72" class="eyebrow">Module 11 / Concept Map</text>
+  <text x="70" y="118" class="title-text">Module 11: Genomics and Biotechnology Evidence Map</text>
+  <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
+  <text x="600" y="322" class="claim-kicker">Central claim</text>
+  <text x="600.0" y="366.0" class="claim-text" text-anchor="middle"><tspan x="600.0" dy="0">Genomics and Biotechnology explains genomes as</tspan><tspan x="600.0" dy="25">data interpreted through PCR, gels, tools, and</tspan><tspan x="600.0" dy="25">ethical limits.</tspan></text>
+  <path d="M 600.0 175.0 L 911.8 270.0" class="edge" /><text x="755.9" y="222.5" class="edge-label">requires</text><path d="M 911.8 270.0 L 911.8 460.0" class="edge" /><text x="911.8" y="365.0" class="edge-label">tested by</text><path d="M 911.8 460.0 L 600.0 555.0" class="edge" /><text x="755.9" y="507.5" class="edge-label">uses</text><path d="M 600.0 555.0 L 288.2 460.0" class="edge" /><text x="444.1" y="507.5" class="edge-label">supports</text><path d="M 288.2 460.0 L 288.2 270.0" class="edge" /><text x="288.2" y="365.0" class="edge-label">rules out</text><path d="M 288.2 270.0 L 600.0 175.0" class="edge" /><text x="444.1" y="222.5" class="edge-label">revises</text>
+  <g class="node-group"><rect x="480.0" y="127.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="163.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Genomes as data</tspan></text><text x="600.0" y="197.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">A genome is the full DNA</tspan><tspan x="600.0" dy="14">information set of an...</tspan></text></g><g class="node-group"><rect x="791.8" y="222.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="258.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">PCR and amplification</tspan></text><text x="911.8" y="292.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">PCR amplifies chosen DNA</tspan><tspan x="911.8" dy="14">regions so they can be...</tspan></text></g><g class="node-group"><rect x="791.8" y="412.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="448.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Lab evidence</tspan></text><text x="911.8" y="482.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">lab-11_genomics-biotechnology.md</tspan><tspan x="911.8" dy="14">focuses students on...</tspan></text></g><g class="node-group"><rect x="480.0" y="507.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="543.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Genome</tspan></text><text x="600.0" y="577.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Complete DNA information of</tspan><tspan x="600.0" dy="14">an organism or sample.</tspan></text></g><g class="node-group"><rect x="168.2" y="412.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="448.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Biotechnology</tspan><tspan x="288.2" dy="20">decisions and ethics</tspan></text><text x="288.2" y="482.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Evaluate a DNA claim using</tspan><tspan x="288.2" dy="14">method limits and ethical...</tspan></text></g><g class="node-group"><rect x="168.2" y="222.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="258.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Misconception check</tspan></text><text x="288.2" y="292.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">A biotechnology result is</tspan><tspan x="288.2" dy="14">not a conclusion until the...</tspan></text></g>
+  <text x="70" y="672" class="footer">Linked lab: lab-11_genomics-biotechnology.md / Generated from explicit module.toml visual schema</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Ask students to explain one edge in their own words before moving on.</aside>
+</section>
+<section class="slide slide-process-model" data-slide-role="process-model" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 05</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Module 11: Genomics and Biotechnology Reasoning Sequence</h1>
+      <ul><li>Module focus: Genomics and Biotechnology</li><li>Trace the model: Genomes as data -&gt; PCR and amplification -&gt; Gel electrophoresis and comparison -&gt; Genetic engineering tools</li><li>Inputs become outputs: Genomes as data, PCR and amplification -&gt; Define genome and genomics., Explain why PCR amplification is useful.</li><li>Feedback check: lab-11_genomics-biotechnology.md evidence checks whether students can explain gel electrophoresis and comparison.</li><li>Lab connection: lab-11_genomics-biotechnology.md gives students a process to observe or test.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-11-process-model.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 11: Genomics and Biotechnology Reasoning Sequence">
+  <title>Module 11: Genomics and Biotechnology Reasoning Sequence</title>
+  <desc>Process model for Module 11: Genomics and Biotechnology.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#m11-process-model-wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#m11-process-model-shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#m11-process-model-shadow); }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage { fill: #fffafd; stroke: #7b4f9d; stroke-width: 5; filter: url(#m11-process-model-shadow); }
+    .stage-num { fill: #b36b2c; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#m11-process-model-arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m11-process-model-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m11-process-model-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m11-process-model-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
+  <text x="84" y="100" class="eyebrow">Module 11 / Process Model</text>
+  <text x="84" y="148" class="title-text">Module 11: Genomics and Biotechnology Reasoning Sequence</text>
+  <rect x="84" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="110" y="216" class="card-kicker">Inputs</text>
+  <text x="110.0" y="244.0" class="mini-text"><tspan x="110.0" dy="0">• Genomes as data</tspan></text><text x="110.0" y="259.0" class="mini-text"><tspan x="110.0" dy="0">• PCR and amplification</tspan></text><text x="110.0" y="274.0" class="mini-text"><tspan x="110.0" dy="0">• Evidence from</tspan><tspan x="110.0" dy="15">lab-11_genomics-biotechnology.md</tspan></text>
+  <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="824" y="216" class="card-kicker">Outputs</text>
+  <text x="824.0" y="244.0" class="mini-text"><tspan x="824.0" dy="0">• Define genome and genomics.</tspan></text><text x="824.0" y="259.0" class="mini-text"><tspan x="824.0" dy="0">• Explain why PCR</tspan><tspan x="824.0" dy="15">amplification is useful.</tspan></text><text x="824.0" y="274.0" class="mini-text"><tspan x="824.0" dy="0">• Evaluate biotechnology</tspan><tspan x="824.0" dy="15">claims using evidence and</tspan><tspan x="824.0" dy="15">ethical considerations.</tspan></text>
+  <path d="M 238.0 330.0 C 278.0 288.0, 262.0 395.0, 302.0 405.0" class="arrow" /><path d="M 458.0 405.0 C 498.0 363.0, 482.0 340.0, 522.0 330.0" class="arrow" /><path d="M 678.0 330.0 C 718.0 288.0, 702.0 395.0, 742.0 405.0" class="arrow" /><path d="M 898.0 405.0 C 938.0 363.0, 922.0 340.0, 962.0 330.0" class="arrow" />
+  <g><circle cx="160.0" cy="330.0" r="70" class="stage" /><text x="160.0" y="248.0" class="stage-num">01</text><text x="160.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="160.0" dy="0">Genomes as data</tspan></text><text x="160.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="160.0" dy="0">A genome is the full</tspan><tspan x="160.0" dy="13">DNA information set of...</tspan></text></g><g><circle cx="380.0" cy="405.0" r="70" class="stage" /><text x="380.0" y="323.0" class="stage-num">02</text><text x="380.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="380.0" dy="0">PCR and</tspan><tspan x="380.0" dy="18">amplification</tspan></text><text x="380.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="380.0" dy="0">PCR amplifies chosen</tspan><tspan x="380.0" dy="13">DNA regions so they...</tspan></text></g><g><circle cx="600.0" cy="330.0" r="70" class="stage" /><text x="600.0" y="248.0" class="stage-num">03</text><text x="600.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="600.0" dy="0">Gel electrophoresis</tspan><tspan x="600.0" dy="18">and comparison</tspan></text><text x="600.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="600.0" dy="0">Gel electrophoresis</tspan><tspan x="600.0" dy="13">separates DNA...</tspan></text></g><g><circle cx="820.0" cy="405.0" r="70" class="stage" /><text x="820.0" y="323.0" class="stage-num">04</text><text x="820.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="820.0" dy="0">Genetic engineering</tspan><tspan x="820.0" dy="18">tools</tspan></text><text x="820.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="820.0" dy="0">Biotechnology tools</tspan><tspan x="820.0" dy="13">can copy, edit...</tspan></text></g><g><circle cx="1040.0" cy="330.0" r="70" class="stage" /><text x="1040.0" y="248.0" class="stage-num">05</text><text x="1040.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="1040.0" dy="0">Biotechnology</tspan><tspan x="1040.0" dy="18">decisions and...</tspan></text><text x="1040.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="1040.0" dy="0">Applications require</tspan><tspan x="1040.0" dy="13">evidence, risk...</tspan></text></g>
+  <rect x="84" y="562" width="1032" height="70" rx="22" class="feedback-card" />
+  <text x="112" y="590" class="card-kicker">Feedbacks and constraints</text>
+  <text x="112.0" y="618.0" class="mini-text"><tspan x="112.0" dy="0">lab-11_genomics-biotechnology.md evidence checks whether students can explain gel electrophoresis and comparison.;</tspan><tspan x="112.0" dy="16">Retrieval questions reveal whether terms are connected to evidence.; A biotechnology result is not a conclusion...</tspan></text>
+  <text x="84" y="668" class="footer">Linked lab: lab-11_genomics-biotechnology.md</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Emphasize where the process can fail, slow down, or be revised by evidence.</aside>
+</section>
+<section class="slide slide-terms" data-slide-role="terms" data-visual-kind="term-grid">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 06</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Terms as evidence handles</h1>
+      <ul><li>Genome: Complete DNA information of an organism or sample.</li><li>Genomics: Study of whole genomes and their patterns.</li><li>PCR: Technique for amplifying selected DNA sequences.</li><li>Primer: Short DNA sequence that starts PCR copying.</li><li>Gel electrophoresis: Method that separates DNA fragments by size.</li><li>CRISPR: Gene-editing system adapted from bacterial defense.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="term-grid"><div class="term-grid"><div><b>Genome</b><span>Complete DNA information of an organism or sample.</span></div><div><b>Genomics</b><span>Study of whole genomes and their patterns.</span></div><div><b>PCR</b><span>Technique for amplifying selected DNA sequences.</span></div><div><b>Primer</b><span>Short DNA sequence that starts PCR copying.</span></div><div><b>Gel electrophoresis</b><span>Method that separates DNA fragments by size.</span></div><div><b>CRISPR</b><span>Gene-editing system adapted from bacterial defense.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Treat terms as handles for reasoning. Each term should help explain a claim or observation.</aside>
+</section>
+<section class="slide slide-lab" data-slide-role="lab" data-visual-kind="lab-flow">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 07</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Lab connection</h1>
+      <ul><li>Lab file: lab-11_genomics-biotechnology.md</li><li>Lab evidence should test or illustrate: Gel electrophoresis and comparison</li><li>Students should leave with a concrete observation, comparison, or model tied to the module claim.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="lab-flow"><div class="flow-diagram"><div class="flow-cell"><b>Question</b><span>Genomes as data</span></div><div class="flow-cell"><b>Evidence</b><span>lab-11_genomics-biotechnology.md</span></div><div class="flow-cell"><b>Claim</b><span>Define genome and genomics.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Make the lab connection explicit before students encounter the activity.</aside>
+</section>
+<section class="slide slide-contrast" data-slide-role="contrast" data-visual-kind="contrast-panel">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 08</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Contrast check</h1>
+      <ul><li>Do not stop at: A genome is the full DNA information set of an organism or sample.</li><li>Stronger explanation: Applications require evidence, risk reasoning, and ethical judgment.</li><li>The goal is to move from a named idea to a testable biological explanation.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="contrast-panel"><div class="contrast"><div><b>Surface</b><span>A genome is the full DNA information set of an organism or sample.</span></div><div><b>Deeper</b><span>Applications require evidence, risk reasoning, and ethical judgment.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use this slide to prevent shallow vocabulary-only learning.</aside>
+</section>
+<section class="slide slide-retrieval" data-slide-role="retrieval" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 09</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Module 11: Genomics and Biotechnology Retrieval and Lab Check</h1>
+      <ul><li>Module focus: Genomics and Biotechnology</li><li>Retrieval prompt: What is a genome?</li><li>Answer check: Define genome and genomics.</li><li>Required terms: Genome, Genomics, PCR</li><li>Lab connection: lab-11_genomics-biotechnology.md; lab-11_genomics-biotechnology.md supplies evidence for genomics and biotechnology evidence from DNA comparison tools.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-11-retrieval-card.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 11: Genomics and Biotechnology Retrieval and Lab Check">
+  <title>Module 11: Genomics and Biotechnology Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 11: Genomics and Biotechnology.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#m11-retrieval-wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#m11-retrieval-shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#m11-retrieval-shadow); }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage { fill: #fffafd; stroke: #7b4f9d; stroke-width: 5; filter: url(#m11-retrieval-shadow); }
+    .stage-num { fill: #b36b2c; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#m11-retrieval-arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m11-retrieval-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m11-retrieval-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m11-retrieval-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M44 72 H1156 V648 H44 Z" />
+  <text x="82" y="92" class="eyebrow">Module 11 / Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 11: Genomics and Biotechnology Retrieval and Lab Check</text>
+  <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">What is a genome?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Define genome and genomics.</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">Why does genomics require comparison?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Explain why PCR amplification is useful.</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What does PCR amplify?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Interpret basic gel electrophoresis fragment...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">Why are primers necessary?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Describe what genetic engineering tools can...</tspan></text>
+  <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
+  <text x="120" y="582" class="card-kicker">Terms to use</text>
+  <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Genome, Genomics, PCR, Primer, Gel electrophoresis</tspan></text>
+  <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
+  <text x="632" y="582" class="card-kicker">Lab connection</text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-11_genomics-biotechnology.md supplies evidence for</tspan><tspan x="632.0" dy="17">genomics and biotechnology evidence from DNA comparison...</tspan></text>
+  <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Pause here. Students answer first without notes, then compare to the checks.</aside>
+</section>
+<section class="slide slide-quiz" data-slide-role="quiz" data-visual-kind="quiz-bridge">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 10</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Practice quiz bridge</h1>
+      <ul><li>1. Which statement best defines Genome in Module 11?</li><li>2. Which learning goal best supports the topic &quot;PCR and amplification&quot;?</li><li>3. How should lab-11_genomics-biotechnology.md support Module 11?</li><li>4. Which retrieval move best prepares a student for Genomics and Biotechnology?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="quiz-bridge"><div class="ordered-cards"><div class="step-card"><b>Quiz 1</b><span>A</span></div><div class="step-card"><b>Quiz 2</b><span>B</span></div><div class="step-card"><b>Quiz 3</b><span>C</span></div><div class="step-card"><b>Quiz 4</b><span>D</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use the quiz as formative feedback. Answer key: 1=A, 2=B, 3=C, 4=D</aside>
+</section>
+<section class="slide slide-synthesis" data-slide-role="synthesis" data-visual-kind="exit-ticket">
+  <div class="slide-ribbon">BIOL-1 · Module 11 · Slide 11</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Genomics and Biotechnology</p>
+      <h1>Synthesis and exit ticket</h1>
+      <ul><li>Exit claim: explain genomes as data using evidence from lab-11_genomics-biotechnology.md.</li><li>Must include: Genome, Genomics, PCR.</li><li>Revision prompt: what evidence would change your explanation?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="exit-ticket"><div class="flow-diagram"><div class="flow-cell"><b>Claim</b><span>Genomes as data</span></div><div class="flow-cell"><b>Evidence</b><span>lab-11_genomics-biotechnology.md</span></div><div class="flow-cell"><b>Revision</b><span>What would change your mind?</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> End with a claim-evidence-reasoning exit ticket connected to the same module data.</aside>
+</section>
+</body>
+</html>

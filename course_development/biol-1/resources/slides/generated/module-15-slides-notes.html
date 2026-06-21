@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Module 15: Population and Systems Ecology Slides (notes)</title>
+<style>
+@page { size: 16in 9in; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4efe4; color: #17211c; font-family: Avenir Next, Trebuchet MS, sans-serif; }
+.slide { page-break-after: always; width: 16in; height: 9in; padding: .44in; position: relative; overflow: hidden; background: radial-gradient(circle at 12% 18%, #fff7d6 0, transparent 28%), linear-gradient(135deg, #f7efe1 0%, #d7e6dc 100%); }
+.slide::after { content: ""; position: absolute; right: -.5in; bottom: -.55in; width: 5.4in; height: 5.4in; border-radius: 50%; background: rgba(25, 92, 75, .12); }
+.slide-ribbon { position: absolute; top: .2in; right: .35in; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #41564f; }
+.slide-grid { display: grid; grid-template-columns: 5.05in 1fr; gap: .36in; height: 100%; align-items: stretch; }
+.slide-copy { border-left: .08in solid #bb5a3a; padding: .38in .18in .2in .28in; z-index: 1; }
+.eyebrow { margin: 0 0 .18in; font-size: 13pt; text-transform: uppercase; letter-spacing: .11em; color: #79513c; }
+h1 { margin: 0 0 .28in; font-family: Georgia, serif; font-size: 34pt; line-height: 1.02; color: #102820; }
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .14in; }
+li { font-size: 15pt; line-height: 1.25; padding-left: .2in; position: relative; }
+li::before { content: ""; position: absolute; left: 0; top: .28em; width: .08in; height: .08in; border-radius: 50%; background: #bb5a3a; }
+.visual-frame { z-index: 1; min-height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.embedded-svg svg { width: 100%; max-height: 7.25in; display: block; }
+.module-orbit { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: .18in; align-content: center; }
+.module-orbit strong { grid-column: 1 / -1; font: 700 34pt Georgia, serif; color: #195c4b; }
+.module-orbit span, .module-orbit em, .step-card, .term-grid div, .flow-cell, .contrast div { background: #fff9ea; border: 1px solid rgba(187,90,58,.35); border-radius: .16in; padding: .16in; font-size: 15pt; line-height: 1.22; }
+.module-orbit em { grid-column: 1 / -1; color: #66422f; }
+.ordered-cards { display: grid; gap: .12in; width: 100%; }
+.step-card b, .term-grid b, .flow-cell b, .contrast b { display: block; color: #bb5a3a; margin-bottom: .04in; text-transform: uppercase; letter-spacing: .06em; font-size: 10pt; }
+.term-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .14in; width: 100%; }
+.term-grid span, .step-card span, .flow-cell span, .contrast span { display: block; }
+.flow-diagram, .contrast { display: grid; grid-template-columns: repeat(3, 1fr); gap: .18in; align-items: center; width: 100%; }
+.contrast { grid-template-columns: repeat(2, 1fr); }
+.speaker-note { position: absolute; left: .55in; right: .55in; bottom: .18in; z-index: 2; background: #102820; color: #fff7d6; border-radius: .12in; padding: .11in .16in; font-size: 11pt; }
+</style>
+</head>
+<body>
+<section class="slide slide-title-map" data-slide-role="title-map" data-visual-kind="module-map">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 01</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Module map</h1>
+      <ul><li>Module 15: Population and Systems Ecology</li><li>Connected lab: lab-15_population-systems-ecology.md</li><li>Use this deck as the visual path through the module&#x27;s evidence and retrieval work.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="module-map"><div class="module-orbit"><strong>Module 15</strong><span>Population growth models</span><span>Limits and carrying capacity</span><span>Community interactions</span><span>Energy flow through trophic levels</span><span>Matter cycling and systems feedback</span><em>lab-15_population-systems-ecology.md</em></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Open by naming the module claim and pointing students to the lab as the evidence surface.</aside>
+</section>
+<section class="slide slide-objectives" data-slide-role="objectives" data-visual-kind="objective-ladder">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 02</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Learning objectives</h1>
+      <ul><li>Compare exponential and logistic population growth.</li><li>Explain carrying capacity and limiting factors.</li><li>Distinguish density-dependent and density-independent regulation.</li><li>Use trophic levels and the 10 percent rule to explain energy limits.</li><li>Contrast energy flow with nutrient cycling.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="objective-ladder"><div class="ordered-cards"><div class="step-card"><b>Objective 1</b><span>Compare exponential and logistic population growth.</span></div><div class="step-card"><b>Objective 2</b><span>Explain carrying capacity and limiting factors.</span></div><div class="step-card"><b>Objective 3</b><span>Distinguish density-dependent and density-independent regulation.</span></div><div class="step-card"><b>Objective 4</b><span>Use trophic levels and the 10 percent rule to explain energy limits.</span></div><div class="step-card"><b>Objective 5</b><span>Contrast energy flow with nutrient cycling.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Frame objectives as actions students should be able to perform, not facts to copy.</aside>
+</section>
+<section class="slide slide-topics" data-slide-role="topics" data-visual-kind="topic-sequence">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 03</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Topic sequence</h1>
+      <ul><li>Population growth models: Population size changes through births, deaths, immigration, and emigration.</li><li>Limits and carrying capacity: Exponential growth describes rapid increase; logistic growth includes carrying capacity.</li><li>Community interactions: Density-dependent and density-independent factors limit populations differently.</li><li>Energy flow through trophic levels: Energy flows through producers, consumers, and decomposers with loss at transfers.</li><li>Matter cycling and systems feedback: Matter cycles through ecosystems while energy must continually enter.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="topic-sequence"><div class="ordered-cards"><div class="step-card"><b>Topic 1</b><span>Population growth models</span></div><div class="step-card"><b>Topic 2</b><span>Limits and carrying capacity</span></div><div class="step-card"><b>Topic 3</b><span>Community interactions</span></div><div class="step-card"><b>Topic 4</b><span>Energy flow through trophic levels</span></div><div class="step-card"><b>Topic 5</b><span>Matter cycling and systems feedback</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Show the module as an ordered explanation so students can locate each new idea.</aside>
+</section>
+<section class="slide slide-concept-map" data-slide-role="concept-map" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 04</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Module 15: Population and Systems Ecology Evidence Map</h1>
+      <ul><li>Module focus: Population and Systems Ecology</li><li>Central claim: Population and Systems Ecology explains population systems governed by growth, limits, interactions, energy, and feedback.</li><li>Key nodes to connect: Population growth models, Limits and carrying capacity, Lab evidence</li><li>Reasoning move: use &#x27;requires&#x27; to explain relationships, not memorize terms.</li><li>Lab connection: lab-15_population-systems-ecology.md supplies an evidence surface for the map.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-15-concept-map.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 15: Population and Systems Ecology Evidence Map">
+  <title>Module 15: Population and Systems Ecology Evidence Map</title>
+  <desc>Concept map for Module 15: Population and Systems Ecology. Population and Systems Ecology explains population systems governed by growth, limits, interactions, energy, and feedback.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#m15-concept-map-wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#m15-concept-map-shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#m15-concept-map-shadow); }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage { fill: #fffafd; stroke: #7b4f9d; stroke-width: 5; filter: url(#m15-concept-map-shadow); }
+    .stage-num { fill: #b36b2c; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#m15-concept-map-arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m15-concept-map-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m15-concept-map-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m15-concept-map-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M80 100 C260 20 458 88 610 62 C848 20 1052 74 1148 214 L1148 656 L52 656 L52 178 C64 142 70 118 80 100 Z" />
+  <text x="70" y="72" class="eyebrow">Module 15 / Concept Map</text>
+  <text x="70" y="118" class="title-text">Module 15: Population and Systems Ecology Evidence Map</text>
+  <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
+  <text x="600" y="322" class="claim-kicker">Central claim</text>
+  <text x="600.0" y="366.0" class="claim-text" text-anchor="middle"><tspan x="600.0" dy="0">Population and Systems Ecology explains</tspan><tspan x="600.0" dy="25">population systems governed by growth, limits,</tspan><tspan x="600.0" dy="25">interactions, energy, and feedback.</tspan></text>
+  <path d="M 600.0 175.0 L 911.8 270.0" class="edge" /><text x="755.9" y="222.5" class="edge-label">requires</text><path d="M 911.8 270.0 L 911.8 460.0" class="edge" /><text x="911.8" y="365.0" class="edge-label">tested by</text><path d="M 911.8 460.0 L 600.0 555.0" class="edge" /><text x="755.9" y="507.5" class="edge-label">uses</text><path d="M 600.0 555.0 L 288.2 460.0" class="edge" /><text x="444.1" y="507.5" class="edge-label">supports</text><path d="M 288.2 460.0 L 288.2 270.0" class="edge" /><text x="288.2" y="365.0" class="edge-label">rules out</text><path d="M 288.2 270.0 L 600.0 175.0" class="edge" /><text x="444.1" y="222.5" class="edge-label">revises</text>
+  <g class="node-group"><rect x="480.0" y="127.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="163.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Population growth</tspan><tspan x="600.0" dy="20">models</tspan></text><text x="600.0" y="197.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Population size changes</tspan><tspan x="600.0" dy="14">through births, deaths...</tspan></text></g><g class="node-group"><rect x="791.8" y="222.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="258.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Limits and carrying</tspan><tspan x="911.8" dy="20">capacity</tspan></text><text x="911.8" y="292.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">Exponential growth</tspan><tspan x="911.8" dy="14">describes rapid increase...</tspan></text></g><g class="node-group"><rect x="791.8" y="412.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="448.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Lab evidence</tspan></text><text x="911.8" y="482.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">lab-15_population-systems-ecology.md</tspan><tspan x="911.8" dy="14">focuses students on ecology...</tspan></text></g><g class="node-group"><rect x="480.0" y="507.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="543.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Population</tspan></text><text x="600.0" y="577.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Members of one species in</tspan><tspan x="600.0" dy="14">an area.</tspan></text></g><g class="node-group"><rect x="168.2" y="412.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="448.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Matter cycling and</tspan><tspan x="288.2" dy="20">systems feedback</tspan></text><text x="288.2" y="482.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Use feedback and resource</tspan><tspan x="288.2" dy="14">limits to predict...</tspan></text></g><g class="node-group"><rect x="168.2" y="222.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="258.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Misconception check</tspan></text><text x="288.2" y="292.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Population growth cannot</tspan><tspan x="288.2" dy="14">continue without limits in...</tspan></text></g>
+  <text x="70" y="672" class="footer">Linked lab: lab-15_population-systems-ecology.md / Generated from explicit module.toml visual schema</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Ask students to explain one edge in their own words before moving on.</aside>
+</section>
+<section class="slide slide-process-model" data-slide-role="process-model" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 05</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Module 15: Population and Systems Ecology Reasoning Sequence</h1>
+      <ul><li>Module focus: Population and Systems Ecology</li><li>Trace the model: Population growth models -&gt; Limits and carrying capacity -&gt; Community interactions -&gt; Energy flow through trophic levels</li><li>Inputs become outputs: Population growth models, Limits and carrying capacity -&gt; Compare exponential and logistic population growth., Explain carrying capacity and limiting factors.</li><li>Feedback check: lab-15_population-systems-ecology.md evidence checks whether students can explain community interactions.</li><li>Lab connection: lab-15_population-systems-ecology.md gives students a process to observe or test.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-15-process-model.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 15: Population and Systems Ecology Reasoning Sequence">
+  <title>Module 15: Population and Systems Ecology Reasoning Sequence</title>
+  <desc>Process model for Module 15: Population and Systems Ecology.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#m15-process-model-wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#m15-process-model-shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#m15-process-model-shadow); }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage { fill: #fffafd; stroke: #7b4f9d; stroke-width: 5; filter: url(#m15-process-model-shadow); }
+    .stage-num { fill: #b36b2c; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#m15-process-model-arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m15-process-model-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m15-process-model-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m15-process-model-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
+  <text x="84" y="100" class="eyebrow">Module 15 / Process Model</text>
+  <text x="84" y="148" class="title-text">Module 15: Population and Systems Ecology Reasoning Sequence</text>
+  <rect x="84" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="110" y="216" class="card-kicker">Inputs</text>
+  <text x="110.0" y="244.0" class="mini-text"><tspan x="110.0" dy="0">• Population growth models</tspan></text><text x="110.0" y="259.0" class="mini-text"><tspan x="110.0" dy="0">• Limits and carrying capacity</tspan></text><text x="110.0" y="274.0" class="mini-text"><tspan x="110.0" dy="0">• Evidence from</tspan><tspan x="110.0" dy="15">lab-15_population-systems-ecology.md</tspan></text>
+  <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="824" y="216" class="card-kicker">Outputs</text>
+  <text x="824.0" y="244.0" class="mini-text"><tspan x="824.0" dy="0">• Compare exponential and</tspan><tspan x="824.0" dy="15">logistic population growth.</tspan></text><text x="824.0" y="259.0" class="mini-text"><tspan x="824.0" dy="0">• Explain carrying capacity</tspan><tspan x="824.0" dy="15">and limiting factors.</tspan></text><text x="824.0" y="274.0" class="mini-text"><tspan x="824.0" dy="0">• Contrast energy flow with</tspan><tspan x="824.0" dy="15">nutrient cycling.</tspan></text>
+  <path d="M 238.0 330.0 C 278.0 288.0, 262.0 395.0, 302.0 405.0" class="arrow" /><path d="M 458.0 405.0 C 498.0 363.0, 482.0 340.0, 522.0 330.0" class="arrow" /><path d="M 678.0 330.0 C 718.0 288.0, 702.0 395.0, 742.0 405.0" class="arrow" /><path d="M 898.0 405.0 C 938.0 363.0, 922.0 340.0, 962.0 330.0" class="arrow" />
+  <g><circle cx="160.0" cy="330.0" r="70" class="stage" /><text x="160.0" y="248.0" class="stage-num">01</text><text x="160.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="160.0" dy="0">Population growth</tspan><tspan x="160.0" dy="18">models</tspan></text><text x="160.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="160.0" dy="0">Population size</tspan><tspan x="160.0" dy="13">changes through...</tspan></text></g><g><circle cx="380.0" cy="405.0" r="70" class="stage" /><text x="380.0" y="323.0" class="stage-num">02</text><text x="380.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="380.0" dy="0">Limits and carrying</tspan><tspan x="380.0" dy="18">capacity</tspan></text><text x="380.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="380.0" dy="0">Exponential growth</tspan><tspan x="380.0" dy="13">describes rapid...</tspan></text></g><g><circle cx="600.0" cy="330.0" r="70" class="stage" /><text x="600.0" y="248.0" class="stage-num">03</text><text x="600.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="600.0" dy="0">Community</tspan><tspan x="600.0" dy="18">interactions</tspan></text><text x="600.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="600.0" dy="0">Density-dependent and</tspan><tspan x="600.0" dy="13">density-independent...</tspan></text></g><g><circle cx="820.0" cy="405.0" r="70" class="stage" /><text x="820.0" y="323.0" class="stage-num">04</text><text x="820.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="820.0" dy="0">Energy flow through</tspan><tspan x="820.0" dy="18">trophic levels</tspan></text><text x="820.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="820.0" dy="0">Energy flows through</tspan><tspan x="820.0" dy="13">producers, consumers...</tspan></text></g><g><circle cx="1040.0" cy="330.0" r="70" class="stage" /><text x="1040.0" y="248.0" class="stage-num">05</text><text x="1040.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="1040.0" dy="0">Matter cycling and</tspan><tspan x="1040.0" dy="18">systems feedback</tspan></text><text x="1040.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="1040.0" dy="0">Matter cycles through</tspan><tspan x="1040.0" dy="13">ecosystems while...</tspan></text></g>
+  <rect x="84" y="562" width="1032" height="70" rx="22" class="feedback-card" />
+  <text x="112" y="590" class="card-kicker">Feedbacks and constraints</text>
+  <text x="112.0" y="618.0" class="mini-text"><tspan x="112.0" dy="0">lab-15_population-systems-ecology.md evidence checks whether students can explain community interactions.; Retrieval</tspan><tspan x="112.0" dy="16">questions reveal whether terms are connected to evidence.; Population growth cannot continue without limits in real...</tspan></text>
+  <text x="84" y="668" class="footer">Linked lab: lab-15_population-systems-ecology.md</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Emphasize where the process can fail, slow down, or be revised by evidence.</aside>
+</section>
+<section class="slide slide-terms" data-slide-role="terms" data-visual-kind="term-grid">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 06</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Terms as evidence handles</h1>
+      <ul><li>Population: Members of one species in an area.</li><li>Exponential growth: Growth pattern with increasing rate under abundant resources.</li><li>Logistic growth: Growth that slows as population approaches carrying capacity.</li><li>Carrying capacity: Approximate environment-supported population size.</li><li>Density-dependent factor: Limiting factor whose impact changes with crowding.</li><li>Density-independent factor: Limiting factor not directly tied to density.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="term-grid"><div class="term-grid"><div><b>Population</b><span>Members of one species in an area.</span></div><div><b>Exponential growth</b><span>Growth pattern with increasing rate under abundant resources.</span></div><div><b>Logistic growth</b><span>Growth that slows as population approaches carrying capacity.</span></div><div><b>Carrying capacity</b><span>Approximate environment-supported population size.</span></div><div><b>Density-dependent factor</b><span>Limiting factor whose impact changes with crowding.</span></div><div><b>Density-independent factor</b><span>Limiting factor not directly tied to density.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Treat terms as handles for reasoning. Each term should help explain a claim or observation.</aside>
+</section>
+<section class="slide slide-lab" data-slide-role="lab" data-visual-kind="lab-flow">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 07</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Lab connection</h1>
+      <ul><li>Lab file: lab-15_population-systems-ecology.md</li><li>Lab evidence should test or illustrate: Community interactions</li><li>Students should leave with a concrete observation, comparison, or model tied to the module claim.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="lab-flow"><div class="flow-diagram"><div class="flow-cell"><b>Question</b><span>Population growth models</span></div><div class="flow-cell"><b>Evidence</b><span>lab-15_population-systems-ecology.md</span></div><div class="flow-cell"><b>Claim</b><span>Compare exponential and logistic population growth.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Make the lab connection explicit before students encounter the activity.</aside>
+</section>
+<section class="slide slide-contrast" data-slide-role="contrast" data-visual-kind="contrast-panel">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 08</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Contrast check</h1>
+      <ul><li>Do not stop at: Population size changes through births, deaths, immigration, and emigration.</li><li>Stronger explanation: Matter cycles through ecosystems while energy must continually enter.</li><li>The goal is to move from a named idea to a testable biological explanation.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="contrast-panel"><div class="contrast"><div><b>Surface</b><span>Population size changes through births, deaths, immigration, and emigration.</span></div><div><b>Deeper</b><span>Matter cycles through ecosystems while energy must continually enter.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use this slide to prevent shallow vocabulary-only learning.</aside>
+</section>
+<section class="slide slide-retrieval" data-slide-role="retrieval" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 09</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Module 15: Population and Systems Ecology Retrieval and Lab Check</h1>
+      <ul><li>Module focus: Population and Systems Ecology</li><li>Retrieval prompt: What changes population size?</li><li>Answer check: Compare exponential and logistic population growth.</li><li>Required terms: Population, Exponential growth, Logistic growth</li><li>Lab connection: lab-15_population-systems-ecology.md; lab-15_population-systems-ecology.md supplies evidence for ecology evidence from population and system feedback patterns.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-15-retrieval-card.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 15: Population and Systems Ecology Retrieval and Lab Check">
+  <title>Module 15: Population and Systems Ecology Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 15: Population and Systems Ecology.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#m15-retrieval-wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#m15-retrieval-shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#m15-retrieval-shadow); }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage { fill: #fffafd; stroke: #7b4f9d; stroke-width: 5; filter: url(#m15-retrieval-shadow); }
+    .stage-num { fill: #b36b2c; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#m15-retrieval-arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m15-retrieval-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m15-retrieval-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m15-retrieval-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M44 72 H1156 V648 H44 Z" />
+  <text x="82" y="92" class="eyebrow">Module 15 / Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 15: Population and Systems Ecology Retrieval and Lab Check</text>
+  <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">What changes population size?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Compare exponential and logistic population...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">How do exponential and logistic growth</tspan><tspan x="632.0" dy="17">differ?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Explain carrying capacity and limiting...</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What does carrying capacity mean?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Distinguish density-dependent and...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How do density-dependent and</tspan><tspan x="632.0" dy="17">density-independent factors differ?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Use trophic levels and the 10 percent rule to...</tspan></text>
+  <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
+  <text x="120" y="582" class="card-kicker">Terms to use</text>
+  <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Population, Exponential growth, Logistic growth,</tspan><tspan x="120.0" dy="17">Carrying capacity, Density-dependent factor</tspan></text>
+  <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
+  <text x="632" y="582" class="card-kicker">Lab connection</text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-15_population-systems-ecology.md supplies evidence for</tspan><tspan x="632.0" dy="17">ecology evidence from population and system feedback...</tspan></text>
+  <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Pause here. Students answer first without notes, then compare to the checks.</aside>
+</section>
+<section class="slide slide-quiz" data-slide-role="quiz" data-visual-kind="quiz-bridge">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 10</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Practice quiz bridge</h1>
+      <ul><li>1. Which statement best defines Population in Module 15?</li><li>2. Which learning goal best supports the topic &quot;Limits and carrying capacity&quot;?</li><li>3. How should lab-15_population-systems-ecology.md support Module 15?</li><li>4. Which retrieval move best prepares a student for Population and Systems Ecology?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="quiz-bridge"><div class="ordered-cards"><div class="step-card"><b>Quiz 1</b><span>A</span></div><div class="step-card"><b>Quiz 2</b><span>B</span></div><div class="step-card"><b>Quiz 3</b><span>C</span></div><div class="step-card"><b>Quiz 4</b><span>D</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use the quiz as formative feedback. Answer key: 1=A, 2=B, 3=C, 4=D</aside>
+</section>
+<section class="slide slide-synthesis" data-slide-role="synthesis" data-visual-kind="exit-ticket">
+  <div class="slide-ribbon">BIOL-1 · Module 15 · Slide 11</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Population and Systems Ecology</p>
+      <h1>Synthesis and exit ticket</h1>
+      <ul><li>Exit claim: explain population growth models using evidence from lab-15_population-systems-ecology.md.</li><li>Must include: Population, Exponential growth, Logistic growth.</li><li>Revision prompt: what evidence would change your explanation?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="exit-ticket"><div class="flow-diagram"><div class="flow-cell"><b>Claim</b><span>Population growth models</span></div><div class="flow-cell"><b>Evidence</b><span>lab-15_population-systems-ecology.md</span></div><div class="flow-cell"><b>Revision</b><span>What would change your mind?</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> End with a claim-evidence-reasoning exit ticket connected to the same module data.</aside>
+</section>
+</body>
+</html>

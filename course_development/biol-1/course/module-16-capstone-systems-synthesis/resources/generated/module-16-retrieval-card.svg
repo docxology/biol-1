@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
-  <title id="title">Module 16: Capstone Systems Synthesis Retrieval Card</title>
-  <desc id="desc">Retrieval card for Module 16: Capstone Systems Synthesis.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 16: Capstone Systems Synthesis Retrieval and Lab Check">
+  <title>Module 16: Capstone Systems Synthesis Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 16: Capstone Systems Synthesis.</desc>
   <style>
     .bg { fill: #f4f1e6; }
     .halo { fill: url(#wash); opacity: 0.92; }
@@ -40,13 +40,13 @@
   <rect class="bg" width="1200" height="720" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module 16 / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">Module 16: Capstone Systems Synthesis Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 16: Capstone Systems Synthesis Retrieval and Lab Check</text>
   <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">How can a molecular change affect an</tspan><tspan x="120.0" dy="17">ecosystem?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Connect concepts from at least three modules...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">Why does scale matter in biological</tspan><tspan x="632.0" dy="17">explanation?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Trace a mechanism across biological scales.</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What is a mechanism chain?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Identify feedback loops, constraints, and...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How can feedback limit or amplify change?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Match evidence types to claims at different...</tspan></text>
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
   <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">System, Scale, Mechanism, Feedback loop, Constraint</tspan></text>
   <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
   <text x="632" y="582" class="card-kicker">Lab connection</text>
-  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">Capstone Systems Synthesis gives concrete evidence for</tspan><tspan x="632.0" dy="17">Module 16: Capstone Systems Synthesis.</tspan></text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-16_capstone-systems-synthesis.md supplies evidence for</tspan><tspan x="632.0" dy="17">capstone synthesis evidence from lab-to-course...</tspan></text>
   <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
 </svg>

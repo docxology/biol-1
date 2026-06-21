@@ -33,7 +33,13 @@ LINK_PATTERN = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 FENCE_PATTERN = re.compile(r"```.*?```", re.DOTALL)
 LAB_NUMBER_PATTERN = re.compile(r"lab-(\d+)")
 MODULE_NUMBER_PATTERN = re.compile(r"module-(\d+)")
-SLIDE_NUMBER_PATTERN = re.compile(r"module-(\d+)-slides-.*\.pdf$")
+SLIDE_NUMBER_PATTERN = re.compile(r"module-(\d+)-slides-(full|notes)\.pdf$")
+GENERIC_MODULE_CONTENT_PHRASES = (
+    "best learned as a connected explanation",
+    "partition",
+    "turns the module claim into observable evidence",
+    "gives concrete evidence for Module",
+)
 SUPPLEMENTAL_LAB_MARKERS = ("followup", "follow-up")
 ACTIVE_BIOL1_FORBIDDEN_TEXT = (
     "Spring 2026",
@@ -364,10 +370,48 @@ def _check_module_manifest(
             f"{(module_dir / 'module.toml').relative_to(root)} links lab {lab_number}, "
             f"expected lab {module.number}"
         )
+    manifest_text = (module_dir / "module.toml").read_text(encoding="utf-8", errors="ignore")
+    lowered_manifest = manifest_text.lower()
+    for phrase in GENERIC_MODULE_CONTENT_PHRASES:
+        if phrase.lower() in lowered_manifest:
+            report.add_issue(
+                f"{(module_dir / 'module.toml').relative_to(root)} contains generic template phrase: "
+                f"{phrase}"
+            )
+    normalized_questions = {_normalize_contract_text(question) for question in module.learning_questions}
+    normalized_objectives = {_normalize_contract_text(objective) for objective in module.learning_objectives}
+    for quiz in module.practice_quiz:
+        lowered_explanation = quiz.explanation.lower()
+        for phrase in GENERIC_MODULE_CONTENT_PHRASES:
+            if phrase.lower() in lowered_explanation:
+                report.add_issue(
+                    f"{(module_dir / 'module.toml').relative_to(root)} quiz explanation contains "
+                    f"generic template phrase: {phrase}"
+                )
+    for image in module.generated_images:
+        if image.retrieval_card is None:
+            continue
+        if module.lab not in image.retrieval_card.lab_connection:
+            report.add_issue(
+                f"{(module_dir / 'module.toml').relative_to(root)} retrieval-card lab connection "
+                f"must name {module.lab}"
+            )
+        for prompt in image.retrieval_card.prompts:
+            prompt_text = _normalize_contract_text(prompt.prompt)
+            check_text = _normalize_contract_text(prompt.check)
+            if prompt_text not in normalized_questions and check_text not in normalized_objectives:
+                report.add_issue(
+                    f"{(module_dir / 'module.toml').relative_to(root)} retrieval prompt is not "
+                    f"aligned to a learning question or objective: {prompt.prompt}"
+                )
     generated_dir = module_dir / "resources" / "generated"
     for doc_name in ("README.md", "AGENTS.md", "asset-index.md"):
         if not (generated_dir / doc_name).exists():
             report.add_issue(f"{(generated_dir / doc_name).relative_to(root)} missing")
+
+
+def _normalize_contract_text(value: str) -> str:
+    return re.sub(r"\s+", " ", value.strip().lower())
 
 
 def _check_keys_learning_objectives(
@@ -655,19 +699,61 @@ def _check_slide_numbering(
     slides_dir = course_root / "resources" / "slides"
     if not slides_dir.exists():
         return
+    seen: dict[int, set[str]] = {}
     for slide_path in sorted(slides_dir.glob("*.pdf")):
         match = SLIDE_NUMBER_PATTERN.match(slide_path.name)
         if not match:
             report.add_issue(
-                f"{slide_path.relative_to(root)} does not follow module-N-slides-*.pdf"
+                f"{slide_path.relative_to(root)} does not follow module-N-slides-full|notes.pdf"
             )
             continue
         number = int(match.group(1))
+        variant = match.group(2)
+        seen.setdefault(number, set()).add(variant)
         if number < 1 or number > expected_modules:
             report.add_issue(
                 f"{slide_path.relative_to(root)} references module {number}, "
                 f"outside active range 1-{expected_modules}"
             )
+    if course == "biol-1":
+        for number in range(1, expected_modules + 1):
+            variants = seen.get(number, set())
+            if variants != {"full", "notes"}:
+                report.add_issue(
+                    f"{course} generated slides for module {number} must include "
+                    f"full and notes PDFs; found {sorted(variants)}"
+                )
+        generated_dir = slides_dir / "generated"
+        for number in range(1, expected_modules + 1):
+            for variant in ("full", "notes"):
+                html_path = generated_dir / f"module-{number}-slides-{variant}.html"
+                if not html_path.exists():
+                    report.add_issue(f"{html_path.relative_to(root)} missing")
+                    continue
+                text = html_path.read_text(encoding="utf-8", errors="ignore")
+                required = (
+                    f"Module {number:02d}",
+                    "data-slide-role",
+                    "data-visual-kind",
+                    "Learning objectives",
+                    "Lab file:",
+                    f"module-{number:02d}-concept-map.svg",
+                    f"module-{number:02d}-process-model.svg",
+                    f"module-{number:02d}-retrieval-card.svg",
+                )
+                for marker in required:
+                    if marker not in text:
+                        report.add_issue(
+                            f"{html_path.relative_to(root)} missing slide marker: {marker}"
+                        )
+                if text.count("<section class=\"slide") < 10:
+                    report.add_issue(
+                        f"{html_path.relative_to(root)} has fewer than 10 rendered slides"
+                    )
+                if text.count('data-visual-kind="embedded-svg"') != 3:
+                    report.add_issue(
+                        f"{html_path.relative_to(root)} must have exactly 3 embedded generated SVG slides"
+                    )
 
 
 def _check_biol1_active_text(root: Path, course_root: Path, report: RepoContractReport) -> None:

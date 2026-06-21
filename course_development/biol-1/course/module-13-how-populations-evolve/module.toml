@@ -45,64 +45,75 @@ definition = "Null model for allele frequencies when no evolution occurs."
 question = "Which statement best defines Allele frequency in Module 13?"
 options = ["Proportion of a particular allele in a population.", "Allele-frequency change across generations.", "DNA sequence change that can create new alleles.", "Movement of alleles between populations."]
 answer = "A"
-explanation = "Allele frequency anchors the allele frequencies as the unit of change partition of How Populations Evolve."
+explanation = "Allele frequency names the module's starting idea: allele frequencies as the unit of change must be explained with evidence, not memorized alone."
 
 [[practice_quiz]]
-question = "Which learning goal best matches the sources of variation partition?"
+question = "Which learning goal best supports the topic \"Sources of variation\"?"
 options = ["Define microevolution using allele frequencies.", "Compare the five mechanisms that change allele frequencies.", "Distinguish bottleneck and founder effects.", "Interpret directional, stabilizing, and disruptive selection."]
 answer = "B"
-explanation = "The correct option names the specific reasoning target for that partition."
+explanation = "This objective asks students to reason through sources of variation as part of the module's mechanism."
 
 [[practice_quiz]]
-question = "How should How Populations Evolve support this module?"
-options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for five mechanisms of microevolution.", "By removing the need to compare observations."]
+question = "How should lab-13_how-populations-evolve.md support Module 13?"
+options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for population evolution evidence from frequency changes.", "By removing the need to compare observations or predictions."]
 answer = "C"
-explanation = "The lab is the concrete evidence surface for the same-numbered module."
+explanation = "The lab is the evidence surface for allele-frequency change through drift, gene flow, selection, and baseline models."
 
 [[practice_quiz]]
 question = "Which retrieval move best prepares a student for How Populations Evolve?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is an allele frequency? Then justify the answer with evidence."]
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is an allele frequency? Then check the answer against terms, evidence, and lab-13_how-populations-evolve.md."]
 answer = "D"
-explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
 
 [[generated_images]]
 id = "concept-map"
-title = "Module 13: How Populations Evolve Concept Map"
+title = "Module 13: How Populations Evolve Evidence Map"
 kind = "concept-map"
 output = "resources/generated/module-13-concept-map.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
-central_claim = "How Populations Evolve is best learned as a connected explanation linking allele frequencies as the unit of change, sources of variation, and lab."
-clusters = ["Allele frequencies as the unit of change", "Sources of variation", "Evidence", "Synthesis"]
+prompt = "Deterministic BIOL-1 SVG showing how Module 13 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision."
+central_claim = "How Populations Evolve explains allele-frequency change through drift, gene flow, selection, and baseline models."
+clusters = ["Claim", "Mechanism", "Evidence", "Application", "Revision"]
 
 [[generated_images.nodes]]
 id = "core"
 label = "Allele frequencies as the unit of change"
 detail = "Microevolution is change in allele frequencies across generations."
+cluster = "Claim"
 
 [[generated_images.nodes]]
 id = "mechanism"
 label = "Sources of variation"
 detail = "Mutation creates new variation, while recombination reshuffles existing variation."
+cluster = "Mechanism"
 
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "How Populations Evolve turns the module claim into observable evidence."
+detail = "lab-13_how-populations-evolve.md focuses students on population evolution evidence from frequency changes."
+cluster = "Evidence"
 
 [[generated_images.nodes]]
 id = "term"
 label = "Allele frequency"
 detail = "Proportion of a particular allele in a population."
+cluster = "Vocabulary"
 
 [[generated_images.nodes]]
-id = "synthesis"
+id = "application"
 label = "Hardy-Weinberg as a baseline"
-detail = "Hardy-Weinberg equilibrium is a null model for detecting evolutionary change."
+detail = "Use Hardy-Weinberg as a baseline to detect evolutionary change."
+cluster = "Application"
+
+[[generated_images.nodes]]
+id = "misconception"
+label = "Misconception check"
+detail = "Random drift and nonrandom selection can both change populations."
+cluster = "Revision"
 
 [[generated_images.edges]]
 source = "core"
 target = "mechanism"
-label = "constrains"
+label = "requires"
 
 [[generated_images.edges]]
 source = "mechanism"
@@ -116,24 +127,29 @@ label = "uses"
 
 [[generated_images.edges]]
 source = "term"
-target = "synthesis"
+target = "application"
 label = "supports"
 
 [[generated_images.edges]]
-source = "synthesis"
+source = "application"
+target = "misconception"
+label = "rules out"
+
+[[generated_images.edges]]
+source = "misconception"
 target = "core"
 label = "revises"
 
 [[generated_images]]
 id = "process-model"
-title = "Module 13: How Populations Evolve Process Model"
+title = "Module 13: How Populations Evolve Reasoning Sequence"
 kind = "process-model"
 output = "resources/generated/module-13-process-model.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
-inputs = ["Allele frequencies as the unit of change", "Sources of variation", "Five mechanisms of microevolution"]
-outputs = ["Define microevolution using allele frequencies.", "Compare the five mechanisms that change allele frequencies.", "Distinguish bottleneck and founder effects."]
-feedbacks = ["How Populations Evolve evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
-constraints = ["Microevolution is change in allele frequencies across generations.", "Hardy-Weinberg equilibrium is a null model for detecting evolutionary change."]
+prompt = "Deterministic BIOL-1 SVG tracing the Module 13 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs."
+inputs = ["Allele frequencies as the unit of change", "Sources of variation", "Evidence from lab-13_how-populations-evolve.md"]
+outputs = ["Define microevolution using allele frequencies.", "Compare the five mechanisms that change allele frequencies.", "Use Hardy-Weinberg as a non-evolving baseline."]
+feedbacks = ["lab-13_how-populations-evolve.md evidence checks whether students can explain five mechanisms of microevolution.", "Retrieval questions reveal whether terms are connected to evidence."]
+constraints = ["Random drift and nonrandom selection can both change populations.", "Hardy-Weinberg equilibrium is a null model for detecting evolutionary change."]
 
 [[generated_images.stages]]
 label = "Allele frequencies as the unit of change"
@@ -162,12 +178,12 @@ emphasis = "Step 5"
 
 [[generated_images]]
 id = "retrieval-card"
-title = "Module 13: How Populations Evolve Retrieval Card"
+title = "Module 13: How Populations Evolve Retrieval and Lab Check"
 kind = "retrieval-card"
 output = "resources/generated/module-13-retrieval-card.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 13: How Populations Evolve; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+prompt = "Deterministic BIOL-1 SVG pairing Module 13 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Allele frequency", "Microevolution", "Mutation", "Gene flow", "Genetic drift"]
-lab_connection = "How Populations Evolve gives concrete evidence for Module 13: How Populations Evolve."
+lab_connection = "lab-13_how-populations-evolve.md supplies evidence for population evolution evidence from frequency changes."
 
 [[generated_images.prompts]]
 prompt = "What is an allele frequency?"

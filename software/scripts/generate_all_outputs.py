@@ -53,6 +53,10 @@ from src.module_content.main import (
     render_course_module_materials,
 )  # noqa: E402
 from src.shared.course_config import CourseSelectionError, active_course_names  # noqa: E402
+from src.slide_deck.main import (
+    describe_course_slide_decks,
+    render_course_slide_decks,
+)  # noqa: E402
 
 logger = logging.getLogger(__name__)
 
@@ -127,6 +131,7 @@ def main() -> int:
             course_path = repo_root / course_dir
             if (course_path / "course").exists():
                 logger.info(describe_course_module_materials(course_path, args.module))
+                logger.info(describe_course_slide_decks(course_path, args.module))
         report = generate_dry_run_report(
             repo_root,
             courses,
@@ -149,6 +154,13 @@ def main() -> int:
             course_name,
             module_materials["module_count"],
             module_materials["written"],
+        )
+        slide_decks = render_course_slide_decks(course_path, args.module)
+        logger.info(
+            "%s generated slide decks: %s modules, %s files written",
+            course_name,
+            slide_decks["module_count"],
+            slide_decks["written"],
         )
 
     if not args.skip_clear:

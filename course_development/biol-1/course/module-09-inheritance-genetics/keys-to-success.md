@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 09: Inheritance Genetics Concept Map](resources/generated/module-09-concept-map.svg)
-- [Module 09: Inheritance Genetics Process Model](resources/generated/module-09-process-model.svg)
-- [Module 09: Inheritance Genetics Retrieval Card](resources/generated/module-09-retrieval-card.svg)
+- [Module 09: Inheritance Genetics Evidence Map](resources/generated/module-09-concept-map.svg)
+- [Module 09: Inheritance Genetics Reasoning Sequence](resources/generated/module-09-process-model.svg)
+- [Module 09: Inheritance Genetics Retrieval and Lab Check](resources/generated/module-09-retrieval-card.svg)

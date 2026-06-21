@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Energy required to start a reaction.
    - D. Protein or RNA catalyst that speeds a reaction.
    - Answer: A
-   - Why: Metabolism anchors the energy and thermodynamics partition of Metabolism.
+   - Why: Metabolism names the module's starting idea: energy and thermodynamics must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the atp as cellular coupling partition?
+2. Which learning goal best supports the topic "ATP as cellular coupling"?
    - A. Apply thermodynamic ideas to living cells.
    - B. Explain ATP as an energy-coupling molecule.
    - C. Describe how enzymes change reaction rates.
    - D. Predict how environmental conditions affect enzyme activity.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through atp as cellular coupling as part of the module's mechanism.
 
-3. How should Metabolism support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for enzymes and activation energy.
-   - D. By removing the need to compare observations.
+3. How should lab-06_metabolism.md support Module 06?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for metabolism evidence from reaction rate and condition changes.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for energy transformations with ATP coupling, enzymes, and linked pathways.
 
 4. Which retrieval move best prepares a student for Metabolism?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: How do the laws of thermodynamics constrain cells? Then justify the answer with evidence.
+   - D. Answer: How do the laws of thermodynamics constrain cells? Then check the answer against terms, evidence, and lab-06_metabolism.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

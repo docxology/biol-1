@@ -3,12 +3,12 @@
 
 ## Deterministic Generated Assets
 
-- **Module 05: Membranes Concept Map** (`resources/generated/module-05-concept-map.svg`) - concept-map
-  - Purpose: Membranes is best learned as a connected explanation linking phospholipid bilayer structure, selective permeability, and lab evidence.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 05: Membranes; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis.
-- **Module 05: Membranes Process Model** (`resources/generated/module-05-process-model.svg`) - process-model
+- **Module 05: Membranes Evidence Map** (`resources/generated/module-05-concept-map.svg`) - concept-map
+  - Purpose: Membranes explains membrane structure with gradients, transport, and cell survival predictions.
+  - Prompt metadata: Deterministic BIOL-1 SVG showing how Module 05 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision.
+- **Module 05: Membranes Reasoning Sequence** (`resources/generated/module-05-process-model.svg`) - process-model
   - Purpose: Phospholipid bilayer structure -> Selective permeability -> Passive transport -> Active transport
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 05: Membranes; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback.
-- **Module 05: Membranes Retrieval Card** (`resources/generated/module-05-retrieval-card.svg`) - retrieval-card
-  - Purpose: Viewing Life gives concrete evidence for Module 05: Membranes.
-  - Prompt metadata: Deterministic high-design SVG for BIOL-1 Module 05: Membranes; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection.
+  - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 05 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
+- **Module 05: Membranes Retrieval and Lab Check** (`resources/generated/module-05-retrieval-card.svg`) - retrieval-card
+  - Purpose: lab-05_viewing-life.md supplies evidence for viewing life through structure, boundary, and environment evidence.
+  - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 05 retrieval prompts with answer checks, required terms, and the linked lab.

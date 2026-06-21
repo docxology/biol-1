@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 05: Membranes Concept Map](resources/generated/module-05-concept-map.svg)
-- [Module 05: Membranes Process Model](resources/generated/module-05-process-model.svg)
-- [Module 05: Membranes Retrieval Card](resources/generated/module-05-retrieval-card.svg)
+- [Module 05: Membranes Evidence Map](resources/generated/module-05-concept-map.svg)
+- [Module 05: Membranes Reasoning Sequence](resources/generated/module-05-process-model.svg)
+- [Module 05: Membranes Retrieval and Lab Check](resources/generated/module-05-retrieval-card.svg)

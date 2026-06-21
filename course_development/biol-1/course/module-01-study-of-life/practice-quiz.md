@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. All chemical reactions that move matter and energy through life.
    - D. Testable explanation for an observed pattern.
    - Answer: A
-   - Why: Cell anchors the what counts as life partition of Biology - The Study of Life.
+   - Why: Cell names the module's starting idea: what counts as life must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the science as a way of testing partition?
+2. Which learning goal best supports the topic "Science as a way of testing"?
    - A. Distinguish living systems from nonliving examples using multiple characteristics.
    - B. Separate hypotheses, predictions, observations, and conclusions in a scientific test.
    - C. Place biological examples at the correct scale of organization.
    - D. Identify variables and evidence in a simple investigation.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through science as a way of testing as part of the module's mechanism.
 
-3. How should Measurement Methods support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for organization from cells to ecosystems.
-   - D. By removing the need to compare observations.
+3. How should lab-01_measurement-methods.md support Module 01?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for measurement choices and sources of error.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for life criteria with measurement-based scientific explanation.
 
 4. Which retrieval move best prepares a student for Biology - The Study of Life?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Which characteristics together make something count as alive? Then justify the answer with evidence.
+   - D. Answer: Which characteristics together make something count as alive? Then check the answer against terms, evidence, and lab-01_measurement-methods.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 08: Cellular Genetics Concept Map](resources/generated/module-08-concept-map.svg)
-- [Module 08: Cellular Genetics Process Model](resources/generated/module-08-process-model.svg)
-- [Module 08: Cellular Genetics Retrieval Card](resources/generated/module-08-retrieval-card.svg)
+- [Module 08: Cellular Genetics Evidence Map](resources/generated/module-08-concept-map.svg)
+- [Module 08: Cellular Genetics Reasoning Sequence](resources/generated/module-08-process-model.svg)
+- [Module 08: Cellular Genetics Retrieval and Lab Check](resources/generated/module-08-retrieval-card.svg)

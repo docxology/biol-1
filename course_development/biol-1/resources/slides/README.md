@@ -1,38 +1,24 @@
-# Slides
+# Generated Slides
 
 ## Overview
 
-This directory contains resources for Slides.
+Active BIOL-1 Fall 2026 slide decks are generated from structured module manifests, not hand-edited PDFs. The generator reads each `course/module-*/module.toml`, embeds that module's deterministic SVG visuals as the three-slide visual spine, and writes full-page plus speaker-notes PDFs.
 
-## Contents
+## Active outputs
 
-- `module-1-slides-full.pdf`
-- `module-1-slides-notes.pdf`
-- `module-2-slides-full.pdf`
-- `module-2-slides-notes.pdf`
-- `module-3-slides-full.pdf`
-- `module-3-slides-notes.pdf`
-- `module-4-slides-full.pdf`
-- `module-4-slides-notes.pdf`
-- `module-5-slides-full.pdf`
-- `module-5-slides-notes.pdf`
-- `module-6-slides-full.pdf`
-- `module-6-slides-notes.pdf`
-- `module-7-slides-full.pdf`
-- `module-7-slides-notes.pdf`
-- `module-8-slides-cell-cycle-full.pdf`
-- `module-8-slides-cell-cycle-notes.pdf`
-- `module-8-slides-meiosis-full.pdf`
-- `module-8-slides-meiosis-notes.pdf`
-- `module-9-slides-full.pdf`
-- `module-9-slides-notes.pdf`
-- `module-10-slides-full.pdf`
-- `module-10-slides-notes.pdf`
-- `module-11-slides-full.pdf`
-- `module-11-slides-notes.pdf`
-- `module-14-slides-full.pdf`
-- `module-14-slides-notes.pdf`
+- `module-N-slides-full.pdf` — classroom/student full-page deck.
+- `module-N-slides-notes.pdf` — instructor notes deck with teaching prompts.
+- `generated/module-N-slides-full.html` — canonical HTML source for the full deck.
+- `generated/module-N-slides-notes.html` — canonical HTML source for the notes deck.
 
-## Gaps
+There must be exactly one full PDF and one notes PDF for every active module 1-16.
 
-No active slide decks are currently available for modules 12, 13, or 15. Do not fill those gaps by publishing old chapter decks under the wrong module number.
+Each deck has 11 slides. Exactly three slides embed generated SVGs: concept map, process model, and retrieval card. The remaining slides use deterministic CSS visual surfaces that support the same module/lab/question/quiz structure.
+
+## Source of truth
+
+The slide content comes from the same structured fields used by keys, questions, practice quizzes, labs, and generated visuals: topics, contents, learning objectives, terms, learning questions, practice quiz items, lab link, and generated SVG specs in `module.toml`.
+
+## Legacy slides
+
+Imported pre-generation slide PDFs were moved to `archive/fall-2026-legacy-slides/`. They are retained for historical reference only and are not active publish inputs.

@@ -9,28 +9,28 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - C. Large molecule built from repeating subunits.
    - D. Sugar or sugar polymer used for energy or structure.
    - Answer: A
-   - Why: Organic molecule anchors the carbon skeletons partition of Organic Molecules.
+   - Why: Organic molecule names the module's starting idea: carbon skeletons must be explained with evidence, not memorized alone.
 
-2. Which learning goal best matches the building and breaking polymers partition?
+2. Which learning goal best supports the topic "Building and breaking polymers"?
    - A. Explain why carbon is central to biological molecule diversity.
    - B. Distinguish monomers, polymers, dehydration synthesis, and hydrolysis.
    - C. Compare the functions of carbohydrates and lipids.
    - D. Connect protein shape to protein function and denaturation.
    - Answer: B
-   - Why: The correct option names the specific reasoning target for that partition.
+   - Why: This objective asks students to reason through building and breaking polymers as part of the module's mechanism.
 
-3. How should Microscopy support this module?
-   - A. By replacing vocabulary study with unrelated directions.
-   - B. By adding a separate topic with no claim to test.
-   - C. By giving evidence for carbohydrates and lipids.
-   - D. By removing the need to compare observations.
+3. How should lab-03_microscopy.md support Module 03?
+   - A. By replacing evidence with vocabulary copying.
+   - B. By adding unrelated facts that do not test the module claim.
+   - C. By giving evidence for microscopy evidence for biological structure.
+   - D. By removing the need to compare observations or predictions.
    - Answer: C
-   - Why: The lab is the concrete evidence surface for the same-numbered module.
+   - Why: The lab is the evidence surface for carbon chemistry with polymer assembly and biological molecule evidence.
 
 4. Which retrieval move best prepares a student for Organic Molecules?
    - A. Copy the term list once and stop.
    - B. Skip mechanisms and memorize isolated examples.
    - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Why can carbon make many different biological molecules? Then justify the answer with evidence.
+   - D. Answer: Why can carbon make many different biological molecules? Then check the answer against terms, evidence, and lab-03_microscopy.md.
    - Answer: D
-   - Why: Retrieval is strongest when a student answers first and then checks evidence.
+   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.

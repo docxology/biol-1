@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
-  <title id="title">Module 13: How Populations Evolve Retrieval Card</title>
-  <desc id="desc">Retrieval card for Module 13: How Populations Evolve.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 13: How Populations Evolve Retrieval and Lab Check">
+  <title>Module 13: How Populations Evolve Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 13: How Populations Evolve.</desc>
   <style>
     .bg { fill: #f7efe2; }
     .halo { fill: url(#wash); opacity: 0.92; }
@@ -40,13 +40,13 @@
   <rect class="bg" width="1200" height="720" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module 13 / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">Module 13: How Populations Evolve Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 13: How Populations Evolve Retrieval and Lab Check</text>
   <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">What is an allele frequency?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Define microevolution using allele...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">How is microevolution measured?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Compare the five mechanisms that change...</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">Which mechanisms can change allele</tspan><tspan x="120.0" dy="17">frequencies?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Distinguish bottleneck and founder effects.</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How does mutation differ from gene flow?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Interpret directional, stabilizing, and...</tspan></text>
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
   <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Allele frequency, Microevolution, Mutation, Gene flow,</tspan><tspan x="120.0" dy="17">Genetic drift</tspan></text>
   <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
   <text x="632" y="582" class="card-kicker">Lab connection</text>
-  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">How Populations Evolve gives concrete evidence for Module</tspan><tspan x="632.0" dy="17">13: How Populations Evolve.</tspan></text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-13_how-populations-evolve.md supplies evidence for</tspan><tspan x="632.0" dy="17">population evolution evidence from frequency changes.</tspan></text>
   <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
 </svg>

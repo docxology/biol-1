@@ -51,6 +51,6 @@ By the end of this module, you should be able to:
 
 ## Generated Visuals
 
-- [Module 15: Population and Systems Ecology Concept Map](resources/generated/module-15-concept-map.svg)
-- [Module 15: Population and Systems Ecology Process Model](resources/generated/module-15-process-model.svg)
-- [Module 15: Population and Systems Ecology Retrieval Card](resources/generated/module-15-retrieval-card.svg)
+- [Module 15: Population and Systems Ecology Evidence Map](resources/generated/module-15-concept-map.svg)
+- [Module 15: Population and Systems Ecology Reasoning Sequence](resources/generated/module-15-process-model.svg)
+- [Module 15: Population and Systems Ecology Retrieval and Lab Check](resources/generated/module-15-retrieval-card.svg)

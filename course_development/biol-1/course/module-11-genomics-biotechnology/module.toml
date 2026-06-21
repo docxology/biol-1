@@ -45,64 +45,75 @@ definition = "Reasoning about benefits, harms, rights, and responsibilities in b
 question = "Which statement best defines Genome in Module 11?"
 options = ["Complete DNA information of an organism or sample.", "Study of whole genomes and their patterns.", "Technique for amplifying selected DNA sequences.", "Short DNA sequence that starts PCR copying."]
 answer = "A"
-explanation = "Genome anchors the genomes as data partition of Genomics and Biotechnology."
+explanation = "Genome names the module's starting idea: genomes as data must be explained with evidence, not memorized alone."
 
 [[practice_quiz]]
-question = "Which learning goal best matches the pcr and amplification partition?"
+question = "Which learning goal best supports the topic \"PCR and amplification\"?"
 options = ["Define genome and genomics.", "Explain why PCR amplification is useful.", "Interpret basic gel electrophoresis fragment patterns.", "Describe what genetic engineering tools can do."]
 answer = "B"
-explanation = "The correct option names the specific reasoning target for that partition."
+explanation = "This objective asks students to reason through pcr and amplification as part of the module's mechanism."
 
 [[practice_quiz]]
-question = "How should Genomics Biotechnology support this module?"
-options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for gel electrophoresis and comparison.", "By removing the need to compare observations."]
+question = "How should lab-11_genomics-biotechnology.md support Module 11?"
+options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for genomics and biotechnology evidence from DNA comparison tools.", "By removing the need to compare observations or predictions."]
 answer = "C"
-explanation = "The lab is the concrete evidence surface for the same-numbered module."
+explanation = "The lab is the evidence surface for genomes as data interpreted through PCR, gels, tools, and ethical limits."
 
 [[practice_quiz]]
 question = "Which retrieval move best prepares a student for Genomics and Biotechnology?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is a genome? Then justify the answer with evidence."]
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is a genome? Then check the answer against terms, evidence, and lab-11_genomics-biotechnology.md."]
 answer = "D"
-explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
 
 [[generated_images]]
 id = "concept-map"
-title = "Module 11: Genomics and Biotechnology Concept Map"
+title = "Module 11: Genomics and Biotechnology Evidence Map"
 kind = "concept-map"
 output = "resources/generated/module-11-concept-map.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
-central_claim = "Genomics and Biotechnology is best learned as a connected explanation linking genomes as data, pcr and amplification, and lab evidence."
-clusters = ["Genomes as data", "PCR and amplification", "Evidence", "Synthesis"]
+prompt = "Deterministic BIOL-1 SVG showing how Module 11 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision."
+central_claim = "Genomics and Biotechnology explains genomes as data interpreted through PCR, gels, tools, and ethical limits."
+clusters = ["Claim", "Mechanism", "Evidence", "Application", "Revision"]
 
 [[generated_images.nodes]]
 id = "core"
 label = "Genomes as data"
 detail = "A genome is the full DNA information set of an organism or sample."
+cluster = "Claim"
 
 [[generated_images.nodes]]
 id = "mechanism"
 label = "PCR and amplification"
 detail = "PCR amplifies chosen DNA regions so they can be analyzed."
+cluster = "Mechanism"
 
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "Genomics Biotechnology turns the module claim into observable evidence."
+detail = "lab-11_genomics-biotechnology.md focuses students on genomics and biotechnology evidence from DNA comparison tools."
+cluster = "Evidence"
 
 [[generated_images.nodes]]
 id = "term"
 label = "Genome"
 detail = "Complete DNA information of an organism or sample."
+cluster = "Vocabulary"
 
 [[generated_images.nodes]]
-id = "synthesis"
+id = "application"
 label = "Biotechnology decisions and ethics"
-detail = "Applications require evidence, risk reasoning, and ethical judgment."
+detail = "Evaluate a DNA claim using method limits and ethical reasoning."
+cluster = "Application"
+
+[[generated_images.nodes]]
+id = "misconception"
+label = "Misconception check"
+detail = "A biotechnology result is not a conclusion until the evidence is interpreted."
+cluster = "Revision"
 
 [[generated_images.edges]]
 source = "core"
 target = "mechanism"
-label = "constrains"
+label = "requires"
 
 [[generated_images.edges]]
 source = "mechanism"
@@ -116,24 +127,29 @@ label = "uses"
 
 [[generated_images.edges]]
 source = "term"
-target = "synthesis"
+target = "application"
 label = "supports"
 
 [[generated_images.edges]]
-source = "synthesis"
+source = "application"
+target = "misconception"
+label = "rules out"
+
+[[generated_images.edges]]
+source = "misconception"
 target = "core"
 label = "revises"
 
 [[generated_images]]
 id = "process-model"
-title = "Module 11: Genomics and Biotechnology Process Model"
+title = "Module 11: Genomics and Biotechnology Reasoning Sequence"
 kind = "process-model"
 output = "resources/generated/module-11-process-model.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
-inputs = ["Genomes as data", "PCR and amplification", "Gel electrophoresis and comparison"]
-outputs = ["Define genome and genomics.", "Explain why PCR amplification is useful.", "Interpret basic gel electrophoresis fragment patterns."]
-feedbacks = ["Genomics Biotechnology evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
-constraints = ["A genome is the full DNA information set of an organism or sample.", "Applications require evidence, risk reasoning, and ethical judgment."]
+prompt = "Deterministic BIOL-1 SVG tracing the Module 11 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs."
+inputs = ["Genomes as data", "PCR and amplification", "Evidence from lab-11_genomics-biotechnology.md"]
+outputs = ["Define genome and genomics.", "Explain why PCR amplification is useful.", "Evaluate biotechnology claims using evidence and ethical considerations."]
+feedbacks = ["lab-11_genomics-biotechnology.md evidence checks whether students can explain gel electrophoresis and comparison.", "Retrieval questions reveal whether terms are connected to evidence."]
+constraints = ["A biotechnology result is not a conclusion until the evidence is interpreted.", "Applications require evidence, risk reasoning, and ethical judgment."]
 
 [[generated_images.stages]]
 label = "Genomes as data"
@@ -162,12 +178,12 @@ emphasis = "Step 5"
 
 [[generated_images]]
 id = "retrieval-card"
-title = "Module 11: Genomics and Biotechnology Retrieval Card"
+title = "Module 11: Genomics and Biotechnology Retrieval and Lab Check"
 kind = "retrieval-card"
 output = "resources/generated/module-11-retrieval-card.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 11: Genomics and Biotechnology; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+prompt = "Deterministic BIOL-1 SVG pairing Module 11 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Genome", "Genomics", "PCR", "Primer", "Gel electrophoresis"]
-lab_connection = "Genomics Biotechnology gives concrete evidence for Module 11: Genomics and Biotechnology."
+lab_connection = "lab-11_genomics-biotechnology.md supplies evidence for genomics and biotechnology evidence from DNA comparison tools."
 
 [[generated_images.prompts]]
 prompt = "What is a genome?"

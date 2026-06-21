@@ -45,64 +45,75 @@ definition = "Relative solute condition that predicts water movement."
 question = "Which statement best defines Phospholipid in Module 05?"
 options = ["Molecule with a hydrophilic head and hydrophobic tails.", "Double layer of phospholipids forming a membrane.", "Property of allowing some substances through more easily than others.", "Net movement from high to low concentration."]
 answer = "A"
-explanation = "Phospholipid anchors the phospholipid bilayer structure partition of Membranes."
+explanation = "Phospholipid names the module's starting idea: phospholipid bilayer structure must be explained with evidence, not memorized alone."
 
 [[practice_quiz]]
-question = "Which learning goal best matches the selective permeability partition?"
+question = "Which learning goal best supports the topic \"Selective permeability\"?"
 options = ["Describe how phospholipid structure creates a bilayer.", "Predict which molecules cross membranes easily.", "Compare passive and active transport.", "Use concentration gradients to explain movement across membranes."]
 answer = "B"
-explanation = "The correct option names the specific reasoning target for that partition."
+explanation = "This objective asks students to reason through selective permeability as part of the module's mechanism."
 
 [[practice_quiz]]
-question = "How should Viewing Life support this module?"
-options = ["By replacing vocabulary study with unrelated directions.", "By adding a separate topic with no claim to test.", "By giving evidence for passive transport.", "By removing the need to compare observations."]
+question = "How should lab-05_viewing-life.md support Module 05?"
+options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for viewing life through structure, boundary, and environment evidence.", "By removing the need to compare observations or predictions."]
 answer = "C"
-explanation = "The lab is the concrete evidence surface for the same-numbered module."
+explanation = "The lab is the evidence surface for membrane structure with gradients, transport, and cell survival predictions."
 
 [[practice_quiz]]
 question = "Which retrieval move best prepares a student for Membranes?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: Why do phospholipids form bilayers in water? Then justify the answer with evidence."]
+options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: Why do phospholipids form bilayers in water? Then check the answer against terms, evidence, and lab-05_viewing-life.md."]
 answer = "D"
-explanation = "Retrieval is strongest when a student answers first and then checks evidence."
+explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
 
 [[generated_images]]
 id = "concept-map"
-title = "Module 05: Membranes Concept Map"
+title = "Module 05: Membranes Evidence Map"
 kind = "concept-map"
 output = "resources/generated/module-05-concept-map.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 05: Membranes; use direct labels, accessible contrast, and print-safe structure. Show the conceptual dependencies among partitions, evidence, and synthesis."
-central_claim = "Membranes is best learned as a connected explanation linking phospholipid bilayer structure, selective permeability, and lab evidence."
-clusters = ["Phospholipid bilayer structure", "Selective permeability", "Evidence", "Synthesis"]
+prompt = "Deterministic BIOL-1 SVG showing how Module 05 connects claim, mechanism, lab evidence, vocabulary, application, and misconception revision."
+central_claim = "Membranes explains membrane structure with gradients, transport, and cell survival predictions."
+clusters = ["Claim", "Mechanism", "Evidence", "Application", "Revision"]
 
 [[generated_images.nodes]]
 id = "core"
 label = "Phospholipid bilayer structure"
 detail = "The phospholipid bilayer forms a flexible boundary with hydrophilic and hydrophobic regions."
+cluster = "Claim"
 
 [[generated_images.nodes]]
 id = "mechanism"
 label = "Selective permeability"
 detail = "Selective permeability controls which materials cross easily and which require help."
+cluster = "Mechanism"
 
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "Viewing Life turns the module claim into observable evidence."
+detail = "lab-05_viewing-life.md focuses students on viewing life through structure, boundary, and environment evidence."
+cluster = "Evidence"
 
 [[generated_images.nodes]]
 id = "term"
 label = "Phospholipid"
 detail = "Molecule with a hydrophilic head and hydrophobic tails."
+cluster = "Vocabulary"
 
 [[generated_images.nodes]]
-id = "synthesis"
+id = "application"
 label = "Osmosis and cell environments"
-detail = "Tonicity predicts water movement and cell volume changes."
+detail = "Predict movement from membrane structure and concentration conditions."
+cluster = "Application"
+
+[[generated_images.nodes]]
+id = "misconception"
+label = "Misconception check"
+detail = "Membranes are selective boundaries, not solid walls."
+cluster = "Revision"
 
 [[generated_images.edges]]
 source = "core"
 target = "mechanism"
-label = "constrains"
+label = "requires"
 
 [[generated_images.edges]]
 source = "mechanism"
@@ -116,24 +127,29 @@ label = "uses"
 
 [[generated_images.edges]]
 source = "term"
-target = "synthesis"
+target = "application"
 label = "supports"
 
 [[generated_images.edges]]
-source = "synthesis"
+source = "application"
+target = "misconception"
+label = "rules out"
+
+[[generated_images.edges]]
+source = "misconception"
 target = "core"
 label = "revises"
 
 [[generated_images]]
 id = "process-model"
-title = "Module 05: Membranes Process Model"
+title = "Module 05: Membranes Reasoning Sequence"
 kind = "process-model"
 output = "resources/generated/module-05-process-model.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 05: Membranes; use direct labels, accessible contrast, and print-safe structure. Show the ordered reasoning path from input ideas through outputs and feedback."
-inputs = ["Phospholipid bilayer structure", "Selective permeability", "Passive transport"]
-outputs = ["Describe how phospholipid structure creates a bilayer.", "Predict which molecules cross membranes easily.", "Compare passive and active transport."]
-feedbacks = ["Viewing Life evidence revises the explanation.", "Retrieval questions expose gaps before assessment."]
-constraints = ["The phospholipid bilayer forms a flexible boundary with hydrophilic and hydrophobic regions.", "Tonicity predicts water movement and cell volume changes."]
+prompt = "Deterministic BIOL-1 SVG tracing the Module 05 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs."
+inputs = ["Phospholipid bilayer structure", "Selective permeability", "Evidence from lab-05_viewing-life.md"]
+outputs = ["Describe how phospholipid structure creates a bilayer.", "Predict which molecules cross membranes easily.", "Predict osmosis outcomes in hypotonic, isotonic, and hypertonic conditions."]
+feedbacks = ["lab-05_viewing-life.md evidence checks whether students can explain passive transport.", "Retrieval questions reveal whether terms are connected to evidence."]
+constraints = ["Membranes are selective boundaries, not solid walls.", "Tonicity predicts water movement and cell volume changes."]
 
 [[generated_images.stages]]
 label = "Phospholipid bilayer structure"
@@ -162,12 +178,12 @@ emphasis = "Step 5"
 
 [[generated_images]]
 id = "retrieval-card"
-title = "Module 05: Membranes Retrieval Card"
+title = "Module 05: Membranes Retrieval and Lab Check"
 kind = "retrieval-card"
 output = "resources/generated/module-05-retrieval-card.svg"
-prompt = "Deterministic high-design SVG for BIOL-1 Module 05: Membranes; use direct labels, accessible contrast, and print-safe structure. Show retrieval prompts, answer checks, key terms, and the lab connection."
+prompt = "Deterministic BIOL-1 SVG pairing Module 05 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Phospholipid", "Bilayer", "Selective permeability", "Diffusion", "Osmosis"]
-lab_connection = "Viewing Life gives concrete evidence for Module 05: Membranes."
+lab_connection = "lab-05_viewing-life.md supplies evidence for viewing life through structure, boundary, and environment evidence."
 
 [[generated_images.prompts]]
 prompt = "Why do phospholipids form bilayers in water?"

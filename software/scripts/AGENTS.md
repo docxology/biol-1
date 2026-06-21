@@ -39,3 +39,7 @@ Each run writes a timestamped log to `software/logs/generation_YYYY-MM-DD_HH-MM-
 3. Provide `main()` and an `if __name__ == "__main__": main()` guard.
 4. Add an entry to the script-to-module table above and to `README.md`.
 5. If the script is meant for the publish pipeline, wire it into `publish_all.py` and the top-level `publish.py`.
+
+## Generated slide decks
+
+`generate_slide_decks.py` renders active BIOL-1 Fall 2026 slide decks from structured module manifests. It writes full and notes HTML sources plus PDF decks, and is called by `generate_all_outputs.py` after structured module materials are refreshed.

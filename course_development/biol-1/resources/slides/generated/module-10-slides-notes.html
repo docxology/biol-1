@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Module 10: Epigenetics Slides (notes)</title>
+<style>
+@page { size: 16in 9in; margin: 0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4efe4; color: #17211c; font-family: Avenir Next, Trebuchet MS, sans-serif; }
+.slide { page-break-after: always; width: 16in; height: 9in; padding: .44in; position: relative; overflow: hidden; background: radial-gradient(circle at 12% 18%, #fff7d6 0, transparent 28%), linear-gradient(135deg, #f7efe1 0%, #d7e6dc 100%); }
+.slide::after { content: ""; position: absolute; right: -.5in; bottom: -.55in; width: 5.4in; height: 5.4in; border-radius: 50%; background: rgba(25, 92, 75, .12); }
+.slide-ribbon { position: absolute; top: .2in; right: .35in; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #41564f; }
+.slide-grid { display: grid; grid-template-columns: 5.05in 1fr; gap: .36in; height: 100%; align-items: stretch; }
+.slide-copy { border-left: .08in solid #bb5a3a; padding: .38in .18in .2in .28in; z-index: 1; }
+.eyebrow { margin: 0 0 .18in; font-size: 13pt; text-transform: uppercase; letter-spacing: .11em; color: #79513c; }
+h1 { margin: 0 0 .28in; font-family: Georgia, serif; font-size: 34pt; line-height: 1.02; color: #102820; }
+ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .14in; }
+li { font-size: 15pt; line-height: 1.25; padding-left: .2in; position: relative; }
+li::before { content: ""; position: absolute; left: 0; top: .28em; width: .08in; height: .08in; border-radius: 50%; background: #bb5a3a; }
+.visual-frame { z-index: 1; min-height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.embedded-svg svg { width: 100%; max-height: 7.25in; display: block; }
+.module-orbit { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: .18in; align-content: center; }
+.module-orbit strong { grid-column: 1 / -1; font: 700 34pt Georgia, serif; color: #195c4b; }
+.module-orbit span, .module-orbit em, .step-card, .term-grid div, .flow-cell, .contrast div { background: #fff9ea; border: 1px solid rgba(187,90,58,.35); border-radius: .16in; padding: .16in; font-size: 15pt; line-height: 1.22; }
+.module-orbit em { grid-column: 1 / -1; color: #66422f; }
+.ordered-cards { display: grid; gap: .12in; width: 100%; }
+.step-card b, .term-grid b, .flow-cell b, .contrast b { display: block; color: #bb5a3a; margin-bottom: .04in; text-transform: uppercase; letter-spacing: .06em; font-size: 10pt; }
+.term-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .14in; width: 100%; }
+.term-grid span, .step-card span, .flow-cell span, .contrast span { display: block; }
+.flow-diagram, .contrast { display: grid; grid-template-columns: repeat(3, 1fr); gap: .18in; align-items: center; width: 100%; }
+.contrast { grid-template-columns: repeat(2, 1fr); }
+.speaker-note { position: absolute; left: .55in; right: .55in; bottom: .18in; z-index: 2; background: #102820; color: #fff7d6; border-radius: .12in; padding: .11in .16in; font-size: 11pt; }
+</style>
+</head>
+<body>
+<section class="slide slide-title-map" data-slide-role="title-map" data-visual-kind="module-map">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 01</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Module map</h1>
+      <ul><li>Module 10: Epigenetics</li><li>Connected lab: lab-10_epigenetics.md</li><li>Use this deck as the visual path through the module&#x27;s evidence and retrieval work.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="module-map"><div class="module-orbit"><strong>Module 10</strong><span>Gene regulation as control</span><span>DNA methylation</span><span>Histone and chromatin change</span><span>Environment and expression</span><span>Epigenetics versus mutation</span><em>lab-10_epigenetics.md</em></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Open by naming the module claim and pointing students to the lab as the evidence surface.</aside>
+</section>
+<section class="slide slide-objectives" data-slide-role="objectives" data-visual-kind="objective-ladder">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 02</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Learning objectives</h1>
+      <ul><li>Explain gene regulation as control of gene activity.</li><li>Describe DNA methylation at an introductory level.</li><li>Connect chromatin structure to gene accessibility.</li><li>Give a careful example of environmental influence on expression.</li><li>Distinguish epigenetic regulation from mutation.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="objective-ladder"><div class="ordered-cards"><div class="step-card"><b>Objective 1</b><span>Explain gene regulation as control of gene activity.</span></div><div class="step-card"><b>Objective 2</b><span>Describe DNA methylation at an introductory level.</span></div><div class="step-card"><b>Objective 3</b><span>Connect chromatin structure to gene accessibility.</span></div><div class="step-card"><b>Objective 4</b><span>Give a careful example of environmental influence on expression.</span></div><div class="step-card"><b>Objective 5</b><span>Distinguish epigenetic regulation from mutation.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Frame objectives as actions students should be able to perform, not facts to copy.</aside>
+</section>
+<section class="slide slide-topics" data-slide-role="topics" data-visual-kind="topic-sequence">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 03</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Topic sequence</h1>
+      <ul><li>Gene regulation as control: Cells regulate which genes are active rather than using every gene equally.</li><li>DNA methylation: DNA methylation can reduce transcription without changing base sequence.</li><li>Histone and chromatin change: Histone and chromatin changes alter access to DNA.</li><li>Environment and expression: Environmental conditions can influence gene expression patterns.</li><li>Epigenetics versus mutation: Epigenetic change affects gene activity, while mutation changes DNA sequence.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="topic-sequence"><div class="ordered-cards"><div class="step-card"><b>Topic 1</b><span>Gene regulation as control</span></div><div class="step-card"><b>Topic 2</b><span>DNA methylation</span></div><div class="step-card"><b>Topic 3</b><span>Histone and chromatin change</span></div><div class="step-card"><b>Topic 4</b><span>Environment and expression</span></div><div class="step-card"><b>Topic 5</b><span>Epigenetics versus mutation</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Show the module as an ordered explanation so students can locate each new idea.</aside>
+</section>
+<section class="slide slide-concept-map" data-slide-role="concept-map" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 04</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Module 10: Epigenetics Evidence Map</h1>
+      <ul><li>Module focus: Epigenetics</li><li>Central claim: Epigenetics explains gene regulation through chromatin, environment, and expression evidence.</li><li>Key nodes to connect: Gene regulation as control, DNA methylation, Lab evidence</li><li>Reasoning move: use &#x27;requires&#x27; to explain relationships, not memorize terms.</li><li>Lab connection: lab-10_epigenetics.md supplies an evidence surface for the map.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-10-concept-map.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 10: Epigenetics Evidence Map">
+  <title>Module 10: Epigenetics Evidence Map</title>
+  <desc>Concept map for Module 10: Epigenetics. Epigenetics explains gene regulation through chromatin, environment, and expression evidence.</desc>
+  <style>
+    .bg { fill: #ecf4f2; }
+    .halo { fill: url(#m10-concept-map-wash); opacity: 0.92; }
+    .frame { fill: #fbfffd; stroke: #172d35; stroke-width: 3; }
+    .eyebrow { fill: #1f7a6d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #172d35; font: 800 38px Georgia, serif; }
+    .footer { fill: #4f6670; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fbfffd; stroke: #172d35; stroke-width: 2.5; filter: url(#m10-concept-map-shadow); }
+    .claim-kicker, .card-kicker { fill: #1f7a6d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #172d35; font: 700 25px Georgia, serif; }
+    .node { fill: #fbfffd; stroke: #b55f24; stroke-width: 3; filter: url(#m10-concept-map-shadow); }
+    .node-label { fill: #172d35; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #4f6670; font: 14px Georgia, serif; }
+    .edge { stroke: #1f7a6d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #1f7a6d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #ecf4f2; stroke-width: 4; }
+    .stage { fill: #fbfffd; stroke: #1f7a6d; stroke-width: 5; filter: url(#m10-concept-map-shadow); }
+    .stage-num { fill: #b55f24; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #172d35; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #4f6670; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b55f24; stroke-width: 5; stroke-linecap: round; marker-end: url(#m10-concept-map-arrowhead); }
+    .prompt-text { fill: #172d35; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #1f7a6d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m10-concept-map-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbfffd" />
+      <stop offset="1" stop-color="#b55f24" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m10-concept-map-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#172d35" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m10-concept-map-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b55f24" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M80 100 C260 20 458 88 610 62 C848 20 1052 74 1148 214 L1148 656 L52 656 L52 178 C64 142 70 118 80 100 Z" />
+  <text x="70" y="72" class="eyebrow">Module 10 / Concept Map</text>
+  <text x="70" y="118" class="title-text">Module 10: Epigenetics Evidence Map</text>
+  <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
+  <text x="600" y="322" class="claim-kicker">Central claim</text>
+  <text x="600.0" y="366.0" class="claim-text" text-anchor="middle"><tspan x="600.0" dy="0">Epigenetics explains gene regulation through</tspan><tspan x="600.0" dy="25">chromatin, environment, and expression evidence.</tspan></text>
+  <path d="M 600.0 175.0 L 911.8 270.0" class="edge" /><text x="755.9" y="222.5" class="edge-label">requires</text><path d="M 911.8 270.0 L 911.8 460.0" class="edge" /><text x="911.8" y="365.0" class="edge-label">tested by</text><path d="M 911.8 460.0 L 600.0 555.0" class="edge" /><text x="755.9" y="507.5" class="edge-label">uses</text><path d="M 600.0 555.0 L 288.2 460.0" class="edge" /><text x="444.1" y="507.5" class="edge-label">supports</text><path d="M 288.2 460.0 L 288.2 270.0" class="edge" /><text x="288.2" y="365.0" class="edge-label">rules out</text><path d="M 288.2 270.0 L 600.0 175.0" class="edge" /><text x="444.1" y="222.5" class="edge-label">revises</text>
+  <g class="node-group"><rect x="480.0" y="127.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="163.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Gene regulation as</tspan><tspan x="600.0" dy="20">control</tspan></text><text x="600.0" y="197.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Cells regulate which genes</tspan><tspan x="600.0" dy="14">are active rather than...</tspan></text></g><g class="node-group"><rect x="791.8" y="222.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="258.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">DNA methylation</tspan></text><text x="911.8" y="292.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">DNA methylation can reduce</tspan><tspan x="911.8" dy="14">transcription without...</tspan></text></g><g class="node-group"><rect x="791.8" y="412.0" width="240" height="96" rx="22" class="node" /><text x="911.8" y="448.0" class="node-label" text-anchor="middle"><tspan x="911.8" dy="0">Lab evidence</tspan></text><text x="911.8" y="482.0" class="node-detail" text-anchor="middle"><tspan x="911.8" dy="0">lab-10_epigenetics.md</tspan><tspan x="911.8" dy="14">focuses students on...</tspan></text></g><g class="node-group"><rect x="480.0" y="507.0" width="240" height="96" rx="22" class="node" /><text x="600.0" y="543.0" class="node-label" text-anchor="middle"><tspan x="600.0" dy="0">Gene regulation</tspan></text><text x="600.0" y="577.0" class="node-detail" text-anchor="middle"><tspan x="600.0" dy="0">Control of when and how</tspan><tspan x="600.0" dy="14">strongly genes are used.</tspan></text></g><g class="node-group"><rect x="168.2" y="412.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="448.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Epigenetics versus</tspan><tspan x="288.2" dy="20">mutation</tspan></text><text x="288.2" y="482.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Separate careful expression</tspan><tspan x="288.2" dy="14">claims from mutation...</tspan></text></g><g class="node-group"><rect x="168.2" y="222.0" width="240" height="96" rx="22" class="node" /><text x="288.2" y="258.0" class="node-label" text-anchor="middle"><tspan x="288.2" dy="0">Misconception check</tspan></text><text x="288.2" y="292.0" class="node-detail" text-anchor="middle"><tspan x="288.2" dy="0">Epigenetic regulation</tspan><tspan x="288.2" dy="14">changes gene activity, not...</tspan></text></g>
+  <text x="70" y="672" class="footer">Linked lab: lab-10_epigenetics.md / Generated from explicit module.toml visual schema</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Ask students to explain one edge in their own words before moving on.</aside>
+</section>
+<section class="slide slide-process-model" data-slide-role="process-model" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 05</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Module 10: Epigenetics Reasoning Sequence</h1>
+      <ul><li>Module focus: Epigenetics</li><li>Trace the model: Gene regulation as control -&gt; DNA methylation -&gt; Histone and chromatin change -&gt; Environment and expression</li><li>Inputs become outputs: Gene regulation as control, DNA methylation -&gt; Explain gene regulation as control of gene activity., Describe DNA methylation at an introductory level.</li><li>Feedback check: lab-10_epigenetics.md evidence checks whether students can explain histone and chromatin change.</li><li>Lab connection: lab-10_epigenetics.md gives students a process to observe or test.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-10-process-model.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 10: Epigenetics Reasoning Sequence">
+  <title>Module 10: Epigenetics Reasoning Sequence</title>
+  <desc>Process model for Module 10: Epigenetics.</desc>
+  <style>
+    .bg { fill: #ecf4f2; }
+    .halo { fill: url(#m10-process-model-wash); opacity: 0.92; }
+    .frame { fill: #fbfffd; stroke: #172d35; stroke-width: 3; }
+    .eyebrow { fill: #1f7a6d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #172d35; font: 800 38px Georgia, serif; }
+    .footer { fill: #4f6670; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fbfffd; stroke: #172d35; stroke-width: 2.5; filter: url(#m10-process-model-shadow); }
+    .claim-kicker, .card-kicker { fill: #1f7a6d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #172d35; font: 700 25px Georgia, serif; }
+    .node { fill: #fbfffd; stroke: #b55f24; stroke-width: 3; filter: url(#m10-process-model-shadow); }
+    .node-label { fill: #172d35; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #4f6670; font: 14px Georgia, serif; }
+    .edge { stroke: #1f7a6d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #1f7a6d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #ecf4f2; stroke-width: 4; }
+    .stage { fill: #fbfffd; stroke: #1f7a6d; stroke-width: 5; filter: url(#m10-process-model-shadow); }
+    .stage-num { fill: #b55f24; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #172d35; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #4f6670; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b55f24; stroke-width: 5; stroke-linecap: round; marker-end: url(#m10-process-model-arrowhead); }
+    .prompt-text { fill: #172d35; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #1f7a6d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m10-process-model-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbfffd" />
+      <stop offset="1" stop-color="#b55f24" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m10-process-model-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#172d35" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m10-process-model-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b55f24" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
+  <text x="84" y="100" class="eyebrow">Module 10 / Process Model</text>
+  <text x="84" y="148" class="title-text">Module 10: Epigenetics Reasoning Sequence</text>
+  <rect x="84" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="110" y="216" class="card-kicker">Inputs</text>
+  <text x="110.0" y="244.0" class="mini-text"><tspan x="110.0" dy="0">• Gene regulation as control</tspan></text><text x="110.0" y="259.0" class="mini-text"><tspan x="110.0" dy="0">• DNA methylation</tspan></text><text x="110.0" y="274.0" class="mini-text"><tspan x="110.0" dy="0">• Evidence from</tspan><tspan x="110.0" dy="15">lab-10_epigenetics.md</tspan></text>
+  <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="824" y="216" class="card-kicker">Outputs</text>
+  <text x="824.0" y="244.0" class="mini-text"><tspan x="824.0" dy="0">• Explain gene regulation as</tspan><tspan x="824.0" dy="15">control of gene activity.</tspan></text><text x="824.0" y="259.0" class="mini-text"><tspan x="824.0" dy="0">• Describe DNA methylation at</tspan><tspan x="824.0" dy="15">an introductory level.</tspan></text><text x="824.0" y="274.0" class="mini-text"><tspan x="824.0" dy="0">• Distinguish epigenetic</tspan><tspan x="824.0" dy="15">regulation from mutation.</tspan></text>
+  <path d="M 238.0 330.0 C 278.0 288.0, 262.0 395.0, 302.0 405.0" class="arrow" /><path d="M 458.0 405.0 C 498.0 363.0, 482.0 340.0, 522.0 330.0" class="arrow" /><path d="M 678.0 330.0 C 718.0 288.0, 702.0 395.0, 742.0 405.0" class="arrow" /><path d="M 898.0 405.0 C 938.0 363.0, 922.0 340.0, 962.0 330.0" class="arrow" />
+  <g><circle cx="160.0" cy="330.0" r="70" class="stage" /><text x="160.0" y="248.0" class="stage-num">01</text><text x="160.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="160.0" dy="0">Gene regulation as</tspan><tspan x="160.0" dy="18">control</tspan></text><text x="160.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="160.0" dy="0">Cells regulate which</tspan><tspan x="160.0" dy="13">genes are active...</tspan></text></g><g><circle cx="380.0" cy="405.0" r="70" class="stage" /><text x="380.0" y="323.0" class="stage-num">02</text><text x="380.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="380.0" dy="0">DNA methylation</tspan></text><text x="380.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="380.0" dy="0">DNA methylation can</tspan><tspan x="380.0" dy="13">reduce transcription...</tspan></text></g><g><circle cx="600.0" cy="330.0" r="70" class="stage" /><text x="600.0" y="248.0" class="stage-num">03</text><text x="600.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="600.0" dy="0">Histone and</tspan><tspan x="600.0" dy="18">chromatin change</tspan></text><text x="600.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="600.0" dy="0">Histone and chromatin</tspan><tspan x="600.0" dy="13">changes alter access...</tspan></text></g><g><circle cx="820.0" cy="405.0" r="70" class="stage" /><text x="820.0" y="323.0" class="stage-num">04</text><text x="820.0" y="389.0" class="stage-label" text-anchor="middle"><tspan x="820.0" dy="0">Environment and</tspan><tspan x="820.0" dy="18">expression</tspan></text><text x="820.0" y="433.0" class="stage-detail" text-anchor="middle"><tspan x="820.0" dy="0">Environmental</tspan><tspan x="820.0" dy="13">conditions can...</tspan></text></g><g><circle cx="1040.0" cy="330.0" r="70" class="stage" /><text x="1040.0" y="248.0" class="stage-num">05</text><text x="1040.0" y="314.0" class="stage-label" text-anchor="middle"><tspan x="1040.0" dy="0">Epigenetics versus</tspan><tspan x="1040.0" dy="18">mutation</tspan></text><text x="1040.0" y="358.0" class="stage-detail" text-anchor="middle"><tspan x="1040.0" dy="0">Epigenetic change</tspan><tspan x="1040.0" dy="13">affects gene activity...</tspan></text></g>
+  <rect x="84" y="562" width="1032" height="70" rx="22" class="feedback-card" />
+  <text x="112" y="590" class="card-kicker">Feedbacks and constraints</text>
+  <text x="112.0" y="618.0" class="mini-text"><tspan x="112.0" dy="0">lab-10_epigenetics.md evidence checks whether students can explain histone and chromatin change.; Retrieval</tspan><tspan x="112.0" dy="16">questions reveal whether terms are connected to evidence.; Epigenetic regulation changes gene activity, not the DNA...</tspan></text>
+  <text x="84" y="668" class="footer">Linked lab: lab-10_epigenetics.md</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Emphasize where the process can fail, slow down, or be revised by evidence.</aside>
+</section>
+<section class="slide slide-terms" data-slide-role="terms" data-visual-kind="term-grid">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 06</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Terms as evidence handles</h1>
+      <ul><li>Gene regulation: Control of when and how strongly genes are used.</li><li>Epigenetics: Heritable or persistent expression changes without DNA sequence change.</li><li>DNA methylation: Chemical marking of DNA often associated with reduced transcription.</li><li>Histone: Protein around which DNA is packaged.</li><li>Chromatin: DNA-protein complex that can be open or compact.</li><li>Transcription factor: Protein that helps control transcription.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="term-grid"><div class="term-grid"><div><b>Gene regulation</b><span>Control of when and how strongly genes are used.</span></div><div><b>Epigenetics</b><span>Heritable or persistent expression changes without DNA sequence change.</span></div><div><b>DNA methylation</b><span>Chemical marking of DNA often associated with reduced transcription.</span></div><div><b>Histone</b><span>Protein around which DNA is packaged.</span></div><div><b>Chromatin</b><span>DNA-protein complex that can be open or compact.</span></div><div><b>Transcription factor</b><span>Protein that helps control transcription.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Treat terms as handles for reasoning. Each term should help explain a claim or observation.</aside>
+</section>
+<section class="slide slide-lab" data-slide-role="lab" data-visual-kind="lab-flow">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 07</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Lab connection</h1>
+      <ul><li>Lab file: lab-10_epigenetics.md</li><li>Lab evidence should test or illustrate: Histone and chromatin change</li><li>Students should leave with a concrete observation, comparison, or model tied to the module claim.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="lab-flow"><div class="flow-diagram"><div class="flow-cell"><b>Question</b><span>Gene regulation as control</span></div><div class="flow-cell"><b>Evidence</b><span>lab-10_epigenetics.md</span></div><div class="flow-cell"><b>Claim</b><span>Explain gene regulation as control of gene activity.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Make the lab connection explicit before students encounter the activity.</aside>
+</section>
+<section class="slide slide-contrast" data-slide-role="contrast" data-visual-kind="contrast-panel">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 08</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Contrast check</h1>
+      <ul><li>Do not stop at: Cells regulate which genes are active rather than using every gene equally.</li><li>Stronger explanation: Epigenetic change affects gene activity, while mutation changes DNA sequence.</li><li>The goal is to move from a named idea to a testable biological explanation.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="contrast-panel"><div class="contrast"><div><b>Surface</b><span>Cells regulate which genes are active rather than using every gene equally.</span></div><div><b>Deeper</b><span>Epigenetic change affects gene activity, while mutation changes DNA sequence.</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use this slide to prevent shallow vocabulary-only learning.</aside>
+</section>
+<section class="slide slide-retrieval" data-slide-role="retrieval" data-visual-kind="embedded-svg">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 09</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Module 10: Epigenetics Retrieval and Lab Check</h1>
+      <ul><li>Module focus: Epigenetics</li><li>Retrieval prompt: Why do cells regulate genes?</li><li>Answer check: Explain gene regulation as control of gene activity.</li><li>Required terms: Gene regulation, Epigenetics, DNA methylation</li><li>Lab connection: lab-10_epigenetics.md; lab-10_epigenetics.md supplies evidence for epigenetics evidence from expression without sequence change.</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="embedded-svg"><div class="embedded-svg" data-source="module-10-retrieval-card.svg"><svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 10: Epigenetics Retrieval and Lab Check">
+  <title>Module 10: Epigenetics Retrieval and Lab Check</title>
+  <desc>Retrieval card for Module 10: Epigenetics.</desc>
+  <style>
+    .bg { fill: #ecf4f2; }
+    .halo { fill: url(#m10-retrieval-wash); opacity: 0.92; }
+    .frame { fill: #fbfffd; stroke: #172d35; stroke-width: 3; }
+    .eyebrow { fill: #1f7a6d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #172d35; font: 800 38px Georgia, serif; }
+    .footer { fill: #4f6670; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card { fill: #fbfffd; stroke: #172d35; stroke-width: 2.5; filter: url(#m10-retrieval-shadow); }
+    .claim-kicker, .card-kicker { fill: #1f7a6d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #172d35; font: 700 25px Georgia, serif; }
+    .node { fill: #fbfffd; stroke: #b55f24; stroke-width: 3; filter: url(#m10-retrieval-shadow); }
+    .node-label { fill: #172d35; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #4f6670; font: 14px Georgia, serif; }
+    .edge { stroke: #1f7a6d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }
+    .edge-label { fill: #1f7a6d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #ecf4f2; stroke-width: 4; }
+    .stage { fill: #fbfffd; stroke: #1f7a6d; stroke-width: 5; filter: url(#m10-retrieval-shadow); }
+    .stage-num { fill: #b55f24; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #172d35; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #4f6670; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b55f24; stroke-width: 5; stroke-linecap: round; marker-end: url(#m10-retrieval-arrowhead); }
+    .prompt-text { fill: #172d35; font: 700 17px Georgia, serif; }
+    .palette-high-design { fill: #1f7a6d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="m10-retrieval-wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbfffd" />
+      <stop offset="1" stop-color="#b55f24" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="m10-retrieval-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#172d35" flood-opacity="0.16"/>
+    </filter>
+    <marker id="m10-retrieval-arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b55f24" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <path class="halo" d="M44 72 H1156 V648 H44 Z" />
+  <text x="82" y="92" class="eyebrow">Module 10 / Retrieval Card</text>
+  <text x="82" y="142" class="title-text">Module 10: Epigenetics Retrieval and Lab Check</text>
+  <rect x="92" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="228" class="stage-num">Q1</text><text x="120.0" y="256.0" class="prompt-text"><tspan x="120.0" dy="0">Why do cells regulate genes?</tspan></text><text x="120.0" y="302.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain gene regulation as control of gene...</tspan></text><rect x="604" y="190" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="228" class="stage-num">Q2</text><text x="632.0" y="256.0" class="prompt-text"><tspan x="632.0" dy="0">How can two cells with the same DNA act</tspan><tspan x="632.0" dy="17">differently?</tspan></text><text x="632.0" y="302.0" class="check-text"><tspan x="632.0" dy="0">Check: Describe DNA methylation at an introductory...</tspan></text><rect x="92" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="120" y="398" class="stage-num">Q3</text><text x="120.0" y="426.0" class="prompt-text"><tspan x="120.0" dy="0">What is DNA methylation?</tspan></text><text x="120.0" y="472.0" class="check-text"><tspan x="120.0" dy="0">Check: Connect chromatin structure to gene...</tspan></text><rect x="604" y="360" width="462" height="132" rx="26" class="prompt-card" /><text x="632" y="398" class="stage-num">Q4</text><text x="632.0" y="426.0" class="prompt-text"><tspan x="632.0" dy="0">How can chromatin structure affect</tspan><tspan x="632.0" dy="17">transcription?</tspan></text><text x="632.0" y="472.0" class="check-text"><tspan x="632.0" dy="0">Check: Give a careful example of environmental...</tspan></text>
+  <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
+  <text x="120" y="582" class="card-kicker">Terms to use</text>
+  <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Gene regulation, Epigenetics, DNA methylation,</tspan><tspan x="120.0" dy="17">Histone, Chromatin</tspan></text>
+  <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
+  <text x="632" y="582" class="card-kicker">Lab connection</text>
+  <text x="632.0" y="612.0" class="mini-text"><tspan x="632.0" dy="0">lab-10_epigenetics.md supplies evidence for epigenetics</tspan><tspan x="632.0" dy="17">evidence from expression without sequence change.</tspan></text>
+  <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
+</svg>
+</div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Pause here. Students answer first without notes, then compare to the checks.</aside>
+</section>
+<section class="slide slide-quiz" data-slide-role="quiz" data-visual-kind="quiz-bridge">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 10</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Practice quiz bridge</h1>
+      <ul><li>1. Which statement best defines Gene regulation in Module 10?</li><li>2. Which learning goal best supports the topic &quot;DNA methylation&quot;?</li><li>3. How should lab-10_epigenetics.md support Module 10?</li><li>4. Which retrieval move best prepares a student for Epigenetics?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="quiz-bridge"><div class="ordered-cards"><div class="step-card"><b>Quiz 1</b><span>A</span></div><div class="step-card"><b>Quiz 2</b><span>B</span></div><div class="step-card"><b>Quiz 3</b><span>C</span></div><div class="step-card"><b>Quiz 4</b><span>D</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> Use the quiz as formative feedback. Answer key: 1=A, 2=B, 3=C, 4=D</aside>
+</section>
+<section class="slide slide-synthesis" data-slide-role="synthesis" data-visual-kind="exit-ticket">
+  <div class="slide-ribbon">BIOL-1 · Module 10 · Slide 11</div>
+  <div class="slide-grid">
+    <div class="slide-copy">
+      <p class="eyebrow">Epigenetics</p>
+      <h1>Synthesis and exit ticket</h1>
+      <ul><li>Exit claim: explain gene regulation as control using evidence from lab-10_epigenetics.md.</li><li>Must include: Gene regulation, Epigenetics, DNA methylation.</li><li>Revision prompt: what evidence would change your explanation?</li></ul>
+    </div>
+    <div class="visual-frame" data-visual="exit-ticket"><div class="flow-diagram"><div class="flow-cell"><b>Claim</b><span>Gene regulation as control</span></div><div class="flow-cell"><b>Evidence</b><span>lab-10_epigenetics.md</span></div><div class="flow-cell"><b>Revision</b><span>What would change your mind?</span></div></div></div>
+  </div>
+  <aside class="speaker-note"><strong>Teaching note:</strong> End with a claim-evidence-reasoning exit ticket connected to the same module data.</aside>
+</section>
+</body>
+</html>
