@@ -7,6 +7,7 @@ from .utils import (
     copy_directory_contents,
     copy_exams,
     copy_labs_and_dashboards,
+    copy_module_bundles,
     copy_practice_tests,
     copy_slides,
     copy_slides_to_modules,
@@ -23,6 +24,7 @@ __all__ = [
     "copy_directory_contents",
     "copy_exams",
     "copy_labs_and_dashboards",
+    "copy_module_bundles",
     "copy_practice_tests",
     "copy_slides",
     "copy_slides_to_modules",
@@ -31,4 +33,3 @@ __all__ = [
     "get_course_config",
     "reorganize_to_categories",
 ]
-

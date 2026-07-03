@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Phospholipid in Module 05?
-   - A. Molecule with a hydrophilic head and hydrophobic tails.
-   - B. Double layer of phospholipids forming a membrane.
-   - C. Property of allowing some substances through more easily than others.
-   - D. Net movement from high to low concentration.
-   - Answer: A
-   - Why: Phospholipid names the module's starting idea: phospholipid bilayer structure must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Selective permeability"?
-   - A. Describe how phospholipid structure creates a bilayer.
-   - B. Predict which molecules cross membranes easily.
-   - C. Compare passive and active transport.
-   - D. Use concentration gradients to explain movement across membranes.
-   - Answer: B
-   - Why: This objective asks students to reason through selective permeability as part of the module's mechanism.
-
-3. How should lab-05_viewing-life.md support Module 05?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for viewing life through structure, boundary, and environment evidence.
-   - D. By removing the need to compare observations or predictions.
+1. Why do phospholipids arrange themselves into a bilayer in water?
+   - A. Their heads avoid contact with water.
+   - B. They are completely hydrophobic.
+   - C. Water-loving heads face outward while water-fearing tails tuck inward.
+   - D. They dissolve completely in water.
    - Answer: C
-   - Why: The lab is the evidence surface for membrane structure with gradients, transport, and cell survival predictions.
+   - Why: The hydrophilic heads face the water and the hydrophobic tails hide inside, forming a stable two-layer membrane.
 
-4. Which retrieval move best prepares a student for Membranes?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Why do phospholipids form bilayers in water? Then check the answer against terms, evidence, and lab-05_viewing-life.md.
+2. A small nonpolar molecule such as oxygen gas crosses the membrane mainly by:
+   - A. simple diffusion down its concentration gradient
+   - B. active transport that spends ATP
+   - C. not crossing at all
+   - D. osmosis of water
+   - Answer: A
+   - Why: Small nonpolar molecules pass directly through the bilayer from high to low concentration, with no energy required.
+
+3. An animal cell is placed in pure water, a hypotonic solution. What happens?
+   - A. Water leaves and the cell shrinks.
+   - B. Nothing moves in or out.
+   - C. Salt rushes in and the cell shrinks.
+   - D. Water enters and the cell may swell or burst.
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: In a hypotonic solution water moves into the cell by osmosis, so the cell swells and can burst.
+
+4. Moving ions against their concentration gradient requires:
+   - A. only ordinary diffusion
+   - B. active transport that uses energy
+   - C. no membrane proteins
+   - D. removal of the membrane
+   - Answer: B
+   - Why: Movement against a gradient needs energy (ATP) and transport proteins, which is active transport.

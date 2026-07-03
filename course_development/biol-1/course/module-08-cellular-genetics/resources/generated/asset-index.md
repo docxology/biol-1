@@ -10,5 +10,5 @@
   - Purpose: Chromosomes and cell cycle -> Mitosis for growth and repair -> Meiosis for gametes -> Variation from recombination and assortment
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 08 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 08: Cellular Genetics Retrieval and Lab Check** (`resources/generated/module-08-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-08_cellular-genetics.md supplies evidence for cellular genetics evidence from chromosome models.
+  - Purpose: lab-08_cellular-genetics.md supplies evidence for chromosome movement models that distinguish mitosis from meiosis.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 08 retrieval prompts with answer checks, required terms, and the linked lab.

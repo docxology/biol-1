@@ -69,8 +69,11 @@ def test_render_deck_html_embeds_required_visuals_and_notes() -> None:
     assert "module-01-retrieval-card.svg" in full_html
     assert full_html.count("data-visual-kind=\"embedded-svg\"") == 3
     assert "Correct:" not in full_html
+    assert "<span>A</span>" not in full_html
+    assert "Answer first" in full_html
     assert "Teaching note:" in notes_html
     assert "Answer key:" in notes_html
+    assert "Key: A" in notes_html
     assert notes_html.count('<section class="slide') == len(deck.slides)
 
 

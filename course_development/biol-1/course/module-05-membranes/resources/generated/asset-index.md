@@ -10,5 +10,5 @@
   - Purpose: Phospholipid bilayer structure -> Selective permeability -> Passive transport -> Active transport
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 05 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 05: Membranes Retrieval and Lab Check** (`resources/generated/module-05-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-05_viewing-life.md supplies evidence for viewing life through structure, boundary, and environment evidence.
+  - Purpose: lab-05_viewing-life.md supplies evidence for observable boundaries, structures, and environments in living samples.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 05 retrieval prompts with answer checks, required terms, and the linked lab.

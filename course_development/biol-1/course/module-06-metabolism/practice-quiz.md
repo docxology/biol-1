@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Metabolism in Module 06?
-   - A. All chemical reactions in a cell or organism.
-   - B. Cellular energy-coupling molecule.
-   - C. Energy required to start a reaction.
-   - D. Protein or RNA catalyst that speeds a reaction.
-   - Answer: A
-   - Why: Metabolism names the module's starting idea: energy and thermodynamics must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "ATP as cellular coupling"?
-   - A. Apply thermodynamic ideas to living cells.
-   - B. Explain ATP as an energy-coupling molecule.
-   - C. Describe how enzymes change reaction rates.
-   - D. Predict how environmental conditions affect enzyme activity.
+1. What is the main role of ATP in a cell?
+   - A. To store long-term genetic information
+   - B. To carry and deliver usable energy for cellular work
+   - C. To act as a structural membrane
+   - D. To speed up reactions as an enzyme
    - Answer: B
-   - Why: This objective asks students to reason through atp as cellular coupling as part of the module's mechanism.
+   - Why: ATP is the cell's energy currency: it couples energy-releasing reactions to energy-requiring ones.
 
-3. How should lab-06_metabolism.md support Module 06?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for metabolism evidence from reaction rate and condition changes.
-   - D. By removing the need to compare observations or predictions.
-   - Answer: C
-   - Why: The lab is the evidence surface for energy transformations with ATP coupling, enzymes, and linked pathways.
+2. How does an enzyme speed up a chemical reaction?
+   - A. By lowering the activation energy needed to start it
+   - B. By adding heat to the whole cell
+   - C. By becoming a permanent part of the product
+   - D. By raising the activation energy
+   - Answer: A
+   - Why: Enzymes lower activation energy. They are catalysts and are not used up in the reaction.
 
-4. Which retrieval move best prepares a student for Metabolism?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: How do the laws of thermodynamics constrain cells? Then check the answer against terms, evidence, and lab-06_metabolism.md.
+3. Raising temperature far above normal can stop an enzyme from working because:
+   - A. all substrates suddenly disappear
+   - B. ATP levels increase
+   - C. the reaction runs backward forever
+   - D. the enzyme denatures and loses its active-site shape
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: Excess heat denatures the enzyme. Without its shape, the substrate no longer fits the active site.
+
+4. How are photosynthesis and cellular respiration related?
+   - A. They are exactly the same reaction.
+   - B. Neither one uses energy.
+   - C. Photosynthesis stores energy in sugars, and respiration releases it.
+   - D. Both occur only in the dark.
+   - Answer: C
+   - Why: Photosynthesis builds sugars using light energy, and respiration harvests that stored energy. The two processes are complementary.

@@ -42,28 +42,28 @@ name = "Expression"
 definition = "Use of gene information to make RNA or protein."
 
 [[practice_quiz]]
-question = "Which statement best defines Gene regulation in Module 10?"
-options = ["Control of when and how strongly genes are used.", "Heritable or persistent expression changes without DNA sequence change.", "Chemical marking of DNA often associated with reduced transcription.", "Protein around which DNA is packaged."]
-answer = "A"
-explanation = "Gene regulation names the module's starting idea: gene regulation as control must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"DNA methylation\"?"
-options = ["Explain gene regulation as control of gene activity.", "Describe DNA methylation at an introductory level.", "Connect chromatin structure to gene accessibility.", "Give a careful example of environmental influence on expression."]
-answer = "B"
-explanation = "This objective asks students to reason through dna methylation as part of the module's mechanism."
-
-[[practice_quiz]]
-question = "How should lab-10_epigenetics.md support Module 10?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for epigenetics evidence from expression without sequence change.", "By removing the need to compare observations or predictions."]
+question = "How does epigenetic regulation differ from a mutation?"
+options = ["Both permanently change the DNA sequence.", "Epigenetics deletes entire genes.", "Epigenetics changes gene activity without changing the DNA sequence.", "Mutations never affect any trait."]
 answer = "C"
-explanation = "The lab is the evidence surface for gene regulation through chromatin, environment, and expression evidence."
+explanation = "Epigenetic marks such as methylation change how genes are expressed, not the underlying sequence. A mutation changes the sequence itself."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Epigenetics?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: Why do cells regulate genes? Then check the answer against terms, evidence, and lab-10_epigenetics.md."]
+question = "DNA methylation is usually associated with:"
+options = ["reduced transcription of a gene", "faster DNA replication", "deletion of a chromosome", "building proteins directly"]
+answer = "A"
+explanation = "Methylation typically silences or reduces transcription by making the DNA less accessible."
+
+[[practice_quiz]]
+question = "When chromatin is packed tightly, genes in that region are generally:"
+options = ["copied much faster", "more likely to mutate", "more accessible to be read", "less accessible and less expressed"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "Compact chromatin blocks access to genes, so they are expressed less. Open chromatin allows transcription."
+
+[[practice_quiz]]
+question = "Two genetically identical twins come to differ in a trait over their lifetimes. A good explanation is that:"
+options = ["their DNA sequences must actually be different", "environment and epigenetic changes altered their gene expression", "one twin is not truly human", "epigenetic change is impossible"]
+answer = "B"
+explanation = "Identical DNA can still show different expression because environment-driven epigenetic changes turn genes up or down."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-10_epigenetics.md focuses students on epigenetics evidence from expression without sequence change."
+detail = "lab-10_epigenetics.md focuses students on gene-expression changes that occur without changing DNA sequence."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-10-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 10 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Gene regulation", "Epigenetics", "DNA methylation", "Histone", "Chromatin"]
-lab_connection = "lab-10_epigenetics.md supplies evidence for epigenetics evidence from expression without sequence change."
+lab_connection = "lab-10_epigenetics.md supplies evidence for gene-expression changes that occur without changing DNA sequence."
 
 [[generated_images.prompts]]
 prompt = "Why do cells regulate genes?"

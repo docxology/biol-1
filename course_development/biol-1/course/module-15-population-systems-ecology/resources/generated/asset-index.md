@@ -10,5 +10,5 @@
   - Purpose: Population growth models -> Limits and carrying capacity -> Community interactions -> Energy flow through trophic levels
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 15 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 15: Population and Systems Ecology Retrieval and Lab Check** (`resources/generated/module-15-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-15_population-systems-ecology.md supplies evidence for ecology evidence from population and system feedback patterns.
+  - Purpose: lab-15_population-systems-ecology.md supplies evidence for population change, interactions, and ecosystem feedback data.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 15 retrieval prompts with answer checks, required terms, and the linked lab.

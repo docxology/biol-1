@@ -42,28 +42,28 @@ name = "Bioethics"
 definition = "Reasoning about benefits, harms, rights, and responsibilities in biology."
 
 [[practice_quiz]]
-question = "Which statement best defines Genome in Module 11?"
-options = ["Complete DNA information of an organism or sample.", "Study of whole genomes and their patterns.", "Technique for amplifying selected DNA sequences.", "Short DNA sequence that starts PCR copying."]
-answer = "A"
-explanation = "Genome names the module's starting idea: genomes as data must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"PCR and amplification\"?"
-options = ["Define genome and genomics.", "Explain why PCR amplification is useful.", "Interpret basic gel electrophoresis fragment patterns.", "Describe what genetic engineering tools can do."]
-answer = "B"
-explanation = "This objective asks students to reason through pcr and amplification as part of the module's mechanism."
-
-[[practice_quiz]]
-question = "How should lab-11_genomics-biotechnology.md support Module 11?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for genomics and biotechnology evidence from DNA comparison tools.", "By removing the need to compare observations or predictions."]
+question = "What does PCR do?"
+options = ["cuts DNA into random pieces", "reads the sequence of a protein", "makes many copies of a selected DNA sequence", "measures the pH of a sample"]
 answer = "C"
-explanation = "The lab is the evidence surface for genomes as data interpreted through PCR, gels, tools, and ethical limits."
+explanation = "PCR amplifies a chosen DNA region so there is enough material to analyze."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Genomics and Biotechnology?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is a genome? Then check the answer against terms, evidence, and lab-11_genomics-biotechnology.md."]
+question = "Gel electrophoresis separates DNA fragments by:"
+options = ["size, with smaller fragments moving farther", "color of the fragments", "temperature alone", "how much protein they contain"]
+answer = "A"
+explanation = "An electric field pulls DNA through the gel. Smaller fragments move faster and travel farther."
+
+[[practice_quiz]]
+question = "CRISPR is best described as a tool that can:"
+options = ["only measure the size of a genome", "create energy for cells", "replace the whole field of biology", "target and edit specific DNA sequences"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "CRISPR, adapted from a bacterial defense system, lets scientists edit DNA at chosen locations."
+
+[[practice_quiz]]
+question = "Why does biotechnology require bioethics?"
+options = ["because the tools never actually work", "because powerful genetic tools raise questions of benefit, harm, and rights", "because DNA is not real", "because ethics stops all research"]
+answer = "B"
+explanation = "Bioethics weighs benefits, risks, and responsibilities so that powerful genetic tools are used wisely."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-11_genomics-biotechnology.md focuses students on genomics and biotechnology evidence from DNA comparison tools."
+detail = "lab-11_genomics-biotechnology.md focuses students on DNA comparison tools, gel patterns, and biotechnology decisions."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-11-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 11 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Genome", "Genomics", "PCR", "Primer", "Gel electrophoresis"]
-lab_connection = "lab-11_genomics-biotechnology.md supplies evidence for genomics and biotechnology evidence from DNA comparison tools."
+lab_connection = "lab-11_genomics-biotechnology.md supplies evidence for DNA comparison tools, gel patterns, and biotechnology decisions."
 
 [[generated_images.prompts]]
 prompt = "What is a genome?"

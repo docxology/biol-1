@@ -417,13 +417,19 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
     nodes = []
     for idx, node in enumerate(spec.nodes):
         x, y = positions[idx]
+        cluster = _cluster_slug(node.cluster)
         nodes.append(
-            f'<g class="node-group"><rect x="{x - 120:.1f}" y="{y - 48:.1f}" '
-            f'width="240" height="96" rx="22" class="node" />'
-            f'{_svg_wrapped_text(node.label, x, y - 12, 21, 20, "node-label", anchor="middle")}'
-            f'{_svg_wrapped_text(node.detail, x, y + 22, 27, 14, "node-detail", anchor="middle", max_lines=2)}'
+            f'<g class="node-group"><rect x="{x - 124:.1f}" y="{y - 52:.1f}" '
+            f'width="248" height="104" rx="22" class="node node-{cluster}" />'
+            f'<rect x="{x - 80:.1f}" y="{y - 45:.1f}" width="160" height="22" rx="11" '
+            f'class="cluster-pill cluster-{cluster}" />'
+            f'<text x="{x:.1f}" y="{y - 29:.1f}" class="cluster-label" text-anchor="middle">'
+            f'{html.escape(node.cluster)}</text>'
+            f'{_svg_wrapped_text(node.label, x, y - 4, 21, 18, "node-label", anchor="middle", max_lines=2)}'
+            f'{_svg_wrapped_text(node.detail, x, y + 30, 28, 13, "node-detail", anchor="middle", max_lines=2)}'
             f'</g>'
         )
+    legend = _concept_cluster_legend(spec, 72, 146)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
   <title>{title}</title>
   <desc>{desc}</desc>
@@ -433,6 +439,7 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
   <path class="halo" d="M80 100 C260 20 458 88 610 62 C848 20 1052 74 1148 214 L1148 656 L52 656 L52 178 C64 142 70 118 80 100 Z" />
   <text x="70" y="72" class="eyebrow">Module {module.number:02d} / Concept Map</text>
   <text x="70" y="118" class="title-text">{title}</text>
+  {legend}
   <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
   <text x="600" y="322" class="claim-kicker">Central claim</text>
   {_svg_wrapped_text(spec.central_claim, 600, 366, 48, 25, "claim-text", anchor="middle", max_lines=3)}
@@ -451,24 +458,27 @@ def _render_process_model_svg(module: ModuleContent, image: GeneratedImage) -> s
     desc = html.escape(f"Process model for Module {module.number}: {module.title}.")
     palette = _module_palette(module.number)
     count = len(spec.stages)
-    x_values = [160 + idx * (880 / max(count - 1, 1)) for idx in range(count)]
+    card_width = 188
+    gap = 22
+    start_x = 84
     stages = []
     arrows = []
     for idx, stage in enumerate(spec.stages):
-        x = x_values[idx]
-        y = 330 if idx % 2 == 0 else 405
+        x = start_x + idx * (card_width + gap)
+        y = 312
         stages.append(
-            f'<g><circle cx="{x:.1f}" cy="{y:.1f}" r="70" class="stage" />'
-            f'<text x="{x:.1f}" y="{y - 82:.1f}" class="stage-num">{idx + 1:02d}</text>'
-            f'{_svg_wrapped_text(stage.label, x, y - 16, 19, 18, "stage-label", anchor="middle", max_lines=2)}'
-            f'{_svg_wrapped_text(stage.detail, x, y + 28, 22, 13, "stage-detail", anchor="middle", max_lines=2)}'
+            f'<g class="stage-card"><rect x="{x:.1f}" y="{y:.1f}" width="{card_width}" height="174" '
+            f'rx="24" class="stage-card-bg" />'
+            f'<circle cx="{x + 28:.1f}" cy="{y + 30:.1f}" r="18" class="stage-dot" />'
+            f'<text x="{x + 28:.1f}" y="{y + 36:.1f}" class="stage-num" text-anchor="middle">{idx + 1}</text>'
+            f'{_svg_wrapped_text(stage.label, x + 20, y + 70, 17, 17, "stage-label", max_lines=2)}'
+            f'{_svg_wrapped_text(stage.detail, x + 20, y + 112, 20, 13, "stage-detail", max_lines=3)}'
             f'</g>'
         )
         if idx < count - 1:
+            x2 = x + card_width
             arrows.append(
-                f'<path d="M {x + 78:.1f} {y:.1f} C {x + 118:.1f} {y - 42:.1f}, '
-                f'{x_values[idx + 1] - 118:.1f} {395 if y == 330 else 340:.1f}, '
-                f'{x_values[idx + 1] - 78:.1f} {405 if y == 330 else 330:.1f}" class="arrow" />'
+                f'<path d="M {x2 + 4:.1f} {y + 87:.1f} L {x2 + gap - 4:.1f} {y + 87:.1f}" class="arrow" />'
             )
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
   <title>{title}</title>
@@ -485,11 +495,15 @@ def _render_process_model_svg(module: ModuleContent, image: GeneratedImage) -> s
   <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
   <text x="824" y="216" class="card-kicker">Outputs</text>
   {_svg_bullets(spec.outputs, 824, 244, 30, 15, "mini-text", max_items=3)}
+  <text x="84" y="292" class="card-kicker">Reasoning sequence</text>
   {''.join(arrows)}
   {''.join(stages)}
-  <rect x="84" y="562" width="1032" height="70" rx="22" class="feedback-card" />
-  <text x="112" y="590" class="card-kicker">Feedbacks and constraints</text>
-  {_svg_wrapped_text('; '.join((*spec.feedbacks, *spec.constraints)), 112, 618, 116, 16, "mini-text", max_lines=2)}
+  <rect x="84" y="538" width="500" height="94" rx="22" class="feedback-card" />
+  <text x="112" y="570" class="card-kicker">Feedback</text>
+  {_svg_wrapped_text('; '.join(spec.feedbacks), 112, 600, 56, 16, "mini-text", max_lines=2)}
+  <rect x="616" y="538" width="500" height="94" rx="22" class="feedback-card" />
+  <text x="644" y="570" class="card-kicker">Constraint</text>
+  {_svg_wrapped_text('; '.join(spec.constraints or ("Use evidence before claims.",)), 644, 600, 56, 16, "mini-text", max_lines=2)}
   <text x="84" y="668" class="footer">Linked lab: {html.escape(module.lab)}</text>
 </svg>
 '''
@@ -505,9 +519,9 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
     prompt_cards = []
     for idx, prompt in enumerate(spec.prompts[:4]):
         x = 92 + (idx % 2) * 512
-        y = 190 + (idx // 2) * 170
+        y = 216 + (idx // 2) * 154
         prompt_cards.append(
-            f'<rect x="{x}" y="{y}" width="462" height="132" rx="26" class="prompt-card" />'
+            f'<rect x="{x}" y="{y}" width="462" height="124" rx="26" class="prompt-card" />'
             f'<text x="{x + 28}" y="{y + 38}" class="stage-num">Q{idx + 1}</text>'
             f'{_svg_wrapped_text(prompt.prompt, x + 28, y + 66, 45, 17, "prompt-text", max_lines=2)}'
             f'{_svg_wrapped_text("Check: " + prompt.check, x + 28, y + 112, 52, 13, "check-text", max_lines=1)}'
@@ -521,6 +535,14 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module {module.number:02d} / Retrieval Card</text>
   <text x="82" y="142" class="title-text">{title}</text>
+  <rect x="82" y="166" width="1026" height="36" rx="18" class="retrieval-step-strip" />
+  <text x="120" y="190" class="routine-text">1 Cover notes</text>
+  <text x="354" y="190" class="routine-text">2 Answer aloud</text>
+  <text x="604" y="190" class="routine-text">3 Cite evidence</text>
+  <text x="844" y="190" class="routine-text">4 Revise</text>
+  <rect x="692" y="78" width="416" height="76" rx="22" class="routine-card" />
+  <text x="720" y="108" class="card-kicker">Routine</text>
+  <text x="720" y="134" class="routine-text">Cover notes -> answer aloud -> cite evidence -> revise</text>
   {''.join(prompt_cards)}
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
@@ -528,7 +550,7 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
   <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
   <text x="632" y="582" class="card-kicker">Lab connection</text>
   {_svg_wrapped_text(spec.lab_connection, 632, 612, 58, 17, "mini-text", max_lines=2)}
-  <text x="82" y="672" class="footer">Cover notes, answer aloud, check evidence, then revise.</text>
+  <text x="82" y="672" class="footer">Intro biology routine: claim, evidence, reasoning, revision.</text>
 </svg>
 '''
 
@@ -697,6 +719,32 @@ def _visual_purpose(image: GeneratedImage) -> str:
     return ""
 
 
+def _cluster_slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-") or "core"
+
+
+def _concept_cluster_legend(spec: ConceptMapSpec, x: float, y: float) -> str:
+    clusters = []
+    for node in spec.nodes:
+        if node.cluster not in clusters:
+            clusters.append(node.cluster)
+    if spec.clusters:
+        clusters = [cluster for cluster in spec.clusters if cluster in clusters] + [
+            cluster for cluster in clusters if cluster not in spec.clusters
+        ]
+    items = []
+    for idx, cluster in enumerate(clusters[:6]):
+        item_x = x + idx * 164
+        slug = _cluster_slug(cluster)
+        items.append(
+            f'<g class="legend-item"><rect x="{item_x:.1f}" y="{y:.1f}" width="148" height="28" '
+            f'rx="14" class="cluster-pill cluster-{slug}" />'
+            f'<text x="{item_x + 74:.1f}" y="{y + 19:.1f}" class="legend-text" '
+            f'text-anchor="middle">{html.escape(cluster)}</text></g>'
+        )
+    return f'<g class="concept-legend">{"".join(items)}</g>'
+
+
 def _module_palette(module_number: int) -> dict[str, str]:
     palettes = [
         {"bg": "#f7efe2", "ink": "#1f2a24", "muted": "#59685f", "accent": "#c45f35", "accent2": "#245f73", "panel": "#fffaf0"},
@@ -715,22 +763,38 @@ def _svg_style(palette: dict[str, str]) -> str:
     .eyebrow {{ fill: {palette["accent"]}; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }}
     .title-text {{ fill: {palette["ink"]}; font: 800 38px Georgia, serif; }}
     .footer {{ fill: {palette["muted"]}; font: 16px Georgia, serif; }}
-    .claim-card, .side-card, .feedback-card, .prompt-card {{ fill: {palette["panel"]}; stroke: {palette["ink"]}; stroke-width: 2.5; filter: url(#shadow); }}
+    .claim-card, .side-card, .feedback-card, .prompt-card, .routine-card, .stage-card-bg {{ fill: {palette["panel"]}; stroke: {palette["ink"]}; stroke-width: 2.5; filter: url(#shadow); }}
     .claim-kicker, .card-kicker {{ fill: {palette["accent"]}; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }}
     .claim-text {{ fill: {palette["ink"]}; font: 700 25px Georgia, serif; }}
     .node {{ fill: {palette["panel"]}; stroke: {palette["accent2"]}; stroke-width: 3; filter: url(#shadow); }}
+    .node-claim {{ stroke: {palette["accent"]}; }}
+    .node-mechanism {{ stroke: {palette["accent2"]}; }}
+    .node-evidence {{ stroke: #567d46; }}
+    .node-vocabulary {{ stroke: #8067a9; }}
+    .node-application {{ stroke: #b26b2f; }}
+    .node-revision {{ stroke: #8a4351; }}
+    .cluster-pill {{ stroke: none; opacity: 0.92; }}
+    .cluster-claim {{ fill: {palette["accent"]}; }}
+    .cluster-mechanism {{ fill: {palette["accent2"]}; }}
+    .cluster-evidence {{ fill: #6d9c57; }}
+    .cluster-vocabulary {{ fill: #9b83c6; }}
+    .cluster-application {{ fill: #d28942; }}
+    .cluster-revision {{ fill: #b85d70; }}
+    .cluster-label, .legend-text {{ fill: white; font: 800 11px Georgia, serif; letter-spacing: 1px; text-transform: uppercase; }}
     .node-label {{ fill: {palette["ink"]}; font: 800 20px Georgia, serif; }}
     .node-detail {{ fill: {palette["muted"]}; font: 14px Georgia, serif; }}
-    .edge {{ stroke: {palette["accent"]}; stroke-width: 4; stroke-linecap: round; opacity: 0.72; }}
+    .edge {{ stroke: {palette["accent"]}; stroke-width: 4; stroke-linecap: round; opacity: 0.72; marker-end: url(#arrowhead); }}
     .edge-label {{ fill: {palette["accent"]}; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: {palette["bg"]}; stroke-width: 4; }}
-    .stage {{ fill: {palette["panel"]}; stroke: {palette["accent"]}; stroke-width: 5; filter: url(#shadow); }}
-    .stage-num {{ fill: {palette["accent2"]}; font: 900 18px Georgia, serif; }}
+    .stage-dot {{ fill: {palette["accent2"]}; }}
+    .stage-num {{ fill: white; font: 900 18px Georgia, serif; }}
     .stage-label {{ fill: {palette["ink"]}; font: 800 18px Georgia, serif; }}
     .stage-detail, .mini-text, .check-text {{ fill: {palette["muted"]}; font: 15px Georgia, serif; }}
     .arrow {{ fill: none; stroke: {palette["accent2"]}; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrowhead); }}
     .prompt-text {{ fill: {palette["ink"]}; font: 700 17px Georgia, serif; }}
+    .routine-text {{ fill: {palette["ink"]}; font: 700 16px Georgia, serif; }}
+    .retrieval-step-strip {{ fill: {palette["panel"]}; stroke: {palette["accent2"]}; stroke-width: 2; opacity: 0.96; }}
     .palette-high-design {{ fill: {palette["accent"]}; }}
-    @media print {{ .claim-card, .side-card, .feedback-card, .prompt-card, .node, .stage {{ filter: none; }} }}
+    @media print {{ .claim-card, .side-card, .feedback-card, .prompt-card, .routine-card, .node, .stage-card-bg {{ filter: none; }} }}
     '''
 
 

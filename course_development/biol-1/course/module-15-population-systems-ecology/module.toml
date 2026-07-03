@@ -42,28 +42,28 @@ name = "Decomposer"
 definition = "Organism that breaks down dead material and recycles nutrients."
 
 [[practice_quiz]]
-question = "Which statement best defines Population in Module 15?"
-options = ["Members of one species in an area.", "Growth pattern with increasing rate under abundant resources.", "Growth that slows as population approaches carrying capacity.", "Approximate environment-supported population size."]
-answer = "A"
-explanation = "Population names the module's starting idea: population growth models must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"Limits and carrying capacity\"?"
-options = ["Compare exponential and logistic population growth.", "Explain carrying capacity and limiting factors.", "Distinguish density-dependent and density-independent regulation.", "Use trophic levels and the 10 percent rule to explain energy limits."]
-answer = "B"
-explanation = "This objective asks students to reason through limits and carrying capacity as part of the module's mechanism."
-
-[[practice_quiz]]
-question = "How should lab-15_population-systems-ecology.md support Module 15?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for ecology evidence from population and system feedback patterns.", "By removing the need to compare observations or predictions."]
+question = "Logistic growth differs from exponential growth because logistic growth:"
+options = ["never slows down", "has no limits of any kind", "levels off as the population nears carrying capacity", "can only ever decrease"]
 answer = "C"
-explanation = "The lab is the evidence surface for population systems governed by growth, limits, interactions, energy, and feedback."
+explanation = "Logistic growth slows as limited resources bring the population toward carrying capacity. Exponential growth assumes unlimited resources."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Population and Systems Ecology?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What changes population size? Then check the answer against terms, evidence, and lab-15_population-systems-ecology.md."]
+question = "A contagious disease that spreads faster when a population is crowded is an example of a:"
+options = ["density-dependent factor", "density-independent factor", "trophic level", "decomposer"]
+answer = "A"
+explanation = "Density-dependent factors such as disease and competition grow stronger with crowding. Density-independent factors, like a flood, do not depend on density."
+
+[[practice_quiz]]
+question = "About how much of the energy at one trophic level typically passes to the next level up?"
+options = ["100 percent", "90 percent", "50 percent", "about 10 percent"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "Roughly 10 percent of energy transfers to the next level. The rest is lost mostly as heat, which limits how long food chains can be."
+
+[[practice_quiz]]
+question = "Energy and matter behave differently in an ecosystem because:"
+options = ["both are perfectly recycled forever", "matter cycles, but energy flows through and must keep entering", "neither one moves", "energy is recycled but matter is not"]
+answer = "B"
+explanation = "Nutrients cycle within an ecosystem, but energy is lost at each transfer, so it must be continually supplied, for example by sunlight."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-15_population-systems-ecology.md focuses students on ecology evidence from population and system feedback patterns."
+detail = "lab-15_population-systems-ecology.md focuses students on population change, interactions, and ecosystem feedback data."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-15-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 15 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Population", "Exponential growth", "Logistic growth", "Carrying capacity", "Density-dependent factor"]
-lab_connection = "lab-15_population-systems-ecology.md supplies evidence for ecology evidence from population and system feedback patterns."
+lab_connection = "lab-15_population-systems-ecology.md supplies evidence for population change, interactions, and ecosystem feedback data."
 
 [[generated_images.prompts]]
 prompt = "What changes population size?"

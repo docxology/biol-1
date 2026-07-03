@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Atom in Module 02?
-   - A. Smallest unit of an element that keeps that element identity.
-   - B. Pure substance defined by proton number.
-   - C. Bond formed when atoms share electrons.
-   - D. Attraction between oppositely charged ions.
-   - Answer: A
-   - Why: Atom names the module's starting idea: atoms and elements must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Bonding and molecular shape"?
-   - A. Use atomic structure to explain basic bonding patterns.
-   - B. Distinguish covalent, ionic, and hydrogen bonding in biological examples.
-   - C. Explain why water properties matter for cells and organisms.
-   - D. Interpret pH as a chemical condition that affects biology.
+1. Table salt (NaCl) forms when a sodium atom gives up an electron to a chlorine atom. What kind of bond holds the result together?
+   - A. A covalent bond from shared electrons
+   - B. An ionic bond between oppositely charged ions
+   - C. A hydrogen bond
+   - D. No bond at all
    - Answer: B
-   - Why: This objective asks students to reason through bonding and molecular shape as part of the module's mechanism.
+   - Why: Transferring electrons creates charged ions that attract each other, which is an ionic bond. Sharing electrons instead would make a covalent bond.
 
-3. How should lab-02_probability-statistics.md support Module 02?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for probability and statistics for chemical evidence claims.
-   - D. By removing the need to compare observations or predictions.
-   - Answer: C
-   - Why: The lab is the evidence surface for atomic structure with water, pH, and biological molecule behavior.
+2. Why can water dissolve so many substances important to cells?
+   - A. Water is polar, so its partial charges pull on charged and polar molecules.
+   - B. Water carries no charge anywhere in the molecule.
+   - C. Water is a pure element.
+   - D. Water is always strongly acidic.
+   - Answer: A
+   - Why: Water's polarity (uneven charge distribution) lets it surround and separate ions and polar molecules, so they dissolve.
 
-4. Which retrieval move best prepares a student for Basic Chemistry?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: How do protons, neutrons, and electrons differ? Then check the answer against terms, evidence, and lab-02_probability-statistics.md.
+3. A solution changes from pH 7 to pH 4. This means it became:
+   - A. more basic, with fewer hydrogen ions
+   - B. exactly neutral
+   - C. a pure element
+   - D. more acidic, with more hydrogen ions
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: Lower pH means a higher concentration of hydrogen ions, which is more acidic.
+
+4. Blood keeps a nearly steady pH even when acids enter it. What best explains this stability?
+   - A. Blood contains no water.
+   - B. Acids are unable to enter blood.
+   - C. A buffer resists pH change by absorbing or releasing hydrogen ions.
+   - D. pH never changes in any liquid.
+   - Answer: C
+   - Why: Buffers stabilize pH by taking up or releasing hydrogen ions, which protects enzymes and cell function.

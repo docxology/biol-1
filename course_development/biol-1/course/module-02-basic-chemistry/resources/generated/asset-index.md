@@ -10,5 +10,5 @@
   - Purpose: Atoms and elements -> Bonding and molecular shape -> Water as a biological solvent -> pH and chemical balance
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 02 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 02: Basic Chemistry Retrieval and Lab Check** (`resources/generated/module-02-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-02_probability-statistics.md supplies evidence for probability and statistics for chemical evidence claims.
+  - Purpose: lab-02_probability-statistics.md supplies evidence for probability, graph reading, and chemical evidence claims.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 02 retrieval prompts with answer checks, required terms, and the linked lab.

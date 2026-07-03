@@ -42,28 +42,28 @@ name = "Hardy-Weinberg equilibrium"
 definition = "Null model for allele frequencies when no evolution occurs."
 
 [[practice_quiz]]
-question = "Which statement best defines Allele frequency in Module 13?"
-options = ["Proportion of a particular allele in a population.", "Allele-frequency change across generations.", "DNA sequence change that can create new alleles.", "Movement of alleles between populations."]
-answer = "A"
-explanation = "Allele frequency names the module's starting idea: allele frequencies as the unit of change must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"Sources of variation\"?"
-options = ["Define microevolution using allele frequencies.", "Compare the five mechanisms that change allele frequencies.", "Distinguish bottleneck and founder effects.", "Interpret directional, stabilizing, and disruptive selection."]
+question = "Microevolution is defined as:"
+options = ["the origin of entirely new kingdoms of life", "a change in allele frequencies in a population over generations", "a change in a single individual's body", "the extinction of every species"]
 answer = "B"
-explanation = "This objective asks students to reason through sources of variation as part of the module's mechanism."
+explanation = "Microevolution is a shift in allele frequencies within a population over time."
 
 [[practice_quiz]]
-question = "How should lab-13_how-populations-evolve.md support Module 13?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for population evolution evidence from frequency changes.", "By removing the need to compare observations or predictions."]
-answer = "C"
-explanation = "The lab is the evidence surface for allele-frequency change through drift, gene flow, selection, and baseline models."
+question = "Genetic drift has its strongest effect in:"
+options = ["small populations", "very large populations", "populations with no variation", "populations that never reproduce"]
+answer = "A"
+explanation = "Random sampling changes allele frequencies most strongly when the population is small."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for How Populations Evolve?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What is an allele frequency? Then check the answer against terms, evidence, and lab-13_how-populations-evolve.md."]
+question = "A few birds colonize a new island and start a population with limited variation. This reduced variation is due to:"
+options = ["natural selection alone", "gene flow between islands", "mutation pressure", "the founder effect"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "The founder effect is genetic drift that occurs when a new population begins from only a few individuals."
+
+[[practice_quiz]]
+question = "The Hardy-Weinberg principle is useful mainly because it:"
+options = ["proves evolution never happens", "measures average body size", "provides a non-evolving baseline to compare real populations against", "edits alleles directly"]
+answer = "C"
+explanation = "Hardy-Weinberg describes allele frequencies with no evolution. Deviations from it signal that evolutionary forces are at work."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-13_how-populations-evolve.md focuses students on population evolution evidence from frequency changes."
+detail = "lab-13_how-populations-evolve.md focuses students on allele-frequency changes across generations."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-13-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 13 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Allele frequency", "Microevolution", "Mutation", "Gene flow", "Genetic drift"]
-lab_connection = "lab-13_how-populations-evolve.md supplies evidence for population evolution evidence from frequency changes."
+lab_connection = "lab-13_how-populations-evolve.md supplies evidence for allele-frequency changes across generations."
 
 [[generated_images.prompts]]
 prompt = "What is an allele frequency?"

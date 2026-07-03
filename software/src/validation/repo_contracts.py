@@ -754,6 +754,14 @@ def _check_slide_numbering(
                     report.add_issue(
                         f"{html_path.relative_to(root)} must have exactly 3 embedded generated SVG slides"
                     )
+                if variant == "full" and ("Answer key:" in text or "Key: A" in text):
+                    report.add_issue(
+                        f"{html_path.relative_to(root)} exposes quiz answer keys in student slides"
+                    )
+                if variant == "full" and "Answer first" not in text:
+                    report.add_issue(
+                        f"{html_path.relative_to(root)} missing quiz bridge retrieval cue"
+                    )
 
 
 def _check_biol1_active_text(root: Path, course_root: Path, report: RepoContractReport) -> None:

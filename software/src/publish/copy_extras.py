@@ -7,6 +7,7 @@ structure.
 
 import shutil
 import logging
+import re
 from pathlib import Path
 from typing import List, Optional
 
@@ -424,3 +425,86 @@ def reorganize_to_categories(
         logger.info(f"  {course}: Reorganized to category structure")
 
     return total_moved
+
+
+def copy_module_bundles(
+    published_dir: Path,
+    courses: Optional[List[str]] = None,
+    verbose: bool = False
+) -> int:
+    if courses is None:
+        courses = _active_courses(published_dir.parent)
+
+    total_copied = 0
+    for course in courses:
+        course_dir = published_dir / course
+        if not course_dir.exists():
+            continue
+        modules_dir = course_dir / "modules"
+        if modules_dir.exists():
+            shutil.rmtree(modules_dir)
+        modules_dir.mkdir(parents=True, exist_ok=True)
+
+        module_slugs = _published_module_slugs(course_dir)
+        course_copied = 0
+        for number, slug in sorted(module_slugs.items()):
+            module_dir = modules_dir / slug
+            module_dir.mkdir(parents=True, exist_ok=True)
+            course_copied += _copy_module_prefix_files(course_dir / "module_keys", module_dir, slug)
+            course_copied += _copy_module_prefix_files(course_dir / "homework", module_dir, slug)
+            course_copied += _copy_matching_files(
+                course_dir / "slides",
+                module_dir,
+                (f"module-{number}-slides-", f"module-{number:02d}-slides-"),
+            )
+            course_copied += _copy_matching_files(
+                course_dir / "labs",
+                module_dir,
+                (f"lab-{number:02d}_",),
+            )
+            course_copied += _copy_matching_files(
+                course_dir / "dashboards",
+                module_dir,
+                (f"lab-{number:02d}_",),
+            )
+            if verbose:
+                logger.debug("  %s: bundled %s", course, slug)
+
+        if course_copied > 0:
+            logger.info("  %s: Copied %s files into per-module bundles", course, course_copied)
+            total_copied += course_copied
+
+    return total_copied
+
+
+def _published_module_slugs(course_dir: Path) -> dict[int, str]:
+    slugs: dict[int, str] = {}
+    for category_name in ("module_keys", "homework"):
+        category_dir = course_dir / category_name
+        if not category_dir.exists():
+            continue
+        for file_path in category_dir.iterdir():
+            if not file_path.is_file():
+                continue
+            match = re.match(r"(module-(\d{2})-.+?)-(?:keys-to-success|questions)\.", file_path.name)
+            if match:
+                slugs[int(match.group(2))] = match.group(1)
+    return slugs
+
+
+def _copy_module_prefix_files(src_dir: Path, dest_dir: Path, module_slug: str) -> int:
+    return _copy_matching_files(src_dir, dest_dir, (f"{module_slug}-",))
+
+
+def _copy_matching_files(src_dir: Path, dest_dir: Path, prefixes: tuple[str, ...]) -> int:
+    if not src_dir.exists():
+        return 0
+    copied = 0
+    for file_path in sorted(src_dir.iterdir()):
+        if not file_path.is_file():
+            continue
+        if not any(file_path.name.startswith(prefix) for prefix in prefixes):
+            continue
+        shutil.copy2(file_path, dest_dir / file_path.name)
+        copied += 1
+    return copied

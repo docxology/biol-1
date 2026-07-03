@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Cell in Module 01?
-   - A. Basic unit of life bounded by a membrane.
-   - B. Regulation that keeps internal conditions within a workable range.
-   - C. All chemical reactions that move matter and energy through life.
-   - D. Testable explanation for an observed pattern.
+1. A student sees frost crystals slowly "grow" on a cold window overnight. Why don't biologists count this as life?
+   - A. Growth by itself is not enough; life needs cells, metabolism, response, and reproduction together.
+   - B. Crystals are too small to be considered alive.
+   - C. Crystals are never found in the natural world.
+   - D. Only warm objects can ever be alive.
    - Answer: A
-   - Why: Cell names the module's starting idea: what counts as life must be explained with evidence, not memorized alone.
+   - Why: No single trait defines life. Living things share a set of properties together: cells, metabolism, homeostasis, response, reproduction, and evolution.
 
-2. Which learning goal best supports the topic "Science as a way of testing"?
-   - A. Distinguish living systems from nonliving examples using multiple characteristics.
-   - B. Separate hypotheses, predictions, observations, and conclusions in a scientific test.
-   - C. Place biological examples at the correct scale of organization.
-   - D. Identify variables and evidence in a simple investigation.
+2. To test whether fertilizer speeds plant growth, a student changes the amount of fertilizer given to each plant. The amount of fertilizer is the:
+   - A. hypothesis being tested
+   - B. variable that is changed
+   - C. final conclusion
+   - D. supporting theory
    - Answer: B
-   - Why: This objective asks students to reason through science as a way of testing as part of the module's mechanism.
+   - Why: The variable is the factor that changes in an investigation. The hypothesis is the testable explanation, and the conclusion comes after the data.
 
-3. How should lab-01_measurement-methods.md support Module 01?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for measurement choices and sources of error.
-   - D. By removing the need to compare observations or predictions.
+3. Which list places levels of biological organization from smallest to largest?
+   - A. Ecosystem, organism, cell
+   - B. Organism, cell, molecule
+   - C. Cell, organism, ecosystem
+   - D. Population, cell, molecule
    - Answer: C
-   - Why: The lab is the evidence surface for life criteria with measurement-based scientific explanation.
+   - Why: Biology is organized across scales: cells build organisms, which form populations and ecosystems.
 
-4. Which retrieval move best prepares a student for Biology - The Study of Life?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Which characteristics together make something count as alive? Then check the answer against terms, evidence, and lab-01_measurement-methods.md.
+4. A hypothesis survives many careful tests over many years. What should happen to it?
+   - A. It becomes a fixed fact that can never change.
+   - B. It should be hidden so no one can disprove it.
+   - C. It must be discarded simply because it is old.
+   - D. It can grow into a theory but still stays open to revision if new evidence appears.
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: Strong scientific explanations stay open to revision. A theory is well supported but is never closed to new evidence.

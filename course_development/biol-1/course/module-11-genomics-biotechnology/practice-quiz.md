@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Genome in Module 11?
-   - A. Complete DNA information of an organism or sample.
-   - B. Study of whole genomes and their patterns.
-   - C. Technique for amplifying selected DNA sequences.
-   - D. Short DNA sequence that starts PCR copying.
-   - Answer: A
-   - Why: Genome names the module's starting idea: genomes as data must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "PCR and amplification"?
-   - A. Define genome and genomics.
-   - B. Explain why PCR amplification is useful.
-   - C. Interpret basic gel electrophoresis fragment patterns.
-   - D. Describe what genetic engineering tools can do.
-   - Answer: B
-   - Why: This objective asks students to reason through pcr and amplification as part of the module's mechanism.
-
-3. How should lab-11_genomics-biotechnology.md support Module 11?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for genomics and biotechnology evidence from DNA comparison tools.
-   - D. By removing the need to compare observations or predictions.
+1. What does PCR do?
+   - A. cuts DNA into random pieces
+   - B. reads the sequence of a protein
+   - C. makes many copies of a selected DNA sequence
+   - D. measures the pH of a sample
    - Answer: C
-   - Why: The lab is the evidence surface for genomes as data interpreted through PCR, gels, tools, and ethical limits.
+   - Why: PCR amplifies a chosen DNA region so there is enough material to analyze.
 
-4. Which retrieval move best prepares a student for Genomics and Biotechnology?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: What is a genome? Then check the answer against terms, evidence, and lab-11_genomics-biotechnology.md.
+2. Gel electrophoresis separates DNA fragments by:
+   - A. size, with smaller fragments moving farther
+   - B. color of the fragments
+   - C. temperature alone
+   - D. how much protein they contain
+   - Answer: A
+   - Why: An electric field pulls DNA through the gel. Smaller fragments move faster and travel farther.
+
+3. CRISPR is best described as a tool that can:
+   - A. only measure the size of a genome
+   - B. create energy for cells
+   - C. replace the whole field of biology
+   - D. target and edit specific DNA sequences
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: CRISPR, adapted from a bacterial defense system, lets scientists edit DNA at chosen locations.
+
+4. Why does biotechnology require bioethics?
+   - A. because the tools never actually work
+   - B. because powerful genetic tools raise questions of benefit, harm, and rights
+   - C. because DNA is not real
+   - D. because ethics stops all research
+   - Answer: B
+   - Why: Bioethics weighs benefits, risks, and responsibilities so that powerful genetic tools are used wisely.

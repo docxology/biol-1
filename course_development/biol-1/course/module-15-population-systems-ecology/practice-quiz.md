@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Population in Module 15?
-   - A. Members of one species in an area.
-   - B. Growth pattern with increasing rate under abundant resources.
-   - C. Growth that slows as population approaches carrying capacity.
-   - D. Approximate environment-supported population size.
-   - Answer: A
-   - Why: Population names the module's starting idea: population growth models must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Limits and carrying capacity"?
-   - A. Compare exponential and logistic population growth.
-   - B. Explain carrying capacity and limiting factors.
-   - C. Distinguish density-dependent and density-independent regulation.
-   - D. Use trophic levels and the 10 percent rule to explain energy limits.
-   - Answer: B
-   - Why: This objective asks students to reason through limits and carrying capacity as part of the module's mechanism.
-
-3. How should lab-15_population-systems-ecology.md support Module 15?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for ecology evidence from population and system feedback patterns.
-   - D. By removing the need to compare observations or predictions.
+1. Logistic growth differs from exponential growth because logistic growth:
+   - A. never slows down
+   - B. has no limits of any kind
+   - C. levels off as the population nears carrying capacity
+   - D. can only ever decrease
    - Answer: C
-   - Why: The lab is the evidence surface for population systems governed by growth, limits, interactions, energy, and feedback.
+   - Why: Logistic growth slows as limited resources bring the population toward carrying capacity. Exponential growth assumes unlimited resources.
 
-4. Which retrieval move best prepares a student for Population and Systems Ecology?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: What changes population size? Then check the answer against terms, evidence, and lab-15_population-systems-ecology.md.
+2. A contagious disease that spreads faster when a population is crowded is an example of a:
+   - A. density-dependent factor
+   - B. density-independent factor
+   - C. trophic level
+   - D. decomposer
+   - Answer: A
+   - Why: Density-dependent factors such as disease and competition grow stronger with crowding. Density-independent factors, like a flood, do not depend on density.
+
+3. About how much of the energy at one trophic level typically passes to the next level up?
+   - A. 100 percent
+   - B. 90 percent
+   - C. 50 percent
+   - D. about 10 percent
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: Roughly 10 percent of energy transfers to the next level. The rest is lost mostly as heat, which limits how long food chains can be.
+
+4. Energy and matter behave differently in an ecosystem because:
+   - A. both are perfectly recycled forever
+   - B. matter cycles, but energy flows through and must keep entering
+   - C. neither one moves
+   - D. energy is recycled but matter is not
+   - Answer: B
+   - Why: Nutrients cycle within an ecosystem, but energy is lost at each transfer, so it must be continually supplied, for example by sunlight.

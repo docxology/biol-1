@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Gene in Module 09?
-   - A. DNA sequence contributing to a trait or functional product.
-   - B. Variant form of a gene.
-   - C. Allele combination of an organism.
-   - D. Observable trait or characteristic.
-   - Answer: A
-   - Why: Gene names the module's starting idea: alleles and genotype must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Mendelian patterns"?
-   - A. Distinguish gene, allele, genotype, and phenotype.
-   - B. Use segregation to explain monohybrid inheritance.
-   - C. Build and interpret Punnett-square probabilities.
-   - D. Recognize inheritance patterns beyond complete dominance.
-   - Answer: B
-   - Why: This objective asks students to reason through mendelian patterns as part of the module's mechanism.
-
-3. How should lab-09_inheritance-genetics.md support Module 09?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for inheritance genetics evidence from crosses and family patterns.
-   - D. By removing the need to compare observations or predictions.
+1. An organism's genotype is its:
+   - A. set of observable physical traits
+   - B. surrounding environment
+   - C. combination of alleles
+   - D. total number of cells
    - Answer: C
-   - Why: The lab is the evidence surface for allele segregation with probability, phenotype prediction, and pedigree evidence.
+   - Why: Genotype is the combination of alleles an organism carries. Phenotype is the observable trait that results.
 
-4. Which retrieval move best prepares a student for Inheritance Genetics?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: How are genes and alleles related? Then check the answer against terms, evidence, and lab-09_inheritance-genetics.md.
+2. Two heterozygotes are crossed (Aa x Aa). What fraction of offspring are expected to show the recessive trait?
+   - A. 1/4
+   - B. 1/2
+   - C. 3/4
+   - D. 0
+   - Answer: A
+   - Why: Aa x Aa gives a 1 AA : 2 Aa : 1 aa ratio. Only the aa offspring (1/4) show the recessive trait.
+
+3. A heterozygote (Aa) shows the dominant trait because:
+   - A. it carries no recessive allele
+   - B. recessive alleles are destroyed
+   - C. both alleles are always expressed equally
+   - D. one dominant allele is enough to mask the recessive allele
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: In simple dominance, one dominant allele determines the phenotype. The recessive allele is present but masked.
+
+4. What is a pedigree used for?
+   - A. measuring the size of a cell
+   - B. tracing how a trait passes through a family to infer its inheritance
+   - C. editing genes directly
+   - D. counting chromosomes in soil samples
+   - Answer: B
+   - Why: A pedigree diagrams family relationships and phenotypes so you can reason about how a trait is inherited.

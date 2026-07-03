@@ -219,8 +219,21 @@ def test_render_module_materials_outputs_markdown_and_svg(temp_dir):
     )
     assert "role=\"img\"" in svg
     assert "palette-high-design" in svg
+    assert "cluster-label" in svg
+    assert "concept-legend" in svg
+    assert "node-claim" in svg
     assert "Topic A connects vocabulary" in svg
     assert "Linked lab: lab-01_test.md" in svg
+    process_svg = (
+        module_dir / "resources" / "generated" / "module-01-process-model.svg"
+    ).read_text(encoding="utf-8")
+    assert "stage-card" in process_svg
+    assert "Reasoning sequence" in process_svg
+    retrieval_svg = (
+        module_dir / "resources" / "generated" / "module-01-retrieval-card.svg"
+    ).read_text(encoding="utf-8")
+    assert "Cover notes -> answer aloud -> cite evidence -> revise" in retrieval_svg
+    assert "retrieval-step-strip" in retrieval_svg
 
 
 def test_missing_manifest_fails_fast(temp_dir):

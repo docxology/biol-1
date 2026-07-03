@@ -8,7 +8,7 @@
 
 | Path | Role |
 |------|------|
-| [`biol-1/`](biol-1/AGENTS.md) | General Biology (Pelican Bay, Fall 2026): **15** content modules, labs 01–17, exams, practice tests, syllabus. |
+| [`biol-1/`](biol-1/AGENTS.md) | General Biology (Pelican Bay, Fall 2026): **16** content modules, labs 01–16, exams, practice tests, syllabus. |
 | [`../archive/spring-2026/`](../archive/spring-2026/AGENTS.md) | Spring 2026 archive: historical BIOL-1 and BIOL-8 source trees plus generated snapshots. |
 
 Each course has:
@@ -28,7 +28,7 @@ Each course has:
 
 ## Conventions
 
-- **BIOL-1** module folders: `module-01-…` through `module-15-…` (no `module-16` in the current tree).
+- **BIOL-1** module folders: `module-01-…` through `module-16-…`.
 - **Per-module** `AGENTS.md` and `module-*/resources/AGENTS.md` may stay short for the default pipeline; each file’s **Related documentation** section points to the authoritative `course/AGENTS.md` and `biol-*/AGENTS.md` for layout and publish commands.
 
 ## Privacy

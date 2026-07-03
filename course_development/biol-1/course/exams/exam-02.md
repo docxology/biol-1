@@ -24,124 +24,124 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 ### Module 07: Molecular Genetics
 
 1. Which statement best describes the “central dogma” of molecular genetics in most cells?
-    - A) Protein → RNA → DNA
-    - B) RNA → DNA → Protein
-    - C) DNA → RNA → Protein
+    - A) RNA → DNA → Protein
+    - B) DNA → RNA → Protein
+    - C) Protein → RNA → DNA
     - D) DNA → Protein → Lipid
 
 2. In double-stranded DNA, which base pairing is correct?
-    - A) Adenine (A) pairs with cytosine (C)
-    - B) Guanine (G) pairs with thymine (T)
+    - A) Guanine (G) pairs with thymine (T)
+    - B) Adenine (A) pairs with cytosine (C)
     - C) Adenine (A) pairs with thymine (T)
     - D) Uracil (U) pairs with thymine (T)
 
 3. During transcription, an RNA strand is built using a DNA template. Which pairing rule applies when RNA is being synthesized?
     - A) A in DNA pairs with T in RNA
-    - B) A in DNA pairs with U in RNA
-    - C) G in DNA pairs with T in RNA
+    - B) G in DNA pairs with T in RNA
+    - C) A in DNA pairs with U in RNA
     - D) C in DNA pairs with U in RNA only in the cytoplasm
 
 4. Which enzyme builds a new DNA strand during DNA replication by adding nucleotides in the 5′→3′ direction?
-    - A) RNA polymerase
+    - A) Ribosome
     - B) DNA ligase
     - C) DNA polymerase
-    - D) Ribosome
+    - D) RNA polymerase
 
 5. Where does translation (protein synthesis from an mRNA code) mainly occur in a typical animal cell?
-    - A) In the nucleus, on the nuclear envelope
-    - B) On ribosomes in the cytoplasm (often on the rough ER)
-    - C) Inside the Golgi apparatus
-    - D) Inside mitochondria only
+    - A) On ribosomes in the cytoplasm (often on the rough ER)
+    - B) In the nucleus, on the nuclear envelope
+    - C) Inside mitochondria only
+    - D) Inside the Golgi apparatus
 
 6. A single nucleotide is deleted from the coding region of a gene, shifting the downstream reading frame. This is best described as:
-    - A) A silent point mutation with no possible effect
+    - A) A chromosome duplication
     - B) A frameshift mutation that often changes many amino acids downstream
-    - C) A chromosome duplication
-    - D) Epigenetic silencing of the gene
+    - C) Epigenetic silencing of the gene
+    - D) A silent point mutation with no possible effect
 
 ### Module 08: Cellular Genetics
 
 1. In humans, a typical body (somatic) cell is diploid (2n = 46). A mature sperm or egg cell is:
-    - A) Diploid (2n = 46)
-    - B) Haploid (n = 23)
-    - C) Triploid (3n = 69)
-    - D) Haploid (n = 46)
+    - A) Haploid (n = 23)
+    - B) Diploid (2n = 46)
+    - C) Haploid (n = 46)
+    - D) Triploid (3n = 69)
 
 2. Mitosis followed by cytokinesis in a diploid human skin cell produces:
-    - A) Four genetically different haploid cells
+    - A) Two genetically identical haploid daughter cells
     - B) Two genetically identical diploid daughter cells
-    - C) Two genetically identical haploid daughter cells
+    - C) Four genetically different haploid cells
     - D) One diploid cell and one haploid cell
 
 3. During meiosis I, what separates and moves to opposite poles of the cell?
-    - A) Sister chromatids of one chromosome
-    - B) Homologous chromosomes (each still made of two sister chromatids)
+    - A) Homologous chromosomes (each still made of two sister chromatids)
+    - B) Sister chromatids of one chromosome
     - C) Individual replicated DNA bases
     - D) Centrioles only
 
 4. Crossing over (exchange of DNA between homologs) is a major source of genetic variation and occurs during:
-    - A) Metaphase of mitosis
-    - B) Prophase I of meiosis
-    - C) Telophase II of meiosis
-    - D) Cytokinesis only in plant cells
+    - A) Cytokinesis only in plant cells
+    - B) Telophase II of meiosis
+    - C) Metaphase of mitosis
+    - D) Prophase I of meiosis
 
 5. Independent assortment of homologous chromosomes during metaphase I increases variation because:
-    - A) It guarantees identical daughter cells
-    - B) Homologs line up randomly, creating many allele combinations in gametes
-    - C) It prevents crossing over
-    - D) It copies DNA without errors
+    - A) Homologs line up randomly, creating many allele combinations in gametes
+    - B) It guarantees identical daughter cells
+    - C) It copies DNA without errors
+    - D) It prevents crossing over
 
 6. Nondisjunction refers to:
-    - A) Normal separation of sister chromatids in mitosis
-    - B) Failure of chromosomes or chromatids to separate correctly, sometimes producing aneuploidy
-    - C) The S phase of interphase
-    - D) Random fertilization of any egg by any sperm
+    - A) The S phase of interphase
+    - B) Random fertilization of any egg by any sperm
+    - C) Normal separation of sister chromatids in mitosis
+    - D) Failure of chromosomes or chromatids to separate correctly, sometimes producing aneuploidy
 
 ### Module 09: Inheritance Genetics
 
 1. In genetics, different versions of the same gene (for example, one version for type A blood and one for type O) are called:
-    - A) Chromosomes
+    - A) Phenotypes
     - B) Alleles
-    - C) Phenotypes
-    - D) Mutations
+    - C) Mutations
+    - D) Chromosomes
 
 2. For a flower-color gene, B is dominant for purple and b is recessive for white. A plant with genotype Bb has purple flowers. Which statement correctly uses the terms genotype and phenotype?
-    - A) Bb is the genotype; purple flowers are the phenotype
+    - A) Bb is the dominant trait; purple is the recessive trait
     - B) Bb is the phenotype; purple flowers are the genotype
-    - C) Purple flowers are both the genotype and the phenotype
-    - D) Bb is the dominant trait; purple is the recessive trait
+    - C) Bb is the genotype; purple flowers are the phenotype
+    - D) Purple flowers are both the genotype and the phenotype
 
 3. In a monohybrid cross, two heterozygotes (Aa × Aa) are crossed for a trait with complete dominance. What is the expected phenotypic ratio among offspring?
     - A) 1 : 1
-    - B) 1 : 2 : 1
-    - C) 3 : 1 (three showing the dominant phenotype, one recessive)
-    - D) 9 : 3 : 3 : 1
+    - B) 3 : 1 (three showing the dominant phenotype, one recessive)
+    - C) 9 : 3 : 3 : 1
+    - D) 1 : 2 : 1
 
 4. In incomplete dominance, a cross of two heterozygotes often produces offspring phenotypes in which ratio?
-    - A) Only dominant and only recessive (3 : 1)
-    - B) 1 : 2 : 1 (two homozygous phenotypes and a blended heterozygote)
-    - C) 9 : 3 : 3 : 1
-    - D) 4 : 0 (all identical)
+    - A) 4 : 0 (all identical)
+    - B) Only dominant and only recessive (3 : 1)
+    - C) 1 : 2 : 1 (two homozygous phenotypes and a blended heterozygote)
+    - D) 9 : 3 : 3 : 1
 
 5. In the ABO blood system, type AB blood illustrates:
-    - A) Incomplete dominance (a blended single antigen)
-    - B) Codominance (both A and B alleles expressed fully)
-    - C) A sex-linked recessive trait
-    - D) Polygenic inheritance only
+    - A) Codominance (both A and B alleles expressed fully)
+    - B) Incomplete dominance (a blended single antigen)
+    - C) Polygenic inheritance only
+    - D) A sex-linked recessive trait
 
 6. Which pattern is a classic clue for an autosomal recessive disorder in a pedigree?
-    - A) Only males are affected, and an affected father always passes it to sons
-    - B) Two unaffected parents can have an affected child
-    - C) Every generation must show the trait with no skipping
-    - D) The trait never appears in siblings
+    - A) The trait never appears in siblings
+    - B) Every generation must show the trait with no skipping
+    - C) Two unaffected parents can have an affected child
+    - D) Only males are affected, and an affected father always passes it to sons
 
 ### Module 10: Epigenetics
 
 1. Epigenetics is best defined as:
-    - A) A change in the DNA sequence (A, T, G, C) of a gene
-    - B) Changes in gene expression that do not change the underlying DNA sequence
-    - C) Random mistakes during translation only
-    - D) The central dogma operating in reverse
+    - A) Random mistakes during translation only
+    - B) A change in the DNA sequence (A, T, G, C) of a gene
+    - C) The central dogma operating in reverse
+    - D) Changes in gene expression that do not change the underlying DNA sequence
 
 2. DNA methylation that silences a gene is often described with the memory trick “Methylation = Muting” because methylation tends to:
     - A) Speed up transcription strongly
@@ -151,65 +151,65 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 3. Histone acetylation is associated with looser chromatin and tends to:
     - A) Permanently destroy the DNA double helix
-    - B) Increase access to DNA and favor gene activity (turning genes on)
-    - C) Prevent all transcription in the cell
-    - D) Cause nondisjunction
+    - B) Prevent all transcription in the cell
+    - C) Cause nondisjunction
+    - D) Increase access to DNA and favor gene activity (turning genes on)
 
 4. Which statement correctly contrasts a mutation with an epigenetic change?
-    - A) Both always change the DNA sequence
-    - B) A mutation changes the DNA sequence; epigenetics changes how genes are used without changing the sequence
+    - A) They are identical terms
+    - B) Both always change the DNA sequence
     - C) Epigenetics always changes the amino acid sequence; mutations never do
-    - D) They are identical terms
+    - D) A mutation changes the DNA sequence; epigenetics changes how genes are used without changing the sequence
 
 5. In female mammals, one X chromosome is inactivated in each somatic cell, forming a dense body called a:
-    - A) Centromere
-    - B) Barr body
+    - A) Barr body
+    - B) Centromere
     - C) Okazaki fragment
     - D) Plasmid
 
 6. Gene regulation is important because:
-    - A) Every cell expresses every gene at full strength all the time
+    - A) Translation happens only in the nucleus
     - B) Different cell types need different sets of proteins, so cells turn specific genes on or off
     - C) DNA is absent from muscle cells
-    - D) Translation happens only in the nucleus
+    - D) Every cell expresses every gene at full strength all the time
 
 ### Module 11: Genomics & Biotechnology
 
 1. PCR (polymerase chain reaction) is used in the lab mainly to:
-    - A) Destroy all DNA in a sample
-    - B) Make many copies of a targeted region of DNA
+    - A) Replace meiosis in humans
+    - B) Destroy all DNA in a sample
     - C) Synthesize only proteins
-    - D) Replace meiosis in humans
+    - D) Make many copies of a targeted region of DNA
 
 2. In gel electrophoresis, DNA fragments migrate because DNA is negatively charged and move toward:
-    - A) The negative electrode; larger fragments move farthest
-    - B) The positive electrode; smaller fragments usually move farther through the gel
+    - A) The positive electrode; smaller fragments usually move farther through the gel
+    - B) The top of the gel regardless of charge
     - C) The center of the gel only
-    - D) The top of the gel regardless of charge
+    - D) The negative electrode; larger fragments move farthest
 
 3. Moving a human insulin gene into bacteria so the bacteria make human insulin works largely because:
     - A) Bacteria do not use DNA
-    - B) The genetic code is nearly universal, so the bacterium can read the gene and translate it
+    - B) Insulin is made of lipids, not proteins
     - C) Bacteria automatically delete foreign genes
-    - D) Insulin is made of lipids, not proteins
+    - D) The genetic code is nearly universal, so the bacterium can read the gene and translate it
 
 4. Short tandem repeats (STRs) used in DNA fingerprinting vary between individuals and are:
-    - A) Never inherited from parents
-    - B) Inherited in Mendelian fashion (alleles from both parents)
-    - C) Identical in all humans
+    - A) Identical in all humans
+    - B) Never inherited from parents
+    - C) Inherited in Mendelian fashion (alleles from both parents)
     - D) Found only in RNA
 
 5. CRISPR-Cas9 is a recently developed tool that can:
-    - A) Only stain chromosomes for microscopy
-    - B) Target and cut DNA at a specific site, enabling edits to genes
+    - A) Target and cut DNA at a specific site, enabling edits to genes
+    - B) Prevent all epigenetic change
     - C) Replace photosynthesis in plants
-    - D) Prevent all epigenetic change
+    - D) Only stain chromosomes for microscopy
 
 6. In making a recombinant plasmid, which enzyme “glues” DNA fragments together?
     - A) Restriction enzyme only
-    - B) DNA ligase
-    - C) RNA polymerase
-    - D) Helicase
+    - B) Helicase
+    - C) DNA ligase
+    - D) RNA polymerase
 
 ---
 

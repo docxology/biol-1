@@ -10,5 +10,5 @@
   - Purpose: Carbon skeletons -> Building and breaking polymers -> Carbohydrates and lipids -> Proteins and shape
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 03 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 03: Organic Molecules Retrieval and Lab Check** (`resources/generated/module-03-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-03_microscopy.md supplies evidence for microscopy evidence for biological structure.
+  - Purpose: lab-03_microscopy.md supplies evidence for microscope observations that connect scale, structure, and biological function.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 03 retrieval prompts with answer checks, required terms, and the linked lab.

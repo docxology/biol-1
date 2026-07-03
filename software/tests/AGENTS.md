@@ -36,18 +36,29 @@ tests/
 ├── test_legacy_import_main_extended.py
 ├── test_legacy_import_utils.py
 ├── test_markdown_to_pdf_main.py                    # markdown_to_pdf module
+├── test_module_content.py                          # module_content (typed module.toml → materials)
 ├── test_module_organization_main.py                # module_organization module
 ├── test_module_organization_main_extended.py
 ├── test_module_organization_utils.py
 ├── test_publish_main.py                            # publish module
 ├── test_publish_utils.py
+├── test_repo_contracts.py                          # repository invariants (PUBLISHED/ tracking, etc.)
 ├── test_schedule_main.py                           # schedule module
 ├── test_schedule_utils.py
+├── test_shared_course_config.py                    # shared course configuration
+├── test_shuffle_final_exam_mc.py                   # deterministic final-exam MC shuffling
+├── test_slide_deck.py                              # slide_deck rendering
 ├── test_speech_to_text_main.py                     # speech_to_text module
 ├── test_text_to_speech_main.py                     # text_to_speech module
 ├── test_validation_main.py                         # validation module
 └── test_validation_utils.py
 ```
+
+> Rendering-focused tests (`test_markdown_to_pdf_main.py`,
+> `test_format_conversion_*`, `test_html_website_*`, `test_lab_manual_*`,
+> `test_slide_deck.py`, `test_module_content.py`) each pair with a per-format
+> contract under [`../docs/`](../docs/); see the rendering table in
+> [README.md](README.md).
 
 ### Test Function Naming
 
@@ -95,12 +106,24 @@ def test_function_name_scenario():
 
 ### Running Tests
 
-**Important**: Always use `uv run pytest` to ensure tests run in the correct environment.
+**Important**: Run tests through this project's own environment. Prefer the
+`./run_tests.sh` wrapper (it also sets the macOS WeasyPrint library path), or
+`uv run pytest` after `uv sync --extra dev`.
+
+> **Wrong-venv gotcha.** If a run fails at collection with
+> `ModuleNotFoundError: No module named 'markdown'` (or `speech_recognition`),
+> a foreign `VIRTUAL_ENV` or a parent `uv` workspace is shadowing this
+> project's `.venv`. Use `env -u VIRTUAL_ENV uv run pytest ...` or the
+> environment-independent `.venv/bin/python -m pytest ...`. These are runtime
+> dependencies, so `uv sync` installs them — a missing-module error means the
+> wrong interpreter is being used, not a missing install.
 
 **All Tests**:
 
 ```bash
 uv run pytest tests/
+# environment-independent equivalent:
+.venv/bin/python -m pytest tests/
 ```
 
 **Specific Module**:

@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Chromosome in Module 08?
-   - A. DNA-protein structure carrying genes.
-   - B. Ordered sequence of cell growth, DNA replication, and division.
-   - C. Nuclear division producing identical daughter nuclei.
-   - D. Division process producing haploid gametes.
-   - Answer: A
-   - Why: Chromosome names the module's starting idea: chromosomes and cell cycle must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Mitosis for growth and repair"?
-   - A. Relate chromosomes to DNA organization.
-   - B. Compare the purpose and products of mitosis and meiosis.
-   - C. Explain how meiosis reduces chromosome number.
-   - D. Describe how crossing over and independent assortment increase variation.
+1. What is the main product of mitosis?
+   - A. Four haploid gametes
+   - B. Two genetically identical daughter cells
+   - C. A single haploid cell
+   - D. Cells with randomly scrambled DNA
    - Answer: B
-   - Why: This objective asks students to reason through mitosis for growth and repair as part of the module's mechanism.
+   - Why: Mitosis produces two genetically identical daughter cells for growth and repair. Meiosis makes four haploid gametes.
 
-3. How should lab-08_cellular-genetics.md support Module 08?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for cellular genetics evidence from chromosome models.
-   - D. By removing the need to compare observations or predictions.
-   - Answer: C
-   - Why: The lab is the evidence surface for chromosome behavior across mitosis, meiosis, variation, and errors.
-
-4. Which retrieval move best prepares a student for Cellular Genetics?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Why do cells package DNA into chromosomes? Then check the answer against terms, evidence, and lab-08_cellular-genetics.md.
+2. Meiosis reduces the chromosome number by using:
+   - A. two rounds of DNA copying and no division
+   - B. no DNA replication at all
+   - C. extra chromosomes added each cycle
+   - D. one round of DNA copying followed by two divisions
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: One replication followed by two divisions halves the chromosome number, producing haploid gametes.
+
+3. Crossing over and independent assortment both act to:
+   - A. increase genetic variation among gametes
+   - B. produce identical gametes every time
+   - C. occur only during mitosis
+   - D. remove all differences between offspring
+   - Answer: A
+   - Why: Both processes shuffle alleles during meiosis, generating genetic variation among offspring.
+
+4. If chromosomes fail to separate correctly during meiosis (nondisjunction), a resulting gamete may have:
+   - A. exactly the normal number every time
+   - B. no DNA whatsoever
+   - C. an extra or a missing chromosome
+   - D. twice as many cells
+   - Answer: C
+   - Why: Nondisjunction gives a gamete an abnormal chromosome count, which can lead to conditions such as trisomy.

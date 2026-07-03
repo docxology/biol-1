@@ -42,28 +42,28 @@ name = "Cellular respiration"
 definition = "Process that harvests usable energy from fuel molecules."
 
 [[practice_quiz]]
-question = "Which statement best defines Metabolism in Module 06?"
-options = ["All chemical reactions in a cell or organism.", "Cellular energy-coupling molecule.", "Energy required to start a reaction.", "Protein or RNA catalyst that speeds a reaction."]
-answer = "A"
-explanation = "Metabolism names the module's starting idea: energy and thermodynamics must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"ATP as cellular coupling\"?"
-options = ["Apply thermodynamic ideas to living cells.", "Explain ATP as an energy-coupling molecule.", "Describe how enzymes change reaction rates.", "Predict how environmental conditions affect enzyme activity."]
+question = "What is the main role of ATP in a cell?"
+options = ["To store long-term genetic information", "To carry and deliver usable energy for cellular work", "To act as a structural membrane", "To speed up reactions as an enzyme"]
 answer = "B"
-explanation = "This objective asks students to reason through atp as cellular coupling as part of the module's mechanism."
+explanation = "ATP is the cell's energy currency: it couples energy-releasing reactions to energy-requiring ones."
 
 [[practice_quiz]]
-question = "How should lab-06_metabolism.md support Module 06?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for metabolism evidence from reaction rate and condition changes.", "By removing the need to compare observations or predictions."]
-answer = "C"
-explanation = "The lab is the evidence surface for energy transformations with ATP coupling, enzymes, and linked pathways."
+question = "How does an enzyme speed up a chemical reaction?"
+options = ["By lowering the activation energy needed to start it", "By adding heat to the whole cell", "By becoming a permanent part of the product", "By raising the activation energy"]
+answer = "A"
+explanation = "Enzymes lower activation energy. They are catalysts and are not used up in the reaction."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Metabolism?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How do the laws of thermodynamics constrain cells? Then check the answer against terms, evidence, and lab-06_metabolism.md."]
+question = "Raising temperature far above normal can stop an enzyme from working because:"
+options = ["all substrates suddenly disappear", "ATP levels increase", "the reaction runs backward forever", "the enzyme denatures and loses its active-site shape"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "Excess heat denatures the enzyme. Without its shape, the substrate no longer fits the active site."
+
+[[practice_quiz]]
+question = "How are photosynthesis and cellular respiration related?"
+options = ["They are exactly the same reaction.", "Neither one uses energy.", "Photosynthesis stores energy in sugars, and respiration releases it.", "Both occur only in the dark."]
+answer = "C"
+explanation = "Photosynthesis builds sugars using light energy, and respiration harvests that stored energy. The two processes are complementary."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-06_metabolism.md focuses students on metabolism evidence from reaction rate and condition changes."
+detail = "lab-06_metabolism.md focuses students on reaction-rate shifts under temperature, pH, and substrate changes."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-06-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 06 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Metabolism", "ATP", "Activation energy", "Enzyme", "Substrate"]
-lab_connection = "lab-06_metabolism.md supplies evidence for metabolism evidence from reaction rate and condition changes."
+lab_connection = "lab-06_metabolism.md supplies evidence for reaction-rate shifts under temperature, pH, and substrate changes."
 
 [[generated_images.prompts]]
 prompt = "How do the laws of thermodynamics constrain cells?"

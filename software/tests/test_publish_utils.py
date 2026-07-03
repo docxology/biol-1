@@ -5,6 +5,7 @@ from src.publish.utils import (
     flatten_module,
     flatten_published,
     copy_labs_and_dashboards,
+    copy_module_bundles,
     copy_practice_tests,
     copy_slides,
     copy_slides_to_modules,
@@ -280,6 +281,50 @@ class TestCopySlidesToModules:
         copied = copy_slides_to_modules(temp_dir, courses=["biol-1"])
 
         assert copied == 0
+
+
+class TestCopyModuleBundles:
+    def test_copies_outputs_into_per_module_bundle(self, temp_dir):
+        course_dir = temp_dir / "PUBLISHED" / "biol-1"
+        for name in ["module_keys", "homework", "slides", "labs", "dashboards"]:
+            (course_dir / name).mkdir(parents=True)
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(b"pdf")
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.docx").write_bytes(b"docx")
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").write_text("key", encoding="utf-8")
+        (course_dir / "homework" / "module-01-study-of-life-questions.pdf").write_bytes(b"pdf")
+        (course_dir / "homework" / "module-01-study-of-life-questions.docx").write_bytes(b"docx")
+        (course_dir / "homework" / "module-01-study-of-life-questions.md").write_text("questions", encoding="utf-8")
+        (course_dir / "slides" / "module-1-slides-full.pdf").write_bytes(b"slides")
+        (course_dir / "slides" / "module-1-slides-notes.pdf").write_bytes(b"notes")
+        (course_dir / "labs" / "lab-01_measurement-methods.md").write_text("lab", encoding="utf-8")
+        (course_dir / "labs" / "lab-01_measurement-methods.pdf").write_bytes(b"lab pdf")
+        (course_dir / "dashboards" / "lab-01_measurement-methods-dashboard.html").write_text(
+            "<html></html>",
+            encoding="utf-8",
+        )
+
+        copied = copy_module_bundles(temp_dir / "PUBLISHED", courses=["biol-1"])
+
+        module_dir = course_dir / "modules" / "module-01-study-of-life"
+        assert copied == 11
+        assert (module_dir / "module-01-study-of-life-keys-to-success.pdf").exists()
+        assert (module_dir / "module-01-study-of-life-questions.docx").exists()
+        assert (module_dir / "module-1-slides-full.pdf").exists()
+        assert (module_dir / "lab-01_measurement-methods-dashboard.html").exists()
+
+    def test_rebuild_removes_stale_module_bundle_files(self, temp_dir):
+        course_dir = temp_dir / "PUBLISHED" / "biol-1"
+        (course_dir / "module_keys").mkdir(parents=True)
+        stale_dir = course_dir / "modules" / "module-01-study-of-life"
+        stale_dir.mkdir(parents=True)
+        (stale_dir / "old.pdf").write_bytes(b"old")
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(b"pdf")
+
+        copied = copy_module_bundles(temp_dir / "PUBLISHED", courses=["biol-1"])
+
+        assert copied == 1
+        assert not (stale_dir / "old.pdf").exists()
+        assert (stale_dir / "module-01-study-of-life-keys-to-success.pdf").exists()
 
 
 class TestCopyExams:

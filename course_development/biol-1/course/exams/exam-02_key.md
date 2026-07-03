@@ -8,48 +8,48 @@
 
 **Module 07: Molecular Genetics**
 
-1. **C** (DNA → RNA → Protein)
+1. **B** (DNA → RNA → Protein)
 2. **C** (Adenine pairs with thymine)
-3. **B** (A in DNA pairs with U in RNA during transcription)
+3. **C** (A in DNA pairs with U in RNA during transcription)
 4. **C** (DNA polymerase)
-5. **B** (Ribosomes in the cytoplasm / on rough ER)
+5. **A** (Ribosomes in the cytoplasm / on rough ER)
 6. **B** (Frameshift mutation)
 
 **Module 08: Cellular Genetics**
 
-7. **B** (Haploid, n = 23)
+7. **A** (Haploid, n = 23)
 8. **B** (Two genetically identical diploid daughter cells)
-9. **B** (Homologous chromosomes separate in meiosis I)
-10. **B** (Prophase I of meiosis)
-11. **B** (Random alignment creates many allele combinations)
-12. **B** (Failure of proper separation; may yield aneuploidy)
+9. **A** (Homologous chromosomes separate in meiosis I)
+10. **D** (Prophase I of meiosis)
+11. **A** (Random alignment creates many allele combinations)
+12. **D** (Failure of proper separation; may yield aneuploidy)
 
 **Module 09: Inheritance Genetics**
 
 13. **B** (Alleles are alternative versions of the same gene)
-14. **A** (Bb is genotype; purple flowers are phenotype)
-15. **C** (3 : 1 phenotypic ratio for complete dominance)
-16. **B** (1 : 2 : 1 with a blended heterozygote in incomplete dominance)
-17. **B** (Codominance for type AB)
-18. **B** (Two unaffected parents can have an affected child—classic autosomal recessive clue)
+14. **C** (Bb is genotype; purple flowers are phenotype)
+15. **B** (3 : 1 phenotypic ratio for complete dominance)
+16. **C** (1 : 2 : 1 with a blended heterozygote in incomplete dominance)
+17. **A** (Codominance for type AB)
+18. **C** (Two unaffected parents can have an affected child—classic autosomal recessive clue)
 
 **Module 10: Epigenetics**
 
-19. **B** (Gene expression changes without DNA sequence change)
+19. **D** (Gene expression changes without DNA sequence change)
 20. **B** (Silences / turns gene off or down)
-21. **B** (Looser chromatin; favors gene activity / turning genes on)
-22. **B** (Mutation changes sequence; epigenetics changes use of same sequence)
-23. **B** (Barr body)
+21. **D** (Looser chromatin; favors gene activity / turning genes on)
+22. **D** (Mutation changes sequence; epigenetics changes use of same sequence)
+23. **A** (Barr body)
 24. **B** (Different cell types express different genes)
 
 **Module 11: Genomics & Biotechnology**
 
-25. **B** (Amplify / copy a targeted DNA region)
-26. **B** (Toward positive electrode; smaller fragments usually travel farther)
-27. **B** (Universal / nearly universal genetic code allows translation of the gene)
-28. **B** (STR alleles inherited from parents)
-29. **B** (Targeted DNA cut / gene editing)
-30. **B** (DNA ligase joins fragments)
+25. **D** (Amplify / copy a targeted DNA region)
+26. **A** (Toward positive electrode; smaller fragments usually travel farther)
+27. **D** (Universal / nearly universal genetic code allows translation of the gene)
+28. **C** (STR alleles inherited from parents)
+29. **A** (Targeted DNA cut / gene editing)
+30. **C** (DNA ligase joins fragments)
 
 ---
 

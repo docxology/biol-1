@@ -319,6 +319,7 @@ def test_slide_contract_requires_full_and_notes_for_every_active_biol1_module(te
         (generated_dir / f"module-1-slides-{variant}.html").write_text(
             "Module 01 Learning objectives Lab file: data-slide-role data-visual-kind "
             "module-01-concept-map.svg module-01-process-model.svg module-01-retrieval-card.svg "
+            "Answer first "
             + 'data-visual-kind="embedded-svg"' * 3
             + '<section class="slide"></section>' * 10,
             encoding="utf-8",
@@ -329,6 +330,34 @@ def test_slide_contract_requires_full_and_notes_for_every_active_biol1_module(te
 
     assert not report.valid
     assert any("full and notes PDFs" in issue for issue in report.issues)
+
+
+def test_slide_contract_rejects_answer_key_in_full_deck(temp_dir):
+    from pathlib import Path
+
+    from src.validation import repo_contracts
+
+    root = Path(temp_dir)
+    course_root = root / "course_development" / "biol-1"
+    slides_dir = course_root / "resources" / "slides"
+    generated_dir = slides_dir / "generated"
+    generated_dir.mkdir(parents=True)
+    for variant in ("full", "notes"):
+        (slides_dir / f"module-1-slides-{variant}.pdf").write_bytes(b"%PDF-1.4\n")
+        (generated_dir / f"module-1-slides-{variant}.html").write_text(
+            "Module 01 Learning objectives Lab file: data-slide-role data-visual-kind "
+            "module-01-concept-map.svg module-01-process-model.svg module-01-retrieval-card.svg "
+            "Answer first Key: A "
+            + 'data-visual-kind="embedded-svg"' * 3
+            + '<section class="slide"></section>' * 10,
+            encoding="utf-8",
+        )
+
+    report = repo_contracts.RepoContractReport()
+    repo_contracts._check_slide_numbering(root, "biol-1", course_root, 1, report)
+
+    assert not report.valid
+    assert any("exposes quiz answer keys" in issue for issue in report.issues)
 
 
 def test_slide_contract_rejects_legacy_active_slide_names(temp_dir):

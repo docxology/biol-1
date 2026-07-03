@@ -6,7 +6,7 @@ This directory contains exams for BIOL-1: General Biology at Pelican Bay.
 
 ## Exam Structure
 
-BIOL-1 has **16** content modules (`module-01` … `module-15`). The schedule maps unit exams to module ranges as follows (see `syllabus/Schedule.md`):
+BIOL-1 has **16** content modules (`module-01` … `module-16`). The schedule maps unit exams to module ranges as follows (see `syllabus/Schedule.md`):
 
 | Exam | Modules | Topic coverage |
 | --- | --- | --- |
@@ -35,7 +35,7 @@ BIOL-1 has **16** content modules (`module-01` … `module-15`). The schedule ma
 
 ## Format
 
-**`exam-01.md`**, **`exam-02.md`**, and **`exam-03.md`** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of five). Exam **02** uses **six** MC items per module (**07–11**). Exam **03** uses **eight** MC items for modules **12** and **13**, and **seven** each for modules **14** and **16**, for **30** total MC items across four modules.
+**`exam-01.md`**, **`exam-02.md`**, and **`exam-03.md`** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of five). Exam **02** uses **six** MC items per module (**07–11**). Exam **03** uses **eight** MC items for modules **12** and **13**, and **seven** each for modules **14** and **15**, for **30** total MC items across four modules.
 
 **`final-exam.md`** uses **100 points:** Part A **45** MC (three per module, modules **01–15**), Part B **16** fill-in terms drawn from a **19-word** bank (**four** decoys), Part C **seven** prompts—students **choose any five** (**25** points; **5** points each), Part D **one** essay (**16** points) from three options.
 

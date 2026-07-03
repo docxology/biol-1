@@ -42,28 +42,28 @@ name = "Biogeography"
 definition = "Study of geographic patterns in life."
 
 [[practice_quiz]]
-question = "Which statement best defines Evolution in Module 12?"
-options = ["Change in heritable traits of populations across generations.", "Nonrandom differences in survival or reproduction tied to heritable traits.", "Heritable trait shaped by selection in a context.", "Relative reproductive success."]
-answer = "A"
-explanation = "Evolution names the module's starting idea: historical explanation for adaptation must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"Variation and heritability\"?"
-options = ["Explain natural selection using variation, heritability, and reproductive success.", "Define fitness in evolutionary terms.", "Distinguish individual change from population evolution.", "Use multiple evidence types to support common ancestry."]
-answer = "B"
-explanation = "This objective asks students to reason through variation and heritability as part of the module's mechanism."
-
-[[practice_quiz]]
-question = "How should lab-12_darwin-evolution.md support Module 12?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for Darwinian evolution evidence from trait and environment comparisons.", "By removing the need to compare observations or predictions."]
+question = "Natural selection requires all of the following EXCEPT:"
+options = ["variation among individuals", "traits that are heritable", "every individual reproducing at an equal rate", "differences in survival or reproduction"]
 answer = "C"
-explanation = "The lab is the evidence surface for natural selection from variation, heritability, fitness, and ancestry evidence."
+explanation = "Selection needs variation, heritability, and differences in reproductive success. Equal reproduction by all individuals is exactly what selection is not."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Darwin and Evolution?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: What are the required ingredients for natural selection? Then check the answer against terms, evidence, and lab-12_darwin-evolution.md."]
+question = "In evolutionary terms, an organism's \"fitness\" means its:"
+options = ["relative reproductive success in its environment", "physical strength", "overall body size", "top running speed"]
+answer = "A"
+explanation = "Fitness is about passing on genes through reproductive success, not about athletic ability."
+
+[[practice_quiz]]
+question = "The forelimb bones of humans, whales, and bats share the same underlying arrangement. This is evidence of:"
+options = ["identical environments", "no relationship at all", "learning during each animal's life", "common ancestry shown by homologous structures"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "Homologous structures share an inherited body plan from a common ancestor, which supports common descent."
+
+[[practice_quiz]]
+question = "\"An individual giraffe stretched its neck during its life and so it evolved a longer neck.\" Why is this wrong?"
+options = ["Giraffes actually have short necks.", "Individuals do not evolve; populations evolve as heritable trait frequencies change over generations.", "Evolution is completed within a single lifetime.", "Stretching directly rewrites an animal's DNA."]
+answer = "B"
+explanation = "Evolution is a population-level change across generations, not a change acquired within one individual's lifetime."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-12_darwin-evolution.md focuses students on Darwinian evolution evidence from trait and environment comparisons."
+detail = "lab-12_darwin-evolution.md focuses students on trait variation, environmental filters, and selection evidence."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-12-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 12 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Evolution", "Natural selection", "Adaptation", "Fitness", "Common ancestry"]
-lab_connection = "lab-12_darwin-evolution.md supplies evidence for Darwinian evolution evidence from trait and environment comparisons."
+lab_connection = "lab-12_darwin-evolution.md supplies evidence for trait variation, environmental filters, and selection evidence."
 
 [[generated_images.prompts]]
 prompt = "What are the required ingredients for natural selection?"

@@ -10,5 +10,5 @@
   - Purpose: Genomes as data -> PCR and amplification -> Gel electrophoresis and comparison -> Genetic engineering tools
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 11 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 11: Genomics and Biotechnology Retrieval and Lab Check** (`resources/generated/module-11-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-11_genomics-biotechnology.md supplies evidence for genomics and biotechnology evidence from DNA comparison tools.
+  - Purpose: lab-11_genomics-biotechnology.md supplies evidence for DNA comparison tools, gel patterns, and biotechnology decisions.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 11 retrieval prompts with answer checks, required terms, and the linked lab.

@@ -34,6 +34,7 @@ configure_runtime_environment()
 from src.batch_processing.main import clear_all_outputs  # noqa: E402
 from src.publish.utils import (
     clean_published,
+    copy_module_bundles,
     copy_labs_and_dashboards,
     copy_practice_tests,
     copy_slides,
@@ -268,6 +269,11 @@ def main():
         logger.info("\n📂 STEP 8: Reorganizing to category folders")
         reorganized = reorganize_to_categories(published_dir, courses, args.verbose)
         logger.info(f"  ✅ Reorganized {reorganized} files  ({time.time()-t_step:.1f}s)")
+
+        t_step = time.time()
+        logger.info("\n📚 STEP 8b: Copying per-module published bundles")
+        bundled = copy_module_bundles(published_dir, courses, args.verbose)
+        logger.info(f"  ✅ Copied {bundled} files into module bundles  ({time.time()-t_step:.1f}s)")
 
     # Step 9: Validate
     if not args.skip_validate:

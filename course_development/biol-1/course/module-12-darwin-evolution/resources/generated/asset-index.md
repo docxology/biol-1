@@ -10,5 +10,5 @@
   - Purpose: Historical explanation for adaptation -> Variation and heritability -> Natural selection mechanism -> Evidence for common ancestry
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 12 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 12: Darwin and Evolution Retrieval and Lab Check** (`resources/generated/module-12-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-12_darwin-evolution.md supplies evidence for Darwinian evolution evidence from trait and environment comparisons.
+  - Purpose: lab-12_darwin-evolution.md supplies evidence for trait variation, environmental filters, and selection evidence.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 12 retrieval prompts with answer checks, required terms, and the linked lab.

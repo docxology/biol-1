@@ -42,28 +42,28 @@ name = "Gene expression"
 definition = "Use of genetic information to make RNA or protein."
 
 [[practice_quiz]]
-question = "Which statement best defines DNA in Module 07?"
-options = ["Nucleic acid that stores hereditary information.", "DNA or RNA subunit with sugar, phosphate, and base.", "Process that copies DNA.", "Synthesis of RNA from a DNA template."]
-answer = "A"
-explanation = "DNA names the module's starting idea: dna structure must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"Replication\"?"
-options = ["Describe DNA structure and base-pairing rules.", "Explain why DNA replication is semiconservative.", "Compare transcription and translation.", "Use codons to connect mRNA sequence to amino acid sequence."]
-answer = "B"
-explanation = "This objective asks students to reason through replication as part of the module's mechanism."
-
-[[practice_quiz]]
-question = "How should lab-07_molecular-genetics.md support Module 07?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for molecular genetics evidence from sequence and expression reasoning.", "By removing the need to compare observations or predictions."]
+question = "In DNA, the base adenine always pairs with:"
+options = ["cytosine", "guanine", "thymine", "another adenine"]
 answer = "C"
-explanation = "The lab is the evidence surface for DNA information flow from sequence to RNA, protein, and trait evidence."
+explanation = "The base-pairing rules are A with T and C with G. This complementarity lets DNA be copied accurately."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Molecular Genetics?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How does DNA structure store information? Then check the answer against terms, evidence, and lab-07_molecular-genetics.md."]
+question = "DNA replication is described as \"semiconservative\" because each new double helix contains:"
+options = ["one original strand and one new strand", "two brand-new strands", "two original strands", "no strands at all"]
+answer = "A"
+explanation = "Each daughter molecule keeps one parental strand as a template, so half of the original is conserved."
+
+[[practice_quiz]]
+question = "Which sequence shows the normal flow of genetic information?"
+options = ["protein, then RNA, then DNA", "RNA, then DNA, then protein", "protein, then DNA, then RNA", "DNA, then RNA, then protein"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "Transcription copies DNA into RNA, and translation reads codons to build protein: DNA to RNA to protein."
+
+[[practice_quiz]]
+question = "A mutation changes a single DNA base. Why might this matter?"
+options = ["DNA cannot change, so nothing happens.", "It can change a codon, which may change an amino acid and the protein.", "It always improves the organism.", "It affects only RNA and never proteins."]
+answer = "B"
+explanation = "A base change can alter a codon and therefore the protein. Effects range from none to significant."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-07_molecular-genetics.md focuses students on molecular genetics evidence from sequence and expression reasoning."
+detail = "lab-07_molecular-genetics.md focuses students on sequence, transcription, translation, and gene-expression evidence."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-07-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 07 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["DNA", "Nucleotide", "Replication", "Transcription", "Translation"]
-lab_connection = "lab-07_molecular-genetics.md supplies evidence for molecular genetics evidence from sequence and expression reasoning."
+lab_connection = "lab-07_molecular-genetics.md supplies evidence for sequence, transcription, translation, and gene-expression evidence."
 
 [[generated_images.prompts]]
 prompt = "How does DNA structure store information?"

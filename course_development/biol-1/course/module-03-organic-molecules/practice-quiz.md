@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Organic molecule in Module 03?
-   - A. Carbon-based molecule associated with living systems.
-   - B. Small building block that can join into a polymer.
-   - C. Large molecule built from repeating subunits.
-   - D. Sugar or sugar polymer used for energy or structure.
-   - Answer: A
-   - Why: Organic molecule names the module's starting idea: carbon skeletons must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Building and breaking polymers"?
-   - A. Explain why carbon is central to biological molecule diversity.
-   - B. Distinguish monomers, polymers, dehydration synthesis, and hydrolysis.
-   - C. Compare the functions of carbohydrates and lipids.
-   - D. Connect protein shape to protein function and denaturation.
-   - Answer: B
-   - Why: This objective asks students to reason through building and breaking polymers as part of the module's mechanism.
-
-3. How should lab-03_microscopy.md support Module 03?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for microscopy evidence for biological structure.
-   - D. By removing the need to compare observations or predictions.
+1. Why is carbon the backbone of most biological molecules?
+   - A. Carbon is the heaviest atom in cells.
+   - B. Carbon cannot bond to other atoms.
+   - C. Carbon forms up to four stable bonds, building diverse chains and rings.
+   - D. Carbon is found only in sugars.
    - Answer: C
-   - Why: The lab is the evidence surface for carbon chemistry with polymer assembly and biological molecule evidence.
+   - Why: Carbon's ability to form four stable bonds allows large, varied molecules, which is the basis of life's chemical diversity.
 
-4. Which retrieval move best prepares a student for Organic Molecules?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: Why can carbon make many different biological molecules? Then check the answer against terms, evidence, and lab-03_microscopy.md.
+2. Cells join two monomers into a polymer by removing a water molecule. This reaction is called:
+   - A. dehydration synthesis
+   - B. hydrolysis
+   - C. denaturation
+   - D. diffusion
+   - Answer: A
+   - Why: Dehydration synthesis links monomers by removing water. Hydrolysis is the reverse: adding water to break the bond.
+
+3. A protein is heated until it loses its three-dimensional shape and stops working. This change is called:
+   - A. replication
+   - B. polymerization
+   - C. hydrolysis
+   - D. denaturation
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: Denaturation is loss of shape. Because a protein's function depends on its shape, the protein stops working.
+
+4. Which pairing of molecule and job is correct?
+   - A. Lipids store genetic information.
+   - B. Nucleic acids store genetic information.
+   - C. Carbohydrates always speed up reactions.
+   - D. Proteins are the main long-term energy store.
+   - Answer: B
+   - Why: Nucleic acids (DNA and RNA) store information. Carbohydrates and lipids store energy, and proteins do most cellular work.

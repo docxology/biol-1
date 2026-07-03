@@ -10,5 +10,5 @@
   - Purpose: Species concepts -> Reproductive isolation -> Prezygotic barriers -> Postzygotic barriers
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 14 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 14: Macroevolution Retrieval and Lab Check** (`resources/generated/module-14-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-14_macroevolution.md supplies evidence for macroevolution evidence from isolation and lineage patterns.
+  - Purpose: lab-14_macroevolution.md supplies evidence for isolation, lineage splitting, and phylogenetic pattern evidence.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 14 retrieval prompts with answer checks, required terms, and the linked lab.

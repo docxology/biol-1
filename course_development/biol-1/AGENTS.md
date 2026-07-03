@@ -11,7 +11,7 @@ biol-1/
 ├── course/
 │   ├── module-01-study-of-life/        # 16 modules: each has questions.md +
 │   │   …                               #            keys-to-success.md + output/
-│   ├── labs/                           # lab-NN_*.md (1–17), with output/ and dashboards/
+│   ├── labs/                           # lab-NN_*.md (1–16), with output/ and dashboards/
 │   ├── exams/                          # exam-NN.md, exam-NN_key.md, exam-template.md
 │   ├── practice_tests/                 # practice-test-NN.md, practice-test-NN_key.md
 │   └── quizzes/                        # quiz-template.md

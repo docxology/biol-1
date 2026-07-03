@@ -42,28 +42,28 @@ name = "Tonicity"
 definition = "Relative solute condition that predicts water movement."
 
 [[practice_quiz]]
-question = "Which statement best defines Phospholipid in Module 05?"
-options = ["Molecule with a hydrophilic head and hydrophobic tails.", "Double layer of phospholipids forming a membrane.", "Property of allowing some substances through more easily than others.", "Net movement from high to low concentration."]
-answer = "A"
-explanation = "Phospholipid names the module's starting idea: phospholipid bilayer structure must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"Selective permeability\"?"
-options = ["Describe how phospholipid structure creates a bilayer.", "Predict which molecules cross membranes easily.", "Compare passive and active transport.", "Use concentration gradients to explain movement across membranes."]
-answer = "B"
-explanation = "This objective asks students to reason through selective permeability as part of the module's mechanism."
-
-[[practice_quiz]]
-question = "How should lab-05_viewing-life.md support Module 05?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for viewing life through structure, boundary, and environment evidence.", "By removing the need to compare observations or predictions."]
+question = "Why do phospholipids arrange themselves into a bilayer in water?"
+options = ["Their heads avoid contact with water.", "They are completely hydrophobic.", "Water-loving heads face outward while water-fearing tails tuck inward.", "They dissolve completely in water."]
 answer = "C"
-explanation = "The lab is the evidence surface for membrane structure with gradients, transport, and cell survival predictions."
+explanation = "The hydrophilic heads face the water and the hydrophobic tails hide inside, forming a stable two-layer membrane."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Membranes?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: Why do phospholipids form bilayers in water? Then check the answer against terms, evidence, and lab-05_viewing-life.md."]
+question = "A small nonpolar molecule such as oxygen gas crosses the membrane mainly by:"
+options = ["simple diffusion down its concentration gradient", "active transport that spends ATP", "not crossing at all", "osmosis of water"]
+answer = "A"
+explanation = "Small nonpolar molecules pass directly through the bilayer from high to low concentration, with no energy required."
+
+[[practice_quiz]]
+question = "An animal cell is placed in pure water, a hypotonic solution. What happens?"
+options = ["Water leaves and the cell shrinks.", "Nothing moves in or out.", "Salt rushes in and the cell shrinks.", "Water enters and the cell may swell or burst."]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "In a hypotonic solution water moves into the cell by osmosis, so the cell swells and can burst."
+
+[[practice_quiz]]
+question = "Moving ions against their concentration gradient requires:"
+options = ["only ordinary diffusion", "active transport that uses energy", "no membrane proteins", "removal of the membrane"]
+answer = "B"
+explanation = "Movement against a gradient needs energy (ATP) and transport proteins, which is active transport."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-05_viewing-life.md focuses students on viewing life through structure, boundary, and environment evidence."
+detail = "lab-05_viewing-life.md focuses students on observable boundaries, structures, and environments in living samples."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-05-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 05 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Phospholipid", "Bilayer", "Selective permeability", "Diffusion", "Osmosis"]
-lab_connection = "lab-05_viewing-life.md supplies evidence for viewing life through structure, boundary, and environment evidence."
+lab_connection = "lab-05_viewing-life.md supplies evidence for observable boundaries, structures, and environments in living samples."
 
 [[generated_images.prompts]]
 prompt = "Why do phospholipids form bilayers in water?"

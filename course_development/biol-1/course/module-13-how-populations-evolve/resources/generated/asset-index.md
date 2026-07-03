@@ -10,5 +10,5 @@
   - Purpose: Allele frequencies as the unit of change -> Sources of variation -> Five mechanisms of microevolution -> Genetic drift and selection
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 13 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 13: How Populations Evolve Retrieval and Lab Check** (`resources/generated/module-13-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-13_how-populations-evolve.md supplies evidence for population evolution evidence from frequency changes.
+  - Purpose: lab-13_how-populations-evolve.md supplies evidence for allele-frequency changes across generations.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 13 retrieval prompts with answer checks, required terms, and the linked lab.

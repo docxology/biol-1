@@ -337,7 +337,7 @@ def render_deck_html(deck: SlideDeck, variant: DeckVariant) -> str:
 
 
 def _render_slide(deck: SlideDeck, slide: Slide, index: int, notes_mode: bool) -> str:
-    visual = _render_visual(deck, slide)
+    visual = _render_visual(deck, slide, notes_mode)
     body_items = "".join(f"<li>{_e(item)}</li>" for item in slide.body[:6])
     note_html = f'<aside class="speaker-note"><strong>Teaching note:</strong> {_e(slide.note)}</aside>' if notes_mode else ""
     return f"""
@@ -356,7 +356,7 @@ def _render_slide(deck: SlideDeck, slide: Slide, index: int, notes_mode: bool) -
 """.strip()
 
 
-def _render_visual(deck: SlideDeck, slide: Slide) -> str:
+def _render_visual(deck: SlideDeck, slide: Slide, notes_mode: bool) -> str:
     module = deck.module
     if slide.svg:
         svg_path = module.module_dir / slide.svg.output
@@ -365,12 +365,11 @@ def _render_visual(deck: SlideDeck, slide: Slide) -> str:
         source = Path(slide.svg.output).name
         return f'<div class="embedded-svg" data-source="{_e(source)}">{svg_text}</div>'
     if slide.visual_kind == "module-map":
-        chips = "".join(f"<span>{_e(topic)}</span>" for topic in module.topics)
-        return f'<div class="module-orbit"><strong>Module {module.number:02d}</strong>{chips}<em>{_e(module.lab)}</em></div>'
+        return _module_pathway_visual(module)
     if slide.visual_kind == "objective-ladder":
         return _ordered_cards("Objective", module.learning_objectives[:5])
     if slide.visual_kind == "topic-sequence":
-        return _ordered_cards("Topic", module.topics)
+        return _topic_sequence_visual(module)
     if slide.visual_kind == "term-grid":
         cards = "".join(f"<div><b>{_e(term.name)}</b><span>{_e(term.definition)}</span></div>" for term in module.terms[:6])
         return f'<div class="term-grid">{cards}</div>'
@@ -379,10 +378,44 @@ def _render_visual(deck: SlideDeck, slide: Slide) -> str:
     if slide.visual_kind == "contrast-panel":
         return f'<div class="contrast"><div><b>Surface</b><span>{_e(module.contents[0])}</span></div><div><b>Deeper</b><span>{_e(module.contents[-1])}</span></div></div>'
     if slide.visual_kind == "quiz-bridge":
-        return _ordered_cards("Quiz", tuple(quiz.answer for quiz in module.practice_quiz[:4]))
+        return _quiz_bridge_visual(module, reveal_answers=notes_mode)
     if slide.visual_kind == "exit-ticket":
         return _flow_diagram(("Claim", "Evidence", "Revision"), (module.topics[0], module.lab, "What would change your mind?"))
     return '<div class="visual-placeholder">Visual surface</div>'
+
+
+def _module_pathway_visual(module: ModuleContent) -> str:
+    topic_nodes = "".join(
+        f'<div class="path-node"><b>{idx}</b><span>{_e(topic)}</span></div>'
+        for idx, topic in enumerate(module.topics[:5], 1)
+    )
+    return (
+        '<div class="module-pathway">'
+        f'<header><strong>Module {module.number:02d}</strong><span>{_e(module.title)}</span></header>'
+        f'<div class="path-nodes">{topic_nodes}</div>'
+        f'<footer><b>Lab evidence</b><span>{_e(module.lab)}</span></footer>'
+        '</div>'
+    )
+
+
+def _topic_sequence_visual(module: ModuleContent) -> str:
+    cells = "".join(
+        f'<div class="sequence-cell"><b>{idx:02d}</b><strong>{_e(topic)}</strong>'
+        f'<span>{_e(content)}</span></div>'
+        for idx, (topic, content) in enumerate(zip(module.topics, module.contents, strict=True), 1)
+    )
+    return f'<div class="sequence-map">{cells}</div>'
+
+
+def _quiz_bridge_visual(module: ModuleContent, reveal_answers: bool) -> str:
+    cards = []
+    for idx, quiz in enumerate(module.practice_quiz[:4], 1):
+        result = f"Key: {quiz.answer}" if reveal_answers else "Answer first"
+        cards.append(
+            f'<div class="quiz-card"><b>Question {idx}</b><span>{_e(result)}</span>'
+            f'<em>{_e(quiz.question)}</em></div>'
+        )
+    return f'<div class="quiz-grid">{"".join(cards)}</div>'
 
 
 def _ordered_cards(label: str, values: tuple[str, ...]) -> str:
@@ -406,9 +439,8 @@ def _deck_css(notes_mode: bool) -> str:
     return f"""
 @page {{ size: 16in 9in; margin: 0; }}
 * {{ box-sizing: border-box; }}
-body {{ margin: 0; background: #f4efe4; color: #17211c; font-family: Avenir Next, Trebuchet MS, sans-serif; }}
-.slide {{ page-break-after: always; width: 16in; height: 9in; padding: .44in; position: relative; overflow: hidden; background: radial-gradient(circle at 12% 18%, #fff7d6 0, transparent 28%), linear-gradient(135deg, #f7efe1 0%, #d7e6dc 100%); }}
-.slide::after {{ content: ""; position: absolute; right: -.5in; bottom: -.55in; width: 5.4in; height: 5.4in; border-radius: 50%; background: rgba(25, 92, 75, .12); }}
+body {{ margin: 0; background: #f7f8f4; color: #17211c; font-family: Avenir Next, Trebuchet MS, sans-serif; }}
+.slide {{ page-break-after: always; width: 16in; height: 9in; padding: .44in; position: relative; overflow: hidden; background: linear-gradient(135deg, #f8f5ec 0%, #e4f0ee 58%, #f5e5d8 100%); }}
 .slide-ribbon {{ position: absolute; top: .2in; right: .35in; font-size: 11pt; letter-spacing: .08em; text-transform: uppercase; color: #41564f; }}
 .slide-grid {{ display: grid; grid-template-columns: 5.05in 1fr; gap: .36in; height: 100%; align-items: stretch; }}
 .slide-copy {{ border-left: .08in solid #bb5a3a; padding: .38in .18in .2in .28in; z-index: 1; }}
@@ -419,14 +451,28 @@ li {{ font-size: 15pt; line-height: 1.25; padding-left: .2in; position: relative
 li::before {{ content: ""; position: absolute; left: 0; top: .28em; width: .08in; height: .08in; border-radius: 50%; background: #bb5a3a; }}
 .visual-frame {{ z-index: 1; min-height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; display: flex; align-items: center; justify-content: center; overflow: hidden; }}
 .embedded-svg svg {{ width: 100%; max-height: 7.25in; display: block; }}
-.module-orbit {{ width: 100%; height: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: .18in; align-content: center; }}
-.module-orbit strong {{ grid-column: 1 / -1; font: 700 34pt Georgia, serif; color: #195c4b; }}
-.module-orbit span, .module-orbit em, .step-card, .term-grid div, .flow-cell, .contrast div {{ background: #fff9ea; border: 1px solid rgba(187,90,58,.35); border-radius: .16in; padding: .16in; font-size: 15pt; line-height: 1.22; }}
-.module-orbit em {{ grid-column: 1 / -1; color: #66422f; }}
+.module-pathway {{ width: 100%; display: grid; gap: .18in; }}
+.module-pathway header, .module-pathway footer {{ background: #102820; color: #fff7d6; border-radius: .16in; padding: .16in .2in; }}
+.module-pathway header strong {{ display: block; font: 800 32pt Georgia, serif; }}
+.module-pathway header span, .module-pathway footer span {{ display: block; font-size: 16pt; }}
+.module-pathway footer b {{ color: #f2bf4e; margin-right: .1in; }}
+.path-nodes {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: .11in; align-items: stretch; }}
+.path-node {{ min-height: 2.25in; display: grid; align-content: start; gap: .12in; background: #fff9ea; border: 1px solid rgba(187,90,58,.38); border-top: .09in solid #1f7a6d; border-radius: .12in; padding: .14in; }}
+.path-node b {{ width: .42in; height: .42in; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #bb5a3a; color: #fffaf0; font-size: 12pt; }}
+.path-node span {{ font-size: 14pt; line-height: 1.18; }}
+.step-card, .term-grid div, .flow-cell, .contrast div, .sequence-cell, .quiz-card {{ background: #fff9ea; border: 1px solid rgba(187,90,58,.35); border-radius: .16in; padding: .16in; font-size: 15pt; line-height: 1.22; }}
 .ordered-cards {{ display: grid; gap: .12in; width: 100%; }}
-.step-card b, .term-grid b, .flow-cell b, .contrast b {{ display: block; color: #bb5a3a; margin-bottom: .04in; text-transform: uppercase; letter-spacing: .06em; font-size: 10pt; }}
+.step-card b, .term-grid b, .flow-cell b, .contrast b, .sequence-cell b, .quiz-card b {{ display: block; color: #bb5a3a; margin-bottom: .04in; text-transform: uppercase; letter-spacing: .06em; font-size: 10pt; }}
 .term-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: .14in; width: 100%; }}
-.term-grid span, .step-card span, .flow-cell span, .contrast span {{ display: block; }}
+.term-grid span, .step-card span, .flow-cell span, .contrast span, .sequence-cell span, .quiz-card span, .quiz-card em {{ display: block; }}
+.sequence-map {{ display: grid; grid-template-columns: repeat(5, 1fr); gap: .12in; width: 100%; }}
+.sequence-cell {{ min-height: 5.6in; display: grid; align-content: start; gap: .08in; border-top: .09in solid #245f73; }}
+.sequence-cell strong {{ color: #102820; font-size: 14pt; line-height: 1.15; }}
+.sequence-cell span {{ color: #41564f; font-size: 12.5pt; line-height: 1.18; }}
+.quiz-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: .18in; width: 100%; }}
+.quiz-card {{ min-height: 2.4in; border-left: .1in solid #245f73; }}
+.quiz-card span {{ color: #1f7a6d; font-weight: 800; margin-bottom: .08in; }}
+.quiz-card em {{ color: #25352f; font-style: normal; font-size: 13.5pt; }}
 .flow-diagram, .contrast {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: .18in; align-items: center; width: 100%; }}
 .contrast {{ grid-template-columns: repeat(2, 1fr); }}
 .speaker-note {{ position: absolute; left: .55in; right: .55in; bottom: .18in; z-index: 2; background: #102820; color: #fff7d6; border-radius: .12in; padding: .11in .16in; font-size: 11pt; }}

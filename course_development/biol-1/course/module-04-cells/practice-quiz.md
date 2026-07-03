@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Cell theory in Module 04?
-   - A. Principle that organisms are made of cells and cells come from cells.
-   - B. Cell without a membrane-bound nucleus.
-   - C. Cell with a membrane-bound nucleus and organelles.
-   - D. Specialized cell structure with a particular job.
-   - Answer: A
-   - Why: Cell theory names the module's starting idea: cell theory must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Prokaryotic and eukaryotic organization"?
-   - A. State the core claims of cell theory.
-   - B. Compare prokaryotic and eukaryotic cells using structure and scale.
-   - C. Explain how membranes and compartments support cell function.
-   - D. Match major organelles to their roles.
+1. Which statement is part of cell theory?
+   - A. Cells arise only from nonliving matter.
+   - B. All organisms are made of cells, and cells come from existing cells.
+   - C. Cells are larger than the organisms they build.
+   - D. Only animals are made of cells.
    - Answer: B
-   - Why: This objective asks students to reason through prokaryotic and eukaryotic organization as part of the module's mechanism.
+   - Why: Cell theory states that organisms are made of cells and that cells arise from pre-existing cells.
 
-3. How should lab-04_liquid-chemistry.md support Module 04?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for liquid chemistry conditions that affect cellular systems.
-   - D. By removing the need to compare observations or predictions.
-   - Answer: C
-   - Why: The lab is the evidence surface for cell theory with compartmental structure and microscopy evidence.
-
-4. Which retrieval move best prepares a student for Cells?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: What does cell theory claim? Then check the answer against terms, evidence, and lab-04_liquid-chemistry.md.
+2. What is the clearest structural difference between a prokaryotic and a eukaryotic cell?
+   - A. Only prokaryotes contain DNA.
+   - B. Only eukaryotes are alive.
+   - C. Prokaryotes are always larger.
+   - D. Eukaryotes have a membrane-bound nucleus; prokaryotes do not.
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: The defining feature is the membrane-bound nucleus (and other organelles) found in eukaryotes but not prokaryotes.
+
+3. A cell is packed with mitochondria. This most likely means the cell:
+   - A. has a high demand for usable energy
+   - B. does not use any energy
+   - C. performs only photosynthesis
+   - D. contains no DNA
+   - Answer: A
+   - Why: Mitochondria harvest usable energy, so energy-hungry cells such as muscle cells contain many of them.
+
+4. Which structure would you find in a plant cell but not an animal cell?
+   - A. Nucleus
+   - B. Mitochondrion
+   - C. Chloroplast
+   - D. Cell membrane
+   - Answer: C
+   - Why: Chloroplasts carry out photosynthesis and are found in plants and algae, not in animal cells.

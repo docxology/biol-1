@@ -10,5 +10,5 @@
   - Purpose: What counts as life -> Science as a way of testing -> Organization from cells to ecosystems -> Evidence, variables, and measurement
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 01 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 01: Biology - The Study of Life Retrieval and Lab Check** (`resources/generated/module-01-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-01_measurement-methods.md supplies evidence for measurement choices and sources of error.
+  - Purpose: lab-01_measurement-methods.md supplies evidence for measurement choices, repeated observations, and error sources.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 01 retrieval prompts with answer checks, required terms, and the linked lab.

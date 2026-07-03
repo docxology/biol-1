@@ -3,34 +3,34 @@
 
 Use this low-stakes quiz after reviewing the module keys and learning questions.
 
-1. Which statement best defines Evolution in Module 12?
-   - A. Change in heritable traits of populations across generations.
-   - B. Nonrandom differences in survival or reproduction tied to heritable traits.
-   - C. Heritable trait shaped by selection in a context.
-   - D. Relative reproductive success.
-   - Answer: A
-   - Why: Evolution names the module's starting idea: historical explanation for adaptation must be explained with evidence, not memorized alone.
-
-2. Which learning goal best supports the topic "Variation and heritability"?
-   - A. Explain natural selection using variation, heritability, and reproductive success.
-   - B. Define fitness in evolutionary terms.
-   - C. Distinguish individual change from population evolution.
-   - D. Use multiple evidence types to support common ancestry.
-   - Answer: B
-   - Why: This objective asks students to reason through variation and heritability as part of the module's mechanism.
-
-3. How should lab-12_darwin-evolution.md support Module 12?
-   - A. By replacing evidence with vocabulary copying.
-   - B. By adding unrelated facts that do not test the module claim.
-   - C. By giving evidence for Darwinian evolution evidence from trait and environment comparisons.
-   - D. By removing the need to compare observations or predictions.
+1. Natural selection requires all of the following EXCEPT:
+   - A. variation among individuals
+   - B. traits that are heritable
+   - C. every individual reproducing at an equal rate
+   - D. differences in survival or reproduction
    - Answer: C
-   - Why: The lab is the evidence surface for natural selection from variation, heritability, fitness, and ancestry evidence.
+   - Why: Selection needs variation, heritability, and differences in reproductive success. Equal reproduction by all individuals is exactly what selection is not.
 
-4. Which retrieval move best prepares a student for Darwin and Evolution?
-   - A. Copy the term list once and stop.
-   - B. Skip mechanisms and memorize isolated examples.
-   - C. Read the quiz answers before attempting the questions.
-   - D. Answer: What are the required ingredients for natural selection? Then check the answer against terms, evidence, and lab-12_darwin-evolution.md.
+2. In evolutionary terms, an organism's "fitness" means its:
+   - A. relative reproductive success in its environment
+   - B. physical strength
+   - C. overall body size
+   - D. top running speed
+   - Answer: A
+   - Why: Fitness is about passing on genes through reproductive success, not about athletic ability.
+
+3. The forelimb bones of humans, whales, and bats share the same underlying arrangement. This is evidence of:
+   - A. identical environments
+   - B. no relationship at all
+   - C. learning during each animal's life
+   - D. common ancestry shown by homologous structures
    - Answer: D
-   - Why: Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it.
+   - Why: Homologous structures share an inherited body plan from a common ancestor, which supports common descent.
+
+4. "An individual giraffe stretched its neck during its life and so it evolved a longer neck." Why is this wrong?
+   - A. Giraffes actually have short necks.
+   - B. Individuals do not evolve; populations evolve as heritable trait frequencies change over generations.
+   - C. Evolution is completed within a single lifetime.
+   - D. Stretching directly rewrites an animal's DNA.
+   - Answer: B
+   - Why: Evolution is a population-level change across generations, not a change acquired within one individual's lifetime.

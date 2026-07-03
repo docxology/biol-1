@@ -10,5 +10,5 @@
   - Purpose: DNA structure -> Replication -> Transcription -> Translation
   - Prompt metadata: Deterministic BIOL-1 SVG tracing the Module 07 reasoning sequence from inputs through evidence, feedback, and assessment-ready outputs.
 - **Module 07: Molecular Genetics Retrieval and Lab Check** (`resources/generated/module-07-retrieval-card.svg`) - retrieval-card
-  - Purpose: lab-07_molecular-genetics.md supplies evidence for molecular genetics evidence from sequence and expression reasoning.
+  - Purpose: lab-07_molecular-genetics.md supplies evidence for sequence, transcription, translation, and gene-expression evidence.
   - Prompt metadata: Deterministic BIOL-1 SVG pairing Module 07 retrieval prompts with answer checks, required terms, and the linked lab.

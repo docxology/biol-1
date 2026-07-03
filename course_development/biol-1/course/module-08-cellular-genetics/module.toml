@@ -42,28 +42,28 @@ name = "Nondisjunction"
 definition = "Failure of chromosomes to separate correctly."
 
 [[practice_quiz]]
-question = "Which statement best defines Chromosome in Module 08?"
-options = ["DNA-protein structure carrying genes.", "Ordered sequence of cell growth, DNA replication, and division.", "Nuclear division producing identical daughter nuclei.", "Division process producing haploid gametes."]
-answer = "A"
-explanation = "Chromosome names the module's starting idea: chromosomes and cell cycle must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"Mitosis for growth and repair\"?"
-options = ["Relate chromosomes to DNA organization.", "Compare the purpose and products of mitosis and meiosis.", "Explain how meiosis reduces chromosome number.", "Describe how crossing over and independent assortment increase variation."]
+question = "What is the main product of mitosis?"
+options = ["Four haploid gametes", "Two genetically identical daughter cells", "A single haploid cell", "Cells with randomly scrambled DNA"]
 answer = "B"
-explanation = "This objective asks students to reason through mitosis for growth and repair as part of the module's mechanism."
+explanation = "Mitosis produces two genetically identical daughter cells for growth and repair. Meiosis makes four haploid gametes."
 
 [[practice_quiz]]
-question = "How should lab-08_cellular-genetics.md support Module 08?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for cellular genetics evidence from chromosome models.", "By removing the need to compare observations or predictions."]
-answer = "C"
-explanation = "The lab is the evidence surface for chromosome behavior across mitosis, meiosis, variation, and errors."
-
-[[practice_quiz]]
-question = "Which retrieval move best prepares a student for Cellular Genetics?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: Why do cells package DNA into chromosomes? Then check the answer against terms, evidence, and lab-08_cellular-genetics.md."]
+question = "Meiosis reduces the chromosome number by using:"
+options = ["two rounds of DNA copying and no division", "no DNA replication at all", "extra chromosomes added each cycle", "one round of DNA copying followed by two divisions"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "One replication followed by two divisions halves the chromosome number, producing haploid gametes."
+
+[[practice_quiz]]
+question = "Crossing over and independent assortment both act to:"
+options = ["increase genetic variation among gametes", "produce identical gametes every time", "occur only during mitosis", "remove all differences between offspring"]
+answer = "A"
+explanation = "Both processes shuffle alleles during meiosis, generating genetic variation among offspring."
+
+[[practice_quiz]]
+question = "If chromosomes fail to separate correctly during meiosis (nondisjunction), a resulting gamete may have:"
+options = ["exactly the normal number every time", "no DNA whatsoever", "an extra or a missing chromosome", "twice as many cells"]
+answer = "C"
+explanation = "Nondisjunction gives a gamete an abnormal chromosome count, which can lead to conditions such as trisomy."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-08_cellular-genetics.md focuses students on cellular genetics evidence from chromosome models."
+detail = "lab-08_cellular-genetics.md focuses students on chromosome movement models that distinguish mitosis from meiosis."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-08-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 08 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Chromosome", "Cell cycle", "Mitosis", "Meiosis", "Gamete"]
-lab_connection = "lab-08_cellular-genetics.md supplies evidence for cellular genetics evidence from chromosome models."
+lab_connection = "lab-08_cellular-genetics.md supplies evidence for chromosome movement models that distinguish mitosis from meiosis."
 
 [[generated_images.prompts]]
 prompt = "Why do cells package DNA into chromosomes?"

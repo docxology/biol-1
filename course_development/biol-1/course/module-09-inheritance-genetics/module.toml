@@ -42,28 +42,28 @@ name = "Pedigree"
 definition = "Family diagram used to infer inheritance patterns."
 
 [[practice_quiz]]
-question = "Which statement best defines Gene in Module 09?"
-options = ["DNA sequence contributing to a trait or functional product.", "Variant form of a gene.", "Allele combination of an organism.", "Observable trait or characteristic."]
-answer = "A"
-explanation = "Gene names the module's starting idea: alleles and genotype must be explained with evidence, not memorized alone."
-
-[[practice_quiz]]
-question = "Which learning goal best supports the topic \"Mendelian patterns\"?"
-options = ["Distinguish gene, allele, genotype, and phenotype.", "Use segregation to explain monohybrid inheritance.", "Build and interpret Punnett-square probabilities.", "Recognize inheritance patterns beyond complete dominance."]
-answer = "B"
-explanation = "This objective asks students to reason through mendelian patterns as part of the module's mechanism."
-
-[[practice_quiz]]
-question = "How should lab-09_inheritance-genetics.md support Module 09?"
-options = ["By replacing evidence with vocabulary copying.", "By adding unrelated facts that do not test the module claim.", "By giving evidence for inheritance genetics evidence from crosses and family patterns.", "By removing the need to compare observations or predictions."]
+question = "An organism's genotype is its:"
+options = ["set of observable physical traits", "surrounding environment", "combination of alleles", "total number of cells"]
 answer = "C"
-explanation = "The lab is the evidence surface for allele segregation with probability, phenotype prediction, and pedigree evidence."
+explanation = "Genotype is the combination of alleles an organism carries. Phenotype is the observable trait that results."
 
 [[practice_quiz]]
-question = "Which retrieval move best prepares a student for Inheritance Genetics?"
-options = ["Copy the term list once and stop.", "Skip mechanisms and memorize isolated examples.", "Read the quiz answers before attempting the questions.", "Answer: How are genes and alleles related? Then check the answer against terms, evidence, and lab-09_inheritance-genetics.md."]
+question = "Two heterozygotes are crossed (Aa x Aa). What fraction of offspring are expected to show the recessive trait?"
+options = ["1/4", "1/2", "3/4", "0"]
+answer = "A"
+explanation = "Aa x Aa gives a 1 AA : 2 Aa : 1 aa ratio. Only the aa offspring (1/4) show the recessive trait."
+
+[[practice_quiz]]
+question = "A heterozygote (Aa) shows the dominant trait because:"
+options = ["it carries no recessive allele", "recessive alleles are destroyed", "both alleles are always expressed equally", "one dominant allele is enough to mask the recessive allele"]
 answer = "D"
-explanation = "Retrieval is strongest when students answer first, cite evidence, and revise the explanation after checking it."
+explanation = "In simple dominance, one dominant allele determines the phenotype. The recessive allele is present but masked."
+
+[[practice_quiz]]
+question = "What is a pedigree used for?"
+options = ["measuring the size of a cell", "tracing how a trait passes through a family to infer its inheritance", "editing genes directly", "counting chromosomes in soil samples"]
+answer = "B"
+explanation = "A pedigree diagrams family relationships and phenotypes so you can reason about how a trait is inherited."
 
 [[generated_images]]
 id = "concept-map"
@@ -89,7 +89,7 @@ cluster = "Mechanism"
 [[generated_images.nodes]]
 id = "evidence"
 label = "Lab evidence"
-detail = "lab-09_inheritance-genetics.md focuses students on inheritance genetics evidence from crosses and family patterns."
+detail = "lab-09_inheritance-genetics.md focuses students on crosses, pedigrees, and probability patterns in inheritance."
 cluster = "Evidence"
 
 [[generated_images.nodes]]
@@ -183,7 +183,7 @@ kind = "retrieval-card"
 output = "resources/generated/module-09-retrieval-card.svg"
 prompt = "Deterministic BIOL-1 SVG pairing Module 09 retrieval prompts with answer checks, required terms, and the linked lab."
 terms = ["Gene", "Allele", "Genotype", "Phenotype", "Dominant"]
-lab_connection = "lab-09_inheritance-genetics.md supplies evidence for inheritance genetics evidence from crosses and family patterns."
+lab_connection = "lab-09_inheritance-genetics.md supplies evidence for crosses, pedigrees, and probability patterns in inheritance."
 
 [[generated_images.prompts]]
 prompt = "How are genes and alleles related?"
