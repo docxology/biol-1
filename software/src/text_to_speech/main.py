@@ -1,5 +1,6 @@
 """Main functions for text-to-speech generation."""
 
+import logging
 from pathlib import Path
 from typing import List, Optional
 
@@ -11,6 +12,8 @@ from .utils import (
     text_to_speech_audio,
 )
 from src.shared.file_utils import ensure_output_directory
+
+logger = logging.getLogger(__name__)
 
 
 def generate_speech(
@@ -92,7 +95,7 @@ def batch_generate_speech(input_dir: str, output_dir: str) -> List[str]:
             output_files.append(str(output_path))
         except Exception as e:
             # Log error but continue with other files
-            print(f"Error generating speech for {text_file}: {e}")
+            logger.error("Error generating speech for %s: %s", text_file, e)
             continue
 
     return output_files

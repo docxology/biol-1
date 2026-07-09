@@ -9,7 +9,7 @@ import requests
 from . import config
 
 
-def get_canvas_api_url(domain: str, endpoint: str, **kwargs) -> str:
+def get_canvas_api_url(domain: str, endpoint: str, **kwargs: object) -> str:
     """Build Canvas API URL.
 
     Args:
@@ -30,7 +30,7 @@ def make_canvas_request(
     url: str,
     api_key: str,
     headers: Optional[Dict[str, str]] = None,
-    **kwargs,
+    **kwargs: object,
 ) -> requests.Response:
     """Make a request to Canvas API with rate limiting.
 

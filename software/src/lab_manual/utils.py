@@ -175,7 +175,7 @@ def expand_fillable_fields(html: str) -> str:
     )
     
     # Replace {fill:textarea rows=N} with textarea
-    def textarea_replacement(match: re.Match) -> str:
+    def textarea_replacement(match: re.Match[str]) -> str:
         attrs = match.group(1) if match.group(1) else ""
         rows_match = re.search(r"rows=(\d+)", attrs)
         rows = rows_match.group(1) if rows_match else "3"
@@ -188,7 +188,7 @@ def expand_fillable_fields(html: str) -> str:
     )
     
     # Replace {fill:drawing} with drawing area box
-    def drawing_replacement(match: re.Match) -> str:
+    def drawing_replacement(match: re.Match[str]) -> str:
         attrs = match.group(1) if match.group(1) else ""
         
         # Parse height attribute (default 300px)

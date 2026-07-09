@@ -2,7 +2,7 @@
 
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from ..markdown_to_pdf.main import render_markdown_to_pdf
 from ..markdown_to_pdf.utils import markdown_to_html
@@ -171,13 +171,13 @@ class _MarkdownHtmlToDocx(HTMLParser):
     BLOCK_TAGS = {"p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "pre"}
     EMPHASIS_TAGS = {"strong", "b", "em", "i", "code", "u"}
 
-    def __init__(self, doc) -> None:
+    def __init__(self, doc: Any) -> None:
         super().__init__(convert_charrefs=True)
         self._doc = doc
         self._block_stack: list[str] = []
-        self._list_stack: list[dict] = []
+        self._list_stack: list[dict[str, Any]] = []
         self._fmt: dict[str, int] = {"bold": 0, "italic": 0, "code": 0, "underline": 0}
-        self._runs: list[tuple[str, dict]] = []
+        self._runs: list[tuple[str, dict[str, Any]]] = []
         self._in_table = False
         self._table_rows: list[list[str]] = []
         self._current_row: list[str] = []
@@ -188,7 +188,7 @@ class _MarkdownHtmlToDocx(HTMLParser):
         if self._runs and self._block_stack:
             self._flush_block(self._block_stack[-1])
 
-    def handle_starttag(self, tag: str, attrs) -> None:
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
         if tag in ("ol", "ul"):
             self._list_stack.append({"type": tag, "index": 0})
             return
@@ -268,7 +268,7 @@ class _MarkdownHtmlToDocx(HTMLParser):
             return "underline"
         return "code"
 
-    def _snapshot_fmt(self) -> dict:
+    def _snapshot_fmt(self) -> dict[str, bool]:
         return {k: v > 0 for k, v in self._fmt.items()}
 
     def _list_prefix(self) -> str:
@@ -391,7 +391,7 @@ def convert_docx_to_markdown(input_path: Path) -> str:
     return "\n".join(markdown_lines)
 
 
-def _extract_formatted_text(paragraph) -> str:
+def _extract_formatted_text(paragraph: Any) -> str:
     """Extract text from paragraph with formatting preserved as Markdown.
 
     Args:

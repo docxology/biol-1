@@ -71,7 +71,7 @@ def get_relative_path(target: Path, base: Path) -> str:
         return str(target)
 
 
-def extract_quiz_questions(markdown_content: str) -> List[dict]:
+def extract_quiz_questions(markdown_content: str) -> List[Dict[str, Any]]:
     """Extract quiz questions from markdown content.
 
     Looks for sections with "Review Questions" or "Practice Problems".
@@ -120,7 +120,7 @@ def extract_quiz_questions(markdown_content: str) -> List[dict]:
     return questions
 
 
-def parse_questions_json(questions_file: Path) -> List[Dict]:
+def parse_questions_json(questions_file: Path) -> List[Dict[str, Any]]:
     """Parse questions from JSON file.
 
     Args:

@@ -75,7 +75,7 @@ def get_relative_output_path(source_file: Path, source_dir: Path, output_dir: Pa
     return output_file
 
 
-def get_courses_to_process(course_arg: str) -> List[tuple]:
+def get_courses_to_process(course_arg: str) -> List[tuple[str, str]]:
     """Get list of courses to process based on argument.
 
     Args:
@@ -113,7 +113,7 @@ def get_formats_to_process(formats_arg: str) -> List[str]:
 
 def generate_dry_run_report(
     repo_root: Path,
-    courses: List[tuple],
+    courses: List[tuple[str, str]],
     formats: List[str],
     module_filter: Optional[int] = None,
     generate_website: bool = True,

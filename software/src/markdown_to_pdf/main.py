@@ -1,5 +1,6 @@
 """Main functions for Markdown to PDF conversion."""
 
+import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -10,6 +11,8 @@ from .utils import (
     markdown_to_html,
 )
 from src.shared.file_utils import ensure_output_directory, read_markdown_file
+
+logger = logging.getLogger(__name__)
 
 
 def render_markdown_to_pdf(
@@ -82,7 +85,7 @@ def batch_render_markdown(directory: str, output_dir: str) -> List[str]:
             output_files.append(str(output_path))
         except Exception as e:
             # Log error but continue with other files
-            print(f"Error converting {md_file}: {e}")
+            logger.error("Error converting %s: %s", md_file, e)
             continue
 
     return output_files

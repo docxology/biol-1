@@ -4,7 +4,7 @@
 >
 > **Package**: `cr-bio-software` · **Current version**: `0.1.0` · **Date**: 2026-02-23
 >
-> **Scope**: Package-level engineering roadmap for all 16 packages under `software/src/`.  
+> **Scope**: Package-level engineering roadmap for all 18 packages under `software/src/`.  
 > This is *not* a course-content to-do; it concerns the Python software package only.
 
 ---
@@ -37,25 +37,25 @@
 
 ### v0.1.1 — Test & Logging Hygiene
 
-- [ ] Replace all bare `print()` calls in `batch_processing`, `speech_to_text`, `markdown_to_pdf` with `logging` calls
+- [x] Replace all bare `print()` calls in `batch_processing`, `speech_to_text`, `markdown_to_pdf` with `logging` calls
 - [ ] Add `conftest.py` fixture for isolated `tmp_path` usage across all test modules
 - [ ] Add missing tests for `validate_published_directory` edge cases (missing course dir, partial publish)
-- [ ] Pin and document all `pyproject.toml` dependency lower bounds with rationale comments
-- [ ] Fix skipped test root cause: document each of the 6 skipped tests with `@pytest.mark.skip(reason="…")`
+- [x] Pin and document all `pyproject.toml` dependency lower bounds with rationale comments
+- [x] Fix skipped test root cause: document each of the 6 skipped tests with `@pytest.mark.skip(reason="…")`
 
 ### v0.1.2 — Type Safety Pass
 
-- [ ] Run `mypy --strict` against all `src/` packages; fix all errors in Layers 0–2
-- [ ] Add `py.typed` marker file to `src/` to signal PEP 561 compliance
-- [ ] Fix Any-typed return values in `batch_processing/main.py` (`generate_module_media`, `process_module_by_type`)
-- [ ] Annotate `publish/main.py::publish_course` `publish_root` arg as `Optional[str]`
+- [x] Run `mypy --strict` against all `src/` packages; fix all errors in Layers 0–2
+- [x] Add `py.typed` marker file to `src/` to signal PEP 561 compliance
+- [x] Fix Any-typed return values in `batch_processing/main.py` (`generate_module_media`, `process_module_by_type`)
+- [x] Annotate `publish/main.py::publish_course` `publish_root` arg as `Optional[str]`
 
 ### v0.1.3 — Coverage Push to 85%
 
-- [ ] Identify and fill gaps in `format_conversion` (conversion error paths)
-- [ ] Add tests for `module_organization` edge cases: zero-module course, non-sequential module numbers
-- [ ] Add tests for `html_website` quiz-rendering logic (matching, true/false branches)
-- [ ] Add tests for `schedule` batch processing with malformed Markdown
+- [x] Identify and fill gaps in `format_conversion` (conversion error paths)
+- [x] Add tests for `module_organization` edge cases: zero-module course, non-sequential module numbers
+- [x] Add tests for `html_website` quiz-rendering logic (matching, true/false branches)
+- [x] Add tests for `schedule` batch processing with malformed Markdown
 - [ ] Achieve ≥ 85% total coverage (baseline: run `pytest --cov` and record in commit message)
 
 ---
@@ -170,22 +170,22 @@
 
 | Module | Layer | Known Gap | Target Version |
 |--------|-------|-----------|---------------|
-| `speech_to_text` | 1 | No offline fallback; print() calls | v0.2.0 |
+| `speech_to_text` | 1 | No offline fallback | v0.2.0 |
 | `canvas_integration` | 4 | Live API needed for tests; no retry | v0.4.0 |
-| `format_conversion` | 2 | Missing error-path tests | v0.1.3 |
-| `html_website` | 3 | Quiz matching validation is placeholder | v0.1.3 |
-| `batch_processing` | 3 | print() calls; no course-level status API | v0.2.0 |
+| `format_conversion` | 2 | ~~Missing error-path tests~~ ✅ fixed v0.1.3 | — |
+| `html_website` | 3 | ~~Quiz matching validation is placeholder~~ ✅ fixed v0.1.3 | — |
+| `batch_processing` | 3 | No course-level status API | v0.2.0 |
 | `schedule` | 3 | No calendar export | v0.3.0 |
 | `module_organization` | 0 | No rename/renumber utility | v0.3.0 |
 | `content_processing` | 0 | No learning-objective extractor | v0.3.0 |
 | `validation` | 0 | `validate_published_directory` naming inconsistency | v0.2.0 |
-| `markdown_to_pdf` | 1 | print() calls in batch loop | v0.1.1 |
+| `markdown_to_pdf` | 1 | ~~print() calls in batch loop~~ ✅ fixed v0.1.1 | — |
 
 ---
 
 ## Completed (v0.1.0)
 
-- [x] Layered architecture (Layers 0–4) with clean public interfaces; 16 packages under `src/`
+- [x] Layered architecture (Layers 0–4) with clean public interfaces; 18 packages under `src/`
 - [x] Broad pytest coverage across packages (re-verify with `pytest --cov` after major changes)
 - [x] 6-stage publish pipeline (Clean → Generate → Publish → Extras → Flatten → Validate)
 - [x] Selective Rendering Boundaries (`max_module`, `max_lab`) in pipeline and validation

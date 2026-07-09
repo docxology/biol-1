@@ -3,7 +3,7 @@
 from typing import Dict
 
 # Supported format conversions
-SUPPORTED_CONVERSIONS: Dict[str, list] = {
+SUPPORTED_CONVERSIONS: Dict[str, list[str]] = {
     "md": ["pdf", "html", "docx"],
     "markdown": ["pdf", "html", "docx"],
     "html": ["pdf"],

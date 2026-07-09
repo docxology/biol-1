@@ -135,7 +135,7 @@ def batch_convert(
     return output_files
 
 
-def get_supported_formats() -> Dict[str, list]:
+def get_supported_formats() -> Dict[str, list[str]]:
     """Get list of supported file formats.
 
     Returns:

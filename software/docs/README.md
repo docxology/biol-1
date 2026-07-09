@@ -44,7 +44,7 @@ uv run pytest --cov=src --cov-report=term-missing   # coverage on default run (p
 
 The suite follows the **Real Methods Policy**: production code has no mocks, stubs, or fakes; tests use real files/libraries by default and may patch only documented external or orchestration boundaries ([`.cursorrules`](../../.cursorrules), [docs/AGENTS.md](AGENTS.md)).
 
-Structural facts (update if layout changes): **`software/src/`** holds **16** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
+Structural facts (update if layout changes): **`software/src/`** holds **18** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
 
 ### Active Course
 
@@ -242,14 +242,14 @@ mp3  = false
 
 [publish.courses.biol-1]
 enabled = true
-max_module = 15
-max_lab = 17
+max_module = 16
+max_lab = 16
 include_labs = true
 include_dashboards = true
 include_practice_tests = true
 
 [publish.courses.biol-8]
-enabled = true
+enabled = false
 max_module = 17
 max_lab = 18
 include_exams = true      # Local render only; exams never pushed to public trees

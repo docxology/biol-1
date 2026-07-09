@@ -3,7 +3,7 @@
 import re
 import logging
 from pathlib import Path
-from typing import Optional, List
+from typing import Any, List, Optional
 
 from . import config
 from .utils import extract_questions_from_sectioned, format_as_continuous
@@ -64,7 +64,7 @@ def renumber_questions_in_course(
     module_filter: Optional[str] = None,
     dry_run: bool = False,
     verbose: bool = False
-) -> dict:
+) -> dict[str, Any]:
     """Renumber questions.md files in specified courses.
 
     Args:

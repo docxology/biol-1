@@ -55,7 +55,7 @@ STEP_EMOJI = {
 }
 
 
-def format_summary(counts: dict, show_zero: bool = False) -> str:
+def format_summary(counts: dict[str, int], show_zero: bool = False) -> str:
     """Format output counts as a compact emoji-annotated string.
     
     Args:
@@ -78,7 +78,7 @@ def format_summary(counts: dict, show_zero: bool = False) -> str:
     return "  ".join(parts) if parts else "—"
 
 
-def format_module_result(module_name: str, duration: float, counts: dict) -> str:
+def format_module_result(module_name: str, duration: float, counts: dict[str, int]) -> str:
     """Format a module processing result as a compact one-liner.
     
     Args:

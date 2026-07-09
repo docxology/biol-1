@@ -1,6 +1,6 @@
 """Configuration for validation module."""
 
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from src.shared.course_config import SUPPORTED_OUTPUT_FORMATS, validate_supported_formats
 
@@ -120,7 +120,7 @@ def get_lab_output_formats(formats: Optional[List[str]] = None) -> List[str]:
 #   - exempt: lab numbers that are intentionally undocumented in the
 #     dashboard set (typically because the only `lab-NN_*.md` is a
 #     supplemental/follow-up page).
-COURSE_CONFIG: Dict[str, Dict] = {
+COURSE_CONFIG: Dict[str, Dict[str, Any]] = {
     "biol-1": {
         "expected_modules": 16,
         "module_prefix": "module-",
@@ -142,7 +142,7 @@ COURSE_CONFIG: Dict[str, Dict] = {
 }
 
 
-def get_dashboard_config(course_name: str) -> Dict:
+def get_dashboard_config(course_name: str) -> Dict[str, Any]:
     """Return the per-course dashboard invariant config (defaults if missing).
 
     Args:

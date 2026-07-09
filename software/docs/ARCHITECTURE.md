@@ -318,7 +318,7 @@ See [Module Independence](#module-independence) for details on standalone usage.
 
 ```text
 software/
-├── src/                              # Source code (16 packages)
+├── src/                              # Source code (18 packages)
 │   ├── __init__.py
 │   ├── batch_processing/             # Module batch operations
 │   ├── canvas_integration/           # Canvas LMS upload
@@ -329,10 +329,12 @@ software/
 │   ├── lab_manual/                   # Rich lab manual rendering
 │   ├── legacy_import/                # Legacy import utilities
 │   ├── markdown_to_pdf/              # PDF generation
+│   ├── module_content/               # Typed module.toml → generated Markdown/SVG
 │   ├── module_organization/          # Directory structure
 │   ├── publish/                      # Course publishing
 │   ├── schedule/                     # Schedule processing
 │   ├── shared/                       # Cross-cutting file_utils helpers
+│   ├── slide_deck/                   # Generated slide decks from module.toml
 │   ├── speech_to_text/               # Audio transcription
 │   ├── text_to_speech/               # Audio generation
 │   └── validation/                   # Output validation

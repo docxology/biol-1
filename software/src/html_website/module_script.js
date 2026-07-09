@@ -153,9 +153,21 @@ function checkQuestion(qid, type) {
     } else if(type === 'free_response') {
         isCorrect = true; // Free response always valid
     } else if(type === 'matching') {
-        // TODO: implement matching question type validation
-        // Currently always marks matching answers as correct
+        // Validate each matching pair: the selected option index must
+        // equal the hidden correct-match value (item index == correct option).
+        const selects = document.querySelectorAll(`#question-${qid} .matching-select`);
+        if(!selects.length || Object.keys(state.answers).length < selects.length) {
+            feedback.textContent = "Please match all pairs first.";
+            feedback.className = "question-feedback show info";
+            return;
+        }
         isCorrect = true;
+        selects.forEach((s, i) => {
+            const corr = document.getElementById(`correct-match-${qid}-${i}`);
+            if(corr && state.answers[i] !== parseInt(corr.value)) {
+                isCorrect = false;
+            }
+        });
     }
 
     if(isCorrect) {

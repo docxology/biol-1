@@ -430,7 +430,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 ```text
 software/
-├── src/              # Source code (16 packages)
+├── src/              # Source code (18 packages)
 │   ├── batch_processing/
 │   ├── canvas_integration/
 │   ├── content_processing/
@@ -440,10 +440,12 @@ software/
 │   ├── lab_manual/
 │   ├── legacy_import/
 │   ├── markdown_to_pdf/
+│   ├── module_content/
 │   ├── module_organization/
 │   ├── publish/
 │   ├── schedule/
 │   ├── shared/                # Cross-cutting helpers (file_utils, …)
+│   ├── slide_deck/
 │   ├── speech_to_text/
 │   ├── text_to_speech/
 │   └── validation/

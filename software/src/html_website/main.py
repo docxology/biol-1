@@ -81,7 +81,7 @@ def generate_module_website(
     sidebar_links = []
 
     # Helper to create section HTML
-    def create_section(section_id, title, content):
+    def create_section(section_id: str, title: str, content: str) -> str:
         section_html = f'<section id="{section_id}">\n'
         section_html += f'<div class="section-header" onclick="toggleSection(\'{section_id}\')">\n'
         section_html += f'<h2>{title}</h2>\n'
@@ -443,8 +443,20 @@ def generate_module_website(
         } else if(type === 'free_response') {
             isCorrect = true; // Free response always valid
         } else if(type === 'matching') {
-            // Basic matching validation check
-             isCorrect = true; // Placeholder for complex matching logic re-implementation if needed
+            // Validate each matching pair against the hidden correct-match values
+            const selects = document.querySelectorAll(`#question-${qid} .matching-select`);
+            if(!selects.length || Object.keys(state.answers).length < selects.length) {
+                feedback.textContent = "Please match all pairs first.";
+                feedback.className = "question-feedback show info";
+                return;
+            }
+            isCorrect = true;
+            selects.forEach((s, i) => {
+                const corr = document.getElementById(`correct-match-${qid}-${i}`);
+                if(corr && state.answers[i] !== parseInt(corr.value)) {
+                    isCorrect = false;
+                }
+            });
         }
 
         if(isCorrect) {

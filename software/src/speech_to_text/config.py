@@ -9,7 +9,7 @@ DEFAULT_TRANSCRIPTION_SETTINGS: Dict[str, Any] = {
 }
 
 # Supported audio formats
-SUPPORTED_AUDIO_FORMATS: list = [".mp3", ".wav", ".m4a", ".flac", ".ogg"]
+SUPPORTED_AUDIO_FORMATS: list[str] = [".mp3", ".wav", ".m4a", ".flac", ".ogg"]
 
 # Output format
 OUTPUT_FORMAT: str = "txt"
