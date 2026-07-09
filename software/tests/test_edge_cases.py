@@ -257,3 +257,34 @@ class TestScheduleMalformedMarkdown:
         """parse_schedule_markdown raises FileNotFoundError for missing file."""
         with pytest.raises(FileNotFoundError):
             parse_schedule_markdown(str(temp_dir / "nonexistent.md"))
+
+
+class TestRepoContractsLinkSkipping:
+    """Test that repo_contracts skips links to generated output directories."""
+
+    def test_output_links_are_skipped(self):
+        """Links to output/ directories should not be checked by _should_check_link."""
+        from src.validation.repo_contracts import _should_check_link
+
+        # Links to generated output should be skipped
+        assert _should_check_link("output/file.pdf") is False
+        assert _should_check_link("course/labs/output/pdf/lab-01.pdf") is False
+        assert _should_check_link("syllabus/output/Schedule.pdf") is False
+        assert _should_check_link("syllabus/output/Schedule.docx") is False
+
+        # Normal links should still be checked
+        assert _should_check_link("README.md") is True
+        assert _should_check_link("course/labs/lab-01_measurement-methods.md") is True
+        assert _should_check_link("syllabus/Schedule.md") is True
+
+    def test_repo_contracts_passes_on_fresh_clone(self):
+        """Repo contracts validation passes even without generated outputs."""
+        repo_root = Path(__file__).resolve().parents[2]
+        from src.validation.repo_contracts import validate_repo_contracts
+
+        report = validate_repo_contracts(repo_root)
+        # Should not have issues about missing output/ link targets
+        output_issues = [i for i in report.issues if "output/" in i and "missing link target" in i]
+        assert len(output_issues) == 0, "Output links should be skipped: " + "\n".join(
+            output_issues
+        )

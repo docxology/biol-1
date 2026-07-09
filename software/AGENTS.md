@@ -430,13 +430,15 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 ```text
 software/
-├── src/              # Source code (18 packages)
+├── src/              # Source code (20 packages)
 │   ├── batch_processing/
 │   ├── canvas_integration/
 │   ├── content_processing/
+│   ├── exam_tools/
 │   ├── file_validation/
 │   ├── format_conversion/
 │   ├── html_website/
+│   ├── lab_dashboard/
 │   ├── lab_manual/
 │   ├── legacy_import/
 │   ├── markdown_to_pdf/

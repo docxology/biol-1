@@ -145,8 +145,9 @@ class TestGenerateModuleRenderingsCLI:
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 1
-        # Should show available modules
-        assert "available" in result.stdout.lower() or "module-" in result.stdout.lower()
+        # Should show available modules (output may be on stdout or stderr via logging)
+        output = result.stdout + result.stderr
+        assert "available" in output.lower() or "module-" in output.lower()
 
 
 class TestGenerateSyllabusRenderingsCLI:
@@ -221,5 +222,6 @@ class TestGenerateModuleWebsiteCLI:
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 1
-        # Should show available modules
-        assert "available" in result.stdout.lower() or "module-" in result.stdout.lower()
+        # Should show available modules (output may be on stdout or stderr via logging)
+        output = result.stdout + result.stderr
+        assert "available" in output.lower() or "module-" in output.lower()

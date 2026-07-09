@@ -45,7 +45,7 @@ cr-bio/
 │   └── biol-1/                    # General Biology (Pelican Bay, Fall 2026)
 │
 ├── software/                      # Processing pipeline
-│   ├── src/                       # 18 Python packages
+│   ├── src/                       # 20 Python packages
 │   ├── tests/                     # Pytest suite (run --collect-only for current count)
 │   ├── scripts/                   # CLI orchestrators
 │   └── docs/                      # Documentation (YOU ARE HERE)

@@ -318,14 +318,16 @@ See [Module Independence](#module-independence) for details on standalone usage.
 
 ```text
 software/
-├── src/                              # Source code (18 packages)
+├── src/                              # Source code (20 packages)
 │   ├── __init__.py
 │   ├── batch_processing/             # Module batch operations
 │   ├── canvas_integration/           # Canvas LMS upload
 │   ├── content_processing/           # Question renumbering, text normalize
+│   ├── exam_tools/                   # Final exam MC shuffling + crosswalk
 │   ├── file_validation/              # Content validation
 │   ├── format_conversion/            # Format transformations
 │   ├── html_website/                 # Interactive websites
+│   ├── lab_dashboard/                # BIOL-1 lab dashboard HTML generation
 │   ├── lab_manual/                   # Rich lab manual rendering
 │   ├── legacy_import/                # Legacy import utilities
 │   ├── markdown_to_pdf/              # PDF generation

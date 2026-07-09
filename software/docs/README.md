@@ -44,7 +44,7 @@ uv run pytest --cov=src --cov-report=term-missing   # coverage on default run (p
 
 The suite follows the **Real Methods Policy**: production code has no mocks, stubs, or fakes; tests use real files/libraries by default and may patch only documented external or orchestration boundaries ([`.cursorrules`](../../.cursorrules), [docs/AGENTS.md](AGENTS.md)).
 
-Structural facts (update if layout changes): **`software/src/`** holds **18** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
+Structural facts (update if layout changes): **`software/src/`** holds **20** Python packages (see [`../src/AGENTS.md`](../src/AGENTS.md)).
 
 ### Active Course
 

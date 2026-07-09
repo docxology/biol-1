@@ -4,7 +4,7 @@
 >
 > **Package**: `cr-bio-software` · **Current version**: `0.1.0` · **Date**: 2026-02-23
 >
-> **Scope**: Package-level engineering roadmap for all 18 packages under `software/src/`.  
+> **Scope**: Package-level engineering roadmap for all 20 packages under `software/src/`.  
 > This is *not* a course-content to-do; it concerns the Python software package only.
 
 ---
@@ -185,7 +185,7 @@
 
 ## Completed (v0.1.0)
 
-- [x] Layered architecture (Layers 0–4) with clean public interfaces; 18 packages under `src/`
+- [x] Layered architecture (Layers 0–4) with clean public interfaces; 20 packages under `src/`
 - [x] Broad pytest coverage across packages (re-verify with `pytest --cov` after major changes)
 - [x] 6-stage publish pipeline (Clean → Generate → Publish → Extras → Flatten → Validate)
 - [x] Selective Rendering Boundaries (`max_module`, `max_lab`) in pipeline and validation

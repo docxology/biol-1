@@ -8,7 +8,7 @@ Source code for course management software utilities.
 
 ## Statistics
 
-- **18 packages** under `src/` (see [AGENTS.md](AGENTS.md))
+- **20 packages** under `src/` (see [AGENTS.md](AGENTS.md))
 - **Tests / coverage**: run `uv run pytest --collect-only -q` and `uv run pytest --cov=src --cov-report=term-missing` from `software/`
 - **Default generated formats**: PDF, DOCX, MD
 - **Opt-in generated formats**: HTML, TXT, MP3

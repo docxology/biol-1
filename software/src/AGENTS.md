@@ -37,6 +37,8 @@ Every package follows the same shape:
 | `schedule` | 3 | Schedule markdown → multi-format outputs. | [`schedule/AGENTS.md`](schedule/AGENTS.md) |
 | `html_website` | 3 | Per-module HTML site with quizzes/audio. | [`html_website/AGENTS.md`](html_website/AGENTS.md) |
 | `canvas_integration` | 4 | Canvas LMS upload and structure sync. | [`canvas_integration/AGENTS.md`](canvas_integration/AGENTS.md) |
+| `lab_dashboard` | 0 | BIOL-1 lab dashboard HTML generation from structured specs. | [`lab_dashboard/AGENTS.md`](lab_dashboard/AGENTS.md) |
+| `exam_tools` | 0 | Final exam MC shuffling, parsing, rendering, and crosswalk verification. | [`exam_tools/AGENTS.md`](exam_tools/AGENTS.md) |
 
 Layer numbers indicate the dependency hierarchy used in `software/AGENTS.md`. A package may only import from packages at strictly lower layers (or `shared`).
 

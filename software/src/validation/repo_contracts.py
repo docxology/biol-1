@@ -173,6 +173,12 @@ def _should_check_link(target: str) -> bool:
         return False
     if re.match(r"^[a-z][a-z0-9+.-]*:", target):
         return False
+    # Skip links to generated output directories — these are created by
+    # ``publish.py`` and may not exist in a fresh clone or CI checkout
+    # before the pipeline runs.  The contract validator intentionally
+    # avoids rendering-output existence checks (per module docstring).
+    if "/output/" in target or target.startswith("output/"):
+        return False
     return True
 
 
