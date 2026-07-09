@@ -1,5 +1,6 @@
 """Main functions for speech-to-text transcription."""
 
+import logging
 import tempfile
 from pathlib import Path
 from typing import List
@@ -12,6 +13,8 @@ from .utils import (
     transcribe_audio_segment,
 )
 from src.shared.file_utils import ensure_output_directory
+
+logger = logging.getLogger(__name__)
 
 
 def transcribe_audio(
@@ -95,7 +98,7 @@ def batch_transcribe_audio(input_dir: str, output_dir: str) -> List[str]:
             output_files.append(str(output_path))
         except Exception as e:
             # Log error but continue with other files
-            print(f"Error transcribing {audio_file}: {e}")
+            logger.error("Error transcribing %s: %s", audio_file, e)
             continue
 
     return output_files
