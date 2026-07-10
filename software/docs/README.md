@@ -87,6 +87,17 @@ Structural facts (update if layout changes): **`software/src/`** holds **20** Py
 
 ## Documentation Index
 
+### Subfolder Guides
+
+| Subfolder | Contents | Audience |
+|----------|----------|----------|
+| **[output/](output/README.md)** | All 6 output formats (PDF, DOCX, HTML, TXT, MD, MP3) + comparison matrix | Developers, Authors |
+| **[content_types/](content_types/README.md)** | Authoring guides for modules, labs, exams, practice tests, syllabus, slides, dashboards | Content Authors |
+| **[architecture/](architecture/README.md)** | Layer architecture, data flow, dependency graph, testing strategy, modular design, interface contracts | Developers |
+| **[pipeline/](pipeline/README.md)** | 9-stage publish pipeline, generation flow, validation flow, git subtree, configuration | Developers |
+| **[reference/](reference/README.md)** | CLI reference, config reference, troubleshooting, glossary | All users |
+| **[packages/](packages/README.md)** | Comprehensive index of all 20 src/ packages with layer grouping and usage examples | Developers |
+
 ### Getting Started
 
 | Document | Description | Audience |
@@ -94,7 +105,7 @@ Structural facts (update if layout changes): **`software/src/`** holds **20** Py
 | **[QUICKSTART.md](QUICKSTART.md)** | Installation, setup, quick commands | New users |
 | **[../README.md](../README.md)** | Project overview and setup | All users |
 
-### Content Authoring
+### Content Authoring (top-level)
 
 | Document | Description | Audience |
 |----------|-------------|----------|
@@ -102,7 +113,7 @@ Structural facts (update if layout changes): **`software/src/`** holds **20** Py
 | **[DASHBOARD_FORMAT.md](DASHBOARD_FORMAT.md)** | Interactive dashboard architecture guide | Content Authors |
 | **[COURSE_STRUCTURE.md](COURSE_STRUCTURE.md)** | Course directory layout reference | All users |
 
-### Output Format Guides
+### Output Format Guides (top-level)
 
 | Document | Description | Audience |
 |----------|-------------|----------|

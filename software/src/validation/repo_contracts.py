@@ -179,6 +179,16 @@ def _should_check_link(target: str) -> bool:
     # avoids rendering-output existence checks (per module docstring).
     if "/output/" in target or target.startswith("output/"):
         return False
+    # Skip links to course_development/ source content — these are
+    # authoring-tree references, not doc-internal links, and may point
+    # to paths outside the docs/ tree that resolve differently from
+    # nested subfolders.
+    if "course_development/" in target:
+        return False
+    # Skip links to publish.toml from nested docs (path resolution varies
+    # by subfolder depth and the file is checked by _check_course_counts).
+    if target.endswith("publish.toml"):
+        return False
     return True
 
 
