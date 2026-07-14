@@ -219,9 +219,9 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 | **Syllabus** | 2 sources | `BIOL-1_Fall-2026_Syllabus.md` and `Schedule.md` |
 | **Schedule** | 1 source | + rendered outputs |
 | **Slides** | PDFs in `resources/slides/` | Pre-generated; not rendered by pipeline |
+| **Website output** | `module-*/output/website/index.html` after generation | **Not** retained in public `PUBLISHED/<course>/` layout: `reorganize_to_categories` removes per-module `index.html` when building `homework/` + `module_keys/` (see [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md#published-directory-structure)) |
 
 Counts above are a snapshot; run `cd software && uv run python scripts/validate_repo_contracts.py` for current, authoritative counts.
-| **Website output** | `module-*/output/website/index.html` after generation | **Not** retained in public `PUBLISHED/<course>/` layout: `reorganize_to_categories` removes per-module `index.html` when building `homework/` + `module_keys/` (see [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md#published-directory-structure)) |
 
 ### Priority actions (high level)
 
