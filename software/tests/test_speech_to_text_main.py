@@ -95,31 +95,32 @@ def test_read_audio_file_error():
 
 
 def test_read_audio_file_invalid_format(temp_dir):
-    """Test read_audio_file with invalid audio format."""
+    """read_audio_file must raise OSError (not silently succeed) for a non-audio file.
+
+    ``read_audio_file`` wraps every underlying decode failure in ``OSError``
+    (see src/speech_to_text/utils.py), so this is the one exception type the
+    contract guarantees — assert it actually raises rather than accepting
+    either outcome.
+    """
     from src.speech_to_text.utils import read_audio_file
 
     # Create a file that's not a valid audio file
     invalid_file = temp_dir / "invalid.txt"
     invalid_file.write_text("Not audio", encoding="utf-8")
 
-    try:
+    with pytest.raises(OSError, match="Failed to read audio file"):
         read_audio_file(invalid_file)
-    except OSError:
-        # Expected to fail, test passes
-        pass
 
 
 def test_transcribe_audio_segment_error_handling(temp_dir):
-    """Test error handling in transcribe_audio_segment."""
+    """transcribe_audio_segment must raise OSError (not silently succeed) for
+    a file that is not valid WAV audio data.
+    """
     from src.speech_to_text.utils import transcribe_audio_segment
 
     # Create an invalid audio file
     invalid_audio = temp_dir / "invalid.wav"
     invalid_audio.write_bytes(b"invalid audio data")
 
-    try:
-        # This will likely fail, but we test the error handling path
+    with pytest.raises(OSError, match="Failed to transcribe audio"):
         transcribe_audio_segment(invalid_audio, language="en")
-    except OSError:
-        # Expected to fail, test passes
-        pass
