@@ -70,10 +70,6 @@ Copy slide PDFs into each module's published folder. Supports two naming convent
 - `module-{num}-slides-*.pdf` (biol-1 style)
 - `Module {XX} - Topic.pdf` (biol-8 style)
 
-##### `copy_exams(repo_root: Path, verbose: bool = False) -> int`
-
-Copy exam files from course/exams to PUBLISHED directory.
-
 ##### `copy_practice_tests(repo_root: Path, courses: Optional[List[str]] = None, verbose: bool = False) -> int`
 
 Copy practice test files (markdown and rendered outputs) to PUBLISHED directory.

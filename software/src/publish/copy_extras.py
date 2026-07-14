@@ -1,8 +1,8 @@
 """Copy and reorganization functions for the publish module.
 
-Handles copying labs, dashboards, slides, exams, practice tests, and
-reorganizing the published directory from module-based to category-based
-structure.
+Handles copying labs, dashboards, slides, practice tests, and reorganizing
+the published directory from module-based to category-based structure.
+Exams are teacher-only materials and are never copied into PUBLISHED/.
 """
 
 import shutil
@@ -202,51 +202,6 @@ def copy_slides_to_modules(
         if course_copied > 0:
             logger.info(f"  {course}: Copied {course_copied} slides into module folders")
             total_copied += course_copied
-
-    return total_copied
-
-
-def copy_exams(repo_root: Path, verbose: bool = False) -> int:
-    """Copy exam files from course/exams to PUBLISHED directory.
-
-    Args:
-        repo_root: Path to the repository root
-        verbose: If True, log detailed operations
-
-    Returns:
-        Number of files copied
-    """
-    published_dir = repo_root / config.PUBLISH_ROOT_NAME
-    total_copied = 0
-
-    # BIOL-8 has exams in course/exams/
-    exams_src = repo_root / 'course_development' / 'biol-8' / 'course' / 'exams'
-    exams_dest = published_dir / 'biol-8' / 'exams'
-
-    if not exams_src.exists():
-        logger.warning(f"Exams directory not found: {exams_src}")
-        return 0
-
-    exams_dest.mkdir(parents=True, exist_ok=True)
-
-    # Copy exam markdown files (exclude answer keys with _key suffix)
-    for exam_file in exams_src.glob('*.md'):
-        if not exam_file.stem.endswith('_key'):
-            dest = exams_dest / exam_file.name
-            shutil.copy2(exam_file, dest)
-            total_copied += 1
-
-    # Copy exam outputs (PDF, DOCX, etc.) if they exist
-    output_dir = exams_src / 'output'
-    if output_dir.exists():
-        for output_file in output_dir.rglob('*'):
-            if output_file.is_file():
-                dest = exams_dest / output_file.name
-                shutil.copy2(output_file, dest)
-                total_copied += 1
-
-    if total_copied > 0:
-        logger.info(f"  biol-8: Copied {total_copied} exam files")
 
     return total_copied
 
