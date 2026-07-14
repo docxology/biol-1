@@ -210,15 +210,17 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 | Document Type | BIOL-1 | Notes |
 |---------------|--------|--------|
-| **keys-to-success.md** | 15 | One per `course/module-*` |
-| **questions.md** | 15 | One per module |
-| **Labs** | 17 protocols + dashboards | See `course/labs/` |
+| **keys-to-success.md** | 16 | One per `course/module-*` (generated from `module.toml`) |
+| **questions.md** | 16 | One per module (generated from `module.toml`) |
+| **Labs** | 16 protocols + dashboards | See `course/labs/` |
 | **Exams** | Unit `exam-01`-`exam-03` + `final-exam` + keys (+ `exam-template`) | Teacher-only; never pushed to public course repos |
 | **Quizzes** | Template-only | `course/quizzes/quiz-template.md` |
 | **Practice tests** | 5 + keys | `course/practice_tests/` |
 | **Syllabus** | 2 sources | `BIOL-1_Fall-2026_Syllabus.md` and `Schedule.md` |
 | **Schedule** | 1 source | + rendered outputs |
 | **Slides** | PDFs in `resources/slides/` | Pre-generated; not rendered by pipeline |
+
+Counts above are a snapshot; run `cd software && uv run python scripts/validate_repo_contracts.py` for current, authoritative counts.
 | **Website output** | `module-*/output/website/index.html` after generation | **Not** retained in public `PUBLISHED/<course>/` layout: `reorganize_to_categories` removes per-module `index.html` when building `homework/` + `module_keys/` (see [COURSE_STRUCTURE.md](COURSE_STRUCTURE.md#published-directory-structure)) |
 
 ### Priority actions (high level)

@@ -30,8 +30,10 @@ Each `course/module-NN-name/` contains:
 
 - `README.md` — student-facing overview.
 - `AGENTS.md` — technical doc for tooling.
-- `questions.md` — practice questions.
-- `keys-to-success.md` — module study guide.
+- `module.toml` — **canonical typed source** (module number, slug, title, linked lab, topics, learning objectives/questions, practice-quiz items, module-local assets). Edit this, not the generated files below.
+- `questions.md` — practice questions, **generated from `module.toml`**.
+- `keys-to-success.md` — module study guide, **generated from `module.toml`**.
+- `practice-quiz.md` — practice quiz items, **generated from `module.toml`**.
 - `resources/` (optional) — module-local images and datasets.
 - `output/` — generated artifacts:
   - `output/study-guides/module-NN-name-questions.{md,pdf,docx}` by default
@@ -41,12 +43,20 @@ Each `course/module-NN-name/` contains:
 
 There is **no** `assignments/` subfolder convention in BIOL-1.
 
+Regenerate the generated Markdown after editing `module.toml`:
+
+```bash
+cd software && uv run python scripts/generate_module_materials.py --course biol-1 --module NN
+```
+
 ## File naming
 
 | Artifact | Source path | Generated naming |
 |---|---|---|
-| Module questions | `course/module-NN-name/questions.md` | `module-NN-name-questions.{md,pdf,docx,…}` |
-| Module study guide | `course/module-NN-name/keys-to-success.md` | `module-NN-name-keys-to-success.{md,pdf,docx,…}` |
+| Module source | `course/module-NN-name/module.toml` | (canonical; not itself a generated-naming target) |
+| Module questions | `course/module-NN-name/questions.md` (generated from `module.toml`) | `module-NN-name-questions.{md,pdf,docx,…}` |
+| Module study guide | `course/module-NN-name/keys-to-success.md` (generated from `module.toml`) | `module-NN-name-keys-to-success.{md,pdf,docx,…}` |
+| Module practice quiz | `course/module-NN-name/practice-quiz.md` (generated from `module.toml`) | `module-NN-name-practice-quiz.{md,pdf,docx,…}` |
 | Lab | `course/labs/lab-NN_topic.md` | `lab-NN_topic.{pdf,html}` |
 | Lab dashboard | `course/labs/dashboards/lab-NN_topic-dashboard.html` | (already final HTML) |
 | Practice test | `course/practice_tests/practice-test-NN.md` | `practice-test-NN.{pdf,docx,…}` |

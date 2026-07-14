@@ -424,6 +424,84 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 **Used by**: `scripts/validate_outputs.py`, `scripts/publish_all.py`
 
+### Module Content
+
+**Purpose**: Typed BIOL-1 module-content loader, validator, and renderer — `module.toml` is the canonical Fall 2026 module source and generates student-facing Markdown plus deterministic local SVG visual assets
+
+**Location**: `src/module_content/`
+
+**Standalone**: Yes
+
+**Dependencies**: None beyond the standard library and `tomllib`/`tomli`
+
+**Key Functions**:
+
+- `load_module_content(module_dir: Path | str) -> ModuleContent` — parse and validate `module.toml`
+- `validate_module_content(module: ModuleContent, module_dir: Path | None = None) -> list[str]` — return contract issues without writing files
+- `render_module_materials(module_dir: Path | str, dry_run: bool = False) -> dict[str, object]` — render `keys-to-success.md`, `questions.md`, `practice-quiz.md`, and generated SVG assets
+- `render_course_module_materials(course_root: Path | str, module_filter: int | None = None, dry_run: bool = False) -> dict[str, object]` — render all module manifests for a course
+- `describe_course_module_materials(course_root: Path | str, module_filter: int | None = None) -> str` — dry-run report
+
+**Used by**: `scripts/generate_module_materials.py`, `html_website`, `slide_deck`
+
+### Slide Deck Generation
+
+**Purpose**: Build active BIOL-1 slide decks (full + speaker-notes HTML/PDF) from `module.toml` via `module_content`
+
+**Location**: `src/slide_deck/`
+
+**Standalone**: Yes
+
+**Dependencies**: `module_content`, `markdown_to_pdf` (for PDF rendering)
+
+**Key Functions**:
+
+- `build_slide_deck(module_dir)` — returns an in-memory 10-12 slide deck
+- `validate_slide_deck(deck)` — returns structural issues without writing files
+- `render_module_slide_deck(module_dir, slides_root, dry_run=False)` — writes full and notes HTML plus PDF outputs
+- `render_course_slide_decks(course_root, module_filter=None, dry_run=False)` — renders every active module deck
+- `describe_course_slide_decks(course_root, module_filter=None)` — dry-run summary
+
+**Used by**: `scripts/generate_slide_decks.py`
+
+### Lab Dashboard Generation
+
+**Purpose**: Generate self-contained BIOL-1 lab dashboard HTML pages (evidence capture, concept checks, key terms) from typed specs
+
+**Location**: `src/lab_dashboard/`
+
+**Standalone**: Yes — standard library only (`dataclasses`, `html`, `pathlib`)
+
+**Dependencies**: None
+
+**Key Functions**:
+
+- `render_dashboard(spec: LabDashboardSpec) -> str` — render a single dashboard as a complete HTML document
+- `render_all_dashboards(dashboard_dir: Path, dry_run: bool = False) -> list[str]` — write (or preview) all dashboard HTML files, removing stale `lab-*-dashboard.html` files first
+- `SPECS: tuple[LabDashboardSpec, ...]` — the lab spec definitions driving generation
+
+**Used by**: `scripts/generate_biol1_lab_dashboards.py`
+
+### Exam Tools
+
+**Purpose**: Final exam Part A multiple-choice shuffling, parsing, rendering, and crosswalk verification for BIOL-1
+
+**Location**: `src/exam_tools/`
+
+**Standalone**: Yes — standard library only (`re`, `random`, `dataclasses`, `collections`)
+
+**Dependencies**: None
+
+**Key Functions**:
+
+- `parse_part_a_questions(...)` — parse Part A multiple-choice questions from exam Markdown
+- `shuffle_question_options(...)` / `shuffle_exam_markdown(...)` — deterministically shuffle distractors while preserving the legacy-correct answer text
+- `update_key_part_a_answers(...)` — rewrite the answer key's Part A rows to match a shuffled exam
+- `reshape_part_a_spacing(...)` — normalize spacing without reordering options
+- `render_question(...)`, `histogram_report(...)` — rendering and distribution-reporting helpers
+
+**Used by**: `scripts/shuffle_final_exam_mc.py`
+
 ## Code Organization
 
 ### Directory Structure
