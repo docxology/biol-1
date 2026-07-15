@@ -27,7 +27,7 @@
 | Tests / coverage | Measure with `uv run pytest --collect-only -q` and `uv run pytest --cov=src --cov-report=term-missing` (from `software/`) |
 | Formats | PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in |
 | Features shipped | Selective Rendering, 6-stage pipeline, Lab dashboards, HTML websites with interactive quiz |
-| Known gaps | mypy not enforced in CI, coverage < 90%, `canvas_integration` requires live API, `speech_to_text` lacks offline fallback |
+| Known gaps | coverage < 90%, `canvas_integration` requires live API, `speech_to_text` lacks offline fallback |
 
 ---
 
@@ -137,9 +137,9 @@
 
 ### Infrastructure
 
-- [ ] Add GitHub Actions CI workflow (`.github/workflows/test.yml`): run `pytest` on push/PR
+- [x] Add GitHub Actions CI workflow (`.github/workflows/test.yml`): run `pytest` on push/PR (also runs ruff, mypy, and validate_repo_contracts.py)
 - [ ] Add coverage badge to `software/README.md`
-- [ ] Integrate `ruff` linting step in CI
+- [x] Integrate `ruff` linting step in CI
 
 ---
 

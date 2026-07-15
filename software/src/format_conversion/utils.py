@@ -1,5 +1,6 @@
 """Utility functions for format conversion."""
 
+import html
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Optional
@@ -106,7 +107,7 @@ def convert_text_to_pdf(input_path: Path, output_path: Path) -> None:
     </style>
 </head>
 <body>
-    <pre>{text_content}</pre>
+    <pre>{html.escape(text_content)}</pre>
 </body>
 </html>"""
     HTML(string=html_content).write_pdf(output_path)
@@ -128,7 +129,7 @@ def convert_text_to_html(input_path: Path, output_path: Path) -> None:
     <title>{input_path.stem}</title>
 </head>
 <body>
-    <pre>{text_content}</pre>
+    <pre>{html.escape(text_content)}</pre>
 </body>
 </html>"""
     output_path.write_text(html_content, encoding="utf-8")

@@ -200,18 +200,19 @@ class TestFormatConversionErrorPaths:
             convert_file(str(input_file), "xyz", str(output_path))
 
     def test_convert_file_empty_markdown(self, temp_dir):
-        """convert_file handles empty markdown gracefully."""
+        """convert_file handles empty markdown gracefully: it succeeds and
+        produces a well-formed (if content-empty) HTML document, it does
+        not raise."""
         input_file = temp_dir / "empty.md"
         input_file.write_text("", encoding="utf-8")
         output_path = temp_dir / "output.html"
-        # Should not raise; empty content is valid
-        try:
-            convert_file(str(input_file), "html", str(output_path))
-            assert output_path.exists()
-        except Exception:
-            # Some backends may refuse empty content; that's acceptable
-            # as long as it raises a clear exception, not a silent crash
-            pass
+
+        convert_file(str(input_file), "html", str(output_path))
+
+        assert output_path.exists()
+        content = output_path.read_text(encoding="utf-8")
+        assert "<html>" in content
+        assert "<title>empty</title>" in content
 
 
 class TestScheduleMalformedMarkdown:

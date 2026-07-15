@@ -403,6 +403,31 @@ uv run python scripts/renumber_questions.py --course biol-1 --dry-run --verbose
 
 ---
 
+### `shuffle_final_exam_mc.py` — Final Exam MC Shuffle
+
+**Purpose**: Shuffle BIOL-1 final exam Part A multiple-choice options with a reproducible, balanced-letter layout, update the answer key to match, and run a crosswalk verification. Thin CLI orchestrator over `src.exam_tools`; paths default to `course_development/biol-1/course/exams/final-exam*.md` under repo root.
+
+**Backing module**: `src.exam_tools`
+
+```bash
+# Shuffle options and re-key the answer key
+uv run python scripts/shuffle_final_exam_mc.py
+
+# Compute the shuffle only; do not write files
+uv run python scripts/shuffle_final_exam_mc.py --dry-run
+
+# Re-render Part A spacing only (keep current option order/key untouched)
+uv run python scripts/shuffle_final_exam_mc.py --spacing-only
+```
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--dry-run` | flag | off | Compute shuffle only; do not write files |
+| `--spacing-only` | flag | off | Re-render Part A spacing only, keeping option order and key untouched |
+| `--seed` | int | `FINAL_MC_SEED` | RNG seed |
+
+---
+
 ## Migration Scripts
 
 ### `import_legacy_materials.py` — Legacy Import
@@ -468,9 +493,10 @@ No CLI arguments. Reads the `SPEC` list in the script and writes to `archive/spr
 | 12 | `validate_repo_contracts.py` | Validation | `validation.repo_contracts` |
 | 13 | `flatten_published.py` | Utility | `publish.utils` |
 | 14 | `renumber_questions.py` | Utility | `content_processing` |
-| 15 | `import_legacy_materials.py` | Migration | `legacy_import` |
-| 16 | `assemble_practice_test_12.py` | Migration | (stdlib; archived BIOL-8) |
-| 17 | `utils.py` | Helper | (shared CLI helpers, not user-facing) |
+| 15 | `shuffle_final_exam_mc.py` | Utility | `exam_tools` |
+| 16 | `import_legacy_materials.py` | Migration | `legacy_import` |
+| 17 | `assemble_practice_test_12.py` | Migration | (stdlib; archived BIOL-8) |
+| 18 | `utils.py` | Helper | (shared CLI helpers, not user-facing) |
 
 ---
 

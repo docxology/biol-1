@@ -20,6 +20,7 @@ from .flatten import (  # noqa: F401
 from .copy_extras import (  # noqa: F401
     copy_labs_and_dashboards,
     copy_module_bundles,
+    copy_module_generated_assets,
     copy_practice_tests,
     copy_slides,
     copy_slides_to_modules,

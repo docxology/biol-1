@@ -343,6 +343,33 @@ class TestGenerateModuleWebsite:
         assert "&quot;" in html_content
         assert "Interactive Questions" in html_content
 
+    def test_generate_module_website_with_text_escapes_special_chars(self, temp_dir):
+        """The plain-text-version <pre> block must HTML-escape its source
+        content (regression test: this branch previously interpolated raw
+        .txt content unescaped, unlike every other interpolation in this
+        file).
+        """
+        module_dir = temp_dir / "module-1"
+        module_dir.mkdir()
+
+        (module_dir / "sample_lecture-content.md").write_text(
+            "# Lecture", encoding="utf-8"
+        )
+
+        output_base = module_dir / "output" / "lecture-content"
+        output_base.mkdir(parents=True)
+        (output_base / "sample_lecture-content.txt").write_text(
+            "if a < b & b > c: <script>alert(1)</script>", encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "website_output"
+        result = generate_module_website(str(module_dir), str(output_dir))
+
+        html_content = Path(result).read_text()
+        assert "<script>alert(1)</script>" not in html_content
+        assert "&lt;script&gt;" in html_content
+        assert "a &lt; b &amp; b &gt; c" in html_content
+
     def test_generate_module_website_with_audio(self, temp_dir):
         """Test generating website with audio files."""
         module_dir = temp_dir / "module-1"

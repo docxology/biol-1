@@ -24,7 +24,7 @@ usage examples, and troubleshooting.
 
 ## Configuration
 
-Format toggles live in [`publish.toml`](../../publish.toml) under
+Format toggles live in [`publish.toml`](../../../publish.toml) under
 `[publish.formats]`. See [../reference/CONFIG_REFERENCE.md](../reference/CONFIG_REFERENCE.md)
 for the full configuration reference.
 

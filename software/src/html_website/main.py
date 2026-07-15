@@ -208,7 +208,7 @@ def generate_module_website(
                 text_content = text_file.read_text(encoding="utf-8")
                 text_path = get_relative_path(text_file, website_output)
                 inner_html += '<div class="code-block">\n'
-                inner_html += f'<h3>Plain Text Version</h3><pre>{text_content[:500]}...</pre>\n'
+                inner_html += f'<h3>Plain Text Version</h3><pre>{html_lib.escape(text_content[:500])}...</pre>\n'
                 inner_html += f'<p><a href="{text_path}" download>Download Full Text</a></p></div>\n'
 
             section_id = info["section_id"]
