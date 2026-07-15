@@ -6,6 +6,7 @@ from src.publish.utils import (
     flatten_published,
     copy_labs_and_dashboards,
     copy_module_bundles,
+    copy_module_generated_assets,
     copy_practice_tests,
     copy_slides,
     copy_slides_to_modules,
@@ -13,6 +14,7 @@ from src.publish.utils import (
     copy_directory_contents,
     get_course_config,
     clean_published,
+    reorganize_to_categories,
 )
 from src.publish import config
 
@@ -129,6 +131,25 @@ class TestCopyPracticeTests:
         assert (pub / "biol-1" / "practice_tests" / "practice-test-01.md").exists()
         assert (pub / "biol-1" / "practice_tests" / "practice-test-01_key.md").exists()
         assert not (pub / "biol-1" / "practice_tests" / "README.md").exists()
+
+    def test_skips_agents_md(self, temp_dir):
+        """AGENTS.md is instructor/developer-facing and must never leak into
+        PUBLISHED/ (regression test: PUBLISHED is documented as fully
+        generated, and a stray AGENTS.md with course_development-relative
+        links would 404 from its published location)."""
+        practice_tests_dir = temp_dir / "course_development" / "biol-1" / "course" / "practice_tests"
+        practice_tests_dir.mkdir(parents=True)
+        (practice_tests_dir / "practice-test-01.md").write_text("# Practice Test 1", encoding="utf-8")
+        (practice_tests_dir / "AGENTS.md").write_text("# Agent notes", encoding="utf-8")
+
+        pub = temp_dir / config.PUBLISH_ROOT_NAME
+        pub.mkdir()
+
+        copied = copy_practice_tests(temp_dir, courses=["biol-1"])
+
+        assert copied == 1
+        assert (pub / "biol-1" / "practice_tests" / "practice-test-01.md").exists()
+        assert not (pub / "biol-1" / "practice_tests" / "AGENTS.md").exists()
 
     def test_copies_practice_test_outputs(self, temp_dir):
         """Test copying practice test output files (PDF, DOCX) including keys."""
@@ -324,6 +345,239 @@ class TestCopyModuleBundles:
         assert copied == 1
         assert not (stale_dir / "old.pdf").exists()
         assert (stale_dir / "module-01-study-of-life-keys-to-success.pdf").exists()
+
+
+class TestCopyModuleGeneratedAssets:
+    """Tests for copy_module_generated_assets function.
+
+    Covers the previously-missing publish step that copies each module's
+    deterministic resources/generated/*.svg concept-card assets into
+    PUBLISHED/, so keys-to-success.md's relative links to those assets
+    resolve instead of 404ing on the public repo.
+    """
+
+    def _make_module_dev(self, temp_dir, course="biol-1", slug="module-01-study-of-life"):
+        module_dir = temp_dir / "course_development" / course / "course" / slug
+        generated_dir = module_dir / "resources" / "generated"
+        generated_dir.mkdir(parents=True)
+        module_num = slug.split("-")[1]
+        for kind in ("concept-map", "process-model", "retrieval-card"):
+            (generated_dir / f"module-{module_num}-{kind}.svg").write_text(
+                f"<svg>{kind}</svg>", encoding="utf-8"
+            )
+        return module_dir
+
+    def test_copies_into_module_keys_flat_destination(self, temp_dir):
+        self._make_module_dev(temp_dir)
+        course_pub = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        course_pub.mkdir(parents=True)
+
+        copied = copy_module_generated_assets(temp_dir, courses=["biol-1"])
+
+        assert copied == 3
+        dest = course_pub / "module_keys" / "resources" / "generated"
+        assert (dest / "module-01-concept-map.svg").exists()
+        assert (dest / "module-01-process-model.svg").exists()
+        assert (dest / "module-01-retrieval-card.svg").exists()
+
+    def test_copies_into_per_module_bundle_when_bundle_exists(self, temp_dir):
+        self._make_module_dev(temp_dir)
+        course_pub = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_bundle = course_pub / "modules" / "module-01-study-of-life"
+        module_bundle.mkdir(parents=True)
+
+        copied = copy_module_generated_assets(temp_dir, courses=["biol-1"])
+
+        assert copied == 6  # 3 into module_keys/ + 3 into modules/<slug>/
+        bundle_dest = module_bundle / "resources" / "generated"
+        assert (bundle_dest / "module-01-concept-map.svg").exists()
+        assert (bundle_dest / "module-01-process-model.svg").exists()
+        assert (bundle_dest / "module-01-retrieval-card.svg").exists()
+
+    def test_skips_module_bundle_copy_when_bundle_does_not_exist_yet(self, temp_dir):
+        """If modules/<slug>/ hasn't been built yet, only the flat
+        module_keys/ destination is populated (no error)."""
+        self._make_module_dev(temp_dir)
+        course_pub = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        course_pub.mkdir(parents=True)
+
+        copied = copy_module_generated_assets(temp_dir, courses=["biol-1"])
+
+        assert copied == 3
+        assert not (course_pub / "modules").exists()
+
+    def test_missing_generated_dir_is_noop(self, temp_dir):
+        module_dir = temp_dir / "course_development" / "biol-1" / "course" / "module-01-study-of-life"
+        module_dir.mkdir(parents=True)
+        course_pub = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        course_pub.mkdir(parents=True)
+
+        copied = copy_module_generated_assets(temp_dir, courses=["biol-1"])
+
+        assert copied == 0
+
+    def test_missing_course_directories_is_noop(self, temp_dir):
+        copied = copy_module_generated_assets(temp_dir, courses=["biol-1"])
+
+        assert copied == 0
+
+    def test_copies_multiple_modules(self, temp_dir):
+        self._make_module_dev(temp_dir, slug="module-01-study-of-life")
+        self._make_module_dev(temp_dir, slug="module-02-chemistry-of-life")
+        course_pub = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        course_pub.mkdir(parents=True)
+
+        copied = copy_module_generated_assets(temp_dir, courses=["biol-1"])
+
+        assert copied == 6  # 3 svgs x 2 modules, flat destination only
+        dest = course_pub / "module_keys" / "resources" / "generated"
+        assert len(list(dest.glob("*.svg"))) == 6
+
+
+class TestReorganizeToCategories:
+    """Tests for reorganize_to_categories function.
+
+    This mutates/deletes files under PUBLISHED/ as part of the real publish
+    pipeline (subtree-pushed to the public per-course repo), so every branch
+    is exercised directly rather than only via end-to-end fixtures.
+    """
+
+    def _make_module(self, course_dir, name="module-01-study-of-life"):
+        module_dir = course_dir / name
+        module_dir.mkdir(parents=True)
+        return module_dir
+
+    def test_moves_questions_file_to_homework(self, temp_dir):
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        (module_dir / "module-01-study-of-life-questions.md").write_text(
+            "# Questions", encoding="utf-8"
+        )
+
+        moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert moved == 1
+        assert (course_dir / "homework" / "module-01-study-of-life-questions.md").exists()
+        assert not (module_dir / "module-01-study-of-life-questions.md").exists()
+
+    def test_moves_keys_to_success_file_to_module_keys(self, temp_dir):
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        (module_dir / "module-01-study-of-life-keys-to-success.md").write_text(
+            "# Keys", encoding="utf-8"
+        )
+
+        moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert moved == 1
+        assert (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").exists()
+        assert not (module_dir / "module-01-study-of-life-keys-to-success.md").exists()
+
+    def test_moves_slide_pdf_to_slides(self, temp_dir):
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        (module_dir / "module-1-slides-full.pdf").write_bytes(b"pdf")
+
+        moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert moved == 1
+        assert (course_dir / "slides" / "module-1-slides-full.pdf").exists()
+        assert not (module_dir / "module-1-slides-full.pdf").exists()
+
+    def test_duplicate_slide_is_removed_not_moved(self, temp_dir):
+        """If the slides/ destination already has a same-named file, the
+        module-local copy is a duplicate and must be deleted, not moved
+        (and must not overwrite the existing destination file)."""
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        slides_dir = course_dir / "slides"
+        slides_dir.mkdir(parents=True)
+        (slides_dir / "module-1-slides-full.pdf").write_bytes(b"canonical")
+        (module_dir / "module-1-slides-full.pdf").write_bytes(b"duplicate")
+
+        moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert moved == 0
+        assert not (module_dir / "module-1-slides-full.pdf").exists()
+        assert (slides_dir / "module-1-slides-full.pdf").read_bytes() == b"canonical"
+
+    def test_removes_index_html(self, temp_dir):
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        (module_dir / "index.html").write_text("<html></html>", encoding="utf-8")
+
+        moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert moved == 0
+        assert not (module_dir / "index.html").exists()
+
+    def test_renames_syllabus_to_course(self, temp_dir):
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        syllabus_dir = course_dir / "syllabus"
+        syllabus_dir.mkdir(parents=True)
+        (syllabus_dir / "syllabus.pdf").write_bytes(b"pdf")
+
+        moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert moved == 1
+        assert (course_dir / "course" / "syllabus.pdf").exists()
+        assert not syllabus_dir.exists()
+
+    def test_prunes_empty_module_directory_after_processing(self, temp_dir):
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        (module_dir / "module-01-study-of-life-questions.md").write_text(
+            "# Questions", encoding="utf-8"
+        )
+
+        reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert not module_dir.exists()
+
+    def test_leaves_non_empty_module_directory(self, temp_dir):
+        """A module directory with an unrecognized file left behind is not
+        pruned (only fully-emptied module directories are removed)."""
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        (module_dir / "module-01-study-of-life-questions.md").write_text(
+            "# Questions", encoding="utf-8"
+        )
+        (module_dir / "other-file.txt").write_text("keep me", encoding="utf-8")
+
+        reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert module_dir.exists()
+        assert (module_dir / "other-file.txt").exists()
+
+    def test_missing_course_directory_is_noop(self, temp_dir):
+        published_dir = temp_dir / config.PUBLISH_ROOT_NAME
+        published_dir.mkdir()
+
+        moved = reorganize_to_categories(published_dir, courses=["biol-1"])
+
+        assert moved == 0
+
+    def test_full_module_reorganization(self, temp_dir):
+        """End-to-end: a module with one of each recognized file type is
+        fully reorganized and the module directory is pruned."""
+        course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
+        module_dir = self._make_module(course_dir)
+        (module_dir / "module-01-study-of-life-questions.md").write_text(
+            "# Questions", encoding="utf-8"
+        )
+        (module_dir / "module-01-study-of-life-keys-to-success.md").write_text(
+            "# Keys", encoding="utf-8"
+        )
+        (module_dir / "module-1-slides-full.pdf").write_bytes(b"pdf")
+        (module_dir / "index.html").write_text("<html></html>", encoding="utf-8")
+
+        moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
+
+        assert moved == 3  # questions + keys + slide (index.html doesn't count as "moved")
+        assert (course_dir / "homework" / "module-01-study-of-life-questions.md").exists()
+        assert (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").exists()
+        assert (course_dir / "slides" / "module-1-slides-full.pdf").exists()
+        assert not module_dir.exists()
 
 
 class TestCleanDirectory:

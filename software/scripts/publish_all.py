@@ -32,16 +32,17 @@ from src.shared.runtime import configure_runtime_environment  # noqa: E402
 configure_runtime_environment()
 
 from src.batch_processing.main import clear_all_outputs  # noqa: E402
-from src.publish.utils import (
+from src.publish.utils import (  # noqa: E402
     clean_published,
-    copy_module_bundles,
     copy_labs_and_dashboards,
+    copy_module_bundles,
+    copy_module_generated_assets,
     copy_practice_tests,
     copy_slides,
     copy_slides_to_modules,
     flatten_published,
     reorganize_to_categories,
-)  # noqa: E402
+)
 from src.shared.course_config import active_course_names  # noqa: E402
 
 # Setup logging
@@ -274,6 +275,13 @@ def main():
         logger.info("\n📚 STEP 8b: Copying per-module published bundles")
         bundled = copy_module_bundles(published_dir, courses, args.verbose)
         logger.info(f"  ✅ Copied {bundled} files into module bundles  ({time.time()-t_step:.1f}s)")
+
+        # Must run after copy_module_bundles, which rebuilds modules/ from
+        # scratch on every publish (an earlier copy there would be wiped).
+        t_step = time.time()
+        logger.info("\n🖼️  STEP 8c: Copying module-generated SVG assets")
+        assets_copied = copy_module_generated_assets(repo_root, courses, args.verbose)
+        logger.info(f"  ✅ Copied {assets_copied} generated asset files  ({time.time()-t_step:.1f}s)")
 
     # Step 9: Validate
     if not args.skip_validate:
