@@ -136,6 +136,30 @@ class TestConvertTextToPdf:
 
         assert pdf_file.exists()
 
+    def test_convert_text_to_pdf_escapes_html_special_chars(self, temp_dir, monkeypatch):
+        """Text content with '<', '>', and '&' must be HTML-escaped before
+        being embedded in the <pre> block, not interpreted as markup."""
+        txt_file = temp_dir / "test.txt"
+        txt_file.write_text("if a < b & b > c: <tag>", encoding="utf-8")
+        pdf_file = temp_dir / "test.pdf"
+
+        captured = {}
+
+        class FakeHTML:
+            def __init__(self, string):
+                captured["string"] = string
+
+            def write_pdf(self, output_path):
+                Path(output_path).write_bytes(b"%PDF-fake")
+
+        monkeypatch.setattr("weasyprint.HTML", FakeHTML)
+
+        convert_text_to_pdf(txt_file, pdf_file)
+
+        assert "<tag>" not in captured["string"]
+        assert "&lt;tag&gt;" in captured["string"]
+        assert "a &lt; b &amp; b &gt; c" in captured["string"]
+
 
 class TestConvertTextToHtml:
     """Tests for convert_text_to_html function."""
@@ -151,6 +175,20 @@ class TestConvertTextToHtml:
         assert html_file.exists()
         content = html_file.read_text()
         assert "<html>" in content or "<p>" in content
+
+    def test_convert_text_to_html_escapes_html_special_chars(self, temp_dir):
+        """Text content with '<', '>', and '&' must be HTML-escaped before
+        being embedded in the <pre> block, not interpreted as markup."""
+        txt_file = temp_dir / "test.txt"
+        txt_file.write_text("if a < b & b > c: <tag>", encoding="utf-8")
+        html_file = temp_dir / "test.html"
+
+        convert_text_to_html(txt_file, html_file)
+
+        content = html_file.read_text(encoding="utf-8")
+        assert "<tag>" not in content
+        assert "&lt;tag&gt;" in content
+        assert "a &lt; b &amp; b &gt; c" in content
 
 
 class TestConvertMarkdownToDocx:
