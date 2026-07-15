@@ -228,7 +228,7 @@ These sample files can be used to test:
 
 ### Codebase maintenance
 
-The **Real Methods Policy** applies throughout `src/` and `tests/`: real libraries, real I/O, no mocks in tests (see [`.cursorrules`](../../.cursorrules)). Production code avoids stubs; tests exercise real file operations and converters. External integrations use real clients and handle errors explicitly.
+The **Real Methods Policy** applies throughout `src/` and `tests/`: real libraries, real I/O, no mocks in tests (see [`.cursorrules`](../.cursorrules)). Production code avoids stubs; tests exercise real file operations and converters. External integrations use real clients and handle errors explicitly.
 
 Orchestration code uses **specific exception types** in inner loops where recovery is clear, and **broad handlers at batch boundaries** where one bad file should not abort an entire course run.
 
@@ -245,7 +245,7 @@ uv run pytest -q --no-cov         # quick pass
 uv run pytest --cov=src --cov-report=html   # HTML coverage report
 ```
 
-There are **16** packages under `src/`; see [`src/AGENTS.md`](src/AGENTS.md) for the index.
+There are **20** packages under `src/`; see [`src/AGENTS.md`](src/AGENTS.md) for the index.
 
 ## Documentation
 

@@ -226,43 +226,44 @@ def generate_module_website(
                 q_html += '<div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%">0%</div></div></div>\n'
 
                 for idx, q in enumerate(questions, 1):
-                    q_id = q.get("id", f"q{idx}")
-                    q_type = q.get("type", "free_response")
+                    q_id = html_lib.escape(str(q.get("id", f"q{idx}")))
+                    q_type_raw = q.get("type", "free_response")
+                    q_type = html_lib.escape(q_type_raw)
                     q_html += f'<div class="question-container" id="question-{q_id}">\n'
-                    q_html += f'<div class="question-header"><div class="question-text">Question {idx}: {q.get("question", "")}</div>'
+                    q_html += f'<div class="question-header"><div class="question-text">Question {idx}: {html_lib.escape(str(q.get("question", "")))}</div>'
                     q_html += f'<span class="question-type-badge">{q_type.replace("_", " ")}</span></div>\n'
 
                     # Question Interaction Logic Generation (Simplified for Brevity - logic mostly handled by config CSS classes)
-                    if q_type == "multiple_choice":
+                    if q_type_raw == "multiple_choice":
                         q_html += '<ul class="multiple-choice-options">\n'
                         for i, opt in enumerate(q.get("options", [])):
                             q_html += f'<li class="multiple-choice-option" onclick="selectMultipleChoice(\'{q_id}\', {i})">'
-                            q_html += f'<input type="radio" name="mc-{q_id}" id="mc-{q_id}-{i}" value="{i}"><label for="mc-{q_id}-{i}">{opt}</label></li>'
+                            q_html += f'<input type="radio" name="mc-{q_id}" id="mc-{q_id}-{i}" value="{i}"><label for="mc-{q_id}-{i}">{html_lib.escape(str(opt))}</label></li>'
                         q_html += '</ul>'
                         if q.get("correct") is not None:
-                            q_html += f'<input type="hidden" id="correct-{q_id}" value="{q.get("correct")}">'
+                            q_html += f'<input type="hidden" id="correct-{q_id}" value="{html_lib.escape(str(q.get("correct")))}">'
 
-                    elif q_type == "free_response":
-                        q_html += f'<textarea class="free-response-textarea" id="fr-{q_id}" placeholder="{q.get("placeholder", "")}" '
+                    elif q_type_raw == "free_response":
+                        q_html += f'<textarea class="free-response-textarea" id="fr-{q_id}" placeholder="{html_lib.escape(str(q.get("placeholder", "")))}" '
                         q_html += f'oninput="updateCharCount(\'{q_id}\', this.value.length, {q.get("max_length", 1000)})"></textarea>'
                         q_html += f'<div class="char-count" id="char-count-{q_id}">0 / {q.get("max_length", 1000)} characters</div>'
 
-                    elif q_type == "true_false":
+                    elif q_type_raw == "true_false":
                         q_html += '<div class="true-false-buttons">'
                         q_html += f'<button class="true-false-btn" onclick="selectTrueFalse(\'{q_id}\', true)">True</button>'
                         q_html += f'<button class="true-false-btn" onclick="selectTrueFalse(\'{q_id}\', false)">False</button></div>'
                         if q.get("correct") is not None:
-                            q_html += f'<input type="hidden" id="correct-{q_id}" value="{str(q.get("correct")).lower()}">'
+                            q_html += f'<input type="hidden" id="correct-{q_id}" value="{html_lib.escape(str(q.get("correct")).lower())}">'
 
-                    elif q_type == "matching":
+                    elif q_type_raw == "matching":
                          q_html += '<div class="matching-container"><div class="matching-pairs">'
                          items = q.get("items", [])
                          for i, item in enumerate(items):
-                             q_html += f'<div class="matching-item"><div class="matching-term">{item.get("term", "")}</div>'
+                             q_html += f'<div class="matching-item"><div class="matching-term">{html_lib.escape(str(item.get("term", "")))}</div>'
                              q_html += f'<select class="matching-select" id="match-{q_id}-{i}" onchange="updateMatching(\'{q_id}\')">'
                              q_html += '<option value="">Select definition...</option>'
                              for j, defi in enumerate(items):
-                                 q_html += f'<option value="{j}">{defi.get("definition", "")}</option>'
+                                 q_html += f'<option value="{j}">{html_lib.escape(str(defi.get("definition", "")))}</option>'
                              q_html += '</select>'
                              q_html += f'<input type="hidden" id="correct-match-{q_id}-{i}" value="{i}"></div>'
                          q_html += '</div></div>'
@@ -270,8 +271,8 @@ def generate_module_website(
                     # Feedback Area
                     expl = q.get("explanation", "")
                     if expl:
-                        q_html += f'<input type="hidden" id="explanation-{q_id}" value="{expl}">'
-                    
+                        q_html += f'<input type="hidden" id="explanation-{q_id}" value="{html_lib.escape(str(expl))}">'
+
                     q_html += f'<button class="check-question-btn" onclick="checkQuestion(\'{q_id}\', \'{q_type}\')">Check Answer</button>'
                     q_html += f'<div class="question-feedback" id="feedback-{q_id}"></div></div>'
 

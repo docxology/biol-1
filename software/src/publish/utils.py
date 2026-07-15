@@ -18,7 +18,6 @@ from .flatten import (  # noqa: F401
     flatten_published,
 )
 from .copy_extras import (  # noqa: F401
-    copy_exams,
     copy_labs_and_dashboards,
     copy_module_bundles,
     copy_practice_tests,
@@ -86,7 +85,9 @@ def copy_directory_contents(
 
         # Check exclusions
         relative_path = item.relative_to(src)
-        if any(item.match(p) for p in exclude_patterns):
+        if any(part in exclude_patterns for part in relative_path.parts) or any(
+            item.match(p) for p in exclude_patterns
+        ):
             continue
 
         # Determine destination path

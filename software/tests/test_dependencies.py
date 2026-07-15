@@ -123,14 +123,14 @@ def test_all_dependencies_are_real_implementations():
 
 
 def test_no_conflicting_dependencies():
-    """Verify there are no conflicting dependency versions."""
-    # This is a basic check - more sophisticated version checking could be added
+    """Verify speech_recognition and pydub import cleanly side by side.
+
+    This only checks that both packages can be imported together without an
+    ImportError (e.g. from an incompatible transitive dependency); it does not
+    verify version-range compatibility against pyproject.toml pins.
+    """
     try:
         import speech_recognition  # noqa: F401
         import pydub  # noqa: F401
-
-        # If we get here, basic imports work
-        # More sophisticated version checking could verify compatibility
-        assert True
     except ImportError as e:
         pytest.fail(f"Dependency conflict detected: {e}")

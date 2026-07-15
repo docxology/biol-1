@@ -9,7 +9,6 @@ from src.publish.utils import (
     copy_practice_tests,
     copy_slides,
     copy_slides_to_modules,
-    copy_exams,
     clean_directory,
     copy_directory_contents,
     get_course_config,
@@ -327,51 +326,6 @@ class TestCopyModuleBundles:
         assert (stale_dir / "module-01-study-of-life-keys-to-success.pdf").exists()
 
 
-class TestCopyExams:
-    """Tests for copy_exams function."""
-
-    def test_copies_exam_files(self, temp_dir):
-        """Test copying exam files excluding answer keys."""
-        exams_dir = temp_dir / "course_development" / "biol-8" / "course" / "exams"
-        exams_dir.mkdir(parents=True)
-        (exams_dir / "exam-1.md").write_text("# Exam 1", encoding="utf-8")
-        (exams_dir / "exam-1_key.md").write_text("# Key", encoding="utf-8")
-
-        pub = temp_dir / config.PUBLISH_ROOT_NAME
-        pub.mkdir()
-
-        copied = copy_exams(temp_dir)
-
-        assert copied == 1  # Only exam-1.md, not the key
-        assert (pub / "biol-8" / "exams" / "exam-1.md").exists()
-        assert not (pub / "biol-8" / "exams" / "exam-1_key.md").exists()
-
-    def test_copies_exam_outputs(self, temp_dir):
-        """Test copying exam output files (PDF, DOCX)."""
-        exams_dir = temp_dir / "course_development" / "biol-8" / "course" / "exams"
-        exams_dir.mkdir(parents=True)
-        output_dir = exams_dir / "output"
-        output_dir.mkdir()
-        (output_dir / "exam-1.pdf").write_bytes(b"pdf")
-
-        pub = temp_dir / config.PUBLISH_ROOT_NAME
-        pub.mkdir()
-
-        copied = copy_exams(temp_dir)
-
-        assert copied == 1
-        assert (pub / "biol-8" / "exams" / "exam-1.pdf").exists()
-
-    def test_missing_exams_directory(self, temp_dir):
-        """Test with non-existent exams directory."""
-        pub = temp_dir / config.PUBLISH_ROOT_NAME
-        pub.mkdir()
-
-        copied = copy_exams(temp_dir)
-
-        assert copied == 0
-
-
 class TestCleanDirectory:
     """Tests for clean_directory function."""
 
@@ -435,6 +389,34 @@ class TestCopyDirectoryContents:
             temp_dir / "nonexistent", temp_dir / "dst"
         )
         assert count == 0
+
+    def test_excludes_files_inside_excluded_directory(self, temp_dir):
+        """Files nested inside an excluded directory name must not be copied.
+
+        Regression test: exclude_patterns like "__pycache__" or ".git" name a
+        *directory*, not a file. A file living inside that directory (e.g.
+        foo/__pycache__/mod.cpython-311.pyc) has its own filename, which never
+        equals the directory pattern, so matching on the file's own name alone
+        silently fails to exclude anything nested inside the directory.
+        """
+        src = temp_dir / "src"
+        src.mkdir()
+        (src / "good.txt").write_text("ok", encoding="utf-8")
+        pycache = src / "foo" / "__pycache__"
+        pycache.mkdir(parents=True)
+        (pycache / "mod.cpython-311.pyc").write_text("junk", encoding="utf-8")
+        git_dir = src / "bar" / ".git"
+        git_dir.mkdir(parents=True)
+        (git_dir / "config").write_text("junk", encoding="utf-8")
+
+        dst = temp_dir / "dst"
+
+        count = copy_directory_contents(src, dst)
+
+        assert count == 1
+        assert (dst / "good.txt").exists()
+        assert not (dst / "foo" / "__pycache__").exists()
+        assert not (dst / "bar" / ".git").exists()
 
 
 class TestGetCourseConfig:

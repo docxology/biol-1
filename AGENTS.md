@@ -35,15 +35,17 @@ Each active module under `course_development/biol-1/course/module-NN-name/` has 
 module-NN-name/
 ├── README.md             # Student-facing module overview
 ├── AGENTS.md             # Technical doc for tooling
-├── questions.md          # Practice questions (rendered → study-guides/)
-├── keys-to-success.md    # Module study guide (rendered → study-guides/)
+├── module.toml           # CANONICAL typed source — edit this, not the generated files below
+├── questions.md          # GENERATED from module.toml (rendered → study-guides/)
+├── keys-to-success.md    # GENERATED from module.toml (rendered → study-guides/)
+├── practice-quiz.md      # GENERATED from module.toml
 ├── resources/            # Optional: images, datasets used by the module
 └── output/               # Generated artifacts (do not commit edits here)
     ├── study-guides/     #   {questions,keys-to-success}.{md,pdf,docx}
     └── website/          #   index.html
 ```
 
-Some modules omit `resources/` if they have no module-local assets. Historical BIOL-8 modules are archived under `archive/spring-2026/`.
+`module.toml` is the canonical Fall 2026 module source (module number, slug, title, linked lab, topics, learning objectives/questions, practice-quiz items, module-local assets). `keys-to-success.md`, `questions.md`, and `practice-quiz.md` are all generated from it via `software/scripts/generate_module_materials.py` — edit `module.toml` and regenerate; do not hand-edit the generated Markdown. Some modules omit `resources/` if they have no module-local assets. Historical BIOL-8 modules are archived under `archive/spring-2026/`.
 
 ## File naming conventions
 
@@ -51,8 +53,10 @@ Some modules omit `resources/` if they have no module-local assets. Historical B
 
 - Module folders: `module-NN-topic-words/` (zero-padded `NN`, lowercase, hyphenated words).
 - Inside a module:
-  - `questions.md` — practice questions for the module.
-  - `keys-to-success.md` — study guide / "keys to success" notes.
+  - `module.toml` — canonical typed source for the module; edit this first.
+  - `questions.md` — practice questions for the module (generated from `module.toml`).
+  - `keys-to-success.md` — study guide / "keys to success" notes (generated from `module.toml`).
+  - `practice-quiz.md` — practice quiz items (generated from `module.toml`).
 - Lab files (under `course/labs/`): `lab-NN_topic-words.md`.
 - Practice tests (under `course/practice_tests/`): `practice-test-NN.md`.
 - Exams (under `course/exams/`): `exam-NN-topic.md`.
@@ -122,9 +126,10 @@ See `software/docs/ORCHESTRATION.md` for the detailed flow.
 ### Adding a new module
 
 1. Create `course_development/biol-X/course/module-NN-topic/`.
-2. Add `README.md`, `AGENTS.md`, `questions.md`, `keys-to-success.md` (use a sibling module as template).
-3. If the module has datasets/images, create `resources/` with its own `README.md` + `AGENTS.md`.
-4. Run `python publish.py --dry-run` (or full publish) to verify it is picked up.
+2. Add `README.md`, `AGENTS.md`, and `module.toml` (use a sibling module as template); do not hand-write `questions.md`/`keys-to-success.md`/`practice-quiz.md`.
+3. Run `cd software && uv run python scripts/generate_module_materials.py --course biol-X --module NN` to generate `questions.md`, `keys-to-success.md`, and `practice-quiz.md` from `module.toml`.
+4. If the module has datasets/images, create `resources/` with its own `README.md` + `AGENTS.md`.
+5. Run `python publish.py --dry-run` (or full publish) to verify it is picked up.
 
 ### Managing private materials
 

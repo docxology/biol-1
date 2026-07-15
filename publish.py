@@ -34,7 +34,13 @@ def load_config() -> dict:
         return tomllib.load(f)
 
 
-def enabled_formats(config: dict) -> list[str]:
+def enabled_formats() -> list[str]:
+    """Return output formats enabled in publish.toml.
+
+    Re-parses publish.toml via ``enabled_publish_formats`` (which also validates
+    the formats section) rather than accepting an already-loaded config dict —
+    callers never had a way to pass an in-memory override anyway.
+    """
     return enabled_publish_formats(REPO_ROOT)
 
 
@@ -73,7 +79,7 @@ def build_args(config: dict, override_formats: str | None = None) -> list[str]:
     if override_formats:
         args.extend(["--formats", override_formats])
     else:
-        fmts = enabled_formats(config)
+        fmts = enabled_formats()
         if fmts:
             args.extend(["--formats", ",".join(fmts)])
 
@@ -352,7 +358,7 @@ def main():
         git_cfg = pub.get("git", {})
 
         print("publish.toml config loaded:")
-        print(f"  formats:  {enabled_formats(config)}")
+        print(f"  formats:  {enabled_formats()}")
         print(f"  clean:    {pub.get('clean')}")
         print(f"  verbose:  {pub.get('verbose')}")
         print(f"  pipeline: generate={pipeline.get('generate', True)}, "
@@ -399,7 +405,6 @@ def main():
         flatten_all_files(config)
 
     # Git operations (if enabled)
-    pipeline = config["publish"].get("pipeline", {})
     if pipeline.get("git_push", False) and not cli.skip_git:
         log.info("\n" + "="*50)
         log.info("Running git operations...")

@@ -14,7 +14,7 @@ Complete guide for authoring lab protocols. Labs are Markdown files processed by
 | **Location** | `course_development/biol-1/course/labs/` |
 | **Dashboards** | `course_development/biol-1/course/labs/dashboards/` |
 
-Number labs with zero-padded two-digit prefixes. **Expected numbered protocol ranges** track `publish.toml`: the active Fall 2026 **BIOL-1** course has labs `01`–`17` (`max_lab = 17`), plus optional supplemental `lab-*.md` files if needed. Spring 2026 BIOL-8 lab formats are historical reference material under [`../../archive/spring-2026/course_development/biol-8/course/labs/`](../../archive/spring-2026/course_development/biol-8/course/labs/). Use lowercase kebab-case for the topic slug.
+Number labs with zero-padded two-digit prefixes. **Expected numbered protocol ranges** track `publish.toml`: the active Fall 2026 **BIOL-1** course has labs `01`–`16` (`max_lab = 16`), plus optional supplemental `lab-*.md` files if needed. Spring 2026 BIOL-8 lab formats are historical reference material under [`../../../archive/spring-2026/course_development/biol-8/course/labs/`](../../../archive/spring-2026/course_development/biol-8/course/labs/). Use lowercase kebab-case for the topic slug.
 
 ---
 

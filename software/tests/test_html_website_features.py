@@ -8,6 +8,150 @@ import pytest
 from src.html_website.main import generate_module_website
 
 
+# A minimal but fully valid module.toml satisfying the module_content contract
+# (exactly one concept-map/process-model/retrieval-card generated-image spec,
+# each meeting its own minimum-count requirements). Mirrors the fixture used in
+# tests/test_module_content.py so the structured-module rendering path in
+# generate_module_website can be exercised end-to-end.
+STRUCTURED_MODULE_TOML = '''[module]
+number = 1
+slug = "module-01-test"
+title = "Test Module"
+lab = "lab-01_test.md"
+topics = ["Topic A", "Topic B"]
+contents = ["Use evidence", "Practice vocabulary", "Apply the lab", "Revise claims"]
+learning_objectives = ["Define one idea.", "Apply one idea.", "Compare two ideas."]
+study_tips = ["Review terms.", "Answer questions."]
+learning_questions = ["Question 1?", "Question 2?", "Question 3?", "Question 4?", "Question 5?", "Question 6?", "Question 7?", "Question 8?"]
+
+[[terms]]
+name = "Alpha & Beta"
+definition = 'A "special" term with quotes and an & ampersand.'
+
+[[terms]]
+name = "Beta"
+definition = "Second term."
+
+[[terms]]
+name = "Gamma"
+definition = "Third term."
+
+[[assets]]
+path = "resources/diagram.png"
+kind = "diagram"
+description = 'Shows the "life cycle" & key stages.'
+
+[[practice_quiz]]
+question = "Question A?"
+options = ["Correct", "Wrong 1", "Wrong 2", "Wrong 3"]
+answer = "A"
+explanation = "A is correct."
+
+[[practice_quiz]]
+question = "Question B?"
+options = ["Wrong 1", "Correct", "Wrong 2", "Wrong 3"]
+answer = "B"
+explanation = "B is correct."
+
+[[practice_quiz]]
+question = "Question C?"
+options = ["Wrong 1", "Wrong 2", "Correct", "Wrong 3"]
+answer = "C"
+explanation = "C is correct."
+
+[[practice_quiz]]
+question = "Question D?"
+options = ["Wrong 1", "Wrong 2", "Wrong 3", "Correct"]
+answer = "D"
+explanation = "D is correct."
+
+[[generated_images]]
+id = "concept-map"
+title = "Concept Map"
+kind = "concept-map"
+output = "resources/generated/module-01-concept-map.svg"
+prompt = "Deterministic local SVG."
+central_claim = "Topic A connects vocabulary to lab evidence."
+clusters = ["Course idea", "Vocabulary", "Practice"]
+
+[[generated_images.nodes]]
+id = "topic"
+label = "Topic A"
+detail = "Main module focus."
+cluster = "Course idea"
+
+[[generated_images.nodes]]
+id = "term1"
+label = "Alpha"
+detail = "First term."
+cluster = "Vocabulary"
+
+[[generated_images.nodes]]
+id = "term2"
+label = "Beta"
+detail = "Second term."
+cluster = "Vocabulary"
+
+[[generated_images.edges]]
+source = "topic"
+target = "term1"
+label = "defines"
+
+[[generated_images.edges]]
+source = "term1"
+target = "term2"
+label = "supports"
+
+[[generated_images]]
+id = "process-model"
+title = "Process Model"
+kind = "process-model"
+output = "resources/generated/module-01-process-model.svg"
+prompt = "Deterministic local SVG."
+inputs = ["Topic A", "Topic B"]
+outputs = ["Define one idea.", "Apply one idea."]
+feedbacks = ["Lab evidence revises the claim."]
+constraints = ["Practice vocabulary"]
+
+[[generated_images.stages]]
+label = "Notice"
+detail = "Use evidence."
+
+[[generated_images.stages]]
+label = "Name"
+detail = "Practice vocabulary."
+
+[[generated_images.stages]]
+label = "Apply"
+detail = "Apply the lab."
+
+[[generated_images]]
+id = "retrieval-card"
+title = "Retrieval Card"
+kind = "retrieval-card"
+output = "resources/generated/module-01-retrieval-card.svg"
+prompt = "Deterministic local SVG."
+terms = ["Alpha", "Beta", "Gamma"]
+lab_connection = "Lab 01 checks the module idea with evidence."
+
+[[generated_images.prompts]]
+prompt = "Question 1?"
+check = "Use Alpha in the answer."
+
+[[generated_images.prompts]]
+prompt = "Question 2?"
+check = "Use Beta in the answer."
+
+[[generated_images.prompts]]
+prompt = "Question 3?"
+check = "Use Gamma in the answer."
+
+[[generated_images.prompts]]
+prompt = "Question 4?"
+check = "Connect the claim to lab evidence."
+'''
+
+
 class TestGenerateModuleWebsite:
     """Tests for generate_module_website function."""
 
@@ -149,6 +293,56 @@ class TestGenerateModuleWebsite:
         assert "Interactive Questions" in html_content
         assert "What is biology" in html_content
 
+    def test_generate_module_website_with_questions_escapes_quotes(self, temp_dir):
+        """Question fields containing quote characters must not corrupt the
+        generated HTML attributes (regression test for unescaped interpolation).
+        """
+        module_dir = temp_dir / "module-1"
+        module_dir.mkdir()
+
+        questions_dir = module_dir / "questions"
+        questions_dir.mkdir()
+        questions_data = {
+            "questions": [
+                {
+                    "id": "q1",
+                    "type": "multiple_choice",
+                    "question": 'What does "homeostasis" mean?',
+                    "options": ['Say "steady state"', "Something else"],
+                    "correct": 0,
+                    "explanation": 'It means "staying the same".',
+                },
+                {
+                    "id": "q2",
+                    "type": "free_response",
+                    "question": "Describe a cell.",
+                    "placeholder": 'Say "yes" or "no"',
+                    "max_length": 500,
+                },
+                {
+                    "id": "q3",
+                    "type": "matching",
+                    "question": "Match terms",
+                    "items": [
+                        {"term": 'A "term"', "definition": 'A "definition"'},
+                    ],
+                },
+            ]
+        }
+        (questions_dir / "questions.json").write_text(
+            json.dumps(questions_data), encoding="utf-8"
+        )
+
+        output_dir = temp_dir / "output"
+        result = generate_module_website(str(module_dir), str(output_dir))
+
+        html_content = Path(result).read_text()
+        # The raw unescaped quote-bearing strings must never appear verbatim,
+        # since that would mean an attribute value was terminated early.
+        assert 'placeholder="Say "yes" or "no""' not in html_content
+        assert "&quot;" in html_content
+        assert "Interactive Questions" in html_content
+
     def test_generate_module_website_with_audio(self, temp_dir):
         """Test generating website with audio files."""
         module_dir = temp_dir / "module-1"
@@ -171,6 +365,93 @@ class TestGenerateModuleWebsite:
 
         html_content = Path(result).read_text()
         assert "audio" in html_content.lower()
+
+
+class TestGenerateModuleWebsiteStructured:
+    """Tests for the module.toml-driven structured rendering path.
+
+    This is the path used by every active BIOL-1 module (via
+    src.module_content.load_module_content), as opposed to the legacy
+    sample_*.md fallback branch covered by TestGenerateModuleWebsite.
+    """
+
+    def _make_structured_module(self, temp_dir: Path) -> Path:
+        module_dir = temp_dir / "module-01-test"
+        module_dir.mkdir()
+        (module_dir / "module.toml").write_text(STRUCTURED_MODULE_TOML, encoding="utf-8")
+        # module_content validates that hand-authored [[assets]] paths exist
+        # on disk (unlike generated_images, which are produced later).
+        resources_dir = module_dir / "resources"
+        resources_dir.mkdir()
+        (resources_dir / "diagram.png").write_bytes(b"fake-png")
+        return module_dir
+
+    def test_renders_all_structured_sections_and_sidebar_links(self, temp_dir):
+        module_dir = self._make_structured_module(temp_dir)
+
+        result = generate_module_website(str(module_dir), str(temp_dir / "website"))
+        html_content = Path(result).read_text(encoding="utf-8")
+
+        # Sidebar links for every structured section.
+        for section_id in (
+            "topics",
+            "contents",
+            "learning_questions",
+            "practice_quiz",
+            "lab",
+            "assets",
+        ):
+            assert f'href="#{section_id}"' in html_content
+        assert 'id="terms"' in html_content
+
+        # Section content.
+        assert "Topic A" in html_content
+        assert "Use evidence" in html_content
+        assert "Question 1?" in html_content
+        assert "Connected lab: <code>lab-01_test.md</code>" in html_content or "lab-01_test.md" in html_content
+
+    def test_escapes_term_names_and_definitions(self, temp_dir):
+        module_dir = self._make_structured_module(temp_dir)
+
+        result = generate_module_website(str(module_dir), str(temp_dir / "website"))
+        html_content = Path(result).read_text(encoding="utf-8")
+
+        # The terms table is rendered through markdown_to_html from raw
+        # markdown text (not html.escape), so the literal quote/ampersand
+        # from module.toml must not corrupt the surrounding table markup.
+        assert "Alpha &amp; Beta" in html_content or "Alpha & Beta" in html_content
+        assert "Beta" in html_content
+        assert "Gamma" in html_content
+
+    def test_escapes_asset_description_and_kind(self, temp_dir):
+        module_dir = self._make_structured_module(temp_dir)
+
+        result = generate_module_website(str(module_dir), str(temp_dir / "website"))
+        html_content = Path(result).read_text(encoding="utf-8")
+
+        assert "diagram" in html_content
+        assert "&quot;life cycle&quot;" in html_content
+        assert "&amp; key stages" in html_content
+        # The raw unescaped description must never appear verbatim.
+        assert 'Shows the "life cycle" & key stages.' not in html_content
+
+    def test_malformed_module_toml_falls_back_to_legacy_branch(self, temp_dir):
+        """A malformed module.toml must raise ModuleContentError internally and
+        fall through to the legacy sample_*.md branch, not silently produce an
+        empty structured page.
+        """
+        module_dir = temp_dir / "module-02-broken"
+        module_dir.mkdir()
+        (module_dir / "module.toml").write_text("not valid = [toml", encoding="utf-8")
+        (module_dir / "sample_lecture-content.md").write_text(
+            "# Fallback Lecture\n\nFallback content.", encoding="utf-8"
+        )
+
+        result = generate_module_website(str(module_dir), str(temp_dir / "website"))
+        html_content = Path(result).read_text(encoding="utf-8")
+
+        assert "Fallback Lecture" in html_content
+        assert 'href="#topics"' not in html_content
 
 
 class TestHTMLWebsiteConfig:
