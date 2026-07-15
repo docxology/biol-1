@@ -173,7 +173,7 @@ python publish.py --skip-git
 
 Exams use the same multi-format rendering path as other markdown content under `course/`. PDF and other formats are generated via `batch_processing` / `generate_all_outputs.py` when exams are included in the run.
 
-> **BIOL-1 note**: `publish.toml` does not set `include_exams` for BIOL-1. Local renders follow whatever the generation script includes. See [../../publish.toml](../../publish.toml) for current configuration.
+> **BIOL-1 note**: `publish.toml` does not set `include_exams` for BIOL-1. Local renders follow whatever the generation script includes. See [../../../publish.toml](../../../publish.toml) for current configuration.
 
 ---
 
@@ -184,5 +184,5 @@ Exams use the same multi-format rendering path as other markdown content under `
 | [PRACTICE_TEST_FORMAT.md](PRACTICE_TEST_FORMAT.md) | Practice test format and exam parity |
 | [README.md](../README.md) | Content types index |
 | [../COURSE_STRUCTURE.md](../COURSE_STRUCTURE.md) | Course directory layout (assessment section) |
-| [../../course_development/biol-1/course/exams/AGENTS.md](../../course_development/biol-1/course/exams/AGENTS.md) | Source-level exam documentation |
+| [../../../course_development/biol-1/course/exams/AGENTS.md](../../../course_development/biol-1/course/exams/AGENTS.md) | Source-level exam documentation |
 | [../ORCHESTRATION.md](../ORCHESTRATION.md) | Pipeline and generation workflows |

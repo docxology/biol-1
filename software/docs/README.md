@@ -191,16 +191,22 @@ Scripts in `scripts/` are thin orchestrators that call src modules:
 |--------|---------|-------------------|
 | `publish_all.py` | **Top-level pipeline** | `batch_processing`, `publish`, `validation` |
 | `generate_all_outputs.py` | Generate all course outputs | `batch_processing` |
+| `generate_module_materials.py` | Regenerate module.toml-derived materials (keys-to-success/questions/practice-quiz + generated SVGs) | `module_content` |
 | `generate_module_renderings.py` | Single module processing | `batch_processing` |
 | `generate_module_website.py` | Website generation | `html_website` |
+| `generate_slide_decks.py` | Slide deck generation | `slide_deck` |
+| `generate_biol1_lab_dashboards.py` | BIOL-1 lab dashboard generation | `lab_dashboard` |
 | `generate_syllabus_renderings.py` | Syllabus processing | `schedule`, `batch_processing` |
 | `publish_course.py` | Publish to PUBLISHED/ | `publish` |
 | `validate_outputs.py` | Validate outputs | `validation` |
 | `validate_repo_contracts.py` | Validate repo/documentation contracts | `validation.repo_contracts` |
 | `flatten_published.py` | Flatten directories | `publish.utils` |
 | `renumber_questions.py` | Question renumbering | `content_processing` |
+| `shuffle_final_exam_mc.py` | Shuffle final-exam multiple-choice options and re-key the answer key | `exam_tools` |
 | `import_legacy_materials.py` | Import legacy | `legacy_import` |
 | `assemble_practice_test_12.py` | Assemble archived Spring 2026 BIOL-8 `practice-test-12` from slices | ad hoc (see script docstring) |
+
+See [reference/CLI_REFERENCE.md](reference/CLI_REFERENCE.md) for full usage/options for every script above.
 
 See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
@@ -343,14 +349,18 @@ software/
 └── scripts/
     ├── publish_all.py
     ├── generate_all_outputs.py
+    ├── generate_module_materials.py
     ├── generate_module_renderings.py
     ├── generate_module_website.py
+    ├── generate_slide_decks.py
+    ├── generate_biol1_lab_dashboards.py
     ├── generate_syllabus_renderings.py
     ├── publish_course.py
     ├── validate_outputs.py
     ├── validate_repo_contracts.py
     ├── flatten_published.py
     ├── renumber_questions.py
+    ├── shuffle_final_exam_mc.py
     ├── import_legacy_materials.py
     └── assemble_practice_test_12.py
 ```

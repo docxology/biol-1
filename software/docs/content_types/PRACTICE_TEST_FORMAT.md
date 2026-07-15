@@ -142,7 +142,7 @@ python publish.py --skip-git
 
 Practice tests are processed by `process_course_practice_tests` in `software/src/batch_processing/main.py`. The publish step copies `practice_tests/` and `output/` into `PUBLISHED/biol-1/practice_tests/`.
 
-> **Note**: Practice test generation requires `include_practice_tests = true` in [`publish.toml`](../../publish.toml).
+> **Note**: Practice test generation requires `include_practice_tests = true` in [`publish.toml`](../../../publish.toml).
 
 ---
 
@@ -153,5 +153,5 @@ Practice tests are processed by `process_course_practice_tests` in `software/src
 | [EXAM_FORMAT.md](EXAM_FORMAT.md) | Exam format and practice test parity |
 | [README.md](../README.md) | Content types index |
 | [../COURSE_STRUCTURE.md](../COURSE_STRUCTURE.md) | Course directory layout |
-| [../../course_development/biol-1/course/practice_tests/AGENTS.md](../../course_development/biol-1/course/practice_tests/AGENTS.md) | Source-level practice test documentation |
+| [../../../course_development/biol-1/course/practice_tests/AGENTS.md](../../../course_development/biol-1/course/practice_tests/AGENTS.md) | Source-level practice test documentation |
 | [../ORCHESTRATION.md](../ORCHESTRATION.md) | Pipeline and generation workflows |

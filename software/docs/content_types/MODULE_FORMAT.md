@@ -323,4 +323,4 @@ The end-to-end pipeline (`python publish.py` at repo root) runs these steps for 
 | [SLIDES_FORMAT.md](SLIDES_FORMAT.md) | Slide deck generation from module.toml |
 | [../COURSE_STRUCTURE.md](../COURSE_STRUCTURE.md) | Course directory layout |
 | [../ORCHESTRATION.md](../ORCHESTRATION.md) | Generation and publish pipeline |
-| [../../course_development/biol-1/course/AGENTS.md](../../course_development/biol-1/course/AGENTS.md) | Course-level source documentation |
+| [../../../course_development/biol-1/course/AGENTS.md](../../../course_development/biol-1/course/AGENTS.md) | Course-level source documentation |

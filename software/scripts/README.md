@@ -28,8 +28,10 @@ Scripts do NOT contain business logic. They:
 |--------|-------------------|---------|
 | `publish_all.py` | `batch_processing`, `publish`, `validation` | **Top-level pipeline** |
 | `generate_all_outputs.py` | `batch_processing` | Generate all course outputs |
+| `generate_module_materials.py` | `module_content` | Regenerate module.toml-derived materials (keys-to-success/questions/practice-quiz + generated SVGs) |
 | `generate_module_renderings.py` | `batch_processing` | Single module processing |
 | `generate_module_website.py` | `html_website` | Website generation |
+| `generate_slide_decks.py` | `slide_deck` | Slide deck generation |
 | `generate_syllabus_renderings.py` | `schedule`, `batch_processing` | Syllabus processing |
 | `publish_course.py` | `publish` | Publish to PUBLISHED/ |
 | `validate_outputs.py` | `validation` | Validate generated outputs |
@@ -37,6 +39,7 @@ Scripts do NOT contain business logic. They:
 | `generate_biol1_lab_dashboards.py` | (stdlib; BIOL-1 lab specs) | Regenerate active BIOL-1 lab dashboards from the lab list |
 | `flatten_published.py` | `publish.utils` | Flatten directory structure |
 | `renumber_questions.py` | `content_processing` | Question renumbering |
+| `shuffle_final_exam_mc.py` | `exam_tools` | Shuffle final-exam Part A MC options and re-key the answer key |
 | `import_legacy_materials.py` | `legacy_import` | Import legacy format |
 | `assemble_practice_test_12.py` | (stdlib; archived BIOL-8 practice tests) | Rebuild Spring 2026 cumulative `practice-test-12` + key |
 
@@ -116,6 +119,37 @@ uv run python scripts/generate_all_outputs.py --course biol-1 --dry-run
 | `--skip-labs` | Skip lab manual rendering |
 
 **Module Used**: `src/batch_processing`
+
+---
+
+### `generate_module_materials.py` — Structured Module Materials
+
+Regenerate `keys-to-success.md`, `questions.md`, `practice-quiz.md`, and the
+deterministic generated SVGs (concept map, process model, retrieval card)
+from each module's `module.toml` — the canonical typed source of truth. Edit
+`module.toml`, then regenerate; do not hand-edit the generated Markdown.
+
+```bash
+# Regenerate for all modules in all active courses
+uv run python scripts/generate_module_materials.py --course all
+
+# Regenerate for one course
+uv run python scripts/generate_module_materials.py --course biol-1
+
+# Regenerate a single module
+uv run python scripts/generate_module_materials.py --course biol-1 --module 3
+
+# Preview without writing
+uv run python scripts/generate_module_materials.py --course biol-1 --dry-run
+```
+
+| Option | Description |
+|--------|-------------|
+| `--course` | Active course id (`biol-1`) or `all` |
+| `--module` | Optional: specific module number |
+| `--dry-run` | Report generated files without writing |
+
+**Module Used**: `src/module_content`
 
 ---
 
@@ -226,6 +260,27 @@ uv run python scripts/generate_module_website.py --course biol-1 --module 1
 
 ---
 
+### `generate_slide_decks.py` — Slide Deck Generation
+
+Generate slide decks for one or all modules from `module.toml` content.
+
+```bash
+uv run python scripts/generate_slide_decks.py --course all
+uv run python scripts/generate_slide_decks.py --course biol-1
+uv run python scripts/generate_slide_decks.py --course biol-1 --module 3
+uv run python scripts/generate_slide_decks.py --course biol-1 --dry-run
+```
+
+| Option | Description |
+|--------|-------------|
+| `--course` | Active course id (`biol-1`) or `all` |
+| `--module` | Optional: specific module number |
+| `--dry-run` | Report generated files without writing |
+
+**Module Used**: `src/slide_deck`
+
+---
+
 ### `generate_syllabus_renderings.py` — Syllabus Processing
 
 Renders syllabus sources under ``course_development/<course>/syllabus/`` into ``syllabus/output/``.
@@ -287,6 +342,34 @@ Before: `1.`, `2.`, `3.` per section
 After: `1.`, `2.`, `3.`, `4.`, `5.`... continuously
 
 **Module Used**: `src/content_processing`
+
+---
+
+### `shuffle_final_exam_mc.py` — Final Exam MC Shuffle
+
+Thin CLI orchestrator over `src/exam_tools`. Shuffles BIOL-1 final exam Part A
+multiple-choice options with a reproducible, balanced-letter layout, updates
+the answer key to match, and runs a crosswalk verification. Paths default to
+`course_development/biol-1/course/exams/final-exam*.md` under repo root.
+
+```bash
+# Shuffle options and re-key the answer key
+uv run python scripts/shuffle_final_exam_mc.py
+
+# Compute the shuffle only; do not write files
+uv run python scripts/shuffle_final_exam_mc.py --dry-run
+
+# Re-render Part A spacing only (keep current option order/key untouched)
+uv run python scripts/shuffle_final_exam_mc.py --spacing-only
+```
+
+| Option | Description |
+|--------|-------------|
+| `--dry-run` | Compute shuffle only; do not write files |
+| `--spacing-only` | Re-render Part A spacing only, keeping option order and key untouched |
+| `--seed` | RNG seed (default: `FINAL_MC_SEED`) |
+
+**Module Used**: `src/exam_tools`
 
 ---
 

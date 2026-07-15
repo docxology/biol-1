@@ -24,7 +24,7 @@ Each course has:
 - **modules**: `software` batch processing → `output/study-guides/`, TTS, optional `output/website/`
 - **labs**: `lab_manual` + dashboards HTML
 - **syllabus**: `batch_processing.process_syllabus` / `generate_syllabus_renderings.py`
-- **config**: [publish.toml](../../publish.toml) per-course `max_module`, `max_lab`, formats
+- **config**: [publish.toml](../publish.toml) per-course `max_module`, `max_lab`, formats
 
 ## Conventions
 
