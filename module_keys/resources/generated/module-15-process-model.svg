@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 15: Population and Systems Ecology Reasoning Sequence">
+  <title>Module 15: Population and Systems Ecology Reasoning Sequence</title>
+  <desc>Process model for Module 15: Population and Systems Ecology.</desc>
+  <style>
+    .bg { fill: #f2edf7; }
+    .halo { fill: url(#wash); opacity: 0.92; }
+    .frame { fill: #fffafd; stroke: #281d34; stroke-width: 3; }
+    .eyebrow { fill: #7b4f9d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #281d34; font: 800 38px Georgia, serif; }
+    .footer { fill: #685d72; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card, .routine-card, .stage-card-bg { fill: #fffafd; stroke: #281d34; stroke-width: 2.5; filter: url(#shadow); }
+    .claim-kicker, .card-kicker { fill: #7b4f9d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #281d34; font: 700 25px Georgia, serif; }
+    .node { fill: #fffafd; stroke: #b36b2c; stroke-width: 3; filter: url(#shadow); }
+    .node-claim { stroke: #7b4f9d; }
+    .node-mechanism { stroke: #b36b2c; }
+    .node-evidence { stroke: #567d46; }
+    .node-vocabulary { stroke: #8067a9; }
+    .node-application { stroke: #b26b2f; }
+    .node-revision { stroke: #8a4351; }
+    .cluster-pill { stroke: none; opacity: 0.92; }
+    .cluster-claim { fill: #7b4f9d; }
+    .cluster-mechanism { fill: #b36b2c; }
+    .cluster-evidence { fill: #6d9c57; }
+    .cluster-vocabulary { fill: #9b83c6; }
+    .cluster-application { fill: #d28942; }
+    .cluster-revision { fill: #b85d70; }
+    .cluster-label, .legend-text { fill: white; font: 800 11px Georgia, serif; letter-spacing: 1px; text-transform: uppercase; }
+    .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #685d72; font: 14px Georgia, serif; }
+    .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; marker-end: url(#arrowhead); }
+    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .stage-dot { fill: #b36b2c; }
+    .stage-num { fill: white; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #685d72; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b36b2c; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrowhead); }
+    .prompt-text { fill: #281d34; font: 700 17px Georgia, serif; }
+    .routine-text { fill: #281d34; font: 700 16px Georgia, serif; }
+    .retrieval-step-strip { fill: #fffafd; stroke: #b36b2c; stroke-width: 2; opacity: 0.96; }
+    .palette-high-design { fill: #7b4f9d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .routine-card, .node, .stage-card-bg { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fffafd" />
+      <stop offset="1" stop-color="#b36b2c" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#281d34" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b36b2c" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
+  <text x="84" y="100" class="eyebrow">Module 15 / Process Model</text>
+  <text x="84" y="148" class="title-text">Module 15: Population and Systems Ecology Reasoning Sequence</text>
+  <rect x="84" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="110" y="216" class="card-kicker">Inputs</text>
+  <text x="110.0" y="244.0" class="mini-text"><tspan x="110.0" dy="0">• Population growth models</tspan></text><text x="110.0" y="259.0" class="mini-text"><tspan x="110.0" dy="0">• Limits and carrying capacity</tspan></text><text x="110.0" y="274.0" class="mini-text"><tspan x="110.0" dy="0">• Evidence from</tspan><tspan x="110.0" dy="15">lab-15_population-systems-ecology.md</tspan></text>
+  <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
+  <text x="824" y="216" class="card-kicker">Outputs</text>
+  <text x="824.0" y="244.0" class="mini-text"><tspan x="824.0" dy="0">• Compare exponential and</tspan><tspan x="824.0" dy="15">logistic population growth.</tspan></text><text x="824.0" y="259.0" class="mini-text"><tspan x="824.0" dy="0">• Explain carrying capacity</tspan><tspan x="824.0" dy="15">and limiting factors.</tspan></text><text x="824.0" y="274.0" class="mini-text"><tspan x="824.0" dy="0">• Contrast energy flow with</tspan><tspan x="824.0" dy="15">nutrient cycling.</tspan></text>
+  <text x="84" y="292" class="card-kicker">Reasoning sequence</text>
+  <path d="M 276.0 399.0 L 290.0 399.0" class="arrow" /><path d="M 486.0 399.0 L 500.0 399.0" class="arrow" /><path d="M 696.0 399.0 L 710.0 399.0" class="arrow" /><path d="M 906.0 399.0 L 920.0 399.0" class="arrow" />
+  <g class="stage-card"><rect x="84.0" y="312.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="112.0" cy="342.0" r="18" class="stage-dot" /><text x="112.0" y="348.0" class="stage-num" text-anchor="middle">1</text><text x="104.0" y="382.0" class="stage-label"><tspan x="104.0" dy="0">Population growth</tspan><tspan x="104.0" dy="17">models</tspan></text><text x="104.0" y="424.0" class="stage-detail"><tspan x="104.0" dy="0">Population size</tspan><tspan x="104.0" dy="13">changes through</tspan><tspan x="104.0" dy="13">births, deaths...</tspan></text></g><g class="stage-card"><rect x="294.0" y="312.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="322.0" cy="342.0" r="18" class="stage-dot" /><text x="322.0" y="348.0" class="stage-num" text-anchor="middle">2</text><text x="314.0" y="382.0" class="stage-label"><tspan x="314.0" dy="0">Limits and</tspan><tspan x="314.0" dy="17">carrying capacity</tspan></text><text x="314.0" y="424.0" class="stage-detail"><tspan x="314.0" dy="0">Exponential growth</tspan><tspan x="314.0" dy="13">describes rapid</tspan><tspan x="314.0" dy="13">increase; logistic...</tspan></text></g><g class="stage-card"><rect x="504.0" y="312.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="532.0" cy="342.0" r="18" class="stage-dot" /><text x="532.0" y="348.0" class="stage-num" text-anchor="middle">3</text><text x="524.0" y="382.0" class="stage-label"><tspan x="524.0" dy="0">Community</tspan><tspan x="524.0" dy="17">interactions</tspan></text><text x="524.0" y="424.0" class="stage-detail"><tspan x="524.0" dy="0">Density-dependent</tspan><tspan x="524.0" dy="13">and</tspan><tspan x="524.0" dy="13">density-independent...</tspan></text></g><g class="stage-card"><rect x="714.0" y="312.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="742.0" cy="342.0" r="18" class="stage-dot" /><text x="742.0" y="348.0" class="stage-num" text-anchor="middle">4</text><text x="734.0" y="382.0" class="stage-label"><tspan x="734.0" dy="0">Energy flow</tspan><tspan x="734.0" dy="17">through trophic...</tspan></text><text x="734.0" y="424.0" class="stage-detail"><tspan x="734.0" dy="0">Energy flows through</tspan><tspan x="734.0" dy="13">producers,</tspan><tspan x="734.0" dy="13">consumers, and...</tspan></text></g><g class="stage-card"><rect x="924.0" y="312.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="952.0" cy="342.0" r="18" class="stage-dot" /><text x="952.0" y="348.0" class="stage-num" text-anchor="middle">5</text><text x="944.0" y="382.0" class="stage-label"><tspan x="944.0" dy="0">Matter cycling</tspan><tspan x="944.0" dy="17">and systems...</tspan></text><text x="944.0" y="424.0" class="stage-detail"><tspan x="944.0" dy="0">Matter cycles</tspan><tspan x="944.0" dy="13">through ecosystems</tspan><tspan x="944.0" dy="13">while energy must...</tspan></text></g>
+  <rect x="84" y="538" width="500" height="94" rx="22" class="feedback-card" />
+  <text x="112" y="570" class="card-kicker">Feedback</text>
+  <text x="112.0" y="600.0" class="mini-text"><tspan x="112.0" dy="0">lab-15_population-systems-ecology.md evidence checks</tspan><tspan x="112.0" dy="16">whether students can explain community interactions...</tspan></text>
+  <rect x="616" y="538" width="500" height="94" rx="22" class="feedback-card" />
+  <text x="644" y="570" class="card-kicker">Constraint</text>
+  <text x="644.0" y="600.0" class="mini-text"><tspan x="644.0" dy="0">Population growth cannot continue without limits in real</tspan><tspan x="644.0" dy="16">ecosystems.; Matter cycles through ecosystems while...</tspan></text>
+  <text x="84" y="668" class="footer">Linked lab: lab-15_population-systems-ecology.md</text>
+</svg>
