@@ -126,17 +126,13 @@ def test_render_markdown_to_pdf_with_options(temp_dir):
     assert output_path.exists()
 
 
-def test_render_markdown_to_pdf_error_paths(temp_dir):
-    """Test error paths in render_markdown_to_pdf."""
-    # Test with invalid output path (should still work as directory is created)
+def test_render_markdown_to_pdf_creates_missing_parent_directory(temp_dir):
+    """render_markdown_to_pdf creates a missing output parent directory
+    (via ensure_output_directory) rather than raising FileNotFoundError."""
     md_file = temp_dir / "test.md"
     md_file.write_text("# Test\n", encoding="utf-8")
 
     output_path = temp_dir / "nonexistent" / "output.pdf"
-    try:
-        render_markdown_to_pdf(str(md_file), str(output_path))
-        # Should succeed as ensure_output_directory creates parent
-        assert output_path.exists()
-    except Exception:
-        # If it fails, that's also a valid test path
-        pass
+    render_markdown_to_pdf(str(md_file), str(output_path))
+
+    assert output_path.exists()

@@ -21,16 +21,6 @@ class TableConfig:
     title: Optional[str] = None
 
 
-@dataclass 
-class MeasurementConfig:
-    """Configuration for a measurement section."""
-    
-    aspects: List[str] = field(default_factory=list)
-    include_device: bool = True
-    include_unit: bool = True
-    include_value: bool = False
-
-
 @dataclass
 class LabElement:
     """Represents a parsed lab element from Markdown."""
@@ -83,26 +73,6 @@ def parse_table_directive(content: str) -> Tuple[TableConfig, str]:
         table_config.title = title_match.group(1)
     
     return table_config, content[match.end():]
-
-
-def parse_measurement_section(content: str) -> Tuple[MeasurementConfig, str]:
-    """Parse a measurement section from Markdown content.
-    
-    Args:
-        content: Markdown content
-        
-    Returns:
-        Tuple of (MeasurementConfig, remaining content)
-    """
-    pattern = r"<!-- lab:measurement-feasibility -->(.*?)<!-- /lab:measurement-feasibility -->"
-    match = re.search(pattern, content, re.DOTALL)
-    
-    if not match:
-        return MeasurementConfig(), content
-    
-    measurement_config = MeasurementConfig()
-
-    return measurement_config, content[match.end():]
 
 
 def parse_object_selection(content: str) -> Tuple[Dict[str, Any], str]:

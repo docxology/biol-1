@@ -299,19 +299,18 @@ def test_batch_convert_error_handling_continues(temp_dir):
 
 
 def test_batch_convert_non_markdown_format(temp_dir):
-    """Test batch_convert with non-markdown format (tests else branch)."""
-    # Create PDF files
+    """batch_convert with a non-markdown format (tests the else branch of
+    the input-glob logic) never raises for a per-file conversion failure:
+    per batch_convert's own docstring/implementation, individual file
+    errors are caught, logged, and skipped, so a malformed PDF yields an
+    empty output list rather than propagating the underlying exception."""
+    # Minimal/malformed PDF header - not a valid, parseable PDF stream.
     pdf1 = temp_dir / "file1.pdf"
-    pdf1.write_bytes(b"%PDF-1.4\n")  # Minimal PDF header
+    pdf1.write_bytes(b"%PDF-1.4\n")
 
-    # This will test the else branch for non-md formats
-    # Note: pdf->txt conversion might fail, but we test the path
-    try:
-        output_files = batch_convert(str(temp_dir), "pdf", "txt")
-        assert isinstance(output_files, list)
-    except Exception:
-        # If conversion fails, that's okay - we tested the else branch
-        pass
+    output_files = batch_convert(str(temp_dir), "pdf", "txt")
+
+    assert output_files == []
 
 
 def test_convert_file_handler_not_implemented(temp_dir):
