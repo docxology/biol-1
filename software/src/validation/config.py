@@ -22,11 +22,11 @@ OPTIONAL_STUDY_GUIDE_FILES = [
 
 def get_expected_study_guide_files(formats: Optional[List[str]] = None) -> List[str]:
     """Get expected study guide files based on requested formats.
-    
+
     Args:
         formats: List of format extensions to validate (e.g., ["pdf", "docx", "md"])
                  If None, uses DEFAULT_REQUIRED_FORMATS
-    
+
     Returns:
         List of expected file suffixes like ["keys-to-success.pdf", "questions.pdf", ...]
     """
@@ -34,15 +34,15 @@ def get_expected_study_guide_files(formats: Optional[List[str]] = None) -> List[
         formats = DEFAULT_REQUIRED_FORMATS
     else:
         formats = validate_supported_formats(formats)
-    
+
     # Filter to only formats that produce study guide files (not md which is just a copy)
     renderable_formats = [f for f in formats if f in ["pdf", "docx", "html", "txt"]]
-    
+
     files = []
     for base_type in STUDY_GUIDE_BASE_TYPES:
         for fmt in renderable_formats:
             files.append(f"{base_type}.{fmt}")
-    
+
     return files
 
 
@@ -53,21 +53,22 @@ SYLLABUS_OPTIONAL_FORMATS = ["html", "txt", "mp3", "md"]  # Nice to have
 
 def get_syllabus_required_formats(formats: Optional[List[str]] = None) -> List[str]:
     """Get required syllabus formats based on requested formats.
-    
+
     Args:
         formats: List of format extensions requested (e.g., ["pdf", "docx", "md"])
                  If None, uses SYLLABUS_REQUIRED_FORMATS
-    
+
     Returns:
         List of formats to require for syllabus validation
     """
     if formats is None:
         return SYLLABUS_REQUIRED_FORMATS
     formats = validate_supported_formats(formats)
-    
+
     # Only require formats that were actually requested AND are renderable
     renderable = ["pdf", "docx", "html", "txt"]
     return [f for f in formats if f in renderable]
+
 
 # Expected website files
 EXPECTED_WEBSITE_FILES = ["index.html"]
@@ -107,6 +108,7 @@ def get_lab_output_formats(formats: Optional[List[str]] = None) -> List[str]:
         return list(LAB_OUTPUT_FORMATS)
     renderable = set(LAB_RENDERABLE_FORMATS)
     return [f for f in formats if f in renderable]
+
 
 # Course configurations
 #
@@ -160,6 +162,7 @@ def get_dashboard_config(course_name: str) -> Dict[str, Any]:
         "overrides": dict(raw.get("overrides", {}) or {}),
         "exempt": list(raw.get("exempt", []) or []),
     }
+
 
 # Published directory name
 PUBLISHED_DIR_NAME = "PUBLISHED"

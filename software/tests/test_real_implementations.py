@@ -11,7 +11,9 @@ try:
     from pydub import AudioSegment
 except ImportError:
     # Skip all tests if dependencies aren't available
-    pytest.skip("Required dependencies (speech_recognition, pydub) not available", allow_module_level=True)
+    pytest.skip(
+        "Required dependencies (speech_recognition, pydub) not available", allow_module_level=True
+    )
 
 
 def test_text_to_speech_uses_real_local_tools():
@@ -179,7 +181,4 @@ def test_format_conversion_uses_real_libraries():
     # Verify it uses real libraries (check source for library usage)
     source = inspect.getsource(convert_file)
     # Should reference real conversion libraries
-    assert any(
-        lib in source.lower()
-        for lib in ["markdown", "weasyprint", "docx", "pypdf", "html"]
-    )
+    assert any(lib in source.lower() for lib in ["markdown", "weasyprint", "docx", "pypdf", "html"])

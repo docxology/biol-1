@@ -27,26 +27,16 @@ def main():
         description="Renumber questions.md files to use continuous numbering."
     )
     parser.add_argument(
-        "--course",
-        type=str,
-        default="all",
-        help="Active course to process, or all (default: all)"
+        "--course", type=str, default="all", help="Active course to process, or all (default: all)"
     )
     parser.add_argument(
-        "--module",
-        type=str,
-        default=None,
-        help="Process a single module (e.g., module-03)"
+        "--module", type=str, default=None, help="Process a single module (e.g., module-03)"
     )
     parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Show what would be changed without writing files"
+        "--dry-run", action="store_true", help="Show what would be changed without writing files"
     )
     parser.add_argument(
-        "--verbose",
-        action="store_true",
-        help="Show detailed processing information"
+        "--verbose", action="store_true", help="Show detailed processing information"
     )
 
     args = parser.parse_args()
@@ -66,14 +56,14 @@ def main():
         courses=courses,
         module_filter=args.module,
         dry_run=args.dry_run,
-        verbose=args.verbose
+        verbose=args.verbose,
     )
 
     # Display results
     for course_result in results["courses_processed"]:
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print(f"{prefix}Processing {course_result['name'].upper()}")
-        print('='*60)
+        print("=" * 60)
 
         for module_info in course_result["modules"]:
             if module_info["converted"]:
@@ -96,5 +86,5 @@ def main():
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     raise SystemExit(main())

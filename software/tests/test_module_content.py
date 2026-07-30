@@ -11,7 +11,7 @@ from src.module_content.main import (
 )
 
 
-MODULE_TOML = '''[module]
+MODULE_TOML = """[module]
 number = 1
 slug = "module-01-test"
 title = "Test Module"
@@ -173,7 +173,7 @@ check = "Use Gamma in the answer."
 [[generated_images.prompts]]
 prompt = "Question 4?"
 check = "Connect the claim to lab evidence."
-'''
+"""
 
 
 def make_module(temp_dir: Path) -> Path:
@@ -202,8 +202,10 @@ def test_render_module_materials_outputs_markdown_and_svg(temp_dir):
     result = render_module_materials(module_dir)
 
     assert result["written"] == 11
-    assert (module_dir / "keys-to-success.md").read_text(encoding="utf-8").startswith(
-        "<!-- Generated from module.toml"
+    assert (
+        (module_dir / "keys-to-success.md")
+        .read_text(encoding="utf-8")
+        .startswith("<!-- Generated from module.toml")
     )
     assert "## Learning Objectives" in (module_dir / "keys-to-success.md").read_text(
         encoding="utf-8"
@@ -217,7 +219,7 @@ def test_render_module_materials_outputs_markdown_and_svg(temp_dir):
     svg = (module_dir / "resources" / "generated" / "module-01-concept-map.svg").read_text(
         encoding="utf-8"
     )
-    assert "role=\"img\"" in svg
+    assert 'role="img"' in svg
     assert "palette-high-design" in svg
     assert "cluster-label" in svg
     assert "concept-legend" in svg
@@ -328,7 +330,9 @@ def test_non_svg_generated_image_output_fails(temp_dir):
     )
     (module_dir / "module.toml").write_text(text, encoding="utf-8")
 
-    with pytest.raises(ModuleContentError, match="expected resources/generated/module-01-retrieval-card.svg"):
+    with pytest.raises(
+        ModuleContentError, match="expected resources/generated/module-01-retrieval-card.svg"
+    ):
         load_module_content(module_dir)
 
 
@@ -339,7 +343,7 @@ def test_rendered_svgs_have_plain_accessible_title_and_description(temp_dir):
     for svg_path in sorted((module_dir / "resources" / "generated").glob("*.svg")):
         text = svg_path.read_text(encoding="utf-8")
         assert 'role="img"' in text
-        assert 'aria-label=' in text
+        assert "aria-label=" in text
         assert "<title>" in text
         assert "</title>" in text
         assert "<desc>" in text

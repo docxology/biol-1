@@ -99,4 +99,3 @@ def batch_generate_speech(input_dir: str, output_dir: str) -> List[str]:
             continue
 
     return output_files
-

@@ -63,9 +63,7 @@ def process_chapter_questions(
 
             # Get module number from mapping (1:1 mapping)
             if chapter_num not in chapter_mapping:
-                logger.warning(
-                    f"Skipping {docx_file.name}: Chapter {chapter_num} not in mapping"
-                )
+                logger.warning(f"Skipping {docx_file.name}: Chapter {chapter_num} not in mapping")
                 results["skipped"].append(
                     {
                         "file": docx_file.name,
@@ -104,9 +102,7 @@ def process_chapter_questions(
             output_path = resources_dir / output_filename
 
             if dry_run:
-                logger.info(
-                    f"[DRY RUN] Would convert: {docx_file.name} -> {output_path}"
-                )
+                logger.info(f"[DRY RUN] Would convert: {docx_file.name} -> {output_path}")
                 results["processed"].append(
                     {
                         "source": docx_file.name,
@@ -165,9 +161,7 @@ def _process_slides_set(
         results: Mutable results dict to append processing outcomes to
     """
     if not source_dir.exists():
-        logger.warning(
-            f"{slide_type.capitalize()} slides directory does not exist: {source_dir}"
-        )
+        logger.warning(f"{slide_type.capitalize()} slides directory does not exist: {source_dir}")
         return
 
     pdf_files = list(source_dir.glob("*.pdf"))
@@ -178,9 +172,7 @@ def _process_slides_set(
             chapter_num = extract_chapter_number(pdf_file.name)
 
             if chapter_num not in chapter_mapping:
-                logger.warning(
-                    f"Skipping {pdf_file.name}: Chapter {chapter_num} not in mapping"
-                )
+                logger.warning(f"Skipping {pdf_file.name}: Chapter {chapter_num} not in mapping")
                 results["skipped"].append(
                     {
                         "file": pdf_file.name,
@@ -206,9 +198,7 @@ def _process_slides_set(
             output_path = slides_dir / output_filename
 
             if dry_run:
-                logger.info(
-                    f"[DRY RUN] Would copy: {pdf_file.name} -> {output_path}"
-                )
+                logger.info(f"[DRY RUN] Would copy: {pdf_file.name} -> {output_path}")
                 results["processed"].append(
                     {
                         "source": pdf_file.name,
@@ -280,21 +270,15 @@ def process_slides(
     chapter_mapping = get_chapter_to_module_mapping()
 
     # Process full slides
-    _process_slides_set(
-        slides_full_dir, course_root, dry_run, "full", chapter_mapping, results
-    )
+    _process_slides_set(slides_full_dir, course_root, dry_run, "full", chapter_mapping, results)
 
     # Process notes slides
-    _process_slides_set(
-        slides_notes_dir, course_root, dry_run, "notes", chapter_mapping, results
-    )
+    _process_slides_set(slides_notes_dir, course_root, dry_run, "notes", chapter_mapping, results)
 
     return results
 
 
-def create_for_upload_files(
-    module_path: Path, module_num: int, dry_run: bool
-) -> Dict[str, Any]:
+def create_for_upload_files(module_path: Path, module_num: int, dry_run: bool) -> Dict[str, Any]:
     """Create for_upload folder with DOCX and PDF of all markdown files plus slide PDFs.
 
     Converts markdown resources to PDF and DOCX formats, and copies slide
@@ -328,11 +312,7 @@ def create_for_upload_files(
     resources_dir = module_path / "resources"
     markdown_files = []
     if resources_dir.exists():
-        markdown_files = [
-            f
-            for f in resources_dir.glob("*.md")
-            if f.name not in EXCLUDED_MD_FILES
-        ]
+        markdown_files = [f for f in resources_dir.glob("*.md") if f.name not in EXCLUDED_MD_FILES]
 
     # Process each markdown file
     for md_file in markdown_files:
@@ -381,23 +361,17 @@ def create_for_upload_files(
                     shutil.copy2(slide_pdf, dest_file)
                     logger.debug(f"Copied slide: {dest_file.name}")
                     results["summary"]["slides_copied"] += 1
-                    results["processed"].append(
-                        {"file": dest_file.name, "type": "slide"}
-                    )
+                    results["processed"].append({"file": dest_file.name, "type": "slide"})
                 except Exception as e:
                     error_msg = f"Error copying {slide_pdf.name}: {e}"
                     logger.error(error_msg, exc_info=True)
-                    results["errors"].append(
-                        {"file": slide_pdf.name, "error": str(e)}
-                    )
+                    results["errors"].append({"file": slide_pdf.name, "error": str(e)})
                     results["summary"]["errors"] += 1
 
     return results
 
 
-def process_for_upload_all_modules(
-    course_dir: Path, dry_run: bool
-) -> Dict[str, Any]:
+def process_for_upload_all_modules(course_dir: Path, dry_run: bool) -> Dict[str, Any]:
     """Process for_upload folders for all modules.
 
     Iterates over every module directory and creates for_upload content

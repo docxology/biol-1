@@ -1,6 +1,5 @@
 """Tests for speech_to_text main functions."""
 
-
 import pytest
 
 from src.speech_to_text.main import (

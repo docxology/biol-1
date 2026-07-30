@@ -8,13 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PT_DIR = (
-    ROOT
-    / "archive"
-    / "spring-2026"
-    / "course_development"
-    / "biol-8"
-    / "course"
-    / "practice_tests"
+    ROOT / "archive" / "spring-2026" / "course_development" / "biol-8" / "course" / "practice_tests"
 )
 STUDENT_OUT = PT_DIR / "practice-test-12.md"
 KEY_OUT = PT_DIR / "practice-test-12_key.md"
@@ -133,7 +127,10 @@ BUILTIN: list[tuple[str, str, list[tuple[str, str]], str]] = [
         "Which statement best distinguishes homology from analogy?",
         "A",
         [
-            ("A", "Homology reflects shared ancestry; analogy reflects similar function by different ancestry"),
+            (
+                "A",
+                "Homology reflects shared ancestry; analogy reflects similar function by different ancestry",
+            ),
             ("B", "Homology always means identical DNA sequences"),
             ("C", "Analogous structures never look alike"),
             ("D", "Homology applies only to bacteria"),
@@ -234,7 +231,7 @@ PT02_MANUAL: dict[int, tuple[str, str]] = {
     ),
     6: ("B", "Simple diffusion moves substances down their gradient without ATP."),
     7: ("C", "The Na⁺/K⁺ pump moves ions against gradients using ATP (active transport)."),
-    8: ('B', 'Phagocytosis is "cell eating"—large particles engulfed by vesicles.'),
+    8: ("B", 'Phagocytosis is "cell eating"—large particles engulfed by vesicles.'),
     9: ("B", "Metabolism includes all chemical reactions (anabolism + catabolism)."),
     10: ("B", "Exergonic reactions release energy when bonds are rearranged."),
     11: ("B", "Enzymes speed reactions by lowering activation energy."),

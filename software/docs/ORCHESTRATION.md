@@ -373,7 +373,7 @@ txt  = false
 md   = true        # Normalized Markdown copies alongside other formats
 mp3  = false
 
-[publish.courses.biol-8]
+[publish.courses.biol-1]
 enabled = true
 include_labs = true
 

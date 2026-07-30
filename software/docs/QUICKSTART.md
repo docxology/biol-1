@@ -32,7 +32,7 @@ sudo apt-get install python3-cairo python3-pango libgdk-pixbuf2.0-dev libffi-dev
 
 ```bash
 cd software
-uv sync --extra dev   # runtime + pytest, black, ruff, mypy (recommended)
+uv sync --extra dev   # runtime + pytest, ruff, mypy (recommended)
 # uv sync             # runtime only — insufficient for pytest in this repo
 ```
 
@@ -83,7 +83,7 @@ requires-python = ">=3.11"
 dependencies = ["markdown", "weasyprint", "speechrecognition", "requests", ...]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-cov", "black", "mypy", "ruff"]
+dev = ["pytest", "pytest-cov", "mypy", "ruff"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

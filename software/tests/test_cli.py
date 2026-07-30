@@ -5,7 +5,6 @@ import sys
 from pathlib import Path
 
 
-
 # Path to the scripts directory
 SCRIPTS_DIR = Path(__file__).parent.parent / "scripts"
 SOFTWARE_DIR = Path(__file__).parent.parent
@@ -59,7 +58,9 @@ class TestGenerateAllOutputsCLI:
         )
         assert result.returncode == 0
         assert "DRY RUN" in result.stdout or "DRY RUN" in result.stderr
-        assert "No files were generated" in result.stdout or "No files were generated" in result.stderr
+        assert (
+            "No files were generated" in result.stdout or "No files were generated" in result.stderr
+        )
 
     def test_module_filter_display(self):
         """Test that module filter is displayed correctly."""
@@ -102,7 +103,12 @@ class TestGenerateModuleRenderingsCLI:
     def test_course_choices(self):
         """Test that --course only accepts valid choices."""
         result = subprocess.run(
-            [sys.executable, str(SCRIPTS_DIR / "generate_module_renderings.py"), "--course", "invalid"],
+            [
+                sys.executable,
+                str(SCRIPTS_DIR / "generate_module_renderings.py"),
+                "--course",
+                "invalid",
+            ],
             capture_output=True,
             text=True,
             cwd=str(SOFTWARE_DIR),
@@ -168,7 +174,12 @@ class TestGenerateSyllabusRenderingsCLI:
     def test_course_choices(self):
         """Test that --course only accepts valid choices."""
         result = subprocess.run(
-            [sys.executable, str(SCRIPTS_DIR / "generate_syllabus_renderings.py"), "--course", "invalid"],
+            [
+                sys.executable,
+                str(SCRIPTS_DIR / "generate_syllabus_renderings.py"),
+                "--course",
+                "invalid",
+            ],
             capture_output=True,
             text=True,
             cwd=str(SOFTWARE_DIR),
@@ -197,7 +208,12 @@ class TestGenerateModuleWebsiteCLI:
     def test_course_choices(self):
         """Test that --course only accepts valid choices."""
         result = subprocess.run(
-            [sys.executable, str(SCRIPTS_DIR / "generate_module_website.py"), "--course", "invalid"],
+            [
+                sys.executable,
+                str(SCRIPTS_DIR / "generate_module_website.py"),
+                "--course",
+                "invalid",
+            ],
             capture_output=True,
             text=True,
             cwd=str(SOFTWARE_DIR),

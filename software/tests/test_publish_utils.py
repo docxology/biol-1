@@ -1,6 +1,5 @@
 """Tests for publish utils module."""
 
-
 from src.publish.utils import (
     flatten_module,
     flatten_published,
@@ -116,10 +115,16 @@ class TestCopyPracticeTests:
 
     def test_copies_practice_test_files(self, temp_dir):
         """Test copying practice test files including answer keys."""
-        practice_tests_dir = temp_dir / "course_development" / "biol-1" / "course" / "practice_tests"
+        practice_tests_dir = (
+            temp_dir / "course_development" / "biol-1" / "course" / "practice_tests"
+        )
         practice_tests_dir.mkdir(parents=True)
-        (practice_tests_dir / "practice-test-01.md").write_text("# Practice Test 1", encoding="utf-8")
-        (practice_tests_dir / "practice-test-01_key.md").write_text("# Answer Key", encoding="utf-8")
+        (practice_tests_dir / "practice-test-01.md").write_text(
+            "# Practice Test 1", encoding="utf-8"
+        )
+        (practice_tests_dir / "practice-test-01_key.md").write_text(
+            "# Answer Key", encoding="utf-8"
+        )
         (practice_tests_dir / "README.md").write_text("# README", encoding="utf-8")
 
         pub = temp_dir / config.PUBLISH_ROOT_NAME
@@ -153,7 +158,9 @@ class TestCopyPracticeTests:
 
     def test_copies_practice_test_outputs(self, temp_dir):
         """Test copying practice test output files (PDF, DOCX) including keys."""
-        practice_tests_dir = temp_dir / "course_development" / "biol-1" / "course" / "practice_tests"
+        practice_tests_dir = (
+            temp_dir / "course_development" / "biol-1" / "course" / "practice_tests"
+        )
         practice_tests_dir.mkdir(parents=True)
         output_dir = practice_tests_dir / "output"
         output_dir.mkdir()
@@ -172,9 +179,13 @@ class TestCopyPracticeTests:
     def test_copies_multiple_courses(self, temp_dir):
         """Test copying practice tests from multiple courses."""
         for course in ["biol-1", "biol-8"]:
-            practice_tests_dir = temp_dir / "course_development" / course / "course" / "practice_tests"
+            practice_tests_dir = (
+                temp_dir / "course_development" / course / "course" / "practice_tests"
+            )
             practice_tests_dir.mkdir(parents=True)
-            (practice_tests_dir / "practice-test-01.md").write_text(f"# {course} test", encoding="utf-8")
+            (practice_tests_dir / "practice-test-01.md").write_text(
+                f"# {course} test", encoding="utf-8"
+            )
 
         pub = temp_dir / config.PUBLISH_ROOT_NAME
         pub.mkdir()
@@ -308,12 +319,20 @@ class TestCopyModuleBundles:
         course_dir = temp_dir / "PUBLISHED" / "biol-1"
         for name in ["module_keys", "homework", "slides", "labs", "dashboards"]:
             (course_dir / name).mkdir(parents=True)
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(b"pdf")
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.docx").write_bytes(b"docx")
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").write_text("key", encoding="utf-8")
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(
+            b"pdf"
+        )
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.docx").write_bytes(
+            b"docx"
+        )
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").write_text(
+            "key", encoding="utf-8"
+        )
         (course_dir / "homework" / "module-01-study-of-life-questions.pdf").write_bytes(b"pdf")
         (course_dir / "homework" / "module-01-study-of-life-questions.docx").write_bytes(b"docx")
-        (course_dir / "homework" / "module-01-study-of-life-questions.md").write_text("questions", encoding="utf-8")
+        (course_dir / "homework" / "module-01-study-of-life-questions.md").write_text(
+            "questions", encoding="utf-8"
+        )
         (course_dir / "slides" / "module-1-slides-full.pdf").write_bytes(b"slides")
         (course_dir / "slides" / "module-1-slides-notes.pdf").write_bytes(b"notes")
         (course_dir / "labs" / "lab-01_measurement-methods.md").write_text("lab", encoding="utf-8")
@@ -338,7 +357,9 @@ class TestCopyModuleBundles:
         stale_dir = course_dir / "modules" / "module-01-study-of-life"
         stale_dir.mkdir(parents=True)
         (stale_dir / "old.pdf").write_bytes(b"old")
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(b"pdf")
+        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(
+            b"pdf"
+        )
 
         copied = copy_module_bundles(temp_dir / "PUBLISHED", courses=["biol-1"])
 
@@ -639,9 +660,7 @@ class TestCopyDirectoryContents:
 
     def test_nonexistent_source(self, temp_dir):
         """Test with non-existent source directory."""
-        count = copy_directory_contents(
-            temp_dir / "nonexistent", temp_dir / "dst"
-        )
+        count = copy_directory_contents(temp_dir / "nonexistent", temp_dir / "dst")
         assert count == 0
 
     def test_excludes_files_inside_excluded_directory(self, temp_dir):

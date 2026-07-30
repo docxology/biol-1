@@ -44,15 +44,11 @@ def create_module_structure(course_path: str, module_number: int) -> str:
 
     # Create README.md
     readme_path = module_path / "README.md"
-    write_template_file(
-        readme_path, config.README_TEMPLATE, module_number=module_number
-    )
+    write_template_file(readme_path, config.README_TEMPLATE, module_number=module_number)
 
     # Create AGENTS.md
     agents_path = module_path / "AGENTS.md"
-    write_template_file(
-        agents_path, config.AGENTS_TEMPLATE, module_number=module_number
-    )
+    write_template_file(agents_path, config.AGENTS_TEMPLATE, module_number=module_number)
 
     # Create keys-to-success.md
     keys_path = module_path / "keys-to-success.md"
@@ -64,9 +60,7 @@ def create_module_structure(course_path: str, module_number: int) -> str:
 
     # Create questions.md
     questions_path = module_path / "questions.md"
-    write_template_file(
-        questions_path, config.QUESTIONS_TEMPLATE, module_number=module_number
-    )
+    write_template_file(questions_path, config.QUESTIONS_TEMPLATE, module_number=module_number)
 
     return str(module_path)
 
@@ -127,16 +121,12 @@ def initialize_module_files(module_path: str, template: str) -> None:
     # Create README.md if it doesn't exist
     readme_path = module_dir / "README.md"
     if not check_file_exists(readme_path):
-        write_template_file(
-            readme_path, config.README_TEMPLATE, module_number=module_number
-        )
+        write_template_file(readme_path, config.README_TEMPLATE, module_number=module_number)
 
     # Create AGENTS.md if it doesn't exist
     agents_path = module_dir / "AGENTS.md"
     if not check_file_exists(agents_path):
-        write_template_file(
-            agents_path, config.AGENTS_TEMPLATE, module_number=module_number
-        )
+        write_template_file(agents_path, config.AGENTS_TEMPLATE, module_number=module_number)
 
     # Create keys-to-success.md if it doesn't exist
     keys_path = module_dir / "keys-to-success.md"
@@ -150,9 +140,7 @@ def initialize_module_files(module_path: str, template: str) -> None:
     # Create questions.md if it doesn't exist
     questions_path = module_dir / "questions.md"
     if not check_file_exists(questions_path):
-        write_template_file(
-            questions_path, config.QUESTIONS_TEMPLATE, module_number=module_number
-        )
+        write_template_file(questions_path, config.QUESTIONS_TEMPLATE, module_number=module_number)
 
 
 def create_next_module(course_path: str) -> str:
@@ -236,6 +224,7 @@ def get_module_statistics(module_path: str) -> Dict[str, Any]:
     if assignments_dir.exists():
         from ..file_validation.utils import matches_pattern
         from ..file_validation.config import ASSIGNMENT_PATTERN
+
         assignment_count = sum(
             1
             for f in assignments_dir.iterdir()

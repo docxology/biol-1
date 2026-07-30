@@ -393,7 +393,11 @@ class TestValidateOutputsWithLabs:
 
         result = validate_outputs(str(course_dir))
 
-        lab_issues = [i for i in result["issues"] if "Lab" in i or "lab" in i.lower() or "Dashboard" in i or "dashboard" in i.lower()]
+        lab_issues = [
+            i
+            for i in result["issues"]
+            if "Lab" in i or "lab" in i.lower() or "Dashboard" in i or "dashboard" in i.lower()
+        ]
         assert len(lab_issues) > 0
 
     def test_lab_missing_outputs_reported(self, temp_dir):
@@ -483,9 +487,7 @@ class TestValidateModuleOutputs:
         sg_dir.mkdir(parents=True)
         for base in ("keys-to-success", "questions"):
             for ext in ("pdf", "docx"):
-                (sg_dir / f"module-01-{base}.{ext}").write_text(
-                    f"{base} {ext}", encoding="utf-8"
-                )
+                (sg_dir / f"module-01-{base}.{ext}").write_text(f"{base} {ext}", encoding="utf-8")
 
         result = _validate_module_outputs(module_dir, formats=["pdf", "docx"])
 
@@ -499,13 +501,9 @@ class TestValidateModuleOutputs:
         sg_dir.mkdir(parents=True)
         for base in ("keys-to-success", "questions"):
             for ext in ("pdf", "docx", "html"):
-                (sg_dir / f"module-01-{base}.{ext}").write_text(
-                    f"{base} {ext}", encoding="utf-8"
-                )
+                (sg_dir / f"module-01-{base}.{ext}").write_text(f"{base} {ext}", encoding="utf-8")
 
-        result = _validate_module_outputs(
-            module_dir, formats=["pdf", "docx", "html"]
-        )
+        result = _validate_module_outputs(module_dir, formats=["pdf", "docx", "html"])
 
         assert result["valid"] is False
         assert "website/index.html" in result["missing_files"]
@@ -653,9 +651,7 @@ class TestValidatePublished:
             modules = result["courses"]["biol-1"]["modules"]
             assert len(modules) > 0
 
-    def test_validate_published_directory_alias_matches_validate_published(
-        self, temp_dir
-    ):
+    def test_validate_published_directory_alias_matches_validate_published(self, temp_dir):
         """validate_published_directory is an alias with identical behaviour."""
         pub_dir = temp_dir / "PUBLISHED"
         pub_dir.mkdir()

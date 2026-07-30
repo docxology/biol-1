@@ -32,7 +32,11 @@ configure_runtime_environment()
 from scripts.utils import print_module_not_found  # noqa: E402
 from src.batch_processing.main import process_module_by_type  # noqa: E402
 from src.module_organization.utils import find_module_path  # noqa: E402
-from src.shared.course_config import CourseSelectionError, active_course_names, resolve_course_selection  # noqa: E402
+from src.shared.course_config import (
+    CourseSelectionError,
+    active_course_names,
+    resolve_course_selection,
+)  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)

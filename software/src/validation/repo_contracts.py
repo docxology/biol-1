@@ -52,9 +52,7 @@ ACTIVE_BIOL1_FORBIDDEN_TEXT = (
     "Pelican Bay Prison",
     "Pelican Bay State Prison",
 )
-BIOL1_LAB_COURSE_SUBTITLE = (
-    "**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay"
-)
+BIOL1_LAB_COURSE_SUBTITLE = "**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay"
 LAB_NAME_DATE_LINE = "**Name:** {fill:text} **Date:** {fill:text}"
 PLACEHOLDER_LINKS = {"parent.md", "sibling.md", "child.md", "doc1.md", "doc2.md", "url"}
 TEST_DOUBLE_PATTERNS = (
@@ -130,9 +128,7 @@ def _check_markdown_links(root: Path, report: RepoContractReport) -> None:
             except ValueError:
                 continue
             if not target_path.exists():
-                report.add_issue(
-                    f"{md_path.relative_to(root)} has missing link target: {target}"
-                )
+                report.add_issue(f"{md_path.relative_to(root)} has missing link target: {target}")
     report.summary["markdown_files_checked"] = checked
 
 
@@ -294,7 +290,9 @@ def _check_active_course_materials(root: Path, report: RepoContractReport) -> No
         _check_module_materials(root, course, course_root, expected_modules, report)
         _check_lab_materials(root, course, course_root, expected_labs, report)
         _check_assessment_materials(root, course, course_root, report)
-        _check_schedule_references(root, course, course_root, expected_modules, expected_labs, report)
+        _check_schedule_references(
+            root, course, course_root, expected_modules, expected_labs, report
+        )
         _check_slide_numbering(root, course, course_root, expected_modules, report)
         if course == "biol-1":
             _check_biol1_active_text(root, course_root, report)
@@ -394,8 +392,12 @@ def _check_module_manifest(
                 f"{(module_dir / 'module.toml').relative_to(root)} contains generic template phrase: "
                 f"{phrase}"
             )
-    normalized_questions = {_normalize_contract_text(question) for question in module.learning_questions}
-    normalized_objectives = {_normalize_contract_text(objective) for objective in module.learning_objectives}
+    normalized_questions = {
+        _normalize_contract_text(question) for question in module.learning_questions
+    }
+    normalized_objectives = {
+        _normalize_contract_text(objective) for objective in module.learning_objectives
+    }
     for quiz in module.practice_quiz:
         lowered_explanation = quiz.explanation.lower()
         for phrase in GENERIC_MODULE_CONTENT_PHRASES:
@@ -643,9 +645,7 @@ def _check_biol1_quiz_policy(
     allowed = {"README.md", "AGENTS.md", "quiz-template.md"}
     for path in sorted(quizzes_dir.glob("*.md")):
         if path.name not in allowed:
-            report.add_issue(
-                f"{path.relative_to(root)} violates BIOL-1 template-only quiz policy"
-            )
+            report.add_issue(f"{path.relative_to(root)} violates BIOL-1 template-only quiz policy")
 
 
 def _check_schedule_references(
@@ -686,8 +686,7 @@ def _check_schedule_references(
     for date_text in required_dates:
         if date_text not in text:
             report.add_issue(
-                f"{schedule_path.relative_to(root)} missing Fall 2026 calendar anchor: "
-                f"{date_text}"
+                f"{schedule_path.relative_to(root)} missing Fall 2026 calendar anchor: {date_text}"
             )
 
     required_practice_tests = (
@@ -762,7 +761,7 @@ def _check_slide_numbering(
                         report.add_issue(
                             f"{html_path.relative_to(root)} missing slide marker: {marker}"
                         )
-                if text.count("<section class=\"slide") < 10:
+                if text.count('<section class="slide') < 10:
                     report.add_issue(
                         f"{html_path.relative_to(root)} has fewer than 10 rendered slides"
                     )

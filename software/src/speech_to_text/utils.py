@@ -7,7 +7,6 @@ import speech_recognition as sr
 from pydub import AudioSegment
 
 
-
 def read_audio_file(audio_path: Path) -> AudioSegment:
     """Read audio file and convert to format suitable for speech recognition.
 

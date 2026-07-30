@@ -27,13 +27,13 @@ def extract_questions_from_sectioned(content: str) -> list[str]:
     questions = []
 
     # Find all bullet point questions (lines starting with * or -)
-    lines = content.split('\n')
+    lines = content.split("\n")
     for line in lines:
         stripped = line.strip()
         # Match lines that start with * or - and contain a question
-        if stripped.startswith('*') or stripped.startswith('-'):
+        if stripped.startswith("*") or stripped.startswith("-"):
             # Remove the bullet point marker
-            question = stripped.lstrip('*- \t')
+            question = stripped.lstrip("*- \t")
             if question and len(question) > 5:  # Skip very short items
                 questions.append(question)
 
@@ -56,7 +56,7 @@ def format_as_continuous(questions: list[str], title: str) -> str:
         lines.append(f"{i}. {q}")
         lines.append("")
 
-    return '\n'.join(lines)
+    return "\n".join(lines)
 
 
 def normalize_whitespace(content: str) -> str:
@@ -72,7 +72,7 @@ def normalize_whitespace(content: str) -> str:
     Returns:
         Normalized markdown content
     """
-    lines = content.split('\n')
+    lines = content.split("\n")
 
     # Remove trailing whitespace from each line
     lines = [line.rstrip() for line in lines]
@@ -81,7 +81,7 @@ def normalize_whitespace(content: str) -> str:
     result = []
     blank_count = 0
     for line in lines:
-        if line == '':
+        if line == "":
             blank_count += 1
             if blank_count <= 2:
                 result.append(line)
@@ -90,11 +90,11 @@ def normalize_whitespace(content: str) -> str:
             result.append(line)
 
     # Ensure single trailing newline
-    while result and result[-1] == '':
+    while result and result[-1] == "":
         result.pop()
-    result.append('')
+    result.append("")
 
-    return '\n'.join(result)
+    return "\n".join(result)
 
 
 def extract_headers(content: str) -> List[Tuple[int, str]]:
@@ -107,11 +107,11 @@ def extract_headers(content: str) -> List[Tuple[int, str]]:
         List of tuples (level, header_text) where level is 1-6
     """
     headers = []
-    lines = content.split('\n')
+    lines = content.split("\n")
 
     for line in lines:
         # Match markdown headers (# Header, ## Header, etc.)
-        match = re.match(r'^(#{1,6})\s+(.+)$', line)
+        match = re.match(r"^(#{1,6})\s+(.+)$", line)
         if match:
             level = len(match.group(1))
             text = match.group(2).strip()
@@ -135,7 +135,7 @@ def count_questions(content: str) -> Dict[str, int]:
         - bulleted: Questions starting with * or -
         - inline: Lines containing ? (potential questions)
     """
-    lines = content.split('\n')
+    lines = content.split("\n")
 
     counts = {
         "numbered": 0,
@@ -145,11 +145,11 @@ def count_questions(content: str) -> Dict[str, int]:
 
     for line in lines:
         stripped = line.strip()
-        if re.match(r'^\d+\.', stripped):
+        if re.match(r"^\d+\.", stripped):
             counts["numbered"] += 1
-        elif stripped.startswith('*') or stripped.startswith('-'):
+        elif stripped.startswith("*") or stripped.startswith("-"):
             counts["bulleted"] += 1
-        elif '?' in stripped:
+        elif "?" in stripped:
             counts["inline"] += 1
 
     return counts
@@ -165,11 +165,11 @@ def extract_numbered_items(content: str) -> List[str]:
         List of text for each numbered item
     """
     items = []
-    lines = content.split('\n')
+    lines = content.split("\n")
 
     for line in lines:
         # Match numbered list items: "1. Text" or "12. Text"
-        match = re.match(r'^\s*\d+\.\s+(.+)$', line)
+        match = re.match(r"^\s*\d+\.\s+(.+)$", line)
         if match:
             items.append(match.group(1))
 
@@ -196,11 +196,11 @@ def validate_question_format(content: str) -> Dict[str, Any]:
         "issues": [],
     }
 
-    lines = content.split('\n')
+    lines = content.split("\n")
 
     # Check for title
     for line in lines:
-        if line.startswith('# '):
+        if line.startswith("# "):
             result["has_title"] = True
             break
 
@@ -217,4 +217,3 @@ def validate_question_format(content: str) -> Dict[str, Any]:
         result["valid"] = False
 
     return result
-

@@ -373,9 +373,7 @@ def convert_docx_to_markdown(input_path: Path) -> str:
         # Extract table header
         if table.rows:
             header_row = table.rows[0]
-            header_cells = [
-                _extract_formatted_text(cell) for cell in header_row.cells
-            ]
+            header_cells = [_extract_formatted_text(cell) for cell in header_row.cells]
             markdown_lines.append("| " + " | ".join(header_cells) + " |")
             markdown_lines.append("| " + " | ".join(["---"] * len(header_cells)) + " |")
 

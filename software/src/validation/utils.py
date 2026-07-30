@@ -21,10 +21,10 @@ def count_files_by_extension(directory: Path) -> Dict[str, int]:
         Dictionary mapping extension to count
     """
     counts: Dict[str, int] = {}
-    
+
     if not directory.exists():
         return counts
-        
+
     for file_path in directory.rglob("*"):
         if (
             file_path.is_file()
@@ -34,7 +34,7 @@ def count_files_by_extension(directory: Path) -> Dict[str, int]:
             ext = file_path.suffix.lower().lstrip(".")
             if ext:
                 counts[ext] = counts.get(ext, 0) + 1
-                
+
     return counts
 
 
@@ -48,10 +48,10 @@ def get_module_directories(course_path: Path) -> List[Path]:
         Sorted list of module directory paths
     """
     modules_path = course_path / "course"
-    
+
     if not modules_path.exists():
         return []
-        
+
     def sort_key(path: Path) -> tuple[int, str]:
         import re
 
@@ -59,10 +59,7 @@ def get_module_directories(course_path: Path) -> List[Path]:
         return (int(match.group(1)) if match else 9999, path.name)
 
     return sorted(
-        [
-            d for d in modules_path.iterdir()
-            if d.is_dir() and d.name.startswith("module-")
-        ],
+        [d for d in modules_path.iterdir() if d.is_dir() and d.name.startswith("module-")],
         key=sort_key,
     )
 
@@ -77,24 +74,26 @@ def check_output_directory(module_path: Path) -> Tuple[bool, Dict[str, bool]]:
         Tuple of (has_output, dict of subdirectory existence)
     """
     output_path = module_path / "output"
-    
+
     if not output_path.exists():
         return False, {}
-        
+
     subdirs = {
         "study_guides": (output_path / config.OUTPUT_DIRS["study_guides"]).exists(),
         "website": (output_path / config.OUTPUT_DIRS["website"]).exists(),
     }
-    
+
     return True, subdirs
 
 
-def check_study_guide_files(module_path: Path, formats: Optional[List[str]] = None) -> Dict[str, bool]:
+def check_study_guide_files(
+    module_path: Path, formats: Optional[List[str]] = None
+) -> Dict[str, bool]:
     """Check which study guide files exist for a module.
 
     Study guide files are named with module prefix, e.g.:
     module-01-study-of-life-keys-to-success.pdf
-    
+
     This function checks for files ending with expected base names.
 
     Args:
@@ -106,16 +105,16 @@ def check_study_guide_files(module_path: Path, formats: Optional[List[str]] = No
         Dictionary mapping expected base suffix to existence
     """
     study_guides_path = module_path / "output" / config.OUTPUT_DIRS["study_guides"]
-    
+
     # Get expected files based on formats
     expected_files = config.get_expected_study_guide_files(formats)
-    
+
     if not study_guides_path.exists():
         return {f: False for f in expected_files}
-    
+
     # Get all files in study guides directory
     existing_files = [f.name for f in study_guides_path.iterdir() if f.is_file()]
-    
+
     result = {}
     for expected_suffix in expected_files:
         # Check if any file ends with this suffix (e.g., "-keys-to-success.pdf")
@@ -123,7 +122,7 @@ def check_study_guide_files(module_path: Path, formats: Optional[List[str]] = No
         suffix_to_check = f"-{expected_suffix}"
         found = any(f.endswith(suffix_to_check) or f == expected_suffix for f in existing_files)
         result[expected_suffix] = found
-        
+
     return result
 
 
@@ -160,7 +159,7 @@ def format_file_counts(counts: Dict[str, int]) -> str:
     """
     if not counts:
         return "none"
-        
+
     return ", ".join(f"{ext}:{count}" for ext, count in sorted(counts.items()))
 
 
@@ -395,9 +394,7 @@ def check_dashboard_invariant(
 
     if not dashboards_dir.exists():
         result["valid"] = False
-        result["issues"].append(
-            "Strict dashboard check: dashboards/ directory not found"
-        )
+        result["issues"].append("Strict dashboard check: dashboards/ directory not found")
         return result
 
     dashboard_files = sorted(dashboards_dir.glob("*-dashboard.html"))

@@ -76,7 +76,7 @@ class TestProcessCourseModules:
     def test_process_course_modules_missing_dir(self, temp_dir):
         """Test processing with missing course directory."""
         result = process_course_modules(temp_dir, "Test Course")
-        
+
         assert result["modules"] == []
         assert result["errors"] == []
 
@@ -92,10 +92,8 @@ class TestProcessCourseModules:
         # Mock matches_module_number to only match module-01
         with patch("src.batch_processing.main.matches_module_number") as mock_match:
             mock_match.side_effect = lambda name, num: name == "module-01"
-            
-            result = process_course_modules(
-                temp_dir, "Test Course", module_filter=1
-            )
+
+            result = process_course_modules(temp_dir, "Test Course", module_filter=1)
 
         assert len(result["modules"]) == 1
         assert result["modules"][0]["name"] == "module-01"
@@ -152,9 +150,9 @@ class TestProcessCourseSyllabus:
     def test_process_course_syllabus_success(self, temp_dir, mock_process_syllabus):
         """Test successful syllabus processing."""
         (temp_dir / "syllabus").mkdir()
-        
+
         result = process_course_syllabus(temp_dir, "Test Course")
-        
+
         assert result["processed"] is True
         assert result["errors"] == []
         assert mock_process_syllabus.called
@@ -162,7 +160,7 @@ class TestProcessCourseSyllabus:
     def test_process_course_syllabus_missing_dir(self, temp_dir):
         """Test processing with missing syllabus directory."""
         result = process_course_syllabus(temp_dir, "Test Course")
-        
+
         assert result["processed"] is False
         assert result["errors"] == []
 
@@ -170,9 +168,9 @@ class TestProcessCourseSyllabus:
         """Test handling of exceptions."""
         (temp_dir / "syllabus").mkdir()
         mock_process_syllabus.side_effect = Exception("Syllabus failed")
-        
+
         result = process_course_syllabus(temp_dir, "Test Course")
-        
+
         assert result["processed"] is False
         assert len(result["errors"]) > 0
         assert "Syllabus failed" in result["errors"][0]
@@ -191,9 +189,9 @@ class TestProcessCourseLabs:
         """Test successful lab processing."""
         labs_dir = temp_dir / "course" / "labs"
         labs_dir.mkdir(parents=True)
-        
+
         result = process_course_labs(temp_dir, "Test Course", formats=["pdf"])
-        
+
         assert result["processed"] is True
         assert len(result["files"]) > 0
         assert result["errors"] == []
@@ -202,7 +200,7 @@ class TestProcessCourseLabs:
     def test_process_course_labs_missing_dir(self, temp_dir):
         """Test processing with missing labs directory."""
         result = process_course_labs(temp_dir, "Test Course")
-        
+
         assert result["processed"] is False
         assert result["errors"] == []
 
@@ -210,11 +208,9 @@ class TestProcessCourseLabs:
         """Test processing with no compatible formats."""
         labs_dir = temp_dir / "course" / "labs"
         labs_dir.mkdir(parents=True)
-        
-        result = process_course_labs(
-            temp_dir, "Test Course", formats=["docx", "mp3"]
-        )
-        
+
+        result = process_course_labs(temp_dir, "Test Course", formats=["docx", "mp3"])
+
         assert result["processed"] is False
         assert result["files"] == []
 
@@ -232,11 +228,9 @@ class TestProcessCoursePracticeTests:
         pt_dir = temp_dir / "course" / "practice_tests"
         pt_dir.mkdir(parents=True)
         (pt_dir / "test-1.md").write_text("# Test", encoding="utf-8")
-        
-        result = process_course_practice_tests(
-            temp_dir, "Test Course", formats=["pdf"]
-        )
-        
+
+        result = process_course_practice_tests(temp_dir, "Test Course", formats=["pdf"])
+
         assert result["processed"] is True
         assert len(result["files"]) == 1
         assert mock_render_pdf.called
@@ -244,7 +238,7 @@ class TestProcessCoursePracticeTests:
     def test_process_practice_tests_missing_dir(self, temp_dir):
         """Test processing with missing directory."""
         result = process_course_practice_tests(temp_dir, "Test Course")
-        
+
         assert result["processed"] is False
 
     def test_process_practice_tests_skip_formats(self, temp_dir):
@@ -252,11 +246,9 @@ class TestProcessCoursePracticeTests:
         pt_dir = temp_dir / "course" / "practice_tests"
         pt_dir.mkdir(parents=True)
         (pt_dir / "test-1.md").write_text("# Test", encoding="utf-8")
-        
-        result = process_course_practice_tests(
-            temp_dir, "Test Course", formats=["docx", "html"]
-        )
-        
+
+        result = process_course_practice_tests(temp_dir, "Test Course", formats=["docx", "html"])
+
         assert result["processed"] is False
         assert result["files"] == []
 
@@ -280,9 +272,7 @@ class TestProcessCourseExams:
         exams_dir.mkdir(parents=True)
         (exams_dir / "exam-01.md").write_text("# Exam 1", encoding="utf-8")
 
-        result = process_course_exams(
-            temp_dir, "Test Course", formats=["pdf"]
-        )
+        result = process_course_exams(temp_dir, "Test Course", formats=["pdf"])
 
         assert result["processed"] is True
         assert len(result["files"]) == 1
@@ -301,9 +291,7 @@ class TestProcessCourseExams:
         exams_dir.mkdir(parents=True)
         (exams_dir / "exam-01.md").write_text("# Exam 1", encoding="utf-8")
 
-        result = process_course_exams(
-            temp_dir, "Test Course", formats=["mp3", "html"]
-        )
+        result = process_course_exams(temp_dir, "Test Course", formats=["mp3", "html"])
 
         assert result["processed"] is False
         assert result["files"] == []
@@ -316,26 +304,20 @@ class TestProcessCourseExams:
         (exams_dir / "exam-01_key.md").write_text("# Key", encoding="utf-8")
         (exams_dir / "README.md").write_text("# README", encoding="utf-8")
 
-        result = process_course_exams(
-            temp_dir, "Test Course", formats=["pdf"]
-        )
+        result = process_course_exams(temp_dir, "Test Course", formats=["pdf"])
 
         assert result["processed"] is True
         # Both exam and key are rendered, README is skipped
         assert len(result["files"]) == 2
         assert mock_render_pdf.call_count == 2
 
-    def test_process_exams_pdf_and_docx(
-        self, temp_dir, mock_render_pdf, mock_convert_file
-    ):
+    def test_process_exams_pdf_and_docx(self, temp_dir, mock_render_pdf, mock_convert_file):
         """Test rendering exams to both PDF and DOCX formats."""
         exams_dir = temp_dir / "course" / "exams"
         exams_dir.mkdir(parents=True)
         (exams_dir / "exam-01.md").write_text("# Exam 1", encoding="utf-8")
 
-        result = process_course_exams(
-            temp_dir, "Test Course", formats=["pdf", "docx"]
-        )
+        result = process_course_exams(temp_dir, "Test Course", formats=["pdf", "docx"])
 
         assert result["processed"] is True
         assert len(result["files"]) == 2  # 1 PDF + 1 DOCX

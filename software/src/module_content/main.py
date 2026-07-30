@@ -151,7 +151,9 @@ def load_module_content(module_dir: Path | str) -> ModuleContent:
         ),
         study_tips=tuple(_str_list(module_data, "study_tips", manifest)),
         learning_questions=tuple(_str_list(module_data, "learning_questions", manifest)),
-        practice_quiz=tuple(_quiz_question(item, manifest) for item in _array(raw, "practice_quiz", manifest)),
+        practice_quiz=tuple(
+            _quiz_question(item, manifest) for item in _array(raw, "practice_quiz", manifest)
+        ),
         assets=tuple(
             ModuleAsset(
                 path=_str(item, "path", manifest),
@@ -160,7 +162,9 @@ def load_module_content(module_dir: Path | str) -> ModuleContent:
             )
             for item in raw.get("assets", [])
         ),
-        generated_images=tuple(_generated_image(item, manifest) for item in raw.get("generated_images", [])),
+        generated_images=tuple(
+            _generated_image(item, manifest) for item in raw.get("generated_images", [])
+        ),
     )
     issues = validate_module_content(content, directory)
     if issues:
@@ -193,7 +197,9 @@ def validate_module_content(module: ModuleContent, module_dir: Path | None = Non
         if quiz.answer not in {"A", "B", "C", "D"}:
             issues.append(f"{module.slug} quiz answer must be A-D: {quiz.question}")
         if len(quiz.options) != 4:
-            issues.append(f"{module.slug} quiz question must have exactly 4 options: {quiz.question}")
+            issues.append(
+                f"{module.slug} quiz question must have exactly 4 options: {quiz.question}"
+            )
     answers = [quiz.answer for quiz in module.practice_quiz]
     if len(answers) >= 4 and set(answers[:4]) != {"A", "B", "C", "D"}:
         issues.append(f"{module.slug} first four practice quiz answers must balance A-D")
@@ -240,14 +246,28 @@ def render_module_materials(module_dir: Path | str, dry_run: bool = False) -> di
         output_path.write_text(_render_svg(module, image), encoding="utf-8")
     resources_dir = module.module_dir / "resources"
     if not resources_dir.joinpath("README.md").exists():
-        resources_dir.joinpath("README.md").write_text(_render_resources_readme(module), encoding="utf-8")
+        resources_dir.joinpath("README.md").write_text(
+            _render_resources_readme(module), encoding="utf-8"
+        )
     if not resources_dir.joinpath("AGENTS.md").exists():
-        resources_dir.joinpath("AGENTS.md").write_text(_render_resources_agents(module), encoding="utf-8")
+        resources_dir.joinpath("AGENTS.md").write_text(
+            _render_resources_agents(module), encoding="utf-8"
+        )
     generated_dir = module.module_dir / "resources" / "generated"
-    generated_dir.joinpath("README.md").write_text(_render_generated_readme(module), encoding="utf-8")
-    generated_dir.joinpath("AGENTS.md").write_text(_render_generated_agents(module), encoding="utf-8")
-    generated_dir.joinpath("asset-index.md").write_text(_render_asset_index(module), encoding="utf-8")
-    return {"module": module.slug, "outputs": [str(path) for path in outputs], "written": len(outputs)}
+    generated_dir.joinpath("README.md").write_text(
+        _render_generated_readme(module), encoding="utf-8"
+    )
+    generated_dir.joinpath("AGENTS.md").write_text(
+        _render_generated_agents(module), encoding="utf-8"
+    )
+    generated_dir.joinpath("asset-index.md").write_text(
+        _render_asset_index(module), encoding="utf-8"
+    )
+    return {
+        "module": module.slug,
+        "outputs": [str(path) for path in outputs],
+        "written": len(outputs),
+    }
 
 
 def render_course_module_materials(
@@ -260,10 +280,7 @@ def render_course_module_materials(
     modules = _module_dirs(course_path, module_filter)
     results = [render_module_materials(module_dir, dry_run=dry_run) for module_dir in modules]
     written = sum(
-        value
-        for result in results
-        for value in [result.get("written")]
-        if isinstance(value, int)
+        value for result in results for value in [result.get("written")] if isinstance(value, int)
     )
     return {
         "course": str(course_path),
@@ -273,7 +290,9 @@ def render_course_module_materials(
     }
 
 
-def describe_course_module_materials(course_root: Path | str, module_filter: int | None = None) -> str:
+def describe_course_module_materials(
+    course_root: Path | str, module_filter: int | None = None
+) -> str:
     """Return a dry-run report for structured module material generation."""
     course_path = Path(course_root)
     lines = ["Structured module materials:"]
@@ -297,8 +316,12 @@ def _module_dirs(course_root: Path, module_filter: int | None) -> list[Path]:
 
 def _render_keys(module: ModuleContent) -> str:
     lines = [_generated_notice(), f"# Module {module.number}: {module.title} - Keys to Success", ""]
-    lines.extend(["## Learning Objectives", "", "By the end of this module, you should be able to:", ""])
-    lines.extend(f"{idx}. {objective}" for idx, objective in enumerate(module.learning_objectives, 1))
+    lines.extend(
+        ["## Learning Objectives", "", "By the end of this module, you should be able to:", ""]
+    )
+    lines.extend(
+        f"{idx}. {objective}" for idx, objective in enumerate(module.learning_objectives, 1)
+    )
     lines.extend(["", "## Topics", ""])
     lines.extend(f"- {topic}" for topic in module.topics)
     lines.extend(["", "## Key Terms to Know", ""])
@@ -317,7 +340,11 @@ def _render_keys(module: ModuleContent) -> str:
 
 
 def _render_questions(module: ModuleContent) -> str:
-    lines = [_generated_notice(), f"# Module {module.number}: {module.title} - Learning Questions", ""]
+    lines = [
+        _generated_notice(),
+        f"# Module {module.number}: {module.title} - Learning Questions",
+        "",
+    ]
     lines.extend(f"{idx}. {question}" for idx, question in enumerate(module.learning_questions, 1))
     return "\n\n".join(lines).rstrip() + "\n"
 
@@ -337,7 +364,11 @@ def _render_quiz(module: ModuleContent) -> str:
 
 
 def _render_asset_index(module: ModuleContent) -> str:
-    lines = [_generated_notice(), f"# Module {module.number}: {module.title} - Generated Asset Index", ""]
+    lines = [
+        _generated_notice(),
+        f"# Module {module.number}: {module.title} - Generated Asset Index",
+        "",
+    ]
     lines.append("## Deterministic Generated Assets")
     lines.append("")
     for image in module.generated_images:
@@ -349,7 +380,9 @@ def _render_asset_index(module: ModuleContent) -> str:
             lines.append(f"  - Prompt metadata: {image.prompt}")
     if module.assets:
         lines.extend(["", "## Module-Local Assets", ""])
-        lines.extend(f"- `{asset.path}` ({asset.kind}) - {asset.description}" for asset in module.assets)
+        lines.extend(
+            f"- `{asset.path}` ({asset.kind}) - {asset.description}" for asset in module.assets
+        )
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -401,7 +434,9 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
         raise ModuleContentError(f"{module.slug} concept-map visual payload is missing")
     spec = image.concept_map
     title = html.escape(image.title)
-    desc = html.escape(f"Concept map for Module {module.number}: {module.title}. {spec.central_claim}")
+    desc = html.escape(
+        f"Concept map for Module {module.number}: {module.title}. {spec.central_claim}"
+    )
     palette = _module_palette(module.number)
     positions = _radial_positions(len(spec.nodes), 600, 365, 360, 190)
     position_by_id = {node.id: positions[idx] for idx, node in enumerate(spec.nodes)}
@@ -424,10 +459,10 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
             f'<rect x="{x - 80:.1f}" y="{y - 45:.1f}" width="160" height="22" rx="11" '
             f'class="cluster-pill cluster-{cluster}" />'
             f'<text x="{x:.1f}" y="{y - 29:.1f}" class="cluster-label" text-anchor="middle">'
-            f'{html.escape(node.cluster)}</text>'
-            f'{_svg_wrapped_text(node.label, x, y - 4, 21, 18, "node-label", anchor="middle", max_lines=2)}'
-            f'{_svg_wrapped_text(node.detail, x, y + 30, 28, 13, "node-detail", anchor="middle", max_lines=2)}'
-            f'</g>'
+            f"{html.escape(node.cluster)}</text>"
+            f"{_svg_wrapped_text(node.label, x, y - 4, 21, 18, 'node-label', anchor='middle', max_lines=2)}"
+            f"{_svg_wrapped_text(node.detail, x, y + 30, 28, 13, 'node-detail', anchor='middle', max_lines=2)}"
+            f"</g>"
         )
     legend = _concept_cluster_legend(spec, 72, 146)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
@@ -443,8 +478,8 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
   <rect x="330" y="282" width="540" height="166" rx="34" class="claim-card" />
   <text x="600" y="322" class="claim-kicker">Central claim</text>
   {_svg_wrapped_text(spec.central_claim, 600, 366, 48, 25, "claim-text", anchor="middle", max_lines=3)}
-  {''.join(edges)}
-  {''.join(nodes)}
+  {"".join(edges)}
+  {"".join(nodes)}
   <text x="70" y="672" class="footer">Linked lab: {html.escape(module.lab)} / Generated from explicit module.toml visual schema</text>
 </svg>
 '''
@@ -471,9 +506,9 @@ def _render_process_model_svg(module: ModuleContent, image: GeneratedImage) -> s
             f'rx="24" class="stage-card-bg" />'
             f'<circle cx="{x + 28:.1f}" cy="{y + 30:.1f}" r="18" class="stage-dot" />'
             f'<text x="{x + 28:.1f}" y="{y + 36:.1f}" class="stage-num" text-anchor="middle">{idx + 1}</text>'
-            f'{_svg_wrapped_text(stage.label, x + 20, y + 70, 17, 17, "stage-label", max_lines=2)}'
-            f'{_svg_wrapped_text(stage.detail, x + 20, y + 112, 20, 13, "stage-detail", max_lines=3)}'
-            f'</g>'
+            f"{_svg_wrapped_text(stage.label, x + 20, y + 70, 17, 17, 'stage-label', max_lines=2)}"
+            f"{_svg_wrapped_text(stage.detail, x + 20, y + 112, 20, 13, 'stage-detail', max_lines=3)}"
+            f"</g>"
         )
         if idx < count - 1:
             x2 = x + card_width
@@ -496,14 +531,14 @@ def _render_process_model_svg(module: ModuleContent, image: GeneratedImage) -> s
   <text x="824" y="216" class="card-kicker">Outputs</text>
   {_svg_bullets(spec.outputs, 824, 244, 30, 15, "mini-text", max_items=3)}
   <text x="84" y="292" class="card-kicker">Reasoning sequence</text>
-  {''.join(arrows)}
-  {''.join(stages)}
+  {"".join(arrows)}
+  {"".join(stages)}
   <rect x="84" y="538" width="500" height="94" rx="22" class="feedback-card" />
   <text x="112" y="570" class="card-kicker">Feedback</text>
-  {_svg_wrapped_text('; '.join(spec.feedbacks), 112, 600, 56, 16, "mini-text", max_lines=2)}
+  {_svg_wrapped_text("; ".join(spec.feedbacks), 112, 600, 56, 16, "mini-text", max_lines=2)}
   <rect x="616" y="538" width="500" height="94" rx="22" class="feedback-card" />
   <text x="644" y="570" class="card-kicker">Constraint</text>
-  {_svg_wrapped_text('; '.join(spec.constraints or ("Use evidence before claims.",)), 644, 600, 56, 16, "mini-text", max_lines=2)}
+  {_svg_wrapped_text("; ".join(spec.constraints or ("Use evidence before claims.",)), 644, 600, 56, 16, "mini-text", max_lines=2)}
   <text x="84" y="668" class="footer">Linked lab: {html.escape(module.lab)}</text>
 </svg>
 '''
@@ -523,8 +558,8 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
         prompt_cards.append(
             f'<rect x="{x}" y="{y}" width="462" height="124" rx="26" class="prompt-card" />'
             f'<text x="{x + 28}" y="{y + 38}" class="stage-num">Q{idx + 1}</text>'
-            f'{_svg_wrapped_text(prompt.prompt, x + 28, y + 66, 45, 17, "prompt-text", max_lines=2)}'
-            f'{_svg_wrapped_text("Check: " + prompt.check, x + 28, y + 112, 52, 13, "check-text", max_lines=1)}'
+            f"{_svg_wrapped_text(prompt.prompt, x + 28, y + 66, 45, 17, 'prompt-text', max_lines=2)}"
+            f"{_svg_wrapped_text('Check: ' + prompt.check, x + 28, y + 112, 52, 13, 'check-text', max_lines=1)}"
         )
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
   <title>{title}</title>
@@ -543,10 +578,10 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
   <rect x="692" y="78" width="416" height="76" rx="22" class="routine-card" />
   <text x="720" y="108" class="card-kicker">Routine</text>
   <text x="720" y="134" class="routine-text">Cover notes -> answer aloud -> cite evidence -> revise</text>
-  {''.join(prompt_cards)}
+  {"".join(prompt_cards)}
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
-  {_svg_wrapped_text(', '.join(spec.terms), 120, 612, 54, 17, "mini-text", max_lines=2)}
+  {_svg_wrapped_text(", ".join(spec.terms), 120, 612, 54, 17, "mini-text", max_lines=2)}
   <rect x="604" y="548" width="504" height="86" rx="24" class="side-card" />
   <text x="632" y="582" class="card-kicker">Lab connection</text>
   {_svg_wrapped_text(spec.lab_connection, 632, 612, 58, 17, "mini-text", max_lines=2)}
@@ -613,7 +648,9 @@ def _concept_map_spec(item: dict[str, Any], manifest: Path) -> ConceptMapSpec:
 def _process_model_spec(item: dict[str, Any], manifest: Path) -> ProcessModelSpec:
     return ProcessModelSpec(
         stages=tuple(
-            ProcessStage(label=_str(stage, "label", manifest), detail=_str(stage, "detail", manifest))
+            ProcessStage(
+                label=_str(stage, "label", manifest), detail=_str(stage, "detail", manifest)
+            )
             for stage in _array_from(item, "stages", manifest)
         ),
         inputs=tuple(_str_list(item, "inputs", manifest)),
@@ -626,7 +663,9 @@ def _process_model_spec(item: dict[str, Any], manifest: Path) -> ProcessModelSpe
 def _retrieval_card_spec(item: dict[str, Any], manifest: Path) -> RetrievalCardSpec:
     return RetrievalCardSpec(
         prompts=tuple(
-            RetrievalPrompt(prompt=_str(prompt, "prompt", manifest), check=_str(prompt, "check", manifest))
+            RetrievalPrompt(
+                prompt=_str(prompt, "prompt", manifest), check=_str(prompt, "check", manifest)
+            )
             for prompt in _array_from(item, "prompts", manifest)
         ),
         terms=tuple(_str_list(item, "terms", manifest)),
@@ -655,9 +694,13 @@ def _validate_generated_images(module: ModuleContent, directory: Path) -> list[s
         except ValueError:
             issues.append(f"{module.slug} generated image escapes module directory: {image.output}")
         if not image.output.startswith("resources/generated/"):
-            issues.append(f"{module.slug} generated image must live in resources/generated/: {image.output}")
+            issues.append(
+                f"{module.slug} generated image must live in resources/generated/: {image.output}"
+            )
         if image.output != expected_output:
-            issues.append(f"{module.slug} generated image output is {image.output}; expected {expected_output}")
+            issues.append(
+                f"{module.slug} generated image output is {image.output}; expected {expected_output}"
+            )
         if output_path.suffix.lower() != ".svg":
             issues.append(f"{module.slug} generated image must be SVG: {image.output}")
         if image.kind not in GENERATED_IMAGE_KINDS:
@@ -680,10 +723,14 @@ def _validate_generated_image_payload(module: ModuleContent, image: GeneratedIma
             issues.append(f"{module.slug} concept-map node ids must be unique")
         for node in concept_spec.nodes:
             if len(node.label) > 80 or len(node.detail) > 120:
-                issues.append(f"{module.slug} concept-map label/detail is too long for wrapped SVG text")
+                issues.append(
+                    f"{module.slug} concept-map label/detail is too long for wrapped SVG text"
+                )
         for edge in concept_spec.edges:
             if edge.source not in node_ids or edge.target not in node_ids:
-                issues.append(f"{module.slug} concept-map has dangling edge: {edge.source}->{edge.target}")
+                issues.append(
+                    f"{module.slug} concept-map has dangling edge: {edge.source}->{edge.target}"
+                )
     elif image.kind == "process-model":
         process_spec = image.process_model
         if process_spec is None:
@@ -694,7 +741,9 @@ def _validate_generated_image_payload(module: ModuleContent, image: GeneratedIma
             issues.append(f"{module.slug} process-model needs inputs, outputs, and feedbacks")
         for stage in process_spec.stages:
             if len(stage.label) > 70 or len(stage.detail) > 120:
-                issues.append(f"{module.slug} process-model stage text is too long for wrapped SVG text")
+                issues.append(
+                    f"{module.slug} process-model stage text is too long for wrapped SVG text"
+                )
     elif image.kind == "retrieval-card":
         retrieval_spec = image.retrieval_card
         if retrieval_spec is None:
@@ -705,7 +754,9 @@ def _validate_generated_image_payload(module: ModuleContent, image: GeneratedIma
             issues.append(f"{module.slug} retrieval-card needs at least 3 terms")
         for prompt in retrieval_spec.prompts:
             if len(prompt.prompt) > 130 or len(prompt.check) > 120:
-                issues.append(f"{module.slug} retrieval-card prompt/check is too long for wrapped SVG text")
+                issues.append(
+                    f"{module.slug} retrieval-card prompt/check is too long for wrapped SVG text"
+                )
     return issues
 
 
@@ -747,16 +798,44 @@ def _concept_cluster_legend(spec: ConceptMapSpec, x: float, y: float) -> str:
 
 def _module_palette(module_number: int) -> dict[str, str]:
     palettes = [
-        {"bg": "#f7efe2", "ink": "#1f2a24", "muted": "#59685f", "accent": "#c45f35", "accent2": "#245f73", "panel": "#fffaf0"},
-        {"bg": "#ecf4f2", "ink": "#172d35", "muted": "#4f6670", "accent": "#1f7a6d", "accent2": "#b55f24", "panel": "#fbfffd"},
-        {"bg": "#f2edf7", "ink": "#281d34", "muted": "#685d72", "accent": "#7b4f9d", "accent2": "#b36b2c", "panel": "#fffafd"},
-        {"bg": "#f4f1e6", "ink": "#2c2517", "muted": "#6a614d", "accent": "#9b3f2f", "accent2": "#2f6f4e", "panel": "#fffdf5"},
+        {
+            "bg": "#f7efe2",
+            "ink": "#1f2a24",
+            "muted": "#59685f",
+            "accent": "#c45f35",
+            "accent2": "#245f73",
+            "panel": "#fffaf0",
+        },
+        {
+            "bg": "#ecf4f2",
+            "ink": "#172d35",
+            "muted": "#4f6670",
+            "accent": "#1f7a6d",
+            "accent2": "#b55f24",
+            "panel": "#fbfffd",
+        },
+        {
+            "bg": "#f2edf7",
+            "ink": "#281d34",
+            "muted": "#685d72",
+            "accent": "#7b4f9d",
+            "accent2": "#b36b2c",
+            "panel": "#fffafd",
+        },
+        {
+            "bg": "#f4f1e6",
+            "ink": "#2c2517",
+            "muted": "#6a614d",
+            "accent": "#9b3f2f",
+            "accent2": "#2f6f4e",
+            "panel": "#fffdf5",
+        },
     ]
     return palettes[(module_number - 1) % len(palettes)]
 
 
 def _svg_style(palette: dict[str, str]) -> str:
-    return f'''
+    return f"""
     .bg {{ fill: {palette["bg"]}; }}
     .halo {{ fill: url(#wash); opacity: 0.92; }}
     .frame {{ fill: {palette["panel"]}; stroke: {palette["ink"]}; stroke-width: 3; }}
@@ -795,7 +874,7 @@ def _svg_style(palette: dict[str, str]) -> str:
     .retrieval-step-strip {{ fill: {palette["panel"]}; stroke: {palette["accent2"]}; stroke-width: 2; opacity: 0.96; }}
     .palette-high-design {{ fill: {palette["accent"]}; }}
     @media print {{ .claim-card, .side-card, .feedback-card, .prompt-card, .routine-card, .node, .stage-card-bg {{ filter: none; }} }}
-    '''
+    """
 
 
 def _svg_defs(palette: dict[str, str]) -> str:
@@ -813,7 +892,9 @@ def _svg_defs(palette: dict[str, str]) -> str:
     '''
 
 
-def _radial_positions(count: int, cx: float, cy: float, rx: float, ry: float) -> list[tuple[float, float]]:
+def _radial_positions(
+    count: int, cx: float, cy: float, rx: float, ry: float
+) -> list[tuple[float, float]]:
     return [
         (
             cx + math.cos(-math.pi / 2 + 2 * math.pi * idx / count) * rx,
@@ -876,7 +957,11 @@ def _svg_bullets(
 ) -> str:
     lines = []
     for idx, item in enumerate(items[:max_items]):
-        lines.append(_svg_wrapped_text(f"• {item}", x, y + idx * line_height, max_chars, line_height, css_class))
+        lines.append(
+            _svg_wrapped_text(
+                f"• {item}", x, y + idx * line_height, max_chars, line_height, css_class
+            )
+        )
     return "".join(lines)
 
 
@@ -917,13 +1002,17 @@ def _int(raw: dict[str, Any], key: str, manifest: Path) -> int:
 
 def _str_list(raw: dict[str, Any], key: str, manifest: Path) -> list[str]:
     value = raw.get(key)
-    if not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
+    if not isinstance(value, list) or not all(
+        isinstance(item, str) and item.strip() for item in value
+    ):
         raise ModuleContentError(f"{manifest}: missing string-list field {key}")
     return [item.strip() for item in value]
 
 
 def _optional_str_list(raw: dict[str, Any], key: str, manifest: Path) -> list[str]:
     value = raw.get(key, [])
-    if not isinstance(value, list) or not all(isinstance(item, str) and item.strip() for item in value):
+    if not isinstance(value, list) or not all(
+        isinstance(item, str) and item.strip() for item in value
+    ):
         raise ModuleContentError(f"{manifest}: invalid string-list field {key}")
     return [item.strip() for item in value]

@@ -26,7 +26,9 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate structured module materials.")
     parser.add_argument("--course", default="all", help="Active course id or all")
     parser.add_argument("--module", type=int, default=None, help="Optional module number")
-    parser.add_argument("--dry-run", action="store_true", help="Report generated files without writing")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Report generated files without writing"
+    )
     return parser.parse_args()
 
 
@@ -48,9 +50,16 @@ def main() -> int:
             continue
         result = render_course_module_materials(course_root, args.module)
         total_written += int(result["written"])
-        logger.info("%s: rendered %s modules, wrote %s files", course, result["module_count"], result["written"])
+        logger.info(
+            "%s: rendered %s modules, wrote %s files",
+            course,
+            result["module_count"],
+            result["written"],
+        )
     if not args.dry_run:
-        logger.info("Structured module material generation complete: %s files written", total_written)
+        logger.info(
+            "Structured module material generation complete: %s files written", total_written
+        )
     return 0
 
 

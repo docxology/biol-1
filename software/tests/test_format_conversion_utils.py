@@ -284,8 +284,7 @@ class TestConvertMarkdownToDocx:
 
         repo_root = Path(__file__).resolve().parents[2]
         md_file = (
-            repo_root
-            / "course_development/biol-1/course/module-12-darwin-evolution/questions.md"
+            repo_root / "course_development/biol-1/course/module-12-darwin-evolution/questions.md"
         )
         if not md_file.exists():
             import pytest

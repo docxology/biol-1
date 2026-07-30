@@ -108,7 +108,7 @@ def test_validation_and_processing_integration(temp_dir):
         # Add minimal content
         sample_file = Path(module_path) / "module-1-study-guide.md"
         sample_file.write_text("# Test\nA.\n", encoding="utf-8")
-        
+
         output_dir = temp_dir / "output"
         results = generate_module_media(module_path, str(output_dir))
         assert isinstance(results, dict)
@@ -147,10 +147,10 @@ def test_module_statistics_and_validation(temp_dir):
     # Add minimal content for testing processing decision
     sample_file = Path(module_path) / "module-1-study-guide.md"
     sample_file.write_text("# Test\nX.\n", encoding="utf-8")
-    
+
     # Re-get statistics after adding content
     stats = get_module_statistics(module_path)
-    
+
     # Check if module has content to process
     if stats["total_files"] > 2:  # More than just README and AGENTS
         output_dir = temp_dir / "output"

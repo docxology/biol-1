@@ -60,14 +60,14 @@ def test_render_deck_html_embeds_required_visuals_and_notes() -> None:
     assert "Module 01" in full_html
     assert "Learning objectives" in full_html
     assert "Lab file:" in full_html
-    assert "data-visual-kind=\"embedded-svg\"" in full_html
+    assert 'data-visual-kind="embedded-svg"' in full_html
     assert "module-01-concept-map" in full_html
     assert "module-01-process-model" in full_html
     assert "module-01-retrieval-card" in full_html
     assert "module-01-concept-map.svg" in full_html
     assert "module-01-process-model.svg" in full_html
     assert "module-01-retrieval-card.svg" in full_html
-    assert full_html.count("data-visual-kind=\"embedded-svg\"") == 3
+    assert full_html.count('data-visual-kind="embedded-svg"') == 3
     assert "Correct:" not in full_html
     assert "<span>A</span>" not in full_html
     assert "Answer first" in full_html
@@ -79,11 +79,15 @@ def test_render_deck_html_embeds_required_visuals_and_notes() -> None:
 
 def test_validate_slide_deck_rejects_missing_or_duplicated_visual_spine() -> None:
     deck = build_slide_deck(module_one())
-    missing = SlideDeck(deck.module, tuple(slide for slide in deck.slides if slide.role != "retrieval"))
+    missing = SlideDeck(
+        deck.module, tuple(slide for slide in deck.slides if slide.role != "retrieval")
+    )
     duplicate = SlideDeck(
         deck.module,
         tuple(
-            slide if slide.role != "retrieval" else type(slide)(
+            slide
+            if slide.role != "retrieval"
+            else type(slide)(
                 slide.title,
                 slide.role,
                 slide.visual_kind,

@@ -26,7 +26,7 @@ class TestExtractChapterNumber:
         """Test invalid filename patterns raise ValueError."""
         with pytest.raises(ValueError, match="Could not extract"):
             extract_chapter_number("No Number Here.docx")
-        
+
         with pytest.raises(ValueError):
             extract_chapter_number("Module 01.docx")
 
@@ -78,7 +78,7 @@ class TestEnsureModuleExists:
         """Test handling of concurrent creation race condition."""
         module_path = temp_dir / "module-04"
         mock_get_path.return_value = module_path
-        
+
         # Simulate race condition where it exists when create_module_structure runs
         mock_create.side_effect = ValueError("Directory already exists")
 

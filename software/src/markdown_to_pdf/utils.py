@@ -7,7 +7,6 @@ import markdown
 from weasyprint import HTML, CSS
 
 
-
 def markdown_to_html(markdown_text: str, extensions: Optional[List[str]] = None) -> str:
     """Convert Markdown text to HTML.
 

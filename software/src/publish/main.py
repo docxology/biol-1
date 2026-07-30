@@ -22,7 +22,7 @@ def publish_course(course_path: str, publish_root: Optional[str] = None) -> Dict
     """
     course_dir = Path(course_path).resolve()
     course_name = course_dir.name
-    
+
     if publish_root:
         out_root = Path(publish_root)
     else:
@@ -34,63 +34,60 @@ def publish_course(course_path: str, publish_root: Optional[str] = None) -> Dict
         out_root = repo_root / config.PUBLISH_ROOT_NAME
 
     published_course_dir = out_root / course_name
-    
+
     logger.info(f"Publishing {course_name} to {published_course_dir}")
-    
+
     # Get configuration
     course_conf = get_course_config(course_name)
     module_src_name = course_conf["module_source_dir"]
     syllabus_src_name = course_conf["syllabus_source_dir"]
-    
+
     results = {
         "course": course_name,
         "modules_published": 0,
         "syllabus_files": 0,
         "total_files": 0,
         "modules": [],
-        "errors": []
+        "errors": [],
     }
-    
+
     # Clean/Create destination
     if not published_course_dir.exists():
         published_course_dir.mkdir(parents=True)
-    
+
     # 1. Publish Modules
     modules_dir = course_dir / "course"
     if modules_dir.exists():
         for module_path in sorted(modules_dir.glob("module-*")):
             if not module_path.is_dir():
                 continue
-                
+
             module_name = module_path.name
             source_path = module_path / module_src_name
-            
+
             if not source_path.exists():
                 logger.warning(f"Source directory not found for {module_name}: {source_path}")
                 continue
-                
+
             dest_path = published_course_dir / module_name
-            
+
             # Clean destination module dir before copying to ensure fresh state
             clean_directory(dest_path)
-            
+
             # Primary Source
             files_copied = copy_directory_contents(source_path, dest_path)
 
             # Additional Sources (e.g., slides)
             for extra_src in course_conf.get("additional_module_dirs", []):
-                 extra_path = module_path / extra_src
-                 if extra_path.exists():
-                     logger.info(f"Publishing additional content from {extra_src} for {module_name}")
-                     files_copied += copy_directory_contents(extra_path, dest_path / extra_src)
-            
+                extra_path = module_path / extra_src
+                if extra_path.exists():
+                    logger.info(f"Publishing additional content from {extra_src} for {module_name}")
+                    files_copied += copy_directory_contents(extra_path, dest_path / extra_src)
+
             if files_copied > 0:
                 results["modules_published"] += 1
                 results["total_files"] += files_copied
-                results["modules"].append({
-                    "name": module_name,
-                    "files": files_copied
-                })
+                results["modules"].append({"name": module_name, "files": files_copied})
                 logger.debug(f"Published {module_name}: {files_copied} files")
             else:
                 # Intentionally empty: module exists in repo but hasn't been authored yet
@@ -102,13 +99,13 @@ def publish_course(course_path: str, publish_root: Optional[str] = None) -> Dict
         syllabus_path = course_dir / "syllabus"
         if syllabus_path.exists():
             source_path = syllabus_path / syllabus_src_name
-            
+
             if source_path.exists():
                 dest_path = published_course_dir / "syllabus"
                 clean_directory(dest_path)
-                
+
                 files_copied = copy_directory_contents(source_path, dest_path)
-                
+
                 results["syllabus_files"] = files_copied
                 results["total_files"] += files_copied
                 logger.info(f"Published syllabus: {files_copied} files")

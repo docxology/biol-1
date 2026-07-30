@@ -60,6 +60,7 @@ from src.slide_deck.main import (
 
 logger = logging.getLogger(__name__)
 
+
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
@@ -78,10 +79,20 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-clear", action="store_true")
     parser.add_argument("--no-website", action="store_true")
     parser.add_argument("--skip-labs", action="store_true")
-    parser.add_argument("--max-module", type=str, action="append", default=[],
-                        help="Max module per course (course:number, e.g., biol-1:6)")
-    parser.add_argument("--max-lab", type=str, action="append", default=[],
-                        help="Max lab per course (course:number, e.g., biol-1:5)")
+    parser.add_argument(
+        "--max-module",
+        type=str,
+        action="append",
+        default=[],
+        help="Max module per course (course:number, e.g., biol-1:6)",
+    )
+    parser.add_argument(
+        "--max-lab",
+        type=str,
+        action="append",
+        default=[],
+        help="Max lab per course (course:number, e.g., biol-1:5)",
+    )
     return parser.parse_args()
 
 
@@ -184,8 +195,12 @@ def main() -> int:
         max_lab = max_lab_limits.get(course_key)
 
         module_results = process_course_modules(
-            course_path, course_name, args.module, (not args.no_website and "html" in formats), formats,
-            max_module=max_module
+            course_path,
+            course_name,
+            args.module,
+            (not args.no_website and "html" in formats),
+            formats,
+            max_module=max_module,
         )
         all_errors.extend(module_results.get("errors", []))
         for m in module_results.get("modules", []):

@@ -77,9 +77,7 @@ class TestProcessChapterQuestions:
         course_dir = course_root / "course"
         course_dir.mkdir(parents=True)
 
-        results = process_chapter_questions(
-            source_dir, course_root, course_dir, dry_run=True
-        )
+        results = process_chapter_questions(source_dir, course_root, course_dir, dry_run=True)
 
         # In dry run, files are listed but not converted
         assert len(results["processed"]) == 1
@@ -192,9 +190,7 @@ class TestProcessSlides:
         mod1 = course_dir / "module-01"
         mod1.mkdir(parents=True)
 
-        with patch(
-            "src.module_organization.utils.get_module_path", return_value=mod1
-        ):
+        with patch("src.module_organization.utils.get_module_path", return_value=mod1):
             results = process_slides(slides_full, slides_notes, course_root, dry_run=False)
 
         assert results["summary"]["copied"] == 2

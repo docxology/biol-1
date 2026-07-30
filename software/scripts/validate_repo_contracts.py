@@ -26,7 +26,12 @@ def main() -> int:
     report = validate_repo_contracts(repo_root)
 
     if args.json:
-        print(json.dumps({"valid": report.valid, "issues": report.issues, "summary": report.summary}, indent=2))
+        print(
+            json.dumps(
+                {"valid": report.valid, "issues": report.issues, "summary": report.summary},
+                indent=2,
+            )
+        )
     else:
         print("Repository contract validation")
         print(f"  status: {'PASS' if report.valid else 'FAIL'}")

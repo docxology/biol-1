@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import os
 import sys
 from pathlib import Path
 
@@ -157,28 +156,6 @@ def test_upload_module_to_canvas_uses_real_http_through_local_stub(
         assert uploaded + failures >= 1
     finally:
         stop_canvas_stub(srv)
-
-
-@pytest.mark.requires_api
-def test_optional_upload_module_to_canvas_requires_env_credentials(
-    sample_module_structure,
-):
-    """Runs against Canvas only when CANVAS_* env vars are set; otherwise skipped."""
-    canvas_api_key = os.getenv("CANVAS_API_KEY")
-    canvas_course_id = os.getenv("CANVAS_COURSE_ID")
-    canvas_domain = os.getenv("CANVAS_DOMAIN", "canvas.instructure.com")
-
-    if not canvas_api_key or not canvas_course_id:
-        pytest.skip("Set CANVAS_API_KEY and CANVAS_COURSE_ID for live Canvas test")
-
-    result = upload_module_to_canvas(
-        str(sample_module_structure),
-        canvas_course_id,
-        canvas_api_key,
-        canvas_domain,
-    )
-    assert isinstance(result, dict)
-    assert {"uploaded_files", "failed_files", "errors"} <= result.keys()
 
 
 def test_validate_upload_readiness_naming_violations(temp_dir):

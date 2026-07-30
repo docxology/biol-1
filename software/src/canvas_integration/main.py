@@ -70,14 +70,10 @@ def upload_module_to_canvas(
             try:
                 if not validate_file_size(file_path):
                     results["failed_files"].append(str(file_path))
-                    results["errors"].append(
-                        f"File too large: {file_path.name}"
-                    )
+                    results["errors"].append(f"File too large: {file_path.name}")
                     continue
 
-                upload_result = _upload_file_to_canvas(
-                    file_path, folder_id, api_key, domain
-                )
+                upload_result = _upload_file_to_canvas(file_path, folder_id, api_key, domain)
                 results["uploaded_files"].append(
                     {
                         "file": str(file_path),
@@ -113,13 +109,9 @@ def validate_upload_readiness(module_path: str) -> List[str]:
         if validation.get("missing_files"):
             issues.append(f"Missing required files: {validation['missing_files']}")
         if validation.get("missing_directories"):
-            issues.append(
-                f"Missing required directories: {validation['missing_directories']}"
-            )
+            issues.append(f"Missing required directories: {validation['missing_directories']}")
         if validation.get("naming_violations"):
-            issues.append(
-                f"File naming violations: {validation['naming_violations']}"
-            )
+            issues.append(f"File naming violations: {validation['naming_violations']}")
 
     # Check for files that are too large
     for file_path in module_dir.rglob("*"):
@@ -130,9 +122,7 @@ def validate_upload_readiness(module_path: str) -> List[str]:
     return issues
 
 
-def _get_or_create_folder(
-    course_id: str, api_key: str, domain: str, folder_name: str
-) -> str:
+def _get_or_create_folder(course_id: str, api_key: str, domain: str, folder_name: str) -> str:
     """Get existing folder or create new one in Canvas.
 
     Args:
@@ -195,8 +185,6 @@ def _upload_file_to_canvas(
     upload_url = upload_data["upload_url"]
     with open(file_path, "rb") as f:
         files = {"file": (file_path.name, f, get_file_mime_type(file_path))}
-        upload_response = make_canvas_request(
-            "POST", upload_url, api_key, files=files
-        )
+        upload_response = make_canvas_request("POST", upload_url, api_key, files=files)
 
     return cast(Dict[str, Any], upload_response.json())

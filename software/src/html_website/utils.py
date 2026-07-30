@@ -7,7 +7,6 @@ from typing import Any, Dict, List, Optional, cast
 import markdown
 
 
-
 def markdown_to_html(markdown_content: str) -> str:
     """Convert markdown content to HTML.
 
@@ -102,7 +101,7 @@ def extract_quiz_questions(markdown_content: str) -> List[Dict[str, Any]]:
                 # Remove leading number
                 for i in range(1, 10):
                     if question_text.startswith(f"{i}. "):
-                        question_text = question_text[len(f"{i}. "):]
+                        question_text = question_text[len(f"{i}. ") :]
                         break
                 current_question = {
                     "question": question_text,

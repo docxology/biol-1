@@ -28,7 +28,7 @@ def flatten_module(module_dir: Path, dry_run: bool = False, verbose: bool = Fals
     subdirs = [d for d in module_dir.iterdir() if d.is_dir()]
 
     for subdir in subdirs:
-        for file in subdir.rglob('*'):
+        for file in subdir.rglob("*"):
             if file.is_file():
                 dest = module_dir / file.name
                 # Handle potential name conflicts
@@ -51,7 +51,7 @@ def flatten_published(
     published_dir: Path,
     skip_dirs: Optional[List[str]] = None,
     dry_run: bool = False,
-    verbose: bool = False
+    verbose: bool = False,
 ) -> int:
     """Flatten all module directories in PUBLISHED.
 
@@ -65,12 +65,12 @@ def flatten_published(
         Total number of files moved
     """
     if skip_dirs is None:
-        skip_dirs = ['labs', 'dashboards', 'syllabus', 'slides', 'exams', 'practice_tests']
+        skip_dirs = ["labs", "dashboards", "syllabus", "slides", "exams", "practice_tests"]
 
     total_moved = 0
 
     for course_dir in published_dir.iterdir():
-        if not course_dir.is_dir() or course_dir.name.startswith('.'):
+        if not course_dir.is_dir() or course_dir.name.startswith("."):
             continue
 
         for module_dir in course_dir.iterdir():
@@ -95,7 +95,7 @@ def clean_published(published_dir: Path) -> None:
     """
     if published_dir.exists():
         for item in published_dir.iterdir():
-            if item.name.startswith('.'):
+            if item.name.startswith("."):
                 continue
             if item.is_dir():
                 shutil.rmtree(item)

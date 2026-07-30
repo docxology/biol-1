@@ -28,7 +28,11 @@ from src.shared.runtime import configure_runtime_environment  # noqa: E402
 configure_runtime_environment()
 
 from src.batch_processing.main import process_syllabus  # noqa: E402
-from src.shared.course_config import CourseSelectionError, active_course_names, resolve_course_selection  # noqa: E402
+from src.shared.course_config import (
+    CourseSelectionError,
+    active_course_names,
+    resolve_course_selection,
+)  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:

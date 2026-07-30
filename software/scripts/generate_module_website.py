@@ -31,7 +31,11 @@ configure_runtime_environment()
 from scripts.utils import print_module_not_found  # noqa: E402
 from src.batch_processing.main import process_module_website  # noqa: E402
 from src.module_organization.utils import find_module_path  # noqa: E402
-from src.shared.course_config import CourseSelectionError, active_course_names, resolve_course_selection  # noqa: E402
+from src.shared.course_config import (
+    CourseSelectionError,
+    active_course_names,
+    resolve_course_selection,
+)  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -96,6 +100,7 @@ def main() -> int:
     except Exception as e:
         print(f"Error: {e}")
         import traceback
+
         traceback.print_exc()
         return 1
 

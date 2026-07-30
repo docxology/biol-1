@@ -71,7 +71,7 @@ def text_to_speech_audio(
     timeout_seconds: int = config.COMMAND_TIMEOUT_SECONDS,
 ) -> None:
     """Generate speech audio from text using macOS 'say' and 'ffmpeg'.
-    
+
     Args:
         text: Text content to convert
         output_path: Path for output audio file
@@ -83,28 +83,38 @@ def text_to_speech_audio(
     """
     tmp_aiff = output_path.with_suffix(".aiff")
     tmp_txt = output_path.with_suffix(".tmp.txt")
-    
+
     try:
         # Write text to temp file to handle large content/special chars
-        tmp_txt.write_text(text, encoding='utf-8')
-        
+        tmp_txt.write_text(text, encoding="utf-8")
+
         # 1. Generate AIFF using the system voice.
         subprocess.run(
             ["say", "--input-file", str(tmp_txt), "--output-file", str(tmp_aiff)],
             check=True,
             timeout=timeout_seconds,
         )
-        
+
         # 2. Convert to MP3 using ffmpeg
         # -y to overwrite, -acodec libmp3lame, -q:a 2 (high quality)
-        subprocess.run([
-            "ffmpeg", "-y", 
-            "-i", str(tmp_aiff),
-            "-acodec", "libmp3lame",
-            "-q:a", "2",
-            str(output_path)
-        ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout_seconds)
-        
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(tmp_aiff),
+                "-acodec",
+                "libmp3lame",
+                "-q:a",
+                "2",
+                str(output_path),
+            ],
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=timeout_seconds,
+        )
+
     except subprocess.CalledProcessError as e:
         raise OSError(f"Local TTS generation failed: {e}") from e
     except subprocess.TimeoutExpired as e:

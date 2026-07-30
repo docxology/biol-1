@@ -158,9 +158,7 @@ def generate_dry_run_report(
             )
 
             if module_filter is not None:
-                modules = [
-                    m for m in modules if matches_module_number(m.name, module_filter)
-                ]
+                modules = [m for m in modules if matches_module_number(m.name, module_filter)]
 
             for module_dir in modules:
                 md_files = list(module_dir.glob("*.md"))

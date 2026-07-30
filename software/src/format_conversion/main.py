@@ -47,9 +47,7 @@ def convert_file(input_path: str, output_format: str, output_path: str) -> None:
         raise ValueError(f"Unsupported input format: {input_ext}")
 
     if output_format_lower not in config.SUPPORTED_CONVERSIONS[input_ext]:
-        raise ValueError(
-            f"Conversion from {input_ext} to {output_format_lower} is not supported"
-        )
+        raise ValueError(f"Conversion from {input_ext} to {output_format_lower} is not supported")
 
     ensure_output_directory(output_file)
 
@@ -62,6 +60,7 @@ def convert_file(input_path: str, output_format: str, output_path: str) -> None:
         convert_markdown_to_html(input_file, output_file)
     elif conversion_key == "md->docx" or conversion_key == "markdown->docx":
         from .utils import convert_markdown_to_docx
+
         convert_markdown_to_docx(input_file, output_file)
     elif conversion_key == "html->pdf":
         convert_html_to_pdf(input_file, output_file)
@@ -71,17 +70,17 @@ def convert_file(input_path: str, output_format: str, output_path: str) -> None:
         convert_text_to_html(input_file, output_file)
     elif conversion_key == "pdf->txt":
         from .utils import convert_pdf_to_text
+
         convert_pdf_to_text(input_file, output_file)
     elif conversion_key in ["mp3->txt", "wav->txt", "m4a->txt"]:
         from .utils import convert_audio_to_text
+
         convert_audio_to_text(input_file, output_file)
     else:
         raise ValueError(f"Conversion handler not implemented: {conversion_key}")
 
 
-def batch_convert(
-    directory: str, input_format: str, output_format: str
-) -> List[str]:
+def batch_convert(directory: str, input_format: str, output_format: str) -> List[str]:
     """Batch convert files in a directory.
 
     Args:
@@ -142,4 +141,3 @@ def get_supported_formats() -> Dict[str, list[str]]:
         Dictionary mapping input formats to supported output formats
     """
     return config.SUPPORTED_CONVERSIONS.copy()
-

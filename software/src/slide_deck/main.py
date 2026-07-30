@@ -66,7 +66,10 @@ def build_slide_deck(module_dir: Path | str) -> SlideDeck:
             "Topic sequence",
             "topics",
             "topic-sequence",
-            tuple(f"{topic}: {content}" for topic, content in zip(module.topics, module.contents, strict=True)),
+            tuple(
+                f"{topic}: {content}"
+                for topic, content in zip(module.topics, module.contents, strict=True)
+            ),
             "Show the module as an ordered explanation so students can locate each new idea.",
         ),
         Slide(
@@ -126,9 +129,13 @@ def build_slide_deck(module_dir: Path | str) -> SlideDeck:
             "Practice quiz bridge",
             "quiz",
             "quiz-bridge",
-            tuple(f"{idx}. {quiz.question}" for idx, quiz in enumerate(module.practice_quiz[:4], 1)),
+            tuple(
+                f"{idx}. {quiz.question}" for idx, quiz in enumerate(module.practice_quiz[:4], 1)
+            ),
             "Use the quiz as formative feedback. Answer key: "
-            + ", ".join(f"{idx}={quiz.answer}" for idx, quiz in enumerate(module.practice_quiz[:4], 1)),
+            + ", ".join(
+                f"{idx}={quiz.answer}" for idx, quiz in enumerate(module.practice_quiz[:4], 1)
+            ),
         ),
         Slide(
             "Synthesis and exit ticket",
@@ -190,9 +197,13 @@ def validate_slide_deck(deck: SlideDeck) -> list[str]:
             issues.append(f"{deck.module.slug} slide {slide.role} embeds no generated SVG")
         if slide.svg:
             if slide.visual_kind != "embedded-svg":
-                issues.append(f"{deck.module.slug} slide {slide.role} has SVG without embedded-svg visual kind")
+                issues.append(
+                    f"{deck.module.slug} slide {slide.role} has SVG without embedded-svg visual kind"
+                )
             if slide.svg.kind not in {"concept-map", "process-model", "retrieval-card"}:
-                issues.append(f"{deck.module.slug} slide {slide.role} has unsupported SVG kind {slide.svg.kind}")
+                issues.append(
+                    f"{deck.module.slug} slide {slide.role} has unsupported SVG kind {slide.svg.kind}"
+                )
             if slide.role not in expected_svg_roles:
                 issues.append(f"{deck.module.slug} slide {slide.role} has unexpected generated SVG")
             elif expected_svg_roles[slide.role] != slide.svg.kind:
@@ -202,12 +213,18 @@ def validate_slide_deck(deck: SlideDeck) -> list[str]:
                 )
             svg_roles[slide.role] = slide.svg.kind
             if not any(deck.module.lab in item for item in slide.body):
-                issues.append(f"{deck.module.slug} slide {slide.role} does not reference linked lab")
+                issues.append(
+                    f"{deck.module.slug} slide {slide.role} does not reference linked lab"
+                )
             if not any(deck.module.title in item for item in slide.body):
-                issues.append(f"{deck.module.slug} slide {slide.role} does not reference module title")
+                issues.append(
+                    f"{deck.module.slug} slide {slide.role} does not reference module title"
+                )
     missing_svg_roles = sorted(set(expected_svg_roles) - set(svg_roles))
     if missing_svg_roles:
-        issues.append(f"{deck.module.slug} missing generated SVG slides: {', '.join(missing_svg_roles)}")
+        issues.append(
+            f"{deck.module.slug} missing generated SVG slides: {', '.join(missing_svg_roles)}"
+        )
     if len(set(svg_roles.values())) != len(svg_roles):
         issues.append(f"{deck.module.slug} reuses a generated SVG across multiple slides")
     return issues
@@ -277,7 +294,11 @@ def render_module_slide_deck(
         root / f"module-{deck.module.number}-slides-notes.pdf",
     ]
     if dry_run:
-        return {"module": deck.module.slug, "outputs": [str(path) for path in outputs], "written": 0}
+        return {
+            "module": deck.module.slug,
+            "outputs": [str(path) for path in outputs],
+            "written": 0,
+        }
 
     generated_root.mkdir(parents=True, exist_ok=True)
     full_html = render_deck_html(deck, "full")
@@ -288,7 +309,11 @@ def render_module_slide_deck(
 
     HTML(string=full_html, base_url=str(deck.module.module_dir)).write_pdf(outputs[2])
     HTML(string=notes_html, base_url=str(deck.module.module_dir)).write_pdf(outputs[3])
-    return {"module": deck.module.slug, "outputs": [str(path) for path in outputs], "written": len(outputs)}
+    return {
+        "module": deck.module.slug,
+        "outputs": [str(path) for path in outputs],
+        "written": len(outputs),
+    }
 
 
 def render_course_slide_decks(
@@ -300,9 +325,18 @@ def render_course_slide_decks(
     course_path = Path(course_root)
     slides_root = course_path / "resources" / "slides"
     modules = _module_dirs(course_path, module_filter)
-    results = [render_module_slide_deck(module_dir, slides_root, dry_run=dry_run) for module_dir in modules]
-    written = sum(value for result in results for value in [result.get("written")] if isinstance(value, int))
-    return {"course": str(course_path), "module_count": len(results), "modules": results, "written": written}
+    results = [
+        render_module_slide_deck(module_dir, slides_root, dry_run=dry_run) for module_dir in modules
+    ]
+    written = sum(
+        value for result in results for value in [result.get("written")] if isinstance(value, int)
+    )
+    return {
+        "course": str(course_path),
+        "module_count": len(results),
+        "modules": results,
+        "written": written,
+    }
 
 
 def describe_course_slide_decks(course_root: Path | str, module_filter: int | None = None) -> str:
@@ -339,7 +373,11 @@ def render_deck_html(deck: SlideDeck, variant: DeckVariant) -> str:
 def _render_slide(deck: SlideDeck, slide: Slide, index: int, notes_mode: bool) -> str:
     visual = _render_visual(deck, slide, notes_mode)
     body_items = "".join(f"<li>{_e(item)}</li>" for item in slide.body[:6])
-    note_html = f'<aside class="speaker-note"><strong>Teaching note:</strong> {_e(slide.note)}</aside>' if notes_mode else ""
+    note_html = (
+        f'<aside class="speaker-note"><strong>Teaching note:</strong> {_e(slide.note)}</aside>'
+        if notes_mode
+        else ""
+    )
     return f"""
 <section class="slide slide-{_slug(slide.role)}" data-slide-role="{_e(slide.role)}" data-visual-kind="{_e(slide.visual_kind)}">
   <div class="slide-ribbon">BIOL-1 · Module {deck.module.number:02d} · Slide {index:02d}</div>
@@ -371,16 +409,25 @@ def _render_visual(deck: SlideDeck, slide: Slide, notes_mode: bool) -> str:
     if slide.visual_kind == "topic-sequence":
         return _topic_sequence_visual(module)
     if slide.visual_kind == "term-grid":
-        cards = "".join(f"<div><b>{_e(term.name)}</b><span>{_e(term.definition)}</span></div>" for term in module.terms[:6])
+        cards = "".join(
+            f"<div><b>{_e(term.name)}</b><span>{_e(term.definition)}</span></div>"
+            for term in module.terms[:6]
+        )
         return f'<div class="term-grid">{cards}</div>'
     if slide.visual_kind == "lab-flow":
-        return _flow_diagram(("Question", "Evidence", "Claim"), (module.topics[0], module.lab, module.learning_objectives[0]))
+        return _flow_diagram(
+            ("Question", "Evidence", "Claim"),
+            (module.topics[0], module.lab, module.learning_objectives[0]),
+        )
     if slide.visual_kind == "contrast-panel":
         return f'<div class="contrast"><div><b>Surface</b><span>{_e(module.contents[0])}</span></div><div><b>Deeper</b><span>{_e(module.contents[-1])}</span></div></div>'
     if slide.visual_kind == "quiz-bridge":
         return _quiz_bridge_visual(module, reveal_answers=notes_mode)
     if slide.visual_kind == "exit-ticket":
-        return _flow_diagram(("Claim", "Evidence", "Revision"), (module.topics[0], module.lab, "What would change your mind?"))
+        return _flow_diagram(
+            ("Claim", "Evidence", "Revision"),
+            (module.topics[0], module.lab, "What would change your mind?"),
+        )
     return '<div class="visual-placeholder">Visual surface</div>'
 
 
@@ -391,17 +438,17 @@ def _module_pathway_visual(module: ModuleContent) -> str:
     )
     return (
         '<div class="module-pathway">'
-        f'<header><strong>Module {module.number:02d}</strong><span>{_e(module.title)}</span></header>'
+        f"<header><strong>Module {module.number:02d}</strong><span>{_e(module.title)}</span></header>"
         f'<div class="path-nodes">{topic_nodes}</div>'
-        f'<footer><b>Lab evidence</b><span>{_e(module.lab)}</span></footer>'
-        '</div>'
+        f"<footer><b>Lab evidence</b><span>{_e(module.lab)}</span></footer>"
+        "</div>"
     )
 
 
 def _topic_sequence_visual(module: ModuleContent) -> str:
     cells = "".join(
         f'<div class="sequence-cell"><b>{idx:02d}</b><strong>{_e(topic)}</strong>'
-        f'<span>{_e(content)}</span></div>'
+        f"<span>{_e(content)}</span></div>"
         for idx, (topic, content) in enumerate(zip(module.topics, module.contents, strict=True), 1)
     )
     return f'<div class="sequence-map">{cells}</div>'
@@ -413,7 +460,7 @@ def _quiz_bridge_visual(module: ModuleContent, reveal_answers: bool) -> str:
         result = f"Key: {quiz.answer}" if reveal_answers else "Answer first"
         cards.append(
             f'<div class="quiz-card"><b>Question {idx}</b><span>{_e(result)}</span>'
-            f'<em>{_e(quiz.question)}</em></div>'
+            f"<em>{_e(quiz.question)}</em></div>"
         )
     return f'<div class="quiz-grid">{"".join(cards)}</div>'
 
@@ -498,7 +545,7 @@ def _scoped_svg_ids(svg_text: str, prefix: str) -> str:
     for value in ids:
         replacement = f"{prefix}-{value}"
         scoped = scoped.replace(f'id="{value}"', f'id="{replacement}"')
-        scoped = scoped.replace(f'url(#{value})', f'url(#{replacement})')
+        scoped = scoped.replace(f"url(#{value})", f"url(#{replacement})")
         scoped = scoped.replace(f'href="#{value}"', f'href="#{replacement}"')
         scoped = scoped.replace(f'xlink:href="#{value}"', f'xlink:href="#{replacement}"')
     return scoped

@@ -37,6 +37,7 @@ from src.legacy_import import (
 )
 from src.shared.course_config import CourseSelectionError, resolve_course_selection
 
+
 def parse_args() -> argparse.Namespace:
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
@@ -94,9 +95,7 @@ def main() -> int:
 
     source_questions_dir = repo_root / "bio_1_2025" / "files" / "Chapter Questions"
     source_slides_full_dir = repo_root / "bio_1_2025" / "files" / "Slides" / "Slides_Full"
-    source_slides_notes_dir = (
-        repo_root / "bio_1_2025" / "files" / "Slides" / "Slides_Notes"
-    )
+    source_slides_notes_dir = repo_root / "bio_1_2025" / "files" / "Slides" / "Slides_Notes"
     course_root = repo_root / "course_development" / course_name
     course_dir = course_root / "course"  # Course directory (e.g., biol-1/course)
 
