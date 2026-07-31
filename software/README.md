@@ -245,7 +245,7 @@ uv run pytest -q --no-cov         # quick pass
 uv run pytest --cov=src --cov-report=html   # HTML coverage report
 ```
 
-There are **20** packages under `src/`; see [`src/AGENTS.md`](src/AGENTS.md) for the index.
+There are **21** packages under `src/`; see [`src/AGENTS.md`](src/AGENTS.md) for the index.
 
 ## Documentation
 

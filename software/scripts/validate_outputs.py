@@ -73,6 +73,11 @@ def main():
     parser.add_argument("--json", action="store_true", help="Output results as JSON")
     parser.add_argument("--verbose", action="store_true", help="Show detailed module-level results")
     parser.add_argument(
+        "--validate-lectures",
+        action="store_true",
+        help="Validate lecture artifacts (video, captions, audio) in output/lectures/",
+    )
+    parser.add_argument(
         "--max-module",
         type=str,
         action="append",
@@ -245,6 +250,12 @@ def main():
     if args.json:
         print(json.dumps(all_results, indent=2))
 
+    # Opt-in: validate lecture artifacts
+    lecture_valid = True
+    if args.validate_lectures:
+        lecture_valid = _validate_lectures(repo_root, courses_to_validate)
+        all_valid = all_valid and lecture_valid
+
     # Final status
     logger.info(f"\n{'=' * 60}")
     if all_valid and all_pub_valid:
@@ -253,6 +264,72 @@ def main():
     else:
         logger.info("✗ Some validations FAILED")
         return 1
+
+
+def _validate_lectures(repo_root: Path, courses: list[str]) -> bool:
+    """Validate lecture artifacts in output/lectures/."""
+    lectures_dir = repo_root / "output" / "lectures"
+    if not lectures_dir.exists():
+        logger.info("\nNo lecture output directory found — skipping lecture validation")
+        return True
+
+    module_dirs = sorted(d for d in lectures_dir.glob("module-*") if d.is_dir())
+    if not module_dirs:
+        logger.info("\nNo module lecture directories found — skipping lecture validation")
+        return True
+
+    logger.info(f"\n{'=' * 60}")
+    logger.info("LECTURE VALIDATION")
+    logger.info(f"Found {len(module_dirs)} module lecture directories")
+
+    all_ok = True
+    for mod_dir in module_dirs:
+        name = mod_dir.name
+        issues = []
+
+        # Check for video
+        video_dir = mod_dir / name / "video"
+        video_file = video_dir / "lecture.mp4"
+        if not video_file.exists():
+            issues.append("missing lecture.mp4")
+        elif video_file.stat().st_size == 0:
+            issues.append("lecture.mp4 is empty")
+
+        # Check for captions
+        captions_dir = mod_dir / name / "captions"
+        captions_file = captions_dir / "captions.srt"
+        if not captions_file.exists():
+            issues.append("missing captions.srt")
+
+        # Check for audio
+        audio_dir = mod_dir / name / "audio"
+        if audio_dir.exists():
+            wavs = sorted(audio_dir.glob("*.wav"))
+            if not wavs:
+                issues.append("no audio WAV files")
+        else:
+            issues.append("missing audio directory")
+
+        # Check for PNGs
+        png_dir = mod_dir / "png"
+        if png_dir.exists():
+            pngs = sorted(png_dir.glob("*.png"))
+            if len(pngs) < 3:
+                issues.append(f"only {len(pngs)} PNG(s), expected ≥3")
+        else:
+            issues.append("missing png directory")
+
+        if issues:
+            all_ok = False
+            logger.info(f"  ✗ {name}: {', '.join(issues)}")
+        else:
+            logger.info(f"  ✓ {name}")
+
+    if all_ok:
+        logger.info("✓ All lecture validations PASSED")
+    else:
+        logger.info("✗ Some lecture validations FAILED")
+    return all_ok
 
 
 if __name__ == "__main__":

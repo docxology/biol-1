@@ -13,7 +13,7 @@ from src.html_website.main import generate_module_website
 # each meeting its own minimum-count requirements). Mirrors the fixture used in
 # tests/test_module_content.py so the structured-module rendering path in
 # generate_module_website can be exercised end-to-end.
-STRUCTURED_MODULE_TOML = '''[module]
+STRUCTURED_MODULE_TOML = """[module]
 number = 1
 slug = "module-01-test"
 title = "Test Module"
@@ -149,7 +149,7 @@ check = "Use Gamma in the answer."
 [[generated_images.prompts]]
 prompt = "Question 4?"
 check = "Connect the claim to lab evidence."
-'''
+"""
 
 
 class TestGenerateModuleWebsite:
@@ -325,9 +325,7 @@ class TestGenerateModuleWebsite:
                 },
             ]
         }
-        (questions_dir / "questions.json").write_text(
-            json.dumps(questions_data), encoding="utf-8"
-        )
+        (questions_dir / "questions.json").write_text(json.dumps(questions_data), encoding="utf-8")
 
         output_dir = temp_dir / "output"
         result = generate_module_website(str(module_dir), str(output_dir))
@@ -348,9 +346,7 @@ class TestGenerateModuleWebsite:
         module_dir = temp_dir / "module-1"
         module_dir.mkdir()
 
-        (module_dir / "sample_lecture-content.md").write_text(
-            "# Lecture", encoding="utf-8"
-        )
+        (module_dir / "sample_lecture-content.md").write_text("# Lecture", encoding="utf-8")
 
         output_base = module_dir / "output" / "lecture-content"
         output_base.mkdir(parents=True)
@@ -427,7 +423,10 @@ class TestGenerateModuleWebsiteStructured:
         assert "Topic A" in html_content
         assert "Use evidence" in html_content
         assert "Question 1?" in html_content
-        assert "Connected lab: <code>lab-01_test.md</code>" in html_content or "lab-01_test.md" in html_content
+        assert (
+            "Connected lab: <code>lab-01_test.md</code>" in html_content
+            or "lab-01_test.md" in html_content
+        )
 
     def test_escapes_term_names_and_definitions(self, temp_dir):
         module_dir = self._make_structured_module(temp_dir)

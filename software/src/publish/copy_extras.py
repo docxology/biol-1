@@ -280,8 +280,8 @@ def copy_practice_tests(
 
         # Copy practice test markdown files (including answer keys)
         for test_file in practice_tests_src.glob("*.md"):
-            if test_file.name == "README.md":
-                continue  # Skip README
+            if test_file.name in ("README.md", "AGENTS.md"):
+                continue  # Skip instructor-facing docs; PUBLISHED is fully generated
             dest = practice_tests_dest / test_file.name
             shutil.copy2(test_file, dest)
             course_copied += 1
@@ -297,6 +297,89 @@ def copy_practice_tests(
 
         if course_copied > 0:
             logger.info(f"  {course}: Copied {course_copied} practice test files")
+            total_copied += course_copied
+
+    return total_copied
+
+
+def copy_module_generated_assets(
+    repo_root: Path,
+    courses: Optional[List[str]] = None,
+    verbose: bool = False,
+) -> int:
+    """Copy each module's deterministic generated SVG assets into PUBLISHED.
+
+    Each module's ``resources/generated/*.svg`` (concept map, process model,
+    retrieval card) is linked from its ``keys-to-success.md`` via relative
+    paths like ``resources/generated/module-NN-concept-map.svg``. Those links
+    must resolve both from the flattened ``module_keys/`` category folder and
+    from the per-module ``modules/<slug>/`` bundle, so the assets are copied
+    into a ``resources/generated/`` subdirectory alongside each destination.
+
+    Must run after ``copy_module_bundles`` (which rebuilds ``modules/`` from
+    scratch on every publish), otherwise this step's output there would be
+    wiped.
+
+    Args:
+        repo_root: Path to the repository root
+        courses: List of course names (default: active courses from publish.toml)
+        verbose: If True, log detailed operations
+
+    Returns:
+        Number of files copied
+    """
+    if courses is None:
+        courses = _active_courses(repo_root)
+
+    published_dir = repo_root / config.PUBLISH_ROOT_NAME
+    total_copied = 0
+
+    for course in courses:
+        course_dev = repo_root / "course_development" / course / "course"
+        course_pub = published_dir / course
+        modules_pub = course_pub / "modules"
+
+        if not course_dev.exists() or not course_pub.exists():
+            continue
+
+        course_copied = 0
+
+        for module_dir in sorted(course_dev.glob("module-*")):
+            if not module_dir.is_dir():
+                continue
+
+            generated_dir = module_dir / "resources" / "generated"
+            if not generated_dir.exists():
+                continue
+
+            svg_files = sorted(generated_dir.glob("*.svg"))
+            if not svg_files:
+                continue
+
+            # Shared flattened destination alongside module_keys/homework
+            # (filenames are module-number-prefixed, so no cross-module
+            # collisions when merged into one directory per course).
+            module_keys_generated = course_pub / "module_keys" / "resources" / "generated"
+            module_keys_generated.mkdir(parents=True, exist_ok=True)
+            for svg_file in svg_files:
+                shutil.copy2(svg_file, module_keys_generated / svg_file.name)
+                course_copied += 1
+
+            # Per-module nested bundle destination.
+            module_slug = module_dir.name
+            module_bundle_dir = modules_pub / module_slug
+            if module_bundle_dir.exists():
+                bundle_generated = module_bundle_dir / "resources" / "generated"
+                bundle_generated.mkdir(parents=True, exist_ok=True)
+                for svg_file in svg_files:
+                    shutil.copy2(svg_file, bundle_generated / svg_file.name)
+                    course_copied += 1
+
+            if verbose:
+                logger.debug(f"    {module_slug}: copied {len(svg_files)} generated asset(s)")
+
+        if course_copied > 0:
+            logger.info(f"  {course}: Copied {course_copied} generated module assets")
             total_copied += course_copied
 
     return total_copied

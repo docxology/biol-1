@@ -40,6 +40,7 @@ include_labs = true
 include_dashboards = true
 include_slides = true
 include_practice_tests = true
+include_lectures = false     # Set to true to auto-generate lecture videos during full pipeline
 
 [publish.courses.biol-8]
 enabled = false

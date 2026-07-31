@@ -283,7 +283,9 @@ def main():
         t_step = time.time()
         logger.info("\n🖼️  STEP 8c: Copying module-generated SVG assets")
         assets_copied = copy_module_generated_assets(repo_root, courses, args.verbose)
-        logger.info(f"  ✅ Copied {assets_copied} generated asset files  ({time.time()-t_step:.1f}s)")
+        logger.info(
+            f"  ✅ Copied {assets_copied} generated asset files  ({time.time() - t_step:.1f}s)"
+        )
 
     # Step 9: Validate
     if not args.skip_validate:

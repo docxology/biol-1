@@ -318,25 +318,26 @@ See [Module Independence](#module-independence) for details on standalone usage.
 
 ```text
 software/
-├── src/                              # Source code (20 packages)
+├── src/                              # Source code (21 packages)
 │   ├── __init__.py
 │   ├── batch_processing/             # Module batch operations
 │   ├── canvas_integration/           # Canvas LMS upload
 │   ├── content_processing/           # Question renumbering, text normalize
-│   ├── exam_tools/                   # Final exam MC shuffling + crosswalk
+│   ├── exam_tools/                   # Exam shuffling and rendering
 │   ├── file_validation/              # Content validation
 │   ├── format_conversion/            # Format transformations
 │   ├── html_website/                 # Interactive websites
-│   ├── lab_dashboard/                # BIOL-1 lab dashboard HTML generation
+│   ├── lab_dashboard/                # Lab dashboard generation
 │   ├── lab_manual/                   # Rich lab manual rendering
+│   ├── lecture_create/               # LectureCreate video integration
 │   ├── legacy_import/                # Legacy import utilities
 │   ├── markdown_to_pdf/              # PDF generation
-│   ├── module_content/               # Typed module.toml → generated Markdown/SVG
+│   ├── module_content/               # Typed BIOL-1 manifest pipeline
 │   ├── module_organization/          # Directory structure
 │   ├── publish/                      # Course publishing
 │   ├── schedule/                     # Schedule processing
 │   ├── shared/                       # Cross-cutting file_utils helpers
-│   ├── slide_deck/                   # Generated slide decks from module.toml
+│   ├── slide_deck/                   # Generated slide decks from manifests
 │   ├── speech_to_text/               # Audio transcription
 │   ├── text_to_speech/               # Audio generation
 │   └── validation/                   # Output validation

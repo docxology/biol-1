@@ -18,6 +18,7 @@ from .flatten import (  # noqa: F401
     flatten_published,
 )
 from .copy_extras import (  # noqa: F401
+    copy_exams,
     copy_labs_and_dashboards,
     copy_module_bundles,
     copy_module_generated_assets,

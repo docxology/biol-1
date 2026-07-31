@@ -80,6 +80,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-website", action="store_true")
     parser.add_argument("--skip-labs", action="store_true")
     parser.add_argument(
+        "--include-lectures",
+        action="store_true",
+        help="Generate lecture videos via LectureCreate (opt-in; slow)",
+    )
+    parser.add_argument(
         "--max-module",
         type=str,
         action="append",
@@ -232,6 +237,30 @@ def main() -> int:
             all_errors.extend(exams.get("errors", []))
             if exams.get("processed"):
                 total_files += len(exams.get("files", []))
+
+    # Opt-in: generate lecture videos via LectureCreate
+    if args.include_lectures and not args.dry_run:
+        logger.info("\n--- Generating lecture videos ---")
+        import subprocess as _sp
+
+        lecture_script = Path(__file__).resolve().parent / "generate_module_videos.py"
+        result = _sp.run(
+            [
+                sys.executable,
+                str(lecture_script),
+                "--all",
+                "--render",
+            ],
+            capture_output=True,
+            text=True,
+            cwd=str(Path(__file__).parent.parent),
+        )
+        if result.returncode == 0:
+            logger.info("Lecture videos generated successfully")
+        else:
+            logger.warning(f"Lecture video generation failed (exit {result.returncode})")
+            if result.stderr:
+                logger.warning(result.stderr.strip()[:500])
 
     logger.info(f"\nTotal: {total_files} files generated in {time.time() - start_time:.2f}s")
     if all_errors:

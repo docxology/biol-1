@@ -170,7 +170,12 @@ class TestRenderQuestion:
         assert "- C) cc" in rendered
         assert "- D) dd" in rendered
         # Options must appear in A, B, C, D order.
-        assert rendered.index("- A)") < rendered.index("- B)") < rendered.index("- C)") < rendered.index("- D)")
+        assert (
+            rendered.index("- A)")
+            < rendered.index("- B)")
+            < rendered.index("- C)")
+            < rendered.index("- D)")
+        )
 
 
 class TestShuffleExamMarkdownRoundTrip:
@@ -201,7 +206,9 @@ class TestShuffleExamMarkdownRoundTrip:
             "Some free response content.\n"
         )
 
-    def test_shuffle_then_crosswalk_verify_round_trips(self, monkeypatch: pytest.MonkeyPatch) -> None:
+    def test_shuffle_then_crosswalk_verify_round_trips(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         # Use each question's own synthetic option text as the "legacy correct text"
         # so crosswalk_verify (which checks against LEGACY_CORRECT_TEXTS) succeeds.
         synthetic_correct_texts = {
@@ -281,10 +288,10 @@ class TestReshapePartASpacing:
         reshaped = reshape_part_a_spacing(md, keyed)
 
         questions_before, _ = parse_part_a_questions(
-            md[md.index("## Part A"): md.index("## Part B")].split("Multiple Choice\n\n", 1)[1]
+            md[md.index("## Part A") : md.index("## Part B")].split("Multiple Choice\n\n", 1)[1]
         )
         questions_after, _ = parse_part_a_questions(
-            reshaped[reshaped.index("## Part A"): reshaped.index("## Part B")].split(
+            reshaped[reshaped.index("## Part A") : reshaped.index("## Part B")].split(
                 "Multiple Choice\n\n", 1
             )[1]
         )

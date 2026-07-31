@@ -482,6 +482,37 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 **Used by**: `scripts/generate_biol1_lab_dashboards.py`
 
+### LectureCreate Integration
+
+**Purpose**: Generate LectureCreate-compatible YAML manifests from structured BIOL-1 module.toml files and invoke LectureCreate for deterministic video rendering.
+
+**Location**: `src/lecture_create/`
+
+**Standalone**: Yes — depends on `module_content` for manifest loading; invokes lecturecreate via subprocess.
+
+**Dependencies**: `module_content`, LectureCreate (external, Python >=3.12, subprocess)
+
+**Key Functions**:
+
+- `build_module_lecture_yaml(module_dir: Path | str, output_dir: Path | str, lecturecreate_config_path: Path | str | None = None) -> str` — build a LectureCreate YAML manifest from a BIOL-1 module manifest.
+- `build_combined_lecture_yaml(course_dir: Path | str, output_dir: Path | str, lecturecreate_config_path: Path | str | None = None) -> str` — build a single LectureCreate YAML with one section per BIOL-1 module (16 sections).
+- `enrich_narrations_with_llm(module: ModuleContent) -> ModuleContent` — enrich narration scripts via LLM pass reading full module content.
+- `render_module_video(yaml_path: Path | str, output_dir: Path | str, config_path: Path | str | None = None, lecturecreate_bin: str | None = None, qr: bool = False, backend: str = "system") -> subprocess.CompletedProcess[str]` — invoke LectureCreate to render a YAML manifest to video.
+
+**Lecture structure per module** (10 beats):
+- Title card (module title + lab)
+- Learning objectives
+- Topic sequence
+- Concept map (SVG → PNG image)
+- Process model (SVG → PNG image)
+- Key terms recap
+- Lab connection
+- Retrieval card (SVG → PNG image)
+- Practice quiz checkpoint
+- Synthesis / exit ticket
+
+**Used by**: `scripts/generate_module_videos.py`
+
 ### Exam Tools
 
 **Purpose**: Final exam Part A multiple-choice shuffling, parsing, rendering, and crosswalk verification for BIOL-1
@@ -508,7 +539,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 ```text
 software/
-├── src/              # Source code (20 packages)
+├── src/              # Source code (21 packages)
 │   ├── batch_processing/
 │   ├── canvas_integration/
 │   ├── content_processing/
@@ -518,6 +549,7 @@ software/
 │   ├── html_website/
 │   ├── lab_dashboard/
 │   ├── lab_manual/
+│   ├── lecture_create/            # LectureCreate video integration
 │   ├── legacy_import/
 │   ├── markdown_to_pdf/
 │   ├── module_content/

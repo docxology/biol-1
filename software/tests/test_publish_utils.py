@@ -142,9 +142,13 @@ class TestCopyPracticeTests:
         PUBLISHED/ (regression test: PUBLISHED is documented as fully
         generated, and a stray AGENTS.md with course_development-relative
         links would 404 from its published location)."""
-        practice_tests_dir = temp_dir / "course_development" / "biol-1" / "course" / "practice_tests"
+        practice_tests_dir = (
+            temp_dir / "course_development" / "biol-1" / "course" / "practice_tests"
+        )
         practice_tests_dir.mkdir(parents=True)
-        (practice_tests_dir / "practice-test-01.md").write_text("# Practice Test 1", encoding="utf-8")
+        (practice_tests_dir / "practice-test-01.md").write_text(
+            "# Practice Test 1", encoding="utf-8"
+        )
         (practice_tests_dir / "AGENTS.md").write_text("# Agent notes", encoding="utf-8")
 
         pub = temp_dir / config.PUBLISH_ROOT_NAME
@@ -428,7 +432,9 @@ class TestCopyModuleGeneratedAssets:
         assert not (course_pub / "modules").exists()
 
     def test_missing_generated_dir_is_noop(self, temp_dir):
-        module_dir = temp_dir / "course_development" / "biol-1" / "course" / "module-01-study-of-life"
+        module_dir = (
+            temp_dir / "course_development" / "biol-1" / "course" / "module-01-study-of-life"
+        )
         module_dir.mkdir(parents=True)
         course_pub = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
         course_pub.mkdir(parents=True)

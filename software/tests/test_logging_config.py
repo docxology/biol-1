@@ -38,7 +38,8 @@ class TestSetupLogging:
 
         assert len(logger.handlers) == 2
         stream_handlers = [
-            h for h in logger.handlers
+            h
+            for h in logger.handlers
             if isinstance(h, logging.StreamHandler) and not isinstance(h, logging.FileHandler)
         ]
         file_handlers = [h for h in logger.handlers if isinstance(h, logging.FileHandler)]
