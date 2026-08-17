@@ -32,39 +32,92 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Duplex assessment contract: page 1 is removable, page 2 is free response. */
-.assessment-page {
+.tearoff-page, .free-response-page, .question-booklet-page {
     break-before: page;
     page-break-before: always;
-}
-.assessment-page:first-of-type {
-    break-before: auto;
-    page-break-before: auto;
 }
 .tearoff-page {
     break-before: auto;
     page-break-before: auto;
-    font-size: 8.5pt;
-    line-height: 1.05;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.35;
 }
-.tearoff-page h2 {
-    font-size: 14pt;
-    margin: 0 0 0.25em;
+.tearoff-header {
+    border-bottom: 2px dashed #444;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
 }
-.tearoff-page h3 {
+.tearoff-title {
+    font-size: 15pt;
+    font-weight: bold;
+    margin: 0 0 3px 0;
+}
+.tearoff-subtitle {
+    font-size: 9.5pt;
+    color: #444;
+    margin: 0 0 8px 0;
+}
+.student-info {
+    width: 100%;
+    border-collapse: collapse;
+}
+.student-info td {
+    padding: 3px 6px;
+    font-size: 10pt;
+}
+.si-label { width: 8%; font-weight: bold; white-space: nowrap; }
+.si-line { border-bottom: 1px solid #222; width: 30%; }
+.si-score { width: 12%; }
+.tearoff-banner {
+    background-color: #f0f4f8;
+    border: 1px solid #d0d7de;
+    border-left: 4px solid #0969da;
+    padding: 6px 10px;
     font-size: 9pt;
-    margin: 0.35em 0 0.1em;
+    margin-bottom: 12px;
 }
-.tearoff-page p { margin: 0.08em 0; }
-.answer-columns {
-    column-count: 2;
-    column-gap: 1.5em;
-    column-fill: auto;
+.section-heading {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #0969da;
+    border-bottom: 1px solid #d0d7de;
+    padding-bottom: 3px;
+    margin: 10px 0 6px 0;
 }
-.answer-columns h3, .answer-columns p { break-inside: avoid; }
-.free-response-page, .question-booklet-page {
-    page-break-before: always;
+.mc-grid, .fitb-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
 }
-
+.mc-grid td {
+    padding: 3px 4px;
+    font-size: 9.5pt;
+    border-bottom: 1px dotted #ccc;
+}
+.mc-num { font-weight: bold; width: 28px; color: #333; }
+.mc-line { width: 42px; border-bottom: 1.5px solid #111 !important; }
+.mc-line.empty { border-bottom: none !important; }
+.fitb-table td {
+    padding: 3px 4px;
+    font-size: 9pt;
+}
+.fitb-num { font-weight: bold; width: 28px; vertical-align: bottom; }
+.fitb-line { border-bottom: 1.5px solid #111; height: 16px; }
+.fitb-line.empty { border-bottom: none; }
+.tearoff-page.compact { font-size: 8.5pt; }
+.tearoff-page.compact .mc-grid td { padding: 1.5px 3px; font-size: 8pt; }
+.tearoff-page.compact .fitb-table td { padding: 1.5px 3px; font-size: 8pt; }
+.tearoff-page.compact .fitb-line { height: 12px; }
+.tearoff-page.compact .tearoff-title { font-size: 13pt; }
+.tearoff-page.compact .section-heading { font-size: 9.5pt; margin: 6px 0 4px 0; }
+.prompt-list { margin: 0 0 10px 18px; padding: 0; }
+.prompt-list li { margin-bottom: 6px; }
+.prompt-list li p { margin: 0; }
+.response-box { margin-bottom: 14px; }
+.response-label { font-weight: bold; margin-bottom: 4px; }
+.ruled-line { border-bottom: 1px solid #888; height: 24px; }
+.page-break { break-before: page; page-break-before: always; }
 
 h1 {
     font-size: 18pt;

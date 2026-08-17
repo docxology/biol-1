@@ -29,11 +29,11 @@ Response space.
 
     result = build_tearoff_assessment(source)
 
-    assert "✂️ TEAR-OFF ANSWER SHEET" in result
-    assert "1. ______" in result and "2. ______" in result
-    assert "1. ______________________________" in result
-    assert result.index("TEAR-OFF ANSWER SHEET") < result.index("FREE RESPONSE")
-    assert result.index("FREE RESPONSE") < result.index("MULTIPLE CHOICE AND FILL-IN")
+    assert "TEAR-OFF ANSWER SHEET" in result
+    assert "1.</td>" in result and "2.</td>" in result
+    assert result.index("tearoff-page") < result.index("free-response-page")
+    assert result.index("free-response-page") < result.index("question-booklet-page")
+    assert "## " not in result  # no raw markdown leaks into the HTML
 
 
 def test_build_tearoff_assessment_preserves_questions():
@@ -56,8 +56,42 @@ def test_build_tearoff_assessment_preserves_questions():
     result = build_tearoff_assessment(source)
 
     assert result.count("What is true?") == 1
-    assert result.count("A ________.") == 1
+    assert "Fill in the Blank" in result and "<li>A " in result
     assert result.count("Explain.") == 1
+
+
+def test_build_tearoff_assessment_reads_choose_wording():
+    source = """# Test
+
+## Part A: Multiple Choice (1 point)
+
+1. Q?
+   - A) Yes
+
+## Part B: Fill in the Blank (1 point)
+
+1. A ________.
+
+## Part C: Free Response (9 points)
+
+*Choose THREE of the following five questions.*
+
+1. One.
+2. Two.
+3. Three.
+4. Four.
+5. Five.
+"""
+
+    result = build_tearoff_assessment(source)
+
+    assert (
+        result.count("Response 1") == 1
+        and result.count("Response 2") == 1
+        and result.count("Response 3") == 1
+        and "Response 4" not in result
+    )
+    assert "One." in result and "Five." in result
 
 
 def test_build_tearoff_assessment_rejects_missing_parts():

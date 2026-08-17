@@ -45,10 +45,10 @@ def render_markdown_to_pdf(
 
     # Assessment sources opt into a duplex layout with a tear-off answer sheet.
     if "assessment-layout: tearoff-duplex" in markdown_content:
-        markdown_content = build_tearoff_assessment(markdown_content)
-
-    # Convert Markdown to HTML
-    html_content = markdown_to_html(markdown_content)
+        html_content = build_tearoff_assessment(markdown_content)
+    else:
+        # Convert Markdown to HTML
+        html_content = markdown_to_html(markdown_content)
 
     # Use default CSS if not provided
     if css_content is None:
