@@ -5,7 +5,7 @@
       "id": "module-03-organic-molecules",
       "include": "generated",
       "kind": "module",
-      "sha256": "0293a9794b9a0abcc2598a6a2f0953448ca3f9c765d76f24ed9f40d2c3c8eefa",
+      "sha256": "8e9b7f8d056bfa9c84f39956c6038795e30c7ed47c4905e97ae93e08f5bf5ff5",
       "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-practice-quiz.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-03-organic-molecules",
       "include": "generated",
       "kind": "module",
-      "sha256": "7570c86934859e26d4a0feb1a5fc9e52a7831635007a2178efba9912b6f1beee",
+      "sha256": "8eb3b01478970b1e70541a21cd36753d1ecf834c95dc61cc1ad25857a9f933be",
       "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-questions.docx"
     },
     {
@@ -45,7 +45,7 @@
       "id": "module-03-organic-molecules",
       "include": "generated",
       "kind": "module",
-      "sha256": "01bd89d47150a7e69636325b39f4c45d761312a6188dd3e178a763935bea0ebd",
+      "sha256": "a9c0ca0c7e5917e12d14c0b53a65c05d7be58f761a5b50e9964d16ca14519010",
       "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-key-points.docx"
     },
     {

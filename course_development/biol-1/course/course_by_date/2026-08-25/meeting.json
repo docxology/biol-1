@@ -21,7 +21,7 @@
       "id": "module-01-study-of-life",
       "include": "generated",
       "kind": "module",
-      "sha256": "1e1299bcfd7de4cff0c68fe3d75f0c43c8f96434c6a37924bc77c934485ed186",
+      "sha256": "5edc245d138d9287c4b4fd5461d927d867f068012066201b17a65b31ebbb63ba",
       "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-key-points.docx"
     },
     {
@@ -29,7 +29,7 @@
       "id": "module-01-study-of-life",
       "include": "generated",
       "kind": "module",
-      "sha256": "236d49326022baf934c7e152a599d70bd7875e9aa88c18d54241bfbc3f9d2558",
+      "sha256": "be3df8271b19adbe2caf725ad4b18bca53187fc3ec9c210718a82cad08dc35c8",
       "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-questions.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-01-study-of-life",
       "include": "generated",
       "kind": "module",
-      "sha256": "c7d09cbad70f139b40b3fb32354fd801f0fd341e29746deb7a8929328874834c",
+      "sha256": "7de4bf30caed029f3fb70ff3d9e5fad688b69cb6fdff26be3f244be1f9234bb3",
       "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-practice-quiz.docx"
     },
     {

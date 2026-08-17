@@ -5,7 +5,7 @@
       "id": "module-02-basic-chemistry",
       "include": "generated",
       "kind": "module",
-      "sha256": "4ce3e29c981d6b57bbd857e40a89ff000b6b0bcac82d57814604b3358defe3ac",
+      "sha256": "c1463f4a4ff3ed054c057e0b36da943fee284473b14d0a341e7c8ae07f8a8ef3",
       "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-questions.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-02-basic-chemistry",
       "include": "generated",
       "kind": "module",
-      "sha256": "1361f5c78593ef2fa99cf9fc155253a69c30ea69f19c1cd5e9aa01151b38ce2d",
+      "sha256": "d8e7097eebfc80308aa09143c0b2e801e55a3cbfbdc74a1d382c3e597dafbaf5",
       "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-practice-quiz.docx"
     },
     {
@@ -45,7 +45,7 @@
       "id": "module-02-basic-chemistry",
       "include": "generated",
       "kind": "module",
-      "sha256": "7567e27bcf5b7cb6577eab7fda08fd067a28eb4ef810d4a59f4f83c9ee2fe1c9",
+      "sha256": "70b74c8444ccd94993cf798832ed21d6c72704a08a2f1fee9eb80c0f3e626f8a",
       "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-key-points.docx"
     },
     {
