@@ -201,8 +201,8 @@ D) All organisms share a nearly universal genetic code.
 
 ## Part C: Short Answer (4 questions)
 
-**36.** **(Module 7)** Write the complementary DNA sequence AND the transcribed mRNA sequence for the following DNA template strand: 
-**3′-TAC GGG TTA ACG ACT-5′**. 
+**36.** **(Module 7)** Write the complementary DNA sequence AND the transcribed mRNA sequence for the following DNA template strand:
+**3′-TAC GGG TTA ACG ACT-5′**.
 
 <br><br><br><br><br><br>
 
@@ -210,7 +210,7 @@ D) All organisms share a nearly universal genetic code.
 
 <br><br><br><br><br><br>
 
-**38.** **(Module 10)** Describe how it is possible for a muscle cell and a nerve cell in your body to look and function so differently, despite containing the exact same DNA. 
+**38.** **(Module 10)** Describe how it is possible for a muscle cell and a nerve cell in your body to look and function so differently, despite containing the exact same DNA.
 
 <br><br><br><br><br><br>
 
@@ -221,5 +221,3 @@ D) All organisms share a nearly universal genetic code.
 ---
 
 *End of Practice Test 03*
-
-

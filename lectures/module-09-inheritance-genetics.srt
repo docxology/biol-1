@@ -1,0 +1,303 @@
+1
+00:00:00,400 --> 00:00:05,331
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,331 --> 00:00:10,795
+Module 09: Inheritance Genetics. The connected lab is Lab 09 Inheritance Genetics.
+
+3
+00:00:10,795 --> 00:00:16,059
+Here is the central idea: Inheritance Genetics explains allele segregation with
+
+4
+00:00:16,059 --> 00:00:20,790
+probability, phenotype prediction, and pedigree evidence. Let us begin.
+
+5
+00:00:21,540 --> 00:00:26,160
+By the end of this module you should be able to: Distinguish gene, allele, genotype,
+
+6
+00:00:26,160 --> 00:00:30,285
+and phenotype; Use segregation to explain monohybrid inheritance; Build and
+
+7
+00:00:30,285 --> 00:00:34,520
+interpret Punnett-square probabilities; Recognize inheritance patterns beyond
+
+8
+00:00:34,520 --> 00:00:38,095
+complete dominance; Use pedigree evidence to reason about traits.
+
+9
+00:00:38,095 --> 00:00:41,559
+Keep these objectives in mind as you work through the material.
+
+10
+00:00:42,309 --> 00:00:44,005
+This module covers 5 topics.
+
+11
+00:00:44,005 --> 00:00:48,852
+Alleles and genotype — Alleles are gene variants that contribute to genotype and
+
+12
+00:00:48,852 --> 00:00:50,052
+phenotype.
+
+13
+00:00:50,052 --> 00:00:55,081
+Mendelian patterns — Mendelian inheritance predicts patterns when alleles segregate
+
+14
+00:00:55,081 --> 00:00:56,281
+into gametes.
+
+15
+00:00:56,281 --> 00:01:00,946
+Punnett-square prediction — Punnett squares model probability, not guaranteed
+
+16
+00:01:00,946 --> 00:01:02,146
+outcomes.
+
+17
+00:01:02,146 --> 00:01:07,114
+Beyond simple dominance — Incomplete dominance, codominance, polygenic traits, and
+
+18
+00:01:07,114 --> 00:01:09,477
+environment complicate simple patterns.
+
+19
+00:01:09,477 --> 00:01:14,203
+Pedigrees and probability — Pedigrees use family evidence to infer inheritance
+
+20
+00:01:14,203 --> 00:01:17,449
+patterns. Each topic builds on the one before it, forming a coherent explanation.
+
+21
+00:01:18,199 --> 00:01:20,385
+Here is the concept map for module 09.
+
+22
+00:01:20,385 --> 00:01:24,699
+The central claim is: Inheritance Genetics explains allele segregation with
+
+23
+00:01:24,699 --> 00:01:27,978
+probability, phenotype prediction, and pedigree evidence.
+
+24
+00:01:27,978 --> 00:01:30,509
+Notice how each node connects to the others.
+
+25
+00:01:30,509 --> 00:01:35,341
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+26
+00:01:35,341 --> 00:01:37,010
+how ideas support each other.
+
+27
+00:01:37,760 --> 00:01:42,200
+This process model shows the reasoning sequence for inheritance genetics.
+
+28
+00:01:42,200 --> 00:01:44,694
+Follow the stages from inputs to outputs.
+
+29
+00:01:44,694 --> 00:01:49,195
+The Lab 09 Inheritance Genetics lab gives you evidence to test each stage.
+
+30
+00:01:49,195 --> 00:01:53,271
+At each transition, ask: what would change my mind about this step?
+
+31
+00:01:54,021 --> 00:01:57,530
+Now apply the module instead of only repeating its vocabulary.
+
+32
+00:01:57,530 --> 00:02:00,756
+Start with a question: How are genes and alleles related?
+
+33
+00:02:00,756 --> 00:02:04,378
+Treat that question as an observation that needs an explanation.
+
+34
+00:02:04,378 --> 00:02:09,019
+A useful first claim is: Alleles are gene variants that contribute to genotype and
+
+35
+00:02:09,019 --> 00:02:12,641
+phenotype. Then ask what evidence could support or challenge it.
+
+36
+00:02:12,641 --> 00:02:17,282
+The first practice check reminds us that Genotype is the combination of alleles an
+
+37
+00:02:17,282 --> 00:02:20,961
+organism carries. Phenotype is the observable trait that results.
+
+38
+00:02:20,961 --> 00:02:25,600
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+39
+00:02:26,350 --> 00:02:30,622
+Key terms for this module (page 1 of 3) include Gene, Allele, Genotype.
+
+40
+00:02:30,622 --> 00:02:35,556
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+41
+00:02:35,556 --> 00:02:37,601
+or observation, not just label it.
+
+42
+00:02:38,351 --> 00:02:43,078
+Key terms for this module (page 2 of 3) include Phenotype, Dominant, Recessive.
+
+43
+00:02:43,078 --> 00:02:47,984
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+44
+00:02:47,984 --> 00:02:50,018
+or observation, not just label it.
+
+45
+00:02:50,768 --> 00:02:55,137
+Key terms for this module (page 3 of 3) include Punnett square, Pedigree.
+
+46
+00:02:55,137 --> 00:03:00,045
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+47
+00:03:00,045 --> 00:03:02,080
+or observation, not just label it.
+
+48
+00:03:02,830 --> 00:03:06,349
+The lab connected to this module is Lab 09 Inheritance Genetics.
+
+49
+00:03:06,349 --> 00:03:10,308
+The evidence you collect should test or illustrate alleles and genotype.
+
+50
+00:03:10,308 --> 00:03:14,651
+You should leave the lab with a concrete observation, comparison, or model tied
+
+51
+00:03:14,651 --> 00:03:16,245
+directly to the module claim.
+
+52
+00:03:16,995 --> 00:03:18,721
+Pause here for retrieval practice.
+
+53
+00:03:18,721 --> 00:03:22,935
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+54
+00:03:22,935 --> 00:03:27,048
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+55
+00:03:27,048 --> 00:03:28,470
+memory more than re-reading.
+
+56
+00:03:29,220 --> 00:03:33,375
+Use these practice quiz questions as formative feedback.
+
+57
+00:03:33,375 --> 00:03:35,675
+Answer key: 1=C, 2=A, 3=D, 4=B.
+
+58
+00:03:35,675 --> 00:03:41,313
+If you miss a question, return to the module keys and find the evidence that
+
+59
+00:03:41,313 --> 00:03:43,390
+supports the correct answer.
+
+60
+00:03:44,140 --> 00:03:47,295
+Before you leave this module, make the study work active.
+
+61
+00:03:47,295 --> 00:03:51,446
+Start with the module's central claim before memorizing vocabulary; Use the
+
+62
+00:03:51,446 --> 00:03:55,874
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+63
+00:03:55,874 --> 00:03:58,198
+words, then redraw it as a simple diagram.
+
+64
+00:03:58,198 --> 00:04:02,736
+Then answer this exit question without notes: What evidence in a pedigree suggests
+
+65
+00:04:02,736 --> 00:04:03,954
+recessive inheritance?
+
+66
+00:04:03,954 --> 00:04:08,271
+A strong response names a mechanism, points to evidence, and states what would
+
+67
+00:04:08,271 --> 00:04:09,544
+change the explanation.
+
+68
+00:04:09,544 --> 00:04:13,197
+If your answer is only a definition list, connect the terms into a
+
+69
+00:04:13,197 --> 00:04:15,354
+cause-and-evidence chain and try again.
+
+70
+00:04:16,104 --> 00:04:21,150
+To synthesize this module: explain alleles and genotype using evidence from the Lab
+
+71
+00:04:21,150 --> 00:04:22,852
+09 Inheritance Genetics lab.
+
+72
+00:04:22,852 --> 00:04:27,351
+Your explanation must include Gene, Allele, Genotype, Phenotype, Dominant,
+
+73
+00:04:27,351 --> 00:04:29,540
+Recessive, Punnett square, Pedigree.
+
+74
+00:04:29,540 --> 00:04:33,248
+Revision prompt: what evidence would change your explanation?
+
+75
+00:04:33,248 --> 00:04:37,747
+Your final explanation should connect the central claim to a mechanism, an
+
+76
+00:04:37,747 --> 00:04:39,752
+observation, and a revision rule.

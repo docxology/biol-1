@@ -1,0 +1,319 @@
+1
+00:00:00,400 --> 00:00:05,360
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,360 --> 00:00:10,588
+Module 12: Darwin and Evolution. The connected lab is Lab 12 Darwin Evolution.
+
+3
+00:00:10,588 --> 00:00:15,816
+Here is the central idea: Darwin and Evolution explains natural selection from
+
+4
+00:00:15,816 --> 00:00:20,508
+variation, heritability, fitness, and ancestry evidence. Let us begin.
+
+5
+00:00:21,258 --> 00:00:25,600
+By the end of this module you should be able to: Explain natural selection using
+
+6
+00:00:25,600 --> 00:00:29,996
+variation, heritability, and reproductive success; Define fitness in evolutionary
+
+7
+00:00:29,996 --> 00:00:34,121
+terms; Distinguish individual change from population evolution; Use multiple
+
+8
+00:00:34,121 --> 00:00:38,463
+evidence types to support common ancestry; Apply natural selection to a concrete
+
+9
+00:00:38,463 --> 00:00:42,696
+trait example. Keep these objectives in mind as you work through the material.
+
+10
+00:00:43,446 --> 00:00:45,104
+This module covers 5 topics.
+
+11
+00:00:45,104 --> 00:00:49,783
+Historical explanation for adaptation — Darwinian evolution explains adaptation
+
+12
+00:00:49,783 --> 00:00:51,797
+through descent with modification.
+
+13
+00:00:51,797 --> 00:00:56,772
+Variation and heritability — Natural selection requires variation, heritability, and
+
+14
+00:00:56,772 --> 00:00:58,489
+unequal reproductive success.
+
+15
+00:00:58,489 --> 00:01:03,108
+Natural selection mechanism — Fitness means relative reproductive success in a
+
+16
+00:01:03,108 --> 00:01:04,470
+particular environment.
+
+17
+00:01:04,470 --> 00:01:09,030
+Evidence for common ancestry — Fossils, homology, biogeography, and molecular
+
+18
+00:01:09,030 --> 00:01:10,984
+evidence support common ancestry.
+
+19
+00:01:10,984 --> 00:01:15,781
+Fitness as reproductive success — Evolution changes populations over generations,
+
+20
+00:01:15,781 --> 00:01:17,972
+not individual organisms during life.
+
+21
+00:01:17,972 --> 00:01:22,178
+Each topic builds on the one before it, forming a coherent explanation.
+
+22
+00:01:22,928 --> 00:01:25,147
+Here is the concept map for module 12.
+
+23
+00:01:25,147 --> 00:01:29,469
+The central claim is: Darwin and Evolution explains natural selection from
+
+24
+00:01:29,469 --> 00:01:32,740
+variation, heritability, fitness, and ancestry evidence.
+
+25
+00:01:32,740 --> 00:01:35,310
+Notice how each node connects to the others.
+
+26
+00:01:35,310 --> 00:01:40,216
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+27
+00:01:40,216 --> 00:01:41,910
+how ideas support each other.
+
+28
+00:01:42,660 --> 00:01:46,850
+This process model shows the reasoning sequence for darwin and evolution.
+
+29
+00:01:46,850 --> 00:01:49,203
+Follow the stages from inputs to outputs.
+
+30
+00:01:49,203 --> 00:01:53,221
+The Lab 12 Darwin Evolution lab gives you evidence to test each stage.
+
+31
+00:01:53,221 --> 00:01:57,068
+At each transition, ask: what would change my mind about this step?
+
+32
+00:01:57,818 --> 00:02:01,310
+Now apply the module instead of only repeating its vocabulary.
+
+33
+00:02:01,310 --> 00:02:05,759
+Start with a question: What are the required ingredients for natural selection?
+
+34
+00:02:05,759 --> 00:02:09,363
+Treat that question as an observation that needs an explanation.
+
+35
+00:02:09,363 --> 00:02:13,868
+A useful first claim is: Darwinian evolution explains adaptation through descent
+
+36
+00:02:13,868 --> 00:02:17,923
+with modification. Then ask what evidence could support or challenge it.
+
+37
+00:02:17,923 --> 00:02:22,485
+The first practice check reminds us that Selection needs variation, heritability,
+
+38
+00:02:22,485 --> 00:02:24,738
+and differences in reproductive success.
+
+39
+00:02:24,738 --> 00:02:28,737
+Equal reproduction by all individuals is exactly what selection is not.
+
+40
+00:02:28,737 --> 00:02:33,354
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+41
+00:02:34,104 --> 00:02:38,552
+Key terms for this module (page 1 of 3) include Evolution, Natural selection,
+
+42
+00:02:38,552 --> 00:02:39,752
+Adaptation.
+
+43
+00:02:39,752 --> 00:02:44,489
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+44
+00:02:44,489 --> 00:02:45,889
+or observation, not just label it.
+
+45
+00:02:46,639 --> 00:02:51,566
+Key terms for this module (page 2 of 3) include Fitness, Common ancestry, Homology.
+
+46
+00:02:51,566 --> 00:02:56,434
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+47
+00:02:56,434 --> 00:02:58,453
+or observation, not just label it.
+
+48
+00:02:59,203 --> 00:03:03,422
+Key terms for this module (page 3 of 3) include Fossil, Biogeography.
+
+49
+00:03:03,422 --> 00:03:08,436
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+50
+00:03:08,436 --> 00:03:10,515
+or observation, not just label it.
+
+51
+00:03:11,265 --> 00:03:14,457
+The lab connected to this module is Lab 12 Darwin Evolution.
+
+52
+00:03:14,457 --> 00:03:18,553
+The evidence you collect should test or illustrate historical explanation for
+
+53
+00:03:18,553 --> 00:03:19,753
+adaptation.
+
+54
+00:03:19,753 --> 00:03:23,955
+You should leave the lab with a concrete observation, comparison, or model tied
+
+55
+00:03:23,955 --> 00:03:24,883
+directly to the module claim.
+
+56
+00:03:25,633 --> 00:03:27,359
+Pause here for retrieval practice.
+
+57
+00:03:27,359 --> 00:03:31,573
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+58
+00:03:31,573 --> 00:03:35,686
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+59
+00:03:35,686 --> 00:03:37,108
+memory more than re-reading.
+
+60
+00:03:37,858 --> 00:03:42,013
+Use these practice quiz questions as formative feedback.
+
+61
+00:03:42,013 --> 00:03:44,313
+Answer key: 1=C, 2=A, 3=D, 4=B.
+
+62
+00:03:44,313 --> 00:03:49,951
+If you miss a question, return to the module keys and find the evidence that
+
+63
+00:03:49,951 --> 00:03:52,028
+supports the correct answer.
+
+64
+00:03:52,778 --> 00:03:55,956
+Before you leave this module, make the study work active.
+
+65
+00:03:55,956 --> 00:04:00,138
+Start with the module's central claim before memorizing vocabulary; Use the
+
+66
+00:04:00,138 --> 00:04:04,599
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+67
+00:04:04,599 --> 00:04:06,941
+words, then redraw it as a simple diagram.
+
+68
+00:04:06,941 --> 00:04:11,625
+Then answer this exit question without notes: How should an evolutionary explanation
+
+69
+00:04:11,625 --> 00:04:14,413
+connect variation, heritability, and reproduction?
+
+70
+00:04:14,413 --> 00:04:18,762
+A strong response names a mechanism, points to evidence, and states what would
+
+71
+00:04:18,762 --> 00:04:20,045
+change the explanation.
+
+72
+00:04:20,045 --> 00:04:23,725
+If your answer is only a definition list, connect the terms into a
+
+73
+00:04:23,725 --> 00:04:25,901
+cause-and-evidence chain and try again.
+
+74
+00:04:26,651 --> 00:04:31,413
+To synthesize this module: explain historical explanation for adaptation using
+
+75
+00:04:31,413 --> 00:04:34,222
+evidence from the Lab 12 Darwin Evolution lab.
+
+76
+00:04:34,222 --> 00:04:39,106
+Your explanation must include Evolution, Natural selection, Adaptation, Fitness,
+
+77
+00:04:39,106 --> 00:04:42,037
+Common ancestry, Homology, Fossil, Biogeography.
+
+78
+00:04:42,037 --> 00:04:45,761
+Revision prompt: what evidence would change your explanation?
+
+79
+00:04:45,761 --> 00:04:50,279
+Your final explanation should connect the central claim to a mechanism, an
+
+80
+00:04:50,279 --> 00:04:52,294
+observation, and a revision rule.

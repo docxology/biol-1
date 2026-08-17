@@ -1,0 +1,315 @@
+1
+00:00:00,400 --> 00:00:05,351
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,351 --> 00:00:07,894
+Module 16: Capstone Systems Synthesis.
+
+3
+00:00:07,894 --> 00:00:11,574
+The connected lab is Lab 16 Capstone Systems Synthesis.
+
+4
+00:00:11,574 --> 00:00:17,195
+Here is the central idea: Capstone Systems Synthesis explains cross-scale biological
+
+5
+00:00:17,195 --> 00:00:22,280
+explanation through mechanisms, evidence chains, and revision. Let us begin.
+
+6
+00:00:23,030 --> 00:00:27,551
+By the end of this module you should be able to: Connect concepts from at least
+
+7
+00:00:27,551 --> 00:00:31,957
+three modules in one explanation; Trace a mechanism across biological scales;
+
+8
+00:00:31,957 --> 00:00:36,707
+Identify feedback loops, constraints, and tradeoffs; Match evidence types to claims
+
+9
+00:00:36,707 --> 00:00:40,655
+at different scales; Revise a systems explanation using new evidence.
+
+10
+00:00:40,655 --> 00:00:44,260
+Keep these objectives in mind as you work through the material.
+
+11
+00:00:45,010 --> 00:00:46,739
+This module covers 5 topics.
+
+12
+00:00:46,739 --> 00:00:51,741
+Biology across scales — Biological explanations become stronger when they connect
+
+13
+00:00:51,741 --> 00:00:55,261
+molecules, cells, organisms, populations, and ecosystems.
+
+14
+00:00:55,261 --> 00:01:00,325
+Mechanism chains — Mechanism chains show how one change can produce effects across
+
+15
+00:01:00,325 --> 00:01:01,525
+scales.
+
+16
+00:01:01,525 --> 00:01:06,404
+Feedback and constraint — Feedback loops and constraints explain why biological
+
+17
+00:01:06,404 --> 00:01:08,689
+systems do not change without limits.
+
+18
+00:01:08,689 --> 00:01:13,753
+Evidence from multiple modules — Evidence from labs, models, and observations must
+
+19
+00:01:13,753 --> 00:01:15,544
+match the scale of the claim.
+
+20
+00:01:15,544 --> 00:01:20,423
+Capstone explanation and revision — Capstone reasoning combines concepts into a
+
+21
+00:01:20,423 --> 00:01:23,079
+clear claim that can be tested and revised.
+
+22
+00:01:23,079 --> 00:01:26,697
+Each topic builds on the one before it, forming a coherent explanation.
+
+23
+00:01:27,447 --> 00:01:29,687
+Here is the concept map for module 16.
+
+24
+00:01:29,687 --> 00:01:34,403
+The central claim is: Capstone Systems Synthesis explains cross-scale biological
+
+25
+00:01:34,403 --> 00:01:38,058
+explanation through mechanisms, evidence chains, and revision.
+
+26
+00:01:38,058 --> 00:01:40,652
+Notice how each node connects to the others.
+
+27
+00:01:40,652 --> 00:01:45,604
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+28
+00:01:45,604 --> 00:01:47,314
+how ideas support each other.
+
+29
+00:01:48,064 --> 00:01:52,796
+This process model shows the reasoning sequence for capstone systems synthesis.
+
+30
+00:01:52,796 --> 00:01:55,252
+Follow the stages from inputs to outputs.
+
+31
+00:01:55,252 --> 00:02:00,044
+The Lab 16 Capstone Systems Synthesis lab gives you evidence to test each stage.
+
+32
+00:02:00,044 --> 00:02:04,058
+At each transition, ask: what would change my mind about this step?
+
+33
+00:02:04,808 --> 00:02:08,421
+Now apply the module instead of only repeating its vocabulary.
+
+34
+00:02:08,421 --> 00:02:12,500
+Start with a question: How can a molecular change affect an ecosystem?
+
+35
+00:02:12,500 --> 00:02:16,230
+Treat that question as an observation that needs an explanation.
+
+36
+00:02:16,230 --> 00:02:21,008
+A useful first claim is: Biological explanations become stronger when they connect
+
+37
+00:02:21,008 --> 00:02:24,330
+molecules, cells, organisms, populations, and ecosystems.
+
+38
+00:02:24,330 --> 00:02:27,419
+Then ask what evidence could support or challenge it.
+
+39
+00:02:27,419 --> 00:02:32,256
+The first practice check reminds us that Synthesis links causes across scales, from
+
+40
+00:02:32,256 --> 00:02:36,452
+molecular to ecological, into one coherent, evidence-backed explanation.
+
+41
+00:02:36,452 --> 00:02:41,229
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+42
+00:02:41,979 --> 00:02:46,310
+Key terms for this module (page 1 of 3) include System, Scale, Mechanism.
+
+43
+00:02:46,310 --> 00:02:51,175
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+44
+00:02:51,175 --> 00:02:53,192
+or observation, not just label it.
+
+45
+00:02:53,942 --> 00:02:58,991
+Key terms for this module (page 2 of 3) include Feedback loop, Constraint, Tradeoff.
+
+46
+00:02:58,991 --> 00:03:03,920
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+47
+00:03:03,920 --> 00:03:05,964
+or observation, not just label it.
+
+48
+00:03:06,714 --> 00:03:11,061
+Key terms for this module (page 3 of 3) include Synthesis, Evidence chain.
+
+49
+00:03:11,061 --> 00:03:15,877
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+50
+00:03:15,877 --> 00:03:17,874
+or observation, not just label it.
+
+51
+00:03:18,624 --> 00:03:22,524
+The lab connected to this module is Lab 16 Capstone Systems Synthesis.
+
+52
+00:03:22,524 --> 00:03:26,591
+The evidence you collect should test or illustrate biology across scales.
+
+53
+00:03:26,591 --> 00:03:30,992
+You should leave the lab with a concrete observation, comparison, or model tied
+
+54
+00:03:30,992 --> 00:03:32,608
+directly to the module claim.
+
+55
+00:03:33,358 --> 00:03:35,084
+Pause here for retrieval practice.
+
+56
+00:03:35,084 --> 00:03:39,298
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+57
+00:03:39,298 --> 00:03:43,411
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+58
+00:03:43,411 --> 00:03:44,833
+memory more than re-reading.
+
+59
+00:03:45,583 --> 00:03:49,738
+Use these practice quiz questions as formative feedback.
+
+60
+00:03:49,738 --> 00:03:52,038
+Answer key: 1=C, 2=A, 3=D, 4=B.
+
+61
+00:03:52,038 --> 00:03:57,676
+If you miss a question, return to the module keys and find the evidence that
+
+62
+00:03:57,676 --> 00:03:59,753
+supports the correct answer.
+
+63
+00:04:00,503 --> 00:04:03,640
+Before you leave this module, make the study work active.
+
+64
+00:04:03,640 --> 00:04:07,768
+Start with the module's central claim before memorizing vocabulary; Use the
+
+65
+00:04:07,768 --> 00:04:12,171
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+66
+00:04:12,171 --> 00:04:14,483
+words, then redraw it as a simple diagram.
+
+67
+00:04:14,483 --> 00:04:19,106
+Then answer this exit question without notes: What makes a synthesis stronger than a
+
+68
+00:04:19,106 --> 00:04:20,306
+list of facts?
+
+69
+00:04:20,306 --> 00:04:24,599
+A strong response names a mechanism, points to evidence, and states what would
+
+70
+00:04:24,599 --> 00:04:25,865
+change the explanation.
+
+71
+00:04:25,865 --> 00:04:29,498
+If your answer is only a definition list, connect the terms into a
+
+72
+00:04:29,498 --> 00:04:31,215
+cause-and-evidence chain and try again.
+
+73
+00:04:31,965 --> 00:04:37,163
+To synthesize this module: explain biology across scales using evidence from the Lab
+
+74
+00:04:37,163 --> 00:04:39,267
+16 Capstone Systems Synthesis lab.
+
+75
+00:04:39,267 --> 00:04:44,341
+Your explanation must include System, Scale, Mechanism, Feedback loop, Constraint,
+
+76
+00:04:44,341 --> 00:04:46,569
+Tradeoff, Synthesis, Evidence chain.
+
+77
+00:04:46,569 --> 00:04:50,343
+Revision prompt: what evidence would change your explanation?
+
+78
+00:04:50,343 --> 00:04:54,922
+Your final explanation should connect the central claim to a mechanism, an
+
+79
+00:04:54,922 --> 00:04:56,963
+observation, and a revision rule.

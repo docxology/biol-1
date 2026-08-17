@@ -1,0 +1,287 @@
+1
+00:00:00,400 --> 00:00:05,505
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,505 --> 00:00:10,886
+Module 07: Molecular Genetics. The connected lab is Lab 07 Molecular Genetics.
+
+3
+00:00:10,886 --> 00:00:16,336
+Here is the central idea: Molecular Genetics explains DNA information flow from
+
+4
+00:00:16,336 --> 00:00:20,407
+sequence to RNA, protein, and trait evidence. Let us begin.
+
+5
+00:00:21,157 --> 00:00:25,594
+By the end of this module you should be able to: Describe DNA structure and
+
+6
+00:00:25,594 --> 00:00:30,090
+base-pairing rules; Explain why DNA replication is semiconservative; Compare
+
+7
+00:00:30,090 --> 00:00:34,823
+transcription and translation; Use codons to connect mRNA sequence to amino acid
+
+8
+00:00:34,823 --> 00:00:38,846
+sequence; Explain how mutation can alter protein and trait outcomes.
+
+9
+00:00:38,846 --> 00:00:42,574
+Keep these objectives in mind as you work through the material.
+
+10
+00:00:43,324 --> 00:00:45,053
+This module covers 5 topics.
+
+11
+00:00:45,053 --> 00:00:49,992
+DNA structure — DNA stores information in nucleotide sequences and complementary
+
+12
+00:00:49,992 --> 00:00:55,116
+base pairing. Replication — Replication copies DNA using each strand as a template.
+
+13
+00:00:55,116 --> 00:00:58,758
+Transcription — Transcription produces RNA from a DNA gene.
+
+14
+00:00:58,758 --> 00:01:03,388
+Translation — Translation uses mRNA codons and ribosomes to build proteins.
+
+15
+00:01:03,388 --> 00:01:08,388
+Mutation and gene expression evidence — Mutations and expression patterns connect
+
+16
+00:01:08,388 --> 00:01:10,117
+molecular changes to traits.
+
+17
+00:01:10,117 --> 00:01:14,499
+Each topic builds on the one before it, forming a coherent explanation.
+
+18
+00:01:15,249 --> 00:01:17,531
+Here is the concept map for module 07.
+
+19
+00:01:17,531 --> 00:01:22,576
+The central claim is: Molecular Genetics explains DNA information flow from sequence
+
+20
+00:01:22,576 --> 00:01:27,441
+to RNA, protein, and trait evidence. Notice how each node connects to the others.
+
+21
+00:01:27,441 --> 00:01:32,486
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+22
+00:01:32,486 --> 00:01:34,228
+how ideas support each other.
+
+23
+00:01:34,978 --> 00:01:39,145
+This process model shows the reasoning sequence for molecular genetics.
+
+24
+00:01:39,145 --> 00:01:41,551
+Follow the stages from inputs to outputs.
+
+25
+00:01:41,551 --> 00:01:45,777
+The Lab 07 Molecular Genetics lab gives you evidence to test each stage.
+
+26
+00:01:45,777 --> 00:01:49,709
+At each transition, ask: what would change my mind about this step?
+
+27
+00:01:50,459 --> 00:01:53,974
+Now apply the module instead of only repeating its vocabulary.
+
+28
+00:01:53,974 --> 00:01:57,602
+Start with a question: How does DNA structure store information?
+
+29
+00:01:57,602 --> 00:02:01,230
+Treat that question as an observation that needs an explanation.
+
+30
+00:02:01,230 --> 00:02:05,482
+A useful first claim is: DNA stores information in nucleotide sequences and
+
+31
+00:02:05,482 --> 00:02:10,074
+complementary base pairing. Then ask what evidence could support or challenge it.
+
+32
+00:02:10,074 --> 00:02:14,722
+The first practice check reminds us that The base-pairing rules are A with T and C
+
+33
+00:02:14,722 --> 00:02:18,067
+with G. This complementarity lets DNA be copied accurately.
+
+34
+00:02:18,067 --> 00:02:22,715
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+35
+00:02:23,465 --> 00:02:28,115
+Key terms for this module (page 1 of 3) include DNA, Nucleotide, Replication.
+
+36
+00:02:28,115 --> 00:02:33,066
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+37
+00:02:33,066 --> 00:02:35,119
+or observation, not just label it.
+
+38
+00:02:35,869 --> 00:02:40,756
+Key terms for this module (page 2 of 3) include Transcription, Translation, Codon.
+
+39
+00:02:40,756 --> 00:02:45,643
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+40
+00:02:45,643 --> 00:02:47,669
+or observation, not just label it.
+
+41
+00:02:48,419 --> 00:02:52,825
+Key terms for this module (page 3 of 3) include Mutation, Gene expression.
+
+42
+00:02:52,825 --> 00:02:57,707
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+43
+00:02:57,707 --> 00:02:59,731
+or observation, not just label it.
+
+44
+00:03:00,481 --> 00:03:03,888
+The lab connected to this module is Lab 07 Molecular Genetics.
+
+45
+00:03:03,888 --> 00:03:07,460
+The evidence you collect should test or illustrate dna structure.
+
+46
+00:03:07,460 --> 00:03:11,802
+You should leave the lab with a concrete observation, comparison, or model tied
+
+47
+00:03:11,802 --> 00:03:13,396
+directly to the module claim.
+
+48
+00:03:14,146 --> 00:03:15,872
+Pause here for retrieval practice.
+
+49
+00:03:15,872 --> 00:03:20,086
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+50
+00:03:20,086 --> 00:03:24,199
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+51
+00:03:24,199 --> 00:03:25,621
+memory more than re-reading.
+
+52
+00:03:26,371 --> 00:03:30,526
+Use these practice quiz questions as formative feedback.
+
+53
+00:03:30,526 --> 00:03:32,826
+Answer key: 1=C, 2=A, 3=D, 4=B.
+
+54
+00:03:32,826 --> 00:03:38,464
+If you miss a question, return to the module keys and find the evidence that
+
+55
+00:03:38,464 --> 00:03:40,541
+supports the correct answer.
+
+56
+00:03:41,291 --> 00:03:44,408
+Before you leave this module, make the study work active.
+
+57
+00:03:44,408 --> 00:03:48,509
+Start with the module's central claim before memorizing vocabulary; Use the
+
+58
+00:03:48,509 --> 00:03:52,883
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+59
+00:03:52,883 --> 00:03:55,180
+words, then redraw it as a simple diagram.
+
+60
+00:03:55,180 --> 00:03:59,664
+Then answer this exit question without notes: What evidence would show that a gene
+
+61
+00:03:59,664 --> 00:04:00,864
+is being expressed?
+
+62
+00:04:00,864 --> 00:04:05,129
+A strong response names a mechanism, points to evidence, and states what would
+
+63
+00:04:05,129 --> 00:04:06,387
+change the explanation.
+
+64
+00:04:06,387 --> 00:04:09,996
+If your answer is only a definition list, connect the terms into a
+
+65
+00:04:09,996 --> 00:04:11,966
+cause-and-evidence chain and try again.
+
+66
+00:04:12,716 --> 00:04:17,655
+To synthesize this module: explain dna structure using evidence from the Lab 07
+
+67
+00:04:17,655 --> 00:04:19,093
+Molecular Genetics lab.
+
+68
+00:04:19,093 --> 00:04:23,720
+Your explanation must include DNA, Nucleotide, Replication, Transcription,
+
+69
+00:04:23,720 --> 00:04:26,596
+Translation, Codon, Mutation, Gene expression.
+
+70
+00:04:26,596 --> 00:04:30,410
+Revision prompt: what evidence would change your explanation?
+
+71
+00:04:30,410 --> 00:04:35,037
+Your final explanation should connect the central claim to a mechanism, an
+
+72
+00:04:35,037 --> 00:04:37,100
+observation, and a revision rule.

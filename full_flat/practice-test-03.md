@@ -13,161 +13,161 @@
 
 **Module 12: Darwin and Evolution**
 
-**1.** In the logic of natural selection, which observation states that more offspring are produced than can usually survive to reproduce?  
-A) Inheritance of acquired characters  
-B) Differential reproductive success  
-C) Overproduction of offspring  
-D) Stabilizing selection only  
+**1.** In the logic of natural selection, which observation states that more offspring are produced than can usually survive to reproduce?
+A) Inheritance of acquired characters
+B) Differential reproductive success
+C) Overproduction of offspring
+D) Stabilizing selection only
 
-**2.** A trait increases **evolutionary fitness** in a given environment if individuals with that trait tend to:  
-A) Contribute more alleles to the next generation than competitors do  
-B) Acclimate in one lifetime to match the parent phenotype  
-C) Look larger than their competitors  
-D) Survive long enough to be counted, even with zero offspring  
+**2.** A trait increases **evolutionary fitness** in a given environment if individuals with that trait tend to:
+A) Contribute more alleles to the next generation than competitors do
+B) Acclimate in one lifetime to match the parent phenotype
+C) Look larger than their competitors
+D) Survive long enough to be counted, even with zero offspring
 
-**3.** Which statement is **most** consistent with **descent with modification**?  
-A) Each species was created in its final form and does not change  
-B) Lineages change over time; related species share ancestors with modification  
-C) Only fossils evolve, not living species  
-D) The strongest individual in a species can change the population’s heritable gene pool in one lifetime, without reproduction  
+**3.** Which statement is **most** consistent with **descent with modification**?
+A) Each species was created in its final form and does not change
+B) Lineages change over time; related species share ancestors with modification
+C) Only fossils evolve, not living species
+D) The strongest individual in a species can change the population’s heritable gene pool in one lifetime, without reproduction
 
-**4.** Homologous forelimb bones in a human, a cat, and a whale are used as evidence for evolution because they:  
-A) Suggest a shared ancestry with structural change for different uses  
-B) Disprove the existence of a fossil record  
-C) Prove that whales evolved from modern humans  
-D) Show identical functions in all three species  
+**4.** Homologous forelimb bones in a human, a cat, and a whale are used as evidence for evolution because they:
+A) Suggest a shared ancestry with structural change for different uses
+B) Disprove the existence of a fossil record
+C) Prove that whales evolved from modern humans
+D) Show identical functions in all three species
 
-**5.** A population of moths in a clean forest is mostly light-colored; in a sooty industrial region the population becomes mostly dark. The clearest **selection** label for that shift, if the environment favors the dark extreme, is:  
-A) Stabilizing selection  
-B) The founder effect  
-C) Directional selection  
-D) Disruptive selection  
+**5.** A population of moths in a clean forest is mostly light-colored; in a sooty industrial region the population becomes mostly dark. The clearest **selection** label for that shift, if the environment favors the dark extreme, is:
+A) Stabilizing selection
+B) The founder effect
+C) Directional selection
+D) Disruptive selection
 
-**6.** Which option best states why **populations** evolve, not **individuals**?  
-A) One hungry bird cannot affect allele frequencies at all (bird effects are not evolution)  
-B) Natural selection has nothing to do with heritable variation  
-C) Evolution is a change in allele **frequencies in a population** across generations  
-D) Individuals can change their DNA by lifting weights  
+**6.** Which option best states why **populations** evolve, not **individuals**?
+A) One hungry bird cannot affect allele frequencies at all (bird effects are not evolution)
+B) Natural selection has nothing to do with heritable variation
+C) Evolution is a change in allele **frequencies in a population** across generations
+D) Individuals can change their DNA by lifting weights
 
 **Module 13: How Populations Evolve**
 
-**7.** The definition of **microevolution** used in this course is:  
-A) A **change in allele frequencies** in a population over time  
-B) A change in an individual’s size during one lifetime  
-C) A synonym for any mutation in a body cell only  
-D) The origin of a new phylum in one generation  
+**7.** The definition of **microevolution** used in this course is:
+A) A **change in allele frequencies** in a population over time
+B) A change in an individual’s size during one lifetime
+C) A synonym for any mutation in a body cell only
+D) The origin of a new phylum in one generation
 
-**8.** A few finches from the mainland start a new island population. The island gene pool reflects only the alleles the founders brought. This is:  
-A) Stabilizing selection on beak size  
-B) The bottleneck effect  
-C) The **founder** effect (genetic drift)  
-D) Convergent evolution  
+**8.** A few finches from the mainland start a new island population. The island gene pool reflects only the alleles the founders brought. This is:
+A) Stabilizing selection on beak size
+B) The bottleneck effect
+C) The **founder** effect (genetic drift)
+D) Convergent evolution
 
-**9.** A volcanic eruption kills 95% of a squirrel population at random, then survivors repopulate. The loss of many alleles from the pre-eruption pool is:  
-A) A founder effect in a new island colonization from another continent only  
-B) A **bottleneck** (genetic drift)  
-C) A proof that survivors were the “most fit” for every possible future environment  
-D) Interspecific competition in the absence of intraspecific variation  
+**9.** A volcanic eruption kills 95% of a squirrel population at random, then survivors repopulate. The loss of many alleles from the pre-eruption pool is:
+A) A founder effect in a new island colonization from another continent only
+B) A **bottleneck** (genetic drift)
+C) A proof that survivors were the “most fit” for every possible future environment
+D) Interspecific competition in the absence of intraspecific variation
 
-**10.** In **stabilizing** selection on a trait (for example, birth weight in some human data sets):  
-A) Allele frequencies must stay exactly at Hardy–Weinberg equilibrium forever  
-B) The population’s average always moves to one tail of the range  
-C) The **intermediate** phenotype is favored; extremes are selected against  
-D) Both extreme phenotypes are favored  
+**10.** In **stabilizing** selection on a trait (for example, birth weight in some human data sets):
+A) Allele frequencies must stay exactly at Hardy–Weinberg equilibrium forever
+B) The population’s average always moves to one tail of the range
+C) The **intermediate** phenotype is favored; extremes are selected against
+D) Both extreme phenotypes are favored
 
-**11.** The Hardy–Weinberg equilibrium model is useful mainly because it:  
-A) Describes a real population that never evolves  
-B) Serves as a **mathematical baseline** to measure evolutionary change in real data  
-C) Guarantees p² + 2pq + q² = 1 in every generation without assumptions  
-D) Replaces the biological species concept  
+**11.** The Hardy–Weinberg equilibrium model is useful mainly because it:
+A) Describes a real population that never evolves
+B) Serves as a **mathematical baseline** to measure evolutionary change in real data
+C) Guarantees p² + 2pq + q² = 1 in every generation without assumptions
+D) Replaces the biological species concept
 
-**12.** The movement of alleles into or out of a population through **migration and mating** is:  
-A) Genetic drift in an infinitely large population  
-B) **Gene flow**  
-C) A postzygotic barrier to reproduction  
-D) Non-random mating only  
+**12.** The movement of alleles into or out of a population through **migration and mating** is:
+A) Genetic drift in an infinitely large population
+B) **Gene flow**
+C) A postzygotic barrier to reproduction
+D) Non-random mating only
 
 **Module 14: Macroevolution**
 
-**13.** Under the **biological species concept**, two groups are different species if they:  
-A) Are **reproductively isolated** in nature (they do not interbreed to produce viable, fertile offspring **between** the two groups, while within each group interbreeding can occur)  
-B) Have different number of cells  
-C) Live on different trees in the same forest, without any other test  
-D) Look different in a field guide, regardless of interbreeding  
+**13.** Under the **biological species concept**, two groups are different species if they:
+A) Are **reproductively isolated** in nature (they do not interbreed to produce viable, fertile offspring **between** the two groups, while within each group interbreeding can occur)
+B) Have different number of cells
+C) Live on different trees in the same forest, without any other test
+D) Look different in a field guide, regardless of interbreeding
 
-**14.** Fireflies of two species use different **flash** patterns, so they rarely attempt mating. This isolating mechanism is best classified as:  
-A) The bottleneck effect  
-B) Postzygotic reduced hybrid fertility  
-C) A mechanical postzygotic barrier  
-D) A **prezygotic** **behavioral** barrier  
+**14.** Fireflies of two species use different **flash** patterns, so they rarely attempt mating. This isolating mechanism is best classified as:
+A) The bottleneck effect
+B) Postzygotic reduced hybrid fertility
+C) A mechanical postzygotic barrier
+D) A **prezygotic** **behavioral** barrier
 
-**15.** A mule, the hybrid of a horse and a donkey, is typically sterile. This is an example of:  
-A) A prezygotic gametic barrier  
-B) The founder effect  
-C) A **postzygotic** barrier to gene flow (reduced hybrid fertility)  
-D) Stabilizing selection in horses  
+**15.** A mule, the hybrid of a horse and a donkey, is typically sterile. This is an example of:
+A) A prezygotic gametic barrier
+B) The founder effect
+C) A **postzygotic** barrier to gene flow (reduced hybrid fertility)
+D) Stabilizing selection in horses
 
-**16.** A new mountain range **physically splits** a population; over long time, the two lineages no longer interbreed. The classic geographic mode of speciation is:  
-A) A requirement that drift never occurs  
-B) **Allopatric** speciation  
-C) Sympatric speciation in one meadow  
-D) The bottleneck effect in both lineages on purpose  
+**16.** A new mountain range **physically splits** a population; over long time, the two lineages no longer interbreed. The classic geographic mode of speciation is:
+A) A requirement that drift never occurs
+B) **Allopatric** speciation
+C) Sympatric speciation in one meadow
+D) The bottleneck effect in both lineages on purpose
 
-**17.** A plant can form a new, reproductively isolated **polyploid** lineage in a few generations, often in the same area as a parent type. This route is a frequent example of:  
-A) The bottleneck effect only  
-B) Only macroevolution in animals, not plants  
-C) A prezygotic postzygotic hybrid  
-D) **Sympatric** speciation (e.g. via polyploidy)  
+**17.** A plant can form a new, reproductively isolated **polyploid** lineage in a few generations, often in the same area as a parent type. This route is a frequent example of:
+A) The bottleneck effect only
+B) Only macroevolution in animals, not plants
+C) A prezygotic postzygotic hybrid
+D) **Sympatric** speciation (e.g. via polyploidy)
 
-**18.** The statement “macroevolution is different chemistry from microevolution” is **false** in this course because:  
-A) The fossil record is irrelevant to modern biology  
-B) All macroevolution happens in a single meiosis  
-C) No DNA is involved in speciation  
-D) The same **population**-level processes (selection, drift, flow, etc.) can accumulate to reproductive isolation and larger-scale diversity  
+**18.** The statement “macroevolution is different chemistry from microevolution” is **false** in this course because:
+A) The fossil record is irrelevant to modern biology
+B) All macroevolution happens in a single meiosis
+C) No DNA is involved in speciation
+D) The same **population**-level processes (selection, drift, flow, etc.) can accumulate to reproductive isolation and larger-scale diversity
 
 **Module 15: Population and Systems Ecology**
 
-**19.** A population introduced to a new habitat with abundant resources for a time shows growth that **accelerates** (as long as the ceiling is not yet reached). That early phase is classic for:  
-A) An **exponential (J**-shaped) phase of growth  
-B) A carrying capacity of zero by definition  
-C) A flat line at carrying capacity from year one only  
-D) Only density-independent regulation, never K  
+**19.** A population introduced to a new habitat with abundant resources for a time shows growth that **accelerates** (as long as the ceiling is not yet reached). That early phase is classic for:
+A) An **exponential (J**-shaped) phase of growth
+B) A carrying capacity of zero by definition
+C) A flat line at carrying capacity from year one only
+D) Only density-independent regulation, never K
 
-**20.** A population levels off as resources become scarce, approaching a relatively stable size. That ceiling is:  
-A) A genetic bottleneck  
-B) **Carrying capacity (K)** in a logistic (S) model  
-C) A proof that 100% of energy moves to the next level  
-D) A synonym for the founder effect  
+**20.** A population levels off as resources become scarce, approaching a relatively stable size. That ceiling is:
+A) A genetic bottleneck
+B) **Carrying capacity (K)** in a logistic (S) model
+C) A proof that 100% of energy moves to the next level
+D) A synonym for the founder effect
 
-**21.** A fungal disease that spreads more easily in **dense** host stands is an example of a factor often:  
-A) Only density-independent like wind  
-B) Unrelated to per-capita rates  
-C) Never biological  
-D) **Density-dependent** in its impact on the population  
+**21.** A fungal disease that spreads more easily in **dense** host stands is an example of a factor often:
+A) Only density-independent like wind
+B) Unrelated to per-capita rates
+C) Never biological
+D) **Density-dependent** in its impact on the population
 
-**22.** A severe freeze kills a **similar fraction** of a plant population across sparse and dense patches (the freeze does not “care” about crowding the way a contagion might). Treated as a **limiting** event in textbook classification, the freeze is **most** like:  
-A) A **density-independent** disturbance (still harmful to the population)  
-B) A biogeochemical cycle for nitrogen only  
-C) Only density-dependent competition for light  
-D) A trophic level  
+**22.** A severe freeze kills a **similar fraction** of a plant population across sparse and dense patches (the freeze does not “care” about crowding the way a contagion might). Treated as a **limiting** event in textbook classification, the freeze is **most** like:
+A) A **density-independent** disturbance (still harmful to the population)
+B) A biogeochemical cycle for nitrogen only
+C) Only density-dependent competition for light
+D) A trophic level
 
-**23.** The **~10% rule** between trophic levels implies that, compared to eating **producers** directly, a diet of **higher** trophic levels (many steps) to deliver the same human calories will tend to need:  
-A) Less primary production because carnivores are 100% efficient  
-B) The same amount of energy at every level, by definition of food chains  
-C) Decomposers to add energy from the sun to dead matter  
-D) **More** total primary production at the base of the food web  
+**23.** The **~10% rule** between trophic levels implies that, compared to eating **producers** directly, a diet of **higher** trophic levels (many steps) to deliver the same human calories will tend to need:
+A) Less primary production because carnivores are 100% efficient
+B) The same amount of energy at every level, by definition of food chains
+C) Decomposers to add energy from the sun to dead matter
+D) **More** total primary production at the base of the food web
 
-**24.** In an ecosystem, **chemical elements** (e.g. carbon, nitrogen in nutrients) are **recycled**, while the energy fixed by **photosynthesis** is eventually:  
-A) **Lost** largely as **heat** along the way; not recycled the way a carbon atom can be  
-B) Transferred 100% from producer to all consumers combined  
-C) Only stored in rocks, not in life  
-D) Re-used indefinitely by the same photon inside every cell with no loss  
+**24.** In an ecosystem, **chemical elements** (e.g. carbon, nitrogen in nutrients) are **recycled**, while the energy fixed by **photosynthesis** is eventually:
+A) **Lost** largely as **heat** along the way; not recycled the way a carbon atom can be
+B) Transferred 100% from producer to all consumers combined
+C) Only stored in rocks, not in life
+D) Re-used indefinitely by the same photon inside every cell with no loss
 
-**25.** Fungi and bacteria in soil return nutrients from dead material to **forms** plants can use again. In contrast to energy, this recycling pattern supports the idea that:  
-A) Decomposers are always apex predators in every web  
-B) Energy cycles exactly like water in the stratosphere only  
-C) Producers do not use soil nutrients  
-D) Decomposers are central to **nutrient** cycling for producers, while **energy** flows in one direction through the system  
+**25.** Fungi and bacteria in soil return nutrients from dead material to **forms** plants can use again. In contrast to energy, this recycling pattern supports the idea that:
+A) Decomposers are always apex predators in every web
+B) Energy cycles exactly like water in the stratosphere only
+C) Producers do not use soil nutrients
+D) Decomposers are central to **nutrient** cycling for producers, while **energy** flows in one direction through the system
 
 ---
 
