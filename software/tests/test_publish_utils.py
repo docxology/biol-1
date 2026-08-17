@@ -218,6 +218,7 @@ class TestCopyLabsAndDashboards:
         labs_dir = temp_dir / "course_development" / "biol-1" / "course" / "labs"
         labs_dir.mkdir(parents=True)
         (labs_dir / "lab-01.md").write_text("# Lab 1", encoding="utf-8")
+        (labs_dir / "lab-01.pdf").write_text("pdf", encoding="utf-8")
         output_dir = labs_dir / "output"
         output_dir.mkdir()
         (output_dir / "lab-01.pdf").write_text("pdf", encoding="utf-8")
@@ -227,9 +228,9 @@ class TestCopyLabsAndDashboards:
 
         copied = copy_labs_and_dashboards(temp_dir, courses=["biol-1"])
 
-        assert copied == 2
-        assert (pub / "biol-1" / "labs" / "lab-01.md").exists()
+        assert copied == 2  # PDF from labs/ + PDF from output/ (markdown source not copied)
         assert (pub / "biol-1" / "labs" / "lab-01.pdf").exists()
+        assert not (pub / "biol-1" / "labs" / "lab-01.md").exists()
 
     def test_copies_dashboard_files(self, temp_dir):
         """Test copying dashboard HTML files."""

@@ -55,17 +55,17 @@ def copy_labs_and_dashboards(
         labs_pub.mkdir(parents=True, exist_ok=True)
         dashboards_pub.mkdir(parents=True, exist_ok=True)
 
-        # Copy lab files
-        for lab_file in course_dev.glob("lab-*.md"):
+        # Copy lab files (PDF only; markdown source stays in course_development/)
+        for lab_file in course_dev.glob("lab-*.pdf"):
             dest = labs_pub / lab_file.name
             shutil.copy2(lab_file, dest)
             total_copied += 1
 
-        # Copy lab outputs (both flat files and format subdirectories)
+        # Copy lab outputs (PDF only; markdown source stays in course_development/)
         output_dir = course_dev / "output"
         if output_dir.exists():
             for output_file in output_dir.rglob("*"):
-                if output_file.is_file():
+                if output_file.is_file() and output_file.suffix == ".pdf":
                     dest = labs_pub / output_file.name
                     shutil.copy2(output_file, dest)
                     total_copied += 1
@@ -497,6 +497,56 @@ def reorganize_to_categories(
         logger.info(f"  {course}: Reorganized to category structure")
 
     return total_moved
+
+
+def copy_full_flat(
+    published_dir: Path, courses: list[str] | None = None, verbose: bool = False
+) -> int:
+    """Create a top-level full_flat/ directory with every export file flattened.
+
+    Every file from every category folder under PUBLISHED/<course>/ is copied
+    into PUBLISHED/<course>/full_flat/ with a unique name (prefixed with the
+    source category on collision).
+
+    Args:
+        published_dir: Path to the PUBLISHED directory
+        courses: List of course names (default: active courses from publish.toml)
+        verbose: If True, log detailed operations
+
+    Returns:
+        Number of files copied
+    """
+    if courses is None:
+        courses = _active_courses(published_dir.parent)
+
+    total_copied = 0
+
+    for course in courses:
+        course_dir = published_dir / course
+        if not course_dir.exists():
+            continue
+
+        flat_dir = course_dir / "full_flat"
+        flat_dir.mkdir(parents=True, exist_ok=True)
+        seen_names: dict[str, str] = {}
+
+        for category_dir in sorted(course_dir.iterdir()):
+            if not category_dir.is_dir() or category_dir.name in {"full_flat", "modules"}:
+                continue
+            for src_file in sorted(category_dir.rglob("*")):
+                if not src_file.is_file():
+                    continue
+                fname = src_file.name
+                if fname in seen_names:
+                    fname = f"{category_dir.name}_{fname}"
+                else:
+                    seen_names[fname] = category_dir.name
+                shutil.copy2(src_file, flat_dir / fname)
+                total_copied += 1
+
+        logger.info(f"  {course}: Flattened {total_copied} files into full_flat/")
+
+    return total_copied
 
 
 def copy_module_bundles(

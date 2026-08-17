@@ -8,13 +8,13 @@ Optional practice tests and keys for exam preparation. The pipeline globs `*.md`
 
 | File | Module coverage / exam prep |
 |------|----------------------------|
-| `practice-test-01.md` + `_key.md` | Modules 1–4 |
-| `practice-test-02.md` + `_key.md` | Modules 5–6 |
-| `practice-test-03.md` + `_key.md` | Modules 7–11 (Exam 02 prep) |
-| `practice-test-04.md` + `_key.md` | Modules 12–16 (Exam 03 prep) |
-| `practice-test-05.md` + `_key.md` | Modules 1–16 (comprehensive final prep) |
+| `practice-test-01.md` + `_key.md` | Modules 1–6 |
+| `practice-test-02.md` + `_key.md` | Modules 7–11 |
+| `practice-test-03.md` + `_key.md` | Modules 12–16 (Exam 02 prep) |
+| `practice-test-04.md` + `_key.md` | Modules 1–16 (comprehensive) (Exam 03 prep) |
+| ` (comprehensive final prep) |
 
-### Practice Test 05 — layout
+### Practice Test 04 — layout
 
 137 numbered items total; cohort framing appears in the student markdown header.
 

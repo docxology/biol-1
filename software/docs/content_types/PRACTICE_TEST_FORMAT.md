@@ -90,9 +90,9 @@ The answer key file (`practice-test-NN_key.md`) mirrors the student version's qu
 
 ---
 
-## Practice Test 05 — Detailed Layout
+## Practice Test 04 — Detailed Layout
 
-Practice Test 05 is the comprehensive final-prep assessment with **137 numbered items** across three parts. Modules 01–15 receive the regular per-module blocks; Module 16 is represented by two capstone free-response items. Cohort framing appears in the student markdown header.
+Practice Test 04 is the comprehensive final-prep assessment with **137 numbered items** across three parts. Modules 01–15 receive the regular per-module blocks; Module 16 is represented by two capstone free-response items. Cohort framing appears in the student markdown header.
 
 | Part | Item Numbers | Per-Module Pattern |
 |------|--------------|---------------------|

@@ -34,6 +34,7 @@ configure_runtime_environment()
 from src.batch_processing.main import clear_all_outputs
 from src.publish.utils import (
     clean_published,
+    copy_full_flat,
     copy_labs_and_dashboards,
     copy_module_bundles,
     copy_module_generated_assets,
@@ -290,6 +291,14 @@ def main():
         assets_copied = copy_module_generated_assets(repo_root, courses, args.verbose)
         logger.info(
             f"  ✅ Copied {assets_copied} generated asset files  ({time.time() - t_step:.1f}s)"
+        )
+
+        # Full flat export: one level, every file
+        t_step = time.time()
+        logger.info("\n📦 STEP 8d: Full flat export (full_flat/)")
+        flat_copied = copy_full_flat(published_dir, courses, args.verbose)
+        logger.info(
+            f"  ✅ Flattened {flat_copied} files into full_flat/  ({time.time() - t_step:.1f}s)"
         )
 
     # Step 9: Validate

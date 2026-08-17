@@ -612,8 +612,8 @@ def _check_biol1_assessment_scope(
 ) -> None:
     """Check stable BIOL-1 assessment coverage labels."""
     expected_markers = {
-        Path("course/practice_tests/practice-test-04.md"): ("Modules 12", "16"),
-        Path("course/practice_tests/practice-test-05.md"): ("Modules 01", "16"),
+        Path("course/practice_tests/practice-test-03.md"): ("Modules 12", "16"),
+        Path("course/practice_tests/practice-test-04.md"): ("Modules 01", "16"),
         Path("course/exams/exam-03.md"): ("Modules 12", "16"),
         Path("course/exams/final-exam.md"): ("Modules 01", "16"),
     }

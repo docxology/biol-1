@@ -226,12 +226,12 @@ def test_biol1_assessment_scope_contract_flags_wrong_range(temp_dir):
     exams_dir = course_root / "course" / "exams"
     pt_dir.mkdir(parents=True)
     exams_dir.mkdir(parents=True)
-    (pt_dir / "practice-test-04.md").write_text(
-        "# BIOL-1 Practice Test 04\n\n## Exam 03 Preparation (Modules 12-14)\n",
+    (pt_dir / "practice-test-03.md").write_text(
+        "# BIOL-1 Practice Test 03\n\n## Modules 12-14\n",
         encoding="utf-8",
     )
-    (pt_dir / "practice-test-05.md").write_text(
-        "# BIOL-1 Practice Test 05\n\n## Comprehensive Final Review (Modules 01-15)\n",
+    (pt_dir / "practice-test-04.md").write_text(
+        "# BIOL-1 Practice Test 04\n\n## Comprehensive Final Review (Modules 01-15)\n",
         encoding="utf-8",
     )
     (exams_dir / "exam-03.md").write_text(
@@ -247,7 +247,7 @@ def test_biol1_assessment_scope_contract_flags_wrong_range(temp_dir):
     repo_contracts._check_biol1_assessment_scope(temp_dir, course_root, report)
 
     assert report.valid is False
-    assert any("practice-test-04.md" in issue and "16" in issue for issue in report.issues)
+    assert any("practice-test-03.md" in issue and "16" in issue for issue in report.issues)
     assert any("exam-03.md" in issue and "16" in issue for issue in report.issues)
 
 
