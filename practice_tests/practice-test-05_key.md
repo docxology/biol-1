@@ -123,7 +123,7 @@
 
 ---
 
-## Part C: Short Answer / Free Response Key
+## Part C: Short Answer / Free Response Key (32 questions)
 
 Scoring: accept reasonable wording; require the **bold ideas** in each rubric for full credit unless a solid alternative demonstrates the same concept.
 
