@@ -1,0 +1,303 @@
+1
+00:00:00,400 --> 00:00:05,488
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,488 --> 00:00:09,819
+Module 04: Cells. The connected lab is Lab 04 Liquid Chemistry.
+
+3
+00:00:09,819 --> 00:00:15,388
+Here is the central idea: Cells explains cell theory with compartmental structure
+
+4
+00:00:15,388 --> 00:00:18,000
+and microscopy evidence. Let us begin.
+
+5
+00:00:18,750 --> 00:00:23,060
+By the end of this module you should be able to: State the core claims of cell
+
+6
+00:00:23,060 --> 00:00:27,647
+theory; Compare prokaryotic and eukaryotic cells using structure and scale; Explain
+
+7
+00:00:27,647 --> 00:00:32,013
+how membranes and compartments support cell function; Match major organelles to
+
+8
+00:00:32,013 --> 00:00:35,716
+their roles; Use microscope evidence to support claims about cells.
+
+9
+00:00:35,716 --> 00:00:39,197
+Keep these objectives in mind as you work through the material.
+
+10
+00:00:39,947 --> 00:00:41,627
+This module covers 5 topics.
+
+11
+00:00:41,627 --> 00:00:46,068
+Cell theory — Cell theory explains cells as the basic units of life and as
+
+12
+00:00:46,068 --> 00:00:47,868
+descendants of existing cells.
+
+13
+00:00:47,868 --> 00:00:52,909
+Prokaryotic and eukaryotic organization — Prokaryotic and eukaryotic cells differ in
+
+14
+00:00:52,909 --> 00:00:55,729
+compartmentalization and internal organization.
+
+15
+00:00:55,729 --> 00:01:00,290
+Membranes and compartments — Membranes separate internal conditions from the
+
+16
+00:01:00,290 --> 00:01:02,330
+environment and define organelles.
+
+17
+00:01:02,330 --> 00:01:07,191
+Organelles and division of labor — Organelles divide cellular work such as energy
+
+18
+00:01:07,191 --> 00:01:09,651
+capture, protein processing, and storage.
+
+19
+00:01:09,651 --> 00:01:14,632
+Microscopy and evidence — Microscopy turns cell structure into observable evidence.
+
+20
+00:01:14,632 --> 00:01:18,893
+Each topic builds on the one before it, forming a coherent explanation.
+
+21
+00:01:19,643 --> 00:01:21,829
+Here is the concept map for module 04.
+
+22
+00:01:21,829 --> 00:01:26,488
+The central claim is: Cells explains cell theory with compartmental structure and
+
+23
+00:01:26,488 --> 00:01:30,227
+microscopy evidence. Notice how each node connects to the others.
+
+24
+00:01:30,227 --> 00:01:35,059
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+25
+00:01:35,059 --> 00:01:36,727
+how ideas support each other.
+
+26
+00:01:37,477 --> 00:01:40,914
+This process model shows the reasoning sequence for cells.
+
+27
+00:01:40,914 --> 00:01:43,343
+Follow the stages from inputs to outputs.
+
+28
+00:01:43,343 --> 00:01:47,490
+The Lab 04 Liquid Chemistry lab gives you evidence to test each stage.
+
+29
+00:01:47,490 --> 00:01:51,460
+At each transition, ask: what would change my mind about this step?
+
+30
+00:01:52,210 --> 00:01:55,756
+Now apply the module instead of only repeating its vocabulary.
+
+31
+00:01:55,756 --> 00:01:58,673
+Start with a question: What does cell theory claim?
+
+32
+00:01:58,673 --> 00:02:02,333
+Treat that question as an observation that needs an explanation.
+
+33
+00:02:02,333 --> 00:02:07,023
+A useful first claim is: Cell theory explains cells as the basic units of life and
+
+34
+00:02:07,023 --> 00:02:08,910
+as descendants of existing cells.
+
+35
+00:02:08,910 --> 00:02:11,941
+Then ask what evidence could support or challenge it.
+
+36
+00:02:11,941 --> 00:02:16,688
+The first practice check reminds us that Cell theory states that organisms are made
+
+37
+00:02:16,688 --> 00:02:19,776
+of cells and that cells arise from pre-existing cells.
+
+38
+00:02:19,776 --> 00:02:24,466
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+39
+00:02:25,216 --> 00:02:30,012
+Key terms for this module (page 1 of 3) include Cell theory, Prokaryote, Eukaryote.
+
+40
+00:02:30,012 --> 00:02:34,750
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+41
+00:02:34,750 --> 00:02:36,715
+or observation, not just label it.
+
+42
+00:02:37,465 --> 00:02:42,339
+Key terms for this module (page 2 of 3) include Organelle, Nucleus, Mitochondrion.
+
+43
+00:02:42,339 --> 00:02:47,213
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+44
+00:02:47,213 --> 00:02:49,233
+or observation, not just label it.
+
+45
+00:02:49,983 --> 00:02:54,251
+Key terms for this module (page 3 of 3) include Chloroplast, Microscopy.
+
+46
+00:02:54,251 --> 00:02:59,112
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+47
+00:02:59,112 --> 00:03:01,127
+or observation, not just label it.
+
+48
+00:03:01,877 --> 00:03:05,163
+The lab connected to this module is Lab 04 Liquid Chemistry.
+
+49
+00:03:05,163 --> 00:03:08,613
+The evidence you collect should test or illustrate cell theory.
+
+50
+00:03:08,613 --> 00:03:12,939
+You should leave the lab with a concrete observation, comparison, or model tied
+
+51
+00:03:12,939 --> 00:03:14,527
+directly to the module claim.
+
+52
+00:03:15,277 --> 00:03:17,003
+Pause here for retrieval practice.
+
+53
+00:03:17,003 --> 00:03:21,217
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+54
+00:03:21,217 --> 00:03:25,330
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+55
+00:03:25,330 --> 00:03:26,752
+memory more than re-reading.
+
+56
+00:03:27,502 --> 00:03:31,725
+Use these practice quiz questions as formative feedback.
+
+57
+00:03:31,725 --> 00:03:34,063
+Answer key: 1=B, 2=D, 3=A, 4=C.
+
+58
+00:03:34,063 --> 00:03:39,795
+If you miss a question, return to the module keys and find the evidence that
+
+59
+00:03:39,795 --> 00:03:41,907
+supports the correct answer.
+
+60
+00:03:42,657 --> 00:03:45,763
+Before you leave this module, make the study work active.
+
+61
+00:03:45,763 --> 00:03:49,850
+Start with the module's central claim before memorizing vocabulary; Use the
+
+62
+00:03:49,850 --> 00:03:54,210
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+63
+00:03:54,210 --> 00:03:56,499
+words, then redraw it as a simple diagram.
+
+64
+00:03:56,499 --> 00:04:01,077
+Then answer this exit question without notes: What observation would support a claim
+
+65
+00:04:01,077 --> 00:04:02,603
+that a specimen is cellular?
+
+66
+00:04:02,603 --> 00:04:06,854
+A strong response names a mechanism, points to evidence, and states what would
+
+67
+00:04:06,854 --> 00:04:08,107
+change the explanation.
+
+68
+00:04:08,107 --> 00:04:11,704
+If your answer is only a definition list, connect the terms into a
+
+69
+00:04:11,704 --> 00:04:13,828
+cause-and-evidence chain and try again.
+
+70
+00:04:14,578 --> 00:04:19,587
+To synthesize this module: explain cell theory using evidence from the Lab 04 Liquid
+
+71
+00:04:19,587 --> 00:04:20,787
+Chemistry lab.
+
+72
+00:04:20,787 --> 00:04:25,319
+Your explanation must include Cell theory, Prokaryote, Eukaryote, Organelle,
+
+73
+00:04:25,319 --> 00:04:28,181
+Nucleus, Mitochondrion, Chloroplast, Microscopy.
+
+74
+00:04:28,181 --> 00:04:31,818
+Revision prompt: what evidence would change your explanation?
+
+75
+00:04:31,818 --> 00:04:36,231
+Your final explanation should connect the central claim to a mechanism, an
+
+76
+00:04:36,231 --> 00:04:37,834
+observation, and a revision rule.

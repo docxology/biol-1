@@ -180,17 +180,19 @@ def build_module_lecture_yaml(
     _emit(f"      image_path: {_yaml_str(str(Path('png') / process_svg.replace('.svg', '.png')))}")
     _emit("")
 
-    # --- Beat 6: Apply the idea ---
+    # --- Beat 6: Apply the Idea (claim → evidence → revision) ---
     _emit(f"  - id: {_yaml_str(f'{module.slug}_application')}")
     _emit(f"    narration: {_yaml_str(_application_narration(module))}")
     _emit("    visual:")
     _emit("      kind: bullets")
     _emit(f"      title: {_yaml_str('Apply the Idea')}")
     _emit("      bullets:")
-    _emit(f"        - {_yaml_str(f'Start with an observation: {module.learning_questions[0]}')}")
-    _emit(f"        - {_yaml_str(f'Build a claim: {module.contents[0]}')}")
-    _emit(f"        - {_yaml_str(f'Check the claim: {module.practice_quiz[0].explanation}')}")
-    _emit(f"        - {_yaml_str('Revise the explanation when the evidence does not fit')}")
+    _emit(f"        - {_yaml_str(f'Observation: {module.learning_questions[0]}')}")
+    _emit(f"        - {_yaml_str(f'Claim: {module.contents[0]}')}")
+    _emit(f"        - {_yaml_str(f'Evidence check: {module.practice_quiz[0].explanation}')}")
+    _emit(
+        f"        - {_yaml_str('Revision: if the evidence contradicts the claim, name the biological mechanism that must change.')}"
+    )
     _emit("")
 
     # --- Beats 7–8: Key Terms (paginated for readability) ---
@@ -220,7 +222,18 @@ def build_module_lecture_yaml(
     _emit(f"        - {_yaml_str('Connect module ideas to hands-on evidence')}")
     _emit("")
 
-    # --- Beat 8: Retrieval Card (IMAGE) ---
+    # --- Beat 8: Lab Evidence (IMAGE) ---
+    lab_svg = f"module-{module.number:02d}-lab-evidence.svg"
+    _emit(f"  - id: {_yaml_str(f'{module.slug}_lab_evidence')}")
+    _emit(f"    narration: {_yaml_str(_lab_evidence_narration(module))}")
+    _emit("    visual:")
+    _emit("      kind: image")
+    _emit(f"      title: {_yaml_str('Lab Evidence')}")
+    _emit(f"      subtitle: {_yaml_str('What the lab shows')}")
+    _emit(f"      image_path: {_yaml_str(str(Path('png') / lab_svg.replace('.svg', '.png')))}")
+    _emit("")
+
+    # --- Beat 9: Retrieval Card (IMAGE) ---
     retrieval_svg = f"module-{module.number:02d}-retrieval-card.svg"
     _emit(f"  - id: {_yaml_str(f'{module.slug}_retrieval')}")
     _emit(f"    narration: {_yaml_str(_retrieval_narration(module))}")
@@ -233,7 +246,7 @@ def build_module_lecture_yaml(
     )
     _emit("")
 
-    # --- Beat 9: Practice Quiz ---
+    # --- Beat 10: Practice Quiz ---
     _emit(f"  - id: {_yaml_str(f'{module.slug}_quiz')}")
     _emit(f"    narration: {_yaml_str(_quiz_narration(module))}")
     _emit("    visual:")
@@ -244,30 +257,37 @@ def build_module_lecture_yaml(
         _emit(f"        - {_yaml_str(f'Q{i}: {quiz.question}')}")
     _emit("")
 
-    # --- Beat 11: Study move ---
+    # --- Beat 11: Study Move (retrieval protocol) ---
     _emit(f"  - id: {_yaml_str(f'{module.slug}_study_move')}")
     _emit(f"    narration: {_yaml_str(_study_move_narration(module))}")
     _emit("    visual:")
     _emit("      kind: bullets")
-    _emit(f"      title: {_yaml_str('Study Move')}")
+    _emit(f"      title: {_yaml_str('Active Study Protocol')}")
     _emit("      bullets:")
     for tip in module.study_tips[:3]:
         _emit(f"        - {_yaml_str(tip)}")
+    _emit(f"        - {_yaml_str('Close the notes. Answer the exit question from memory.')}")
     _emit(f"        - {_yaml_str(f'Exit question: {module.learning_questions[-1]}')}")
+    _emit(
+        f"        - {_yaml_str('Check your answer against the module keys; revise until the chain of evidence is clear.')}"
+    )
     _emit("")
 
-    # --- Beat 12: Synthesis ---
+    # --- Beat 12: Synthesis and Revision Rule ---
     _emit(f"  - id: {_yaml_str(f'{module.slug}_synthesis')}")
     _emit(f"    narration: {_yaml_str(_synthesis_narration(module))}")
     _emit("    visual:")
     _emit("      kind: bullets")
-    _emit(f"      title: {_yaml_str('Synthesis')}")
+    _emit(f"      title: {_yaml_str('Synthesis and Revision')}")
     _emit("      bullets:")
     _emit(
         f"        - {_yaml_str(f'Explain {module.topics[0].lower()} using evidence from the {lab_name} lab')}"
     )
     all_terms = ", ".join(term.name for term in module.terms)
     _emit(f"        - {_yaml_str(f'Must include: {all_terms}')}")
+    _emit(
+        f"        - {_yaml_str('Revision rule: if the lab evidence contradicts your explanation, name the mechanism that must change.')}"
+    )
     _emit(f"        - {_yaml_str('What evidence would change your explanation?')}")
     _emit("")
 
@@ -373,6 +393,16 @@ def _lab_narration(module: ModuleContent) -> str:
         f"The evidence you collect should test or illustrate {module.topics[0].lower()}. "
         f"You should leave the lab with a concrete observation, comparison, or model "
         f"tied directly to the module claim."
+    )
+
+
+def _lab_evidence_narration(module: ModuleContent) -> str:
+    lab = _lab_display_name(module)
+    return (
+        f"The {lab} lab produces concrete evidence for this module. "
+        f"Focus on the measurable outcome: what changed, by how much, and why it matters. "
+        f"Connect the lab result back to the central claim. "
+        f"A strong answer names the variable, the observation, and the biological mechanism."
     )
 
 

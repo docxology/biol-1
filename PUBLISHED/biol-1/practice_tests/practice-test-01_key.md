@@ -1,6 +1,6 @@
 # BIOL-1 Practice Test 01 — Answer Key
 
-## Modules 1-4: Study of Life through Cells
+## Modules 1-6: Study of Life through Cells
 
 ---
 

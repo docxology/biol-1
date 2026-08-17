@@ -499,6 +499,72 @@ def reorganize_to_categories(
     return total_moved
 
 
+def copy_lectures(repo_root: Path, courses: list[str] | None = None, verbose: bool = False) -> int:
+    """Copy rendered lecture videos from output/lectures into PUBLISHED.
+
+    Only the playable ``lecture.mp4`` and ``captions.srt`` are copied; JSON
+    manifests, captions, frames, WAVs, and render logs remain in the canonical
+    LectureCreate output tree.
+
+    Args:
+        repo_root: Path to the repository root
+        courses: List of course names (default: active courses from publish.toml)
+        verbose: If True, log detailed operations
+
+    Returns:
+        Number of files copied
+    """
+    if courses is None:
+        courses = _active_courses(repo_root)
+
+    published_dir = repo_root / config.PUBLISH_ROOT_NAME
+    total_copied = 0
+
+    for course in courses:
+        lectures_src = repo_root / "output" / "lectures"
+        if not lectures_src.exists():
+            continue
+
+        lectures_pub = published_dir / course / "lectures"
+        lectures_pub.mkdir(parents=True, exist_ok=True)
+
+        for lecture_dir in sorted(lectures_src.glob("module-*")):
+            if not lecture_dir.is_dir():
+                continue
+            # Only copy the playable video and captions
+            video = lecture_dir / lecture_dir.name / "video" / "lecture.mp4"
+            captions = lecture_dir / lecture_dir.name / "captions" / "captions.srt"
+            if video.is_file():
+                dest = lectures_pub / f"{lecture_dir.name}.mp4"
+                shutil.copy2(video, dest)
+                total_copied += 1
+                if verbose:
+                    logger.debug(f"    {lecture_dir.name}: copied lecture.mp4")
+            if captions.is_file():
+                dest = lectures_pub / f"{lecture_dir.name}.srt"
+                shutil.copy2(captions, dest)
+                total_copied += 1
+
+        # Also copy the combined full-course lecture if present
+        combined_src = lectures_src / "biol-1-combined"
+        if combined_src.exists():
+            combined_video = combined_src / "biol-1-combined" / "video" / "lecture.mp4"
+            combined_captions = combined_src / "biol-1-combined" / "captions" / "captions.srt"
+            if combined_video.is_file():
+                dest = lectures_pub / "biol-1-combined.mp4"
+                shutil.copy2(combined_video, dest)
+                total_copied += 1
+            if combined_captions.is_file():
+                dest = lectures_pub / "biol-1-combined.srt"
+                shutil.copy2(combined_captions, dest)
+                total_copied += 1
+
+        if total_copied > 0:
+            logger.info(f"  {course}: Copied {total_copied} lecture files")
+
+    return total_copied
+
+
 def copy_full_flat(
     published_dir: Path, courses: list[str] | None = None, verbose: bool = False
 ) -> int:
@@ -543,6 +609,23 @@ def copy_full_flat(
                     seen_names[fname] = category_dir.name
                 shutil.copy2(src_file, flat_dir / fname)
                 total_copied += 1
+
+        # Also include lecture videos from output/lectures (they live outside PUBLISHED/)
+        repo_root = published_dir.parent
+        lectures_src = repo_root / "output" / "lectures"
+        if lectures_src.exists():
+            for lecture_dir in sorted(lectures_src.glob("module-*")):
+                if not lecture_dir.is_dir():
+                    continue
+                video = lecture_dir / lecture_dir.name / "video" / "lecture.mp4"
+                captions = lecture_dir / lecture_dir.name / "captions" / "captions.srt"
+                for src_file in (video, captions):
+                    if src_file.is_file():
+                        fname = src_file.name
+                        # Prefix every lecture file with its module slug to avoid collisions
+                        fname = f"{lecture_dir.name}.{fname}"
+                        shutil.copy2(src_file, flat_dir / fname)
+                        total_copied += 1
 
         logger.info(f"  {course}: Flattened {total_copied} files into full_flat/")
 

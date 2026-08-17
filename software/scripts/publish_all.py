@@ -301,6 +301,14 @@ def main():
             f"  ✅ Flattened {flat_copied} files into full_flat/  ({time.time() - t_step:.1f}s)"
         )
 
+        # Lecture videos
+        from src.publish.utils import copy_lectures
+
+        t_step = time.time()
+        logger.info("\n🎬 STEP 8e: Copying lecture videos")
+        lectures_copied = copy_lectures(repo_root, courses, args.verbose)
+        logger.info(f"  ✅ Copied {lectures_copied} lecture files  ({time.time() - t_step:.1f}s)")
+
     # Step 9: Validate
     if not args.skip_validate:
         t_step = time.time()

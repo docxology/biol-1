@@ -1,0 +1,311 @@
+1
+00:00:00,400 --> 00:00:05,521
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,521 --> 00:00:10,296
+Module 03: Organic Molecules. The connected lab is Lab 03 Microscopy.
+
+3
+00:00:10,296 --> 00:00:15,971
+Here is the central idea: Organic Molecules explains carbon chemistry with polymer
+
+4
+00:00:15,971 --> 00:00:19,847
+assembly and biological molecule evidence. Let us begin.
+
+5
+00:00:20,597 --> 00:00:25,278
+By the end of this module you should be able to: Explain why carbon is central to
+
+6
+00:00:25,278 --> 00:00:29,555
+biological molecule diversity; Distinguish monomers, polymers, dehydration
+
+7
+00:00:29,555 --> 00:00:34,005
+synthesis, and hydrolysis; Compare the functions of carbohydrates and lipids;
+
+8
+00:00:34,005 --> 00:00:38,628
+Connect protein shape to protein function and denaturation; Describe how nucleic
+
+9
+00:00:38,628 --> 00:00:40,709
+acids encode biological information.
+
+10
+00:00:40,709 --> 00:00:44,350
+Keep these objectives in mind as you work through the material.
+
+11
+00:00:45,100 --> 00:00:46,821
+This module covers 5 topics.
+
+12
+00:00:46,821 --> 00:00:51,737
+Carbon skeletons — Carbon forms diverse skeletons that make biological molecules
+
+13
+00:00:51,737 --> 00:00:52,937
+possible.
+
+14
+00:00:52,937 --> 00:00:57,546
+Building and breaking polymers — Dehydration synthesis builds polymers, and
+
+15
+00:00:57,546 --> 00:00:59,267
+hydrolysis breaks them down.
+
+16
+00:00:59,267 --> 00:01:03,938
+Carbohydrates and lipids — Carbohydrates and lipids store energy and provide
+
+17
+00:01:03,938 --> 00:01:05,659
+structure in different ways.
+
+18
+00:01:05,659 --> 00:01:10,084
+Proteins and shape — Protein function depends on amino acid sequence and
+
+19
+00:01:10,084 --> 00:01:11,559
+three-dimensional shape.
+
+20
+00:01:11,559 --> 00:01:16,230
+Nucleic acids and information — DNA and RNA store and move information using
+
+21
+00:01:16,230 --> 00:01:17,521
+nucleotide sequences.
+
+22
+00:01:17,521 --> 00:01:21,235
+Each topic builds on the one before it, forming a coherent explanation.
+
+23
+00:01:21,985 --> 00:01:24,230
+Here is the concept map for module 03.
+
+24
+00:01:24,230 --> 00:01:28,839
+The central claim is: Organic Molecules explains carbon chemistry with polymer
+
+25
+00:01:28,839 --> 00:01:31,321
+assembly and biological molecule evidence.
+
+26
+00:01:31,321 --> 00:01:33,921
+Notice how each node connects to the others.
+
+27
+00:01:33,921 --> 00:01:38,885
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+28
+00:01:38,885 --> 00:01:40,599
+how ideas support each other.
+
+29
+00:01:41,349 --> 00:01:45,561
+This process model shows the reasoning sequence for organic molecules.
+
+30
+00:01:45,561 --> 00:01:48,028
+Follow the stages from inputs to outputs.
+
+31
+00:01:48,028 --> 00:01:51,879
+The Lab 03 Microscopy lab gives you evidence to test each stage.
+
+32
+00:01:51,879 --> 00:01:55,911
+At each transition, ask: what would change my mind about this step?
+
+33
+00:01:56,661 --> 00:02:00,188
+Now apply the module instead of only repeating its vocabulary.
+
+34
+00:02:00,188 --> 00:02:04,683
+Start with a question: Why can carbon make many different biological molecules?
+
+35
+00:02:04,683 --> 00:02:08,324
+Treat that question as an observation that needs an explanation.
+
+36
+00:02:08,324 --> 00:02:12,648
+A useful first claim is: Carbon forms diverse skeletons that make biological
+
+37
+00:02:12,648 --> 00:02:16,801
+molecules possible. Then ask what evidence could support or challenge it.
+
+38
+00:02:16,801 --> 00:02:21,523
+The first practice check reminds us that Carbon's ability to form four stable bonds
+
+39
+00:02:21,523 --> 00:02:26,075
+allows large, varied molecules, which is the basis of life's chemical diversity.
+
+40
+00:02:26,075 --> 00:02:30,741
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+41
+00:02:31,491 --> 00:02:36,275
+Key terms for this module (page 1 of 3) include Organic molecule, Monomer, Polymer.
+
+42
+00:02:36,275 --> 00:02:41,002
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+43
+00:02:41,002 --> 00:02:42,962
+or observation, not just label it.
+
+44
+00:02:43,712 --> 00:02:48,259
+Key terms for this module (page 2 of 3) include Carbohydrate, Lipid, Protein.
+
+45
+00:02:48,259 --> 00:02:53,102
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+46
+00:02:53,102 --> 00:02:55,110
+or observation, not just label it.
+
+47
+00:02:55,860 --> 00:03:00,493
+Key terms for this module (page 3 of 3) include Nucleic acid, Denaturation.
+
+48
+00:03:00,493 --> 00:03:05,558
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+49
+00:03:05,558 --> 00:03:07,658
+or observation, not just label it.
+
+50
+00:03:08,408 --> 00:03:11,363
+The lab connected to this module is Lab 03 Microscopy.
+
+51
+00:03:11,363 --> 00:03:15,084
+The evidence you collect should test or illustrate carbon skeletons.
+
+52
+00:03:15,084 --> 00:03:19,407
+You should leave the lab with a concrete observation, comparison, or model tied
+
+53
+00:03:19,407 --> 00:03:20,995
+directly to the module claim.
+
+54
+00:03:21,745 --> 00:03:23,471
+Pause here for retrieval practice.
+
+55
+00:03:23,471 --> 00:03:27,685
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+56
+00:03:27,685 --> 00:03:31,798
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+57
+00:03:31,798 --> 00:03:33,220
+memory more than re-reading.
+
+58
+00:03:33,970 --> 00:03:38,125
+Use these practice quiz questions as formative feedback.
+
+59
+00:03:38,125 --> 00:03:40,425
+Answer key: 1=C, 2=A, 3=D, 4=B.
+
+60
+00:03:40,425 --> 00:03:46,063
+If you miss a question, return to the module keys and find the evidence that
+
+61
+00:03:46,063 --> 00:03:48,140
+supports the correct answer.
+
+62
+00:03:48,890 --> 00:03:52,006
+Before you leave this module, make the study work active.
+
+63
+00:03:52,006 --> 00:03:56,106
+Start with the module's central claim before memorizing vocabulary; Use the
+
+64
+00:03:56,106 --> 00:04:00,480
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+65
+00:04:00,480 --> 00:04:02,776
+words, then redraw it as a simple diagram.
+
+66
+00:04:02,776 --> 00:04:07,040
+Then answer this exit question without notes: Which evidence would show that a
+
+67
+00:04:07,040 --> 00:04:08,461
+protein lost its function?
+
+68
+00:04:08,461 --> 00:04:12,725
+A strong response names a mechanism, points to evidence, and states what would
+
+69
+00:04:12,725 --> 00:04:13,982
+change the explanation.
+
+70
+00:04:13,982 --> 00:04:17,590
+If your answer is only a definition list, connect the terms into a
+
+71
+00:04:17,590 --> 00:04:19,725
+cause-and-evidence chain and try again.
+
+72
+00:04:20,475 --> 00:04:25,540
+To synthesize this module: explain carbon skeletons using evidence from the Lab 03
+
+73
+00:04:25,540 --> 00:04:26,740
+Microscopy lab.
+
+74
+00:04:26,740 --> 00:04:31,620
+Your explanation must include Organic molecule, Monomer, Polymer, Carbohydrate,
+
+75
+00:04:31,620 --> 00:04:34,276
+Lipid, Protein, Nucleic acid, Denaturation.
+
+76
+00:04:34,276 --> 00:04:38,044
+Revision prompt: what evidence would change your explanation?
+
+77
+00:04:38,044 --> 00:04:42,615
+Your final explanation should connect the central claim to a mechanism, an
+
+78
+00:04:42,615 --> 00:04:44,379
+observation, and a revision rule.

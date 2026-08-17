@@ -19,8 +19,7 @@ video:
 animation:
   enabled: true
   fps: 30
-  kenburns: true
-  kenburns_zoom: 1.04
+  kenburns: false
   waveform: false
   reveal: true
   progress: true

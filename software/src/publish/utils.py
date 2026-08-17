@@ -16,6 +16,7 @@ from .copy_extras import (  # noqa: F401
     copy_exams,
     copy_full_flat,
     copy_labs_and_dashboards,
+    copy_lectures,
     copy_module_bundles,
     copy_module_generated_assets,
     copy_practice_tests,

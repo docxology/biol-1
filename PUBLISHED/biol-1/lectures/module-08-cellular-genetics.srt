@@ -1,0 +1,303 @@
+1
+00:00:00,400 --> 00:00:05,587
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,587 --> 00:00:10,914
+Module 08: Cellular Genetics. The connected lab is Lab 08 Cellular Genetics.
+
+3
+00:00:10,914 --> 00:00:16,451
+Here is the central idea: Cellular Genetics explains chromosome behavior across
+
+4
+00:00:16,451 --> 00:00:20,236
+mitosis, meiosis, variation, and errors. Let us begin.
+
+5
+00:00:20,986 --> 00:00:25,134
+By the end of this module you should be able to: Relate chromosomes to DNA
+
+6
+00:00:25,134 --> 00:00:29,731
+organization; Compare the purpose and products of mitosis and meiosis; Explain how
+
+7
+00:00:29,731 --> 00:00:34,047
+meiosis reduces chromosome number; Describe how crossing over and independent
+
+8
+00:00:34,047 --> 00:00:38,756
+assortment increase variation; Interpret chromosome number errors at an introductory
+
+9
+00:00:38,756 --> 00:00:42,680
+level. Keep these objectives in mind as you work through the material.
+
+10
+00:00:43,430 --> 00:00:45,104
+This module covers 5 topics.
+
+11
+00:00:45,104 --> 00:00:49,468
+Chromosomes and cell cycle — Chromosomes organize DNA so cells can divide
+
+12
+00:00:49,468 --> 00:00:50,668
+accurately.
+
+13
+00:00:50,668 --> 00:00:55,391
+Mitosis for growth and repair — Mitosis produces genetically identical daughter
+
+14
+00:00:55,391 --> 00:00:57,065
+cells for growth and repair.
+
+15
+00:00:57,065 --> 00:01:01,788
+Meiosis for gametes — Meiosis produces haploid gametes for sexual reproduction.
+
+16
+00:01:01,788 --> 00:01:06,272
+Variation from recombination and assortment — Crossing over and independent
+
+17
+00:01:06,272 --> 00:01:08,424
+assortment create genetic variation.
+
+18
+00:01:08,424 --> 00:01:12,968
+Errors and genetic consequences — Nondisjunction and other errors can change
+
+19
+00:01:12,968 --> 00:01:14,168
+chromosome number.
+
+20
+00:01:14,168 --> 00:01:17,746
+Each topic builds on the one before it, forming a coherent explanation.
+
+21
+00:01:18,496 --> 00:01:20,782
+Here is the concept map for module 08.
+
+22
+00:01:20,782 --> 00:01:25,836
+The central claim is: Cellular Genetics explains chromosome behavior across mitosis,
+
+23
+00:01:25,836 --> 00:01:30,408
+meiosis, variation, and errors. Notice how each node connects to the others.
+
+24
+00:01:30,408 --> 00:01:35,462
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+25
+00:01:35,462 --> 00:01:37,206
+how ideas support each other.
+
+26
+00:01:37,956 --> 00:01:42,153
+This process model shows the reasoning sequence for cellular genetics.
+
+27
+00:01:42,153 --> 00:01:44,611
+Follow the stages from inputs to outputs.
+
+28
+00:01:44,611 --> 00:01:48,868
+The Lab 08 Cellular Genetics lab gives you evidence to test each stage.
+
+29
+00:01:48,868 --> 00:01:52,884
+At each transition, ask: what would change my mind about this step?
+
+30
+00:01:53,634 --> 00:01:57,277
+Now apply the module instead of only repeating its vocabulary.
+
+31
+00:01:57,277 --> 00:02:01,097
+Start with a question: Why do cells package DNA into chromosomes?
+
+32
+00:02:01,097 --> 00:02:04,858
+Treat that question as an observation that needs an explanation.
+
+33
+00:02:04,858 --> 00:02:09,618
+A useful first claim is: Chromosomes organize DNA so cells can divide accurately.
+
+34
+00:02:09,618 --> 00:02:12,732
+Then ask what evidence could support or challenge it.
+
+35
+00:02:12,732 --> 00:02:17,609
+The first practice check reminds us that Mitosis produces two genetically identical
+
+36
+00:02:17,609 --> 00:02:21,899
+daughter cells for growth and repair. Meiosis makes four haploid gametes.
+
+37
+00:02:21,899 --> 00:02:26,717
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+38
+00:02:27,467 --> 00:02:32,239
+Key terms for this module (page 1 of 3) include Chromosome, Cell cycle, Mitosis.
+
+39
+00:02:32,239 --> 00:02:37,131
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+40
+00:02:37,131 --> 00:02:39,159
+or observation, not just label it.
+
+41
+00:02:39,909 --> 00:02:44,560
+Key terms for this module (page 2 of 3) include Meiosis, Gamete, Crossing over.
+
+42
+00:02:44,560 --> 00:02:49,387
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+43
+00:02:49,387 --> 00:02:51,389
+or observation, not just label it.
+
+44
+00:02:52,139 --> 00:02:56,311
+Key terms for this module (page 3 of 3) include Independent assortment,
+
+45
+00:02:56,311 --> 00:02:57,511
+Nondisjunction.
+
+46
+00:02:57,511 --> 00:03:02,330
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+47
+00:03:02,330 --> 00:03:04,009
+or observation, not just label it.
+
+48
+00:03:04,759 --> 00:03:08,081
+The lab connected to this module is Lab 08 Cellular Genetics.
+
+49
+00:03:08,081 --> 00:03:12,329
+The evidence you collect should test or illustrate chromosomes and cell cycle.
+
+50
+00:03:12,329 --> 00:03:16,631
+You should leave the lab with a concrete observation, comparison, or model tied
+
+51
+00:03:16,631 --> 00:03:18,211
+directly to the module claim.
+
+52
+00:03:18,961 --> 00:03:20,687
+Pause here for retrieval practice.
+
+53
+00:03:20,687 --> 00:03:24,901
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+54
+00:03:24,901 --> 00:03:29,014
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+55
+00:03:29,014 --> 00:03:30,436
+memory more than re-reading.
+
+56
+00:03:31,186 --> 00:03:35,409
+Use these practice quiz questions as formative feedback.
+
+57
+00:03:35,409 --> 00:03:37,747
+Answer key: 1=B, 2=D, 3=A, 4=C.
+
+58
+00:03:37,747 --> 00:03:43,479
+If you miss a question, return to the module keys and find the evidence that
+
+59
+00:03:43,479 --> 00:03:45,591
+supports the correct answer.
+
+60
+00:03:46,341 --> 00:03:49,488
+Before you leave this module, make the study work active.
+
+61
+00:03:49,488 --> 00:03:53,629
+Start with the module's central claim before memorizing vocabulary; Use the
+
+62
+00:03:53,629 --> 00:03:58,046
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+63
+00:03:58,046 --> 00:04:00,365
+words, then redraw it as a simple diagram.
+
+64
+00:04:00,365 --> 00:04:04,616
+Then answer this exit question without notes: What evidence would distinguish
+
+65
+00:04:04,616 --> 00:04:05,816
+mitosis from meiosis?
+
+66
+00:04:05,816 --> 00:04:10,123
+A strong response names a mechanism, points to evidence, and states what would
+
+67
+00:04:10,123 --> 00:04:11,393
+change the explanation.
+
+68
+00:04:11,393 --> 00:04:15,037
+If your answer is only a definition list, connect the terms into a
+
+69
+00:04:15,037 --> 00:04:17,150
+cause-and-evidence chain and try again.
+
+70
+00:04:17,900 --> 00:04:22,701
+To synthesize this module: explain chromosomes and cell cycle using evidence from
+
+71
+00:04:22,701 --> 00:04:24,657
+the Lab 08 Cellular Genetics lab.
+
+72
+00:04:24,657 --> 00:04:29,340
+Your explanation must include Chromosome, Cell cycle, Mitosis, Meiosis, Gamete,
+
+73
+00:04:29,340 --> 00:04:32,541
+Crossing over, Independent assortment, Nondisjunction.
+
+74
+00:04:32,541 --> 00:04:36,157
+Revision prompt: what evidence would change your explanation?
+
+75
+00:04:36,157 --> 00:04:40,543
+Your final explanation should connect the central claim to a mechanism, an
+
+76
+00:04:40,543 --> 00:04:42,498
+observation, and a revision rule.

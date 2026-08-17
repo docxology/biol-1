@@ -1,0 +1,311 @@
+1
+00:00:00,400 --> 00:00:05,269
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,269 --> 00:00:09,480
+Module 10: Epigenetics. The connected lab is Lab 10 Epigenetics.
+
+3
+00:00:09,480 --> 00:00:14,810
+Here is the central idea: Epigenetics explains gene regulation through chromatin,
+
+4
+00:00:14,810 --> 00:00:18,165
+environment, and expression evidence. Let us begin.
+
+5
+00:00:18,915 --> 00:00:23,436
+By the end of this module you should be able to: Explain gene regulation as control
+
+6
+00:00:23,436 --> 00:00:27,576
+of gene activity; Describe DNA methylation at an introductory level; Connect
+
+7
+00:00:27,576 --> 00:00:32,043
+chromatin structure to gene accessibility; Give a careful example of environmental
+
+8
+00:00:32,043 --> 00:00:36,020
+influence on expression; Distinguish epigenetic regulation from mutation.
+
+9
+00:00:36,020 --> 00:00:39,452
+Keep these objectives in mind as you work through the material.
+
+10
+00:00:40,202 --> 00:00:41,886
+This module covers 5 topics.
+
+11
+00:00:41,886 --> 00:00:46,938
+Gene regulation as control — Cells regulate which genes are active rather than using
+
+12
+00:00:46,938 --> 00:00:48,138
+every gene equally.
+
+13
+00:00:48,138 --> 00:00:52,949
+DNA methylation — DNA methylation can reduce transcription without changing base
+
+14
+00:00:52,949 --> 00:00:54,149
+sequence.
+
+15
+00:00:54,149 --> 00:00:59,020
+Histone and chromatin change — Histone and chromatin changes alter access to DNA.
+
+16
+00:00:59,020 --> 00:01:04,012
+Environment and expression — Environmental conditions can influence gene expression
+
+17
+00:01:04,012 --> 00:01:05,212
+patterns.
+
+18
+00:01:05,212 --> 00:01:09,783
+Epigenetics versus mutation — Epigenetic change affects gene activity, while
+
+19
+00:01:09,783 --> 00:01:11,587
+mutation changes DNA sequence.
+
+20
+00:01:11,587 --> 00:01:14,481
+Each topic builds on the one before it, forming a coherent explanation.
+
+21
+00:01:15,231 --> 00:01:17,373
+Here is the concept map for module 10.
+
+22
+00:01:17,373 --> 00:01:21,713
+The central claim is: Epigenetics explains gene regulation through chromatin,
+
+23
+00:01:21,713 --> 00:01:26,335
+environment, and expression evidence. Notice how each node connects to the others.
+
+24
+00:01:26,335 --> 00:01:31,070
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+25
+00:01:31,070 --> 00:01:32,704
+how ideas support each other.
+
+26
+00:01:33,454 --> 00:01:37,192
+This process model shows the reasoning sequence for epigenetics.
+
+27
+00:01:37,192 --> 00:01:39,587
+Follow the stages from inputs to outputs.
+
+28
+00:01:39,587 --> 00:01:43,384
+The Lab 10 Epigenetics lab gives you evidence to test each stage.
+
+29
+00:01:43,384 --> 00:01:47,297
+At each transition, ask: what would change my mind about this step?
+
+30
+00:01:48,047 --> 00:01:51,631
+Now apply the module instead of only repeating its vocabulary.
+
+31
+00:01:51,631 --> 00:01:54,579
+Start with a question: Why do cells regulate genes?
+
+32
+00:01:54,579 --> 00:01:58,278
+Treat that question as an observation that needs an explanation.
+
+33
+00:01:58,278 --> 00:02:02,902
+A useful first claim is: Cells regulate which genes are active rather than using
+
+34
+00:02:02,902 --> 00:02:07,122
+every gene equally. Then ask what evidence could support or challenge it.
+
+35
+00:02:07,122 --> 00:02:11,978
+The first practice check reminds us that Epigenetic marks such as methylation change
+
+36
+00:02:11,978 --> 00:02:15,042
+how genes are expressed, not the underlying sequence.
+
+37
+00:02:15,042 --> 00:02:17,296
+A mutation changes the sequence itself.
+
+38
+00:02:17,296 --> 00:02:22,036
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+39
+00:02:22,786 --> 00:02:27,587
+Key terms for this module (page 1 of 3) include Gene regulation, Epigenetics, DNA
+
+40
+00:02:27,587 --> 00:02:28,787
+methylation.
+
+41
+00:02:28,787 --> 00:02:33,647
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+42
+00:02:33,647 --> 00:02:35,173
+or observation, not just label it.
+
+43
+00:02:35,923 --> 00:02:40,737
+Key terms for this module (page 2 of 3) include Histone, Chromatin, Transcription
+
+44
+00:02:40,737 --> 00:02:41,937
+factor.
+
+45
+00:02:41,937 --> 00:02:46,810
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+46
+00:02:46,810 --> 00:02:48,046
+or observation, not just label it.
+
+47
+00:02:48,796 --> 00:02:52,903
+Key terms for this module (page 3 of 3) include Mutation, Expression.
+
+48
+00:02:52,903 --> 00:02:57,784
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+49
+00:02:57,784 --> 00:02:59,807
+or observation, not just label it.
+
+50
+00:03:00,557 --> 00:03:03,484
+The lab connected to this module is Lab 10 Epigenetics.
+
+51
+00:03:03,484 --> 00:03:07,635
+The evidence you collect should test or illustrate gene regulation as control.
+
+52
+00:03:07,635 --> 00:03:11,839
+You should leave the lab with a concrete observation, comparison, or model tied
+
+53
+00:03:11,839 --> 00:03:13,381
+directly to the module claim.
+
+54
+00:03:14,131 --> 00:03:15,857
+Pause here for retrieval practice.
+
+55
+00:03:15,857 --> 00:03:20,071
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+56
+00:03:20,071 --> 00:03:24,184
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+57
+00:03:24,184 --> 00:03:25,606
+memory more than re-reading.
+
+58
+00:03:26,356 --> 00:03:30,511
+Use these practice quiz questions as formative feedback.
+
+59
+00:03:30,511 --> 00:03:32,811
+Answer key: 1=C, 2=A, 3=D, 4=B.
+
+60
+00:03:32,811 --> 00:03:38,449
+If you miss a question, return to the module keys and find the evidence that
+
+61
+00:03:38,449 --> 00:03:40,526
+supports the correct answer.
+
+62
+00:03:41,276 --> 00:03:44,466
+Before you leave this module, make the study work active.
+
+63
+00:03:44,466 --> 00:03:48,664
+Start with the module's central claim before memorizing vocabulary; Use the
+
+64
+00:03:48,664 --> 00:03:53,141
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+65
+00:03:53,141 --> 00:03:55,492
+words, then redraw it as a simple diagram.
+
+66
+00:03:55,492 --> 00:04:00,193
+Then answer this exit question without notes: How does epigenetics connect molecular
+
+67
+00:04:00,193 --> 00:04:01,393
+biology to traits?
+
+68
+00:04:01,393 --> 00:04:05,759
+A strong response names a mechanism, points to evidence, and states what would
+
+69
+00:04:05,759 --> 00:04:07,046
+change the explanation.
+
+70
+00:04:07,046 --> 00:04:10,740
+If your answer is only a definition list, connect the terms into a
+
+71
+00:04:10,740 --> 00:04:12,730
+cause-and-evidence chain and try again.
+
+72
+00:04:13,480 --> 00:04:18,303
+To synthesize this module: explain gene regulation as control using evidence from
+
+73
+00:04:18,303 --> 00:04:19,911
+the Lab 10 Epigenetics lab.
+
+74
+00:04:19,911 --> 00:04:24,436
+Your explanation must include Gene regulation, Epigenetics, DNA methylation,
+
+75
+00:04:24,436 --> 00:04:28,187
+Histone, Chromatin, Transcription factor, Mutation, Expression.
+
+76
+00:04:28,187 --> 00:04:31,819
+Revision prompt: what evidence would change your explanation?
+
+77
+00:04:31,819 --> 00:04:36,225
+Your final explanation should connect the central claim to a mechanism, an
+
+78
+00:04:36,225 --> 00:04:38,190
+observation, and a revision rule.

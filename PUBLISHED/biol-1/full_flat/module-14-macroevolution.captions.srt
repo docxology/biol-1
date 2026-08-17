@@ -1,0 +1,319 @@
+1
+00:00:00,400 --> 00:00:05,378
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,378 --> 00:00:10,087
+Module 14: Macroevolution. The connected lab is Lab 14 Macroevolution.
+
+3
+00:00:10,087 --> 00:00:15,603
+Here is the central idea: Macroevolution explains speciation as reduced gene flow,
+
+4
+00:00:15,603 --> 00:00:20,044
+reproductive isolation, and phylogenetic divergence. Let us begin.
+
+5
+00:00:20,794 --> 00:00:25,253
+By the end of this module you should be able to: State the biological species
+
+6
+00:00:25,253 --> 00:00:29,655
+concept and its limits; Explain reproductive isolation as reduced gene flow;
+
+7
+00:00:29,655 --> 00:00:34,230
+Classify examples as prezygotic or postzygotic barriers; Compare allopatric and
+
+8
+00:00:34,230 --> 00:00:39,095
+sympatric speciation; Interpret speciation as population-level divergence over time.
+
+9
+00:00:39,095 --> 00:00:42,744
+Keep these objectives in mind as you work through the material.
+
+10
+00:00:43,494 --> 00:00:45,241
+This module covers 5 topics.
+
+11
+00:00:45,241 --> 00:00:49,672
+Species concepts — Species concepts define lineages using reproductive,
+
+12
+00:00:49,672 --> 00:00:52,168
+morphological, or evolutionary criteria.
+
+13
+00:00:52,168 --> 00:00:56,724
+Reproductive isolation — Reproductive isolation reduces gene flow between
+
+14
+00:00:56,724 --> 00:00:57,924
+populations.
+
+15
+00:00:57,924 --> 00:01:03,041
+Prezygotic barriers — Prezygotic barriers prevent mating or fertilization before a
+
+16
+00:01:03,041 --> 00:01:04,241
+zygote forms.
+
+17
+00:01:04,241 --> 00:01:09,171
+Postzygotic barriers — Postzygotic barriers reduce hybrid survival or fertility
+
+18
+00:01:09,171 --> 00:01:10,482
+after a zygote forms.
+
+19
+00:01:10,482 --> 00:01:15,100
+Speciation patterns and phylogeny — Speciation can occur allopatrically or
+
+20
+00:01:15,100 --> 00:01:18,096
+sympatrically and is represented in phylogenies.
+
+21
+00:01:18,096 --> 00:01:21,688
+Each topic builds on the one before it, forming a coherent explanation.
+
+22
+00:01:22,438 --> 00:01:24,619
+Here is the concept map for module 14.
+
+23
+00:01:24,619 --> 00:01:29,095
+The central claim is: Macroevolution explains speciation as reduced gene flow,
+
+24
+00:01:29,095 --> 00:01:32,079
+reproductive isolation, and phylogenetic divergence.
+
+25
+00:01:32,079 --> 00:01:34,604
+Notice how each node connects to the others.
+
+26
+00:01:34,604 --> 00:01:39,425
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+27
+00:01:39,425 --> 00:01:41,090
+how ideas support each other.
+
+28
+00:01:41,840 --> 00:01:45,796
+This process model shows the reasoning sequence for macroevolution.
+
+29
+00:01:45,796 --> 00:01:48,217
+Follow the stages from inputs to outputs.
+
+30
+00:01:48,217 --> 00:01:52,232
+The Lab 14 Macroevolution lab gives you evidence to test each stage.
+
+31
+00:01:52,232 --> 00:01:56,187
+At each transition, ask: what would change my mind about this step?
+
+32
+00:01:56,937 --> 00:02:00,541
+Now apply the module instead of only repeating its vocabulary.
+
+33
+00:02:00,541 --> 00:02:04,843
+Start with a question: What does the biological species concept emphasize?
+
+34
+00:02:04,843 --> 00:02:08,564
+Treat that question as an observation that needs an explanation.
+
+35
+00:02:08,564 --> 00:02:13,040
+A useful first claim is: Species concepts define lineages using reproductive,
+
+36
+00:02:13,040 --> 00:02:15,365
+morphological, or evolutionary criteria.
+
+37
+00:02:15,365 --> 00:02:18,446
+Then ask what evidence could support or challenge it.
+
+38
+00:02:18,446 --> 00:02:23,213
+The first practice check reminds us that The biological species concept centers on
+
+39
+00:02:23,213 --> 00:02:27,108
+reproductive isolation: no successful gene flow between the groups.
+
+40
+00:02:27,108 --> 00:02:31,876
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+41
+00:02:32,626 --> 00:02:37,555
+Key terms for this module (page 1 of 3) include Species, Biological species concept,
+
+42
+00:02:37,555 --> 00:02:38,905
+Reproductive isolation.
+
+43
+00:02:38,905 --> 00:02:43,717
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+44
+00:02:43,717 --> 00:02:45,712
+or observation, not just label it.
+
+45
+00:02:46,462 --> 00:02:51,190
+Key terms for this module (page 2 of 3) include Prezygotic barrier, Postzygotic
+
+46
+00:02:51,190 --> 00:02:53,045
+barrier, Allopatric speciation.
+
+47
+00:02:53,045 --> 00:02:57,953
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+48
+00:02:57,953 --> 00:02:59,988
+or observation, not just label it.
+
+49
+00:03:00,738 --> 00:03:05,474
+Key terms for this module (page 3 of 3) include Sympatric speciation, Phylogeny.
+
+50
+00:03:05,474 --> 00:03:10,328
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+51
+00:03:10,328 --> 00:03:12,341
+or observation, not just label it.
+
+52
+00:03:13,091 --> 00:03:16,238
+The lab connected to this module is Lab 14 Macroevolution.
+
+53
+00:03:16,238 --> 00:03:19,928
+The evidence you collect should test or illustrate species concepts.
+
+54
+00:03:19,928 --> 00:03:24,215
+You should leave the lab with a concrete observation, comparison, or model tied
+
+55
+00:03:24,215 --> 00:03:25,789
+directly to the module claim.
+
+56
+00:03:26,539 --> 00:03:28,265
+Pause here for retrieval practice.
+
+57
+00:03:28,265 --> 00:03:32,479
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+58
+00:03:32,479 --> 00:03:36,592
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+59
+00:03:36,592 --> 00:03:38,014
+memory more than re-reading.
+
+60
+00:03:38,764 --> 00:03:42,919
+Use these practice quiz questions as formative feedback.
+
+61
+00:03:42,919 --> 00:03:45,219
+Answer key: 1=C, 2=A, 3=D, 4=B.
+
+62
+00:03:45,219 --> 00:03:50,857
+If you miss a question, return to the module keys and find the evidence that
+
+63
+00:03:50,857 --> 00:03:52,934
+supports the correct answer.
+
+64
+00:03:53,684 --> 00:03:56,825
+Before you leave this module, make the study work active.
+
+65
+00:03:56,825 --> 00:04:00,957
+Start with the module's central claim before memorizing vocabulary; Use the
+
+66
+00:04:00,957 --> 00:04:05,365
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+67
+00:04:05,365 --> 00:04:07,679
+words, then redraw it as a simple diagram.
+
+68
+00:04:07,679 --> 00:04:11,811
+Then answer this exit question without notes: What evidence would support a
+
+69
+00:04:11,811 --> 00:04:13,011
+speciation claim?
+
+70
+00:04:13,011 --> 00:04:17,309
+A strong response names a mechanism, points to evidence, and states what would
+
+71
+00:04:17,309 --> 00:04:18,576
+change the explanation.
+
+72
+00:04:18,576 --> 00:04:22,212
+If your answer is only a definition list, connect the terms into a
+
+73
+00:04:22,212 --> 00:04:24,098
+cause-and-evidence chain and try again.
+
+74
+00:04:24,848 --> 00:04:29,789
+To synthesize this module: explain species concepts using evidence from the Lab 14
+
+75
+00:04:29,789 --> 00:04:30,989
+Macroevolution lab.
+
+76
+00:04:30,989 --> 00:04:35,750
+Your explanation must include Species, Biological species concept, Reproductive
+
+77
+00:04:35,750 --> 00:04:40,812
+isolation, Prezygotic barrier, Postzygotic barrier, Allopatric speciation, Sympatric
+
+78
+00:04:40,812 --> 00:04:45,874
+speciation, Phylogeny. Revision prompt: what evidence would change your explanation?
+
+79
+00:04:45,874 --> 00:04:50,333
+Your final explanation should connect the central claim to a mechanism, an
+
+80
+00:04:50,333 --> 00:04:52,267
+observation, and a revision rule.
