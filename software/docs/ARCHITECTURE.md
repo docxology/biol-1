@@ -767,7 +767,7 @@ Varies widely by batch size and formats; profile locally if optimizing. Local TT
 
 | Document | Location | Active BIOL-1 Count | Default Output Formats | Opt-in Output Formats | Output Location |
 |----------|----------|---------------------|------------------------|-----------------------|-----------------|
-| **keys-to-success.md** | `course/module-XX-*/` | 15 | PDF, DOCX, MD | HTML, TXT, MP3 | `module-XX/output/study-guides/` |
+| **key-points.md** | `course/module-XX-*/` | 15 | PDF, DOCX, MD | HTML, TXT, MP3 | `module-XX/output/study-guides/` |
 | **questions.md** | `course/module-XX-*/` | 15 | PDF, DOCX, MD | HTML, TXT, MP3 | `module-XX/output/study-guides/` |
 
 #### Laboratory Protocols
@@ -803,8 +803,8 @@ Spring 2026 BIOL-8 exams and quizzes are archived under [`../../archive/spring-2
 
 | Document | Location | Output Formats | Output Location |
 |----------|----------|----------------|-----------------|
-| **Syllabus.md** | `syllabus/BIOL-X_*.md` | PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in | `syllabus/output/` |
-| **Schedule.md** | `syllabus/Schedule.md` | PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in | `syllabus/output/` |
+| **Syllabus.md** | `syllabus/BIOL-X_*.md` | PDF and DOCX by default; HTML, TXT, MD, MP3 opt-in | `syllabus/output/` |
+| **Schedule.md** | `syllabus/Schedule.md` | PDF and DOCX by default; HTML, TXT, MD, MP3 opt-in | `syllabus/output/` |
 
 **Note:** Syllabus outputs use a flat structure (files directly in output/, not subdirectories).
 
@@ -845,7 +845,7 @@ course_development/
 ├── biol-1/
 │   ├── course/
 │   │   ├── module-01-study-of-life/
-│   │   │   ├── keys-to-success.md       # Source
+│   │   │   ├── key-points.md       # Source
 │   │   │   ├── questions.md             # Source
 │   │   │   ├── resources/               # Supplementary materials
 │   │   │   └── output/
@@ -867,7 +867,7 @@ course_development/
 ├── biol-8/
 │   ├── course/
 │   │   ├── module-01-exploring-life-science/
-│   │   │   ├── keys-to-success.md
+│   │   │   ├── key-points.md
 │   │   │   ├── questions.md
 │   │   │   ├── resources/               # Module PDF
 │   │   │   └── output/
@@ -897,7 +897,7 @@ After running generation, each module's output directory contains:
 
 ```
 module-XX/output/
-├── study-guides/       # questions + keys-to-success in each requested format
+├── study-guides/       # questions + key-points in each requested format
 └── website/            # index.html (interactive module site)
 ```
 

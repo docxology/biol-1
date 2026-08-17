@@ -1,0 +1,163 @@
+# Generated from module-04-cells/module.toml — do not hand-edit
+title: "BIOL-1 Module 04: Cells"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Cells"
+  series: "BIOL-1: General Biology"
+  series_index: 4
+  series_total: 16
+  lab: "Lab 04 Liquid Chemistry"
+
+sections:
+- id: "module-04-cells"
+  title: "Module 04: Cells"
+  objectives:
+    - "State the core claims of cell theory."
+    - "Compare prokaryotic and eukaryotic cells using structure and scale."
+    - "Explain how membranes and compartments support cell function."
+    - "Match major organelles to their roles."
+    - "Use microscope evidence to support claims about cells."
+  beats:
+
+  - id: "module-04-cells_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 04: Cells. The connected lab is Lab 04 Liquid Chemistry. Here is the central idea: Cells explains cell theory with compartmental structure and microscopy evidence. Let us begin."
+    visual:
+      kind: title
+      title: "Module 04: Cells"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 04 Liquid Chemistry"
+
+  - id: "module-04-cells_objectives"
+    narration: "By the end of this module you should be able to: State the core claims of cell theory; Compare prokaryotic and eukaryotic cells using structure and scale; Explain how membranes and compartments support cell function; Match major organelles to their roles; Use microscope evidence to support claims about cells. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "State the core claims of cell theory."
+        - "Compare prokaryotic and eukaryotic cells using structure and scale."
+        - "Explain how membranes and compartments support cell function."
+        - "Match major organelles to their roles."
+        - "Use microscope evidence to support claims about cells."
+
+  - id: "module-04-cells_topics"
+    narration: "This module covers 5 topics. Cell theory — Cell theory explains cells as the basic units of life and as descendants of existing cells. Prokaryotic and eukaryotic organization — Prokaryotic and eukaryotic cells differ in compartmentalization and internal organization. Membranes and compartments — Membranes separate internal conditions from the environment and define organelles. Organelles and division of labor — Organelles divide cellular work such as energy capture, protein processing, and storage. Microscopy and evidence — Microscopy turns cell structure into observable evidence. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Cell theory"
+        - "Prokaryotic and eukaryotic organization"
+        - "Membranes and compartments"
+        - "Organelles and division of labor"
+        - "Microscopy and evidence"
+
+  - id: "module-04-cells_concept_map"
+    narration: "Here is the concept map for module 04. The central claim is: Cells explains cell theory with compartmental structure and microscopy evidence. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-04-concept-map.png"
+
+  - id: "module-04-cells_process_model"
+    narration: "This process model shows the reasoning sequence for cells. Follow the stages from inputs to outputs. The Lab 04 Liquid Chemistry lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-04-process-model.png"
+
+  - id: "module-04-cells_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: What does cell theory claim? Treat that question as an observation that needs an explanation. A useful first claim is: Cell theory explains cells as the basic units of life and as descendants of existing cells. Then ask what evidence could support or challenge it. The first practice check reminds us that Cell theory states that organisms are made of cells and that cells arise from pre-existing cells. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: What does cell theory claim?"
+        - "Build a claim: Cell theory explains cells as the basic units of life and as descendants of existing cells."
+        - "Check the claim: Cell theory states that organisms are made of cells and that cells arise from pre-existing cells."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-04-cells_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Cell theory, Prokaryote, Eukaryote. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Cell theory: Principle that organisms are made of cells and cells come from cells."
+        - "Prokaryote: Cell without a membrane-bound nucleus."
+        - "Eukaryote: Cell with a membrane-bound nucleus and organelles."
+
+  - id: "module-04-cells_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Organelle, Nucleus, Mitochondrion. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Organelle: Specialized cell structure with a particular job."
+        - "Nucleus: Eukaryotic compartment that stores DNA."
+        - "Mitochondrion: Organelle central to aerobic energy harvesting."
+
+  - id: "module-04-cells_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Chloroplast, Microscopy. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Chloroplast: Plant and algal organelle that performs photosynthesis."
+        - "Microscopy: Use of lenses or imaging tools to observe small structures."
+
+  - id: "module-04-cells_lab"
+    narration: "The lab connected to this module is Lab 04 Liquid Chemistry. The evidence you collect should test or illustrate cell theory. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 04 Liquid Chemistry"
+        - "Evidence surface for: Cell theory"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-04-cells_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-04-retrieval-card.png"
+
+  - id: "module-04-cells_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=B, 2=D, 3=A, 4=C. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: Which statement is part of cell theory?"
+        - "Q2: What is the clearest structural difference between a prokaryotic and a eukaryotic cell?"
+        - "Q3: A cell is packed with mitochondria. This most likely means the cell:"
+        - "Q4: Which structure would you find in a plant cell but not an animal cell?"
+
+  - id: "module-04-cells_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What observation would support a claim that a specimen is cellular? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What observation would support a claim that a specimen is cellular?"
+
+  - id: "module-04-cells_synthesis"
+    narration: "To synthesize this module: explain cell theory using evidence from the Lab 04 Liquid Chemistry lab. Your explanation must include Cell theory, Prokaryote, Eukaryote, Organelle, Nucleus, Mitochondrion, Chloroplast, Microscopy. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain cell theory using evidence from the Lab 04 Liquid Chemistry lab"
+        - "Must include: Cell theory, Prokaryote, Eukaryote, Organelle, Nucleus, Mitochondrion, Chloroplast, Microscopy"
+        - "What evidence would change your explanation?"

@@ -35,7 +35,7 @@ Returns a 1:1 mapping of chapter numbers (1-17) to module numbers (1-17).
 
 #### `extract_chapter_number(filename: str) -> int`
 Extracts chapter number from a filename containing "Chapter NN" pattern.
-- **Args:** `filename` - e.g., "Chapter 01 Keys to Success.docx"
+- **Args:** `filename` - e.g., "Chapter 01 Key Points.docx"
 - **Returns:** Integer chapter number
 - **Raises:** `ValueError` if pattern not found
 

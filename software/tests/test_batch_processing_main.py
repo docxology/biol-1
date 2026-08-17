@@ -1,6 +1,7 @@
 """Comprehensive tests for batch processing main module."""
 
 from pathlib import Path
+
 import pytest
 
 from src.batch_processing.main import (
@@ -122,6 +123,26 @@ class TestProcessModuleByType:
         with pytest.raises(ValueError, match="does not exist"):
             process_module_by_type(str(temp_dir / "nonexistent"), str(temp_dir / "output"))
 
+    def test_default_module_content_renders_all_three_student_types_as_pdf_and_docx(self, temp_dir):
+        """The canonical module delivery contains key points, quiz, and questions in both formats."""
+        module_dir = temp_dir / "module-04-cells"
+        module_dir.mkdir()
+        for name in ("key-points.md", "practice-quiz.md", "questions.md"):
+            (module_dir / name).write_text(f"# {name}\n\nContent", encoding="utf-8")
+
+        result = process_module_by_type(
+            str(module_dir), str(temp_dir / "output"), formats=["pdf", "docx"]
+        )
+
+        study_guides = list((temp_dir / "output" / "study-guides").iterdir())
+        assert result["errors"] == []
+        assert {path.suffix for path in study_guides} == {".pdf", ".docx"}
+        assert len(study_guides) == 6
+        assert all(
+            any(name in path.name for name in ("key-points", "practice-quiz", "questions"))
+            for path in study_guides
+        )
+
     def test_process_module_by_type_ignores_assignments(self, temp_dir):
         """Active module processing ignores legacy assignments directories."""
         module_dir = temp_dir / "module"
@@ -236,29 +257,26 @@ class TestClearAllOutputs:
 class TestProcessModuleByTypeFormats:
     """Tests for process_module_by_type formats parameter."""
 
-    def test_formats_none_generates_all(self, temp_dir):
-        """formats=None generates all formats (default behavior)."""
+    def test_formats_none_generates_deterministic_formats(self, temp_dir):
+        """formats=None avoids external audio tooling and generates formats."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
-        (module_dir / "keys-to-success.md").write_text(
-            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
-        )
+        (module_dir / "key-points.md").write_text("# Key Points\n\nStudy hard.", encoding="utf-8")
 
         output_dir = temp_dir / "output"
         result = process_module_by_type(str(module_dir), str(output_dir), formats=None)
 
         assert "summary" in result
         # All format keys should exist in summary
-        for fmt in ["pdf", "mp3", "docx", "html", "txt"]:
+        for fmt in ["pdf", "docx", "html", "txt", "md"]:
             assert fmt in result["summary"]
+        assert result["summary"]["mp3"] == 0
 
     def test_formats_txt_only(self, temp_dir):
         """formats=["txt"] only generates TXT, skips others."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
-        (module_dir / "keys-to-success.md").write_text(
-            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
-        )
+        (module_dir / "key-points.md").write_text("# Key Points\n\nStudy hard.", encoding="utf-8")
 
         output_dir = temp_dir / "output"
         result = process_module_by_type(str(module_dir), str(output_dir), formats=["txt"])
@@ -273,9 +291,7 @@ class TestProcessModuleByTypeFormats:
         """Unrecognized format in list raises a clear error."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
-        (module_dir / "keys-to-success.md").write_text(
-            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
-        )
+        (module_dir / "key-points.md").write_text("# Key Points\n\nStudy hard.", encoding="utf-8")
 
         output_dir = temp_dir / "output"
         with pytest.raises(ValueError, match="Unsupported output format"):
@@ -285,9 +301,7 @@ class TestProcessModuleByTypeFormats:
         """formats=[] raises a clear error."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
-        (module_dir / "keys-to-success.md").write_text(
-            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
-        )
+        (module_dir / "key-points.md").write_text("# Key Points\n\nStudy hard.", encoding="utf-8")
 
         output_dir = temp_dir / "output"
         with pytest.raises(ValueError, match="No output formats requested"):
@@ -309,8 +323,9 @@ class TestProcessSyllabusFormats:
         result = process_syllabus(str(syllabus_dir), str(output_dir), formats=None)
 
         assert "summary" in result
-        for fmt in ["pdf", "mp3", "docx", "html", "txt"]:
+        for fmt in ["pdf", "docx", "html", "txt", "md"]:
             assert fmt in result["summary"]
+        assert result["summary"]["mp3"] == 0
 
     def test_syllabus_formats_txt_only(self, temp_dir):
         """formats=["txt"] only generates TXT."""
@@ -361,9 +376,7 @@ class TestProcessModuleByTypeMdFormat:
         """formats=["md"] only generates MD, skips others."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
-        (module_dir / "keys-to-success.md").write_text(
-            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
-        )
+        (module_dir / "key-points.md").write_text("# Key Points\n\nStudy hard.", encoding="utf-8")
 
         output_dir = temp_dir / "output"
         result = process_module_by_type(str(module_dir), str(output_dir), formats=["md"])
@@ -379,9 +392,7 @@ class TestProcessModuleByTypeMdFormat:
         """Verify MD count appears in summary when generating all formats."""
         module_dir = temp_dir / "module-01"
         module_dir.mkdir()
-        (module_dir / "keys-to-success.md").write_text(
-            "# Keys to Success\n\nStudy hard.", encoding="utf-8"
-        )
+        (module_dir / "key-points.md").write_text("# Key Points\n\nStudy hard.", encoding="utf-8")
 
         output_dir = temp_dir / "output"
         result = process_module_by_type(str(module_dir), str(output_dir), formats=["md", "txt"])

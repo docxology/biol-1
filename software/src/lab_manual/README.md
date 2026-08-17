@@ -23,14 +23,12 @@ output = render_lab_manual(
     "resources/lab-1-measurement-methods.md",
     "output/lab-1.pdf",
     output_format="pdf",
-    course_name="BIOL-1: General Biology"
+    course_name="BIOL-1: General Biology",
 )
 
 # Render to HTML (interactive)
 output = render_lab_manual(
-    "resources/lab-1-measurement-methods.md",
-    "output/lab-1.html",
-    output_format="html"
+    "resources/lab-1-measurement-methods.md", "output/lab-1.html", output_format="html"
 )
 ```
 
@@ -41,17 +39,12 @@ from src.lab_manual import generate_measurement_table, generate_data_table
 
 # Measurement table with custom aspects
 table_html = generate_measurement_table(
-    rows=5,
-    aspects=["Length", "Mass", "Volume"],
-    include_device=True,
-    include_unit=True
+    rows=5, aspects=["Length", "Mass", "Volume"], include_device=True, include_unit=True
 )
 
 # Generic data table
 table_html = generate_data_table(
-    rows=10,
-    columns=["Time", "Observation", "Notes"],
-    title="Observation Log"
+    rows=10, columns=["Time", "Observation", "Notes"], title="Observation Log"
 )
 ```
 
@@ -62,10 +55,7 @@ from src.lab_manual import batch_render_lab_manuals
 
 # Render all labs in a directory
 outputs = batch_render_lab_manuals(
-    "course/module-1/labs",
-    "output/module-1-labs",
-    output_format="pdf",
-    course_name="BIOL-1"
+    "course/module-1/labs", "output/module-1-labs", output_format="pdf", course_name="BIOL-1"
 )
 ```
 

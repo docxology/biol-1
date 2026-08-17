@@ -1,7 +1,7 @@
 """Main functions for module organization."""
 
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 from . import config
 from .utils import (
@@ -50,11 +50,11 @@ def create_module_structure(course_path: str, module_number: int) -> str:
     agents_path = module_path / "AGENTS.md"
     write_template_file(agents_path, config.AGENTS_TEMPLATE, module_number=module_number)
 
-    # Create keys-to-success.md
-    keys_path = module_path / "keys-to-success.md"
+    # Create key-points.md
+    keys_path = module_path / "key-points.md"
     write_template_file(
         keys_path,
-        config.KEYS_TO_SUCCESS_TEMPLATE,
+        config.KEY_POINTS_TEMPLATE,
         module_number=module_number,
     )
 
@@ -86,10 +86,7 @@ def validate_module_structure(module_path: str) -> bool:
 
     # Check required directories
     missing_dirs = list_missing_directories(module_dir, config.REQUIRED_DIRECTORIES)
-    if missing_dirs:
-        return False
-
-    return True
+    return not missing_dirs
 
 
 def initialize_module_files(module_path: str, template: str) -> None:
@@ -128,12 +125,12 @@ def initialize_module_files(module_path: str, template: str) -> None:
     if not check_file_exists(agents_path):
         write_template_file(agents_path, config.AGENTS_TEMPLATE, module_number=module_number)
 
-    # Create keys-to-success.md if it doesn't exist
-    keys_path = module_dir / "keys-to-success.md"
+    # Create key-points.md if it doesn't exist
+    keys_path = module_dir / "key-points.md"
     if not check_file_exists(keys_path):
         write_template_file(
             keys_path,
-            config.KEYS_TO_SUCCESS_TEMPLATE,
+            config.KEY_POINTS_TEMPLATE,
             module_number=module_number,
         )
 
@@ -164,7 +161,7 @@ def create_next_module(course_path: str) -> str:
     return create_module_structure(course_path, next_number)
 
 
-def list_course_modules(course_path: str) -> List[str]:
+def list_course_modules(course_path: str) -> list[str]:
     """List all modules in a course.
 
     Args:
@@ -184,7 +181,7 @@ def list_course_modules(course_path: str) -> List[str]:
     return [str(m) for m in modules]
 
 
-def get_module_statistics(module_path: str) -> Dict[str, Any]:
+def get_module_statistics(module_path: str) -> dict[str, Any]:
     """Get statistics about a module.
 
     Args:
@@ -222,8 +219,8 @@ def get_module_statistics(module_path: str) -> Dict[str, Any]:
     assignments_dir = module_dir / "assignments"
     assignment_count = 0
     if assignments_dir.exists():
-        from ..file_validation.utils import matches_pattern
         from ..file_validation.config import ASSIGNMENT_PATTERN
+        from ..file_validation.utils import matches_pattern
 
         assignment_count = sum(
             1

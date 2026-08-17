@@ -1,6 +1,6 @@
 """Configuration constants for lab manual rendering."""
 
-from typing import Any, Dict, List
+from typing import Any
 
 # Lab manual-specific CSS for print-friendly, fillable worksheets
 LAB_MANUAL_CSS = """
@@ -438,7 +438,7 @@ LAB_HTML_TEMPLATE = """<!DOCTYPE html>
 """
 
 # Default PDF generation options
-DEFAULT_PDF_OPTIONS: Dict[str, Any] = {
+DEFAULT_PDF_OPTIONS: dict[str, Any] = {
     "page_size": "letter",
     "margin_top": "0.75in",
     "margin_bottom": "0.75in",
@@ -456,7 +456,7 @@ LAB_DIRECTIVES = {
 }
 
 # Default measurement table columns
-DEFAULT_MEASUREMENT_COLUMNS: List[str] = [
+DEFAULT_MEASUREMENT_COLUMNS: list[str] = [
     "Physical Aspect",
     "Measurement Device",
     "Measurement Unit",

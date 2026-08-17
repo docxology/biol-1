@@ -1,6 +1,6 @@
 """Configuration for validation module."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from src.shared.course_config import SUPPORTED_OUTPUT_FORMATS, validate_supported_formats
 
@@ -11,16 +11,16 @@ ALL_SUPPORTED_FORMATS = list(SUPPORTED_OUTPUT_FORMATS)
 DEFAULT_REQUIRED_FORMATS = ["pdf", "docx"]
 
 # Format-aware validation: These are the base file types (without extension)
-STUDY_GUIDE_BASE_TYPES = ["keys-to-success", "questions"]
+STUDY_GUIDE_BASE_TYPES = ["key-points", "practice-quiz", "questions"]
 
 # Optional study guide files (not counted toward validity)
 OPTIONAL_STUDY_GUIDE_FILES = [
-    "keys-to-success.mp3",
+    "key-points.mp3",
     "questions.mp3",
 ]
 
 
-def get_expected_study_guide_files(formats: Optional[List[str]] = None) -> List[str]:
+def get_expected_study_guide_files(formats: list[str] | None = None) -> list[str]:
     """Get expected study guide files based on requested formats.
 
     Args:
@@ -28,7 +28,7 @@ def get_expected_study_guide_files(formats: Optional[List[str]] = None) -> List[
                  If None, uses DEFAULT_REQUIRED_FORMATS
 
     Returns:
-        List of expected file suffixes like ["keys-to-success.pdf", "questions.pdf", ...]
+        List of expected file suffixes like ["key-points.pdf", "practice-quiz.pdf", ...]
     """
     if formats is None:
         formats = DEFAULT_REQUIRED_FORMATS
@@ -51,7 +51,7 @@ SYLLABUS_REQUIRED_FORMATS = ["pdf", "docx"]  # Minimum for syllabus
 SYLLABUS_OPTIONAL_FORMATS = ["html", "txt", "mp3", "md"]  # Nice to have
 
 
-def get_syllabus_required_formats(formats: Optional[List[str]] = None) -> List[str]:
+def get_syllabus_required_formats(formats: list[str] | None = None) -> list[str]:
     """Get required syllabus formats based on requested formats.
 
     Args:
@@ -81,18 +81,15 @@ OUTPUT_DIRS = {
     "dashboards": "dashboards",
 }
 
-# Lab output formats: default used when no `formats` is supplied (backward compatibility).
-# Kept for backward compatibility with callers that don't thread requested formats.
-LAB_OUTPUT_FORMATS = ["pdf", "html"]
+# Lab output formats: the canonical course export is a printable PDF only.
+LAB_OUTPUT_FORMATS = ["pdf"]
 
-# Lab renderable formats: the current lab pipeline can produce PDF and HTML.
-# Module, syllabus, practice-test, and exam pipelines support additional
-# formats; lab validation records those as skipped instead of pretending they
-# are generated.
-LAB_RENDERABLE_FORMATS = ["pdf", "html"]
+# The lab pipeline deliberately does not publish HTML. The low-level lab
+# renderer may still use HTML internally to construct the PDF.
+LAB_RENDERABLE_FORMATS = ["pdf"]
 
 
-def get_lab_output_formats(formats: Optional[List[str]] = None) -> List[str]:
+def get_lab_output_formats(formats: list[str] | None = None) -> list[str]:
     """Resolve the lab output formats to validate.
 
     Args:
@@ -122,7 +119,7 @@ def get_lab_output_formats(formats: Optional[List[str]] = None) -> List[str]:
 #   - exempt: lab numbers that are intentionally undocumented in the
 #     dashboard set (typically because the only `lab-NN_*.md` is a
 #     supplemental/follow-up page).
-COURSE_CONFIG: Dict[str, Dict[str, Any]] = {
+COURSE_CONFIG: dict[str, dict[str, Any]] = {
     "biol-1": {
         "expected_modules": 16,
         "module_prefix": "module-",
@@ -144,7 +141,7 @@ COURSE_CONFIG: Dict[str, Dict[str, Any]] = {
 }
 
 
-def get_dashboard_config(course_name: str) -> Dict[str, Any]:
+def get_dashboard_config(course_name: str) -> dict[str, Any]:
     """Return the per-course dashboard invariant config (defaults if missing).
 
     Args:

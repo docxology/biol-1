@@ -1,7 +1,7 @@
 """Tests for text_to_speech main functions."""
 
-from pathlib import Path
 import subprocess
+from pathlib import Path
 
 import pytest
 

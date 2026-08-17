@@ -1,0 +1,33 @@
+{
+  "copied_outputs": [],
+  "meeting": {
+    "date": "2026-11-03",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "practice-test-04",
+        "include": [
+          "source"
+        ],
+        "kind": "practice_test",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "exam-03-review",
+        "include": [
+          "source"
+        ],
+        "kind": "review",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Practice Test 04 covers Modules 12-16.",
+    "status": "class",
+    "title": "Practice Test 04; Exam 03 review",
+    "week": 11
+  }
+}

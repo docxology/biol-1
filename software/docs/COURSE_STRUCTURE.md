@@ -31,7 +31,7 @@ flowchart LR
 | Tier | Repository | Visibility | Contents |
 |------|-----------|-----------|----------|
 | **Development** | `cr-bio` (this repo) | Private | Source Markdown, software, exams, answer keys |
-| **Published** | `biol-1`, `biol-8` | Public | Generated PDF/DOCX/MD study guides plus labs, dashboards, slides, and practice tests |
+| **Published** | `biol-1`, `biol-8` | Public | Generated PDF/DOCX study guides plus labs, dashboards, slides, and practice tests |
 
 The pipeline transforms source content into multiple output formats and pushes to the public repositories. Teacher-only materials (exams, answer keys) are **never published**.
 
@@ -96,19 +96,19 @@ Zero-padded two-digit number + kebab-case topic slug.
 
 ```
 module-01-exploring-life-science/
-├── keys-to-success.md             # Study guide
+├── key-points.md             # Study guide
 ├── questions.md                   # Review questions
 ├── resources/                     # Module-specific resources
 │   └── *.pdf                      # Lecture slides, readings
 └── output/                        # Generated outputs
-    ├── study-guides/              # PDF, DOCX, MD by default; HTML/TXT/MP3 optional
+    ├── study-guides/              # PDF and DOCX by default; HTML/TXT/MD/MP3 optional
     └── website/                   # index.html (interactive)
 ```
 
 | File | Purpose | Output Formats |
 |------|---------|----------------|
-| `keys-to-success.md` | Student study guide | PDF, DOCX, MD by default; HTML/TXT/MP3 optional |
-| `questions.md` | Review questions | PDF, DOCX, MD by default; HTML/TXT/MP3 optional |
+| `key-points.md` | Student study guide | PDF and DOCX by default; HTML/TXT/MD/MP3 optional |
+| `questions.md` | Review questions | PDF and DOCX by default; HTML/TXT/MD/MP3 optional |
 
 ---
 
@@ -221,7 +221,7 @@ After **`publish_all.py`** (steps **7–8**) and root **`publish.py`** aggregati
 ```
 PUBLISHED/biol-X/
 ├── homework/           # flattened *questions* study-guide artifacts
-├── module_keys/        # flattened *keys-to-success* artifacts
+├── module_keys/        # flattened *key-points* artifacts
 ├── labs/               # lab PDF/HTML (and related) copies
 ├── dashboards/         # lab dashboard HTML
 ├── slides/             # slide PDF mirrors

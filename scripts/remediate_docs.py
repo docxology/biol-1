@@ -40,7 +40,7 @@ def generate_readme(path, context, files_in_dir):
     if dir_type == "module":
         content += f"## Overview\n\nThis directory contains the curriculum materials for {title}.\n\n"
         content += "## Contents\n\n"
-        content += "- `keys-to-success.md`: Learning objectives and study tips.\n"
+        content += "- `key-points.md`: Learning objectives and study tips.\n"
         content += "- `questions.md`: Study questions with continuous numbering.\n"
     elif dir_type == "software_src":
         content += f"## Overview\n\nThis directory contains the source code for the `{os.path.basename(path)}` module.\n\n"
@@ -80,7 +80,7 @@ def generate_agents(path, context):
         content += "It is subject to the continuous numbering mandate for study questions.\n\n"
         content += "### Standard layout\n\n"
         content += (
-            "- Source files at module root: `questions.md`, `keys-to-success.md`; "
+            "- Source files at module root: `questions.md`, `key-points.md`; "
             "optional `resources/` for module-local assets; generated `output/` "
             "(study-guides, website) — do not edit `output/` by hand.\n"
         )

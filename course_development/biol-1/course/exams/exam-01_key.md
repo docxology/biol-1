@@ -63,7 +63,7 @@
 6. **Endosymbiotic**
 7. **Mosaic**
 8. **Denaturation**
-9. **Catabolic** (or exergonic)
+9. **Catabolic**
 10. **Fermentation**
 11. **Autotroph** (or photoautotroph / producer)
 

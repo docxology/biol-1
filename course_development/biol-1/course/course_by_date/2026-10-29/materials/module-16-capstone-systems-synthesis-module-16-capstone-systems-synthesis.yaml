@@ -1,0 +1,163 @@
+# Generated from module-16-capstone-systems-synthesis/module.toml — do not hand-edit
+title: "BIOL-1 Module 16: Capstone Systems Synthesis"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Capstone Systems Synthesis"
+  series: "BIOL-1: General Biology"
+  series_index: 16
+  series_total: 16
+  lab: "Lab 16 Capstone Systems Synthesis"
+
+sections:
+- id: "module-16-capstone-systems-synthesis"
+  title: "Module 16: Capstone Systems Synthesis"
+  objectives:
+    - "Connect concepts from at least three modules in one explanation."
+    - "Trace a mechanism across biological scales."
+    - "Identify feedback loops, constraints, and tradeoffs."
+    - "Match evidence types to claims at different scales."
+    - "Revise a systems explanation using new evidence."
+  beats:
+
+  - id: "module-16-capstone-systems-synthesis_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 16: Capstone Systems Synthesis. The connected lab is Lab 16 Capstone Systems Synthesis. Here is the central idea: Capstone Systems Synthesis explains cross-scale biological explanation through mechanisms, evidence chains, and revision. Let us begin."
+    visual:
+      kind: title
+      title: "Module 16: Capstone Systems Synthesis"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 16 Capstone Systems Synthesis"
+
+  - id: "module-16-capstone-systems-synthesis_objectives"
+    narration: "By the end of this module you should be able to: Connect concepts from at least three modules in one explanation; Trace a mechanism across biological scales; Identify feedback loops, constraints, and tradeoffs; Match evidence types to claims at different scales; Revise a systems explanation using new evidence. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Connect concepts from at least three modules in one explanation."
+        - "Trace a mechanism across biological scales."
+        - "Identify feedback loops, constraints, and tradeoffs."
+        - "Match evidence types to claims at different scales."
+        - "Revise a systems explanation using new evidence."
+
+  - id: "module-16-capstone-systems-synthesis_topics"
+    narration: "This module covers 5 topics. Biology across scales — Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems. Mechanism chains — Mechanism chains show how one change can produce effects across scales. Feedback and constraint — Feedback loops and constraints explain why biological systems do not change without limits. Evidence from multiple modules — Evidence from labs, models, and observations must match the scale of the claim. Capstone explanation and revision — Capstone reasoning combines concepts into a clear claim that can be tested and revised. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Biology across scales"
+        - "Mechanism chains"
+        - "Feedback and constraint"
+        - "Evidence from multiple modules"
+        - "Capstone explanation and revision"
+
+  - id: "module-16-capstone-systems-synthesis_concept_map"
+    narration: "Here is the concept map for module 16. The central claim is: Capstone Systems Synthesis explains cross-scale biological explanation through mechanisms, evidence chains, and revision. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-16-concept-map.png"
+
+  - id: "module-16-capstone-systems-synthesis_process_model"
+    narration: "This process model shows the reasoning sequence for capstone systems synthesis. Follow the stages from inputs to outputs. The Lab 16 Capstone Systems Synthesis lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-16-process-model.png"
+
+  - id: "module-16-capstone-systems-synthesis_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: How can a molecular change affect an ecosystem? Treat that question as an observation that needs an explanation. A useful first claim is: Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems. Then ask what evidence could support or challenge it. The first practice check reminds us that Synthesis links causes across scales, from molecular to ecological, into one coherent, evidence-backed explanation. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: How can a molecular change affect an ecosystem?"
+        - "Build a claim: Biological explanations become stronger when they connect molecules, cells, organisms, populations, and ecosystems."
+        - "Check the claim: Synthesis links causes across scales, from molecular to ecological, into one coherent, evidence-backed explanation."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-16-capstone-systems-synthesis_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include System, Scale, Mechanism. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "System: Interacting parts whose relationships shape outcomes."
+        - "Scale: Level of biological organization."
+        - "Mechanism: Causal process that explains how something happens."
+
+  - id: "module-16-capstone-systems-synthesis_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Feedback loop, Constraint, Tradeoff. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Feedback loop: Circular causal relationship that amplifies or reduces change."
+        - "Constraint: Limit that shapes what a system can do."
+        - "Tradeoff: Benefit in one function paired with cost elsewhere."
+
+  - id: "module-16-capstone-systems-synthesis_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Synthesis, Evidence chain. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Synthesis: Combining ideas into a coherent explanation."
+        - "Evidence chain: Linked evidence supporting each step of a claim."
+
+  - id: "module-16-capstone-systems-synthesis_lab"
+    narration: "The lab connected to this module is Lab 16 Capstone Systems Synthesis. The evidence you collect should test or illustrate biology across scales. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 16 Capstone Systems Synthesis"
+        - "Evidence surface for: Biology across scales"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-16-capstone-systems-synthesis_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-16-retrieval-card.png"
+
+  - id: "module-16-capstone-systems-synthesis_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=C, 2=A, 3=D, 4=B. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: A strong biological explanation that spans scales does what?"
+        - "Q2: When rising body temperature makes you sweat and cool back down, that is an example of:"
+        - "Q3: \"A larger body helps an animal retain heat but also requires more food.\" This statement describes a:"
+        - "Q4: To support a claim that spans several biological scales, the strongest evidence is:"
+
+  - id: "module-16-capstone-systems-synthesis_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What makes a synthesis stronger than a list of facts? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What makes a synthesis stronger than a list of facts?"
+
+  - id: "module-16-capstone-systems-synthesis_synthesis"
+    narration: "To synthesize this module: explain biology across scales using evidence from the Lab 16 Capstone Systems Synthesis lab. Your explanation must include System, Scale, Mechanism, Feedback loop, Constraint, Tradeoff, Synthesis, Evidence chain. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain biology across scales using evidence from the Lab 16 Capstone Systems Synthesis lab"
+        - "Must include: System, Scale, Mechanism, Feedback loop, Constraint, Tradeoff, Synthesis, Evidence chain"
+        - "What evidence would change your explanation?"

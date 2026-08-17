@@ -1,5 +1,6 @@
 # BIOL-1 Comprehensive Final Exam
 
+<!-- assessment-layout: tearoff-duplex -->
 **College of the Redwoods, Pelican Bay**
 **Instructor**: Dr. Daniel Friedman
 
@@ -11,7 +12,7 @@ Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-## Modules 01–16 (cumulative)
+## Modules 01–15 plus Module 16 capstone synthesis
 
 **Total Points**: 100  
 
@@ -129,7 +130,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
     - A) It is only made in the nucleus
     - B) It is permanent storage that never releases phosphate
     - C) It replaces DNA during replication
-    - D) Energy stored in its phosphate bonds can be transferred to drive cellular work when hydrolyzed / regenerated in coupled reactions
+    - D) ATP hydrolysis and phosphate transfer can be coupled to drive cellular work; ATP is continually regenerated rather than serving as permanent storage
 
 17. In overview, **photosynthesis** builds sugars using light energy; **cellular respiration**:
     - A) Creates glucose from carbon dioxide without energy input

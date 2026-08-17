@@ -1,15 +1,15 @@
 """Lab dashboard generation for BIOL-1 course."""
 
 from .main import (
-    LabDashboardSpec,
     SPECS,
+    LabDashboardSpec,
     render_all_dashboards,
     render_dashboard,
 )
 
 __all__ = [
-    "LabDashboardSpec",
     "SPECS",
-    "render_dashboard",
+    "LabDashboardSpec",
     "render_all_dashboards",
+    "render_dashboard",
 ]

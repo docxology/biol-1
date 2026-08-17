@@ -1,0 +1,52 @@
+{
+  "copied_outputs": [],
+  "meeting": {
+    "date": "2026-11-10",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "practice-test-05",
+        "include": [
+          "source"
+        ],
+        "kind": "practice_test",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "final-exam-review",
+        "include": [
+          "source"
+        ],
+        "kind": "review",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-17_tbd.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "TBD; cumulative reference",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Practice Test 05 is comprehensive across Modules 1-16.",
+    "status": "class",
+    "title": "Practice Test 05; comprehensive final preparation",
+    "week": 12
+  }
+}

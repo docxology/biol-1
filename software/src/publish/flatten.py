@@ -4,11 +4,9 @@ Handles flattening module directory structures by moving files from
 subdirectories to the module root, and cleaning published directories.
 """
 
-import shutil
 import logging
+import shutil
 from pathlib import Path
-from typing import List, Optional
-
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +47,7 @@ def flatten_module(module_dir: Path, dry_run: bool = False, verbose: bool = Fals
 
 def flatten_published(
     published_dir: Path,
-    skip_dirs: Optional[List[str]] = None,
+    skip_dirs: list[str] | None = None,
     dry_run: bool = False,
     verbose: bool = False,
 ) -> int:

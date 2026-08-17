@@ -13,7 +13,7 @@ This document traces data flow from source inputs (Markdown files, `module.toml`
 ```mermaid
 flowchart TD
     subgraph sources["Source Inputs"]
-        MD["Markdown files<br/>.md (questions, keys-to-success, labs, syllabus)"]
+        MD["Markdown files<br/>.md (questions, key-points, labs, syllabus)"]
         TOML["module.toml<br/>Typed module manifests"]
         AUDIO["Audio files<br/>.mp3, .wav, .m4a"]
         SLIDES["Pre-generated slide PDFs"]
@@ -40,7 +40,7 @@ flowchart TD
     subgraph moduleOutputs["Module Output Directories"]
         STUDY["module-XX/output/study-guides/<br/>.pdf, .docx, .html, .txt, .md"]
         WEB["module-XX/output/website/<br/>index.html"]
-        LABOUT["course/labs/output/<br/>.pdf, .html"]
+        LABOUT["course/labs/output/pdf/<br/>.pdf"]
         SYLLOUT["syllabus/output/<br/>.pdf, .docx, .html, .txt, .mp3"]
     end
 
@@ -113,7 +113,7 @@ Content lives under `course_development/<course>/` and is the only place humans 
 
 | Input | Location | Format | Consumed By |
 |-------|----------|--------|------------|
-| Module Markdown | `course/module-NN-*/questions.md`, `keys-to-success.md` | Markdown | `batch_processing`, `format_conversion`, `markdown_to_pdf` |
+| Module Markdown | `course/module-NN-*/questions.md`, `key-points.md` | Markdown | `batch_processing`, `format_conversion`, `markdown_to_pdf` |
 | Lab Protocols | `course/labs/lab-NN_*.md` | Markdown with lab directives | `lab_manual` |
 | Syllabus | `syllabus/BIOL-X_*.md` | Markdown | `batch_processing`, `schedule` |
 | Schedule | `syllabus/Schedule.md` | Markdown table | `schedule` |
@@ -127,7 +127,7 @@ Content lives under `course_development/<course>/` and is the only place humans 
 ```mermaid
 flowchart LR
     TOML["module.toml<br/>(typed manifest)"] --> MC["module_content"]
-    MC -->|"generate"| MD["Generated Markdown<br/>(questions, keys-to-success)"]
+    MC -->|"generate"| MD["Generated Markdown<br/>(questions, key-points)"]
     MC -->|"generate"| SVG["Generated SVG assets"]
     MC -->|"generate"| QUIZ["Quiz JSON"]
     SD["slide_deck"] -->|"reads"| TOML
@@ -146,7 +146,7 @@ The `generate_all_outputs.py` script (Step 3 of the publish pipeline) iterates o
 flowchart LR
     subgraph input["Module Directory"]
         QS["questions.md"]
-        KS["keys-to-success.md"]
+        KS["key-points.md"]
     end
 
     subgraph processing["batch_processing.process_module_by_type()"]
@@ -256,7 +256,7 @@ After the full pipeline completes:
 PUBLISHED/
 └── biol-1/
     ├── homework/           # questions.{pdf,docx,md}
-    ├── module_keys/        # keys-to-success.{pdf,docx,md}
+    ├── module_keys/        # key-points.{pdf,docx,md}
     ├── labs/               # lab PDFs + HTML
     ├── dashboards/         # lab dashboard HTML
     ├── slides/             # pre-generated slide PDFs
@@ -274,7 +274,7 @@ PUBLISHED/
 ```python
 # 1. Source: course_development/biol-1/course/module-12-darwin-evolution/
 #    ├── questions.md
-#    └── keys-to-success.md
+#    └── key-points.md
 
 # 2. Validation
 from src.file_validation.main import validate_module_files

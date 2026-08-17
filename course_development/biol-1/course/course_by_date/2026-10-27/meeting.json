@@ -1,0 +1,134 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-15-population-systems-ecology-key-points.docx",
+      "id": "module-15-population-systems-ecology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "7d696ab47bb1e9145a62536acd5610c2ac7f8177c10789d0ab5046ed6fb2e408",
+      "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-key-points.docx"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-questions.pdf",
+      "id": "module-15-population-systems-ecology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "33c60dc3b636cba94251bcdca393f4a02139573491b786694c3dd9c4ecf4fb3e",
+      "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-questions.pdf"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-practice-quiz.docx",
+      "id": "module-15-population-systems-ecology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "53b5e5837a09d8a4c76928ff3326bf37d71dbfcbdac7cc8dda27b46299de016b",
+      "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-key-points.pdf",
+      "id": "module-15-population-systems-ecology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "0b95f6d8fb94dad1c8010074cbde86f11330e06f85793eb0ca08e13a9e889fb1",
+      "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-questions.docx",
+      "id": "module-15-population-systems-ecology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "7fe4d8b00bcf1b3869599c930807ccc978574de290fe8fdc5e6769ee615eea7e",
+      "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-questions.docx"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-practice-quiz.pdf",
+      "id": "module-15-population-systems-ecology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "4b684147c15c8efd46ade314cc5e1eec949574253b5054b736ce9e0f35d3f3b9",
+      "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-module-15-slides-full.pdf",
+      "id": "module-15-population-systems-ecology",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "72c92ddd6141352d399af22e1c7517ef6193b4d594d17aa9bc64931d1c6995fe",
+      "source": "course_development/biol-1/resources/slides/module-15-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-module-15-slides-notes.pdf",
+      "id": "module-15-population-systems-ecology",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "4d8d354814ea52173d08b853147ea8ee818cf92497bc444a7d0bc5c64ec9fa22",
+      "source": "course_development/biol-1/resources/slides/module-15-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-lecture.mp4",
+      "id": "module-15-population-systems-ecology",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "a086adaecd1c0c5de39f28469092b453665c57a10198dfcfe34a4bc65066a166",
+      "source": "output/lectures/module-15-population-systems-ecology/module-15-population-systems-ecology/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-15-population-systems-ecology-module-15-population-systems-ecology.yaml",
+      "id": "module-15-population-systems-ecology",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "da39363159a5b8c0a0863f7c2feb9606244b54ae9047e718743b9ee6feb5f98f",
+      "source": "output/lectures/module-15-population-systems-ecology/module-15-population-systems-ecology.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-10-27",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-15-population-systems-ecology",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-15_population-systems-ecology.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 44: Population Ecology",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 45: Community and Ecosystem Ecology",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 15: Population and Systems Ecology; Lab 15",
+    "week": 10
+  }
+}

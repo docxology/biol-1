@@ -1,9 +1,9 @@
 """Configuration for speech-to-text transcription."""
 
-from typing import Any, Dict
+from typing import Any
 
 # Default transcription settings
-DEFAULT_TRANSCRIPTION_SETTINGS: Dict[str, Any] = {
+DEFAULT_TRANSCRIPTION_SETTINGS: dict[str, Any] = {
     "language": "en",
     "show_all": False,
 }

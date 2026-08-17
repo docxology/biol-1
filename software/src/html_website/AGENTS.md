@@ -31,7 +31,7 @@ Generate HTML website for a module.
 - `OSError`: If website generation fails
 
 **Process**:
-1. Reads markdown source files from module directory, including BIOL-1 root `keys-to-success.md` and `questions.md`
+1. Reads markdown source files from module directory, including BIOL-1 root `key-points.md` and `questions.md`
 2. Finds corresponding audio and text files from output directory
 3. Converts markdown to HTML
 4. Reads questions from `questions/questions.json` if available
@@ -292,10 +292,7 @@ The website includes relative links to:
 from src.html_website.main import generate_module_website
 
 # Generate website for module-1
-html_file = generate_module_website(
-    "biol-1/course/module-1",
-    course_name="BIOL-1"
-)
+html_file = generate_module_website("biol-1/course/module-1", course_name="BIOL-1")
 
 print(f"Website generated: {html_file}")
 ```

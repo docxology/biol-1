@@ -34,7 +34,7 @@ Create standard module folder structure.
 - `README.md` file
 - `AGENTS.md` file
 - `questions.md` file
-- `keys-to-success.md` file
+- `key-points.md` file
 
 #### `validate_module_structure(module_path: str) -> bool`
 
@@ -219,7 +219,7 @@ Get the next available module number for a course.
 - `AGENTS_TEMPLATE`: Template for module AGENTS.md
 - `REQUIRED_FILES`: List of required files in each module
 - `REQUIRED_DIRECTORIES`: List of required directories in each module (`[]` for BIOL-1)
-- `KEYS_TO_SUCCESS_TEMPLATE`: Template for module study guide files
+- `KEY_POINTS_TEMPLATE`: Template for module key-point files
 - `QUESTIONS_TEMPLATE`: Template for practice question files
 
 ## Integration Points
@@ -243,7 +243,7 @@ module-{number}/
 ├── README.md
 ├── AGENTS.md
 ├── questions.md
-└── keys-to-success.md
+└── key-points.md
 ```
 
 ## Error Handling

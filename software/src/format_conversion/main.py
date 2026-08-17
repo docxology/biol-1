@@ -2,7 +2,8 @@
 
 import logging
 from pathlib import Path
-from typing import Dict, List
+
+from src.shared.file_utils import ensure_output_directory
 
 from . import config
 from .utils import (
@@ -15,7 +16,6 @@ from .utils import (
     get_file_extension,
     get_output_path,
 )
-from src.shared.file_utils import ensure_output_directory
 
 logger = logging.getLogger(__name__)
 
@@ -80,7 +80,7 @@ def convert_file(input_path: str, output_format: str, output_path: str) -> None:
         raise ValueError(f"Conversion handler not implemented: {conversion_key}")
 
 
-def batch_convert(directory: str, input_format: str, output_format: str) -> List[str]:
+def batch_convert(directory: str, input_format: str, output_format: str) -> list[str]:
     """Batch convert files in a directory.
 
     Args:
@@ -134,7 +134,7 @@ def batch_convert(directory: str, input_format: str, output_format: str) -> List
     return output_files
 
 
-def get_supported_formats() -> Dict[str, list[str]]:
+def get_supported_formats() -> dict[str, list[str]]:
     """Get list of supported file formats.
 
     Returns:

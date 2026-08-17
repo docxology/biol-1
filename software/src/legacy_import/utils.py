@@ -1,7 +1,7 @@
 """Utility functions for the legacy import module."""
 
-import re
 import logging
+import re
 from pathlib import Path
 
 from src.module_organization.main import create_module_structure
@@ -13,7 +13,7 @@ def extract_chapter_number(filename: str) -> int:
     """Extract chapter number from filename.
 
     Args:
-        filename: Filename like "Chapter 01 Keys to Success.docx" or
+        filename: Filename like "Chapter 01 Key Points.docx" or
                  "General Biology Chapter 01 Slides.pdf"
 
     Returns:

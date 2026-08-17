@@ -17,6 +17,7 @@ Thin CLI orchestrators that wrap `software/src/` packages. Scripts contain only 
 | `validate_outputs.py` | `validation` | `main()` | Verify expected files exist for every in-scope module. |
 | `generate_biol1_lab_dashboards.py` | (stdlib; BIOL-1 lab specs) | `main()` | Regenerate exact-stem BIOL-1 lab dashboards from the active lab list. |
 | `generate_module_videos.py` | `lecture_create` | `main()` | Build LectureCreate YAML + render lecture videos per module. |
+| `generate_course_by_date.py` | `course_by_date` | `main()` | Build and validate BIOL-1 dated teaching handoffs from `course_calendar.toml`. |
 | `renumber_questions.py` | `content_processing` | `main()` | Convert section-based question numbering to continuous. |
 | `import_legacy_materials.py` | `legacy_import` | `main()` | Import an older lesson archive into the current module layout. |
 | `assemble_practice_test_12.py` | (stdlib; archived BIOL-8 content) | `main()` | Rebuild Spring 2026 `practice-test-12.md` / `_key.md` from PT01–11 slices (`archive/spring-2026/course_development/biol-8/course/practice_tests/`). |

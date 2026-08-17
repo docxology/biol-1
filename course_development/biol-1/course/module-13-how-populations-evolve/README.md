@@ -4,7 +4,7 @@ Welcome to Module 13! Now that we understand the basics of natural selection fro
 
 ## Module Structure
 
-1. **[Keys to Success](keys-to-success.md)**
+1. **[Key Points](key-points.md)**
    - Dive into the mechanisms of evolution (Genetic Drift, Gene Flow, Mutation) and the different ways natural selection can reshape a trait curve over time.
 2. **[Practice Questions](questions.md)**
    - Test your ability to identify the various evolutionary forces acting on a biological population.

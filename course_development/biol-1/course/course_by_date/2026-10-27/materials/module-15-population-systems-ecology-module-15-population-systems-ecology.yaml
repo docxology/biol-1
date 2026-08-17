@@ -1,0 +1,163 @@
+# Generated from module-15-population-systems-ecology/module.toml — do not hand-edit
+title: "BIOL-1 Module 15: Population and Systems Ecology"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Population and Systems Ecology"
+  series: "BIOL-1: General Biology"
+  series_index: 15
+  series_total: 16
+  lab: "Lab 15 Population Systems Ecology"
+
+sections:
+- id: "module-15-population-systems-ecology"
+  title: "Module 15: Population and Systems Ecology"
+  objectives:
+    - "Compare exponential and logistic population growth."
+    - "Explain carrying capacity and limiting factors."
+    - "Distinguish density-dependent and density-independent regulation."
+    - "Use trophic levels and the 10 percent rule to explain energy limits."
+    - "Contrast energy flow with nutrient cycling."
+  beats:
+
+  - id: "module-15-population-systems-ecology_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 15: Population and Systems Ecology. The connected lab is Lab 15 Population Systems Ecology. Here is the central idea: Population and Systems Ecology explains population systems governed by growth, limits, interactions, energy, and feedback. Let us begin."
+    visual:
+      kind: title
+      title: "Module 15: Population and Systems Ecology"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 15 Population Systems Ecology"
+
+  - id: "module-15-population-systems-ecology_objectives"
+    narration: "By the end of this module you should be able to: Compare exponential and logistic population growth; Explain carrying capacity and limiting factors; Distinguish density-dependent and density-independent regulation; Use trophic levels and the 10 percent rule to explain energy limits; Contrast energy flow with nutrient cycling. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Compare exponential and logistic population growth."
+        - "Explain carrying capacity and limiting factors."
+        - "Distinguish density-dependent and density-independent regulation."
+        - "Use trophic levels and the 10 percent rule to explain energy limits."
+        - "Contrast energy flow with nutrient cycling."
+
+  - id: "module-15-population-systems-ecology_topics"
+    narration: "This module covers 5 topics. Population growth models — Population size changes through births, deaths, immigration, and emigration. Limits and carrying capacity — Exponential growth describes rapid increase; logistic growth includes carrying capacity. Community interactions — Density-dependent and density-independent factors limit populations differently. Energy flow through trophic levels — Energy flows through producers, consumers, and decomposers with loss at transfers. Matter cycling and systems feedback — Matter cycles through ecosystems while energy must continually enter. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Population growth models"
+        - "Limits and carrying capacity"
+        - "Community interactions"
+        - "Energy flow through trophic levels"
+        - "Matter cycling and systems feedback"
+
+  - id: "module-15-population-systems-ecology_concept_map"
+    narration: "Here is the concept map for module 15. The central claim is: Population and Systems Ecology explains population systems governed by growth, limits, interactions, energy, and feedback. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-15-concept-map.png"
+
+  - id: "module-15-population-systems-ecology_process_model"
+    narration: "This process model shows the reasoning sequence for population and systems ecology. Follow the stages from inputs to outputs. The Lab 15 Population Systems Ecology lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-15-process-model.png"
+
+  - id: "module-15-population-systems-ecology_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: What changes population size? Treat that question as an observation that needs an explanation. A useful first claim is: Population size changes through births, deaths, immigration, and emigration. Then ask what evidence could support or challenge it. The first practice check reminds us that Logistic growth slows as limited resources bring the population toward carrying capacity. Exponential growth assumes unlimited resources. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: What changes population size?"
+        - "Build a claim: Population size changes through births, deaths, immigration, and emigration."
+        - "Check the claim: Logistic growth slows as limited resources bring the population toward carrying capacity. Exponential growth assumes unlimited resources."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-15-population-systems-ecology_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Population, Exponential growth, Logistic growth. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Population: Members of one species in an area."
+        - "Exponential growth: Growth pattern with increasing rate under abundant resources."
+        - "Logistic growth: Growth that slows as population approaches carrying capacity."
+
+  - id: "module-15-population-systems-ecology_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Carrying capacity, Density-dependent factor, Density-independent factor. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Carrying capacity: Approximate environment-supported population size."
+        - "Density-dependent factor: Limiting factor whose impact changes with crowding."
+        - "Density-independent factor: Limiting factor not directly tied to density."
+
+  - id: "module-15-population-systems-ecology_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Trophic level, Decomposer. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Trophic level: Feeding position in an energy pathway."
+        - "Decomposer: Organism that breaks down dead material and recycles nutrients."
+
+  - id: "module-15-population-systems-ecology_lab"
+    narration: "The lab connected to this module is Lab 15 Population Systems Ecology. The evidence you collect should test or illustrate population growth models. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 15 Population Systems Ecology"
+        - "Evidence surface for: Population growth models"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-15-population-systems-ecology_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-15-retrieval-card.png"
+
+  - id: "module-15-population-systems-ecology_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=C, 2=A, 3=D, 4=B. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: Logistic growth differs from exponential growth because logistic growth:"
+        - "Q2: A contagious disease that spreads faster when a population is crowded is an example of a:"
+        - "Q3: About how much of the energy at one trophic level typically passes to the next level up?"
+        - "Q4: Energy and matter behave differently in an ecosystem because:"
+
+  - id: "module-15-population-systems-ecology_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What evidence would show a population is near carrying capacity? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What evidence would show a population is near carrying capacity?"
+
+  - id: "module-15-population-systems-ecology_synthesis"
+    narration: "To synthesize this module: explain population growth models using evidence from the Lab 15 Population Systems Ecology lab. Your explanation must include Population, Exponential growth, Logistic growth, Carrying capacity, Density-dependent factor, Density-independent factor, Trophic level, Decomposer. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain population growth models using evidence from the Lab 15 Population Systems Ecology lab"
+        - "Must include: Population, Exponential growth, Logistic growth, Carrying capacity, Density-dependent factor, Density-independent factor, Trophic level, Decomposer"
+        - "What evidence would change your explanation?"

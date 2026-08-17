@@ -39,7 +39,7 @@ def load_publish_config(repo_root: Path | None = None) -> dict[str, Any]:
     if not config_path.exists():
         return {
             "publish": {
-                "formats": {"pdf": True, "docx": True, "md": True},
+                "formats": {"pdf": True, "docx": True, "md": False},
                 "courses": _fallback_course_config(),
             }
         }

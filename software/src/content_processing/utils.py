@@ -3,9 +3,9 @@
 Functions migrated from scripts/renumber_questions.py.
 """
 
-import re
 import logging
-from typing import Any, List, Dict, Tuple
+import re
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,7 @@ def extract_questions_from_sectioned(content: str) -> list[str]:
     for line in lines:
         stripped = line.strip()
         # Match lines that start with * or - and contain a question
-        if stripped.startswith("*") or stripped.startswith("-"):
+        if stripped.startswith(("*", "-")):
             # Remove the bullet point marker
             question = stripped.lstrip("*- \t")
             if question and len(question) > 5:  # Skip very short items
@@ -97,7 +97,7 @@ def normalize_whitespace(content: str) -> str:
     return "\n".join(result)
 
 
-def extract_headers(content: str) -> List[Tuple[int, str]]:
+def extract_headers(content: str) -> list[tuple[int, str]]:
     """Extract all markdown headers from content.
 
     Args:
@@ -120,7 +120,7 @@ def extract_headers(content: str) -> List[Tuple[int, str]]:
     return headers
 
 
-def count_questions(content: str) -> Dict[str, int]:
+def count_questions(content: str) -> dict[str, int]:
     """Count questions in markdown content by type.
 
     Detects numbered questions (1. Question?), bullet questions (* Question?),
@@ -147,7 +147,7 @@ def count_questions(content: str) -> Dict[str, int]:
         stripped = line.strip()
         if re.match(r"^\d+\.", stripped):
             counts["numbered"] += 1
-        elif stripped.startswith("*") or stripped.startswith("-"):
+        elif stripped.startswith(("*", "-")):
             counts["bulleted"] += 1
         elif "?" in stripped:
             counts["inline"] += 1
@@ -155,7 +155,7 @@ def count_questions(content: str) -> Dict[str, int]:
     return counts
 
 
-def extract_numbered_items(content: str) -> List[str]:
+def extract_numbered_items(content: str) -> list[str]:
     """Extract all numbered list items from markdown content.
 
     Args:
@@ -176,7 +176,7 @@ def extract_numbered_items(content: str) -> List[str]:
     return items
 
 
-def validate_question_format(content: str) -> Dict[str, Any]:
+def validate_question_format(content: str) -> dict[str, Any]:
     """Validate that a questions.md file has proper format.
 
     Args:

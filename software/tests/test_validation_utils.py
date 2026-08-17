@@ -1,12 +1,12 @@
 """Tests for validation/utils.py functions."""
 
 from src.validation.utils import (
-    count_files_by_extension,
-    get_module_directories,
     check_output_directory,
     check_study_guide_files,
     check_website_files,
+    count_files_by_extension,
     format_file_counts,
+    get_module_directories,
     get_timestamp,
 )
 
@@ -223,7 +223,7 @@ class TestCheckStudyGuideFiles:
         sg_dir.mkdir(parents=True)
 
         # Create files with module prefix but matching suffix
-        (sg_dir / "module-01-study-guide-keys-to-success.pdf").write_text("pdf", encoding="utf-8")
+        (sg_dir / "module-01-study-guide-key-points.pdf").write_text("pdf", encoding="utf-8")
 
         check_study_guide_files(temp_dir)
         # At least one file should be found if suffix matches

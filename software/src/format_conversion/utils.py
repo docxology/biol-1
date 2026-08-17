@@ -3,11 +3,12 @@
 import html
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, ClassVar
+
+from src.shared.file_utils import read_markdown_file
 
 from ..markdown_to_pdf.main import render_markdown_to_pdf
 from ..markdown_to_pdf.utils import markdown_to_html
-from src.shared.file_utils import read_markdown_file
 
 
 def get_file_extension(file_path: Path) -> str:
@@ -22,9 +23,7 @@ def get_file_extension(file_path: Path) -> str:
     return file_path.suffix.lower().lstrip(".")
 
 
-def get_output_path(
-    input_path: Path, output_format: str, output_dir: Optional[Path] = None
-) -> Path:
+def get_output_path(input_path: Path, output_format: str, output_dir: Path | None = None) -> Path:
     """Get output file path from input path and format.
 
     Args:
@@ -169,8 +168,19 @@ class _MarkdownHtmlToDocx(HTMLParser):
     (no blank lines between items) render correctly.
     """
 
-    BLOCK_TAGS = {"p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "pre"}
-    EMPHASIS_TAGS = {"strong", "b", "em", "i", "code", "u"}
+    BLOCK_TAGS: ClassVar[set[str]] = {
+        "p",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "li",
+        "blockquote",
+        "pre",
+    }
+    EMPHASIS_TAGS: ClassVar[set[str]] = {"strong", "b", "em", "i", "code", "u"}
 
     def __init__(self, doc: Any) -> None:
         super().__init__(convert_charrefs=True)
@@ -189,7 +199,7 @@ class _MarkdownHtmlToDocx(HTMLParser):
         if self._runs and self._block_stack:
             self._flush_block(self._block_stack[-1])
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         if tag in ("ol", "ul"):
             self._list_stack.append({"type": tag, "index": 0})
             return

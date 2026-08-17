@@ -1,9 +1,8 @@
 """Main logic for the content_processing module."""
 
-import re
 import logging
+import re
 from pathlib import Path
-from typing import Optional, List
 
 from . import config
 from .utils import extract_questions_from_sectioned, format_as_continuous
@@ -58,8 +57,8 @@ def process_questions_file(
 
 def renumber_questions_in_course(
     repo_root: Path,
-    courses: Optional[List[str]] = None,
-    module_filter: Optional[str] = None,
+    courses: list[str] | None = None,
+    module_filter: str | None = None,
     dry_run: bool = False,
     verbose: bool = False,
 ) -> dict:

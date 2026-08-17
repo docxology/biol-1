@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-07-molecular-genetics-practice-quiz.pdf",
+      "id": "module-07-molecular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "9da41deacb1d49a89b608e564005cefaeffe01c027430491be4ef517c38d8932",
+      "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-questions.docx",
+      "id": "module-07-molecular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "d348d71aa0517d6db31a848db12dc30e08d5d85531b57d5ff18f40931f55eece",
+      "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-questions.docx"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-key-points.docx",
+      "id": "module-07-molecular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "5506d24a7b408ad657b1871f6e49f4df60db090f4483080fec33414a0a888402",
+      "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-key-points.docx"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-questions.pdf",
+      "id": "module-07-molecular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "61f09cadc25c53b858a5e0f8fbd6d44e6c42c2e2cdfbc0e1b0bd5b6a225a83a7",
+      "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-questions.pdf"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-key-points.pdf",
+      "id": "module-07-molecular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "eabe8bfc886f0bbddae87a7a25209b88b0e06d9b106deb65d097b1676c95b8d4",
+      "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-practice-quiz.docx",
+      "id": "module-07-molecular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "0aed5056e4c7d2ba530ec8f63c9be34311d263b1c4c3ceb86dea4fabb56f3c68",
+      "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-module-7-slides-notes.pdf",
+      "id": "module-07-molecular-genetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "874693799b3f46337bb6c9803c6ea0c70101582cfb067581eb49dfc7a83c6bcc",
+      "source": "course_development/biol-1/resources/slides/module-7-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-module-7-slides-full.pdf",
+      "id": "module-07-molecular-genetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "77824578656fa7625a0911c3352140d994bcdb8cbb53e5568ccea6ffb686a7ac",
+      "source": "course_development/biol-1/resources/slides/module-7-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-lecture.mp4",
+      "id": "module-07-molecular-genetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "b501c002aadc661624673c8bcf81efc58d0f46918d76ff582695cd6ce0dbf636",
+      "source": "output/lectures/module-07-molecular-genetics/module-07-molecular-genetics/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-07-molecular-genetics-module-07-molecular-genetics.yaml",
+      "id": "module-07-molecular-genetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "d6859a478ff33e90711f3f01a4a03ab66f38c960caaec705db810fd6c54d2ed9",
+      "source": "output/lectures/module-07-molecular-genetics/module-07-molecular-genetics.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-09-22",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-07-molecular-genetics",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-07_molecular-genetics.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 12: Molecular Biology of the Gene",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 07: Molecular Genetics; Lab 07",
+    "week": 5
+  }
+}

@@ -1,9 +1,9 @@
 """Configuration for Markdown to PDF conversion."""
 
-from typing import Any, Dict
+from typing import Any
 
 # Default PDF options
-DEFAULT_PDF_OPTIONS: Dict[str, Any] = {
+DEFAULT_PDF_OPTIONS: dict[str, Any] = {
     "page_size": "letter",
     "margin_top": "1in",
     "margin_bottom": "1in",
@@ -30,6 +30,41 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 1em;
     margin-bottom: 0.5em;
 }
+
+/* Duplex assessment contract: page 1 is removable, page 2 is free response. */
+.assessment-page {
+    break-before: page;
+    page-break-before: always;
+}
+.assessment-page:first-of-type {
+    break-before: auto;
+    page-break-before: auto;
+}
+.tearoff-page {
+    break-before: auto;
+    page-break-before: auto;
+    font-size: 8.5pt;
+    line-height: 1.05;
+}
+.tearoff-page h2 {
+    font-size: 14pt;
+    margin: 0 0 0.25em;
+}
+.tearoff-page h3 {
+    font-size: 9pt;
+    margin: 0.35em 0 0.1em;
+}
+.tearoff-page p { margin: 0.08em 0; }
+.answer-columns {
+    column-count: 2;
+    column-gap: 1.5em;
+    column-fill: auto;
+}
+.answer-columns h3, .answer-columns p { break-inside: avoid; }
+.free-response-page, .question-booklet-page {
+    page-break-before: always;
+}
+
 
 h1 {
     font-size: 18pt;

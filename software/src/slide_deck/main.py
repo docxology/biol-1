@@ -428,7 +428,9 @@ def _render_visual(deck: SlideDeck, slide: Slide, notes_mode: bool) -> str:
             ("Claim", "Evidence", "Revision"),
             (module.topics[0], module.lab, "What would change your mind?"),
         )
-    return '<div class="visual-placeholder">Visual surface</div>'
+    # Keep unknown manifest values renderable and informative rather than
+    # emitting a placeholder that looks like a completed visual.
+    return _ordered_cards("Visual", module.contents)
 
 
 def _module_pathway_visual(module: ModuleContent) -> str:

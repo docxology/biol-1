@@ -7,7 +7,7 @@ from .main import (
 )
 
 __all__ = [
-    "transcribe_audio",
     "batch_transcribe_audio",
+    "transcribe_audio",
     "transcribe_from_markdown",
 ]

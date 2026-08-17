@@ -4,7 +4,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 # Path to the scripts directory
 SCRIPTS_DIR = Path(__file__).parent.parent / "scripts"
 SOFTWARE_DIR = Path(__file__).parent.parent
@@ -19,6 +18,7 @@ class TestGenerateAllOutputsCLI:
             [sys.executable, str(SCRIPTS_DIR / "generate_all_outputs.py"), "--help"],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 0
@@ -36,6 +36,7 @@ class TestGenerateAllOutputsCLI:
             [sys.executable, str(SCRIPTS_DIR / "generate_all_outputs.py"), "--course", "invalid"],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
@@ -54,6 +55,7 @@ class TestGenerateAllOutputsCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 0
@@ -76,6 +78,7 @@ class TestGenerateAllOutputsCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 0
@@ -93,6 +96,7 @@ class TestGenerateModuleRenderingsCLI:
             [sys.executable, str(SCRIPTS_DIR / "generate_module_renderings.py"), "--help"],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 0
@@ -111,6 +115,7 @@ class TestGenerateModuleRenderingsCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
@@ -128,6 +133,7 @@ class TestGenerateModuleRenderingsCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         output = result.stdout + result.stderr
@@ -148,6 +154,7 @@ class TestGenerateModuleRenderingsCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 1
@@ -165,6 +172,7 @@ class TestGenerateSyllabusRenderingsCLI:
             [sys.executable, str(SCRIPTS_DIR / "generate_syllabus_renderings.py"), "--help"],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 0
@@ -182,6 +190,7 @@ class TestGenerateSyllabusRenderingsCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
@@ -198,6 +207,7 @@ class TestGenerateModuleWebsiteCLI:
             [sys.executable, str(SCRIPTS_DIR / "generate_module_website.py"), "--help"],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 0
@@ -216,6 +226,7 @@ class TestGenerateModuleWebsiteCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode != 0
@@ -235,6 +246,7 @@ class TestGenerateModuleWebsiteCLI:
             ],
             capture_output=True,
             text=True,
+            check=False,
             cwd=str(SOFTWARE_DIR),
         )
         assert result.returncode == 1

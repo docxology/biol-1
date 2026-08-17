@@ -7,18 +7,19 @@ subprocess invocation layer for rendering.
 
 from __future__ import annotations
 
+import json
 import subprocess
 from pathlib import Path
 
-from src.module_content.main import ModuleContent, load_module_content
-
+from src.module_content.main import ModuleContent, Term, load_module_content
 
 __all__ = [
-    "build_module_lecture_yaml",
+    "LECTURECREATE_BIN",
     "build_combined_lecture_yaml",
+    "build_module_lecture_yaml",
     "enrich_narrations_with_llm",
     "render_module_video",
-    "LECTURECREATE_BIN",
+    "term_pages",
 ]
 
 
@@ -44,7 +45,7 @@ def _yaml_list(items: list[str], indent: int = 0) -> str:
     return "\n".join(lines)
 
 
-def _yaml_block(key: str, value: str | int | float, indent: int = 0) -> str:
+def _yaml_block(key: str, value: str | float, indent: int = 0) -> str:
     """Render a key: value pair."""
     prefix = " " * indent
     if isinstance(value, bool):
@@ -52,6 +53,19 @@ def _yaml_block(key: str, value: str | int | float, indent: int = 0) -> str:
     if isinstance(value, (int, float)):
         return f"{prefix}{key}: {value}"
     return f"{prefix}{key}: {_yaml_str(value)}"
+
+
+def term_pages(module: ModuleContent, page_size: int = 3) -> list[tuple[Term, ...]]:
+    """Split a module's terms into readable recap pages.
+
+    Three definitions per slide gives long definitions enough breathing room
+    at 1920×1080 while ensuring every authored term remains in the lecture.
+    """
+    if page_size < 1:
+        raise ValueError("page_size must be positive")
+    return [
+        module.terms[start : start + page_size] for start in range(0, len(module.terms), page_size)
+    ]
 
 
 def build_module_lecture_yaml(
@@ -76,9 +90,6 @@ def build_module_lecture_yaml(
         The generated YAML string, ready to write to disk.
     """
     module = load_module_content(module_dir)
-    out = Path(output_dir)
-    png_dir = out / "png"
-
     lines: list[str] = []
     _emit = lines.append
 
@@ -132,7 +143,7 @@ def build_module_lecture_yaml(
     _emit("      kind: objectives")
     _emit(f"      title: {_yaml_str('Learning Objectives')}")
     _emit("      bullets:")
-    for obj in module.learning_objectives[:5]:
+    for obj in module.learning_objectives:
         _emit(f"        - {_yaml_str(obj)}")
     _emit("")
 
@@ -143,7 +154,7 @@ def build_module_lecture_yaml(
     _emit("      kind: bullets")
     _emit(f"      title: {_yaml_str('Topic Sequence')}")
     _emit("      bullets:")
-    for topic in module.topics[:5]:
+    for topic in module.topics:
         _emit(f"        - {_yaml_str(topic)}")
     _emit("")
 
@@ -155,7 +166,7 @@ def build_module_lecture_yaml(
     _emit("      kind: image")
     _emit(f"      title: {_yaml_str('Concept Map')}")
     _emit(f"      subtitle: {_yaml_str('How the ideas connect')}")
-    _emit(f"      image_path: {_yaml_str(str(png_dir / concept_svg.replace('.svg', '.png')))}")
+    _emit(f"      image_path: {_yaml_str(str(Path('png') / concept_svg.replace('.svg', '.png')))}")
     _emit("")
 
     # --- Beat 5: Process Model (IMAGE) ---
@@ -166,19 +177,35 @@ def build_module_lecture_yaml(
     _emit("      kind: image")
     _emit(f"      title: {_yaml_str('Process Model')}")
     _emit(f"      subtitle: {_yaml_str('Reasoning sequence')}")
-    _emit(f"      image_path: {_yaml_str(str(png_dir / process_svg.replace('.svg', '.png')))}")
+    _emit(f"      image_path: {_yaml_str(str(Path('png') / process_svg.replace('.svg', '.png')))}")
     _emit("")
 
-    # --- Beat 6: Key Terms ---
-    _emit(f"  - id: {_yaml_str(f'{module.slug}_terms')}")
-    _emit(f"    narration: {_yaml_str(_terms_narration(module))}")
+    # --- Beat 6: Apply the idea ---
+    _emit(f"  - id: {_yaml_str(f'{module.slug}_application')}")
+    _emit(f"    narration: {_yaml_str(_application_narration(module))}")
     _emit("    visual:")
-    _emit("      kind: recap")
-    _emit(f"      title: {_yaml_str('Key Terms')}")
+    _emit("      kind: bullets")
+    _emit(f"      title: {_yaml_str('Apply the Idea')}")
     _emit("      bullets:")
-    for term in module.terms[:6]:
-        _emit(f"        - {_yaml_str(f'{term.name}: {term.definition}')}")
+    _emit(f"        - {_yaml_str(f'Start with an observation: {module.learning_questions[0]}')}")
+    _emit(f"        - {_yaml_str(f'Build a claim: {module.contents[0]}')}")
+    _emit(f"        - {_yaml_str(f'Check the claim: {module.practice_quiz[0].explanation}')}")
+    _emit(f"        - {_yaml_str('Revise the explanation when the evidence does not fit')}")
     _emit("")
+
+    # --- Beats 7–8: Key Terms (paginated for readability) ---
+    pages = term_pages(module)
+    for page_number, page in enumerate(pages, 1):
+        _emit(f"  - id: {_yaml_str(f'{module.slug}_terms_{page_number:02d}')}")
+        _emit(f"    narration: {_yaml_str(_terms_page_narration(page, page_number, len(pages)))}")
+        _emit("    visual:")
+        _emit("      kind: recap")
+        title = "Key Terms" if len(pages) == 1 else f"Key Terms ({page_number}/{len(pages)})"
+        _emit(f"      title: {_yaml_str(title)}")
+        _emit("      bullets:")
+        for term in page:
+            _emit(f"        - {_yaml_str(f'{term.name}: {term.definition}')}")
+        _emit("")
 
     # --- Beat 7: Lab Connection ---
     _emit(f"  - id: {_yaml_str(f'{module.slug}_lab')}")
@@ -201,7 +228,9 @@ def build_module_lecture_yaml(
     _emit("      kind: image")
     _emit(f"      title: {_yaml_str('Retrieval Practice')}")
     _emit(f"      subtitle: {_yaml_str('Answer without notes first')}")
-    _emit(f"      image_path: {_yaml_str(str(png_dir / retrieval_svg.replace('.svg', '.png')))}")
+    _emit(
+        f"      image_path: {_yaml_str(str(Path('png') / retrieval_svg.replace('.svg', '.png')))}"
+    )
     _emit("")
 
     # --- Beat 9: Practice Quiz ---
@@ -215,7 +244,19 @@ def build_module_lecture_yaml(
         _emit(f"        - {_yaml_str(f'Q{i}: {quiz.question}')}")
     _emit("")
 
-    # --- Beat 10: Synthesis ---
+    # --- Beat 11: Study move ---
+    _emit(f"  - id: {_yaml_str(f'{module.slug}_study_move')}")
+    _emit(f"    narration: {_yaml_str(_study_move_narration(module))}")
+    _emit("    visual:")
+    _emit("      kind: bullets")
+    _emit(f"      title: {_yaml_str('Study Move')}")
+    _emit("      bullets:")
+    for tip in module.study_tips[:3]:
+        _emit(f"        - {_yaml_str(tip)}")
+    _emit(f"        - {_yaml_str(f'Exit question: {module.learning_questions[-1]}')}")
+    _emit("")
+
+    # --- Beat 12: Synthesis ---
     _emit(f"  - id: {_yaml_str(f'{module.slug}_synthesis')}")
     _emit(f"    narration: {_yaml_str(_synthesis_narration(module))}")
     _emit("    visual:")
@@ -225,8 +266,8 @@ def build_module_lecture_yaml(
     _emit(
         f"        - {_yaml_str(f'Explain {module.topics[0].lower()} using evidence from the {lab_name} lab')}"
     )
-    three_terms = ", ".join(term.name for term in module.terms[:3])
-    _emit(f"        - {_yaml_str(f'Must include: {three_terms}')}")
+    all_terms = ", ".join(term.name for term in module.terms)
+    _emit(f"        - {_yaml_str(f'Must include: {all_terms}')}")
     _emit(f"        - {_yaml_str('What evidence would change your explanation?')}")
     _emit("")
 
@@ -265,7 +306,7 @@ def _title_narration(module: ModuleContent) -> str:
 
 
 def _objectives_narration(module: ModuleContent) -> str:
-    items = "; ".join(obj.rstrip(".") for obj in module.learning_objectives[:3])
+    items = "; ".join(obj.rstrip(".") for obj in module.learning_objectives)
     return (
         f"By the end of this module you should be able to: {items}. "
         f"Keep these objectives in mind as you work through the material."
@@ -273,7 +314,7 @@ def _objectives_narration(module: ModuleContent) -> str:
 
 
 def _topics_narration(module: ModuleContent) -> str:
-    pairs = [f"{t} — {c}" for t, c in zip(module.topics[:4], module.contents[:4])]
+    pairs = [f"{t} — {c.rstrip('.')}" for t, c in zip(module.topics, module.contents)]
     return (
         f"This module covers {len(module.topics)} topics. "
         + ". ".join(pairs)
@@ -301,12 +342,27 @@ def _process_model_narration(module: ModuleContent) -> str:
     )
 
 
-def _terms_narration(module: ModuleContent) -> str:
-    terms_list = ", ".join(term.name for term in module.terms[:5])
+def _terms_page_narration(terms: tuple[Term, ...], page_number: int, page_total: int) -> str:
+    terms_list = ", ".join(term.name for term in terms)
+    page_label = "" if page_total == 1 else f" (page {page_number} of {page_total})"
     return (
-        f"Key terms for this module include {terms_list}. "
+        f"Key terms for this module{page_label} include {terms_list}. "
         f"Treat each term as a handle for reasoning — "
         f"a term should help you explain a claim or observation, not just label it."
+    )
+
+
+def _application_narration(module: ModuleContent) -> str:
+    """Turn the first module question into a concrete claim-evidence move."""
+    question = module.learning_questions[0]
+    content = module.contents[0].rstrip(".")
+    explanation = module.practice_quiz[0].explanation.rstrip(".")
+    return (
+        f"Now apply the module instead of only repeating its vocabulary. Start with a question: "
+        f"{question} Treat that question as an observation that needs an explanation. "
+        f"A useful first claim is: {content}. Then ask what evidence could support or challenge it. "
+        f"The first practice check reminds us that {explanation}. "
+        f"This claim, evidence, and revision cycle is the transferable skill for the module."
     )
 
 
@@ -339,13 +395,26 @@ def _quiz_narration(module: ModuleContent) -> str:
     )
 
 
+def _study_move_narration(module: ModuleContent) -> str:
+    """Give students a short, actionable study sequence grounded in the module."""
+    tips = "; ".join(t.rstrip(".") for t in module.study_tips[:3])
+    question = module.learning_questions[-1]
+    return (
+        f"Before you leave this module, make the study work active. {tips}. "
+        f"Then answer this exit question without notes: {question} "
+        "A strong response names a mechanism, points to evidence, and states what would change the explanation. "
+        "If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    )
+
+
 def _synthesis_narration(module: ModuleContent) -> str:
-    terms_list = ", ".join(term.name for term in module.terms[:4])
+    terms_list = ", ".join(term.name for term in module.terms)
     lab = _lab_display_name(module)
     return (
         f"To synthesize this module: explain {module.topics[0].lower()} using evidence from the {lab} lab. "
         f"Your explanation must include {terms_list}. "
-        f"Revision prompt: what evidence would change your explanation?"
+        f"Revision prompt: what evidence would change your explanation? "
+        "Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
     )
 
 
@@ -372,7 +441,7 @@ def enrich_narrations_with_llm(module: ModuleContent) -> ModuleContent:
         cache = _parse_narration_response(response, module)
         module.narration_cache = cache  # type: ignore[attr-defined]
     except Exception:
-        pass  # Gracefully fall back to template defaults
+        return module
 
     return module
 
@@ -391,7 +460,7 @@ def _build_narration_prompt(module: ModuleContent) -> str:
     ]
     body = "\n".join(parts)
     return (
-        "You are writing narration for a 10-beat biology lecture video. "
+        "You are writing narration for a biology lecture video with a paginated key-term recap. "
         "Generate a concise, natural-spoken narration script for each beat. "
         "Return a JSON object with keys: title, objectives, topics, concept_map, "
         "process_model, terms, lab, retrieval, quiz, synthesis. "
@@ -540,11 +609,44 @@ def render_module_video(
     if qr:
         cmd.append("--qr")
     if config_path:
-        cmd.extend(["--config", str(config_path)])
+        # LectureCreate runs with ``cwd=out`` so relative config paths would
+        # resolve against a generated artifact directory instead of the repo.
+        cmd.extend(["--config", str(Path(config_path).expanduser().resolve())])
 
-    return subprocess.run(
+    result = subprocess.run(
         cmd,
         capture_output=True,
         text=True,
         cwd=str(out),
+        check=False,
     )
+    if result.returncode == 0:
+        _relativize_render_metadata(out)
+    return result
+
+
+def _relativize_render_metadata(output_dir: Path) -> None:
+    """Make LectureCreate JSON/manifests portable after a successful render."""
+    root = output_dir.resolve()
+
+    def convert(value: object) -> object:
+        if isinstance(value, dict):
+            return {key: convert(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [convert(item) for item in value]
+        if isinstance(value, str) and value.startswith("/"):
+            candidate = Path(value).resolve(strict=False)
+            try:
+                return candidate.relative_to(root).as_posix()
+            except ValueError:
+                return value
+        return value
+
+    for path in (
+        output_dir / output_dir.name / "lectures" / "lecture.json",
+        output_dir / output_dir.name / "manifests" / "render_manifest.json",
+    ):
+        if not path.is_file():
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        path.write_text(json.dumps(convert(payload), indent=2) + "\n", encoding="utf-8")

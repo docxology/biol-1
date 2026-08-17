@@ -1,5 +1,6 @@
 # BIOL-1 Practice Test 03
 
+<!-- assessment-layout: tearoff-duplex -->
 ## Exam 02 Preparation (Modules 7–11)
 
 **Instructions:** This practice test covers material from Modules 7 through 11. Answer all questions to the best of your ability to prepare for Exam 02.

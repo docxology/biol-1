@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-11-genomics-biotechnology-key-points.pdf",
+      "id": "module-11-genomics-biotechnology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "5b7032bf4aa491aec011d4e0cb7d1b5f373467ecff376771038f99d7b37d695c",
+      "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-questions.pdf",
+      "id": "module-11-genomics-biotechnology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "07225262a1ca7b080f65ee215dade8889231ae6bcfc933feaa14c08b18d4790a",
+      "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-questions.pdf"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-questions.docx",
+      "id": "module-11-genomics-biotechnology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "d283108f6e451abbbdf37c04e2f19795163569833831f3077da4e3d7fb43d2a9",
+      "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-questions.docx"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-practice-quiz.docx",
+      "id": "module-11-genomics-biotechnology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "8a0a3c695662a4216273d5b1a3991d046e5b054c15f256cd9e6d9fca2393799d",
+      "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-practice-quiz.pdf",
+      "id": "module-11-genomics-biotechnology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "1f38f8ddc0d11a38d0b7d96af8f10230b955c1141fc27c9136953ac48af491f1",
+      "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-key-points.docx",
+      "id": "module-11-genomics-biotechnology",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "232c3a02891e7958e4d8e6927d1945000d7422155507a70fb13903ed8d6d0f7b",
+      "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-key-points.docx"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-module-11-slides-notes.pdf",
+      "id": "module-11-genomics-biotechnology",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "3eb7c6e72324ea4f1b965554295fb29841c79d70afd6c2476f0ca0f4d426650e",
+      "source": "course_development/biol-1/resources/slides/module-11-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-module-11-slides-full.pdf",
+      "id": "module-11-genomics-biotechnology",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "cd09f36e8f1f4a007750851627504ba0312193743cdbb5e090c6fd844973870d",
+      "source": "course_development/biol-1/resources/slides/module-11-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-lecture.mp4",
+      "id": "module-11-genomics-biotechnology",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "c26ed18d56529f66bdbc1ac0683d830240fa95a1e92d2d53f5b89f69cdfcae23",
+      "source": "output/lectures/module-11-genomics-biotechnology/module-11-genomics-biotechnology/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-11-genomics-biotechnology-module-11-genomics-biotechnology.yaml",
+      "id": "module-11-genomics-biotechnology",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "7e6fe48ade87f858e21acd1157ee9ad9809ad214a596991309694f35a325d338",
+      "source": "output/lectures/module-11-genomics-biotechnology/module-11-genomics-biotechnology.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-10-06",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-11-genomics-biotechnology",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-11_genomics-biotechnology.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 14: Biotechnology and Genomics",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 11: Genomics and Biotechnology; Lab 11",
+    "week": 7
+  }
+}

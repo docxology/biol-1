@@ -376,11 +376,11 @@ After running `generate_all_outputs.py` for a course module (e.g. `module-12-dar
 ```
 module-12-darwin-evolution/
 ├── questions.md
-├── keys-to-success.md
+├── key-points.md
 └── output/
     ├── study-guides/
     │   ├── module-12-darwin-evolution-questions.{pdf,docx,html,txt,md,mp3}
-    │   └── module-12-darwin-evolution-keys-to-success.{pdf,docx,html,txt,md,mp3}
+    │   └── module-12-darwin-evolution-key-points.{pdf,docx,html,txt,md,mp3}
     └── website/
         └── index.html
 ```
@@ -594,3 +594,19 @@ cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --m
 | `generate_all_outputs.py` | Generate all course outputs |
 | `generate_module_website.py` | Single module website |
 | `software/run_tests.sh` | Run fast, full, or audio test profiles |
+
+## macOS PDF rendering
+
+PDF rendering uses WeasyPrint. On macOS, install its Homebrew native libraries once:
+
+```bash
+brew install pkg-config cairo pango gdk-pixbuf libffi
+```
+
+The renderer discovers Homebrew libraries under `/opt/homebrew/lib` (Apple Silicon) or `/usr/local/lib` (Intel). Verify with:
+
+```bash
+uv run python -c "from weasyprint import HTML; print('WeasyPrint native libraries available')"
+```
+
+Student BIOL-1 assessments marked `assessment-layout: tearoff-duplex` render as duplex packets: page 1 is the tear-off MC/fill-in answer sheet, the reverse begins free response, and the remaining pages contain the question booklet.

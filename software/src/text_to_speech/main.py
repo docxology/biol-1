@@ -2,7 +2,8 @@
 
 import logging
 from pathlib import Path
-from typing import List, Optional
+
+from src.shared.file_utils import ensure_output_directory
 
 from . import config
 from .utils import (
@@ -11,7 +12,6 @@ from .utils import (
     read_text_file,
     text_to_speech_audio,
 )
-from src.shared.file_utils import ensure_output_directory
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ def generate_speech(
     text: str,
     output_path: str,
     voice: str = "default",
-    lang: Optional[str] = None,
+    lang: str | None = None,
     slow: bool = False,
 ) -> None:
     """Generate speech audio from text.
@@ -47,7 +47,7 @@ def generate_speech(
     text_to_speech_audio(text, output_file, lang=lang, slow=slow)
 
 
-def batch_generate_speech(input_dir: str, output_dir: str) -> List[str]:
+def batch_generate_speech(input_dir: str, output_dir: str) -> list[str]:
     """Batch generate speech from text files in a directory.
 
     Args:

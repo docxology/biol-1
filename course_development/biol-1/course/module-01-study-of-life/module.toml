@@ -61,9 +61,9 @@ explanation = "Biology is organized across scales: cells build organisms, which 
 
 [[practice_quiz]]
 question = "A hypothesis survives many careful tests over many years. What should happen to it?"
-options = ["It becomes a fixed fact that can never change.", "It should be hidden so no one can disprove it.", "It must be discarded simply because it is old.", "It can grow into a theory but still stays open to revision if new evidence appears."]
+options = ["It becomes a fixed fact that can never change.", "It should be hidden so no one can disprove it.", "It must be discarded simply because it is old.", "It may contribute evidence to a broader theory, but hypotheses and theories are different kinds of scientific explanation."]
 answer = "D"
-explanation = "Strong scientific explanations stay open to revision. A theory is well supported but is never closed to new evidence."
+explanation = "A hypothesis is a testable explanation for a specific observation or pattern. A theory is a broad explanation supported by many lines of evidence; a hypothesis does not simply mature into a theory. Both remain open to revision when new evidence appears."
 
 [[generated_images]]
 id = "concept-map"

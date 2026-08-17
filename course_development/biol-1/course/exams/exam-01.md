@@ -1,5 +1,6 @@
 # BIOL-1 Exam 01
 
+<!-- assessment-layout: tearoff-duplex -->
 **College of the Redwoods, Pelican Bay**
 **Instructor**: Dr. Daniel Friedman
 
@@ -55,31 +56,31 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 02: Chemistry of Life
 
-1. The atomic number of an element is determined by its number of:
+6. The atomic number of an element is determined by its number of:
     - A) Protons
     - B) Neutrons
     - C) Electrons
     - D) Isotopes
 
-2. When carbon and oxygen share electrons to form carbon dioxide, they form what type of bond?
+7. When carbon and oxygen share electrons to form carbon dioxide, they form what type of bond?
     - A) Ionic bond
     - B) Covalent bond
     - C) Hydrogen bond
     - D) Peptide bond
 
-3. Why does ice float on liquid water?
+8. Why does ice float on liquid water?
     - A) It is heavier than liquid water.
     - B) It is less dense than liquid water due to stable hydrogen bonds.
     - C) It is nonpolar and repels water.
     - D) It shrinks as it freezes.
 
-4. A solution with a high concentration of H⁺ ions and a pH of 3 is considered a(n):
+9. A solution with a high concentration of H⁺ ions and a pH of 3 is considered a(n):
     - A) Acid
     - B) Base
     - C) Neutral solution
     - D) Isotope
 
-5. Which subatomic particles are found in the nucleus of an atom?
+10. Which subatomic particles are found in the nucleus of an atom?
     - A) Electrons and protons
     - B) Protons and neutrons
     - C) Electrons and neutrons
@@ -87,31 +88,31 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 03: Biological Molecules
 
-1. Which of the following macromolecules is the primary source of quick cellular energy?
+11. Which of the following macromolecules is the primary source of quick cellular energy?
     - A) Proteins
     - B) Lipids
     - C) Carbohydrates
     - D) Nucleic Acids
 
-2. The building blocks (monomers) of proteins are:
+12. The building blocks (monomers) of proteins are:
     - A) Monosaccharides
     - B) Fatty acids
     - C) Amino acids
     - D) Nucleotides
 
-3. Which class of macromolecules includes fats, oils, and the main components of cell membranes?
+13. Which class of macromolecules includes fats, oils, and the main components of cell membranes?
     - A) Carbohydrates
     - B) Lipids
     - C) Nucleic Acids
     - D) Proteins
 
-4. What occurs when a protein is "denatured"?
+14. What occurs when a protein is "denatured"?
     - A) It replicates to form a new protein.
     - B) It binds to its substrate perfectly.
     - C) It loses its 3D shape and its function because of heat or extreme pH.
     - D) It changes into a carbohydrate.
 
-5. DNA and RNA store and transmit genetic information. They belong to which category of macromolecules?
+15. DNA and RNA store and transmit genetic information. They belong to which category of macromolecules?
     - A) Proteins
     - B) Lipids
     - C) Nucleic Acids
@@ -119,31 +120,31 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 04: The Cell & Organelles
 
-1. What distinguishing feature makes a eukaryotic cell different from a prokaryotic cell?
+16. What distinguishing feature makes a eukaryotic cell different from a prokaryotic cell?
     - A) It has a cell membrane.
     - B) It has ribosomes.
     - C) It has genetic material (DNA).
     - D) It has a membrane-bound nucleus and specialized organelles.
 
-2. Which organelle is recognized as the "power plant" of the cell, where most ATP is produced?
+17. Which organelle is recognized as the "power plant" of the cell, where most ATP is produced?
     - A) Chloroplast
     - B) Mitochondrion
     - C) Ribosome
     - D) Golgi apparatus
 
-3. Proteins are assembled on which cellular structure?
+18. Proteins are assembled on which cellular structure?
     - A) Lysosomes
     - B) Ribosomes
     - C) The smooth endoplasmic reticulum
     - D) Vacuoles
 
-4. In plant cells, the rigid outer layer that provides shape and structural support is the:
+19. In plant cells, the rigid outer layer that provides shape and structural support is the:
     - A) Cell Wall
     - B) Cell Membrane
     - C) Cytoskeleton
     - D) Extracellular Matrix
 
-5. Which organelle acts as the cell's "shipping center," packaging and distributing proteins?
+20. Which organelle acts as the cell's "shipping center," packaging and distributing proteins?
     - A) Nucleus
     - B) Golgi apparatus
     - C) Mitochondrion
@@ -151,31 +152,31 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 05: The Cell Membrane & Transport
 
-1. The core structure of the cell membrane is composed of a:
+21. The core structure of the cell membrane is composed of a:
     - A) Carbohydrate web
     - B) Rigid layer of proteins
     - C) Phospholipid bilayer
     - D) Single layer of nucleic acids
 
-2. The movement of molecules from an area of high concentration to an area of low concentration is called:
+22. The movement of molecules from an area of high concentration to an area of low concentration is called:
     - A) Active transport
     - B) Diffusion
     - C) Endocytosis
     - D) Phagocytosis
 
-3. Osmosis is a specific type of diffusion that involves the movement of:
+23. Osmosis is a specific type of diffusion that involves the movement of:
     - A) Water molecules across a semi-permeable membrane
     - B) Large proteins out of the cell
     - C) Sodium ions entering the cell
     - D) Oxygen gases leaving the cell
 
-4. If an animal cell is placed in a strongly hypertonic solution (like very salty water), what will happen?
+24. If an animal cell is placed in a strongly hypertonic solution (like very salty water), what will happen?
     - A) The cell will swell and possibly burst.
     - B) The cell will stay the exact same size.
     - C) The cell will lose water and shrink (shrivel).
     - D) The cell will start undergoing photosynthesis.
 
-5. Which transport process requires the cell to spend energy (ATP)?
+25. Which transport process requires the cell to spend energy (ATP)?
     - A) Simple diffusion
     - B) Facilitated diffusion
     - C) Osmosis
@@ -183,31 +184,31 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 ### Module 06: Energy & Metabolism
 
-1. What is the term for all of the chemical reactions that happen inside a living cell?
+26. What is the term for all of the chemical reactions that happen inside a living cell?
     - A) Photosynthesis
     - B) Thermodynamics
     - C) Cellular Respiration
     - D) Metabolism
 
-2. What is an enzyme?
+27. What is an enzyme?
     - A) A protein that speeds up chemical reactions.
     - B) A carbohydrate used for structural support.
     - C) A lipid that stores energy.
     - D) A nucleic acid that carries genetic instructions.
 
-3. The main purpose of cellular respiration is to break down glucose to generate:
+28. The main purpose of cellular respiration is to break down glucose to generate:
     - A) Sunlight
     - B) Oxygen
     - C) Building blocks for proteins
     - D) ATP
 
-4. Photosynthesis takes place inside which organelle?
+29. Photosynthesis takes place inside which organelle?
     - A) Mitochondrion
     - B) Ribosome
     - C) Chloroplast
     - D) Nucleus
 
-5. In aerobic respiration, what is the critical role of oxygen?
+30. In aerobic respiration, what is the critical role of oxygen?
     - A) It provides the energy to build glucose.
     - B) It serves as the final electron acceptor in the electron transport chain.
     - C) It is a source of carbon to build proteins.
@@ -249,7 +250,7 @@ Date: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 8. When an enzyme operates perfectly due to an ideal environment, but then is heated up too much and changes shape, this shape-change process is called \_\_\_\_\_\_\_\_\_\_\_\_.
 
-9. The breaking down of molecules to release energy is called a(n) \_\_\_\_\_\_\_\_\_\_\_\_ reaction.
+9. A metabolic pathway that breaks larger molecules into smaller molecules is called a(n) \_\_\_\_\_\_\_\_\_\_\_\_ reaction.
 
 10. \_\_\_\_\_\_\_\_\_\_\_\_ is an anaerobic process (it occurs without oxygen) that allows cells to continue making a small amount of ATP and forms products like lactic acid or ethanol.
 

@@ -41,6 +41,7 @@ Convert Markdown course materials to PDF format with customizable styling and ba
 **Standalone Example:**
 ```python
 from src.markdown_to_pdf.main import render_markdown_to_pdf
+
 render_markdown_to_pdf("input.md", "output.pdf")
 ```
 

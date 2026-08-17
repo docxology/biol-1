@@ -15,7 +15,7 @@ Terms and concepts used throughout the cr-bio codebase.
 | **Pelican Bay** | Teaching location (Pelican Bay State Prison). PII-sensitive. |
 | **College of the Redwoods** | Institution where courses are taught. |
 | **module.toml** | Typed manifest file — the canonical source of truth for each BIOL-1 module. Defines number, title, topics, objectives, terms, quiz, and SVG specs. |
-| **keys-to-success.md** | Generated module study guide. First section must be `## Learning Objectives`. |
+| **key-points.md** | Generated module study guide. First section must be `## Learning Objectives`. |
 | **questions.md** | Generated practice questions for a module. Continuously numbered. |
 | **practice-quiz.md** | Generated multiple-choice quiz from `module.toml`. |
 | **module-NN-name/** | Module directory naming convention (zero-padded number, lowercase, hyphenated). |
@@ -41,7 +41,7 @@ Terms and concepts used throughout the cr-bio codebase.
 
 | Term | Definition |
 |------|-----------|
-| **study guide** | Module learning materials: `keys-to-success.md` and `questions.md`. |
+| **study guide** | Module learning materials: `key-points.md` and `questions.md`. |
 | **lab manual** | Fillable lab worksheet with `{fill:text}` directives, rendered to PDF via `lab_manual` package. |
 | **lab dashboard** | Standalone interactive HTML file per lab with evidence capture, checkpoints, and key terms. |
 | **SVG concept card** | Deterministic generated visual asset: concept-map, process-model, or retrieval-card. |

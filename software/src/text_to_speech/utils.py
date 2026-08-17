@@ -3,7 +3,6 @@
 import re
 import subprocess
 from pathlib import Path
-from typing import Optional
 
 from . import config
 
@@ -127,7 +126,7 @@ def text_to_speech_audio(
             tmp_txt.unlink()
 
 
-def get_output_path(input_path: Path, output_dir: Optional[Path] = None) -> Path:
+def get_output_path(input_path: Path, output_dir: Path | None = None) -> Path:
     """Get output audio path from input text path.
 
     Args:

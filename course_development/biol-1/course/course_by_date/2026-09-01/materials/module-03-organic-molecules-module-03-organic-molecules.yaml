@@ -1,0 +1,163 @@
+# Generated from module-03-organic-molecules/module.toml — do not hand-edit
+title: "BIOL-1 Module 03: Organic Molecules"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Organic Molecules"
+  series: "BIOL-1: General Biology"
+  series_index: 3
+  series_total: 16
+  lab: "Lab 03 Microscopy"
+
+sections:
+- id: "module-03-organic-molecules"
+  title: "Module 03: Organic Molecules"
+  objectives:
+    - "Explain why carbon is central to biological molecule diversity."
+    - "Distinguish monomers, polymers, dehydration synthesis, and hydrolysis."
+    - "Compare the functions of carbohydrates and lipids."
+    - "Connect protein shape to protein function and denaturation."
+    - "Describe how nucleic acids encode biological information."
+  beats:
+
+  - id: "module-03-organic-molecules_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 03: Organic Molecules. The connected lab is Lab 03 Microscopy. Here is the central idea: Organic Molecules explains carbon chemistry with polymer assembly and biological molecule evidence. Let us begin."
+    visual:
+      kind: title
+      title: "Module 03: Organic Molecules"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 03 Microscopy"
+
+  - id: "module-03-organic-molecules_objectives"
+    narration: "By the end of this module you should be able to: Explain why carbon is central to biological molecule diversity; Distinguish monomers, polymers, dehydration synthesis, and hydrolysis; Compare the functions of carbohydrates and lipids; Connect protein shape to protein function and denaturation; Describe how nucleic acids encode biological information. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Explain why carbon is central to biological molecule diversity."
+        - "Distinguish monomers, polymers, dehydration synthesis, and hydrolysis."
+        - "Compare the functions of carbohydrates and lipids."
+        - "Connect protein shape to protein function and denaturation."
+        - "Describe how nucleic acids encode biological information."
+
+  - id: "module-03-organic-molecules_topics"
+    narration: "This module covers 5 topics. Carbon skeletons — Carbon forms diverse skeletons that make biological molecules possible. Building and breaking polymers — Dehydration synthesis builds polymers, and hydrolysis breaks them down. Carbohydrates and lipids — Carbohydrates and lipids store energy and provide structure in different ways. Proteins and shape — Protein function depends on amino acid sequence and three-dimensional shape. Nucleic acids and information — DNA and RNA store and move information using nucleotide sequences. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Carbon skeletons"
+        - "Building and breaking polymers"
+        - "Carbohydrates and lipids"
+        - "Proteins and shape"
+        - "Nucleic acids and information"
+
+  - id: "module-03-organic-molecules_concept_map"
+    narration: "Here is the concept map for module 03. The central claim is: Organic Molecules explains carbon chemistry with polymer assembly and biological molecule evidence. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-03-concept-map.png"
+
+  - id: "module-03-organic-molecules_process_model"
+    narration: "This process model shows the reasoning sequence for organic molecules. Follow the stages from inputs to outputs. The Lab 03 Microscopy lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-03-process-model.png"
+
+  - id: "module-03-organic-molecules_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: Why can carbon make many different biological molecules? Treat that question as an observation that needs an explanation. A useful first claim is: Carbon forms diverse skeletons that make biological molecules possible. Then ask what evidence could support or challenge it. The first practice check reminds us that Carbon's ability to form four stable bonds allows large, varied molecules, which is the basis of life's chemical diversity. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: Why can carbon make many different biological molecules?"
+        - "Build a claim: Carbon forms diverse skeletons that make biological molecules possible."
+        - "Check the claim: Carbon's ability to form four stable bonds allows large, varied molecules, which is the basis of life's chemical diversity."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-03-organic-molecules_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Organic molecule, Monomer, Polymer. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Organic molecule: Carbon-based molecule associated with living systems."
+        - "Monomer: Small building block that can join into a polymer."
+        - "Polymer: Large molecule built from repeating subunits."
+
+  - id: "module-03-organic-molecules_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Carbohydrate, Lipid, Protein. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Carbohydrate: Sugar or sugar polymer used for energy or structure."
+        - "Lipid: Hydrophobic molecule including fats, phospholipids, and steroids."
+        - "Protein: Polymer of amino acids that performs cellular work."
+
+  - id: "module-03-organic-molecules_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Nucleic acid, Denaturation. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Nucleic acid: DNA or RNA polymer made of nucleotides."
+        - "Denaturation: Loss of protein shape that often destroys function."
+
+  - id: "module-03-organic-molecules_lab"
+    narration: "The lab connected to this module is Lab 03 Microscopy. The evidence you collect should test or illustrate carbon skeletons. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 03 Microscopy"
+        - "Evidence surface for: Carbon skeletons"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-03-organic-molecules_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-03-retrieval-card.png"
+
+  - id: "module-03-organic-molecules_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=C, 2=A, 3=D, 4=B. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: Why is carbon the backbone of most biological molecules?"
+        - "Q2: Cells join two monomers into a polymer by removing a water molecule. This reaction is called:"
+        - "Q3: A protein is heated until it loses its three-dimensional shape and stops working. This change is called:"
+        - "Q4: Which pairing of molecule and job is correct?"
+
+  - id: "module-03-organic-molecules_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: Which evidence would show that a protein lost its function? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: Which evidence would show that a protein lost its function?"
+
+  - id: "module-03-organic-molecules_synthesis"
+    narration: "To synthesize this module: explain carbon skeletons using evidence from the Lab 03 Microscopy lab. Your explanation must include Organic molecule, Monomer, Polymer, Carbohydrate, Lipid, Protein, Nucleic acid, Denaturation. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain carbon skeletons using evidence from the Lab 03 Microscopy lab"
+        - "Must include: Organic molecule, Monomer, Polymer, Carbohydrate, Lipid, Protein, Nucleic acid, Denaturation"
+        - "What evidence would change your explanation?"

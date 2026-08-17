@@ -10,7 +10,6 @@ from src.module_content.main import (
     render_module_materials,
 )
 
-
 MODULE_TOML = """[module]
 number = 1
 slug = "module-01-test"
@@ -203,13 +202,11 @@ def test_render_module_materials_outputs_markdown_and_svg(temp_dir):
 
     assert result["written"] == 11
     assert (
-        (module_dir / "keys-to-success.md")
+        (module_dir / "key-points.md")
         .read_text(encoding="utf-8")
         .startswith("<!-- Generated from module.toml")
     )
-    assert "## Learning Objectives" in (module_dir / "keys-to-success.md").read_text(
-        encoding="utf-8"
-    )
+    assert "## Learning Objectives" in (module_dir / "key-points.md").read_text(encoding="utf-8")
     assert "# Module 1: Test Module - Practice Quiz" in (module_dir / "practice-quiz.md").read_text(
         encoding="utf-8"
     )

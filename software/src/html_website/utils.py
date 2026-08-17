@@ -2,7 +2,7 @@
 
 import json
 from pathlib import Path
-from typing import Any, Dict, List, Optional, cast
+from typing import Any, cast
 
 import markdown
 
@@ -20,7 +20,7 @@ def markdown_to_html(markdown_content: str) -> str:
     return md.convert(markdown_content)
 
 
-def find_audio_file(base_name: str, output_dir: Path, curriculum_type: str) -> Optional[Path]:
+def find_audio_file(base_name: str, output_dir: Path, curriculum_type: str) -> Path | None:
     """Find audio file for a given base name and curriculum type.
 
     Args:
@@ -37,7 +37,7 @@ def find_audio_file(base_name: str, output_dir: Path, curriculum_type: str) -> O
     return None
 
 
-def find_text_file(base_name: str, output_dir: Path, curriculum_type: str) -> Optional[Path]:
+def find_text_file(base_name: str, output_dir: Path, curriculum_type: str) -> Path | None:
     """Find text file for a given base name and curriculum type.
 
     Args:
@@ -70,7 +70,7 @@ def get_relative_path(target: Path, base: Path) -> str:
         return str(target)
 
 
-def extract_quiz_questions(markdown_content: str) -> List[Dict[str, Any]]:
+def extract_quiz_questions(markdown_content: str) -> list[dict[str, Any]]:
     """Extract quiz questions from markdown content.
 
     Looks for sections with "Review Questions" or "Practice Problems".
@@ -81,10 +81,10 @@ def extract_quiz_questions(markdown_content: str) -> List[Dict[str, Any]]:
     Returns:
         List of question dictionaries with 'question' and 'options' keys
     """
-    questions: List[Dict[str, Any]] = []
+    questions: list[dict[str, Any]] = []
     lines = markdown_content.split("\n")
     in_questions = False
-    current_question: Optional[Dict[str, Any]] = None
+    current_question: dict[str, Any] | None = None
 
     for line in lines:
         line_lower = line.lower()
@@ -119,7 +119,7 @@ def extract_quiz_questions(markdown_content: str) -> List[Dict[str, Any]]:
     return questions
 
 
-def parse_questions_json(questions_file: Path) -> List[Dict[str, Any]]:
+def parse_questions_json(questions_file: Path) -> list[dict[str, Any]]:
     """Parse questions from JSON file.
 
     Args:
@@ -141,10 +141,10 @@ def parse_questions_json(questions_file: Path) -> List[Dict[str, Any]]:
     if "questions" not in data:
         return []
 
-    return cast(List[Dict[str, Any]], data["questions"])
+    return cast(list[dict[str, Any]], data["questions"])
 
 
-def find_questions_file(module_dir: Path) -> Optional[Path]:
+def find_questions_file(module_dir: Path) -> Path | None:
     """Find questions JSON file in module directory.
 
     Args:

@@ -19,7 +19,6 @@ from .utils import (
 )
 
 __all__ = [
-    "publish_course",
     "clean_directory",
     "clean_published",
     "copy_directory_contents",
@@ -33,5 +32,6 @@ __all__ = [
     "flatten_module",
     "flatten_published",
     "get_course_config",
+    "publish_course",
     "reorganize_to_categories",
 ]

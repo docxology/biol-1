@@ -1,11 +1,11 @@
 """Tests for legacy_import main module."""
 
 import sys
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 import pytest
 
 from src.legacy_import.config import get_chapter_to_module_mapping
-
 
 # Create a mock for format_conversion.utils to avoid WeasyPrint import chain
 _mock_fc_utils = MagicMock()
@@ -71,7 +71,7 @@ class TestProcessChapterQuestions:
 
         source_dir = temp_dir / "questions"
         source_dir.mkdir()
-        (source_dir / "Chapter 01 Keys to Success.docx").write_bytes(b"fake")
+        (source_dir / "Chapter 01 Key Points.docx").write_bytes(b"fake")
 
         course_root = temp_dir / "biol-1"
         course_dir = course_root / "course"

@@ -20,7 +20,7 @@ pdf  = true         # PDF files (via WeasyPrint / markdown_to_pdf)
 docx = true         # Word documents (via format_conversion / python-docx)
 html = false         # HTML study-guide copies (via format_conversion / markdown2)
 txt  = false         # Plain text (via format_conversion)
-md   = true          # Markdown copy (source files with standardized names)
+md   = false         # Markdown remains authoring/source material; canonical delivery is PDF + DOCX
 mp3  = false        # Audio narration (local TTS + ffmpeg, slower)
 
 # Course Configuration
@@ -31,10 +31,10 @@ mp3  = false        # Audio narration (local TTS + ffmpeg, slower)
 enabled = true
 modules = 16
 max_module = 16      # Generate modules 1 through max_module (BIOL-1: 16 content modules)
-max_lab = 16         # Generate labs 1 through max_lab (BIOL-1: labs 01-16, one lab per module)
+max_lab = 20         # Generate labs 1 through max_lab (BIOL-1: labs 01-16 plus four TBD sessions)
 
 path = "course_development/biol-1"
-input_types = ["keys-to-success", "questions"]
+input_types = ["key-points", "practice-quiz", "questions"]
 include_syllabus = true
 include_labs = true
 include_dashboards = true
@@ -48,7 +48,7 @@ max_module = 17      # Generate modules 1 through max_module (set lower to limit
 max_lab = 18         # Generate labs 1 through max_lab (BIOL-8: labs 01--18 incl. Exam 03 review, ecology, evolution)
 path = "course_development/biol-8"
 archive_path = "archive/spring-2026/course_development/biol-8"
-input_types = ["keys-to-success", "questions"]
+input_types = ["key-points", "practice-quiz", "questions"]
 include_syllabus = true
 include_labs = true
 include_dashboards = true

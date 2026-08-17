@@ -1,0 +1,163 @@
+# Generated from module-02-basic-chemistry/module.toml — do not hand-edit
+title: "BIOL-1 Module 02: Basic Chemistry"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Basic Chemistry"
+  series: "BIOL-1: General Biology"
+  series_index: 2
+  series_total: 16
+  lab: "Lab 02 Probability Statistics"
+
+sections:
+- id: "module-02-basic-chemistry"
+  title: "Module 02: Basic Chemistry"
+  objectives:
+    - "Use atomic structure to explain basic bonding patterns."
+    - "Distinguish covalent, ionic, and hydrogen bonding in biological examples."
+    - "Explain why water properties matter for cells and organisms."
+    - "Interpret pH as a chemical condition that affects biology."
+    - "Track atoms through a simple chemical reaction."
+  beats:
+
+  - id: "module-02-basic-chemistry_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 02: Basic Chemistry. The connected lab is Lab 02 Probability Statistics. Here is the central idea: Basic Chemistry explains atomic structure with water, pH, and biological molecule behavior. Let us begin."
+    visual:
+      kind: title
+      title: "Module 02: Basic Chemistry"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 02 Probability Statistics"
+
+  - id: "module-02-basic-chemistry_objectives"
+    narration: "By the end of this module you should be able to: Use atomic structure to explain basic bonding patterns; Distinguish covalent, ionic, and hydrogen bonding in biological examples; Explain why water properties matter for cells and organisms; Interpret pH as a chemical condition that affects biology; Track atoms through a simple chemical reaction. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Use atomic structure to explain basic bonding patterns."
+        - "Distinguish covalent, ionic, and hydrogen bonding in biological examples."
+        - "Explain why water properties matter for cells and organisms."
+        - "Interpret pH as a chemical condition that affects biology."
+        - "Track atoms through a simple chemical reaction."
+
+  - id: "module-02-basic-chemistry_topics"
+    narration: "This module covers 5 topics. Atoms and elements — Atoms form elements, and their electrons shape bonding behavior. Bonding and molecular shape — Covalent, ionic, and hydrogen bonds create different molecular properties. Water as a biological solvent — Water polarity explains cohesion, temperature buffering, and dissolving ions or polar molecules. pH and chemical balance — pH tracks hydrogen ion concentration and affects biological molecules. Chemical reactions in cells — Cells depend on chemical reactions that rearrange matter without destroying atoms. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Atoms and elements"
+        - "Bonding and molecular shape"
+        - "Water as a biological solvent"
+        - "pH and chemical balance"
+        - "Chemical reactions in cells"
+
+  - id: "module-02-basic-chemistry_concept_map"
+    narration: "Here is the concept map for module 02. The central claim is: Basic Chemistry explains atomic structure with water, pH, and biological molecule behavior. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-02-concept-map.png"
+
+  - id: "module-02-basic-chemistry_process_model"
+    narration: "This process model shows the reasoning sequence for basic chemistry. Follow the stages from inputs to outputs. The Lab 02 Probability Statistics lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-02-process-model.png"
+
+  - id: "module-02-basic-chemistry_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: How do protons, neutrons, and electrons differ? Treat that question as an observation that needs an explanation. A useful first claim is: Atoms form elements, and their electrons shape bonding behavior. Then ask what evidence could support or challenge it. The first practice check reminds us that Transferring electrons creates charged ions that attract each other, which is an ionic bond. Sharing electrons instead would make a covalent bond. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: How do protons, neutrons, and electrons differ?"
+        - "Build a claim: Atoms form elements, and their electrons shape bonding behavior."
+        - "Check the claim: Transferring electrons creates charged ions that attract each other, which is an ionic bond. Sharing electrons instead would make a covalent bond."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-02-basic-chemistry_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Atom, Element, Covalent bond. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Atom: Smallest unit of an element that keeps that element identity."
+        - "Element: Pure substance defined by proton number."
+        - "Covalent bond: Bond formed when atoms share electrons."
+
+  - id: "module-02-basic-chemistry_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Ionic bond, Hydrogen bond, Polarity. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Ionic bond: Attraction between oppositely charged ions."
+        - "Hydrogen bond: Weak attraction involving polar hydrogen and electronegative atoms."
+        - "Polarity: Uneven charge distribution across a molecule."
+
+  - id: "module-02-basic-chemistry_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include pH, Buffer. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "pH: Measure of hydrogen ion concentration."
+        - "Buffer: Chemical system that resists pH change."
+
+  - id: "module-02-basic-chemistry_lab"
+    narration: "The lab connected to this module is Lab 02 Probability Statistics. The evidence you collect should test or illustrate atoms and elements. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 02 Probability Statistics"
+        - "Evidence surface for: Atoms and elements"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-02-basic-chemistry_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-02-retrieval-card.png"
+
+  - id: "module-02-basic-chemistry_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=B, 2=A, 3=D, 4=C. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: Table salt (NaCl) forms when a sodium atom gives up an electron to a chlorine atom. What kind of bond holds the result together?"
+        - "Q2: Why can water dissolve so many substances important to cells?"
+        - "Q3: A solution changes from pH 7 to pH 4. This means it became:"
+        - "Q4: Blood keeps a nearly steady pH even when acids enter it. What best explains this stability?"
+
+  - id: "module-02-basic-chemistry_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What evidence would show that a substance is acidic or basic? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What evidence would show that a substance is acidic or basic?"
+
+  - id: "module-02-basic-chemistry_synthesis"
+    narration: "To synthesize this module: explain atoms and elements using evidence from the Lab 02 Probability Statistics lab. Your explanation must include Atom, Element, Covalent bond, Ionic bond, Hydrogen bond, Polarity, pH, Buffer. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain atoms and elements using evidence from the Lab 02 Probability Statistics lab"
+        - "Must include: Atom, Element, Covalent bond, Ionic bond, Hydrogen bond, Polarity, pH, Buffer"
+        - "What evidence would change your explanation?"

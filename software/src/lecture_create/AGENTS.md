@@ -4,7 +4,8 @@
 
 Generate LectureCreate-compatible YAML manifests from BIOL-1 structured
 module.toml files and invoke LectureCreate via subprocess for deterministic
-video rendering.
+video rendering. Every module render targets approximately 240–300 seconds at 1920×1080;
+the pinned DejaVu Sans layout contract is in `src/lecture_create/biol-1.yaml`.
 
 ## Module: `main`
 
@@ -16,9 +17,10 @@ def build_module_lecture_yaml(
 ) -> str
 ```
 Build a LectureCreate YAML manifest from a BIOL-1 module manifest.
-Returns the YAML string. Each manifest has 10 beats covering title,
-objectives, topics, concept map, process model, key terms, lab
-connection, retrieval, practice quiz, and synthesis.
+Returns the YAML string. Each manifest covers title, complete objectives,
+complete topics, concept map, process model, an application example, a
+paginated complete key-term recap, lab connection, retrieval, practice quiz,
+an actionable study move, and synthesis.
 
 ```python
 def build_combined_lecture_yaml(
@@ -72,7 +74,9 @@ Invoke LectureCreate to render a YAML manifest to video via subprocess.
 
 - YAML generation is pure-cr-bio (runs under Python 3.11)
 - Video rendering subprocess invokes lecturecreate in its own venv
-- SVG assets are referenced by path; PNG conversion is handled externally
+- SVG assets are referenced by module-local relative paths; PNG conversion is
+  handled externally. Relative paths keep manifests portable when copied to a
+  different checkout or render workspace.
 - Voice backend is set via YAML `voice:` field (profile name), NOT the backend type;
   backend name is passed via `--backend` CLI flag
 - Image aspect ratio: SVGs are 1200×720 (5:3), converted to 1920×1152 via

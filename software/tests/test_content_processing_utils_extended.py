@@ -1,12 +1,12 @@
 """Tests for content_processing/utils.py utility functions."""
 
 from src.content_processing.utils import (
+    count_questions,
+    extract_headers,
+    extract_numbered_items,
     extract_questions_from_sectioned,
     format_as_continuous,
     normalize_whitespace,
-    extract_headers,
-    count_questions,
-    extract_numbered_items,
     validate_question_format,
 )
 

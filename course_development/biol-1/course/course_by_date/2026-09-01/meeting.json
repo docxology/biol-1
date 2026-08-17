@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-03-organic-molecules-practice-quiz.docx",
+      "id": "module-03-organic-molecules",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "0293a9794b9a0abcc2598a6a2f0953448ca3f9c765d76f24ed9f40d2c3c8eefa",
+      "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-key-points.pdf",
+      "id": "module-03-organic-molecules",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "27a0345d4ebd6aba545876d8d53f8aa0d00bcab1bdda49f7ea211b40bedc9830",
+      "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-practice-quiz.pdf",
+      "id": "module-03-organic-molecules",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "9e467c8a935babaa85f5ce2447b09e35f48509e88aa925451e3e0f0b11a15400",
+      "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-questions.pdf",
+      "id": "module-03-organic-molecules",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "b2cc8639f0940c5fcbebaf23d60d5e4eeb99d2ad6f88e5112fc1e911e71536fb",
+      "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-questions.pdf"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-questions.docx",
+      "id": "module-03-organic-molecules",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "7570c86934859e26d4a0feb1a5fc9e52a7831635007a2178efba9912b6f1beee",
+      "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-questions.docx"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-key-points.docx",
+      "id": "module-03-organic-molecules",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "01bd89d47150a7e69636325b39f4c45d761312a6188dd3e178a763935bea0ebd",
+      "source": "course_development/biol-1/course/module-03-organic-molecules/output/study-guides/module-03-organic-molecules-key-points.docx"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-module-3-slides-full.pdf",
+      "id": "module-03-organic-molecules",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "4b35c55f32312bd9d05121076bded37f407ae7321c422fb3bd396ce49cc35b2e",
+      "source": "course_development/biol-1/resources/slides/module-3-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-module-3-slides-notes.pdf",
+      "id": "module-03-organic-molecules",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "779d7ea318adc287631bda10d9ec5f4e4bef508a5f72d24119726a49c36adcd1",
+      "source": "course_development/biol-1/resources/slides/module-3-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-lecture.mp4",
+      "id": "module-03-organic-molecules",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "70acb90062bb1d831e2d7b03d50e1b63613558d5c82c3a4edef2ca058de7bf38",
+      "source": "output/lectures/module-03-organic-molecules/module-03-organic-molecules/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-03-organic-molecules-module-03-organic-molecules.yaml",
+      "id": "module-03-organic-molecules",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "0f64421931ea69e02b29b2674e7c9523777faf3e4ebb2c8b7c99c6b7a6b3dd2f",
+      "source": "output/lectures/module-03-organic-molecules/module-03-organic-molecules.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-09-01",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-03-organic-molecules",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-03_microscopy.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 3: The Chemistry of Organic Molecules",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 03: Organic Molecules; Lab 03",
+    "week": 2
+  }
+}

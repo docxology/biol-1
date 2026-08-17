@@ -24,6 +24,10 @@ This directory contains laboratory protocols for BIOL-1: General Biology (Pelica
 | [Lab 14](lab-14_macroevolution.md) | Macroevolution | Complete | Module 14 |
 | [Lab 15](lab-15_population-systems-ecology.md) | Population and Systems Ecology | Complete | Module 15 |
 | [Lab 16](lab-16_capstone-systems-synthesis.md) | Capstone Systems Synthesis | Complete | Module 16 |
+| [Lab 17](lab-17_tbd.md) | TBD laboratory session | Planned / TBD | TBD |
+| [Lab 18](lab-18_tbd.md) | TBD laboratory session | Planned / TBD | TBD |
+| [Lab 19](lab-19_tbd.md) | TBD laboratory session | Planned / TBD | TBD |
+| [Lab 20](lab-20_tbd.md) | TBD laboratory session | Planned / TBD | TBD |
 | [Review Materials](../review_materials/) | Exam review worksheets | Complete | Non-primary review |
 **Status Summary:** 16 primary labs complete, 0 stubs; exam-review worksheets are non-primary review materials.
 
@@ -46,7 +50,7 @@ Labs use specialized markdown directives for interactive elements:
 
 ## Output Generation
 
-Labs are processed through the `lab_manual` module to generate multi-format outputs:
+Labs are processed through the `lab_manual` module to generate the canonical printable PDF:
 
 ```bash
 cd software
@@ -58,14 +62,6 @@ render_lab_manual(
     '../course_development/biol-1/course/labs/lab-01_measurement-methods.md',
     '../course_development/biol-1/course/labs/output/pdf/lab-01_measurement-methods.pdf',
     'pdf',
-    course_name='BIOL-1: General Biology'
-)
-
-# Generate single lab HTML (interactive)
-render_lab_manual(
-    '../course_development/biol-1/course/labs/lab-01_measurement-methods.md',
-    '../course_development/biol-1/course/labs/output/html/lab-01_measurement-methods.html',
-    'html',
     course_name='BIOL-1: General Biology'
 )
 
@@ -83,8 +79,8 @@ batch_render_lab_manuals(
 
 Generated files are stored in `output/`:
 
-- `output/pdf/*.pdf` - Printable lab worksheets
-- `output/html/*.html` - Interactive web versions with fillable fields when HTML lab rendering is requested
+- `output/pdf/*.pdf` - Printable lab worksheets (the default and published lab export)
+- Interactive dashboards remain separately generated under `dashboards/`.
 
 ## Related Documentation
 

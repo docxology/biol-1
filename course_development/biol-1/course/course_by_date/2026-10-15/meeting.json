@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-12-darwin-evolution-key-points.docx",
+      "id": "module-12-darwin-evolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "7bb4280fdf55446b270f5b16fc9046feaf62d3fa410a7c1977f2cac2d4d6c186",
+      "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-key-points.docx"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-questions.docx",
+      "id": "module-12-darwin-evolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "a91dfca5c34973751858ea2c24acb9838f00f4382e0ea798c7014f23b9dfdd11",
+      "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-questions.docx"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-key-points.pdf",
+      "id": "module-12-darwin-evolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "fb321a2ef7ba1cf3b19e2e57661d890f463fcaedba113789f2b6f8962b830b7c",
+      "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-practice-quiz.pdf",
+      "id": "module-12-darwin-evolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "3c944fcb24464b9f7b0c5f61d3ec4e15ed3c73c2098205e8309b6a08c61467cd",
+      "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-practice-quiz.docx",
+      "id": "module-12-darwin-evolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "1fdd74222482230f477d2f58c00a851014bf1e71d484015e879b8d2b4dbca75f",
+      "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-questions.pdf",
+      "id": "module-12-darwin-evolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "a89b05efb2b7bca57011a7da818194f0c737c79bc06eecfdd41c6f3040f7c743",
+      "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-questions.pdf"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-module-12-slides-notes.pdf",
+      "id": "module-12-darwin-evolution",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "2d3663be5ae7e495bae856bfa23c06af31f8dfe79b428047cee8ddf629a2e61f",
+      "source": "course_development/biol-1/resources/slides/module-12-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-module-12-slides-full.pdf",
+      "id": "module-12-darwin-evolution",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "538d82539f96ddc277fb490619d7e2549dd8cb1b8bdc57cf6f24f4d700496b61",
+      "source": "course_development/biol-1/resources/slides/module-12-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-lecture.mp4",
+      "id": "module-12-darwin-evolution",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "decf1ddc814c304384f02eb7a0546ea2ff7725aab24e39a62da96d7a8742588b",
+      "source": "output/lectures/module-12-darwin-evolution/module-12-darwin-evolution/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-12-darwin-evolution-module-12-darwin-evolution.yaml",
+      "id": "module-12-darwin-evolution",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "94dc3d0e08eb97d85c26dd8173801b4d181eb67c511eb6f3e2fbe16f042eb1f7",
+      "source": "output/lectures/module-12-darwin-evolution/module-12-darwin-evolution.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-10-15",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-12-darwin-evolution",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-12_darwin-evolution.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 15: Darwin and Evolution",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Start of evolution/ecology unit",
+    "status": "class",
+    "title": "Module 12: Darwin and Evolution; Lab 12",
+    "week": 8
+  }
+}

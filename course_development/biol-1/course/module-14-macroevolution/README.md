@@ -4,7 +4,7 @@ Welcome to Module 14! So far, we have looked at how evolution changes a single p
 
 ## Module Structure
 
-1. **[Keys to Success](keys-to-success.md)**
+1. **[Key Points](key-points.md)**
    - Unpack the Biological Species Concept and map the invisible barriers (prezygotic and postzygotic) that keep species genetically isolated.
 2. **[Practice Questions](questions.md)**
    - Test your ability to identify distinct reproductive barriers and the mechanisms of speciation in real-world scenarios.

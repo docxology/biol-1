@@ -13,7 +13,7 @@ numbered labs live only in `../labs/` and map one-to-one with Modules 01–16.
 | `exam-01-review.md` | Modules 01–06 review | Complete |
 | `exam-02-review.md` | Modules 07–11 review | Complete |
 | `exam-03-review.md` | Modules 12–16 review | Complete |
-| `final-exam-review.md` | Comprehensive (Modules 01–16) review | Complete |
+| `final-exam-review.md` | Comprehensive review (Modules 01–15 plus Module 16 capstone synthesis) | Complete |
 
 ## Naming Convention
 

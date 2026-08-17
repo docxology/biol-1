@@ -23,7 +23,7 @@
 | 13 | **D** | Fluid mosaic: lipid bilayer + proteins. |
 | 14 | **C** | Simple diffusion down concentration gradient without ATP for the crossing itself. |
 | 15 | **B** | Osmosis = water across selectively permeable membrane. |
-| 16 | **D** | ATP couples energy release to cellular work via phosphate transfer cycles. |
+| 16 | **D** | ATP hydrolysis and phosphate transfer can be coupled to cellular work; ATP is continually regenerated. |
 | 17 | **B** | Cellular respiration oxidizes fuel / captures usable energy (often O₂-linked overview). |
 | 18 | **A** | Active site binds substrate; catalyzes reaction. |
 | 19 | **B** | Translation = polypeptide synthesis on ribosomes from mRNA. |

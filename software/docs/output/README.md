@@ -84,12 +84,12 @@ All format outputs for a module are generated into `module-XX/output/study-guide
 ```
 module-XX/output/
 ├── study-guides/
-│   ├── keys-to-success.pdf       ← PDF (default)
-│   ├── keys-to-success.docx      ← DOCX (default)
-│   ├── keys-to-success.html      ← HTML (when enabled)
-│   ├── keys-to-success.md        ← Markdown (when enabled)
-│   ├── keys-to-success.txt       ← Text (when enabled)
-│   ├── keys-to-success.mp3       ← Audio (when enabled)
+│   ├── key-points.pdf       ← PDF (default)
+│   ├── key-points.docx      ← DOCX (default)
+│   ├── key-points.html      ← HTML (when enabled)
+│   ├── key-points.md        ← Markdown (when enabled)
+│   ├── key-points.txt       ← Text (when enabled)
+│   ├── key-points.mp3       ← Audio (when enabled)
 │   ├── questions.pdf
 │   ├── questions.docx
 │   ├── questions.html

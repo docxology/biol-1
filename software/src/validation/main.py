@@ -6,12 +6,14 @@ generation and publishing.
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
+
+from src.shared.course_config import active_course_names, validate_supported_formats
 
 from . import config
 from .config import (
-    get_syllabus_required_formats,
     DEFAULT_REQUIRED_FORMATS,
+    get_syllabus_required_formats,
 )
 from .utils import (
     check_dashboard_invariant,
@@ -24,7 +26,6 @@ from .utils import (
     get_module_directories,
     get_timestamp,
 )
-from src.shared.course_config import active_course_names, validate_supported_formats
 
 logger = logging.getLogger(__name__)
 
@@ -48,11 +49,11 @@ def _get_module_number(module_name: str) -> int:
 
 def validate_outputs(
     course_path: str,
-    formats: Optional[List[str]] = None,
-    max_module: Optional[int] = None,
-    max_lab: Optional[int] = None,
+    formats: list[str] | None = None,
+    max_module: int | None = None,
+    max_lab: int | None = None,
     strict_dashboards: bool = False,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Validate that all expected outputs exist for a course.
 
     Args:
@@ -192,9 +193,7 @@ def validate_outputs(
     return results
 
 
-def _validate_module_outputs(
-    module_path: Path, formats: Optional[List[str]] = None
-) -> Dict[str, Any]:
+def _validate_module_outputs(module_path: Path, formats: list[str] | None = None) -> dict[str, Any]:
     """Validate outputs for a single module.
 
     Args:
@@ -210,7 +209,7 @@ def _validate_module_outputs(
         list(DEFAULT_REQUIRED_FORMATS) if formats is None else validate_supported_formats(formats)
     )
 
-    result: Dict[str, Any] = {
+    result: dict[str, Any] = {
         "name": module_name,
         "valid": True,
         "has_output_dir": False,
@@ -221,7 +220,7 @@ def _validate_module_outputs(
     }
 
     # Check output directory
-    has_output, subdirs = check_output_directory(module_path)
+    has_output, _subdirs = check_output_directory(module_path)
     result["has_output_dir"] = has_output
 
     if not has_output:
@@ -256,8 +255,8 @@ def _validate_module_outputs(
 
 
 def _validate_syllabus_outputs(
-    course_dir: Path, formats: Optional[List[str]] = None
-) -> Dict[str, Any]:
+    course_dir: Path, formats: list[str] | None = None
+) -> dict[str, Any]:
     """Validate syllabus outputs for a course.
 
     Syllabus outputs are placed directly in the syllabus/output/ directory
@@ -274,7 +273,7 @@ def _validate_syllabus_outputs(
         list(DEFAULT_REQUIRED_FORMATS) if formats is None else validate_supported_formats(formats)
     )
 
-    result: Dict[str, Any] = {
+    result: dict[str, Any] = {
         "valid": True,
         "formats_checked": checked_formats,
         "files": {},
@@ -310,7 +309,7 @@ def _validate_syllabus_outputs(
     return result
 
 
-def validate_published(published_path: str) -> Dict[str, Any]:
+def validate_published(published_path: str) -> dict[str, Any]:
     """Validate that published directory has expected structure.
 
     Args:
@@ -378,7 +377,7 @@ def validate_published(published_path: str) -> Dict[str, Any]:
     return results
 
 
-def validate_published_directory(published_path: str) -> Dict[str, Any]:
+def validate_published_directory(published_path: str) -> dict[str, Any]:
     """Validate the ``PUBLISHED/`` tree (alias for :func:`validate_published`).
 
     Args:
@@ -392,12 +391,12 @@ def validate_published_directory(published_path: str) -> Dict[str, Any]:
 
 def generate_validation_report(
     course_name: str,
-    repo_root: Optional[str] = None,
-    formats: Optional[List[str]] = None,
-    max_module: Optional[int] = None,
-    max_lab: Optional[int] = None,
+    repo_root: str | None = None,
+    formats: list[str] | None = None,
+    max_module: int | None = None,
+    max_lab: int | None = None,
     strict_dashboards: bool = False,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Generate comprehensive validation report for a course.
 
     Args:
@@ -472,7 +471,7 @@ def generate_validation_report(
     return report
 
 
-def get_output_summary(course_path: str) -> Dict[str, Any]:
+def get_output_summary(course_path: str) -> dict[str, Any]:
     """Get summary of outputs for a course.
 
     Args:
@@ -492,7 +491,7 @@ def get_output_summary(course_path: str) -> Dict[str, Any]:
         "by_format": {},
     }
 
-    total_by_format: Dict[str, int] = {}
+    total_by_format: dict[str, int] = {}
 
     for module_path in get_module_directories(course_dir):
         module_name = module_path.name

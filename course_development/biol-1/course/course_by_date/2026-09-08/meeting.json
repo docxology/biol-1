@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-05-membranes-key-points.docx",
+      "id": "module-05-membranes",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "d149431e3f39d23e1c2af00c4793e36b5508124ba72a489a8e072bfb5d12ed23",
+      "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-key-points.docx"
+    },
+    {
+      "destination": "materials/module-05-membranes-practice-quiz.pdf",
+      "id": "module-05-membranes",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "c2028362f324f522b2b5947540952ee02e66e1df7c64600e59c8d8f3bdae804d",
+      "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-05-membranes-questions.docx",
+      "id": "module-05-membranes",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "4248f4ab2bfd56b418cfe8ea636ee07167d68a62c2037ffeccc972db32b2d335",
+      "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-questions.docx"
+    },
+    {
+      "destination": "materials/module-05-membranes-key-points.pdf",
+      "id": "module-05-membranes",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "62dc2c4bbe99206cc8b4efe10fd36a11e2a1c5896e533f0c48bc506800d257e9",
+      "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-05-membranes-practice-quiz.docx",
+      "id": "module-05-membranes",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "fe93a51800727b4b84d4ca38c85e49bc49be4f2857cbdd67c3e6fb9a819ebaab",
+      "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-05-membranes-questions.pdf",
+      "id": "module-05-membranes",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "ace49519cce7d2f8c1168f57d0f50860677536331176c0831f2a7a9801433078",
+      "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-questions.pdf"
+    },
+    {
+      "destination": "materials/module-05-membranes-module-5-slides-notes.pdf",
+      "id": "module-05-membranes",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "c036f8f98210dfcda42d7ba2e2bdee9ee5eb9170f68f0cf713ed2fd2384ad693",
+      "source": "course_development/biol-1/resources/slides/module-5-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-05-membranes-module-5-slides-full.pdf",
+      "id": "module-05-membranes",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "8ac3691aa557a1869eb90f23a8b28ba63171e077eea04ff74524a9ea75c872aa",
+      "source": "course_development/biol-1/resources/slides/module-5-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-05-membranes-lecture.mp4",
+      "id": "module-05-membranes",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "0080773d0d29ed8bc9c5dc59fe82baaa409ef286b6ae21f79b9c889964e84caa",
+      "source": "output/lectures/module-05-membranes/module-05-membranes/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-05-membranes-module-05-membranes.yaml",
+      "id": "module-05-membranes",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "b03ca9d1d8b25a0e1d62e98ccd4c81e41803933f189716dc24aabb8be011977d",
+      "source": "output/lectures/module-05-membranes/module-05-membranes.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-09-08",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-05-membranes",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-05_viewing-life.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 5: Membrane Structure and Function",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 05: Membranes; Lab 05",
+    "week": 3
+  }
+}

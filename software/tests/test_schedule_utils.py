@@ -2,7 +2,6 @@
 
 import pytest
 
-from src.shared.file_utils import ensure_output_directory
 from src.schedule.utils import (
     extract_schedule_sections,
     find_schedule_files,
@@ -12,6 +11,7 @@ from src.schedule.utils import (
     read_schedule_file,
     validate_schedule_entry,
 )
+from src.shared.file_utils import ensure_output_directory
 
 
 class TestParseScheduleTable:

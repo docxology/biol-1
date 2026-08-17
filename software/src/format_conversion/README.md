@@ -22,7 +22,7 @@ Convert course materials between file formats: Markdown ⇄ HTML / PDF / DOCX, p
 
 ## DOCX from Markdown
 
-`convert_markdown_to_docx` is the most commonly-exercised path (used for every `questions.md` and `keys-to-success.md`). It preserves headings, tight ordered lists, bullet lists, `**bold**`, `*italic*`, `` `code` ``, blockquotes, and tables. See `AGENTS.md` for the full feature/regression matrix.
+`convert_markdown_to_docx` is the most commonly-exercised path (used for every `questions.md` and `key-points.md`). It preserves headings, tight ordered lists, bullet lists, `**bold**`, `*italic*`, `` `code` ``, blockquotes, and tables. See `AGENTS.md` for the full feature/regression matrix.
 
 ## Usage
 

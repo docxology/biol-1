@@ -6,7 +6,6 @@ from subprocess import CompletedProcess
 from src.validation import repo_contracts
 from src.validation.repo_contracts import validate_repo_contracts
 
-
 BIOL1_LAB_FRONT_MATTER = (
     "# Lab 1: Active Topic\n\n"
     "**BIOL-1: General Biology** | College of the Redwoods, Pelican Bay\n\n"
@@ -64,7 +63,7 @@ def test_module_heading_contract_flags_wrong_number(temp_dir):
     module_dir = temp_dir / "course_development" / "biol-1" / "course" / "module-07-topic"
     module_dir.mkdir(parents=True)
     (module_dir / "README.md").write_text("# Module 08 Wrong\n", encoding="utf-8")
-    (module_dir / "keys-to-success.md").write_text("# Module 7: Topic\n", encoding="utf-8")
+    (module_dir / "key-points.md").write_text("# Module 7: Topic\n", encoding="utf-8")
     (module_dir / "questions.md").write_text(
         "# Module 7: Topic\n\n1. Question one?\n",
         encoding="utf-8",
@@ -92,7 +91,7 @@ def test_module_keys_contract_requires_learning_objectives(temp_dir):
         "# Module 13: Topic\n\n1. Question one?\n",
         encoding="utf-8",
     )
-    (module_dir / "keys-to-success.md").write_text(
+    (module_dir / "key-points.md").write_text(
         "# Module 13: Topic\n\n## Introduction\n\nNo objectives yet.\n",
         encoding="utf-8",
     )
@@ -118,7 +117,7 @@ def test_module_heading_contract_flags_duplicate_top_heading(temp_dir):
         "# Module 7 Topic\n\n# Module 7 Duplicate\n",
         encoding="utf-8",
     )
-    (module_dir / "keys-to-success.md").write_text(
+    (module_dir / "key-points.md").write_text(
         "# Module 7: Topic\n\n## Learning Objectives\n\n1. Learn.\n",
         encoding="utf-8",
     )

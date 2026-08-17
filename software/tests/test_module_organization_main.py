@@ -30,7 +30,7 @@ def test_create_module_structure(temp_dir):
 
     # Verify BIOL-1 source files exist and no assignments folder is required
     assert (Path(module_path) / "questions.md").exists()
-    assert (Path(module_path) / "keys-to-success.md").exists()
+    assert (Path(module_path) / "key-points.md").exists()
     assert not (Path(module_path) / "assignments").exists()
 
 
@@ -84,7 +84,7 @@ def test_initialize_module_files(sample_module_structure):
     # Verify README.md was created
     assert (sample_module_structure / "README.md").exists()
     assert (sample_module_structure / "questions.md").exists()
-    assert (sample_module_structure / "keys-to-success.md").exists()
+    assert (sample_module_structure / "key-points.md").exists()
 
 
 def test_initialize_module_files_invalid_template(sample_module_structure):

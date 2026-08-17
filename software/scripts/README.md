@@ -4,6 +4,22 @@
 
 Thin CLI orchestrators for course material generation and publishing. All business logic resides in `src/` modules; scripts handle CLI parsing and orchestration only.
 
+## Course-by-date projection
+
+For BIOL-1, the canonical date-to-material mapping is
+`course_development/biol-1/course_calendar.toml`. Generate the dated,
+copy-only teaching handoffs with:
+
+```bash
+uv run python scripts/generate_course_by_date.py
+uv run python scripts/generate_course_by_date.py --dry-run
+uv run python scripts/generate_course_by_date.py --validate-only
+```
+
+Only records marked `used = true` are copied. The generated `meeting.json`
+files preserve planned/used state and source checksums. The generator excludes
+LectureCreate build intermediates such as frames, WAVs, and hashes.
+
 ---
 
 ## Thin Orchestrator Pattern
@@ -28,7 +44,7 @@ Scripts do NOT contain business logic. They:
 |--------|-------------------|---------|
 | `publish_all.py` | `batch_processing`, `publish`, `validation` | **Top-level pipeline** |
 | `generate_all_outputs.py` | `batch_processing` | Generate all course outputs |
-| `generate_module_materials.py` | `module_content` | Regenerate module.toml-derived materials (keys-to-success/questions/practice-quiz + generated SVGs) |
+| `generate_module_materials.py` | `module_content` | Regenerate module.toml-derived materials (key-points/questions/practice-quiz + generated SVGs) |
 | `generate_module_renderings.py` | `batch_processing` | Single module processing |
 | `generate_module_website.py` | `html_website` | Website generation |
 | `generate_slide_decks.py` | `slide_deck` | Slide deck generation |
@@ -36,6 +52,7 @@ Scripts do NOT contain business logic. They:
 | `publish_course.py` | `publish` | Publish to PUBLISHED/ |
 | `validate_outputs.py` | `validation` | Validate generated outputs |
 | `validate_repo_contracts.py` | `validation.repo_contracts` | Validate repository/documentation contracts |
+| `generate_course_by_date.py` | `course_by_date` | Generate BIOL-1 dated teaching handoffs from the canonical course map |
 | `generate_biol1_lab_dashboards.py` | (stdlib; BIOL-1 lab specs) | Regenerate active BIOL-1 lab dashboards from the lab list |
 | `flatten_published.py` | `publish.utils` | Flatten directory structure |
 | `renumber_questions.py` | `content_processing` | Question renumbering |
@@ -51,7 +68,7 @@ Scripts do NOT contain business logic. They:
 
 The main orchestrator that runs the complete publish pipeline for all enabled courses:
 
-1. **Generate** → Create requested output formats (PDF, DOCX, MD by default; HTML, TXT, MP3 opt-in)
+1. **Generate** → Create requested output formats (PDF and DOCX by default; HTML, TXT, Markdown copies, and MP3 opt-in)
 2. **Publish** → Copy to PUBLISHED/ directory
 3. **Validate** → Verify all outputs
 
@@ -108,6 +125,11 @@ uv run python scripts/generate_all_outputs.py --course all
 uv run python scripts/generate_all_outputs.py --course biol-1 --dry-run
 ```
 
+Every non-dry render also rebuilds the repository-level projection at
+`output/BIOL-1/`. Source-local `course_development/biol-1/**/output/`
+directories remain validation inputs, while `PUBLISHED/` remains the
+publishing surface.
+
 | Option | Description |
 |--------|-------------|
 | `--course` | Active course id (`biol-1`) or `all` |
@@ -124,7 +146,7 @@ uv run python scripts/generate_all_outputs.py --course biol-1 --dry-run
 
 ### `generate_module_materials.py` — Structured Module Materials
 
-Regenerate `keys-to-success.md`, `questions.md`, `practice-quiz.md`, and the
+Regenerate `key-points.md`, `questions.md`, `practice-quiz.md`, and the
 deterministic generated SVGs (concept map, process model, retrieval card)
 from each module's `module.toml` — the canonical typed source of truth. Edit
 `module.toml`, then regenerate; do not hand-edit the generated Markdown.
@@ -422,7 +444,7 @@ Output files are prefixed with module name for unique identification:
 
 ```
 module-01-questions.pdf       (not questions.pdf)
-module-01-keys-to-success.mp3 (not keys-to-success.mp3)
+module-01-key-points.mp3 (not key-points.mp3)
 module-01-assignment-01.docx  (not assignment-01.docx)
 ```
 

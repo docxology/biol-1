@@ -13,7 +13,7 @@ Authoring guide for syllabus and schedule source files.
 | **Source directory** | `course_development/biol-1/syllabus/` |
 | **Source files** | `BIOL-1_Fall-2026_Syllabus.md`, `Schedule.md` |
 | **Output directory** | `syllabus/output/` |
-| **Default formats** | PDF, DOCX, MD |
+| **Default formats** | PDF, DOCX |
 | **Opt-in formats** | HTML, TXT, MP3 |
 | **Backing module** | `batch_processing.process_syllabus` |
 
@@ -71,7 +71,7 @@ uv run python scripts/generate_syllabus_renderings.py --course biol-1
 
 The syllabus is processed by `batch_processing.process_syllabus()` which:
 1. Reads markdown source files (excluding README.md, AGENTS.md)
-2. Renders each to all enabled formats (PDF, DOCX, MD by default)
+2. Renders each to all enabled formats (PDF and DOCX by default)
 3. Writes outputs to `syllabus/output/`
 
 ---
@@ -80,8 +80,8 @@ The syllabus is processed by `batch_processing.process_syllabus()` which:
 
 | Source | Output pattern |
 |--------|---------------|
-| `BIOL-1_Fall-2026_Syllabus.md` | `BIOL-1_Fall-2026_Syllabus.{pdf,docx,md}` |
-| `Schedule.md` | `Schedule.{pdf,docx,md}` |
+| `BIOL-1_Fall-2026_Syllabus.md` | `BIOL-1_Fall-2026_Syllabus.{pdf,docx}` |
+| `Schedule.md` | `Schedule.{pdf,docx}` |
 
 ---
 

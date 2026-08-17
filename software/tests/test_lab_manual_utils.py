@@ -5,7 +5,6 @@ from pathlib import Path
 
 import pytest
 
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 from src.lab_manual.utils import (
     TableConfig,
     create_data_table_html,
@@ -21,6 +20,7 @@ from src.lab_manual.utils import (
     parse_reflection,
     parse_table_directive,
 )
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 class TestTableConfig:
@@ -55,7 +55,7 @@ class TestParseTableDirective:
 |---|---|
 <!-- /lab:data-table -->"""
 
-        config, remaining = parse_table_directive(content)
+        config, _remaining = parse_table_directive(content)
 
         assert config.rows == 3
         assert config.columns == ["A", "B"]
@@ -97,7 +97,7 @@ Object in room: test
 
     def test_no_selection(self):
         """Return empty dict when no directive."""
-        config, remaining = parse_object_selection("No directive here")
+        config, _remaining = parse_object_selection("No directive here")
 
         assert config == {}
 

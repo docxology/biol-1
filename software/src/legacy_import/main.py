@@ -1,16 +1,16 @@
 """Core business logic for legacy material import."""
 
+import logging
 import re
 import shutil
-import logging
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
-from .config import get_chapter_to_module_mapping, EXCLUDED_MD_FILES
+from .config import EXCLUDED_MD_FILES, get_chapter_to_module_mapping
 from .utils import (
-    extract_chapter_number,
-    ensure_module_exists,
     create_comprehension_questions,
+    ensure_module_exists,
+    extract_chapter_number,
 )
 
 logger = logging.getLogger(__name__)
@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 def process_chapter_questions(
     source_dir: Path, course_root: Path, course_dir: Path, dry_run: bool
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Process all Chapter Questions DOCX files.
 
     Converts DOCX question files to Markdown and places them in the
@@ -98,7 +98,7 @@ def process_chapter_questions(
                 resources_dir.mkdir(parents=True, exist_ok=True)
 
             # Output filename
-            output_filename = f"module-{module_num}-keys-to-success.md"
+            output_filename = f"module-{module_num}-key-points.md"
             output_path = resources_dir / output_filename
 
             if dry_run:
@@ -147,8 +147,8 @@ def _process_slides_set(
     course_root: Path,
     dry_run: bool,
     slide_type: str,
-    chapter_mapping: Dict[int, int],
-    results: Dict[str, Any],
+    chapter_mapping: dict[int, int],
+    results: dict[str, Any],
 ) -> None:
     """Process a set of slide PDFs (full or notes) into module directories.
 
@@ -241,7 +241,7 @@ def process_slides(
     slides_notes_dir: Path,
     course_root: Path,
     dry_run: bool,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """Copy and organize PDF slides to module directories.
 
     Processes both full slides and notes slides, placing them in the
@@ -278,7 +278,7 @@ def process_slides(
     return results
 
 
-def create_for_upload_files(module_path: Path, module_num: int, dry_run: bool) -> Dict[str, Any]:
+def create_for_upload_files(module_path: Path, module_num: int, dry_run: bool) -> dict[str, Any]:
     """Create for_upload folder with DOCX and PDF of all markdown files plus slide PDFs.
 
     Converts markdown resources to PDF and DOCX formats, and copies slide
@@ -371,7 +371,7 @@ def create_for_upload_files(module_path: Path, module_num: int, dry_run: bool) -
     return results
 
 
-def process_for_upload_all_modules(course_dir: Path, dry_run: bool) -> Dict[str, Any]:
+def process_for_upload_all_modules(course_dir: Path, dry_run: bool) -> dict[str, Any]:
     """Process for_upload folders for all modules.
 
     Iterates over every module directory and creates for_upload content

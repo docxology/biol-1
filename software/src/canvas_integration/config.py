@@ -1,12 +1,10 @@
 """Configuration for Canvas integration."""
 
-from typing import Dict
-
 # Canvas API base URL template
 CANVAS_API_BASE: str = "https://{domain}/api/v1"
 
 # Default API endpoints
-ENDPOINTS: Dict[str, str] = {
+ENDPOINTS: dict[str, str] = {
     "upload_file": "/courses/{course_id}/files",
     "create_folder": "/courses/{course_id}/folders",
     "list_folders": "/courses/{course_id}/folders",

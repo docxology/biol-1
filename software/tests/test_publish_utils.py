@@ -1,21 +1,21 @@
 """Tests for publish utils module."""
 
+from src.publish import config
 from src.publish.utils import (
-    flatten_module,
-    flatten_published,
+    clean_directory,
+    clean_published,
+    copy_directory_contents,
     copy_labs_and_dashboards,
     copy_module_bundles,
     copy_module_generated_assets,
     copy_practice_tests,
     copy_slides,
     copy_slides_to_modules,
-    clean_directory,
-    copy_directory_contents,
+    flatten_module,
+    flatten_published,
     get_course_config,
-    clean_published,
     reorganize_to_categories,
 )
-from src.publish import config
 
 
 class TestFlattenModule:
@@ -323,13 +323,11 @@ class TestCopyModuleBundles:
         course_dir = temp_dir / "PUBLISHED" / "biol-1"
         for name in ["module_keys", "homework", "slides", "labs", "dashboards"]:
             (course_dir / name).mkdir(parents=True)
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(
-            b"pdf"
-        )
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.docx").write_bytes(
+        (course_dir / "module_keys" / "module-01-study-of-life-key-points.pdf").write_bytes(b"pdf")
+        (course_dir / "module_keys" / "module-01-study-of-life-key-points.docx").write_bytes(
             b"docx"
         )
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").write_text(
+        (course_dir / "module_keys" / "module-01-study-of-life-key-points.md").write_text(
             "key", encoding="utf-8"
         )
         (course_dir / "homework" / "module-01-study-of-life-questions.pdf").write_bytes(b"pdf")
@@ -350,7 +348,7 @@ class TestCopyModuleBundles:
 
         module_dir = course_dir / "modules" / "module-01-study-of-life"
         assert copied == 11
-        assert (module_dir / "module-01-study-of-life-keys-to-success.pdf").exists()
+        assert (module_dir / "module-01-study-of-life-key-points.pdf").exists()
         assert (module_dir / "module-01-study-of-life-questions.docx").exists()
         assert (module_dir / "module-1-slides-full.pdf").exists()
         assert (module_dir / "lab-01_measurement-methods-dashboard.html").exists()
@@ -361,15 +359,13 @@ class TestCopyModuleBundles:
         stale_dir = course_dir / "modules" / "module-01-study-of-life"
         stale_dir.mkdir(parents=True)
         (stale_dir / "old.pdf").write_bytes(b"old")
-        (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.pdf").write_bytes(
-            b"pdf"
-        )
+        (course_dir / "module_keys" / "module-01-study-of-life-key-points.pdf").write_bytes(b"pdf")
 
         copied = copy_module_bundles(temp_dir / "PUBLISHED", courses=["biol-1"])
 
         assert copied == 1
         assert not (stale_dir / "old.pdf").exists()
-        assert (stale_dir / "module-01-study-of-life-keys-to-success.pdf").exists()
+        assert (stale_dir / "module-01-study-of-life-key-points.pdf").exists()
 
 
 class TestCopyModuleGeneratedAssets:
@@ -377,7 +373,7 @@ class TestCopyModuleGeneratedAssets:
 
     Covers the previously-missing publish step that copies each module's
     deterministic resources/generated/*.svg concept-card assets into
-    PUBLISHED/, so keys-to-success.md's relative links to those assets
+    PUBLISHED/, so key-points.md's relative links to those assets
     resolve instead of 404ing on the public repo.
     """
 
@@ -487,18 +483,18 @@ class TestReorganizeToCategories:
         assert (course_dir / "homework" / "module-01-study-of-life-questions.md").exists()
         assert not (module_dir / "module-01-study-of-life-questions.md").exists()
 
-    def test_moves_keys_to_success_file_to_module_keys(self, temp_dir):
+    def test_moves_key_points_file_to_module_keys(self, temp_dir):
         course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
         module_dir = self._make_module(course_dir)
-        (module_dir / "module-01-study-of-life-keys-to-success.md").write_text(
+        (module_dir / "module-01-study-of-life-key-points.md").write_text(
             "# Keys", encoding="utf-8"
         )
 
         moved = reorganize_to_categories(temp_dir / config.PUBLISH_ROOT_NAME, courses=["biol-1"])
 
         assert moved == 1
-        assert (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").exists()
-        assert not (module_dir / "module-01-study-of-life-keys-to-success.md").exists()
+        assert (course_dir / "module_keys" / "module-01-study-of-life-key-points.md").exists()
+        assert not (module_dir / "module-01-study-of-life-key-points.md").exists()
 
     def test_moves_slide_pdf_to_slides(self, temp_dir):
         course_dir = temp_dir / config.PUBLISH_ROOT_NAME / "biol-1"
@@ -592,7 +588,7 @@ class TestReorganizeToCategories:
         (module_dir / "module-01-study-of-life-questions.md").write_text(
             "# Questions", encoding="utf-8"
         )
-        (module_dir / "module-01-study-of-life-keys-to-success.md").write_text(
+        (module_dir / "module-01-study-of-life-key-points.md").write_text(
             "# Keys", encoding="utf-8"
         )
         (module_dir / "module-1-slides-full.pdf").write_bytes(b"pdf")
@@ -602,7 +598,7 @@ class TestReorganizeToCategories:
 
         assert moved == 3  # questions + keys + slide (index.html doesn't count as "moved")
         assert (course_dir / "homework" / "module-01-study-of-life-questions.md").exists()
-        assert (course_dir / "module_keys" / "module-01-study-of-life-keys-to-success.md").exists()
+        assert (course_dir / "module_keys" / "module-01-study-of-life-key-points.md").exists()
         assert (course_dir / "slides" / "module-1-slides-full.pdf").exists()
         assert not module_dir.exists()
 

@@ -1,0 +1,163 @@
+# Generated from module-06-metabolism/module.toml — do not hand-edit
+title: "BIOL-1 Module 06: Metabolism"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Metabolism"
+  series: "BIOL-1: General Biology"
+  series_index: 6
+  series_total: 16
+  lab: "Lab 06 Metabolism"
+
+sections:
+- id: "module-06-metabolism"
+  title: "Module 06: Metabolism"
+  objectives:
+    - "Apply thermodynamic ideas to living cells."
+    - "Explain ATP as an energy-coupling molecule."
+    - "Describe how enzymes change reaction rates."
+    - "Predict how environmental conditions affect enzyme activity."
+    - "Connect photosynthesis and cellular respiration in matter and energy flow."
+  beats:
+
+  - id: "module-06-metabolism_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 06: Metabolism. The connected lab is Lab 06 Metabolism. Here is the central idea: Metabolism explains energy transformations with ATP coupling, enzymes, and linked pathways. Let us begin."
+    visual:
+      kind: title
+      title: "Module 06: Metabolism"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 06 Metabolism"
+
+  - id: "module-06-metabolism_objectives"
+    narration: "By the end of this module you should be able to: Apply thermodynamic ideas to living cells; Explain ATP as an energy-coupling molecule; Describe how enzymes change reaction rates; Predict how environmental conditions affect enzyme activity; Connect photosynthesis and cellular respiration in matter and energy flow. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Apply thermodynamic ideas to living cells."
+        - "Explain ATP as an energy-coupling molecule."
+        - "Describe how enzymes change reaction rates."
+        - "Predict how environmental conditions affect enzyme activity."
+        - "Connect photosynthesis and cellular respiration in matter and energy flow."
+
+  - id: "module-06-metabolism_topics"
+    narration: "This module covers 5 topics. Energy and thermodynamics — Cells transform energy while obeying thermodynamic constraints. ATP as cellular coupling — ATP couples energy-releasing reactions to energy-requiring cellular work. Enzymes and activation energy — Enzymes lower activation energy without being consumed. Regulation by conditions and inhibitors — Temperature, pH, substrate concentration, and inhibitors alter enzyme function. Photosynthesis and respiration as linked pathways — Photosynthesis builds sugar while respiration breaks fuel down to harvest usable energy. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Energy and thermodynamics"
+        - "ATP as cellular coupling"
+        - "Enzymes and activation energy"
+        - "Regulation by conditions and inhibitors"
+        - "Photosynthesis and respiration as linked pathways"
+
+  - id: "module-06-metabolism_concept_map"
+    narration: "Here is the concept map for module 06. The central claim is: Metabolism explains energy transformations with ATP coupling, enzymes, and linked pathways. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-06-concept-map.png"
+
+  - id: "module-06-metabolism_process_model"
+    narration: "This process model shows the reasoning sequence for metabolism. Follow the stages from inputs to outputs. The Lab 06 Metabolism lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-06-process-model.png"
+
+  - id: "module-06-metabolism_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: How do the laws of thermodynamics constrain cells? Treat that question as an observation that needs an explanation. A useful first claim is: Cells transform energy while obeying thermodynamic constraints. Then ask what evidence could support or challenge it. The first practice check reminds us that ATP is the cell's energy currency: it couples energy-releasing reactions to energy-requiring ones. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: How do the laws of thermodynamics constrain cells?"
+        - "Build a claim: Cells transform energy while obeying thermodynamic constraints."
+        - "Check the claim: ATP is the cell's energy currency: it couples energy-releasing reactions to energy-requiring ones."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-06-metabolism_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Metabolism, ATP, Activation energy. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Metabolism: All chemical reactions in a cell or organism."
+        - "ATP: Cellular energy-coupling molecule."
+        - "Activation energy: Energy required to start a reaction."
+
+  - id: "module-06-metabolism_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Enzyme, Substrate, Denaturation. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Enzyme: Protein or RNA catalyst that speeds a reaction."
+        - "Substrate: Reactant that binds an enzyme active site."
+        - "Denaturation: Loss of shape that disrupts function."
+
+  - id: "module-06-metabolism_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Photosynthesis, Cellular respiration. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Photosynthesis: Process that uses light energy to build sugars."
+        - "Cellular respiration: Process that harvests usable energy from fuel molecules."
+
+  - id: "module-06-metabolism_lab"
+    narration: "The lab connected to this module is Lab 06 Metabolism. The evidence you collect should test or illustrate energy and thermodynamics. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 06 Metabolism"
+        - "Evidence surface for: Energy and thermodynamics"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-06-metabolism_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-06-retrieval-card.png"
+
+  - id: "module-06-metabolism_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=B, 2=A, 3=D, 4=C. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: What is the main role of ATP in a cell?"
+        - "Q2: How does an enzyme speed up a chemical reaction?"
+        - "Q3: Raising temperature far above normal can stop an enzyme from working because:"
+        - "Q4: How are photosynthesis and cellular respiration related?"
+
+  - id: "module-06-metabolism_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What evidence would show that an enzyme is denatured? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What evidence would show that an enzyme is denatured?"
+
+  - id: "module-06-metabolism_synthesis"
+    narration: "To synthesize this module: explain energy and thermodynamics using evidence from the Lab 06 Metabolism lab. Your explanation must include Metabolism, ATP, Activation energy, Enzyme, Substrate, Denaturation, Photosynthesis, Cellular respiration. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain energy and thermodynamics using evidence from the Lab 06 Metabolism lab"
+        - "Must include: Metabolism, ATP, Activation energy, Enzyme, Substrate, Denaturation, Photosynthesis, Cellular respiration"
+        - "What evidence would change your explanation?"

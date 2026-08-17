@@ -2,21 +2,21 @@
 """Script to publish course materials."""
 
 import argparse
+import logging
 import sys
 import time
-import logging
 from pathlib import Path
 
 # Add software directory to path
 software_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(software_dir))
 
-from src.shared.runtime import configure_runtime_environment  # noqa: E402
+from src.shared.runtime import configure_runtime_environment
 
 configure_runtime_environment()
 
-from src.publish.main import publish_course  # noqa: E402
-from src.shared.course_config import CourseSelectionError, resolve_course_selection  # noqa: E402
+from src.publish.main import publish_course
+from src.shared.course_config import CourseSelectionError, resolve_course_selection
 
 # Configure logging
 logging.basicConfig(

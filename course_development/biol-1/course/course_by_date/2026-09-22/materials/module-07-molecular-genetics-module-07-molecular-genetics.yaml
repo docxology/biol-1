@@ -1,0 +1,163 @@
+# Generated from module-07-molecular-genetics/module.toml — do not hand-edit
+title: "BIOL-1 Module 07: Molecular Genetics"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Molecular Genetics"
+  series: "BIOL-1: General Biology"
+  series_index: 7
+  series_total: 16
+  lab: "Lab 07 Molecular Genetics"
+
+sections:
+- id: "module-07-molecular-genetics"
+  title: "Module 07: Molecular Genetics"
+  objectives:
+    - "Describe DNA structure and base-pairing rules."
+    - "Explain why DNA replication is semiconservative."
+    - "Compare transcription and translation."
+    - "Use codons to connect mRNA sequence to amino acid sequence."
+    - "Explain how mutation can alter protein and trait outcomes."
+  beats:
+
+  - id: "module-07-molecular-genetics_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 07: Molecular Genetics. The connected lab is Lab 07 Molecular Genetics. Here is the central idea: Molecular Genetics explains DNA information flow from sequence to RNA, protein, and trait evidence. Let us begin."
+    visual:
+      kind: title
+      title: "Module 07: Molecular Genetics"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 07 Molecular Genetics"
+
+  - id: "module-07-molecular-genetics_objectives"
+    narration: "By the end of this module you should be able to: Describe DNA structure and base-pairing rules; Explain why DNA replication is semiconservative; Compare transcription and translation; Use codons to connect mRNA sequence to amino acid sequence; Explain how mutation can alter protein and trait outcomes. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Describe DNA structure and base-pairing rules."
+        - "Explain why DNA replication is semiconservative."
+        - "Compare transcription and translation."
+        - "Use codons to connect mRNA sequence to amino acid sequence."
+        - "Explain how mutation can alter protein and trait outcomes."
+
+  - id: "module-07-molecular-genetics_topics"
+    narration: "This module covers 5 topics. DNA structure — DNA stores information in nucleotide sequences and complementary base pairing. Replication — Replication copies DNA using each strand as a template. Transcription — Transcription produces RNA from a DNA gene. Translation — Translation uses mRNA codons and ribosomes to build proteins. Mutation and gene expression evidence — Mutations and expression patterns connect molecular changes to traits. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "DNA structure"
+        - "Replication"
+        - "Transcription"
+        - "Translation"
+        - "Mutation and gene expression evidence"
+
+  - id: "module-07-molecular-genetics_concept_map"
+    narration: "Here is the concept map for module 07. The central claim is: Molecular Genetics explains DNA information flow from sequence to RNA, protein, and trait evidence. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-07-concept-map.png"
+
+  - id: "module-07-molecular-genetics_process_model"
+    narration: "This process model shows the reasoning sequence for molecular genetics. Follow the stages from inputs to outputs. The Lab 07 Molecular Genetics lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-07-process-model.png"
+
+  - id: "module-07-molecular-genetics_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: How does DNA structure store information? Treat that question as an observation that needs an explanation. A useful first claim is: DNA stores information in nucleotide sequences and complementary base pairing. Then ask what evidence could support or challenge it. The first practice check reminds us that The base-pairing rules are A with T and C with G. This complementarity lets DNA be copied accurately. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: How does DNA structure store information?"
+        - "Build a claim: DNA stores information in nucleotide sequences and complementary base pairing."
+        - "Check the claim: The base-pairing rules are A with T and C with G. This complementarity lets DNA be copied accurately."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-07-molecular-genetics_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include DNA, Nucleotide, Replication. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "DNA: Nucleic acid that stores hereditary information."
+        - "Nucleotide: DNA or RNA subunit with sugar, phosphate, and base."
+        - "Replication: Process that copies DNA."
+
+  - id: "module-07-molecular-genetics_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Transcription, Translation, Codon. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Transcription: Synthesis of RNA from a DNA template."
+        - "Translation: Synthesis of protein from mRNA codons."
+        - "Codon: Three-base mRNA sequence read during translation."
+
+  - id: "module-07-molecular-genetics_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Mutation, Gene expression. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Mutation: Change in DNA sequence."
+        - "Gene expression: Use of genetic information to make RNA or protein."
+
+  - id: "module-07-molecular-genetics_lab"
+    narration: "The lab connected to this module is Lab 07 Molecular Genetics. The evidence you collect should test or illustrate dna structure. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 07 Molecular Genetics"
+        - "Evidence surface for: DNA structure"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-07-molecular-genetics_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-07-retrieval-card.png"
+
+  - id: "module-07-molecular-genetics_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=C, 2=A, 3=D, 4=B. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: In DNA, the base adenine always pairs with:"
+        - "Q2: DNA replication is described as \"semiconservative\" because each new double helix contains:"
+        - "Q3: Which sequence shows the normal flow of genetic information?"
+        - "Q4: A mutation changes a single DNA base. Why might this matter?"
+
+  - id: "module-07-molecular-genetics_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What evidence would show that a gene is being expressed? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What evidence would show that a gene is being expressed?"
+
+  - id: "module-07-molecular-genetics_synthesis"
+    narration: "To synthesize this module: explain dna structure using evidence from the Lab 07 Molecular Genetics lab. Your explanation must include DNA, Nucleotide, Replication, Transcription, Translation, Codon, Mutation, Gene expression. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain dna structure using evidence from the Lab 07 Molecular Genetics lab"
+        - "Must include: DNA, Nucleotide, Replication, Transcription, Translation, Codon, Mutation, Gene expression"
+        - "What evidence would change your explanation?"

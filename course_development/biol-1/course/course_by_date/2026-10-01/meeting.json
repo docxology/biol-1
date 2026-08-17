@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-10-epigenetics-questions.pdf",
+      "id": "module-10-epigenetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "5ba886396490fdbe5f4fa05852d763b79bf714feaf0939fef27ad9c772d9579a",
+      "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-questions.pdf"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-questions.docx",
+      "id": "module-10-epigenetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "c20d121312082ac25f3c8a5eb5dd7428d780cafc1868357180ac3c94c32a3a24",
+      "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-questions.docx"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-key-points.pdf",
+      "id": "module-10-epigenetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "12c02fd1516ff6840ee1e012df63d5f362938f6274fa3db74120c1a8e56db9e7",
+      "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-practice-quiz.pdf",
+      "id": "module-10-epigenetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "8e85434fb245361f5d74b7ec8d6cac6db81d20dd3a22ea2a42e1863913ae4c9e",
+      "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-key-points.docx",
+      "id": "module-10-epigenetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "cf1ddd82d9cfa46e939d64a4e118bea6457f2243d3c085c63234116078063e40",
+      "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-key-points.docx"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-practice-quiz.docx",
+      "id": "module-10-epigenetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "3a1f2521a000e61dc0aa0a8c30d404bccb418c61a0cac1faff8fabdfbae6ee86",
+      "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-module-10-slides-full.pdf",
+      "id": "module-10-epigenetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "1bb194da7261ea056ac2c78c9d2f7e4515156a65ae11d76ffc015fb53e813e09",
+      "source": "course_development/biol-1/resources/slides/module-10-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-module-10-slides-notes.pdf",
+      "id": "module-10-epigenetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "30cf328d2f7bdbada7faf51ce2c3bbf043333f4be843f70b49e62051761423fc",
+      "source": "course_development/biol-1/resources/slides/module-10-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-lecture.mp4",
+      "id": "module-10-epigenetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "641a6c977d10d2af1c258974de200e26f69cbf0d563c2ae7684ed6bb485add47",
+      "source": "output/lectures/module-10-epigenetics/module-10-epigenetics/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-10-epigenetics-module-10-epigenetics.yaml",
+      "id": "module-10-epigenetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "8c3d22cc6e70aa9a0ff835460512ccd9e8677dccf66d10675eed6342c688c036",
+      "source": "output/lectures/module-10-epigenetics/module-10-epigenetics.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-10-01",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-10-epigenetics",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-10_epigenetics.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 13: Regulation of Gene Expression",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 10: Epigenetics; Lab 10",
+    "week": 6
+  }
+}

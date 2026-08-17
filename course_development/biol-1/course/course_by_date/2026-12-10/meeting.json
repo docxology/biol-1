@@ -1,0 +1,23 @@
+{
+  "copied_outputs": [],
+  "meeting": {
+    "date": "2026-12-10",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "final-exam",
+        "include": [
+          "source"
+        ],
+        "kind": "exam",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Final exam",
+    "status": "exam",
+    "title": "Comprehensive Final Exam",
+    "week": 16
+  }
+}

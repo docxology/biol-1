@@ -1,6 +1,7 @@
 """Extended tests for legacy_import main module to improve coverage."""
 
 from unittest.mock import patch
+
 import pytest
 
 from src.legacy_import.main import (
@@ -30,7 +31,7 @@ class TestCreateForUploadFiles:
         resources_dir.mkdir()
 
         # specific files to skip/include
-        (resources_dir / "keys-to-success.md").touch()
+        (resources_dir / "key-points.md").touch()
         (resources_dir / "README.md").touch()  # Should be excluded
 
         slides_dir = module_path / "slides"
@@ -108,7 +109,7 @@ class TestProcessChapterQuestionsExtended:
 
         assert results["summary"]["converted"] == 1
 
-        output_file = course_dir / "module-1" / "resources" / "module-1-keys-to-success.md"
+        output_file = course_dir / "module-1" / "resources" / "module-1-key-points.md"
         assert output_file.exists()
         assert output_file.read_text() == "# Converted Content"
 

@@ -3,7 +3,7 @@
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 import markdown
 from weasyprint import CSS, HTML
@@ -16,16 +16,16 @@ class TableConfig:
     """Configuration for a data table."""
 
     rows: int = 5
-    columns: List[str] = field(default_factory=lambda: config.DEFAULT_MEASUREMENT_COLUMNS.copy())
+    columns: list[str] = field(default_factory=lambda: config.DEFAULT_MEASUREMENT_COLUMNS.copy())
     fillable: bool = True
-    title: Optional[str] = None
+    title: str | None = None
 
 
 @dataclass
 class MeasurementConfig:
     """Configuration for a measurement section."""
 
-    aspects: List[str] = field(default_factory=list)
+    aspects: list[str] = field(default_factory=list)
     include_device: bool = True
     include_unit: bool = True
     include_value: bool = False
@@ -37,12 +37,12 @@ class LabElement:
 
     element_type: str
     content: str
-    config: Dict[str, Any] = field(default_factory=dict)
+    config: dict[str, Any] = field(default_factory=dict)
     start_pos: int = 0
     end_pos: int = 0
 
 
-def parse_table_directive(content: str) -> Tuple[TableConfig, str]:
+def parse_table_directive(content: str) -> tuple[TableConfig, str]:
     """Parse a lab:data-table directive from Markdown content.
 
     Args:
@@ -85,7 +85,7 @@ def parse_table_directive(content: str) -> Tuple[TableConfig, str]:
     return table_config, content[match.end() :]
 
 
-def parse_measurement_section(content: str) -> Tuple[MeasurementConfig, str]:
+def parse_measurement_section(content: str) -> tuple[MeasurementConfig, str]:
     """Parse a measurement section from Markdown content.
 
     Args:
@@ -105,7 +105,7 @@ def parse_measurement_section(content: str) -> Tuple[MeasurementConfig, str]:
     return measurement_config, content[match.end() :]
 
 
-def parse_object_selection(content: str) -> Tuple[Dict[str, Any], str]:
+def parse_object_selection(content: str) -> tuple[dict[str, Any], str]:
     """Parse an object selection section.
 
     Args:
@@ -131,7 +131,7 @@ def parse_object_selection(content: str) -> Tuple[Dict[str, Any], str]:
     return selection_config, content[match.end() :]
 
 
-def parse_reflection(content: str) -> Tuple[Dict[str, Any], str]:
+def parse_reflection(content: str) -> tuple[dict[str, Any], str]:
     """Parse a reflection section.
 
     Args:
@@ -247,7 +247,7 @@ def create_data_table_html(table_config: TableConfig) -> str:
 
 def create_measurement_table_html(
     rows: int = 5,
-    aspects: Optional[List[str]] = None,
+    aspects: list[str] | None = None,
     include_device: bool = True,
     include_unit: bool = True,
     include_value: bool = False,
@@ -334,7 +334,7 @@ def create_object_selection_html(in_room: bool = True, not_in_room: bool = True)
     return html
 
 
-def create_feasibility_html(question: str, options: List[str]) -> str:
+def create_feasibility_html(question: str, options: list[str]) -> str:
     """Create HTML for a feasibility question with checkbox options.
 
     Args:

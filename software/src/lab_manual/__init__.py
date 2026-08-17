@@ -15,10 +15,10 @@ from .main import (
 )
 
 __all__ = [
-    "render_lab_manual",
-    "parse_lab_elements",
+    "batch_render_lab_manuals",
     "generate_data_table",
     "generate_measurement_table",
-    "batch_render_lab_manuals",
     "get_lab_template",
+    "parse_lab_elements",
+    "render_lab_manual",
 ]

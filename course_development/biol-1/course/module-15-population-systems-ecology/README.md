@@ -4,7 +4,7 @@ Welcome to Module 15! We are now zooming out from species to study the entire bi
 
 ## Module Structure
 
-1. **[Keys to Success](keys-to-success.md)**
+1. **[Key Points](key-points.md)**
    - Understand the difference between exponential (J-curve) and logistic (S-curve) growth, carrying capacity, trophic levels, and the undeniable laws of energy transfer (the 10% rule).
 2. **[Practice Questions](questions.md)**
    - Test your ability to read population graphs and calculate energy flow through a food web.

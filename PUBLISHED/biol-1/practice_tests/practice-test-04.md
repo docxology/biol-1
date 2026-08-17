@@ -1,5 +1,6 @@
 # BIOL-1 Practice Test 04
 
+<!-- assessment-layout: tearoff-duplex -->
 ## Exam 03 Preparation (Modules 12–16)
 
 **Instructions:** This practice test covers material from **Module 12** (Darwin and Evolution) through **Module 16** (Capstone Systems Synthesis). Answer all questions to the best of your ability to prepare for Exam 03.

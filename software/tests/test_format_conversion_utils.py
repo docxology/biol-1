@@ -2,20 +2,20 @@
 
 from pathlib import Path
 
-from src.shared.file_utils import ensure_output_directory
 from src.format_conversion.utils import (
     convert_docx_to_markdown,
+    convert_html_to_pdf,
     convert_markdown_to_docx,
     convert_markdown_to_html,
+    convert_markdown_to_pdf,
     convert_pdf_to_text,
+    convert_text_to_html,
+    convert_text_to_pdf,
     get_conversion_path,
     get_file_extension,
     get_output_path,
-    convert_markdown_to_pdf,
-    convert_html_to_pdf,
-    convert_text_to_pdf,
-    convert_text_to_html,
 )
+from src.shared.file_utils import ensure_output_directory
 
 
 class TestGetFileExtension:

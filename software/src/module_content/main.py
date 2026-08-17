@@ -219,7 +219,7 @@ def render_module_materials(module_dir: Path | str, dry_run: bool = False) -> di
     """Render generated student materials for one module."""
     module = load_module_content(module_dir)
     outputs = [
-        module.module_dir / "keys-to-success.md",
+        module.module_dir / "key-points.md",
         module.module_dir / "questions.md",
         module.module_dir / "practice-quiz.md",
     ]
@@ -237,7 +237,7 @@ def render_module_materials(module_dir: Path | str, dry_run: bool = False) -> di
         return {"module": module.slug, "outputs": [str(path) for path in outputs], "written": 0}
 
     (module.module_dir / "resources" / "generated").mkdir(parents=True, exist_ok=True)
-    (module.module_dir / "keys-to-success.md").write_text(_render_keys(module), encoding="utf-8")
+    (module.module_dir / "key-points.md").write_text(_render_key_points(module), encoding="utf-8")
     (module.module_dir / "questions.md").write_text(_render_questions(module), encoding="utf-8")
     (module.module_dir / "practice-quiz.md").write_text(_render_quiz(module), encoding="utf-8")
     for image in module.generated_images:
@@ -314,8 +314,8 @@ def _module_dirs(course_root: Path, module_filter: int | None) -> list[Path]:
     return modules
 
 
-def _render_keys(module: ModuleContent) -> str:
-    lines = [_generated_notice(), f"# Module {module.number}: {module.title} - Keys to Success", ""]
+def _render_key_points(module: ModuleContent) -> str:
+    lines = [_generated_notice(), f"# Module {module.number}: {module.title} - Key Points", ""]
     lines.extend(
         ["## Learning Objectives", "", "By the end of this module, you should be able to:", ""]
     )

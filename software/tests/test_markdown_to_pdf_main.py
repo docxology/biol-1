@@ -136,3 +136,23 @@ def test_render_markdown_to_pdf_creates_missing_parent_directory(temp_dir):
     render_markdown_to_pdf(str(md_file), str(output_path))
 
     assert output_path.exists()
+
+
+def test_render_assessment_marker_creates_multi_page_pdf(temp_dir):
+    """Student assessments use the tear-off layout when marked in source."""
+    md_file = temp_dir / "assessment.md"
+    md_file.write_text(
+        "# Assessment\n<!-- assessment-layout: tearoff-duplex -->\n\n"
+        "## Part A: Multiple Choice (1 point)\n\n1. What?\n   - A) Yes\n\n"
+        "## Part B: Fill in the Blank (1 point)\n\n1. A ________.\n\n"
+        "## Part C: Free Response (3 points)\n\n1. Explain.\n",
+        encoding="utf-8",
+    )
+    output_path = temp_dir / "assessment.pdf"
+
+    render_markdown_to_pdf(str(md_file), str(output_path))
+
+    from pypdf import PdfReader
+
+    reader = PdfReader(str(output_path))
+    assert len(reader.pages) >= 3

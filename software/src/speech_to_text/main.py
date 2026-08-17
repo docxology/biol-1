@@ -3,7 +3,8 @@
 import logging
 import tempfile
 from pathlib import Path
-from typing import List
+
+from src.shared.file_utils import ensure_output_directory
 
 from .utils import (
     convert_audio_to_wav,
@@ -12,7 +13,6 @@ from .utils import (
     read_audio_file,
     transcribe_audio_segment,
 )
-from src.shared.file_utils import ensure_output_directory
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +63,7 @@ def transcribe_audio(audio_path: str, output_path: str, language: str = "en") ->
                 temp_wav_path.unlink()
 
 
-def batch_transcribe_audio(input_dir: str, output_dir: str) -> List[str]:
+def batch_transcribe_audio(input_dir: str, output_dir: str) -> list[str]:
     """Batch transcribe audio files in a directory.
 
     Args:

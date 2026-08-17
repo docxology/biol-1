@@ -787,7 +787,7 @@ render_lab_manual(
 
 ### Batch Lab Generation
 
-Labs run when **`--skip-labs` is omitted** and **`--module` is not set** (whole-course pass). Outputs go under ``course/labs/output/<pdf|html>/``.
+Labs run when **`--skip-labs` is omitted** and **`--module` is not set** (whole-course pass). Outputs go under ``course/labs/output/pdf/``.
 
 ```bash
 # Full course run including labs (omit --skip-labs)
@@ -799,9 +799,9 @@ cd software && uv run python scripts/generate_all_outputs.py --course biol-1 --s
 
 ### Lab Dashboard Generation
 
-Interactive lab HTML under ``course/labs/dashboards/`` (``*-dashboard.html``) complements protocol PDF/HTML in ``course/labs/output/``. The batch pipeline validates dashboard counts against course config when ``strict_dashboards`` is enabled; there is **no** per-lab flag on **`generate_module_website.py`** (that script builds **module** websites under ``module-*/output/website/``, not lab dashboards).
+Interactive lab HTML under ``course/labs/dashboards/`` (``*-dashboard.html``) is a separate companion to the protocol PDF in ``course/labs/output/``. The batch pipeline validates dashboard counts against course config when ``strict_dashboards`` is enabled; there is **no** per-lab flag on **`generate_module_website.py`** (that script builds **module** websites under ``module-*/output/website/``, not lab dashboards).
 
-Lab protocol PDF/HTML is produced during the whole-course **`generate_all_outputs.py`** run with labs enabled (see [Batch Lab Generation](#batch-lab-generation)).
+Lab protocol PDF is produced during the whole-course **`generate_all_outputs.py`** run with labs enabled (see [Batch Lab Generation](#batch-lab-generation)).
 
 ```bash
 cd software && uv run python scripts/generate_all_outputs.py --course biol-1

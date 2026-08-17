@@ -1,10 +1,11 @@
 """Main functions for Canvas integration."""
 
 from pathlib import Path
-from typing import Any, Dict, List, TypedDict, cast
+from typing import Any, TypedDict, cast
 
 import requests
 
+from ..file_validation.main import validate_module_files
 from . import config
 from .utils import (
     get_canvas_api_url,
@@ -12,7 +13,6 @@ from .utils import (
     make_canvas_request,
     validate_file_size,
 )
-from ..file_validation.main import validate_module_files
 
 
 class UploadedFileInfo(TypedDict):
@@ -21,9 +21,9 @@ class UploadedFileInfo(TypedDict):
 
 
 class ModuleUploadResult(TypedDict):
-    uploaded_files: List[UploadedFileInfo]
-    failed_files: List[str]
-    errors: List[str]
+    uploaded_files: list[UploadedFileInfo]
+    failed_files: list[str]
+    errors: list[str]
 
 
 def upload_module_to_canvas(
@@ -87,7 +87,7 @@ def upload_module_to_canvas(
     return results
 
 
-def validate_upload_readiness(module_path: str) -> List[str]:
+def validate_upload_readiness(module_path: str) -> list[str]:
     """Validate module is ready for Canvas upload.
 
     Args:
@@ -115,9 +115,8 @@ def validate_upload_readiness(module_path: str) -> List[str]:
 
     # Check for files that are too large
     for file_path in module_dir.rglob("*"):
-        if file_path.is_file():
-            if not validate_file_size(file_path):
-                issues.append(f"File too large: {file_path}")
+        if file_path.is_file() and not validate_file_size(file_path):
+            issues.append(f"File too large: {file_path}")
 
     return issues
 
@@ -154,7 +153,7 @@ def _get_or_create_folder(course_id: str, api_key: str, domain: str, folder_name
 
 def _upload_file_to_canvas(
     file_path: Path, folder_id: str, api_key: str, domain: str
-) -> Dict[str, Any]:  # Shape determined by Canvas API response; genuinely dynamic
+) -> dict[str, Any]:  # Shape determined by Canvas API response; genuinely dynamic
     """Upload a single file to Canvas.
 
     Args:
@@ -187,4 +186,4 @@ def _upload_file_to_canvas(
         files = {"file": (file_path.name, f, get_file_mime_type(file_path))}
         upload_response = make_canvas_request("POST", upload_url, api_key, files=files)
 
-    return cast(Dict[str, Any], upload_response.json())
+    return cast(dict[str, Any], upload_response.json())

@@ -23,7 +23,7 @@ This lab is your comprehensive review of **Modules 7–11** in preparation for E
 ## Materials
 
 - This worksheet
-- Codon table (from Lab 7 or your Keys to Success)
+- Codon table (from Lab 7 or your Key Points)
 - Scratch paper for Punnett squares
 
 ---

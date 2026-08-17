@@ -1,5 +1,6 @@
 # BIOL-1 Practice Test 01
 
+<!-- assessment-layout: tearoff-duplex -->
 ## Modules 1-4: Study of Life through Cells
 
 **Instructions:** This practice test covers material from Modules 1-4. Answer all questions to the best of your ability.

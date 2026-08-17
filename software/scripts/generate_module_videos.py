@@ -16,6 +16,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import logging
 import os
 import subprocess
 import sys
@@ -28,6 +29,8 @@ from src.lecture_create.main import (
     render_module_video,
 )
 
+logger = logging.getLogger(__name__)
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 COURSE_ROOT = REPO_ROOT / "course_development" / "biol-1"
 MODULES_DIR = COURSE_ROOT / "course"
@@ -36,8 +39,11 @@ LECTURE_OUTPUT_ROOT = REPO_ROOT / "output" / "lectures"
 #: Subprocess binary for lecturecreate; override with LECTURECREATE_BIN env var.
 LECTURECREATE_BIN = os.environ.get("LECTURECREATE_BIN", "lecturecreate")
 
-#: Optional path to a LectureCreate render config YAML.
-LECTURECREATE_CONFIG = os.environ.get("LECTURECREATE_CONFIG", "")
+#: Canonical BIOL-1 render contract; override only for an intentional experiment.
+LECTURECREATE_CONFIG = os.environ.get(
+    "LECTURECREATE_CONFIG",
+    str(REPO_ROOT / "software" / "src" / "lecture_create" / "biol-1.yaml"),
+)
 
 #: Default TTS backend — ``edge`` when available, else ``system``.
 _DEFAULT_BACKEND = os.environ.get(
@@ -58,11 +64,12 @@ def _resolve_backend(requested: str) -> str:
             capture_output=True,
             text=True,
             timeout=10,
+            check=False,
         )
         if "edge       │ yes" in result.stdout:
             return "edge"
-    except Exception:
-        pass
+    except (OSError, subprocess.SubprocessError):
+        logger.debug("LectureCreate backend probe failed", exc_info=True)
     return "system"
 
 
@@ -104,6 +111,7 @@ def _convert_svgs_to_pngs(module_dir: Path, png_dir: Path) -> list[Path]:
                 ],
                 capture_output=True,
                 text=True,
+                check=False,
             )
             if result.returncode != 0:
                 print(

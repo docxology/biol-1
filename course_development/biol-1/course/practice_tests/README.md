@@ -13,7 +13,7 @@ This directory contains practice tests for **BIOL-1: General Biology** (Pelican 
 - **Practice Test 02**: Modules 5–6 (Membranes and Metabolism)
 - **Practice Test 03**: Modules 7–11 (Exam 02 preparation)
 - **Practice Test 04**: Modules 12–16 (Exam 03 preparation)
-- **Practice Test 05**: Modules 1–16 (comprehensive final review)
+- **Practice Test 05**: Modules 1–16 (comprehensive final review; Module 16 is represented by capstone free-response items)
 
 ## Usage
 

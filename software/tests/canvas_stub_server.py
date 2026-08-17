@@ -5,10 +5,9 @@ from __future__ import annotations
 import json
 import re
 import threading
+from collections.abc import Callable
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import PurePosixPath
-from typing import Callable, Optional
-
 from urllib.parse import parse_qs, unquote, urlparse
 
 
@@ -27,13 +26,13 @@ class _CanvasStubHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(raw)
 
-    def _read_body(self) -> Optional[bytes]:
+    def _read_body(self) -> bytes | None:
         length = self.headers.get("Content-Length")
         if not length:
             return None
         return self.rfile.read(int(length))
 
-    def do_GET(self) -> None:  # noqa: N802
+    def do_GET(self) -> None:
         parsed = urlparse(self.path)
         path = unquote(parsed.path)
         courses_folders = re.match(r"^/api/v1/courses/(\d+)/folders$", path)
@@ -42,7 +41,7 @@ class _CanvasStubHandler(BaseHTTPRequestHandler):
             return
         self.send_error(404, "unsupported GET")
 
-    def do_POST(self) -> None:  # noqa: N802
+    def do_POST(self) -> None:
         parsed = urlparse(self.path)
         path = unquote(parsed.path)
 
@@ -50,7 +49,7 @@ class _CanvasStubHandler(BaseHTTPRequestHandler):
         if courses_folders:
             payload = json.loads(self._read_body().decode("utf-8"))
             fid = getattr(self.server, "_next_folder_id", 4242)
-            setattr(self.server, "_next_folder_id", fid + 1)
+            self.server._next_folder_id = fid + 1
             self._send_json(
                 200,
                 {"id": fid, "name": payload.get("name", "")},
@@ -66,7 +65,7 @@ class _CanvasStubHandler(BaseHTTPRequestHandler):
             upload_endpoint = getattr(self.server, "_upload_endpoint", "/raw-upload/")
             scheme = getattr(self.server, "_scheme", "http")
             upload_url = f"{scheme}://{srv_host}:{srv_port}{upload_endpoint}"
-            setattr(self.server, "_last_upload_stub", PurePosixPath(name_vals[0]))
+            self.server._last_upload_stub = PurePosixPath(name_vals[0])
             self._send_json(
                 200,
                 {
@@ -90,24 +89,24 @@ class _CanvasStubHandler(BaseHTTPRequestHandler):
 def start_canvas_stub_http(
     scheme: str = "http",
     upload_endpoint: str = "/raw-upload/",
-    pre_ready: Optional[Callable[[HTTPServer], None]] = None,
+    pre_ready: Callable[[HTTPServer], None] | None = None,
 ) -> HTTPServer:
     """Start daemon server; return HTTPServer bound to localhost with random port."""
 
     srv = HTTPServer(("127.0.0.1", 0), _CanvasStubHandler)
-    setattr(srv, "_scheme", scheme)
-    setattr(srv, "_upload_endpoint", upload_endpoint)
-    setattr(srv, "_next_folder_id", 9001)
+    srv._scheme = scheme
+    srv._upload_endpoint = upload_endpoint
+    srv._next_folder_id = 9001
 
     thread = threading.Thread(target=srv.serve_forever, daemon=True)
     thread.start()
     host, port = srv.server_address
-    setattr(srv, "_thread", thread)
+    srv._thread = thread
     if pre_ready:
         pre_ready(srv)
 
-    setattr(srv, "host", host)
-    setattr(srv, "port", port)
+    srv.host = host
+    srv.port = port
     return srv
 
 

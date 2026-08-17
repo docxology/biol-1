@@ -7,7 +7,7 @@ from .main import (
 )
 
 __all__ = [
+    "generate_schedule_outputs",
     "parse_schedule_markdown",
     "process_schedule",
-    "generate_schedule_outputs",
 ]

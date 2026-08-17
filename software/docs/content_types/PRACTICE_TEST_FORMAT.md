@@ -92,15 +92,15 @@ The answer key file (`practice-test-NN_key.md`) mirrors the student version's qu
 
 ## Practice Test 05 — Detailed Layout
 
-Practice Test 05 is the comprehensive final-prep assessment with **135 numbered items** across three parts. Cohort framing appears in the student markdown header.
+Practice Test 05 is the comprehensive final-prep assessment with **137 numbered items** across three parts. Modules 01–15 receive the regular per-module blocks; Module 16 is represented by two capstone free-response items. Cohort framing appears in the student markdown header.
 
 | Part | Item Numbers | Per-Module Pattern |
 |------|--------------|---------------------|
-| **A — Multiple Choice** | 1–80 | Module N (1–16): (N−1)×5 + 1 through N×5 |
+| **A — Multiple Choice** | 1–75 | Modules 01–15, five items per module |
 | **B — Fill in the Blank** | 76–105 | Module N: 76 + 2(N−1) and 77 + 2(N−1) |
-| **C — Free Response** | 106–135 | Module N: 106 + 2(N−1) and 107 + 2(N−1) |
+| **C — Free Response** | 106–137 | Modules 01–15 receive two items each; Modules 16 receives two capstone items |
 
-> **Note**: Part A items 76–80 and Part B items 76–80 overlap in numbering — Part B starts at item 76 in the original assessment design.
+> **Note**: Part A ends at item 75; Part B starts at item 76 and ends at 105, followed by Part C items 106–137.
 
 ### Section Headings
 
@@ -115,7 +115,7 @@ module-16-capstone-systems-synthesis
 
 ### Traceability Crosswalk
 
-Each module's PT05 block was matched to that folder's `keys-to-success.md` learning objectives and key terms. Spot-check results:
+Each module's PT05 block was matched to that folder's `key-points.md` learning objectives and key terms. Spot-check results:
 
 | Module | PT05 Samples | Alignment Notes |
 |--------|-------------|-----------------|
@@ -155,3 +155,22 @@ Practice tests are processed by `process_course_practice_tests` in `software/src
 | [../COURSE_STRUCTURE.md](../COURSE_STRUCTURE.md) | Course directory layout |
 | [../../../course_development/biol-1/course/practice_tests/AGENTS.md](../../../course_development/biol-1/course/practice_tests/AGENTS.md) | Source-level practice test documentation |
 | [../ORCHESTRATION.md](../ORCHESTRATION.md) | Pipeline and generation workflows |
+## Duplex tear-off layout
+
+Every BIOL-1 student practice test and unit/comprehensive exam source carries the `assessment-layout: tearoff-duplex` marker. The renderer produces a duplex packet: page 1 is a compact tear-off answer sheet with one response line per multiple-choice and fill-in item; the reverse side begins the free-response section; subsequent pages contain the question booklet. Answer keys remain conventional and are not transformed.
+
+## macOS PDF rendering
+
+PDF rendering uses WeasyPrint. On macOS, install its Homebrew native libraries once:
+
+```bash
+brew install pkg-config cairo pango gdk-pixbuf libffi
+```
+
+The renderer discovers Homebrew libraries under `/opt/homebrew/lib` (Apple Silicon) or `/usr/local/lib` (Intel). Verify with:
+
+```bash
+uv run python -c "from weasyprint import HTML; print('WeasyPrint native libraries available')"
+```
+
+Student BIOL-1 assessments marked `assessment-layout: tearoff-duplex` render as duplex packets: page 1 is the tear-off MC/fill-in answer sheet, the reverse begins free response, and the remaining pages contain the question booklet.

@@ -10,7 +10,7 @@ Source code for course management software utilities.
 
 - **22 packages** under `src/` (see [AGENTS.md](AGENTS.md))
 - **Tests / coverage**: run `uv run pytest --collect-only -q` and `uv run pytest --cov=src --cov-report=term-missing` from `software/`
-- **Default generated formats**: PDF, DOCX, MD
+- **Default generated formats**: PDF and DOCX; Markdown is retained as source, not generated into the default output tree
 - **Opt-in generated formats**: HTML, TXT, MP3
 
 ---

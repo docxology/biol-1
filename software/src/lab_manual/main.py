@@ -2,7 +2,9 @@
 
 import re
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
+
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 from . import config
 from .utils import (
@@ -17,10 +19,9 @@ from .utils import (
     html_to_pdf,
     markdown_to_html,
 )
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
-def parse_lab_elements(markdown_content: str) -> List[LabElement]:
+def parse_lab_elements(markdown_content: str) -> list[LabElement]:
     """Parse lab-specific elements from Markdown content.
 
     Scans the Markdown content for lab directives and extracts them
@@ -131,8 +132,8 @@ def parse_lab_elements(markdown_content: str) -> List[LabElement]:
 
 def generate_data_table(
     rows: int = 5,
-    columns: Optional[List[str]] = None,
-    title: Optional[str] = None,
+    columns: list[str] | None = None,
+    title: str | None = None,
     fillable: bool = True,
 ) -> str:
     """Generate HTML for a data table.
@@ -161,7 +162,7 @@ def generate_data_table(
 
 def generate_measurement_table(
     rows: int = 5,
-    aspects: Optional[List[str]] = None,
+    aspects: list[str] | None = None,
     include_device: bool = True,
     include_unit: bool = True,
     include_value: bool = False,
@@ -249,8 +250,8 @@ def render_lab_manual(
     input_path: str,
     output_path: str,
     output_format: str = "pdf",
-    lab_title: Optional[str] = None,
-    course_name: Optional[str] = None,
+    lab_title: str | None = None,
+    course_name: str | None = None,
     include_header: bool = True,
 ) -> str:
     """Render a lab manual from Markdown to PDF or HTML.
@@ -355,9 +356,9 @@ def batch_render_lab_manuals(
     directory: str,
     output_dir: str,
     output_format: str = "pdf",
-    course_name: Optional[str] = None,
-    max_lab: Optional[int] = None,
-) -> Dict[str, Any]:
+    course_name: str | None = None,
+    max_lab: int | None = None,
+) -> dict[str, Any]:
     """Batch render lab manuals from a directory.
 
     Args:
@@ -386,8 +387,8 @@ def batch_render_lab_manuals(
     output_directory = Path(output_dir)
     output_directory.mkdir(parents=True, exist_ok=True)
 
-    output_files: List[str] = []
-    errors: List[str] = []
+    output_files: list[str] = []
+    errors: list[str] = []
 
     # Find all lab manual files (check for 'lab' in filename)
     lab_files = [f for f in source_dir.glob("*.md") if "lab" in f.name.lower()]

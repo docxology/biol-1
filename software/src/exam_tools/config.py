@@ -74,8 +74,8 @@ LEGACY_CORRECT_TEXTS: Final[dict[int, str]] = {
     13: "A lipid bilayer with embedded proteins that can move laterally",
     14: "Down the molecule\u2019s concentration gradient without direct metabolic energy for the crossing itself",
     15: "Diffusion of **water** across a selectively permeable membrane",
-    16: "Energy stored in its phosphate bonds can be transferred to drive cellular work when hydrolyzed "
-    "/ regenerated in coupled reactions",
+    16: "ATP hydrolysis and phosphate transfer can be coupled to drive cellular work; ATP is continually "
+    "regenerated rather than serving as permanent storage",
     17: "Uses oxygen and breaks fuel molecules to capture usable energy (often linked to ATP production)",
     18: "Binds substrates and catalyzes conversion to products for that reaction",
     19: "Ribosomes synthesizing polypeptides using an mRNA code",

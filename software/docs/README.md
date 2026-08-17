@@ -191,7 +191,7 @@ Scripts in `scripts/` are thin orchestrators that call src modules:
 |--------|---------|-------------------|
 | `publish_all.py` | **Top-level pipeline** | `batch_processing`, `publish`, `validation` |
 | `generate_all_outputs.py` | Generate all course outputs | `batch_processing` |
-| `generate_module_materials.py` | Regenerate module.toml-derived materials (keys-to-success/questions/practice-quiz + generated SVGs) | `module_content` |
+| `generate_module_materials.py` | Regenerate module.toml-derived materials (key-points/questions/practice-quiz + generated SVGs) | `module_content` |
 | `generate_module_renderings.py` | Single module processing | `batch_processing` |
 | `generate_module_website.py` | Website generation | `html_website` |
 | `generate_slide_decks.py` | Slide deck generation | `slide_deck` |
@@ -216,7 +216,7 @@ See [../scripts/README.md](../scripts/README.md) for detailed documentation.
 
 | Document Type | BIOL-1 | Notes |
 |---------------|--------|--------|
-| **keys-to-success.md** | 16 | One per `course/module-*` (generated from `module.toml`) |
+| **key-points.md** | 16 | One per `course/module-*` (generated from `module.toml`) |
 | **questions.md** | 16 | One per module (generated from `module.toml`) |
 | **Labs** | 16 protocols + dashboards | See `course/labs/` |
 | **Exams** | Unit `exam-01`-`exam-03` + `final-exam` + keys (+ `exam-template`) | Teacher-only; never pushed to public course repos |

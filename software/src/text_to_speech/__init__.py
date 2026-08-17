@@ -6,6 +6,6 @@ from .main import (
 )
 
 __all__ = [
-    "generate_speech",
     "batch_generate_speech",
+    "generate_speech",
 ]

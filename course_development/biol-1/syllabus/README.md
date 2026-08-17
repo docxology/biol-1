@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains the course syllabus for BIOL-1 (General Biology at Pelican Bay, Fall 2026). The default publish profile renders PDF, DOCX, and MD copies; HTML, TXT, and MP3 are opt-in formats.
+This directory contains the course syllabus for BIOL-1 (General Biology at Pelican Bay, Fall 2026). The default publish profile renders PDF and DOCX copies; Markdown, HTML, TXT, and MP3 are opt-in formats.
 
 ## Syllabus File
 
@@ -14,10 +14,9 @@ The syllabus is processed to the default local publish formats in the flat `outp
 
 - **PDF**: `output/BIOL-1_Fall-2026_Syllabus.pdf` - Printable document format
 - **DOCX**: `output/BIOL-1_Fall-2026_Syllabus.docx` - Microsoft Word format
-- **MD**: `output/BIOL-1_Fall-2026_Syllabus.md` - Normalized Markdown copy
-
 Optional profile outputs:
 
+- **MD**: `output/BIOL-1_Fall-2026_Syllabus.md` - Normalized Markdown copy
 - **HTML**: `output/BIOL-1_Fall-2026_Syllabus.html` - Web format
 - **TXT**: `output/BIOL-1_Fall-2026_Syllabus.txt` - Plain text format
 - **MP3**: `output/BIOL-1_Fall-2026_Syllabus.mp3` - Audio format for listening

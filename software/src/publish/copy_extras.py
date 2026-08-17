@@ -5,25 +5,25 @@ reorganizing the published directory from module-based to category-based
 structure.
 """
 
-import shutil
 import logging
 import re
+import shutil
 from pathlib import Path
-from typing import List, Optional
+
+from src.shared.course_config import active_course_names
 
 from . import config
-from src.shared.course_config import active_course_names
 
 logger = logging.getLogger(__name__)
 
 
-def _active_courses(repo_root: Path) -> List[str]:
+def _active_courses(repo_root: Path) -> list[str]:
     """Return active course ids for publish helpers."""
     return active_course_names(repo_root) or ["biol-1"]
 
 
 def copy_labs_and_dashboards(
-    repo_root: Path, courses: Optional[List[str]] = None, verbose: bool = False
+    repo_root: Path, courses: list[str] | None = None, verbose: bool = False
 ) -> int:
     """Copy labs and dashboards to PUBLISHED directory.
 
@@ -83,7 +83,7 @@ def copy_labs_and_dashboards(
     return total_copied
 
 
-def copy_slides(repo_root: Path, courses: Optional[List[str]] = None, verbose: bool = False) -> int:
+def copy_slides(repo_root: Path, courses: list[str] | None = None, verbose: bool = False) -> int:
     """Copy slide PDFs from resources/slides to PUBLISHED directory.
 
     Args:
@@ -123,7 +123,7 @@ def copy_slides(repo_root: Path, courses: Optional[List[str]] = None, verbose: b
 
 
 def copy_slides_to_modules(
-    repo_root: Path, courses: Optional[List[str]] = None, verbose: bool = False
+    repo_root: Path, courses: list[str] | None = None, verbose: bool = False
 ) -> int:
     """Copy slide PDFs into each module's published folder.
 
@@ -168,7 +168,7 @@ def copy_slides_to_modules(
                 continue
 
             # Try multiple slide naming patterns
-            matching_slides: List[Path] = []
+            matching_slides: list[Path] = []
 
             # Pattern 1: module-{num}-slides-*.pdf (biol-1 style, no leading zeros)
             pattern1 = f"module-{module_num}-slides-*.pdf"
@@ -244,7 +244,7 @@ def copy_exams(repo_root: Path, verbose: bool = False) -> int:
 
 
 def copy_practice_tests(
-    repo_root: Path, courses: Optional[List[str]] = None, verbose: bool = False
+    repo_root: Path, courses: list[str] | None = None, verbose: bool = False
 ) -> int:
     """Copy practice test files from course/practice_tests to PUBLISHED directory.
 
@@ -304,13 +304,13 @@ def copy_practice_tests(
 
 def copy_module_generated_assets(
     repo_root: Path,
-    courses: Optional[List[str]] = None,
+    courses: list[str] | None = None,
     verbose: bool = False,
 ) -> int:
     """Copy each module's deterministic generated SVG assets into PUBLISHED.
 
     Each module's ``resources/generated/*.svg`` (concept map, process model,
-    retrieval card) is linked from its ``keys-to-success.md`` via relative
+    retrieval card) is linked from its ``key-points.md`` via relative
     paths like ``resources/generated/module-NN-concept-map.svg``. Those links
     must resolve both from the flattened ``module_keys/`` category folder and
     from the per-module ``modules/<slug>/`` bundle, so the assets are copied
@@ -386,12 +386,12 @@ def copy_module_generated_assets(
 
 
 def reorganize_to_categories(
-    published_dir: Path, courses: Optional[List[str]] = None, verbose: bool = False
+    published_dir: Path, courses: list[str] | None = None, verbose: bool = False
 ) -> int:
     """Reorganize PUBLISHED directory from module-based to category-based structure.
 
     Transforms:
-        module-XX-*/keys-to-success files -> module_keys/
+        module-XX-*/key-points files -> module_keys/
         module-XX-*/questions files -> homework/
         module-XX-*/website (index.html) -> removed
         module-XX-*/slides -> slides/
@@ -458,8 +458,8 @@ def reorganize_to_categories(
                     if verbose:
                         logger.debug(f"  {f.name} -> homework/")
 
-                # Keys-to-success files -> module_keys/
-                elif "keys-to-success" in fname:
+                # Key-points files -> module_keys/
+                elif "key-points" in fname:
                     dest = module_keys_dir / f.name
                     shutil.move(str(f), str(dest))
                     total_moved += 1
@@ -500,7 +500,7 @@ def reorganize_to_categories(
 
 
 def copy_module_bundles(
-    published_dir: Path, courses: Optional[List[str]] = None, verbose: bool = False
+    published_dir: Path, courses: list[str] | None = None, verbose: bool = False
 ) -> int:
     if courses is None:
         courses = _active_courses(published_dir.parent)
@@ -556,9 +556,7 @@ def _published_module_slugs(course_dir: Path) -> dict[int, str]:
         for file_path in category_dir.iterdir():
             if not file_path.is_file():
                 continue
-            match = re.match(
-                r"(module-(\d{2})-.+?)-(?:keys-to-success|questions)\.", file_path.name
-            )
+            match = re.match(r"(module-(\d{2})-.+?)-(?:key-points|questions)\.", file_path.name)
             if match:
                 slugs[int(match.group(2))] = match.group(1)
     return slugs

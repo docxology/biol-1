@@ -10,12 +10,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.shared.course_config import CourseSelectionError, find_repo_root, resolve_course_selection  # noqa: E402
-from src.shared.runtime import configure_runtime_environment  # noqa: E402
+from src.shared.course_config import (
+    CourseSelectionError,
+    find_repo_root,
+    resolve_course_selection,
+)
+from src.shared.runtime import configure_runtime_environment
 
 configure_runtime_environment()
 
-from src.slide_deck.main import describe_course_slide_decks, render_course_slide_decks  # noqa: E402
+from src.slide_deck.main import describe_course_slide_decks, render_course_slide_decks
 
 logger = logging.getLogger(__name__)
 

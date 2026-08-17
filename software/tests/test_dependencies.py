@@ -1,7 +1,6 @@
 """Tests to verify all required dependencies are installed and available."""
 
 import importlib.util
-from typing import List, Tuple
 
 import pytest
 
@@ -102,7 +101,7 @@ def test_python_docx_available():
 
 def test_all_dependencies_are_real_implementations():
     """Verify that all dependencies are real implementations, not mocks."""
-    dependency_checks: List[Tuple[str, str, str]] = [
+    dependency_checks: list[tuple[str, str, str]] = [
         ("gtts", "gTTS", "gTTS class for speech fixtures"),
         ("speech_recognition", "Recognizer", "Recognizer class"),
         ("pydub", "AudioSegment", "AudioSegment class"),
@@ -130,7 +129,7 @@ def test_no_conflicting_dependencies():
     verify version-range compatibility against pyproject.toml pins.
     """
     try:
-        import speech_recognition  # noqa: F401
         import pydub  # noqa: F401
+        import speech_recognition  # noqa: F401
     except ImportError as e:
         pytest.fail(f"Dependency conflict detected: {e}")

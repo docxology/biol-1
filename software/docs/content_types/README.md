@@ -25,7 +25,7 @@ flowchart TD
     LAB --> LABDASH["lab-NN_topic-dashboard.html"]
 
     MOD --> MODTOML["module.toml (source of truth)"]
-    MODTOML --> MODKEYS["keys-to-success.md"]
+    MODTOML --> MODKEYS["key-points.md"]
     MODTOML --> MODQ["questions.md"]
     MODTOML --> MODPQ["practice-quiz.md"]
     MODTOML --> MODSVG["Generated SVGs"]
@@ -56,7 +56,7 @@ flowchart TD
 | **Exams** | `course/exams/` | `exam-NN.md` + `exam-NN_key.md` | **Never** (teacher-only) | [EXAM_FORMAT.md](EXAM_FORMAT.md) |
 | **Practice Tests** | `course/practice_tests/` | `practice-test-NN.md` + `_key.md` | Yes (PDF/DOCX) | [PRACTICE_TEST_FORMAT.md](PRACTICE_TEST_FORMAT.md) |
 | **Quizzes** | `course/quizzes/` | `quiz-template.md` (BIOL-1) | **Never** (teacher-only) | — |
-| **Syllabus** | `syllabus/` | `BIOL-X_Fall-2026_Syllabus.md` | Yes (PDF/DOCX/MD) | [SYLLABUS_FORMAT.md](SYLLABUS_FORMAT.md) |
+| **Syllabus** | `syllabus/` | `BIOL-X_Fall-2026_Syllabus.md` | Yes (PDF/DOCX) | [SYLLABUS_FORMAT.md](SYLLABUS_FORMAT.md) |
 | **Slides** | `resources/slides/` | `module-N-slides-{full,notes}.pdf` | Yes (PDF) | [SLIDES_FORMAT.md](SLIDES_FORMAT.md) |
 | **Review Materials** | `course/review_materials/` | Various `.md` worksheets | Yes (PDF/DOCX) | — |
 
@@ -66,7 +66,7 @@ flowchart TD
 
 ### Module Study Guides
 
-The core content unit. Each module has a `module.toml` source-of-truth file that drives generation of `keys-to-success.md`, `questions.md`, `practice-quiz.md`, and three SVG visualizations. BIOL-1 has **16** content modules.
+The core content unit. Each module has a `module.toml` source-of-truth file that drives generation of `key-points.md`, `questions.md`, `practice-quiz.md`, and three SVG visualizations. BIOL-1 has **16** content modules.
 
 See [MODULE_FORMAT.md](MODULE_FORMAT.md) for the full schema and authoring guide.
 
@@ -96,7 +96,7 @@ See [PRACTICE_TEST_FORMAT.md](PRACTICE_TEST_FORMAT.md) for naming, key format, a
 
 ### Syllabus & Schedule
 
-Course syllabus and weekly schedule rendered to PDF, DOCX, and MD. Flat output structure (no subdirectories).
+Course syllabus and weekly schedule rendered to PDF and DOCX. Markdown remains the editable source; the output structure is flat (no subdirectories).
 
 See [SYLLABUS_FORMAT.md](SYLLABUS_FORMAT.md) for source files, schedule table format, and Fall 2026 schedule.
 

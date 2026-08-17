@@ -4,7 +4,7 @@ Welcome to Module 12! In this module, we will explore the foundational concept o
 
 ## Module Structure
 
-1. **[Keys to Success](keys-to-success.md)**
+1. **[Key Points](key-points.md)**
    - Start here! This documents the critical concepts, vocabulary, and analogies you need to understand natural selection. 
 2. **[Practice Questions](questions.md)**
    - Self-assess your understanding of the mechanisms of evolution and the evidence supporting it.

@@ -13,8 +13,8 @@ syllabus/
 ├── BIOL-1_Fall-2026_Syllabus.md   # Main syllabus (source)
 ├── Schedule.md                      # Term schedule (source)
 └── output/                          # Processed outputs (do not add new *source* .md here)
-    ├── BIOL-1_Fall-2026_Syllabus.{pdf,docx,md}
-    └── Schedule.{pdf,docx,md}
+    ├── BIOL-1_Fall-2026_Syllabus.{pdf,docx}
+    └── Schedule.{pdf,docx}
 ```
 
 `generate_syllabus_renderings.py` processes **only** top-level `*.md` in this directory that are not under `output/`. The batch layer should not treat `output/*.md` copies as second sources.
@@ -32,16 +32,16 @@ Processes all markdown files in the syllabus directory and generates the request
 ### Processing Pipeline
 
 For each markdown file in the syllabus directory, the default publish profile
-generates PDF, DOCX, and MD outputs. HTML, TXT, and MP3 are supported opt-in
-formats requested through `publish.toml` or `python publish.py --override-formats`.
+generates PDF and DOCX outputs. Markdown, HTML, TXT, and MP3 are supported
+opt-in formats requested through `publish.toml` or
+`python publish.py --override-formats`.
 
 ### Output Structure
 
 ```
 output/
 ├── [filename].pdf
-├── [filename].docx
-└── [filename].md
+└── [filename].docx
 ```
 
 All output files are organized flat in the `output/` directory, matching the flat syllabus output structure.
@@ -57,7 +57,7 @@ All output files are organized flat in the `output/` directory, matching the fla
 ### Output Files
 
 - **Base Name**: Derived from source markdown filename (without extension)
-- **Extensions**: `.pdf`, `.docx`, `.md` by default; `.html`, `.txt`, and `.mp3` when requested
+- **Extensions**: `.pdf` and `.docx` by default; `.md`, `.html`, `.txt`, and `.mp3` when requested
 - **Location**: Flat in `output/` directory (same flat syllabus output structure)
 
 ## Processing Script

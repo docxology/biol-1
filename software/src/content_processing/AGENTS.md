@@ -21,8 +21,8 @@ Transform and normalize course content files, including:
 
 ```python
 from src.content_processing import (
-    process_questions_file,      # Process single questions.md file
-    renumber_questions_in_course # Process all questions in a course
+    process_questions_file,  # Process single questions.md file
+    renumber_questions_in_course,  # Process all questions in a course
 )
 ```
 
@@ -31,12 +31,12 @@ from src.content_processing import (
 ```python
 from src.content_processing.utils import (
     extract_questions_from_sectioned,  # Extract questions from bullet format
-    format_as_continuous,              # Format questions as numbered list
-    normalize_whitespace,              # Clean up whitespace in markdown
-    extract_headers,                   # Extract headers with levels
-    count_questions,                   # Count questions by type
-    extract_numbered_items,            # Extract numbered list items
-    validate_question_format           # Validate questions.md format
+    format_as_continuous,  # Format questions as numbered list
+    normalize_whitespace,  # Clean up whitespace in markdown
+    extract_headers,  # Extract headers with levels
+    count_questions,  # Count questions by type
+    extract_numbered_items,  # Extract numbered list items
+    validate_question_format,  # Validate questions.md format
 )
 ```
 
@@ -50,27 +50,19 @@ from src.content_processing import process_questions_file, renumber_questions_in
 
 # Process a single file
 was_changed, count = process_questions_file(
-    Path("module-01/questions.md"),
-    dry_run=False,
-    verbose=True
+    Path("module-01/questions.md"), dry_run=False, verbose=True
 )
 
 # Process all questions in a course
 results = renumber_questions_in_course(
-    repo_root=Path("/path/to/repo"),
-    courses=["biol-1"],
-    dry_run=True
+    repo_root=Path("/path/to/repo"), courses=["biol-1"], dry_run=True
 )
 ```
 
 ### Content Analysis
 
 ```python
-from src.content_processing.utils import (
-    count_questions,
-    extract_headers,
-    validate_question_format
-)
+from src.content_processing.utils import count_questions, extract_headers, validate_question_format
 
 # Count questions by type
 content = Path("questions.md").read_text()

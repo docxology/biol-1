@@ -1,7 +1,7 @@
 """Main functions for file validation."""
 
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 from . import config
 from .utils import (
@@ -13,7 +13,7 @@ from .utils import (
 )
 
 
-def validate_module_files(module_path: str) -> Dict[str, Any]:
+def validate_module_files(module_path: str) -> dict[str, Any]:
     """Validate files in a module directory.
 
     Args:
@@ -101,7 +101,7 @@ def validate_module_files(module_path: str) -> Dict[str, Any]:
     }
 
 
-def check_naming_conventions(directory: str) -> List[str]:
+def check_naming_conventions(directory: str) -> list[str]:
     """Check file naming convention compliance.
 
     Args:
@@ -132,9 +132,10 @@ def check_naming_conventions(directory: str) -> List[str]:
                 continue
 
             # For files in assignments directory, check assignment pattern
-            if "assignments" in file_path.parts:
-                if not matches_pattern(file_name, config.ASSIGNMENT_PATTERN):
-                    violations.append(str(file_path.relative_to(dir_path)))
+            if "assignments" in file_path.parts and not matches_pattern(
+                file_name, config.ASSIGNMENT_PATTERN
+            ):
+                violations.append(str(file_path.relative_to(dir_path)))
 
     return violations
 
@@ -159,7 +160,7 @@ def verify_required_structure(module_path: str) -> bool:
     return len(missing_files) == 0 and len(missing_directories) == 0
 
 
-def validate_course_structure(course_path: str) -> Dict[str, Any]:
+def validate_course_structure(course_path: str) -> dict[str, Any]:
     """Validate entire course structure.
 
     Args:
@@ -194,8 +195,8 @@ def validate_course_structure(course_path: str) -> Dict[str, Any]:
             "issues": ["Course directory does not contain 'course' subdirectory"],
         }
 
-    modules: List[Dict[str, Any]] = []
-    issues: List[str] = []
+    modules: list[dict[str, Any]] = []
+    issues: list[str] = []
 
     # Find all module directories
     module_dirs = [
@@ -226,7 +227,7 @@ def validate_course_structure(course_path: str) -> Dict[str, Any]:
     }
 
 
-def get_validation_report(module_path: str) -> Dict[str, Any]:
+def get_validation_report(module_path: str) -> dict[str, Any]:
     """Get detailed validation report for a module.
 
     Args:
@@ -290,7 +291,7 @@ def get_validation_report(module_path: str) -> Dict[str, Any]:
     }
 
 
-def find_missing_materials(module_path: str) -> Dict[str, Any]:
+def find_missing_materials(module_path: str) -> dict[str, Any]:
     """Find missing required materials in a module.
 
     Args:
@@ -348,7 +349,7 @@ def find_missing_materials(module_path: str) -> Dict[str, Any]:
     }
 
 
-def check_file_sizes(module_path: str, max_size: int = 50 * 1024 * 1024) -> List[str]:
+def check_file_sizes(module_path: str, max_size: int = 50 * 1024 * 1024) -> list[str]:
     """Check for files that exceed maximum size.
 
     Args:

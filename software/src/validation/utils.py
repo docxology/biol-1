@@ -1,17 +1,18 @@
 """Utility functions for validation module."""
 
 import logging
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
+
+from src.shared.file_utils import is_within_directory
 
 from . import config
-from src.shared.file_utils import is_within_directory
 
 logger = logging.getLogger(__name__)
 
 
-def count_files_by_extension(directory: Path) -> Dict[str, int]:
+def count_files_by_extension(directory: Path) -> dict[str, int]:
     """Count files in directory by extension.
 
     Args:
@@ -20,7 +21,7 @@ def count_files_by_extension(directory: Path) -> Dict[str, int]:
     Returns:
         Dictionary mapping extension to count
     """
-    counts: Dict[str, int] = {}
+    counts: dict[str, int] = {}
 
     if not directory.exists():
         return counts
@@ -38,7 +39,7 @@ def count_files_by_extension(directory: Path) -> Dict[str, int]:
     return counts
 
 
-def get_module_directories(course_path: Path) -> List[Path]:
+def get_module_directories(course_path: Path) -> list[Path]:
     """Get list of module directories in a course.
 
     Args:
@@ -64,7 +65,7 @@ def get_module_directories(course_path: Path) -> List[Path]:
     )
 
 
-def check_output_directory(module_path: Path) -> Tuple[bool, Dict[str, bool]]:
+def check_output_directory(module_path: Path) -> tuple[bool, dict[str, bool]]:
     """Check if module has expected output directory structure.
 
     Args:
@@ -86,13 +87,11 @@ def check_output_directory(module_path: Path) -> Tuple[bool, Dict[str, bool]]:
     return True, subdirs
 
 
-def check_study_guide_files(
-    module_path: Path, formats: Optional[List[str]] = None
-) -> Dict[str, bool]:
+def check_study_guide_files(module_path: Path, formats: list[str] | None = None) -> dict[str, bool]:
     """Check which study guide files exist for a module.
 
     Study guide files are named with module prefix, e.g.:
-    module-01-study-of-life-keys-to-success.pdf
+    module-01-study-of-life-key-points.pdf
 
     This function checks for files ending with expected base names.
 
@@ -117,8 +116,8 @@ def check_study_guide_files(
 
     result = {}
     for expected_suffix in expected_files:
-        # Check if any file ends with this suffix (e.g., "-keys-to-success.pdf")
-        # The expected file is like "keys-to-success.pdf" and actual is "module-XX-topic-keys-to-success.pdf"
+        # Check if any file ends with this suffix (e.g., "-key-points.pdf")
+        # The expected file is like "key-points.pdf" and actual is "module-XX-topic-key-points.pdf"
         suffix_to_check = f"-{expected_suffix}"
         found = any(f.endswith(suffix_to_check) or f == expected_suffix for f in existing_files)
         result[expected_suffix] = found
@@ -126,7 +125,7 @@ def check_study_guide_files(
     return result
 
 
-def check_website_files(module_path: Path) -> Dict[str, bool]:
+def check_website_files(module_path: Path) -> dict[str, bool]:
     """Check which website files exist for a module.
 
     Args:
@@ -148,7 +147,7 @@ def check_website_files(module_path: Path) -> Dict[str, bool]:
     return result
 
 
-def format_file_counts(counts: Dict[str, int]) -> str:
+def format_file_counts(counts: dict[str, int]) -> str:
     """Format file counts as readable string.
 
     Args:
@@ -169,10 +168,10 @@ def get_timestamp() -> str:
     Returns:
         Formatted timestamp string
     """
-    return datetime.now().strftime(config.LOG_DATE_FORMAT)
+    return datetime.now(UTC).strftime(config.LOG_DATE_FORMAT)
 
 
-def _classify_lab_file(lab_path: Path) -> Tuple[Optional[int], bool]:
+def _classify_lab_file(lab_path: Path) -> tuple[int | None, bool]:
     """Classify a lab markdown file as numbered/supplemental.
 
     A "numbered" lab matches ``lab-NN_*.md`` and has no supplemental marker
@@ -204,9 +203,9 @@ def _classify_lab_file(lab_path: Path) -> Tuple[Optional[int], bool]:
 
 def check_lab_files(
     course_path: Path,
-    max_lab: Optional[int] = None,
-    formats: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    max_lab: int | None = None,
+    formats: list[str] | None = None,
+) -> dict[str, Any]:
     """Check lab output files and dashboards for a course.
 
     Args:
@@ -232,7 +231,7 @@ def check_lab_files(
         - ``missing_outputs``: List of lab stems missing any rendered output.
         - ``issues``: List of issues found.
     """
-    result: Dict[str, Any] = {
+    result: dict[str, Any] = {
         "source_labs": 0,
         "source_labs_numbered": 0,
         "source_labs_supplemental": 0,
@@ -256,7 +255,7 @@ def check_lab_files(
     all_source_labs = sorted(labs_dir.glob("lab-*.md"))
 
     if max_lab is not None:
-        in_scope: List[Path] = []
+        in_scope: list[Path] = []
         for lab in all_source_labs:
             lab_number, _ = _classify_lab_file(lab)
             # Supplemental files (no number, or number ≤ max_lab) are kept
@@ -325,9 +324,9 @@ def check_lab_files(
 
 def check_dashboard_invariant(
     course_path: Path,
-    course_name: Optional[str] = None,
-    max_lab: Optional[int] = None,
-) -> Dict[str, Any]:
+    course_name: str | None = None,
+    max_lab: int | None = None,
+) -> dict[str, Any]:
     """Strict per-numbered-lab dashboard check.
 
     For each numbered protocol ``lab-NN_*.md`` in ``course/labs/`` (with
@@ -365,7 +364,7 @@ def check_dashboard_invariant(
     overrides = {int(k): int(v) for k, v in cfg["overrides"].items()}
     exempt = {int(n) for n in cfg["exempt"]}
 
-    result: Dict[str, Any] = {
+    result: dict[str, Any] = {
         "valid": True,
         "per_lab": {},
         "issues": [],
@@ -379,7 +378,7 @@ def check_dashboard_invariant(
     if not labs_dir.exists():
         return result
 
-    numbered_labs: Dict[int, Path] = {}
+    numbered_labs: dict[int, Path] = {}
     for lab_path in sorted(labs_dir.glob("lab-*.md")):
         lab_number, is_numbered = _classify_lab_file(lab_path)
         if not is_numbered or lab_number is None:

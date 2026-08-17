@@ -1,0 +1,163 @@
+# Generated from module-08-cellular-genetics/module.toml — do not hand-edit
+title: "BIOL-1 Module 08: Cellular Genetics"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Cellular Genetics"
+  series: "BIOL-1: General Biology"
+  series_index: 8
+  series_total: 16
+  lab: "Lab 08 Cellular Genetics"
+
+sections:
+- id: "module-08-cellular-genetics"
+  title: "Module 08: Cellular Genetics"
+  objectives:
+    - "Relate chromosomes to DNA organization."
+    - "Compare the purpose and products of mitosis and meiosis."
+    - "Explain how meiosis reduces chromosome number."
+    - "Describe how crossing over and independent assortment increase variation."
+    - "Interpret chromosome number errors at an introductory level."
+  beats:
+
+  - id: "module-08-cellular-genetics_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 08: Cellular Genetics. The connected lab is Lab 08 Cellular Genetics. Here is the central idea: Cellular Genetics explains chromosome behavior across mitosis, meiosis, variation, and errors. Let us begin."
+    visual:
+      kind: title
+      title: "Module 08: Cellular Genetics"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 08 Cellular Genetics"
+
+  - id: "module-08-cellular-genetics_objectives"
+    narration: "By the end of this module you should be able to: Relate chromosomes to DNA organization; Compare the purpose and products of mitosis and meiosis; Explain how meiosis reduces chromosome number; Describe how crossing over and independent assortment increase variation; Interpret chromosome number errors at an introductory level. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Relate chromosomes to DNA organization."
+        - "Compare the purpose and products of mitosis and meiosis."
+        - "Explain how meiosis reduces chromosome number."
+        - "Describe how crossing over and independent assortment increase variation."
+        - "Interpret chromosome number errors at an introductory level."
+
+  - id: "module-08-cellular-genetics_topics"
+    narration: "This module covers 5 topics. Chromosomes and cell cycle — Chromosomes organize DNA so cells can divide accurately. Mitosis for growth and repair — Mitosis produces genetically identical daughter cells for growth and repair. Meiosis for gametes — Meiosis produces haploid gametes for sexual reproduction. Variation from recombination and assortment — Crossing over and independent assortment create genetic variation. Errors and genetic consequences — Nondisjunction and other errors can change chromosome number. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Chromosomes and cell cycle"
+        - "Mitosis for growth and repair"
+        - "Meiosis for gametes"
+        - "Variation from recombination and assortment"
+        - "Errors and genetic consequences"
+
+  - id: "module-08-cellular-genetics_concept_map"
+    narration: "Here is the concept map for module 08. The central claim is: Cellular Genetics explains chromosome behavior across mitosis, meiosis, variation, and errors. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-08-concept-map.png"
+
+  - id: "module-08-cellular-genetics_process_model"
+    narration: "This process model shows the reasoning sequence for cellular genetics. Follow the stages from inputs to outputs. The Lab 08 Cellular Genetics lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-08-process-model.png"
+
+  - id: "module-08-cellular-genetics_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: Why do cells package DNA into chromosomes? Treat that question as an observation that needs an explanation. A useful first claim is: Chromosomes organize DNA so cells can divide accurately. Then ask what evidence could support or challenge it. The first practice check reminds us that Mitosis produces two genetically identical daughter cells for growth and repair. Meiosis makes four haploid gametes. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: Why do cells package DNA into chromosomes?"
+        - "Build a claim: Chromosomes organize DNA so cells can divide accurately."
+        - "Check the claim: Mitosis produces two genetically identical daughter cells for growth and repair. Meiosis makes four haploid gametes."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-08-cellular-genetics_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Chromosome, Cell cycle, Mitosis. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Chromosome: DNA-protein structure carrying genes."
+        - "Cell cycle: Ordered sequence of cell growth, DNA replication, and division."
+        - "Mitosis: Nuclear division producing identical daughter nuclei."
+
+  - id: "module-08-cellular-genetics_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Meiosis, Gamete, Crossing over. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Meiosis: Division process producing haploid gametes."
+        - "Gamete: Haploid reproductive cell."
+        - "Crossing over: Exchange of DNA between homologous chromosomes."
+
+  - id: "module-08-cellular-genetics_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Independent assortment, Nondisjunction. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Independent assortment: Random orientation of chromosome pairs in meiosis."
+        - "Nondisjunction: Failure of chromosomes to separate correctly."
+
+  - id: "module-08-cellular-genetics_lab"
+    narration: "The lab connected to this module is Lab 08 Cellular Genetics. The evidence you collect should test or illustrate chromosomes and cell cycle. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 08 Cellular Genetics"
+        - "Evidence surface for: Chromosomes and cell cycle"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-08-cellular-genetics_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-08-retrieval-card.png"
+
+  - id: "module-08-cellular-genetics_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=B, 2=D, 3=A, 4=C. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: What is the main product of mitosis?"
+        - "Q2: Meiosis reduces the chromosome number by using:"
+        - "Q3: Crossing over and independent assortment both act to:"
+        - "Q4: If chromosomes fail to separate correctly during meiosis (nondisjunction), a resulting gamete may have:"
+
+  - id: "module-08-cellular-genetics_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What evidence would distinguish mitosis from meiosis? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What evidence would distinguish mitosis from meiosis?"
+
+  - id: "module-08-cellular-genetics_synthesis"
+    narration: "To synthesize this module: explain chromosomes and cell cycle using evidence from the Lab 08 Cellular Genetics lab. Your explanation must include Chromosome, Cell cycle, Mitosis, Meiosis, Gamete, Crossing over, Independent assortment, Nondisjunction. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain chromosomes and cell cycle using evidence from the Lab 08 Cellular Genetics lab"
+        - "Must include: Chromosome, Cell cycle, Mitosis, Meiosis, Gamete, Crossing over, Independent assortment, Nondisjunction"
+        - "What evidence would change your explanation?"

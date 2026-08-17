@@ -2,13 +2,12 @@
 
 import logging
 import sys
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Optional
 
 
 def setup_logging(
-    log_dir: Optional[Path] = None,
+    log_dir: Path | None = None,
     log_level: int = logging.INFO,
     file_level: int = logging.DEBUG,
 ) -> logging.Logger:
@@ -51,7 +50,7 @@ def setup_logging(
     log_dir.mkdir(parents=True, exist_ok=True)
 
     # Create timestamped log file
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    timestamp = datetime.now(UTC).strftime("%Y-%m-%d_%H-%M-%S")
     log_file = log_dir / f"generation_{timestamp}.log"
 
     file_handler = logging.FileHandler(log_file, encoding="utf-8")

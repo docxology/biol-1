@@ -12,12 +12,12 @@ BIOL-1 has **16** content modules (`module-01` … `module-16`). The schedule ma
 | --- | --- | --- |
 | Exam 01 | 01–06 | Scientific method, chemistry, cells, membranes, metabolism |
 | Exam 02 | 07–11 | Molecular genetics, cellular genetics, inheritance, epigenetics, genomics & biotechnology |
-| Exam 03 | 12–15 | Darwin & evolution, populations evolve, macroevolution, population & systems ecology |
+| Exam 03 | 12–16 | Darwin & evolution, populations evolve, macroevolution, population & systems ecology, systems synthesis |
 | Final | Comprehensive | Broad final (syllabus) |
 
 **Comprehensive final:** `final-exam.md` + `final-exam_key.md` — **100 points** (45 MC, 15 fill-in with word bank, Part C **choose five of seven** short answers with lined space, one essay chosen from three prompts). Longer and broader than the **50-point** unit exams.
 
-**Filenames match the schedule:** `exam-02.md` / `exam-02_key.md` cover modules **07–11**; `exam-03.md` / `exam-03_key.md` cover modules **12–15**.
+**Filenames match the schedule:** `exam-02.md` / `exam-02_key.md` cover modules **07–11**; `exam-03.md` / `exam-03_key.md` cover modules **12–16**.
 
 ## Files on disk
 
@@ -35,9 +35,9 @@ BIOL-1 has **16** content modules (`module-01` … `module-16`). The schedule ma
 
 ## Format
 
-**`exam-01.md`**, **`exam-02.md`**, and **`exam-03.md`** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of five). Exam **02** uses **six** MC items per module (**07–11**). Exam **03** uses **eight** MC items for modules **12** and **13**, and **seven** each for modules **14** and **15**, for **30** total MC items across four modules.
+**`exam-01.md`**, **`exam-02.md`**, and **`exam-03.md`** use a **50-point** layout (30 multiple choice, 11 fill-in-the-blank with word bank, 9 points free response — choose three of six). Exam **02** uses **six** MC items per module (**07–11**). Exam **03** uses **eight** MC items for modules **12** and **13**, and **seven** each for modules **14** and **15**, for **30** total MC items; its sixth free-response prompt assesses Module 16 capstone synthesis.
 
-**`final-exam.md`** uses **100 points:** Part A **45** MC (three per module, modules **01–15**), Part B **16** fill-in terms drawn from a **19-word** bank (**four** decoys), Part C **seven** prompts—students **choose any five** (**25** points; **5** points each), Part D **one** essay (**16** points) from three options.
+**`final-exam.md`** uses **100 points:** Part A **45** MC, Part B **15** fill-in terms drawn from a **19-word** bank (**four** decoys), Part C **seven** prompts—students **choose any five** (**25** points; **5** points each), and Part D **one** essay (**15** points) from four options, including Module 16 capstone synthesis. It covers Modules **01–15**, plus a dedicated Module **16** capstone synthesis essay.
 
 **Part A shuffle:** Multiple-choice answer letters are **not** kept in a fixed cycle. They are laid out with `software/scripts/shuffle_final_exam_mc.py` using **`FINAL_MC_SEED = 20260203`**. The keyed multiset is **12×A, 11×B, 11×C, 11×D**; distractors within each stem use `Random(FINAL_MC_SEED + question_number)`. Re-run that script after editing Part A option text so `final-exam_key.md` stays aligned. Use **`--spacing-only`** on that script to insert blank lines after stems and between options **without** reshuffling.
 

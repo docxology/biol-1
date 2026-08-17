@@ -1,7 +1,6 @@
 """Shared utility functions for CLI scripts."""
 
 from pathlib import Path
-from typing import List
 
 
 def print_module_not_found(course_path: Path, course_id: str, module_num: int) -> None:
@@ -19,7 +18,7 @@ def print_module_not_found(course_path: Path, course_id: str, module_num: int) -
     print(f"  Available modules in {course_id}:")
     course_dir = course_path / "course"
     if course_dir.exists():
-        modules: List[str] = sorted(
+        modules: list[str] = sorted(
             [d.name for d in course_dir.iterdir() if d.is_dir() and d.name.startswith("module-")]
         )
         for m in modules:

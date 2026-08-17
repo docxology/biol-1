@@ -142,7 +142,6 @@ function checkQuestion(qid, type) {
     const feedback = document.getElementById(`feedback-${qid}`);
     if(!state) { feedback.textContent = "Please answer first."; feedback.className = "question-feedback show info"; return; }
 
-    // Simplified check logic to keep file size manageable while retaining core function
     let isCorrect = false;
     if(type === 'multiple_choice') {
         const corr = document.getElementById(`correct-${qid}`);
@@ -151,7 +150,19 @@ function checkQuestion(qid, type) {
         const corr = document.getElementById(`correct-${qid}`);
         if(corr) isCorrect = (String(state.answer) === corr.value);
     } else if(type === 'free_response') {
-        isCorrect = true; // Free response always valid
+        const answer = String(state.answer || '').trim();
+        if(!answer) {
+            feedback.textContent = "Please enter a response first.";
+            feedback.className = "question-feedback show info";
+            return;
+        }
+        feedback.textContent = "Response recorded for self-review.";
+        feedback.className = "question-feedback show info";
+        if(!completedQuestions.has(qid)) {
+            completedQuestions.add(qid);
+            updateProgress();
+        }
+        return;
     } else if(type === 'matching') {
         // Validate each matching pair: the selected option index must
         // equal the hidden correct-match value (item index == correct option).

@@ -12,7 +12,6 @@ from dataclasses import dataclass
 from html import escape
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DASHBOARD_DIR = REPO_ROOT / "course_development" / "biol-1" / "course" / "labs" / "dashboards"
 
@@ -30,6 +29,8 @@ class LabDashboardSpec:
 
     @property
     def filename(self) -> str:
+        if self.slug.startswith("exam-"):
+            return f"{self.slug}-dashboard.html"
         return f"lab-{self.number:02d}_{self.slug}-dashboard.html"
 
 
@@ -76,7 +77,7 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         4,
         "liquid-chemistry",
         "Liquid Chemistry",
-        "Module 05",
+        "Module 04",
         "Connect diffusion, viscosity, redox change, and dilution to cell chemistry.",
         ("Diffusion rate", "Color change", "Dilution gradient"),
         (
@@ -90,7 +91,7 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         5,
         "viewing-life",
         "Viewing Life",
-        "Module 06",
+        "Module 05",
         "Use direct observation to connect structure and function in living systems.",
         ("Specimen", "Structure", "Function"),
         (
@@ -102,7 +103,21 @@ SPECS: tuple[LabDashboardSpec, ...] = (
     ),
     LabDashboardSpec(
         6,
-        "exam-review",
+        "metabolism",
+        "Metabolism",
+        "Module 06",
+        "Connect enzymes, energy transfer, photosynthesis, and cellular respiration.",
+        ("Reactant", "Energy change", "Product"),
+        (
+            "Track matter as well as energy.",
+            "Distinguish photosynthesis from respiration.",
+            "Connect enzymes to reaction rates.",
+        ),
+        ("enzyme", "ATP", "photosynthesis", "respiration"),
+    ),
+    LabDashboardSpec(
+        6,
+        "exam-01-review",
         "Exam 01 Review",
         "Review: Modules 01-06",
         "Organize the first unit around evidence, chemistry, cells, membranes, and metabolism.",
@@ -199,7 +214,7 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         ("gene", "chromosome", "inheritance", "biotechnology"),
     ),
     LabDashboardSpec(
-        13,
+        12,
         "darwin-evolution",
         "Darwin and Evolution",
         "Module 12",
@@ -213,7 +228,7 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         ("fitness", "adaptation", "selection", "population"),
     ),
     LabDashboardSpec(
-        14,
+        13,
         "how-populations-evolve",
         "How Populations Evolve",
         "Module 13",
@@ -227,7 +242,7 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         ("allele frequency", "drift", "gene flow", "Hardy-Weinberg"),
     ),
     LabDashboardSpec(
-        15,
+        14,
         "macroevolution",
         "Macroevolution",
         "Module 14",
@@ -241,7 +256,7 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         ("species", "speciation", "phylogeny", "fossil"),
     ),
     LabDashboardSpec(
-        16,
+        15,
         "population-systems-ecology",
         "Population and Systems Ecology",
         "Module 15",
@@ -255,10 +270,80 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         ("population", "community", "ecosystem", "feedback"),
     ),
     LabDashboardSpec(
+        16,
+        "capstone-systems-synthesis",
+        "Capstone Systems Synthesis",
+        "Module 16",
+        "Synthesize biological organization, information flow, and feedback across the course.",
+        ("Level", "Mechanism", "Feedback"),
+        (
+            "Name the level of organization.",
+            "Trace a mechanism across scales.",
+            "Explain one feedback relationship.",
+        ),
+        ("system", "scale", "feedback", "synthesis"),
+    ),
+    LabDashboardSpec(
+        17,
+        "tbd",
+        "TBD Laboratory Session 17",
+        "TBD",
+        "Reserved laboratory session; topic and module association require instructor approval.",
+        ("Question", "Evidence", "Revision"),
+        (
+            "Define the approved biological question.",
+            "Record evidence and units.",
+            "State one limitation or revision.",
+        ),
+        ("question", "evidence", "variable", "limitation"),
+    ),
+    LabDashboardSpec(
+        18,
+        "tbd",
+        "TBD Laboratory Session 18",
+        "TBD",
+        "Reserved laboratory session; topic and module association require instructor approval.",
+        ("Question", "Evidence", "Revision"),
+        (
+            "Define the approved biological question.",
+            "Record evidence and units.",
+            "State one limitation or revision.",
+        ),
+        ("question", "evidence", "variable", "limitation"),
+    ),
+    LabDashboardSpec(
+        19,
+        "tbd",
+        "TBD Laboratory Session 19",
+        "TBD",
+        "Reserved laboratory session; topic and module association require instructor approval.",
+        ("Question", "Evidence", "Revision"),
+        (
+            "Define the approved biological question.",
+            "Record evidence and units.",
+            "State one limitation or revision.",
+        ),
+        ("question", "evidence", "variable", "limitation"),
+    ),
+    LabDashboardSpec(
+        20,
+        "tbd",
+        "TBD Laboratory Session 20",
+        "TBD",
+        "Reserved laboratory session; topic and module association require instructor approval.",
+        ("Question", "Evidence", "Revision"),
+        (
+            "Define the approved biological question.",
+            "Record evidence and units.",
+            "State one limitation or revision.",
+        ),
+        ("question", "evidence", "variable", "limitation"),
+    ),
+    LabDashboardSpec(
         17,
         "exam-03-review",
         "Exam 03 Review",
-        "Review: Modules 12-15",
+        "Review: Modules 12-16",
         "Prepare for the evolution and ecology unit exam with evidence-based review.",
         ("Evolution concept", "Ecology concept", "Practice target"),
         (

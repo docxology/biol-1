@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-04-cells-practice-quiz.pdf",
+      "id": "module-04-cells",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "4702924e87e9b90933548201cc5909b789be7172ae343380db0127df834a7770",
+      "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-04-cells-key-points.docx",
+      "id": "module-04-cells",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "749b211c54e24317262979fd3e857fbb04e35aa27d770bf48c60378fd0fabb56",
+      "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-key-points.docx"
+    },
+    {
+      "destination": "materials/module-04-cells-practice-quiz.docx",
+      "id": "module-04-cells",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "6306398c33820c59143487a8001456c2f7589c12855a3eaf7c278f2c2d4ede3b",
+      "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-04-cells-questions.pdf",
+      "id": "module-04-cells",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "32e58671d38edb8933cf819abee023687c790cb7ee9c732ff9a2a1f2ebd41582",
+      "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-questions.pdf"
+    },
+    {
+      "destination": "materials/module-04-cells-questions.docx",
+      "id": "module-04-cells",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "fb1b41a76cc5164a991c7c14778b7b3f7aa97a47eee7cbf84905d4942725f5f8",
+      "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-questions.docx"
+    },
+    {
+      "destination": "materials/module-04-cells-key-points.pdf",
+      "id": "module-04-cells",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "5e5d0607feec02f9125562265f5df821b5b76ff131d57f4222bc0aa2aa3b0945",
+      "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-04-cells-module-4-slides-full.pdf",
+      "id": "module-04-cells",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "2384acf4c585c318932911cf4af2d79a09f7c7acb88717150b2fdbc517d8e057",
+      "source": "course_development/biol-1/resources/slides/module-4-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-04-cells-module-4-slides-notes.pdf",
+      "id": "module-04-cells",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "2670bb88779a844e7ef67d887b1585b7e672a6b533732345527a6b61298b4f74",
+      "source": "course_development/biol-1/resources/slides/module-4-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-04-cells-lecture.mp4",
+      "id": "module-04-cells",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "cc6e11af532b76b1fe7473e305e8a29858fd6c42d7e2a669e85a6b214346f5a2",
+      "source": "output/lectures/module-04-cells/module-04-cells/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-04-cells-module-04-cells.yaml",
+      "id": "module-04-cells",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "715c7ee923833f5e15df8520b18dad1ab9a30a0f0f1a1c2259da179f42327e70",
+      "source": "output/lectures/module-04-cells/module-04-cells.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-09-03",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-04-cells",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-04_liquid-chemistry.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 4: Cell Structure and Function",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 04: Cells; Lab 04",
+    "week": 2
+  }
+}

@@ -1,0 +1,163 @@
+# Generated from module-05-membranes/module.toml — do not hand-edit
+title: "BIOL-1 Module 05: Membranes"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Membranes"
+  series: "BIOL-1: General Biology"
+  series_index: 5
+  series_total: 16
+  lab: "Lab 05 Viewing Life"
+
+sections:
+- id: "module-05-membranes"
+  title: "Module 05: Membranes"
+  objectives:
+    - "Describe how phospholipid structure creates a bilayer."
+    - "Predict which molecules cross membranes easily."
+    - "Compare passive and active transport."
+    - "Use concentration gradients to explain movement across membranes."
+    - "Predict osmosis outcomes in hypotonic, isotonic, and hypertonic conditions."
+  beats:
+
+  - id: "module-05-membranes_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 05: Membranes. The connected lab is Lab 05 Viewing Life. Here is the central idea: Membranes explains membrane structure with gradients, transport, and cell survival predictions. Let us begin."
+    visual:
+      kind: title
+      title: "Module 05: Membranes"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 05 Viewing Life"
+
+  - id: "module-05-membranes_objectives"
+    narration: "By the end of this module you should be able to: Describe how phospholipid structure creates a bilayer; Predict which molecules cross membranes easily; Compare passive and active transport; Use concentration gradients to explain movement across membranes; Predict osmosis outcomes in hypotonic, isotonic, and hypertonic conditions. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Describe how phospholipid structure creates a bilayer."
+        - "Predict which molecules cross membranes easily."
+        - "Compare passive and active transport."
+        - "Use concentration gradients to explain movement across membranes."
+        - "Predict osmosis outcomes in hypotonic, isotonic, and hypertonic conditions."
+
+  - id: "module-05-membranes_topics"
+    narration: "This module covers 5 topics. Phospholipid bilayer structure — The phospholipid bilayer forms a flexible boundary with hydrophilic and hydrophobic regions. Selective permeability — Selective permeability controls which materials cross easily and which require help. Passive transport — Diffusion, osmosis, and facilitated diffusion move substances down gradients. Active transport — Active transport uses energy to move substances against gradients. Osmosis and cell environments — Tonicity predicts water movement and cell volume changes. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Phospholipid bilayer structure"
+        - "Selective permeability"
+        - "Passive transport"
+        - "Active transport"
+        - "Osmosis and cell environments"
+
+  - id: "module-05-membranes_concept_map"
+    narration: "Here is the concept map for module 05. The central claim is: Membranes explains membrane structure with gradients, transport, and cell survival predictions. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-05-concept-map.png"
+
+  - id: "module-05-membranes_process_model"
+    narration: "This process model shows the reasoning sequence for membranes. Follow the stages from inputs to outputs. The Lab 05 Viewing Life lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-05-process-model.png"
+
+  - id: "module-05-membranes_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: Why do phospholipids form bilayers in water? Treat that question as an observation that needs an explanation. A useful first claim is: The phospholipid bilayer forms a flexible boundary with hydrophilic and hydrophobic regions. Then ask what evidence could support or challenge it. The first practice check reminds us that The hydrophilic heads face the water and the hydrophobic tails hide inside, forming a stable two-layer membrane. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: Why do phospholipids form bilayers in water?"
+        - "Build a claim: The phospholipid bilayer forms a flexible boundary with hydrophilic and hydrophobic regions."
+        - "Check the claim: The hydrophilic heads face the water and the hydrophobic tails hide inside, forming a stable two-layer membrane."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-05-membranes_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Phospholipid, Bilayer, Selective permeability. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Phospholipid: Molecule with a hydrophilic head and hydrophobic tails."
+        - "Bilayer: Double layer of phospholipids forming a membrane."
+        - "Selective permeability: Property of allowing some substances through more easily than others."
+
+  - id: "module-05-membranes_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Diffusion, Osmosis, Facilitated diffusion. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Diffusion: Net movement from high to low concentration."
+        - "Osmosis: Diffusion of water across a selectively permeable membrane."
+        - "Facilitated diffusion: Passive transport through membrane proteins."
+
+  - id: "module-05-membranes_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Active transport, Tonicity. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Active transport: Energy-requiring movement against a gradient."
+        - "Tonicity: Relative solute condition that predicts water movement."
+
+  - id: "module-05-membranes_lab"
+    narration: "The lab connected to this module is Lab 05 Viewing Life. The evidence you collect should test or illustrate phospholipid bilayer structure. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 05 Viewing Life"
+        - "Evidence surface for: Phospholipid bilayer structure"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-05-membranes_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-05-retrieval-card.png"
+
+  - id: "module-05-membranes_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=C, 2=A, 3=D, 4=B. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: Why do phospholipids arrange themselves into a bilayer in water?"
+        - "Q2: A small nonpolar molecule such as oxygen gas crosses the membrane mainly by:"
+        - "Q3: An animal cell is placed in pure water, a hypotonic solution. What happens?"
+        - "Q4: Moving ions against their concentration gradient requires:"
+
+  - id: "module-05-membranes_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What evidence would show water moved across a membrane? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What evidence would show water moved across a membrane?"
+
+  - id: "module-05-membranes_synthesis"
+    narration: "To synthesize this module: explain phospholipid bilayer structure using evidence from the Lab 05 Viewing Life lab. Your explanation must include Phospholipid, Bilayer, Selective permeability, Diffusion, Osmosis, Facilitated diffusion, Active transport, Tonicity. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain phospholipid bilayer structure using evidence from the Lab 05 Viewing Life lab"
+        - "Must include: Phospholipid, Bilayer, Selective permeability, Diffusion, Osmosis, Facilitated diffusion, Active transport, Tonicity"
+        - "What evidence would change your explanation?"

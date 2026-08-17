@@ -2,7 +2,7 @@
 
 ## Overview
 
-Technical documentation for the BIOL-1 laboratory protocol directory. Labs are Markdown source files processed through the `lab_manual` module to generate PDF and HTML outputs.
+Technical documentation for the BIOL-1 laboratory protocol directory. Labs are Markdown source files processed through the `lab_manual` module to generate canonical PDF outputs.
 
 ## Lab File Inventory
 
@@ -91,7 +91,7 @@ batch_render_lab_manuals(
 Generated files are stored in `output/`:
 
 - `output/pdf/*.pdf` — Printable lab worksheets
-- `output/html/*.html` — Interactive web versions with auto-saving fillable fields when HTML lab rendering is requested
+- Interactive dashboards are generated separately under `dashboards/`; they are not lab-protocol exports.
 
 ## Related Documentation
 

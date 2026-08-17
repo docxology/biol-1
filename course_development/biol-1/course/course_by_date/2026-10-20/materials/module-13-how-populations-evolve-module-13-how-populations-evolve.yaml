@@ -1,0 +1,163 @@
+# Generated from module-13-how-populations-evolve/module.toml — do not hand-edit
+title: "BIOL-1 Module 13: How Populations Evolve"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "How Populations Evolve"
+  series: "BIOL-1: General Biology"
+  series_index: 13
+  series_total: 16
+  lab: "Lab 13 How Populations Evolve"
+
+sections:
+- id: "module-13-how-populations-evolve"
+  title: "Module 13: How Populations Evolve"
+  objectives:
+    - "Define microevolution using allele frequencies."
+    - "Compare the five mechanisms that change allele frequencies."
+    - "Distinguish bottleneck and founder effects."
+    - "Interpret directional, stabilizing, and disruptive selection."
+    - "Use Hardy-Weinberg as a non-evolving baseline."
+  beats:
+
+  - id: "module-13-how-populations-evolve_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 13: How Populations Evolve. The connected lab is Lab 13 How Populations Evolve. Here is the central idea: How Populations Evolve explains allele-frequency change through drift, gene flow, selection, and baseline models. Let us begin."
+    visual:
+      kind: title
+      title: "Module 13: How Populations Evolve"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 13 How Populations Evolve"
+
+  - id: "module-13-how-populations-evolve_objectives"
+    narration: "By the end of this module you should be able to: Define microevolution using allele frequencies; Compare the five mechanisms that change allele frequencies; Distinguish bottleneck and founder effects; Interpret directional, stabilizing, and disruptive selection; Use Hardy-Weinberg as a non-evolving baseline. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Define microevolution using allele frequencies."
+        - "Compare the five mechanisms that change allele frequencies."
+        - "Distinguish bottleneck and founder effects."
+        - "Interpret directional, stabilizing, and disruptive selection."
+        - "Use Hardy-Weinberg as a non-evolving baseline."
+
+  - id: "module-13-how-populations-evolve_topics"
+    narration: "This module covers 5 topics. Allele frequencies as the unit of change — Microevolution is change in allele frequencies across generations. Sources of variation — Mutation creates new variation, while recombination reshuffles existing variation. Five mechanisms of microevolution — Mutation, gene flow, genetic drift, nonrandom mating, and natural selection can change populations. Genetic drift and selection — Genetic drift is random and strongest in small populations; selection is nonrandom and tied to fitness. Hardy-Weinberg as a baseline — Hardy-Weinberg equilibrium is a null model for detecting evolutionary change. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Allele frequencies as the unit of change"
+        - "Sources of variation"
+        - "Five mechanisms of microevolution"
+        - "Genetic drift and selection"
+        - "Hardy-Weinberg as a baseline"
+
+  - id: "module-13-how-populations-evolve_concept_map"
+    narration: "Here is the concept map for module 13. The central claim is: How Populations Evolve explains allele-frequency change through drift, gene flow, selection, and baseline models. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-13-concept-map.png"
+
+  - id: "module-13-how-populations-evolve_process_model"
+    narration: "This process model shows the reasoning sequence for how populations evolve. Follow the stages from inputs to outputs. The Lab 13 How Populations Evolve lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-13-process-model.png"
+
+  - id: "module-13-how-populations-evolve_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: What is an allele frequency? Treat that question as an observation that needs an explanation. A useful first claim is: Microevolution is change in allele frequencies across generations. Then ask what evidence could support or challenge it. The first practice check reminds us that Microevolution is a shift in allele frequencies within a population over time. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: What is an allele frequency?"
+        - "Build a claim: Microevolution is change in allele frequencies across generations."
+        - "Check the claim: Microevolution is a shift in allele frequencies within a population over time."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-13-how-populations-evolve_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Allele frequency, Microevolution, Mutation. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Allele frequency: Proportion of a particular allele in a population."
+        - "Microevolution: Allele-frequency change across generations."
+        - "Mutation: DNA sequence change that can create new alleles."
+
+  - id: "module-13-how-populations-evolve_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Gene flow, Genetic drift, Bottleneck effect. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Gene flow: Movement of alleles between populations."
+        - "Genetic drift: Random allele-frequency change, strongest in small populations."
+        - "Bottleneck effect: Drift after a sharp population reduction."
+
+  - id: "module-13-how-populations-evolve_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include Founder effect, Hardy-Weinberg equilibrium. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "Founder effect: Drift when a new population starts from few individuals."
+        - "Hardy-Weinberg equilibrium: Null model for allele frequencies when no evolution occurs."
+
+  - id: "module-13-how-populations-evolve_lab"
+    narration: "The lab connected to this module is Lab 13 How Populations Evolve. The evidence you collect should test or illustrate allele frequencies as the unit of change. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 13 How Populations Evolve"
+        - "Evidence surface for: Allele frequencies as the unit of change"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-13-how-populations-evolve_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-13-retrieval-card.png"
+
+  - id: "module-13-how-populations-evolve_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=B, 2=A, 3=D, 4=C. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: Microevolution is defined as:"
+        - "Q2: Genetic drift has its strongest effect in:"
+        - "Q3: A few birds colonize a new island and start a population with limited variation. This reduced variation is due to:"
+        - "Q4: The Hardy-Weinberg principle is useful mainly because it:"
+
+  - id: "module-13-how-populations-evolve_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: How can a null model help detect evolution? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: How can a null model help detect evolution?"
+
+  - id: "module-13-how-populations-evolve_synthesis"
+    narration: "To synthesize this module: explain allele frequencies as the unit of change using evidence from the Lab 13 How Populations Evolve lab. Your explanation must include Allele frequency, Microevolution, Mutation, Gene flow, Genetic drift, Bottleneck effect, Founder effect, Hardy-Weinberg equilibrium. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain allele frequencies as the unit of change using evidence from the Lab 13 How Populations Evolve lab"
+        - "Must include: Allele frequency, Microevolution, Mutation, Gene flow, Genetic drift, Bottleneck effect, Founder effect, Hardy-Weinberg equilibrium"
+        - "What evidence would change your explanation?"

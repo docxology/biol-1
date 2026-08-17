@@ -1,7 +1,8 @@
 """Utility functions for file validation."""
 
 from pathlib import Path
-from typing import Any, Dict, List, Pattern
+from re import Pattern
+from typing import Any
 
 from . import config
 
@@ -68,7 +69,7 @@ def is_valid_extension(file_path: Path) -> bool:
     return ext in config.VALID_EXTENSIONS
 
 
-def check_required_files_exist(module_path: Path) -> List[str]:
+def check_required_files_exist(module_path: Path) -> list[str]:
     """Check which required files are missing.
 
     Args:
@@ -85,7 +86,7 @@ def check_required_files_exist(module_path: Path) -> List[str]:
     return missing
 
 
-def check_required_directories_exist(module_path: Path) -> List[str]:
+def check_required_directories_exist(module_path: Path) -> list[str]:
     """Check which required directories are missing.
 
     Args:
@@ -153,7 +154,7 @@ def extract_module_number_from_filename(file_name: str) -> int:
         raise ValueError(f"Cannot extract module number from: {file_name}") from e
 
 
-def validate_file_name_structure(file_name: str) -> Dict[str, Any]:
+def validate_file_name_structure(file_name: str) -> dict[str, Any]:
     """Validate and analyze file name structure.
 
     Args:
@@ -177,7 +178,7 @@ def validate_file_name_structure(file_name: str) -> Dict[str, Any]:
     if file_name in config.REQUIRED_FILES:
         result["file_type"] = (
             "study_guide"
-            if file_name == "keys-to-success.md"
+            if file_name == "key-points.md"
             else "questions"
             if file_name == "questions.md"
             else "required_file"

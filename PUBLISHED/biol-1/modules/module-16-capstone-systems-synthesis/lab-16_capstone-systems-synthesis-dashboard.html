@@ -1,15 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Lab 16 Dashboard: Capstone Systems Synthesis | BIOL-1</title>
-  <style>body{font-family:Georgia,serif;margin:2rem;line-height:1.5}.card{border:1px solid #304c3d;border-radius:16px;padding:1rem;margin:1rem 0;background:#f6f1e8}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 16 Dashboard: Capstone Systems Synthesis | BIOL-1</title>
+<style>
+:root {
+  --bg: #f5f7fb;
+  --ink: #18202f;
+  --muted: #5f6b7a;
+  --card: #ffffff;
+  --line: #d9e1ec;
+  --accent: #b42338;
+  --blue: #1d4ed8;
+  --green: #15803d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+header {
+  background: #152033;
+  color: white;
+  padding: 24px;
+}
+header p { color: #c9d4e5; margin: 4px 0 0; }
+main { max-width: 980px; margin: 0 auto; padding: 24px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+h1 { margin: 0; font-size: 28px; }
+h2 { margin: 0 0 10px; font-size: 20px; }
+ul { margin: 8px 0 0; padding-left: 20px; }
+label { display: block; font-weight: 700; margin: 10px 0; }
+label span { display: block; margin-bottom: 4px; }
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 72px;
+  font: inherit;
+}
+input[type="checkbox"] { transform: translateY(1px); }
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--blue);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #eaf1ff;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+  margin: 3px 4px 3px 0;
+}
+.status { color: var(--green); font-weight: 700; margin-left: 10px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } main { padding: 14px; } }
+</style>
 </head>
 <body>
+<header>
+  <div class="label">BIOL-1 General Biology</div>
   <h1>Lab 16: Capstone Systems Synthesis</h1>
   <p>Module 16 companion dashboard</p>
-  <div class="card"><h2>Before lab</h2><p>Review the matching Module 16 learning objectives and key terms.</p></div>
-  <div class="card"><h2>During lab</h2><p>Record evidence, calculations, and observations directly on the worksheet.</p></div>
-  <div class="card"><h2>After lab</h2><p>Use the exit question to connect the activity back to the module's system-level ideas.</p></div>
+</header>
+<main>
+  <section class="card">
+    <h2>Focus</h2>
+    <p>Synthesize biological organization, information flow, and feedback across the course.</p>
+    <div>
+      <span class="pill">system</span><span class="pill">scale</span><span class="pill">feedback</span><span class="pill">synthesis</span>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="label">Observe</div>
+      <p>What do you see, count, measure, or compare?</p>
+    </div>
+    <div class="card">
+      <div class="label">Explain</div>
+      <p>What biological idea explains the evidence?</p>
+    </div>
+    <div class="card">
+      <div class="label">Check</div>
+      <p>What uncertainty or alternate explanation remains?</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Evidence Capture</h2>
+    <label><span>Level</span><textarea rows="3"></textarea></label>
+<label><span>Mechanism</span><textarea rows="3"></textarea></label>
+<label><span>Feedback</span><textarea rows="3"></textarea></label>
+    <button type="button" id="save">Save Notes</button><span class="status" id="status"></span>
+  </section>
+
+  <section class="card">
+    <h2>Concept Check</h2>
+    <label><input type="checkbox"> <span>Name the level of organization.</span></label>
+<label><input type="checkbox"> <span>Trace a mechanism across scales.</span></label>
+<label><input type="checkbox"> <span>Explain one feedback relationship.</span></label>
+  </section>
+
+  <section class="card">
+    <h2>Key Terms</h2>
+    <ul>
+      <li>system</li>
+<li>scale</li>
+<li>feedback</li>
+<li>synthesis</li>
+    </ul>
+  </section>
+</main>
+<script>
+const key = "biol1-lab-16-dashboard";
+const fields = Array.from(document.querySelectorAll("textarea"));
+try {
+  const saved = JSON.parse(localStorage.getItem(key) || "[]");
+  fields.forEach((field, index) => { field.value = saved[index] || ""; });
+} catch (error) {
+  console.warn("Could not load saved dashboard notes", error);
+}
+document.getElementById("save").addEventListener("click", () => {
+  localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
+  document.getElementById("status").textContent = "Saved in this browser";
+});
+</script>
 </body>
 </html>

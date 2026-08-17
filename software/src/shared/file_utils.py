@@ -1,7 +1,6 @@
 """Shared file utility functions used across multiple modules."""
 
 from pathlib import Path
-from typing import List
 
 
 def ensure_output_directory(output_path: Path) -> None:
@@ -50,7 +49,7 @@ def is_within_directory(path: Path, directory: Path) -> bool:
         return False
 
 
-def find_files(directory: Path, patterns: List[str]) -> List[Path]:
+def find_files(directory: Path, patterns: list[str]) -> list[Path]:
     """Find files matching any of the given glob patterns recursively.
 
     Args:
@@ -63,7 +62,7 @@ def find_files(directory: Path, patterns: List[str]) -> List[Path]:
     if not directory.exists() or not directory.is_dir():
         return []
 
-    found: List[Path] = []
+    found: list[Path] = []
     for pattern in patterns:
         for path in directory.rglob(pattern):
             if path.is_file() and is_within_directory(path, directory):

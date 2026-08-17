@@ -11,8 +11,8 @@ from pathlib import Path
 software_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(software_dir))
 
-from src.shared.runtime import configure_runtime_environment  # noqa: E402
-from src.validation.repo_contracts import validate_repo_contracts  # noqa: E402
+from src.shared.runtime import configure_runtime_environment
+from src.validation.repo_contracts import validate_repo_contracts
 
 configure_runtime_environment()
 

@@ -86,8 +86,9 @@ def test_transcribe_audio_error_handling(temp_dir):
 
 def test_read_audio_file_error():
     """Test read_audio_file with nonexistent file."""
-    from src.speech_to_text.utils import read_audio_file
     from pathlib import Path
+
+    from src.speech_to_text.utils import read_audio_file
 
     with pytest.raises(FileNotFoundError):
         read_audio_file(Path("/nonexistent/audio.mp3"))

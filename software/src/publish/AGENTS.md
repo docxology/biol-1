@@ -95,6 +95,7 @@ print(f"Published {results['modules_published']} modules")
 
 # Copy slides to module folders
 from pathlib import Path
+
 copy_slides_to_modules(Path("/path/to/repo"))
 
 # Flatten published directory

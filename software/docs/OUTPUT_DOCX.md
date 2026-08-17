@@ -100,8 +100,8 @@ docx = true  # Enabled by default
 ```
 module-XX/output/
 └── study-guides/
-    ├── keys-to-success.docx   ← Word version
-    ├── keys-to-success.md     ← Normalized Markdown when md enabled
+    ├── key-points.docx   ← Word version
+    ├── key-points.md     ← Normalized Markdown when md enabled
     ├── questions.docx
     └── questions.md
 ```

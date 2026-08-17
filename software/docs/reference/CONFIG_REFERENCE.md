@@ -73,7 +73,7 @@ Each format can be toggled independently. MP3 uses local TTS tooling and is time
 | `max_module` | int | `16` | Generate modules 1 through `max_module` |
 | `max_lab` | int | `16` | Generate labs 1 through `max_lab` |
 | `path` | string | `"course_development/biol-1"` | Relative path to course source |
-| `input_types` | list | `["keys-to-success", "questions"]` | Source file types to process |
+| `input_types` | list | `["key-points", "practice-quiz", "questions"]` | Source file types to process |
 | `include_syllabus` | bool | `true` | Process syllabus/schedule |
 | `include_labs` | bool | `true` | Process lab manuals |
 | `include_dashboards` | bool | `true` | Generate lab dashboards |
@@ -89,7 +89,7 @@ Each format can be toggled independently. MP3 uses local TTS tooling and is time
 | `max_lab` | int | `18` | Generate labs 1 through `max_lab` |
 | `path` | string | `"course_development/biol-8"` | Relative path to course source |
 | `archive_path` | string | `"archive/spring-2026/course_development/biol-8"` | Path to archived snapshot |
-| `input_types` | list | `["keys-to-success", "questions"]` | Source file types to process |
+| `input_types` | list | `["key-points", "practice-quiz", "questions"]` | Source file types to process |
 | `include_syllabus` | bool | `true` | Process syllabus/schedule |
 | `include_labs` | bool | `true` | Process lab manuals |
 | `include_dashboards` | bool | `true` | Generate lab dashboards |

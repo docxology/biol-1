@@ -1,17 +1,15 @@
 """Configuration for module organization."""
 
-from typing import List
-
 # Required files in each active BIOL-1-style module
-REQUIRED_FILES: List[str] = [
+REQUIRED_FILES: list[str] = [
     "README.md",
     "AGENTS.md",
     "questions.md",
-    "keys-to-success.md",
+    "key-points.md",
 ]
 
 # BIOL-1 modules do not require module-local subdirectories.
-REQUIRED_DIRECTORIES: List[str] = []
+REQUIRED_DIRECTORIES: list[str] = []
 
 # Template content for README.md
 README_TEMPLATE: str = """# Module {module_number}
@@ -26,7 +24,7 @@ Module {module_number} course materials.
 
 This module includes:
 - **questions.md**: Practice questions and self-check prompts
-- **keys-to-success.md**: Study guide and key ideas for the module
+- **key-points.md**: Study guide and key ideas for the module
 - Optional **resources/**: Module-local datasets or images
 - Generated **output/**: Rendered study guide and website artifacts
 
@@ -47,7 +45,7 @@ module-{module_number}/
 ├── README.md             # Module overview
 ├── AGENTS.md             # This file
 ├── questions.md          # Practice questions
-├── keys-to-success.md    # Study guide / keys
+├── key-points.md    # Study guide / keys
 ├── resources/            # Optional module-local assets
 └── output/               # Generated artifacts
 ```
@@ -55,13 +53,13 @@ module-{module_number}/
 ### File Types
 
 - **Practice Questions**: `questions.md`
-- **Study Guide**: `keys-to-success.md`
+- **Study Guide**: `key-points.md`
 - **Resources**: Optional module-local datasets and images
 - **Generated Output**: Created by the publish pipeline, not edited by hand
 
 ## File Naming Conventions
 
-- Source files use stable names: `README.md`, `AGENTS.md`, `questions.md`, and `keys-to-success.md`.
+- Source files use stable names: `README.md`, `AGENTS.md`, `questions.md`, and `key-points.md`.
 - Generated output filenames are prefixed with the module folder name by the publish pipeline.
 - Optional resource filenames should use lowercase kebab-case.
 
@@ -86,8 +84,8 @@ module-{module_number}/
 - Update Canvas links after upload
 """
 
-# Template content for keys-to-success.md
-KEYS_TO_SUCCESS_TEMPLATE: str = """# Module {module_number}: Keys to Success
+# Template content for key-points.md
+KEY_POINTS_TEMPLATE: str = """# Module {module_number}: Key Points
 
 ## Learning Objectives
 

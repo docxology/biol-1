@@ -17,7 +17,7 @@ Each module folder contains a typed manifest:
 ```text
 module-XX-topic/
 ├── module.toml           # canonical source
-├── keys-to-success.md    # generated from module.toml
+├── key-points.md    # generated from module.toml
 ├── questions.md          # generated from module.toml
 ├── practice-quiz.md      # generated from module.toml
 ├── resources/

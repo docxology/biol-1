@@ -327,4 +327,4 @@ def test_convert_file_handler_not_implemented(temp_dir):
     # we'll need to test this by temporarily modifying the conversion logic
     # or by finding an edge case. For now, we'll test that the structure exists.
     # Note: This is a defensive else clause that shouldn't normally be reached.
-    pass  # This branch is hard to test without modifying code structure
+    # This branch is hard to test without modifying code structure

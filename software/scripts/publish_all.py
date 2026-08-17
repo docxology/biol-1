@@ -5,7 +5,7 @@ Publish All Courses - Complete Pipeline
 Thin orchestrator - delegates to src.publish and src.batch_processing modules.
 
 This script orchestrates the full course publishing workflow:
-1. Generate configured outputs for active courses (PDF, DOCX, MD by default)
+1. Generate configured outputs for active courses (PDF and DOCX by default)
 2. Publish outputs to PUBLISHED/ directory
 3. Copy labs and dashboards
 4. Flatten module structure (remove subfolders)
@@ -20,19 +20,19 @@ import logging
 import subprocess
 import sys
 import time
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 
 # Add software directory to path
 software_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(software_dir))
 
-from src.shared.runtime import configure_runtime_environment  # noqa: E402
+from src.shared.runtime import configure_runtime_environment
 
 configure_runtime_environment()
 
-from src.batch_processing.main import clear_all_outputs  # noqa: E402
-from src.publish.utils import (  # noqa: E402
+from src.batch_processing.main import clear_all_outputs
+from src.publish.utils import (
     clean_published,
     copy_labs_and_dashboards,
     copy_module_bundles,
@@ -43,7 +43,7 @@ from src.publish.utils import (  # noqa: E402
     flatten_published,
     reorganize_to_categories,
 )
-from src.shared.course_config import active_course_names  # noqa: E402
+from src.shared.course_config import active_course_names
 
 # Setup logging
 logging.basicConfig(
@@ -59,7 +59,7 @@ def get_repo_root() -> Path:
     return Path(__file__).parent.parent.parent
 
 
-def run_script(script_name: str, args: list[str] = None, verbose: bool = False) -> bool:
+def run_script(script_name: str, args: list[str] | None = None, verbose: bool = False) -> bool:
     """Run a Python script and return success status."""
     repo_root = get_repo_root()
     script_path = repo_root / "software" / "scripts" / script_name
@@ -76,7 +76,11 @@ def run_script(script_name: str, args: list[str] = None, verbose: bool = False) 
 
     try:
         result = subprocess.run(
-            cmd, cwd=str(repo_root / "software"), capture_output=not verbose, text=True
+            cmd,
+            cwd=str(repo_root / "software"),
+            capture_output=not verbose,
+            text=True,
+            check=False,
         )
 
         if result.returncode != 0:
@@ -162,7 +166,7 @@ def main():
 
     print("\n" + "=" * 70)
     print("  PUBLISH ALL COURSES - Complete Pipeline")
-    print("  " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    print("  " + datetime.now(UTC).strftime("%Y-%m-%d %H:%M:%S UTC"))
     print("=" * 70 + "\n")
 
     # Step 1: Clean PUBLISHED/
@@ -197,7 +201,8 @@ def main():
 
         # Handle format options
         if args.skip_mp3:
-            gen_args.extend(["--formats", "pdf,docx,html,txt,md"])
+            formats = "pdf,docx" if args.formats == "all" else args.formats
+            gen_args.extend(["--formats", formats])
             logger.info("  Skipping MP3 generation (--skip-mp3)")
         elif args.formats != "all":
             gen_args.extend(["--formats", args.formats])

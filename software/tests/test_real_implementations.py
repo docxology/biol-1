@@ -61,7 +61,7 @@ def test_speech_to_text_uses_real_speech_recognition():
 def test_speech_to_text_uses_real_pydub():
     """Verify speech_to_text module uses real pydub implementation."""
     try:
-        from src.speech_to_text.utils import read_audio_file, convert_audio_to_wav
+        from src.speech_to_text.utils import convert_audio_to_wav, read_audio_file
     except ImportError:
         pytest.skip("speech_to_text module not available")
 
@@ -131,8 +131,8 @@ def test_no_mock_objects_in_codebase():
 
 def test_all_functions_use_real_library_calls():
     """Verify that functions use real library calls, not stubs."""
-    from src.text_to_speech.utils import text_to_speech_audio
     from src.speech_to_text.utils import transcribe_audio_segment
+    from src.text_to_speech.utils import text_to_speech_audio
 
     # Verify functions are not stubs (they should have implementation)
     assert text_to_speech_audio.__code__.co_code != b""
@@ -149,9 +149,9 @@ def test_all_functions_use_real_library_calls():
 def test_batch_processing_uses_real_implementations():
     """Verify batch_processing uses real implementations throughout."""
     from src.batch_processing.main import (
+        clear_all_outputs,
         process_module_by_type,
         process_syllabus,
-        clear_all_outputs,
     )
 
     # Verify functions are real implementations

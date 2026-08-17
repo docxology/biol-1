@@ -1,0 +1,163 @@
+# Generated from module-11-genomics-biotechnology/module.toml — do not hand-edit
+title: "BIOL-1 Module 11: Genomics and Biotechnology"
+subtitle: "College of the Redwoods — Pelican Bay"
+width: 1920
+height: 1080
+fps: 30
+# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+
+metadata:
+  author: "Dr. Daniel Ari Friedman"
+  topic: "Genomics and Biotechnology"
+  series: "BIOL-1: General Biology"
+  series_index: 11
+  series_total: 16
+  lab: "Lab 11 Genomics Biotechnology"
+
+sections:
+- id: "module-11-genomics-biotechnology"
+  title: "Module 11: Genomics and Biotechnology"
+  objectives:
+    - "Define genome and genomics."
+    - "Explain why PCR amplification is useful."
+    - "Interpret basic gel electrophoresis fragment patterns."
+    - "Describe what genetic engineering tools can do."
+    - "Evaluate biotechnology claims using evidence and ethical considerations."
+  beats:
+
+  - id: "module-11-genomics-biotechnology_title"
+    narration: "Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay. Module 11: Genomics and Biotechnology. The connected lab is Lab 11 Genomics Biotechnology. Here is the central idea: Genomics and Biotechnology explains genomes as data interpreted through PCR, gels, tools, and ethical limits. Let us begin."
+    visual:
+      kind: title
+      title: "Module 11: Genomics and Biotechnology"
+      subtitle: "BIOL-1 General Biology  |  Lab: Lab 11 Genomics Biotechnology"
+
+  - id: "module-11-genomics-biotechnology_objectives"
+    narration: "By the end of this module you should be able to: Define genome and genomics; Explain why PCR amplification is useful; Interpret basic gel electrophoresis fragment patterns; Describe what genetic engineering tools can do; Evaluate biotechnology claims using evidence and ethical considerations. Keep these objectives in mind as you work through the material."
+    visual:
+      kind: objectives
+      title: "Learning Objectives"
+      bullets:
+        - "Define genome and genomics."
+        - "Explain why PCR amplification is useful."
+        - "Interpret basic gel electrophoresis fragment patterns."
+        - "Describe what genetic engineering tools can do."
+        - "Evaluate biotechnology claims using evidence and ethical considerations."
+
+  - id: "module-11-genomics-biotechnology_topics"
+    narration: "This module covers 5 topics. Genomes as data — A genome is the full DNA information set of an organism or sample. PCR and amplification — PCR amplifies chosen DNA regions so they can be analyzed. Gel electrophoresis and comparison — Gel electrophoresis separates DNA fragments by size. Genetic engineering tools — Biotechnology tools can copy, edit, compare, or move genetic information. Biotechnology decisions and ethics — Applications require evidence, risk reasoning, and ethical judgment. Each topic builds on the one before it, forming a coherent explanation."
+    visual:
+      kind: bullets
+      title: "Topic Sequence"
+      bullets:
+        - "Genomes as data"
+        - "PCR and amplification"
+        - "Gel electrophoresis and comparison"
+        - "Genetic engineering tools"
+        - "Biotechnology decisions and ethics"
+
+  - id: "module-11-genomics-biotechnology_concept_map"
+    narration: "Here is the concept map for module 11. The central claim is: Genomics and Biotechnology explains genomes as data interpreted through PCR, gels, tools, and ethical limits. Notice how each node connects to the others. This is the structure of biological reasoning — not a list to memorize, but a map of how ideas support each other."
+    visual:
+      kind: image
+      title: "Concept Map"
+      subtitle: "How the ideas connect"
+      image_path: "png/module-11-concept-map.png"
+
+  - id: "module-11-genomics-biotechnology_process_model"
+    narration: "This process model shows the reasoning sequence for genomics and biotechnology. Follow the stages from inputs to outputs. The Lab 11 Genomics Biotechnology lab gives you evidence to test each stage. At each transition, ask: what would change my mind about this step?"
+    visual:
+      kind: image
+      title: "Process Model"
+      subtitle: "Reasoning sequence"
+      image_path: "png/module-11-process-model.png"
+
+  - id: "module-11-genomics-biotechnology_application"
+    narration: "Now apply the module instead of only repeating its vocabulary. Start with a question: What is a genome? Treat that question as an observation that needs an explanation. A useful first claim is: A genome is the full DNA information set of an organism or sample. Then ask what evidence could support or challenge it. The first practice check reminds us that PCR amplifies a chosen DNA region so there is enough material to analyze. This claim, evidence, and revision cycle is the transferable skill for the module."
+    visual:
+      kind: bullets
+      title: "Apply the Idea"
+      bullets:
+        - "Start with an observation: What is a genome?"
+        - "Build a claim: A genome is the full DNA information set of an organism or sample."
+        - "Check the claim: PCR amplifies a chosen DNA region so there is enough material to analyze."
+        - "Revise the explanation when the evidence does not fit"
+
+  - id: "module-11-genomics-biotechnology_terms_01"
+    narration: "Key terms for this module (page 1 of 3) include Genome, Genomics, PCR. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (1/3)"
+      bullets:
+        - "Genome: Complete DNA information of an organism or sample."
+        - "Genomics: Study of whole genomes and their patterns."
+        - "PCR: Technique for amplifying selected DNA sequences."
+
+  - id: "module-11-genomics-biotechnology_terms_02"
+    narration: "Key terms for this module (page 2 of 3) include Primer, Gel electrophoresis, CRISPR. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (2/3)"
+      bullets:
+        - "Primer: Short DNA sequence that starts PCR copying."
+        - "Gel electrophoresis: Method that separates DNA fragments by size."
+        - "CRISPR: Gene-editing system adapted from bacterial defense."
+
+  - id: "module-11-genomics-biotechnology_terms_03"
+    narration: "Key terms for this module (page 3 of 3) include GMO, Bioethics. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
+    visual:
+      kind: recap
+      title: "Key Terms (3/3)"
+      bullets:
+        - "GMO: Organism with genetic material altered by biotechnology."
+        - "Bioethics: Reasoning about benefits, harms, rights, and responsibilities in biology."
+
+  - id: "module-11-genomics-biotechnology_lab"
+    narration: "The lab connected to this module is Lab 11 Genomics Biotechnology. The evidence you collect should test or illustrate genomes as data. You should leave the lab with a concrete observation, comparison, or model tied directly to the module claim."
+    visual:
+      kind: bullets
+      title: "Lab Connection"
+      bullets:
+        - "Lab: Lab 11 Genomics Biotechnology"
+        - "Evidence surface for: Genomes as data"
+        - "Connect module ideas to hands-on evidence"
+
+  - id: "module-11-genomics-biotechnology_retrieval"
+    narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
+    visual:
+      kind: image
+      title: "Retrieval Practice"
+      subtitle: "Answer without notes first"
+      image_path: "png/module-11-retrieval-card.png"
+
+  - id: "module-11-genomics-biotechnology_quiz"
+    narration: "Use these practice quiz questions as formative feedback. Answer key: 1=C, 2=A, 3=D, 4=B. If you miss a question, return to the module keys and find the evidence that supports the correct answer."
+    visual:
+      kind: checkpoint
+      title: "Practice Quiz Bridge"
+      bullets:
+        - "Q1: What does PCR do?"
+        - "Q2: Gel electrophoresis separates DNA fragments by:"
+        - "Q3: CRISPR is best described as a tool that can:"
+        - "Q4: Why does biotechnology require bioethics?"
+
+  - id: "module-11-genomics-biotechnology_study_move"
+    narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What ethical questions can biotechnology raise? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
+    visual:
+      kind: bullets
+      title: "Study Move"
+      bullets:
+        - "Start with the module's central claim before memorizing vocabulary."
+        - "Use the same-numbered lab as the evidence check for the module."
+        - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Exit question: What ethical questions can biotechnology raise?"
+
+  - id: "module-11-genomics-biotechnology_synthesis"
+    narration: "To synthesize this module: explain genomes as data using evidence from the Lab 11 Genomics Biotechnology lab. Your explanation must include Genome, Genomics, PCR, Primer, Gel electrophoresis, CRISPR, GMO, Bioethics. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
+    visual:
+      kind: bullets
+      title: "Synthesis"
+      bullets:
+        - "Explain genomes as data using evidence from the Lab 11 Genomics Biotechnology lab"
+        - "Must include: Genome, Genomics, PCR, Primer, Gel electrophoresis, CRISPR, GMO, Bioethics"
+        - "What evidence would change your explanation?"

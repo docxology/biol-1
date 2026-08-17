@@ -16,19 +16,19 @@ Optional practice tests and keys for exam preparation. The pipeline globs `*.md`
 
 ### Practice Test 05 — layout
 
-135 numbered items total; cohort framing appears in the student markdown header.
+137 numbered items total; cohort framing appears in the student markdown header.
 
 | Part | Item numbers | Per-module pattern |
 |------|----------------|-------------------|
-| A — Multiple choice | **1–80** | Module **N** (1–16): **(N−1)×5 + 1** through **N×5** |
+| A — Multiple choice | **1–75** | Modules **01–15**, five items per module |
 | B — Fill in the blank | **76–105** | Module **N**: **76 + 2(N−1)** and **77 + 2(N−1)** |
-| C — Free response | **106–135** | Module **N**: **106 + 2(N−1)** and **107 + 2(N−1)** |
+| C — Free response | **106–137** | Modules **01–15** receive two items each; Modules **16** receives two capstone items |
 
 Section headings in Part A match module titles (`module-01-study-of-life` … `module-16-capstone-systems-synthesis`) via [`course/AGENTS.md`](../AGENTS.md).
 
 ### Traceability crosswalk (`practice-test-05` ↔ modules)
 
-**Method.** Each module’s PT05 block was matched to that folder’s `keys-to-success.md` learning objectives and key terms (spot-checked Modules **01**, **05**, **12**, **16**) and title alignment across **02–04**, **06–11**, **13–14** via topic headings versus MC stems.
+**Method.** Each module’s PT05 block was matched to that folder’s `key-points.md` learning objectives and key terms (spot-checked Modules **01**, **05**, **12**, **16**) and title alignment across **02–04**, **06–11**, **13–14** via topic headings versus MC stems.
 
 **Spot-check.**
 
@@ -55,3 +55,6 @@ Section headings in Part A match module titles (`module-01-study-of-life` … `m
 
 - [../exams/AGENTS.md](../exams/AGENTS.md) — formal exams
 - [../AGENTS.md](../AGENTS.md) — full course tree
+## Duplex tear-off layout
+
+Every BIOL-1 student practice test and unit/comprehensive exam source carries the `assessment-layout: tearoff-duplex` marker. The renderer produces a duplex packet: page 1 is a compact tear-off answer sheet with one response line per multiple-choice and fill-in item; the reverse side begins the free-response section; subsequent pages contain the question booklet. Answer keys remain conventional and are not transformed.

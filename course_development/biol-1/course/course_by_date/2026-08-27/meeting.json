@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-02-basic-chemistry-questions.docx",
+      "id": "module-02-basic-chemistry",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "4ce3e29c981d6b57bbd857e40a89ff000b6b0bcac82d57814604b3358defe3ac",
+      "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-questions.docx"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-practice-quiz.pdf",
+      "id": "module-02-basic-chemistry",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "2e19246a74cafa59936ad14a1251c4884f4387ff2afdaa7ffbb97168a9d8b04a",
+      "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-key-points.pdf",
+      "id": "module-02-basic-chemistry",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "941e95c90d6676c43bb81db63ae8365410f051ddac56c730cce19e71edc140d3",
+      "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-questions.pdf",
+      "id": "module-02-basic-chemistry",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "244fa63f615022ee7b2a627667a0f8df9e11cb0c4ae917679ead741ee0ce9e9f",
+      "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-questions.pdf"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-practice-quiz.docx",
+      "id": "module-02-basic-chemistry",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "1361f5c78593ef2fa99cf9fc155253a69c30ea69f19c1cd5e9aa01151b38ce2d",
+      "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-key-points.docx",
+      "id": "module-02-basic-chemistry",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "7567e27bcf5b7cb6577eab7fda08fd067a28eb4ef810d4a59f4f83c9ee2fe1c9",
+      "source": "course_development/biol-1/course/module-02-basic-chemistry/output/study-guides/module-02-basic-chemistry-key-points.docx"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-module-2-slides-full.pdf",
+      "id": "module-02-basic-chemistry",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "d955d613622ab8f087865cbd651f9e09953ede6b3888f36e9bceb7587653c365",
+      "source": "course_development/biol-1/resources/slides/module-2-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-module-2-slides-notes.pdf",
+      "id": "module-02-basic-chemistry",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "8235cfd2941deeec0f5bc8f5b93629171a9dee7ab4fbddd790bf42401556b994",
+      "source": "course_development/biol-1/resources/slides/module-2-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-lecture.mp4",
+      "id": "module-02-basic-chemistry",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "fe7c01729a10cdb4b37030288fbc639112a6fddf68ce4faee7aa3cd278acd65e",
+      "source": "output/lectures/module-02-basic-chemistry/module-02-basic-chemistry/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-02-basic-chemistry-module-02-basic-chemistry.yaml",
+      "id": "module-02-basic-chemistry",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "c2287ee7af57c7ca2a8586c9f471ea464595ef6c90a223223b65dcfc3b165fdb",
+      "source": "output/lectures/module-02-basic-chemistry/module-02-basic-chemistry.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-08-27",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-02-basic-chemistry",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-02_probability-statistics.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 2: Basic Chemistry",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 02: Basic Chemistry; Lab 02",
+    "week": 1
+  }
+}

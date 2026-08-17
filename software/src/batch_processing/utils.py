@@ -2,20 +2,23 @@
 
 import logging
 from pathlib import Path
-from typing import List, Optional
 
-from src.shared.file_utils import ensure_output_directory, find_files, is_within_directory  # noqa: F401
 from src.shared.course_config import (
     active_course_paths,
     enabled_publish_formats,
-    validate_supported_formats,
     resolve_course_selection,
+    validate_supported_formats,
+)
+from src.shared.file_utils import (  # noqa: F401
+    ensure_output_directory,
+    find_files,
+    is_within_directory,
 )
 
 logger = logging.getLogger(__name__)
 
 
-def find_markdown_files(directory: Path) -> List[Path]:
+def find_markdown_files(directory: Path) -> list[Path]:
     """Find all Markdown files in a directory recursively.
 
     Args:
@@ -27,7 +30,7 @@ def find_markdown_files(directory: Path) -> List[Path]:
     return find_files(directory, ["*.md", "*.markdown"])
 
 
-def find_audio_files(directory: Path) -> List[Path]:
+def find_audio_files(directory: Path) -> list[Path]:
     """Find all audio files in a directory recursively.
 
     Args:
@@ -39,7 +42,7 @@ def find_audio_files(directory: Path) -> List[Path]:
     return find_files(directory, ["*.mp3", "*.wav", "*.m4a", "*.flac", "*.ogg"])
 
 
-def should_process_file(file_path: Path, skip_dirs: List[str]) -> bool:
+def should_process_file(file_path: Path, skip_dirs: list[str]) -> bool:
     """Check if a file should be processed (not in skip directories).
 
     Args:
@@ -75,7 +78,7 @@ def get_relative_output_path(source_file: Path, source_dir: Path, output_dir: Pa
     return output_file
 
 
-def get_courses_to_process(course_arg: str) -> List[tuple[str, str]]:
+def get_courses_to_process(course_arg: str) -> list[tuple[str, str]]:
     """Get list of courses to process based on argument.
 
     Args:
@@ -95,7 +98,7 @@ def get_courses_to_process(course_arg: str) -> List[tuple[str, str]]:
     ]
 
 
-def get_formats_to_process(formats_arg: str) -> List[str]:
+def get_formats_to_process(formats_arg: str) -> list[str]:
     """Parse formats argument into list of valid formats.
 
     Args:
@@ -113,9 +116,9 @@ def get_formats_to_process(formats_arg: str) -> List[str]:
 
 def generate_dry_run_report(
     repo_root: Path,
-    courses: List[tuple[str, str]],
-    formats: List[str],
-    module_filter: Optional[int] = None,
+    courses: list[tuple[str, str]],
+    formats: list[str],
+    module_filter: int | None = None,
     generate_website: bool = True,
     skip_labs: bool = False,
 ) -> str:
@@ -180,7 +183,7 @@ def generate_dry_run_report(
             labs_dir = course_path / "course" / "labs"
             if labs_dir.exists():
                 lab_files = list(labs_dir.glob("lab-*.md"))
-                lab_formats = [f for f in formats if f in ("pdf", "html")]
+                lab_formats = [f for f in formats if f == "pdf"]
                 lines.append(f"  Labs: {len(lab_files)} files")
                 lines.append(
                     f"    Would generate: "

@@ -1,11 +1,13 @@
 """Main functions for HTML website generation."""
 
 import html as html_lib
+import logging
 from pathlib import Path
-from typing import Optional
+
+from src.module_content.main import ModuleContentError, load_module_content
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 from . import config
-import logging
 from .utils import (
     find_audio_file,
     find_questions_file,
@@ -14,16 +16,14 @@ from .utils import (
     markdown_to_html,
     parse_questions_json,
 )
-from src.module_content.main import ModuleContentError, load_module_content
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 logger = logging.getLogger("html_website")
 
 
 def generate_module_website(
     module_path: str,
-    output_dir: Optional[str] = None,
-    course_name: Optional[str] = None,
+    output_dir: str | None = None,
+    course_name: str | None = None,
 ) -> str:
     """Generate HTML website for a module."""
     module_dir = Path(module_path)
@@ -43,7 +43,7 @@ def generate_module_website(
         course_name = config.DEFAULT_COURSE_NAME
 
     # Curriculum elements configuration. BIOL-1 source modules use root-level
-    # keys-to-success.md and questions.md; older fixtures may still use sample_*.
+    # key-points.md and questions.md; older fixtures may still use sample_*.
     curriculum_elements = [
         {
             "section_id": "lecture_content",
@@ -64,10 +64,10 @@ def generate_module_website(
             "title": "Study Guide",
         },
         {
-            "section_id": "keys_to_success",
+            "section_id": "key_points",
             "element_type": "study-guides",
-            "source": "keys-to-success.md",
-            "title": "Keys to Success",
+            "source": "key-points.md",
+            "title": "Key Points",
         },
         {
             "section_id": "practice_questions",
@@ -202,7 +202,7 @@ def generate_module_website(
             inner_html += f"<div>{html_content}</div>\n"
 
             if text_file:
-                text_content = text_file.read_text(encoding="utf-8")
+                text_content = html_lib.escape(text_file.read_text(encoding="utf-8"))
                 text_path = get_relative_path(text_file, website_output)
                 inner_html += '<div class="code-block">\n'
                 inner_html += f"<h3>Plain Text Version</h3><pre>{text_content[:500]}...</pre>\n"
@@ -228,23 +228,26 @@ def generate_module_website(
                     q_id = q.get("id", f"q{idx}")
                     q_type = q.get("type", "free_response")
                     q_html += f'<div class="question-container" id="question-{q_id}">\n'
-                    q_html += f'<div class="question-header"><div class="question-text">Question {idx}: {q.get("question", "")}</div>'
+                    q_html += f'<div class="question-header"><div class="question-text">Question {idx}: {html_lib.escape(str(q.get("question", "")))}</div>'
                     q_html += f'<span class="question-type-badge">{q_type.replace("_", " ")}</span></div>\n'
 
                     # Question Interaction Logic Generation (Simplified for Brevity - logic mostly handled by config CSS classes)
                     if q_type == "multiple_choice":
                         q_html += '<ul class="multiple-choice-options">\n'
                         for i, opt in enumerate(q.get("options", [])):
-                            q_html += f'<li class="multiple-choice-option" onclick="selectMultipleChoice(\'{q_id}\', {i})">'
-                            q_html += f'<input type="radio" name="mc-{q_id}" id="mc-{q_id}-{i}" value="{i}"><label for="mc-{q_id}-{i}">{opt}</label></li>'
+                            safe_qid = html_lib.escape(str(q_id), quote=True)
+                            q_html += f'<li class="multiple-choice-option" onclick="selectMultipleChoice(\'{safe_qid}\', {i})">'
+                            q_html += f'<input type="radio" name="mc-{safe_qid}" id="mc-{safe_qid}-{i}" value="{i}"><label for="mc-{safe_qid}-{i}">{html_lib.escape(str(opt))}</label></li>'
                         q_html += "</ul>"
                         if q.get("correct") is not None:
                             q_html += f'<input type="hidden" id="correct-{q_id}" value="{q.get("correct")}">'
 
                     elif q_type == "free_response":
-                        q_html += f'<textarea class="free-response-textarea" id="fr-{q_id}" placeholder="{q.get("placeholder", "")}" '
-                        q_html += f"oninput=\"updateCharCount('{q_id}', this.value.length, {q.get('max_length', 1000)})\"></textarea>"
-                        q_html += f'<div class="char-count" id="char-count-{q_id}">0 / {q.get("max_length", 1000)} characters</div>'
+                        safe_qid = html_lib.escape(str(q_id), quote=True)
+                        placeholder = html_lib.escape(str(q.get("placeholder", "")), quote=True)
+                        q_html += f'<textarea class="free-response-textarea" id="fr-{safe_qid}" placeholder="{placeholder}" '
+                        q_html += f"oninput=\"updateCharCount('{safe_qid}', this.value.length, {q.get('max_length', 1000)})\"></textarea>"
+                        q_html += f'<div class="char-count" id="char-count-{safe_qid}">0 / {q.get("max_length", 1000)} characters</div>'
 
                     elif q_type == "true_false":
                         q_html += '<div class="true-false-buttons">'
@@ -257,13 +260,11 @@ def generate_module_website(
                         q_html += '<div class="matching-container"><div class="matching-pairs">'
                         items = q.get("items", [])
                         for i, item in enumerate(items):
-                            q_html += f'<div class="matching-item"><div class="matching-term">{item.get("term", "")}</div>'
+                            q_html += f'<div class="matching-item"><div class="matching-term">{html_lib.escape(str(item.get("term", "")))}</div>'
                             q_html += f'<select class="matching-select" id="match-{q_id}-{i}" onchange="updateMatching(\'{q_id}\')">'
                             q_html += '<option value="">Select definition...</option>'
                             for j, defi in enumerate(items):
-                                q_html += (
-                                    f'<option value="{j}">{defi.get("definition", "")}</option>'
-                                )
+                                q_html += f'<option value="{j}">{html_lib.escape(str(defi.get("definition", "")))}</option>'
                             q_html += "</select>"
                             q_html += f'<input type="hidden" id="correct-match-{q_id}-{i}" value="{i}"></div>'
                         q_html += "</div></div>"
@@ -271,7 +272,7 @@ def generate_module_website(
                     # Feedback Area
                     expl = q.get("explanation", "")
                     if expl:
-                        q_html += f'<input type="hidden" id="explanation-{q_id}" value="{expl}">'
+                        q_html += f'<input type="hidden" id="explanation-{q_id}" value="{html_lib.escape(str(expl), quote=True)}">'
 
                     q_html += f"<button class=\"check-question-btn\" onclick=\"checkQuestion('{q_id}', '{q_type}')\">Check Answer</button>"
                     q_html += f'<div class="question-feedback" id="feedback-{q_id}"></div></div>'
@@ -435,7 +436,6 @@ def generate_module_website(
         const feedback = document.getElementById(`feedback-${qid}`);
         if(!state) { feedback.textContent = "Please answer first."; feedback.className = "question-feedback show info"; return; }
         
-        // Simplified check logic to keep file size manageable while retaining core function
         let isCorrect = false;
         if(type === 'multiple_choice') {
             const corr = document.getElementById(`correct-${qid}`);
@@ -444,10 +444,31 @@ def generate_module_website(
             const corr = document.getElementById(`correct-${qid}`);
             if(corr) isCorrect = (String(state.answer) === corr.value);
         } else if(type === 'free_response') {
-            isCorrect = true; // Free response always valid
+            const answer = String(state.answer || '').trim();
+            if(!answer) {
+                feedback.textContent = "Please enter a response first.";
+                feedback.className = "question-feedback show info";
+                return;
+            }
+            feedback.textContent = "Response recorded for self-review.";
+            feedback.className = "question-feedback show info";
+            if(!completedQuestions.has(qid)) {
+                completedQuestions.add(qid);
+                updateProgress();
+            }
+            return;
         } else if(type === 'matching') {
-            // Basic matching validation check
-             isCorrect = true; // Placeholder for complex matching logic re-implementation if needed
+            const selects = document.querySelectorAll(`#question-${qid} .matching-select`);
+            if(!selects.length || Object.keys(state.answers).length < selects.length) {
+                feedback.textContent = "Please match all pairs first.";
+                feedback.className = "question-feedback show info";
+                return;
+            }
+            isCorrect = true;
+            selects.forEach((s, i) => {
+                const corr = document.getElementById(`correct-match-${qid}-${i}`);
+                if(corr && state.answers[i] !== parseInt(corr.value)) isCorrect = false;
+            });
         }
 
         if(isCorrect) {

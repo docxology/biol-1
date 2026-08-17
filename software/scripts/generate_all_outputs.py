@@ -30,11 +30,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.shared.runtime import configure_runtime_environment  # noqa: E402
+from src.shared.runtime import configure_runtime_environment
 
 configure_runtime_environment()
 
-from src.batch_processing.logging_config import setup_logging  # noqa: E402
+from src.batch_processing.logging_config import setup_logging
 from src.batch_processing.main import (
     clear_all_outputs,
     process_course_exams,
@@ -42,21 +42,22 @@ from src.batch_processing.main import (
     process_course_modules,
     process_course_practice_tests,
     process_course_syllabus,
-)  # noqa: E402
+)
 from src.batch_processing.utils import (
     generate_dry_run_report,
     get_courses_to_process,
     get_formats_to_process,
-)  # noqa: E402
+)
 from src.module_content.main import (
     describe_course_module_materials,
     render_course_module_materials,
-)  # noqa: E402
-from src.shared.course_config import CourseSelectionError, active_course_names  # noqa: E402
+)
+from src.publish.rendered_outputs import copy_course_rendered_outputs
+from src.shared.course_config import CourseSelectionError, active_course_names
 from src.slide_deck.main import (
     describe_course_slide_decks,
     render_course_slide_decks,
-)  # noqa: E402
+)
 
 logger = logging.getLogger(__name__)
 
@@ -180,7 +181,10 @@ def main() -> int:
         )
 
     if not args.skip_clear:
-        clear_results = clear_all_outputs(repo_root)
+        # Only source-local render directories are rebuildable here. The
+        # repository-level output projection contains LectureCreate artifacts
+        # and must survive the course-material generation pass.
+        clear_results = clear_all_outputs(repo_root / "course_development")
         # Only log if there was actually something cleared (avoids noise when
         # publish_all.py already did --clean-source-outputs before calling us)
         if clear_results.get("total_files_removed", 0) == 0:
@@ -238,6 +242,18 @@ def main() -> int:
             if exams.get("processed"):
                 total_files += len(exams.get("files", []))
 
+    # Keep a stable repository-level projection in addition to source-local
+    # outputs and PUBLISHED/. Downstream render consumers use output/<course>/.
+    for course_dir, course_name in courses:
+        course_path = repo_root / course_dir
+        projection = copy_course_rendered_outputs(repo_root, course_path, course_name)
+        logger.info(
+            "%s root output projection: %s files in %s",
+            course_name,
+            projection["count"],
+            projection["destination"],
+        )
+
     # Opt-in: generate lecture videos via LectureCreate
     if args.include_lectures and not args.dry_run:
         logger.info("\n--- Generating lecture videos ---")
@@ -254,6 +270,7 @@ def main() -> int:
             capture_output=True,
             text=True,
             cwd=str(Path(__file__).parent.parent),
+            check=False,
         )
         if result.returncode == 0:
             logger.info("Lecture videos generated successfully")

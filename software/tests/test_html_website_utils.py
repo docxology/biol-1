@@ -5,7 +5,6 @@ from pathlib import Path
 
 import pytest
 
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 from src.html_website.utils import (
     extract_quiz_questions,
     find_audio_file,
@@ -15,6 +14,7 @@ from src.html_website.utils import (
     markdown_to_html,
     parse_questions_json,
 )
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 
 class TestReadMarkdownFile:

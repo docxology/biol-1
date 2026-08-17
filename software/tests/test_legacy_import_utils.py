@@ -2,13 +2,14 @@
 
 from pathlib import Path
 from unittest.mock import patch
+
 import pytest
 
 from src.legacy_import.utils import (
-    extract_chapter_number,
-    ensure_module_exists,
     create_comprehension_questions,
     create_questions_directory,
+    ensure_module_exists,
+    extract_chapter_number,
 )
 
 

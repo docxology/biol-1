@@ -1,9 +1,9 @@
 """Configuration for text-to-speech generation."""
 
-from typing import Any, Dict
+from typing import Any
 
 # Default voice settings
-DEFAULT_VOICE_SETTINGS: Dict[str, Any] = {
+DEFAULT_VOICE_SETTINGS: dict[str, Any] = {
     "voice": "en",
     "speed": 1.0,
     "pitch": 1.0,
@@ -12,7 +12,7 @@ DEFAULT_VOICE_SETTINGS: Dict[str, Any] = {
 }
 
 # Supported languages and voices
-SUPPORTED_LANGUAGES: Dict[str, str] = {
+SUPPORTED_LANGUAGES: dict[str, str] = {
     "en": "English",
     "es": "Spanish",
     "fr": "French",

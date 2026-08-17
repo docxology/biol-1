@@ -1,13 +1,47 @@
 """Utility functions for Markdown to PDF conversion."""
 
+import ctypes
+import ctypes.util
+import os
 from pathlib import Path
-from typing import List, Optional
 
 import markdown
-from weasyprint import HTML, CSS
+
+# WeasyPrint's macOS wheels require the GTK/Pango shared libraries. Homebrew
+# installs them under /opt/homebrew/lib (Apple Silicon) or /usr/local/lib
+# (Intel); add those locations before importing the CFFI bindings.
+for _library_dir in ("/opt/homebrew/lib", "/usr/local/lib"):
+    if os.path.isdir(_library_dir):
+        _existing = os.environ.get("DYLD_LIBRARY_PATH", "")
+        if _library_dir not in _existing.split(":"):
+            os.environ["DYLD_LIBRARY_PATH"] = ":".join(
+                part for part in (_library_dir, _existing) if part
+            )
+        break
+
+# CFFI does not consult DYLD_LIBRARY_PATH for these macOS names reliably;
+# preload the Homebrew dylibs globally so their transitive dependencies resolve.
+for _library_name in (
+    "libgobject-2.0.dylib",
+    "libpango-1.0.dylib",
+    "libpangocairo-1.0.dylib",
+    "libcairo.2.dylib",
+    "libgdk_pixbuf-2.0.dylib",
+    "libpangoft2-1.0.dylib",
+    "libharfbuzz.dylib",
+    "libfontconfig.1.dylib",
+    "libfreetype.6.dylib",
+):
+    for _library_dir in ("/opt/homebrew/lib", "/usr/local/lib"):
+        _library_path = Path(_library_dir) / _library_name
+        if _library_path.exists():
+            ctypes.CDLL(str(_library_path), mode=ctypes.RTLD_GLOBAL)
+            break
+
+from weasyprint import CSS, HTML  # noqa: E402
 
 
-def markdown_to_html(markdown_text: str, extensions: Optional[List[str]] = None) -> str:
+def markdown_to_html(markdown_text: str, extensions: list[str] | None = None) -> str:
     """Convert Markdown text to HTML.
 
     Args:
@@ -50,7 +84,7 @@ def html_to_pdf(html_content: str, css_content: str, output_path: Path) -> None:
         raise OSError(f"Failed to generate PDF: {e}") from e
 
 
-def get_output_path(input_path: Path, output_dir: Optional[Path] = None) -> Path:
+def get_output_path(input_path: Path, output_dir: Path | None = None) -> Path:
     """Get output PDF path from input Markdown path.
 
     Args:

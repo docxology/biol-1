@@ -1,15 +1,13 @@
 """Configuration for schedule processing."""
 
-from typing import Dict, List
-
 # Supported schedule output formats
-SUPPORTED_OUTPUT_FORMATS: List[str] = ["pdf", "html", "docx", "txt", "mp3"]
+SUPPORTED_OUTPUT_FORMATS: list[str] = ["pdf", "html", "docx", "txt", "mp3"]
 
 # Schedule file patterns
-SCHEDULE_FILE_PATTERNS: List[str] = ["Schedule.md", "schedule.md", "*schedule*.md"]
+SCHEDULE_FILE_PATTERNS: list[str] = ["Schedule.md", "schedule.md", "*schedule*.md"]
 
 # Table column mappings for schedule parsing
-SCHEDULE_COLUMNS: Dict[str, int] = {
+SCHEDULE_COLUMNS: dict[str, int] = {
     "week": 0,
     "date": 1,
     "topic": 2,
@@ -17,4 +15,4 @@ SCHEDULE_COLUMNS: Dict[str, int] = {
 }
 
 # Default schedule table headers
-DEFAULT_HEADERS: List[str] = ["Week", "Date", "Topic", "Notes"]
+DEFAULT_HEADERS: list[str] = ["Week", "Date", "Topic", "Notes"]

@@ -304,7 +304,7 @@ uv run python scripts/publish_all.py --skip-generation
 | Run Type | Duration | Formats |
 |----------|----------|---------|
 | Full publish with MP3 | ~17 min | pdf, docx, html, txt, md, mp3 |
-| Full publish without MP3 | ~5 min | pdf, docx, md |
+| Full publish without MP3 | ~5 min | pdf, docx |
 | PDF-only, single module | ~10 sec | pdf |
 | Full publish, skip generation | ~30 sec | (copy/flatten/validate only) |
 

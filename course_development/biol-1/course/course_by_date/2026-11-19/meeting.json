@@ -1,0 +1,42 @@
+{
+  "copied_outputs": [],
+  "meeting": {
+    "date": "2026-11-19",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "final-exam-review",
+        "include": [
+          "source"
+        ],
+        "kind": "review",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-20_tbd.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "TBD; cumulative reference",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Review and practice",
+    "status": "class",
+    "title": "Comprehensive final preparation",
+    "week": 13
+  }
+}

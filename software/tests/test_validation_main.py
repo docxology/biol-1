@@ -1,13 +1,13 @@
 """Tests for validation module (main.py and utils.py)."""
 
 from src.validation.main import (
+    _validate_module_outputs,
+    _validate_syllabus_outputs,
+    generate_validation_report,
+    get_output_summary,
     validate_outputs,
     validate_published,
     validate_published_directory,
-    generate_validation_report,
-    get_output_summary,
-    _validate_module_outputs,
-    _validate_syllabus_outputs,
 )
 from src.validation.utils import check_dashboard_invariant, check_lab_files
 
@@ -53,7 +53,7 @@ class TestCheckLabFiles:
 
         assert result["source_labs"] == 2
         assert result["output_files"]["pdf"] == 2
-        assert result["output_files"]["html"] == 1
+        assert "html" not in result["output_files"]
         assert result["missing_outputs"] == []
 
     def test_subdirectory_output_files(self, temp_dir):
@@ -74,7 +74,7 @@ class TestCheckLabFiles:
 
         assert result["source_labs"] == 1
         assert result["output_files"]["pdf"] == 1
-        assert result["output_files"]["html"] == 1
+        assert "html" not in result["output_files"]
         assert result["missing_outputs"] == []
 
     def test_source_lab_missing_rendered_output(self, temp_dir):
@@ -143,7 +143,7 @@ class TestCheckLabFiles:
         assert "Dashboards directory not found" in result["issues"]
 
     def test_default_formats_legacy(self, temp_dir):
-        """When formats is omitted, only pdf+html are tallied (legacy behavior)."""
+        """When formats is omitted, only canonical PDF lab exports are tallied."""
         labs_dir = temp_dir / "course" / "labs"
         labs_dir.mkdir(parents=True)
         (labs_dir / "lab-01_intro.md").write_text("# Lab 1\n", encoding="utf-8")
@@ -155,8 +155,8 @@ class TestCheckLabFiles:
 
         result = check_lab_files(temp_dir)
 
-        assert set(result["formats_checked"]) == {"pdf", "html"}
-        assert result["output_files"] == {"pdf": 1, "html": 1}
+        assert set(result["formats_checked"]) == {"pdf"}
+        assert result["output_files"] == {"pdf": 1}
 
     def test_formats_aware_counts_pdf_docx_md(self, temp_dir):
         """Format-aware lab counting only tallies currently supported lab formats."""
@@ -485,7 +485,7 @@ class TestValidateModuleOutputs:
         module_dir = temp_dir / "module-01"
         sg_dir = module_dir / "output" / "study-guides"
         sg_dir.mkdir(parents=True)
-        for base in ("keys-to-success", "questions"):
+        for base in ("key-points", "practice-quiz", "questions"):
             for ext in ("pdf", "docx"):
                 (sg_dir / f"module-01-{base}.{ext}").write_text(f"{base} {ext}", encoding="utf-8")
 
@@ -499,7 +499,7 @@ class TestValidateModuleOutputs:
         module_dir = temp_dir / "module-01"
         sg_dir = module_dir / "output" / "study-guides"
         sg_dir.mkdir(parents=True)
-        for base in ("keys-to-success", "questions"):
+        for base in ("key-points", "practice-quiz", "questions"):
             for ext in ("pdf", "docx", "html"):
                 (sg_dir / f"module-01-{base}.{ext}").write_text(f"{base} {ext}", encoding="utf-8")
 

@@ -1,24 +1,24 @@
 """Configuration for file validation."""
 
 import re
-from typing import List, Pattern
+from re import Pattern
 
 # Required files in each active BIOL-1-style module
-REQUIRED_FILES: List[str] = [
+REQUIRED_FILES: list[str] = [
     "README.md",
     "AGENTS.md",
     "questions.md",
-    "keys-to-success.md",
+    "key-points.md",
 ]
 
 # Required directories in each module. BIOL-1 modules do not require an
 # assignments/ directory; assignment naming checks remain opt-in when that
 # legacy folder exists.
-REQUIRED_DIRECTORIES: List[str] = []
+REQUIRED_DIRECTORIES: list[str] = []
 
 # Root-level content files that use stable BIOL-1 names instead of module
 # prefixes. They are rendered to standardized output names by the pipeline.
-ROOT_CONTENT_FILES: List[str] = ["questions.md", "keys-to-success.md"]
+ROOT_CONTENT_FILES: list[str] = ["questions.md", "key-points.md"]
 
 # Naming convention patterns
 KEBAB_CASE_PATTERN: Pattern[str] = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
@@ -27,7 +27,7 @@ KEBAB_CASE_PATTERN: Pattern[str] = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 MODULE_PREFIX_PATTERN: Pattern[str] = re.compile(r"^module-\d+-")
 
 # Valid file extensions for course materials
-VALID_EXTENSIONS: List[str] = [
+VALID_EXTENSIONS: list[str] = [
     ".md",
     ".pdf",
     ".pptx",

@@ -16,5 +16,5 @@ The answer is **gene regulation** — cells turn different genes on or off. **Ep
 
 ## Contents
 
-- `keys-to-success.md` — Key terms, concepts, and study tips
+- `key-points.md` — Key terms, concepts, and study tips
 - `questions.md` — Study questions for this module

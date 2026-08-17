@@ -2,7 +2,7 @@
 
 ## Overview
 
-Batch processing utilities for converting entire course modules to configured media formats. The active publish profile generates PDF, DOCX, and MD by default; HTML, TXT, and MP3 remain opt-in.
+Batch processing utilities for converting entire course modules to configured media formats. The active publish profile generates PDF and DOCX by default; HTML, TXT, Markdown copies, and MP3 remain opt-in.
 
 ## Module Purpose
 
@@ -50,6 +50,7 @@ Process entire modules for multiple format conversions, maintaining directory st
 
 ```python
 from src.batch_processing.main import process_module_by_type
+
 results = process_module_by_type("/path/to/module", "/path/to/output")
 print(f"Generated: {results['summary']}")
 ```

@@ -32,8 +32,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.batch_processing.logging_config import setup_logging
 from src.legacy_import import (
     process_chapter_questions,
-    process_slides,
     process_for_upload_all_modules,
+    process_slides,
 )
 from src.shared.course_config import CourseSelectionError, resolve_course_selection
 

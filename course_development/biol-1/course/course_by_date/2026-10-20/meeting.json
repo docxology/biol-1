@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-13-how-populations-evolve-practice-quiz.docx",
+      "id": "module-13-how-populations-evolve",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "d7aad7fc1020b1ce9ef38590f66a0002bc5f29613ef2bcde78460075fffc3c61",
+      "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-key-points.pdf",
+      "id": "module-13-how-populations-evolve",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "356d93df7f7e21ab291b978af7634adc05c61e8b23aa74eb8d93a2730496fde2",
+      "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-questions.pdf",
+      "id": "module-13-how-populations-evolve",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "75933ac292966d6b284e8b580fc124c13049a9852a0b4de798b45718a804cbce",
+      "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-questions.pdf"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-questions.docx",
+      "id": "module-13-how-populations-evolve",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "f4533a63a632c1dc5cd9fd737bb1320dc80d760a7580da12d84e606d76428311",
+      "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-questions.docx"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-key-points.docx",
+      "id": "module-13-how-populations-evolve",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "fe7819733ef81e80c458ea901db9037aadd210b7259c437564422c9f80977953",
+      "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-key-points.docx"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-practice-quiz.pdf",
+      "id": "module-13-how-populations-evolve",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "ca451b05d0784a043f24d98955616bf536906a595983c73aaffe152fadd23a6a",
+      "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-module-13-slides-full.pdf",
+      "id": "module-13-how-populations-evolve",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "c29640655893dcfc3af5e792613d1b5cba4120cb667e6565b1a2e082480a596c",
+      "source": "course_development/biol-1/resources/slides/module-13-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-module-13-slides-notes.pdf",
+      "id": "module-13-how-populations-evolve",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "29faea7601885a51f92748c1f1d7d94a0f46abb2167a92480a0b7f5c049ba1f6",
+      "source": "course_development/biol-1/resources/slides/module-13-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-lecture.mp4",
+      "id": "module-13-how-populations-evolve",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "2ef8bdec3c691d09ad20813d46a2cf2749dac4db8cb216977ddbce885dd68b17",
+      "source": "output/lectures/module-13-how-populations-evolve/module-13-how-populations-evolve/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-13-how-populations-evolve-module-13-how-populations-evolve.yaml",
+      "id": "module-13-how-populations-evolve",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "560634e0581fb80398b6831052eac281cc09acf610590416163e2f7fb1a61e0a",
+      "source": "output/lectures/module-13-how-populations-evolve/module-13-how-populations-evolve.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-10-20",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-13-how-populations-evolve",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-13_how-populations-evolve.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 16: How Populations Evolve",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 13: How Populations Evolve; Lab 13",
+    "week": 9
+  }
+}

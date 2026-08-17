@@ -57,7 +57,7 @@ flowchart LR
     TOML["module.toml"] --> LOAD["load_module_content()"]
     LOAD --> VALIDATE["validate_module_content()"]
     VALIDATE --> RENDER["render_module_materials()"]
-    RENDER --> MD["keys-to-success.md<br/>questions.md<br/>practice-quiz.md"]
+    RENDER --> MD["key-points.md<br/>questions.md<br/>practice-quiz.md"]
     RENDER --> SVG["resources/generated/<br/>module-NN-concept-map.svg<br/>module-NN-process-model.svg<br/>module-NN-retrieval-card.svg"]
     RENDER --> IDX["resources/generated/<br/>asset-index.md"]
     RENDER --> DOCS["resources/generated/<br/>README.md + AGENTS.md"]
@@ -67,7 +67,7 @@ flowchart LR
 
 | File | Content |
 |------|---------|
-| `keys-to-success.md` | Learning objectives, topics, key terms, core contents, study tips, connected lab, generated visuals index |
+| `key-points.md` | Learning objectives, topics, key terms, core contents, study tips, connected lab, generated visuals index |
 | `questions.md` | Numbered learning questions |
 | `practice-quiz.md` | Multiple-choice quiz with answers and explanations |
 
@@ -148,7 +148,7 @@ The `format_conversion` module (`src.format_conversion`) is the central dispatch
 
 ## Lab Manual Rendering
 
-Lab protocols use a directive syntax for interactive elements (fillable fields, data tables, etc.). The `lab_manual` package renders these to PDF and HTML.
+Lab protocols use a directive syntax for interactive elements (fillable fields, data tables, etc.). The `lab_manual` package renders the canonical protocol export to PDF; HTML is used internally during PDF construction.
 
 **Package**: `src.lab_manual`
 **Key function**: `render_lab_manual(input_path, output_path, output_format="pdf")`
@@ -167,7 +167,7 @@ All labs use the standardized `{fill:text}` notation for student identification:
 
 ### Batch Lab Generation
 
-Labs run when `--skip-labs` is **omitted** and `--module` is **not set** (whole-course pass). Outputs go under `course/labs/output/<pdf|html>/`.
+Labs run when `--skip-labs` is **omitted** and `--module` is **not set** (whole-course pass). Outputs go under `course/labs/output/pdf/`.
 
 ```python
 # Called by generate_all_outputs.py
@@ -176,7 +176,7 @@ process_course_labs(course_path, course_name, formats, max_lab=max_lab)
 
 ### Lab Dashboard Generation
 
-Interactive lab HTML dashboards live under `course/labs/dashboards/` (`*-dashboard.html`). They complement protocol PDF/HTML in `course/labs/output/`. The batch pipeline validates dashboard counts against course config when `strict_dashboards` is enabled.
+Interactive lab HTML dashboards live under `course/labs/dashboards/` (`*-dashboard.html`) as a separate companion surface. They complement the protocol PDF, not a protocol HTML export. The batch pipeline validates dashboard counts against course config when `strict_dashboards` is enabled.
 
 | Course | Default per lab | Overrides |
 |--------|----------------|-----------|

@@ -1,0 +1,43 @@
+{
+  "copied_outputs": [],
+  "meeting": {
+    "date": "2026-09-15",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "practice-test-01",
+        "include": [
+          "source"
+        ],
+        "kind": "practice_test",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "practice-test-02",
+        "include": [
+          "source"
+        ],
+        "kind": "practice_test",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "exam-01-review",
+        "include": [
+          "source"
+        ],
+        "kind": "review",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Practice Test 01 covers Modules 1-4; Practice Test 02 covers Modules 5-6.",
+    "status": "class",
+    "title": "Practice Test 01; Practice Test 02; Exam 01 review",
+    "week": 4
+  }
+}

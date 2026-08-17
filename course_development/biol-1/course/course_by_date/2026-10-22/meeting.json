@@ -1,0 +1,134 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-14-macroevolution-key-points.docx",
+      "id": "module-14-macroevolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "d76a804d9d4d8e722abc3cac5dd15c710ad3c5d5fba73ef318798adb0d3bf3c6",
+      "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-key-points.docx"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-practice-quiz.docx",
+      "id": "module-14-macroevolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "8f144b3c9caab43742b649907a1c8f5bfbff40669f57f10698389a4ab8574cb1",
+      "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-practice-quiz.pdf",
+      "id": "module-14-macroevolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "66773f25e2e71b5162f188f7383e6d5e544715f41315ad773b8688aa3627fdc0",
+      "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-questions.pdf",
+      "id": "module-14-macroevolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "e1f03112cba0f9db855bef41dd17d1801639524b3e56beea39f93d58859f59ca",
+      "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-questions.pdf"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-key-points.pdf",
+      "id": "module-14-macroevolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "5970f08228b5a18328d773621584b4844a6dfb51e2e543fe7d22a1df0bcfba3f",
+      "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-questions.docx",
+      "id": "module-14-macroevolution",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "b1c3f5df730b5cb85a4099c9c57226ca99dea8e066adcba0b3d5a8a042fc360d",
+      "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-questions.docx"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-module-14-slides-full.pdf",
+      "id": "module-14-macroevolution",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "3dff00d39d651f03b87cbdacfa8a97810cb2dcedfcec05781841396d20e24958",
+      "source": "course_development/biol-1/resources/slides/module-14-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-module-14-slides-notes.pdf",
+      "id": "module-14-macroevolution",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "46bbe05e8e565cb39ff540ab2ef549ae182570c441a6fa57d465471f789269d4",
+      "source": "course_development/biol-1/resources/slides/module-14-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-lecture.mp4",
+      "id": "module-14-macroevolution",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "f72fa084487db0f8aea1ce3147f646688719beebbece9db4786717a71f1a8e29",
+      "source": "output/lectures/module-14-macroevolution/module-14-macroevolution/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-14-macroevolution-module-14-macroevolution.yaml",
+      "id": "module-14-macroevolution",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "6600d54dec2863e0e3ef7c1e5312cb7ecc603c2b42759bbb4883cdedfa574d0c",
+      "source": "output/lectures/module-14-macroevolution/module-14-macroevolution.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-10-22",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-14-macroevolution",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-14_macroevolution.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 17: Speciation and Macroevolution",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 19: Taxonomy, Systematics, and Phylogeny",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 14: Macroevolution; Lab 14",
+    "week": 9
+  }
+}

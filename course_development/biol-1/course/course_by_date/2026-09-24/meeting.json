@@ -1,0 +1,134 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-08-cellular-genetics-questions.pdf",
+      "id": "module-08-cellular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "623e9eb3081482fe92bbebee9f9ed2601c812dfc9a52a898f92d4f2641b5aa3a",
+      "source": "course_development/biol-1/course/module-08-cellular-genetics/output/study-guides/module-08-cellular-genetics-questions.pdf"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-practice-quiz.docx",
+      "id": "module-08-cellular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "95e9828c705f551bdc50949b900d3805b3f31b562a9a131539db62a05f9be0f1",
+      "source": "course_development/biol-1/course/module-08-cellular-genetics/output/study-guides/module-08-cellular-genetics-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-key-points.docx",
+      "id": "module-08-cellular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "3f8a5faafb3e60a0535f8214e8efde03455d59986bdb1ae02582654f3a5a5a74",
+      "source": "course_development/biol-1/course/module-08-cellular-genetics/output/study-guides/module-08-cellular-genetics-key-points.docx"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-key-points.pdf",
+      "id": "module-08-cellular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "24d1eba00f6155541e275832a6e82b4ad50daf8a28acdf6ab4921f0fc8f9f6f7",
+      "source": "course_development/biol-1/course/module-08-cellular-genetics/output/study-guides/module-08-cellular-genetics-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-practice-quiz.pdf",
+      "id": "module-08-cellular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "1313030a2fe570b80b92566ffe526a3060dc3b3ddbd4fee2faa23dada6ca83d9",
+      "source": "course_development/biol-1/course/module-08-cellular-genetics/output/study-guides/module-08-cellular-genetics-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-questions.docx",
+      "id": "module-08-cellular-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "61df44cffb318f6ae6c1b1fbdbf64e9a1db1aea045635e8d7f209b08c2e561b1",
+      "source": "course_development/biol-1/course/module-08-cellular-genetics/output/study-guides/module-08-cellular-genetics-questions.docx"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-module-8-slides-notes.pdf",
+      "id": "module-08-cellular-genetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "36144e46bbd9ac0c23db52512afd6d9573390241955aa83fc753e1b29b061c0d",
+      "source": "course_development/biol-1/resources/slides/module-8-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-module-8-slides-full.pdf",
+      "id": "module-08-cellular-genetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "a79af0ffde57372b8fd79b76746225e138160d66bbf9565f1b5b23e1a7893319",
+      "source": "course_development/biol-1/resources/slides/module-8-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-lecture.mp4",
+      "id": "module-08-cellular-genetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "00551298ff469cb55157e45a04246ab2adbf79a4331d70a0c1dea95f643a6324",
+      "source": "output/lectures/module-08-cellular-genetics/module-08-cellular-genetics/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-08-cellular-genetics-module-08-cellular-genetics.yaml",
+      "id": "module-08-cellular-genetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "2cf6de164bb86001048e148ff5ad1907ea0fe072801917fa85fa472fdefff3c2",
+      "source": "output/lectures/module-08-cellular-genetics/module-08-cellular-genetics.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-09-24",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-08-cellular-genetics",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-08_cellular-genetics.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 9: The Cell Cycle and Cellular Reproduction",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 10: Meiosis and Sexual Reproduction",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 08: Cellular Genetics; Lab 08",
+    "week": 5
+  }
+}

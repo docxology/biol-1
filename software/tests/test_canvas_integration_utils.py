@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-
 from src.canvas_integration.utils import (
     get_canvas_api_url,
     get_file_mime_type,

@@ -1,5 +1,6 @@
 # BIOL-1 Practice Test 02
 
+<!-- assessment-layout: tearoff-duplex -->
 ## Modules 5-6: Membranes and Metabolism
 
 **Instructions:** This practice test covers material from Modules 5 (Membranes) and 6 (Metabolism). Answer all questions to the best of your ability.

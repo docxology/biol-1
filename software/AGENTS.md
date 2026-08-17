@@ -438,7 +438,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed design principles.
 
 - `load_module_content(module_dir: Path | str) -> ModuleContent` — parse and validate `module.toml`
 - `validate_module_content(module: ModuleContent, module_dir: Path | None = None) -> list[str]` — return contract issues without writing files
-- `render_module_materials(module_dir: Path | str, dry_run: bool = False) -> dict[str, object]` — render `keys-to-success.md`, `questions.md`, `practice-quiz.md`, and generated SVG assets
+- `render_module_materials(module_dir: Path | str, dry_run: bool = False) -> dict[str, object]` — render `key-points.md`, `questions.md`, `practice-quiz.md`, and generated SVG assets
 - `render_course_module_materials(course_root: Path | str, module_filter: int | None = None, dry_run: bool = False) -> dict[str, object]` — render all module manifests for a course
 - `describe_course_module_materials(course_root: Path | str, module_filter: int | None = None) -> str` — dry-run report
 

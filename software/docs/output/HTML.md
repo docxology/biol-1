@@ -38,7 +38,7 @@ convert_file("input.md", "html", "output.html")
 ```
 module-XX/output/
 ├── study-guides/
-│   ├── keys-to-success.html   ← Simple HTML
+│   ├── key-points.html   ← Simple HTML
 │   └── questions.html         ← Simple HTML
 ```
 

@@ -1,0 +1,23 @@
+{
+  "copied_outputs": [],
+  "meeting": {
+    "date": "2026-12-03",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "final-exam-review",
+        "include": [
+          "source"
+        ],
+        "kind": "review",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Review and make-up work",
+    "status": "class",
+    "title": "Comprehensive final preparation",
+    "week": 15
+  }
+}

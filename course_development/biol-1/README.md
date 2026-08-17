@@ -26,33 +26,33 @@ biol-1/
 
 ## Modules
 
-Each module contains two source files (`keys-to-success.md`, `questions.md`) and an `output/` directory with generated study guides (PDF, DOCX, MD in the current publish profile) and an interactive website (`index.html`).
+Each module contains three generated study files (`key-points.md`, `practice-quiz.md`, and `questions.md`) and an `output/` directory with the default PDF and DOCX study-guide renderings. Interactive HTML websites and other formats are opt-in and are not part of the default BIOL-1 render.
 
 | # | Module | Topic | Source |
 |---|--------|-------|--------|
-| 01 | [The Study of Life](course/module-01-study-of-life/) | Nature of science, scientific method, characteristics of life | [Keys](course/module-01-study-of-life/keys-to-success.md) · [Questions](course/module-01-study-of-life/questions.md) |
-| 02 | [Basic Chemistry](course/module-02-basic-chemistry/) | Atoms, bonds, water, pH, chemical reactions | [Keys](course/module-02-basic-chemistry/keys-to-success.md) · [Questions](course/module-02-basic-chemistry/questions.md) |
-| 03 | [Organic Molecules](course/module-03-organic-molecules/) | Carbohydrates, lipids, proteins, nucleic acids | [Keys](course/module-03-organic-molecules/keys-to-success.md) · [Questions](course/module-03-organic-molecules/questions.md) |
-| 04 | [Cells](course/module-04-cells/) | Cell theory, prokaryotic/eukaryotic structure, organelles | [Keys](course/module-04-cells/keys-to-success.md) · [Questions](course/module-04-cells/questions.md) |
-| 05 | [Membranes](course/module-05-membranes/) | Membrane structure, transport, osmosis, diffusion | [Keys](course/module-05-membranes/keys-to-success.md) · [Questions](course/module-05-membranes/questions.md) |
-| 06 | [Metabolism](course/module-06-metabolism/) | Enzymes, energy, ATP, metabolic pathways | [Keys](course/module-06-metabolism/keys-to-success.md) · [Questions](course/module-06-metabolism/questions.md) |
-| 07 | [Molecular Genetics](course/module-07-molecular-genetics/) | DNA structure, replication, transcription, translation, genetic code | [Keys](course/module-07-molecular-genetics/keys-to-success.md) · [Questions](course/module-07-molecular-genetics/questions.md) |
-| 08 | [Cellular Genetics](course/module-08-cellular-genetics/) | Cell cycle, mitosis, meiosis, genetic variation | [Keys](course/module-08-cellular-genetics/keys-to-success.md) · [Questions](course/module-08-cellular-genetics/questions.md) |
-| 09 | [Inheritance Genetics](course/module-09-inheritance-genetics/) | Mendelian genetics, Punnett squares, polygenic traits, pedigrees | [Keys](course/module-09-inheritance-genetics/keys-to-success.md) · [Questions](course/module-09-inheritance-genetics/questions.md) |
-| 10 | [Epigenetics](course/module-10-epigenetics/) | Gene regulation, epigenetic mechanisms, methylation, histone modification | [Keys](course/module-10-epigenetics/keys-to-success.md) · [Questions](course/module-10-epigenetics/questions.md) |
-| 11 | [Genomics & Biotechnology](course/module-11-genomics-biotechnology/) | PCR, gel electrophoresis, CRISPR, genomic applications | [Keys](course/module-11-genomics-biotechnology/keys-to-success.md) · [Questions](course/module-11-genomics-biotechnology/questions.md) |
-| 12 | [Darwin & Evolution](course/module-12-darwin-evolution/) | Natural selection, evidence for evolution, Darwin's theory | [Keys](course/module-12-darwin-evolution/keys-to-success.md) · [Questions](course/module-12-darwin-evolution/questions.md) |
-| 13 | [How Populations Evolve](course/module-13-how-populations-evolve/) | Microevolution, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-13-how-populations-evolve/keys-to-success.md) · [Questions](course/module-13-how-populations-evolve/questions.md) |
-| 14 | [Macroevolution](course/module-14-macroevolution/) | Species concepts, speciation, phylogenetics | [Keys](course/module-14-macroevolution/keys-to-success.md) · [Questions](course/module-14-macroevolution/questions.md) |
-| 15 | [Population, Systems & Ecology](course/module-15-population-systems-ecology/) | Population dynamics, community interactions, ecosystems | [Keys](course/module-15-population-systems-ecology/keys-to-success.md) · [Questions](course/module-15-population-systems-ecology/questions.md) |
-| 16 | [Capstone Systems Synthesis](course/module-16-capstone-systems-synthesis/) | Cross-scale synthesis, feedback loops, evidence-based explanations | [Keys](course/module-16-capstone-systems-synthesis/keys-to-success.md) · [Questions](course/module-16-capstone-systems-synthesis/questions.md) |
+| 01 | [The Study of Life](course/module-01-study-of-life/) | Nature of science, scientific method, characteristics of life | [Keys](course/module-01-study-of-life/key-points.md) · [Questions](course/module-01-study-of-life/questions.md) |
+| 02 | [Basic Chemistry](course/module-02-basic-chemistry/) | Atoms, bonds, water, pH, chemical reactions | [Keys](course/module-02-basic-chemistry/key-points.md) · [Questions](course/module-02-basic-chemistry/questions.md) |
+| 03 | [Organic Molecules](course/module-03-organic-molecules/) | Carbohydrates, lipids, proteins, nucleic acids | [Keys](course/module-03-organic-molecules/key-points.md) · [Questions](course/module-03-organic-molecules/questions.md) |
+| 04 | [Cells](course/module-04-cells/) | Cell theory, prokaryotic/eukaryotic structure, organelles | [Keys](course/module-04-cells/key-points.md) · [Questions](course/module-04-cells/questions.md) |
+| 05 | [Membranes](course/module-05-membranes/) | Membrane structure, transport, osmosis, diffusion | [Keys](course/module-05-membranes/key-points.md) · [Questions](course/module-05-membranes/questions.md) |
+| 06 | [Metabolism](course/module-06-metabolism/) | Enzymes, energy, ATP, metabolic pathways | [Keys](course/module-06-metabolism/key-points.md) · [Questions](course/module-06-metabolism/questions.md) |
+| 07 | [Molecular Genetics](course/module-07-molecular-genetics/) | DNA structure, replication, transcription, translation, genetic code | [Keys](course/module-07-molecular-genetics/key-points.md) · [Questions](course/module-07-molecular-genetics/questions.md) |
+| 08 | [Cellular Genetics](course/module-08-cellular-genetics/) | Cell cycle, mitosis, meiosis, genetic variation | [Keys](course/module-08-cellular-genetics/key-points.md) · [Questions](course/module-08-cellular-genetics/questions.md) |
+| 09 | [Inheritance Genetics](course/module-09-inheritance-genetics/) | Mendelian genetics, Punnett squares, polygenic traits, pedigrees | [Keys](course/module-09-inheritance-genetics/key-points.md) · [Questions](course/module-09-inheritance-genetics/questions.md) |
+| 10 | [Epigenetics](course/module-10-epigenetics/) | Gene regulation, epigenetic mechanisms, methylation, histone modification | [Keys](course/module-10-epigenetics/key-points.md) · [Questions](course/module-10-epigenetics/questions.md) |
+| 11 | [Genomics & Biotechnology](course/module-11-genomics-biotechnology/) | PCR, gel electrophoresis, CRISPR, genomic applications | [Keys](course/module-11-genomics-biotechnology/key-points.md) · [Questions](course/module-11-genomics-biotechnology/questions.md) |
+| 12 | [Darwin & Evolution](course/module-12-darwin-evolution/) | Natural selection, evidence for evolution, Darwin's theory | [Keys](course/module-12-darwin-evolution/key-points.md) · [Questions](course/module-12-darwin-evolution/questions.md) |
+| 13 | [How Populations Evolve](course/module-13-how-populations-evolve/) | Microevolution, Hardy-Weinberg, genetic drift, gene flow | [Keys](course/module-13-how-populations-evolve/key-points.md) · [Questions](course/module-13-how-populations-evolve/questions.md) |
+| 14 | [Macroevolution](course/module-14-macroevolution/) | Species concepts, speciation, phylogenetics | [Keys](course/module-14-macroevolution/key-points.md) · [Questions](course/module-14-macroevolution/questions.md) |
+| 15 | [Population, Systems & Ecology](course/module-15-population-systems-ecology/) | Population dynamics, community interactions, ecosystems | [Keys](course/module-15-population-systems-ecology/key-points.md) · [Questions](course/module-15-population-systems-ecology/questions.md) |
+| 16 | [Capstone Systems Synthesis](course/module-16-capstone-systems-synthesis/) | Cross-scale synthesis, feedback loops, evidence-based explanations | [Keys](course/module-16-capstone-systems-synthesis/key-points.md) · [Questions](course/module-16-capstone-systems-synthesis/questions.md) |
 
 ### Module Output Formats
 
 Each module's `output/` directory contains:
 
-- **Study Guides** (`output/study-guides/`): PDF, DOCX, MD in the current publish profile; HTML, TXT, and MP3 are optional formats.
-- **Interactive Website** (`output/website/index.html`): Self-contained HTML study portal
+- **Study Guides** (`output/study-guides/`): PDF and DOCX by default; Markdown, HTML, TXT, and MP3 are opt-in formats.
+- **Interactive Website** (`output/website/index.html`): Available only when the website stage is explicitly requested.
 
 ---
 
@@ -78,6 +78,10 @@ Labs are located in [`course/labs/`](course/labs/). Each lab is a Markdown file 
 | 14 | [Lab 14](course/labs/lab-14_macroevolution.md) | Macroevolution | Complete |
 | 15 | [Lab 15](course/labs/lab-15_population-systems-ecology.md) | Population, Systems & Ecology | Complete |
 | 16 | [Lab 16](course/labs/lab-16_capstone-systems-synthesis.md) | Capstone Systems Synthesis | Complete |
+| 17 | [Lab 17](course/labs/lab-17_tbd.md) | TBD laboratory session | Planned / TBD |
+| 18 | [Lab 18](course/labs/lab-18_tbd.md) | TBD laboratory session | Planned / TBD |
+| 19 | [Lab 19](course/labs/lab-19_tbd.md) | TBD laboratory session | Planned / TBD |
+| 20 | [Lab 20](course/labs/lab-20_tbd.md) | TBD laboratory session | Planned / TBD |
 
 ### Lab Output
 
@@ -108,6 +112,10 @@ Each lab has a companion interactive HTML dashboard in [`course/labs/dashboards/
 | 14 | [Macroevolution](course/labs/dashboards/lab-14_macroevolution-dashboard.html) |
 | 15 | [Population and Systems Ecology](course/labs/dashboards/lab-15_population-systems-ecology-dashboard.html) |
 | 16 | [Capstone Systems Synthesis](course/labs/dashboards/lab-16_capstone-systems-synthesis-dashboard.html) |
+| 17 | [TBD Laboratory Session 17](course/labs/dashboards/lab-17_tbd-dashboard.html) |
+| 18 | [TBD Laboratory Session 18](course/labs/dashboards/lab-18_tbd-dashboard.html) |
+| 19 | [TBD Laboratory Session 19](course/labs/dashboards/lab-19_tbd-dashboard.html) |
+| 20 | [TBD Laboratory Session 20](course/labs/dashboards/lab-20_tbd-dashboard.html) |
 
 ---
 
@@ -135,10 +143,10 @@ Quiz templates are in [`course/quizzes/`](course/quizzes/):
 
 Source files and multi-format outputs are in [`syllabus/`](syllabus/).
 
-| Document | Source | PDF | DOCX | MD |
-|----------|--------|-----|------|----|
-| Syllabus | [Source](syllabus/BIOL-1_Fall-2026_Syllabus.md) | [PDF](syllabus/output/BIOL-1_Fall-2026_Syllabus.pdf) | [DOCX](syllabus/output/BIOL-1_Fall-2026_Syllabus.docx) | [MD](syllabus/output/BIOL-1_Fall-2026_Syllabus.md) |
-| Schedule | [Source](syllabus/Schedule.md) | [PDF](syllabus/output/Schedule.pdf) | [DOCX](syllabus/output/Schedule.docx) | [MD](syllabus/output/Schedule.md) |
+| Document | Source | PDF | DOCX |
+|----------|--------|-----|------|
+| Syllabus | [Source](syllabus/BIOL-1_Fall-2026_Syllabus.md) | [PDF](syllabus/output/BIOL-1_Fall-2026_Syllabus.pdf) | [DOCX](syllabus/output/BIOL-1_Fall-2026_Syllabus.docx) |
+| Schedule | [Source](syllabus/Schedule.md) | [PDF](syllabus/output/Schedule.pdf) | [DOCX](syllabus/output/Schedule.docx) |
 
 ---
 

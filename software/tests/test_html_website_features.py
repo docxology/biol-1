@@ -7,7 +7,6 @@ import pytest
 
 from src.html_website.main import generate_module_website
 
-
 # A minimal but fully valid module.toml satisfying the module_content contract
 # (exactly one concept-map/process-model/retrieval-card generated-image spec,
 # each meeting its own minimum-count requirements). Mirrors the fixture used in
@@ -225,7 +224,7 @@ class TestGenerateModuleWebsite:
         """BIOL-1 root study-guide headings propagate into index.html."""
         module_dir = temp_dir / "module-13-how-populations-evolve"
         module_dir.mkdir()
-        (module_dir / "keys-to-success.md").write_text(
+        (module_dir / "key-points.md").write_text(
             "# Module 13: How Populations Evolve\n\n"
             "## Learning Objectives\n\n"
             "1. Define microevolution.\n",
@@ -235,7 +234,7 @@ class TestGenerateModuleWebsite:
         result = generate_module_website(str(module_dir), str(temp_dir / "website"))
 
         html_content = Path(result).read_text()
-        assert "Keys to Success" in html_content
+        assert "Key Points" in html_content
         assert "Learning Objectives" in html_content
         assert "Define microevolution" in html_content
 
@@ -546,7 +545,6 @@ class TestHTMLWebsiteConfig:
     def test_dark_mode_persists_via_localstorage(self):
         """Test that dark mode JavaScript uses localStorage for persistence."""
         # Now located in the JS block, indirectly tested via string presence
-        pass
 
 
 class TestHTMLWebsiteQuizStyles:

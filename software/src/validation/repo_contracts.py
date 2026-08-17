@@ -17,7 +17,6 @@ from typing import Any
 from src.module_content.main import ModuleContentError, load_module_content
 from src.shared.course_config import active_course_names, archived_course_paths
 
-
 DOC_REQUIRED_ROOTS = (Path("course_development"), Path("software/src"))
 PRODUCTION_CODE_PATHS = (Path("publish.py"), Path("software/scripts"), Path("software/src"))
 DOC_EXCLUDED_PARTS = {
@@ -28,6 +27,10 @@ DOC_EXCLUDED_PARTS = {
     "__pycache__",
     "htmlcov",
     "output",
+    # Generated copy-only teaching handoffs have their own manifest contract;
+    # they intentionally do not replicate authoring-tree README/AGENTS files
+    # or preserve source-relative links as authoring links.
+    "course_by_date",
 }
 LINK_PATTERN = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 FENCE_PATTERN = re.compile(r"```.*?```", re.DOTALL)
@@ -45,8 +48,6 @@ ACTIVE_BIOL1_FORBIDDEN_TEXT = (
     "Spring 2026",
     "Del Norte",
     "Exam 04",
-    "Lab 18",
-    "lab-18",
     "Introduction to Biology",
     "BIOL-1: Biology 1",
     "Pelican Bay Prison",
@@ -183,9 +184,7 @@ def _should_check_link(target: str) -> bool:
         return False
     # Skip links to publish.toml from nested docs (path resolution varies
     # by subfolder depth and the file is checked by _check_course_counts).
-    if target.endswith("publish.toml"):
-        return False
-    return True
+    return not target.endswith("publish.toml")
 
 
 def _check_production_code_no_test_doubles(root: Path, report: RepoContractReport) -> None:
@@ -327,7 +326,7 @@ def _check_module_materials(
         elif course == "biol-1":
             _check_module_manifest(root, course_root, module_dir, report)
 
-        for rel_file in ("README.md", "keys-to-success.md", "questions.md", "practice-quiz.md"):
+        for rel_file in ("README.md", "key-points.md", "questions.md", "practice-quiz.md"):
             path = module_dir / rel_file
             if not path.exists():
                 report.add_issue(f"{path.relative_to(root)} missing")
@@ -343,7 +342,7 @@ def _check_module_materials(
         questions_path = module_dir / "questions.md"
         if questions_path.exists():
             _check_continuous_numbered_items(root, questions_path, report)
-        keys_path = module_dir / "keys-to-success.md"
+        keys_path = module_dir / "key-points.md"
         if keys_path.exists():
             _check_keys_learning_objectives(root, keys_path, report)
         if (module_dir / "assignments").exists() and course == "biol-1":

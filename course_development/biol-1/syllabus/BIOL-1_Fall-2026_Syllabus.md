@@ -5,14 +5,12 @@
 ## Course Information
 
 - **Semester & Year**: Fall 2026
-- **Course ID and Section number**: TBD
+- **Course ID and Section number**: C1000
 - **Instructor's name**: Daniel Friedman
-- **Contact**: TBD institution-approved channel; Canvas if enabled for this section.
+- **Contact**: [Daniel Friedman](mailto:Daniel-Friedman@redwoods.edu) · [Canvas course](https://cdcredu.instructure.com/courses/8036)
 - **Day and time of required meetings**:
-  - Monday 05:30PM - 08:40PM
-  - Wednesday 05:30PM - 08:40PM
-  - Draft pattern: Monday lecture, review, or exam work; Wednesday lab work. Some labs move to Monday because first-Wednesday programs are canceled.
-- **Location**: Pelican Bay, yard/room TBD
+-  - Tuesday and Thursday, 05:30PM - 08:40PM
+- **Location**: D Yard Education room
 - **Major exams**: 3 unit exams plus 1 comprehensive final
 - **Course units**: 4
 
@@ -22,7 +20,7 @@ An introductory course in life science dealing with basic biological concepts in
 
 ## Course Student Learning Outcomes
 
-1. Apply the process of science to critically evaluate observable biological phenomenon.
+1. Apply the process of science to critically evaluate observable biological phenomena.
 2. Describe attributes of life and explain how cells fulfill these characteristics.
 3. Relate the mechanisms of evolutionary change to the production of biological diversity.
 
@@ -31,13 +29,73 @@ An introductory course in life science dealing with basic biological concepts in
 This Fall 2026 Pelican Bay offering uses one active, continuous BIOL-1 sequence:
 
 - **Modules 01-16**: module study guides and practice questions.
-- **Labs 01-17**: hands-on or paper-based labs; Labs 06, 12, and 17 are unit-review labs.
-- **Practice Tests 01-05**: Practice Test 01 covers Modules 1-4; Practice Test 02 covers Modules 5-6; Practice Test 03 covers Modules 7-11; Practice Test 04 covers Modules 12-16; Practice Test 05 is comprehensive review for Modules 1-16.
-- **Assessments**: Exam 01 covers Modules 1-6; Exam 02 covers Modules 7-11; Exam 03 covers Modules 12-16; the comprehensive final covers Modules 1-16.
+- **Labs 01-16**: one hands-on or paper-based lab per content module. Exam-review worksheets are separate non-primary review materials.
+- **Practice Tests 01-05**: Practice Test 01 covers Modules 1-4; Practice Test 02 covers Modules 5-6; Practice Test 03 covers Modules 7-11; Practice Test 04 covers Modules 12-16; Practice Test 05 is comprehensive review for Modules 1-16; its student packet uses a tear-off first-page answer sheet with free response beginning on the reverse.
+- **Assessments**: Exam 01 covers Modules 1-6; Exam 02 covers Modules 7-11; Exam 03 covers Modules 12-16; the comprehensive final is cumulative.
+
+## Textbook
+
+The recommended textbook is *Biology*, 14th edition, by Sylvia S. Mader and
+Michael Windelspecht, loose-leaf edition, ISBN **978-1-266-24172-7**. The
+complete course text is available in the course materials at
+`resources/textbook/Complete_Combined_Textbook_S2026.pdf`. Weekly chapter
+recommendations are listed in the [course schedule](Schedule.md); they are
+associated readings rather than additional graded assignments.
+
+## Course Contents and Reading Map
+
+The links below point to the maintained source records for each module and lab;
+the schedule is the dated source of truth for when each item is used. The
+chapter numbers are the textbook's chapter numbers, not module numbers.
+
+| Module | Course module | Lab | Mader & Windelspecht chapter(s) |
+| --- | --- | --- | --- |
+| 01 | [Study of Life](../course/module-01-study-of-life/) | [Lab 01](../course/labs/lab-01_measurement-methods.md) | Ch. 1 |
+| 02 | [Basic Chemistry](../course/module-02-basic-chemistry/) | [Lab 02](../course/labs/lab-02_probability-statistics.md) | Ch. 2 |
+| 03 | [Organic Molecules](../course/module-03-organic-molecules/) | [Lab 03](../course/labs/lab-03_microscopy.md) | Ch. 3 |
+| 04 | [Cells](../course/module-04-cells/) | [Lab 04](../course/labs/lab-04_liquid-chemistry.md) | Ch. 4 |
+| 05 | [Membranes](../course/module-05-membranes/) | [Lab 05](../course/labs/lab-05_viewing-life.md) | Ch. 5 |
+| 06 | [Metabolism](../course/module-06-metabolism/) | [Lab 06](../course/labs/lab-06_metabolism.md) | Chs. 6–8 |
+| 07 | [Molecular Genetics](../course/module-07-molecular-genetics/) | [Lab 07](../course/labs/lab-07_molecular-genetics.md) | Ch. 12 |
+| 08 | [Cellular Genetics](../course/module-08-cellular-genetics/) | [Lab 08](../course/labs/lab-08_cellular-genetics.md) | Chs. 9–10 |
+| 09 | [Inheritance Genetics](../course/module-09-inheritance-genetics/) | [Lab 09](../course/labs/lab-09_inheritance-genetics.md) | Ch. 11 |
+| 10 | [Epigenetics](../course/module-10-epigenetics/) | [Lab 10](../course/labs/lab-10_epigenetics.md) | Ch. 13 |
+| 11 | [Genomics & Biotechnology](../course/module-11-genomics-biotechnology/) | [Lab 11](../course/labs/lab-11_genomics-biotechnology.md) | Ch. 14 |
+| 12 | [Darwin & Evolution](../course/module-12-darwin-evolution/) | [Lab 12](../course/labs/lab-12_darwin-evolution.md) | Ch. 15 |
+| 13 | [How Populations Evolve](../course/module-13-how-populations-evolve/) | [Lab 13](../course/labs/lab-13_how-populations-evolve.md) | Ch. 16 |
+| 14 | [Macroevolution](../course/module-14-macroevolution/) | [Lab 14](../course/labs/lab-14_macroevolution.md) | Chs. 17, 19 |
+| 15 | [Population & Systems Ecology](../course/module-15-population-systems-ecology/) | [Lab 15](../course/labs/lab-15_population-systems-ecology.md) | Chs. 44–45 |
+| 16 | [Capstone Systems Synthesis](../course/module-16-capstone-systems-synthesis/) | [Lab 16](../course/labs/lab-16_capstone-systems-synthesis.md) | Cumulative selected readings |
+
+Four additional laboratory sessions are reserved for later development. Their
+topics, protocols, and final reading associations are intentionally TBD:
+
+| Session | Date | Laboratory record |
+|---:|---|---|
+| 23 | November 10 | [Lab 17 (TBD)](../course/labs/lab-17_tbd.md) |
+| 24 | November 12 | [Lab 18 (TBD)](../course/labs/lab-18_tbd.md) |
+| 25 | November 17 | [Lab 19 (TBD)](../course/labs/lab-19_tbd.md) |
+| 26 | November 19 | [Lab 20 (TBD)](../course/labs/lab-20_tbd.md) |
+
+Unit exams and review materials are maintained in the [course assessment
+directory](../course/exams/). Exam 01 covers Modules 01–06, Exam 02 covers
+Modules 07–11, Exam 03 covers Modules 12–16, and the final is comprehensive
+across Modules 01–16.
+
+## Grading
+
+- **Tests and examinations**: 50%
+- **Laboratory work**: 20%
+- **Homework**: 30%
 
 ## Fall 2026 Calendar Anchors
 
-The schedule follows the College of the Redwoods 2026-2027 academic calendar: classes begin August 22, Labor Day is September 7, Veterans Day is November 11, Fall Break is November 23-24, Thanksgiving holidays are November 25-27, final examinations are December 12-18, and classes end December 18. The official final-exam slot for this section remains TBD.
+The College of the Redwoods 2026-2027 academic calendar lists August 22 as the
+term start and December 12-18 as the final-examination period. This section's
+first meeting is Tuesday, August 25; its planned final examination is Thursday,
+December 10. Tuesday, December 15 is reserved for feedback and post-final
+discussions. The section plans no holidays or Pelican Bay program closures
+other than fall break on November 24 and 26.
 
 ## Prerequisites/Corequisites/Recommended Preparation
 

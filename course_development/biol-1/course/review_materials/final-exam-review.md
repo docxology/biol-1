@@ -1,4 +1,4 @@
-# Final Exam Review — Comprehensive (Modules 01–16)
+# Final Exam Review — Comprehensive (Modules 01–15 plus Module 16 capstone synthesis)
 
 **BIOL-1: General Biology** | College of the Redwoods, Pelican Bay
 
@@ -267,4 +267,4 @@ D) Only found in the atmosphere
 
 ---
 
-*Final exam review worksheet, Modules 01–16. BIOL-1: General Biology (Pelican Bay), Fall 2026 — College of the Redwoods*
+*Final exam review worksheet, Modules 01–15 plus Module 16 capstone synthesis. BIOL-1: General Biology (Pelican Bay), Fall 2026 — College of the Redwoods*

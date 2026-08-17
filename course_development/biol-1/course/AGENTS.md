@@ -13,13 +13,13 @@ course/
 │   ├── AGENTS.md
 │   ├── module.toml                            # Canonical typed source
 │   ├── questions.md                          # Generated learning questions
-│   ├── keys-to-success.md                    # Generated module study guide
+│   ├── key-points.md                    # Generated module study guide
 │   ├── practice-quiz.md                      # Generated practice quiz
 │   ├── resources/                            # (optional) module-local assets
 │   └── output/                               # Generated; do not edit by hand
 │       ├── study-guides/
 │       │   ├── module-NN-name-questions.{md,pdf,docx}
-│       │   └── module-NN-name-keys-to-success.{md,pdf,docx}
+│       │   └── module-NN-name-key-points.{md,pdf,docx}
 │       └── website/index.html
 ├── labs/                                    # lab-NN_topic.md (1-16), with output/ + dashboards/
 ├── exams/                                   # exam-NN.md, exam-NN_key.md, final-exam.md, exam-template.md
@@ -52,11 +52,11 @@ course/
 ## File naming
 
 - Module folders: `module-NN-topic-words/` (zero-padded `NN`, lowercase, hyphenated).
-- Source of truth at module root: `module.toml`. Generated files: `questions.md`, `keys-to-success.md`, and `practice-quiz.md`.
-- `keys-to-success.md` must put `## Learning Objectives` as the first level-2 section after the title.
+- Source of truth at module root: `module.toml`. Generated files: `questions.md`, `key-points.md`, and `practice-quiz.md`.
+- `key-points.md` must put `## Learning Objectives` as the first level-2 section after the title.
 - Generated outputs in `output/study-guides/` are prefixed with the full module slug:
   - `module-NN-topic-words-questions.{md,pdf,docx}`
-  - `module-NN-topic-words-keys-to-success.{md,pdf,docx}`
+  - `module-NN-topic-words-key-points.{md,pdf,docx}`
   - `module-NN-topic-words-practice-quiz.{md,pdf,docx}` when quiz publishing is enabled later
 
 HTML, TXT, and MP3 study-guide outputs are supported opt-in formats, not part

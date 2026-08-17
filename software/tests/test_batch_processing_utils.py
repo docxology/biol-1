@@ -2,19 +2,20 @@
 
 from pathlib import Path
 from unittest.mock import patch
+
 import pytest
 
 from src.batch_processing.utils import (
-    find_markdown_files,
     find_audio_files,
-    should_process_file,
-    get_relative_output_path,
+    find_markdown_files,
+    generate_dry_run_report,
     get_courses_to_process,
     get_formats_to_process,
-    generate_dry_run_report,
+    get_relative_output_path,
+    should_process_file,
 )
-from src.shared.file_utils import ensure_output_directory
 from src.shared.course_config import CourseSelectionError
+from src.shared.file_utils import ensure_output_directory
 
 
 def test_find_markdown_files(temp_dir):

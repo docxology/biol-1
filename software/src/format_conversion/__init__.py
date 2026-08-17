@@ -8,8 +8,8 @@ from .main import (
 from .utils import get_conversion_path
 
 __all__ = [
-    "convert_file",
     "batch_convert",
+    "convert_file",
     "get_conversion_path",
     "get_supported_formats",
 ]

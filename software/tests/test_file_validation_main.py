@@ -23,8 +23,8 @@ def test_validate_module_files_biol1_without_assignments(temp_dir):
     (module_dir / "README.md").write_text("# Module 13\n", encoding="utf-8")
     (module_dir / "AGENTS.md").write_text("# Docs\n", encoding="utf-8")
     (module_dir / "questions.md").write_text("# Module 13: Questions\n", encoding="utf-8")
-    (module_dir / "keys-to-success.md").write_text(
-        "# Module 13: Keys to Success\n\n## Learning Objectives\n\n1. Define microevolution.\n",
+    (module_dir / "key-points.md").write_text(
+        "# Module 13: Key Points\n\n## Learning Objectives\n\n1. Define microevolution.\n",
         encoding="utf-8",
     )
 
@@ -120,7 +120,7 @@ def test_validate_course_structure(temp_dir):
     (module1 / "README.md").write_text("# Module 1\n", encoding="utf-8")
     (module1 / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
     (module1 / "questions.md").write_text("# Module 1: Questions\n", encoding="utf-8")
-    (module1 / "keys-to-success.md").write_text("# Module 1: Keys\n", encoding="utf-8")
+    (module1 / "key-points.md").write_text("# Module 1: Keys\n", encoding="utf-8")
 
     result = validate_course_structure(str(temp_dir))
     assert "modules" in result
@@ -138,7 +138,7 @@ def test_get_validation_report(temp_dir):
     (module_dir / "README.md").write_text("# Module 1\n", encoding="utf-8")
     (module_dir / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
     (module_dir / "questions.md").write_text("# Module 1: Questions\n", encoding="utf-8")
-    (module_dir / "keys-to-success.md").write_text("# Module 1: Keys\n", encoding="utf-8")
+    (module_dir / "key-points.md").write_text("# Module 1: Keys\n", encoding="utf-8")
 
     report = get_validation_report(str(module_dir))
     assert "module_path" in report
@@ -304,7 +304,7 @@ def test_validate_course_structure_with_modules(temp_dir):
     (module1 / "README.md").write_text("# Module 1\n", encoding="utf-8")
     (module1 / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
     (module1 / "questions.md").write_text("# Module 1: Questions\n", encoding="utf-8")
-    (module1 / "keys-to-success.md").write_text("# Module 1: Keys\n", encoding="utf-8")
+    (module1 / "key-points.md").write_text("# Module 1: Keys\n", encoding="utf-8")
 
     # Module 2 - valid
     module2 = course_dir / "module-2"
@@ -312,7 +312,7 @@ def test_validate_course_structure_with_modules(temp_dir):
     (module2 / "README.md").write_text("# Module 2\n", encoding="utf-8")
     (module2 / "AGENTS.md").write_text("# Agents\n", encoding="utf-8")
     (module2 / "questions.md").write_text("# Module 2: Questions\n", encoding="utf-8")
-    (module2 / "keys-to-success.md").write_text("# Module 2: Keys\n", encoding="utf-8")
+    (module2 / "key-points.md").write_text("# Module 2: Keys\n", encoding="utf-8")
 
     result = validate_course_structure(str(temp_dir))
     assert "modules" in result

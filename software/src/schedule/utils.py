@@ -1,14 +1,13 @@
 """Utility functions for schedule processing."""
 
 import re
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Dict, List, Optional
 
 from . import config
 
 
-def parse_schedule_table(content: str) -> List[Dict[str, str]]:
+def parse_schedule_table(content: str) -> list[dict[str, str]]:
     """Parse schedule table from markdown content.
 
     Args:
@@ -45,7 +44,7 @@ def parse_schedule_table(content: str) -> List[Dict[str, str]]:
     return schedule_entries
 
 
-def extract_schedule_sections(content: str) -> Dict[str, str]:
+def extract_schedule_sections(content: str) -> dict[str, str]:
     """Extract sections from schedule markdown (title, dates, exams, etc.).
 
     Args:
@@ -79,7 +78,7 @@ def extract_schedule_sections(content: str) -> Dict[str, str]:
     return sections
 
 
-def format_date(date_str: str) -> Optional[str]:
+def format_date(date_str: str) -> str | None:
     """Format date string to standard format.
 
     Args:
@@ -95,7 +94,7 @@ def format_date(date_str: str) -> Optional[str]:
     date_formats = ["%m/%d/%Y", "%m-%d-%Y", "%Y-%m-%d"]
     for fmt in date_formats:
         try:
-            dt = datetime.strptime(date_str.strip(), fmt)
+            dt = datetime.strptime(date_str.strip(), fmt).replace(tzinfo=UTC)
             return dt.strftime("%B %d, %Y")
         except ValueError:
             continue
@@ -103,7 +102,7 @@ def format_date(date_str: str) -> Optional[str]:
     return date_str  # Return original if parsing fails
 
 
-def validate_schedule_entry(entry: Dict[str, str]) -> bool:
+def validate_schedule_entry(entry: dict[str, str]) -> bool:
     """Validate a schedule entry has required fields.
 
     Args:
@@ -117,7 +116,7 @@ def validate_schedule_entry(entry: Dict[str, str]) -> bool:
 
 
 def generate_schedule_markdown(
-    entries: List[Dict[str, str]], sections: Optional[Dict[str, str]] = None
+    entries: list[dict[str, str]], sections: dict[str, str] | None = None
 ) -> str:
     """Generate formatted markdown from schedule entries.
 
@@ -168,7 +167,7 @@ def generate_schedule_markdown(
     return "\n".join(lines)
 
 
-def find_schedule_files(directory: Path) -> List[Path]:
+def find_schedule_files(directory: Path) -> list[Path]:
     """Find schedule markdown files in a directory.
 
     Args:
@@ -177,7 +176,7 @@ def find_schedule_files(directory: Path) -> List[Path]:
     Returns:
         List of schedule file paths
     """
-    schedule_files: List[Path] = []
+    schedule_files: list[Path] = []
     for pattern in config.SCHEDULE_FILE_PATTERNS:
         if "*" in pattern:
             # Handle glob patterns

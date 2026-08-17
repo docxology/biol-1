@@ -15,7 +15,7 @@ This directory contains the core content for **Darwin and Evolution**.
 
 ## File Registry
 - `README.md`: Central landing page and table of contents.
-- `keys-to-success.md`: High-yield prep material; debunks the "Survival of the fittest" misconception.
+- `key-points.md`: High-yield prep material; debunks the "Survival of the fittest" misconception.
 - `questions.md`: Fifteen numbered practice questions (intro paragraph + list) on natural selection, evidence for evolution, and common misconceptions.
 
 ## Technical Notes

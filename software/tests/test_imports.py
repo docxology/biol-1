@@ -42,7 +42,7 @@ def test_all_core_module_imports():
 def test_text_to_speech_module_imports():
     """Verify text_to_speech module imports work."""
     try:
-        from src.text_to_speech import generate_speech, batch_generate_speech
+        from src.text_to_speech import batch_generate_speech, generate_speech
 
         assert generate_speech is not None
         assert batch_generate_speech is not None
@@ -53,7 +53,7 @@ def test_text_to_speech_module_imports():
 def test_speech_to_text_module_imports():
     """Verify speech_to_text module imports work."""
     try:
-        from src.speech_to_text import transcribe_audio, batch_transcribe_audio
+        from src.speech_to_text import batch_transcribe_audio, transcribe_audio
 
         assert transcribe_audio is not None
         assert batch_transcribe_audio is not None

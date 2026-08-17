@@ -6,15 +6,15 @@ materials into the biol-1 module directory structure.
 """
 
 from .main import (
-    process_chapter_questions,
-    process_slides,
     create_for_upload_files,
+    process_chapter_questions,
     process_for_upload_all_modules,
+    process_slides,
 )
 
 __all__: list[str] = [
-    "process_chapter_questions",
-    "process_slides",
     "create_for_upload_files",
+    "process_chapter_questions",
     "process_for_upload_all_modules",
+    "process_slides",
 ]

@@ -42,8 +42,8 @@ course/exams/
 |-------|---------------|-----------------|--------|
 | `exam-01.md`, `exam-01_key.md` | Exam 01 | **Modules 01–06** | 50 |
 | `exam-02.md`, `exam-02_key.md` | Exam 02 | **Modules 07–11** | 50 |
-| `exam-03.md`, `exam-03_key.md` | Exam 03 | **Modules 12–15** | 50 |
-| `final-exam.md`, `final-exam_key.md` | Comprehensive Final | **Modules 01–15** | 100 |
+| `exam-03.md`, `exam-03_key.md` | Exam 03 | **Modules 12–16** | 50 |
+| `final-exam.md`, `final-exam_key.md` | Comprehensive Final | **Modules 01–15 plus Module 16 capstone synthesis** | 100 |
 | `exam-template.md` | — | Scaffold / alternate 100-pt style | — |
 
 ### Practice Test Parity
@@ -51,7 +51,7 @@ course/exams/
 | Practice Test | Corresponding Exam |
 |---------------|-------------------|
 | `practice-test-03` | Exam 02 (Modules 7–11) |
-| `practice-test-04` | Exam 03 (Modules 12–15) |
+| `practice-test-04` | Exam 03 (Modules 12–16) |
 | `practice-test-05` | Comprehensive Final (Modules 1–16) |
 
 See [PRACTICE_TEST_FORMAT.md](PRACTICE_TEST_FORMAT.md) for practice test details.
@@ -186,3 +186,22 @@ Exams use the same multi-format rendering path as other markdown content under `
 | [../COURSE_STRUCTURE.md](../COURSE_STRUCTURE.md) | Course directory layout (assessment section) |
 | [../../../course_development/biol-1/course/exams/AGENTS.md](../../../course_development/biol-1/course/exams/AGENTS.md) | Source-level exam documentation |
 | [../ORCHESTRATION.md](../ORCHESTRATION.md) | Pipeline and generation workflows |
+## Duplex tear-off layout
+
+Every BIOL-1 student practice test and unit/comprehensive exam source carries the `assessment-layout: tearoff-duplex` marker. The renderer produces a duplex packet: page 1 is a compact tear-off answer sheet with one response line per multiple-choice and fill-in item; the reverse side begins the free-response section; subsequent pages contain the question booklet. Answer keys remain conventional and are not transformed.
+
+## macOS PDF rendering
+
+PDF rendering uses WeasyPrint. On macOS, install its Homebrew native libraries once:
+
+```bash
+brew install pkg-config cairo pango gdk-pixbuf libffi
+```
+
+The renderer discovers Homebrew libraries under `/opt/homebrew/lib` (Apple Silicon) or `/usr/local/lib` (Intel). Verify with:
+
+```bash
+uv run python -c "from weasyprint import HTML; print('WeasyPrint native libraries available')"
+```
+
+Student BIOL-1 assessments marked `assessment-layout: tearoff-duplex` render as duplex packets: page 1 is the tear-off MC/fill-in answer sheet, the reverse begins free response, and the remaining pages contain the question booklet.

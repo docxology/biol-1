@@ -15,7 +15,7 @@ This directory contains the core content for **Population and Systems Ecology**.
 
 ## File Registry
 - `README.md`: Central landing page and table of contents.
-- `keys-to-success.md`: Population curves (exponential/logistic), Carrying Capacity (K), 10% energy rule, and Biogeochemical cycles.
+- `key-points.md`: Population curves (exponential/logistic), Carrying Capacity (K), 10% energy rule, and Biogeochemical cycles.
 - `questions.md`: Self-assessment on interpreting growth curves and tracking energy through trophic pyramids.
 
 ## Technical Notes

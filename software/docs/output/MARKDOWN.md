@@ -22,18 +22,18 @@ Detailed specification for normalized Markdown (`.md`) output — student-facing
 
 ## What Are Normalized Markdown Study Guides?
 
-The publish pipeline generates Markdown copies of course materials (questions, keys-to-success) with **normalized filenames** that match the flattened output naming convention. These are not raw source files — they are **renamed copies** placed alongside PDF, DOCX, HTML, and TXT outputs in the same `study-guides/` directory.
+The publish pipeline generates Markdown copies of course materials (questions, key-points) with **normalized filenames** that match the flattened output naming convention. These are not raw source files — they are **renamed copies** placed alongside PDF, DOCX, HTML, and TXT outputs in the same `study-guides/` directory.
 
 ### Naming Convention
 
-Source files in `course_development/biol-1/course/module-NN-name/` use simple names (`questions.md`, `keys-to-success.md`). The pipeline renames them using the module folder name as a prefix:
+Source files in `course_development/biol-1/course/module-NN-name/` use simple names (`questions.md`, `key-points.md`). The pipeline renames them using the module folder name as a prefix:
 
 ```
 module-12-darwin-evolution/questions.md
   → module-12-darwin-evolution-questions.md       (normalized copy)
 
-module-12-darwin-evolution/keys-to-success.md
-  → module-12-darwin-evolution-keys-to-success.md  (normalized copy)
+module-12-darwin-evolution/key-points.md
+  → module-12-darwin-evolution-key-points.md  (normalized copy)
 ```
 
 ### Pattern
@@ -47,7 +47,7 @@ Where `content-type` is one of:
 | Content Type | Source File | Output Filename Example |
 |-------------|-------------|------------------------|
 | Questions | `questions.md` | `module-12-darwin-evolution-questions.md` |
-| Keys to Success | `keys-to-success.md` | `module-12-darwin-evolution-keys-to-success.md` |
+| Key Points | `key-points.md` | `module-12-darwin-evolution-key-points.md` |
 
 ---
 
@@ -60,7 +60,7 @@ flowchart LR
     RENAME --> OUT["study-guides/module-NN-name-questions.md"]
 ```
 
-1. **Source Detection**: The pipeline scans `module-*/` folders for `questions.md` and `keys-to-success.md`
+1. **Source Detection**: The pipeline scans `module-*/` folders for `questions.md` and `key-points.md`
 2. **Copy**: `format_conversion` reads the source Markdown
 3. **Rename**: The output filename is prefixed with the module folder name
 4. **Write**: The normalized copy is written to `module-*/output/study-guides/`
@@ -108,10 +108,10 @@ shutil.copy2(source, output)
 ```
 module-XX/output/
 └── study-guides/
-    ├── keys-to-success.pdf       ← PDF (default on)
-    ├── keys-to-success.docx      ← DOCX (default on)
-    ├── keys-to-success.md        ← Markdown (when enabled)
-    ├── keys-to-success.txt       ← Text (when enabled)
+    ├── key-points.pdf       ← PDF (default on)
+    ├── key-points.docx      ← DOCX (default on)
+    ├── key-points.md        ← Markdown (when enabled)
+    ├── key-points.txt       ← Text (when enabled)
     ├── questions.pdf
     ├── questions.docx
     ├── questions.md              ← Normalized Markdown copy
@@ -126,8 +126,8 @@ PUBLISHED/biol-1/
 │   ├── module-12-darwin-evolution-questions.md
 │   └── module-12-darwin-evolution-questions.pdf
 └── module_keys/
-    ├── module-12-darwin-evolution-keys-to-success.md
-    └── module-12-darwin-evolution-keys-to-success.pdf
+    ├── module-12-darwin-evolution-key-points.md
+    └── module-12-darwin-evolution-key-points.pdf
 ```
 
 ---

@@ -1,14 +1,15 @@
 """Tests for batch processing orchestration functions."""
 
 from unittest.mock import patch
+
 import pytest
 
 from src.batch_processing.main import (
-    process_course_modules,
-    process_course_syllabus,
-    process_course_labs,
-    process_course_practice_tests,
     process_course_exams,
+    process_course_labs,
+    process_course_modules,
+    process_course_practice_tests,
+    process_course_syllabus,
 )
 
 

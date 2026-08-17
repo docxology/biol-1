@@ -9,6 +9,12 @@ from src.shared.course_config import (
 )
 
 
+def test_repository_default_publish_formats_are_pdf_and_docx_only():
+    """The checked-in publish profile keeps Markdown as source, not default delivery."""
+    repo_root = __import__("pathlib").Path(__file__).resolve().parents[2]
+    assert enabled_publish_formats(repo_root) == ["pdf", "docx"]
+
+
 def test_enabled_publish_formats_rejects_unknown_format(temp_dir):
     """Unsupported publish.toml format keys fail immediately."""
     (temp_dir / "publish.toml").write_text(

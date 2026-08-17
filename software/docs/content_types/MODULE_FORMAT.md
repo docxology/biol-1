@@ -14,13 +14,13 @@ module-NN-topic-name/
 ├── AGENTS.md                # Technical doc for tooling
 ├── module.toml               # Canonical typed source (source of truth)
 ├── questions.md             # Generated learning questions
-├── keys-to-success.md       # Generated module study guide
+├── key-points.md       # Generated module study guide
 ├── practice-quiz.md         # Generated practice quiz
 ├── resources/               # (optional) module-local assets
 └── output/                  # Generated; do not edit by hand
     ├── study-guides/
     │   ├── module-NN-name-questions.{md,pdf,docx}
-    │   ├── module-NN-name-keys-to-success.{md,pdf,docx}
+    │   ├── module-NN-name-key-points.{md,pdf,docx}
     │   └── module-NN-name-practice-quiz.{md,pdf,docx}
     └── website/index.html
 ```
@@ -33,7 +33,7 @@ module-NN-topic-name/
 | **Source file** | `module.toml` (always at module root) | — |
 | **Generated outputs** | Prefixed with full module slug | `module-01-study-of-life-questions.pdf` |
 
-> **Rule**: `keys-to-success.md` must put `## Learning Objectives` as the first level-2 section after the title.
+> **Rule**: `key-points.md` must put `## Learning Objectives` as the first level-2 section after the title.
 
 ---
 
@@ -230,7 +230,7 @@ check = "Distinguish living systems from nonliving examples using multiple chara
 
 ## Generated Files
 
-### keys-to-success.md
+### key-points.md
 
 The module study guide. Generated from `module.toml` fields:
 - `learning_objectives` → `## Learning Objectives` (must be first H2 section)

@@ -40,7 +40,7 @@ Validates a course's source-tree outputs under `course_development/<course>/`.
 
 | Check | Description |
 |-------|-------------|
-| **Module outputs** | For each `module-*` directory: verifies expected output files exist in `output/` for each requested format. Checks study-guide files (`keys-to-success`, `questions`) in PDF/DOCX/MD as configured. |
+| **Module outputs** | For each `module-*` directory: verifies expected output files exist in `output/` for each requested format. Checks study-guide files (`key-points`, `questions`) in PDF/DOCX/MD as configured. |
 | **Syllabus outputs** | Verifies syllabus output files exist in `syllabus/output/` for requested formats. |
 | **Lab outputs** | Counts lab source files (`lab-*.md`), verifies rendered outputs exist in `course/labs/output/` for each format. Distinguishes numbered labs from supplemental (follow-up) files. |
 | **Website files** | Checks for `output/website/index.html` per module. |
@@ -76,8 +76,8 @@ Validates a course's source-tree outputs under `course_development/<course>/`.
 
 The lab checker honours the `formats` argument:
 
-- When `formats` is `None`, legacy behavior applies (`pdf` + `html` only).
-- When `formats` is supplied, it is intersected with `LAB_RENDERABLE_FORMATS = ["pdf", "docx", "html", "md", "txt"]`.
+- When `formats` is `None`, the canonical lab export is PDF only.
+- When `formats` is supplied, it is intersected with `LAB_RENDERABLE_FORMATS = ["pdf"]`.
 
 This ensures a publish run with `--formats pdf,docx,md` produces accurate log lines like:
 

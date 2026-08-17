@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-practice-quiz.docx",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "9b9cd7c40a6d2ba11ab3f3bebb14f3614c699b8cc9bece28a58bbc78e5db9688",
+      "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-practice-quiz.pdf",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "e9a8e435b7b6d58a986da81c579ec45d704472a45425ecba7e9dc29ce41f4003",
+      "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-questions.docx",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "72d1519773442994e052547d1407f278d1e075ed2b3ba7b4512cb9641c747b69",
+      "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-questions.docx"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-key-points.docx",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "372b49bc09b0cddcd49117efceb2751b15742fe5377f8aa874b1218384f2d291",
+      "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-key-points.docx"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-questions.pdf",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "2dea62f93c39fe38619b642549eea8bbb9e37f3032c8bf1eab36d13a936b7c91",
+      "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-questions.pdf"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-key-points.pdf",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "3350c7dc1b8f8dac3bc31315659b6ef9f8019c474c58f84f9cd8ea8521419fb2",
+      "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-module-16-slides-notes.pdf",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "2951ceffd6f4c684018e6b0a8cd4aa3ea111d2612467c2aeeae3f1cc2f4abe6f",
+      "source": "course_development/biol-1/resources/slides/module-16-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-module-16-slides-full.pdf",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "fca2c20eae9c9ccfb3948803d282927253f78852e8b37d5c5683fc348d83d1c1",
+      "source": "course_development/biol-1/resources/slides/module-16-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-lecture.mp4",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "e80e33b79e0c675ca9975ebb262c165a4e98f65039cc8bd41f07f2090356dfe5",
+      "source": "output/lectures/module-16-capstone-systems-synthesis/module-16-capstone-systems-synthesis/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-16-capstone-systems-synthesis-module-16-capstone-systems-synthesis.yaml",
+      "id": "module-16-capstone-systems-synthesis",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "6bb20b33c997ad147dd124489028c99c22a979b58b31556e40e87a62a582fa58",
+      "source": "output/lectures/module-16-capstone-systems-synthesis/module-16-capstone-systems-synthesis.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-10-29",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-16-capstone-systems-synthesis",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-16_capstone-systems-synthesis.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapters 1-5, 6-8, 9-17, and 44-45 (cumulative capstone readings)",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Integrative capstone",
+    "status": "class",
+    "title": "Module 16: Capstone Systems Synthesis; Lab 16",
+    "week": 10
+  }
+}

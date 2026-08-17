@@ -4,19 +4,11 @@ import re
 import shutil
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
 
-from . import config
-from .logging_config import get_logger
-from .log_style import format_summary, FORMAT_EMOJI, STATUS_EMOJI, CONTENT_EMOJI
-from .utils import (
-    find_audio_files,
-    find_markdown_files,
-    get_relative_output_path,
-    should_process_file,
-)
 from src.shared.course_config import active_course_names, find_repo_root, validate_supported_formats
 from src.shared.file_utils import ensure_output_directory
+
 from ..format_conversion.main import convert_file
 from ..html_website.main import generate_module_website
 from ..lab_manual.main import batch_render_lab_manuals
@@ -25,11 +17,20 @@ from ..module_organization.utils import matches_module_number
 from ..speech_to_text.main import transcribe_audio
 from ..text_to_speech.main import generate_speech
 from ..text_to_speech.utils import extract_text_from_markdown, read_text_file
+from . import config
+from .log_style import CONTENT_EMOJI, FORMAT_EMOJI, STATUS_EMOJI, format_summary
+from .logging_config import get_logger
+from .utils import (
+    find_audio_files,
+    find_markdown_files,
+    get_relative_output_path,
+    should_process_file,
+)
 
 logger = get_logger()
 
 
-def _active_formats(formats: Optional[List[str]]) -> set[str]:
+def _active_formats(formats: list[str] | None) -> set[str]:
     """Return validated active formats for direct batch-processing callers."""
     if formats is None:
         return set(config.AVAILABLE_FORMATS)
@@ -41,7 +42,7 @@ def _module_sort_key(module_dir: Path) -> tuple[int, str]:
     return (int(match.group(1)) if match else 9999, module_dir.name)
 
 
-def process_module_to_pdf(module_path: str, output_dir: str) -> List[str]:
+def process_module_to_pdf(module_path: str, output_dir: str) -> list[str]:
     """Convert all Markdown files in a module to PDF.
 
     Args:
@@ -89,7 +90,7 @@ def process_module_to_pdf(module_path: str, output_dir: str) -> List[str]:
     return output_files
 
 
-def process_module_to_audio(module_path: str, output_dir: str) -> List[str]:
+def process_module_to_audio(module_path: str, output_dir: str) -> list[str]:
     """Convert all text/Markdown files in a module to audio.
 
     Args:
@@ -143,7 +144,7 @@ def process_module_to_audio(module_path: str, output_dir: str) -> List[str]:
     return output_files
 
 
-def process_module_to_text(module_path: str, output_dir: str) -> List[str]:
+def process_module_to_text(module_path: str, output_dir: str) -> list[str]:
     """Transcribe all audio files in a module to text.
 
     Args:
@@ -191,7 +192,7 @@ def process_module_to_text(module_path: str, output_dir: str) -> List[str]:
     return output_files
 
 
-def generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]:
+def generate_module_media(module_path: str, output_dir: str) -> dict[str, Any]:
     """Generate all media formats for a module (PDF, audio, text transcriptions).
 
     Args:
@@ -215,7 +216,7 @@ def generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]:
     base_output = Path(output_dir)
     ensure_output_directory(base_output)
 
-    results: Dict[str, List[str]] = {
+    results: dict[str, list[str]] = {
         "pdf_files": [],
         "audio_files": [],
         "text_files": [],
@@ -255,8 +256,8 @@ def generate_module_media(module_path: str, output_dir: str) -> Dict[str, Any]:
 def process_module_by_type(
     module_path: str,
     output_dir: str,
-    formats: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    formats: list[str] | None = None,
+) -> dict[str, Any]:
     """Process module files by curriculum element type and generate requested renderings.
 
     Organizes outputs by active curriculum element type (lab-protocols,
@@ -266,7 +267,8 @@ def process_module_by_type(
         module_path: Path to module directory
         output_dir: Base output directory for all renderings
         formats: Optional list of formats to generate (e.g. ["pdf", "docx", "md"]).
-                 When None, all supported study-guide formats are generated.
+                 When None, all deterministic non-audio study-guide formats
+                 are generated. MP3 narration is explicitly opt-in.
 
     Returns:
         Dictionary with results:
@@ -301,7 +303,7 @@ def process_module_by_type(
         f for f in markdown_files if f.name.startswith(config.SAMPLE_FILE_PREFIX)
     )
 
-    # Process root-level source files (keys-to-success.md, questions.md)
+    # Process root-level module content (key-points.md, practice-quiz.md, questions.md)
     root_md_files = sorted(
         f
         for f in module_dir.glob("*.md")
@@ -321,7 +323,7 @@ def process_module_by_type(
     # element; summary provides per-format counts. Differs from process_syllabus which
     # uses by_format instead of by_type (intentional: modules organize by element type,
     # syllabi organize by output format).
-    results: Dict[str, Any] = {
+    results: dict[str, Any] = {
         "success": True,
         "by_type": {t: [] for t in type_mapping.values()},
         "summary": {"pdf": 0, "mp3": 0, "docx": 0, "html": 0, "txt": 0, "md": 0},
@@ -340,13 +342,11 @@ def process_module_by_type(
             elif "lecture-content" in md_file.name:
                 file_type = "lecture-content"
                 output_subdir = "lecture-content"
-            elif "study-guide" in md_file.name:
-                file_type = "study-guide"
-                output_subdir = "study-guides"
-            elif any(pattern in md_file.name for pattern in config.CONTENT_TYPE_PATTERNS):
-                file_type = "study-guide"
-                output_subdir = "study-guides"
-            elif md_file.name == config.QUESTIONS_FILENAME:
+            elif (
+                "study-guide" in md_file.name
+                or any(pattern in md_file.name for pattern in config.CONTENT_TYPE_PATTERNS)
+                or md_file.name == config.QUESTIONS_FILENAME
+            ):
                 file_type = "study-guide"
                 output_subdir = "study-guides"
             if not output_subdir:
@@ -467,8 +467,8 @@ def process_module_by_type(
 def process_syllabus(
     syllabus_path: str,
     output_dir: str,
-    formats: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    formats: list[str] | None = None,
+) -> dict[str, Any]:
     """Process syllabus files and generate requested renderings.
 
     Organizes outputs flat in the output directory (same flat syllabus output structure),
@@ -619,7 +619,7 @@ def process_syllabus(
     return results
 
 
-def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
+def clear_all_outputs(repo_root: Path) -> dict[str, Any]:
     """Clear all output directories before regeneration.
 
     Removes all files and subdirectories within output directories while
@@ -635,13 +635,13 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
         - errors: List of errors encountered
     """
     logger.info("Starting output clearing process")
-    cleared_directories: List[str] = []
+    cleared_directories: list[str] = []
     total_files_removed = 0
-    errors: List[str] = []
+    errors: list[str] = []
 
     # Find all output directories. Callers historically passed either the repo
     # root or course_development/; support both and only clear active courses.
-    output_dirs: List[Path] = []
+    output_dirs: list[Path] = []
     course_parent = (
         repo_root / "course_development"
         if (repo_root / "course_development").exists()
@@ -737,11 +737,11 @@ def clear_all_outputs(repo_root: Path) -> Dict[str, Any]:
 def process_course_modules(
     course_path: Path,
     course_name: str,
-    module_filter: Optional[int] = None,
+    module_filter: int | None = None,
     generate_website: bool = True,
-    formats: Optional[List[str]] = None,
-    max_module: Optional[int] = None,
-) -> Dict[str, Any]:
+    formats: list[str] | None = None,
+    max_module: int | None = None,
+) -> dict[str, Any]:
     """Process all modules for a course.
 
     Args:
@@ -760,7 +760,7 @@ def process_course_modules(
         logger.warning(f"Course directory not found: {course_dir}")
         return {"modules": [], "errors": []}
 
-    results: Dict[str, Any] = {
+    results: dict[str, Any] = {
         "course": course_name,
         "modules": [],
         "errors": [],
@@ -849,8 +849,8 @@ def process_course_modules(
 def process_course_syllabus(
     course_path: Path,
     course_name: str,
-    formats: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    formats: list[str] | None = None,
+) -> dict[str, Any]:
     """Process syllabus for a course.
 
     Args:
@@ -901,15 +901,15 @@ def process_course_syllabus(
 def process_course_labs(
     course_path: Path,
     course_name: str,
-    formats: Optional[List[str]] = None,
-    max_lab: Optional[int] = None,
-) -> Dict[str, Any]:
+    formats: list[str] | None = None,
+    max_lab: int | None = None,
+) -> dict[str, Any]:
     """Process lab manuals for a course.
 
     Args:
         course_path: Path to course directory
         course_name: Name of the course
-        formats: Optional list of formats to generate (supports "pdf", "html")
+        formats: Optional list of formats to generate (supports "pdf")
         max_lab: If specified, only process labs 1 through max_lab
 
     Returns:
@@ -925,17 +925,17 @@ def process_course_labs(
     output_dir = labs_dir / "output"
     lab_start = time.time()
 
-    results: Dict[str, Any] = {
+    results: dict[str, Any] = {
         "processed": True,
         "files": [],
         "errors": [],
         "duration": 0.0,
     }
 
-    # Lab rendering supports pdf and html formats
-    lab_formats = ["pdf", "html"]
+    # Canonical lab exports are printable PDFs only.
+    lab_formats = ["pdf"]
     if formats:
-        lab_formats = [f for f in formats if f in ("pdf", "html")]
+        lab_formats = [f for f in formats if f == "pdf"]
 
     if not lab_formats:
         logger.info("No lab-compatible formats requested, skipping labs")
@@ -973,8 +973,8 @@ def process_course_labs(
 def process_course_practice_tests(
     course_path: Path,
     course_name: str,
-    formats: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    formats: list[str] | None = None,
+) -> dict[str, Any]:
     """Process practice tests for a course.
 
     Renders practice test markdown files (including answer keys) to PDF
@@ -1000,7 +1000,7 @@ def process_course_practice_tests(
 
     start_time = time.time()
 
-    results: Dict[str, Any] = {
+    results: dict[str, Any] = {
         "processed": True,
         "files": [],
         "errors": [],
@@ -1049,8 +1049,8 @@ def process_course_practice_tests(
 def process_course_exams(
     course_path: Path,
     course_name: str,
-    formats: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    formats: list[str] | None = None,
+) -> dict[str, Any]:
     """Process exams for a course.
 
     Renders exam markdown files (including answer keys) to PDF and DOCX
@@ -1077,7 +1077,7 @@ def process_course_exams(
 
     start_time = time.time()
 
-    results: Dict[str, Any] = {
+    results: dict[str, Any] = {
         "processed": True,
         "files": [],
         "errors": [],
@@ -1130,7 +1130,7 @@ def process_course_exams(
     return results
 
 
-def process_module_website(module_path: str, output_dir: Optional[str] = None) -> str:
+def process_module_website(module_path: str, output_dir: str | None = None) -> str:
     """Generate HTML website for a module.
 
     Args:

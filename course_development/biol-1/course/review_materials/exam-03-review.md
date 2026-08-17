@@ -10,14 +10,14 @@
 
 By the end of this review lab, you will be able to:
 
-1. Connect the major ideas from Modules 12–15 across evolution, speciation, and ecology.
+1. Connect the major ideas from Modules 12–16 across evolution, speciation, ecology, and systems synthesis.
 2. Explain key terms in your own words before checking notes or answer keys.
 3. Practice short-answer reasoning for the third unit without relying on memorized wording.
 4. Identify which concepts need more review before Exam 03.
 
 ## Purpose
 
-This lab is **practice** for the third unit: **evolution in populations**, **speciation**, and **ecology**. It pulls together ideas from your Keys to Success and class notes. It is **not** a copy of the official exam; wording and topics are reordered and rephrased so you practice **concepts**, not one memorized set of sentences.
+This lab is **practice** for the third unit: **evolution in populations**, **speciation**, and **ecology**. It pulls together ideas from your Key Points and class notes. It is **not** a copy of the official exam; wording and topics are reordered and rephrased so you practice **concepts**, not one memorized set of sentences.
 
 **How to use this lab**
 

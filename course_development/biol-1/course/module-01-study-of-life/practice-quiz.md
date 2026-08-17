@@ -31,6 +31,6 @@ Use this low-stakes quiz after reviewing the module keys and learning questions.
    - A. It becomes a fixed fact that can never change.
    - B. It should be hidden so no one can disprove it.
    - C. It must be discarded simply because it is old.
-   - D. It can grow into a theory but still stays open to revision if new evidence appears.
+   - D. It may contribute evidence to a broader theory, but hypotheses and theories are different kinds of scientific explanation.
    - Answer: D
-   - Why: Strong scientific explanations stay open to revision. A theory is well supported but is never closed to new evidence.
+   - Why: A hypothesis is a testable explanation for a specific observation or pattern. A theory is a broad explanation supported by many lines of evidence; a hypothesis does not simply mature into a theory. Both remain open to revision when new evidence appears.

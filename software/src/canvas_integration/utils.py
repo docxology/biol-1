@@ -2,7 +2,6 @@
 
 import time
 from pathlib import Path
-from typing import Dict, Optional
 
 import requests
 
@@ -29,7 +28,7 @@ def make_canvas_request(
     method: str,
     url: str,
     api_key: str,
-    headers: Optional[Dict[str, str]] = None,
+    headers: dict[str, str] | None = None,
     **kwargs: object,
 ) -> requests.Response:
     """Make a request to Canvas API with rate limiting.

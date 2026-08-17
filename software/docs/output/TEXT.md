@@ -66,8 +66,8 @@ Text output follows the same normalized naming convention as other formats:
 module-12-darwin-evolution/questions.md
   → module-12-darwin-evolution-questions.txt
 
-module-12-darwin-evolution/keys-to-success.md
-  → module-12-darwin-evolution-keys-to-success.txt
+module-12-darwin-evolution/key-points.md
+  → module-12-darwin-evolution-key-points.txt
 ```
 
 ---
@@ -121,9 +121,9 @@ plain = extract_text_from_markdown(markdown)
 ```
 module-XX/output/
 └── study-guides/
-    ├── keys-to-success.pdf       ← PDF (default on)
-    ├── keys-to-success.docx      ← DOCX (default on)
-    ├── keys-to-success.txt       ← Text (when enabled)
+    ├── key-points.pdf       ← PDF (default on)
+    ├── key-points.docx      ← DOCX (default on)
+    ├── key-points.txt       ← Text (when enabled)
     ├── questions.pdf
     ├── questions.docx
     └── questions.txt             ← Plain text (when enabled)

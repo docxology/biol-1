@@ -2,7 +2,6 @@
 
 import re
 from pathlib import Path
-from typing import List, Optional
 
 
 def ensure_directory_exists(directory: Path) -> None:
@@ -63,7 +62,7 @@ def check_directory_exists(directory_path: Path) -> bool:
     return directory_path.exists() and directory_path.is_dir()
 
 
-def list_missing_files(module_path: Path, required_files: List[str]) -> List[str]:
+def list_missing_files(module_path: Path, required_files: list[str]) -> list[str]:
     """List required files that are missing.
 
     Args:
@@ -81,7 +80,7 @@ def list_missing_files(module_path: Path, required_files: List[str]) -> List[str
     return missing
 
 
-def list_missing_directories(module_path: Path, required_dirs: List[str]) -> List[str]:
+def list_missing_directories(module_path: Path, required_dirs: list[str]) -> list[str]:
     """List required directories that are missing.
 
     Args:
@@ -148,7 +147,7 @@ def matches_module_number(dirname: str, target: int) -> bool:
     return bool(re.match(pattern, dirname))
 
 
-def find_module_path(course_path: Path, module_number: int) -> Optional[Path]:
+def find_module_path(course_path: Path, module_number: int) -> Path | None:
     """Find the module directory for a given module number.
 
     Searches for module directories matching the module number,
@@ -166,14 +165,17 @@ def find_module_path(course_path: Path, module_number: int) -> Optional[Path]:
         return None
 
     for item in course_dir.iterdir():
-        if item.is_dir() and item.name.startswith("module-"):
-            if matches_module_number(item.name, module_number):
-                return item
+        if (
+            item.is_dir()
+            and item.name.startswith("module-")
+            and matches_module_number(item.name, module_number)
+        ):
+            return item
 
     return None
 
 
-def list_all_modules(course_path: Path) -> List[Path]:
+def list_all_modules(course_path: Path) -> list[Path]:
     """List all module directories in a course.
 
     Args:

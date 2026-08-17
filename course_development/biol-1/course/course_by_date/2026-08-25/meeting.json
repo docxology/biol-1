@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-01-study-of-life-practice-quiz.pdf",
+      "id": "module-01-study-of-life",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "1fde8439e80b8f7bbdc42c09db1abfa77f776b964cc4616abd49e5de8663613e",
+      "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-questions.pdf",
+      "id": "module-01-study-of-life",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "a61d4145c65a2870453a3e7dd7549b84560fefb3d6b82c46bf0e567f5af1d641",
+      "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-questions.pdf"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-key-points.docx",
+      "id": "module-01-study-of-life",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "1e1299bcfd7de4cff0c68fe3d75f0c43c8f96434c6a37924bc77c934485ed186",
+      "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-key-points.docx"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-questions.docx",
+      "id": "module-01-study-of-life",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "236d49326022baf934c7e152a599d70bd7875e9aa88c18d54241bfbc3f9d2558",
+      "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-questions.docx"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-practice-quiz.docx",
+      "id": "module-01-study-of-life",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "c7d09cbad70f139b40b3fb32354fd801f0fd341e29746deb7a8929328874834c",
+      "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-key-points.pdf",
+      "id": "module-01-study-of-life",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "7ad9679ddba601b24009b1e700a43efcc53ac8b53c1300c8dea9f0ea6abe4f7d",
+      "source": "course_development/biol-1/course/module-01-study-of-life/output/study-guides/module-01-study-of-life-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-module-1-slides-notes.pdf",
+      "id": "module-01-study-of-life",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "2ef9e5248b951dd54972a5d60e1a149584f9fd6657d44caf948771f0f8a4df6d",
+      "source": "course_development/biol-1/resources/slides/module-1-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-module-1-slides-full.pdf",
+      "id": "module-01-study-of-life",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "846cc2808d3f850eaaca28d66125b5b573f4d98689290fb25d66eea9879194a3",
+      "source": "course_development/biol-1/resources/slides/module-1-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-lecture.mp4",
+      "id": "module-01-study-of-life",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "37c02361bc7c6636dc64e0cd64d17d40d2a215ec72385acb79b4501d41b16b56",
+      "source": "output/lectures/module-01-study-of-life/module-01-study-of-life/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-01-study-of-life-module-01-study-of-life.yaml",
+      "id": "module-01-study-of-life",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "2b45350a328da32373bc1fcf8202635ad65d8daabb1af7cd7e469b81fa2bbe55",
+      "source": "output/lectures/module-01-study-of-life/module-01-study-of-life.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-08-25",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-01-study-of-life",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-01_measurement-methods.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 1: Biology: The Study of Life",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "First class meeting",
+    "status": "class",
+    "title": "Module 01: Biology - The Study of Life; Lab 01",
+    "week": 1
+  }
+}

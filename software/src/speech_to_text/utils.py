@@ -1,7 +1,7 @@
 """Utility functions for speech-to-text transcription."""
 
 from pathlib import Path
-from typing import Optional, cast
+from typing import cast
 
 import speech_recognition as sr
 from pydub import AudioSegment
@@ -80,7 +80,7 @@ def transcribe_audio_segment(audio_path: Path, language: str = "en") -> str:
         raise OSError(f"Failed to transcribe audio: {e}") from e
 
 
-def get_output_path(input_path: Path, output_dir: Optional[Path] = None) -> Path:
+def get_output_path(input_path: Path, output_dir: Path | None = None) -> Path:
     """Get output text path from input audio path.
 
     Args:

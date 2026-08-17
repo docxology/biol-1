@@ -15,7 +15,7 @@ This directory contains the core content for **Macroevolution**.
 
 ## File Registry
 - `README.md`: Central landing page and table of contents.
-- `keys-to-success.md`: Biological Species Concept, Prezygotic vs. Postzygotic barriers, Allopatric vs. Sympatric speciation.
+- `key-points.md`: Biological Species Concept, Prezygotic vs. Postzygotic barriers, Allopatric vs. Sympatric speciation.
 - `questions.md`: Self-assessment mapping isolation barriers to real-world biological scenarios.
 
 ## Technical Notes

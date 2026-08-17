@@ -30,7 +30,7 @@ BIOL-1 module authoring is centered on `course_development/biol-1/course/module-
 - learning questions and generated practice quiz items
 - module-local assets and deterministic generated SVG concept cards
 
-Generated files include `keys-to-success.md`, `questions.md`, `practice-quiz.md`, and `resources/generated/*`. Edit `module.toml`, then regenerate. Do not hand-edit generated module Markdown as canonical source.
+Generated files include `key-points.md`, `questions.md`, `practice-quiz.md`, and `resources/generated/*`. Edit `module.toml`, then regenerate. Do not hand-edit generated module Markdown as canonical source.
 
 ```bash
 cd software

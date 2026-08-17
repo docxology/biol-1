@@ -255,7 +255,7 @@ SPECS: tuple[LabDashboardSpec, ...] = (
         17,
         "exam-03-review",
         "Exam 03 Review",
-        "Review: Modules 12-15",
+        "Review: Modules 12-16",
         "Prepare for the evolution and ecology unit exam with evidence-based review.",
         ("Evolution concept", "Ecology concept", "Practice target"),
         (

@@ -1,0 +1,126 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-09-inheritance-genetics-practice-quiz.pdf",
+      "id": "module-09-inheritance-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "fd31d08d08feb8cd117d1fa9994623fdae22650da9d6c9a715e5af2f7a3da425",
+      "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-key-points.docx",
+      "id": "module-09-inheritance-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "ddeaca543dca15c140ae1fc4427a5c819f0e69cee43d4f958573243614f51f1a",
+      "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-key-points.docx"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-questions.docx",
+      "id": "module-09-inheritance-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "bb8512f3dab22bb02e26f6d1e4b632c068f5a703112753e9f9937ef7827d6854",
+      "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-questions.docx"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-practice-quiz.docx",
+      "id": "module-09-inheritance-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "c227911990ed776ae6cfff6065606f3994062c74c5478a326958de9e7e60f4b3",
+      "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-questions.pdf",
+      "id": "module-09-inheritance-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "dd834e6a28a8bce2bf324db7e092eb452589829417539042e47cc622f51f10af",
+      "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-questions.pdf"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-key-points.pdf",
+      "id": "module-09-inheritance-genetics",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "37a4279a940d02c62feb5d0c9968522d70d8fbd4cbc5b699f00dcb928c7c74ab",
+      "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-module-9-slides-full.pdf",
+      "id": "module-09-inheritance-genetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "56b6dccccd7420d8f89bc7b3b3f5bbb92683e155b82564dc08f0bcd2c5427aed",
+      "source": "course_development/biol-1/resources/slides/module-9-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-module-9-slides-notes.pdf",
+      "id": "module-09-inheritance-genetics",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "1ea57dea439500e56d8ffe4580067c75f398fd252aaa117ca8295d37e7557c63",
+      "source": "course_development/biol-1/resources/slides/module-9-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-lecture.mp4",
+      "id": "module-09-inheritance-genetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "ebd7697297e4e3be3e34ca56844b418f53b79a6be1b5baf9ae36f2b996f03fe0",
+      "source": "output/lectures/module-09-inheritance-genetics/module-09-inheritance-genetics/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-09-inheritance-genetics-module-09-inheritance-genetics.yaml",
+      "id": "module-09-inheritance-genetics",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "6371d64740a6c58b83e767fed22a0a0664f8b79199055cc9c9b6c0dfc86744e2",
+      "source": "output/lectures/module-09-inheritance-genetics/module-09-inheritance-genetics.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-09-29",
+    "day": "Tue",
+    "materials": [
+      {
+        "id": "module-09-inheritance-genetics",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-09_inheritance-genetics.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 11: Mendelian Patterns of Inheritance",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 09: Inheritance Genetics; Lab 09",
+    "week": 6
+  }
+}

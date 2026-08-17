@@ -15,7 +15,7 @@ This directory contains the core content for **How Populations Evolve**.
 
 ## File Registry
 - `README.md`: Central landing page and table of contents.
-- `keys-to-success.md`: Hardy-Weinberg conceptual breakdown, 5 mechanisms of microevolution (Mutation, Flow, Drift, Non-random mating, Selection).
+- `key-points.md`: Hardy-Weinberg conceptual breakdown, 5 mechanisms of microevolution (Mutation, Flow, Drift, Non-random mating, Selection).
 - `questions.md`: Self-assessment covering drift vs. flow and the three paradigms of natural selection (stabilizing, directional, disruptive).
 
 ## Technical Notes

@@ -2,7 +2,10 @@
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
+
+from src.assessment_layout import build_tearoff_assessment
+from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 from . import config
 from .utils import (
@@ -10,7 +13,6 @@ from .utils import (
     html_to_pdf,
     markdown_to_html,
 )
-from src.shared.file_utils import ensure_output_directory, read_markdown_file
 
 logger = logging.getLogger(__name__)
 
@@ -18,8 +20,8 @@ logger = logging.getLogger(__name__)
 def render_markdown_to_pdf(
     input_path: str,
     output_path: str,
-    css_content: Optional[str] = None,
-    pdf_options: Optional[Dict[str, Any]] = None,
+    css_content: str | None = None,
+    pdf_options: dict[str, Any] | None = None,
 ) -> None:
     """Convert a Markdown file to PDF format.
 
@@ -41,6 +43,10 @@ def render_markdown_to_pdf(
     # Read Markdown file
     markdown_content = read_markdown_file(input_file)
 
+    # Assessment sources opt into a duplex layout with a tear-off answer sheet.
+    if "assessment-layout: tearoff-duplex" in markdown_content:
+        markdown_content = build_tearoff_assessment(markdown_content)
+
     # Convert Markdown to HTML
     html_content = markdown_to_html(markdown_content)
 
@@ -52,7 +58,7 @@ def render_markdown_to_pdf(
     html_to_pdf(html_content, css_content, output_file)
 
 
-def batch_render_markdown(directory: str, output_dir: str) -> List[str]:
+def batch_render_markdown(directory: str, output_dir: str) -> list[str]:
     """Batch convert all Markdown files in a directory to PDF.
 
     Args:
@@ -91,7 +97,7 @@ def batch_render_markdown(directory: str, output_dir: str) -> List[str]:
     return output_files
 
 
-def configure_pdf_options(template: str, options: Dict[str, Any]) -> Dict[str, Any]:
+def configure_pdf_options(template: str, options: dict[str, Any]) -> dict[str, Any]:
     """Configure PDF rendering options.
 
     Args:

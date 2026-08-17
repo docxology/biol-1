@@ -84,8 +84,8 @@ def sample_module_structure(temp_dir):
     (module_dir / "README.md").write_text("# Module 1\n", encoding="utf-8")
     (module_dir / "AGENTS.md").write_text("# Module 1 Technical Docs\n", encoding="utf-8")
     (module_dir / "questions.md").write_text("# Module 1: Questions\n", encoding="utf-8")
-    (module_dir / "keys-to-success.md").write_text(
-        "# Module 1: Keys to Success\n\n## Learning Objectives\n\n1. Learn one concept.\n",
+    (module_dir / "key-points.md").write_text(
+        "# Module 1: Key Points\n\n## Learning Objectives\n\n1. Learn one concept.\n",
         encoding="utf-8",
     )
 

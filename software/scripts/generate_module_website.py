@@ -24,18 +24,18 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.shared.runtime import configure_runtime_environment  # noqa: E402
+from src.shared.runtime import configure_runtime_environment
 
 configure_runtime_environment()
 
-from scripts.utils import print_module_not_found  # noqa: E402
-from src.batch_processing.main import process_module_website  # noqa: E402
-from src.module_organization.utils import find_module_path  # noqa: E402
+from scripts.utils import print_module_not_found
+from src.batch_processing.main import process_module_website
+from src.module_organization.utils import find_module_path
 from src.shared.course_config import (
     CourseSelectionError,
     active_course_names,
     resolve_course_selection,
-)  # noqa: E402
+)
 
 
 def parse_args() -> argparse.Namespace:

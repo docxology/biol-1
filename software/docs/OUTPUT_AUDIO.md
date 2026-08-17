@@ -142,11 +142,11 @@ Audio files are generated alongside other formats in the module output directory
 ```
 module-XX/output/
 └── study-guides/
-    ├── keys-to-success.pdf
-    ├── keys-to-success.mp3    ← Audio narration (when mp3 enabled)
+    ├── key-points.pdf
+    ├── key-points.mp3    ← Audio narration (when mp3 enabled)
     ├── questions.pdf
     └── questions.mp3
-    # Optional: keys-to-success.md, questions.md when [publish.formats].md is true
+    # Optional: key-points.md, questions.md when [publish.formats].md is true
 ```
 
 ---

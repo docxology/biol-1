@@ -12,14 +12,14 @@ from pathlib import Path
 
 import pytest
 
+from src.format_conversion.main import convert_file
+from src.html_website.main import generate_module_website
 from src.module_organization.main import (
     create_module_structure,
     get_module_statistics,
     list_course_modules,
 )
 from src.module_organization.utils import get_next_module_number, list_all_modules
-from src.html_website.main import generate_module_website
-from src.format_conversion.main import convert_file
 from src.schedule.main import parse_schedule_markdown
 
 

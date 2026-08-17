@@ -47,7 +47,7 @@ class LabDashboardSpec:
 SPECS: tuple[LabDashboardSpec, ...]
 ```
 
-17 lab dashboard specifications covering Modules 01–15 plus three exam review dashboards.
+16 lab dashboard specifications covering Modules 01–16 plus exam review dashboards.
 
 ### `render_dashboard(spec: LabDashboardSpec) -> str`
 
@@ -76,7 +76,7 @@ Write all dashboard HTML files to `dashboard_dir`.
 ## Configuration (`config.py`)
 
 ```python
-REPO_ROOT: Path      # Repository root (cr-bio/)
+REPO_ROOT: Path  # Repository root (cr-bio/)
 DASHBOARD_DIR: Path  # Default output directory for dashboards
 ```
 

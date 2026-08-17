@@ -97,12 +97,12 @@ def check_dashboard_invariant(
 
 ## Format-aware lab counting
 
-Historically the lab checker only counted `pdf` and `html` regardless of what the publish pipeline actually produced, so log lines like `outputs: {'pdf': 19, 'html': 0}` were misleading when the run requested `pdf,docx,md`.
+Lab validation counts the canonical PDF-only protocol export; dashboards are tracked separately.
 
 `check_lab_files` now honours the `formats` argument:
 
-- When `formats` is `None`, the legacy behaviour applies (`LAB_OUTPUT_FORMATS = ["pdf", "html"]`).
-- When `formats` is supplied (as `validate_outputs` does), it is intersected with `LAB_RENDERABLE_FORMATS = ["pdf", "docx", "html", "md", "txt"]` via `config.get_lab_output_formats`.
+- When `formats` is `None`, the canonical default is `LAB_OUTPUT_FORMATS = ["pdf"]`.
+- When `formats` is supplied (as `validate_outputs` does), it is intersected with `LAB_RENDERABLE_FORMATS = ["pdf"]` via `config.get_lab_output_formats`.
 
 `validate_outputs` always threads its `formats` through, so a publish run with `--formats pdf,docx,md` produces a log line like:
 
@@ -162,9 +162,9 @@ This is why a single run can show both `Total files: 421` (validation) and `Tota
 |---|---|
 | `ALL_SUPPORTED_FORMATS` | Every format the validator understands. |
 | `DEFAULT_REQUIRED_FORMATS` | Used when no `formats` is supplied (`pdf`, `docx`). |
-| `STUDY_GUIDE_BASE_TYPES` | `keys-to-success`, `questions`. |
-| `LAB_OUTPUT_FORMATS` | Legacy default for lab output counting (`pdf`, `html`). |
-| `LAB_RENDERABLE_FORMATS` | Full set of formats the lab pipeline can produce (`pdf`, `docx`, `html`, `md`, `txt`). |
+| `STUDY_GUIDE_BASE_TYPES` | `key-points`, `practice-quiz`, `questions`. |
+| `LAB_OUTPUT_FORMATS` | Canonical default for lab output counting (`pdf`). |
+| `LAB_RENDERABLE_FORMATS` | Formats produced by the course lab export (`pdf`). |
 | `SYLLABUS_REQUIRED_FORMATS` / `SYLLABUS_OPTIONAL_FORMATS` | Per-format expectations for `syllabus/output/`. |
 | `EXPECTED_WEBSITE_FILES` | `index.html`. |
 | `OUTPUT_DIRS` | Logical → directory-name mapping. |
@@ -173,7 +173,7 @@ This is why a single run can show both `Total files: 421` (validation) and `Tota
 
 Helpers:
 
-- `get_expected_study_guide_files(formats)` → list like `["keys-to-success.pdf", "questions.docx", ...]`.
+- `get_expected_study_guide_files(formats)` → list like `["key-points.pdf", "practice-quiz.docx", ...]`.
 - `get_syllabus_required_formats(formats)` → renderable subset of requested formats.
 - `get_lab_output_formats(formats)` → renderable subset for labs (returns the legacy default when `formats is None`).
 - `get_dashboard_config(course_name)` → dict with `default_per_lab` (int), `overrides` (`{int: int}`), and `exempt` (`List[int]`) used by `check_dashboard_invariant`.

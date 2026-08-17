@@ -41,6 +41,7 @@ Validate course module structure, file naming conventions, extensions, and provi
 **Standalone Example:**
 ```python
 from src.file_validation.main import validate_module_files
+
 result = validate_module_files("/path/to/module")
 if result["valid"]:
     print("Module is valid")
@@ -363,7 +364,7 @@ Validate and analyze file name structure.
 
 **File**: `src/file_validation/config.py`
 
-- `REQUIRED_FILES`: List of required files in each active BIOL-1-style module (`["README.md", "AGENTS.md", "questions.md", "keys-to-success.md"]`)
+- `REQUIRED_FILES`: List of required files in each active BIOL-1-style module (`["README.md", "AGENTS.md", "questions.md", "key-points.md"]`)
 - `REQUIRED_DIRECTORIES`: List of required directories (`[]`; BIOL-1 modules do not require `assignments/`)
 - `ROOT_CONTENT_FILES`: Root-level BIOL-1 source names exempt from module-prefixed output naming checks
 - `KEBAB_CASE_PATTERN`: Regex pattern for kebab-case validation
@@ -390,7 +391,7 @@ Validate and analyze file name structure.
 - Generated course material files must have module prefix: `module-N-`
 - Source files must follow the BIOL-1 module contract or kebab-case resource naming
 - Specific patterns for different file types:
-  - Root source files: `questions.md`, `keys-to-success.md`
+  - Root source files: `questions.md`, `key-points.md`
   - Optional legacy assignments: `module-N-assignment-M[-description].(md|pdf)` when an `assignments/` folder exists
   - Lectures: `module-N-lecture-description.(pdf|pptx)`
   - Lab protocols: `module-N-lab-M-description.md`
@@ -403,7 +404,7 @@ Validate and analyze file name structure.
   - `README.md` file
   - `AGENTS.md` file
   - `questions.md` file
-  - `keys-to-success.md` file
+  - `key-points.md` file
 
 ### File Extensions
 

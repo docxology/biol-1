@@ -1,0 +1,23 @@
+{
+  "copied_outputs": [],
+  "meeting": {
+    "date": "2026-11-05",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "exam-03",
+        "include": [
+          "source"
+        ],
+        "kind": "exam",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "Exam",
+    "status": "exam",
+    "title": "Exam 03: Modules 12-16",
+    "week": 11
+  }
+}

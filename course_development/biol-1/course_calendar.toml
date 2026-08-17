@@ -1,0 +1,747 @@
+# Canonical Fall 2026 BIOL-1 course map.
+#
+# `planned` describes the instructional plan; `used` records what is currently
+# represented as used in this offering. The generator copies only `used` files
+# into course/course_by_date/. Textbook rows identify the recommended reading context;
+# the textbook PDF itself remains in resources/textbook and is not duplicated per date.
+
+[calendar]
+course = "biol-1"
+term = "Fall 2026"
+timezone = "America/Los_Angeles"
+source_schedule = "course_development/biol-1/syllabus/Schedule.md"
+
+[calendar.textbook]
+title = "Biology, 14th edition — Sylvia S. Mader and Michael Windelspecht (loose-leaf), ISBN 978-1-266-24172-7"
+planned_chapters = ["Chapter 1: Biology: The Study of Life", "Chapter 2: Basic Chemistry", "Chapter 3: The Chemistry of Organic Molecules", "Chapter 4: Cell Structure and Function", "Chapter 5: Membrane Structure and Function", "Chapter 6: Metabolism: Energy and Enzymes", "Chapter 7: Photosynthesis", "Chapter 8: Cellular Respiration", "Chapter 12: Molecular Biology of the Gene", "Chapter 9: The Cell Cycle and Cellular Reproduction", "Chapter 10: Meiosis and Sexual Reproduction", "Chapter 11: Mendelian Patterns of Inheritance", "Chapter 13: Regulation of Gene Expression", "Chapter 14: Biotechnology and Genomics", "Chapter 15: Darwin and Evolution", "Chapter 16: How Populations Evolve", "Chapter 17: Speciation and Macroevolution", "Chapter 19: Taxonomy, Systematics, and Phylogeny", "Chapter 44: Population Ecology", "Chapter 45: Community and Ecosystem Ecology", "Chapters 1-5, 6-8, 9-17, and 44-45 (cumulative capstone readings)"]
+used_chapters = ["Chapter 1: Biology: The Study of Life", "Chapter 2: Basic Chemistry", "Chapter 3: The Chemistry of Organic Molecules", "Chapter 4: Cell Structure and Function", "Chapter 5: Membrane Structure and Function", "Chapter 6: Metabolism: Energy and Enzymes", "Chapter 7: Photosynthesis", "Chapter 8: Cellular Respiration", "Chapter 12: Molecular Biology of the Gene", "Chapter 9: The Cell Cycle and Cellular Reproduction", "Chapter 10: Meiosis and Sexual Reproduction", "Chapter 11: Mendelian Patterns of Inheritance", "Chapter 13: Regulation of Gene Expression", "Chapter 14: Biotechnology and Genomics", "Chapter 15: Darwin and Evolution", "Chapter 16: How Populations Evolve", "Chapter 17: Speciation and Macroevolution", "Chapter 19: Taxonomy, Systematics, and Phylogeny", "Chapter 44: Population Ecology", "Chapter 45: Community and Ecosystem Ecology", "Chapters 1-5, 6-8, 9-17, and 44-45 (cumulative capstone readings)"]
+
+[[meetings]]
+date = "2026-08-25"
+week = 1
+day = "Tue"
+status = "class"
+title = "Module 01: Biology - The Study of Life; Lab 01"
+notes = "First class meeting"
+[[meetings.materials]]
+kind = "module"
+id = "module-01-study-of-life"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-01_measurement-methods.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 1: Biology: The Study of Life"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-08-27"
+week = 1
+day = "Thu"
+status = "class"
+title = "Module 02: Basic Chemistry; Lab 02"
+[[meetings.materials]]
+kind = "module"
+id = "module-02-basic-chemistry"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-02_probability-statistics.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 2: Basic Chemistry"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-09-01"
+week = 2
+day = "Tue"
+status = "class"
+title = "Module 03: Organic Molecules; Lab 03"
+[[meetings.materials]]
+kind = "module"
+id = "module-03-organic-molecules"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-03_microscopy.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 3: The Chemistry of Organic Molecules"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-09-03"
+week = 2
+day = "Thu"
+status = "class"
+title = "Module 04: Cells; Lab 04"
+[[meetings.materials]]
+kind = "module"
+id = "module-04-cells"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-04_liquid-chemistry.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 4: Cell Structure and Function"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-09-08"
+week = 3
+day = "Tue"
+status = "class"
+title = "Module 05: Membranes; Lab 05"
+[[meetings.materials]]
+kind = "module"
+id = "module-05-membranes"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-05_viewing-life.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 5: Membrane Structure and Function"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-09-10"
+week = 3
+day = "Thu"
+status = "class"
+title = "Module 06: Metabolism; Lab 06"
+[[meetings.materials]]
+kind = "module"
+id = "module-06-metabolism"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-06_metabolism.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 6: Metabolism: Energy and Enzymes"
+planned = true
+used = true
+include = []
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 7: Photosynthesis"
+planned = true
+used = true
+include = []
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 8: Cellular Respiration"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-09-15"
+week = 4
+day = "Tue"
+status = "class"
+title = "Practice Test 01; Practice Test 02; Exam 01 review"
+notes = "Practice Test 01 covers Modules 1-4; Practice Test 02 covers Modules 5-6."
+[[meetings.materials]]
+kind = "practice_test"
+id = "practice-test-01"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "practice_test"
+id = "practice-test-02"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "review"
+id = "exam-01-review"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-09-17"
+week = 4
+day = "Thu"
+status = "exam"
+title = "Exam 01: Modules 1-6"
+notes = "Exam"
+[[meetings.materials]]
+kind = "exam"
+id = "exam-01"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-09-22"
+week = 5
+day = "Tue"
+status = "class"
+title = "Module 07: Molecular Genetics; Lab 07"
+[[meetings.materials]]
+kind = "module"
+id = "module-07-molecular-genetics"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-07_molecular-genetics.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 12: Molecular Biology of the Gene"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-09-24"
+week = 5
+day = "Thu"
+status = "class"
+title = "Module 08: Cellular Genetics; Lab 08"
+[[meetings.materials]]
+kind = "module"
+id = "module-08-cellular-genetics"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-08_cellular-genetics.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 9: The Cell Cycle and Cellular Reproduction"
+planned = true
+used = true
+include = []
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 10: Meiosis and Sexual Reproduction"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-09-29"
+week = 6
+day = "Tue"
+status = "class"
+title = "Module 09: Inheritance Genetics; Lab 09"
+[[meetings.materials]]
+kind = "module"
+id = "module-09-inheritance-genetics"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-09_inheritance-genetics.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 11: Mendelian Patterns of Inheritance"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-10-01"
+week = 6
+day = "Thu"
+status = "class"
+title = "Module 10: Epigenetics; Lab 10"
+[[meetings.materials]]
+kind = "module"
+id = "module-10-epigenetics"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-10_epigenetics.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 13: Regulation of Gene Expression"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-10-06"
+week = 7
+day = "Tue"
+status = "class"
+title = "Module 11: Genomics and Biotechnology; Lab 11"
+[[meetings.materials]]
+kind = "module"
+id = "module-11-genomics-biotechnology"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-11_genomics-biotechnology.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 14: Biotechnology and Genomics"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-10-08"
+week = 7
+day = "Thu"
+status = "class"
+title = "Practice Test 03; Exam 02 review"
+notes = "Practice Test 03 covers Modules 7-11."
+[[meetings.materials]]
+kind = "practice_test"
+id = "practice-test-03"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "review"
+id = "exam-02-review"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-10-13"
+week = 8
+day = "Tue"
+status = "exam"
+title = "Exam 02: Modules 7-11"
+notes = "Exam"
+[[meetings.materials]]
+kind = "exam"
+id = "exam-02"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-10-15"
+week = 8
+day = "Thu"
+status = "class"
+title = "Module 12: Darwin and Evolution; Lab 12"
+notes = "Start of evolution/ecology unit"
+[[meetings.materials]]
+kind = "module"
+id = "module-12-darwin-evolution"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-12_darwin-evolution.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 15: Darwin and Evolution"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-10-20"
+week = 9
+day = "Tue"
+status = "class"
+title = "Module 13: How Populations Evolve; Lab 13"
+[[meetings.materials]]
+kind = "module"
+id = "module-13-how-populations-evolve"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-13_how-populations-evolve.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 16: How Populations Evolve"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-10-22"
+week = 9
+day = "Thu"
+status = "class"
+title = "Module 14: Macroevolution; Lab 14"
+[[meetings.materials]]
+kind = "module"
+id = "module-14-macroevolution"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-14_macroevolution.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 17: Speciation and Macroevolution"
+planned = true
+used = true
+include = []
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 19: Taxonomy, Systematics, and Phylogeny"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-10-27"
+week = 10
+day = "Tue"
+status = "class"
+title = "Module 15: Population and Systems Ecology; Lab 15"
+[[meetings.materials]]
+kind = "module"
+id = "module-15-population-systems-ecology"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-15_population-systems-ecology.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 44: Population Ecology"
+planned = true
+used = true
+include = []
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapter 45: Community and Ecosystem Ecology"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-10-29"
+week = 10
+day = "Thu"
+status = "class"
+title = "Module 16: Capstone Systems Synthesis; Lab 16"
+notes = "Integrative capstone"
+[[meetings.materials]]
+kind = "module"
+id = "module-16-capstone-systems-synthesis"
+planned = true
+used = true
+include = ["source", "generated", "slides", "lecture"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-16_capstone-systems-synthesis.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "Chapters 1-5, 6-8, 9-17, and 44-45 (cumulative capstone readings)"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-11-03"
+week = 11
+day = "Tue"
+status = "class"
+title = "Practice Test 04; Exam 03 review"
+notes = "Practice Test 04 covers Modules 12-16."
+[[meetings.materials]]
+kind = "practice_test"
+id = "practice-test-04"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "review"
+id = "exam-03-review"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-11-05"
+week = 11
+day = "Thu"
+status = "exam"
+title = "Exam 03: Modules 12-16"
+notes = "Exam"
+[[meetings.materials]]
+kind = "exam"
+id = "exam-03"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-11-10"
+week = 12
+day = "Tue"
+status = "class"
+title = "Practice Test 05; comprehensive final preparation"
+notes = "Practice Test 05 is comprehensive across Modules 1-16."
+[[meetings.materials]]
+kind = "practice_test"
+id = "practice-test-05"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "review"
+id = "final-exam-review"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-17_tbd.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "TBD; cumulative reference"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-11-12"
+week = 12
+day = "Thu"
+status = "class"
+title = "Comprehensive final preparation"
+notes = "Review and practice"
+[[meetings.materials]]
+kind = "review"
+id = "final-exam-review"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-18_tbd.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "TBD; cumulative reference"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-11-17"
+week = 13
+day = "Tue"
+status = "class"
+title = "Comprehensive final preparation"
+notes = "Review and practice"
+[[meetings.materials]]
+kind = "review"
+id = "final-exam-review"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-19_tbd.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "TBD; cumulative reference"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-11-19"
+week = 13
+day = "Thu"
+status = "class"
+title = "Comprehensive final preparation"
+notes = "Review and practice"
+[[meetings.materials]]
+kind = "review"
+id = "final-exam-review"
+planned = true
+used = true
+include = ["source"]
+[[meetings.materials]]
+kind = "lab"
+id = "lab-20_tbd.md"
+planned = true
+used = true
+include = ["source", "dashboard"]
+[[meetings.materials]]
+kind = "textbook"
+id = "TBD; cumulative reference"
+planned = true
+used = true
+include = []
+
+[[meetings]]
+date = "2026-11-24"
+week = 14
+day = "Tue"
+status = "no-class"
+title = "Fall break"
+notes = "No class"
+
+[[meetings]]
+date = "2026-11-26"
+week = 14
+day = "Thu"
+status = "no-class"
+title = "Fall break"
+notes = "No class"
+
+[[meetings]]
+date = "2026-12-01"
+week = 15
+day = "Tue"
+status = "class"
+title = "Comprehensive final preparation"
+notes = "Review and make-up work"
+[[meetings.materials]]
+kind = "review"
+id = "final-exam-review"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-12-03"
+week = 15
+day = "Thu"
+status = "class"
+title = "Comprehensive final preparation"
+notes = "Review and make-up work"
+[[meetings.materials]]
+kind = "review"
+id = "final-exam-review"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-12-08"
+week = 16
+day = "Tue"
+status = "class"
+title = "Comprehensive final review"
+[[meetings.materials]]
+kind = "review"
+id = "final-exam-review"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-12-10"
+week = 16
+day = "Thu"
+status = "exam"
+title = "Comprehensive Final Exam"
+notes = "Final exam"
+[[meetings.materials]]
+kind = "exam"
+id = "final-exam"
+planned = true
+used = true
+include = ["source"]
+
+[[meetings]]
+date = "2026-12-15"
+week = 17
+day = "Tue"
+status = "class"
+title = "Feedback and post-final discussions"
+notes = "Feedback, course reflection, and post-final discussion"

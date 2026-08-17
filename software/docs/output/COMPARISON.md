@@ -137,12 +137,12 @@ module-XX-name/output/
     ├── module-XX-name-questions.md        ← Markdown (optional)
     ├── module-XX-name-questions.txt       ← Text (optional)
     ├── module-XX-name-questions.mp3       ← Audio (optional)
-    ├── module-XX-name-keys-to-success.pdf
-    ├── module-XX-name-keys-to-success.docx
-    ├── module-XX-name-keys-to-success.html
-    ├── module-XX-name-keys-to-success.md
-    ├── module-XX-name-keys-to-success.txt
-    └── module-XX-name-keys-to-success.mp3
+    ├── module-XX-name-key-points.pdf
+    ├── module-XX-name-key-points.docx
+    ├── module-XX-name-key-points.html
+    ├── module-XX-name-key-points.md
+    ├── module-XX-name-key-points.txt
+    └── module-XX-name-key-points.mp3
 ```
 
 ---

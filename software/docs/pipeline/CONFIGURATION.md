@@ -95,7 +95,7 @@ Each course has its own configuration section. Courses can be enabled/disabled i
 | `max_lab` | int | — | Generate labs 1 through `max_lab` only |
 | `path` | string | — | Source path relative to repo root (e.g. `course_development/biol-1`) |
 | `archive_path` | string | — | Path to archived version (e.g. `archive/spring-2026/course_development/biol-8`) |
-| `input_types` | list | `["keys-to-success", "questions"]` | Which study-guide source files to process |
+| `input_types` | list | `["key-points", "practice-quiz", "questions"]` | Which study-guide source files to process |
 | `include_syllabus` | bool | `true` | Render syllabus/schedule outputs |
 | `include_labs` | bool | `true` | Render lab manuals |
 | `include_dashboards` | bool | `true` | Include lab dashboards |
@@ -112,7 +112,7 @@ modules = 16
 max_module = 16      # Generate modules 1 through 16
 max_lab = 16         # Generate labs 1 through 16
 path = "course_development/biol-1"
-input_types = ["keys-to-success", "questions"]
+input_types = ["key-points", "practice-quiz", "questions"]
 include_syllabus = true
 include_labs = true
 include_dashboards = true
@@ -129,7 +129,7 @@ max_module = 17
 max_lab = 18
 path = "course_development/biol-8"
 archive_path = "archive/spring-2026/course_development/biol-8"
-input_types = ["keys-to-success", "questions"]
+input_types = ["key-points", "practice-quiz", "questions"]
 include_syllabus = true
 include_labs = true
 include_dashboards = true

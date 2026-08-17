@@ -6,17 +6,12 @@ compatibility so that existing callers (scripts, tests) that import from
 ``src.publish.utils`` continue to work without changes.
 """
 
+import logging
 import shutil
 from pathlib import Path
-from typing import Any, Dict, List, Optional
-import logging
+from typing import Any
 
 from . import config
-from .flatten import (  # noqa: F401
-    clean_published,
-    flatten_module,
-    flatten_published,
-)
 from .copy_extras import (  # noqa: F401
     copy_exams,
     copy_labs_and_dashboards,
@@ -27,11 +22,16 @@ from .copy_extras import (  # noqa: F401
     copy_slides_to_modules,
     reorganize_to_categories,
 )
+from .flatten import (  # noqa: F401
+    clean_published,
+    flatten_module,
+    flatten_published,
+)
 
 logger = logging.getLogger(__name__)
 
 
-def get_course_config(course_name: str) -> Dict[str, Any]:
+def get_course_config(course_name: str) -> dict[str, Any]:
     """Get configuration for a specific course.
 
     Args:
@@ -54,9 +54,7 @@ def clean_directory(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
-def copy_directory_contents(
-    src: Path, dst: Path, exclude_patterns: Optional[List[str]] = None
-) -> int:
+def copy_directory_contents(src: Path, dst: Path, exclude_patterns: list[str] | None = None) -> int:
     """Copy contents of source directory to destination.
 
     Args:

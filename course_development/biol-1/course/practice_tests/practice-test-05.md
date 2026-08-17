@@ -1,5 +1,6 @@
 # BIOL-1 Practice Test 05
 
+<!-- assessment-layout: tearoff-duplex -->
 ## Comprehensive Final Review (Modules 01–16)
 
 **College of the Redwoods — BIOL-1: General Biology (Pelican Bay, Fall 2026)**
@@ -666,7 +667,7 @@ D) Flows through and ends largely as heat (not recycled like chemical elements i
 
 ---
 
-## Part C: Free Response (30 questions)
+## Part C: Free Response (32 questions)
 
 *Answer in **complete sentences**. Each item is tagged with its home module.*
 

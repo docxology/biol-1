@@ -1,7 +1,9 @@
 """Main functions for schedule processing and generation."""
 
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any
+
+from src.shared.file_utils import ensure_output_directory
 
 from . import config
 from .utils import (
@@ -12,10 +14,9 @@ from .utils import (
     read_schedule_file,
     validate_schedule_entry,
 )
-from src.shared.file_utils import ensure_output_directory
 
 
-def parse_schedule_markdown(schedule_path: str) -> Dict[str, Any]:
+def parse_schedule_markdown(schedule_path: str) -> dict[str, Any]:
     """Parse schedule markdown file and extract structured data.
 
     Args:
@@ -56,8 +57,8 @@ def parse_schedule_markdown(schedule_path: str) -> Dict[str, Any]:
 
 
 def process_schedule(
-    schedule_path: str, output_dir: str, formats: Optional[List[str]] = None
-) -> Dict[str, Any]:
+    schedule_path: str, output_dir: str, formats: list[str] | None = None
+) -> dict[str, Any]:
     """Process schedule file and generate outputs in specified formats.
 
     Args:
@@ -114,11 +115,11 @@ def process_schedule(
 
 
 def generate_schedule_outputs(
-    schedule_data: Dict[str, Any],
+    schedule_data: dict[str, Any],
     output_dir: Path,
     base_name: str,
-    formats: List[str],
-) -> Dict[str, List[str]]:
+    formats: list[str],
+) -> dict[str, list[str]]:
     """Generate schedule outputs in specified formats.
 
     Args:
@@ -135,7 +136,7 @@ def generate_schedule_outputs(
         OSError: If file generation fails
     """
     ensure_output_directory(output_dir)
-    outputs: Dict[str, List[str]] = {fmt: [] for fmt in formats}
+    outputs: dict[str, list[str]] = {fmt: [] for fmt in formats}
 
     # Generate markdown first (used as source for other formats)
     markdown_content = generate_schedule_markdown(
@@ -176,8 +177,8 @@ def generate_schedule_outputs(
 
             elif fmt == "mp3":
                 # Generate audio from text
-                from ..text_to_speech.utils import extract_text_from_markdown
                 from ..text_to_speech.main import generate_speech
+                from ..text_to_speech.utils import extract_text_from_markdown
 
                 text_content = extract_text_from_markdown(markdown_content)
                 generate_speech(text_content, str(output_file))
@@ -193,8 +194,8 @@ def generate_schedule_outputs(
 
 
 def batch_process_schedules(
-    directory: str, output_dir: str, formats: Optional[List[str]] = None
-) -> Dict[str, Any]:
+    directory: str, output_dir: str, formats: list[str] | None = None
+) -> dict[str, Any]:
     """Batch process all schedule files in a directory.
 
     Args:
@@ -215,7 +216,7 @@ def batch_process_schedules(
 
     schedule_files = find_schedule_files(directory_path)
 
-    results: Dict[str, Any] = {
+    results: dict[str, Any] = {
         "processed_files": [],
         "outputs": {},
         "summary": {},

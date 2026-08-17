@@ -18,22 +18,23 @@ import json
 import logging
 import sys
 from pathlib import Path
-from typing import List, Optional
 
 # Add software directory to path
 software_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(software_dir))
 
-from src.shared.runtime import configure_runtime_environment  # noqa: E402
+from src.shared.runtime import configure_runtime_environment
 
 configure_runtime_environment()
 
+from src.course_by_date import CalendarError, load_calendar, validate_generated_course_by_date
+from src.lecture_create.validation import validate_module_lecture
+from src.shared.course_config import CourseSelectionError, resolve_course_selection
 from src.validation import (
     generate_validation_report,
     get_output_summary,
-)  # noqa: E402
-from src.validation.config import DEFAULT_REQUIRED_FORMATS, ALL_SUPPORTED_FORMATS  # noqa: E402
-from src.shared.course_config import CourseSelectionError, resolve_course_selection  # noqa: E402
+)
+from src.validation.config import ALL_SUPPORTED_FORMATS, DEFAULT_REQUIRED_FORMATS
 
 # Configure logging
 logging.basicConfig(
@@ -44,7 +45,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def parse_formats(formats_str: Optional[str]) -> Optional[List[str]]:
+def parse_formats(formats_str: str | None) -> list[str] | None:
     """Parse comma-separated formats string into list."""
     if not formats_str:
         return None
@@ -76,6 +77,11 @@ def main():
         "--validate-lectures",
         action="store_true",
         help="Validate lecture artifacts (video, captions, audio) in output/lectures/",
+    )
+    parser.add_argument(
+        "--validate-course-by-date",
+        action="store_true",
+        help="Validate the generated BIOL-1 course/course_by_date projection",
     )
     parser.add_argument(
         "--max-module",
@@ -196,9 +202,7 @@ def main():
             n_modules = len(course_pub.get("modules", []))
             n_files = course_pub.get("total_files", 0)
             logger.info(
-                "\nPublished Outputs (PUBLISHED/{}/, recursive, pre-ALL_FILES flatten):".format(
-                    course_name
-                )
+                f"\nPublished Outputs (PUBLISHED/{course_name}/, recursive, pre-ALL_FILES flatten):"
             )
             logger.info(f"  Total files: {n_files}  ({n_modules} module subdirs)")
 
@@ -256,6 +260,11 @@ def main():
         lecture_valid = _validate_lectures(repo_root, courses_to_validate)
         all_valid = all_valid and lecture_valid
 
+    date_map_valid = True
+    if args.validate_course_by_date:
+        date_map_valid = _validate_course_by_date(repo_root, courses_to_validate)
+        all_valid = all_valid and date_map_valid
+
     # Final status
     logger.info(f"\n{'=' * 60}")
     if all_valid and all_pub_valid:
@@ -264,6 +273,31 @@ def main():
     else:
         logger.info("✗ Some validations FAILED")
         return 1
+
+
+def _validate_course_by_date(repo_root: Path, courses: list[str]) -> bool:
+    """Validate generated date folders for courses that define a date map."""
+    all_ok = True
+    for course in courses:
+        calendar_path = repo_root / "course_development" / course / "course_calendar.toml"
+        if not calendar_path.exists():
+            continue
+        try:
+            calendar = load_calendar(calendar_path)
+            report = validate_generated_course_by_date(
+                repo_root / "course_development" / course, calendar
+            )
+        except (CalendarError, OSError) as exc:
+            logger.error("Course-by-date validation failed for %s: %s", course, exc)
+            all_ok = False
+        else:
+            logger.info(
+                "Course-by-date validation passed for %s: %s meetings, %s copied outputs",
+                course,
+                report["meetings"],
+                report["copied_outputs"],
+            )
+    return all_ok
 
 
 def _validate_lectures(repo_root: Path, courses: list[str]) -> bool:
@@ -318,6 +352,15 @@ def _validate_lectures(repo_root: Path, courses: list[str]) -> bool:
                 issues.append(f"only {len(pngs)} PNG(s), expected ≥3")
         else:
             issues.append("missing png directory")
+
+        # Compare rendered lecture content with the authoritative module.toml.
+        module_dir = repo_root / "course_development" / "biol-1" / "course" / name
+        if module_dir.is_dir():
+            issues.extend(
+                f"semantic: {issue}" for issue in validate_module_lecture(module_dir, mod_dir)
+            )
+        else:
+            issues.append(f"missing source module directory: {module_dir}")
 
         if issues:
             all_ok = False

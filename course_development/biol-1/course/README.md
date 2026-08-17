@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains all public course materials for **BIOL-1: General Biology** (Pelican Bay, Fall 2026), organized by module. All materials in this directory are suitable for distribution to students.
+This directory contains all public course materials for **BIOL-1: General Biology** (Pelican Bay, Fall 2026), organized by module and laboratory session. Labs 17–20 are reserved planning records and are not ready for student use until their topics, protocols, safety reviews, and materials are approved.
 
 ## Course Structure
 
@@ -37,35 +37,49 @@ course/
 ├── AGENTS.md                    # Technical documentation
 │
 ├── exams/                       # Exam materials
-├── labs/                        # 16 laboratory protocols (lab-NN_topic.md)
+├── labs/                        # 20 laboratory protocols (16 active + 4 TBD)
 │   ├── lab-01_measurement-methods.md
 │   ├── dashboards/              # lab-NN_*-dashboard.html (one per numbered lab)
 │   └── output/                  # Generated lab outputs
 ├── practice_tests/              # Practice tests with answer keys
 ├── quizzes/                     # Quiz materials
 ├── review_materials/            # Non-primary exam review worksheets
+├── course_by_date/              # Generated Fall 2026 dated teaching handoffs
 │
 └── module-XX-topic/             # Module directories
     ├── README.md
     ├── AGENTS.md
     ├── module.toml              # Canonical typed source
     ├── questions.md             # Generated learning questions
-    ├── keys-to-success.md       # Generated study guide
+    ├── key-points.md       # Generated study guide
     ├── practice-quiz.md         # Generated practice quiz
     ├── resources/               # Optional module-local assets
     └── output/                  # Generated — do not edit by hand
-        ├── study-guides/        # PDF, DOCX, MD by default
-        └── website/             # index.html
+        └── study-guides/        # PDF and DOCX by default
 ```
 
 Lecture slide PDFs live under **[../resources/slides/](../resources/slides/)**, not inside each module.
+
+## Course by date
+
+The dated teaching handoffs are generated from the course-level
+[`../course_calendar.toml`](../course_calendar.toml) mapping. Each folder is a
+copy-only projection for one scheduled meeting and includes a `meeting.json`
+manifest with planned/used state, source paths, and SHA-256 checksums. Edit the
+map, not the dated folders:
+
+```bash
+cd ../../../../software
+uv run python scripts/generate_course_by_date.py
+uv run python scripts/generate_course_by_date.py --validate-only
+```
 
 ## Module Contents
 
 Each module directory contains:
 
 - **module.toml**: Canonical typed source for topics, contents, terms, learning questions, quiz items, linked lab, and generated visuals
-- **output/**: Generated multi-format outputs (PDF, DOCX, MD by default; HTML, TXT, and MP3 are opt-in) and `website/index.html`
+- **output/**: Generated study-guide outputs (PDF and DOCX by default; Markdown, HTML, TXT, MP3, and the website are opt-in)
 - **resources/** (optional): Supplementary materials for that module only
 
 ## Related Documentation

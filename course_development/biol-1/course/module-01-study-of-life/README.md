@@ -35,7 +35,7 @@ By the end of this module, you should be able to:
 
 ## Contents
 
-- `keys-to-success.md` — Key terms, concepts, and study tips
+- `key-points.md` — Key terms, concepts, and study tips
 - `questions.md` — Learning questions for this module
 - `practice-quiz.md` — Self-check quiz with answer explanations
 - `module.toml` — Canonical source-of-truth manifest

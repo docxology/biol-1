@@ -5,5 +5,11 @@ module.toml manifests using LectureCreate as the rendering backend.
 """
 
 from .main import build_module_lecture_yaml, render_module_video
+from .validation import validate_module_lecture, validate_rendered_lecture
 
-__all__ = ["build_module_lecture_yaml", "render_module_video"]
+__all__ = [
+    "build_module_lecture_yaml",
+    "render_module_video",
+    "validate_module_lecture",
+    "validate_rendered_lecture",
+]

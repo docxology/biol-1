@@ -1,0 +1,142 @@
+{
+  "copied_outputs": [
+    {
+      "destination": "materials/module-06-metabolism-key-points.docx",
+      "id": "module-06-metabolism",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "c51eede098787882439a6daf4a2d622c50c0423db7e4491ac4313315fcc728ef",
+      "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-key-points.docx"
+    },
+    {
+      "destination": "materials/module-06-metabolism-key-points.pdf",
+      "id": "module-06-metabolism",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "51c2387368c962eb46d53d5b22fb227cb9da55ac90bc190885da8d8b24f106b8",
+      "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-key-points.pdf"
+    },
+    {
+      "destination": "materials/module-06-metabolism-questions.docx",
+      "id": "module-06-metabolism",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "4f613b3bf93b308959345a3baaa6b8173ab16b8ceeb613c7a1f5b3d90b69699f",
+      "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-questions.docx"
+    },
+    {
+      "destination": "materials/module-06-metabolism-practice-quiz.docx",
+      "id": "module-06-metabolism",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "8fa3f6b1de663d9df810ad2220eea5dd80356330fd44807d9110ff7317be2007",
+      "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-practice-quiz.docx"
+    },
+    {
+      "destination": "materials/module-06-metabolism-practice-quiz.pdf",
+      "id": "module-06-metabolism",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "0cecf5985e50234130226239b87c2dce04c4ae340275cdf5b27b4f244b4ab0c5",
+      "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-practice-quiz.pdf"
+    },
+    {
+      "destination": "materials/module-06-metabolism-questions.pdf",
+      "id": "module-06-metabolism",
+      "include": "generated",
+      "kind": "module",
+      "sha256": "381b7730aeb1f5a78e8fca2d2ba798ecbd9a53f1743273f4237d148c06313b84",
+      "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-questions.pdf"
+    },
+    {
+      "destination": "materials/module-06-metabolism-module-6-slides-full.pdf",
+      "id": "module-06-metabolism",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "d14986b5fa1db3da5183e72c077f080db16b4437c3af56b3f6a789104fdacf0f",
+      "source": "course_development/biol-1/resources/slides/module-6-slides-full.pdf"
+    },
+    {
+      "destination": "materials/module-06-metabolism-module-6-slides-notes.pdf",
+      "id": "module-06-metabolism",
+      "include": "slides",
+      "kind": "module",
+      "sha256": "5f3395c2b70feb7dcb8fb60bad57954872cf3f52a5b6c42dddca71e21757fb0a",
+      "source": "course_development/biol-1/resources/slides/module-6-slides-notes.pdf"
+    },
+    {
+      "destination": "materials/module-06-metabolism-lecture.mp4",
+      "id": "module-06-metabolism",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "20842410f1fee05e22f10faebb95bd77f7a8051dcb2f52c88e60a64216ad3cc5",
+      "source": "output/lectures/module-06-metabolism/module-06-metabolism/video/lecture.mp4"
+    },
+    {
+      "destination": "materials/module-06-metabolism-module-06-metabolism.yaml",
+      "id": "module-06-metabolism",
+      "include": "lecture",
+      "kind": "module",
+      "sha256": "fef5f653979c25148ff20b2a06257ca5452ac5e27fea129e9fce29045f846444",
+      "source": "output/lectures/module-06-metabolism/module-06-metabolism.yaml"
+    }
+  ],
+  "meeting": {
+    "date": "2026-09-10",
+    "day": "Thu",
+    "materials": [
+      {
+        "id": "module-06-metabolism",
+        "include": [
+          "source",
+          "generated",
+          "slides",
+          "lecture"
+        ],
+        "kind": "module",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "lab-06_metabolism.md",
+        "include": [
+          "source",
+          "dashboard"
+        ],
+        "kind": "lab",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 6: Metabolism: Energy and Enzymes",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 7: Photosynthesis",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      },
+      {
+        "id": "Chapter 8: Cellular Respiration",
+        "include": [],
+        "kind": "textbook",
+        "notes": "",
+        "planned": true,
+        "used": true
+      }
+    ],
+    "notes": "",
+    "status": "class",
+    "title": "Module 06: Metabolism; Lab 06",
+    "week": 3
+  }
+}
