@@ -531,15 +531,8 @@ def copy_lectures(repo_root: Path, courses: list[str] | None = None, verbose: bo
         for lecture_dir in sorted(lectures_src.glob("module-*")):
             if not lecture_dir.is_dir():
                 continue
-            # Only copy the playable video and captions
-            video = lecture_dir / lecture_dir.name / "video" / "lecture.mp4"
+            # Only copy captions; mp4 videos are regenerable and too large for git
             captions = lecture_dir / lecture_dir.name / "captions" / "captions.srt"
-            if video.is_file():
-                dest = lectures_pub / f"{lecture_dir.name}.mp4"
-                shutil.copy2(video, dest)
-                total_copied += 1
-                if verbose:
-                    logger.debug(f"    {lecture_dir.name}: copied lecture.mp4")
             if captions.is_file():
                 dest = lectures_pub / f"{lecture_dir.name}.srt"
                 shutil.copy2(captions, dest)
@@ -610,22 +603,19 @@ def copy_full_flat(
                 shutil.copy2(src_file, flat_dir / fname)
                 total_copied += 1
 
-        # Also include lecture videos from output/lectures (they live outside PUBLISHED/)
+        # Also include lecture captions from output/lectures (they live outside PUBLISHED/)
+        # mp4 videos are regenerable and too large for git — excluded
         repo_root = published_dir.parent
         lectures_src = repo_root / "output" / "lectures"
         if lectures_src.exists():
             for lecture_dir in sorted(lectures_src.glob("module-*")):
                 if not lecture_dir.is_dir():
                     continue
-                video = lecture_dir / lecture_dir.name / "video" / "lecture.mp4"
                 captions = lecture_dir / lecture_dir.name / "captions" / "captions.srt"
-                for src_file in (video, captions):
-                    if src_file.is_file():
-                        fname = src_file.name
-                        # Prefix every lecture file with its module slug to avoid collisions
-                        fname = f"{lecture_dir.name}.{fname}"
-                        shutil.copy2(src_file, flat_dir / fname)
-                        total_copied += 1
+                if captions.is_file():
+                    fname = f"{lecture_dir.name}.{captions.name}"
+                    shutil.copy2(captions, flat_dir / fname)
+                    total_copied += 1
 
         logger.info(f"  {course}: Flattened {total_copied} files into full_flat/")
 
