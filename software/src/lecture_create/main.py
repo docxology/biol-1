@@ -222,17 +222,6 @@ def build_module_lecture_yaml(
     _emit(f"        - {_yaml_str('Connect module ideas to hands-on evidence')}")
     _emit("")
 
-    # --- Beat 8: Lab Evidence (IMAGE) ---
-    lab_svg = f"module-{module.number:02d}-lab-evidence.svg"
-    _emit(f"  - id: {_yaml_str(f'{module.slug}_lab_evidence')}")
-    _emit(f"    narration: {_yaml_str(_lab_evidence_narration(module))}")
-    _emit("    visual:")
-    _emit("      kind: image")
-    _emit(f"      title: {_yaml_str('Lab Evidence')}")
-    _emit(f"      subtitle: {_yaml_str('What the lab shows')}")
-    _emit(f"      image_path: {_yaml_str(str(Path('png') / lab_svg.replace('.svg', '.png')))}")
-    _emit("")
-
     # --- Beat 9: Retrieval Card (IMAGE) ---
     retrieval_svg = f"module-{module.number:02d}-retrieval-card.svg"
     _emit(f"  - id: {_yaml_str(f'{module.slug}_retrieval')}")
@@ -393,16 +382,6 @@ def _lab_narration(module: ModuleContent) -> str:
         f"The evidence you collect should test or illustrate {module.topics[0].lower()}. "
         f"You should leave the lab with a concrete observation, comparison, or model "
         f"tied directly to the module claim."
-    )
-
-
-def _lab_evidence_narration(module: ModuleContent) -> str:
-    lab = _lab_display_name(module)
-    return (
-        f"The {lab} lab produces concrete evidence for this module. "
-        f"Focus on the measurable outcome: what changed, by how much, and why it matters. "
-        f"Connect the lab result back to the central claim. "
-        f"A strong answer names the variable, the observation, and the biological mechanism."
     )
 
 

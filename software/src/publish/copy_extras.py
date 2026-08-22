@@ -595,6 +595,9 @@ def copy_full_flat(
             for src_file in sorted(category_dir.rglob("*")):
                 if not src_file.is_file():
                     continue
+                # Labs are PDF-only in full_flat (no HTML copies)
+                if src_file.suffix == ".html" and category_dir.name == "labs":
+                    continue
                 fname = src_file.name
                 if fname in seen_names:
                     fname = f"{category_dir.name}_{fname}"

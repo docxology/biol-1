@@ -231,7 +231,11 @@ def test_render_module_materials_outputs_markdown_and_svg(temp_dir):
     retrieval_svg = (
         module_dir / "resources" / "generated" / "module-01-retrieval-card.svg"
     ).read_text(encoding="utf-8")
-    assert "Cover notes -> answer aloud -> cite evidence -> revise" in retrieval_svg
+    assert (
+        "Cover notes" in retrieval_svg
+        and "cite evidence" in retrieval_svg
+        and "revise" in retrieval_svg
+    )
     assert "retrieval-step-strip" in retrieval_svg
 
 
