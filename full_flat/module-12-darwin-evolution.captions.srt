@@ -211,109 +211,109 @@ The evidence you collect should test or illustrate historical explanation for
 adaptation.
 
 54
-00:03:19,753 --> 00:03:23,955
+00:03:19,753 --> 00:03:23,956
 You should leave the lab with a concrete observation, comparison, or model tied
 
 55
-00:03:23,955 --> 00:03:24,883
+00:03:23,956 --> 00:03:24,884
 directly to the module claim.
 
 56
-00:03:25,633 --> 00:03:27,359
+00:03:25,634 --> 00:03:27,360
 Pause here for retrieval practice.
 
 57
-00:03:27,359 --> 00:03:31,573
+00:03:27,360 --> 00:03:31,574
 Answer the prompts without looking at your notes first, then compare to the checks.
 
 58
-00:03:31,573 --> 00:03:35,686
+00:03:31,574 --> 00:03:35,687
 Retrieval practice is one of the most effective study strategies — it strengthens
 
 59
-00:03:35,686 --> 00:03:37,108
+00:03:35,687 --> 00:03:37,109
 memory more than re-reading.
 
 60
-00:03:37,858 --> 00:03:42,013
+00:03:37,859 --> 00:03:42,014
 Use these practice quiz questions as formative feedback.
 
 61
-00:03:42,013 --> 00:03:44,313
+00:03:42,014 --> 00:03:44,314
 Answer key: 1=C, 2=A, 3=D, 4=B.
 
 62
-00:03:44,313 --> 00:03:49,951
+00:03:44,314 --> 00:03:49,952
 If you miss a question, return to the module keys and find the evidence that
 
 63
-00:03:49,951 --> 00:03:52,028
+00:03:49,952 --> 00:03:52,029
 supports the correct answer.
 
 64
-00:03:52,778 --> 00:03:55,956
+00:03:52,779 --> 00:03:55,957
 Before you leave this module, make the study work active.
 
 65
-00:03:55,956 --> 00:04:00,138
+00:03:55,957 --> 00:04:00,139
 Start with the module's central claim before memorizing vocabulary; Use the
 
 66
-00:04:00,138 --> 00:04:04,599
+00:04:00,139 --> 00:04:04,600
 same-numbered lab as the evidence check for the module; Explain one mechanism in
 
 67
-00:04:04,599 --> 00:04:06,941
+00:04:04,600 --> 00:04:06,942
 words, then redraw it as a simple diagram.
 
 68
-00:04:06,941 --> 00:04:11,625
+00:04:06,942 --> 00:04:11,626
 Then answer this exit question without notes: How should an evolutionary explanation
 
 69
-00:04:11,625 --> 00:04:14,413
+00:04:11,626 --> 00:04:14,414
 connect variation, heritability, and reproduction?
 
 70
-00:04:14,413 --> 00:04:18,762
+00:04:14,414 --> 00:04:18,763
 A strong response names a mechanism, points to evidence, and states what would
 
 71
-00:04:18,762 --> 00:04:20,045
+00:04:18,763 --> 00:04:20,046
 change the explanation.
 
 72
-00:04:20,045 --> 00:04:23,725
+00:04:20,046 --> 00:04:23,726
 If your answer is only a definition list, connect the terms into a
 
 73
-00:04:23,725 --> 00:04:25,901
+00:04:23,726 --> 00:04:25,902
 cause-and-evidence chain and try again.
 
 74
-00:04:26,651 --> 00:04:31,413
+00:04:26,652 --> 00:04:31,414
 To synthesize this module: explain historical explanation for adaptation using
 
 75
-00:04:31,413 --> 00:04:34,222
+00:04:31,414 --> 00:04:34,223
 evidence from the Lab 12 Darwin Evolution lab.
 
 76
-00:04:34,222 --> 00:04:39,106
+00:04:34,223 --> 00:04:39,107
 Your explanation must include Evolution, Natural selection, Adaptation, Fitness,
 
 77
-00:04:39,106 --> 00:04:42,037
+00:04:39,107 --> 00:04:42,038
 Common ancestry, Homology, Fossil, Biogeography.
 
 78
-00:04:42,037 --> 00:04:45,761
+00:04:42,038 --> 00:04:45,762
 Revision prompt: what evidence would change your explanation?
 
 79
-00:04:45,761 --> 00:04:50,279
+00:04:45,762 --> 00:04:50,280
 Your final explanation should connect the central claim to a mechanism, an
 
 80
-00:04:50,279 --> 00:04:52,294
+00:04:50,280 --> 00:04:52,295
 observation, and a revision rule.

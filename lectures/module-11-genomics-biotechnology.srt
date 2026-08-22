@@ -187,117 +187,117 @@ Treat each term as a handle for reasoning — a term should help you explain a c
 or observation, not just label it.
 
 48
-00:03:03,568 --> 00:03:07,180
+00:03:03,568 --> 00:03:07,179
 The lab connected to this module is Lab 11 Genomics Biotechnology.
 
 49
-00:03:07,180 --> 00:03:10,847
+00:03:07,179 --> 00:03:10,845
 The evidence you collect should test or illustrate genomes as data.
 
 50
-00:03:10,847 --> 00:03:15,171
+00:03:10,845 --> 00:03:15,168
 You should leave the lab with a concrete observation, comparison, or model tied
 
 51
-00:03:15,171 --> 00:03:16,758
+00:03:15,168 --> 00:03:16,755
 directly to the module claim.
 
 52
-00:03:17,508 --> 00:03:19,234
+00:03:17,505 --> 00:03:19,231
 Pause here for retrieval practice.
 
 53
-00:03:19,234 --> 00:03:23,448
+00:03:19,231 --> 00:03:23,445
 Answer the prompts without looking at your notes first, then compare to the checks.
 
 54
-00:03:23,448 --> 00:03:27,561
+00:03:23,445 --> 00:03:27,558
 Retrieval practice is one of the most effective study strategies — it strengthens
 
 55
-00:03:27,561 --> 00:03:28,983
+00:03:27,558 --> 00:03:28,980
 memory more than re-reading.
 
 56
-00:03:29,733 --> 00:03:33,888
+00:03:29,730 --> 00:03:33,885
 Use these practice quiz questions as formative feedback.
 
 57
-00:03:33,888 --> 00:03:36,188
+00:03:33,885 --> 00:03:36,185
 Answer key: 1=C, 2=A, 3=D, 4=B.
 
 58
-00:03:36,188 --> 00:03:41,826
+00:03:36,185 --> 00:03:41,823
 If you miss a question, return to the module keys and find the evidence that
 
 59
-00:03:41,826 --> 00:03:43,903
+00:03:41,823 --> 00:03:43,900
 supports the correct answer.
 
 60
-00:03:44,653 --> 00:03:47,829
+00:03:44,650 --> 00:03:47,826
 Before you leave this module, make the study work active.
 
 61
-00:03:47,829 --> 00:03:52,008
+00:03:47,826 --> 00:03:52,005
 Start with the module's central claim before memorizing vocabulary; Use the
 
 62
-00:03:52,008 --> 00:03:56,466
+00:03:52,005 --> 00:03:56,463
 same-numbered lab as the evidence check for the module; Explain one mechanism in
 
 63
-00:03:56,466 --> 00:03:58,807
+00:03:56,463 --> 00:03:58,804
 words, then redraw it as a simple diagram.
 
 64
-00:03:58,807 --> 00:04:02,819
+00:03:58,804 --> 00:04:02,816
 Then answer this exit question without notes: What ethical questions can
 
 65
-00:04:02,819 --> 00:04:04,019
+00:04:02,816 --> 00:04:04,016
 biotechnology raise?
 
 66
-00:04:04,019 --> 00:04:08,366
+00:04:04,016 --> 00:04:08,363
 A strong response names a mechanism, points to evidence, and states what would
 
 67
-00:04:08,366 --> 00:04:09,648
+00:04:08,363 --> 00:04:09,645
 change the explanation.
 
 68
-00:04:09,648 --> 00:04:13,326
+00:04:09,645 --> 00:04:13,323
 If your answer is only a definition list, connect the terms into a
 
 69
-00:04:13,326 --> 00:04:15,414
+00:04:13,323 --> 00:04:15,411
 cause-and-evidence chain and try again.
 
 70
-00:04:16,164 --> 00:04:21,422
+00:04:16,161 --> 00:04:21,419
 To synthesize this module: explain genomes as data using evidence from the Lab 11
 
 71
-00:04:21,422 --> 00:04:23,175
+00:04:21,419 --> 00:04:23,172
 Genomics Biotechnology lab.
 
 72
-00:04:23,175 --> 00:04:28,433
+00:04:23,172 --> 00:04:28,430
 Your explanation must include Genome, Genomics, PCR, Primer, Gel electrophoresis,
 
 73
-00:04:28,433 --> 00:04:29,926
+00:04:28,430 --> 00:04:29,923
 CRISPR, GMO, Bioethics.
 
 74
-00:04:29,926 --> 00:04:33,886
+00:04:29,923 --> 00:04:33,883
 Revision prompt: what evidence would change your explanation?
 
 75
-00:04:33,886 --> 00:04:38,690
+00:04:33,883 --> 00:04:38,687
 Your final explanation should connect the central claim to a mechanism, an
 
 76
-00:04:38,690 --> 00:04:40,831
+00:04:38,687 --> 00:04:40,828
 observation, and a revision rule.

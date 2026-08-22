@@ -29,7 +29,7 @@
     .node-label { fill: #2c2517; font: 800 20px Georgia, serif; }
     .node-detail { fill: #6a614d; font: 14px Georgia, serif; }
     .edge { stroke: #9b3f2f; stroke-width: 4; stroke-linecap: round; opacity: 0.72; marker-end: url(#arrowhead); }
-    .edge-label { fill: #9b3f2f; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f4f1e6; stroke-width: 4; }
+    .edge-label { fill: #9b3f2f; font: 700 12px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f4f1e6; stroke-width: 5; }
     .stage-dot { fill: #2f6f4e; }
     .stage-num { fill: white; font: 900 18px Georgia, serif; }
     .stage-label { fill: #2c2517; font: 800 18px Georgia, serif; }
@@ -56,16 +56,16 @@
   <rect class="bg" width="1200" height="720" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module 12 / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">Module 12: Darwin and Evolution Retrieval and Lab Check</text>
-  <rect x="82" y="166" width="1026" height="36" rx="18" class="retrieval-step-strip" />
-  <text x="120" y="190" class="routine-text">1 Cover notes</text>
-  <text x="354" y="190" class="routine-text">2 Answer aloud</text>
-  <text x="604" y="190" class="routine-text">3 Cite evidence</text>
-  <text x="844" y="190" class="routine-text">4 Revise</text>
-  <rect x="692" y="78" width="416" height="76" rx="22" class="routine-card" />
-  <text x="720" y="108" class="card-kicker">Routine</text>
-  <text x="720" y="134" class="routine-text">Cover notes -> answer aloud -> cite evidence -> revise</text>
-  <rect x="92" y="216" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="254" class="stage-num">Q1</text><text x="120.0" y="282.0" class="prompt-text"><tspan x="120.0" dy="0">What are the required ingredients for natural</tspan><tspan x="120.0" dy="17">selection?</tspan></text><text x="120.0" y="328.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain natural selection using variation...</tspan></text><rect x="604" y="216" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="254" class="stage-num">Q2</text><text x="632.0" y="282.0" class="prompt-text"><tspan x="632.0" dy="0">Why does natural selection act on existing</tspan><tspan x="632.0" dy="17">variation?</tspan></text><text x="632.0" y="328.0" class="check-text"><tspan x="632.0" dy="0">Check: Define fitness in evolutionary terms.</tspan></text><rect x="92" y="370" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="408" class="stage-num">Q3</text><text x="120.0" y="436.0" class="prompt-text"><tspan x="120.0" dy="0">What does evolutionary fitness mean?</tspan></text><text x="120.0" y="482.0" class="check-text"><tspan x="120.0" dy="0">Check: Distinguish individual change from population...</tspan></text><rect x="604" y="370" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="408" class="stage-num">Q4</text><text x="632.0" y="436.0" class="prompt-text"><tspan x="632.0" dy="0">Why do populations evolve rather than</tspan><tspan x="632.0" dy="17">individuals?</tspan></text><text x="632.0" y="482.0" class="check-text"><tspan x="632.0" dy="0">Check: Use multiple evidence types to support common...</tspan></text>
+  <text x="82.0" y="132.0" class="title-text"><tspan x="82.0" dy="0">Module 12: Darwin and Evolution</tspan><tspan x="82.0" dy="32">Retrieval and Lab Check</tspan></text>
+  <rect x="82" y="172" width="1026" height="36" rx="18" class="retrieval-step-strip" />
+  <text x="120" y="196" class="routine-text">1 Cover notes</text>
+  <text x="354" y="196" class="routine-text">2 Answer aloud</text>
+  <text x="604" y="196" class="routine-text">3 Cite evidence</text>
+  <text x="844" y="196" class="routine-text">4 Revise</text>
+  <rect x="860" y="78" width="284" height="82" rx="22" class="routine-card" />
+  <text x="884" y="106" class="card-kicker">Routine</text>
+  <text x="884.0" y="128.0" class="routine-text"><tspan x="884.0" dy="0">Cover notes -&gt; answer aloud</tspan><tspan x="884.0" dy="14">-&gt; cite evidence -&gt; revise</tspan></text>
+  <rect x="92" y="222" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="260" class="stage-num">Q1</text><text x="120.0" y="288.0" class="prompt-text"><tspan x="120.0" dy="0">What are the required ingredients for natural</tspan><tspan x="120.0" dy="17">selection?</tspan></text><text x="120.0" y="334.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain natural selection using variation,</tspan><tspan x="120.0" dy="13">heritability, and reproductive success.</tspan></text><rect x="604" y="222" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="260" class="stage-num">Q2</text><text x="632.0" y="288.0" class="prompt-text"><tspan x="632.0" dy="0">Why does natural selection act on existing</tspan><tspan x="632.0" dy="17">variation?</tspan></text><text x="632.0" y="334.0" class="check-text"><tspan x="632.0" dy="0">Check: Define fitness in evolutionary terms.</tspan></text><rect x="92" y="374" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="412" class="stage-num">Q3</text><text x="120.0" y="440.0" class="prompt-text"><tspan x="120.0" dy="0">What does evolutionary fitness mean?</tspan></text><text x="120.0" y="486.0" class="check-text"><tspan x="120.0" dy="0">Check: Distinguish individual change from population</tspan><tspan x="120.0" dy="13">evolution.</tspan></text><rect x="604" y="374" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="412" class="stage-num">Q4</text><text x="632.0" y="440.0" class="prompt-text"><tspan x="632.0" dy="0">Why do populations evolve rather than individuals?</tspan></text><text x="632.0" y="486.0" class="check-text"><tspan x="632.0" dy="0">Check: Use multiple evidence types to support common</tspan><tspan x="632.0" dy="13">ancestry.</tspan></text>
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
   <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Evolution, Natural selection, Adaptation, Fitness,</tspan><tspan x="120.0" dy="17">Common ancestry</tspan></text>

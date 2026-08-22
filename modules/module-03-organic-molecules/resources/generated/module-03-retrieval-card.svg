@@ -29,7 +29,7 @@
     .node-label { fill: #281d34; font: 800 20px Georgia, serif; }
     .node-detail { fill: #685d72; font: 14px Georgia, serif; }
     .edge { stroke: #7b4f9d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; marker-end: url(#arrowhead); }
-    .edge-label { fill: #7b4f9d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 4; }
+    .edge-label { fill: #7b4f9d; font: 700 12px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #f2edf7; stroke-width: 5; }
     .stage-dot { fill: #b36b2c; }
     .stage-num { fill: white; font: 900 18px Georgia, serif; }
     .stage-label { fill: #281d34; font: 800 18px Georgia, serif; }
@@ -56,16 +56,16 @@
   <rect class="bg" width="1200" height="720" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module 03 / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">Module 03: Organic Molecules Retrieval and Lab Check</text>
-  <rect x="82" y="166" width="1026" height="36" rx="18" class="retrieval-step-strip" />
-  <text x="120" y="190" class="routine-text">1 Cover notes</text>
-  <text x="354" y="190" class="routine-text">2 Answer aloud</text>
-  <text x="604" y="190" class="routine-text">3 Cite evidence</text>
-  <text x="844" y="190" class="routine-text">4 Revise</text>
-  <rect x="692" y="78" width="416" height="76" rx="22" class="routine-card" />
-  <text x="720" y="108" class="card-kicker">Routine</text>
-  <text x="720" y="134" class="routine-text">Cover notes -> answer aloud -> cite evidence -> revise</text>
-  <rect x="92" y="216" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="254" class="stage-num">Q1</text><text x="120.0" y="282.0" class="prompt-text"><tspan x="120.0" dy="0">Why can carbon make many different biological</tspan><tspan x="120.0" dy="17">molecules?</tspan></text><text x="120.0" y="328.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain why carbon is central to biological...</tspan></text><rect x="604" y="216" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="254" class="stage-num">Q2</text><text x="632.0" y="282.0" class="prompt-text"><tspan x="632.0" dy="0">How are dehydration synthesis and hydrolysis</tspan><tspan x="632.0" dy="17">opposite processes?</tspan></text><text x="632.0" y="328.0" class="check-text"><tspan x="632.0" dy="0">Check: Distinguish monomers, polymers, dehydration...</tspan></text><rect x="92" y="370" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="408" class="stage-num">Q3</text><text x="120.0" y="436.0" class="prompt-text"><tspan x="120.0" dy="0">What distinguishes a monomer from a polymer?</tspan></text><text x="120.0" y="482.0" class="check-text"><tspan x="120.0" dy="0">Check: Compare the functions of carbohydrates and...</tspan></text><rect x="604" y="370" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="408" class="stage-num">Q4</text><text x="632.0" y="436.0" class="prompt-text"><tspan x="632.0" dy="0">How do carbohydrates and lipids differ in</tspan><tspan x="632.0" dy="17">structure and function?</tspan></text><text x="632.0" y="482.0" class="check-text"><tspan x="632.0" dy="0">Check: Connect protein shape to protein function and...</tspan></text>
+  <text x="82.0" y="132.0" class="title-text"><tspan x="82.0" dy="0">Module 03: Organic Molecules Retrieval</tspan><tspan x="82.0" dy="32">and Lab Check</tspan></text>
+  <rect x="82" y="172" width="1026" height="36" rx="18" class="retrieval-step-strip" />
+  <text x="120" y="196" class="routine-text">1 Cover notes</text>
+  <text x="354" y="196" class="routine-text">2 Answer aloud</text>
+  <text x="604" y="196" class="routine-text">3 Cite evidence</text>
+  <text x="844" y="196" class="routine-text">4 Revise</text>
+  <rect x="860" y="78" width="284" height="82" rx="22" class="routine-card" />
+  <text x="884" y="106" class="card-kicker">Routine</text>
+  <text x="884.0" y="128.0" class="routine-text"><tspan x="884.0" dy="0">Cover notes -&gt; answer aloud</tspan><tspan x="884.0" dy="14">-&gt; cite evidence -&gt; revise</tspan></text>
+  <rect x="92" y="222" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="260" class="stage-num">Q1</text><text x="120.0" y="288.0" class="prompt-text"><tspan x="120.0" dy="0">Why can carbon make many different biological</tspan><tspan x="120.0" dy="17">molecules?</tspan></text><text x="120.0" y="334.0" class="check-text"><tspan x="120.0" dy="0">Check: Explain why carbon is central to biological molecule</tspan><tspan x="120.0" dy="13">diversity.</tspan></text><rect x="604" y="222" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="260" class="stage-num">Q2</text><text x="632.0" y="288.0" class="prompt-text"><tspan x="632.0" dy="0">How are dehydration synthesis and hydrolysis</tspan><tspan x="632.0" dy="17">opposite processes?</tspan></text><text x="632.0" y="334.0" class="check-text"><tspan x="632.0" dy="0">Check: Distinguish monomers, polymers, dehydration</tspan><tspan x="632.0" dy="13">synthesis, and hydrolysis.</tspan></text><rect x="92" y="374" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="412" class="stage-num">Q3</text><text x="120.0" y="440.0" class="prompt-text"><tspan x="120.0" dy="0">What distinguishes a monomer from a polymer?</tspan></text><text x="120.0" y="486.0" class="check-text"><tspan x="120.0" dy="0">Check: Compare the functions of carbohydrates and lipids.</tspan></text><rect x="604" y="374" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="412" class="stage-num">Q4</text><text x="632.0" y="440.0" class="prompt-text"><tspan x="632.0" dy="0">How do carbohydrates and lipids differ in</tspan><tspan x="632.0" dy="17">structure and function?</tspan></text><text x="632.0" y="486.0" class="check-text"><tspan x="632.0" dy="0">Check: Connect protein shape to protein function and</tspan><tspan x="632.0" dy="13">denaturation.</tspan></text>
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
   <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Organic molecule, Monomer, Polymer, Carbohydrate,</tspan><tspan x="120.0" dy="17">Lipid</tspan></text>
