@@ -1,315 +1,315 @@
 1
-00:00:00,400 --> 00:00:05,351
+00:00:00,400 --> 00:00:05,864
 Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
 
 2
-00:00:05,351 --> 00:00:07,894
+00:00:05,864 --> 00:00:08,670
 Module 16: Capstone Systems Synthesis.
 
 3
-00:00:07,894 --> 00:00:11,574
+00:00:08,670 --> 00:00:12,731
 The connected lab is Lab 16 Capstone Systems Synthesis.
 
 4
-00:00:11,574 --> 00:00:17,195
+00:00:12,731 --> 00:00:18,933
 Here is the central idea: Capstone Systems Synthesis explains cross-scale biological
 
 5
-00:00:17,195 --> 00:00:22,280
+00:00:18,933 --> 00:00:24,544
 explanation through mechanisms, evidence chains, and revision. Let us begin.
 
 6
-00:00:23,030 --> 00:00:27,551
+00:00:25,294 --> 00:00:29,750
 By the end of this module you should be able to: Connect concepts from at least
 
 7
-00:00:27,551 --> 00:00:31,957
+00:00:29,750 --> 00:00:34,094
 three modules in one explanation; Trace a mechanism across biological scales;
 
 8
-00:00:31,957 --> 00:00:36,707
+00:00:34,094 --> 00:00:38,776
 Identify feedback loops, constraints, and tradeoffs; Match evidence types to claims
 
 9
-00:00:36,707 --> 00:00:40,655
+00:00:38,776 --> 00:00:42,668
 at different scales; Revise a systems explanation using new evidence.
 
 10
-00:00:40,655 --> 00:00:44,260
+00:00:42,668 --> 00:00:46,222
 Keep these objectives in mind as you work through the material.
 
 11
-00:00:45,010 --> 00:00:46,739
+00:00:46,972 --> 00:00:48,766
 This module covers 5 topics.
 
 12
-00:00:46,739 --> 00:00:51,741
+00:00:48,766 --> 00:00:53,956
 Biology across scales — Biological explanations become stronger when they connect
 
 13
-00:00:51,741 --> 00:00:55,261
+00:00:53,956 --> 00:00:57,608
 molecules, cells, organisms, populations, and ecosystems.
 
 14
-00:00:55,261 --> 00:01:00,325
+00:00:57,608 --> 00:01:02,862
 Mechanism chains — Mechanism chains show how one change can produce effects across
 
 15
-00:01:00,325 --> 00:01:01,525
+00:01:02,862 --> 00:01:04,062
 scales.
 
 16
-00:01:01,525 --> 00:01:06,404
+00:01:04,062 --> 00:01:09,124
 Feedback and constraint — Feedback loops and constraints explain why biological
 
 17
-00:01:06,404 --> 00:01:08,689
+00:01:09,124 --> 00:01:11,495
 systems do not change without limits.
 
 18
-00:01:08,689 --> 00:01:13,753
+00:01:11,495 --> 00:01:16,749
 Evidence from multiple modules — Evidence from labs, models, and observations must
 
 19
-00:01:13,753 --> 00:01:15,544
+00:01:16,749 --> 00:01:18,607
 match the scale of the claim.
 
 20
-00:01:15,544 --> 00:01:20,423
+00:01:18,607 --> 00:01:23,669
 Capstone explanation and revision — Capstone reasoning combines concepts into a
 
 21
-00:01:20,423 --> 00:01:23,079
+00:01:23,669 --> 00:01:26,424
 clear claim that can be tested and revised.
 
 22
-00:01:23,079 --> 00:01:26,697
+00:01:26,424 --> 00:01:30,220
 Each topic builds on the one before it, forming a coherent explanation.
 
 23
-00:01:27,447 --> 00:01:29,687
+00:01:30,970 --> 00:01:33,465
 Here is the concept map for module 16.
 
 24
-00:01:29,687 --> 00:01:34,403
+00:01:33,465 --> 00:01:38,718
 The central claim is: Capstone Systems Synthesis explains cross-scale biological
 
 25
-00:01:34,403 --> 00:01:38,058
+00:01:38,718 --> 00:01:42,789
 explanation through mechanisms, evidence chains, and revision.
 
 26
-00:01:38,058 --> 00:01:40,652
+00:01:42,789 --> 00:01:45,678
 Notice how each node connects to the others.
 
 27
-00:01:40,652 --> 00:01:45,604
+00:01:45,678 --> 00:01:51,194
 This is the structure of biological reasoning — not a list to memorize, but a map of
 
 28
-00:01:45,604 --> 00:01:47,314
+00:01:51,194 --> 00:01:53,098
 how ideas support each other.
 
 29
-00:01:48,064 --> 00:01:52,796
+00:01:53,848 --> 00:01:59,309
 This process model shows the reasoning sequence for capstone systems synthesis.
 
 30
-00:01:52,796 --> 00:01:55,252
+00:01:59,309 --> 00:02:02,143
 Follow the stages from inputs to outputs.
 
 31
-00:01:55,252 --> 00:02:00,044
+00:02:02,143 --> 00:02:07,673
 The Lab 16 Capstone Systems Synthesis lab gives you evidence to test each stage.
 
 32
-00:02:00,044 --> 00:02:04,058
+00:02:07,673 --> 00:02:12,304
 At each transition, ask: what would change my mind about this step?
 
 33
-00:02:04,808 --> 00:02:08,421
+00:02:13,054 --> 00:02:17,139
 Now apply the module instead of only repeating its vocabulary.
 
 34
-00:02:08,421 --> 00:02:12,500
+00:02:17,139 --> 00:02:21,752
 Start with a question: How can a molecular change affect an ecosystem?
 
 35
-00:02:12,500 --> 00:02:16,230
+00:02:21,752 --> 00:02:25,969
 Treat that question as an observation that needs an explanation.
 
 36
-00:02:16,230 --> 00:02:21,008
+00:02:25,969 --> 00:02:31,372
 A useful first claim is: Biological explanations become stronger when they connect
 
 37
-00:02:21,008 --> 00:02:24,330
+00:02:31,372 --> 00:02:35,128
 molecules, cells, organisms, populations, and ecosystems.
 
 38
-00:02:24,330 --> 00:02:27,419
+00:02:35,128 --> 00:02:38,620
 Then ask what evidence could support or challenge it.
 
 39
-00:02:27,419 --> 00:02:32,256
+00:02:38,620 --> 00:02:44,089
 The first practice check reminds us that Synthesis links causes across scales, from
 
 40
-00:02:32,256 --> 00:02:36,452
+00:02:44,089 --> 00:02:48,833
 molecular to ecological, into one coherent, evidence-backed explanation.
 
 41
-00:02:36,452 --> 00:02:41,229
+00:02:48,833 --> 00:02:54,238
 This claim, evidence, and revision cycle is the transferable skill for the module.
 
 42
-00:02:41,979 --> 00:02:46,310
+00:02:54,988 --> 00:02:59,790
 Key terms for this module (page 1 of 3) include System, Scale, Mechanism.
 
 43
-00:02:46,310 --> 00:02:51,174
+00:02:59,790 --> 00:03:05,184
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 44
-00:02:51,174 --> 00:02:53,191
+00:03:05,184 --> 00:03:07,420
 or observation, not just label it.
 
 45
-00:02:53,941 --> 00:02:58,990
+00:03:08,170 --> 00:03:13,522
 Key terms for this module (page 2 of 3) include Feedback loop, Constraint, Tradeoff.
 
 46
-00:02:58,990 --> 00:03:03,919
+00:03:13,522 --> 00:03:18,747
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 47
-00:03:03,919 --> 00:03:05,963
+00:03:18,747 --> 00:03:20,914
 or observation, not just label it.
 
 48
-00:03:06,713 --> 00:03:11,060
+00:03:21,664 --> 00:03:26,469
 Key terms for this module (page 3 of 3) include Synthesis, Evidence chain.
 
 49
-00:03:11,060 --> 00:03:15,876
+00:03:26,469 --> 00:03:31,793
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 50
-00:03:15,876 --> 00:03:17,873
+00:03:31,793 --> 00:03:34,000
 or observation, not just label it.
 
 51
-00:03:18,623 --> 00:03:22,523
+00:03:34,750 --> 00:03:39,308
 The lab connected to this module is Lab 16 Capstone Systems Synthesis.
 
 52
-00:03:22,523 --> 00:03:26,590
+00:03:39,308 --> 00:03:44,061
 The evidence you collect should test or illustrate biology across scales.
 
 53
-00:03:26,590 --> 00:03:30,991
+00:03:44,061 --> 00:03:49,205
 You should leave the lab with a concrete observation, comparison, or model tied
 
 54
-00:03:30,991 --> 00:03:32,607
+00:03:49,205 --> 00:03:51,094
 directly to the module claim.
 
 55
-00:03:33,357 --> 00:03:35,083
+00:03:51,844 --> 00:03:53,945
 Pause here for retrieval practice.
 
 56
-00:03:35,083 --> 00:03:39,297
+00:03:53,945 --> 00:03:59,075
 Answer the prompts without looking at your notes first, then compare to the checks.
 
 57
-00:03:39,297 --> 00:03:43,410
+00:03:59,075 --> 00:04:04,081
 Retrieval practice is one of the most effective study strategies — it strengthens
 
 58
-00:03:43,410 --> 00:03:44,832
+00:04:04,081 --> 00:04:05,812
 memory more than re-reading.
 
 59
-00:03:45,582 --> 00:03:49,737
+00:04:06,562 --> 00:04:11,072
 Use these practice quiz questions as formative feedback.
 
 60
-00:03:49,737 --> 00:03:52,037
+00:04:11,072 --> 00:04:13,569
 Answer key: 1=C, 2=A, 3=D, 4=B.
 
 61
-00:03:52,037 --> 00:03:57,675
+00:04:13,569 --> 00:04:19,690
 If you miss a question, return to the module keys and find the evidence that
 
 62
-00:03:57,675 --> 00:03:59,752
+00:04:19,690 --> 00:04:21,946
 supports the correct answer.
 
 63
-00:04:00,502 --> 00:04:03,639
+00:04:22,696 --> 00:04:26,114
 Before you leave this module, make the study work active.
 
 64
-00:04:03,639 --> 00:04:07,767
+00:04:26,114 --> 00:04:30,611
 Start with the module's central claim before memorizing vocabulary; Use the
 
 65
-00:04:07,767 --> 00:04:12,170
+00:04:30,611 --> 00:04:35,408
 same-numbered lab as the evidence check for the module; Explain one mechanism in
 
 66
-00:04:12,170 --> 00:04:14,482
+00:04:35,408 --> 00:04:37,926
 words, then redraw it as a simple diagram.
 
 67
-00:04:14,482 --> 00:04:19,105
+00:04:37,926 --> 00:04:42,962
 Then answer this exit question without notes: What makes a synthesis stronger than a
 
 68
-00:04:19,105 --> 00:04:20,305
+00:04:42,962 --> 00:04:44,162
 list of facts?
 
 69
-00:04:20,305 --> 00:04:24,598
+00:04:44,162 --> 00:04:48,839
 A strong response names a mechanism, points to evidence, and states what would
 
 70
-00:04:24,598 --> 00:04:25,864
+00:04:48,839 --> 00:04:50,218
 change the explanation.
 
 71
-00:04:25,864 --> 00:04:29,497
+00:04:50,218 --> 00:04:54,175
 If your answer is only a definition list, connect the terms into a
 
 72
-00:04:29,497 --> 00:04:31,215
+00:04:54,175 --> 00:04:56,152
 cause-and-evidence chain and try again.
 
 73
-00:04:31,965 --> 00:04:37,163
+00:04:56,902 --> 00:05:02,486
 To synthesize this module: explain biology across scales using evidence from the Lab
 
 74
-00:04:37,163 --> 00:04:39,267
+00:05:02,486 --> 00:05:04,746
 16 Capstone Systems Synthesis lab.
 
 75
-00:04:39,267 --> 00:04:44,341
+00:05:04,746 --> 00:05:10,197
 Your explanation must include System, Scale, Mechanism, Feedback loop, Constraint,
 
 76
-00:04:44,341 --> 00:04:46,569
+00:05:10,197 --> 00:05:12,590
 Tradeoff, Synthesis, Evidence chain.
 
 77
-00:04:46,569 --> 00:04:50,343
+00:05:12,590 --> 00:05:16,645
 Revision prompt: what evidence would change your explanation?
 
 78
-00:04:50,343 --> 00:04:54,922
+00:05:16,645 --> 00:05:21,564
 Your final explanation should connect the central claim to a mechanism, an
 
 79
-00:04:54,922 --> 00:04:56,963
+00:05:21,564 --> 00:05:23,758
 observation, and a revision rule.

@@ -1,327 +1,327 @@
 1
-00:00:00,400 --> 00:00:05,319
+00:00:00,400 --> 00:00:05,922
 Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
 
 2
-00:00:05,319 --> 00:00:07,579
+00:00:05,922 --> 00:00:08,459
 Module 13: How Populations Evolve.
 
 3
-00:00:07,579 --> 00:00:10,969
+00:00:08,459 --> 00:00:12,265
 The connected lab is Lab 13 How Populations Evolve.
 
 4
-00:00:10,969 --> 00:00:16,354
+00:00:12,265 --> 00:00:18,310
 Here is the central idea: How Populations Evolve explains allele-frequency change
 
 5
-00:00:16,354 --> 00:00:21,074
+00:00:18,310 --> 00:00:23,608
 through drift, gene flow, selection, and baseline models. Let us begin.
 
 6
-00:00:21,824 --> 00:00:26,158
+00:00:24,358 --> 00:00:29,006
 By the end of this module you should be able to: Define microevolution using allele
 
 7
-00:00:26,158 --> 00:00:30,544
+00:00:29,006 --> 00:00:33,710
 frequencies; Compare the five mechanisms that change allele frequencies; Distinguish
 
 8
-00:00:30,544 --> 00:00:34,826
+00:00:33,710 --> 00:00:38,302
 bottleneck and founder effects; Interpret directional, stabilizing, and disruptive
 
 9
-00:00:34,826 --> 00:00:37,802
+00:00:38,302 --> 00:00:41,494
 selection; Use Hardy-Weinberg as a non-evolving baseline.
 
 10
-00:00:37,802 --> 00:00:41,091
+00:00:41,494 --> 00:00:45,022
 Keep these objectives in mind as you work through the material.
 
 11
-00:00:41,841 --> 00:00:43,540
+00:00:45,772 --> 00:00:47,616
 This module covers 5 topics.
 
 12
-00:00:43,540 --> 00:00:48,212
+00:00:47,616 --> 00:00:52,687
 Allele frequencies as the unit of change — Microevolution is change in allele
 
 13
-00:00:48,212 --> 00:00:50,093
+00:00:52,687 --> 00:00:54,729
 frequencies across generations.
 
 14
-00:00:50,093 --> 00:00:54,583
+00:00:54,729 --> 00:00:59,603
 Sources of variation — Mutation creates new variation, while recombination
 
 15
-00:00:54,583 --> 00:00:56,403
+00:00:59,603 --> 00:01:01,579
 reshuffles existing variation.
 
 16
-00:00:56,403 --> 00:01:01,317
+00:01:01,579 --> 00:01:06,914
 Five mechanisms of microevolution — Mutation, gene flow, genetic drift, nonrandom
 
 17
-00:01:01,317 --> 00:01:04,533
+00:01:06,914 --> 00:01:10,405
 mating, and natural selection can change populations.
 
 18
-00:01:04,533 --> 00:01:09,144
+00:01:10,405 --> 00:01:15,410
 Genetic drift and selection — Genetic drift is random and strongest in small
 
 19
-00:01:09,144 --> 00:01:12,542
+00:01:15,410 --> 00:01:19,098
 populations; selection is nonrandom and tied to fitness.
 
 20
-00:01:12,542 --> 00:01:17,214
+00:01:19,098 --> 00:01:24,169
 Hardy-Weinberg as a baseline — Hardy-Weinberg equilibrium is a null model for
 
 21
-00:01:17,214 --> 00:01:19,034
+00:01:24,169 --> 00:01:26,145
 detecting evolutionary change.
 
 22
-00:01:19,034 --> 00:01:23,341
+00:01:26,145 --> 00:01:30,820
 Each topic builds on the one before it, forming a coherent explanation.
 
 23
-00:01:24,091 --> 00:01:26,331
+00:01:31,570 --> 00:01:34,081
 Here is the concept map for module 13.
 
 24
-00:01:26,331 --> 00:01:30,870
+00:01:34,081 --> 00:01:39,170
 The central claim is: How Populations Evolve explains allele-frequency change
 
 25
-00:01:30,870 --> 00:01:34,230
+00:01:39,170 --> 00:01:42,937
 through drift, gene flow, selection, and baseline models.
 
 26
-00:01:34,230 --> 00:01:36,823
+00:01:42,937 --> 00:01:45,845
 Notice how each node connects to the others.
 
 27
-00:01:36,823 --> 00:01:41,774
+00:01:45,845 --> 00:01:51,397
 This is the structure of biological reasoning — not a list to memorize, but a map of
 
 28
-00:01:41,774 --> 00:01:43,483
+00:01:51,397 --> 00:01:53,314
 how ideas support each other.
 
 29
-00:01:44,233 --> 00:01:48,598
+00:01:54,064 --> 00:01:59,256
 This process model shows the reasoning sequence for how populations evolve.
 
 30
-00:01:48,598 --> 00:01:50,984
+00:01:59,256 --> 00:02:02,094
 Follow the stages from inputs to outputs.
 
 31
-00:01:50,984 --> 00:01:55,407
+00:02:02,094 --> 00:02:07,355
 The Lab 13 How Populations Evolve lab gives you evidence to test each stage.
 
 32
-00:01:55,407 --> 00:01:59,306
+00:02:07,355 --> 00:02:11,992
 At each transition, ask: what would change my mind about this step?
 
 33
-00:02:00,056 --> 00:02:03,558
+00:02:12,742 --> 00:02:16,826
 Now apply the module instead of only repeating its vocabulary.
 
 34
-00:02:03,558 --> 00:02:06,439
+00:02:16,826 --> 00:02:20,186
 Start with a question: What is an allele frequency?
 
 35
-00:02:06,439 --> 00:02:10,054
+00:02:20,186 --> 00:02:24,402
 Treat that question as an observation that needs an explanation.
 
 36
-00:02:10,054 --> 00:02:14,460
+00:02:24,402 --> 00:02:29,540
 A useful first claim is: Microevolution is change in allele frequencies across
 
 37
-00:02:14,460 --> 00:02:18,188
+00:02:29,540 --> 00:02:33,888
 generations. Then ask what evidence could support or challenge it.
 
 38
-00:02:18,188 --> 00:02:22,481
+00:02:33,888 --> 00:02:38,894
 The first practice check reminds us that Microevolution is a shift in allele
 
 39
-00:02:22,481 --> 00:02:24,853
+00:02:38,894 --> 00:02:41,661
 frequencies within a population over time.
 
 40
-00:02:24,853 --> 00:02:29,485
+00:02:41,661 --> 00:02:47,062
 This claim, evidence, and revision cycle is the transferable skill for the module.
 
 41
-00:02:30,235 --> 00:02:35,008
+00:02:47,812 --> 00:02:53,021
 Key terms for this module (page 1 of 3) include Allele frequency, Microevolution,
 
 42
-00:02:35,008 --> 00:02:36,208
+00:02:53,021 --> 00:02:54,221
 Mutation.
 
 43
-00:02:36,208 --> 00:02:41,040
+00:02:54,221 --> 00:02:59,494
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 44
-00:02:41,040 --> 00:02:42,374
+00:02:59,494 --> 00:03:01,060
 or observation, not just label it.
 
 45
-00:02:43,124 --> 00:02:48,184
+00:03:01,810 --> 00:03:07,186
 Key terms for this module (page 2 of 3) include Gene flow, Genetic drift, Bottleneck
 
 46
-00:02:48,184 --> 00:02:49,384
+00:03:07,186 --> 00:03:08,386
 effect.
 
 47
-00:02:49,384 --> 00:02:54,324
+00:03:08,386 --> 00:03:13,634
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 48
-00:02:54,324 --> 00:02:55,594
+00:03:13,634 --> 00:03:15,058
 or observation, not just label it.
 
 49
-00:02:56,344 --> 00:03:00,980
+00:03:15,808 --> 00:03:20,797
 Key terms for this module (page 3 of 3) include Founder effect, Hardy-Weinberg
 
 50
-00:03:00,980 --> 00:03:02,180
+00:03:20,797 --> 00:03:21,997
 equilibrium.
 
 51
-00:03:02,180 --> 00:03:07,053
+00:03:21,997 --> 00:03:27,242
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 52
-00:03:07,053 --> 00:03:08,587
+00:03:27,242 --> 00:03:28,984
 or observation, not just label it.
 
 53
-00:03:09,337 --> 00:03:12,910
+00:03:29,734 --> 00:03:33,948
 The lab connected to this module is Lab 13 How Populations Evolve.
 
 54
-00:03:12,910 --> 00:03:17,457
+00:03:33,948 --> 00:03:39,311
 The evidence you collect should test or illustrate allele frequencies as the unit of
 
 55
-00:03:17,457 --> 00:03:18,657
+00:03:39,311 --> 00:03:40,511
 change.
 
 56
-00:03:18,657 --> 00:03:22,934
+00:03:40,511 --> 00:03:45,555
 You should leave the lab with a concrete observation, comparison, or model tied
 
 57
-00:03:22,934 --> 00:03:23,683
+00:03:45,555 --> 00:03:46,654
 directly to the module claim.
 
 58
-00:03:24,433 --> 00:03:26,159
+00:03:47,404 --> 00:03:49,505
 Pause here for retrieval practice.
 
 59
-00:03:26,159 --> 00:03:30,373
+00:03:49,505 --> 00:03:54,635
 Answer the prompts without looking at your notes first, then compare to the checks.
 
 60
-00:03:30,373 --> 00:03:34,486
+00:03:54,635 --> 00:03:59,641
 Retrieval practice is one of the most effective study strategies — it strengthens
 
 61
-00:03:34,486 --> 00:03:35,908
+00:03:59,641 --> 00:04:01,372
 memory more than re-reading.
 
 62
-00:03:36,658 --> 00:03:40,844
+00:04:02,122 --> 00:04:06,640
 Use these practice quiz questions as formative feedback.
 
 63
-00:03:40,844 --> 00:03:43,161
+00:04:06,640 --> 00:04:09,141
 Answer key: 1=B, 2=A, 3=D, 4=C.
 
 64
-00:03:43,161 --> 00:03:48,842
+00:04:09,141 --> 00:04:15,272
 If you miss a question, return to the module keys and find the evidence that
 
 65
-00:03:48,842 --> 00:03:50,935
+00:04:15,272 --> 00:04:17,530
 supports the correct answer.
 
 66
-00:03:51,685 --> 00:03:54,841
+00:04:18,280 --> 00:04:21,722
 Before you leave this module, make the study work active.
 
 67
-00:03:54,841 --> 00:03:58,994
+00:04:21,722 --> 00:04:26,252
 Start with the module's central claim before memorizing vocabulary; Use the
 
 68
-00:03:58,994 --> 00:04:03,424
+00:04:26,252 --> 00:04:31,084
 same-numbered lab as the evidence check for the module; Explain one mechanism in
 
 69
-00:04:03,424 --> 00:04:05,750
+00:04:31,084 --> 00:04:33,621
 words, then redraw it as a simple diagram.
 
 70
-00:04:05,750 --> 00:04:10,069
+00:04:33,621 --> 00:04:38,332
 Then answer this exit question without notes: How can a null model help detect
 
 71
-00:04:10,069 --> 00:04:11,269
+00:04:38,332 --> 00:04:39,532
 evolution?
 
 72
-00:04:11,269 --> 00:04:15,588
+00:04:39,532 --> 00:04:44,243
 A strong response names a mechanism, points to evidence, and states what would
 
 73
-00:04:15,588 --> 00:04:16,862
+00:04:44,243 --> 00:04:45,632
 change the explanation.
 
 74
-00:04:16,862 --> 00:04:20,517
+00:04:45,632 --> 00:04:49,618
 If your answer is only a definition list, connect the terms into a
 
 75
-00:04:20,517 --> 00:04:22,029
+00:04:49,618 --> 00:04:51,376
 cause-and-evidence chain and try again.
 
 76
-00:04:22,779 --> 00:04:27,547
+00:04:52,126 --> 00:04:57,310
 To synthesize this module: explain allele frequencies as the unit of change using
 
 77
-00:04:27,547 --> 00:04:30,608
+00:04:57,310 --> 00:05:00,638
 evidence from the Lab 13 How Populations Evolve lab.
 
 78
-00:04:30,608 --> 00:04:35,553
+00:05:00,638 --> 00:05:06,014
 Your explanation must include Allele frequency, Microevolution, Mutation, Gene flow,
 
 79
-00:04:35,553 --> 00:04:40,086
+00:05:06,014 --> 00:05:10,942
 Genetic drift, Bottleneck effect, Founder effect, Hardy-Weinberg equilibrium.
 
 80
-00:04:40,086 --> 00:04:43,677
+00:05:10,942 --> 00:05:14,846
 Revision prompt: what evidence would change your explanation?
 
 81
-00:04:43,677 --> 00:04:48,033
+00:05:14,846 --> 00:05:19,582
 Your final explanation should connect the central claim to a mechanism, an
 
 82
-00:04:48,033 --> 00:04:49,974
+00:05:19,582 --> 00:05:21,694
 observation, and a revision rule.
