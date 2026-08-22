@@ -13,7 +13,7 @@
       "id": "module-07-molecular-genetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "539b4171f2659ef27a2feb213f538e04900f09946ba6655b616b4eaafbee2cde",
+      "sha256": "125db408643c686cd3424dc84f98bb7f76cde0d2595f705efa8bbe23b00a8124",
       "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-questions.docx"
     },
     {
@@ -21,7 +21,7 @@
       "id": "module-07-molecular-genetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "8ed490e33ce4062f1859c60798c75cc9e451d811cd8cea6385f08000f45d02f1",
+      "sha256": "605656940e0f5f56d8a2035713729675c19407c01499cc14ef8c5d26b11aba5b",
       "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-key-points.docx"
     },
     {
@@ -45,7 +45,7 @@
       "id": "module-07-molecular-genetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "e6fd5b40a49661cb2c029698a6e02cd8a89fd9631908cece589ac67aa9e3c0c8",
+      "sha256": "ec66e17610a02be83d9d4ea44dd83d43d896c5449e70c69bd1500245bc4d2939",
       "source": "course_development/biol-1/course/module-07-molecular-genetics/output/study-guides/module-07-molecular-genetics-practice-quiz.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-07-molecular-genetics",
       "include": "lecture",
       "kind": "module",
-      "sha256": "d6859a478ff33e90711f3f01a4a03ab66f38c960caaec705db810fd6c54d2ed9",
+      "sha256": "c6c415a5b476239f490fcf321aa0b8ed5311ee7b751fee25f7a5481104b89567",
       "source": "output/lectures/module-07-molecular-genetics/module-07-molecular-genetics.yaml"
     }
   ],

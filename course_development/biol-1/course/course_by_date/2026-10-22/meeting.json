@@ -5,7 +5,7 @@
       "id": "module-14-macroevolution",
       "include": "generated",
       "kind": "module",
-      "sha256": "4dddc59fbcb9b832a3898fbc7ddce36592003a7975a47864eed27be8b7e4dc76",
+      "sha256": "324280f153f517ffc18d8d411d7704e0c7f382532555bdbbb1073abd8f5539d0",
       "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-key-points.docx"
     },
     {
@@ -13,7 +13,7 @@
       "id": "module-14-macroevolution",
       "include": "generated",
       "kind": "module",
-      "sha256": "e5794c8f5f9b83e41e860112297b5deb59f16bcb607ca9d00a075c989f2c2893",
+      "sha256": "aa6d503c10d60903dd9f98ffc33bc8cb4bd5ae59a174a3ccb5210f549bc8cc78",
       "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-practice-quiz.docx"
     },
     {
@@ -45,7 +45,7 @@
       "id": "module-14-macroevolution",
       "include": "generated",
       "kind": "module",
-      "sha256": "8dfe3b61fd50192d2206f2ab169a12fbbcc8d1fb34bd25152c509dcd5e9050a3",
+      "sha256": "73b9dca5a9c6860b73e724fe3af11f300a482c7289e5dcd2e515d9fba4089c82",
       "source": "course_development/biol-1/course/module-14-macroevolution/output/study-guides/module-14-macroevolution-questions.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-14-macroevolution",
       "include": "lecture",
       "kind": "module",
-      "sha256": "6600d54dec2863e0e3ef7c1e5312cb7ecc603c2b42759bbb4883cdedfa574d0c",
+      "sha256": "bba8e84d2acde80b0789f39e435e07390dc77589bf157557bffc9e517c2b4b26",
       "source": "output/lectures/module-14-macroevolution/module-14-macroevolution.yaml"
     }
   ],

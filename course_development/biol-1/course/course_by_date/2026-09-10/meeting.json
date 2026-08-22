@@ -5,7 +5,7 @@
       "id": "module-06-metabolism",
       "include": "generated",
       "kind": "module",
-      "sha256": "74fcabdf5a2034ea7b12cfaccddfee0641a46b8e50d44dbed159ffdba09e7972",
+      "sha256": "86d3a7536124e55152e22b76460c450fc6a83833eb6a97c485e9e9f718e2d5ef",
       "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-key-points.docx"
     },
     {
@@ -21,7 +21,7 @@
       "id": "module-06-metabolism",
       "include": "generated",
       "kind": "module",
-      "sha256": "2f0d7f9185632c8a41c9f2ed3464b2d53f778b9b1e67f46b5ecc1009ffd98367",
+      "sha256": "90d957c763173e9ba7ad7de6dc71d3c2e3a6c5e54da52bb501844bdfe0d6cd6b",
       "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-questions.docx"
     },
     {
@@ -29,7 +29,7 @@
       "id": "module-06-metabolism",
       "include": "generated",
       "kind": "module",
-      "sha256": "406d9c1e586c9e5ec8673b4ef064d169a7e74b8d47ac9bf9b31d4c9c2955531d",
+      "sha256": "0009b82f461120350c9a53e34fb346cf8aab78e7117f1e3e8ff62b37ca6aa220",
       "source": "course_development/biol-1/course/module-06-metabolism/output/study-guides/module-06-metabolism-practice-quiz.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-06-metabolism",
       "include": "lecture",
       "kind": "module",
-      "sha256": "fef5f653979c25148ff20b2a06257ca5452ac5e27fea129e9fce29045f846444",
+      "sha256": "14c538f04ecb14d105d63f3c218a01cc4ae470618fe81967e9870f303fd7979d",
       "source": "output/lectures/module-06-metabolism/module-06-metabolism.yaml"
     }
   ],

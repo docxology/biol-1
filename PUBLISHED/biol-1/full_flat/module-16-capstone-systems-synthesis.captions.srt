@@ -167,123 +167,123 @@ This claim, evidence, and revision cycle is the transferable skill for the modul
 Key terms for this module (page 1 of 3) include System, Scale, Mechanism.
 
 43
-00:02:46,310 --> 00:02:51,175
+00:02:46,310 --> 00:02:51,174
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 44
-00:02:51,175 --> 00:02:53,192
+00:02:51,174 --> 00:02:53,191
 or observation, not just label it.
 
 45
-00:02:53,942 --> 00:02:58,991
+00:02:53,941 --> 00:02:58,990
 Key terms for this module (page 2 of 3) include Feedback loop, Constraint, Tradeoff.
 
 46
-00:02:58,991 --> 00:03:03,920
+00:02:58,990 --> 00:03:03,919
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 47
-00:03:03,920 --> 00:03:05,964
+00:03:03,919 --> 00:03:05,963
 or observation, not just label it.
 
 48
-00:03:06,714 --> 00:03:11,061
+00:03:06,713 --> 00:03:11,060
 Key terms for this module (page 3 of 3) include Synthesis, Evidence chain.
 
 49
-00:03:11,061 --> 00:03:15,877
+00:03:11,060 --> 00:03:15,876
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 50
-00:03:15,877 --> 00:03:17,874
+00:03:15,876 --> 00:03:17,873
 or observation, not just label it.
 
 51
-00:03:18,624 --> 00:03:22,524
+00:03:18,623 --> 00:03:22,523
 The lab connected to this module is Lab 16 Capstone Systems Synthesis.
 
 52
-00:03:22,524 --> 00:03:26,591
+00:03:22,523 --> 00:03:26,590
 The evidence you collect should test or illustrate biology across scales.
 
 53
-00:03:26,591 --> 00:03:30,992
+00:03:26,590 --> 00:03:30,991
 You should leave the lab with a concrete observation, comparison, or model tied
 
 54
-00:03:30,992 --> 00:03:32,608
+00:03:30,991 --> 00:03:32,607
 directly to the module claim.
 
 55
-00:03:33,358 --> 00:03:35,084
+00:03:33,357 --> 00:03:35,083
 Pause here for retrieval practice.
 
 56
-00:03:35,084 --> 00:03:39,298
+00:03:35,083 --> 00:03:39,297
 Answer the prompts without looking at your notes first, then compare to the checks.
 
 57
-00:03:39,298 --> 00:03:43,411
+00:03:39,297 --> 00:03:43,410
 Retrieval practice is one of the most effective study strategies — it strengthens
 
 58
-00:03:43,411 --> 00:03:44,833
+00:03:43,410 --> 00:03:44,832
 memory more than re-reading.
 
 59
-00:03:45,583 --> 00:03:49,738
+00:03:45,582 --> 00:03:49,737
 Use these practice quiz questions as formative feedback.
 
 60
-00:03:49,738 --> 00:03:52,038
+00:03:49,737 --> 00:03:52,037
 Answer key: 1=C, 2=A, 3=D, 4=B.
 
 61
-00:03:52,038 --> 00:03:57,676
+00:03:52,037 --> 00:03:57,675
 If you miss a question, return to the module keys and find the evidence that
 
 62
-00:03:57,676 --> 00:03:59,753
+00:03:57,675 --> 00:03:59,752
 supports the correct answer.
 
 63
-00:04:00,503 --> 00:04:03,640
+00:04:00,502 --> 00:04:03,639
 Before you leave this module, make the study work active.
 
 64
-00:04:03,640 --> 00:04:07,768
+00:04:03,639 --> 00:04:07,767
 Start with the module's central claim before memorizing vocabulary; Use the
 
 65
-00:04:07,768 --> 00:04:12,171
+00:04:07,767 --> 00:04:12,170
 same-numbered lab as the evidence check for the module; Explain one mechanism in
 
 66
-00:04:12,171 --> 00:04:14,483
+00:04:12,170 --> 00:04:14,482
 words, then redraw it as a simple diagram.
 
 67
-00:04:14,483 --> 00:04:19,106
+00:04:14,482 --> 00:04:19,105
 Then answer this exit question without notes: What makes a synthesis stronger than a
 
 68
-00:04:19,106 --> 00:04:20,306
+00:04:19,105 --> 00:04:20,305
 list of facts?
 
 69
-00:04:20,306 --> 00:04:24,599
+00:04:20,305 --> 00:04:24,598
 A strong response names a mechanism, points to evidence, and states what would
 
 70
-00:04:24,599 --> 00:04:25,865
+00:04:24,598 --> 00:04:25,864
 change the explanation.
 
 71
-00:04:25,865 --> 00:04:29,498
+00:04:25,864 --> 00:04:29,497
 If your answer is only a definition list, connect the terms into a
 
 72
-00:04:29,498 --> 00:04:31,215
+00:04:29,497 --> 00:04:31,215
 cause-and-evidence chain and try again.
 
 73

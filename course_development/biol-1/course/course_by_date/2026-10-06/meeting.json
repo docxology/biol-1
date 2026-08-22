@@ -21,7 +21,7 @@
       "id": "module-11-genomics-biotechnology",
       "include": "generated",
       "kind": "module",
-      "sha256": "7ff449fe3dc97792ed0650e1f59738be9dc760dd046676eef16300ac63435369",
+      "sha256": "7be3a7d5eaec459f0f4244a2f17c95b280c5c7d8aaacb8cc95a48864f1b776b0",
       "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-questions.docx"
     },
     {
@@ -29,7 +29,7 @@
       "id": "module-11-genomics-biotechnology",
       "include": "generated",
       "kind": "module",
-      "sha256": "e855acba3d352522c99643dcd72c0756c9d841515c3c074f230a015e20ad17ea",
+      "sha256": "82db49254d6dd39d553316cb2f805fb168cd3b8ca98d0b029b9f61551e2b283d",
       "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-practice-quiz.docx"
     },
     {
@@ -45,7 +45,7 @@
       "id": "module-11-genomics-biotechnology",
       "include": "generated",
       "kind": "module",
-      "sha256": "a8ba656ac6594f59d070b096e20896348c1fca7a422f71022b85e390add6fd42",
+      "sha256": "156ba2ec470e3a6f6decdc91a275387caefe5f92f5f0665c795b6daa76051b8e",
       "source": "course_development/biol-1/course/module-11-genomics-biotechnology/output/study-guides/module-11-genomics-biotechnology-key-points.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-11-genomics-biotechnology",
       "include": "lecture",
       "kind": "module",
-      "sha256": "7e6fe48ade87f858e21acd1157ee9ad9809ad214a596991309694f35a325d338",
+      "sha256": "1762539aaac2f7403183353212b596d4ceabc31d71bb51bcbc3c76cae8176eab",
       "source": "output/lectures/module-11-genomics-biotechnology/module-11-genomics-biotechnology.yaml"
     }
   ],

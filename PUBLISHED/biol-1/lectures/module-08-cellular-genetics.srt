@@ -147,157 +147,157 @@ daughter cells for growth and repair. Meiosis makes four haploid gametes.
 This claim, evidence, and revision cycle is the transferable skill for the module.
 
 38
-00:02:27,467 --> 00:02:32,239
+00:02:27,467 --> 00:02:32,238
 Key terms for this module (page 1 of 3) include Chromosome, Cell cycle, Mitosis.
 
 39
-00:02:32,239 --> 00:02:37,131
+00:02:32,238 --> 00:02:37,128
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 40
-00:02:37,131 --> 00:02:39,159
+00:02:37,128 --> 00:02:39,155
 or observation, not just label it.
 
 41
-00:02:39,909 --> 00:02:44,560
+00:02:39,905 --> 00:02:44,555
 Key terms for this module (page 2 of 3) include Meiosis, Gamete, Crossing over.
 
 42
-00:02:44,560 --> 00:02:49,387
+00:02:44,555 --> 00:02:49,382
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 43
-00:02:49,387 --> 00:02:51,389
+00:02:49,382 --> 00:02:51,383
 or observation, not just label it.
 
 44
-00:02:52,139 --> 00:02:56,311
+00:02:52,133 --> 00:02:56,305
 Key terms for this module (page 3 of 3) include Independent assortment,
 
 45
-00:02:56,311 --> 00:02:57,511
+00:02:56,305 --> 00:02:57,505
 Nondisjunction.
 
 46
-00:02:57,511 --> 00:03:02,330
+00:02:57,505 --> 00:03:02,324
 Treat each term as a handle for reasoning — a term should help you explain a claim
 
 47
-00:03:02,330 --> 00:03:04,009
+00:03:02,324 --> 00:03:04,003
 or observation, not just label it.
 
 48
-00:03:04,759 --> 00:03:08,081
+00:03:04,753 --> 00:03:08,075
 The lab connected to this module is Lab 08 Cellular Genetics.
 
 49
-00:03:08,081 --> 00:03:12,329
+00:03:08,075 --> 00:03:12,323
 The evidence you collect should test or illustrate chromosomes and cell cycle.
 
 50
-00:03:12,329 --> 00:03:16,631
+00:03:12,323 --> 00:03:16,625
 You should leave the lab with a concrete observation, comparison, or model tied
 
 51
-00:03:16,631 --> 00:03:18,211
+00:03:16,625 --> 00:03:18,205
 directly to the module claim.
 
 52
-00:03:18,961 --> 00:03:20,687
+00:03:18,955 --> 00:03:20,681
 Pause here for retrieval practice.
 
 53
-00:03:20,687 --> 00:03:24,901
+00:03:20,681 --> 00:03:24,895
 Answer the prompts without looking at your notes first, then compare to the checks.
 
 54
-00:03:24,901 --> 00:03:29,014
+00:03:24,895 --> 00:03:29,008
 Retrieval practice is one of the most effective study strategies — it strengthens
 
 55
-00:03:29,014 --> 00:03:30,436
+00:03:29,008 --> 00:03:30,430
 memory more than re-reading.
 
 56
-00:03:31,186 --> 00:03:35,409
+00:03:31,180 --> 00:03:35,403
 Use these practice quiz questions as formative feedback.
 
 57
-00:03:35,409 --> 00:03:37,747
+00:03:35,403 --> 00:03:37,741
 Answer key: 1=B, 2=D, 3=A, 4=C.
 
 58
-00:03:37,747 --> 00:03:43,479
+00:03:37,741 --> 00:03:43,473
 If you miss a question, return to the module keys and find the evidence that
 
 59
-00:03:43,479 --> 00:03:45,591
+00:03:43,473 --> 00:03:45,585
 supports the correct answer.
 
 60
-00:03:46,341 --> 00:03:49,488
+00:03:46,335 --> 00:03:49,482
 Before you leave this module, make the study work active.
 
 61
-00:03:49,488 --> 00:03:53,629
+00:03:49,482 --> 00:03:53,623
 Start with the module's central claim before memorizing vocabulary; Use the
 
 62
-00:03:53,629 --> 00:03:58,046
+00:03:53,623 --> 00:03:58,040
 same-numbered lab as the evidence check for the module; Explain one mechanism in
 
 63
-00:03:58,046 --> 00:04:00,365
+00:03:58,040 --> 00:04:00,359
 words, then redraw it as a simple diagram.
 
 64
-00:04:00,365 --> 00:04:04,616
+00:04:00,359 --> 00:04:04,610
 Then answer this exit question without notes: What evidence would distinguish
 
 65
-00:04:04,616 --> 00:04:05,816
+00:04:04,610 --> 00:04:05,810
 mitosis from meiosis?
 
 66
-00:04:05,816 --> 00:04:10,123
+00:04:05,810 --> 00:04:10,117
 A strong response names a mechanism, points to evidence, and states what would
 
 67
-00:04:10,123 --> 00:04:11,393
+00:04:10,117 --> 00:04:11,387
 change the explanation.
 
 68
-00:04:11,393 --> 00:04:15,037
+00:04:11,387 --> 00:04:15,031
 If your answer is only a definition list, connect the terms into a
 
 69
-00:04:15,037 --> 00:04:17,150
+00:04:15,031 --> 00:04:17,144
 cause-and-evidence chain and try again.
 
 70
-00:04:17,900 --> 00:04:22,701
+00:04:17,894 --> 00:04:22,695
 To synthesize this module: explain chromosomes and cell cycle using evidence from
 
 71
-00:04:22,701 --> 00:04:24,657
+00:04:22,695 --> 00:04:24,651
 the Lab 08 Cellular Genetics lab.
 
 72
-00:04:24,657 --> 00:04:29,340
+00:04:24,651 --> 00:04:29,334
 Your explanation must include Chromosome, Cell cycle, Mitosis, Meiosis, Gamete,
 
 73
-00:04:29,340 --> 00:04:32,541
+00:04:29,334 --> 00:04:32,535
 Crossing over, Independent assortment, Nondisjunction.
 
 74
-00:04:32,541 --> 00:04:36,157
+00:04:32,535 --> 00:04:36,151
 Revision prompt: what evidence would change your explanation?
 
 75
-00:04:36,157 --> 00:04:40,543
+00:04:36,151 --> 00:04:40,537
 Your final explanation should connect the central claim to a mechanism, an
 
 76
-00:04:40,543 --> 00:04:42,498
+00:04:40,537 --> 00:04:42,492
 observation, and a revision rule.

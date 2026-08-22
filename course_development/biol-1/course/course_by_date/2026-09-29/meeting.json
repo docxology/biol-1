@@ -13,7 +13,7 @@
       "id": "module-09-inheritance-genetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "87135aaeeee1392781f64c1377a60f74cc91c7b27440d53d2a04ff56600b2c95",
+      "sha256": "d2eae768e30b9c3b1987fa229cfe427af8d2345759b09c245657126497e7e0b8",
       "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-key-points.docx"
     },
     {
@@ -21,7 +21,7 @@
       "id": "module-09-inheritance-genetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "250c13e61585164c0f8e3070585720bdd5327ac45d86165e1d3b69cef6dd5981",
+      "sha256": "01be4425ebf55005931ea1d70fdac1662482ff921c565e0067435971a8e49271",
       "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-questions.docx"
     },
     {
@@ -29,7 +29,7 @@
       "id": "module-09-inheritance-genetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "8b6e86011dee3564bef0f2edf98fa9538039cadc5ad02651f2ccf9213d44116f",
+      "sha256": "e5fd09acf7d1d0b473dc8cd9ee7430b2d9d5fbca358769ebaf3a50499af02e17",
       "source": "course_development/biol-1/course/module-09-inheritance-genetics/output/study-guides/module-09-inheritance-genetics-practice-quiz.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-09-inheritance-genetics",
       "include": "lecture",
       "kind": "module",
-      "sha256": "6371d64740a6c58b83e767fed22a0a0664f8b79199055cc9c9b6c0dfc86744e2",
+      "sha256": "fa13999df715fb2e854f48cb82ef1aff4a22b280a7f00151ca89e2530b7bcc1d",
       "source": "output/lectures/module-09-inheritance-genetics/module-09-inheritance-genetics.yaml"
     }
   ],

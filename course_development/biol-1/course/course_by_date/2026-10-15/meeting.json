@@ -5,7 +5,7 @@
       "id": "module-12-darwin-evolution",
       "include": "generated",
       "kind": "module",
-      "sha256": "438602fd5ed134047d9d1c46e8a5e96ff067b4af3435bb90ad234ad4445c9771",
+      "sha256": "071751322a422e14eb7aa589a55eb0e5f23fe895b40e2912e81f2c7770aa902f",
       "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-key-points.docx"
     },
     {
@@ -13,7 +13,7 @@
       "id": "module-12-darwin-evolution",
       "include": "generated",
       "kind": "module",
-      "sha256": "18913d28260089834c43668fa2cb4def9d79d665bb1b25b3bcc3cad189c01530",
+      "sha256": "307e11d161a7d5131f60421f4720dd8fe22f0669405b428b7acb260ff2bf0e15",
       "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-questions.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-12-darwin-evolution",
       "include": "generated",
       "kind": "module",
-      "sha256": "c397a97ec1e8d4e6b45e52ff912fc07097c082eb3a7e03982e3b8459493eec12",
+      "sha256": "21832ffe0e7c70c87d1f606c1a4b7ecbc039e18f88f5d7751df4da15310e971b",
       "source": "course_development/biol-1/course/module-12-darwin-evolution/output/study-guides/module-12-darwin-evolution-practice-quiz.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-12-darwin-evolution",
       "include": "lecture",
       "kind": "module",
-      "sha256": "94dc3d0e08eb97d85c26dd8173801b4d181eb67c511eb6f3e2fbe16f042eb1f7",
+      "sha256": "b4c0385cecd2bc58bbd5291be9b0aeb9fb3a49ecc29d3175c2da33397253e721",
       "source": "output/lectures/module-12-darwin-evolution/module-12-darwin-evolution.yaml"
     }
   ],

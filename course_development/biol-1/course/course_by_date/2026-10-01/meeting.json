@@ -13,7 +13,7 @@
       "id": "module-10-epigenetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "d825fb8ab1fc7d62eaab5574c44320066a8878ed56babbe4a02185c49310686a",
+      "sha256": "4bf60a4364aedfdc05d165f2fa2d4fc14cf5236083811cd0d2a021fe77e11575",
       "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-questions.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-10-epigenetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "acb36efef442c6b721d90c9870d2ff99acffa2756a7913a8f78644e81fab4025",
+      "sha256": "95a09d544f2b883acf9f45fe1c43e88ff57775b0fbc6d667ac68f076142a1d2d",
       "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-key-points.docx"
     },
     {
@@ -45,7 +45,7 @@
       "id": "module-10-epigenetics",
       "include": "generated",
       "kind": "module",
-      "sha256": "9c66c0221d398b8dac704ec3a1eb5835b59aa0e95b987c55e2092cdc5aa4bc55",
+      "sha256": "0e3497e7bcfd05428e0e920c9dbc96ae98b8f60c404f124fda1a5a01b2387017",
       "source": "course_development/biol-1/course/module-10-epigenetics/output/study-guides/module-10-epigenetics-practice-quiz.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-10-epigenetics",
       "include": "lecture",
       "kind": "module",
-      "sha256": "8c3d22cc6e70aa9a0ff835460512ccd9e8677dccf66d10675eed6342c688c036",
+      "sha256": "84ab31f78d8337310d9a2fd4c04b103cc3bf7adc98985eff87083b38cb38895c",
       "source": "output/lectures/module-10-epigenetics/module-10-epigenetics.yaml"
     }
   ],

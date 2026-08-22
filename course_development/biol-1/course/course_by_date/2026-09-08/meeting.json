@@ -5,7 +5,7 @@
       "id": "module-05-membranes",
       "include": "generated",
       "kind": "module",
-      "sha256": "fa89d3585c3d95e3f9e9367432ad74d8da0ce25aac0fef3c84f5b8553f11c05c",
+      "sha256": "a482602d8bee98604261f826c865ebc43785054fa317e40771fcad336948c44c",
       "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-key-points.docx"
     },
     {
@@ -21,7 +21,7 @@
       "id": "module-05-membranes",
       "include": "generated",
       "kind": "module",
-      "sha256": "c3e00ce969035658ce4167f4bd063ef3e1271708af7e9bab3d657e7663cdc5a6",
+      "sha256": "b6c98e9c8a2a2b32c16eae230ffad605eda04fe09e5271f441c6270360db3b14",
       "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-questions.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-05-membranes",
       "include": "generated",
       "kind": "module",
-      "sha256": "c541b7fd2460e4ed44213acae35378e2107d6bdd511fffac710c5f9d28ae5fb8",
+      "sha256": "cc6d9013964fb7bb7461b020e5deccd9cf942eb0214f6aed5d0be537a57a4277",
       "source": "course_development/biol-1/course/module-05-membranes/output/study-guides/module-05-membranes-practice-quiz.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-05-membranes",
       "include": "lecture",
       "kind": "module",
-      "sha256": "b03ca9d1d8b25a0e1d62e98ccd4c81e41803933f189716dc24aabb8be011977d",
+      "sha256": "6c22b0e42e1ac85b46d0a173794c62a80a9f5f32e70a29811c2ecb749a2d4118",
       "source": "output/lectures/module-05-membranes/module-05-membranes.yaml"
     }
   ],

@@ -5,7 +5,7 @@
       "id": "module-13-how-populations-evolve",
       "include": "generated",
       "kind": "module",
-      "sha256": "01079f4f0c7bf1c84f6822644b99ffba8ac8711fc761c13a66fc392d3082536c",
+      "sha256": "32c78c27e67f663986498b3b44019a606e8b5f03b87c44bddba855c19e27f049",
       "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-practice-quiz.docx"
     },
     {
@@ -29,7 +29,7 @@
       "id": "module-13-how-populations-evolve",
       "include": "generated",
       "kind": "module",
-      "sha256": "b8d010f23e09daabb0f851405a68d1e810a13eb5e68f6650640d1080c4cd886d",
+      "sha256": "d427350120858b27e3507245690f70b10f9d9c0b90c418700862c8348b5b76c0",
       "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-questions.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-13-how-populations-evolve",
       "include": "generated",
       "kind": "module",
-      "sha256": "f785c7bc1fbd962f35430b82881e3b3a5a3044386b38abafd1c65c34584fee5a",
+      "sha256": "44d9b841c2a20bdac9960f5f71bf5cde932e131d517b2dbd835c9e54e4be1420",
       "source": "course_development/biol-1/course/module-13-how-populations-evolve/output/study-guides/module-13-how-populations-evolve-key-points.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-13-how-populations-evolve",
       "include": "lecture",
       "kind": "module",
-      "sha256": "560634e0581fb80398b6831052eac281cc09acf610590416163e2f7fb1a61e0a",
+      "sha256": "d9472d3016a9f721adbd01a3db6e7b8738188d2af00d244e0a3c3e7e9af6b545",
       "source": "output/lectures/module-13-how-populations-evolve/module-13-how-populations-evolve.yaml"
     }
   ],

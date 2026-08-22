@@ -29,7 +29,7 @@
     .node-label { fill: #172d35; font: 800 20px Georgia, serif; }
     .node-detail { fill: #4f6670; font: 14px Georgia, serif; }
     .edge { stroke: #1f7a6d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; marker-end: url(#arrowhead); }
-    .edge-label { fill: #1f7a6d; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #ecf4f2; stroke-width: 4; }
+    .edge-label { fill: #1f7a6d; font: 700 12px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #ecf4f2; stroke-width: 5; }
     .stage-dot { fill: #b55f24; }
     .stage-num { fill: white; font: 900 18px Georgia, serif; }
     .stage-label { fill: #172d35; font: 800 18px Georgia, serif; }
@@ -56,16 +56,16 @@
   <rect class="bg" width="1200" height="720" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module 14 / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">Module 14: Macroevolution Retrieval and Lab Check</text>
-  <rect x="82" y="166" width="1026" height="36" rx="18" class="retrieval-step-strip" />
-  <text x="120" y="190" class="routine-text">1 Cover notes</text>
-  <text x="354" y="190" class="routine-text">2 Answer aloud</text>
-  <text x="604" y="190" class="routine-text">3 Cite evidence</text>
-  <text x="844" y="190" class="routine-text">4 Revise</text>
-  <rect x="692" y="78" width="416" height="76" rx="22" class="routine-card" />
-  <text x="720" y="108" class="card-kicker">Routine</text>
-  <text x="720" y="134" class="routine-text">Cover notes -> answer aloud -> cite evidence -> revise</text>
-  <rect x="92" y="216" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="254" class="stage-num">Q1</text><text x="120.0" y="282.0" class="prompt-text"><tspan x="120.0" dy="0">What does the biological species concept</tspan><tspan x="120.0" dy="17">emphasize?</tspan></text><text x="120.0" y="328.0" class="check-text"><tspan x="120.0" dy="0">Check: State the biological species concept and its...</tspan></text><rect x="604" y="216" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="254" class="stage-num">Q2</text><text x="632.0" y="282.0" class="prompt-text"><tspan x="632.0" dy="0">Why does reproductive isolation matter for</tspan><tspan x="632.0" dy="17">speciation?</tspan></text><text x="632.0" y="328.0" class="check-text"><tspan x="632.0" dy="0">Check: Explain reproductive isolation as reduced...</tspan></text><rect x="92" y="370" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="408" class="stage-num">Q3</text><text x="120.0" y="436.0" class="prompt-text"><tspan x="120.0" dy="0">What is a prezygotic barrier?</tspan></text><text x="120.0" y="482.0" class="check-text"><tspan x="120.0" dy="0">Check: Classify examples as prezygotic or...</tspan></text><rect x="604" y="370" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="408" class="stage-num">Q4</text><text x="632.0" y="436.0" class="prompt-text"><tspan x="632.0" dy="0">What is a postzygotic barrier?</tspan></text><text x="632.0" y="482.0" class="check-text"><tspan x="632.0" dy="0">Check: Compare allopatric and sympatric speciation.</tspan></text>
+  <text x="82.0" y="132.0" class="title-text"><tspan x="82.0" dy="0">Module 14: Macroevolution Retrieval and</tspan><tspan x="82.0" dy="32">Lab Check</tspan></text>
+  <rect x="82" y="172" width="1026" height="36" rx="18" class="retrieval-step-strip" />
+  <text x="120" y="196" class="routine-text">1 Cover notes</text>
+  <text x="354" y="196" class="routine-text">2 Answer aloud</text>
+  <text x="604" y="196" class="routine-text">3 Cite evidence</text>
+  <text x="844" y="196" class="routine-text">4 Revise</text>
+  <rect x="860" y="78" width="284" height="82" rx="22" class="routine-card" />
+  <text x="884" y="106" class="card-kicker">Routine</text>
+  <text x="884.0" y="128.0" class="routine-text"><tspan x="884.0" dy="0">Cover notes -&gt; answer aloud</tspan><tspan x="884.0" dy="14">-&gt; cite evidence -&gt; revise</tspan></text>
+  <rect x="92" y="222" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="260" class="stage-num">Q1</text><text x="120.0" y="288.0" class="prompt-text"><tspan x="120.0" dy="0">What does the biological species concept</tspan><tspan x="120.0" dy="17">emphasize?</tspan></text><text x="120.0" y="334.0" class="check-text"><tspan x="120.0" dy="0">Check: State the biological species concept and its limits.</tspan></text><rect x="604" y="222" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="260" class="stage-num">Q2</text><text x="632.0" y="288.0" class="prompt-text"><tspan x="632.0" dy="0">Why does reproductive isolation matter for</tspan><tspan x="632.0" dy="17">speciation?</tspan></text><text x="632.0" y="334.0" class="check-text"><tspan x="632.0" dy="0">Check: Explain reproductive isolation as reduced gene flow.</tspan></text><rect x="92" y="374" width="462" height="124" rx="26" class="prompt-card" /><text x="120" y="412" class="stage-num">Q3</text><text x="120.0" y="440.0" class="prompt-text"><tspan x="120.0" dy="0">What is a prezygotic barrier?</tspan></text><text x="120.0" y="486.0" class="check-text"><tspan x="120.0" dy="0">Check: Classify examples as prezygotic or postzygotic</tspan><tspan x="120.0" dy="13">barriers.</tspan></text><rect x="604" y="374" width="462" height="124" rx="26" class="prompt-card" /><text x="632" y="412" class="stage-num">Q4</text><text x="632.0" y="440.0" class="prompt-text"><tspan x="632.0" dy="0">What is a postzygotic barrier?</tspan></text><text x="632.0" y="486.0" class="check-text"><tspan x="632.0" dy="0">Check: Compare allopatric and sympatric speciation.</tspan></text>
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
   <text x="120.0" y="612.0" class="mini-text"><tspan x="120.0" dy="0">Species, Biological species concept, Reproductive</tspan><tspan x="120.0" dy="17">isolation, Prezygotic barrier, Postzygotic barrier</tspan></text>

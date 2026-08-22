@@ -295,23 +295,23 @@ change the explanation.
 If your answer is only a definition list, connect the terms into a
 
 75
-00:04:20,517 --> 00:04:22,030
+00:04:20,517 --> 00:04:22,029
 cause-and-evidence chain and try again.
 
 76
-00:04:22,780 --> 00:04:27,548
+00:04:22,779 --> 00:04:27,547
 To synthesize this module: explain allele frequencies as the unit of change using
 
 77
-00:04:27,548 --> 00:04:30,609
+00:04:27,547 --> 00:04:30,608
 evidence from the Lab 13 How Populations Evolve lab.
 
 78
-00:04:30,609 --> 00:04:35,554
+00:04:30,608 --> 00:04:35,553
 Your explanation must include Allele frequency, Microevolution, Mutation, Gene flow,
 
 79
-00:04:35,554 --> 00:04:40,086
+00:04:35,553 --> 00:04:40,086
 Genetic drift, Bottleneck effect, Founder effect, Hardy-Weinberg equilibrium.
 
 80
@@ -323,5 +323,5 @@ Revision prompt: what evidence would change your explanation?
 Your final explanation should connect the central claim to a mechanism, an
 
 82
-00:04:48,033 --> 00:04:49,975
+00:04:48,033 --> 00:04:49,974
 observation, and a revision rule.

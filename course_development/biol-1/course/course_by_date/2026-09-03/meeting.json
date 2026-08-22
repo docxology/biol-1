@@ -13,7 +13,7 @@
       "id": "module-04-cells",
       "include": "generated",
       "kind": "module",
-      "sha256": "54ee9fdd865b43d64ee3fe31dd4eec1f01432531e1054e3042184695686c41c3",
+      "sha256": "59949e954bb9a0a0c6bd617103e55c8f9d9e0d478eb225e812f1d79b3bee01a3",
       "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-key-points.docx"
     },
     {
@@ -21,7 +21,7 @@
       "id": "module-04-cells",
       "include": "generated",
       "kind": "module",
-      "sha256": "5864b5c2c1ca6ebe61d62cc4785d7fb72b75dcaeac5bb4ccc5ff1991f923d9d2",
+      "sha256": "ae88fab56e12bb0003fc5dfd9ec0e2e00a57d2ec3c225561066da9e9e71a3afa",
       "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-practice-quiz.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-04-cells",
       "include": "generated",
       "kind": "module",
-      "sha256": "6ac03ba491f0f8dbc7084be8ca0bad0b4fa92feb3421321182b72b40e3ae4283",
+      "sha256": "f7470740c5c3aaf76c560ec7913062c5ef1b071dcbf9b79d08b17f6a696249b5",
       "source": "course_development/biol-1/course/module-04-cells/output/study-guides/module-04-cells-questions.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-04-cells",
       "include": "lecture",
       "kind": "module",
-      "sha256": "715c7ee923833f5e15df8520b18dad1ab9a30a0f0f1a1c2259da179f42327e70",
+      "sha256": "544bddc4a1b5c7b8aa9ff39c8202669f03c3a67865788c7c9a63a243a76d7dcb",
       "source": "output/lectures/module-04-cells/module-04-cells.yaml"
     }
   ],

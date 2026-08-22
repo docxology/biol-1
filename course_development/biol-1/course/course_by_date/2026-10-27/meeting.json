@@ -5,7 +5,7 @@
       "id": "module-15-population-systems-ecology",
       "include": "generated",
       "kind": "module",
-      "sha256": "2cf6a31e67a6f3755207e6f706d6c8e9659f25b5a13c0fd90493d1f131841832",
+      "sha256": "b192eac7f9fcc24f5fceb288b0a3f6dcdb3d974a0309a5af465906d83d4890cf",
       "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-key-points.docx"
     },
     {
@@ -21,7 +21,7 @@
       "id": "module-15-population-systems-ecology",
       "include": "generated",
       "kind": "module",
-      "sha256": "aecc5954e7f976bc328147f25df78c06a38c95046dd06ed69351af56ced0e2fc",
+      "sha256": "123615dd8f31524be8a440a7da79999f56f59115615c8e41e2882af8f205268b",
       "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-practice-quiz.docx"
     },
     {
@@ -37,7 +37,7 @@
       "id": "module-15-population-systems-ecology",
       "include": "generated",
       "kind": "module",
-      "sha256": "953a6bbbc69649bf27f5ba7a0a62e17df3f292ffc7554bc2100bc6acd2a44b58",
+      "sha256": "eb4fe786668a4f11fa558586fae040af8c00e73988a636fe619169b0f797f8e1",
       "source": "course_development/biol-1/course/module-15-population-systems-ecology/output/study-guides/module-15-population-systems-ecology-questions.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-15-population-systems-ecology",
       "include": "lecture",
       "kind": "module",
-      "sha256": "da39363159a5b8c0a0863f7c2feb9606244b54ae9047e718743b9ee6feb5f98f",
+      "sha256": "e47533d38cbe57c1576fc0e8f42be1f6f06698008b153b4bdbb5ac0cfb41db69",
       "source": "output/lectures/module-15-population-systems-ecology/module-15-population-systems-ecology.yaml"
     }
   ],

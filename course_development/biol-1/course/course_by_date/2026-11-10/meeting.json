@@ -5,7 +5,7 @@
     "day": "Tue",
     "materials": [
       {
-        "id": "practice-test-05",
+        "id": "practice-test-04",
         "include": [
           "source"
         ],
@@ -44,9 +44,9 @@
         "used": true
       }
     ],
-    "notes": "Practice Test 05 is comprehensive across Modules 1-16.",
+    "notes": "Practice Test 04 is comprehensive across Modules 1-16.",
     "status": "class",
-    "title": "Practice Test 05; comprehensive final preparation",
+    "title": "Practice Test 04; comprehensive final preparation",
     "week": 12
   }
 }

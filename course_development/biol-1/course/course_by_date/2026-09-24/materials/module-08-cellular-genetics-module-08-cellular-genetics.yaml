@@ -4,7 +4,7 @@ subtitle: "College of the Redwoods — Pelican Bay"
 width: 1920
 height: 1080
 fps: 30
-# Render with: lecturecreate from-yaml <this-file> --config src/lecture_create/biol-1.yaml
+# Render with: lecturecreate from-yaml <this-file> --config /Users/4d/Documents/GitHub/projects/ongoing/DAF/cr-bio/software/src/lecture_create/biol-1.yaml
 
 metadata:
   author: "Dr. Daniel Ari Friedman"
@@ -78,10 +78,10 @@ sections:
       kind: bullets
       title: "Apply the Idea"
       bullets:
-        - "Start with an observation: Why do cells package DNA into chromosomes?"
-        - "Build a claim: Chromosomes organize DNA so cells can divide accurately."
-        - "Check the claim: Mitosis produces two genetically identical daughter cells for growth and repair. Meiosis makes four haploid gametes."
-        - "Revise the explanation when the evidence does not fit"
+        - "Observation: Why do cells package DNA into chromosomes?"
+        - "Claim: Chromosomes organize DNA so cells can divide accurately."
+        - "Evidence check: Mitosis produces two genetically identical daughter cells for growth and repair. Meiosis makes four haploid gametes."
+        - "Revision: if the evidence contradicts the claim, name the biological mechanism that must change."
 
   - id: "module-08-cellular-genetics_terms_01"
     narration: "Key terms for this module (page 1 of 3) include Chromosome, Cell cycle, Mitosis. Treat each term as a handle for reasoning — a term should help you explain a claim or observation, not just label it."
@@ -122,6 +122,14 @@ sections:
         - "Evidence surface for: Chromosomes and cell cycle"
         - "Connect module ideas to hands-on evidence"
 
+  - id: "module-08-cellular-genetics_lab_evidence"
+    narration: "The Lab 08 Cellular Genetics lab produces concrete evidence for this module. Focus on the measurable outcome: what changed, by how much, and why it matters. Connect the lab result back to the central claim. A strong answer names the variable, the observation, and the biological mechanism."
+    visual:
+      kind: image
+      title: "Lab Evidence"
+      subtitle: "What the lab shows"
+      image_path: "png/module-08-lab-evidence.png"
+
   - id: "module-08-cellular-genetics_retrieval"
     narration: "Pause here for retrieval practice. Answer the prompts without looking at your notes first, then compare to the checks. Retrieval practice is one of the most effective study strategies — it strengthens memory more than re-reading."
     visual:
@@ -145,19 +153,22 @@ sections:
     narration: "Before you leave this module, make the study work active. Start with the module's central claim before memorizing vocabulary; Use the same-numbered lab as the evidence check for the module; Explain one mechanism in words, then redraw it as a simple diagram. Then answer this exit question without notes: What evidence would distinguish mitosis from meiosis? A strong response names a mechanism, points to evidence, and states what would change the explanation. If your answer is only a definition list, connect the terms into a cause-and-evidence chain and try again."
     visual:
       kind: bullets
-      title: "Study Move"
+      title: "Active Study Protocol"
       bullets:
         - "Start with the module's central claim before memorizing vocabulary."
         - "Use the same-numbered lab as the evidence check for the module."
         - "Explain one mechanism in words, then redraw it as a simple diagram."
+        - "Close the notes. Answer the exit question from memory."
         - "Exit question: What evidence would distinguish mitosis from meiosis?"
+        - "Check your answer against the module keys; revise until the chain of evidence is clear."
 
   - id: "module-08-cellular-genetics_synthesis"
     narration: "To synthesize this module: explain chromosomes and cell cycle using evidence from the Lab 08 Cellular Genetics lab. Your explanation must include Chromosome, Cell cycle, Mitosis, Meiosis, Gamete, Crossing over, Independent assortment, Nondisjunction. Revision prompt: what evidence would change your explanation? Your final explanation should connect the central claim to a mechanism, an observation, and a revision rule."
     visual:
       kind: bullets
-      title: "Synthesis"
+      title: "Synthesis and Revision"
       bullets:
         - "Explain chromosomes and cell cycle using evidence from the Lab 08 Cellular Genetics lab"
         - "Must include: Chromosome, Cell cycle, Mitosis, Meiosis, Gamete, Crossing over, Independent assortment, Nondisjunction"
+        - "Revision rule: if the lab evidence contradicts your explanation, name the mechanism that must change."
         - "What evidence would change your explanation?"

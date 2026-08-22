@@ -5,7 +5,7 @@
       "id": "module-16-capstone-systems-synthesis",
       "include": "generated",
       "kind": "module",
-      "sha256": "630754f100493fb61fc1ec9aa82935854cdddb1e7ea1bf6de48cf12676ad5b71",
+      "sha256": "e1fb72e48d87b77906f6271cd855ee6a953aab29b4e9b75e6f85e0c6e90f35b6",
       "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-practice-quiz.docx"
     },
     {
@@ -21,7 +21,7 @@
       "id": "module-16-capstone-systems-synthesis",
       "include": "generated",
       "kind": "module",
-      "sha256": "48d62093a6954f2858c3720b40df6bed18e4549fb4ea4c95a62aae5e784290fb",
+      "sha256": "09cf438c8e909475f1f1fe43d71e868ad940fdf67304fe946adeb0d73a93a833",
       "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-questions.docx"
     },
     {
@@ -29,7 +29,7 @@
       "id": "module-16-capstone-systems-synthesis",
       "include": "generated",
       "kind": "module",
-      "sha256": "e5f5c400cdf628c896c4b7ca329b7359e6713380894b7f09d906e17550a98bce",
+      "sha256": "86a54ec41316119f175690104cb23bc42751d339e3361aba1376e4aeac9503c8",
       "source": "course_development/biol-1/course/module-16-capstone-systems-synthesis/output/study-guides/module-16-capstone-systems-synthesis-key-points.docx"
     },
     {
@@ -77,7 +77,7 @@
       "id": "module-16-capstone-systems-synthesis",
       "include": "lecture",
       "kind": "module",
-      "sha256": "6bb20b33c997ad147dd124489028c99c22a979b58b31556e40e87a62a582fa58",
+      "sha256": "083bf26cb29c2ef2bc372eb01927003cd59298abeb549e7fcad3bb042deb99be",
       "source": "output/lectures/module-16-capstone-systems-synthesis/module-16-capstone-systems-synthesis.yaml"
     }
   ],

@@ -5,7 +5,7 @@
     "day": "Thu",
     "materials": [
       {
-        "id": "practice-test-03",
+        "id": "practice-test-02",
         "include": [
           "source"
         ],
@@ -25,9 +25,9 @@
         "used": true
       }
     ],
-    "notes": "Practice Test 03 covers Modules 7-11.",
+    "notes": "Practice Test 02 covers Modules 7-11.",
     "status": "class",
-    "title": "Practice Test 03; Exam 02 review",
+    "title": "Practice Test 02; Exam 02 review",
     "week": 7
   }
 }
