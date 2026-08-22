@@ -355,10 +355,13 @@ def _render_quiz(module: ModuleContent) -> str:
     lines.append("")
     for idx, quiz in enumerate(module.practice_quiz, 1):
         lines.append(f"{idx}. {quiz.question}")
+        # Four-space indent: a nested bullet under an ordered-list item needs
+        # at least four leading spaces in CommonMark; three spaces flatten the
+        # option/answer/why bullets into the numbered question items.
         for letter, option in zip(("A", "B", "C", "D"), quiz.options):
-            lines.append(f"   - {letter}. {option}")
-        lines.append(f"   - Answer: {quiz.answer}")
-        lines.append(f"   - Why: {quiz.explanation}")
+            lines.append(f"    - {letter}. {option}")
+        lines.append(f"    - Answer: {quiz.answer}")
+        lines.append(f"    - Why: {quiz.explanation}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
@@ -444,9 +447,15 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
     for edge in spec.edges:
         x1, y1 = position_by_id[edge.source]
         x2, y2 = position_by_id[edge.target]
+        mid_x = (x1 + x2) / 2
+        mid_y = (y1 + y2) / 2
+        # Offset edge labels toward the source node to reduce overlap with the central claim
+        if 330 < mid_x < 870 and 282 < mid_y < 448:
+            mid_x = x1 + (mid_x - x1) * 0.25
+            mid_y = y1 + (mid_y - y1) * 0.25
         edges.append(
             f'<path d="M {x1:.1f} {y1:.1f} L {x2:.1f} {y2:.1f}" class="edge" />'
-            f'<text x="{(x1 + x2) / 2:.1f}" y="{(y1 + y2) / 2:.1f}" '
+            f'<text x="{mid_x:.1f}" y="{mid_y:.1f}" '
             f'class="edge-label">{html.escape(edge.label)}</text>'
         )
     nodes = []
@@ -460,11 +469,11 @@ def _render_concept_map_svg(module: ModuleContent, image: GeneratedImage) -> str
             f'class="cluster-pill cluster-{cluster}" />'
             f'<text x="{x:.1f}" y="{y - 29:.1f}" class="cluster-label" text-anchor="middle">'
             f"{html.escape(node.cluster)}</text>"
-            f"{_svg_wrapped_text(node.label, x, y - 4, 21, 18, 'node-label', anchor='middle', max_lines=2)}"
-            f"{_svg_wrapped_text(node.detail, x, y + 30, 28, 13, 'node-detail', anchor='middle', max_lines=2)}"
+            f"{_svg_wrapped_text(node.label, x, y - 8, 24, 17, 'node-label', anchor='middle', max_lines=2)}"
+            f"{_svg_wrapped_text(node.detail, x, y + 26, 34, 13, 'node-detail', anchor='middle', max_lines=3)}"
             f"</g>"
         )
-    legend = _concept_cluster_legend(spec, 72, 146)
+    legend = _concept_cluster_legend(spec, 80, 146)
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
   <title>{title}</title>
   <desc>{desc}</desc>
@@ -500,14 +509,14 @@ def _render_process_model_svg(module: ModuleContent, image: GeneratedImage) -> s
     arrows = []
     for idx, stage in enumerate(spec.stages):
         x = start_x + idx * (card_width + gap)
-        y = 312
+        y = 324
         stages.append(
             f'<g class="stage-card"><rect x="{x:.1f}" y="{y:.1f}" width="{card_width}" height="174" '
             f'rx="24" class="stage-card-bg" />'
             f'<circle cx="{x + 28:.1f}" cy="{y + 30:.1f}" r="18" class="stage-dot" />'
             f'<text x="{x + 28:.1f}" y="{y + 36:.1f}" class="stage-num" text-anchor="middle">{idx + 1}</text>'
-            f"{_svg_wrapped_text(stage.label, x + 20, y + 70, 17, 17, 'stage-label', max_lines=2)}"
-            f"{_svg_wrapped_text(stage.detail, x + 20, y + 112, 20, 13, 'stage-detail', max_lines=3)}"
+            f"{_svg_wrapped_text(stage.label, x + 16, y + 66, 26, 17, 'stage-label', max_lines=2)}"
+            f"{_svg_wrapped_text(stage.detail, x + 16, y + 108, 34, 13, 'stage-detail', max_lines=3)}"
             f"</g>"
         )
         if idx < count - 1:
@@ -523,22 +532,22 @@ def _render_process_model_svg(module: ModuleContent, image: GeneratedImage) -> s
   <rect class="bg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" />
   <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
   <text x="84" y="100" class="eyebrow">Module {module.number:02d} / Process Model</text>
-  <text x="84" y="148" class="title-text">{title}</text>
-  <rect x="84" y="182" width="318" height="92" rx="24" class="side-card" />
-  <text x="110" y="216" class="card-kicker">Inputs</text>
-  {_svg_bullets(spec.inputs, 110, 244, 30, 15, "mini-text", max_items=3)}
-  <rect x="798" y="182" width="318" height="92" rx="24" class="side-card" />
-  <text x="824" y="216" class="card-kicker">Outputs</text>
-  {_svg_bullets(spec.outputs, 824, 244, 30, 15, "mini-text", max_items=3)}
-  <text x="84" y="292" class="card-kicker">Reasoning sequence</text>
+  {_svg_wrapped_text(image.title, 84, 142, 52, 34, "title-text", max_lines=2)}
+  <rect x="84" y="178" width="340" height="112" rx="24" class="side-card" />
+  <text x="110" y="206" class="card-kicker">Inputs</text>
+  {_svg_bullets(spec.inputs, 110, 228, 36, 13, "mini-text", max_items=3, max_lines_per_item=2)}
+  <rect x="776" y="178" width="340" height="112" rx="24" class="side-card" />
+  <text x="802" y="206" class="card-kicker">Outputs</text>
+  {_svg_bullets(spec.outputs, 802, 228, 36, 13, "mini-text", max_items=3, max_lines_per_item=2)}
+  <text x="84" y="306" class="card-kicker">Reasoning sequence</text>
   {"".join(arrows)}
   {"".join(stages)}
   <rect x="84" y="538" width="500" height="94" rx="22" class="feedback-card" />
   <text x="112" y="570" class="card-kicker">Feedback</text>
-  {_svg_wrapped_text("; ".join(spec.feedbacks), 112, 600, 56, 16, "mini-text", max_lines=2)}
+  {_svg_wrapped_text("; ".join(spec.feedbacks), 112, 600, 50, 14, "mini-text", max_lines=3)}
   <rect x="616" y="538" width="500" height="94" rx="22" class="feedback-card" />
   <text x="644" y="570" class="card-kicker">Constraint</text>
-  {_svg_wrapped_text("; ".join(spec.constraints or ("Use evidence before claims.",)), 644, 600, 56, 16, "mini-text", max_lines=2)}
+  {_svg_wrapped_text("; ".join(spec.constraints or ("Use evidence before claims.",)), 644, 600, 50, 14, "mini-text", max_lines=3)}
   <text x="84" y="668" class="footer">Linked lab: {html.escape(module.lab)}</text>
 </svg>
 '''
@@ -554,12 +563,12 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
     prompt_cards = []
     for idx, prompt in enumerate(spec.prompts[:4]):
         x = 92 + (idx % 2) * 512
-        y = 216 + (idx // 2) * 154
+        y = 222 + (idx // 2) * 152
         prompt_cards.append(
             f'<rect x="{x}" y="{y}" width="462" height="124" rx="26" class="prompt-card" />'
             f'<text x="{x + 28}" y="{y + 38}" class="stage-num">Q{idx + 1}</text>'
-            f"{_svg_wrapped_text(prompt.prompt, x + 28, y + 66, 45, 17, 'prompt-text', max_lines=2)}"
-            f"{_svg_wrapped_text('Check: ' + prompt.check, x + 28, y + 112, 52, 13, 'check-text', max_lines=1)}"
+            f"{_svg_wrapped_text(prompt.prompt, x + 28, y + 66, 50, 17, 'prompt-text', max_lines=2)}"
+            f"{_svg_wrapped_text('Check: ' + prompt.check, x + 28, y + 112, 60, 13, 'check-text', max_lines=2)}"
         )
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}" role="img" aria-label="{title}">
   <title>{title}</title>
@@ -569,15 +578,15 @@ def _render_retrieval_card_svg(module: ModuleContent, image: GeneratedImage) -> 
   <rect class="bg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" />
   <path class="halo" d="M44 72 H1156 V648 H44 Z" />
   <text x="82" y="92" class="eyebrow">Module {module.number:02d} / Retrieval Card</text>
-  <text x="82" y="142" class="title-text">{title}</text>
-  <rect x="82" y="166" width="1026" height="36" rx="18" class="retrieval-step-strip" />
-  <text x="120" y="190" class="routine-text">1 Cover notes</text>
-  <text x="354" y="190" class="routine-text">2 Answer aloud</text>
-  <text x="604" y="190" class="routine-text">3 Cite evidence</text>
-  <text x="844" y="190" class="routine-text">4 Revise</text>
-  <rect x="692" y="78" width="416" height="76" rx="22" class="routine-card" />
-  <text x="720" y="108" class="card-kicker">Routine</text>
-  <text x="720" y="134" class="routine-text">Cover notes -> answer aloud -> cite evidence -> revise</text>
+  {_svg_wrapped_text(image.title, 82, 132, 40, 32, "title-text", max_lines=2)}
+  <rect x="82" y="172" width="1026" height="36" rx="18" class="retrieval-step-strip" />
+  <text x="120" y="196" class="routine-text">1 Cover notes</text>
+  <text x="354" y="196" class="routine-text">2 Answer aloud</text>
+  <text x="604" y="196" class="routine-text">3 Cite evidence</text>
+  <text x="844" y="196" class="routine-text">4 Revise</text>
+  <rect x="860" y="78" width="284" height="82" rx="22" class="routine-card" />
+  <text x="884" y="106" class="card-kicker">Routine</text>
+  {_svg_wrapped_text("Cover notes -> answer aloud -> cite evidence -> revise", 884, 128, 28, 14, "routine-text", max_lines=2)}
   {"".join(prompt_cards)}
   <rect x="92" y="548" width="462" height="86" rx="24" class="side-card" />
   <text x="120" y="582" class="card-kicker">Terms to use</text>
@@ -784,13 +793,13 @@ def _concept_cluster_legend(spec: ConceptMapSpec, x: float, y: float) -> str:
             cluster for cluster in clusters if cluster not in spec.clusters
         ]
     items = []
-    for idx, cluster in enumerate(clusters[:6]):
-        item_x = x + idx * 164
+    for idx, cluster in enumerate(clusters[:5]):
+        item_x = x + idx * 200
         slug = _cluster_slug(cluster)
         items.append(
-            f'<g class="legend-item"><rect x="{item_x:.1f}" y="{y:.1f}" width="148" height="28" '
+            f'<g class="legend-item"><rect x="{item_x:.1f}" y="{y:.1f}" width="160" height="28" '
             f'rx="14" class="cluster-pill cluster-{slug}" />'
-            f'<text x="{item_x + 74:.1f}" y="{y + 19:.1f}" class="legend-text" '
+            f'<text x="{item_x + 80:.1f}" y="{y + 19:.1f}" class="legend-text" '
             f'text-anchor="middle">{html.escape(cluster)}</text></g>'
         )
     return f'<g class="concept-legend">{"".join(items)}</g>'
@@ -863,7 +872,7 @@ def _svg_style(palette: dict[str, str]) -> str:
     .node-label {{ fill: {palette["ink"]}; font: 800 20px Georgia, serif; }}
     .node-detail {{ fill: {palette["muted"]}; font: 14px Georgia, serif; }}
     .edge {{ stroke: {palette["accent"]}; stroke-width: 4; stroke-linecap: round; opacity: 0.72; marker-end: url(#arrowhead); }}
-    .edge-label {{ fill: {palette["accent"]}; font: 700 13px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: {palette["bg"]}; stroke-width: 4; }}
+    .edge-label {{ fill: {palette["accent"]}; font: 700 12px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: {palette["bg"]}; stroke-width: 5; }}
     .stage-dot {{ fill: {palette["accent2"]}; }}
     .stage-num {{ fill: white; font: 900 18px Georgia, serif; }}
     .stage-label {{ fill: {palette["ink"]}; font: 800 18px Georgia, serif; }}
@@ -954,15 +963,25 @@ def _svg_bullets(
     css_class: str,
     *,
     max_items: int,
+    max_lines_per_item: int | None = None,
 ) -> str:
-    lines = []
+    result = []
+    dy = y
     for idx, item in enumerate(items[:max_items]):
-        lines.append(
-            _svg_wrapped_text(
-                f"• {item}", x, y + idx * line_height, max_chars, line_height, css_class
-            )
+        wrapped = _svg_wrapped_text(
+            f"• {item}",
+            x,
+            dy,
+            max_chars,
+            line_height,
+            css_class,
+            max_lines=max_lines_per_item,
         )
-    return "".join(lines)
+        result.append(wrapped)
+        # Advance by the number of wrapped lines
+        lines_count = len(_wrap_text(f"• {item}", max_chars, max_lines_per_item))
+        dy += lines_count * line_height
+    return "".join(result)
 
 
 def _table(raw: dict[str, Any], key: str, manifest: Path) -> dict[str, Any]:
