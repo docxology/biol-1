@@ -307,8 +307,13 @@ def render_module_slide_deck(
     outputs[1].write_text(notes_html, encoding="utf-8")
     from weasyprint import HTML
 
-    HTML(string=full_html, base_url=str(deck.module.module_dir)).write_pdf(outputs[2])
-    HTML(string=notes_html, base_url=str(deck.module.module_dir)).write_pdf(outputs[3])
+    from src.shared.pdf_font_config import FONT_CONFIG
+    HTML(string=full_html, base_url=str(deck.module.module_dir)).write_pdf(
+        outputs[2], font_config=FONT_CONFIG
+    )
+    HTML(string=notes_html, base_url=str(deck.module.module_dir)).write_pdf(
+        outputs[3], font_config=FONT_CONFIG
+    )
     return {
         "module": deck.module.slug,
         "outputs": [str(path) for path in outputs],

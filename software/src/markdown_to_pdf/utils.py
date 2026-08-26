@@ -39,18 +39,8 @@ for _library_name in (
             break
 
 from weasyprint import CSS, HTML  # noqa: E402
-from weasyprint.text.fonts import FontConfiguration  # noqa: E402
 
-# WeasyPrint creates one PangoFcFontMap per FontConfiguration. When every
-# render builds its own font map and drops it mid-process (the default), GC
-# finalization order can destroy the map's HarfBuzz faces while a later
-# teardown pass still walks them (hb_face_destroy -> SIGSEGV inside
-# hb_ot_face_t::fini). This crashes long pipelines intermittently (~30-50%
-# of multi-document runs observed on the pango 1.58 / harfbuzz 14.x
-# Homebrew stack, macOS arm64). One process-wide FontConfiguration keeps a
-# single stable font map alive for the process lifetime and eliminates the
-# racy teardown entirely; verified by stress runs (0 crashes in 720 renders).
-FONT_CONFIG = FontConfiguration()
+from src.shared.pdf_font_config import FONT_CONFIG
 
 
 def markdown_to_html(markdown_text: str, extensions: list[str] | None = None) -> str:

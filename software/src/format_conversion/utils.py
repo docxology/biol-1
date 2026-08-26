@@ -82,8 +82,9 @@ def convert_html_to_pdf(input_path: Path, output_path: Path) -> None:
     """
     from weasyprint import HTML
 
+    from src.shared.pdf_font_config import FONT_CONFIG
     html_content = input_path.read_text(encoding="utf-8")
-    HTML(string=html_content).write_pdf(output_path)
+    HTML(string=html_content).write_pdf(output_path, font_config=FONT_CONFIG)
 
 
 def convert_text_to_pdf(input_path: Path, output_path: Path) -> None:
@@ -109,7 +110,8 @@ def convert_text_to_pdf(input_path: Path, output_path: Path) -> None:
     <pre>{html.escape(text_content)}</pre>
 </body>
 </html>"""
-    HTML(string=html_content).write_pdf(output_path)
+    from src.shared.pdf_font_config import FONT_CONFIG
+    HTML(string=html_content).write_pdf(output_path, font_config=FONT_CONFIG)
 
 
 def convert_text_to_html(input_path: Path, output_path: Path) -> None:

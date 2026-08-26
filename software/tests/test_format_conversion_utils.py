@@ -149,7 +149,7 @@ class TestConvertTextToPdf:
             def __init__(self, string):
                 captured["string"] = string
 
-            def write_pdf(self, output_path):
+            def write_pdf(self, output_path, font_config=None):
                 Path(output_path).write_bytes(b"%PDF-fake")
 
         monkeypatch.setattr("weasyprint.HTML", FakeHTML)

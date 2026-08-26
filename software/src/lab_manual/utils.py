@@ -8,6 +8,8 @@ from typing import Any
 import markdown
 from weasyprint import CSS, HTML
 
+from src.shared.pdf_font_config import FONT_CONFIG
+
 from . import config
 
 
@@ -453,7 +455,7 @@ def html_to_pdf(html_content: str, css_content: str, output_path: Path) -> None:
     """
     html = HTML(string=html_content)
     css = CSS(string=css_content)
-    html.write_pdf(output_path, stylesheets=[css])
+    html.write_pdf(output_path, stylesheets=[css], font_config=FONT_CONFIG)
 
 
 def get_output_path(input_path: Path, output_dir: Path, extension: str = ".pdf") -> Path:
