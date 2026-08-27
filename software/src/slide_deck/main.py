@@ -502,10 +502,10 @@ body {{ margin: 0; background: #f7f8f4; color: #17211c; font-family: Avenir Next
 .eyebrow {{ margin: 0 0 .18in; font-size: 13pt; text-transform: uppercase; letter-spacing: .11em; color: #79513c; }}
 h1 {{ margin: 0 0 .28in; font-family: Georgia, serif; font-size: 34pt; line-height: 1.02; color: #102820; }}
 ul {{ list-style: none; padding: 0; margin: 0; display: grid; gap: .14in; }}
-li {{ font-size: 15pt; line-height: 1.25; padding-left: .2in; position: relative; }}
+li {{ font-size: 13pt; line-height: 1.2; padding-left: .2in; position: relative; }}
 li::before {{ content: ""; position: absolute; left: 0; top: .28em; width: .08in; height: .08in; border-radius: 50%; background: #bb5a3a; }}
-.visual-frame {{ z-index: 1; min-height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; display: flex; align-items: center; justify-content: center; overflow: hidden; }}
-.embedded-svg svg {{ width: 100%; max-height: 7.25in; display: block; }}
+.visual-frame {{ z-index: 1; height: 7.8in; border: 1px solid rgba(32, 55, 47, .22); border-radius: .22in; background: rgba(255,255,255,.72); padding: .22in; overflow: hidden; }}
+.embedded-svg svg {{ width: 100%; height: auto; max-height: 6.9in; display: block; }}
 .module-pathway {{ width: 100%; display: grid; gap: .18in; }}
 .module-pathway header, .module-pathway footer {{ background: #102820; color: #fff7d6; border-radius: .16in; padding: .16in .2in; }}
 .module-pathway header strong {{ display: block; font: 800 32pt Georgia, serif; }}
