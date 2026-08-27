@@ -1,0 +1,323 @@
+1
+00:00:00,400 --> 00:00:05,979
+Welcome to BIOL-1 General Biology at College of the Redwoods, Pelican Bay.
+
+2
+00:00:05,979 --> 00:00:08,919
+Module 01: Biology - The Study of Life.
+
+3
+00:00:08,919 --> 00:00:12,538
+The connected lab is Lab 01 Measurement Methods.
+
+4
+00:00:12,538 --> 00:00:18,645
+Here is the central idea: Biology - The Study of Life explains life criteria with
+
+5
+00:00:18,645 --> 00:00:22,792
+measurement-based scientific explanation. Let us begin.
+
+6
+00:00:23,542 --> 00:00:28,158
+By the end of this module you should be able to: Distinguish living systems from
+
+7
+00:00:28,158 --> 00:00:33,004
+nonliving examples using multiple characteristics; Separate hypotheses, predictions,
+
+8
+00:00:33,004 --> 00:00:37,850
+observations, and conclusions in a scientific test; Place biological examples at the
+
+9
+00:00:37,850 --> 00:00:42,119
+correct scale of organization; Identify variables and evidence in a simple
+
+10
+00:00:42,119 --> 00:00:46,331
+investigation; Revise a biological explanation when new evidence appears.
+
+11
+00:00:46,331 --> 00:00:49,966
+Keep these objectives in mind as you work through the material.
+
+12
+00:00:50,716 --> 00:00:52,509
+This module covers 5 topics.
+
+13
+00:00:52,509 --> 00:00:57,696
+What counts as life — Life is recognized by shared properties: cells, energy use,
+
+14
+00:00:57,696 --> 00:01:00,898
+response, reproduction, regulation, and evolution.
+
+15
+00:01:00,898 --> 00:01:05,829
+Science as a way of testing — Scientific claims are tested with observations,
+
+16
+00:01:05,829 --> 00:01:08,967
+comparisons, variables, and repeatable reasoning.
+
+17
+00:01:08,967 --> 00:01:14,026
+Organization from cells to ecosystems — Biological systems are organized across
+
+18
+00:01:14,026 --> 00:01:16,267
+scales from molecules to biosphere.
+
+19
+00:01:16,267 --> 00:01:21,646
+Evidence, variables, and measurement — Data become useful when measurements are tied
+
+20
+00:01:21,646 --> 00:01:24,207
+to a clear question and source of error.
+
+21
+00:01:24,207 --> 00:01:29,266
+How biological explanations improve — Strong explanations connect evidence to a
+
+22
+00:01:29,266 --> 00:01:31,315
+claim and stay open to revision.
+
+23
+00:01:31,315 --> 00:01:35,860
+Each topic builds on the one before it, forming a coherent explanation.
+
+24
+00:01:36,610 --> 00:01:39,151
+Here is the concept map for module 01.
+
+25
+00:01:39,151 --> 00:01:44,299
+The central claim is: Biology - The Study of Life explains life criteria with
+
+26
+00:01:44,299 --> 00:01:47,040
+measurement-based scientific explanation.
+
+27
+00:01:47,040 --> 00:01:49,982
+Notice how each node connects to the others.
+
+28
+00:01:49,982 --> 00:01:55,598
+This is the structure of biological reasoning — not a list to memorize, but a map of
+
+29
+00:01:55,598 --> 00:01:57,538
+how ideas support each other.
+
+30
+00:01:58,288 --> 00:02:03,768
+This process model shows the reasoning sequence for biology - the study of life.
+
+31
+00:02:03,768 --> 00:02:06,577
+Follow the stages from inputs to outputs.
+
+32
+00:02:06,577 --> 00:02:11,578
+The Lab 01 Measurement Methods lab gives you evidence to test each stage.
+
+33
+00:02:11,578 --> 00:02:16,168
+At each transition, ask: what would change my mind about this step?
+
+34
+00:02:16,918 --> 00:02:21,048
+Now apply the module instead of only repeating its vocabulary.
+
+35
+00:02:21,048 --> 00:02:26,643
+Start with a question: Which characteristics together make something count as alive?
+
+36
+00:02:26,643 --> 00:02:30,906
+Treat that question as an observation that needs an explanation.
+
+37
+00:02:30,906 --> 00:02:36,501
+A useful first claim is: Life is recognized by shared properties: cells, energy use,
+
+38
+00:02:36,501 --> 00:02:39,832
+response, reproduction, regulation, and evolution.
+
+39
+00:02:39,832 --> 00:02:43,362
+Then ask what evidence could support or challenge it.
+
+40
+00:02:43,362 --> 00:02:48,025
+The first practice check reminds us that No single trait defines life.
+
+41
+00:02:48,025 --> 00:02:53,420
+Living things share a set of properties together: cells, metabolism, homeostasis,
+
+42
+00:02:53,420 --> 00:02:55,951
+response, reproduction, and evolution.
+
+43
+00:02:55,951 --> 00:03:01,414
+This claim, evidence, and revision cycle is the transferable skill for the module.
+
+44
+00:03:02,164 --> 00:03:07,336
+Key terms for this module (page 1 of 3) include Cell, Homeostasis, Metabolism.
+
+45
+00:03:07,336 --> 00:03:12,773
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+46
+00:03:12,773 --> 00:03:15,028
+or observation, not just label it.
+
+47
+00:03:15,778 --> 00:03:20,931
+Key terms for this module (page 2 of 3) include Hypothesis, Variable, Evidence.
+
+48
+00:03:20,931 --> 00:03:26,280
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+49
+00:03:26,280 --> 00:03:28,498
+or observation, not just label it.
+
+50
+00:03:29,248 --> 00:03:33,539
+Key terms for this module (page 3 of 3) include Theory, Evolution.
+
+51
+00:03:33,539 --> 00:03:38,870
+Treat each term as a handle for reasoning — a term should help you explain a claim
+
+52
+00:03:38,870 --> 00:03:41,080
+or observation, not just label it.
+
+53
+00:03:41,830 --> 00:03:45,816
+The lab connected to this module is Lab 01 Measurement Methods.
+
+54
+00:03:45,816 --> 00:03:50,308
+The evidence you collect should test or illustrate what counts as life.
+
+55
+00:03:50,308 --> 00:03:55,307
+You should leave the lab with a concrete observation, comparison, or model tied
+
+56
+00:03:55,307 --> 00:03:57,142
+directly to the module claim.
+
+57
+00:03:57,892 --> 00:03:59,993
+Pause here for retrieval practice.
+
+58
+00:03:59,993 --> 00:04:05,123
+Answer the prompts without looking at your notes first, then compare to the checks.
+
+59
+00:04:05,123 --> 00:04:10,129
+Retrieval practice is one of the most effective study strategies — it strengthens
+
+60
+00:04:10,129 --> 00:04:11,860
+memory more than re-reading.
+
+61
+00:04:12,610 --> 00:04:17,113
+Use these practice quiz questions as formative feedback.
+
+62
+00:04:17,113 --> 00:04:19,606
+Answer key: 1=A, 2=B, 3=C, 4=D.
+
+63
+00:04:19,606 --> 00:04:25,718
+If you miss a question, return to the module keys and find the evidence that
+
+64
+00:04:25,718 --> 00:04:27,970
+supports the correct answer.
+
+65
+00:04:28,720 --> 00:04:32,102
+Before you leave this module, make the study work active.
+
+66
+00:04:32,102 --> 00:04:36,552
+Start with the module's central claim before memorizing vocabulary; Use the
+
+67
+00:04:36,552 --> 00:04:41,299
+same-numbered lab as the evidence check for the module; Explain one mechanism in
+
+68
+00:04:41,299 --> 00:04:43,791
+words, then redraw it as a simple diagram.
+
+69
+00:04:43,791 --> 00:04:48,538
+Then answer this exit question without notes: How should a claim change when new
+
+70
+00:04:48,538 --> 00:04:49,738
+evidence appears?
+
+71
+00:04:49,738 --> 00:04:54,366
+A strong response names a mechanism, points to evidence, and states what would
+
+72
+00:04:54,366 --> 00:04:55,731
+change the explanation.
+
+73
+00:04:55,731 --> 00:04:59,647
+If your answer is only a definition list, connect the terms into a
+
+74
+00:04:59,647 --> 00:05:01,768
+cause-and-evidence chain and try again.
+
+75
+00:05:02,518 --> 00:05:08,036
+To synthesize this module: explain what counts as life using evidence from the Lab
+
+76
+00:05:08,036 --> 00:05:09,853
+01 Measurement Methods lab.
+
+77
+00:05:09,853 --> 00:05:15,371
+Your explanation must include Cell, Homeostasis, Metabolism, Hypothesis, Variable,
+
+78
+00:05:15,371 --> 00:05:17,255
+Evidence, Theory, Evolution.
+
+79
+00:05:17,255 --> 00:05:21,359
+Revision prompt: what evidence would change your explanation?
+
+80
+00:05:21,359 --> 00:05:26,338
+Your final explanation should connect the central claim to a mechanism, an
+
+81
+00:05:26,338 --> 00:05:28,558
+observation, and a revision rule.
