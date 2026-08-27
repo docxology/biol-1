@@ -308,6 +308,7 @@ def render_module_slide_deck(
     from weasyprint import HTML
 
     from src.shared.pdf_font_config import FONT_CONFIG
+
     HTML(string=full_html, base_url=str(deck.module.module_dir)).write_pdf(
         outputs[2], font_config=FONT_CONFIG
     )

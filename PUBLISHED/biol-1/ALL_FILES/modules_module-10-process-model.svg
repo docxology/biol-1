@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Module 10: Epigenetics Reasoning Sequence">
+  <title>Module 10: Epigenetics Reasoning Sequence</title>
+  <desc>Process model for Module 10: Epigenetics.</desc>
+  <style>
+    .bg { fill: #ecf4f2; }
+    .halo { fill: url(#wash); opacity: 0.92; }
+    .frame { fill: #fbfffd; stroke: #172d35; stroke-width: 3; }
+    .eyebrow { fill: #1f7a6d; font: 800 18px Georgia, serif; letter-spacing: 1.5px; text-transform: uppercase; }
+    .title-text { fill: #172d35; font: 800 38px Georgia, serif; }
+    .footer { fill: #4f6670; font: 16px Georgia, serif; }
+    .claim-card, .side-card, .feedback-card, .prompt-card, .routine-card, .stage-card-bg { fill: #fbfffd; stroke: #172d35; stroke-width: 2.5; filter: url(#shadow); }
+    .claim-kicker, .card-kicker { fill: #1f7a6d; font: 800 17px Georgia, serif; letter-spacing: 0.8px; text-transform: uppercase; }
+    .claim-text { fill: #172d35; font: 700 25px Georgia, serif; }
+    .node { fill: #fbfffd; stroke: #b55f24; stroke-width: 3; filter: url(#shadow); }
+    .node-claim { stroke: #1f7a6d; }
+    .node-mechanism { stroke: #b55f24; }
+    .node-evidence { stroke: #567d46; }
+    .node-vocabulary { stroke: #8067a9; }
+    .node-application { stroke: #b26b2f; }
+    .node-revision { stroke: #8a4351; }
+    .cluster-pill { stroke: none; opacity: 0.92; }
+    .cluster-claim { fill: #1f7a6d; }
+    .cluster-mechanism { fill: #b55f24; }
+    .cluster-evidence { fill: #6d9c57; }
+    .cluster-vocabulary { fill: #9b83c6; }
+    .cluster-application { fill: #d28942; }
+    .cluster-revision { fill: #b85d70; }
+    .cluster-label, .legend-text { fill: white; font: 800 11px Georgia, serif; letter-spacing: 1px; text-transform: uppercase; }
+    .node-label { fill: #172d35; font: 800 20px Georgia, serif; }
+    .node-detail { fill: #4f6670; font: 14px Georgia, serif; }
+    .edge { stroke: #1f7a6d; stroke-width: 4; stroke-linecap: round; opacity: 0.72; marker-end: url(#arrowhead); }
+    .edge-label { fill: #1f7a6d; font: 700 12px Georgia, serif; text-anchor: middle; paint-order: stroke; stroke: #ecf4f2; stroke-width: 5; }
+    .stage-dot { fill: #b55f24; }
+    .stage-num { fill: white; font: 900 18px Georgia, serif; }
+    .stage-label { fill: #172d35; font: 800 18px Georgia, serif; }
+    .stage-detail, .mini-text, .check-text { fill: #4f6670; font: 15px Georgia, serif; }
+    .arrow { fill: none; stroke: #b55f24; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrowhead); }
+    .prompt-text { fill: #172d35; font: 700 17px Georgia, serif; }
+    .routine-text { fill: #172d35; font: 700 16px Georgia, serif; }
+    .retrieval-step-strip { fill: #fbfffd; stroke: #b55f24; stroke-width: 2; opacity: 0.96; }
+    .palette-high-design { fill: #1f7a6d; }
+    @media print { .claim-card, .side-card, .feedback-card, .prompt-card, .routine-card, .node, .stage-card-bg { filter: none; } }
+    </style>
+  <defs>
+    <linearGradient id="wash" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbfffd" />
+      <stop offset="1" stop-color="#b55f24" stop-opacity="0.18" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#172d35" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#b55f24" />
+    </marker>
+    </defs>
+  <rect class="bg" width="1200" height="720" />
+  <rect x="48" y="48" width="1104" height="624" rx="42" class="frame" />
+  <text x="84" y="100" class="eyebrow">Module 10 / Process Model</text>
+  <text x="84.0" y="142.0" class="title-text"><tspan x="84.0" dy="0">Module 10: Epigenetics Reasoning Sequence</tspan></text>
+  <rect x="84" y="178" width="340" height="112" rx="24" class="side-card" />
+  <text x="110" y="206" class="card-kicker">Inputs</text>
+  <text x="110.0" y="228.0" class="mini-text"><tspan x="110.0" dy="0">• Gene regulation as control</tspan></text><text x="110.0" y="241.0" class="mini-text"><tspan x="110.0" dy="0">• DNA methylation</tspan></text><text x="110.0" y="254.0" class="mini-text"><tspan x="110.0" dy="0">• Evidence from</tspan><tspan x="110.0" dy="13">lab-10_epigenetics.md</tspan></text>
+  <rect x="776" y="178" width="340" height="112" rx="24" class="side-card" />
+  <text x="802" y="206" class="card-kicker">Outputs</text>
+  <text x="802.0" y="228.0" class="mini-text"><tspan x="802.0" dy="0">• Explain gene regulation as control</tspan><tspan x="802.0" dy="13">of gene activity.</tspan></text><text x="802.0" y="254.0" class="mini-text"><tspan x="802.0" dy="0">• Describe DNA methylation at an</tspan><tspan x="802.0" dy="13">introductory level.</tspan></text><text x="802.0" y="280.0" class="mini-text"><tspan x="802.0" dy="0">• Distinguish epigenetic regulation</tspan><tspan x="802.0" dy="13">from mutation.</tspan></text>
+  <text x="84" y="306" class="card-kicker">Reasoning sequence</text>
+  <path d="M 276.0 411.0 L 290.0 411.0" class="arrow" /><path d="M 486.0 411.0 L 500.0 411.0" class="arrow" /><path d="M 696.0 411.0 L 710.0 411.0" class="arrow" /><path d="M 906.0 411.0 L 920.0 411.0" class="arrow" />
+  <g class="stage-card"><rect x="84.0" y="324.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="112.0" cy="354.0" r="18" class="stage-dot" /><text x="112.0" y="360.0" class="stage-num" text-anchor="middle">1</text><text x="100.0" y="390.0" class="stage-label"><tspan x="100.0" dy="0">Gene regulation as control</tspan></text><text x="100.0" y="432.0" class="stage-detail"><tspan x="100.0" dy="0">Cells regulate which genes are</tspan><tspan x="100.0" dy="13">active rather than using every</tspan><tspan x="100.0" dy="13">gene equally.</tspan></text></g><g class="stage-card"><rect x="294.0" y="324.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="322.0" cy="354.0" r="18" class="stage-dot" /><text x="322.0" y="360.0" class="stage-num" text-anchor="middle">2</text><text x="310.0" y="390.0" class="stage-label"><tspan x="310.0" dy="0">DNA methylation</tspan></text><text x="310.0" y="432.0" class="stage-detail"><tspan x="310.0" dy="0">DNA methylation can reduce</tspan><tspan x="310.0" dy="13">transcription without changing</tspan><tspan x="310.0" dy="13">base sequence.</tspan></text></g><g class="stage-card"><rect x="504.0" y="324.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="532.0" cy="354.0" r="18" class="stage-dot" /><text x="532.0" y="360.0" class="stage-num" text-anchor="middle">3</text><text x="520.0" y="390.0" class="stage-label"><tspan x="520.0" dy="0">Histone and chromatin</tspan><tspan x="520.0" dy="17">change</tspan></text><text x="520.0" y="432.0" class="stage-detail"><tspan x="520.0" dy="0">Histone and chromatin changes</tspan><tspan x="520.0" dy="13">alter access to DNA.</tspan></text></g><g class="stage-card"><rect x="714.0" y="324.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="742.0" cy="354.0" r="18" class="stage-dot" /><text x="742.0" y="360.0" class="stage-num" text-anchor="middle">4</text><text x="730.0" y="390.0" class="stage-label"><tspan x="730.0" dy="0">Environment and expression</tspan></text><text x="730.0" y="432.0" class="stage-detail"><tspan x="730.0" dy="0">Environmental conditions can</tspan><tspan x="730.0" dy="13">influence gene expression</tspan><tspan x="730.0" dy="13">patterns.</tspan></text></g><g class="stage-card"><rect x="924.0" y="324.0" width="188" height="174" rx="24" class="stage-card-bg" /><circle cx="952.0" cy="354.0" r="18" class="stage-dot" /><text x="952.0" y="360.0" class="stage-num" text-anchor="middle">5</text><text x="940.0" y="390.0" class="stage-label"><tspan x="940.0" dy="0">Epigenetics versus</tspan><tspan x="940.0" dy="17">mutation</tspan></text><text x="940.0" y="432.0" class="stage-detail"><tspan x="940.0" dy="0">Epigenetic change affects gene</tspan><tspan x="940.0" dy="13">activity, while mutation changes</tspan><tspan x="940.0" dy="13">DNA sequence.</tspan></text></g>
+  <rect x="84" y="538" width="500" height="94" rx="22" class="feedback-card" />
+  <text x="112" y="570" class="card-kicker">Feedback</text>
+  <text x="112.0" y="600.0" class="mini-text"><tspan x="112.0" dy="0">lab-10_epigenetics.md evidence checks whether</tspan><tspan x="112.0" dy="14">students can explain histone and chromatin</tspan><tspan x="112.0" dy="14">change.; Retrieval questions reveal whether terms...</tspan></text>
+  <rect x="616" y="538" width="500" height="94" rx="22" class="feedback-card" />
+  <text x="644" y="570" class="card-kicker">Constraint</text>
+  <text x="644.0" y="600.0" class="mini-text"><tspan x="644.0" dy="0">Epigenetic regulation changes gene activity, not</tspan><tspan x="644.0" dy="14">the DNA sequence itself.; Epigenetic change</tspan><tspan x="644.0" dy="14">affects gene activity, while mutation changes DNA...</tspan></text>
+  <text x="84" y="668" class="footer">Linked lab: lab-10_epigenetics.md</text>
+</svg>

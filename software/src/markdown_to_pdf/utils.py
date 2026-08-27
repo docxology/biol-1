@@ -40,7 +40,7 @@ for _library_name in (
 
 from weasyprint import CSS, HTML  # noqa: E402
 
-from src.shared.pdf_font_config import FONT_CONFIG
+from src.shared.pdf_font_config import FONT_CONFIG  # noqa: E402
 
 
 def markdown_to_html(markdown_text: str, extensions: list[str] | None = None) -> str:
@@ -81,9 +81,7 @@ def html_to_pdf(html_content: str, css_content: str, output_path: Path) -> None:
     try:
         html_doc = HTML(string=html_content)
         css_doc = CSS(string=css_content)
-        html_doc.write_pdf(
-            output_path, stylesheets=[css_doc], font_config=FONT_CONFIG
-        )
+        html_doc.write_pdf(output_path, stylesheets=[css_doc], font_config=FONT_CONFIG)
     except Exception as e:
         raise OSError(f"Failed to generate PDF: {e}") from e
 
