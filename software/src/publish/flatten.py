@@ -91,6 +91,15 @@ def clean_published(published_dir: Path) -> None:
     Args:
         published_dir: Path to the PUBLISHED directory
     """
+    # Preserve repo-root README (course landing page) across clean/publish
+    # cycles: PUBLISHED/<course> is force-published as a git subtree, so any
+    # README there must survive regeneration or the public repo loses it.
+    preserved: dict[str, bytes] = {}
+    if published_dir.exists():
+        for item in published_dir.iterdir():
+            if item.is_file() and item.name.upper() == "README.MD":
+                preserved[item.name] = item.read_bytes()
+
     if published_dir.exists():
         for item in published_dir.iterdir():
             if item.name.startswith("."):
@@ -99,5 +108,11 @@ def clean_published(published_dir: Path) -> None:
                 shutil.rmtree(item)
             else:
                 item.unlink()
+
+    for name, payload in preserved.items():
+        target = published_dir / name
+        if not target.exists():
+            target.write_bytes(payload)
+            logger.info(f"Preserved {name} across clean")
 
     logger.info("Cleaned PUBLISHED directory")
