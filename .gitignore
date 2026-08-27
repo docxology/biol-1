@@ -48,3 +48,4 @@ software/logs/
 # Agent tooling (local only)
 .claude/
 .cursor/
+PROJECT_STATE_REPORT*.md
