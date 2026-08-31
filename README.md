@@ -56,3 +56,10 @@ No license file is present in this repository. Please contact the author before 
 
 - [`biol-8`](https://github.com/docxology/biol-8) — Human Anatomy and Physiology, same structure
 - [`biology_textbook`](https://github.com/docxology/biology_textbook) — an open, generatively-built introductory biology textbook (CC BY 4.0)
+
+---
+
+> **Agents, note:** This tree is GENERATED. Do not hand-edit files here; edit
+> source in `course_development/biol-1/` (module content lives in each module's
+> `module.toml`) and regenerate with `python publish.py --skip-git` from the repo
+> root. Wrong-path edits are silently overwritten by the next publish run.
