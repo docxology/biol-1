@@ -179,3 +179,18 @@ cd software && uv run python scripts/validate_repo_contracts.py
 ```
 
 See [software/docs/README.md](software/docs/README.md) for comprehensive documentation.
+
+---
+
+## Current State & Next Actions
+
+- **Status:** Active course BIOL-1 (Fall 2026, Pelican Bay), 16 modules; Spring 2026 archived. Manuscript work is under `docs/manuscript/` — read `docs/manuscript/MANUSCRIPT_STATUS.md` (verification path: read that file; do not infer from this README).
+- **Backlog / what to do next:** [`TASKS.md`](TASKS.md) is the canonical task index. Do not create new task lists elsewhere.
+- **Verify before you trust anything here:**
+  - Test gate (fast, from `software/`): `uv run pytest -q --no-cov` (authoritative inventory: `uv run pytest --collect-only -q`).
+  - Publish pipeline inspection (no writes): `python publish.py --dry-run`.
+  - Repo contract validation: `cd software && uv run python scripts/validate_repo_contracts.py`.
+
+## Historical Reports
+
+Dated project-state reports are gitignored and archived under `_archive/`; they are snapshots, not current documentation. Current state comes from the links above.
