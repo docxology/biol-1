@@ -1,3 +1,3 @@
-# full_flat
+# practice_tests — output
 
-Flat mirror of all published BIOL-1 files with `full_flat_`-prefixed names to avoid collisions. Generated; do not hand-edit.
+Generated practice tests and answer keys (PDF pairs). Regenerated from sources; do not hand-edit.

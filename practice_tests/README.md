@@ -1,3 +1,3 @@
-# practice_tests
+# practice_tests — output
 
-Published practice tests and keys (markdown + pdf). Generated; do not hand-edit.
+Generated practice tests and answer keys (PDF pairs). Regenerated from sources; do not hand-edit.

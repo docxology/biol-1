@@ -1,8 +1,8 @@
-# AGENTS.md — `cr-bio/PUBLISHED/biol-1/practice_tests`
+# AGENTS.md — `cr-bio/course_development/biol-1/course/practice_tests/output`
 
 Local-only path under `projects/ongoing/Teaching/cr-bio` (root `.gitignore` `projects/*`); never committed.
 ## Layout
-- `practice-test-0N.md/pdf` + `practice-test-0N_key.md/pdf`.
+- `practice-test-0N.pdf` + `practice-test-0N_key.pdf` (test + answer key) for each practice test.
 
 ## Invariants
-- GENERATED publication copy. Do not hand-edit; publish again instead.
+- GENERATED from practice-test sources. Do not hand-edit.

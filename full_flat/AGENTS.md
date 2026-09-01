@@ -1,8 +1,8 @@
-# AGENTS.md — `cr-bio/PUBLISHED/biol-1/full_flat`
+# AGENTS.md — `cr-bio/course_development/biol-1/course/practice_tests/output`
 
 Local-only path under `projects/ongoing/Teaching/cr-bio` (root `.gitignore` `projects/*`); never committed.
 ## Layout
-- Flat folder of all published BIOL-1 deliverables (pdf/docx/html/srt, some name-prefixed).
+- `practice-test-0N.pdf` + `practice-test-0N_key.pdf` (test + answer key) for each practice test.
 
 ## Invariants
-- GENERATED aggregate — a convenience mirror of the other published folders. Do not hand-edit; publish again instead.
+- GENERATED from practice-test sources. Do not hand-edit.
