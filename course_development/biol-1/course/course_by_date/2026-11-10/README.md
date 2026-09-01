@@ -1,10 +1,3 @@
-# 2026-11-10 — Practice Test 04; comprehensive final preparation
+# Class meeting — 2026-11-10
 
-- **Week:** 12
-- **Day:** Tue
-- **Status:** class
-- **Notes:** Practice Test 04 is comprehensive across Modules 1-16.
-
-This folder is generated from the BIOL-1 course date map.
-
-No source outputs are copied for this date.
+Generated materials and provenance for the BIOL-1 class meeting on 2026-11-10. See `meeting.json` for file provenance.

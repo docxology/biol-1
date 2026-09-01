@@ -1,10 +1,3 @@
-# 2026-11-05 — Exam 03: Modules 12-16
+# Class meeting — 2026-11-05
 
-- **Week:** 11
-- **Day:** Thu
-- **Status:** exam
-- **Notes:** Exam
-
-This folder is generated from the BIOL-1 course date map.
-
-No source outputs are copied for this date.
+Generated materials and provenance for the BIOL-1 class meeting on 2026-11-05. See `meeting.json` for file provenance.

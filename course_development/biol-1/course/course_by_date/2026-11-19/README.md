@@ -1,10 +1,3 @@
-# 2026-11-19 — Comprehensive final preparation
+# Class meeting — 2026-11-19
 
-- **Week:** 13
-- **Day:** Thu
-- **Status:** class
-- **Notes:** Review and practice
-
-This folder is generated from the BIOL-1 course date map.
-
-No source outputs are copied for this date.
+Generated materials and provenance for the BIOL-1 class meeting on 2026-11-19. See `meeting.json` for file provenance.

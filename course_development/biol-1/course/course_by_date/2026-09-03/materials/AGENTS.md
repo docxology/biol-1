@@ -1,0 +1,3 @@
+# AGENTS.md — materials for module-04-cells
+
+GENERATED teaching materials for this class meeting: `module-04-cells-key-points.docx`/`.pdf`, `module-04-cells-lecture.mp4` (rendered lecture video), `module-04-cells-module-04-cells.yaml` (LectureCreate render config generated from the module's `module.toml`; header shows the `lecturecreate from-yaml` command). Files on disk: module-04-cells-key-points.docx, module-04-cells-key-points.pdf, module-04-cells-lecture.mp4, module-04-cells-module-04-cells.yaml, module-04-cells-module-4-slides-full.pdf, module-04-cells-module-4-slides-notes.pdf, module-04-cells-practice-quiz.docx, module-04-cells-practice-quiz.pdf, module-04-cells-questions.docx, module-04-cells-questions.pdf. Do not hand-edit; regenerate via the course pipeline.

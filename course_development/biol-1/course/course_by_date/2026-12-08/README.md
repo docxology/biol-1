@@ -1,9 +1,3 @@
-# 2026-12-08 — Comprehensive final review
+# Class meeting — 2026-12-08
 
-- **Week:** 16
-- **Day:** Tue
-- **Status:** class
-
-This folder is generated from the BIOL-1 course date map.
-
-No source outputs are copied for this date.
+Generated materials and provenance for the BIOL-1 class meeting on 2026-12-08. See `meeting.json` for file provenance.

@@ -1,10 +1,3 @@
-# 2026-12-10 — Comprehensive Final Exam
+# Class meeting — 2026-12-10
 
-- **Week:** 16
-- **Day:** Thu
-- **Status:** exam
-- **Notes:** Final exam
-
-This folder is generated from the BIOL-1 course date map.
-
-No source outputs are copied for this date.
+Generated materials and provenance for the BIOL-1 class meeting on 2026-12-10. See `meeting.json` for file provenance.

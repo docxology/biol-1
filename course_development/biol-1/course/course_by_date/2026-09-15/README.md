@@ -1,10 +1,3 @@
-# 2026-09-15 — Practice Test 01; Exam 01 review
+# Class meeting — 2026-09-15
 
-- **Week:** 4
-- **Day:** Tue
-- **Status:** class
-- **Notes:** Practice Test 01 covers Modules 1-6.
-
-This folder is generated from the BIOL-1 course date map.
-
-No source outputs are copied for this date.
+Generated materials and provenance for the BIOL-1 class meeting on 2026-09-15. See `meeting.json` for file provenance.
