@@ -251,69 +251,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 64
-00:04:20,464 --> 00:04:23,877
+00:04:20,464 --> 00:04:23,889
 Before you leave this module, make the study work active.
 
 65
-00:04:23,877 --> 00:04:28,367
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:23,889 --> 00:04:28,936
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 66
-00:04:28,367 --> 00:04:33,157
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:28,936 --> 00:04:33,863
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 67
-00:04:33,157 --> 00:04:35,672
-words, then redraw it as a simple diagram.
+00:04:33,863 --> 00:04:37,168
+mechanism in words, then redraw it as a simple diagram.
 
 68
-00:04:35,672 --> 00:04:40,162
+00:04:37,168 --> 00:04:41,674
 Then answer this exit question without notes: What evidence would support a
 
 69
-00:04:40,162 --> 00:04:41,362
+00:04:41,674 --> 00:04:42,874
 speciation claim?
 
 70
-00:04:41,362 --> 00:04:46,032
+00:04:42,874 --> 00:04:47,560
 A strong response names a mechanism, points to evidence, and states what would
 
 71
-00:04:46,032 --> 00:04:47,409
+00:04:47,560 --> 00:04:48,942
 change the explanation.
 
 72
-00:04:47,409 --> 00:04:51,360
+00:04:48,942 --> 00:04:52,908
 If your answer is only a definition list, connect the terms into a
 
 73
-00:04:51,360 --> 00:04:53,512
+00:04:52,908 --> 00:04:55,072
 cause-and-evidence chain and try again.
 
 74
-00:04:54,262 --> 00:04:59,677
+00:04:55,822 --> 00:05:01,237
 To synthesize this module: explain species concepts using evidence from the Lab 14
 
 75
-00:04:59,677 --> 00:05:00,932
+00:05:01,237 --> 00:05:02,492
 Macroevolution lab.
 
 76
-00:05:00,932 --> 00:05:06,149
+00:05:02,492 --> 00:05:07,709
 Your explanation must include Species, Biological species concept, Reproductive
 
 77
-00:05:06,149 --> 00:05:11,696
+00:05:07,709 --> 00:05:13,256
 isolation, Prezygotic barrier, Postzygotic barrier, Allopatric speciation, Sympatric
 
 78
-00:05:11,696 --> 00:05:17,243
+00:05:13,256 --> 00:05:18,803
 speciation, Phylogeny. Revision prompt: what evidence would change your explanation?
 
 79
-00:05:17,243 --> 00:05:22,130
+00:05:18,803 --> 00:05:23,690
 Your final explanation should connect the central claim to a mechanism, an
 
 80
-00:05:22,130 --> 00:05:24,310
+00:05:23,690 --> 00:05:25,870
 observation, and a revision rule.

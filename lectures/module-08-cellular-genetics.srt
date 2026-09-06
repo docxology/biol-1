@@ -235,69 +235,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 60
-00:04:12,208 --> 00:04:15,640
+00:04:12,208 --> 00:04:15,649
 Before you leave this module, make the study work active.
 
 61
-00:04:15,640 --> 00:04:20,156
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:15,649 --> 00:04:20,720
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 62
-00:04:20,156 --> 00:04:24,973
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:20,720 --> 00:04:25,670
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 63
-00:04:24,973 --> 00:04:27,502
-words, then redraw it as a simple diagram.
+00:04:25,670 --> 00:04:28,990
+mechanism in words, then redraw it as a simple diagram.
 
 64
-00:04:27,502 --> 00:04:32,139
+00:04:28,990 --> 00:04:33,639
 Then answer this exit question without notes: What evidence would distinguish
 
 65
-00:04:32,139 --> 00:04:33,404
+00:04:33,639 --> 00:04:34,907
 mitosis from meiosis?
 
 66
-00:04:33,404 --> 00:04:38,101
+00:04:34,907 --> 00:04:39,616
 A strong response names a mechanism, points to evidence, and states what would
 
 67
-00:04:38,101 --> 00:04:39,486
+00:04:39,616 --> 00:04:41,005
 change the explanation.
 
 68
-00:04:39,486 --> 00:04:43,460
+00:04:41,005 --> 00:04:44,989
 If your answer is only a definition list, connect the terms into a
 
 69
-00:04:43,460 --> 00:04:45,808
+00:04:44,989 --> 00:04:47,344
 cause-and-evidence chain and try again.
 
 70
-00:04:46,558 --> 00:04:51,922
+00:04:48,094 --> 00:04:53,458
 To synthesize this module: explain chromosomes and cell cycle using evidence from
 
 71
-00:04:51,922 --> 00:04:54,107
+00:04:53,458 --> 00:04:55,643
 the Lab 08 Cellular Genetics lab.
 
 72
-00:04:54,107 --> 00:04:59,338
+00:04:55,643 --> 00:05:00,874
 Your explanation must include Chromosome, Cell cycle, Mitosis, Meiosis, Gamete,
 
 73
-00:04:59,338 --> 00:05:02,914
+00:05:00,874 --> 00:05:04,450
 Crossing over, Independent assortment, Nondisjunction.
 
 74
-00:05:02,914 --> 00:05:06,953
+00:05:04,450 --> 00:05:08,489
 Revision prompt: what evidence would change your explanation?
 
 75
-00:05:06,953 --> 00:05:11,853
+00:05:08,489 --> 00:05:13,389
 Your final explanation should connect the central claim to a mechanism, an
 
 76
-00:05:11,853 --> 00:05:14,038
+00:05:13,389 --> 00:05:15,574
 observation, and a revision rule.

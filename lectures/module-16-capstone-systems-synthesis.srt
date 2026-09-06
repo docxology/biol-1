@@ -247,69 +247,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 63
-00:04:22,696 --> 00:04:26,114
+00:04:22,696 --> 00:04:26,123
 Before you leave this module, make the study work active.
 
 64
-00:04:26,114 --> 00:04:30,611
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:26,123 --> 00:04:31,173
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 65
-00:04:30,611 --> 00:04:35,408
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:31,173 --> 00:04:36,103
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 66
-00:04:35,408 --> 00:04:37,926
-words, then redraw it as a simple diagram.
+00:04:36,103 --> 00:04:39,410
+mechanism in words, then redraw it as a simple diagram.
 
 67
-00:04:37,926 --> 00:04:42,962
+00:04:39,410 --> 00:04:44,460
 Then answer this exit question without notes: What makes a synthesis stronger than a
 
 68
-00:04:42,962 --> 00:04:44,162
+00:04:44,460 --> 00:04:45,660
 list of facts?
 
 69
-00:04:44,162 --> 00:04:48,839
+00:04:45,660 --> 00:04:50,350
 A strong response names a mechanism, points to evidence, and states what would
 
 70
-00:04:48,839 --> 00:04:50,218
+00:04:50,350 --> 00:04:51,733
 change the explanation.
 
 71
-00:04:50,218 --> 00:04:54,175
+00:04:51,733 --> 00:04:55,701
 If your answer is only a definition list, connect the terms into a
 
 72
-00:04:54,175 --> 00:04:56,152
+00:04:55,701 --> 00:04:57,688
 cause-and-evidence chain and try again.
 
 73
-00:04:56,902 --> 00:05:02,486
+00:04:58,438 --> 00:05:04,022
 To synthesize this module: explain biology across scales using evidence from the Lab
 
 74
-00:05:02,486 --> 00:05:04,746
+00:05:04,022 --> 00:05:06,282
 16 Capstone Systems Synthesis lab.
 
 75
-00:05:04,746 --> 00:05:10,197
+00:05:06,282 --> 00:05:11,733
 Your explanation must include System, Scale, Mechanism, Feedback loop, Constraint,
 
 76
-00:05:10,197 --> 00:05:12,590
+00:05:11,733 --> 00:05:14,126
 Tradeoff, Synthesis, Evidence chain.
 
 77
-00:05:12,590 --> 00:05:16,645
+00:05:14,126 --> 00:05:18,181
 Revision prompt: what evidence would change your explanation?
 
 78
-00:05:16,645 --> 00:05:21,564
+00:05:18,181 --> 00:05:23,100
 Your final explanation should connect the central claim to a mechanism, an
 
 79
-00:05:21,564 --> 00:05:23,758
+00:05:23,100 --> 00:05:25,294
 observation, and a revision rule.

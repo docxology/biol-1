@@ -247,69 +247,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 63
-00:04:13,624 --> 00:04:17,034
+00:04:13,624 --> 00:04:17,046
 Before you leave this module, make the study work active.
 
 64
-00:04:17,034 --> 00:04:21,521
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:17,046 --> 00:04:22,089
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 65
-00:04:21,521 --> 00:04:26,307
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:22,089 --> 00:04:27,012
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 66
-00:04:26,307 --> 00:04:28,820
-words, then redraw it as a simple diagram.
+00:04:27,012 --> 00:04:30,314
+mechanism in words, then redraw it as a simple diagram.
 
 67
-00:04:28,820 --> 00:04:33,726
+00:04:30,314 --> 00:04:35,237
 Then answer this exit question without notes: What evidence would show water moved
 
 68
-00:04:33,726 --> 00:04:34,926
+00:04:35,237 --> 00:04:36,437
 across a membrane?
 
 69
-00:04:34,926 --> 00:04:39,593
+00:04:36,437 --> 00:04:41,120
 A strong response names a mechanism, points to evidence, and states what would
 
 70
-00:04:39,593 --> 00:04:40,969
+00:04:41,120 --> 00:04:42,501
 change the explanation.
 
 71
-00:04:40,969 --> 00:04:44,918
+00:04:42,501 --> 00:04:46,464
 If your answer is only a definition list, connect the terms into a
 
 72
-00:04:44,918 --> 00:04:47,128
+00:04:46,464 --> 00:04:48,688
 cause-and-evidence chain and try again.
 
 73
-00:04:47,878 --> 00:04:53,215
+00:04:49,438 --> 00:04:54,775
 To synthesize this module: explain phospholipid bilayer structure using evidence
 
 74
-00:04:53,215 --> 00:04:55,417
+00:04:54,775 --> 00:04:56,977
 from the Lab 05 Viewing Life lab.
 
 75
-00:04:55,417 --> 00:05:00,487
+00:04:56,977 --> 00:05:02,047
 Your explanation must include Phospholipid, Bilayer, Selective permeability,
 
 76
-00:05:00,487 --> 00:05:05,157
+00:05:02,047 --> 00:05:06,717
 Diffusion, Osmosis, Facilitated diffusion, Active transport, Tonicity.
 
 77
-00:05:05,157 --> 00:05:09,227
+00:05:06,717 --> 00:05:10,787
 Revision prompt: what evidence would change your explanation?
 
 78
-00:05:09,227 --> 00:05:14,164
+00:05:10,787 --> 00:05:15,724
 Your final explanation should connect the central claim to a mechanism, an
 
 79
-00:05:14,164 --> 00:05:16,366
+00:05:15,724 --> 00:05:17,926
 observation, and a revision rule.

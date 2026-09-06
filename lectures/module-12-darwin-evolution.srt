@@ -251,69 +251,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 64
-00:04:24,400 --> 00:04:27,838
+00:04:24,400 --> 00:04:27,849
 Before you leave this module, make the study work active.
 
 65
-00:04:27,838 --> 00:04:32,362
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:27,849 --> 00:04:32,931
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 66
-00:04:32,362 --> 00:04:37,188
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:32,931 --> 00:04:37,892
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 67
-00:04:37,188 --> 00:04:39,722
-words, then redraw it as a simple diagram.
+00:04:37,892 --> 00:04:41,220
+mechanism in words, then redraw it as a simple diagram.
 
 68
-00:04:39,722 --> 00:04:44,789
+00:04:41,220 --> 00:04:46,302
 Then answer this exit question without notes: How should an evolutionary explanation
 
 69
-00:04:44,789 --> 00:04:47,805
+00:04:46,302 --> 00:04:49,327
 connect variation, heritability, and reproduction?
 
 70
-00:04:47,805 --> 00:04:52,510
+00:04:49,327 --> 00:04:54,046
 A strong response names a mechanism, points to evidence, and states what would
 
 71
-00:04:52,510 --> 00:04:53,897
+00:04:54,046 --> 00:04:55,438
 change the explanation.
 
 72
-00:04:53,897 --> 00:04:57,878
+00:04:55,438 --> 00:04:59,431
 If your answer is only a definition list, connect the terms into a
 
 73
-00:04:57,878 --> 00:05:00,232
+00:04:59,431 --> 00:05:01,792
 cause-and-evidence chain and try again.
 
 74
-00:05:00,982 --> 00:05:06,188
+00:05:02,542 --> 00:05:07,748
 To synthesize this module: explain historical explanation for adaptation using
 
 75
-00:05:06,188 --> 00:05:09,258
+00:05:07,748 --> 00:05:10,818
 evidence from the Lab 12 Darwin Evolution lab.
 
 76
-00:05:09,258 --> 00:05:14,597
+00:05:10,818 --> 00:05:16,157
 Your explanation must include Evolution, Natural selection, Adaptation, Fitness,
 
 77
-00:05:14,597 --> 00:05:17,801
+00:05:16,157 --> 00:05:19,361
 Common ancestry, Homology, Fossil, Biogeography.
 
 78
-00:05:17,801 --> 00:05:21,872
+00:05:19,361 --> 00:05:23,432
 Revision prompt: what evidence would change your explanation?
 
 79
-00:05:21,872 --> 00:05:26,811
+00:05:23,432 --> 00:05:28,371
 Your final explanation should connect the central claim to a mechanism, an
 
 80
-00:05:26,811 --> 00:05:29,014
+00:05:28,371 --> 00:05:30,574
 observation, and a revision rule.

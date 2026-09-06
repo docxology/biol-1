@@ -235,69 +235,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 60
-00:04:10,360 --> 00:04:13,795
+00:04:10,360 --> 00:04:13,803
 Before you leave this module, make the study work active.
 
 61
-00:04:13,795 --> 00:04:18,314
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:13,803 --> 00:04:18,877
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 62
-00:04:18,314 --> 00:04:23,134
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:18,877 --> 00:04:23,830
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 63
-00:04:23,134 --> 00:04:25,665
-words, then redraw it as a simple diagram.
+00:04:23,830 --> 00:04:27,152
+mechanism in words, then redraw it as a simple diagram.
 
 64
-00:04:25,665 --> 00:04:30,606
+00:04:27,152 --> 00:04:32,105
 Then answer this exit question without notes: What evidence in a pedigree suggests
 
 65
-00:04:30,606 --> 00:04:31,932
+00:04:32,105 --> 00:04:33,434
 recessive inheritance?
 
 66
-00:04:31,932 --> 00:04:36,632
+00:04:33,434 --> 00:04:38,146
 A strong response names a mechanism, points to evidence, and states what would
 
 67
-00:04:36,632 --> 00:04:38,018
+00:04:38,146 --> 00:04:39,535
 change the explanation.
 
 68
-00:04:38,018 --> 00:04:41,995
+00:04:39,535 --> 00:04:43,522
 If your answer is only a definition list, connect the terms into a
 
 69
-00:04:41,995 --> 00:04:44,344
+00:04:43,522 --> 00:04:45,880
 cause-and-evidence chain and try again.
 
 70
-00:04:45,094 --> 00:04:50,640
+00:04:46,630 --> 00:04:52,176
 To synthesize this module: explain alleles and genotype using evidence from the Lab
 
 71
-00:04:50,640 --> 00:04:52,511
+00:04:52,176 --> 00:04:54,047
 09 Inheritance Genetics lab.
 
 72
-00:04:52,511 --> 00:04:57,455
+00:04:54,047 --> 00:04:58,991
 Your explanation must include Gene, Allele, Genotype, Phenotype, Dominant,
 
 73
-00:04:57,455 --> 00:04:59,860
+00:04:58,991 --> 00:05:01,396
 Recessive, Punnett square, Pedigree.
 
 74
-00:04:59,860 --> 00:05:03,936
+00:05:01,396 --> 00:05:05,472
 Revision prompt: what evidence would change your explanation?
 
 75
-00:05:03,936 --> 00:05:08,880
+00:05:05,472 --> 00:05:10,416
 Your final explanation should connect the central claim to a mechanism, an
 
 76
-00:05:08,880 --> 00:05:11,086
+00:05:10,416 --> 00:05:12,622
 observation, and a revision rule.

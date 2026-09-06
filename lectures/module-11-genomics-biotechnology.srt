@@ -235,69 +235,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 60
-00:04:11,536 --> 00:04:14,988
+00:04:11,536 --> 00:04:14,999
 Before you leave this module, make the study work active.
 
 61
-00:04:14,988 --> 00:04:19,530
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:14,999 --> 00:04:20,102
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 62
-00:04:19,530 --> 00:04:24,375
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:20,102 --> 00:04:25,084
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 63
-00:04:24,375 --> 00:04:26,919
-words, then redraw it as a simple diagram.
+00:04:25,084 --> 00:04:28,425
+mechanism in words, then redraw it as a simple diagram.
 
 64
-00:04:26,919 --> 00:04:31,280
+00:04:28,425 --> 00:04:32,799
 Then answer this exit question without notes: What ethical questions can
 
 65
-00:04:31,280 --> 00:04:32,491
+00:04:32,799 --> 00:04:34,014
 biotechnology raise?
 
 66
-00:04:32,491 --> 00:04:37,215
+00:04:34,014 --> 00:04:38,752
 A strong response names a mechanism, points to evidence, and states what would
 
 67
-00:04:37,215 --> 00:04:38,608
+00:04:38,752 --> 00:04:40,149
 change the explanation.
 
 68
-00:04:38,608 --> 00:04:42,605
+00:04:40,149 --> 00:04:44,158
 If your answer is only a definition list, connect the terms into a
 
 69
-00:04:42,605 --> 00:04:44,968
+00:04:44,158 --> 00:04:46,528
 cause-and-evidence chain and try again.
 
 70
-00:04:45,718 --> 00:04:51,407
+00:04:47,278 --> 00:04:52,967
 To synthesize this module: explain genomes as data using evidence from the Lab 11
 
 71
-00:04:51,407 --> 00:04:53,303
+00:04:52,967 --> 00:04:54,863
 Genomics Biotechnology lab.
 
 72
-00:04:53,303 --> 00:04:58,992
+00:04:54,863 --> 00:05:00,552
 Your explanation must include Genome, Genomics, PCR, Primer, Gel electrophoresis,
 
 73
-00:04:58,992 --> 00:05:00,607
+00:05:00,552 --> 00:05:02,167
 CRISPR, GMO, Bioethics.
 
 74
-00:05:00,607 --> 00:05:04,891
+00:05:02,167 --> 00:05:06,451
 Revision prompt: what evidence would change your explanation?
 
 75
-00:05:04,891 --> 00:05:10,088
+00:05:06,451 --> 00:05:11,648
 Your final explanation should connect the central claim to a mechanism, an
 
 76
-00:05:10,088 --> 00:05:12,406
+00:05:11,648 --> 00:05:13,966
 observation, and a revision rule.

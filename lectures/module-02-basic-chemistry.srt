@@ -243,69 +243,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 62
-00:04:18,016 --> 00:04:21,419
+00:04:18,016 --> 00:04:21,429
 Before you leave this module, make the study work active.
 
 63
-00:04:21,419 --> 00:04:25,897
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:21,429 --> 00:04:26,459
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 64
-00:04:25,897 --> 00:04:30,673
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:26,459 --> 00:04:31,369
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 65
-00:04:30,673 --> 00:04:33,181
-words, then redraw it as a simple diagram.
+00:04:31,369 --> 00:04:34,662
+mechanism in words, then redraw it as a simple diagram.
 
 66
-00:04:33,181 --> 00:04:37,778
+00:04:34,662 --> 00:04:39,273
 Then answer this exit question without notes: What evidence would show that a
 
 67
-00:04:37,778 --> 00:04:39,509
+00:04:39,273 --> 00:04:41,009
 substance is acidic or basic?
 
 68
-00:04:39,509 --> 00:04:44,166
+00:04:41,009 --> 00:04:45,679
 A strong response names a mechanism, points to evidence, and states what would
 
 69
-00:04:44,166 --> 00:04:45,539
+00:04:45,679 --> 00:04:47,056
 change the explanation.
 
 70
-00:04:45,539 --> 00:04:49,479
+00:04:47,056 --> 00:04:51,008
 If your answer is only a definition list, connect the terms into a
 
 71
-00:04:49,479 --> 00:04:51,808
+00:04:51,008 --> 00:04:53,344
 cause-and-evidence chain and try again.
 
 72
-00:04:52,558 --> 00:04:58,329
+00:04:54,094 --> 00:04:59,865
 To synthesize this module: explain atoms and elements using evidence from the Lab 02
 
 73
-00:04:58,329 --> 00:05:00,184
+00:04:59,865 --> 00:05:01,720
 Probability Statistics lab.
 
 74
-00:05:00,184 --> 00:05:05,680
+00:05:01,720 --> 00:05:07,216
 Your explanation must include Atom, Element, Covalent bond, Ionic bond, Hydrogen
 
 75
-00:05:05,680 --> 00:05:07,535
+00:05:07,216 --> 00:05:09,071
 bond, Polarity, pH, Buffer.
 
 76
-00:05:07,535 --> 00:05:11,726
+00:05:09,071 --> 00:05:13,262
 Revision prompt: what evidence would change your explanation?
 
 77
-00:05:11,726 --> 00:05:16,810
+00:05:13,262 --> 00:05:18,346
 Your final explanation should connect the central claim to a mechanism, an
 
 78
-00:05:16,810 --> 00:05:19,078
+00:05:18,346 --> 00:05:20,614
 observation, and a revision rule.

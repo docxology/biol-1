@@ -255,69 +255,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 65
-00:04:26,200 --> 00:04:29,621
+00:04:26,200 --> 00:04:29,630
 Before you leave this module, make the study work active.
 
 66
-00:04:29,621 --> 00:04:34,123
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:29,630 --> 00:04:34,685
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 67
-00:04:34,123 --> 00:04:38,925
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:34,685 --> 00:04:39,620
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 68
-00:04:38,925 --> 00:04:41,446
-words, then redraw it as a simple diagram.
+00:04:39,620 --> 00:04:42,930
+mechanism in words, then redraw it as a simple diagram.
 
 69
-00:04:41,446 --> 00:04:46,428
+00:04:42,930 --> 00:04:47,925
 Then answer this exit question without notes: What evidence would show a population
 
 70
-00:04:46,428 --> 00:04:47,989
+00:04:47,925 --> 00:04:49,490
 is near carrying capacity?
 
 71
-00:04:47,989 --> 00:04:52,671
+00:04:49,490 --> 00:04:54,184
 A strong response names a mechanism, points to evidence, and states what would
 
 72
-00:04:52,671 --> 00:04:54,051
+00:04:54,184 --> 00:04:55,568
 change the explanation.
 
 73
-00:04:54,051 --> 00:04:58,012
+00:04:55,568 --> 00:04:59,540
 If your answer is only a definition list, connect the terms into a
 
 74
-00:04:58,012 --> 00:05:00,352
+00:04:59,540 --> 00:05:01,888
 cause-and-evidence chain and try again.
 
 75
-00:05:01,102 --> 00:05:06,492
+00:05:02,638 --> 00:05:08,028
 To synthesize this module: explain population growth models using evidence from the
 
 76
-00:05:06,492 --> 00:05:08,960
+00:05:08,028 --> 00:05:10,496
 Lab 15 Population Systems Ecology lab.
 
 77
-00:05:08,960 --> 00:05:14,026
+00:05:10,496 --> 00:05:15,562
 Your explanation must include Population, Exponential growth, Logistic growth,
 
 78
-00:05:14,026 --> 00:05:19,222
+00:05:15,562 --> 00:05:20,758
 Carrying capacity, Density-dependent factor, Density-independent factor, Trophic
 
 79
-00:05:19,222 --> 00:05:24,418
+00:05:20,758 --> 00:05:25,954
 level, Decomposer. Revision prompt: what evidence would change your explanation?
 
 80
-00:05:24,418 --> 00:05:29,224
+00:05:25,954 --> 00:05:30,760
 Your final explanation should connect the central claim to a mechanism, an
 
 81
-00:05:29,224 --> 00:05:31,366
+00:05:30,760 --> 00:05:32,902
 observation, and a revision rule.

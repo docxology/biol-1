@@ -259,69 +259,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 66
-00:04:18,280 --> 00:04:21,722
+00:04:18,280 --> 00:04:21,731
 Before you leave this module, make the study work active.
 
 67
-00:04:21,722 --> 00:04:26,252
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:21,731 --> 00:04:26,817
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 68
-00:04:26,252 --> 00:04:31,084
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:26,817 --> 00:04:31,782
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 69
-00:04:31,084 --> 00:04:33,621
-words, then redraw it as a simple diagram.
+00:04:31,782 --> 00:04:35,112
+mechanism in words, then redraw it as a simple diagram.
 
 70
-00:04:33,621 --> 00:04:38,332
+00:04:35,112 --> 00:04:39,835
 Then answer this exit question without notes: How can a null model help detect
 
 71
-00:04:38,332 --> 00:04:39,532
+00:04:39,835 --> 00:04:41,035
 evolution?
 
 72
-00:04:39,532 --> 00:04:44,243
+00:04:41,035 --> 00:04:45,758
 A strong response names a mechanism, points to evidence, and states what would
 
 73
-00:04:44,243 --> 00:04:45,632
+00:04:45,758 --> 00:04:47,151
 change the explanation.
 
 74
-00:04:45,632 --> 00:04:49,618
+00:04:47,151 --> 00:04:51,147
 If your answer is only a definition list, connect the terms into a
 
 75
-00:04:49,618 --> 00:04:51,376
+00:04:51,147 --> 00:04:52,912
 cause-and-evidence chain and try again.
 
 76
-00:04:52,126 --> 00:04:57,310
+00:04:53,662 --> 00:04:58,846
 To synthesize this module: explain allele frequencies as the unit of change using
 
 77
-00:04:57,310 --> 00:05:00,638
+00:04:58,846 --> 00:05:02,174
 evidence from the Lab 13 How Populations Evolve lab.
 
 78
-00:05:00,638 --> 00:05:06,014
+00:05:02,174 --> 00:05:07,550
 Your explanation must include Allele frequency, Microevolution, Mutation, Gene flow,
 
 79
-00:05:06,014 --> 00:05:10,942
+00:05:07,550 --> 00:05:12,478
 Genetic drift, Bottleneck effect, Founder effect, Hardy-Weinberg equilibrium.
 
 80
-00:05:10,942 --> 00:05:14,846
+00:05:12,478 --> 00:05:16,382
 Revision prompt: what evidence would change your explanation?
 
 81
-00:05:14,846 --> 00:05:19,582
+00:05:16,382 --> 00:05:21,118
 Your final explanation should connect the central claim to a mechanism, an
 
 82
-00:05:19,582 --> 00:05:21,694
+00:05:21,118 --> 00:05:23,230
 observation, and a revision rule.

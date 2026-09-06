@@ -255,69 +255,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 65
-00:04:28,720 --> 00:04:32,102
+00:04:28,720 --> 00:04:32,115
 Before you leave this module, make the study work active.
 
 66
-00:04:32,102 --> 00:04:36,552
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:32,115 --> 00:04:37,119
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 67
-00:04:36,552 --> 00:04:41,299
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:37,119 --> 00:04:42,003
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 68
-00:04:41,299 --> 00:04:43,791
-words, then redraw it as a simple diagram.
+00:04:42,003 --> 00:04:45,279
+mechanism in words, then redraw it as a simple diagram.
 
 69
-00:04:43,791 --> 00:04:48,538
+00:04:45,279 --> 00:04:50,044
 Then answer this exit question without notes: How should a claim change when new
 
 70
-00:04:48,538 --> 00:04:49,738
+00:04:50,044 --> 00:04:51,244
 evidence appears?
 
 71
-00:04:49,738 --> 00:04:54,366
+00:04:51,244 --> 00:04:55,890
 A strong response names a mechanism, points to evidence, and states what would
 
 72
-00:04:54,366 --> 00:04:55,731
+00:04:55,890 --> 00:04:57,260
 change the explanation.
 
 73
-00:04:55,731 --> 00:04:59,647
+00:04:57,260 --> 00:05:01,191
 If your answer is only a definition list, connect the terms into a
 
 74
-00:04:59,647 --> 00:05:01,768
+00:05:01,191 --> 00:05:03,328
 cause-and-evidence chain and try again.
 
 75
-00:05:02,518 --> 00:05:08,036
+00:05:04,078 --> 00:05:09,596
 To synthesize this module: explain what counts as life using evidence from the Lab
 
 76
-00:05:08,036 --> 00:05:09,853
+00:05:09,596 --> 00:05:11,413
 01 Measurement Methods lab.
 
 77
-00:05:09,853 --> 00:05:15,371
+00:05:11,413 --> 00:05:16,931
 Your explanation must include Cell, Homeostasis, Metabolism, Hypothesis, Variable,
 
 78
-00:05:15,371 --> 00:05:17,255
+00:05:16,931 --> 00:05:18,815
 Evidence, Theory, Evolution.
 
 79
-00:05:17,255 --> 00:05:21,359
+00:05:18,815 --> 00:05:22,919
 Revision prompt: what evidence would change your explanation?
 
 80
-00:05:21,359 --> 00:05:26,338
+00:05:22,919 --> 00:05:27,898
 Your final explanation should connect the central claim to a mechanism, an
 
 81
-00:05:26,338 --> 00:05:28,558
+00:05:27,898 --> 00:05:30,118
 observation, and a revision rule.

@@ -243,69 +243,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 62
-00:04:14,608 --> 00:04:17,982
+00:04:14,608 --> 00:04:17,995
 Before you leave this module, make the study work active.
 
 63
-00:04:17,982 --> 00:04:22,421
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:17,995 --> 00:04:22,987
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 64
-00:04:22,421 --> 00:04:27,156
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:22,987 --> 00:04:27,860
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 65
-00:04:27,156 --> 00:04:29,642
-words, then redraw it as a simple diagram.
+00:04:27,860 --> 00:04:31,129
+mechanism in words, then redraw it as a simple diagram.
 
 66
-00:04:29,642 --> 00:04:34,259
+00:04:31,129 --> 00:04:35,764
 Then answer this exit question without notes: Which evidence would show that a
 
 67
-00:04:34,259 --> 00:04:35,798
+00:04:35,764 --> 00:04:37,309
 protein lost its function?
 
 68
-00:04:35,798 --> 00:04:40,415
+00:04:37,309 --> 00:04:41,944
 A strong response names a mechanism, points to evidence, and states what would
 
 69
-00:04:40,415 --> 00:04:41,776
+00:04:41,944 --> 00:04:43,311
 change the explanation.
 
 70
-00:04:41,776 --> 00:04:45,683
+00:04:43,311 --> 00:04:47,233
 If your answer is only a definition list, connect the terms into a
 
 71
-00:04:45,683 --> 00:04:47,992
+00:04:47,233 --> 00:04:49,552
 cause-and-evidence chain and try again.
 
 72
-00:04:48,742 --> 00:04:54,361
+00:04:50,302 --> 00:04:55,921
 To synthesize this module: explain carbon skeletons using evidence from the Lab 03
 
 73
-00:04:54,361 --> 00:04:55,561
+00:04:55,921 --> 00:04:57,121
 Microscopy lab.
 
 74
-00:04:55,561 --> 00:05:00,975
+00:04:57,121 --> 00:05:02,535
 Your explanation must include Organic molecule, Monomer, Polymer, Carbohydrate,
 
 75
-00:05:00,975 --> 00:05:03,922
+00:05:02,535 --> 00:05:05,482
 Lipid, Protein, Nucleic acid, Denaturation.
 
 76
-00:05:03,922 --> 00:05:08,102
+00:05:05,482 --> 00:05:09,662
 Revision prompt: what evidence would change your explanation?
 
 77
-00:05:08,102 --> 00:05:13,173
+00:05:09,662 --> 00:05:14,733
 Your final explanation should connect the central claim to a mechanism, an
 
 78
-00:05:13,173 --> 00:05:15,262
+00:05:14,733 --> 00:05:16,822
 observation, and a revision rule.

@@ -219,69 +219,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 56
-00:04:09,232 --> 00:04:12,614
+00:04:09,232 --> 00:04:12,627
 Before you leave this module, make the study work active.
 
 57
-00:04:12,614 --> 00:04:17,064
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:12,627 --> 00:04:17,631
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 58
-00:04:17,064 --> 00:04:21,811
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:17,631 --> 00:04:22,516
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 59
-00:04:21,811 --> 00:04:24,303
-words, then redraw it as a simple diagram.
+00:04:22,516 --> 00:04:25,792
+mechanism in words, then redraw it as a simple diagram.
 
 60
-00:04:24,303 --> 00:04:29,169
+00:04:25,792 --> 00:04:30,677
 Then answer this exit question without notes: What evidence would show that a gene
 
 61
-00:04:29,169 --> 00:04:30,369
+00:04:30,677 --> 00:04:31,877
 is being expressed?
 
 62
-00:04:30,369 --> 00:04:34,997
+00:04:31,877 --> 00:04:36,523
 A strong response names a mechanism, points to evidence, and states what would
 
 63
-00:04:34,997 --> 00:04:36,362
+00:04:36,523 --> 00:04:37,893
 change the explanation.
 
 64
-00:04:36,362 --> 00:04:40,278
+00:04:37,893 --> 00:04:41,825
 If your answer is only a definition list, connect the terms into a
 
 65
-00:04:40,278 --> 00:04:42,520
+00:04:41,825 --> 00:04:44,080
 cause-and-evidence chain and try again.
 
 66
-00:04:43,270 --> 00:04:48,725
+00:04:44,830 --> 00:04:50,285
 To synthesize this module: explain dna structure using evidence from the Lab 07
 
 67
-00:04:48,725 --> 00:04:50,313
+00:04:50,285 --> 00:04:51,873
 Molecular Genetics lab.
 
 68
-00:04:50,313 --> 00:04:55,422
+00:04:51,873 --> 00:04:56,982
 Your explanation must include DNA, Nucleotide, Replication, Transcription,
 
 69
-00:04:55,422 --> 00:04:58,598
+00:04:56,982 --> 00:05:00,158
 Translation, Codon, Mutation, Gene expression.
 
 70
-00:04:58,598 --> 00:05:02,810
+00:05:00,158 --> 00:05:04,370
 Revision prompt: what evidence would change your explanation?
 
 71
-00:05:02,810 --> 00:05:07,919
+00:05:04,370 --> 00:05:09,479
 Your final explanation should connect the central claim to a mechanism, an
 
 72
-00:05:07,919 --> 00:05:10,198
+00:05:09,479 --> 00:05:11,758
 observation, and a revision rule.

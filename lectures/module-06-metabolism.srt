@@ -235,69 +235,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 60
-00:04:14,152 --> 00:04:17,543
+00:04:14,152 --> 00:04:17,556
 Before you leave this module, make the study work active.
 
 61
-00:04:17,543 --> 00:04:22,004
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:17,556 --> 00:04:22,572
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 62
-00:04:22,004 --> 00:04:26,763
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:22,572 --> 00:04:27,468
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 63
-00:04:26,763 --> 00:04:29,261
-words, then redraw it as a simple diagram.
+00:04:27,468 --> 00:04:30,752
+mechanism in words, then redraw it as a simple diagram.
 
 64
-00:04:29,261 --> 00:04:33,901
+00:04:30,752 --> 00:04:35,409
 Then answer this exit question without notes: What evidence would show that an
 
 65
-00:04:33,901 --> 00:04:35,101
+00:04:35,409 --> 00:04:36,609
 enzyme is denatured?
 
 66
-00:04:35,101 --> 00:04:39,741
+00:04:36,609 --> 00:04:41,266
 A strong response names a mechanism, points to evidence, and states what would
 
 67
-00:04:39,741 --> 00:04:41,109
+00:04:41,266 --> 00:04:42,639
 change the explanation.
 
 68
-00:04:41,109 --> 00:04:45,035
+00:04:42,639 --> 00:04:46,580
 If your answer is only a definition list, connect the terms into a
 
 69
-00:04:45,035 --> 00:04:47,344
+00:04:46,580 --> 00:04:48,904
 cause-and-evidence chain and try again.
 
 70
-00:04:48,094 --> 00:04:53,876
+00:04:49,654 --> 00:04:55,436
 To synthesize this module: explain energy and thermodynamics using evidence from the
 
 71
-00:04:53,876 --> 00:04:55,390
+00:04:55,436 --> 00:04:56,950
 Lab 06 Metabolism lab.
 
 72
-00:04:55,390 --> 00:05:01,172
+00:04:56,950 --> 00:05:02,732
 Your explanation must include Metabolism, ATP, Activation energy, Enzyme, Substrate,
 
 73
-00:05:01,172 --> 00:05:04,682
+00:05:02,732 --> 00:05:06,242
 Denaturation, Photosynthesis, Cellular respiration.
 
 74
-00:05:04,682 --> 00:05:08,881
+00:05:06,242 --> 00:05:10,441
 Revision prompt: what evidence would change your explanation?
 
 75
-00:05:08,881 --> 00:05:13,975
+00:05:10,441 --> 00:05:15,535
 Your final explanation should connect the central claim to a mechanism, an
 
 76
-00:05:13,975 --> 00:05:16,246
+00:05:15,535 --> 00:05:17,806
 observation, and a revision rule.

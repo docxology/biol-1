@@ -235,69 +235,69 @@ If you miss a question, return to the module keys and find the evidence that
 supports the correct answer.
 
 60
-00:04:06,616 --> 00:04:10,019
+00:04:06,616 --> 00:04:10,031
 Before you leave this module, make the study work active.
 
 61
-00:04:10,019 --> 00:04:14,497
-Start with the module's central claim before memorizing vocabulary; Use the
+00:04:10,031 --> 00:04:15,064
+Start with the module's central claim before memorizing vocabulary; Use the module's
 
 62
-00:04:14,497 --> 00:04:19,274
-same-numbered lab as the evidence check for the module; Explain one mechanism in
+00:04:15,064 --> 00:04:19,977
+companion lab (see the course schedule pairing) as the evidence check; Explain one
 
 63
-00:04:19,274 --> 00:04:21,782
-words, then redraw it as a simple diagram.
+00:04:19,977 --> 00:04:23,273
+mechanism in words, then redraw it as a simple diagram.
 
 64
-00:04:21,782 --> 00:04:26,797
+00:04:23,273 --> 00:04:28,306
 Then answer this exit question without notes: What observation would support a claim
 
 65
-00:04:26,797 --> 00:04:28,469
+00:04:28,306 --> 00:04:29,984
 that a specimen is cellular?
 
 66
-00:04:28,469 --> 00:04:33,126
+00:04:29,984 --> 00:04:34,658
 A strong response names a mechanism, points to evidence, and states what would
 
 67
-00:04:33,126 --> 00:04:34,499
+00:04:34,658 --> 00:04:36,036
 change the explanation.
 
 68
-00:04:34,499 --> 00:04:38,440
+00:04:36,036 --> 00:04:39,991
 If your answer is only a definition list, connect the terms into a
 
 69
-00:04:38,440 --> 00:04:40,768
+00:04:39,991 --> 00:04:42,328
 cause-and-evidence chain and try again.
 
 70
-00:04:41,518 --> 00:04:47,168
+00:04:43,078 --> 00:04:48,728
 To synthesize this module: explain cell theory using evidence from the Lab 04 Liquid
 
 71
-00:04:47,168 --> 00:04:48,368
+00:04:48,728 --> 00:04:49,928
 Chemistry lab.
 
 72
-00:04:48,368 --> 00:04:53,480
+00:04:49,928 --> 00:04:55,040
 Your explanation must include Cell theory, Prokaryote, Eukaryote, Organelle,
 
 73
-00:04:53,480 --> 00:04:56,709
+00:04:55,040 --> 00:04:58,269
 Nucleus, Mitochondrion, Chloroplast, Microscopy.
 
 74
-00:04:56,709 --> 00:05:00,812
+00:04:58,269 --> 00:05:02,372
 Revision prompt: what evidence would change your explanation?
 
 75
-00:05:00,812 --> 00:05:05,789
+00:05:02,372 --> 00:05:07,349
 Your final explanation should connect the central claim to a mechanism, an
 
 76
-00:05:05,789 --> 00:05:07,750
+00:05:07,349 --> 00:05:09,310
 observation, and a revision rule.
