@@ -7,6 +7,7 @@ import argparse
 import logging
 import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.course_by_date import (
     CalendarError,

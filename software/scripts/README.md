@@ -2,491 +2,66 @@
 
 > **Navigation**: [← README](../README.md) | [AGENTS.md](../AGENTS.md) | [docs/](../docs/) | [src/](../src/)
 
-Thin CLI orchestrators for course material generation and publishing. All business logic resides in `src/` modules; scripts handle CLI parsing and orchestration only.
+Thin CLI orchestrators for course material generation, validation, and publishing. Scripts parse arguments, bootstrap paths, configure logging, and delegate to `src/` packages; all business logic lives in `src/`. See [AGENTS.md](AGENTS.md) for the thin-orchestrator contract and gotchas.
+
+Run commands are shown from `software/` (where `pyproject.toml` lives); `uv run` resolves the project virtualenv.
+
+## Script-to-Module Mapping
+
+| Script | Purpose | Delegates to | Run command |
+|--------|---------|--------------|-------------|
+| `publish_all.py` | End-to-end pipeline: generate → publish → validate | `src.batch_processing`, `src.publish`, `src.validation` | `uv run python scripts/publish_all.py [--clean] [--skip-generation] [--skip-mp3]` |
+| `generate_all_outputs.py` | Generate all output formats for one or all courses | `src.batch_processing`, `src.module_content` | `uv run python scripts/generate_all_outputs.py --course biol-1` |
+| `generate_module_materials.py` | Regenerate `module.toml`-derived materials (key-points/questions/practice-quiz + deterministic SVGs) | `src.module_content` | `uv run python scripts/generate_module_materials.py --course biol-1 [--module N] [--dry-run]` |
+| `generate_module_renderings.py` | Process a single module | `src.batch_processing` (`process_module_by_type`) | `uv run python scripts/generate_module_renderings.py --course biol-1 --module 1` |
+| `generate_module_website.py` | Build a module's interactive HTML site | `src.batch_processing` → `src.html_website` | `uv run python scripts/generate_module_website.py --course biol-1 --module 1` |
+| `generate_slide_decks.py` | Render BIOL-1 slide decks (full + notes HTML sources, PDF) from module manifests | `src.slide_deck` | `uv run python scripts/generate_slide_decks.py --course biol-1 [--module N] [--dry-run]` |
+| `generate_module_videos.py` | Generate LectureCreate YAML manifests and render lecture videos per module | `src.lecture_create` + `lecturecreate` CLI | `uv run python scripts/generate_module_videos.py --module 1 [--render] [--dry-run]` (or `--all`) |
+| `generate_syllabus_renderings.py` | Render syllabus sources into `syllabus/output/` | `src.batch_processing` (`process_syllabus`) | `uv run python scripts/generate_syllabus_renderings.py --course biol-1` |
+| `generate_course_by_date.py` | Build BIOL-1 dated copy-only teaching handoffs from `course_calendar.toml` | `src.course_by_date` | `uv run python scripts/generate_course_by_date.py [--dry-run] [--validate-only]` |
+| `generate_biol1_lab_dashboards.py` | Regenerate active BIOL-1 lab dashboards from the lab list | stdlib only (BIOL-1 lab specs) | `uv run python scripts/generate_biol1_lab_dashboards.py` |
+| `publish_course.py` | Copy generated outputs into `PUBLISHED/<course>/` | `src.publish` | `uv run python scripts/publish_course.py --course biol-1` |
+| `flatten_published.py` | Flatten per-module outputs into distribution buckets | `src.publish.utils` | `uv run python scripts/flatten_published.py [--dry-run] [--verbose]` |
+| `validate_outputs.py` | Validate generated outputs for every in-scope module | `src.validation`, `src.course_by_date`, `src.lecture_create.validation` | `uv run python scripts/validate_outputs.py --course all [--json]` |
+| `validate_repo_contracts.py` | Validate documentation/repository invariants without rendering artifacts | `src.validation.repo_contracts` | `uv run python scripts/validate_repo_contracts.py [--json]` |
+| `renumber_questions.py` | Convert section-based question numbering to continuous | `src.content_processing` | `uv run python scripts/renumber_questions.py --course all [--dry-run]` |
+| `shuffle_final_exam_mc.py` | Shuffle final-exam Part A MC options and re-key the answer key | `src.exam_tools` | `uv run python scripts/shuffle_final_exam_mc.py [--dry-run] [--spacing-only]` |
+| `import_legacy_materials.py` | Import the legacy bio_1_2025 lesson archive into the current module layout | `src.legacy_import` | `uv run python scripts/import_legacy_materials.py [--dry-run] [--skip-questions] [--skip-slides]` |
+| `assemble_practice_test_12.py` | Rebuild archived Spring 2026 `practice-test-12` + key from PT01–11 slices | stdlib only (`archive/spring-2026/course_development/biol-8/course/practice_tests/`) | `uv run python scripts/assemble_practice_test_12.py` |
+| `utils.py` | Shared CLI helper (`print_module_not_found`); not runnable | — | imported by other scripts as `scripts.utils` |
+
+## Conventions
+
+- Run scripts from `software/` via `uv run python scripts/<script>.py` so third-party dependencies resolve from the project environment.
+- Course-scoped scripts take `--course {biol-1, all}`. Archived BIOL-8 is not a live target.
+- Format selection is `--formats pdf,docx,html,txt,md,mp3` (comma-separated; defaults vary per script).
+- Most scripts accept `--verbose` for INFO-level logging. Exit code `0` = success, non-zero = at least one error; per-item errors are collected and reported in the summary even when the run continues.
+- Every script that imports `from src…` bootstraps `sys.path` itself, so scripts also run with plain `python3` from any working directory (third-party dependencies still come from the `uv` environment).
+- Per-script option details: `uv run python scripts/<script>.py --help`.
 
 ## Course-by-date projection
 
 For BIOL-1, the canonical date-to-material mapping is
-`course_development/biol-1/course_calendar.toml`. Generate the dated,
-copy-only teaching handoffs with:
-
-```bash
-uv run python scripts/generate_course_by_date.py
-uv run python scripts/generate_course_by_date.py --dry-run
-uv run python scripts/generate_course_by_date.py --validate-only
-```
-
-Only records marked `used = true` are copied. The generated `meeting.json`
-files preserve planned/used state and source checksums. The generator excludes
-LectureCreate build intermediates such as frames, WAVs, and hashes.
-
----
-
-## Thin Orchestrator Pattern
-
-Scripts follow the "thin orchestrator" pattern:
-
-```
-Script (CLI parsing) → Module (business logic) → Output
-```
-
-Scripts do NOT contain business logic. They:
-
-1. Parse command-line arguments
-2. Call module functions from `src/`
-3. Report results
-
----
-
-## Script-to-Module Mapping
-
-| Script | Primary Module(s) | Purpose |
-|--------|-------------------|---------|
-| `publish_all.py` | `batch_processing`, `publish`, `validation` | **Top-level pipeline** |
-| `generate_all_outputs.py` | `batch_processing` | Generate all course outputs |
-| `generate_module_materials.py` | `module_content` | Regenerate module.toml-derived materials (key-points/questions/practice-quiz + generated SVGs) |
-| `generate_module_renderings.py` | `batch_processing` | Single module processing |
-| `generate_module_website.py` | `html_website` | Website generation |
-| `generate_slide_decks.py` | `slide_deck` | Slide deck generation |
-| `generate_syllabus_renderings.py` | `schedule`, `batch_processing` | Syllabus processing |
-| `publish_course.py` | `publish` | Publish to PUBLISHED/ |
-| `validate_outputs.py` | `validation` | Validate generated outputs |
-| `validate_repo_contracts.py` | `validation.repo_contracts` | Validate repository/documentation contracts |
-| `generate_course_by_date.py` | `course_by_date` | Generate BIOL-1 dated teaching handoffs from the canonical course map |
-| `generate_biol1_lab_dashboards.py` | (stdlib; BIOL-1 lab specs) | Regenerate active BIOL-1 lab dashboards from the lab list |
-| `flatten_published.py` | `publish.utils` | Flatten directory structure |
-| `renumber_questions.py` | `content_processing` | Question renumbering |
-| `shuffle_final_exam_mc.py` | `exam_tools` | Shuffle final-exam Part A MC options and re-key the answer key |
-| `import_legacy_materials.py` | `legacy_import` | Import legacy format |
-| `assemble_practice_test_12.py` | (stdlib; archived BIOL-8 practice tests) | Rebuild Spring 2026 cumulative `practice-test-12` + key |
-
----
-
-## Primary Scripts
-
-### `publish_all.py` — Top-Level Pipeline
-
-The main orchestrator that runs the complete publish pipeline for all enabled courses:
-
-1. **Generate** → Create requested output formats (PDF and DOCX by default; HTML, TXT, Markdown copies, and MP3 opt-in)
-2. **Publish** → Copy to PUBLISHED/ directory
-3. **Validate** → Verify all outputs
-
-```bash
-# Full publish (~17 min with MP3)
-uv run python scripts/publish_all.py --clean --verbose
-
-# Skip MP3 for faster iteration (~5 min)
-uv run python scripts/publish_all.py --clean --skip-mp3
-
-# PDF-only for quick testing
-uv run python scripts/publish_all.py --clean --formats pdf
-
-# Re-copy/reorganize existing generated outputs without regenerating
-uv run python scripts/publish_all.py --skip-generation
-
-# Skip validation when debugging copy/reorganization only
-uv run python scripts/publish_all.py --skip-validate
-```
-
-| Option | Description |
-|--------|-------------|
-| `--clean` | Clear outputs before generation |
-| `--verbose` | Detailed progress output |
-| `--skip-mp3` | Skip audio generation |
-| `--formats` | Comma-separated list: pdf,docx,html,txt,md,mp3 |
-| `--skip-generation` | Use existing source outputs instead of regenerating |
-| `--skip-publish` | Skip copying generated files into `PUBLISHED/` |
-| `--skip-copy-extras` | Skip labs, dashboards, slides, and practice-test extras |
-| `--skip-flatten` | Skip flattening into `ALL_FILES/` |
-| `--skip-validate` | Skip output validation |
-| `--skip-labs` | Skip lab manual rendering during generation |
-| `--max-module` | Limit module processing per course, e.g. `biol-1:6` |
-| `--max-lab` | Limit lab processing per course, e.g. `biol-1:5` |
-| `--strict-dashboards` | Enforce one-dashboard-per-numbered-lab invariant plus course overrides |
-
----
-
-### `generate_all_outputs.py` — Course Output Generation
-
-Generate all output formats for modules in a course:
-
-```bash
-# Generate for one course
-uv run python scripts/generate_all_outputs.py --course biol-1
-
-# Generate for specific module
-uv run python scripts/generate_all_outputs.py --course biol-1 --module 1
-
-# All courses, all modules
-uv run python scripts/generate_all_outputs.py --course all
-
-# Dry run
-uv run python scripts/generate_all_outputs.py --course biol-1 --dry-run
-```
-
-Every non-dry render also rebuilds the repository-level projection at
-`output/BIOL-1/`. Source-local `course_development/biol-1/**/output/`
-directories remain validation inputs, while `PUBLISHED/` remains the
-publishing surface.
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`) or `all` |
-| `--module` | Optional: specific module number |
-| `--formats` | Output formats (default: all) |
-| `--dry-run` | Preview without generating |
-| `--skip-clear` | Don't clear existing outputs |
-| `--no-website` | Skip website generation |
-| `--skip-labs` | Skip lab manual rendering |
-
-**Module Used**: `src/batch_processing`
-
----
-
-### `generate_module_materials.py` — Structured Module Materials
-
-Regenerate `key-points.md`, `questions.md`, `practice-quiz.md`, and the
-deterministic generated SVGs (concept map, process model, retrieval card)
-from each module's `module.toml` — the canonical typed source of truth. Edit
-`module.toml`, then regenerate; do not hand-edit the generated Markdown.
-
-```bash
-# Regenerate for all modules in all active courses
-uv run python scripts/generate_module_materials.py --course all
-
-# Regenerate for one course
-uv run python scripts/generate_module_materials.py --course biol-1
-
-# Regenerate a single module
-uv run python scripts/generate_module_materials.py --course biol-1 --module 3
-
-# Preview without writing
-uv run python scripts/generate_module_materials.py --course biol-1 --dry-run
-```
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`) or `all` |
-| `--module` | Optional: specific module number |
-| `--dry-run` | Report generated files without writing |
-
-**Module Used**: `src/module_content`
-
----
-
-### `publish_course.py` — Publish to PUBLISHED/
-
-Copy generated outputs to the PUBLISHED directory:
-
-```bash
-# Publish all courses
-uv run python scripts/publish_course.py --course all
-
-# Publish specific course
-uv run python scripts/publish_course.py --course biol-1
-```
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`) or `all` |
-
-**Module Used**: `src/publish`
-
----
-
-### `validate_outputs.py` — Output Validation
-
-Validate that generated outputs meet quality standards:
-
-```bash
-# Validate all courses
-uv run python scripts/validate_outputs.py --course all
-
-# Validate specific course
-uv run python scripts/validate_outputs.py --course biol-1
-
-# Verbose output
-uv run python scripts/validate_outputs.py --course all --verbose
-```
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`) or `all` |
-| `--formats` | Comma-separated list of formats to validate |
-| `--max-module` | Limit module validation per course, e.g. `biol-1:15` |
-| `--max-lab` | Limit lab validation per course, e.g. `biol-1:17` |
-| `--strict-dashboards` | Enforce dashboard invariant for numbered labs |
-| `--verbose` | Detailed validation output |
-
-**Module Used**: `src/validation`
-
----
-
-### `validate_repo_contracts.py` — Repository Contract Validation
-
-Validate documentation and repository invariants without rendering artifacts:
-
-```bash
-uv run python scripts/validate_repo_contracts.py
-uv run python scripts/validate_repo_contracts.py --json
-```
-
-Checks include:
-
-- `README.md` and `AGENTS.md` coverage under `course_development/` and `software/src/`
-- Relative Markdown links in root, software, and course-development docs
-- `publish.toml` course module/lab counts against source folders
-- `PUBLISHED/` tracked status for subtree publishing
-- Production Python source free of mock/test-double imports
-
-**Module Used**: `src/validation/repo_contracts.py`
-
----
-
-## Single-Item Scripts
-
-### `generate_module_renderings.py` — Single Module Processing
-
-Process one module by course name and module number:
-
-```bash
-uv run python scripts/generate_module_renderings.py --course biol-1 --module 1
-```
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`; default: `biol-1`) |
-| `--module` | Module number to process (default: `1`) |
-
-Output goes to that module's `output/` via `process_module_by_type`.
-
-**Module Used**: `src/batch_processing`
-
----
-
-### `generate_module_website.py` — Website Generation
-
-Delegates to **`batch_processing.process_module_website`** (which calls **`html_website.generate_module_website`**).
-
-```bash
-uv run python scripts/generate_module_website.py --course biol-1 --module 1
-```
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`; default: `biol-1`) |
-| `--module` | Module number (default: `1`) |
-
-**Module Used**: `src/batch_processing` → `src/html_website`
-
----
-
-### `generate_slide_decks.py` — Slide Deck Generation
-
-Generate slide decks for one or all modules from `module.toml` content.
-
-```bash
-uv run python scripts/generate_slide_decks.py --course all
-uv run python scripts/generate_slide_decks.py --course biol-1
-uv run python scripts/generate_slide_decks.py --course biol-1 --module 3
-uv run python scripts/generate_slide_decks.py --course biol-1 --dry-run
-```
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`) or `all` |
-| `--module` | Optional: specific module number |
-| `--dry-run` | Report generated files without writing |
-
-**Module Used**: `src/slide_deck`
-
----
-
-### `generate_syllabus_renderings.py` — Syllabus Processing
-
-Renders syllabus sources under ``course_development/<course>/syllabus/`` into ``syllabus/output/``.
-
-```bash
-uv run python scripts/generate_syllabus_renderings.py --course biol-1
-```
-
-| Option | Description |
-|--------|-------------|
-| `--course` | Active course id (`biol-1`; default: `biol-1`) |
-
-**Module Used**: `src/batch_processing` (`process_syllabus`)
-
----
-
-## Utility Scripts
-
-### `flatten_published.py` — Flatten Directory Structure
-
-Move files from subdirectories to module root for simpler distribution:
-
-```bash
-# Flatten all published content
-uv run python scripts/flatten_published.py
-
-# Dry run
-uv run python scripts/flatten_published.py --dry-run
-
-# Verbose
-uv run python scripts/flatten_published.py --verbose
-```
-
-| Option | Description |
-|--------|-------------|
-| `--dry-run` | Preview without modifying |
-| `--verbose` | Show each file operation |
-
-**Module Used**: `src/publish.utils.flatten_published`
-
----
-
-### `renumber_questions.py` — Question Renumbering
-
-Convert section-based question numbering to continuous numbering:
-
-```bash
-# Process all courses
-uv run python scripts/renumber_questions.py --course all
-
-# Specific course
-uv run python scripts/renumber_questions.py --course biol-1
-
-# Dry run
-uv run python scripts/renumber_questions.py --course biol-1 --dry-run
-```
-
-Before: `1.`, `2.`, `3.` per section
-After: `1.`, `2.`, `3.`, `4.`, `5.`... continuously
-
-**Module Used**: `src/content_processing`
-
----
-
-### `shuffle_final_exam_mc.py` — Final Exam MC Shuffle
-
-Thin CLI orchestrator over `src/exam_tools`. Shuffles BIOL-1 final exam Part A
-multiple-choice options with a reproducible, balanced-letter layout, updates
-the answer key to match, and runs a crosswalk verification. Paths default to
-`course_development/biol-1/course/exams/final-exam*.md` under repo root.
-
-```bash
-# Shuffle options and re-key the answer key
-uv run python scripts/shuffle_final_exam_mc.py
-
-# Compute the shuffle only; do not write files
-uv run python scripts/shuffle_final_exam_mc.py --dry-run
-
-# Re-render Part A spacing only (keep current option order/key untouched)
-uv run python scripts/shuffle_final_exam_mc.py --spacing-only
-```
-
-| Option | Description |
-|--------|-------------|
-| `--dry-run` | Compute shuffle only; do not write files |
-| `--spacing-only` | Re-render Part A spacing only, keeping option order and key untouched |
-| `--seed` | RNG seed (default: `FINAL_MC_SEED`) |
-
-**Module Used**: `src/exam_tools`
-
----
-
-## Migration Scripts
-
-### `import_legacy_materials.py` — Legacy Import
-
-Import materials from legacy bio_1_2025 format:
-
-```bash
-uv run python scripts/import_legacy_materials.py /path/to/legacy --course biol-1
-```
-
-| Option | Description |
-|--------|-------------|
-| `source_path` | Required: path to legacy materials |
-| `--course` | Target course directory |
-| `--dry-run` | Preview without importing |
-
-**Module Used**: `src/legacy_import`
-
-### `assemble_practice_test_12.py` — Archived BIOL-8 practice-test-12 assembler
-
-Rebuilds student and key Markdown for the archived Spring 2026 cumulative **`practice-test-12`** set from scripted slices of earlier practice tests. Logic lives entirely in this file (paths under `archive/spring-2026/course_development/biol-8/course/practice_tests/`).
-
-```bash
-cd software && uv run python scripts/assemble_practice_test_12.py
-```
-
-Read the script docstring before editing `SPEC` or output paths.
-
----
-
-## Output Formats
-
-| Format | Extension | Description | Generator |
-|--------|-----------|-------------|-----------|
-| PDF | `.pdf` | Print-ready document | WeasyPrint |
-| DOCX | `.docx` | Microsoft Word format | python-docx |
-| HTML | `.html` | Web page | Markdown + custom |
-| MP3 | `.mp3` | Audio narration | local TTS + ffmpeg |
-| TXT | `.txt` | Plain text extraction | Markdown strip |
-| MD | `.md` | Markdown copy (prefixed) | Copy + rename |
-
----
-
-## Naming Convention
-
-Output files are prefixed with module name for unique identification:
-
-```
-module-01-questions.pdf       (not questions.pdf)
-module-01-key-points.mp3 (not key-points.mp3)
-module-01-assignment-01.docx  (not assignment-01.docx)
-```
-
-This ensures files remain identifiable when distributed or combined.
-
----
-
-## Dependencies
-
-### System Libraries (macOS)
-
-```bash
-# Required for PDF/DOCX/audio generation
-brew install cairo pango gdk-pixbuf glib ffmpeg
-
-# Set library path (add to ~/.zshrc for persistence; matches publish.py / CLAUDE.md)
-export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_FALLBACK_LIBRARY_PATH:-}"
-```
-
-### Python Dependencies
-
-All managed via `uv` and `pyproject.toml`:
-
-```bash
-cd software
-uv sync --extra dev
-```
-
----
+`course_development/biol-1/course_calendar.toml`. Only records marked
+`used = true` are copied into the dated, copy-only teaching handoffs. The
+generated `meeting.json` files preserve planned/used state and source
+checksums, and LectureCreate build intermediates (frames, WAVs, hashes) are
+excluded.
 
 ## Logging
 
-Logs are written to `software/logs/generation_YYYY-MM-DD_HH-MM-SS.log`.
+Each run writes a timestamped log to
+`software/logs/generation_YYYY-MM-DD_HH-MM-SS.log` containing start/end times,
+every file processed, errors, and summary statistics. The directory is
+git-ignored; see `software/logs/AGENTS.md`.
 
-Each run creates a new timestamped log file with:
+## Dependencies
 
-- Start/end times
-- Files processed
-- Errors encountered
-- Summary statistics
-
----
+- System libraries (macOS, for PDF/DOCX/audio generation):
+  `brew install cairo pango gdk-pixbuf glib ffmpeg`, plus
+  `export DYLD_FALLBACK_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_FALLBACK_LIBRARY_PATH:-}"`.
+- Python dependencies are managed via `uv` and `software/pyproject.toml`:
+  `cd software && uv sync --extra dev`.
 
 ## Related Documentation
 
