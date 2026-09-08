@@ -38,7 +38,7 @@ Most artifacts exist in more than one format — a rendered PDF for handing out,
 | `homework/` | Homework sets |
 | `practice_tests/` | Practice tests 01–04 + keys (PT04 = comprehensive final review) |
 | `dashboards/` | Interactive HTML review dashboards (per lab + exam reviews) |
-| `lectures/` | Per-module lecture captions (`.srt`); videos regenerate locally |
+| `lectures/` | Per-module lecture videos (`.mp4`) + captions (`.srt`) |
 | `full_flat/` | Every export file flattened one level, for bulk download |
 | `ALL_FILES/` | Flat mirror of every file (collision-prefixed duplicates) |
 

@@ -12,8 +12,8 @@ landing page is [README.md](README.md).
 | `course/` | `publish_course.py` (syllabus + schedule renders) |
 | `module-NN-*/`, `modules/`, `module_keys/` | `publish_course.py` + `copy_module_bundles` |
 | `homework/`, `labs/`, `slides/`, `practice_tests/`, `dashboards/` | `copy_extras.py` (`copy_labs_and_dashboards`, `copy_slides`, `copy_practice_tests`) |
-| `lectures/` | `copy_lectures` (per-module `captions.srt`; combined mp4+srt when present) |
-| `full_flat/`, `ALL_FILES/` | `copy_full_flat` / root `publish.py::flatten_all_files` |
+| `lectures/` | `copy_lectures` (per-module `lecture.mp4` + `captions.srt`; combined pair when present) |
+| `full_flat/`, `ALL_FILES/` | `copy_full_flat` / root `publish.py::flatten_all_files` (STEP 8d lectures run before 8e full_flat so the flat export includes the published media) |
 
 Exams are **never** published (teacher-only; rendered locally into
 `course_development/biol-1/course/exams/output/`).
