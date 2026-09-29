@@ -1,67 +1,77 @@
 # BIOL-1 Practice Test 02 — Answer Key
 
-## Modules 5-6: Membranes and Metabolism
+## Exam 02 Preparation (Modules 7–11)
 
 ---
 
 ## Part A: Multiple Choice Answers
 
-| Q | Answer | Explanation |
-|:-:|:------:|-------------|
-| 1 | A | The fluid mosaic model describes membrane structure |
-| 2 | B | Cell membrane = phospholipid bilayer |
-| 3 | B | Phospholipids have hydrophilic heads and hydrophobic tails |
-| 4 | C | Cholesterol helps maintain membrane fluidity |
-| 5 | D | Active transport requires ATP |
-| 6 | A | Hypotonic = water moves INTO cell |
-| 7 | C | Isotonic = no net water movement |
-| 8 | B | Enzymes lower activation energy |
-| 9 | C | ATP is the energy currency of cells |
-| 10 | A | Substrates bind at the active site |
-| 11 | D | Denaturation = loss of enzyme shape |
-| 12 | A | ATP releases energy via phosphate hydrolysis |
-| 13 | D | Enzymes can be reused (not consumed) |
+| Q | Answer |
+|:-:|:------:|
+| 1 | C |
+| 2 | A |
+| 3 | B |
+| 4 | A |
+| 5 | C |
+| 6 | C |
+| 7 | A |
+| 8 | C |
+| 9 | B |
+| 10 | C |
+| 11 | B |
+| 12 | B |
+| 13 | A |
+| 14 | D |
+| 15 | C |
+| 16 | B |
+| 17 | D |
+| 18 | D |
+| 19 | A |
+| 20 | B |
+| 21 | D |
+| 22 | A |
+| 23 | D |
+| 24 | A |
+| 25 | D |
 
 ---
 
 ## Part B: Fill in the Blank Answers
 
 | Q | Answer |
-|:---:|--------|
-| 14 | fluid |
-| 15 | osmosis |
-| 16 | active |
-| 17 | hypotonic |
-| 18 | substrate |
-| 19 | kinetic |
-| 20 | competitive |
-| 21 | metabolism |
-| 22 | catabolic |
+|:-:|--------|
+| 26 | Uracil |
+| 27 | mRNA (or RNA) |
+| 28 | Cytokinesis |
+| 29 | Trisomy |
+| 30 | Lethal |
+| 31 | Heterozygous |
+| 32 | Operon |
+| 33 | Epigenetic |
+| 34 | Smaller (or shorter) |
+| 35 | Biotechnology |
 
 ---
 
 ## Part C: Short Answer Key
 
-**23. Passive vs. Active Transport:**
+**36. Transcription & Translation:**
 
-- Passive transport: does not require energy (ATP); moves with concentration gradient (ex: diffusion, osmosis, facilitated diffusion)
-- Active transport: requires energy (ATP); moves against concentration gradient (ex: sodium-potassium pump)
+- **Complementary DNA:** 5′-ATG CCC AAT TGC TGA-3′
+- **mRNA:** 5′-AUG CCC AAU UGC UGA-3′
 
-**24. Cell in Hypertonic Solution:**
+**37. Mitosis vs. Meiosis:**
 
-- Water moves OUT of the cell (toward higher solute concentration)
-- Animal cell: will shrink (crenation)
-- Plant cell: will plasmolyze (cell membrane pulls away from cell wall), but cell wall prevents complete collapse
+- **Mitosis:** cellular division for growth and repair, produces identical diploid somatic cells.
+- **Meiosis:** division for reproduction, produces genetically unique haploid gametes. Mendel's Law of Segregation occurs during Meiosis I when homologous chromosomes separate.
 
-**25. Enzyme Function & Specificity:**
+**38. Epigenetics & Gene Expression:**
 
-- Enzymes speed up reactions by lowering the activation energy required for the reaction to proceed.
-- They are specific because the shape of their active site matches only specific substrate molecules (lock and key / induced fit).
+- **Gene Regulation / Epigenetics:** Both cells have identical DNA, but specific genes are turned on or off based on the cell type. Certain regions of chromatin might be tightly packed (methylated) in a nerve cell but loosely packed (acetylated) in a muscle cell.
 
-**26. ATP Structure & Function:**
+**39. Biotechnology tool application:**
 
-- Structure: Adenine (nitrogenous base), Ribose (sugar), and 3 Phosphate groups.
-- Function: Energy is stored in the bonds between phosphate groups; when the terminal phosphate bond is broken (hydrolysis), energy is released for cellular work.
+- Example answers include: **PCR** (amplifies DNA for forensics/testing), **CRISPR** (edits specific DNA sequences for gene therapy), **Gel Electrophoresis** (separates DNA by size for DNA fingerprinting), **Recombinant Plasmids** (inserting human insulin gene into bacteria).
 
 ---
 

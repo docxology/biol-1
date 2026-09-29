@@ -20,185 +20,193 @@
     - C) Made of one or more cells
     - D) Reproduces sexually
 
-2. What is the correct order of the levels of biological organization, from smallest to largest?
-
-    - A) Cell → Tissue → Organ → Organ System → Organism
-    - B) Organ → Tissue → Cell → Organ System → Organism
-    - C) Tissue → Cell → Organ → Organism → Organ System
-    - D) Cell → Organ → Tissue → Organ System → Organism
-
-3. In the scientific method, what comes AFTER making an observation?
+2. In the scientific method, what comes AFTER making an observation?
 
     - A) Drawing a conclusion
     - B) Forming a hypothesis
     - C) Conducting an experiment
     - D) Publishing results
 
-4. In a controlled experiment, the variable that the scientist changes is called the:
+3. In a controlled experiment, the variable that the scientist changes is called the:
 
     - A) Independent variable
     - B) Constant
     - C) Control variable
     - D) Dependent variable
 
-5. Homeostasis refers to:
-
-    - A) The ability to grow and develop
-    - B) Reproducing to create offspring
-    - C) Maintaining a stable internal environment
-    - D) Responding to external stimuli
-
-6. An organism that makes its own food through photosynthesis is called a(n):
-
-    - A) Consumer
-    - B) Decomposer
-    - C) Autotroph
-    - D) Heterotroph
-
 ---
 
 ### Module 2: Basic Chemistry
 
-7. What determines the atomic number of an element?
+4. What determines the atomic number of an element?
 
     - A) Number of protons
     - B) Number of neutrons
     - C) Atomic mass
     - D) Number of electrons
 
-8. Isotopes of an element differ in their number of:
-
-    - A) Electrons
-    - B) Protons
-    - C) Neutrons
-    - D) Electron shells
-
-9. When electrons are TRANSFERRED between atoms, what type of bond is formed?
+5. When electrons are TRANSFERRED between atoms, what type of bond is formed?
 
     - A) Covalent bond
     - B) Ionic bond
     - C) Hydrogen bond
     - D) Polar bond
 
-10. Water is considered a polar molecule because:
+6. Water is considered a polar molecule because:
 
     - A) It has a high specific heat
     - B) It can dissolve many substances
     - C) Electrons are shared unequally between atoms
     - D) It contains hydrogen atoms
 
-11. A solution with a pH of 2 is:
-
-    - A) Neutral
-    - B) Strongly acidic
-    - C) Basic
-    - D) Weakly acidic
-
-12. A substance that resists changes in pH is called a:
+7. A substance that resists changes in pH is called a:
 
     - A) Acid
     - B) Buffer
     - C) Base
     - D) Solvent
 
-13. The tendency of water molecules to stick together is called:
-
-    - A) Cohesion
-    - B) Surface tension
-    - C) Capillary action
-    - D) Adhesion
-
 ---
 
 ### Module 3: Organic Molecules
 
-14. Which element is the "backbone" of all organic molecules?
+8. Which element is the "backbone" of all organic molecules?
 
     - A) Nitrogen
     - B) Oxygen
     - C) Hydrogen
     - D) Carbon
 
-15. What is the relationship between monomers and polymers?
+9. What is the relationship between monomers and polymers?
 
     - A) Polymers are the building blocks of monomers
     - B) Monomers break down polymers
     - C) Monomers link together to form polymers
     - D) They are the same thing
 
-16. In dehydration synthesis, polymers are built by:
-
-    - A) Adding energy without changing water
-    - B) Removing water molecules
-    - C) Adding water molecules
-    - D) Breaking bonds
-
-17. Which biomolecule is the body's primary source of quick energy?
+10. Which biomolecule is the body's primary source of quick energy?
 
     - A) Protein
     - B) Nucleic acid
     - C) Lipid
     - D) Carbohydrate
 
-18. What type of bond holds amino acids together in a protein?
+11. What type of bond holds amino acids together in a protein?
 
     - A) Glycosidic bond
     - B) Hydrogen bond
     - C) Ionic bond
     - D) Peptide bond
 
-19. When a protein loses its shape due to heat or pH changes, this is called:
-
-    - A) Denaturation
-    - B) Polymerization
-    - C) Hydrolysis
-    - D) Condensation
-
 ---
 
 ### Module 4: Cells
 
-20. According to cell theory, all cells:
+12. According to cell theory, all cells:
 
     - A) Contain a nucleus
     - B) Come from pre-existing cells
     - C) Are identical in structure
     - D) Can survive independently
 
-21. The main difference between prokaryotic and eukaryotic cells is that prokaryotes:
+13. The main difference between prokaryotic and eukaryotic cells is that prokaryotes:
 
     - A) Are larger than eukaryotes
     - B) Have more organelles
     - C) Cannot reproduce
     - D) Lack a membrane-bound nucleus
 
-22. Which organelle is called the "powerhouse of the cell" because it produces ATP?
+14. Which organelle is called the "powerhouse of the cell" because it produces ATP?
 
     - A) Mitochondria
     - B) Golgi apparatus
     - C) Nucleus
     - D) Ribosome
 
-23. Which structure is found in plant cells but NOT in animal cells?
+15. Which structure is found in plant cells but NOT in animal cells?
 
     - A) Mitochondria
     - B) Ribosomes
     - C) Nucleus
     - D) Cell wall
 
-24. Proteins are synthesized (made) at which organelle?
+---
 
-    - A) Ribosome
-    - B) Mitochondria
-    - C) Lysosome
-    - D) Golgi apparatus
+### Module 5: Membranes
 
-25. The Golgi apparatus functions to:
+16. The cell membrane is best described by the:
 
-    - A) Digest waste materials
-    - B) Produce ATP
-    - C) Store DNA
-    - D) Package and ship proteins
+    - A) Fluid mosaic model
+    - B) Rigid barrier model
+    - C) Lock and key model
+    - D) Simple lipid model
+
+17. The cell membrane is primarily composed of:
+
+    - A) Proteins only
+    - B) Phospholipid bilayer
+    - C) Carbohydrates
+    - D) Nucleic acids
+
+18. Phospholipids spontaneously form a bilayer in water because:
+
+    - A) They are charged molecules
+    - B) They have hydrophilic heads and hydrophobic tails
+    - C) They are completely hydrophobic
+    - D) They are all the same size
+
+19. Which transport process requires ATP?
+
+    - A) Diffusion
+    - B) Facilitated diffusion
+    - C) Osmosis
+    - D) Active transport
+
+20. When a cell is placed in a hypotonic solution, water will:
+
+    - A) Move into the cell
+    - B) Not move
+    - C) Move in both directions equally
+    - D) Move out of the cell
+
+---
+
+### Module 6: Metabolism
+
+21. Enzymes function by:
+
+    - A) Providing energy for reactions
+    - B) Decreasing activation energy
+    - C) Increasing activation energy
+    - D) Changing the equilibrium of reactions
+
+22. The molecule that stores and transfers energy in all cells is:
+
+    - A) Glucose
+    - B) DNA
+    - C) ATP
+    - D) NADH
+
+23. The part of an enzyme where the substrate binds is called the:
+
+    - A) Active site
+    - B) Product site
+    - C) Inhibitor site
+    - D) Allosteric site
+
+24. When an enzyme loses its shape due to heat or pH changes, this is called:
+
+    - A) Activation
+    - B) Catalysis
+    - C) Inhibition
+    - D) Denaturation
+
+25. Which statement about enzymes is TRUE?
+
+    - A) Enzymes are made of carbohydrates
+    - B) Enzymes increase the activation energy
+    - C) Enzymes are used up in reactions
+    - D) Enzymes can be reused
 
 ---
 
@@ -210,21 +218,21 @@
 
 27. The _________________________ is the organelle that contains the cell's genetic material (DNA).
 
-28. Atoms of the same element with different numbers of neutrons are called _________________________.
+28. The process of breaking down polymers by adding water is called _________________________.
 
-29. The process of breaking down polymers by adding water is called _________________________.
+29. A solution with a pH less than 7 is _________________________.
 
-30. The four most common elements in living things are carbon, hydrogen, oxygen, and _________________________.
+30. The monomer (building block) of proteins is the _________________________.
 
-31. A solution with a pH less than 7 is _________________________.
+31. Organisms that cannot make their own food and must consume other organisms are called _________________________.
 
-32. The monomer (building block) of proteins is the _________________________.
+32. According to _________________________ theory, mitochondria and chloroplasts were once free-living bacteria.
 
-33. Organisms that cannot make their own food and must consume other organisms are called _________________________.
+33. The process by which water moves across a membrane is called _________________________.
 
-34. The _________________________ _________________________ is the membrane system that includes the ER and Golgi apparatus.
+34. The specific reactant that an enzyme acts on is called the _________________________.
 
-35. According to _________________________ theory, mitochondria and chloroplasts were once free-living bacteria.
+35. The sum of all chemical reactions in an organism is called _________________________.
 
 ---
 
@@ -236,15 +244,15 @@
 
 <br><br><br><br><br><br>
 
-37. Explain the difference between an ionic bond and a covalent bond.
+37. What are the four major types of biological macromolecules? Name the monomer (building block) for proteins.
 
 <br><br><br><br><br><br>
 
-38. What are the four major types of biological macromolecules? Name the monomer (building block) for proteins.
+38. Explain the difference between passive transport and active transport. Give one example of each.
 
 <br><br><br><br><br><br>
 
-39. Compare prokaryotic and eukaryotic cells. Give one example of each type of organism.
+39. Explain how enzymes speed up chemical reactions and why they are specific to their substrates.
 
 <br><br><br><br><br><br>
 

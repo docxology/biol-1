@@ -1,6 +1,6 @@
 # BIOL-1 Practice Test 01 — Answer Key
 
-## Modules 1-6: Study of Life through Cells
+## Modules 1-6: Study of Life through Metabolism
 
 ---
 
@@ -9,30 +9,30 @@
 | Q | Answer | Explanation |
 |:---:|:------:|-------------|
 | 1 | C | All living things are made of cells |
-| 2 | A | Cell → Tissue → Organ → Organ System → Organism |
-| 3 | B | Observation → Hypothesis → Experiment → Conclusion |
-| 4 | A | The independent variable is what the scientist changes |
-| 5 | C | Homeostasis = maintaining a stable internal environment |
-| 6 | C | Autotrophs make their own food (producers) |
-| 7 | A | Atomic number = number of protons |
-| 8 | C | Isotopes differ in neutron number |
-| 9 | B | Ionic bonds involve electron transfer |
-| 10 | C | Water is polar due to unequal electron sharing |
-| 11 | B | pH 2 is strongly acidic (far below 7) |
-| 12 | B | Buffers resist pH changes |
-| 13 | A | Cohesion = water molecules sticking together |
-| 14 | D | Carbon forms the backbone of organic molecules |
-| 15 | C | Monomers are building blocks that form polymers |
-| 16 | B | Dehydration synthesis removes water to build polymers |
-| 17 | D | Carbohydrates provide quick energy |
-| 18 | D | Peptide bonds link amino acids |
-| 19 | A | Denaturation = loss of protein shape |
-| 20 | B | Cell theory: cells come from pre-existing cells |
-| 21 | D | Prokaryotes lack a membrane-bound nucleus |
-| 22 | A | Mitochondria produce ATP via cellular respiration |
-| 23 | D | Plant cells have cell walls; animal cells do not |
-| 24 | A | Ribosomes are the site of protein synthesis |
-| 25 | D | Golgi packages and ships proteins |
+| 2 | B | Observation → Hypothesis → Experiment → Conclusion |
+| 3 | A | The independent variable is what the scientist changes |
+| 4 | A | Atomic number = number of protons |
+| 5 | B | Ionic bonds involve electron transfer |
+| 6 | C | Water is polar due to unequal electron sharing |
+| 7 | B | Buffers resist pH changes |
+| 8 | D | Carbon forms the backbone of organic molecules |
+| 9 | C | Monomers are building blocks that form polymers |
+| 10 | D | Carbohydrates provide quick energy |
+| 11 | D | Peptide bonds link amino acids |
+| 12 | B | Cell theory: cells come from pre-existing cells |
+| 13 | D | Prokaryotes lack a membrane-bound nucleus |
+| 14 | A | Mitochondria produce ATP via cellular respiration |
+| 15 | D | Plant cells have cell walls; animal cells do not |
+| 16 | A | The fluid mosaic model describes membrane structure |
+| 17 | B | Cell membrane = phospholipid bilayer |
+| 18 | B | Phospholipids have hydrophilic heads and hydrophobic tails |
+| 19 | D | Active transport requires ATP |
+| 20 | A | Hypotonic = water moves INTO cell |
+| 21 | B | Enzymes lower activation energy |
+| 22 | C | ATP is the energy currency of cells |
+| 23 | A | Substrates bind at the active site |
+| 24 | D | Denaturation = loss of enzyme shape |
+| 25 | D | Enzymes can be reused (not consumed) |
 
 ---
 
@@ -42,14 +42,14 @@
 |:---:|--------|
 | 26 | cell |
 | 27 | nucleus |
-| 28 | isotopes |
-| 29 | hydrolysis |
-| 30 | nitrogen (N) |
-| 31 | acidic |
-| 32 | amino acid |
-| 33 | heterotrophs (or consumers) |
-| 34 | endomembrane system |
-| 35 | endosymbiotic |
+| 28 | hydrolysis |
+| 29 | acidic |
+| 30 | amino acid |
+| 31 | heterotrophs (or consumers) |
+| 32 | endosymbiotic |
+| 33 | osmosis |
+| 34 | substrate |
+| 35 | metabolism |
 
 ---
 
@@ -65,20 +65,20 @@
 - Response to stimuli
 - Adaptation/evolution
 
-**37. Ionic vs. Covalent bonds:**
-
-- Ionic bonds: electrons are transferred from one atom to another, creating ions
-- Covalent bonds: electrons are shared between atoms
-
-**38. Four macromolecules:**
+**37. Four macromolecules:**
 
 - Carbohydrates, Lipids, Proteins, Nucleic Acids
 - Protein monomer: amino acid
 
-**39. Prokaryotes vs. Eukaryotes:**
+**38. Passive vs. Active Transport:**
 
-- Prokaryotes: no nucleus or membrane-bound organelles (ex: bacteria)
-- Eukaryotes: have a nucleus and membrane-bound organelles (ex: plants, animals, fungi)
+- Passive transport: does not require energy (ATP); moves with concentration gradient (ex: diffusion, osmosis, facilitated diffusion)
+- Active transport: requires energy (ATP); moves against concentration gradient (ex: sodium-potassium pump)
+
+**39. Enzyme Function & Specificity:**
+
+- Enzymes speed up reactions by lowering the activation energy required for the reaction to proceed.
+- They are specific because the shape of their active site matches only specific substrate molecules (lock and key / induced fit).
 
 ---
 

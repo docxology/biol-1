@@ -1,6 +1,6 @@
 # BIOL-1 Practice Test 03 — Answer Key
 
-## Exam 02 Preparation (Modules 7–11)
+## Exam 03 Preparation (Modules 12–16)
 
 ---
 
@@ -40,38 +40,42 @@
 
 | Q | Answer |
 |:-:|--------|
-| 26 | Uracil |
-| 27 | mRNA (or RNA) |
-| 28 | Cytokinesis |
-| 29 | Trisomy |
-| 30 | Lethal |
-| 31 | Heterozygous |
-| 32 | Operon |
-| 33 | Epigenetic |
-| 34 | Smaller (or shorter) |
-| 35 | Biotechnology |
+| 26 | K (or carrying capacity) |
+| 27 | allele frequencies |
+| 28 | prezygotic |
+| 29 | density-dependent |
+| 30 | gene flow |
+| 31 | homologous |
+| 32 | decomposers |
+| 33 | stabilizing selection |
+| 34 | allopatric |
+| 35 | sympatric |
 
 ---
 
 ## Part C: Short Answer Key
 
-**36. Transcription & Translation:**
+**36. (Module 12) Fitness and evidence:**
+- **Fitness:** (Accept variations.) Evolutionary **fitness** = **relative reproductive success** (passing alleles to the next generation), not just strength or long life with no offspring.
+- **Evidence example:** (Any one, well explained.) **Fossils** show historical sequences and transitions; **homologous** structures show shared ancestry with modified form; **biogeography** shows patterns consistent with past geography; **molecular** comparisons show more similar DNA in closer relatives.
 
-- **Complementary DNA:** 5′-ATG CCC AAT TGC TGA-3′
-- **mRNA:** 5′-AUG CCC AAU UGC UGA-3′
+**37. (Module 13) Drift and selection:**
+- **Bottleneck:** a catastrophic **random** die-off; survivors may have **unrepresentative** allele frequencies (not mainly “fittest for all futures”).
+- **Founder:** a **small** group starts a new population; the new pool equals **only** founder alleles.
+- **Modes:** **Directional** = average shifts toward one extreme; **stabilizing** = middle favored; **disruptive** = two extremes favored, often middle disfavored.
 
-**37. Mitosis vs. Meiosis:**
+**38. (Module 14) Barriers and speciation:**
+- **Prezygotic examples:** different mating seasons, courtship, habitat use, or gametic incompatibility before a zygote.
+- **Postzygotic examples:** hybrid inviability, hybrid sterility (e.g. mule), or hybrid breakdown in later generations.
+- **Allopatric** = geographic separation then divergence; **sympatric** = new species in **same** area, often (in plants) via **polyploidy** or strong ecological/behavioral split.
 
-- **Mitosis:** cellular division for growth and repair, produces identical diploid somatic cells.
-- **Meiosis:** division for reproduction, produces genetically unique haploid gametes. Mendel's Law of Segregation occurs during Meiosis I when homologous chromosomes separate.
+**39. (Module 15) Limits and energy:**
+- **Density-dependent:** impact **per** organism or transmission rate can rise with **crowding** (e.g. some diseases, competition for food). **Density-independent:** a similar **fraction** hit regardless of density (e.g. many fire/freeze/drought examples as framed).
+- **10% rule:** only ~**one-tenth** of energy stored at one level is passed to the next; many steps mean **exponential** loss; apex consumers need a **huge** base of primary production compared with eating **producers** directly for the same food energy.
 
-**38. Epigenetics & Gene Expression:**
-
-- **Gene Regulation / Epigenetics:** Both cells have identical DNA, but specific genes are turned on or off based on the cell type. Certain regions of chromatin might be tightly packed (methylated) in a nerve cell but loosely packed (acetylated) in a muscle cell.
-
-**39. Biotechnology tool application:**
-
-- Example answers include: **PCR** (amplifies DNA for forensics/testing), **CRISPR** (edits specific DNA sequences for gene therapy), **Gel Electrophoresis** (separates DNA by size for DNA fingerprinting), **Recombinant Plasmids** (inserting human insulin gene into bacteria).
+**40. (Module 16) Capstone systems synthesis:**
+- Strong answers connect at least three ideas in a chain, for example: genetic variation affects a trait; the trait changes survival/reproduction under a specific environment; population changes then alter resource use or trophic interactions.
+- Require an explicit evidence statement such as observed trait frequencies, survival/reproduction data, food-web observations, or population counts.
 
 ---
 
