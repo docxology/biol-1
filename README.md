@@ -1,68 +1,59 @@
-# BIOL-1 — General Biology
+# BIOL-1: General Biology
 
-Course materials for **BIOL-1, General Biology** at College of the Redwoods (Fall 2026). Sixteen modules run from the study of life through a capstone systems synthesis, and every module ships with slides, a lab, homework, a practice quiz, an answer key, and an interactive review dashboard.
+**College of the Redwoods, Pelican Bay | Fall 2026**
 
-Most artifacts exist in more than one format — a rendered PDF for handing out, and a DOCX you can edit — so the materials can be used as-is, adapted, or rebuilt.
+Student course materials span 16 modules, from the study of life through
+genetics, evolution, ecology and capstone systems synthesis. Printable PDFs and
+editable DOCX files are the standard handouts. The course includes 17 completed
+laboratory protocols, slides, practice quizzes, study guides and review dashboards.
 
-## Modules
+## Start here
 
-| # | Module |
-|---|---|
-| 01 | Study of Life |
-| 02 | Basic Chemistry |
-| 03 | Organic Molecules |
-| 04 | Cells |
-| 05 | Membranes |
-| 06 | Metabolism |
-| 07 | Molecular Genetics |
-| 08 | Cellular Genetics |
-| 09 | Inheritance Genetics |
-| 10 | Epigenetics |
-| 11 | Genomics and Biotechnology |
-| 12 | Darwin and Evolution |
-| 13 | How Populations Evolve |
-| 14 | Macroevolution |
-| 15 | Population and Systems Ecology |
-| 16 | Capstone: Systems Synthesis |
+- [Syllabus and schedule](https://github.com/docxology/biol-1/tree/main/course): course requirements and meeting schedule.
+- [Module bundles](https://github.com/docxology/biol-1/tree/main/modules): study materials, practice quizzes, slides and visuals.
+- [Homework](https://github.com/docxology/biol-1/tree/main/homework) and [module keys](https://github.com/docxology/biol-1/tree/main/module_keys).
+- [Laboratory handouts](https://github.com/docxology/biol-1/tree/main/labs) and [interactive dashboards](https://github.com/docxology/biol-1/tree/main/dashboards).
+- [Lecture slides](https://github.com/docxology/biol-1/tree/main/slides): full decks and notes decks.
+- [Practice tests and keys](https://github.com/docxology/biol-1/tree/main/practice_tests): unit review sets 01–03 and cumulative
+  final review set 04.
+- [Lecture videos and captions](https://github.com/docxology/biol-1/tree/main/lectures): available recorded lectures.
+- [Full flat export](https://github.com/docxology/biol-1/tree/main/full_flat) and [all-files mirror](https://github.com/docxology/biol-1/tree/main/ALL_FILES): bulk downloads.
 
-## Repository layout
+Open dashboard HTML files in a browser. Print the PDFs at their original scale.
+Student practice tests use a duplex tear-off answer sheet: the first page records
+multiple-choice and fill-in answers; the reverse begins free response. Follow the
+instructions printed on each packet.
 
-| Path | Contents |
-|---|---|
-| `course/` | Syllabus and schedule (DOCX + PDF) |
-| `modules/` | Per-module bundles: study guides, quizzes, slides, visual assets |
-| `module-NN-*/` | That module's practice quiz (DOCX + PDF) |
-| `module_keys/` | Answer keys |
-| `slides/` | Lecture decks (full + notes PDFs per module) |
-| `labs/` | Lab handouts (16 protocols + 3 TBD sessions) |
-| `homework/` | Homework sets |
-| `practice_tests/` | Practice tests 01–04 + keys (PT04 = comprehensive final review) |
-| `dashboards/` | Interactive HTML review dashboards (per lab + exam reviews) |
-| `lectures/` | Per-module lecture videos (`.mp4`) + captions (`.srt`) |
-| `full_flat/` | Every export file flattened one level, for bulk download |
-| `ALL_FILES/` | Flat mirror of every file (collision-prefixed duplicates) |
+## Course sequence
 
-686 files (298 PDF, 144 SVG, 132 DOCX, 60 HTML, 32 caption files, 20 Markdown), plus the `ALL_FILES/` mirror of the same 686.
+1. Study of Life
+2. Basic Chemistry
+3. Organic Molecules
+4. Cells
+5. Membranes
+6. Metabolism
+7. Molecular Genetics
+8. Cellular Genetics
+9. Inheritance Genetics
+10. Epigenetics
+11. Genomics and Biotechnology
+12. Darwin and Evolution
+13. How Populations Evolve
+14. Macroevolution
+15. Population and Systems Ecology
+16. Capstone Systems Synthesis
 
-## Using this repository
+Unit review sets cover Modules 01–06, 07–11 and 12–16 respectively. The final
+review is cumulative. Lab numbers run one ahead of the matching module from
+Lab 06 onward; use the schedule for the actual lecture/lab pairing.
 
-**Students** — start with `course/` for the syllabus and schedule, then work module by module. The `dashboards/` folder holds self-check review pages for each lab and exam; open the `.html` files directly in a browser.
+## Publication and reuse
 
-**Instructors** — `full_flat/` gives you every artifact in one directory if you want to bulk-import into an LMS. The per-module folders keep quizzes next to their keys. Markdown sources are included wherever they exist, so you can edit and re-render rather than starting from the PDF.
+This repository contains generated public course materials. Unit exams, final
+exams, their answer keys, accommodations and institution-specific private files
+are excluded. Practice-test and module study keys are intentionally included.
 
-## Reuse
-
-No license file is present in this repository. Please contact the author before redistributing or adapting these materials for another course.
-
-## Related
-
-- [`biol-8`](https://github.com/docxology/biol-8) — Human Anatomy and Physiology, same structure
-- [`biology_textbook`](https://github.com/docxology/biology_textbook) — an open, generatively-built introductory biology textbook (CC BY 4.0)
-
----
-
-> **Agents, note:** This tree is GENERATED. Do not hand-edit files here; edit
-> source in `course_development/biol-1/` (module content lives in each module's
-> `module.toml`) and regenerate with `python publish.py --skip-git` from the repo
-> root. This README survives `clean_published`; wrong-path edits elsewhere in
-> this tree are silently overwritten by the next publish run.
+Authors update the private course sources and regenerate these outputs. See
+[the technical publication guide](AGENTS.md) for the generation boundary.
+No course-wide license is supplied here; contact the instructor before adapting
+or redistributing these materials. Third-party material retains its own terms.
