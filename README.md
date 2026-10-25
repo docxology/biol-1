@@ -3,14 +3,18 @@
 **College of the Redwoods, Pelican Bay | Fall 2026**
 
 Student course materials span 16 modules, from the study of life through
-genetics, evolution, ecology and capstone systems synthesis. Printable PDFs and
-editable DOCX files are the standard handouts. The course includes 17 completed
-laboratory protocols, slides, practice quizzes, study guides and review dashboards.
+genetics, evolution, ecology and capstone systems synthesis. Handouts are printable
+PDFs; the syllabus and schedule, homework, key points and per-module quizzes also
+ship as editable DOCX. The course includes 17 completed laboratory protocols,
+slides, practice quizzes, study guides and review dashboards.
 
 ## Start here
 
 - [Syllabus and schedule](https://github.com/docxology/biol-1/tree/main/course): course requirements and meeting schedule.
-- [Module bundles](https://github.com/docxology/biol-1/tree/main/modules): study materials, practice quizzes, slides and visuals.
+- [Module bundles](https://github.com/docxology/biol-1/tree/main/modules): homework sets, key points, slides,
+  the like-numbered lab handout and dashboard, and generated visuals.
+- Per-module practice quizzes: the `module-NN-<name>/` directories at the repository
+  root, for example [module 01](https://github.com/docxology/biol-1/tree/main/module-01-study-of-life).
 - [Homework](https://github.com/docxology/biol-1/tree/main/homework) and [module keys](https://github.com/docxology/biol-1/tree/main/module_keys).
 - [Laboratory handouts](https://github.com/docxology/biol-1/tree/main/labs) and [interactive dashboards](https://github.com/docxology/biol-1/tree/main/dashboards).
 - [Lecture slides](https://github.com/docxology/biol-1/tree/main/slides): full decks and notes decks.
