@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 7 Dashboard: Metabolism | BIOL-1</title>
+<title>Lab 7: Metabolism Dashboard | BIOL-1</title>
 <style>
 :root {
   --bg: #f5f7fb;
@@ -111,7 +111,7 @@ button {
     <label><span>Reactant</span><textarea rows="3"></textarea></label>
 <label><span>Energy change</span><textarea rows="3"></textarea></label>
 <label><span>Product</span><textarea rows="3"></textarea></label>
-    <button type="button" id="save">Save Notes</button><span class="status" id="status"></span>
+    <button type="button" id="save">Save Notes</button><span class="status" id="status" role="status"></span>
   </section>
 
   <section class="card">
@@ -119,6 +119,12 @@ button {
     <label><input type="checkbox"> <span>Track matter as well as energy.</span></label>
 <label><input type="checkbox"> <span>Distinguish photosynthesis from respiration.</span></label>
 <label><input type="checkbox"> <span>Connect enzymes to reaction rates.</span></label>
+  </section>
+
+  <section class="card">
+    <h2>Printable worksheet</h2>
+    <p><a href="https://github.com/docxology/biol-1/blob/main/labs/lab-07_metabolism.pdf">Open the Metabolism PDF</a>.
+    Complete the paper worksheet first; this dashboard is an optional place to record your reasoning.</p>
   </section>
 
   <section class="card">
@@ -141,8 +147,13 @@ try {
   console.warn("Could not load saved dashboard notes", error);
 }
 document.getElementById("save").addEventListener("click", () => {
-  localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
-  document.getElementById("status").textContent = "Saved in this browser";
+  try {
+    localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
+    document.getElementById("status").textContent = "Saved in this browser";
+  } catch (error) {
+    document.getElementById("status").textContent = "Could not save. Keep this page open and copy your notes to paper.";
+    console.warn("Could not save dashboard notes", error);
+  }
 });
 </script>
 </body>

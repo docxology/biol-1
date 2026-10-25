@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 12 Dashboard: Exam 02 Review | BIOL-1</title>
+<title>Exam 02 Review Dashboard | BIOL-1</title>
 <style>
 :root {
   --bg: #f5f7fb;
@@ -79,7 +79,7 @@ button {
 <body>
 <header>
   <div class="label">BIOL-1 General Biology</div>
-  <h1>Lab 12: Exam 02 Review</h1>
+  <h1>Exam 02 Review</h1>
   <p>Review: Modules 07-11 companion dashboard</p>
 </header>
 <main>
@@ -111,7 +111,7 @@ button {
     <label><span>Confident concept</span><textarea rows="3"></textarea></label>
 <label><span>Confusing concept</span><textarea rows="3"></textarea></label>
 <label><span>Next practice</span><textarea rows="3"></textarea></label>
-    <button type="button" id="save">Save Notes</button><span class="status" id="status"></span>
+    <button type="button" id="save">Save Notes</button><span class="status" id="status" role="status"></span>
   </section>
 
   <section class="card">
@@ -119,6 +119,12 @@ button {
     <label><input type="checkbox"> <span>Build a one-page concept map.</span></label>
 <label><input type="checkbox"> <span>Explain DNA-to-trait links.</span></label>
 <label><input type="checkbox"> <span>Practice genetics problems slowly.</span></label>
+  </section>
+
+  <section class="card">
+    <h2>Printable worksheet</h2>
+    <p><a href="https://github.com/docxology/biol-1/blob/main/review_materials/exam-02-review.pdf">Open the Exam 02 Review PDF</a>.
+    Complete the paper worksheet first; this dashboard is an optional place to record your reasoning.</p>
   </section>
 
   <section class="card">
@@ -132,7 +138,7 @@ button {
   </section>
 </main>
 <script>
-const key = "biol1-lab-12-dashboard";
+const key = "biol1-exam-02-review-dashboard";
 const fields = Array.from(document.querySelectorAll("textarea"));
 try {
   const saved = JSON.parse(localStorage.getItem(key) || "[]");
@@ -141,8 +147,13 @@ try {
   console.warn("Could not load saved dashboard notes", error);
 }
 document.getElementById("save").addEventListener("click", () => {
-  localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
-  document.getElementById("status").textContent = "Saved in this browser";
+  try {
+    localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
+    document.getElementById("status").textContent = "Saved in this browser";
+  } catch (error) {
+    document.getElementById("status").textContent = "Could not save. Keep this page open and copy your notes to paper.";
+    console.warn("Could not save dashboard notes", error);
+  }
 });
 </script>
 </body>

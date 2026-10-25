@@ -3,7 +3,7 @@
 <!-- assessment-layout: tearoff-duplex -->
 ## Exam 03 Preparation (Modules 12–16)
 
-**Instructions:** This practice test covers material from **Module 12** (Darwin and Evolution) through **Module 16** (Capstone Systems Synthesis). Answer all questions to the best of your ability to prepare for Exam 03.
+**Instructions:** This practice test covers material from **Module 12** (Darwin and Evolution) through **Module 16** (Capstone Systems Synthesis). Use all three parts to check your understanding. Explain mechanisms in your own words, then use the key to revise. This practice set samples the unit; follow the instructor’s separate exam instructions.
 
 ---
 
@@ -185,7 +185,7 @@
 
 30. The movement of alleles into or out of a population through migration and mating is called \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
 
-31. The forelimb bone pattern shared by many tetrapods with different functions (human arm, bat wing, whale flipper) is \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ structure (in comparative anatomy, from common ancestry with modification).
+31. The forelimb bone pattern shared by many tetrapods with different functions (human arm, bat wing, whale flipper) is a \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ structure (in comparative anatomy, from common ancestry with modification).
 
 32. Fungi and many bacteria, which break down dead material and return elements to the soil, are \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ in nutrient cycling (category name).
 
@@ -197,7 +197,7 @@
 
 ---
 
-## Part C: Short Answer (4 questions)
+## Part C: Short Answer (5 questions)
 
 36. **(Module 12)** In two or three sentences, define **evolutionary fitness** as used in this course, and name **one** line of **evidence** for common descent (fossils, comparative anatomy, biogeography, or molecular) with a brief what-it-shows.
 
@@ -215,7 +215,7 @@
 
 <br><br><br><br><br><br>
 
-40. **(Module 16)** Build a short systems explanation: choose one biological scenario from this unit and connect **one evolutionary idea**, **one population/ecology idea**, and **one piece of evidence** into a single cause-and-effect explanation.
+40. **(Module 16)** Build a short systems explanation: choose one biological scenario from this unit and connect **one evolutionary idea**, **one population/ecology idea**, **one feedback or constraint**, and **one piece of evidence** into a single cause-and-effect explanation. Explain what the evidence would test.
 
 <br><br><br><br><br><br>
 

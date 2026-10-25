@@ -12,9 +12,9 @@ copies and regenerate; direct edits to the public checkout will be replaced.
 
 Module content comes from `module.toml`, and lab/practice-test content from their
 course Markdown sources. The configured profile renders PDF and DOCX for 16
-modules and 17 labs, plus syllabus, slides, dashboards and four practice-test
-sets. Lecture generation is optional; existing lecture files and captions copy
-when available. `publish.toml` is the authority for enabled formats and stages.
+modules, 17 labs, four review worksheets and four practice-test sets, plus
+syllabus, PDF slides and dashboards. Lecture copying requires an explicit
+`include_lectures = true`; it is disabled for this course. `publish.toml` is the authority for enabled formats and stages.
 
 The authoring workflow renders and validates locally before committing. The
 `PUBLISHED/biol-1` tree is then split and pushed to this repository. Public pushes
@@ -27,7 +27,6 @@ must preserve remote work; a non-fast-forward result requires reconciliation.
 - `module-NN-*/`: module quiz outputs.
 - `homework/`, `module_keys/`, `labs/`, `slides/`, `practice_tests/`, `dashboards/`:
   category collections.
-- `lectures/`: available videos and captions.
 - `full_flat/`, `ALL_FILES/`: generated bulk collections.
 
 ## Validation and privacy

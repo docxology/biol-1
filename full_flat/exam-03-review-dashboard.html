@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 17 Dashboard: Exam 03 Review | BIOL-1</title>
+<title>Exam 03 Review Dashboard | BIOL-1</title>
 <style>
 :root {
   --bg: #f5f7fb;
@@ -79,7 +79,7 @@ button {
 <body>
 <header>
   <div class="label">BIOL-1 General Biology</div>
-  <h1>Lab 17: Exam 03 Review</h1>
+  <h1>Exam 03 Review</h1>
   <p>Review: Modules 12-16 companion dashboard</p>
 </header>
 <main>
@@ -111,14 +111,20 @@ button {
     <label><span>Evolution concept</span><textarea rows="3"></textarea></label>
 <label><span>Ecology concept</span><textarea rows="3"></textarea></label>
 <label><span>Practice target</span><textarea rows="3"></textarea></label>
-    <button type="button" id="save">Save Notes</button><span class="status" id="status"></span>
+    <button type="button" id="save">Save Notes</button><span class="status" id="status" role="status"></span>
   </section>
 
   <section class="card">
     <h2>Concept Check</h2>
-    <label><input type="checkbox"> <span>Use the four-module checklist.</span></label>
+    <label><input type="checkbox"> <span>Use the five-module checklist, including capstone synthesis.</span></label>
 <label><input type="checkbox"> <span>Explain mechanisms in plain language.</span></label>
 <label><input type="checkbox"> <span>Write one full free-response answer.</span></label>
+  </section>
+
+  <section class="card">
+    <h2>Printable worksheet</h2>
+    <p><a href="https://github.com/docxology/biol-1/blob/main/review_materials/exam-03-review.pdf">Open the Exam 03 Review PDF</a>.
+    Complete the paper worksheet first; this dashboard is an optional place to record your reasoning.</p>
   </section>
 
   <section class="card">
@@ -132,7 +138,7 @@ button {
   </section>
 </main>
 <script>
-const key = "biol1-lab-17-dashboard";
+const key = "biol1-exam-03-review-dashboard";
 const fields = Array.from(document.querySelectorAll("textarea"));
 try {
   const saved = JSON.parse(localStorage.getItem(key) || "[]");
@@ -141,8 +147,13 @@ try {
   console.warn("Could not load saved dashboard notes", error);
 }
 document.getElementById("save").addEventListener("click", () => {
-  localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
-  document.getElementById("status").textContent = "Saved in this browser";
+  try {
+    localStorage.setItem(key, JSON.stringify(fields.map(field => field.value)));
+    document.getElementById("status").textContent = "Saved in this browser";
+  } catch (error) {
+    document.getElementById("status").textContent = "Could not save. Keep this page open and copy your notes to paper.";
+    console.warn("Could not save dashboard notes", error);
+  }
 });
 </script>
 </body>
