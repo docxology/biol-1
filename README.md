@@ -77,5 +77,5 @@ are excluded. Practice-test and module study keys are intentionally included.
 
 Authors update the private course sources and regenerate these outputs. See
 [the technical publication guide](https://github.com/docxology/biol-1/blob/main/AGENTS.md) for the generation boundary.
-No course-wide license is supplied here; contact the instructor before adapting
-or redistributing these materials. Third-party material retains its own terms.
+These materials are licensed under [CC BY-NC 4.0](LICENSE): you may share and adapt them
+for non-commercial use with attribution. Third-party material retains its own terms.
