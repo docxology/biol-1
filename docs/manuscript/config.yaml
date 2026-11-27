@@ -1,0 +1,23 @@
+paper:
+  title: "BIOL-1 General Biology: An Inventory of the Public Course Resources"
+  subtitle: "Coverage and distribution in the Fall 2026 publication"
+authors:
+  - name: "BIOL-1 repository documentation"
+publication:
+  github_repository: "docxology/biol-1"
+  transmission_bookends:
+    enabled: false
+keywords:
+  - course resources
+  - publication inventory
+  - open educational resources
+metadata:
+  language: en
+  license: "CC BY-NC 4.0"
+render:
+  formats:
+    html: true
+    pdf: true
+    docx: false
+    epub: false
+    slides: false

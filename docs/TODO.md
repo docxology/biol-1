@@ -1,6 +1,6 @@
 # biol-1 — canonical backlog
 
-Open, owner-local work only. Completed work belongs in `CHANGELOG.md` and Git history.
+This historical review records the evidence available before the public documentation inventory. The [publication guide](publication.md) covers the current public/private source boundary.
 
 ## Workflowz review — 2026-11-10
 

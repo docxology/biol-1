@@ -1,14 +1,16 @@
 # BIOL-1 public course publication
 
 This repository is the generated `PUBLISHED/biol-1` subtree of the private
-`cr-bio` authoring repository. Its student-facing guide is [README.md](README.md).
+`cr-bio` authoring repository. Start with the [public documentation index](docs/README.md) and the [student guide](docs/course-guide.md).
 
 ## Source and regeneration
 
 The canonical copies of these two landing documents live in
 `course_development/biol-1/resources/publication/` in cr-bio. `publish_course`
-copies only `README.md` and `AGENTS.md` from that directory. Edit the canonical
-copies and regenerate; direct edits to the public checkout will be replaced.
+copies only `README.md` and `AGENTS.md` from that directory. The public-only
+`docs/` tree documents the distribution and its offline inventory. Coordinate
+updates to the regenerated landing files with the private authoring copies.
+The [public publication guide](docs/publication.md) records the boundary.
 
 Module content comes from `module.toml`, and lab/practice-test content from their
 course Markdown sources. The configured profile renders PDF and DOCX for 16
