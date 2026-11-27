@@ -16,7 +16,7 @@ To stage the figure with Matplotlib and verify the manuscript, use a disposable
 project checkout and a separate [Template checkout at `87704feae0a4490ef7dad9c931d268e8c30273c2`](https://github.com/docxology/template/tree/87704feae0a4490ef7dad9c931d268e8c30273c2).
 Follow the [Template tool prerequisites](https://github.com/docxology/template/blob/87704feae0a4490ef7dad9c931d268e8c30273c2/docs/RUN_GUIDE.md)
 for Pandoc, pandoc-crossref, XeLaTeX, and BibTeX. Set `biol_checkout` to the
-absolute project checkout path. Run these commands from Template.
+absolute path to a directory named `biol-1`. Run these commands from Template.
 
 ```bash
 uv sync --locked --no-dev
