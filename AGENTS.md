@@ -11,6 +11,8 @@ copies only `README.md` and `AGENTS.md` from that directory. The public-only
 `docs/` tree documents the distribution and its offline inventory. Coordinate
 updates to the regenerated landing files with the private authoring copies.
 The [public publication guide](docs/publication.md) records the boundary.
+For a public-only check, follow the [offline inventory guide](docs/verification.md).
+It verifies tracked paths and mirror coverage without opening teaching files.
 
 Module content comes from `module.toml`, and lab/practice-test content from their
 course Markdown sources. The configured profile renders PDF and DOCX for 16
